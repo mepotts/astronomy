@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "adql-copilot"
+version = "0.0.1"
+description = "Schema-aware ADQL linter/explainer over live VO TAP endpoints (NL->ADQL copilot layered on top)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Matthew Potts" }]
+keywords = ["adql", "tap", "virtual-observatory", "astronomy", "gaia", "ivoa", "linter"]
+
+# Real runtime dependencies. Versions are minimum floors known-good as of June 2026;
+# loosen/pin precisely at M1 once the live calls are exercised.
+dependencies = [
+    "pyvo>=1.5",                 # IVOA TAP client: TAPService, .tables, TAP_SCHEMA, sync/async
+    "astroquery>=0.4.7",         # Gaia convenience + async helpers
+    "astropy>=6.0",             # Table handling (pulled in by the above, pinned for clarity)
+    "queryparser-python3>=0.7",  # ANTLR-based ADQL parser (parse + identifier extraction)
+    "typer>=0.12",               # CLI
+    "pydantic>=2.6",             # typed diagnostics / AST models (serialize to JSON for a future API)
+    "rich>=13.0",               # readable CLI output
+]
+
+[project.optional-dependencies]
+# M2+ : NL->ADQL generation. Kept optional so the deterministic core installs lean.
+llm = ["anthropic>=0.40"]
+# M3 : UI wrappers over the same library.
+ui = ["gradio>=4.0", "fastapi>=0.110", "uvicorn>=0.29"]
+# Fallback ADQL grammar (see DATA-SOURCES.md S4) if queryparser proves brittle.
+parser-fallback = ["lark>=1.1"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+adql-copilot = "adql_copilot.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/adql_copilot"]

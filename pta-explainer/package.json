@@ -1,0 +1,33 @@
+{
+  "name": "pta-explainer",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Interactive Hellings-Downs / pulsar timing array explainer (v0: the Hellings-Downs Live Demo).",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "d3-array": "^3.2.4",
+    "d3-axis": "^3.0.0",
+    "d3-drag": "^3.0.0",
+    "d3-scale": "^4.0.2",
+    "d3-selection": "^3.0.0",
+    "d3-shape": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/d3-array": "^3.2.1",
+    "@types/d3-axis": "^3.0.6",
+    "@types/d3-drag": "^3.0.7",
+    "@types/d3-scale": "^4.0.8",
+    "@types/d3-selection": "^3.0.10",
+    "@types/d3-shape": "^3.1.6",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.0",
+    "vitest": "^2.0.5"
+  }
+}

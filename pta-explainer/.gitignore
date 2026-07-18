@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+dist/
+build/
+.vite/
+
+# Local data scratch (raw NANOGrav par/tim dumps — never commit the big files)
+# (data/raw/* not data/raw/ — a fully-excluded directory would defeat the negation below)
+data/raw/*
+*.par
+*.tim
+*.npz
+*.hdf5
+*.h5
+# …but DO keep the tiny derived position CSV (provenance for the shipped pulsar JSON,
+# so nothing depends on an external path — see DATA-SOURCES.md §2).
+!data/raw/nanograv_15yr_67pulsars_positions.csv
+# NOTE: the shipped, derived JSON in src/data/ IS committed — see DATA-SOURCES.md.
+
+# Env / editor
+.env
+.env.local
+.DS_Store
+*.log
+npm-debug.log*
+.vscode/
+.idea/
+
+# Test / coverage
+coverage/

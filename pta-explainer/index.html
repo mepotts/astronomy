@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hellings–Downs Live Demo — poke the famous 2023 pulsar figure</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <main id="app">
+      <header>
+        <h1>The Hellings–Downs curve, live</h1>
+        <p class="subtitle">
+          In 2023, astronomers found that pairs of pulsars across the sky wiggle in a
+          subtly <em>coordinated</em> way — the fingerprint of gravitational waves
+          rippling through our galaxy. How coordinated depends only on the
+          <strong>angle between the two pulsars on the sky</strong>. Pick two pulsars on
+          the map (or drag the slider) and watch where they land on the famous curve.
+        </p>
+      </header>
+
+      <!-- placeholder-data banner is injected here by main.ts when applicable -->
+      <div id="data-banner"></div>
+
+      <section class="panel" aria-labelledby="skymap-heading">
+        <h2 id="skymap-heading">1. Pick two pulsars</h2>
+        <p class="hint" id="skymap-hint">
+          Click any two dots. Each dot is a real millisecond pulsar in the array. The gold
+          ★ is the gravitational-wave source you place in §4 below — watch it move here as
+          you drag its sky position.
+        </p>
+        <div id="skymap"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="controls-heading">
+        <h2 id="controls-heading">2. …or just set the angle</h2>
+        <div class="controls">
+          <label for="theta-slider">Angle between them θ</label>
+          <input
+            id="theta-slider"
+            type="range"
+            min="0"
+            max="180"
+            step="0.5"
+            value="0"
+          />
+          <output id="theta-readout" for="theta-slider">0.0°</output>
+          <button id="random-pair" type="button">Random pair</button>
+        </div>
+        <p class="hint" id="pair-status"></p>
+      </section>
+
+      <section class="panel" aria-labelledby="curve-heading">
+        <h2 id="curve-heading">3. Where it lands on the curve</h2>
+        <p class="hint">
+          The black line is the exact Hellings–Downs prediction
+          <code>Γ(θ) = ½ − x/4 + (3/2)·x·ln x</code>, with <code>x = (1 − cos θ)/2</code>.
+          The red dot is your pair. Drag the dot, the slider, or the map — they stay in
+          sync.
+        </p>
+        <div id="plot"></div>
+        <p class="hint" id="backdrop-note"></p>
+      </section>
+
+      <section class="panel" aria-labelledby="resid-heading">
+        <h2 id="resid-heading">4. Now watch the actual wiggles</h2>
+        <p class="hint">
+          The curve above is the correlation <em>averaged over many sources</em>. Here is
+          the other half of the story, in the time domain: drop a single supermassive
+          black-hole binary somewhere on the sky and watch the tiny timing residual it
+          stamps onto each pulsar. The shared “Earth-term” wiggle — the <em>same period</em>
+          in every pulsar, but a size and sign set by the geometry — is exactly what makes
+          pulsar pairs correlate. <strong>This is one illustrative source, not the real
+          stochastic background.</strong>
+        </p>
+        <div class="source-controls">
+          <div class="src-row">
+            <label for="src-mass">Chirp mass</label>
+            <input id="src-mass" type="range" min="8" max="10" step="0.02" value="9" />
+            <output id="src-mass-out" for="src-mass"></output>
+          </div>
+          <div class="src-row">
+            <label for="src-freq">GW frequency</label>
+            <input id="src-freq" type="range" min="2" max="50" step="0.5" value="10" />
+            <output id="src-freq-out" for="src-freq"></output>
+          </div>
+          <div class="src-row">
+            <label for="src-ra">Source RA</label>
+            <input id="src-ra" type="range" min="0" max="360" step="1" value="180" />
+            <output id="src-ra-out" for="src-ra"></output>
+          </div>
+          <div class="src-row">
+            <label for="src-dec">Source Dec</label>
+            <input id="src-dec" type="range" min="-90" max="90" step="1" value="0" />
+            <output id="src-dec-out" for="src-dec"></output>
+          </div>
+          <div class="src-row">
+            <label for="src-inc">Inclination</label>
+            <input id="src-inc" type="range" min="0" max="90" step="1" value="45" />
+            <output id="src-inc-out" for="src-inc"></output>
+          </div>
+        </div>
+        <label class="src-toggle">
+          <input type="checkbox" id="src2-enable" />
+          Add a second binary — watch the two wiggles superpose
+        </label>
+        <div class="source-controls" id="src2-controls" hidden>
+          <div class="src-row">
+            <label for="src2-mass">2nd chirp mass</label>
+            <input id="src2-mass" type="range" min="8" max="10" step="0.02" value="8.7" />
+            <output id="src2-mass-out" for="src2-mass"></output>
+          </div>
+          <div class="src-row">
+            <label for="src2-freq">2nd GW frequency</label>
+            <input id="src2-freq" type="range" min="2" max="50" step="0.5" value="22" />
+            <output id="src2-freq-out" for="src2-freq"></output>
+          </div>
+          <div class="src-row">
+            <label for="src2-ra">2nd source RA</label>
+            <input id="src2-ra" type="range" min="0" max="360" step="1" value="60" />
+            <output id="src2-ra-out" for="src2-ra"></output>
+          </div>
+          <div class="src-row">
+            <label for="src2-dec">2nd source Dec</label>
+            <input id="src2-dec" type="range" min="-90" max="90" step="1" value="55" />
+            <output id="src2-dec-out" for="src2-dec"></output>
+          </div>
+        </div>
+        <div class="controls noise-control">
+          <label for="src-noise">Pulsar timing noise (RMS)</label>
+          <input id="src-noise" type="range" min="0" max="600" step="10" value="100" />
+          <output id="src-noise-out" for="src-noise"></output>
+        </div>
+        <div id="resid-plot"></div>
+        <p class="hint" id="resid-note"></p>
+      </section>
+
+      <footer id="site-footer"></footer>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+# Secrets — NEVER commit Lasair tokens etc.
+.env
+*.token
+secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# Tooling
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Pipeline artifacts & local data (regenerated each run)
+*.sqlite
+*.db
+output/
+ellipsoid_targets_*.csv
+ellipsoid_targets_*.tgt
+ellipsoid_targets_*.xml
+ellipsoid_digest_*.md
+*.ics
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

@@ -1,0 +1,30 @@
+# Safety net at the portfolio root — each subproject has its own .gitignore too.
+
+# Dependencies / environments
+node_modules/
+.venv/
+venv/
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Build output
+dist/
+build/
+
+# Secrets
+.env
+.env.*
+*.token
+*.key
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log

@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# Cached TAP_SCHEMA dumps (regenerable from the live endpoints; do not commit)
+schemas/*.json
+
+# Secrets (M2 LLM key, etc.)
+.env
+*.key
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

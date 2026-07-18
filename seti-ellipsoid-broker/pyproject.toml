@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "seti-ellipsoid-broker"
+version = "0.0.1"
+description = "Standalone Python broker that fuses ZTF/ASAS-SN/CHIME alerts against the SN 1987A SETI Ellipsoid using Gaia DR3 distances, and predicts upcoming shell crossings."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Matthew Potts", email = "matthew.e.potts@gmail.com" }]
+keywords = ["SETI", "technosignature", "SN1987A", "ellipsoid", "ZTF", "Gaia", "alert-broker"]
+
+# Real runtime dependencies for the full build. The M0 skeleton itself only imports
+# `typer` (CLI) and the stdlib; the astronomy deps are declared so `pip install -e .`
+# provisions everything M1+ needs. Versions are floors, not pins.
+dependencies = [
+    "typer>=0.12",
+    "astropy>=6.0",
+    "astroquery>=0.4.7",     # provides astroquery.gaia TAP client
+    "requests>=2.31",
+    "lasair>=0.0.6",          # official Lasair ZTF REST client
+    "numpy>=1.26",
+    "pydantic-settings>=2.0", # typed env-var config (tokens, paths)
+]
+
+[project.optional-dependencies]
+# Heavier / situational extras kept out of the default install:
+#   asassn  - ASAS-SN Sky Patrol V2 client (installed from GitHub, see DATA-SOURCES.md)
+#   chime   - VOEvent parsing + Comet broker for live CHIME subscription (M2/M3).
+#             NOTE: voevent-parse is in this extra (not the core deps) because its sdist
+#             ships a test fixture whose filename contains a ':' and will not unpack on
+#             Windows (NTFS). CHIME is M2/M3 and out of the offline M1 core, so the core
+#             install stays Windows-clean; install `.[chime]` on a POSIX host for CHIME.
+#   ical    - iCal feed generation for the Window Predictor (M3)
+asassn = ["pyasassn>=0.5.1"]
+chime = ["voevent-parse>=1.0.3", "comet>=3.1.0"]
+ical = ["ics>=0.7.2"]
+dev = ["pytest>=8.0", "ruff>=0.5"]
+
+[project.scripts]
+seti-broker = "seti_ellipsoid_broker.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/seti_ellipsoid_broker"]
