@@ -16,6 +16,7 @@
 import { renderHDCurvePlot, type HDCurveController } from "./components/HDCurvePlot";
 import { renderSkyMap, type SkyMapController } from "./components/SkyMap";
 import { renderResidualPanel } from "./components/ResidualPanel";
+import { attachAnnotations, type Annotation } from "./components/annotations";
 import { angularSeparationBetween } from "./physics/angularSeparation";
 import { hellingsDownsDeg } from "./physics/hellingsDowns";
 import { SECONDS_PER_YEAR, type SourceParams } from "./physics/residuals";
@@ -363,6 +364,79 @@ if (residPlotEl && pulsars.length >= 2) {
   }
   src2Enable?.addEventListener("change", refresh);
 }
+
+// ---------------------------------------------------------------------------
+// Annotation layer — a "?" beside each control opens a plain-language note.
+// Physically grounded, lay-audience wording; collapsed by default.
+// ---------------------------------------------------------------------------
+const ANNOTATIONS: Annotation[] = [
+  {
+    control: "theta-slider",
+    title: "the angle θ",
+    html:
+      "The one thing the Hellings–Downs curve depends on: the angle between two pulsars " +
+      "as seen from Earth. <strong>0°</strong> is the same direction on the sky, " +
+      "<strong>180°</strong> is opposite sides. The striking claim of the 2023 result is " +
+      "that this angle <em>alone</em> predicts how similarly any two pulsars wiggle.",
+  },
+  {
+    control: "src-mass",
+    html:
+      "The <em>chirp mass</em> blends the two black holes' masses into the single number " +
+      "that sets how <strong>loud</strong> the gravitational wave is — bigger mass, bigger " +
+      "residual (amplitude grows as mass<sup>5/3</sup>). Supermassive binaries live around " +
+      "10<sup>8</sup>–10<sup>10</sup> solar masses; the slider is logarithmic.",
+  },
+  {
+    control: "src-freq",
+    html:
+      "How fast the binary spirals, which fixes the <strong>period</strong> of the wiggle " +
+      "(period = 1 ⁄ frequency). Pulsar arrays listen in the <em>nanohertz</em> band — " +
+      "periods of years to decades. Lower frequency ⇒ a slower, longer wave.",
+  },
+  {
+    control: "src-ra",
+    title: "the source's sky position",
+    html:
+      "Where the binary sits on the sky (right ascension). This is pure <strong>geometry</strong>: " +
+      "each pulsar responds through its own “antenna pattern”, which depends on its angle to " +
+      "the source — so moving the source changes <em>which</em> pulsars wiggle hardest. Watch " +
+      "the gold ★ move on the map in §1.",
+  },
+  {
+    control: "src-dec",
+    title: "the source's sky position",
+    html:
+      "The other sky coordinate (declination, north–south). Together with RA it sets the " +
+      "source's direction, and therefore each pulsar's antenna response — the geometry behind " +
+      "why the residual amplitudes differ from pulsar to pulsar.",
+  },
+  {
+    control: "src-inc",
+    html:
+      "The tilt of the binary's orbital plane to our line of sight: <strong>face-on</strong> " +
+      "(0°) versus <strong>edge-on</strong> (90°). The two orientations emit the gravitational " +
+      "wave's two polarizations in different proportions, changing the residual's size and shape.",
+  },
+  {
+    control: "src2-enable",
+    title: "a second binary",
+    html:
+      "A real background is <em>many</em> binaries at once. Because general relativity is " +
+      "linear, their residuals simply <strong>add</strong>. Turn this on to watch two periods " +
+      "beat together — the honest bridge from “one source” toward “a background of many”.",
+  },
+  {
+    control: "src-noise",
+    title: "timing noise",
+    html:
+      "Every measured pulse-arrival time carries scatter. Notice that a single measurement's " +
+      "noise can <strong>swamp</strong> the signal — real detection comes from averaging " +
+      "thousands of arrival times across ~15 years and dozens of pulsars, which is how the " +
+      "2023 result dug the correlation out from <em>below</em> the per-measurement noise.",
+  },
+];
+attachAnnotations(ANNOTATIONS);
 
 // eslint-disable-next-line no-console
 console.log(

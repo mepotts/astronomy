@@ -149,6 +149,72 @@ h2 {
   padding: 0.5rem;
 }
 
+/* M2 annotation layer: a "?" beside each control opens a plain-language note. */
+.label-cell {
+  display: inline-flex;
+  align-items: center;
+}
+
+.ann-toggle {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-left: 0.4rem;
+  padding: 0;
+  border: 1px solid #cbd5e1;
+  border-radius: 50%;
+  background: #f8fafc;
+  color: #475569;
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.ann-toggle:hover {
+  background: #eef2f7;
+}
+
+.ann-toggle:focus-visible {
+  outline: 2px solid #0072b2;
+  outline-offset: 1px;
+}
+
+.ann-toggle[aria-expanded="true"] {
+  background: #0072b2;
+  border-color: #0072b2;
+  color: #fff;
+}
+
+.annotation {
+  grid-column: 1 / -1; /* full-width row inside the .source-controls grid */
+  flex-basis: 100%; /* full-width inside a flex .controls row */
+  margin: 0.15rem 0 0.5rem;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid #e0f2fe;
+  border-left: 3px solid #0072b2;
+  border-radius: 6px;
+  background: #f0f9ff;
+  color: #334155;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.annotation[hidden] {
+  display: none;
+}
+
+.annotation sup {
+  font-size: 0.75em;
+}
+
+.ann-tip {
+  font-style: italic;
+}
+
 .banner {
   border-radius: 8px;
   padding: 0.6rem 0.8rem;
