@@ -108,7 +108,9 @@ build script land in M1.)
 - [ ] Physically-grounded **per-pulsar** noise (real NANOGrav noise products) + validation
   vs. published sensitivity curves. **(data-fidelity fork — real products vs. the current
   illustrative band — is an open question for Matthew.)**
-- [ ] Annotation layer keyed to each control ("what am I looking at?").
+- [x] **Annotation layer keyed to each control** ("what am I looking at?") —
+  `components/annotations.ts`: an on-demand "?" toggle beside each control reveals a
+  plain-language, physically-grounded note (collapsed by default, accessible). Deployed.
 - [ ] Framework (Svelte/React) — revisit ONLY if the growing panel set needs it; not yet.
 
 ### M3 — Full PTA explainer + deploy
