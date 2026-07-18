@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
+    "build:pages": "tsc --noEmit && vite build --base=/pta-explainer/",
     "preview": "vite preview",
+    "deploy": "bash scripts/deploy-pages.sh",
     "test": "vitest run",
     "test:watch": "vitest"
   },

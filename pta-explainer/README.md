@@ -4,7 +4,7 @@ An interactive, browser-native explainer for how a **pulsar timing array** detec
 nanohertz gravitational-wave background — built around the famous 2023 **NANOGrav 15-year**
 Hellings–Downs detection figure, made interactive.
 
-> **Status: M1 complete · M2 in progress.**
+> **Status: M1 complete · M2 in progress · [live on GitHub Pages](https://mepotts.github.io/pta-explainer/).**
 >
 > **M1 — Hellings–Downs Live Demo.** The page is interactive: a D3 sky map of the **real
 > 67-pulsar NANOGrav 15-year array**, a pulsar-pair picker (click two dots) and a θ slider,
@@ -39,6 +39,20 @@ Hellings–Downs detection figure, made interactive.
 npm install
 npm run dev      # starts Vite dev server (prints a localhost URL)
 ```
+
+**Live demo:** https://mepotts.github.io/pta-explainer/ (auto-built from `dist/`).
+
+## Deploy
+
+The source of truth is the private `astronomy` monorepo; the built site is mirrored to the
+public repo `mepotts/pta-explainer` (GitHub Pages can't serve from a private repo on a free
+plan). To ship the current state:
+
+```bash
+npm run deploy   # build:pages (base=/pta-explainer/) + force-push dist/ to the public repo
+```
+
+See `scripts/deploy-pages.sh` for the mechanics (overridable via `PAGES_REPO_URL`, etc.).
 
 Open the printed URL — you should see axes (angular separation 0–180° vs. correlation)
 with the recognizable Hellings–Downs curve: starting at 0.5, crossing zero near ~49°,

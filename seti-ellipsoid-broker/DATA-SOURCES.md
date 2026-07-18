@@ -8,7 +8,7 @@ Summary table:
 
 | Source | What | Endpoint / host | Auth | Rate limit | Format |
 |---|---|---|---|---|---|
-| Lasair ZTF | ZTF transient alerts + Gaia crossmatch | `https://lasair-ztf.lsst.ac.uk/api/` | Token | free 10/hr · reg 100/hr · power 10k/hr | JSON |
+| Lasair ZTF | ZTF transient alerts + Gaia crossmatch | `https://lasair-ztf.lsst.ac.uk/api/` | Token | reg 100/hr · power 10k/hr | JSON |
 | Gaia DR3 | Parallax, pmRA/Dec, RUWE | `astroquery.gaia` TAP (gea.esac.esa.int) | Anonymous (or login) | async results kept 3 days; ≤5000 ids/batch | VOTable/table |
 | ASAS-SN Sky Patrol V2 | Optical light curves, ~111M targets | `pyasassn.client.SkyPatrolClient()` | None | bandwidth-bound; ≤1M curves/pull | pandas/Parquet |
 | CHIME/FRB | Real-time FRB VOEvents (RA, Dec, DM) | `chimefrb.physics.mcgill.ca:8099` via Comet | Free subscription + static public IP | ~2 events/day | VOEvent XML |
@@ -22,12 +22,15 @@ Summary table:
 - **Auth:** per-account token.
   - GET: token passed as a query-string parameter (`token=...`).
   - POST: token in header `Authorization: Token <token>`.
-  - Get a token from your Lasair account profile page after registering.
+  - Get a token from your Lasair account profile page after registering
+    (register at `https://lasair-ztf.lsst.ac.uk/register/` → log in → your name, top
+    right → "My Profile"). Support: `lasair-help@lists.roe.ac.uk`.
   - **Do not commit tokens.** Read from `LASAIR_TOKEN` env var (see `.gitignore` / settings).
-- **Rate limits / row caps** (last verified June 2026):
-  - Free shared token: **10 calls/hour**.
+- **Rate limits / row caps** (last verified July 2026):
   - Registered token: **100 calls/hour**, max **10,000 rows/query**.
-  - Power user (on request): **10,000 calls/hour**, max **1,000,000 rows/query**.
+  - Power user (email lasair-help with use case): **10,000 calls/hour**, max **1,000,000 rows/query**.
+  - (A free *shared* token at 10 calls/hour was documented in June 2026 but is no longer
+    published; docs now say tokens must not be shared.)
 - **Key endpoints:**
   - `POST /api/cone/` — cone search. Params: `ra`, `dec`, `radius` (arcsec, max 1000),
     `requestType` ∈ {`nearest`, `all`, `count`}.

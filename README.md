@@ -11,7 +11,7 @@ Build portfolio for the astronomy opportunities surfaced by the **idea-research 
 | Folder | Project | Scores (U/B/E) | Status (verified 2026-06-30) |
 |---|---|---|---|
 | [`seti-ellipsoid-broker/`](seti-ellipsoid-broker/) | SETI Ellipsoid Alert Broker — sibling of catalog item #5; fuses ZTF/ASAS-SN/CHIME alerts × Gaia DR3 into nightly target lists | 4/4/4 | **M1 implemented** — pipeline + export, 42 tests green, demo artifacts in `_demo_out/` |
-| [`pta-explainer/`](pta-explainer/) | Pulsar Timing Array / Hellings–Downs interactive explainer | 5/5/4 | **M1 ✓ + M2 in progress** — live HD demo, plus source-sandbox (residuals, sky-map source marker, 2-source superposition); 50 tests, build green |
+| [`pta-explainer/`](pta-explainer/) | Pulsar Timing Array / Hellings–Downs interactive explainer — **[live demo](https://mepotts.github.io/pta-explainer/)** | 5/5/4 | **M1 ✓ + M2 in progress** — live HD demo, plus source-sandbox (residuals, sky-map source marker, 2-source superposition); 50 tests, build green; **deployed to GitHub Pages** |
 | [`adql-copilot/`](adql-copilot/) | TAP/ADQL natural-language query copilot over Virtual-Observatory endpoints | 4/5/4 | **M1 implemented** — deterministic linter live vs Gaia `TAP_SCHEMA`, 26 tests green |
 
 Each project folder contains: `SPEC.md` (the verified research dossier), `DATA-SOURCES.md` (exact APIs/endpoints/formats), `BUILD-PLAN.md` (stack decision, architecture, milestones, first tasks), and a minimal runnable skeleton.
