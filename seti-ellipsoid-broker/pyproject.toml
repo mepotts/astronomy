@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "seti-ellipsoid-broker"
-version = "0.0.1"
+version = "0.1.0"
 description = "Standalone Python broker that fuses ZTF/ASAS-SN/CHIME alerts against the SN 1987A SETI Ellipsoid using Gaia DR3 distances, and predicts upcoming shell crossings."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -23,6 +23,7 @@ dependencies = [
     "lasair>=0.0.6",          # official Lasair ZTF REST client
     "numpy>=1.26",
     "pydantic-settings>=2.0", # typed env-var config (tokens, paths)
+    "gaiadr3-zeropoint>=0.1", # official Lindegren+2021 DR3 parallax zero-point (import: zero_point)
 ]
 
 [project.optional-dependencies]

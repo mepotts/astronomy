@@ -40,20 +40,6 @@ npm install
 npm run dev      # starts Vite dev server (prints a localhost URL)
 ```
 
-**Live demo:** https://mepotts.github.io/pta-explainer/ (auto-built from `dist/`).
-
-## Deploy
-
-The source of truth is the private `astronomy` monorepo; the built site is mirrored to the
-public repo `mepotts/pta-explainer` (GitHub Pages can't serve from a private repo on a free
-plan). To ship the current state:
-
-```bash
-npm run deploy   # build:pages (base=/pta-explainer/) + force-push dist/ to the public repo
-```
-
-See `scripts/deploy-pages.sh` for the mechanics (overridable via `PAGES_REPO_URL`, etc.).
-
 Open the printed URL — you should see axes (angular separation 0–180° vs. correlation)
 with the recognizable Hellings–Downs curve: starting at 0.5, crossing zero near ~49°,
 dipping to a slight anticorrelation near ~82°, recovering toward 180°.
@@ -64,14 +50,29 @@ npm run preview  # serve the production build locally
 npm test         # run physics-validation unit tests (added in M1)
 ```
 
+## Deploy
+
+**Live demo (already deployed):** https://mepotts.github.io/pta-explainer/ (auto-built from `dist/`).
+
+The source of truth is the private `astronomy` monorepo; the built site is mirrored to the
+public repo `mepotts/pta-explainer` (GitHub Pages can't serve from a private repo on a free
+plan). To re-ship the current state:
+
+```bash
+npm run deploy   # build:pages (base=/pta-explainer/) + force-push dist/ to the public repo
+```
+
+See `scripts/deploy-pages.sh` for the mechanics (overridable via `PAGES_REPO_URL`, etc.).
+
 ## What this is (and isn't)
 
 - **Is:** the dossier's *adjacent-angle MVP* — the Hellings–Downs Live Demo (M1) plus the
   single-source timing-residual sandbox (M2). Pure client-side, analytic physics, static
   deploy (GitHub Pages), no backend.
-- **Isn't (yet):** a noise-floor / detection-threshold simulator, the scrollytelling
-  explainer, or a deploy. Those are the rest of M2–M3. And it is never the stochastic GW
-  background — every residual shown is one or two illustrative sources.
+- **Isn't (yet):** physically-grounded *per-pulsar* noise (the §4 timing-noise band is a
+  single illustrative RMS, not real NANOGrav noise products), switchable EPTA/PPTA/IPTA
+  arrays, or the guided scrollytelling explainer — the rest of M2–M3. And it is never the
+  stochastic GW background: every residual shown is one or two illustrative sources.
 
 ## Project docs
 

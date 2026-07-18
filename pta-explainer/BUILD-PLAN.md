@@ -127,7 +127,7 @@ build script land in M1.)
 2. [ ] Download the 67 `.par` files from Zenodo 7967584 into `data/raw/` (gitignored).
 3. [ ] Write `scripts/build-pulsars.mjs`: parse `RAJ`/`DECJ` → decimal degrees → `src/data/nanograv15_pulsars.json` (67 entries). Spot-check 2–3 against SIMBAD.
 4. [ ] Write `src/physics/angularSeparation.ts` (spherical law of cosines) + a unit test (e.g. known pair J1713+0747 / J1909−3744 separation).
-5. [ ] Write `src/physics/__tests__/hellingsDowns.test.ts`: assert Γ(0°)=0.5, zero-crossing ≈49.3°, min ≈−0.173 near ≈82.5°, Γ(180°)=0.25. (This is the physics-validation gate — §6.)
+5. [ ] Write `src/physics/__tests__/hellingsDowns.test.ts`: assert Γ(0°)=0.5, zero-crossing ≈49.3°, min ≈−0.1519 near ≈82.48°, Γ(180°)=0.25. (This is the physics-validation gate — §6.)
 6. [ ] Digitize ~15 binned points from Agazie 2023 Fig 1c → `src/data/nanograv15_hd_points.json`; visually confirm they hug the analytic curve within error bars.
 7. [ ] Build the sky-map component + pair picker; wire selection → θ → marker on curve.
 8. [ ] Add footer attribution; run validation; deploy M1 to Pages for early feedback.
@@ -142,7 +142,7 @@ Concretely:
 1. **Unit test the formula** (`hellingsDowns.test.ts`, runs in CI via `npm test`):
    - Γ(0°, distinct) = 0.5 exactly.
    - Zero crossing at θ ≈ **49.3°** (assert |Γ| < 1e−3 there).
-   - Minimum (most anticorrelated) ≈ **−0.173** near θ ≈ **82.5°** (assert via derivative or sampled min).
+   - Minimum (most anticorrelated) = **½ − (3/2)·e^(−5/6) ≈ −0.1519** near θ ≈ **82.48°** (assert via derivative or sampled min).
    - Γ(180°) = 0.25 exactly.
    - `x·ln x` guarded → no `NaN` at θ=0.
    These landmarks are independently derivable from the closed form, so the test is self-checking, not circular.

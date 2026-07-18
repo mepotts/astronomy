@@ -47,6 +47,8 @@ const pairStatus = document.getElementById("pair-status");
 const randomBtn = document.getElementById("random-pair") as HTMLButtonElement | null;
 const skymapEl = document.getElementById("skymap");
 const plotEl = document.getElementById("plot");
+const overlayMonopole = document.getElementById("overlay-monopole") as HTMLInputElement | null;
+const overlayDipole = document.getElementById("overlay-dipole") as HTMLInputElement | null;
 const banner = document.getElementById("data-banner");
 const backdropNote = document.getElementById("backdrop-note");
 const footer = document.getElementById("site-footer");
@@ -124,6 +126,18 @@ if (plotEl) {
     onThetaChange: (t) => setThetaFromControl(t),
   });
 }
+
+// §3 overlay toggles: overlay the illustrative monopole (clock errors) and dipole
+// (ephemeris errors) reference shapes on the HD quadrupole. Off by default.
+function syncOverlays() {
+  curve?.setOverlays({
+    monopole: !!overlayMonopole?.checked,
+    dipole: !!overlayDipole?.checked,
+  });
+}
+overlayMonopole?.addEventListener("change", syncOverlays);
+overlayDipole?.addEventListener("change", syncOverlays);
+syncOverlays();
 
 if (slider) {
   slider.addEventListener("input", () => {

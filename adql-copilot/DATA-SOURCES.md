@@ -74,9 +74,13 @@ we know the legitimate JOIN keys between tables**, central to the "missing JOIN 
 ADQL = SQL + spherical-geometry extensions. The spatial functions are where generic Text-to-SQL
 tools fail and where most user errors live. The ones the linter must understand:
 
-- **`POINT('ICRS', ra, dec)`** — a position; first arg is the coordinate frame (often `'ICRS'`).
-- **`CIRCLE('ICRS', ra_c, dec_c, radius_deg)`** — a cone (frame, centre RA, centre Dec, radius in degrees).
-- **`BOX('ICRS', ra_c, dec_c, w_deg, h_deg)`** and **`POLYGON('ICRS', ra1, dec1, ...)`** — other regions.
+- **`POINT(ra, dec)`** — a position. **ADQL 2.1** made the leading coordinate-system argument
+  *optional* (and deprecated it); the legacy `POINT('ICRS', ra, dec)` form is still accepted, so a
+  linter must treat both as valid and should *emit* the coordsys-less form.
+- **`CIRCLE(ra_c, dec_c, radius_deg)`** — a cone (centre RA, centre Dec, radius in degrees). Legacy
+  `CIRCLE('ICRS', ra_c, dec_c, radius_deg)` also accepted.
+- **`BOX(ra_c, dec_c, w_deg, h_deg)`** and **`POLYGON(ra1, dec1, ...)`** — other regions (leading
+  `'ICRS'` frame argument optional in 2.1, as above).
 - **`CONTAINS(geom_inner, geom_outer)`** — returns 1 if inner is inside outer, else 0.
 - **`INTERSECTS(geom1, geom2)`** — returns 1 if the regions overlap.
 - **`DISTANCE(POINT(...), POINT(...))`** — angular distance in degrees between two points.

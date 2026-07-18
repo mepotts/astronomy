@@ -92,6 +92,35 @@ h2 {
   background: #eef2f7;
 }
 
+/* §3 reference-overlay toggles (monopole / dipole comparison). */
+.overlay-controls {
+  gap: 0.4rem 1.1rem;
+  margin: 0.2rem 0 0.7rem;
+  font-size: 0.85rem;
+}
+
+.overlay-controls-label {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.overlay-controls label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Checkbox accents match the overlay curve colours (Okabe–Ito orange / green). */
+#overlay-monopole {
+  accent-color: #e69f00;
+}
+
+#overlay-dipole {
+  accent-color: #009e73;
+}
+
 /* M2 source sandbox: a tidy grid of labelled sliders. */
 .source-controls {
   display: grid;

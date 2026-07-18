@@ -14,8 +14,11 @@ deterministic fakes:
                                  (live path is an anonymous astroquery.gaia TAP join).
 
 Everything between staging and export is the *real* M1 code (`ellipsoid`, `ranking`,
-`export`). The live ingest/crossmatch modules remain clean stubs whose NotImplementedError
-names the Lasair-token requirement; `run_offline()` never touches them.
+`export`). The live legs are ALSO real and account-free now — `run_live_csv()` wires a
+transients CSV (`ingest.transients`) through the anonymous Gaia crossmatch (`gaia.crossmatch`)
+and the parallax zero-point correction (`zeropoint`) into the same staging path. Only the
+*auto*-ingest feeds (`ingest.lasair` account-gated, `ingest.asassn`/`ingest.chime` M2/M3)
+remain NotImplementedError stubs; `run_offline()` touches none of them.
 
 SQLite staging is a real, on-disk (or in-memory) table `alerts_staging`, matching the
 dossier's "write normalized alert records to a SQLite staging table" design. Results are
@@ -194,6 +197,7 @@ def stage_alerts(
 def rank_staged(
     conn: sqlite3.Connection,
     now_jyear: float = ranking.DEFAULT_NOW_JYEAR,
+    note: str = "staged -> ellipsoid -> rank",
 ) -> list[RankedTarget]:
     """Read enriched staged alerts, apply quality cuts, compute crossing + score, rank.
 
@@ -207,13 +211,24 @@ def rank_staged(
         "SELECT * FROM alerts_staging ORDER BY survey, source_ref"
     ).fetchall()
     for r in rows:
-        if r["gaia_source_id"] is None or r["parallax_over_error"] is None:
-            continue  # no Gaia counterpart -> cannot place on the ellipsoid
+        # Guard every column the DDL allows to be NULL: a star can only be placed on the
+        # ellipsoid with a Gaia id AND a positive parallax AND ruwe AND parallax_over_error.
+        # (Without these guards a NULL parallax_mas/ruwe would raise TypeError on float().)
+        if (
+            r["gaia_source_id"] is None
+            or r["parallax_over_error"] is None
+            or r["parallax_mas"] is None
+            or r["ruwe"] is None
+        ):
+            continue  # no usable Gaia counterpart -> cannot place on the ellipsoid
+        parallax_mas = float(r["parallax_mas"])
+        if parallax_mas <= 0.0:
+            continue  # non-positive parallax -> no meaningful inversion distance
         p_over_e = float(r["parallax_over_error"])
         ruwe = float(r["ruwe"])
         if not ranking.passes_quality_cuts(p_over_e, ruwe):
             continue
-        distance_pc = 1000.0 / float(r["parallax_mas"])
+        distance_pc = 1000.0 / parallax_mas
         sep_deg = ellipsoid.separation_from_sn_deg(
             _icrs(r["ra_deg"], r["dec_deg"], sn)
         )
@@ -221,7 +236,8 @@ def rank_staged(
         window = float(
             ellipsoid.crossing_window_years(distance_pc, float(sep_deg), p_over_e)
         )
-        dbin = ranking.density_bin(int(r["neighbor_count"]))
+        neigh = r["neighbor_count"]
+        dbin = ranking.density_bin(int(neigh) if neigh is not None else 0)
         sc = ranking.score(window, dbin, crossing_epoch_jyear=t_cross, now_jyear=now_jyear)
         out.append(
             RankedTarget(
@@ -236,8 +252,10 @@ def rank_staged(
                 crossing_window_yr=window,
                 density_bin=dbin,
                 score=sc,
+                crossing_now=ellipsoid.is_crossing_now(t_cross, now_jyear, window),
+                crossing_flag_2yr=ellipsoid.is_crossing_now(t_cross, now_jyear),
                 survey=r["survey"],
-                notes="offline synthetic pipeline",
+                notes=note,
             )
         )
     return ranking.rank(out)
@@ -261,6 +279,39 @@ class PipelineResult:
     artifacts: dict[str, Path]
 
 
+def run_from_alerts(
+    out_dir: str | Path,
+    datestamp: str,
+    alerts: Sequence[Alert],
+    *,
+    crossmatch=synthetic_gaia_fields,
+    now_jyear: float = ranking.DEFAULT_NOW_JYEAR,
+    note: str = "staged -> ellipsoid -> rank",
+    db_path: str | Path = ":memory:",
+) -> PipelineResult:
+    """Shared core: stage ``alerts`` (enriched by ``crossmatch``), rank, and write artifacts.
+
+    ``crossmatch`` maps an Alert -> GaiaFields | None. Both the offline (synthetic) and live
+    (CSV + anonymous Gaia) entry points funnel through here so they share one staging ->
+    ellipsoid -> ranking -> export path. ``note`` is stamped onto each ranked target.
+    """
+    from . import export  # local import keeps astropy off the hot import path until needed
+
+    conn = open_staging(db_path)
+    try:
+        n_staged = stage_alerts(conn, alerts, crossmatch=crossmatch)
+        targets = rank_staged(conn, now_jyear=now_jyear, note=note)
+    finally:
+        conn.close()
+    artifacts = export.write_all(targets, Path(out_dir), datestamp)
+    return PipelineResult(
+        n_staged=n_staged,
+        n_ranked=len(targets),
+        targets=targets,
+        artifacts=artifacts,
+    )
+
+
 def run_offline(
     out_dir: str | Path,
     datestamp: str,
@@ -273,22 +324,116 @@ def run_offline(
     synthetic alerts -> SQLite staging -> ellipsoid -> ranking -> CSV/.tgt/.md.
     Returns a `PipelineResult` (counts, ranked targets, and the artifact paths).
     """
-    from . import export  # local import keeps astropy off the hot import path until needed
-
     if alerts is None:
         alerts = synthetic_alerts()
-    conn = open_staging(db_path)
-    try:
-        n_staged = stage_alerts(conn, alerts)
-        targets = rank_staged(conn, now_jyear=now_jyear)
-    finally:
-        conn.close()
-    artifacts = export.write_all(targets, Path(out_dir), datestamp)
-    return PipelineResult(
-        n_staged=n_staged,
-        n_ranked=len(targets),
-        targets=targets,
-        artifacts=artifacts,
+    return run_from_alerts(
+        out_dir,
+        datestamp,
+        alerts,
+        crossmatch=synthetic_gaia_fields,
+        now_jyear=now_jyear,
+        note="offline synthetic pipeline",
+        db_path=db_path,
+    )
+
+
+# --- LIVE, account-free path: transients CSV -> anonymous Gaia + zero-point ----------
+
+def gaia_fields_from_source(src, *, apply_zeropoint: bool = True) -> GaiaFields | None:
+    """Convert a live :class:`gaia.GaiaSource` into staging :class:`GaiaFields`.
+
+    Applies the Gaia DR3 parallax zero-point correction (Lindegren et al. 2021) to the
+    parallax BEFORE it is stored (and hence before the 1/parallax distance inversion),
+    unless ``apply_zeropoint`` is False. Returns None when the source lacks the astrometry
+    needed to place it on the ellipsoid (no/negative parallax, or no parallax_over_error).
+
+    Live stellar-density binning is a later refinement, so ``neighbor_count`` is left at 0
+    (density_bin 1); ranking still orders by crossing proximity and window tightness.
+    """
+    if src is None or src.parallax is None or src.parallax_over_error is None:
+        return None
+    parallax = src.parallax
+    if apply_zeropoint:
+        from . import zeropoint
+
+        parallax = zeropoint.apply_parallax_zeropoint(
+            src.parallax,
+            src.phot_g_mean_mag,
+            src.nu_eff_used_in_astrometry,
+            src.pseudocolour,
+            src.ecl_lat,
+            src.astrometric_params_solved,
+        )
+    if parallax is None or not math.isfinite(parallax) or parallax <= 0.0:
+        return None
+    return GaiaFields(
+        gaia_source_id=int(src.source_id),
+        parallax_mas=float(parallax),
+        parallax_over_error=float(src.parallax_over_error),
+        ruwe=float(src.ruwe) if src.ruwe is not None else float("nan"),
+        neighbor_count=0,
+    )
+
+
+def build_live_crossmatch(
+    alerts: Sequence[Alert],
+    *,
+    apply_zeropoint: bool = True,
+    launch=None,
+    radius_arcsec: float = 5.0,
+):
+    """Return a per-alert crossmatch closure backed by ONE batched anonymous Gaia query.
+
+    Fetches every alert's Gaia counterpart up front (``gaia.crossmatch``), then hands back a
+    function Alert -> GaiaFields | None (with the zero-point applied) suitable as the
+    ``crossmatch`` argument to :func:`run_from_alerts`/:func:`stage_alerts`. ``launch`` is
+    forwarded to ``gaia.crossmatch`` so tests can inject a canned TAP response (offline).
+    """
+    from . import gaia
+
+    src_by_ref = gaia.crossmatch(alerts, radius_arcsec=radius_arcsec, launch=launch)
+
+    def _crossmatch(alert: Alert) -> GaiaFields | None:
+        return gaia_fields_from_source(
+            src_by_ref.get(alert.source_ref), apply_zeropoint=apply_zeropoint
+        )
+
+    return _crossmatch
+
+
+def run_live_csv(
+    csv_path: str | Path,
+    out_dir: str | Path,
+    datestamp: str,
+    *,
+    apply_zeropoint: bool = True,
+    now_jyear: float = ranking.DEFAULT_NOW_JYEAR,
+    launch=None,
+    radius_arcsec: float = 5.0,
+    db_path: str | Path = ":memory:",
+) -> PipelineResult:
+    """LIVE, account-free run: transients CSV -> anonymous Gaia + zero-point -> artifacts.
+
+    CSV (any broker's export, or the user's own list) -> live crossmatch against DR3
+    ``gaia_source`` (anonymous TAP, no token) -> zero-point-corrected distances -> ellipsoid
+    -> ranking -> CSV/.tgt/.md. ``launch`` is injectable so tests exercise the whole path
+    with a mocked Gaia leg and zero network. See ``ingest/transients.py`` for the schema.
+    """
+    from .ingest import transients
+
+    alerts = transients.read_transients_csv(csv_path)
+    crossmatch = build_live_crossmatch(
+        alerts, apply_zeropoint=apply_zeropoint, launch=launch, radius_arcsec=radius_arcsec
+    )
+    note = "live: anonymous Gaia DR3" + ("" if apply_zeropoint else " (zero-point OFF)")
+    return run_from_alerts(
+        out_dir,
+        datestamp,
+        alerts,
+        crossmatch=crossmatch,
+        now_jyear=now_jyear,
+        note=note,
+        db_path=db_path,
     )
 
 

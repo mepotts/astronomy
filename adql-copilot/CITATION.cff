@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use adql-copilot in your research, please cite it as below."
+type: software
+title: "adql-copilot: a schema-aware ADQL linter for Virtual Observatory TAP endpoints"
+abstract: >-
+  A deterministic, machine-readable ADQL linter that validates queries against a
+  live TAP_SCHEMA (Gaia and other VO endpoints) before they run — catching unknown
+  tables/columns, missing spatial constraints, and archive-specific join pitfalls —
+  designed as the trustworthy validation gate for LLM-assisted (NL->ADQL) query
+  generation.
+authors:
+  - family-names: Potts
+    given-names: Matthew
+    email: matthew.e.potts@gmail.com
+    # orcid: "https://orcid.org/0000-0000-0000-0000"  # TODO: add your ORCID
+repository-code: "https://github.com/mepotts/astronomy/tree/main/adql-copilot"
+license: MIT
+version: "0.1.0"
+date-released: "2026-07-18"
+keywords:
+  - astronomy
+  - virtual observatory
+  - ADQL
+  - TAP
+  - Gaia
+  - query validation

@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+message: "If you use seti-ellipsoid-broker in your research, please cite it as below."
+type: software
+title: "seti-ellipsoid-broker: an account-free SN 1987A SETI Ellipsoid target broker"
+abstract: >-
+  A Python pipeline that computes which stars are currently crossing the SN 1987A
+  SETI Ellipsoid — the locus from which a beacon synchronized to SN 1987A would reach
+  Earth now — by fusing transient alerts with anonymous Gaia DR3 astrometry (including
+  the Lindegren et al. 2021 parallax zero-point correction). Runs account-free via an
+  externally-supplied transient list and exports ranked nightly observing targets.
+  Crossing epochs are validated against the 217 SN 1987A targets of Nilipour et al. (2023).
+authors:
+  - family-names: Potts
+    given-names: Matthew
+    email: matthew.e.potts@gmail.com
+    # orcid: "https://orcid.org/0000-0000-0000-0000"  # TODO: add your ORCID
+repository-code: "https://github.com/mepotts/astronomy/tree/main/seti-ellipsoid-broker"
+license: MIT
+version: "0.1.0"
+date-released: "2026-07-18"
+keywords:
+  - astronomy
+  - SETI
+  - technosignatures
+  - SN 1987A
+  - Gaia
+  - time-domain astronomy
+references:
+  - type: article
+    authors:
+      - family-names: Nilipour
+        given-names: Andy
+      - family-names: Davenport
+        given-names: James R. A.
+      - family-names: Croft
+        given-names: Steve
+      - family-names: Siemion
+        given-names: Andrew P. V.
+    title: "Signal Synchronization Strategies and Time Domain SETI with Gaia DR3"
+    year: 2023
+    doi: "10.3847/1538-3881/acde79"

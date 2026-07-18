@@ -77,9 +77,11 @@ def lint(
 
     ep = ENDPOINTS[endpoint]
     src = _SOURCE_NOTE.get(sch.source, sch.source)
+    age = schema.snapshot_age_days(sch)
+    age_note = f"  ·  [dim]snapshot {age:.0f}d old[/dim]" if age is not None else ""
     console.rule(
         f"adql-copilot v{__version__}  ·  endpoint: {ep.name}  ·  "
-        f"schema: {len(sch.tables)} tables / {len(sch.columns)} cols  ·  [dim]{src}[/dim]"
+        f"schema: {len(sch.tables)} tables / {len(sch.columns)} cols  ·  [dim]{src}[/dim]{age_note}"
     )
     console.print("[bold]Query:[/bold]")
     console.print(adql, style="dim")

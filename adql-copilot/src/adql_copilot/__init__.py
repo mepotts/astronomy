@@ -6,4 +6,4 @@ plus a plain-English explanation. The NL->ADQL copilot (M2+) is layered on top a
 this same deterministic core. See SPEC.md / BUILD-PLAN.md.
 """
 
-__version__ = "0.0.1"
+__version__ = "0.1.0"

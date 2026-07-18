@@ -94,4 +94,16 @@ surviving objects by crossing-window proximity × local stellar-density bin, and
 deterministic artifact set — `ellipsoid_targets_YYYYMMDD.csv` + an ACP `.tgt` + a Markdown digest.
 ASAS-SN and CHIME/FRB ingestion, the GitHub Actions nightly cron + Pages publish, and the
 **Window-Predictor** forward-calendar/iCal mode are explicitly *out* of v0 and scheduled for
-M2/M3 (see `BUILD-PLAN.md`). M0 (this commit) is the runnable skeleton with mocked data only.
+M2/M3 (see `BUILD-PLAN.md`).
+
+**Status (current).** The offline core is **complete and numerically correct**: the SN 1987A
+ellipsoid math is real and **externally validated** against Nilipour et al. (2023) — it
+reproduces all 217 published SN 1987A SETI-Ellipsoid crossing epochs to ~5×10⁻⁴ yr
+(`tests/test_nilipour.py`) — and ranking + the deterministic CSV/`.tgt`/Markdown exporters are
+real. A **live, account-free** path is implemented: `seti-broker run --transients-csv PATH`
+crossmatches an externally-supplied alert list against **anonymous** Gaia DR3 TAP (no token)
+and applies the **Gaia DR3 parallax zero-point correction** (Lindegren et al. 2021) before the
+distance inversion. What the original v0 sketch above assumed — *Lasair auto-ingest* — is
+**account-gated and unavailable** (Lasair-ZTF accounts don't carry to the Rubin era; see
+`DATA-SOURCES.md` §0), so `--live` is a stub that exits 2 and the account-free CSV path is the
+supported live mode. ASAS-SN/CHIME auto-ingest and the Window Predictor remain stubs.

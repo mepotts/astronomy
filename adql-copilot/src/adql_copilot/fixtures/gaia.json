@@ -2,6 +2,7 @@
   "endpoint_key": "gaia",
   "source": "fixture",
   "_comment": "Offline fallback snapshot of Gaia (ESA) TAP_SCHEMA, hand-curated from the Gaia DR3 data model (gea.esac.esa.int). Column names, units and UCDs are real. This is the committed fallback used when the live TAP fetch is unavailable; the live path writes a fuller schemas/gaia.json cache. Regenerable: adql_copilot.schema.load_schema('gaia', refresh=True) against the live endpoint, or adql_copilot.schema._fixture_schema().",
+  "_keys_comment": "keys is intentionally empty: Gaia's live TAP_SCHEMA.keys declares only tap_schema-internal foreign keys, NOT science joins. source_id is the universal join column across gaiadr3.gaia_source and the DR3 value-added tables, but the service does not declare it as an FK -- so the linter's MISSING_JOIN_KEY rule uses a curated join-key allowlist (linter._JOIN_KEY_ALLOWLIST) plus datatype co-existence, not a fabricated FK.",
   "columns": [
     {"table_name": "gaiadr3.gaia_source", "column_name": "solution_id", "datatype": "long", "unit": null, "ucd": "meta.version", "description": "Solution Identifier"},
     {"table_name": "gaiadr3.gaia_source", "column_name": "designation", "datatype": "char", "unit": null, "ucd": "meta.id;meta.main", "description": "Unique source designation (unique across all Data Releases)"},
@@ -43,7 +44,5 @@
     {"table_name": "gaiadr3.astrophysical_parameters", "column_name": "ag_gspphot", "datatype": "float", "unit": "mag", "ucd": "phys.absorption;em.opt", "description": "Extinction in G band from GSP-Phot Aeneas best library using BP/RP spectra"},
     {"table_name": "gaiadr3.astrophysical_parameters", "column_name": "azero_gspphot", "datatype": "float", "unit": "mag", "ucd": "phys.absorption", "description": "Monochromatic extinction A0 at 547.7nm from GSP-Phot Aeneas best library using BP/RP spectra"}
   ],
-  "keys": [
-    {"from_table": "gaiadr3.astrophysical_parameters", "target_table": "gaiadr3.gaia_source", "from_column": "source_id", "target_column": "source_id"}
-  ]
+  "keys": []
 }

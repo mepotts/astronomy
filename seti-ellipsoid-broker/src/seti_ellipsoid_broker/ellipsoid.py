@@ -65,7 +65,6 @@ from astropy.time import Time
 SN1987A_RA_DEG: float = 83.86658      # 05h 35m 27.99s  (ICRS, near 30 Doradus, LMC)
 SN1987A_DEC_DEG: float = -69.26961    # -69d 16m 10.6s
 SN1987A_DISTANCE_KPC: float = 51.4    # Earth -> SN 1987A baseline (= inter-foci 2C)
-SN1987A_DISTANCE_LY: float = 167_700.0  # ~168,000 ly
 REFERENCE_EPOCH: str = "1987-02-23"   # date SN 1987A light was OBSERVED at Earth
 
 # Semi-major axis grows at c/2: half a light-year of semi-major axis per calendar year.
@@ -84,6 +83,10 @@ CROSSING_WINDOW_FLAG_YR: float = 2.0
 _KPC_TO_LY: float = (1.0 * u.kpc).to_value(u.lyr)
 _PC_TO_LY: float = (1.0 * u.pc).to_value(u.lyr)
 _D_LY: float = SN1987A_DISTANCE_KPC * _KPC_TO_LY  # Earth->SN baseline in light-years
+
+# Baseline in light-years, DERIVED from the kpc source of truth (~167,644 ly for 51.4 kpc)
+# so it can never drift from the value the geometry actually uses. Exposed for docs/plots.
+SN1987A_DISTANCE_LY: float = _D_LY
 
 
 def reference_epoch_jyear() -> float:
@@ -221,15 +224,24 @@ def crossing_window_years(distance_pc, sep_deg, parallax_over_error: float):
 
     The dominant uncertainty in v0 is the geocentric distance, whose fractional error is
     ``1 / parallax_over_error`` (distance ~= 1000/parallax, so d(distance)/distance equals
-    the fractional parallax error). We propagate that into the ellipsoid depth:
+    the fractional parallax error to first order). We propagate that into the ellipsoid depth:
 
         sigma_t ~= |d(path_excess)/d(r_E)| * sigma_r   with   sigma_r = r_E / (p/sigma_p)
 
     and ``d(path_excess)/d(r_E) = 1 - (d * cos theta - r_E) / d2`` (-> ``1 - cos theta`` for
     r_E << d). Reported in years (c = 1 ly/yr). Tighter parallax => tighter window.
+
+    Caveat (documented, not modelled): distance = 1000/parallax is a NON-LINEAR map, so a
+    symmetric parallax error yields an ASYMMETRIC distance error (the +sigma tail reaches
+    farther than the -sigma tail). This first-order sigma_t is therefore a symmetric
+    approximation; a fully asymmetric window (or Bailer-Jones posterior) is an M2+ refinement.
     """
     if parallax_over_error <= 0:
         raise ValueError("parallax_over_error must be positive")
+    if isinstance(distance_pc, SkyCoord):
+        scalar_in = distance_pc.isscalar
+    else:
+        scalar_in = np.isscalar(distance_pc) and np.isscalar(sep_deg)
     dist, sep = _resolve_geometry(distance_pc, sep_deg)
     r_ly = dist * _PC_TO_LY
     theta = np.radians(sep)
@@ -238,5 +250,20 @@ def crossing_window_years(distance_pc, sep_deg, parallax_over_error: float):
     dpath_dr = 1.0 - (_D_LY * np.cos(theta) - r_ly) / d2
     sigma_r = r_ly / float(parallax_over_error)
     sigma_t = np.abs(dpath_dr) * sigma_r  # years
-    scalar_in = np.isscalar(distance_pc) and np.isscalar(sep_deg)
     return _unwrap(np.atleast_1d(sigma_t), scalar_in)
+
+
+def is_crossing_now(
+    crossing_epoch_jyear: float,
+    now_jyear: float,
+    window_yr: float | None = None,
+) -> bool:
+    """Whether a star sits on the shell 'now' (``|t_cross - now|`` within a band, in years).
+
+    With ``window_yr`` (the star's own propagated +/- crossing window, from
+    :func:`crossing_window_years`) the test is ``|t_cross - now| <= window_yr``. When it is
+    omitted, the coarser fixed band ``CROSSING_WINDOW_FLAG_YR`` (2 yr) is used instead — so
+    the module constant is the default "on-shell" tolerance rather than dead configuration.
+    """
+    band = CROSSING_WINDOW_FLAG_YR if window_yr is None else float(window_yr)
+    return bool(abs(float(crossing_epoch_jyear) - float(now_jyear)) <= band)

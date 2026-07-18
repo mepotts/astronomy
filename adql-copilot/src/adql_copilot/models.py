@@ -16,6 +16,20 @@ class Severity(str, Enum):
     INFO = "info"        # advisory (e.g. add TOP n)
 
 
+class Fix(BaseModel):
+    """A machine-actionable repair attached to a :class:`Diagnostic`.
+
+    This is the seam a CI check or an LLM repair loop consumes: unlike the human-readable
+    ``suggestion`` prose, ``fix`` is structured so a tool can apply it programmatically. Additive
+    and optional — a Diagnostic without a ``fix`` is still complete.
+    """
+
+    kind: str                       # e.g. "replace_table", "replace_column", "rewrite_limit_as_top"
+    replacement: str                # the suggested replacement identifier / text
+    target: str | None = None       # the original text this replaces, when known
+    span: tuple[int, int] | None = None  # (start, end) char offsets into ParsedQuery.raw, when known
+
+
 class Diagnostic(BaseModel):
     """One linter finding. `code` is a stable identifier for tests/eval."""
 
@@ -23,6 +37,7 @@ class Diagnostic(BaseModel):
     severity: Severity
     message: str
     suggestion: str | None = None   # e.g. fuzzy "did you mean 'phot_g_mean_mag'?"
+    fix: Fix | None = None          # optional machine-actionable repair (additive, backward-compat)
 
 
 class ColumnMeta(BaseModel):
@@ -59,6 +74,7 @@ class Schema(BaseModel):
 
     endpoint_key: str
     source: str = "fixture"          # "live" | "cache" | "fixture"
+    fetched_at: str | None = None    # ISO-8601 UTC timestamp of the live fetch (None for fixtures)
     columns: list[ColumnMeta] = []
     keys: list[ForeignKey] = []
 
@@ -80,13 +96,17 @@ class ParsedQuery(BaseModel):
     raw: str
     tables: list[str] = []          # table references found ("schema.table")
     columns: list[str] = []         # column references (multiple qualified forms per column)
-    has_spatial_constraint: bool = False   # CONTAINS / INTERSECTS / DISTANCE predicate present?
+    has_spatial_constraint: bool = False   # CONTAINS / INTERSECTS / DISTANCE predicate in WHERE?
     has_top_or_limit: bool = False
     has_join: bool = False          # JOIN clause present?
     join_on_columns: list[str] = [] # bare column names appearing in JOIN ... ON predicates
-    spatial_functions: list[str] = []      # geometry funcs seen in raw ADQL (for the explainer)
+    spatial_functions: list[str] = []      # geometry funcs seen in the WHERE clause (for the explainer)
+    range_constrained_columns: list[str] = []  # bare cols bounded by BETWEEN/comparison in WHERE
+    upload_aliases: list[str] = []  # aliases bound to TAP_UPLOAD.* tables (exempt from schema checks)
+    is_aggregate_only: bool = False  # SELECT list is only aggregates + no GROUP BY -> one row
     is_valid_syntax: bool = True
     parse_error: str | None = None
+    extraction_error: str | None = None  # syntax OK but identifier extraction failed (unchecked!)
 
 
 class LintReport(BaseModel):

@@ -36,6 +36,8 @@ CSV_COLUMNS: tuple[str, ...] = (
     "ruwe",
     "crossing_epoch_jyear",
     "crossing_window_yr",
+    "crossing_now",
+    "crossing_flag_2yr",
     "density_bin",
     "score",
     "notes",
@@ -56,6 +58,8 @@ def _row_dict(rank: int, t: RankedTarget) -> dict[str, str]:
         "ruwe": f"{t.ruwe:.3f}",
         "crossing_epoch_jyear": f"{t.crossing_epoch_jyear:.4f}",
         "crossing_window_yr": f"{t.crossing_window_yr:.4f}",
+        "crossing_now": str(bool(t.crossing_now)),
+        "crossing_flag_2yr": str(bool(t.crossing_flag_2yr)),
         "density_bin": str(t.density_bin),
         "score": f"{t.score:.6f}",
         "notes": t.notes,
@@ -107,10 +111,12 @@ def _acp_text(targets: Sequence[RankedTarget], datestamp: str) -> str:
     lines.append("; Format: Name<TAB>RA(h m s)<TAB>Dec(d m s).  ';' = comment.")
     lines.append(";")
     for i, t in enumerate(targets, start=1):
+        now_tag = "  ON-SHELL-NOW" if t.crossing_now else ""
         lines.append(
             f"; #{i}  score={t.score:.3f}  t_cross={t.crossing_epoch_jyear:.2f}"
             f" +/-{t.crossing_window_yr:.2f}yr  density_bin={t.density_bin}"
-            f"  Gaia DR3 {t.gaia_source_id}"
+            f"  crossing_now={bool(t.crossing_now)}"
+            f"  Gaia DR3 {t.gaia_source_id}{now_tag}"
         )
         name = t.source_ref.replace("\t", " ").strip() or f"target_{i}"
         lines.append(f"{name}\t{_ra_hms(t.ra_deg)}\t{_dec_dms(t.dec_deg)}")
@@ -142,17 +148,18 @@ def _markdown_text(targets: Sequence[RankedTarget], datestamp: str) -> str:
         return "\n".join(lines)
     header = (
         "| # | source | survey | Gaia DR3 | RA (deg) | Dec (deg) | dist (pc) "
-        "| t_cross | window (yr) | density | score |"
+        "| t_cross | window (yr) | now? | density | score |"
     )
-    sep = "|---|---|---|---|---:|---:|---:|---:|---:|---:|---:|"
+    sep = "|---|---|---|---|---:|---:|---:|---:|---:|:-:|---:|---:|"
     lines.append(header)
     lines.append(sep)
     for i, t in enumerate(targets, start=1):
+        now_mark = "yes" if t.crossing_now else "no"
         lines.append(
             f"| {i} | {t.source_ref} | {t.survey} | {t.gaia_source_id} "
             f"| {t.ra_deg:.4f} | {t.dec_deg:.4f} | {t.distance_pc:.1f} "
             f"| {t.crossing_epoch_jyear:.2f} | {t.crossing_window_yr:.2f} "
-            f"| {t.density_bin} | {t.score:.3f} |"
+            f"| {now_mark} | {t.density_bin} | {t.score:.3f} |"
         )
     lines.append("")
     lines.append(

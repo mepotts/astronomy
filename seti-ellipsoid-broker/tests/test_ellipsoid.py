@@ -214,3 +214,45 @@ def test_vectorized_inputs_supported():
     out = np.asarray(out)
     assert out.shape == (3,)
     assert out[0] < out[1] < out[2]
+
+
+# --------------------------------------------------------------------------------------
+# Robustness nits (review): scalar SkyCoord window, derived distance-in-ly constant.
+# --------------------------------------------------------------------------------------
+
+def test_crossing_window_scalar_skycoord_returns_scalar():
+    """A scalar SkyCoord input must yield a Python float, not a 1-element ndarray."""
+    coord = _sep_from_sn(400.0, 12.0)
+    window = E.crossing_window_years(coord, None, 10.0)
+    assert isinstance(window, float)
+    # Agrees with the scalar (distance, sep) call.
+    assert window == pytest.approx(E.crossing_window_years(400.0, 12.0, 10.0), rel=1e-6)
+
+
+def test_scalar_float_window_is_scalar():
+    window = E.crossing_window_years(400.0, 12.0, 10.0)
+    assert isinstance(window, float)
+
+
+def test_distance_in_ly_constant_is_derived_and_consistent():
+    """SN1987A_DISTANCE_LY must equal the kpc baseline actually used (no drift)."""
+    assert E.SN1987A_DISTANCE_LY == pytest.approx(E._D_LY, rel=1e-12)
+    # 51.4 kpc -> ~167,644 ly (NOT the old inconsistent 167,700 literal).
+    assert E.SN1987A_DISTANCE_LY == pytest.approx(167_644.4, abs=5.0)
+
+
+# --------------------------------------------------------------------------------------
+# is_crossing_now: wires the previously-dead CROSSING_WINDOW_FLAG_YR constant.
+# --------------------------------------------------------------------------------------
+
+def test_is_crossing_now_uses_star_window_when_given():
+    # window 1.0 yr: 2026.5 is on-shell at now=2027.0 (dt=0.5<=1.0), not at now=2029.0.
+    assert E.is_crossing_now(2026.5, 2027.0, 1.0) is True
+    assert E.is_crossing_now(2026.5, 2029.0, 1.0) is False
+
+
+def test_is_crossing_now_defaults_to_flag_band():
+    """Without a per-star window it falls back to the coarse CROSSING_WINDOW_FLAG_YR band."""
+    band = E.CROSSING_WINDOW_FLAG_YR
+    assert E.is_crossing_now(2026.0, 2026.0 + band - 0.01) is True
+    assert E.is_crossing_now(2026.0, 2026.0 + band + 0.01) is False

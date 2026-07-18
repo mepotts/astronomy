@@ -9,12 +9,18 @@ We use it purely for parsing/extraction and **ignore** its PostgreSQL/pgSphere t
 A small ``lark`` grammar is kept as a documented fallback (DATA-SOURCES.md S4) and is only used if
 ``queryparser`` cannot be imported at all.
 
-Two facts are deliberately read off the **raw ADQL string**, not the parse result:
+Several facts are deliberately read off the **raw ADQL string**, not the parse result:
 
 * **spatial constraint** — translation rewrites ``CONTAINS``/``CIRCLE``/``POINT`` into pgSphere
   operators (``scircle``/``spoint``/``@``), so the original ADQL geometry keywords would be lost.
+  Detection is scoped to the **WHERE clause**: a geometry function that only appears in the SELECT
+  list (e.g. ``SELECT DISTANCE(...) AS d``) computes a value but does **not** constrain the rows,
+  so it must not count as a spatial constraint.
 * **TOP / row limit** — ``TOP n`` is translated to SQL ``LIMIT n``; detecting it on the raw text
   keeps the ``ParsedQuery`` faithful to what the user actually wrote.
+* **aggregate-only** — a ``SELECT COUNT(*)``-style query returns a single row, so the row-limit
+  advisory does not apply; this is read off the SELECT list.
+* **TAP_UPLOAD aliases** — table aliases bound to an uploaded table are exempt from schema checks.
 """
 
 from __future__ import annotations
@@ -33,16 +39,120 @@ SPATIAL_FUNCTIONS = ("CONTAINS", "INTERSECTS", "DISTANCE", "POINT", "CIRCLE", "P
 # functions below; the constructors are tracked separately for the explainer.
 SPATIAL_PREDICATES = ("CONTAINS", "INTERSECTS", "DISTANCE")
 
+# ADQL aggregate functions. A SELECT list made only of these (with no GROUP BY) yields one row,
+# so a missing TOP is harmless. (ADQL 2.1 set-functions: COUNT, MAX, MIN, SUM, AVG.)
+AGGREGATE_FUNCTIONS = ("COUNT", "MAX", "MIN", "SUM", "AVG")
+
 _WORD = r"\b{}\b"
 
+# The WHERE clause runs from WHERE until the next top-level clause keyword or end-of-query. We scope
+# spatial/positional detection to this span so a geometry function used only in the SELECT list
+# (which computes a value but constrains nothing) is not mistaken for a spatial constraint.
+_WHERE_CLAUSE = re.compile(
+    r"\bWHERE\b(.*?)(?=\bGROUP\b|\bORDER\b|\bHAVING\b|$)",
+    re.IGNORECASE | re.DOTALL,
+)
 
-def _find_spatial_functions(adql_upper: str) -> list[str]:
-    """Geometry function names present in the raw ADQL (uppercased), in declared order."""
+
+def _where_text(adql: str) -> str:
+    """The text of the WHERE clause (empty string if the query has no WHERE)."""
+    m = _WHERE_CLAUSE.search(adql)
+    return m.group(1) if m else ""
+
+
+def _find_spatial_functions(text_upper: str) -> list[str]:
+    """Geometry function names present in the given (uppercased) text, in declared order."""
     found: list[str] = []
     for fn in SPATIAL_FUNCTIONS:
-        if re.search(_WORD.format(fn) + r"\s*\(", adql_upper):
+        if re.search(_WORD.format(fn) + r"\s*\(", text_upper):
             found.append(fn)
     return found
+
+
+# A column is "range-constrained" if the WHERE clause bounds it against a numeric literal, either
+# with BETWEEN or an inequality. Two such predicates on the RA and Dec columns form a narrow
+# positional box, which the linter accepts as a spatial constraint (DATA-SOURCES.md S3).
+_BETWEEN_COL = re.compile(r"([A-Za-z_][A-Za-z0-9_.]*)\s+BETWEEN\b", re.IGNORECASE)
+_COL_CMP_NUM = re.compile(
+    r"([A-Za-z_][A-Za-z0-9_.]*)\s*(?:<=|>=|<|>)\s*[-+]?\d", re.IGNORECASE
+)
+_NUM_CMP_COL = re.compile(
+    r"[-+]?\d[\d.eE+-]*\s*(?:<=|>=|<|>)\s*([A-Za-z_][A-Za-z0-9_.]*)", re.IGNORECASE
+)
+
+
+def _range_constrained_columns(where_text: str) -> list[str]:
+    """Bare column names bounded by BETWEEN or an inequality against a number, in the WHERE clause."""
+    cols: list[str] = []
+    for rx in (_BETWEEN_COL, _COL_CMP_NUM, _NUM_CMP_COL):
+        for m in rx.finditer(where_text):
+            bare = m.group(1).split(".")[-1].lower()
+            if bare and bare not in cols:
+                cols.append(bare)
+    return cols
+
+
+# TAP_UPLOAD.<table> [AS] <alias> — capture the alias so columns qualified by it are exempt from
+# schema resolution (uploaded tables never appear in TAP_SCHEMA).
+_UPLOAD_ALIAS = re.compile(
+    r"\bTAP_UPLOAD\.[A-Za-z_][A-Za-z0-9_]*\s+(?:AS\s+)?([A-Za-z_][A-Za-z0-9_]*)",
+    re.IGNORECASE,
+)
+_ALIAS_STOPWORDS = {
+    "on", "where", "join", "inner", "left", "right", "outer", "cross", "full",
+    "group", "order", "having", "as",
+}
+
+
+def _upload_aliases(adql: str) -> list[str]:
+    """Aliases bound to TAP_UPLOAD.* tables (lowercased, de-duped)."""
+    out: list[str] = []
+    for m in _UPLOAD_ALIAS.finditer(adql):
+        alias = m.group(1).lower()
+        if alias in _ALIAS_STOPWORDS or alias in out:
+            continue
+        out.append(alias)
+    return out
+
+
+_SELECT_LIST = re.compile(r"\bSELECT\b(.*?)\bFROM\b", re.IGNORECASE | re.DOTALL)
+_LEADING_TOP = re.compile(r"^\s*TOP\s+\d+\s+", re.IGNORECASE)
+_AGG_ITEM = re.compile(r"^\s*(?:" + "|".join(AGGREGATE_FUNCTIONS) + r")\s*\(", re.IGNORECASE)
+
+
+def _split_top_level_commas(s: str) -> list[str]:
+    """Split on commas that are not nested inside parentheses (so ``AVG(a), COUNT(*)`` -> 2 items)."""
+    out: list[str] = []
+    depth = 0
+    cur: list[str] = []
+    for ch in s:
+        if ch == "(":
+            depth += 1
+            cur.append(ch)
+        elif ch == ")":
+            depth = max(0, depth - 1)
+            cur.append(ch)
+        elif ch == "," and depth == 0:
+            out.append("".join(cur))
+            cur = []
+        else:
+            cur.append(ch)
+    out.append("".join(cur))
+    return out
+
+
+def _is_aggregate_only(adql: str) -> bool:
+    """True if every SELECT item is an aggregate call and there is no GROUP BY (one-row result)."""
+    m = _SELECT_LIST.search(adql)
+    if not m:
+        return False
+    if re.search(r"\bGROUP\s+BY\b", adql, re.IGNORECASE):
+        return False
+    sel = _LEADING_TOP.sub("", m.group(1))
+    items = [it for it in _split_top_level_commas(sel) if it.strip()]
+    if not items:
+        return False
+    return all(_AGG_ITEM.match(it) for it in items)
 
 
 def _has_top_or_limit(adql_upper: str) -> bool:
@@ -84,14 +194,20 @@ def parse(adql: str) -> ParsedQuery:
     so the linter can emit a single ``INVALID_SYNTAX`` diagnostic rather than crashing.
     """
     adql_upper = adql.upper()
-    spatial_fns = _find_spatial_functions(adql_upper)
+    where_text = _where_text(adql)
+    # Spatial detection is WHERE-scoped: a geometry function in the SELECT list constrains nothing.
+    spatial_fns = _find_spatial_functions(where_text.upper())
     has_spatial = any(p in spatial_fns for p in SPATIAL_PREDICATES)
     has_top = _has_top_or_limit(adql_upper)
     has_join = _has_join(adql_upper)
     join_on_cols = _join_on_columns(adql) if has_join else []
+    range_cols = _range_constrained_columns(where_text)
+    upload_aliases = _upload_aliases(adql)
+    is_agg = _is_aggregate_only(adql)
 
+    extraction_error: str | None = None
     try:
-        tables, columns = _extract_with_queryparser(adql)
+        tables, columns, extraction_error = _extract_with_queryparser(adql)
     except _ParserUnavailable:
         # queryparser couldn't be imported at all -> documented lark fallback.
         try:
@@ -110,8 +226,12 @@ def parse(adql: str) -> ParsedQuery:
         has_join=has_join,
         join_on_columns=join_on_cols,
         spatial_functions=spatial_fns,
+        range_constrained_columns=range_cols,
+        upload_aliases=upload_aliases,
+        is_aggregate_only=is_agg,
         is_valid_syntax=True,
         parse_error=None,
+        extraction_error=extraction_error,
     )
 
 
@@ -126,13 +246,16 @@ class _ParseFailed(Exception):
     """queryparser imported fine but the ADQL is syntactically invalid."""
 
 
-def _extract_with_queryparser(adql: str) -> tuple[list[str], list[str]]:
+def _extract_with_queryparser(adql: str) -> tuple[list[str], list[str], str | None]:
     """Validate + extract refs via queryparser.
 
-    Returns ``(tables, columns)`` where tables are ``"schema.table"`` and columns are emitted in
-    several qualified forms (``"schema.table.col"``, ``"table.col"``, bare ``"col"``) so the linter
-    can match whatever form the user / schema uses. Raises :class:`_ParserUnavailable` if the
-    package is missing, :class:`_ParseFailed` on invalid ADQL.
+    Returns ``(tables, columns, extraction_error)`` where tables are ``"schema.table"`` and columns
+    are emitted in several qualified forms (``"schema.table.col"``, ``"table.col"``, bare ``"col"``)
+    so the linter can match whatever form the user / schema uses. ``extraction_error`` is ``None``
+    on success, or a short reason string when the ADQL parsed as *syntactically valid* but its
+    identifiers could **not** be extracted — an honest signal the linter surfaces as
+    ``IDENTIFIERS_UNCHECKED`` rather than silently reporting the query clean. Raises
+    :class:`_ParserUnavailable` if the package is missing, :class:`_ParseFailed` on invalid ADQL.
     """
     try:
         from queryparser.adql import ADQLQueryTranslator
@@ -147,20 +270,27 @@ def _extract_with_queryparser(adql: str) -> tuple[list[str], list[str]]:
     except Exception as exc:  # noqa: BLE001 - queryparser raises QuerySyntaxError & friends
         raise _ParseFailed(_clean_parser_error(exc, adql)) from exc
 
-    # Stage 2: identifier extraction off the translated (still fully-qualified) SQL.
-    tables: list[str] = []
-    columns: list[str] = []
+    # Stage 2: identifier extraction off the translated (still fully-qualified) SQL. This can fail
+    # even when stage 1 succeeded — e.g. a region-first ``CONTAINS(CIRCLE(...), POINT(ra,dec))``
+    # translates to pgSphere operators that queryparser's own PostgreSQL grammar then rejects. We do
+    # NOT swallow that: a query whose identifiers we could not validate must never be called clean.
     try:
         proc = PostgreSQLQueryProcessor(pg)
         proc.process_query()
-        tables = _format_tables(getattr(proc, "tables", []) or [])
-        columns = _format_columns(getattr(proc, "columns", []) or [])
-    except Exception:  # noqa: BLE001 - extraction is best-effort; syntax already validated above
-        # The ADQL is valid (stage 1 passed); we just couldn't pull every identifier. The linter
-        # still runs its non-identifier rules (spatial/TOP) and skips unknown-name checks gracefully.
-        pass
+    except Exception as exc:  # noqa: BLE001 - stage-2 failure -> honest "unchecked" signal
+        return [], [], _describe_extraction_failure(exc)
 
-    return tables, columns
+    tables = _format_tables(getattr(proc, "tables", []) or [])
+    columns = _format_columns(getattr(proc, "columns", []) or [])
+    return tables, columns, None
+
+
+def _describe_extraction_failure(exc: Exception) -> str:
+    """A short, honest reason for a stage-2 identifier-extraction failure."""
+    return (
+        "the ADQL parsed but its table/column references could not be extracted "
+        f"({type(exc).__name__}); identifier checks were skipped"
+    )
 
 
 def _format_tables(raw_tables: list) -> list[str]:

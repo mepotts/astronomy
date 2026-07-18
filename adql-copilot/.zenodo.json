@@ -1,0 +1,11 @@
+{
+  "title": "adql-copilot: a schema-aware ADQL linter for Virtual Observatory TAP endpoints",
+  "upload_type": "software",
+  "description": "A deterministic, machine-readable ADQL linter that validates queries against a live TAP_SCHEMA (Gaia and other VO endpoints) before they run, designed as the validation gate for LLM-assisted NL->ADQL query generation.",
+  "creators": [
+    {"name": "Potts, Matthew"}
+  ],
+  "license": "MIT",
+  "access_right": "open",
+  "keywords": ["astronomy", "virtual observatory", "ADQL", "TAP", "Gaia", "query validation"]
+}

@@ -42,6 +42,25 @@ def test_staging_is_idempotent_on_key():
         conn.close()
 
 
+def test_rank_staged_guards_null_parallax_and_ruwe():
+    """Review nit: a row with parallax_over_error set but parallax_mas/ruwe NULL (the DDL
+    permits it) must be skipped, not raise TypeError on float(None)."""
+    conn = pipeline.open_staging(":memory:")
+    try:
+        conn.execute(
+            "INSERT INTO alerts_staging "
+            "(source_ref, survey, ra_deg, dec_deg, mjd, gaia_source_id, "
+            " parallax_mas, parallax_over_error, ruwe, neighbor_count) "
+            "VALUES ('BAD','ZTF',83.9,-69.1,60800.0, 4657700000000000000, "
+            " NULL, 20.0, NULL, NULL)"
+        )
+        conn.commit()
+        ranked = pipeline.rank_staged(conn)  # must not raise
+        assert ranked == []
+    finally:
+        conn.close()
+
+
 def test_no_gaia_counterpart_is_staged_but_not_ranked():
     """An alert whose crossmatch returns None is staged (Gaia NULL) and dropped from ranking."""
     alerts = [Alert("NOMATCH", "ZTF", 10.0, 10.0, 60800.0, 18.0)]
@@ -134,11 +153,11 @@ def test_live_lasair_stub_names_token():
         list(lasair.fetch_recent_alerts(60800.0, token=None))
 
 
-def test_live_gaia_stub_is_not_implemented():
+def test_gaia_crossmatch_empty_is_offline_noop():
+    """gaia.crossmatch is now REAL (anonymous TAP); empty input returns {} with no network."""
     from seti_ellipsoid_broker import gaia
 
-    with pytest.raises(NotImplementedError, match="offline M1 core"):
-        list(gaia.crossmatch([]))
+    assert gaia.crossmatch([]) == {}
 
 
 def test_predictor_stub_is_not_implemented():

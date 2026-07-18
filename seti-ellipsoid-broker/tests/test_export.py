@@ -24,6 +24,8 @@ def _targets() -> list[RankedTarget]:
             crossing_window_yr=1.65,
             density_bin=9,
             score=3.3846,
+            crossing_now=True,
+            crossing_flag_2yr=True,
             survey="ZTF",
             notes="synthetic",
         ),
@@ -39,6 +41,8 @@ def _targets() -> list[RankedTarget]:
             crossing_window_yr=1.05,
             density_bin=5,
             score=3.0587,
+            crossing_now=False,
+            crossing_flag_2yr=False,
             survey="ZTF",
             notes="synthetic",
         ),
@@ -64,6 +68,11 @@ def test_write_csv_roundtrips_and_is_well_formed(tmp_path):
     # Gaia id round-trips exactly (no float mangling of the 19-digit int).
     assert rows[0]["gaia_source_id"] == "4657701054736643840"
     assert float(rows[0]["crossing_epoch_jyear"]) == pytest.approx(2027.5)
+    # crossing_now column present and reflects the target flags.
+    assert "crossing_now" in rows[0]
+    assert rows[0]["crossing_now"] == "True"
+    assert rows[1]["crossing_now"] == "False"
+    assert rows[0]["crossing_flag_2yr"] == "True"
 
 
 def test_write_csv_is_deterministic(tmp_path):
@@ -97,6 +106,9 @@ def test_write_acp_tgt_format(tmp_path):
     assert ra.startswith("05 35")
     # Dec is signed.
     assert dec.startswith("-60")
+    # The on-shell-now star is annotated in its comment line.
+    assert "crossing_now=True" in text
+    assert "ON-SHELL-NOW" in text
 
 
 def test_write_acp_tgt_deterministic(tmp_path):
@@ -117,6 +129,8 @@ def test_write_markdown_digest(tmp_path):
     assert "ZTF26aaaaaad" in text
     # Mentions the quality cuts so the digest is self-documenting.
     assert "RUWE" in text
+    # The 'now?' column header is present.
+    assert "now?" in text
 
 
 def test_write_markdown_digest_empty(tmp_path):

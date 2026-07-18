@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import json
 import logging
+from datetime import datetime, timezone
 from importlib import resources
 from pathlib import Path
 
@@ -28,6 +29,11 @@ from .models import ColumnMeta, ForeignKey, Schema
 
 logger = logging.getLogger("adql_copilot.schema")
 
+# A cached TAP_SCHEMA snapshot older than this (in days) is considered stale; the linter surfaces a
+# SCHEMA_STALE advisory and the CLI notes the age. Schemas evolve (new DR tables/columns), so an
+# ancient snapshot can wrongly flag valid identifiers or miss new ones.
+SCHEMA_MAX_AGE_DAYS = 30
+
 # On-disk cache lives at <repo>/schemas/<key>.json (gitignored). schema.py is at
 # src/adql_copilot/schema.py, so the repo root is three parents up.
 _CACHE_DIR = Path(__file__).resolve().parents[2] / "schemas"
@@ -35,6 +41,25 @@ _CACHE_DIR = Path(__file__).resolve().parents[2] / "schemas"
 
 def cache_path(endpoint_key: str) -> Path:
     return _CACHE_DIR / f"{endpoint_key}.json"
+
+
+def snapshot_age_days(schema: Schema) -> float | None:
+    """Age of the snapshot in days, or ``None`` if it carries no ``fetched_at`` (e.g. a fixture)."""
+    if not schema.fetched_at:
+        return None
+    try:
+        ts = datetime.fromisoformat(schema.fetched_at)
+    except ValueError:
+        return None
+    if ts.tzinfo is None:
+        ts = ts.replace(tzinfo=timezone.utc)
+    return (datetime.now(timezone.utc) - ts).total_seconds() / 86400.0
+
+
+def is_stale(schema: Schema, max_age_days: int = SCHEMA_MAX_AGE_DAYS) -> bool:
+    """True if the snapshot's age is known and exceeds ``max_age_days``."""
+    age = snapshot_age_days(schema)
+    return age is not None and age > max_age_days
 
 
 def load_schema(endpoint_key: str, *, refresh: bool = False) -> Schema:
@@ -123,7 +148,13 @@ def _fetch_live(endpoint_key: str) -> Schema:
 
     columns = _fetch_live_columns(svc)
     keys = _fetch_live_keys(svc)
-    return Schema(endpoint_key=endpoint_key, source="live", columns=columns, keys=keys)
+    return Schema(
+        endpoint_key=endpoint_key,
+        source="live",
+        fetched_at=datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        columns=columns,
+        keys=keys,
+    )
 
 
 def _fetch_live_columns(svc):
@@ -258,6 +289,7 @@ def _schema_from_dict(data: dict, *, endpoint_key: str, default_source: str) -> 
     return Schema(
         endpoint_key=data.get("endpoint_key", endpoint_key),
         source=data.get("source", default_source),
+        fetched_at=data.get("fetched_at"),
         columns=columns,
         keys=keys,
     )

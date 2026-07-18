@@ -1,7 +1,8 @@
 {
   "name": "pta-explainer",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "description": "Interactive Hellings-Downs / pulsar timing array explainer (v0: the Hellings-Downs Live Demo).",
   "type": "module",
   "scripts": {
@@ -28,6 +29,7 @@
     "@types/d3-scale": "^4.0.8",
     "@types/d3-selection": "^3.0.10",
     "@types/d3-shape": "^3.1.6",
+    "jsdom": "^29.1.1",
     "typescript": "^5.5.4",
     "vite": "^5.4.0",
     "vitest": "^2.0.5"

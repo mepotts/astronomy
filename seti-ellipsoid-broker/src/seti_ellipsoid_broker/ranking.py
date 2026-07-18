@@ -58,6 +58,11 @@ def proximity_weight(crossing_epoch_jyear: float, now_jyear: float = DEFAULT_NOW
 
     Symmetric in |t_cross - now| with a half-life of ``PROXIMITY_HALFLIFE_YR``. A crossing
     that already happened (or is far in the future) is down-weighted, never negative.
+
+    Design note: the weight is deliberately SYMMETRIC in past vs. future — a star that
+    crossed the shell 1 yr ago and one that will cross in 1 yr are equally interesting,
+    because a beacon on either is on-shell within the same observing-campaign horizon and
+    the parallax-driven epoch uncertainty (~+/-1 yr) straddles "now" either way.
     """
     dt = abs(crossing_epoch_jyear - now_jyear)
     return float(0.5 ** (dt / PROXIMITY_HALFLIFE_YR))

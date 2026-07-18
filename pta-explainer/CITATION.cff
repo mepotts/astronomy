@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use pta-explainer in your teaching or research, please cite it as below."
+type: software
+title: "pta-explainer: an interactive Hellings-Downs / pulsar timing array explainer"
+abstract: >-
+  A browser-based, framework-free interactive explainer for pulsar timing arrays and
+  the Hellings-Downs correlation — the quadrupolar angular signature of a nanohertz
+  gravitational-wave background. Users set a source and pulsar geometry and watch the
+  timing residuals and the Hellings-Downs curve update, with monopole (clock) and
+  dipole (ephemeris) reference shapes overlaid to show why only the quadrupole implies
+  gravitational waves. Grounded in the NANOGrav 15-year result.
+authors:
+  - family-names: Potts
+    given-names: Matthew
+    email: matthew.e.potts@gmail.com
+    # orcid: "https://orcid.org/0000-0000-0000-0000"  # TODO: add your ORCID
+repository-code: "https://github.com/mepotts/astronomy/tree/main/pta-explainer"
+url: "https://mepotts.github.io/pta-explainer/"
+license: MIT
+version: "0.1.0"
+date-released: "2026-07-18"
+keywords:
+  - astronomy
+  - gravitational waves
+  - pulsar timing arrays
+  - Hellings-Downs
+  - science education
+  - data visualization

@@ -63,7 +63,31 @@
           The red dot is your pair. Drag the dot, the slider, or the map — they stay in
           sync.
         </p>
+        <div class="controls overlay-controls">
+          <span class="overlay-controls-label">Compare with other causes:</span>
+          <label>
+            <input type="checkbox" id="overlay-monopole" />
+            Clock errors (monopole)
+          </label>
+          <label>
+            <input type="checkbox" id="overlay-dipole" />
+            Ephemeris errors (dipole ∝ cos θ)
+          </label>
+        </div>
         <div id="plot"></div>
+        <p class="hint" id="multipole-note">
+          Why is <em>this particular shape</em> the smoking gun for gravitational waves?
+          Because the leading rival explanations would leave different fingerprints. A
+          drifting reference clock would nudge every pulsar pair by the <em>same</em> amount,
+          whatever their separation — a flat <strong>monopole</strong>. An error in the Solar
+          System’s ephemeris (a mis-placed barycentre) would imprint a
+          <strong>dipole</strong> that varies as <code>cos θ</code>. Only an isotropic,
+          general-relativistic gravitational-wave background produces the quadrupolar
+          Hellings–Downs shape drawn here — which is exactly why PTA collaborations fit for
+          all three multipoles at once and report the <strong>quadrupole as dominant</strong>.
+          Tick the boxes above to overlay the monopole and dipole reference shapes and see the
+          contrast (both are illustrative shapes, anchored to the curve at θ = 0).
+        </p>
         <p class="hint" id="backdrop-note"></p>
       </section>
 

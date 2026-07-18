@@ -18,6 +18,7 @@ import { line } from "d3-shape";
 import { select } from "d3-selection";
 import { drag } from "d3-drag";
 import { sampleHDCurve, hellingsDownsDeg } from "../physics/hellingsDowns";
+import { sampleMonopoleCurve, sampleDipoleCurve } from "../physics/overlapReduction";
 
 /** One digitized binned correlation point from the published figure. */
 export interface HDPoint {
@@ -29,9 +30,22 @@ export interface HDPoint {
   errHi?: number;
 }
 
+/** Which illustrative reference overlays to show alongside the HD quadrupole. */
+export interface HDOverlayState {
+  /** Clock/timing-error monopole (flat line). */
+  monopole?: boolean;
+  /** Solar-system ephemeris-error dipole (∝ cos θ). */
+  dipole?: boolean;
+}
+
 export interface HDCurveController {
   /** Move the marker to a new angular separation (degrees, clamped to [0,180]). */
   update(thetaDeg: number): void;
+  /**
+   * Show/hide the illustrative monopole (clock errors) and dipole (ephemeris errors)
+   * reference shapes. Both are off by default so the primary HD view stays clean.
+   */
+  setOverlays(state: HDOverlayState): void;
 }
 
 export interface HDCurveOptions {
@@ -130,11 +144,39 @@ export function renderHDCurvePlot(
       .attr("opacity", 0.6);
   }
 
-  // --- the analytic Hellings–Downs curve ---
-  const curveData = sampleHDCurve(361);
+  // Shared line generator for the analytic curve + the reference overlays.
   const path = line<{ thetaDeg: number; corr: number }>()
     .x((d) => x(d.thetaDeg))
     .y((d) => y(d.corr));
+
+  // --- illustrative reference overlays (monopole / dipole), hidden by default ---
+  // Distinct colours (Okabe–Ito) + dash styles so they never read as the exact HD curve.
+  // Drawn BEFORE the HD curve so the quadrupole (the headline) sits visually on top.
+  const OVERLAY_MONO_COLOR = "#e69f00"; // orange — clock/timing errors (monopole)
+  const OVERLAY_DIP_COLOR = "#009e73"; // bluish green — ephemeris errors (dipole)
+
+  const monopolePath = g
+    .append("path")
+    .attr("class", "hd-overlay hd-overlay-monopole")
+    .attr("fill", "none")
+    .attr("stroke", OVERLAY_MONO_COLOR)
+    .attr("stroke-width", 2)
+    .attr("stroke-dasharray", "7 5")
+    .attr("display", "none")
+    .attr("d", path(sampleMonopoleCurve(181)));
+
+  const dipolePath = g
+    .append("path")
+    .attr("class", "hd-overlay hd-overlay-dipole")
+    .attr("fill", "none")
+    .attr("stroke", OVERLAY_DIP_COLOR)
+    .attr("stroke-width", 2)
+    .attr("stroke-dasharray", "2 4")
+    .attr("display", "none")
+    .attr("d", path(sampleDipoleCurve(361)));
+
+  // --- the analytic Hellings–Downs curve ---
+  const curveData = sampleHDCurve(361);
 
   g.append("path")
     .datum(curveData)
@@ -142,6 +184,53 @@ export function renderHDCurvePlot(
     .attr("stroke", "#1a1a1a")
     .attr("stroke-width", 2)
     .attr("d", path);
+
+  // --- legend (top-left, in the empty upper band above the curve) ---
+  // The HD row is always shown; each overlay's legend row appears only while it is toggled on.
+  const legend = g.append("g").attr("class", "hd-legend").attr("font-size", 11);
+  const legendRow = (
+    i: number,
+    color: string,
+    dash: string | null,
+    label: string,
+    cls?: string,
+  ) => {
+    const row = legend
+      .append("g")
+      .attr("transform", `translate(0,${i * 16 + 4})`);
+    if (cls) row.attr("class", cls).attr("display", "none");
+    row
+      .append("line")
+      .attr("x1", 0)
+      .attr("x2", 22)
+      .attr("y1", 0)
+      .attr("y2", 0)
+      .attr("stroke", color)
+      .attr("stroke-width", cls ? 2 : 2.5)
+      .attr("stroke-dasharray", dash);
+    row
+      .append("text")
+      .attr("x", 28)
+      .attr("y", 3.5)
+      .attr("fill", "#1a1a1a")
+      .text(label);
+    return row;
+  };
+  legendRow(0, "#1a1a1a", null, "GW background — quadrupole (Hellings–Downs)");
+  const monoLegend = legendRow(
+    1,
+    OVERLAY_MONO_COLOR,
+    "7 5",
+    "Clock errors — monopole (flat)",
+    "hd-legend-monopole",
+  );
+  const dipLegend = legendRow(
+    2,
+    OVERLAY_DIP_COLOR,
+    "2 4",
+    "Ephemeris errors — dipole (∝ cos θ)",
+    "hd-legend-dipole",
+  );
 
   // --- the live marker that rides the curve ---
   // vertical guide from x-axis up to the marker
@@ -191,11 +280,26 @@ export function renderHDCurvePlot(
   });
   marker.call(dragBehavior);
 
+  // Overlay visibility state (both off by default → primary HD view stays clean).
+  const overlays: Required<HDOverlayState> = { monopole: false, dipole: false };
+  function applyOverlays() {
+    monopolePath.attr("display", overlays.monopole ? null : "none");
+    monoLegend.attr("display", overlays.monopole ? null : "none");
+    dipolePath.attr("display", overlays.dipole ? null : "none");
+    dipLegend.attr("display", overlays.dipole ? null : "none");
+  }
+
   place(theta);
+  applyOverlays();
 
   return {
     update(thetaDeg: number) {
       place(thetaDeg);
+    },
+    setOverlays(state: HDOverlayState) {
+      if (state.monopole !== undefined) overlays.monopole = state.monopole;
+      if (state.dipole !== undefined) overlays.dipole = state.dipole;
+      applyOverlays();
     },
   };
 }

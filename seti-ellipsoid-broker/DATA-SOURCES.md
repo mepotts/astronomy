@@ -8,17 +8,46 @@ Summary table:
 
 | Source | What | Endpoint / host | Auth | Rate limit | Format |
 |---|---|---|---|---|---|
-| Lasair ZTF | ZTF transient alerts + Gaia crossmatch | `https://lasair-ztf.lsst.ac.uk/api/` | Token | reg 100/hr · power 10k/hr | JSON |
-| Gaia DR3 | Parallax, pmRA/Dec, RUWE | `astroquery.gaia` TAP (gea.esac.esa.int) | Anonymous (or login) | async results kept 3 days; ≤5000 ids/batch | VOTable/table |
-| ASAS-SN Sky Patrol V2 | Optical light curves, ~111M targets | `pyasassn.client.SkyPatrolClient()` | None | bandwidth-bound; ≤1M curves/pull | pandas/Parquet |
-| CHIME/FRB | Real-time FRB VOEvents (RA, Dec, DM) | `chimefrb.physics.mcgill.ca:8099` via Comet | Free subscription + static public IP | ~2 events/day | VOEvent XML |
+| **Transients CSV** (live input) | Externally-exported alert list (any broker / your own) | local file, `--transients-csv` | **None** | n/a | CSV |
+| Gaia DR3 (distance layer) | Parallax, pmRA/Dec, RUWE, zero-point inputs | `astroquery.gaia` TAP (gea.esac.esa.int) | **Anonymous** | async results kept 3 days; ≤5000 ids/batch | VOTable/table |
+| Gaia DR3 zero-point (§2a) | −17 µas parallax bias correction | `gaiadr3-zeropoint` pkg (offline tables) | None | n/a | coeff tables |
+| Lasair ZTF (auto-ingest, stub) | ZTF transient alerts | `https://lasair-ztf.lsst.ac.uk/api/` | Token — **account-gated** (§0) | reg 100/hr · power 10k/hr | JSON |
+| ASAS-SN Sky Patrol V2 (M2) | Optical light curves, ~111M targets | `pyasassn.client.SkyPatrolClient()` | None | bandwidth-bound; ≤1M curves/pull | pandas/Parquet |
+| CHIME/FRB (M2/M3) | Real-time FRB VOEvents (RA, Dec, DM) | `chimefrb.physics.mcgill.ca:8099` via Comet | Free subscription + static public IP | ~2 events/day | VOEvent XML |
 
 ---
 
-## 1. Lasair ZTF REST API (primary source for v0)
+## 0. Account situation & the account-free live path (READ FIRST)
+
+**Lasair auto-ingest is account-gated and effectively unavailable to most users.** Lasair-ZTF
+accounts do **not** transfer to the Rubin era: new registration has moved to the Rubin/LSST
+instance (`lasair-lsst.lsst.ac.uk`) and the ZTF instance (`lasair-ztf.lsst.ac.uk`) is winding
+down. The previously-documented free *shared* token (10 calls/hr) is no longer published, and
+tokens must not be shared. In practice you cannot rely on obtaining a working `LASAIR_TOKEN`,
+so the `ingest/lasair.py` auto-ingest path (and `seti-broker run --live`) stays a stub and
+`--live` exits 2.
+
+**Use the account-free live path instead.** Everything the broker needs downstream of the alert
+list is account-free: Gaia DR3 is queryable **anonymously** over TAP (§2), and the parallax
+zero-point correction (§2a) uses only public coefficient tables. So export an alert list from
+**any** broker (Lasair web UI, Fink, ALeRCE, ANTARES, TNS) or hand-build your own, and feed it in:
+
+```bash
+seti-broker run --transients-csv your_alerts.csv     # no token, no account
+```
+
+CSV columns: `name,ra,dec` required; `gaia_source_id,mjd/discovery_date,survey,mag` optional
+(schema + aliases in `src/seti_ellipsoid_broker/ingest/transients.py`; example in
+`examples/transients_example.csv`). The pipeline then runs CSV → anonymous Gaia crossmatch +
+zero-point → ellipsoid → rank → export with **no credentials**.
+
+---
+
+## 1. Lasair ZTF REST API (account-gated auto-ingest — stub; prefer §0's CSV path)
 
 - **Base URL:** `https://lasair-ztf.lsst.ac.uk/api/`
-  (There is also a Rubin/LSST instance at `https://lasair-lsst.lsst.ac.uk/` — **not** used in v0.)
+  (There is also a Rubin/LSST instance at `https://lasair-lsst.lsst.ac.uk/` where registration
+  now lives. Neither auto-ingest path is wired up; both are account-gated — see §0.)
 - **Auth:** per-account token.
   - GET: token passed as a query-string parameter (`token=...`).
   - POST: token in header `Authorization: Token <token>`.
@@ -76,10 +105,12 @@ with header `Authorization: Token <token>` and the params above as form data.)
   - Async (`launch_job_async`) results retained **3 days** for anonymous users.
   - Batch source-id helpers (e.g. `load_data`) cap at **~5000 source ids** per call.
   - Be polite: one batched ADQL upload-join per night beats thousands of cone queries.
-- **Columns we need:** `source_id`, `ra`, `dec`, `parallax`, `parallax_over_error`, `ruwe`,
-  `pmra`, `pmdec`, `phot_g_mean_mag`. Distance ≈ `1000 / parallax` pc (parallax in mas);
-  for v0 the simple inversion under the quality cuts below is adequate (Bailer-Jones
-  geometric distances are an M2+ refinement).
+- **Columns we need:** `source_id`, `ra`, `dec`, `parallax`, `parallax_error`,
+  `parallax_over_error`, `ruwe`, `pmra`, `pmdec`, `phot_g_mean_mag`, **plus the four parallax
+  zero-point inputs** (§2a): `nu_eff_used_in_astrometry`, `pseudocolour`, `ecl_lat`,
+  `astrometric_params_solved`. Distance ≈ `1000 / parallax_corrected` pc (parallax in mas),
+  where `parallax_corrected` applies the zero-point of §2a **before** the inversion. The
+  fetch is implemented in `gaia.py` (`GAIA_COLUMNS`, `crossmatch*`).
 - **Quality cuts (carried from Nilipour/Gallay):** `ruwe < 1.4` AND `parallax_over_error > 5`.
 - **Python access:**
 
@@ -103,6 +134,43 @@ table = job.get_results()   # astropy Table
 
 For the real pipeline: build one ADQL with an uploaded VOTable of all nightly alert positions
 and a single `JOIN ... ON 1=CONTAINS(...)` crossmatch instead of per-row cone queries.
+
+---
+
+## 2a. Gaia DR3 parallax zero-point correction (mandatory, account-free)
+
+Gaia DR3 parallaxes carry a systematic **zero-point offset** (global mean ≈ **−17 µas**;
+parallaxes biased *too small* → stars look *too far*) that depends on magnitude, colour, and
+ecliptic latitude. At the few-hundred-pc–few-kpc distances that dominate the SN 1987A ellipsoid
+crossings, that offset shifts the inferred crossing epoch by **~0.7–4.5 yr — larger than the
+±1–1.6 yr statistical windows** the pipeline reports. It must be removed **before** the
+`1000/parallax` inversion. Implemented in `zeropoint.py`; applied in `pipeline.gaia_fields_from_source`;
+escape hatch `seti-broker run --no-zeropoint` (diagnostics only).
+
+- **Method / reference:** Lindegren, L., et al. 2021, *"Gaia EDR3: Parallax bias versus
+  magnitude, colour, and position"*, A&A 649, A4 (DOI 10.1051/0004-6361/202039653). We use the
+  authors' official reference implementation, the **`gaiadr3-zeropoint`** package
+  (`pip install gaiadr3-zeropoint`; import name `zero_point`), evaluated as:
+
+  ```python
+  from zero_point import zpt
+  zpt.load_tables()
+  corrected = parallax - zpt.get_zpt(phot_g_mean_mag, nu_eff_used_in_astrometry,
+                                     pseudocolour, ecl_lat, astrometric_params_solved)
+  ```
+
+  (Under numpy≥2 the package's scalar path trips NEP-50; `zeropoint.py` passes numpy arrays,
+  which sidesteps it. The offset `Z` is usually negative, so `corrected` is slightly *larger*.)
+- **Required Gaia input columns (all in `gaiadr3.gaia_source`, all account-free):**
+  `phot_g_mean_mag`, `nu_eff_used_in_astrometry` (5-parameter solutions),
+  `pseudocolour` (6-parameter solutions), `ecl_lat`, and `astrometric_params_solved`
+  (3 = 2p → uncorrectable, 31 = 5p, 95 = 6p).
+- **Validity domain (Lindegren 2021):** `6 < G < 21`, `1.1 < nu_eff < 1.9`,
+  `1.24 < pseudocolour < 1.72`. Outside it the correction is undefined → we return NaN and fall
+  back to the uncorrected parallax (never invent a correction). 2-parameter solutions have no
+  defined zero-point and are likewise left uncorrected.
+- Distances remain simple (corrected) parallax inversions; full Bailer-Jones geometric-distance
+  posteriors are a further M2+ refinement.
 
 ---
 

@@ -27,7 +27,7 @@ Notes / gotchas for implementation:
 - Reference checkpoints to assert against in a unit test (distinct-pulsar form):
   - θ = 0°   → Γ = 0.5
   - θ ≈ 49.3° → Γ ≈ 0 (the famous zero crossing)
-  - θ ≈ 82.5° → Γ ≈ −0.173 (the minimum / anticorrelation dip)
+  - θ ≈ 82.48° → Γ ≈ −0.1519 (= ½ − (3/2)·e^(−5/6), the minimum / anticorrelation dip for the shipped normalization)
   - θ = 180° → Γ = 0.25
   (Compute the exact values in the validation script — see BUILD-PLAN.md §physics-validation — these are the target landmarks.)
 
@@ -89,6 +89,19 @@ Three options, in increasing effort, to get the backdrop points:
 3. Email NANOGrav (`comments@nanograv.org`) / check the paper's GitHub for a data-behind-figure file. Cheap to ask; do it in parallel but don't block on it.
 
 **Decision for v0:** Option 1 (digitized points), clearly attributed. The *curve* is exact (analytic); only the *backdrop points* are digitized, and they are explicitly illustrative.
+
+> **Provenance status — do NOT fabricate these points.** `src/data/nanograv15_hd_points.json`
+> currently ships as `[]` — **empty on purpose.** The binned (θ, Γ̂, σ) values are **not** part of
+> the public Zenodo timing release (Zenodo **8423265** is TOAs / timing solutions only — it carries
+> no ready-made correlation-bin table), so they cannot simply be read out of the data drop. To
+> populate the backdrop they must be **hand-digitized from Agazie et al. 2023 (ApJL 951 L8),
+> Fig 1c** (option 1 above) or **requested from NANOGrav** (`comments@nanograv.org`, or a
+> data-behind-figure file if one exists). The rendering path is already wired end-to-end:
+> `HDCurvePlot.ts` plots each point **with its 1σ error bar**, `src/data/hdPoints.ts` types and
+> loads the file, and `main.ts` labels the overlay *"illustrative — digitized from Agazie et al.
+> 2023, Fig 1c."* So the moment a real digitized table replaces the `[]`, the backdrop **lights up
+> automatically — no code changes needed.** The analytic black curve is exact regardless of whether
+> these points are present.
 
 ---
 
