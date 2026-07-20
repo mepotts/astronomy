@@ -1,6 +1,6 @@
 # Astronomy Projects
 
-Build portfolio for the astronomy opportunities surfaced by the **idea-research astronomy run** (2026-06-14). The research and ranked dossiers live in [`../idea-research/astronomy/`](../idea-research/astronomy/FINAL-REPORT.md); **this** folder is where the promising ones get built.
+Build portfolio for the astronomy opportunities surfaced by a prior **idea-research run** (2026-06-14) that swept the field for AI/agent-buildable projects and ranked them. **This** repo is where the promising ones get built. (The upstream research dossiers are kept outside this repo.)
 
 **The pattern they all attack:** astronomy data is now open and abundant, but the *usability/translation layer* between raw archives and the humans who want to use them (newcomers, amateurs, even working scientists) is systematically missing — aggregation layers, query translators, quality-weighting, interactive explainers. That connective tissue is cheap for an agent fleet to build.
 
@@ -28,7 +28,7 @@ Eight fresh sprint-level plans in [`IDEAS/`](IDEAS/README.md), deliberately in t
 
 ## Backlog (surfaced by the run, not yet started)
 
-Strong Tier-2/3 candidates — dossiers in [`../idea-research/astronomy/shortlist/`](../idea-research/astronomy/shortlist/):
+Strong Tier-2/3 candidates surfaced by the run (not yet built here):
 
 - **Cosmology Tensions Monitor** (5/3/4) — live H0/S8/w0–wa tracker → adjacent: >2σ disagreement detector
 - **Interactive Asteroseismology Simulator** (4/4/4) — pairs with a TESS mode-ID crowdsourcing game
@@ -37,6 +37,6 @@ Strong Tier-2/3 candidates — dossiers in [`../idea-research/astronomy/shortlis
 - **Amateur Observation Quality-Weighting Framework** (4/4/3) — makes citizen data ingestible by pros
 - …plus 7 more (DESI reproducibility kit, AAVSO broker filter, SHARP→NOAA API, multi-messenger overlay, observatory bias auditor, CHIME Cat-2 pipeline, RR Lyrae calibration audit).
 
-## Origin & full research
+## Origin
 
-- [Ranked report](../idea-research/astronomy/FINAL-REPORT.md) · [15 dossiers](../idea-research/astronomy/shortlist/) · [13 subfield sweeps](../idea-research/astronomy/clusters/) · [synthesis](../idea-research/astronomy/clusters/00-synthesis.md)
+Surfaced by an agent-driven idea-research run (2026-06-14): 13 subfield sweeps → ~78 candidates → a 15-item ranked shortlist, each adversarially verified for prior art. The three builds above are the top-ranked, most agent-buildable picks; [`IDEAS/`](IDEAS/README.md) holds the "run 2" white space. The upstream research notes are kept outside this repo.
