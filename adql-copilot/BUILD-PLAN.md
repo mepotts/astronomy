@@ -19,7 +19,7 @@ is the always-correct foundation; the NL→ADQL LLM is layered on top and gated 
 | **TAP / schema access** | `pyvo` (primary) + `astroquery` (Gaia convenience/async) | PyVO is the IVOA-standard client: one `TAPService(url)` works for all four endpoints, exposes `.tables` and `TAP_SCHEMA`, does sync + async. astroquery adds Gaia-specific niceties. | Hand-rolled HTTP against TAP — needless; PyVO is the reference impl. |
 | **ADQL parser** | `queryparser-python3` (aipescience, Apache-2.0) for parse + identifier extraction; **`lark` documented fallback** | Real ANTLR-based ADQL grammar incl. geometry funcs; pre-built wheel needs only the **pure-Python** `antlr4-python3-runtime` (no Java at runtime). We use it to validate syntax and pull table/column refs; we **ignore** its PostgreSQL translation. | `sqlparse` (doesn't validate ADQL or understand geometry); TOPCAT/STILTS parser (JVM, wrong language). See `DATA-SOURCES.md §4`. |
 | **Lint engine** | Our own deterministic rules over the parse tree + cached live schema | This is the product. No dependency can do it. | — |
-| **LLM (M2+ only)** | Claude (Anthropic API) as the NL→ADQL generator, schema-grounded and linter-gated | Strong code/structured generation; the dossier already assumes Claude Sonnet. Exact model id chosen at M2 against the current model list — do **not** hardcode now. Provider is pluggable behind one `generate_adql(nl, schema)` interface. | Local fine-tune (e.g. STILTS-NLI's Gemma 2B) — heavier, and our grounding/validation does the accuracy work, not raw model size. Revisit only if API cost/latency bites. |
+| **LLM (M2+ only) — $0 to operate** | Claude as the NL→ADQL generator, but inference is **never on the maintainer's dime**: primary surface is the sibling **astro-mcp** server (the model runs in the *user's* own Claude client); the library/CLI path is **bring-your-own-key** (`ANTHROPIC_API_KEY`); and most templated queries need **no LLM at all** (schema-retrieval + templates, linter-gated). Provider pluggable behind one `generate_adql(nl, schema)` interface; model id chosen at M2, not hardcoded. | **Maintainer-hosted paid API service** — rejected: cost scales with users, no revenue. Local fine-tune (STILTS-NLI's Gemma 2B) — heavier; grounding/validation does the accuracy work, not model size. |
 | **Schema cache** | Local JSON per endpoint (`schemas/<key>.json`) | Avoids re-hitting TAP every lint; matches dossier's schema-store idea; trivially diffable. | A DB — overkill at this scale (~thousands of columns). |
 | **CLI / packaging** | `typer` (CLI) + `pydantic` (diagnostic/AST models) + `pyproject.toml` (hatchling) | Typer = ergonomic CLI with help/types; pydantic = clean typed diagnostics that serialize to JSON for free (and feed a future web API); hatchling = standard modern build. | `argparse` (more boilerplate); `setup.py` (legacy). |
 
@@ -109,7 +109,13 @@ adql-copilot/
 - `adql-copilot lint --endpoint gaia "<query>"` produces real diagnostics. Tests on a fixture set of
   good/bad ADQL strings. **This is shippable and useful with zero LLM.**
 
-### M2 — NL→ADQL with schema grounding + execution
+### M2 — NL→ADQL with schema grounding + execution *(zero cost to operate — BYOK / client-side)*
+- **Cost stance ($0 to run):** the maintainer pays nothing for inference. Primary surface is the
+  sibling **astro-mcp** server, where the model runs in the *user's* MCP client (their own Claude);
+  the library/CLI path is **bring-your-own-key** (`ANTHROPIC_API_KEY`). No maintainer-hosted paid endpoint.
+- **Template-first, LLM-as-fallback:** most VO queries are templated (cone search, magnitude cuts,
+  `source_id` joins, crossmatch) — a schema-retrieval + template + slot-fill path, gated by the M1
+  linter, answers the common cases with **no LLM call**; `generate_adql` is the long-tail fallback.
 - `generate.py`: `generate_adql(nl, schema_slice)` via Claude (model id chosen then, not hardcoded);
   prompt embeds the **live** schema slice (real table/col names + UCDs) + ADQL geometry signatures +
   a few worked examples for the endpoint.
@@ -182,7 +188,10 @@ the live schema doesn't confirm — and it exists independently of, and as the h
    The plan builds a library + CLI now and defers UI to M3 so the choice stays open — but your
    preferred end-user surface (the dossier leans Gradio/HF Spaces) shapes M3 priorities. **Which one
    is the demo you actually want to show?**
-3. *(Secondary)* For M2, OK to use the **Claude API** as the generator (small per-query cost), or do
-   you want a **local/offline** model path from the start? Default plan: Claude API, pluggable.
+3. ~~*(Secondary)* For M2, OK to use the Claude API as the generator (small per-query cost)?~~
+   **Resolved (2026-07-20) — keep it $0 to operate.** NL→ADQL ships primarily via **astro-mcp**
+   (inference in the user's own Claude client) and, for the library/CLI, **bring-your-own-key** — the
+   maintainer never pays per query. A template-first path handles common queries with no LLM at all.
+   Provider stays pluggable (a local/offline model remains an option); no maintainer-hosted paid API.
 4. *(Secondary)* Scope of "explain": one-paragraph plain-English summary (planned), or also
    per-clause annotations and unit/UCD call-outs in the first cut?

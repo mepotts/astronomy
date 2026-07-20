@@ -71,6 +71,17 @@ Minimal-runnable-first: a FastMCP server whose tools are thin wrappers over pyvo
 
 **The seam to `adql-copilot` (concrete interface ask):** today the linter is reachable as `adql_copilot.linter.lint(parsed, schema, endpoint_key) -> list[Diagnostic]` and end-to-end as the private `adql_copilot.cli._run_pipeline(adql, endpoint_key) -> (LintReport, Schema)`; the JSON form is emitted only by the CLI (`lint --json` → `LintReport.model_dump_json()`). `LintReport` already carries everything astro-mcp needs — `.ok` (True iff no ERROR diagnostics), `.diagnostics[]` (each a stable `code` + `severity` + `message` + `suggestion`), and `.explanation`. **What the linter needs to expose for a clean seam:** (1) a **stable public entrypoint** — e.g. `adql_copilot.lint_report(adql, endpoint="gaia") -> LintReport` — so astro-mcp imports a supported API rather than a `_private` function; and (2) the **structured fix payloads** already on `adql-copilot`'s roadmap — machine-actionable repairs (e.g. `{code, span, replacement}`) beyond the current free-text `suggestion` string — so the MCP tool can hand the model a precise diff to retry, not prose. Both are small additions to the sibling repo; astro-mcp's design assumes them and degrades gracefully to `suggestion` text until they land.
 
+## Cost model (zero marginal cost)
+
+Designed to cost the maintainer **$0 to operate at any scale** — the property that makes it safe to publish a free tool that gets popular.
+
+- **Inference is never on the maintainer's dime.** In an MCP server the *model* runs in the user's client (their Claude Desktop / Code / claude.ai subscription, or their own key). astro-mcp only exposes tools — run this TAP query, resolve this name, lint this ADQL; the user brings the Claude. This is the crux: it turns `adql-copilot`'s "NL→ADQL costs money" problem into someone-else's-already-paid subscription.
+- **Backends are account-free and free.** pyvo/astroquery hit anonymous public TAP/SIMBAD/NED — no metered API, no per-call charge. ADS is the only token and it is opt-in + free-tier.
+- **Distribution is zero-infra.** Shipped as `pip` / `uvx astro-mcp`, every user runs their **own local copy** (stdio) against their own client — the maintainer hosts nothing. Inference, compute, and bandwidth are all the user's.
+- **The one optional cost is bounded.** The M3 claude.ai custom connector (a remote streamable-HTTP instance) is the only piece that needs hosting, and it exposes **account-free tools only** (no secrets, no server-side LLM), so it runs on a free/hobby tier — the model still runs in the *caller's* claude.ai. If even that is unwanted, the local `uvx` path delivers the whole product for $0.
+
+**Design rule:** keep the server a thin, stateless tool layer over free archives. Never add a maintainer-side LLM call or heavy per-request compute — those reintroduce cost-that-scales-with-users. If a feature seems to need server-side inference, push it to the client (which already has a model) or precompute it to static.
+
 ## Milestones
 
 - **M0 — Kill checks (cheapest disproofs first).**

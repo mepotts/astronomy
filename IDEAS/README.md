@@ -36,6 +36,23 @@ prior-art check and scored itself honestly (U/B/E = underexplored / agent-builda
   strong incumbent, so the value is the *translation/productization layer*, and each carries an
   explicit M0 kill-check to run before building.
 
+## Cost to operate (the "$0 to run" audit)
+
+Sorted by what each would bill *you* to run (not what it costs to build). The design goal across the portfolio is **zero marginal cost** — build once, unlimited users, no per-user charge. See [astro-mcp](astro-mcp.md) for the reference pattern (inference runs in the user's own Claude client).
+
+| Idea | Cost to operate | Why |
+|---|---|---|
+| pta-explainer + [sonification](pta-sonification.md) | **$0** | Static site, fully client-side; hosted free on GitHub Pages |
+| [astro-mcp](astro-mcp.md) | **$0** | Model runs in the user's own Claude client; `uvx` local, zero infra |
+| [Gaia DR4 diff auditor](gaia-dr4-diff-auditor.md) | **$0** | Library the user runs against anonymous Gaia TAP; no LLM needed |
+| [eROSITA dossier](erosita-source-classifier.md) | **~$0** | Free VO endpoints; classification is rule-based; any LLM text is BYOK or generated once and served static |
+| [DASCH time-machine](dasch-time-machine.md) | **~$0** | daschlab + free public APIs; a broker-annotation feed is light (free-tier) hosting |
+| [meteorite-fall recovery](meteorite-fall-recovery.md) | **~$0** | GMN feed (CC-BY, free) + NOAA winds (free); alert feed is light hosting |
+| [satellite-streak forecaster](satellite-streak-forecaster.md) | **~$0** | CelesTrak TLEs (account-free) + skyfield; static contamination dashboard |
+| [reproduction-audit fleet](reproduction-audit-fleet.md) | **costs money** ⚠️ | Runs an agent fleet — inference is on *your* dime, scaling with cadence |
+
+**The one exception is the reproduction-audit fleet** — and it's a *fixed* cost you set, not a per-user tax: you choose how many audits run per month. Keep it near-zero by running on an existing flat Claude subscription (Claude Code) rather than metered API, capping the cadence, and starting with reproduction classes that need little compute (period-finding, BAO quick-fits). Everything else is genuinely $0-to-run.
+
 ## Recurring lesson across all eight
 
 In almost every case the raw capability or the underlying science already exists somewhere; the
