@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 from pathlib import Path
 
 import pytest
@@ -271,8 +272,13 @@ def test_shell_path_makes_relative_paths_absolute():
     """A relative -O would resolve against fo's own working directory and lose the output."""
     shell = Shell(use_wsl=True)
     out = shell.path("data/fits/chunk0000")
-    assert out.startswith("/mnt/")
+    # Absoluteness is the invariant that matters -- it is what stops ``fo`` writing to
+    # <workdir>/<workdir>. The ``/mnt/`` prefix is merely what that looks like when a
+    # Windows drive path is translated, so assert it only where translation happens.
+    assert out.startswith("/")
     assert out.endswith("data/fits/chunk0000")
+    if os.name == "nt":
+        assert out.startswith("/mnt/")
 
 
 def test_quoting_distinguishes_data_from_configuration():
