@@ -1,6 +1,6 @@
 # Astronomy Projects
 
-[![CI](https://github.com/mepotts/astronomy/actions/workflows/ci.yml/badge.svg?branch=advance-portfolio)](https://github.com/mepotts/astronomy/actions/workflows/ci.yml)
+[![CI](https://github.com/mepotts/astronomy/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mepotts/astronomy/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Open-data astronomy work along two axes:
