@@ -13,7 +13,7 @@ astroquery handle that for you — you pass the base URL to `TAPService(...)`.
 
 | Archive | TAP base URL | Notes / quirks | Auth |
 |---|---|---|---|
-| **Gaia (ESA)** | `https://gea.esac.esa.int/tap-server/tap` | DR3 + DR4. Sync queries capped at **2000 rows** — use async for more. Anonymous async results retained **3 days**. Schema names like `gaiadr3.gaia_source`. | None |
+| **Gaia (ESA)** | `https://gea.esac.esa.int/tap-server/tap` | **DR3 is the newest release; DR4 lands 2 Dec 2026** (no `gaiadr4` schema exists yet — schemas are `gaiadr1/dr2/edr3/dr3/gaiafpr`). Server `outputLimit` is **3,000,000 rows** and applies to sync too — a raw sync query with no `TOP` returned **50,000 rows** when verified 2026-07-28. The oft-quoted "2000-row sync cap" is **not** a TAP server limit (it reflects the Archive web UI's *basic* mode and some client defaults) — don't design around it. Anonymous async results retained **3 days**. Schema names like `gaiadr3.gaia_source`. | None |
 | **VizieR (CDS)** | `https://tapvizier.cds.unistra.fr/TAPVizieR/tap` | Hosts ~tens of thousands of catalogs; table names are catalog-coded (e.g. `"I/355/gaiadr3"`, quoted, slash-delimited). UCD-rich. Older host alias `tapvizier.u-strasbg.fr` still redirects. | None |
 | **MAST (STScI), CAOM** | `https://mast.stsci.edu/vo-tap/api/v0.1/caom` | CAOM = Common Archive Observation Model (HST/JWST/TESS footprints & observations). ObsCore-style columns (`s_ra`, `s_dec`, `s_region`, `t_min`...). Other MAST TAP services exist (`/tic`, `/missionmast`). | None |
 | **DESI (via NOIRLab Astro Data Lab)** | `https://datalab.noirlab.edu/tap` | Single TAP service exposing many schemas; select schema **`desi_dr1`** (or `desi_edr`). DESI has **no first-party TAP** — NOIRLab Data Lab is the canonical public TAP route. | None (anonymous public access) |
@@ -132,7 +132,7 @@ cols = svc.search(
     "FROM TAP_SCHEMA.columns"
 ).to_table()
 
-# 2) run a real (small) query — note TOP to respect the 2000-row sync cap
+# 2) run a real (small) query — TOP here is politeness, not a server requirement
 res = svc.search("""
     SELECT TOP 10 source_id, ra, dec, parallax, ruwe
     FROM gaiadr3.gaia_source
@@ -148,15 +148,17 @@ tbl = res.to_table()   # astropy Table -> .to_pandas() if desired
 #   tbl = job.get_results()
 ```
 
-For >2000 rows on Gaia (or any large pull), use **async**: `svc.submit_job(adql)` → `job.run()` →
-poll `job.phase` → `job.fetch_result()`. v0/M1 only need sync + small `TOP n` previews.
+Sync will happily return tens of thousands of rows (verified: 50,000 with no `TOP`), but for large or
+slow pulls use **async**: `svc.submit_job(adql)` → `job.run()` → poll `job.phase` → `job.fetch_result()`.
+Async is also what raises the ceiling to the server's 3,000,000-row `outputLimit` and gets you the longer
+90-min timeout. v0/M1 only need sync + small `TOP n` previews.
 
 ---
 
 ## Sources
 
 - PyVO DAL docs (TAPService, `.tables`, `TAP_SCHEMA`, `.search()`): https://pyvo.readthedocs.io/en/stable/dal/index.html
-- Gaia TAP endpoint + sync 2000-row cap + 3-day anonymous retention: https://gea.esac.esa.int/tap-server/tap and https://www.cosmos.esa.int/web/gaia-users/archive/programmatic-access
+- Gaia TAP endpoint + 3-day anonymous retention: https://gea.esac.esa.int/tap-server/tap and https://www.cosmos.esa.int/web/gaia-users/archive/programmatic-access — authoritative limits are in the service's own `/capabilities` (`outputLimit` 3,000,000; `executionDuration` 3600 s; `uploadLimit` 100 MB)
 - Gaia ADQL geometry how-to: https://www.cosmos.esa.int/web/gaia-users/archive/writing-queries
 - VizieR TAP: https://tapvizier.cds.unistra.fr/adql/about.html
 - MAST TAP services index (CAOM): https://mast.stsci.edu/vo-tap/

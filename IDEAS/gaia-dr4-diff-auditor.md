@@ -29,7 +29,7 @@
 
 ## Data sources & access
 
-- **TAP endpoint:** `https://gea.esac.esa.int/tap-server/tap` — **anonymous access works** (no account needed) via `astroquery.gaia` (`Gaia.launch_job_async(adql)`). Async ADQL queries are capped at **3,000,000 rows**, timeout 90 min (anon) / 120 min (registered); synchronous "basic" queries cap at **2000 rows**. Anonymous job results are retained **3 days**. Output in VOTable / CSV / FITS (cosmos.esa.int Gaia-users programmatic-access; astroquery.readthedocs.io/en/stable/gaia).
+- **TAP endpoint:** `https://gea.esac.esa.int/tap-server/tap` — **anonymous access works** (no account needed) via `astroquery.gaia` (`Gaia.launch_job_async(adql)`). ADQL queries are capped at the service's **3,000,000-row `outputLimit`**, timeout 90 min (anon) / 120 min (registered). Note the widely-repeated "sync caps at 2000 rows" is **wrong as a server limit** — verified 2026-07-28, a raw sync query with no `TOP` returned **50,000 rows**; the 2000 figure describes the Archive web UI's *basic* mode and some client defaults. Anonymous job results are retained **3 days**. Output in VOTable / CSV / FITS (cosmos.esa.int Gaia-users programmatic-access; astroquery.readthedocs.io/en/stable/gaia).
 - **Tables (all public, all TAP-queryable anonymously):**
   - `gaiadr3.gaia_source` — `parallax`, `parallax_error`, `pmra/pmdec` (+errors), `ruwe`, `phot_g_mean_mag`, `non_single_star` (bit-encoded modelling flag), plus `in_qso_candidates`/`in_galaxy_candidates` etc.
   - `gaiadr3.dr2_neighbourhood` — the cross-release matcher described above (also `gaiaedr3.dr2_neighbourhood`).
