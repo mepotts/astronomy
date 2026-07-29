@@ -26,6 +26,34 @@ Eight fresh sprint-level plans in [`IDEAS/`](IDEAS/README.md), deliberately in t
 
 ---
 
+## Discovery pathways — the other axis
+
+Everything above is a **tool for other people's science**. [`DISCOVERY/`](DISCOVERY/README.md) is the
+complementary axis: verified routes where a person with a laptop, no telescope and no affiliation can
+download public data, find a genuinely new object, and **submit it to a body that reviews and credits
+it**. Researched 2026-07-28 with every URL live-checked.
+
+Eight sprint-level plans, **ranked by whether a recognised body issues you a designation** — five end in a
+permanent IAU-recognised record, two in a semi-official catalogue entry, one in a paper and nothing else.
+
+| Tier | Plan | The record you get |
+|---|---|---|
+| **A** | [ITF linker](DISCOVERY/itf-linker.md) | Provisional designation + your name on an MPEC `Id.` line |
+| **A** | [TNS alert miner](DISCOVERY/tns-alert-miner.md) | `AT 2026xyz` IAU designation + ADS bibcode |
+| **A** | [Plate archaeology](DISCOVERY/plate-archaeology.md) | IAU designation from century-old glass; near-zero competition |
+| **A** | [DAD triage](DISCOVERY/dad-triage.md) | MPC designations — **gated on a SARC kill-check** |
+| **A** | [Coronagraph comets](DISCOVERY/coronagraph-comets.md) | Real IAU comet designation (named for the instrument) |
+| **B** | [Nebula hunt](DISCOVERY/nebula-hunt.md) · [VSX characterization](DISCOVERY/vsx-characterization.md) | Catalogue entry; weak-to-minimal personal credit |
+| **C** | [LSB survey](DISCOVERY/lsb-survey.md) | Co-authorship only — no registry exists for static objects |
+
+Headline: the MPC publishes a 135 MB file of **9,359,693 observations never linked to any orbit**; link
+three nights into a valid orbit and it credits you by name (it did so for three separate individuals in
+July 2026 alone). And on TNS, "discoverer" formally means *first to report, not first to observe* — a
+two-person team mining the public ZTF stream logged ~100 IAU designations in twelve months with no
+telescope. The folder also records what's **closed** (ExoFOP cTOI paused since March 2026; Rubin imaging
+proprietary to ~2028; a dozen dormant Zooniverse projects) and the two procedural gates (**SARC**,
+**ADES**) that will otherwise waste your first submission.
+
 ## Backlog (surfaced by the run, not yet started)
 
 Strong Tier-2/3 candidates surfaced by the run (not yet built here):
