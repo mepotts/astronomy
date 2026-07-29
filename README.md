@@ -1,5 +1,8 @@
 # Astronomy Projects
 
+[![CI](https://github.com/mepotts/astronomy/actions/workflows/ci.yml/badge.svg?branch=advance-portfolio)](https://github.com/mepotts/astronomy/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Build portfolio for the astronomy opportunities surfaced by a prior **idea-research run** (2026-06-14) that swept the field for AI/agent-buildable projects and ranked them. **This** repo is where the promising ones get built. (The upstream research dossiers are kept outside this repo.)
 
 **The pattern they all attack:** astronomy data is now open and abundant, but the *usability/translation layer* between raw archives and the humans who want to use them (newcomers, amateurs, even working scientists) is systematically missing — aggregation layers, query translators, quality-weighting, interactive explainers. That connective tissue is cheap for an agent fleet to build.
