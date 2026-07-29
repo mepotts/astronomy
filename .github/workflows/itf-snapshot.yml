@@ -1,0 +1,122 @@
+# Daily archive of the MPC Isolated Tracklet File.
+#
+# The ITF is regenerated continuously and the MPC serves only the current version, so
+# "which observations disappeared, and when" is measurable ONLY if someone is watching.
+# History accumulates forward and cannot be recovered later. That is the whole point of
+# this job: a day not captured is ground truth lost permanently.
+#
+# Storage is split by what each artefact costs and how long it matters:
+#
+#   manifest.json  (~1 KB)   committed. Provenance of the pull.
+#   delta.parquet  (~1 KB)   committed. Every observation that appeared or disappeared.
+#   observations.parquet (~171 MB)  release asset, overwritten each run. Needed only to
+#                                   diff the *next* pull against this one.
+#
+# Committing ~2 KB/day is ~700 KB/year of permanently useful, diffable history. Committing
+# the 171 MB key set would be ~60 GB/year of near-identical binaries, so it lives as a
+# release asset where it does not enter git history.
+#
+# NOTE: GitHub runs `schedule` only on the repository's DEFAULT branch. Until this file is
+# on the default branch the cron will not fire; `workflow_dispatch` works from any branch.
+
+name: ITF snapshot
+
+on:
+  schedule:
+    # 06:30 UTC daily. The MPC regenerates the ITF continuously, so the exact hour is not
+    # significant; consistency is.
+    - cron: "30 6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: itf-snapshot
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: itf-linker
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: itf-linker/pyproject.toml
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e "."
+
+      # The previous full key set is what makes a delta possible. It lives as a release
+      # asset rather than in git. A missing asset is not an error -- it is the first run.
+      - name: Restore previous key set
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          prev=$(ls -1 data/snapshots 2>/dev/null | sort | tail -1 || true)
+          if [ -z "$prev" ]; then
+            echo "No committed snapshot yet; this run establishes the baseline."
+            exit 0
+          fi
+          echo "Previous snapshot: $prev"
+          mkdir -p "data/snapshots/$prev"
+          if gh release download itf-state \
+               --pattern observations.parquet \
+               --dir "data/snapshots/$prev" --clobber 2>/dev/null; then
+            echo "Restored key set for $prev"
+          else
+            echo "::warning::No release asset found. Delta for this run will be empty."
+          fi
+
+      - name: Pull and archive
+        run: python -m itf_linker.cli snapshot --refetch
+
+      # Force-add past .gitignore: /data/ is ignored wholesale so a stray working
+      # directory can never be committed by accident, but these two files are the
+      # deliberate exception the ignore comment describes.
+      - name: Commit manifest and delta
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/snapshots/*/manifest.json data/snapshots/*/delta.parquet
+          if git diff --cached --quiet; then
+            echo "Nothing new -- the ITF has not changed since the last snapshot."
+            exit 0
+          fi
+          sid=$(ls -1 data/snapshots | sort | tail -1)
+          git commit -m "ITF snapshot $sid [skip ci]"
+          git push origin HEAD:${{ github.ref_name }}
+
+      - name: Publish key set for the next diff
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sid=$(ls -1 data/snapshots | sort | tail -1)
+          gh release view itf-state >/dev/null 2>&1 || \
+            gh release create itf-state \
+              --title "ITF snapshot state" \
+              --notes "Rolling key set for the most recent ITF snapshot. Overwritten each run; used only to diff the next pull. Not a source of truth -- the permanent record is the committed manifest.json and delta.parquet chain under itf-linker/data/snapshots/." \
+              --latest=false
+          gh release upload itf-state \
+            "data/snapshots/$sid/observations.parquet" --clobber
+          echo "Published key set for $sid"
+
+      - name: Summary
+        run: |
+          sid=$(ls -1 data/snapshots | sort | tail -1)
+          {
+            echo "### ITF snapshot \`$sid\`"
+            echo
+            echo '```json'
+            cat "data/snapshots/$sid/manifest.json"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
