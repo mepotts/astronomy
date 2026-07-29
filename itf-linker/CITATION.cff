@@ -1,0 +1,48 @@
+cff-version: 1.2.0
+message: "If you use itf-linker in your research, please cite it as below."
+type: software
+title: "itf-linker: orbit fitting and linkage triage for the MPC Isolated Tracklet File"
+abstract: >-
+  A Python pipeline over the Minor Planet Center's Isolated Tracklet File — roughly
+  9.3 million astrometric observations that no survey pipeline ever linked to an orbit.
+  It parses the MPC 1992 80-column format (including the two-line S/s records used for
+  space-based observations), reconstructs tracklets, screens for reused tracklet
+  identifiers, and fits orbits via Find_Orb, applying the MPC's published identification
+  acceptance criteria. Find_Orb integration is validated by a closed loop against JPL
+  Horizons rather than by successful compilation. Nothing is submitted automatically;
+  every submission path is gated behind human review.
+authors:
+  - family-names: Potts
+    given-names: Matthew
+    email: matthew.e.potts@gmail.com
+    # orcid: "https://orcid.org/0000-0000-0000-0000"  # TODO: add your ORCID
+repository-code: "https://github.com/mepotts/astronomy/tree/main/itf-linker"
+license: MIT
+version: "0.1.0"
+date-released: "2026-07-29"
+keywords:
+  - astronomy
+  - minor planets
+  - asteroids
+  - orbit determination
+  - astrometry
+  - Minor Planet Center
+  - Find_Orb
+references:
+  - type: software
+    authors:
+      - family-names: Gray
+        given-names: Bill
+    title: "Find_Orb: orbit determination from observations"
+    url: "https://www.projectpluto.com/find_orb.htm"
+  - type: article
+    authors:
+      - family-names: Nugent
+        given-names: Carrie
+      - family-names: Tan
+        given-names: Alissa
+      - family-names: Bauer
+        given-names: James
+    title: "FindPOTATOs: Minor Planet Observation Linking Software"
+    year: 2025
+    doi: "10.3847/PSJ/ad9c6d"

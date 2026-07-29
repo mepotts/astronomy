@@ -40,7 +40,7 @@ Two findings that motivate the whole folder. The MPC publishes a 135 MB file of 
 
 The dossier also records what is **closed** — ExoFOP community-TOI submissions paused since March 2026, Rubin imaging proprietary until ~2028, a dozen dormant Zooniverse projects — and the two procedural gates (**SARC**, **ADES**) that otherwise waste a first submission.
 
-**In progress:** `itf-linker/`, implementing the Tier-A ITF pathway. M0 complete — parser and tracklet reconstruction reproduce the published counts to within 0.01%, and found that 1,046 ITF designations already span 3+ nights and pass the MPC's acceptance gates, needing orbit *fitting* rather than linking.
+**In progress:** [`itf-linker/`](itf-linker/) implements the Tier-A ITF pathway. **M1 complete** — Find_Orb built and validated by a closed loop against JPL Horizons (not merely by compiling), 140 tests. Of 2,515 multi-night ITF designations, 128 pass every published MPC acceptance gate. **None are claimed as discoveries**: catalogue vetting against MPChecker, SkyBoT and JPL SBIDENT is M2 and has not been done, and one candidate already resolved to the known comet 73P-C.
 
 ## Planned, not started
 

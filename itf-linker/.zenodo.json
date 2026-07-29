@@ -1,0 +1,11 @@
+{
+  "title": "itf-linker: orbit fitting and linkage triage for the MPC Isolated Tracklet File",
+  "upload_type": "software",
+  "description": "A Python pipeline over the Minor Planet Center's Isolated Tracklet File — roughly 9.3 million astrometric observations never linked to any orbit. Parses the MPC 1992 80-column format including two-line space-based records, reconstructs tracklets, screens for reused tracklet identifiers, and fits orbits via Find_Orb against the MPC's published identification acceptance criteria. Find_Orb integration is validated by a closed loop against JPL Horizons. All submission paths are gated behind human review.",
+  "creators": [
+    {"name": "Potts, Matthew"}
+  ],
+  "license": "MIT",
+  "access_right": "open",
+  "keywords": ["astronomy", "minor planets", "asteroids", "orbit determination", "astrometry", "Minor Planet Center", "Find_Orb"]
+}

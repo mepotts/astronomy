@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        project: [adql-copilot, seti-ellipsoid-broker]
+        project: [adql-copilot, seti-ellipsoid-broker, itf-linker]
         python-version: ["3.11", "3.12"]
     steps:
       - uses: actions/checkout@v7
@@ -37,8 +37,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e ".[dev]"
 
-      # Network-dependent smoke tests are opt-in via env flag and stay skipped here,
-      # so CI is hermetic and does not depend on external archive availability.
+      # CI is hermetic. Network-dependent smoke tests are opt-in via env flag, and
+      # itf-linker's snapshot-dependent tests skip when no local ITF pull exists —
+      # so a green run means the code is correct, not that the archives were up.
       - name: Test
         working-directory: ${{ matrix.project }}
         run: pytest -q

@@ -1,0 +1,42 @@
+# Bulk data — NEVER commit. `data/` holds only regenerable artefacts: the ~135 MB ITF
+# snapshot (re-fetchable), its Parquet derivatives, cached MPEC HTML, and Find_Orb working
+# directories. Ignored wholesale so a new working directory can never be added by accident.
+#
+# One exception in spirit: `data/snapshots/` is the ITF archive, and history only
+# accumulates forward, so it genuinely cannot be regenerated. It is still far too large for
+# git and needs its own backup if it is ever to be relied on.
+# Anchored with a leading slash: an unanchored `data/` would also swallow `tests/data/`,
+# which holds the committed fixtures the whole test suite runs against.
+/data/
+*.parquet
+*.txt.gz
+
+# Generated reports. The committed narrative lives in M0-RESULTS.md / M1-RESULTS.md.
+m0-report.json
+m1-report.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# Tooling
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Secrets (no credentials are needed today; belt-and-suspenders for M3 submission work)
+.env
+*.token
+secrets/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

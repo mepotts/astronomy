@@ -1,0 +1,187 @@
+# BUILD PLAN — ITF Linker
+
+Desk/data/software-only build: no telescope, no hardware, no paid service. See
+[`SPEC.md`](SPEC.md) for the thesis, [`DATA-SOURCES.md`](DATA-SOURCES.md) for endpoints, and
+[`M0-RESULTS.md`](M0-RESULTS.md) for what M0 actually measured.
+
+---
+
+## 1. Chosen stack (justified)
+
+| Concern | Choice | Why | Alternatives considered |
+|---|---|---|---|
+| Language | **Python 3.11+** | The whole minor-planet toolchain (astropy, Find_Orb wrappers, FindPOTATOs, heliolinc) is Python; matches sibling projects. | None viable. |
+| Packaging | **`pyproject.toml` + hatchling**, `src/` layout | Editable installs, clean test isolation; src-layout prevents "works because cwd" bugs. | Poetry (lockfile churn); flat layout (import shadowing). |
+| CLI | **`typer`** | Declarative subcommands, free `--help`, type-validated args. | argparse (boilerplate). |
+| Columnar engine | **polars + Parquet** | 9.36M lines parsed in **9.1 s** with bounded memory (measured). Vectorised string slicing does the 80-column decode without a Python loop. | pandas (slower, heavier); duckdb (fine too — polars won on the fixed-width slicing API). |
+| Storage | **single Parquet + zstd** | 189 MB for 9.3M rows; scans in ~1 s. Partitioned layout deferred until M1 proves it is needed. | SQLite (poor columnar scans at this width). |
+| Sky indexing | **astropy-healpix** | Equal-area pixels; pip-installable on Windows (unlike `healpy`). | healpy (no Windows wheels). |
+| Time / coords | **astropy** | `Time` pins the hand-rolled MJD conversion in tests. | Hand-rolled only (no independent check). |
+| Orbit fitting | **Find_Orb as a subprocess** (M1) | The workhorse; no Python reimplementation is credible. | OpenOrb (less maintained). |
+| Tests | **pytest** | 60 tests; markers gate the ones needing the snapshot or network. | unittest (verbose). |
+
+**Deliberately deferred:** no partitioned Parquet, no database, no parallelism. M0 showed the
+data layer is seconds-scale; adding infrastructure before M1 proves a bottleneck would be
+premature.
+
+---
+
+## 2. Architecture
+
+Implemented in M0:
+
+```
+itf_linker/
+  mpc80.py          MPC1992 80-col parser -- scalar + vectorised, pinned against each other
+  config.py         paths and public endpoints (no credentials anywhere)
+  ingest/
+    fetch.py        ITF + ObsCodes + MPEC download; provenance sidecar
+    parse.py        streaming gz -> typed Parquet, one row group per batch
+  index/
+    tracklets.py    local-night index; (desig, obscode, night) grouping
+    partition.py    HEALPix assignment; exact pair/triplet combinatorics
+  verify/
+    mpec.py         MPEC residual tables + 80-col blocks; acceptance gate
+    killcheck.py    position-based ITF lookup; sensitivity control
+  cli.py            fetch / parse / counts / tracklets / killcheck / partition / m0
+```
+
+Added in M1:
+
+```
+  snapshot.py       ITF snapshot archive: obs keys, delta chain, diffing
+  fit/
+    wsl.py          Windows <-> WSL path translation and subprocess plumbing
+    findorb.py      run `fo`; parse elements, sigmas, RMS, covariance, convergence
+    mpcfmt.py       emit MPC 80-col (self-test astrometry only)
+    extract.py      pull a designation's ORIGINAL 80-col lines out of the snapshot
+    candidates.py   bad-data filter; per-designation view; published pre-fit gate
+    collide.py      trkSub collision screens + the post-fit subset guard
+    gates.py        the MPC's published post-fit criteria
+    pipeline.py     the whole funnel, from observations to a ranked list
+    verify.py       closed-loop build verification against JPL Horizons
+  cli.py            + snapshot / snapshots / snapshot-diff
+                    + fit-selftest / candidates / fit / m1
+```
+
+Not implemented, gated behind milestones:
+
+```
+  link/     candidate generation over partition neighbourhoods       (M2+)
+  vet/      MPChecker / SkyBoT / SBIDENT; dedupe vs DAD              (M2)
+  report/   human-review packet -- the mandatory approval surface    (M2)
+  submit/   ADES PSV/XML emit; sandbox-first                         (M3)
+```
+
+---
+
+## 3. Milestones
+
+### M0 — kill-check ✅ **COMPLETE** (2026-07-29)
+
+Parse the ITF, reproduce the measured counts, reconstruct tracklets, replay three published
+identification MPECs.
+
+**Outcome: GO WITH CHANGES.** Counts reproduce to within 0.01%; 2,628,838 tracklets built;
+60 tests green. **The plan's chosen validation was found to be untestable as specified** —
+all three reference MPECs link previously-*designated* objects whose observations were never
+in the ITF (which contains zero designated and zero numbered objects). Parser and grouping
+were validated end-to-end on real MPEC astrometry instead. Full detail in `M0-RESULTS.md`.
+
+### M1 — fit ✅ **COMPLETE** (2026-07-29)
+
+**Outcome: GO.** Full detail in [`M1-RESULTS.md`](M1-RESULTS.md).
+
+Find_Orb built under WSL and verified end-to-end against JPL Horizons (11/12 cases; clean
+49-day arcs recover `a` to 7 × 10⁻⁸ relative). 2,515 multi-night designations → 1,120 past
+the MPC's published pre-fit gate → 979 past the trkSub collision screen → 975 fitted in
+4.5 minutes → **917 converged, 128 pass every published post-fit gate, 99 of those are also
+numerically well-constrained.**
+
+**These are designations with acceptable orbit fits, not discoveries** — one submitted
+designation came back identified as comet 73P-C, and 100 of the 128 are Rubin (X05) alone.
+Catalogue cross-matching is M2.
+
+Two findings that shape M2:
+- **σ(q) < 0.05 AU is the binding gate**, met by only 149 of 862 three-night fits (17%).
+- **The MPC's published post-fit criteria are not sufficient alone.** The σ limits apply
+  only to *exactly* three-night links, so a 5-night fit with σ(a) = 8,173 AU passes on RMS;
+  and RMS says nothing about how many observations were used, so a collision that fits a
+  6-of-24 subset passes too. Both holes are closed by extra checks labelled as ours.
+
+Not done in M1: any linking, any vetting, any submission code.
+
+### M1 — original entry conditions (all met)
+
+**Entry conditions from M0, all mandatory:**
+
+1. **New ground-truth control.** Hide the trkSub linkage on the 2,515 designations that
+   already span 3+ nights in the ITF; confirm the linker rediscovers them from positions and
+   epochs alone. Begin archiving daily ITF snapshots for the snapshot-diff control.
+2. **Architect around pairs, never triplets** — 10⁷ vs 10¹¹ candidates. Pair → preliminary
+   orbit → predict third night → targeted lookup (FindPOTATOs), or hypothesis-propagation
+   clustering (HelioLinC).
+3. **Sandbox = the recent slice** (MJD > 60000): 512,106 tracklets, 1.3M pairs at
+   nside=64 / 15 d, and follow-up still physically possible.
+4. **Filter known bad data**: 4 pre-1900 sentinel epochs, 1,282 unpaired `S` observations,
+   3 blank designations, 1 malformed record.
+
+**Cheapest first win, ahead of any linking:** 1,046 designations already span 3+ nights and
+pass the MPC's night/arc/≥2-per-night gates (976 single-observatory, median arc 7 d). These
+need *fitting*, not linking — but each must be checked for trkSub collision first
+(`des278`, `soho183` are reused names, not objects).
+
+Then: Find_Orb wrapper, published acceptance criteria applied, ranked candidate list.
+**Success metric: ≥1 candidate surviving every published gate and every catalogue cross-check.**
+Half met: 128 survive every published gate; the catalogue cross-check is M2.
+
+### M2 — vetting and the review packet
+
+MPChecker / SkyBoT / SBIDENT integration, DAD dedupe, human-review report. **This is the
+milestone that makes submission safe, and it ships before any submission code.**
+
+### M3 — sandbox submission, then one real batch
+
+Round-trip the identifications format against the **test** endpoint. Then a single small,
+hand-reviewed live submission. Ships only after M2 is green.
+
+### M4 — the citable artifact
+
+Publish the triage layer: a versioned, DOI'd dataset of *"linkable structure in the current
+ITF"* plus the pipeline. **RNAAS** fits exactly (≤1,500 words, one figure or table, $0,
+~72 h, ADS-indexed, "Independent Researcher" accepted).
+
+---
+
+## 4. Open questions for Matthew
+
+**Answered in M1:**
+
+1. ~~**Find_Orb on Windows.**~~ Confirmed: no supported Windows build (the project's own
+   README says so). Built under WSL, driven from Windows through `fit/wsl.py`, verified
+   against JPL Horizons. Steps in [`DATA-SOURCES.md` §4](DATA-SOURCES.md).
+2. ~~**Snapshot archiving.**~~ Shipped. Baseline plus permanent kilobyte-scale delta chain,
+   with a rolling window of full key sets — not 135 MB/day. Today's pull is snapshot #1.
+3. ~~**The 3+-night population.**~~ Done, and the collision worry was justified: 141 of the
+   1,120 gated designations are name-reuse suspects, and the "implausible sky motion"
+   heuristic misses **both** of the examples M0 named.
+
+**Still open:**
+
+4. **SARC contact.** Required before any archival submission (M3), and for DAD/DECam that
+   means Tyler Linder. Not urgent, but the lead time is unknown.
+5. **How hard to push M2's cross-match?** 100 of M1's 128 passing designations are Rubin
+   (X05) alone. Rubin may well have linked them internally already, in which case the
+   productive pool is the *other* 28 and the cross-archive slice the plan always argued
+   for. Worth checking before building a full vetting stack around the wrong population.
+6. **What to do with the 2-night population** (19,287 designations). They need exactly one
+   more night, and a 2-night arc constrains where to look — a far better-conditioned
+   search than blind 3-way linking, and now that fitting is cheap it is testable.
+
+---
+
+## 5. Cost
+
+**$0.** One 135 MB download per refresh, local compute, free submission endpoint. M0's
+measured figures — 6 s fetch, 9 s parse, 189 MB on disk — leave the portfolio's
+zero-marginal-cost rule intact with no asterisk.

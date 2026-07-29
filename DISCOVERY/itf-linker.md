@@ -11,7 +11,10 @@ credited weekly; the barrier is engineering effort, not novelty) · B **5/5** (p
 is a formal IAU-recognized designation with your name attached — the only item in this repo that produces
 a discovery rather than a tool)
 
-**Status:** proposed
+**Status:** **M1 complete** — built at [`itf-linker/`](../itf-linker/). Find_Orb validated against JPL
+Horizons; 128 designations pass every published MPC gate. **None are claimed as new** — vetting
+(MPChecker / SkyBoT / SBIDENT) is M2 and not yet done. See
+[`M0-RESULTS.md`](../itf-linker/M0-RESULTS.md) and [`M1-RESULTS.md`](../itf-linker/M1-RESULTS.md).
 
 **Cost to operate: $0** — one 135 MB download, local compute, free submission endpoint. Fits the
 portfolio's zero-marginal-cost rule with no asterisk.
@@ -186,7 +189,43 @@ control — **which requires archiving snapshots starting now.**
   coarser settings reach 10¹¹. Since the MPC requires 3+ nights, **M1 must never enumerate triplets** —
   pair→predict→confirm (FindPOTATOs) or HelioLinC clustering. Non-negotiable.
 
-**M1 — fit first, link second. No submission.**
+**M1 — ✅ COMPLETE, 2026-07-29. Verdict: GO.** Full detail in
+[`itf-linker/M1-RESULTS.md`](../itf-linker/M1-RESULTS.md).
+
+Find_Orb (`fo`) built under WSL — the project has **no supported Windows build** — and
+verified by a closed loop against **JPL Horizons**: synthesise astrometry for a known minor
+planet, fit it, then compare against Horizons' osculating elements *at the epoch Find_Orb
+chose*. 11 of 12 cases pass; on clean 49-day arcs `a` is recovered to 7 × 10⁻⁸ relative.
+
+Funnel: 2,515 multi-night designations → **1,120** past the MPC's published pre-fit gate →
+**979** past the trkSub collision screen → 975 fitted in 4.5 minutes → **917 converged** →
+**128 pass every published post-fit gate**, of which **99** are also numerically
+well-constrained.
+
+⚠️ **These are designations with acceptable orbit fits, not discoveries.** One submitted
+designation came back identified as comet **73P-C**; 100 of the 128 are Rubin (X05) alone
+and 91 share one naming family. Catalogue cross-matching is M2 and was not done.
+
+**Four findings that change M2:**
+- **σ(q) < 0.05 AU is the binding gate** — met by only 149 of 862 three-night fits (17%).
+  A short ITF arc fixes the orbit's *direction* well and its *scale* badly.
+- **The MPC's published post-fit criteria are not sufficient on their own.** The σ limits
+  apply only to *exactly* three-night links, so a 5-night fit with σ(a) = 8,173 AU passes
+  on RMS alone; and RMS says nothing about how many observations were used, so a colliding
+  trkSub that fits a 6-of-24 subset passes too. Both need extra checks.
+- **"Implausible sky motion" does not detect trkSub collisions.** `des278`'s largest
+  apparent rate is 0.021 °/day — slower than a main-belt asteroid — because great-circle
+  separation saturates at 180°, so any long gap implies a small rate. Arc implausibility
+  catches it; sky motion never will.
+- **The ITF contains 1,161 byte-identical duplicate records** (476 groups, mostly 6×
+  repeats from W84/DECam). Left in, they multiply an epoch's weight in the fit and let a
+  one-detection night appear to satisfy the ≥2-per-night rule.
+
+**Snapshot archiving has started.** Today's pull is snapshot #1. Storage is a baseline plus
+a permanent kilobyte-scale delta chain (a full key set is 178 MB — *larger than the
+compressed source*), with a rolling window of full files.
+
+**M1 as originally specified — fit first, link second. No submission.**
 
 ⭐ **Start with the 1,046, not the 9 million.** M0 found **2,515 ITF designations that already span 3+
 nights** under a single trkSub, of which **1,046 pass the MPC's published night/arc/≥2-per-night gates**
