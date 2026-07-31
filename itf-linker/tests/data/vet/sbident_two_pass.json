@@ -1,0 +1,35 @@
+{
+  "signature": {"source": "NASA/JPL Small-Body Identification API", "version": "1.1"},
+  "summary": {
+    "obs-time": "2025-07-18 02:14:19",
+    "mpc-code": "X05",
+    "two-pass": "true",
+    "suppress-first-pass": "true",
+    "fov-ra-center": "20-50-39.06",
+    "fov-dec-center": "-22-05-13.7",
+    "fov-ra-hwidth": "0.0833",
+    "fov-dec-hwidth": "0.0833"
+  },
+  "observer": {
+    "obs_date": "2025-Jul-18 02:14:19 (2460874.593279 UT)",
+    "fov_center": "20:50:39.06, -22 05'13.70\" (J2000)",
+    "location": "Rubin Observatory"
+  },
+  "n_first_pass": 5455,
+  "fields_second": [
+    "Object name",
+    "Astrometric RA (hh:mm:ss)",
+    "Astrometric Dec (dd mm'ss\")",
+    "Dist. from center RA (\")",
+    "Dist. from center Dec (\")",
+    "Dist. from center Norm (\")",
+    "Visual magnitude (V)",
+    "RA rate (\"/h)",
+    "Dec rate (\"/h)"
+  ],
+  "data_second_pass": [
+    ["130536 (2000 QV208)", "20:50:51.31", "-22 02'22.9\"", "170.", "170.", "240.6", "19.5", "-3.203E+01", "-1.413E+01"],
+    ["887872 (2007 TO134)", "20:50:37.86", "-22 04'12.5\"", "-16.7", "61.2", "63.44", "21.4", "-3.042E+01", "-1.157E+01"],
+    ["(2018 EC25)", "20:50:39.18", "-22 05'29.8\"", "1.69", "-16.1", "16.18", "21.8", "-3.545E+01", "-1.297E+01"]
+  ]
+}

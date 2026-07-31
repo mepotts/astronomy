@@ -10,12 +10,17 @@ independently confirmed.
 | **ITF** | ~9.3M unlinked observations | `minorplanetcenter.net/iau/ITF/itf.txt.gz` | **none** | MPC1992 80-col, gzipped | **M0** |
 | **ObsCodes** | Observatory longitudes | `minorplanetcenter.net/iau/lists/ObsCodes.html` | **none** | fixed-width HTML | **M0** |
 | **MPECs** | Published circulars | `minorplanetcenter.net/mpec/K{yy}/{packed}.html` | **none** | HTML `<pre>` | **M0** |
-| Solicited targets | Observations lacking orbits | `.../mpcops/orbits/no-orbits-astrometry/` | none | `.obs` / `.xml` | M1 |
-| NOIRLab DAD | `dad_dr2`, 662,154 tracklets | `datalab.noirlab.edu/tap` | anonymous ADQL | TAP | M2 |
+| **Horizons** | Ephemerides + osculating elements | `ssd.jpl.nasa.gov/api/horizons.api` | **none** | text | **M1**, **M2** |
+| **MPChecker** | *"Is a known minor planet here?"* | `minorplanetcenter.net/cgi-bin/**mpcheck**.cgi` | **none** | HTML `<pre>` table | **M2** |
+| **SkyBoT** | Cone search, 1889–2060 | `ssp.imcce.fr/webservices/skybot/api/conesearch.php` | **none** | JSON | **M2** |
+| **SBIDENT** | JPL small-body identification | `ssd-api.jpl.nasa.gov/sb_ident.api` | **none** | JSON | **M2** |
+| **SBDB** | Name → definite object + orbit | `ssd-api.jpl.nasa.gov/sbdb.api` | **none** | JSON | **M2** |
+| Solicited targets | Observations lacking orbits | `.../mpcops/orbits/no-orbits-astrometry/` | none | `.obs` / `.xml` | — |
+| NOIRLab DAD | `dad_dr2`, 662,154 tracklets | `datalab.noirlab.edu/tap` | anonymous ADQL | TAP | M2+ (not yet) |
 | Identifications | **Submission** endpoint | `.../mpcops/submissions/identifications/` | — | JSON | M3 only |
 
-**Everything M0 touches is anonymous HTTP GET.** No registration, no key, no rate limit
-encountered.
+**Every source above is anonymous HTTP GET.** No registration, no key. M0 and M1 met no
+rate limit at all; M2 met exactly one hard refusal, documented in §6.3.
 
 ---
 
@@ -267,3 +272,180 @@ additionally need σ(a) < 0.05 AU, σ(q) < 0.05 AU, σ(i) < 0.5°, σ(e) < 0.05.
 The night/arc/singleton gate is implemented in `verify/mpec.py::acceptance_summary` and
 verified to accept all three published MPECs while rejecting each failure mode. The
 post-fit RMS and covariance gates await the Find_Orb wrapper (M1).
+---
+
+## 6. Vetting services (M2) — **(verified 2026-07-29)**
+
+Four services, all anonymous GET, all driven through
+`src/itf_linker/vet/cache.py::CachedSession`: **≤1 request/second per host, no concurrency
+anywhere, every 2xx response written to disk, exponential backoff honouring `Retry-After`,
+and a circuit breaker that switches a service off after 5 consecutive failures instead of
+retrying around it.** Errors are never cached — a 504 is a fact about a moment.
+
+```
+User-Agent: itf-linker/0.2 vetting (read-only; contact matthew.e.potts@gmail.com) python-requests
+```
+
+### 6.1 Summary of what each one is good for
+
+| Service | Typical latency | Catalogue | Best used as |
+|---|---|---|---|
+| **SkyBoT** | 1–2 s | IMCCE, 1889–2060 | the primary sweep — every epoch of every candidate |
+| **MPChecker** | 4–6 s | the MPC's own element files (1.41M objects) | the authority; every epoch |
+| **SBIDENT** | 20 s – timeout | JPL SBDB + integrator | escalation only, recent epochs only |
+| **SBDB** | <1 s | JPL | resolving a name to a definite object + its orbit |
+
+### 6.2 SkyBoT cone search
+
+`https://ssp.imcce.fr/webservices/skybot/api/conesearch.php`
+
+Parameters used: `-ra` / `-dec` (degrees), `-rd` (radius, degrees), `-ep` (JD UTC),
+`-loc` (IAU observatory code), `-mime=json`, `-output=all`, `-filter=0`,
+`-objFilter=111`, `-from=itf-linker-vet`.
+
+`-mime=json` returns a **bare JSON array**, one object per match, with units baked into the
+key names (`"d (arcsec)"`, `"Err (arcsec)"`, `"VMag (mag)"`). An empty field returns `[]`.
+
+- **`-filter=0` matters.** SkyBoT will otherwise apply its own positional-uncertainty cut,
+  which silently turns a match into a non-match. Deciding what is too uncertain is the
+  caller's job.
+- **`Err (arcsec)` is the one genuinely useful extra.** No other service reports how
+  uncertain the ephemeris it just computed is, and it is what lets a 30″ separation from a
+  0.7″-accurate prediction be told apart from a 30″ separation from a 60″-accurate one.
+- **No rate limit encountered** in ~450 requests at 1/s. Occasional single 5xx, cured by
+  one backoff.
+- Accepts every observatory code tried, including `X05` (Rubin).
+
+### 6.3 MPChecker — three quirks, all found the hard way
+
+**The endpoint in the project plan is wrong.** `checkmp.cgi` answers, but answers *every*
+well-formed query with `Invalid data (R1/017/000/001) passed to script` and the note that
+*"any use of WebCS scripts via a route other than our on-line forms is unsupported"*. The
+form's own `ACTION` is **`/cgi-bin/mpcheck.cgi`**, and that one works.
+
+**`METHOD=POST` is declared, but GET works** — which is what keeps this project's
+"read-only GET only" rule intact.
+
+**`oc=703` returns `403 Forbidden`.** Isolated by holding every other parameter fixed:
+
+| `oc` | result |
+|---|---|
+| X05, O18, W84, 568, 269, T09, 304, 807, G37, 691, F51, 500, 084 | **200**, identical 3,886-byte page |
+| **703** | **403**, nine-byte body `Forbidden` |
+
+Cause unknown and not ours to fix; it is reported here because 703 is Catalina, a code any
+minor-planet pipeline will reach for, and because it is indistinguishable from a block
+until you vary it. It did real damage before being found: M1's Find_Orb self-test uses 703,
+the M2 controls inherited it, and three consecutive 403s spent the circuit breaker's
+failure budget and disabled MPChecker mid-run. The controls now use 568.
+
+Parameters (all required — the CGI rejects a partial form):
+
+```
+year, month, day     UT date; day takes FULL precision despite maxlength=5 on the form
+which=pos            search by position (which=obs takes 80-column records instead)
+ra, decl             "HH MM SS.ss" / "sDD MM SS.s"; the sign on decl is mandatory
+radius               arcminutes, 5 (minimum) .. 300
+limit                limiting V magnitude
+oc                   observatory code
+sort=d mot=h tmot=s pdes=u needed=f ps=n type=p     output options; these are the defaults
+```
+
+- **`day` takes full precision.** `maxlength=5` is a client-side hint only. `day=18.093279`
+  is accepted and moves the returned position ~15″ against the truncated `day=18.09`.
+  Sending the truncated value puts a 14-minute smear — several arcseconds of main-belt
+  motion — into every separation.
+- **Comets are absent before 2009.** From the form's own notes: for 1900–2009 the
+  comparison uses *"elements at the nearest 200-day epoch"* and covers only numbered and
+  perturbed unnumbered minor planets; *"for more recent dates, all objects are included
+  (including comets)"*. Before 1900, only the first 500 numbered minor planets. This is
+  exactly why the 73P-C control returns nothing here — a coverage gap, not a negative
+  result, and `vet/mpchecker.py::coverage_gap` labels it so.
+- **Output precision is 0.1 s in RA and 1″ in Dec**, so separations from this service have
+  a ~1″ floor. They are computed from those positions, not from the `Offsets` columns,
+  which are rounded to 0.1 arcminute (6″).
+- **Transient 504s are common.** Roughly 1 in 15 requests during M2; all cleared on the
+  first or second backoff.
+- Reports `Number of objects checked = 1411747`, which the MPC itself asks be checked for
+  truncation.
+
+### 6.4 JPL SBIDENT
+
+`https://ssd-api.jpl.nasa.gov/sb_ident.api` · docs `https://ssd-api.jpl.nasa.gov/doc/sb_ident.html`
+
+**It does not accept user-supplied orbital elements.** The M2 brief expected it to, and the
+published parameter list settles it: the caller supplies an *observer*, a *time* and a
+*field of view*, and the objects identified are always whatever JPL already knows about.
+There is no element-based mode. Element-space corroboration therefore has to be done
+afterwards, by resolving each match in the SBDB and comparing its catalogue orbit against
+the fitted one.
+
+**The first pass is not an identification.** With `two-pass=false` the API returns a coarse
+pre-filter whose quoted positional errors run to ~1.6 × 10⁵ arcsec (44°) and which ignores
+the requested field of view. Only `two-pass=true` with `suppress-first-pass=true` yields
+positions worth comparing.
+
+**Cost grows without bound as the epoch recedes.** Measured directly — first-pass-only
+counts on one fixed field, observatory 703, seven epochs:
+
+| epoch | first-pass rows | | epoch | first-pass rows |
+|---|---:|---|---|---:|
+| 2026 | 6,469 | | 2014 | 93,390 |
+| 2023 | 5,355 | | 2010 | 189,980 |
+| 2020 | 11,377 | | 2006 | 308,897 |
+| 2017 | 37,889 | | | |
+
+The pre-filter propagates catalogue elements with a two-body model, so its error grows and
+it stops rejecting anything; the second pass then has to integrate all of it. A two-pass
+request at a 2025 epoch (5,455 rows) returns in ~35 s; one at a 2006 epoch did **not**
+return within 200 s, twice. `vet/sbident.py::too_old` therefore refuses epochs more than
+**9 years** old before sending them — sending them anyway spends minutes of JPL's CPU to
+learn something already measured.
+
+Parameters used: `mpc-code`, `obs-time` (JD UTC), `fov-ra-center` (`hh-mm-ss.ss`),
+`fov-dec-center` (`[-]dd-mm-ss.s`), `fov-ra-hwidth` / `fov-dec-hwidth` (degrees),
+`two-pass=true`, `suppress-first-pass=true`, `mag-required=false`, `req-elem=false`.
+`mag-required=false` is deliberate: the default `true` skips objects with no magnitude
+parameters, which is a silent recall loss.
+
+Separations are recomputed from the returned astrometric RA/Dec, not read from the API's
+`Dist. from center Norm (")` column, which is quoted to two significant figures (`"1.E4"`).
+
+### 6.5 JPL SBDB
+
+`https://ssd-api.jpl.nasa.gov/sbdb.api` — `sstr`, `full-prec=true`, `discovery=0`.
+
+**`full-prec=true` is not optional.** Without it elements come back rounded to three
+significant figures (`"a": "3.06"` for 73P-C), which is coarser than any disagreement the
+element comparison is trying to measure.
+
+Its role is to turn a service's display string into a *definite object*, because the three
+positional services name the same object three different ways:
+
+```
+MPChecker  (130536) 2000 QV208      2018 EC25
+SBIDENT    887872 (2007 TO134)      (2018 EC25)      8 Flora (A847 UA)
+SkyBoT     73P-C                    2018 EC25
+```
+
+**The normalisation is where the one genuinely dangerous bug of M2 lived.** An early version
+peeled a leading integer off any name, which turned the comet `73P-C` into `73` and
+resolved it, confidently and wrongly, to minor planet **(73) Klytia**. The positive control
+is what caught it. The rules are now ordered and conservative, and anything unrecognised is
+passed to SBDB unchanged (`vet/sbdb.py::name_to_sstr`, with the regression pinned in
+`tests/test_vet_services.py`).
+
+### 6.6 Observed costs, one full M2 run
+
+Rates are the *effective* ones — the 1 s floor plus the service's own compute.
+
+| Service | Requests | Effective rate | Failures |
+|---|---:|---|---|
+| SkyBoT | see `M2-RESULTS.md` §6 | ~1 per 2 s | rare 5xx, cured by backoff |
+| MPChecker | ” | ~1 per 6 s | ~1 in 15 requests 504; all recovered |
+| SBIDENT | ” | ~1 per 40 s | timeouts beyond ~9 years lookback |
+| SBDB | ” | ~1 per 1.5 s | none |
+
+Re-running the whole pass costs **zero requests**: every 2xx body is on disk under
+`data/vet-cache/<service>/<sha256>.json`, keyed by the exact parameter set.
+

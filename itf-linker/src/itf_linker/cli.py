@@ -17,10 +17,15 @@
     itf-linker fit            # fit the candidates and apply the MPC's post-fit gate
     itf-linker m1             # candidates + fit, as one JSON report
 
+    itf-linker vet-extract    # pull a report's designations' 80-col lines out of the ITF
+    itf-linker vet-control    # the vetting layer's own positive controls
+    itf-linker vet            # cross-match candidates against MPChecker/SkyBoT/SBIDENT
+    itf-linker m2             # controls + vetting, as one JSON report
+
     itf-linker version
 
 Every command is read-only with respect to the outside world: the only network calls are
-HTTP GETs against public MPC URLs, and nothing is ever submitted anywhere.
+HTTP GETs against public MPC, IMCCE and JPL URLs, and nothing is ever submitted anywhere.
 """
 
 from __future__ import annotations
@@ -382,6 +387,182 @@ def m1(
         typer.echo(f"wrote {out}")
     else:
         _echo(report)
+
+
+# --- M2: vetting ------------------------------------------------------------------
+#
+# Nothing below submits anything. Every call is a rate-limited, disk-cached, read-only GET.
+
+
+@app.command("vet-extract")
+def vet_extract(
+    report: Path = typer.Option(Path("m1-report.json"), help="An M1-shaped report."),
+    section: str = typer.Option("ranked", help="Which section's designations to extract."),
+    out: Path = typer.Option(config.VET_ASTROMETRY, help="Write the 80-column lines here."),
+    also: list[str] = typer.Option([], help="Extra designations to include (e.g. controls)."),
+) -> None:
+    """Pull each designation's ORIGINAL 80-column lines back out of the ITF snapshot.
+
+    The parsed Parquet cannot be turned back into faithful 80-column text, so this is a
+    streaming pass over ``itf.txt.gz`` -- a few seconds, and exact by construction.
+    """
+    from .fit.extract import extract_lines
+
+    blob = json.loads(report.read_text(encoding="utf-8"))
+    desigs = [row["desig"] for row in blob["fits"][section]] + list(also)
+    groups, stats = extract_lines(desigs)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(
+        json.dumps({"stats": stats, "lines": {k: v for k, v in groups.items() if v}}, indent=1),
+        encoding="utf-8",
+    )
+    _echo({"wrote": str(out), **stats})
+
+
+def _session(
+    cache: Path,
+    min_interval: float,
+    offline: bool,
+    *,
+    max_retries: int = 2,
+    backoff: float = 3.0,
+) -> Any:
+    from .vet import CachedSession
+
+    return CachedSession(
+        cache,
+        min_interval_s=min_interval,
+        offline=offline,
+        max_retries=max_retries,
+        backoff_base_s=backoff,
+    )
+
+
+def _require_vet_inputs(report: Path, astrometry: Path) -> None:
+    """Fail with something actionable rather than a stack trace three frames down."""
+    if not report.exists():
+        raise typer.BadParameter(f"{report} not found -- run `itf-linker m1 --out {report}`.")
+    if not astrometry.exists():
+        raise typer.BadParameter(
+            f"{astrometry} not found -- run `itf-linker vet-extract` to pull the "
+            "80-column astrometry out of the ITF snapshot."
+        )
+
+
+@app.command("vet-control")
+def vet_control(
+    astrometry: Path = typer.Option(config.VET_ASTROMETRY, help="vet-extract output."),
+    cache: Path = typer.Option(config.VET_CACHE_DIR, help="Response cache directory."),
+    out: Path | None = typer.Option(None, help="Write the JSON report here."),
+    min_interval: float = typer.Option(1.0, help="Minimum seconds between requests."),
+    offline: bool = typer.Option(False, help="Use only cached responses; never hit a service."),
+    skip_numbered: bool = typer.Option(False, help="Skip the Horizons numbered-object control."),
+) -> None:
+    """Run the vetting layer's positive controls -- objects whose answer is known in advance."""
+    from .vet.controls import run_controls
+
+    report = run_controls(
+        _session(cache, min_interval, offline),
+        astrometry_path=astrometry,
+        include_numbered=not skip_numbered,
+    )
+    if out:
+        out.write_text(json.dumps(report, indent=2, default=str), encoding="utf-8")
+        typer.echo(f"wrote {out}")
+    _echo(report["summary"])
+
+
+@app.command("vet")
+def vet_cmd(
+    report: Path = typer.Option(Path("m1-report.json"), help="An M1-shaped report."),
+    astrometry: Path = typer.Option(config.VET_ASTROMETRY, help="vet-extract output."),
+    section: str = typer.Option("ranked", help="Which section of the report to vet."),
+    cache: Path = typer.Option(config.VET_CACHE_DIR, help="Response cache directory."),
+    out: Path | None = typer.Option(None, help="Write the JSON report here."),
+    limit: int | None = typer.Option(None, help="Vet only the first N candidates."),
+    min_interval: float = typer.Option(1.0, help="Minimum seconds between requests."),
+    max_epochs: int = typer.Option(3, help="Nights sampled per candidate."),
+    no_sbident: bool = typer.Option(False, help="Skip JPL SBIDENT entirely."),
+    offline: bool = typer.Option(False, help="Use only cached responses; never hit a service."),
+    max_retries: int = typer.Option(2, help="Attempts beyond the first, per request."),
+    backoff: float = typer.Option(3.0, help="Base seconds for exponential backoff."),
+) -> None:
+    """Cross-match fitted candidates against MPChecker, SkyBoT and JPL SBIDENT.
+
+    Produces an identification verdict per candidate. A verdict of ``unmatched`` means
+    exactly that -- it is NOT a claim that the object is new.
+    """
+    from .vet import from_m1_report, vet_candidates
+
+    _require_vet_inputs(report, astrometry)
+    candidates = from_m1_report(report, astrometry, section=section, limit=limit)
+    if not candidates:
+        raise typer.BadParameter(
+            f"no candidates with astrometry -- run `itf-linker vet-extract --section {section}`"
+        )
+
+    def progress(i: int, n: int, verdict: Any) -> None:
+        typer.echo(
+            f"[{i}/{n}] {verdict.desig}: {verdict.category}"
+            + (f" -> {verdict.identified_as}" if verdict.identified_as else ""),
+            err=True,
+        )
+
+    result = vet_candidates(
+        _session(cache, min_interval, offline, max_retries=max_retries, backoff=backoff),
+        candidates,
+        max_epochs=max_epochs,
+        use_sbident=not no_sbident,
+        progress=progress,
+    )
+    if out:
+        out.write_text(json.dumps(result, indent=2, default=str), encoding="utf-8")
+        typer.echo(f"wrote {out}")
+    _echo({k: v for k, v in result.items() if k not in ("verdicts", "resolved_objects")})
+
+
+@app.command()
+def m2(
+    report: Path = typer.Option(Path("m1-report.json"), help="An M1-shaped report."),
+    astrometry: Path = typer.Option(config.VET_ASTROMETRY, help="vet-extract output."),
+    cache: Path = typer.Option(config.VET_CACHE_DIR, help="Response cache directory."),
+    out: Path | None = typer.Option(None, help="Write the JSON report here."),
+    min_interval: float = typer.Option(1.0, help="Minimum seconds between requests."),
+    offline: bool = typer.Option(False, help="Use only cached responses; never hit a service."),
+) -> None:
+    """Controls first, then the full vetting pass, as one JSON report.
+
+    The controls run **first and are reported first** on purpose: a vetting layer that
+    cannot identify an object whose identity is already known has nothing useful to say
+    about one whose identity is not.
+    """
+    from .vet import from_m1_report, vet_candidates
+    from .vet.controls import run_controls
+
+    _require_vet_inputs(report, astrometry)
+    session = _session(cache, min_interval, offline)
+    controls = run_controls(session, astrometry_path=astrometry)
+    candidates = from_m1_report(report, astrometry)
+
+    def progress(i: int, n: int, verdict: Any) -> None:
+        typer.echo(f"[{i}/{n}] {verdict.desig}: {verdict.category}", err=True)
+
+    result = {
+        "provenance": load_provenance(),
+        "controls": controls,
+        "vetting": vet_candidates(session, candidates, progress=progress),
+    }
+    if out:
+        out.write_text(json.dumps(result, indent=2, default=str), encoding="utf-8")
+        typer.echo(f"wrote {out}")
+    else:
+        _echo(
+            {
+                "controls": controls["summary"],
+                "tally": result["vetting"]["tally"],
+                "http": result["vetting"]["http"],
+            }
+        )
 
 
 if __name__ == "__main__":  # pragma: no cover

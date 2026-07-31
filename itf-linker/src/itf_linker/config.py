@@ -17,6 +17,11 @@ ITF_PROVENANCE = RAW_DIR / "itf.provenance.json"
 ITF_PARQUET = PARQUET_DIR / "itf_observations.parquet"
 TRACKLET_PARQUET = PARQUET_DIR / "itf_tracklets.parquet"
 
+# M2 vetting. The cache is what makes a vetting run reproducible without asking MPChecker,
+# SkyBoT and JPL to recompute answers they have already given.
+VET_CACHE_DIR = DATA_DIR / "vet-cache"
+VET_ASTROMETRY = DATA_DIR / "vet-astrometry.json"
+
 # --- Endpoints (read-only; no writes are ever performed against these) -------------
 ITF_URL = "https://www.minorplanetcenter.net/iau/ITF/itf.txt.gz"
 OBSCODES_URL = "https://www.minorplanetcenter.net/iau/lists/ObsCodes.html"

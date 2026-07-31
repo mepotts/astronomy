@@ -63,3 +63,35 @@ def test_obscode_table_parsing():
     assert codes["F51"] == 203.744090
     assert codes["M21"] == 16.361440
     assert "C51" not in codes  # space telescope: no longitude, must not be invented
+
+
+def test_help_lists_the_m2_commands():
+    result = runner.invoke(app, ["--help"])
+    assert result.exit_code == 0
+    for cmd in ("vet-extract", "vet-control", "vet", "m2"):
+        assert cmd in result.stdout
+
+
+def test_vet_without_extracted_astrometry_fails_cleanly(tmp_path):
+    """Missing inputs must name the command that produces them, not raise from three
+    frames down inside a JSON load."""
+    report = tmp_path / "m1-report.json"
+    report.write_text('{"fits": {"ranked": []}}', encoding="utf-8")
+    result = runner.invoke(
+        app,
+        ["vet", "--report", str(report), "--astrometry", str(tmp_path / "absent.json"),
+         "--cache", str(tmp_path / "cache"), "--offline"],
+    )
+    assert result.exit_code != 0
+    assert "vet-extract" in result.output
+
+
+def test_vet_without_an_m1_report_fails_cleanly(tmp_path):
+    result = runner.invoke(
+        app,
+        ["vet", "--report", str(tmp_path / "absent.json"),
+         "--astrometry", str(tmp_path / "also-absent.json"),
+         "--cache", str(tmp_path / "cache"), "--offline"],
+    )
+    assert result.exit_code != 0
+    assert "itf-linker m1" in result.output
