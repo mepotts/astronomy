@@ -175,7 +175,7 @@ cluster mixing two trkSubs is very unlikely to be a genuine undiscovered link:
 **87.4% of the groupings a survey pipeline made are re-derived from positions and epochs
 alone, to the exact tracklet.**
 
-### 4.2b The same test inside the real population
+### 4.3 The same test inside the real population
 
 The isolated run measures the algorithm. The number that matters operationally is what
 happens when the same groupings are buried in the **511,274 arrows of the production
@@ -201,7 +201,7 @@ all**. Those are the genuinely novel associations, and §6 is about what happens
 Reproduce with `itf-linker link-validate --embedded-links data/link-candidates.parquet`,
 which scores a saved production link set against the ground truth buried inside it.
 
-### 4.3 Why precision here is a *lower bound*, and cannot be anything else
+### 4.4 Why precision here is a *lower bound*, and cannot be anything else
 
 Of the 1,824 links produced, 1,360 carry a single trkSub (counted as "pure"), 444 join a
 ground-truth group to something else, and 20 touch no ground-truth group. **A link that
@@ -212,7 +212,7 @@ and 0.746 is a floor, not an estimate.
 The real precision filter is the orbit fit, and §6 shows how sharp it is: a chance
 alignment does not survive a least-squares solution with a 0.25″ RMS ceiling.
 
-### 4.4 What the misses are made of
+### 4.5 What the misses are made of
 
 The 99 missed groups have a median arc of 3.0 days — so this is not a window-length effect.
 Two mechanisms account for most of them, and both are honest limits rather than bugs:
@@ -450,7 +450,7 @@ associations were made by a survey they are mostly right, and when they were mad
 hypothesis grid they are mostly wrong. **An RMS gate alone would have passed thousands of
 subset fits here**, and the candidate list would have been worthless.
 
-### 6.4b A harness lesson, recorded because it cost an hour
+### 6.5 A harness lesson, recorded because it cost an hour
 
 Fitting 13,618 links is **55 minutes on 26 workers**, and the first attempt was killed at
 150 of 341 chunks by an unrelated timeout. Nothing about that was recoverable: the run
@@ -469,7 +469,7 @@ A second failure was a real scaling bug, not a harness one. `isolated_groups` bu
 23,000-arrow window, times two dozen worker processes. The run died with a `MemoryError`
 while asking for 26 MB. It is batched now.
 
-### 6.5 The published criteria are still not sufficient — again
+### 6.6 The published criteria are still not sufficient — again
 
 M1's §7 finding reproduces exactly. The MPC's σ limits are scoped to *exactly*-three-night
 links, so a four- or five-night fit is judged on RMS alone:
@@ -487,19 +487,30 @@ with a = 203 AU sorts to the bottom on its own.
 
 **The defensible headline is therefore: 60 cross-observatory links are both acceptable to
 the MPC's published filter and numerically well constrained.** Whether any of them is an
-object nobody has already reported is §6.6's question, and the answer there is not "yes".
+object nobody has already reported is §6.7's question, and the answer there is emphatically
+not "yes" — two of the first thirty vetted are catalogued minor planets.
 
-### 6.6 Vetting the survivors
+### 6.7 Vetting the survivors
 
-The 199 survivors were **not** all vetted. At ~44 s per link against rate-limited public
-services, all 199 would take ~2.4 hours of live requests; the **top 30 by rank** were vetted
-instead — the best-conditioned cross-observatory links, the ones any submission would draw
-from first. This is a deliberate subset and the numbers below describe it, not the whole set.
+The 199 survivors were **not** all vetted. Measured, a link costs ~44 s against
+rate-limited public services with SBIDENT excluded and 2–8 minutes with it, so the **top 30
+by rank** were vetted instead — all of them cross-observatory, all of them new
+associations, the ones any submission would draw from first. This is a deliberate subset
+and the numbers below describe it, not the whole set. Total: 22 minutes, 204 live requests
+across three services, none disabled.
 
-Settings differ from M2's candidate run and are recorded so the two are not confused: a
-**300″ search radius** (wider, because a linked orbit's predicted position carries more
-error than a single fitted designation's), `max_epochs` 3, MPChecker limit magnitude 25.0,
-and SBIDENT on escalation only.
+M2's gate was re-run from cache before anything else: **7 of 7 positive controls still
+pass**, including the known comet sitting in the ITF. A vetting layer that cannot identify
+an object whose identity is already known has nothing useful to say about one whose
+identity is not.
+
+Settings are M2's defaults — 300″ search radius, `max_epochs` 3, MPChecker limit magnitude
+25.0 — with **one deliberate difference: JPL SBIDENT was not run at all.** M2's own timings
+put it at 35–240 s per query and it is the escalation service, so on candidates that are
+mostly unmatched it fires on nearly every one; measured here, a full-service link cost 2–8
+minutes. This pass therefore rests on **two positional services, SkyBoT and MPChecker**,
+plus SBDB identity resolution — and **both answered for all 30 candidates**, so no verdict
+below is under-evidenced by a service that stayed silent.
 
 | Category | Links |
 |---|---:|
@@ -512,25 +523,32 @@ unmatched for a poorly-constrained orbit — unsurprising, since these are the b
 
 **The two identifications are the most informative result in this section.**
 
-| Link | Resolves to |
-|---|---|
-| `lnk00do` | **2026 OB4** |
-| `lnk00dm` | **2026 DK65** |
+| Link | Codes | Nights | Resolves to | Best separation | Epochs matched |
+|---|---|---:|---|---:|---|
+| `lnk00do` | F51 + O18 | 4 | **2026 OB4** | **0.536″** | 3 of 3 |
+| `lnk00dm` | F51 + O18 | 4 | **2026 DK65** | **0.693″** | 3 of 3 |
 
-Both are *recently designated* minor planets. That matters twice over. It is direct evidence
-the linker assembles **real objects rather than statistical noise** — a chance cluster does
-not resolve to a catalogued minor planet. And it demonstrates the specific failure mode M2
-warned about, now observed rather than hypothesised: **these objects were designated after
-the ITF snapshot was taken.** Their observations sat unlinked in the file precisely because
-nobody had linked them *yet*, and somebody has since.
+Read what those two rows say. The linker took tracklets carrying **different trkSubs** from
+**two different observatories**, proposed they were one object on nothing but positions,
+epochs and an assumed heliocentric distance — and the object turned out to be **real**,
+matched to about half an arcsecond at *every* epoch queried, against a catalogue orbit
+computed by somebody else entirely. A chance alignment does not do that. **This is the
+single strongest piece of evidence in the milestone that the links are objects rather than
+statistical artefacts**, and it is worth more than the 26 non-matches.
 
-That is the honest reading of the other 26. "No catalogue object near the astrometry" is
-consistent with an unreported object, but `lnk00do` and `lnk00dm` show it is also
-consistent with an object designated between the snapshot and the query — and this snapshot
-is from 2026-07-29.
+It is also the plainest possible warning about those 26. Both identified objects carry
+2026 designations, so their observations sat in a 2026-07-29 ITF snapshot *while the object
+was already known or was about to become known*. Whether designation happened before or
+after this snapshot is **not** established by anything run here — the packed designation
+encodes the discovery half-month, not the date a designation was issued — but either way
+the lesson holds: an ITF tracklet being unlinked says nothing about the object being
+unknown.
 
-The two ambiguous links resolved toward `26114` and `775733` without meeting the ≥2-epoch
-agreement rule, so they are recorded as ambiguous rather than promoted.
+The two ambiguous links resolved toward `26114` (1991 QG) and `775733` (2006 YW67) at 1 of
+3 epochs and 12–18″, well short of the ≥2-epoch agreement rule, so they are recorded as
+ambiguous rather than promoted. **Only 4 of the 30 had any catalogue object returned inside
+the 300″ cone at all** — so the 26 unmatched are silence from services that answered, not
+near-misses that were argued away.
 
 **Service health.** SkyBoT: 82 requests, 13 retries, 2 failures. MPChecker: 71 requests,
 6 failures. SBDB: 51 requests, clean. No service was disabled and the failure budget was
@@ -539,7 +557,14 @@ that in mind.
 
 **What this section does not establish.** Not that 26 links are new objects. Not that the
 other 169 survivors would behave the same way — they are worse-conditioned by construction,
-so a higher `orbit_too_poorly_constrained` rate is expected if they are ever vetted.
+so a higher `orbit_too_poorly_constrained` rate is expected if they are ever vetted. And
+not that SBIDENT would have agreed: it was not asked, and M2 ran it precisely because a
+third independent opinion is worth having on the cases the first two leave open.
+
+**The reason a candidate that passes everything is still not a discovery is on this page.**
+Two of the first thirty turned out to be catalogued minor planets. There is no evidence
+that the remaining twenty-six differ in kind rather than only in how well three catalogue
+services could recognise them from a two-week arc.
 
 ---
 
@@ -587,13 +612,19 @@ that no single survey is positioned to make and that are the ITF's specific valu
 ordinary main-belt orbits, a ≈ 2.7 AU, e ≈ 0.15, and by construction that is the population
 an all-sky survey re-detects constantly.
 
-**None of them is a discovery, and the prior that any given one is unreported is low.**
-Three reasons, all measured rather than asserted:
+**The links are real objects.** That is not a hope, it is a measurement: two of the first
+thirty cross-observatory links sent through the vetting gate came back as **2026 OB4** and
+**2026 DK65**, matched to 0.5–0.7″ at every epoch queried. A chance cluster of tracklets
+from Pan-STARRS-1 and O18 does not resolve to a catalogued minor planet. **The pipeline
+assembles objects.**
 
-1. **The vetting result** (§6.6) says "not identified by these services", which M2
-   established is a much weaker statement than "new" — it is equally consistent with a
-   known object whose fitted orbit is not precise enough to be recognised, or with an object
-   linked and designated by someone else since this snapshot was taken.
+**None of them is a discovery, and the same two identifications are why.** Three reasons,
+all measured rather than asserted:
+
+1. **Two of the first thirty were already catalogued.** The vetting verdict on the other 26
+   is "not identified by these services", which M2 established is a much weaker statement
+   than "new" — and §6.7 shows directly that an unlinked ITF tracklet says nothing about
+   whether the object is known.
 2. **The composition warning that shaped M3 has not gone away.** 72 of the 199 survivors
    are X05 (Rubin) alone and 38 are O18 alone, and 63 of those X05 links merely re-derive a
    grouping that already existed under one `RL00…` trkSub. That is one survey's unlinked
@@ -618,9 +649,14 @@ density moved recall by 0.06 points. Not the clustering radius — widening it m
    is no longer possible for them, but an identification does not require follow-up.
 
 **The honest bottom line.** M3 produces **73 linked candidates that span two or more
-observatories, join tracklets nobody had associated, and survive every published and
-supplementary gate**. That is a real result and the pipeline that produced it is validated
-end to end. It is *not* 73 discoveries, and the next step is not submission — it is the
-snapshot delta chain, which M2 already identified as free validation: any of these
-tracklets that leave the ITF were linked by someone else, and that is a zero-cost test of
-whether "unmatched" ever meant "unknown".
+observatory codes, join tracklets nobody had associated, and survive every published and
+supplementary gate**; of the 30 of those put through catalogue vetting, **2 are already
+catalogued minor planets, 2 are ambiguous, and 26 are unmatched**. That is a real result
+and the pipeline is validated end to end — by in-file ground truth at the linking stage, by
+Find_Orb at the fitting stage, and by two positive identifications at the vetting stage.
+
+It is **not 26 discoveries**. The next step is not submission. It is the **snapshot delta
+chain**, which M2 already identified as free validation and which now has a specific job:
+these 73 links name specific tracklets, and any of them that leave the ITF were linked by
+somebody else. That is a zero-cost, no-network-cost test of whether "unmatched" ever meant
+"unknown" — and after §6.7 the prior is that it usually does not.

@@ -30,10 +30,11 @@ every post-fit gate, 73 of them spanning two or more observatory codes.** The fi
 filter that matters: it rejects 98.5% of what the linker proposes.
 
 > ⚠️ Everything this repo produces is **candidates that have not been ruled out**, never
-> new objects. A trkSub that fits cleanly is usually a known object under a survey's
-> internal tracking name — one M1 designation came back identified as comet 73P-C. Even a
-> candidate that survives every gate *and* four catalogue services is only unmatched, not
-> new.
+> new objects — and M3 measured exactly how much that distinction matters. Of the first 30
+> cross-observatory links sent through catalogue vetting, **two came back as the already
+> designated minor planets 2026 OB4 and 2026 DK65**, matched to 0.5–0.7″ at every epoch.
+> That is excellent evidence the linker assembles *real objects*, and equally good evidence
+> that "no catalogue match" does not mean "new".
 
 **No submission code exists in this repo**, sandbox or otherwise.
 

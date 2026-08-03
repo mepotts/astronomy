@@ -163,7 +163,17 @@ is named after — became M3, and submission moved to M4+. Nothing was submitted
 
 HelioLinC over the MJD > 60000 slice, ranked cross-observatory first. Validated by hiding
 the trkSub linkage on the designations that already span 3+ nights: **87.4% are re-derived
-to the exact tracklet** from positions and epochs alone. Detail in `M3-RESULTS.md`.
+to the exact tracklet** from positions and epochs alone (75.8% embedded in the full
+population).
+
+Funnel: 511,274 arrows → **17,060 links** proposed in 3.5 minutes → 13,618 past the MPC's
+pre-fit gate → fitted with Find_Orb in 55 minutes → **199 survivors, 73 cross-observatory**.
+The orbit fit rejects 98.5% of proposals, and M1's subset guard alone rejects 74% of
+converged fits (against 6% on survey-made associations).
+
+⚠️ **Two of the first 30 cross-observatory links vetted resolve to the designated minor
+planets 2026 OB4 and 2026 DK65** at 0.5–0.7″ across all three epochs. The links are real
+objects; that is also why 26 unmatched is not 26 discoveries. Detail in `M3-RESULTS.md`.
 
 ### M4 — the citable artifact
 

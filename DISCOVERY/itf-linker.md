@@ -11,10 +11,18 @@ credited weekly; the barrier is engineering effort, not novelty) · B **5/5** (p
 is a formal IAU-recognized designation with your name attached — the only item in this repo that produces
 a discovery rather than a tool)
 
-**Status:** **M1 complete** — built at [`itf-linker/`](../itf-linker/). Find_Orb validated against JPL
-Horizons; 128 designations pass every published MPC gate. **None are claimed as new** — vetting
-(MPChecker / SkyBoT / SBIDENT) is M2 and not yet done. See
-[`M0-RESULTS.md`](../itf-linker/M0-RESULTS.md) and [`M1-RESULTS.md`](../itf-linker/M1-RESULTS.md).
+**Status:** **M3 complete** — built at [`itf-linker/`](../itf-linker/), 321 tests, CI green.
+M0 ingest/parse · M1 Find_Orb fitting (validated against JPL Horizons) · M2 catalogue vetting
+(7/7 controls) · M3 HelioLinC cross-observatory linking (87.4% recall on in-file ground truth).
+
+**Yield: 73 links spanning two or more observatories that join tracklets nobody had associated**,
+60 of them numerically well constrained. **None is claimed as new.** Vetting the top 30 returned
+26 unmatched, 2 ambiguous, and **2 that resolve to real designated minor planets (2026 OB4,
+2026 DK65) at ~0.5–0.7″ across every epoch** — direct evidence the linker assembles real objects,
+and equally direct evidence that "unmatched" does not mean "unknown".
+
+Results: [`M0`](../itf-linker/M0-RESULTS.md) · [`M1`](../itf-linker/M1-RESULTS.md) ·
+[`M2`](../itf-linker/M2-RESULTS.md) · [`M3`](../itf-linker/M3-RESULTS.md).
 
 **Cost to operate: $0** — one 135 MB download, local compute, free submission endpoint. Fits the
 portfolio's zero-marginal-cost rule with no asterisk.
