@@ -1,0 +1,237 @@
+"""Turn candidate links into something Find_Orb and the M1/M2 machinery can consume.
+
+Two jobs, both fiddly enough to deserve their own module:
+
+**Gating.** A proposed link is put through the *same* published MPC pre-fit criteria M1
+applied to trkSub-grouped designations, by building a frame with the same column names and
+calling the same :func:`itf_linker.fit.candidates.prefit_gate`. Reimplementing the gate for
+links would let the two drift apart; the whole point of M1's funnel is that the criteria
+are stated once. One extra check applies only to links, and it is the MPC's:
+**>= 2 observations per object per night**, which for a link means every constituent
+tracklet, not just the first and last.
+
+**Astrometry.** Find_Orb keys objects on columns 1-12 of each record, so feeding it a link
+whose tracklets carry four different trkSubs would produce four separate one-night orbits
+and no link at all. The original 80-column records are therefore re-emitted with columns
+6-12 **rewritten to one temporary identifier per link**. Nothing else on the line is
+touched: position, magnitude, catalogue code, note fields and observatory code are the
+bytes the MPC published, because M1 established that re-formatting them loses precision
+and the astrometric catalogue flag Find_Orb debiases with.
+
+The temporary identifier is deliberately un-designation-like (``lnk`` + base-36 counter,
+lower case) so that neither Find_Orb nor a human can mistake it for a packed provisional
+designation. **It is not a designation and it is not submitted anywhere.**
+"""
+
+from __future__ import annotations
+
+import string
+from collections.abc import Iterable, Sequence
+from pathlib import Path
+from typing import Any
+
+import polars as pl
+
+from ..fit.candidates import gate_summary, prefit_gate
+from ..mpc80 import CONTINUATION_NOTE2, F_DESIG, F_NOTE2, F_OBSCODE, LINE_WIDTH, parse_line
+from .heliolinc import LinkCandidate
+
+#: MPC guardrail, quoted in ``DISCOVERY/itf-linker.md``: a single position on a night
+#: causes the *entire batch* to be auto-rejected, often silently.
+MIN_OBS_PER_NIGHT = 2
+
+_B36 = string.digits + string.ascii_lowercase
+
+
+def link_id(index: int, prefix: str = "lnk") -> str:
+    """A 7-character temporary identifier for a link: ``lnk`` plus base-36 counter."""
+    n = len(prefix)
+    width = 7 - n
+    digits = []
+    value = index
+    for _ in range(width):
+        digits.append(_B36[value % 36])
+        value //= 36
+    if value:
+        raise ValueError(f"link index {index} does not fit in {width} base-36 characters")
+    return prefix + "".join(reversed(digits))
+
+
+def links_frame(candidates: Sequence[LinkCandidate]) -> pl.DataFrame:
+    """A per-link frame shaped exactly like M1's per-designation frame."""
+    rows = []
+    for i, c in enumerate(candidates):
+        rows.append(
+            {
+                "desig": link_id(i),
+                "n_tracklets": len(c.arrow_ids),
+                "n_nights": c.n_nights,
+                "n_obscodes": c.n_obscodes,
+                "obscodes": list(c.obscodes),
+                "n_obs": c.n_obs,
+                "first_night": int(c.mjd_first),
+                "last_night": int(c.mjd_last),
+                "first_mjd": c.mjd_first,
+                "last_mjd": c.mjd_last,
+                "first_trk_n_obs": c.first_trk_n_obs,
+                "last_trk_n_obs": c.last_trk_n_obs,
+                "min_trk_n_obs": c.min_trk_n_obs,
+                "arc_days": c.arc_days,
+                "arc_days_night": float(int(c.mjd_last) - int(c.mjd_first)),
+                "arrow_ids": list(c.arrow_ids),
+                "source_desigs": list(c.desigs),
+                "cross_observatory": c.cross_observatory,
+                "cross_designation": c.cross_designation,
+                "pos_spread_au": c.pos_spread_au,
+                "vel_spread_au_per_day": c.vel_spread_au_per_day,
+                "r_au": c.r_au,
+                "a_au": c.a_au,
+                "e": c.e,
+                "incl_deg": c.incl_deg,
+                "n_hypotheses_found": c.n_hypotheses_found,
+            }
+        )
+    if not rows:
+        return pl.DataFrame(
+            schema={
+                "desig": pl.String, "n_tracklets": pl.Int64, "n_nights": pl.Int64,
+                "n_obscodes": pl.Int64, "obscodes": pl.List(pl.String), "n_obs": pl.Int64,
+                "first_night": pl.Int64, "last_night": pl.Int64, "first_mjd": pl.Float64,
+                "last_mjd": pl.Float64, "first_trk_n_obs": pl.Int64,
+                "last_trk_n_obs": pl.Int64, "min_trk_n_obs": pl.Int64,
+                "arc_days": pl.Float64, "arc_days_night": pl.Float64,
+                "arrow_ids": pl.List(pl.Int64), "source_desigs": pl.List(pl.String),
+                "cross_observatory": pl.Boolean, "cross_designation": pl.Boolean,
+                "pos_spread_au": pl.Float64, "vel_spread_au_per_day": pl.Float64,
+                "r_au": pl.Float64, "a_au": pl.Float64, "e": pl.Float64,
+                "incl_deg": pl.Float64, "n_hypotheses_found": pl.Int64,
+            }
+        )
+    return pl.DataFrame(rows)
+
+
+def gate_links(candidates: Sequence[LinkCandidate]) -> tuple[pl.DataFrame, dict[str, Any]]:
+    """Apply the MPC's published pre-fit criteria, plus the >= 2-per-night rule."""
+    frame = links_frame(candidates)
+    if frame.height == 0:
+        return frame, {"designations_considered": 0, "prefit_pass": 0}
+    gated = prefit_gate(frame).with_columns(
+        (pl.col("min_trk_n_obs") < MIN_OBS_PER_NIGHT).alias("reject_thin_night")
+    )
+    gated = gated.with_columns(
+        (pl.col("prefit_pass") & ~pl.col("reject_thin_night")).alias("link_pass")
+    )
+    summary = gate_summary(gated)
+    summary["reject_reasons"]["fewer_than_2_obs_on_some_night"] = int(
+        gated["reject_thin_night"].sum()
+    )
+    passing = gated.filter(pl.col("link_pass"))
+    summary["link_pass"] = passing.height
+    summary["link_pass_cross_observatory"] = int(passing["cross_observatory"].sum())
+    summary["link_pass_same_observatory"] = passing.height - int(
+        passing["cross_observatory"].sum()
+    )
+    summary["link_pass_joins_more_than_one_trksub"] = int(passing["cross_designation"].sum())
+    return gated, summary
+
+
+# ----------------------------------------------------------------------------------
+# Astrometry assembly
+# ----------------------------------------------------------------------------------
+
+def _night_index(mjd: float, lon_deg: float) -> int:
+    import math
+
+    return math.floor(mjd + lon_deg / 360.0 + 0.5)
+
+
+def tracklet_line_index(
+    designations: Iterable[str],
+    obscode_lon: dict[str, float],
+    src: Path | None = None,
+) -> tuple[dict[tuple[str, str, int], list[str]], dict[str, Any]]:
+    """Index the ITF's original 80-column records by ``(trkSub, observatory, night)``.
+
+    One streaming pass over ``itf.txt.gz`` via :func:`itf_linker.fit.extract.extract_lines`,
+    then a re-derivation of the local-night index from each record so that the lines can
+    be attributed to the exact tracklet a link names. Continuation records travel with the
+    observation they belong to.
+    """
+    from ..fit.extract import extract_lines
+    from ..index.tracklets import signed_longitude
+
+    groups, stats = extract_lines(designations, src=src)
+    index: dict[tuple[str, str, int], list[str]] = {}
+    dropped = 0
+    for desig, lines in groups.items():
+        current: tuple[str, str, int] | None = None
+        for line in lines:
+            note2 = line[F_NOTE2[0]]
+            if note2 in CONTINUATION_NOTE2:
+                if current is not None:
+                    index[current].append(line)
+                continue
+            parsed = parse_line(line.ljust(LINE_WIDTH), strict=False)
+            if parsed is None:
+                dropped += 1
+                current = None
+                continue
+            code = line[F_OBSCODE[0] : F_OBSCODE[0] + F_OBSCODE[1]].strip()
+            lon = signed_longitude(obscode_lon.get(code, 0.0))
+            key = (desig, code, _night_index(parsed.mjd, lon))
+            index.setdefault(key, []).append(line)
+            current = key
+    stats["unparsable_lines"] = dropped
+    stats["tracklets_indexed"] = len(index)
+    return index, stats
+
+
+def link_astrometry(
+    gated: pl.DataFrame,
+    arrows: pl.DataFrame,
+    obscode_lon: dict[str, float],
+    src: Path | None = None,
+) -> tuple[dict[str, list[str]], dict[str, Any]]:
+    """``{link_id: [80-column lines]}`` with columns 6-12 rewritten to the link id.
+
+    ``gated`` must carry ``desig`` (the link id) and ``arrow_ids``; ``arrows`` is the arrow
+    table, which maps an arrow id back to its ``(trkSub, observatory, night)``.
+    """
+    wanted_ids = sorted({int(i) for row in gated["arrow_ids"].to_list() for i in row})
+    lookup = (
+        arrows.filter(pl.col("arrow_id").is_in(wanted_ids))
+        .select(["arrow_id", "desig", "obscode", "night"])
+        .to_dicts()
+    )
+    by_arrow = {r["arrow_id"]: (r["desig"], r["obscode"], int(r["night"])) for r in lookup}
+    index, stats = tracklet_line_index(
+        {v[0] for v in by_arrow.values()}, obscode_lon, src=src
+    )
+
+    out: dict[str, list[str]] = {}
+    missing = 0
+    for row in gated.select(["desig", "arrow_ids"]).to_dicts():
+        new_desig = row["desig"]
+        lines: list[str] = []
+        ok = True
+        for arrow_id in row["arrow_ids"]:
+            key = by_arrow.get(int(arrow_id))
+            found = index.get(key) if key else None
+            if not found:
+                ok = False
+                break
+            lines.extend(_relabel(ln, new_desig) for ln in found)
+        if ok and lines:
+            out[new_desig] = lines
+        else:
+            missing += 1
+    stats["links_with_astrometry"] = len(out)
+    stats["links_without_astrometry"] = missing
+    return out, stats
+
+
+def _relabel(line: str, new_desig: str) -> str:
+    """Replace columns 1-12 with a blank number and the link's temporary identifier."""
+    padded = line.ljust(LINE_WIDTH)
+    start, width = F_DESIG
+    return " " * start + new_desig.ljust(width)[:width] + padded[start + width :]

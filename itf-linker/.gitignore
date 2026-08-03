@@ -11,9 +11,16 @@
 *.parquet
 *.txt.gz
 
-# Generated reports. The committed narrative lives in M0-RESULTS.md / M1-RESULTS.md.
+# Generated reports. The committed narrative lives in the M*-RESULTS.md files; the JSON
+# behind them is regenerable and runs to tens of megabytes once M3 fits 13k links.
 m0-report.json
 m1-report.json
+m2-report.json
+m3-report.json
+m3-linking.json
+m3-fits.json
+m3-validation.json
+m3-vet.json
 
 # Python
 __pycache__/

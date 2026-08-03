@@ -97,6 +97,33 @@ have blank coordinates and fall back to longitude 0; 38,329 ITF observations are
 Longitudes are wrapped to (−180, +180] so the night index equals the UTC date the night is
 conventionally labelled with — see `M0-RESULTS.md` §4.
 
+### The parallax constants, and why splitting on whitespace is wrong — **(verified 2026-08-02)**
+
+M3 needs the observatory's *position*, not just its longitude, so it parses the two further
+fixed-width columns: `rho cos phi'` in 14–21 and `rho sin phi'` in 22–30, both in Earth
+radii, already folding in the Earth's flattening.
+
+**They must be read by column, not by `split()`.** The fields abut in many rows and the
+separator simply disappears:
+
+```
+005   2.231000.659891+0.748875Meudon
+F51 203.744090.936241+0.351543Pan-STARRS 1, Haleakala
+```
+
+`"005   2.231000.659891+0.748875Meudon".split()` yields `['005', '2.231000.659891+0.748875Meudon']`
+— a longitude that is not a number. Whitespace splitting works on most rows and fails on
+several major survey sites, which is the worst possible failure shape. `parse_obscodes_full`
+slices columns and is pinned by a test carrying both forms.
+
+All **2,686** codes that carry a longitude also carry both constants, so the two parsers
+cover the same set. Codes with *no* coordinates at all — C51/WISE, 247 Roving Observer,
+275 — are **omitted rather than defaulted**, and M3 drops their tracklets: placing a space
+telescope at the geocentre misplaces the observer by up to ~0.01 AU, four times the
+clustering radius, which fabricates links rather than finding them. In the MJD > 60000
+slice that costs 114 observations, plus 248 dropped for carrying note 2 = `S`.
+(500 Geocentric is present with all-zero constants, which is correct for it.)
+
 ## 3. MPECs (validation)
 
 `https://www.minorplanetcenter.net/mpec/K{yy}/{packed}.html` — the URL form in the plan is

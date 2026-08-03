@@ -118,7 +118,7 @@ class FitOutcome:
         }
 
 
-def _used_nights(fit: FitResult) -> int | None:
+def used_nights(fit: FitResult) -> int | None:
     """Distinct UTC dates among the observations Find_Orb actually kept.
 
     Deliberately UTC dates and not local nights: this is a *floor* on the night count of
@@ -170,7 +170,7 @@ def fit_candidates(
         info = meta[desig]
         gate = post_fit_gate(fit, n_nights=int(info["n_nights"]))
         ok, reasons = collide.post_fit_collision_check(
-            fit.n_obs, fit.n_used, used_nights=_used_nights(fit)
+            fit.n_obs, fit.n_used, used_nights=used_nights(fit)
         )
         outcomes.append(
             FitOutcome(
@@ -206,7 +206,7 @@ def fit_candidates(
         "failed_subset_guard": _count(
             lambda o: o.fit.converged
             and not collide.post_fit_collision_check(
-                o.fit.n_obs, o.fit.n_used, _used_nights(o.fit)
+                o.fit.n_obs, o.fit.n_used, used_nights(o.fit)
             )[0]
         ),
         "three_night_sigma_gate": _sigma_gate_counts(outcomes),

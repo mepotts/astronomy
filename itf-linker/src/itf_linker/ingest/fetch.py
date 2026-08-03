@@ -104,11 +104,57 @@ def parse_obscodes(text: str) -> dict[str, float]:
     return out
 
 
-def fetch_obscodes(dest: Path | None = None, *, force: bool = False) -> dict[str, float]:
-    """Fetch (and cache) observatory east longitudes, used for local-night boundaries."""
+def parse_obscodes_full(text: str) -> dict[str, tuple[float, float, float]]:
+    """Extract ``{code: (east_longitude_deg, rho*cos(phi'), rho*sin(phi'))}``.
+
+    The parallax constants are what turn a geocentric ephemeris into a *topocentric* one,
+    and they are the reason M3's linker can place an observatory to a few metres without
+    ever needing geodetic coordinates: the MPC publishes ``rho cos phi'`` and
+    ``rho sin phi'`` in Earth radii, already folding in the flattening.
+
+    Columns are fixed-width and *not* whitespace-separated -- code 1-3, longitude 5-13,
+    ``cos`` 14-21, ``sin`` 22-30. Splitting on whitespace works for most rows and fails
+    silently on the ones where the fields abut (``005   2.231000.659891+0.748875Meudon``),
+    which includes several major survey sites.
+
+    Codes with blank coordinates -- space telescopes (C51) and roving observers (247) --
+    are omitted rather than defaulted, so a caller must decide explicitly what to do with
+    them.
+    """
+    out: dict[str, tuple[float, float, float]] = {}
+    for line in text.splitlines():
+        if len(line) < 30:
+            continue
+        code = line[0:3].strip()
+        if len(code) != 3 or code == "Cod":
+            continue
+        try:
+            lon = float(line[4:13].strip())
+            rho_cos = float(line[13:21].strip())
+            rho_sin = float(line[21:30].strip())
+        except ValueError:
+            continue
+        out[code] = (lon, rho_cos, rho_sin)
+    return out
+
+
+def obscodes_html(dest: Path | None = None, *, force: bool = False) -> str:
+    """Fetch (and cache) the MPC observatory-code table as raw HTML."""
     dest = dest or (config.RAW_DIR / "ObsCodes.html")
     dest.parent.mkdir(parents=True, exist_ok=True)
     if not dest.exists() or force:
         resp = _get(config.OBSCODES_URL, timeout=120)
         dest.write_text(resp.text, encoding="utf-8", errors="replace")
-    return parse_obscodes(dest.read_text(encoding="utf-8", errors="replace"))
+    return dest.read_text(encoding="utf-8", errors="replace")
+
+
+def fetch_obscodes(dest: Path | None = None, *, force: bool = False) -> dict[str, float]:
+    """Fetch (and cache) observatory east longitudes, used for local-night boundaries."""
+    return parse_obscodes(obscodes_html(dest, force=force))
+
+
+def fetch_obscodes_full(
+    dest: Path | None = None, *, force: bool = False
+) -> dict[str, tuple[float, float, float]]:
+    """Fetch (and cache) longitude plus both parallax constants per observatory."""
+    return parse_obscodes_full(obscodes_html(dest, force=force))

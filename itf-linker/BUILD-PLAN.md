@@ -64,13 +64,25 @@ Added in M1:
                     + fit-selftest / candidates / fit / m1
 ```
 
+Added in M3:
+
+```
+  link/
+    geometry.py     observer positions, the r/rdot solve, Kepler propagation, elements
+    arrows.py       tracklets with a fitted sky-plane rate -- what HelioLinC consumes
+    heliolinc.py    hypothesis grid, spatial hashing, cluster extraction, isolation check
+    pipeline.py     overlapping windows, merging, cross-observatory ranking
+    assemble.py     link gating; 80-col astrometry relabelled to one id per link
+    run.py          the M3 chain: link -> gate -> fit -> gate -> resolve -> rank
+    validate.py     the hidden-trkSub ground truth: recall and precision
+  cli.py            + link / link-validate / link-fit / m3
+```
+
 Not implemented, gated behind milestones:
 
 ```
-  link/     candidate generation over partition neighbourhoods       (M2+)
-  vet/      MPChecker / SkyBoT / SBIDENT; dedupe vs DAD              (M2)
-  report/   human-review packet -- the mandatory approval surface    (M2)
-  submit/   ADES PSV/XML emit; sandbox-first                         (M3)
+  report/   human-review packet -- the mandatory approval surface    (M4)
+  submit/   ADES PSV/XML emit; sandbox-first                         (M4)
 ```
 
 ---
@@ -135,15 +147,23 @@ Then: Find_Orb wrapper, published acceptance criteria applied, ranked candidate 
 **Success metric: ≥1 candidate surviving every published gate and every catalogue cross-check.**
 Half met: 128 survive every published gate; the catalogue cross-check is M2.
 
-### M2 — vetting and the review packet
+### M2 — vetting ✅ **COMPLETE** (2026-07-31)
 
-MPChecker / SkyBoT / SBIDENT integration, DAD dedupe, human-review report. **This is the
-milestone that makes submission safe, and it ships before any submission code.**
+MPChecker / SkyBoT / SBIDENT / SBDB integration and the acceptance gate that makes
+submission safe. **7/7 positive controls pass in the same run that produced the numbers**,
+including a known comet sitting in the ITF identified by a completely independent route.
+Of M1's 128: 114 unmatched, 10 ambiguous, 4 known — and 91 of the 128 carry the Rubin `RL`
+prefix, which is the composition warning that shaped M3. Detail in `M2-RESULTS.md`.
 
-### M3 — sandbox submission, then one real batch
+### M3 — linking ✅ **COMPLETE** (2026-08-02)
 
-Round-trip the identifications format against the **test** endpoint. Then a single small,
-hand-reviewed live submission. Ships only after M2 is green.
+**Renumbered from the original plan.** The plan's M3 was submission; vetting proved to be
+the binding constraint and took the M2 slot, so linking — the milestone the whole project
+is named after — became M3, and submission moved to M4+. Nothing was submitted.
+
+HelioLinC over the MJD > 60000 slice, ranked cross-observatory first. Validated by hiding
+the trkSub linkage on the designations that already span 3+ nights: **87.4% are re-derived
+to the exact tracklet** from positions and epochs alone. Detail in `M3-RESULTS.md`.
 
 ### M4 — the citable artifact
 

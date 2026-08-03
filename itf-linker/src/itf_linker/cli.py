@@ -22,6 +22,11 @@
     itf-linker vet            # cross-match candidates against MPChecker/SkyBoT/SBIDENT
     itf-linker m2             # controls + vetting, as one JSON report
 
+    itf-linker link           # HelioLinC over a slice: propose links nobody has made
+    itf-linker link-validate  # hide the trkSub linkage and measure recall/precision
+    itf-linker link-fit       # fit saved links without repeating the search
+    itf-linker m3             # link + gate + fit + rank, as one JSON report
+
     itf-linker version
 
 Every command is read-only with respect to the outside world: the only network calls are
@@ -563,6 +568,343 @@ def m2(
                 "http": result["vetting"]["http"],
             }
         )
+
+
+# --- M3: linking ------------------------------------------------------------------
+#
+# Nothing below submits anything either. The only network use is the (cached) observatory
+# table; the linking itself is pure local computation over the snapshot.
+
+
+def _obscodes_full() -> Any:
+    from .ingest.fetch import fetch_obscodes_full
+
+    try:
+        return fetch_obscodes_full()
+    except Exception as exc:
+        raise typer.BadParameter(
+            f"observatory parallax constants unavailable ({exc}); M3 cannot place observers"
+        ) from exc
+
+
+def _link_inputs() -> tuple[pl.DataFrame, dict[str, float], dict[str, tuple[float, float, float]]]:
+    from .fit.candidates import bad_data_filter
+    from .index.tracklets import add_night
+
+    obs = _load_observations()
+    filtered, stats = bad_data_filter(obs.lazy())
+    try:
+        lon = fetch_obscodes()
+    except Exception as exc:
+        typer.echo(f"[warn] observatory longitudes unavailable ({exc}); using UTC nights", err=True)
+        lon = {}
+    typer.echo(f"[bad-data filter] {stats}", err=True)
+    return add_night(filtered, lon).collect(), lon, _obscodes_full()
+
+
+def _grid(r_min: float, r_max: float, r_step: float, n_rdot: int) -> Any:
+    from .link.heliolinc import HypothesisGrid
+
+    return HypothesisGrid.build(r_min=r_min, r_max=r_max, r_step=r_step, n_rdot=n_rdot)
+
+
+@app.command("link")
+def link_cmd(
+    out: Path | None = typer.Option(None, help="Write the JSON link report here."),
+    mjd_min: float = typer.Option(60000.0, help="Start of the slice (M0's recommended sandbox)."),
+    mjd_max: float | None = typer.Option(None, help="End of the slice."),
+    window_days: float = typer.Option(14.0, help="Length of each linking window."),
+    step_days: float = typer.Option(3.5, help="Spacing between window starts."),
+    radius: float = typer.Option(0.0025, help="Six-dimensional clustering radius, AU."),
+    r_min: float = typer.Option(1.4, help="Smallest heliocentric distance hypothesis, AU."),
+    r_max: float = typer.Option(5.6, help="Largest heliocentric distance hypothesis, AU."),
+    r_step: float = typer.Option(0.10, help="Spacing of the distance grid, AU."),
+    n_rdot: int = typer.Option(9, help="Radial-velocity samples per distance."),
+    link_workers: int = typer.Option(1, help="Processes sweeping windows in parallel."),
+    show: int = typer.Option(10, help="Print this many ranked links."),
+) -> None:
+    """Propose links between tracklets nobody has connected, over a slice of the ITF.
+
+    Cross-observatory links rank first: individual surveys already link their own data, so
+    a link joining two observatory codes is the part nobody else is positioned to do.
+    **A proposed link is not an object** -- it has not been fitted or vetted here.
+    """
+    from .link.pipeline import link_slice
+
+    observations, _, full = _link_inputs()
+
+    def progress(i: int, n: int, stats: dict[str, Any]) -> None:
+        if i % 10 == 0 or stats["candidates"]:
+            typer.echo(
+                f"[window {i}/{n}] arrows={stats['arrows']} candidates={stats['candidates']}",
+                err=True,
+            )
+
+    links, report = link_slice(
+        observations, full, mjd_min=mjd_min, mjd_max=mjd_max,
+        grid=_grid(r_min, r_max, r_step, n_rdot),
+        window_days=window_days, window_step_days=step_days, radius_au=radius,
+        link_workers=link_workers, progress=progress,
+    )
+    payload = dict(report)
+    payload["links"] = [c.as_dict() for c in links]
+    if out:
+        out.write_text(json.dumps(payload, indent=2, default=str), encoding="utf-8")
+        typer.echo(f"wrote {out}")
+    _echo({k: v for k, v in report.items() if k != "busiest_windows"})
+    for cand in links[:show]:
+        typer.echo(
+            f"  {'+'.join(cand.obscodes):16s} nights={cand.n_nights} "
+            f"arc={cand.arc_days:6.2f} d  trkSubs={','.join(cand.desigs)}"
+        )
+
+
+def _score_embedded(
+    links_path: Path,
+    obscodes_full: dict[str, tuple[float, float, float]],
+    observations: pl.DataFrame,
+    window_days: float,
+    mjd_min: float,
+) -> dict[str, Any]:
+    """Score a production link set against the ground truth *inside* the full population.
+
+    The isolated run measures the algorithm; this measures the algorithm plus the
+    confusion. Both the raw proposals and the subset that passes the MPC's pre-fit gate are
+    scored, because a truth group with a 2-day arc is rejected by the gate and its
+    non-recovery is not the linker's failure.
+    """
+    from .link.arrows import build_arrows
+    from .link.heliolinc import LinkCandidate
+    from .link.validate import collision_screen, ground_truth_groups, score_links
+
+    arrows = build_arrows(observations, obscodes_full, mjd_min=mjd_min)
+    truth = ground_truth_groups(arrows.table, min_nights=3, max_arc_days=window_days)
+    suspects = collision_screen(arrows.table, set(truth))
+    clean = {k: v for k, v in truth.items() if k not in suspects}
+
+    frame = pl.read_parquet(links_path)
+
+    def as_candidates(sub: pl.DataFrame) -> list[LinkCandidate]:
+        return [
+            LinkCandidate(
+                arrow_ids=tuple(int(i) for i in r["arrow_ids"]),
+                n_nights=int(r["n_nights"]), n_obscodes=int(r["n_obscodes"]),
+                obscodes=tuple(r["obscodes"]), desigs=tuple(r["source_desigs"]),
+                n_obs=int(r["n_obs"]), arc_days=float(r["arc_days"]),
+                mjd_first=float(r["first_mjd"]), mjd_last=float(r["last_mjd"]),
+                first_trk_n_obs=int(r["first_trk_n_obs"]),
+                last_trk_n_obs=int(r["last_trk_n_obs"]),
+                min_trk_n_obs=int(r["min_trk_n_obs"]),
+                r_au=float(r["r_au"]), rdot=0.0,
+                pos_spread_au=float(r["pos_spread_au"]),
+                vel_spread_au_per_day=float(r["vel_spread_au_per_day"]),
+            )
+            for r in sub.to_dicts()
+        ]
+
+    return {
+        "arrows": len(arrows),
+        "reachable_groups": len(truth),
+        "collision_screened_groups": len(clean),
+        "all_proposals": score_links(as_candidates(frame), clean),
+        "after_the_prefit_gate": score_links(
+            as_candidates(frame.filter(pl.col("link_pass"))), clean
+        ),
+    }
+
+
+@app.command("link-validate")
+def link_validate(
+    out: Path | None = typer.Option(None, help="Write the JSON report here."),
+    window_days: float = typer.Option(14.0, help="Length of each linking window."),
+    step_days: float = typer.Option(3.5, help="Spacing between window starts."),
+    radius: float = typer.Option(0.0025, help="Six-dimensional clustering radius, AU."),
+    r_step: float = typer.Option(0.10, help="Spacing of the distance grid, AU."),
+    n_rdot: int = typer.Option(9, help="Radial-velocity samples per distance."),
+    link_workers: int = typer.Option(1, help="Processes sweeping windows in parallel."),
+    embedded_links: Path | None = typer.Option(
+        None,
+        help="Also score a saved production link set (data/link-candidates.parquet) "
+        "against the ground truth inside the full population.",
+    ),
+    embedded_mjd_min: float = typer.Option(60000.0, help="Slice those links were built on."),
+) -> None:
+    """Hide the trkSub linkage on the ITF's own 3+-night designations and re-derive it.
+
+    This is the ground truth M0 called for after establishing that re-deriving a published
+    identification MPEC cannot work -- the ITF contains zero designated objects, so those
+    MPECs' observations were never in the file.
+
+    The default run is **isolated**: only the ground-truth designations' own tracklets are
+    present, which measures the algorithm. ``--embedded-links`` additionally scores a saved
+    production link set, where the same groupings are buried among half a million other
+    tracklets -- that is the number that matters operationally, and it is lower.
+    """
+    from .link.arrows import build_arrows
+    from .link.pipeline import link_arrows
+    from .link.validate import collision_screen, ground_truth_groups, score_links
+
+    observations, _, full = _link_inputs()
+    trk = build_tracklets(observations.lazy()).collect()
+    per = trk.group_by("desig").agg(pl.col("night").n_unique().alias("nights"))
+    multi = set(per.filter(pl.col("nights") >= 3)["desig"].to_list())
+    typer.echo(f"[ground truth] {len(multi)} designations span 3+ nights", err=True)
+
+    arrows = build_arrows(observations.filter(pl.col("desig").is_in(multi)), full)
+    truth_all = ground_truth_groups(arrows.table, min_nights=3)
+    truth_win = ground_truth_groups(arrows.table, min_nights=3, max_arc_days=window_days)
+    suspects = collision_screen(arrows.table, set(truth_all))
+    clean = {k: v for k, v in truth_win.items() if k not in suspects}
+
+    links, link_report = link_arrows(
+        arrows, grid=_grid(1.4, 5.6, r_step, n_rdot),
+        window_days=window_days, window_step_days=step_days, radius_au=radius,
+        link_workers=link_workers,
+    )
+    report = {
+        "population": {
+            "designations_with_3plus_nights": len(multi),
+            "surviving_arrow_construction": len(truth_all),
+            "arc_within_one_window": len(truth_win),
+            "flagged_as_trksub_collisions_by_m1": len(suspects),
+            "clean_and_reachable": len(clean),
+            "arrow_build": arrows.stats,
+        },
+        "linking": {k: v for k, v in link_report.items() if k != "busiest_windows"},
+        "against_all_reachable_groups": score_links(links, truth_win),
+        "against_collision_screened_groups": score_links(links, clean),
+    }
+    if embedded_links is not None:
+        report["embedded"] = _score_embedded(
+            embedded_links, full, observations, window_days, embedded_mjd_min
+        )
+    if out:
+        out.write_text(json.dumps(report, indent=2, default=str), encoding="utf-8")
+        typer.echo(f"wrote {out}")
+    _echo(report)
+
+
+@app.command("link-fit")
+def link_fit(
+    links: Path = typer.Option(
+        Path("data/link-candidates.parquet"), help="Gated links saved by `m3`."
+    ),
+    out: Path | None = typer.Option(None, help="Write the JSON report here."),
+    workdir: Path = typer.Option(Path("data/link-fits"), help="Where fo runs."),
+    astrometry: Path = typer.Option(
+        config.VET_ASTROMETRY_LINKS, help="Write the links' 80-column lines here."
+    ),
+    mjd_min: float = typer.Option(60000.0, help="Slice the arrows were built from."),
+    mjd_max: float | None = typer.Option(None, help="Slice the arrows were built from."),
+    workers: int = typer.Option(8, help="Concurrent fo processes."),
+    limit: int | None = typer.Option(None, help="Fit only the first N gated links."),
+    resume: bool = typer.Option(
+        False, help="Reuse chunk directories a previous run already completed."
+    ),
+) -> None:
+    """Fit links saved by a previous `m3` run, without repeating the linking.
+
+    Linking takes tens of minutes and fitting takes hours, so re-running the fit -- with a
+    different worker count, or after an interruption -- must not have to redo the search.
+    """
+    from .link.arrows import build_arrows
+    from .link.run import fit_links
+
+    shell = default_shell()
+    if not shell.available():
+        raise typer.BadParameter(f"Find_Orb not reachable at {shell.fo_path}")
+    if not links.exists():
+        raise typer.BadParameter(f"{links} not found -- run `itf-linker m3` first.")
+
+    observations, lon, full = _link_inputs()
+    arrows = build_arrows(observations, full, mjd_min=mjd_min, mjd_max=mjd_max)
+    gated = pl.read_parquet(links).filter(pl.col("link_pass")).sort(
+        ["cross_observatory", "cross_designation", "n_nights", "pos_spread_au"],
+        descending=[True, True, True, False],
+    )
+    typer.echo(f"[link-fit] {gated.height} gated links, {len(arrows)} arrows", err=True)
+
+    def fit_progress(i: int, n: int, _results: Any) -> None:
+        typer.echo(f"[fit chunk {i + 1}/{n}]", err=True)
+
+    report = fit_links(
+        gated, arrows.table, lon, workdir, shell=shell, workers=workers,
+        limit=limit, resume=resume, astrometry_out=astrometry, progress=fit_progress,
+    )
+    payload = {"provenance": load_provenance(), "find_orb": shell.version(), "fits": report}
+    if out:
+        out.write_text(json.dumps(payload, indent=2, default=str), encoding="utf-8")
+        typer.echo(f"wrote {out}")
+    _echo({k: v for k, v in report.items() if k not in ("ranked", "outcomes", "conflicted")})
+
+
+@app.command()
+def m3(
+    out: Path | None = typer.Option(None, help="Write the JSON report here."),
+    workdir: Path = typer.Option(Path("data/link-fits"), help="Where fo runs."),
+    astrometry: Path = typer.Option(
+        config.VET_ASTROMETRY_LINKS, help="Write the links' 80-column lines here."
+    ),
+    mjd_min: float = typer.Option(60000.0, help="Start of the slice."),
+    mjd_max: float | None = typer.Option(None, help="End of the slice."),
+    window_days: float = typer.Option(14.0, help="Length of each linking window."),
+    step_days: float = typer.Option(3.5, help="Spacing between window starts."),
+    radius: float = typer.Option(0.0025, help="Six-dimensional clustering radius, AU."),
+    r_step: float = typer.Option(0.10, help="Spacing of the distance grid, AU."),
+    n_rdot: int = typer.Option(9, help="Radial-velocity samples per distance."),
+    workers: int = typer.Option(8, help="Concurrent fo processes."),
+    link_workers: int = typer.Option(1, help="Processes sweeping windows in parallel."),
+    fit_limit: int | None = typer.Option(None, help="Fit only the first N gated links."),
+    fit_resume: bool = typer.Option(
+        False, help="Reuse fo chunk directories a previous run already completed."
+    ),
+    links_out: Path = typer.Option(
+        Path("data/link-candidates.parquet"), help="Save the gated links before fitting."
+    ),
+) -> None:
+    """Link, gate, fit, gate again and rank -- the whole M3 chain as one JSON report.
+
+    Produces **linked candidates surviving gates**, ranked cross-observatory first. Not
+    discoveries: catalogue vetting is a separate step (``itf-linker vet``), and even a
+    vetted survivor is only a candidate that has not been ruled out.
+    """
+    from .link.run import run_m3
+
+    observations, lon, full = _link_inputs()
+    shell = default_shell()
+
+    def link_progress(i: int, n: int, stats: dict[str, Any]) -> None:
+        if i % 10 == 0 or stats["candidates"]:
+            typer.echo(
+                f"[window {i}/{n}] arrows={stats['arrows']} candidates={stats['candidates']}",
+                err=True,
+            )
+
+    def fit_progress(i: int, n: int, _results: Any) -> None:
+        typer.echo(f"[fit chunk {i + 1}/{n}]", err=True)
+
+    report, _links = run_m3(
+        observations, lon, full,
+        workroot=workdir, mjd_min=mjd_min, mjd_max=mjd_max,
+        grid=_grid(1.4, 5.6, r_step, n_rdot),
+        shell=shell, workers=workers, fit_limit=fit_limit, fit_resume=fit_resume,
+        astrometry_out=astrometry, links_out=links_out,
+        window_days=window_days, window_step_days=step_days, radius_au=radius,
+        link_workers=link_workers,
+        link_progress=link_progress, fit_progress=fit_progress,
+    )
+    report["provenance"] = load_provenance()
+    if out:
+        out.write_text(json.dumps(report, indent=2, default=str), encoding="utf-8")
+        typer.echo(f"wrote {out}")
+    fits = report.get("fits", {})
+    _echo(
+        {
+            "linking": {k: v for k, v in report["linking"].items() if k != "busiest_windows"},
+            "link_gate": report["link_gate"],
+            "fits": {k: v for k, v in fits.items() if k not in ("ranked", "outcomes", "conflicted")},
+        }
+    )
 
 
 if __name__ == "__main__":  # pragma: no cover

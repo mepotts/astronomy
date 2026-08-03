@@ -59,8 +59,15 @@ index/    tracklet reconstruction; HEALPix x night partitioning
 verify/   replay published MPECs against the snapshot; sensitivity control
 ```
 
-`link/`, `fit/`, `vet/`, `report/` and `submit/` are **not implemented** and are gated behind
-the milestones in `BUILD-PLAN.md`.
+```
+snapshot  ITF snapshot archive: observation keys, delta chain, diffing        (M1)
+fit/      Find_Orb wrapper; candidate selection; the MPC's published gates    (M1)
+vet/      MPChecker / SkyBoT / SBIDENT / SBDB cross-match and verdict         (M2)
+link/     HelioLinC: arrows, hypothesis grid, clustering, gating, ranking     (M3)
+```
+
+`report/` (the human-review packet) and `submit/` (ADES emit, sandbox-first) are **not
+implemented** and are gated behind the milestones in `BUILD-PLAN.md`.
 
 ## 5. Kill criteria
 
@@ -72,6 +79,11 @@ criterion for M1:
 > **Hide the trkSub linkage on the 2,515 ITF designations that already span 3+ nights and
 > confirm the linker rediscovers those groupings from positions and epochs alone.**
 > If it cannot recover in-file ground truth, stop.
+
+**Met in M3 (2026-08-02).** Of the 1,534 groupings that are collision-screened and reachable
+by a 14-day window, **87.4% are re-derived to the exact tracklet**; inside the full
+511,274-arrow production population the same measurement gives 75.8%. `itf-linker
+link-validate` reproduces it. See `M3-RESULTS.md` §4.
 
 Later kill criteria, unchanged from the plan:
 

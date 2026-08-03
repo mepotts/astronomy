@@ -22,6 +22,11 @@ TRACKLET_PARQUET = PARQUET_DIR / "itf_tracklets.parquet"
 VET_CACHE_DIR = DATA_DIR / "vet-cache"
 VET_ASTROMETRY = DATA_DIR / "vet-astrometry.json"
 
+# M3 linking. A proposed link's astrometry cannot be re-extracted by designation the way
+# M1's could: the link's identifier does not exist in the ITF, so the assembled and
+# relabelled 80-column lines are written once and reused by the vetting stage.
+VET_ASTROMETRY_LINKS = DATA_DIR / "vet-astrometry-links.json"
+
 # --- Endpoints (read-only; no writes are ever performed against these) -------------
 ITF_URL = "https://www.minorplanetcenter.net/iau/ITF/itf.txt.gz"
 OBSCODES_URL = "https://www.minorplanetcenter.net/iau/lists/ObsCodes.html"

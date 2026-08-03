@@ -308,3 +308,42 @@ def test_fit_result_arc_days():
     assert fit.arc_days == pytest.approx(7.0)
     assert FitResult(desig="T").arc_days is None
     assert not math.isnan(fit.arc_days)
+
+
+# ----------------------------------------------------------------------------------
+# Resuming an interrupted batch
+# ----------------------------------------------------------------------------------
+
+def test_resume_reads_back_a_completed_chunk(tmp_path):
+    """A finished chunk directory must reconstruct without re-running ``fo``.
+
+    Fitting an M3 batch is hours of ``fo``; an interrupted run that had to start over
+    would make the milestone unfinishable on a laptop. The force model has to come back
+    with it, because it is parsed from ``elements.txt``, not from ``total.json``.
+    """
+    from itf_linker.fit.findorb import load_previous_run
+
+    (tmp_path / "total.json").write_text(_read("pair_total.json"), encoding="utf-8")
+    (tmp_path / "elements.txt").write_text(_read("converged_elements.txt"), encoding="utf-8")
+    results = load_previous_run(tmp_path, [GOOD, BAD])
+    assert results is not None
+    assert set(results) == {GOOD, BAD}
+    assert results[GOOD].converged
+    assert results[GOOD].perturbers == "000007fe"
+
+
+def test_resume_refuses_a_chunk_that_is_missing_a_designation(tmp_path):
+    """Half a chunk is worse than none: it turns "not fitted" into "did not converge"."""
+    from itf_linker.fit.findorb import load_previous_run
+
+    (tmp_path / "total.json").write_text(_read("converged_total.json"), encoding="utf-8")
+    assert load_previous_run(tmp_path, [GOOD, BAD]) is None
+    assert load_previous_run(tmp_path, [GOOD]) is not None
+
+
+def test_resume_refuses_a_truncated_file(tmp_path):
+    from itf_linker.fit.findorb import load_previous_run
+
+    (tmp_path / "total.json").write_text(_read("converged_total.json")[:200], encoding="utf-8")
+    assert load_previous_run(tmp_path, [GOOD]) is None
+    assert load_previous_run(tmp_path / "nowhere", [GOOD]) is None

@@ -541,6 +541,42 @@ def run_fo(
     )
 
 
+def load_previous_run(workdir: Path, designations: Sequence[str]) -> dict[str, FitResult] | None:
+    """Re-read a chunk directory a previous invocation already completed.
+
+    Returns ``None`` unless the directory holds a parseable ``total.json`` covering
+    **every** designation asked for -- a partially written file is worse than no file,
+    because it silently turns "not fitted" into "did not converge".
+
+    This exists because fitting is the long pole: a full M3 batch is hours of ``fo``, and
+    an interrupted run that had to start over would make the milestone unfinishable on a
+    laptop. Chunk membership is deterministic (designations are sorted before chunking),
+    so chunk *N* always holds the same objects and the check is exact rather than hopeful.
+    """
+    total = workdir / "total.json"
+    if not total.exists():
+        return None
+    try:
+        results = parse_total_json(total.read_text(encoding="utf-8", errors="replace"),
+                                   requested=designations)
+    except (json.JSONDecodeError, OSError):
+        return None
+    if not results or any(d not in results for d in designations):
+        return None
+
+    elements_txt = workdir / "elements.txt"
+    force_model: dict[str, Any] = {}
+    if elements_txt.exists():
+        force_model = parse_elements_txt(
+            elements_txt.read_text(encoding="utf-8", errors="replace")
+        )
+    for res in results.values():
+        res.perturbers = force_model.get("perturbers")
+        res.perturbers_label = force_model.get("perturbers_label")
+        res.jpl_ephemeris = force_model.get("jpl_ephemeris")
+    return results
+
+
 def run_fo_batched(
     groups: dict[str, Sequence[str]],
     workroot: Path,
@@ -551,6 +587,7 @@ def run_fo_batched(
     timeout: float = 3600.0,
     progress: Any = None,
     diagnostics: list[dict[str, Any]] | None = None,
+    resume: bool = False,
 ) -> dict[str, FitResult]:
     """Fit many designations by splitting them across single-process ``fo`` runs.
 
@@ -578,10 +615,14 @@ def run_fo_batched(
     failures = diagnostics if diagnostics is not None else []
 
     def attempt(chunk: list[str], tag: str) -> dict[str, FitResult]:
+        wd = workroot / tag
+        if resume:
+            previous = load_previous_run(wd, chunk)
+            if previous is not None:
+                return previous
         lines: list[str] = []
         for desig in chunk:
             lines.extend(groups[desig])
-        wd = workroot / tag
         cfg = prepare_config_dir(shell, tag)
         run = run_fo(
             lines, wd, designations=chunk, shell=shell, config_dir=cfg, timeout=timeout
