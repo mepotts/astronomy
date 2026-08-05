@@ -247,6 +247,29 @@ def test_subsets_are_dropped():
     assert {c.key for c in kept} == {big.key, other.key}
 
 
+def test_the_indexed_subset_drop_agrees_with_the_pairwise_one_it_replaced():
+    """The tracklet index is an optimisation, so it has to give the same answer.
+
+    Randomised against a deliberately naive reference: overlapping links, nested links,
+    equal-size links and disjoint links, which is the mix the merge step actually sees.
+    """
+    import random
+
+    rng = random.Random(20260803)
+    for _ in range(30):
+        cands = []
+        for _ in range(rng.randint(2, 40)):
+            size = rng.randint(3, 6)
+            ids = rng.sample(range(14), size)
+            cands.append(_fake(ids, ["F51"]))
+        ordered = sorted(cands, key=lambda c: -len(c.arrow_ids))
+        reference: list = []
+        for cand in ordered:
+            if not any(cand.key < k.key for k in reference):
+                reference.append(cand)
+        assert {c.key for c in drop_subsets(cands)} == {c.key for c in reference}
+
+
 def test_ranking_puts_cross_observatory_first():
     same = _fake([1, 2, 3], ["F51"], spread=1e-9)
     cross = _fake([4, 5, 6], ["F51", "G96"], spread=1e-3)

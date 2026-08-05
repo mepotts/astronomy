@@ -27,12 +27,14 @@ from __future__ import annotations
 
 import time
 from collections.abc import Callable, Iterable
+from dataclasses import dataclass
 from typing import Any
 
 import numpy as np
 import polars as pl
 
 from .arrows import Arrows, build_arrows
+from .geometry import GM_SUN
 from .heliolinc import HypothesisGrid, LinkCandidate, drop_subsets, link_window
 
 #: Window length in days, and the step between window starts. See the module docstring for
@@ -48,8 +50,186 @@ DEFAULT_RADIUS_AU = 0.0025
 DEFAULT_VEL_SCALE_DAYS = 5.0
 
 
-def merge_links(candidates: Iterable[LinkCandidate]) -> list[LinkCandidate]:
-    """Collapse links proposed by more than one window or hypothesis into one each."""
+def curvature_window_days(r_au: float, radius_au: float = DEFAULT_RADIUS_AU) -> float:
+    """Longest window over which a straight line in ``r(t)`` stays inside the radius.
+
+    The hypothesis models the heliocentric distance as linear in time. The neglected term
+    is the radial acceleration ``GM / r^2``, which over a window ``W`` accumulates to
+    ``GM W^2 / (8 r^2)``. Setting that equal to the clustering radius and solving for ``W``
+    gives the value returned here.
+
+    This is the rule that fixed M3's 14 days at 1.4-5.6 AU, and it is also why the widened
+    grid **cannot** use one window length: the limit is 46 days at 5.6 AU, 11.5 days at
+    1.4, 8.2 days at 1.0 and 4.1 days at 0.5. Sweeping NEO hypotheses in a 14-day window
+    would put the model error at 7e-3 AU, three times the clustering radius, and the
+    tracklets of a real object would simply not land on each other.
+    """
+    return float(np.sqrt(8.0 * radius_au * r_au * r_au / GM_SUN))
+
+
+@dataclass(frozen=True, slots=True)
+class Band:
+    """One hypothesis grid swept with the window length that grid's distances allow.
+
+    Bands are swept independently and their links merged. A band is *not* a tuning knob:
+    the window follows from :func:`curvature_window_days` at the band's inner edge, and the
+    distance spacing from the ``1 / mu`` argument in :meth:`HypothesisGrid.geometric`.
+    """
+
+    grid: HypothesisGrid
+    window_days: float
+    window_step_days: float
+    label: str
+
+    def as_dict(self) -> dict[str, Any]:
+        return {
+            "label": self.label,
+            "window_days": self.window_days,
+            "window_step_days": self.window_step_days,
+            "curvature_limit_days_at_inner_edge": round(
+                curvature_window_days(self.grid.r_au[0]), 1
+            ),
+            "grid": self.grid.as_dict(),
+        }
+
+
+#: Minimum window length. The MPC rejects any link with an arc under 3 days, so a window
+#: that cannot hold a 3-day arc plus a night at each end cannot produce a submittable link
+#: however good the geometry is. This floors the innermost band at a curvature error of
+#: ~1.5x the clustering radius, which is a real and reported cost of searching there.
+MIN_WINDOW_DAYS = 5.0
+
+#: Radial-velocity range for the NEO bands, as a fraction of the local escape speed, and
+#: the number of samples across it.
+#:
+#: M3's +/-0.55 is right for the main belt and **measurably wrong inside 1.5 AU**. The
+#: reachable fraction for an orbit ``(a, e)`` observed at ``r`` is
+#: ``e sqrt(r / (2 a (1 - e^2)))``, which for a low-eccentricity belt object stays well
+#: under a half and for an eccentric NEO does not: (3200) Phaethon at 0.84 AU
+#: (``a`` = 1.271, ``e`` = 0.890) sits at **0.715**, outside M3's range entirely. It was
+#: the one target the first widened run failed to recover, and this is why. The sample
+#: count rises with the range so the *resolution* is unchanged at 0.14 of escape speed.
+NEO_MAX_RDOT_FRACTION = 0.85
+NEO_RDOT_SAMPLES = 13
+
+
+def belt_band(r_step: float = 0.10, n_rdot: int = 9) -> Band:
+    """M3's grid and window, unchanged, so the main-belt result stays reproducible."""
+    return Band(
+        grid=HypothesisGrid.build(1.4, 5.6, r_step=r_step, n_rdot=n_rdot, label="belt"),
+        window_days=DEFAULT_WINDOW_DAYS,
+        window_step_days=DEFAULT_WINDOW_STEP_DAYS,
+        label="belt",
+    )
+
+
+#: Distance spacing inside 0.95 AU, where the ``1 / mu`` rule is not the whole story.
+#:
+#: The rule assumes an error ``dr`` moves the topocentric distance by about ``dr``. That
+#: holds at opposition and fails badly for an object *interior* to the Earth: there
+#: ``d(rho)/dr = r / (r_vec . rho_hat)``, and the denominator is the square root in
+#: ``solve_rho``, which shrinks towards the grazing ray. At the geometry that recovers
+#: (163693) Atira it is 0.32 AU, so a distance error is amplified threefold before it
+#: reaches the transverse velocity.
+#:
+#: Measured, on Horizons astrometry of four real NEOs, as the tightest cluster diameter any
+#: hypothesis in a 0.5-1.5 AU grid achieves (the production radius is 0.0025 AU):
+#:
+#:     object                 rate      f=0.03    f=0.02    f=0.01    f=0.002
+#:     (3200) Phaethon    3.0 deg/d    0.0103    0.0052    0.0020    0.0021
+#:     (163693) Atira     1.1 deg/d    0.0011    0.0009    0.0009    0.0009
+#:     (2062) Aten        1.1 deg/d    0.0001    0.0002    0.0001    0.0001
+#:     (433) Eros         0.9 deg/d    0.0005    0.0005    0.0005    0.0005
+#:
+#: Below about 1 deg/day the step does not matter at all. At 3 deg/day a 3% step misses by
+#: fourfold and a 1% step just fits -- and going finer stops helping, because ~0.002 AU is
+#: the *irreducible* spread the linear ``r(t)`` model leaves over a 5-day window at that
+#: speed. So 1% is where the grid stops being the limit, and the band is cheap enough
+#: (6 s over the whole production slice at 3%) that there is no reason not to pay it.
+INNER_FRACTIONAL_STEP = 0.01
+
+
+def wide_bands(
+    *,
+    r_step: float = 0.10,
+    n_rdot: int = 9,
+    fractional_step: float = 0.03,
+    inner_fractional_step: float = INNER_FRACTIONAL_STEP,
+    outer_fractional_step: float = 0.04,
+    outer_r_max: float = 50.0,
+    inner_r_min: float = 0.55,
+    radius_au: float = DEFAULT_RADIUS_AU,
+    include_inner: bool = True,
+    include_neo: bool = True,
+    include_belt: bool = True,
+    include_outer: bool = True,
+) -> list[Band]:
+    """The M4 production bands: NEO, main belt, Centaur/TNO.
+
+    M3's grid ran 1.4-5.6 AU, which excludes every NEO and everything beyond Jupiter.
+    These four bands span 0.55-50 AU. Each carries the window its own distances permit,
+    and the main-belt band is byte-for-byte M3's, so widening cannot silently move the
+    number M3 reported.
+    """
+
+    def window(r_inner: float, cap: float) -> tuple[float, float]:
+        w = min(cap, max(MIN_WINDOW_DAYS, curvature_window_days(r_inner, radius_au)))
+        w = round(w * 4.0) / 4.0
+        return w, w / 4.0
+
+    neo_rdot: dict[str, Any] = {
+        "n_rdot": NEO_RDOT_SAMPLES, "max_rdot_fraction": NEO_MAX_RDOT_FRACTION
+    }
+    bands: list[Band] = []
+    if include_inner:
+        w, s = window(inner_r_min, 14.0)
+        bands.append(
+            Band(
+                grid=HypothesisGrid.geometric(
+                    inner_r_min, 0.95, fractional_step=inner_fractional_step,
+                    label="inner", **neo_rdot,
+                ),
+                window_days=w, window_step_days=s, label="inner",
+            )
+        )
+    if include_neo:
+        w, s = window(0.95, 14.0)
+        bands.append(
+            Band(
+                grid=HypothesisGrid.geometric(
+                    0.95, 1.45, fractional_step=fractional_step, label="neo", **neo_rdot
+                ),
+                window_days=w, window_step_days=s, label="neo",
+            )
+        )
+    if include_belt:
+        bands.append(belt_band(r_step=r_step, n_rdot=n_rdot))
+    if include_outer:
+        # 5.6 AU permits 46 days; 21 is used instead because a longer window packs more
+        # unrelated tracklets into each neighbourhood, and the isolation guard then
+        # declines them. 21 days keeps the model error at 5e-4 AU, a fifth of the radius.
+        bands.append(
+            Band(
+                grid=HypothesisGrid.geometric(
+                    5.6, outer_r_max, fractional_step=outer_fractional_step,
+                    n_rdot=n_rdot, max_a_au=1000.0, label="outer",
+                ),
+                window_days=21.0, window_step_days=5.25, label="outer",
+            )
+        )
+    return bands
+
+
+def merge_links(
+    candidates: Iterable[LinkCandidate], *, drop_subset_links: bool = True
+) -> list[LinkCandidate]:
+    """Collapse links proposed by more than one window or hypothesis into one each.
+
+    ``drop_subset_links`` additionally removes any link that is a *proper subset* of
+    another. That is right **within** a band, where neighbouring hypotheses recover the same
+    object with one tracklet more or less, and it is wrong **across** bands -- see
+    :func:`link_bands`.
+    """
     merged: dict[frozenset[int], LinkCandidate] = {}
     for cand in candidates:
         prev = merged.get(cand.key)
@@ -60,7 +240,8 @@ def merge_links(candidates: Iterable[LinkCandidate]) -> list[LinkCandidate]:
         if cand.pos_spread_au < prev.pos_spread_au:
             merged[cand.key] = cand
             cand.n_hypotheses_found = prev.n_hypotheses_found
-    return drop_subsets(list(merged.values()))
+    out = list(merged.values())
+    return drop_subsets(out) if drop_subset_links else out
 
 
 def rank_links(candidates: Iterable[LinkCandidate]) -> list[LinkCandidate]:
@@ -181,6 +362,83 @@ def link_arrows(
         )[:5],
     }
     return ranked, report
+
+
+def link_bands(
+    arrows: Arrows,
+    bands: Iterable[Band],
+    *,
+    progress: Callable[[int, int, dict[str, Any]], None] | None = None,
+    band_progress: Callable[[str, dict[str, Any]], None] | None = None,
+    **kwargs: Any,
+) -> tuple[list[LinkCandidate], dict[str, Any]]:
+    """Sweep several distance bands, each with its own window, and merge the links.
+
+    Bands are swept sequentially rather than fused into one grid because they do not share
+    a window length, and the window is not free: see :func:`curvature_window_days`.
+
+    **The cross-band merge deduplicates identical links but does not drop subsets**, and
+    that is a measured decision rather than a stylistic one. Dropping subsets is right
+    inside a band, where neighbouring hypotheses recover the same object with one tracklet
+    more or less. Across bands it is destructive: a NEO-band proposal that happens to be
+    the true main-belt group *plus one neighbour* is a proper superset of the correct
+    belt-band link, so the correct link is deleted and the contaminated one kept. Measured
+    on M3's own ground truth, exact recall fell **0.874 -> 0.677** with cross-band subset
+    dropping enabled, with "only ever seen mixed with a stranger" rising from 81 groups to
+    462 while "touched at all" *rose* to 0.982 -- the signature of suppression, not of a
+    failure to find. M3 saw the same mechanism from the other side in its section 5.3, where
+    removing contaminated supersets *improved* recall.
+
+    Competing distance hypotheses for overlapping tracklet sets are exactly what the orbit
+    fit and the conflict resolver exist to adjudicate. Deciding it with a set-inclusion rule
+    before any orbit has been computed throws away the better candidate about as often as
+    the worse one.
+    """
+    bands = list(bands)
+    all_candidates: list[LinkCandidate] = []
+    per_band: list[dict[str, Any]] = []
+    started = time.monotonic()
+    for band in bands:
+        links, report = link_arrows(
+            arrows,
+            grid=band.grid,
+            window_days=band.window_days,
+            window_step_days=band.window_step_days,
+            progress=progress,
+            **kwargs,
+        )
+        for cand in links:
+            cand.extra["band"] = band.label
+        all_candidates.extend(links)
+        entry = {"band": band.as_dict(), **{k: v for k, v in report.items() if k != "yield"}}
+        entry["candidates_this_band"] = len(links)
+        per_band.append(entry)
+        if band_progress is not None:
+            band_progress(band.label, entry)
+
+    merged = merge_links(all_candidates, drop_subset_links=len(bands) == 1)
+    ranked = rank_links(merged)
+    report = {
+        "arrows": arrows.table.height,
+        "cross_band_subset_drop": len(bands) == 1,
+        "bands": per_band,
+        "hypotheses_total": sum(len(b.grid) for b in bands),
+        "candidates_before_band_merge": len(all_candidates),
+        "candidates_merged": len(ranked),
+        "candidates_by_band": _band_histogram(ranked),
+        "elapsed_s": round(time.monotonic() - started, 1),
+        "yield": yield_summary(ranked),
+    }
+    return ranked, report
+
+
+def _band_histogram(candidates: Iterable[LinkCandidate]) -> dict[str, int]:
+    """Which band's hypothesis ended up owning each surviving link."""
+    out: dict[str, int] = {}
+    for c in candidates:
+        label = str(c.extra.get("band", "?"))
+        out[label] = out.get(label, 0) + 1
+    return dict(sorted(out.items(), key=lambda kv: -kv[1]))
 
 
 def yield_summary(candidates: Iterable[LinkCandidate]) -> dict[str, Any]:

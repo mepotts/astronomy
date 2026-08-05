@@ -155,10 +155,10 @@ def test_geometry_reproduces_find_orbs_own_solutions(itf_snapshot):
         a = arrow_arrays(table)
         t_ref = float(np.mean(a["mjd"]))
         best = None
-        for r_hyp, rdot in HypothesisGrid.build(r_step=0.02):
+        for r_hyp, rdot, near in HypothesisGrid.build(r_step=0.02):
             rv, vv, rho, valid = state_from_hypothesis(
                 a["obs_pos"], a["obs_vel"], a["rho_hat"], a["rho_hat_dot"],
-                np.full(table.height, r_hyp), np.full(table.height, rdot),
+                np.full(table.height, r_hyp), np.full(table.height, rdot), near=near,
             )
             if not valid.all():
                 continue

@@ -588,6 +588,7 @@ def run_fo_batched(
     progress: Any = None,
     diagnostics: list[dict[str, Any]] | None = None,
     resume: bool = False,
+    completed_only: bool = False,
 ) -> dict[str, FitResult]:
     """Fit many designations by splitting them across single-process ``fo`` runs.
 
@@ -604,11 +605,23 @@ def run_fo_batched(
     isolates the offender and salvages the rest, at the cost of ``log2(chunk_size)`` extra
     runs for each poisoned chunk. Without this, one bad designation in forty silently
     turned "916 converged" into "0 converged".
+
+    ``completed_only`` (with ``resume``) reports on the chunks a previous run finished and
+    **runs nothing**. M3 learned that a run which writes its report only at the end turns an
+    interruption into total loss, and shipped ``--fit-resume`` for that. M4 hit the other
+    half of the same problem: a fit large enough that it cannot be finished in the time
+    available is worth reporting *as far as it got*, provided the report says so. The
+    chunking is deterministic and independent of band, rank and orbit -- designations are
+    sorted before chunking -- so the completed subset is an unbiased sample of the input,
+    which is what makes reporting it defensible rather than a silent truncation.
     """
     shell = shell or default_shell()
     workroot.mkdir(parents=True, exist_ok=True)
     workroot = workroot.resolve()
-    clean_config_dir(shell)
+    if not completed_only:
+        # Reading back finished chunks must not touch fo's configuration directory: it is
+        # a pure report, and a run that is only reading has no business deleting anything.
+        clean_config_dir(shell)
     keys = list(groups)
     chunks = [keys[i : i + chunk_size] for i in range(0, len(keys), chunk_size)]
     # Appended to, never replaced, so the caller's list is the one that fills up.
@@ -620,6 +633,8 @@ def run_fo_batched(
             previous = load_previous_run(wd, chunk)
             if previous is not None:
                 return previous
+        if completed_only:
+            return {}
         lines: list[str] = []
         for desig in chunk:
             lines.extend(groups[desig])

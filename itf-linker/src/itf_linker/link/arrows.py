@@ -67,10 +67,20 @@ class Arrows:
         return self.table.height
 
     def slice_window(self, mjd_lo: float, mjd_hi: float) -> pl.DataFrame:
-        """Arrows whose mean epoch falls in ``[mjd_lo, mjd_hi)``."""
-        return self.table.filter(
-            (pl.col("mjd") >= mjd_lo) & (pl.col("mjd") < mjd_hi)
-        )
+        """Arrows whose mean epoch falls in ``[mjd_lo, mjd_hi)``.
+
+        :func:`build_arrows` leaves the table sorted by ``mjd``, so this is a binary search
+        and a zero-copy slice rather than a scan. That is not a micro-optimisation. A
+        filter costs one pass over the whole table per window, and the number of windows
+        grows with the *span* of the slice while the table grows with its *size*: the
+        MJD > 60000 slice is 359 windows over 511k arrows (cheap either way), while the
+        pre-60000 slice with the 5-day NEO window is ~19,000 windows over 2.1M arrows --
+        4 x 10^10 rows scanned to build slices that mostly hold a few hundred arrows.
+        """
+        mjd = self.table["mjd"]
+        lo = int(mjd.search_sorted(mjd_lo, side="left"))
+        hi = int(mjd.search_sorted(mjd_hi, side="left"))
+        return self.table.slice(lo, max(hi - lo, 0))
 
 
 def fit_rates(observations: pl.DataFrame) -> pl.DataFrame:

@@ -31,14 +31,14 @@ from typing import Any
 
 import polars as pl
 
-from ..fit import collide
+from ..fit import classify, collide
 from ..fit.findorb import FitResult, run_fo_batched
 from ..fit.gates import post_fit_gate
 from ..fit.pipeline import FitOutcome, used_nights
 from ..fit.wsl import Shell, default_shell
 from .assemble import gate_links, link_astrometry
 from .heliolinc import HypothesisGrid, LinkCandidate
-from .pipeline import link_arrows, yield_summary
+from .pipeline import Band, link_arrows, link_bands, yield_summary
 
 
 def resolve_conflicts(outcomes: Sequence[FitOutcome], arrows_by_link: dict[str, list[int]]):
@@ -70,6 +70,26 @@ def resolve_conflicts(outcomes: Sequence[FitOutcome], arrows_by_link: dict[str, 
     return kept, dropped
 
 
+def prioritise_bands(
+    gated: pl.DataFrame, order: Sequence[str] | None = None
+) -> pl.DataFrame:
+    """Add a ``band_priority`` column ranking whole distance bands against each other.
+
+    Fitting is the expensive stage -- 13,618 links cost 55 minutes of wall clock in M3 --
+    so when a limit binds, *which* links get fitted is a real decision rather than
+    bookkeeping. Bands not named in ``order`` sort after every band that is.
+    """
+    if "band" not in gated.columns:
+        return gated.with_columns(pl.lit(0, dtype=pl.Int32).alias("band_priority"))
+    ranks = {name: i for i, (name) in enumerate(order or ())}
+    fallback = len(ranks)
+    return gated.with_columns(
+        pl.col("band")
+        .replace_strict(ranks, default=fallback, return_dtype=pl.Int32)
+        .alias("band_priority")
+    )
+
+
 def fit_links(
     gated: pl.DataFrame,
     arrows: pl.DataFrame,
@@ -82,10 +102,17 @@ def fit_links(
     chunk_size: int = 40,
     limit: int | None = None,
     resume: bool = False,
+    completed_only: bool = False,
     astrometry_out: Path | None = None,
     progress: Callable[[int, int, Any], None] | None = None,
 ) -> dict[str, Any]:
-    """Fit gated links with Find_Orb and apply every post-fit gate M1 defined."""
+    """Fit gated links with Find_Orb and apply every post-fit gate M1 defined.
+
+    ``completed_only`` reports on the chunks a previous run finished and runs nothing --
+    see :func:`~itf_linker.fit.findorb.run_fo_batched`. Links with no result are dropped
+    from the funnel rather than counted as failures, and ``links_fitted`` /
+    ``links_submitted`` record the sampling fraction.
+    """
     shell = shell or default_shell()
     table = gated.head(limit) if limit else gated
     groups, extract_stats = link_astrometry(table, arrows, obscode_lon, src=src_gz)
@@ -100,11 +127,13 @@ def fit_links(
     results = run_fo_batched(
         groups, workroot, shell=shell, workers=workers, chunk_size=chunk_size,
         progress=progress, diagnostics=diagnostics, resume=resume,
+        completed_only=completed_only,
     )
     meta = {r["desig"]: r for r in table.to_dicts()}
+    fitted = [d for d in groups if not completed_only or d in results]
 
     outcomes: list[FitOutcome] = []
-    for desig in groups:
+    for desig in fitted:
         fit = results.get(desig) or FitResult(desig=desig, status="not_extracted")
         info = meta[desig]
         gate = post_fit_gate(fit, n_nights=int(info["n_nights"]))
@@ -127,6 +156,7 @@ def fit_links(
     arrows_by_link = {r["desig"]: list(r["arrow_ids"]) for r in table.to_dicts()}
     passed = [o for o in outcomes if o.gate_passes]
     kept, dropped = resolve_conflicts(passed, arrows_by_link)
+    band_of = {r["desig"]: r.get("band", "belt") for r in table.to_dicts()}
     # Conflicts are *resolved* by fit quality -- the better orbit wins a contested tracklet
     # -- but the surviving list is *presented* cross-observatory first, because that is
     # what M3 exists to produce and what a rate-limited vetting pass should see first.
@@ -136,6 +166,8 @@ def fit_links(
     return {
         "extraction": extract_stats,
         "links_submitted": len(groups),
+        "links_fitted": len(fitted),
+        "completed_only": completed_only,
         "fo_invocation_failures": diagnostics,
         "elapsed_s": round(time.monotonic() - started, 1),
         "converged": len(converged),
@@ -164,10 +196,30 @@ def fit_links(
             for o in kept
             if len(set(meta[o.desig]["source_desigs"])) > 1 and len(set(o.obscodes)) > 1
         ),
+        # Reported by population and by band, because "we widened the grid" is only a
+        # result if the widened part of it produced something distinguishable.
+        "survivors_by_population": classify.population_histogram(
+            [classify.describe(o.fit) for o in kept]
+        ),
+        "survivors_by_band": _histogram(band_of.get(o.desig, "?") for o in kept),
+        "survivors_neo_by_q": sum(
+            1 for o in kept if classify.describe(o.fit)["is_neo_by_q"]
+        ),
+        "converged_by_population": classify.population_histogram(
+            [classify.describe(o.fit) for o in converged]
+        ),
+        "submitted_by_band": _histogram(band_of.get(o.desig, "?") for o in outcomes),
         "ranked": [_row(o, meta) for o in kept],
         "conflicted": [_row(o, meta) for o in dropped],
         "outcomes": [_row(o, meta) for o in outcomes],
     }
+
+
+def _histogram(values: Any) -> dict[str, int]:
+    out: dict[str, int] = {}
+    for v in values:
+        out[str(v)] = out.get(str(v), 0) + 1
+    return dict(sorted(out.items(), key=lambda kv: -kv[1]))
 
 
 def rank_survivors(
@@ -203,9 +255,15 @@ def _status_histogram(outcomes: Sequence[FitOutcome]) -> dict[str, int]:
 def _row(outcome: FitOutcome, meta: dict[str, dict[str, Any]]) -> dict[str, Any]:
     info = meta.get(outcome.desig, {})
     row = outcome.as_dict()
+    # Which population the fitted orbit lands in, and how strongly it claims to be an NEO.
+    # M4 widened the hypothesis grid specifically to reach populations M3 could not, so a
+    # survivor that is not labelled by population does not answer the question that was
+    # asked.
+    row.update(classify.describe(outcome.fit))
     for key in (
         "arrow_ids", "source_desigs", "cross_observatory", "cross_designation",
         "pos_spread_au", "r_au", "n_hypotheses_found", "n_tracklets",
+        "band", "near_branch",
     ):
         if key in info:
             row[key] = info[key]
@@ -221,34 +279,55 @@ def run_m3(
     mjd_min: float | None = 60000.0,
     mjd_max: float | None = None,
     grid: HypothesisGrid | None = None,
+    bands: Sequence[Band] | None = None,
     shell: Shell | None = None,
     fit_limit: int | None = None,
     fit_resume: bool = False,
     astrometry_out: Path | None = None,
     links_out: Path | None = None,
     link_progress: Callable[[int, int, dict[str, Any]], None] | None = None,
+    band_progress: Callable[[str, dict[str, Any]], None] | None = None,
     fit_progress: Callable[[int, int, Any], None] | None = None,
     src_gz: Path | None = None,
     workers: int = 8,
+    fit_order: Sequence[str] | None = None,
     **link_kwargs: Any,
 ) -> tuple[dict[str, Any], list[LinkCandidate]]:
-    """Link, gate, fit and rank -- one JSON-able report plus the raw link list."""
+    """Link, gate, fit and rank -- one JSON-able report plus the raw link list.
+
+    ``bands`` sweeps several distance bands, each with its own window length; ``grid``
+    sweeps one. Passing both is an error, because the window would then belong to two
+    owners.
+    """
     from .arrows import build_arrows
 
+    if bands is not None and grid is not None:
+        raise ValueError("pass either `grid` (one band) or `bands` (several), not both")
+
     arrows = build_arrows(observations, obscodes_full, mjd_min=mjd_min, mjd_max=mjd_max)
-    links, link_report = link_arrows(
-        arrows, grid=grid, progress=link_progress, **link_kwargs
-    )
+    if bands is not None:
+        links, link_report = link_bands(
+            arrows, bands, progress=link_progress, band_progress=band_progress,
+            **{k: v for k, v in link_kwargs.items()
+               if k not in ("window_days", "window_step_days")},
+        )
+    else:
+        links, link_report = link_arrows(
+            arrows, grid=grid, progress=link_progress, **link_kwargs
+        )
     link_report["arrow_build"] = arrows.stats
     link_report["slice"] = {"mjd_min": mjd_min, "mjd_max": mjd_max}
     gated, gate_report = gate_links(links)
     passing = gated.filter(pl.col("link_pass")) if gated.height else gated
     # Cross-observatory first: that ordering is what decides which links get fitted at all
-    # when a limit is applied, and it is M3's whole strategic point.
+    # when a limit is applied, and it is M3's whole strategic point. ``fit_order`` puts
+    # whole distance bands ahead of that, which is M4's: a main-belt link is a population
+    # every survey re-detects constantly, and an NEO- or TNO-distance link is not.
     if passing.height:
-        passing = passing.sort(
-            ["cross_observatory", "cross_designation", "n_nights", "pos_spread_au"],
-            descending=[True, True, True, False],
+        passing = prioritise_bands(passing, fit_order).sort(
+            ["band_priority", "cross_observatory", "cross_designation",
+             "n_nights", "pos_spread_au"],
+            descending=[False, True, True, True, False],
         )
 
     if links_out is not None and gated.height:

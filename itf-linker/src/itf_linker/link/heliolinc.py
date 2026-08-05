@@ -38,13 +38,23 @@ from .arrows import arrow_arrays
 from .geometry import C_AU_PER_DAY, GM_SUN, propagate_kepler, state_from_hypothesis
 
 #: Semimajor axes a cluster is allowed to imply. Below ~0.4 AU nothing survives in the
-#: main-belt-dominated ITF; above 100 AU a two-week arc cannot tell a distant object from
-#: a diverging solution, and admitting them floods the output with unbound noise. Combined
-#: with the requirement that the orbital energy be negative, this is the only physics
-#: applied inside the sweep -- an unbound state is overwhelmingly the signature of a wrong
-#: distance hypothesis rather than of an interstellar object.
+#: main-belt-dominated ITF; above the ceiling a two-week arc cannot tell a distant object
+#: from a diverging solution, and admitting them floods the output with unbound noise.
+#: Combined with the requirement that the orbital energy be negative, this is the only
+#: physics applied inside the sweep -- an unbound state is overwhelmingly the signature of
+#: a wrong distance hypothesis rather than of an interstellar object.
+#:
+#: The ceiling is a *grid* property rather than a module constant because it has to move
+#: with the distance band: 100 AU is generous for a 1.4-5.6 AU hypothesis and is a hard
+#: rejection of every scattered-disc object for a 40 AU one.
 MIN_PLAUSIBLE_A_AU = 0.4
 MAX_PLAUSIBLE_A_AU = 100.0
+
+#: Heliocentric distance below which the *near* root of the line-of-sight/sphere
+#: intersection is also a physical position -- see :func:`~itf_linker.link.geometry.solve_rho`.
+#: Earth's own heliocentric distance runs 0.983-1.017 AU over the year, so anything below
+#: 1.02 AU can put the observer outside the hypothesised sphere at some epoch.
+NEAR_BRANCH_MAX_R_AU = 1.02
 
 
 @dataclass(frozen=True, slots=True)
@@ -55,10 +65,17 @@ class HypothesisGrid:
     grid in AU/day, because the physically reachable radial velocity shrinks as ``r``
     grows: ``|rdot| < sqrt(2 GM / r)``. A fixed grid would waste most of its samples on
     unbound states at large ``r`` and under-sample the reachable range at small ``r``.
+
+    Iterating yields ``(r, rdot, near)``. ``near`` selects the near root of the
+    line-of-sight/sphere intersection, which exists only where the observer is *outside*
+    the hypothesised sphere -- i.e. only inside about 1 AU. It is swept there and nowhere
+    else, because outside 1 AU it is guaranteed to produce nothing.
     """
 
     r_au: tuple[float, ...]
     rdot_fractions: tuple[float, ...]
+    max_a_au: float = MAX_PLAUSIBLE_A_AU
+    label: str = "grid"
 
     @classmethod
     def build(
@@ -68,35 +85,91 @@ class HypothesisGrid:
         r_step: float = 0.10,
         n_rdot: int = 9,
         max_rdot_fraction: float = 0.55,
+        max_a_au: float = MAX_PLAUSIBLE_A_AU,
+        label: str = "grid",
     ) -> HypothesisGrid:
-        """A grid over heliocentric distance and radial velocity.
+        """A uniformly spaced grid over heliocentric distance and radial velocity.
 
         Doubling the distance resolution (0.10 -> 0.05 AU) moved measured recall by
         0.06 percentage points, so the default is not a compromise -- the grid is not
-        what limits this linker.
+        what limits this linker **inside the main belt**. It is a poor rule once the grid
+        spans a decade in distance: see :meth:`geometric`.
         """
         r = tuple(float(x) for x in np.arange(r_min, r_max + 1e-9, r_step))
         frac = tuple(float(x) for x in np.linspace(-max_rdot_fraction, max_rdot_fraction, n_rdot))
-        return cls(r_au=r, rdot_fractions=frac)
+        return cls(r_au=r, rdot_fractions=frac, max_a_au=max_a_au, label=label)
+
+    @classmethod
+    def geometric(
+        cls,
+        r_min: float,
+        r_max: float,
+        *,
+        fractional_step: float = 0.04,
+        n_rdot: int = 9,
+        max_rdot_fraction: float = 0.55,
+        max_a_au: float = MAX_PLAUSIBLE_A_AU,
+        label: str = "grid",
+    ) -> HypothesisGrid:
+        """Distance samples spaced by a constant *fraction* of the distance.
+
+        A uniform step is the wrong rule for a grid spanning 0.5-50 AU, and the reason is
+        the quantity that actually decides whether a wrong hypothesis breaks a cluster.
+        An error ``dr`` in the assumed heliocentric distance perturbs the topocentric
+        distance by about the same amount, which mis-scales the implied transverse velocity
+        by ``dr * mu`` (``mu`` = the tracklet's sky-plane rate) and therefore displaces the
+        propagated state by ``dr * mu * dt``. Requiring that to stay under the clustering
+        radius gives ``dr < radius / (mu * dt)``: **the admissible step scales as 1 / mu.**
+
+        At opposition ``mu ~ v_earth (1 - r^-1/2) / (r - 1)``, so ``dr`` grows very nearly
+        linearly with ``r``. Evaluated at the production radius (0.0025 AU) and ``dt`` = 7
+        days, ``dr / r`` is 0.039 at 1.4 AU, 0.034 at 2.5, 0.029 at 5.6, 0.027 at 10, 0.025
+        at 30 and 0.024 at 50 -- constant to 25% across two decades, which is exactly the
+        statement that the natural grid is geometric. A uniform 0.10 AU step over 0.5-50 AU
+        would be 500 samples, most of them redundant beyond 10 AU and too coarse inside 1.
+        """
+        if not 0.0 < fractional_step < 1.0:
+            raise ValueError(f"fractional_step must be in (0, 1), got {fractional_step}")
+        values: list[float] = []
+        r = float(r_min)
+        while r <= r_max * (1.0 + 1e-9):
+            values.append(r)
+            r *= 1.0 + fractional_step
+        frac = tuple(float(x) for x in np.linspace(-max_rdot_fraction, max_rdot_fraction, n_rdot))
+        return cls(
+            r_au=tuple(values), rdot_fractions=frac, max_a_au=max_a_au, label=label
+        )
+
+    @property
+    def n_near(self) -> int:
+        """Distance samples for which the near root is also swept."""
+        return sum(1 for r in self.r_au if r < NEAR_BRANCH_MAX_R_AU)
 
     def __iter__(self):
         for r in self.r_au:
             v_esc = np.sqrt(2.0 * GM_SUN / r)
-            for f in self.rdot_fractions:
-                yield r, f * v_esc
+            branches = (False, True) if r < NEAR_BRANCH_MAX_R_AU else (False,)
+            for near in branches:
+                for f in self.rdot_fractions:
+                    yield r, f * v_esc, near
 
     def __len__(self) -> int:
-        return len(self.r_au) * len(self.rdot_fractions)
+        return (len(self.r_au) + self.n_near) * len(self.rdot_fractions)
 
     def as_dict(self) -> dict[str, Any]:
         """JSON-able description of the grid, for the run report."""
+        steps = np.diff(np.asarray(self.r_au)) if len(self.r_au) > 1 else np.array([])
         return {
+            "label": self.label,
             "r_au_min": self.r_au[0],
             "r_au_max": self.r_au[-1],
             "r_steps": len(self.r_au),
-            "r_step_au": round(self.r_au[1] - self.r_au[0], 4) if len(self.r_au) > 1 else None,
+            "r_step_au": round(float(steps[0]), 4) if steps.size else None,
+            "r_step_au_max": round(float(steps.max()), 4) if steps.size else None,
+            "r_samples_with_near_branch": self.n_near,
             "rdot_samples": len(self.rdot_fractions),
             "rdot_max_fraction_of_escape": max(self.rdot_fractions),
+            "max_a_au": self.max_a_au,
             "hypotheses": len(self),
         }
 
@@ -124,6 +197,9 @@ class LinkCandidate:
     rdot: float
     pos_spread_au: float
     vel_spread_au_per_day: float
+    #: True when the hypothesis that found this link used the *near* root of the
+    #: line-of-sight/sphere intersection -- only possible interior to about 1 AU.
+    near_branch: bool = False
     a_au: float | None = None
     e: float | None = None
     incl_deg: float | None = None
@@ -166,6 +242,7 @@ class LinkCandidate:
             "cross_designation": self.cross_designation,
             "r_au": self.r_au,
             "rdot": self.rdot,
+            "near_branch": self.near_branch,
             "pos_spread_au": self.pos_spread_au,
             "vel_spread_au_per_day": self.vel_spread_au_per_day,
             "a_au": self.a_au,
@@ -347,26 +424,35 @@ def isolated_groups(
     discards the group if too many tracklets, or too many tracklets competing for one
     ``(observatory, night)`` slot, lie inside the clustering radius.
 
-    It is affordable because it runs once per *group*, not once per seed: the states are
-    already computed for the hypothesis in hand, so the whole check is a ``(groups x
-    arrows)`` distance array.
+    It runs once per *group*, not once per seed, and the neighbours are found through a
+    **spatial hash rather than a scan over every state**. M3 built the full
+    ``groups x arrows x 6`` distance array in batches, which is correct and is fine at
+    M3's scale: its densest window held 23,000 arrows and produced ~1,200 groups per
+    hypothesis.
 
-    That array is built **in batches**, which is not premature optimisation. Built whole it
-    is ``groups x arrows x 6`` doubles -- 167 MB for 151 groups against a 23,000-arrow
-    window -- and with two dozen worker processes doing that at once the run dies with a
-    ``MemoryError`` while asking for only 26 MB. Batching bounds it to a few tens of
-    megabytes per worker however dense the window is.
+    It does not survive the pre-60000 slice. There the deep-drilling archival fields put
+    **41,068 arrows** in one window and thousands of groups per hypothesis, and
+    ``groups x arrows`` becomes ~10⁸ six-dimensional distances *per hypothesis* -- measured
+    at roughly an hour for a single window against 387 hypotheses, which is not a slow run
+    but an unfinishable one.
+
+    The hash gives the identical answer. Every state within ``radius_au`` of a centroid in
+    six dimensions is also within ``radius_au`` of it in the three position dimensions, so
+    with a cell edge of ``radius_au`` it must lie in one of the 27 cells around the
+    centroid's own. Those candidates are then tested exactly, in full six dimensions, so
+    nothing is approximated: the hash only decides which distances are worth computing.
+    Hash collisions (three cell indices are folded into one int64) can only *add* candidates
+    to the exact test, never remove them.
     """
     if not groups:
         return [], 0
     centroids = np.stack([state6[g].mean(axis=0) for g in groups])
+    near_by_group = _neighbours_within(centroids, state6, radius_au)
     kept: list[np.ndarray] = []
     rejected = 0
     for start in range(0, len(groups), CENTROID_BATCH):
-        block = centroids[start : start + CENTROID_BATCH]
-        inside = np.linalg.norm(block[:, None, :] - state6[None, :, :], axis=-1) <= radius_au
         for offset, group in enumerate(groups[start : start + CENTROID_BATCH]):
-            near = np.flatnonzero(inside[offset])
+            near = near_by_group[start + offset]
             if len(near) > max_ball_members:
                 rejected += 1
                 continue
@@ -379,6 +465,52 @@ def isolated_groups(
                 continue
             kept.append(group)
     return kept, rejected
+
+
+def _pack_cells(idx: np.ndarray) -> np.ndarray:
+    """Fold integer cell indices into one int64 per row, as :func:`_cell_keys` does."""
+    key = idx[:, 0] * np.int64(73856093)
+    key ^= idx[:, 1] * np.int64(19349663)
+    key ^= idx[:, 2] * np.int64(83492791)
+    return key
+
+
+#: Offsets of the 27 cells that can hold a point within one cell edge of a given cell.
+_NEIGHBOUR_OFFSETS = np.array(
+    list(itertools.product((-1, 0, 1), repeat=3)), dtype=np.int64
+)
+
+
+def _neighbours_within(
+    centroids: np.ndarray, state6: np.ndarray, radius: float
+) -> list[np.ndarray]:
+    """Indices of every state within ``radius`` of each centroid, in six dimensions.
+
+    Exact. The spatial hash only narrows what is measured; every candidate it produces is
+    then tested with the true six-dimensional distance, and no true neighbour can be
+    missed because a cell edge of ``radius`` puts all of them inside the 27-cell block
+    around the centroid's own cell.
+    """
+    pos = state6[:, :3]
+    cells = np.floor(pos / radius).astype(np.int64)
+    keys = _pack_cells(cells)
+    order = np.argsort(keys, kind="stable")
+    sorted_keys = keys[order]
+
+    c_cells = np.floor(centroids[:, :3] / radius).astype(np.int64)
+    out: list[np.ndarray] = []
+    for i in range(len(centroids)):
+        probe = _pack_cells(c_cells[i] + _NEIGHBOUR_OFFSETS)
+        lo = np.searchsorted(sorted_keys, probe, side="left")
+        hi = np.searchsorted(sorted_keys, probe, side="right")
+        take = [order[a:b] for a, b in zip(lo, hi) if b > a]
+        if not take:
+            out.append(np.empty(0, dtype=np.int64))
+            continue
+        cand = np.concatenate(take)
+        d = np.linalg.norm(state6[cand] - centroids[i], axis=1)
+        out.append(np.sort(cand[d <= radius]))
+    return out
 
 
 def _one_per_slot(
@@ -447,16 +579,22 @@ def link_window(
     merged: dict[frozenset[int], LinkCandidate] = {}
     valid_total = 0
 
-    for r_hyp, rdot_hyp in grid:
+    for r_hyp, rdot_hyp, near in grid:
         # r(t) is modelled linearly across the window; the window length is chosen so the
         # neglected curvature stays under the clustering radius (see pipeline docstring).
         r_at_t = r_hyp + rdot_hyp * (mjd - t_ref)
-        if np.any(r_at_t <= 0.05):
+        # Arrows the linear model carries inside the Sun are dropped **individually**. M3
+        # skipped the whole hypothesis if any single arrow did, which costs nothing on a
+        # 1.4-5.6 AU grid (nothing reaches 0.05 AU there) but would throw away entire NEO
+        # hypotheses over one arrow at the edge of a window.
+        in_range = r_at_t > 0.05
+        if not in_range.any():
             continue
         r_vec, v_vec, rho, valid = state_from_hypothesis(
             a["obs_pos"], a["obs_vel"], a["rho_hat"], a["rho_hat_dot"],
-            r_at_t, np.full(n, rdot_hyp),
+            np.where(in_range, r_at_t, 1.0), np.full(n, rdot_hyp), near=near,
         )
+        valid &= in_range
         if not valid.any():
             continue
         light_time = rho / C_AU_PER_DAY
@@ -466,7 +604,7 @@ def link_window(
         energy = v2 / 2.0 - GM_SUN / np.maximum(r_norm, 1e-9)
         with np.errstate(divide="ignore", invalid="ignore"):
             a_sma = -GM_SUN / (2.0 * energy)
-        bound = valid & (energy < 0) & (a_sma > MIN_PLAUSIBLE_A_AU) & (a_sma < MAX_PLAUSIBLE_A_AU)
+        bound = valid & (energy < 0) & (a_sma > MIN_PLAUSIBLE_A_AU) & (a_sma < grid.max_a_au)
         if bound.sum() < min_nights:
             continue
         valid_total += int(bound.sum())
@@ -505,7 +643,7 @@ def link_window(
                 if spread_p + vel_scale_days * spread_v < (
                     existing.pos_spread_au + vel_scale_days * existing.vel_spread_au_per_day
                 ):
-                    _refresh(existing, r_hyp, rdot_hyp, spread_p, spread_v, pos[g], vel[g])
+                    _refresh(existing, r_hyp, rdot_hyp, near, spread_p, spread_v, pos[g], vel[g])
                 continue
             mean_pos = pos[g].mean(axis=0)
             mean_vel = vel[g].mean(axis=0)
@@ -526,6 +664,7 @@ def link_window(
                 min_trk_n_obs=int(n_obs_col[rows].min()),
                 r_au=float(r_hyp),
                 rdot=float(rdot_hyp),
+                near_branch=bool(near),
                 pos_spread_au=spread_p,
                 vel_spread_au_per_day=spread_v,
                 a_au=el["a"], e=el["e"], incl_deg=el["incl"],
@@ -542,6 +681,7 @@ def _refresh(
     cand: LinkCandidate,
     r_hyp: float,
     rdot_hyp: float,
+    near: bool,
     spread_p: float,
     spread_v: float,
     pos: np.ndarray,
@@ -550,6 +690,7 @@ def _refresh(
     el = _elements(pos.mean(axis=0), vel.mean(axis=0))
     cand.r_au = float(r_hyp)
     cand.rdot = float(rdot_hyp)
+    cand.near_branch = bool(near)
     cand.pos_spread_au = spread_p
     cand.vel_spread_au_per_day = spread_v
     cand.a_au, cand.e, cand.incl_deg = el["a"], el["e"], el["incl"]
@@ -573,11 +714,24 @@ def drop_subsets(candidates: list[LinkCandidate]) -> list[LinkCandidate]:
     Neighbouring hypotheses routinely recover the same object with one tracklet more or
     less; keeping both would double-count the yield and would send Find_Orb the same
     astrometry twice.
+
+    **Indexed by tracklet, not compared pairwise.** The obvious implementation tests every
+    candidate against every candidate already kept, which is fine at M3's 17,060 links and
+    is not fine at M4's: the NEO band alone proposes ~60,000 before merging, and a
+    quadratic scan there is 2e9 set comparisons. A proper superset must contain *every* one
+    of a candidate's tracklets, so it is enough to compare against the links sharing one
+    arbitrary tracklet -- a list of a few dozen, not of tens of thousands.
     """
     ordered = sorted(candidates, key=lambda c: -len(c.arrow_ids))
     kept: list[LinkCandidate] = []
+    by_arrow: dict[int, list[int]] = {}
     for cand in ordered:
-        if any(cand.key < k.key for k in kept):
+        key = cand.key
+        probe = next(iter(key))
+        if any(key < kept[i].key for i in by_arrow.get(probe, ())):
             continue
+        index = len(kept)
         kept.append(cand)
+        for arrow_id in key:
+            by_arrow.setdefault(arrow_id, []).append(index)
     return kept

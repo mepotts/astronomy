@@ -85,6 +85,8 @@ def links_frame(candidates: Sequence[LinkCandidate]) -> pl.DataFrame:
                 "pos_spread_au": c.pos_spread_au,
                 "vel_spread_au_per_day": c.vel_spread_au_per_day,
                 "r_au": c.r_au,
+                "near_branch": c.near_branch,
+                "band": str(c.extra.get("band", "belt")),
                 "a_au": c.a_au,
                 "e": c.e,
                 "incl_deg": c.incl_deg,
@@ -103,7 +105,8 @@ def links_frame(candidates: Sequence[LinkCandidate]) -> pl.DataFrame:
                 "arrow_ids": pl.List(pl.Int64), "source_desigs": pl.List(pl.String),
                 "cross_observatory": pl.Boolean, "cross_designation": pl.Boolean,
                 "pos_spread_au": pl.Float64, "vel_spread_au_per_day": pl.Float64,
-                "r_au": pl.Float64, "a_au": pl.Float64, "e": pl.Float64,
+                "r_au": pl.Float64, "near_branch": pl.Boolean, "band": pl.String,
+                "a_au": pl.Float64, "e": pl.Float64,
                 "incl_deg": pl.Float64, "n_hypotheses_found": pl.Int64,
             }
         )
@@ -132,6 +135,16 @@ def gate_links(candidates: Sequence[LinkCandidate]) -> tuple[pl.DataFrame, dict[
         passing["cross_observatory"].sum()
     )
     summary["link_pass_joins_more_than_one_trksub"] = int(passing["cross_designation"].sum())
+    if "band" in gated.columns:
+        # The gate bites differently per band -- a 5-day NEO window cannot produce the long
+        # arcs a 21-day outer window can, so the arc rule rejects far more of the former.
+        summary["by_band"] = {
+            str(r["band"]): {"proposed": int(r["proposed"]), "gate_pass": int(r["passed"])}
+            for r in gated.group_by("band")
+            .agg(pl.len().alias("proposed"), pl.col("link_pass").sum().alias("passed"))
+            .sort("proposed", descending=True)
+            .to_dicts()
+        }
     return gated, summary
 
 

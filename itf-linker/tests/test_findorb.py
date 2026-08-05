@@ -347,3 +347,35 @@ def test_resume_refuses_a_truncated_file(tmp_path):
     (tmp_path / "total.json").write_text(_read("converged_total.json")[:200], encoding="utf-8")
     assert load_previous_run(tmp_path, [GOOD]) is None
     assert load_previous_run(tmp_path / "nowhere", [GOOD]) is None
+
+
+def test_completed_only_reports_finished_chunks_and_runs_nothing(tmp_path):
+    """An unfinishable fit is still worth reporting as far as it got.
+
+    ``fo`` must not be invoked at all here -- there is no shell, so any attempt to run it
+    would raise rather than quietly return nothing.
+    """
+    from itf_linker.fit.findorb import run_fo_batched
+
+    chunk = tmp_path / "chunk0000"
+    chunk.mkdir()
+    (chunk / "total.json").write_text(_read("pair_total.json"), encoding="utf-8")
+    (chunk / "elements.txt").write_text(_read("converged_elements.txt"), encoding="utf-8")
+
+    class _NoShell:
+        fo_path = "/nonexistent/fo"
+        config_dir = "/nonexistent/.find_orb"
+
+        def available(self):
+            return False
+
+        def run(self, *a, **k):  # pragma: no cover - must never be reached
+            raise AssertionError("fo was invoked under completed_only")
+
+    groups = {GOOD: ["x"], BAD: ["y"], "lnkzzzz": ["z"]}
+    out = run_fo_batched(
+        groups, tmp_path, shell=_NoShell(), workers=1, chunk_size=2,
+        resume=True, completed_only=True,
+    )
+    assert set(out) == {GOOD, BAD}          # the finished chunk
+    assert "lnkzzzz" not in out             # the chunk nobody ran

@@ -151,3 +151,28 @@ def test_obscodes_full_parses_fields_that_abut():
     assert out["W84"][2] == pytest.approx(-0.499793)
     assert "247" not in out          # blank coordinates are omitted, not defaulted
     assert "Cod" not in out
+
+
+def test_window_slicing_by_binary_search_matches_a_filter():
+    """The sorted slice is an optimisation, so it must return the same rows.
+
+    Randomised over window edges that fall between arrows, exactly on an arrow, before
+    everything and after everything -- the cases where an off-by-one would show up as a
+    quietly missing tracklet rather than as an error.
+    """
+    import random
+
+    import polars as pl
+
+    from itf_linker.link.arrows import Arrows
+
+    rng = random.Random(7)
+    mjd = sorted(round(rng.uniform(60000.0, 60050.0), 3) for _ in range(200))
+    table = pl.DataFrame({"mjd": mjd, "arrow_id": list(range(len(mjd)))})
+    arrows = Arrows(table=table, stats={})
+    edges = [59990.0, 60000.0, 60060.0, *rng.sample(mjd, 12)]
+    for lo in edges:
+        for width in (0.0, 0.5, 5.0, 14.0, 100.0):
+            got = arrows.slice_window(lo, lo + width)
+            want = table.filter((pl.col("mjd") >= lo) & (pl.col("mjd") < lo + width))
+            assert got["arrow_id"].to_list() == want["arrow_id"].to_list(), (lo, width)

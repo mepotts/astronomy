@@ -12,15 +12,14 @@
 *.txt.gz
 
 # Generated reports. The committed narrative lives in the M*-RESULTS.md files; the JSON
-# behind them is regenerable and runs to tens of megabytes once M3 fits 13k links.
-m0-report.json
-m1-report.json
-m2-report.json
-m3-report.json
-m3-linking.json
-m3-fits.json
-m3-validation.json
-m3-vet.json
+# behind them is regenerable and runs to hundreds of megabytes -- M4's m4-new.json alone
+# is 108 MB, above GitHub's hard 100 MB limit.
+#
+# Matched by PATTERN, not by an enumerated list. The list version silently failed to cover
+# M4 because its reports are named m4-new.json / m4-old.json rather than m4-report.json,
+# and the oversized files reached a push before anything caught them. A per-milestone
+# filename list is a rule that has to be remembered; a pattern is one that does not.
+/m[0-9]*.json
 
 # Python
 __pycache__/

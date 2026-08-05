@@ -175,24 +175,36 @@ def observer_heliocentric(
 # ----------------------------------------------------------------------------------
 
 def solve_rho(
-    obs_pos: np.ndarray, rho_hat: np.ndarray, r_helio: np.ndarray
+    obs_pos: np.ndarray, rho_hat: np.ndarray, r_helio: np.ndarray, *, near: bool = False
 ) -> tuple[np.ndarray, np.ndarray]:
     """Distance along the line of sight to the sphere of heliocentric radius ``r_helio``.
 
-    Solves ``|R + rho * rho_hat| = r`` for the **far** root, which is the physical one for
-    anything beyond the Earth: the near root is the same sphere pierced on the way in,
-    behind the observer or between the observer and the Sun.
+    Solves ``|R + rho * rho_hat| = r``. Which root is physical depends on whether the
+    observer is *inside* the sphere:
+
+    * ``r > |R|`` -- the observer is inside, the line of sight leaves through the sphere
+      once, and the near root is negative (behind the observer). Only ``near=False`` ever
+      returns a valid state, whatever the caller asks for.
+    * ``r < |R|`` -- the observer is **outside**. The sphere is then a ball around the Sun
+      that the line of sight either misses entirely (which is why an object at 0.7 AU can
+      only be seen at solar elongation < 44 deg) or pierces **twice**, at two positive
+      distances that are both perfectly good positions. ``near=True`` returns the entry
+      point, ``near=False`` the exit point.
+
+    That second case does not arise at all in the 1.4-5.6 AU grid M3 ran, and taking only
+    the far root there is exactly right. It arises for **every NEO hypothesis inside 1 AU**,
+    and taking only the far root would silently discard half of that parameter space --
+    every object caught on the near side of its orbit while interior to the Earth.
 
     Returns ``(rho, valid)``. ``valid`` is False where the line of sight misses the sphere
-    entirely (the hypothesis is closer than the object's minimum possible distance in that
-    direction) or where the far root is behind the observer.
+    entirely, or where the requested root is behind the observer.
     """
     b = np.einsum("ij,ij->i", obs_pos, rho_hat)
     r_obs2 = np.einsum("ij,ij->i", obs_pos, obs_pos)
     disc = b * b - r_obs2 + np.asarray(r_helio, dtype=float) ** 2
     valid = disc > 0.0
     root = np.sqrt(np.where(valid, disc, 0.0))
-    rho = -b + root
+    rho = -b - root if near else -b + root
     return rho, valid & (rho > 0.0)
 
 
@@ -203,6 +215,8 @@ def state_from_hypothesis(
     rho_hat_dot: np.ndarray,
     r_helio: np.ndarray,
     rdot_helio: np.ndarray,
+    *,
+    near: bool = False,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """Promote a tracklet to a heliocentric state under a ``(r, rdot)`` hypothesis.
 
@@ -217,16 +231,27 @@ def state_from_hypothesis(
 
         rho' = [r*rdot - R.R' - rho*(R.rho_hat' + R'.rho_hat)] / (R.rho_hat + rho)
 
-    whose denominator is ``r_vec . rho_hat``, i.e. the square root taken in
-    :func:`solve_rho` -- strictly positive on the far root, so the solve never degenerates.
+    whose denominator is ``r_vec . rho_hat``, i.e. plus or minus the square root taken in
+    :func:`solve_rho` -- ``+root`` on the far branch and ``-root`` on the near one. Either
+    way it vanishes only where the two roots coincide, i.e. exactly on the grazing ray,
+    and :data:`MIN_TOPOCENTRIC_DISTANCE_AU` does not protect against that: the grazing ray
+    has ``rho = sqrt(R^2 - r^2)``, which is large. The ``|denom| > 1e-12`` fallback below
+    is what covers it.
 
     Returns ``(r_vec, v_vec, rho, valid)``.
     """
-    rho, valid = solve_rho(obs_pos, rho_hat, r_helio)
+    rho, valid = solve_rho(obs_pos, rho_hat, r_helio, near=near)
     valid &= rho > MIN_TOPOCENTRIC_DISTANCE_AU
     r_vec = obs_pos + rho[:, None] * rho_hat
 
     denom = np.einsum("ij,ij->i", r_vec, rho_hat)
+    # ``denom`` is +/- the square root in :func:`solve_rho`, so it measures how far the
+    # line of sight is from grazing the hypothesised sphere. Where it is small the two
+    # roots have merged, ``rho'`` is ill-conditioned, and the state is a numerical artefact
+    # rather than a hypothesis. Rejecting is right; the 1e-12 fallback below only keeps the
+    # arithmetic finite. On the 1.4-5.6 AU grid this never binds (``|denom| >= 0.96 AU``
+    # there), so M3's results are unchanged by it.
+    valid &= np.abs(denom) > MIN_TOPOCENTRIC_DISTANCE_AU
     rhs = (
         np.asarray(r_helio, dtype=float) * np.asarray(rdot_helio, dtype=float)
         - np.einsum("ij,ij->i", obs_pos, obs_vel)

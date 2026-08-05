@@ -78,11 +78,26 @@ Added in M3:
   cli.py            + link / link-validate / link-fit / m3
 ```
 
+Added in M4:
+
+```
+  link/
+    populations.py  re-link real NEOs/Centaurs/TNOs from Horizons astrometry alone
+    pipeline.py     + Band: one hypothesis grid per distance range, each with the window
+                      its own curvature permits (curvature_window_days)
+    heliolinc.py    + geometric grids, the near root below 1 AU, per-band max(a),
+                      indexed drop_subsets, hashed isolation check
+  fit/
+    classify.py     dynamical population from the fitted elements; NEO score (not digest2)
+  cli.py            + link-populations; --bands on link / link-validate / m3;
+                    + link-fit --completed-only
+```
+
 Not implemented, gated behind milestones:
 
 ```
-  report/   human-review packet -- the mandatory approval surface    (M4)
-  submit/   ADES PSV/XML emit; sandbox-first                         (M4)
+  report/   human-review packet -- the mandatory approval surface    (M5+)
+  submit/   ADES PSV/XML emit; sandbox-first                         (M5+)
 ```
 
 ---
@@ -175,7 +190,39 @@ converged fits (against 6% on survey-made associations).
 planets 2026 OB4 and 2026 DK65** at 0.5–0.7″ across all three epochs. The links are real
 objects; that is also why 26 unmatched is not 26 discoveries. Detail in `M3-RESULTS.md`.
 
-### M4 — the citable artifact
+### M4 — widening the distance grid, and the older 80% of the file ✅ **COMPLETE** (2026-08-05)
+
+**Renumbered again.** The plan's M4 was the citable artifact; M3's own assessment named
+three concrete improvements instead, and the top two — widen the 1.4–5.6 AU grid, and run
+the 2.1M tracklets predating MJD 60000 — became M4. Publication moves to M5. Nothing was
+submitted.
+
+Four distance bands spanning **0.55–50 AU** (2,555 hypotheses against M3's 387), each swept
+with the window its own orbital curvature permits — 5 days at 0.55 AU, 21 at 5.6 — plus the
+*near* root of the line-of-sight/sphere intersection, which is half the physically valid
+states inside 1 AU and which M3's solver could not express. Widening was **seven** changes,
+six of them found by measurement after the obvious one.
+
+Validated three ways: the `belt` band reproduces M3 to the digit after four rewrites
+underneath it; hidden-trkSub recall **rises 0.8735 → 0.9302**; and against JPL Horizons the
+widened grid re-derives **11 of 13** real objects across every class against **4 of 13** for
+M3's grid, with none merged into a neighbour. It recovers comet **73P-C**, which
+`M3-RESULTS.md` states in print cannot be found.
+
+It also ran the pre-60000 slice, which proposes **412,929 gated links to the new slice's
+40,623** and whose survivors are **94% cross-observatory** against 36% — and which handed
+back **comet 29P/Schwassmann-Wachmann 1** from four 2002 tracklets across two telescopes,
+matched to 1.2″ and agreeing with JPL's orbit to 1.3σ. Combined yield: **331 survivors, 180
+cross-observatory**; of 30 vetted, **3 are already-catalogued objects**.
+
+⚠️ **The NEO-distance bands produced no near-Earth candidate.** They fitted **5,547
+converged near-Earth orbits** (147 Aten, 3,688 Apollo, 1,712 Amor) and all but two were
+rejected by the gates — M1's subset guard alone rejects **84.4%** of converged fits here,
+against 74% in M3 and 6% on survey-made associations. The two NEO-class survivors are Amors
+that M3's own grid already reached; the orbit classifier M4 added is what found them, not
+the distances. Detail in `M4-RESULTS.md`.
+
+### M5 — the citable artifact
 
 Publish the triage layer: a versioned, DOI'd dataset of *"linkable structure in the current
 ITF"* plus the pipeline. **RNAAS** fits exactly (≤1,500 words, one figure or table, $0,
