@@ -1,5 +1,11 @@
 # itf-linker
 
+> **Picking this up cold, or handing it to someone who is? Start with
+> [`HANDOFF.md`](HANDOFF.md).** It gives the reading order and — more importantly —
+> indexes every claim in this repository that was published and later found to be false,
+> every approach measured and rejected, and every silent failure that cost real data.
+> That index is the expensive part; the code is not.
+
 Mine the Minor Planet Center's **Isolated Tracklet File** — ~9.3 million astrometric
 observations that no pipeline ever linked to an orbit — for tracklets that *can* be linked.
 
