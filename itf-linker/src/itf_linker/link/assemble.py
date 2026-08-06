@@ -199,17 +199,34 @@ def tracklet_line_index(
     return index, stats
 
 
-def link_astrometry(
+class LineIndex:
+    """The ITF's 80-column records, indexed once and reusable across many link batches.
+
+    Building it costs one streaming pass over ``itf.txt.gz``. Fitting 400,000 links means
+    fitting them in batches, and a batch that re-read the 9.36M-line file to fetch its own
+    few thousand tracklets would spend more wall clock on gzip than on Find_Orb.
+    """
+
+    __slots__ = ("by_arrow", "lines", "stats")
+
+    def __init__(
+        self,
+        by_arrow: dict[int, tuple[str, str, int]],
+        lines: dict[tuple[str, str, int], list[str]],
+        stats: dict[str, Any],
+    ) -> None:
+        self.by_arrow = by_arrow
+        self.lines = lines
+        self.stats = stats
+
+
+def build_line_index(
     gated: pl.DataFrame,
     arrows: pl.DataFrame,
     obscode_lon: dict[str, float],
     src: Path | None = None,
-) -> tuple[dict[str, list[str]], dict[str, Any]]:
-    """``{link_id: [80-column lines]}`` with columns 6-12 rewritten to the link id.
-
-    ``gated`` must carry ``desig`` (the link id) and ``arrow_ids``; ``arrows`` is the arrow
-    table, which maps an arrow id back to its ``(trkSub, observatory, night)``.
-    """
+) -> LineIndex:
+    """One gz pass covering every tracklet ``gated`` names, keyed for :func:`link_astrometry`."""
     wanted_ids = sorted({int(i) for row in gated["arrow_ids"].to_list() for i in row})
     lookup = (
         arrows.filter(pl.col("arrow_id").is_in(wanted_ids))
@@ -220,6 +237,26 @@ def link_astrometry(
     index, stats = tracklet_line_index(
         {v[0] for v in by_arrow.values()}, obscode_lon, src=src
     )
+    return LineIndex(by_arrow, index, stats)
+
+
+def link_astrometry(
+    gated: pl.DataFrame,
+    arrows: pl.DataFrame,
+    obscode_lon: dict[str, float],
+    src: Path | None = None,
+    line_index: LineIndex | None = None,
+) -> tuple[dict[str, list[str]], dict[str, Any]]:
+    """``{link_id: [80-column lines]}`` with columns 6-12 rewritten to the link id.
+
+    ``gated`` must carry ``desig`` (the link id) and ``arrow_ids``; ``arrows`` is the arrow
+    table, which maps an arrow id back to its ``(trkSub, observatory, night)``.
+    ``line_index`` reuses a :class:`LineIndex` built over a superset of ``gated``.
+    """
+    prebuilt = line_index is not None
+    idx = line_index or build_line_index(gated, arrows, obscode_lon, src=src)
+    by_arrow, index, stats = idx.by_arrow, idx.lines, dict(idx.stats)
+    stats["line_index_reused"] = prebuilt
 
     out: dict[str, list[str]] = {}
     missing = 0

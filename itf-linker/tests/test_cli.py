@@ -95,3 +95,49 @@ def test_vet_without_an_m1_report_fails_cleanly(tmp_path):
     )
     assert result.exit_code != 0
     assert "itf-linker m1" in result.output
+
+
+def test_help_lists_the_m5_commands():
+    result = runner.invoke(app, ["--help"])
+    assert result.exit_code == 0
+    for cmd in ("link-fit-all", "link-vet-extract"):
+        assert cmd in result.stdout
+
+
+def test_link_fit_all_without_a_link_table_fails_cleanly(tmp_path):
+    result = runner.invoke(
+        app, ["link-fit-all", "--links", str(tmp_path / "absent.parquet"), "--plan-only"]
+    )
+    assert result.exit_code != 0
+    assert "itf-linker m3" in result.output
+
+
+def test_link_fit_all_plans_a_queue_without_running_anything(tmp_path):
+    """`--plan-only` must be answerable from the link table alone: no snapshot, no fo."""
+    import polars as pl
+
+    links = tmp_path / "links.parquet"
+    pl.DataFrame(
+        {
+            "desig": ["lnk0000", "lnk0001", "lnk0002"],
+            "link_pass": [True, True, False],
+            "band": ["belt", "neo", "belt"],
+            "pos_spread_au": [1e-4, 9e-4, 1e-4],
+            "n_hypotheses_found": [80, 2, 5],
+            "n_obscodes": [2, 1, 2],
+            "min_trk_n_obs": [3, 2, 3],
+            "arc_days": [7.0, 4.0, 6.0],
+            "cross_observatory": [True, False, True],
+            "arrow_ids": [[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+        }
+    ).write_parquet(links)
+    result = runner.invoke(
+        app,
+        ["link-fit-all", "--links", str(links), "--plan-only",
+         "--seed-workroot", str(tmp_path / "no-such-seed")],
+    )
+    assert result.exit_code == 0
+    payload = json.loads(result.stdout)
+    assert payload["queue"]["links"] == 2                      # the gate rejection is excluded
+    assert payload["queue"]["tiers"] == {"cross_observatory": 1, "same_observatory": 1}
+    assert payload["seeded"] == 0

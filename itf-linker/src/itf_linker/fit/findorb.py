@@ -393,6 +393,27 @@ FO_OUTPUT_FILES = frozenset(
 #: (from ``jpl_eph.txt``). Used only to assert one is present and readable.
 _EPHEM_PREFIXES = ("linux_p", "lnx", "jpleph", "unix.", "sub_de", "inpop", "unxp")
 
+#: Where ``fo`` is run when a Linux-side scratch directory is used. Deliberately not under
+#: ``/mnt/c``: see :data:`SCRATCH_OUTPUTS`.
+SCRATCH_ROOT = "$HOME/.cache/itf-linker-fo-work"
+
+#: The only files this module ever reads back out of a run.
+#:
+#: ``fo`` writes twenty-odd files per invocation and merges ``total.json`` by re-reading it
+#: once per object, so a 40-object chunk performs tens of megabytes of small reads and
+#: writes. On Windows that traffic crosses WSL's 9p bridge to ``/mnt/c``, which does not
+#: cache and serialises across concurrent workers. **Measured on one 40-link chunk from
+#: M4's own queue, under the same concurrent load: 47 s with the working directory on the
+#: Linux filesystem against 437 s on /mnt/c** -- and with 28 workers the host sat at 28%
+#: CPU with almost every ``fo`` in uninterruptible I/O wait.
+#:
+#: So ``fo`` is run in a Linux scratch directory and exactly these three files are copied
+#: back to the host chunk directory afterwards. That keeps ``--resume`` working (it needs
+#: ``total.json``), keeps the force-model provenance (``elements.txt``), keeps the state
+#: covariance (``covar.json``), and reduces the crossing to one read of ``obs.txt`` and one
+#: write of about a megabyte.
+SCRATCH_OUTPUTS = ("total.json", "elements.txt", "covar.json")
+
 
 def config_dir_listing(shell: Shell) -> list[str]:
     """Filenames in the shared Find_Orb configuration directory."""
@@ -465,11 +486,18 @@ def run_fo(
     timeout: float = 1800.0,
     ignore_previous: bool = True,
     extra_args: Sequence[str] = (),
+    scratch_dir: str | None = None,
 ) -> FoRun:
     """Write ``obs_lines`` as MPC 80-column astrometry, run ``fo``, and parse the results.
 
     ``workdir`` is a *host* path; it holds the input file and receives ``fo``'s outputs, so
     everything a run did stays inspectable afterwards.
+
+    ``scratch_dir`` is a **shell-side** directory to run in instead, with
+    :data:`SCRATCH_OUTPUTS` copied back to ``workdir`` afterwards. On Windows that keeps
+    ``fo``'s file traffic off the 9p bridge and is worth about 9x under load; see
+    :data:`SCRATCH_OUTPUTS` for the measurement. It changes nothing about the answer -- the
+    same binary reads the same bytes and writes the same ``total.json``.
     """
     shell = shell or default_shell()
     workdir.mkdir(parents=True, exist_ok=True)
@@ -481,12 +509,13 @@ def run_fo(
         fh.write("\n".join(line.rstrip("\r\n") for line in obs_lines) + "\n")
 
     wsl_work = shell.path(workdir)
+    run_in = scratch_dir or wsl_work
     cfg = config_dir or shell.config_dir.rstrip("/") + "/"
     args = [
         shq_expand(shell.fo_path),
         shq("obs.txt"),
         "-O",
-        shq(wsl_work),
+        shq_expand(run_in) if scratch_dir else shq(run_in),
         "-x",
         shq_expand(cfg),
         "-q",
@@ -494,7 +523,26 @@ def run_fo(
     if ignore_previous:
         args.append("-i")
     args.extend(shq(a) for a in extra_args)
-    script = f"cd {shq(wsl_work)} && " + " ".join(args)
+    if scratch_dir:
+        quoted = shq_expand(scratch_dir)
+        # The copy of total.json is *not* guarded with `|| true`: a chunk whose total.json
+        # never reaches the host is indistinguishable from a chunk `fo` refused, and the
+        # caller would respond by bisecting it into forty single-object runs. Failing
+        # loudly on the copy is the only way that mistake stays visible.
+        script = (
+            f"rm -rf {quoted} && mkdir -p {quoted} && "
+            f"cp {shq(wsl_work)}/obs.txt {quoted}/obs.txt && "
+            f"cd {quoted} && " + " ".join(args) + "; rc=$?; "
+            + f"cp {quoted}/total.json {shq(wsl_work)}/ && "
+            + "".join(
+                f"cp {quoted}/{shq(name)} {shq(wsl_work)}/ 2>/dev/null; "
+                for name in SCRATCH_OUTPUTS
+                if name != "total.json"
+            )
+            + f"rm -rf {quoted}; exit $rc"
+        )
+    else:
+        script = f"cd {shq(run_in)} && " + " ".join(args)
 
     proc = shell.run(script, timeout=timeout)
 
@@ -589,6 +637,7 @@ def run_fo_batched(
     diagnostics: list[dict[str, Any]] | None = None,
     resume: bool = False,
     completed_only: bool = False,
+    scratch_root: str | None = None,
 ) -> dict[str, FitResult]:
     """Fit many designations by splitting them across single-process ``fo`` runs.
 
@@ -640,7 +689,8 @@ def run_fo_batched(
             lines.extend(groups[desig])
         cfg = prepare_config_dir(shell, tag)
         run = run_fo(
-            lines, wd, designations=chunk, shell=shell, config_dir=cfg, timeout=timeout
+            lines, wd, designations=chunk, shell=shell, config_dir=cfg, timeout=timeout,
+            scratch_dir=f"{scratch_root}/{tag}" if scratch_root else None,
         )
         if not run.produced_nothing:
             return run.results

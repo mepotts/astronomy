@@ -379,3 +379,80 @@ def test_completed_only_reports_finished_chunks_and_runs_nothing(tmp_path):
     )
     assert set(out) == {GOOD, BAD}          # the finished chunk
     assert "lnkzzzz" not in out             # the chunk nobody ran
+
+
+# --- the Linux-side scratch directory -----------------------------------------------
+#
+# On Windows the chunk directory lives on /mnt/c, which `fo` reaches over WSL's 9p bridge:
+# no page cache, and every concurrent worker serialised behind it. Running in a Linux
+# scratch directory and copying back the three files this module reads is worth about 9x
+# under load. What must never change is the answer, so these tests pin the command rather
+# than the timing: same binary, same input file, same -x config, same -O target as the
+# directory it runs in, and total.json copied back without a `|| true` that could hide its
+# absence.
+
+class _RecordingShell:
+    """A Shell that records the script instead of running it."""
+
+    fo_path = "$HOME/bin/fo"
+    config_dir = "$HOME/.find_orb"
+
+    def __init__(self):
+        self.scripts = []
+
+    def path(self, p):
+        return "/mnt/c/work/chunk0000"
+
+    def run(self, script, **_k):
+        import subprocess
+
+        self.scripts.append(script)
+        return subprocess.CompletedProcess([], 0, "", "")
+
+
+def test_scratch_run_copies_total_json_back_and_cleans_up(tmp_path):
+    from itf_linker.fit.findorb import SCRATCH_OUTPUTS, run_fo
+
+    shell = _RecordingShell()
+    run_fo(["obs line"], tmp_path, designations=["lnk0000"], shell=shell,
+           config_dir="/cfg/", scratch_dir="$HOME/.cache/w/chunk0000")
+    script = shell.scripts[0]
+    assert "mkdir -p" in script
+    assert "/obs.txt" in script                              # input copied in
+    for name in SCRATCH_OUTPUTS:
+        assert name in script                                # outputs copied back
+    # total.json's copy is unguarded: a silent failure there would be read as "fo produced
+    # nothing" and bisected into forty single-object runs.
+    assert 'cp "$HOME/.cache/w/chunk0000"/total.json' in script
+    assert "total.json '/mnt/c/work/chunk0000/' 2>/dev/null" not in script
+    assert script.rstrip().endswith("exit $rc")
+    assert "rm -rf" in script
+
+
+def test_scratch_and_direct_runs_pass_fo_the_same_arguments(tmp_path):
+    """The only difference between the two paths must be *where*, never *what*."""
+    from itf_linker.fit.findorb import run_fo
+
+    direct, scratched = _RecordingShell(), _RecordingShell()
+    run_fo(["l"], tmp_path, designations=["d"], shell=direct, config_dir="/cfg/")
+    run_fo(["l"], tmp_path, designations=["d"], shell=scratched, config_dir="/cfg/",
+           scratch_dir="/scratch/c0")
+
+    def fo_call(script):
+        start = script.index("$HOME/bin/fo")
+        return script[start:].split(";")[0].strip()
+
+    a, b = fo_call(direct.scripts[0]), fo_call(scratched.scripts[0])
+    assert a.split(" -O ")[0] == b.split(" -O ")[0]           # same binary, same obs.txt
+    assert a.split(" -x ")[1] == b.split(" -x ")[1]           # same config, flags, -q -i
+    assert " -O '/mnt/c/work/chunk0000'" in a
+    assert ' -O "/scratch/c0"' in b                           # -O follows the working dir
+
+
+def test_obs_txt_is_written_to_the_host_even_when_fo_runs_elsewhere(tmp_path):
+    """The astrometry that went in stays next to the results, scratch or not."""
+    from itf_linker.fit.findorb import run_fo
+
+    run_fo(["a line", "b line"], tmp_path, designations=["d"], shell=_RecordingShell(),
+           config_dir="/cfg/", scratch_dir="/scratch/c0")
+    assert (tmp_path / "obs.txt").read_text(encoding="ascii").splitlines() == ["a line", "b line"]

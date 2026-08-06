@@ -26,6 +26,7 @@
     itf-linker link-validate    # hide the trkSub linkage and measure recall/precision
     itf-linker link-populations # re-link real NEOs/Centaurs/TNOs from Horizons astrometry
     itf-linker link-fit         # fit saved links without repeating the search
+    itf-linker link-fit-all     # fit the WHOLE gated set, survival-ranked and checkpointed
     itf-linker m3               # link + gate + fit + rank, as one JSON report
 
 ``m3``, ``link``, ``link-validate`` and ``link-populations`` all take ``--bands``:
@@ -49,6 +50,7 @@ import typer
 
 from . import __version__, config
 from . import snapshot as snap
+from .fit import findorb
 from .fit.pipeline import fit_candidates, select_candidates
 from .fit.wsl import default_shell
 from .index.partition import add_healpix, candidate_combinatorics, partition_stats
@@ -959,6 +961,199 @@ def link_fit(
         out.write_text(json.dumps(payload, indent=2, default=str), encoding="utf-8")
         typer.echo(f"wrote {out}")
     _echo({k: v for k, v in report.items() if k not in ("ranked", "outcomes", "conflicted")})
+
+
+def _seed_batches(seed_workroot: Path, links: pl.DataFrame) -> list[Any]:
+    """Rebuild a previous milestone's fitting batch from its own ``fo`` chunk directories.
+
+    M4 fitted 4,461 of the older slice's links into ``data/m4-fits-old``. Re-fitting them
+    would be fifteen minutes wasted and, worse, would make M5's numbers a different
+    measurement from M4's. ``--fit-resume`` re-reads a chunk only when the designations it
+    is asked for are exactly the ones that chunk holds, so the queue has to be reassembled
+    in the order those chunks were written -- and that order is recoverable *exactly* from
+    the ``obs.txt`` each chunk still contains, which is stronger than re-deriving it from a
+    sort whose tie-breaking is not guaranteed stable.
+    """
+    from .link.run import FitBatch
+
+    if not seed_workroot.exists():
+        return []
+    order: list[str] = []
+    seen: set[str] = set()
+    for chunk in sorted(p for p in seed_workroot.iterdir() if p.is_dir()):
+        obs = chunk / "obs.txt"
+        if not obs.exists():
+            continue
+        for line in obs.read_text(encoding="ascii", errors="replace").splitlines():
+            desig = line[5:12].strip()
+            if desig and desig not in seen:
+                seen.add(desig)
+                order.append(desig)
+    if not order:
+        return []
+    rank = {d: i for i, d in enumerate(order)}
+    table = (
+        links.filter(pl.col("desig").is_in(seen))
+        .with_columns(pl.col("desig").replace_strict(rank, return_dtype=pl.Int64).alias("_o"))
+        .sort("_o")
+        .drop("_o")
+    )
+    typer.echo(
+        f"[seed] {table.height} links already fitted under {seed_workroot} "
+        f"({len(order)} designations across its chunk directories)",
+        err=True,
+    )
+    return [FitBatch(name=seed_workroot.name, table=table, workroot=seed_workroot)]
+
+
+@app.command("link-fit-all")
+def link_fit_all(
+    links: Path = typer.Option(
+        Path("data/m4-links-old.parquet"), help="Gated links saved by a previous `m3` run."
+    ),
+    out: Path | None = typer.Option(None, help="Write the merged JSON report here."),
+    workroot: Path = typer.Option(Path("data/m5-fits"), help="Where new fo batches run."),
+    checkpoints: Path = typer.Option(
+        Path("data/m5-checkpoints"), help="One JSON per finished batch, written immediately."
+    ),
+    seed_workroot: Path | None = typer.Option(
+        Path("data/m4-fits-old"),
+        help="A previous milestone's fo directory whose chunks should be re-read, not refitted.",
+    ),
+    mjd_min: float | None = typer.Option(None, help="Slice the arrows were built from."),
+    mjd_max: float | None = typer.Option(60000.0, help="Slice the arrows were built from."),
+    batch_size: int = typer.Option(8000, help="Links per checkpoint."),
+    chunk_size: int = typer.Option(40, help="Links per fo invocation."),
+    workers: int = typer.Option(24, help="Concurrent fo processes."),
+    limit: int | None = typer.Option(None, help="Fit only the first N links of the queue."),
+    plan_only: bool = typer.Option(False, help="Rank and report the queue; run no fits."),
+    scratch: bool = typer.Option(
+        True,
+        help="Run fo in a Linux-side scratch directory and copy back only what is read. "
+        "Measured at ~9x under load on Windows, where the working directory is otherwise "
+        "reached over WSL's 9p bridge. --no-scratch restores M3/M4's exact file layout.",
+    ),
+    scratch_root: str = typer.Option(
+        findorb.SCRATCH_ROOT, help="Shell-side directory for --scratch."
+    ),
+) -> None:
+    """Fit *every* gated link, in survival-ranked order, checkpointing as it goes.
+
+    This is `link-fit` for a queue too long to finish in one sitting. The order is
+    :mod:`itf_linker.link.priority`'s -- cross-observatory first as a whole tier, then a
+    logistic survival score fitted to M4's own outcomes -- so that an interrupted run
+    leaves behind the part that mattered rather than an arbitrary prefix.
+
+    Nothing is excluded by rank. What is not reached is reported as not reached.
+    """
+    from .link.arrows import build_arrows
+    from .link.assemble import build_line_index
+    from .link.priority import rank_for_fitting, tier_summary
+    from .link.run import fit_links_batched, merge_checkpoints, plan_batches
+
+    shell = default_shell()
+    if not plan_only and not shell.available():
+        raise typer.BadParameter(f"Find_Orb not reachable at {shell.fo_path}")
+    if not links.exists():
+        raise typer.BadParameter(f"{links} not found -- run `itf-linker m3` first.")
+
+    gated = pl.read_parquet(links).filter(pl.col("link_pass"))
+    ranked = rank_for_fitting(gated)
+    if limit:
+        ranked = ranked.head(limit)
+    plan = tier_summary(ranked)
+    typer.echo(f"[queue] {json.dumps(plan)}", err=True)
+
+    seed = _seed_batches(seed_workroot, gated) if seed_workroot else []
+    batches = plan_batches(ranked, workroot, batch_size=batch_size, seed=seed)
+    typer.echo(
+        f"[plan] {len(batches)} batches over {ranked.height} ranked links "
+        f"({sum(b.table.height for b in seed)} already fitted)",
+        err=True,
+    )
+    if plan_only:
+        _echo(
+            {
+                "queue": plan,
+                "seeded": sum(b.table.height for b in seed),
+                "batches": [(b.name, b.table.height) for b in batches[:6]],
+                "n_batches": len(batches),
+            }
+        )
+        return
+
+    observations, lon, full = _link_inputs()
+    arrows = build_arrows(observations, full, mjd_min=mjd_min, mjd_max=mjd_max)
+
+    # One gz pass for every batch, not one per batch: the file is 9.36M lines and the
+    # batches are only slices of the same link set. Built over the union of the batches
+    # rather than over `ranked`, because the seeded batch's links were removed from the
+    # queue and would otherwise have no astrometry to be read back with.
+    index = build_line_index(
+        pl.concat([b.table.select("arrow_ids") for b in batches]), arrows.table, lon
+    )
+    typer.echo(f"[astrometry] {json.dumps(index.stats)}", err=True)
+
+    def batch_progress(i: int, n: int, payload: dict[str, Any]) -> None:
+        typer.echo(
+            f"[batch {i + 1}/{n}] {payload.get('batch')} "
+            + ("cached" if payload.get("cached") else
+               f"fitted={payload.get('links_fitted')} converged={payload.get('converged')} "
+               f"passed={payload.get('passed_all_gates')} {payload.get('elapsed_s')}s"),
+            err=True,
+        )
+
+    payloads = fit_links_batched(
+        batches, arrows.table, lon, checkpoints, shell=shell, workers=workers,
+        chunk_size=chunk_size, line_index=index, batch_progress=batch_progress,
+        scratch_root=scratch_root if scratch else None,
+    )
+    report = merge_checkpoints(payloads, gated_total=gated.height)
+    report["queue"] = plan
+    payload = {"provenance": load_provenance(), "find_orb": shell.version(), "fits": report}
+    if out:
+        out.write_text(json.dumps(payload, indent=2, default=str), encoding="utf-8")
+        typer.echo(f"wrote {out}")
+    _echo({k: v for k, v in report.items() if k not in ("ranked", "conflicted")})
+
+
+@app.command("link-vet-extract")
+def link_vet_extract(
+    report: Path = typer.Option(Path("m5-old.json"), help="A link report with a `fits` section."),
+    links: Path = typer.Option(
+        Path("data/m4-links-old.parquet"), help="The gated link table the report was fitted from."
+    ),
+    section: str = typer.Option("ranked", help="Which section of the report to extract."),
+    out: Path = typer.Option(
+        config.VET_ASTROMETRY_LINKS, help="Write the links' 80-column lines here."
+    ),
+    mjd_min: float | None = typer.Option(None, help="Slice the arrows were built from."),
+    mjd_max: float | None = typer.Option(60000.0, help="Slice the arrows were built from."),
+) -> None:
+    """Reassemble a link report's survivors' 80-column astrometry, for the vetting stage.
+
+    ``vet-extract`` cannot do this: a link's identifier does not exist in the ITF, so its
+    records have to be gathered tracklet by tracklet and relabelled. `link-fit` writes this
+    file as a side effect of fitting; a batched run writes one for the survivors only,
+    which is a few thousand records rather than several million.
+    """
+    from .link.arrows import build_arrows
+    from .link.assemble import link_astrometry
+
+    blob = json.loads(report.read_text(encoding="utf-8"))
+    wanted = [row["desig"] for row in blob["fits"][section]]
+    table = pl.read_parquet(links).filter(pl.col("desig").is_in(wanted))
+    if table.height != len(wanted):
+        typer.echo(
+            f"[warn] {len(wanted) - table.height} of {len(wanted)} report rows are not in "
+            f"{links}", err=True,
+        )
+    observations, lon, full = _link_inputs()
+    arrows = build_arrows(observations, full, mjd_min=mjd_min, mjd_max=mjd_max)
+    groups, stats = link_astrometry(table, arrows.table, lon)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps({"stats": stats, "lines": groups}, indent=1), encoding="utf-8")
+    _echo({"wrote": str(out), **stats})
 
 
 @app.command()

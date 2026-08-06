@@ -93,11 +93,27 @@ Added in M4:
                     + link-fit --completed-only
 ```
 
+Added in M5:
+
+```
+  link/
+    priority.py     the fitting order: cross-observatory tier, then a logistic survival
+                      score fitted to M4's own 4,461 outcomes (M4's order was worse than
+                      shuffling the queue)
+    assemble.py     + LineIndex: one gz pass shared by every batch
+    run.py          + FitBatch / plan_batches / fit_links_batched / merge_checkpoints:
+                      per-batch JSON checkpoints, global conflict resolution on merge
+  fit/
+    findorb.py      + scratch_dir: run fo on the Linux filesystem, copy back the three
+                      files this codebase reads (9x on Windows; identical answers)
+  cli.py            + link-fit-all, link-vet-extract
+```
+
 Not implemented, gated behind milestones:
 
 ```
-  report/   human-review packet -- the mandatory approval surface    (M5+)
-  submit/   ADES PSV/XML emit; sandbox-first                         (M5+)
+  report/   human-review packet -- the mandatory approval surface    (M6+)
+  submit/   ADES PSV/XML emit; sandbox-first                         (M6+)
 ```
 
 ---
@@ -222,7 +238,33 @@ against 74% in M3 and 6% on survey-made associations. The two NEO-class survivor
 that M3's own grid already reached; the orbit classifier M4 added is what found them, not
 the distances. Detail in `M4-RESULTS.md`.
 
-### M5 — the citable artifact
+### M5 — finishing the older slice ✅ **COMPLETE** (2026-08-06)
+
+**Renumbered again.** The plan's M5 was the citable artifact; M4's own assessment named
+finishing the pre-60000 slice — 99% unfitted, and where the cross-observatory candidates
+are — as the next step instead. Publication moves to M6. Nothing was submitted.
+
+**412,929 of 412,929 gated links fitted, 1.08% → 100%, in 4 h 24 min.** No re-linking: the
+proposals, the grid and every gate are M4's, and M4's own 4,461 links come back through the
+new batching machinery with all nine of its headline numbers unchanged.
+
+Three things made it finishable. A fitting order derived from M4's outcomes rather than
+argued from value — M4's put **none** of its survivors in the first 10% of its own queue
+and was worse than a random shuffle; the replacement puts **58%** there. Per-batch JSON
+checkpoints plus chunk-level `--resume`, so an interruption loses only work in flight.
+And running `fo` on the Linux filesystem instead of `/mnt/c`, which took one measured
+40-link chunk from **437 s to 47 s** with identical gate outcomes.
+
+⚠️ **The headline is a negative result.** Fitting 92× more links than M4 produced **zero
+additional cross-observatory candidates** past the sixth batch. The cross-survey pool on
+the pre-2023 ITF is **213 survivors**, M4's 1% sample already held 96, and ~400,000 further
+links held none. Of 3,190 survivors, **2,977 are one observatory's own unlinked residue**
+(2,147 Palomar 2005–2006); of **1,850 formally-NEO survivors exactly two are
+cross-observatory**, from 47,190 converged near-Earth orbits; no TNO survivor has a
+determined orbit. M1's subset guard rejects **77.3%** of converged fits here — a fourth
+replication, and it exposes M4's 50.3% as a sampling artefact. Detail in `M5-RESULTS.md`.
+
+### M6 — the citable artifact
 
 Publish the triage layer: a versioned, DOI'd dataset of *"linkable structure in the current
 ITF"* plus the pipeline. **RNAAS** fits exactly (≤1,500 words, one figure or table, $0,

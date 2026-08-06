@@ -8,11 +8,12 @@ this project does runs on a laptop. See [`SPEC.md`](SPEC.md) for the thesis and 
 prior-art assessment, [`DATA-SOURCES.md`](DATA-SOURCES.md) for endpoints and formats, and
 [`BUILD-PLAN.md`](BUILD-PLAN.md) for the milestone plan.
 
-**Current state: M4 (widened distance grid + the older 80% of the file) complete.** Milestone
+**Current state: M5 (the pre-2023 slice fitted to completion) complete.** Milestone
 findings: [`M0-RESULTS.md`](M0-RESULTS.md) (kill-check) · [`M1-RESULTS.md`](M1-RESULTS.md)
 (orbit fitting) · [`M2-RESULTS.md`](M2-RESULTS.md) (catalogue vetting) ·
 [`M3-RESULTS.md`](M3-RESULTS.md) (linking) · [`M4-RESULTS.md`](M4-RESULTS.md) (NEO to TNO
-distances, and the pre-2023 slice).
+distances, and the pre-2023 slice) · [`M5-RESULTS.md`](M5-RESULTS.md) (that slice fitted
+from 1.08% to 100%, and the cross-survey pool exhausted).
 
 M1 built Find_Orb under WSL, verified it against JPL Horizons, and fitted the ITF
 designations that already span 3+ nights. M2 built the MPChecker / SkyBoT / SBIDENT /
@@ -47,6 +48,21 @@ candidate is impossible — but identification does not need follow-up. It propo
 gated links to the new slice's 40,623**, and **94% of its survivors span two or more
 observatories** against 36% for the post-2023 slice. That is the ITF's whole premise finally
 visible in the output: F51 to Subaru, Catalina's old Schmidt to DECam, Steward to Palomar.
+M4 could only fit **1.08%** of those 412,929 links.
+
+**M5 fits all of them — 412,929 of 412,929, in 4 h 24 min — and the result is a negative
+one.** Fitting 92× more links than M4 produced **not one additional cross-observatory
+candidate** beyond the first six batches: the cross-survey pool on the pre-2023 ITF is
+**213 survivors**, and M4's 1% sample already held 96 of them. That question is now closed
+at this grid and these gates. Of the 3,190 total survivors, **2,977 are one observatory's
+own unlinked residue** (2,147 from Palomar's 2005–2006 archive alone), and of **1,850
+formally-NEO survivors exactly two are cross-observatory** — from 47,190 converged
+near-Earth orbits. No trans-Neptunian survivor has a determined orbit.
+
+Getting there needed a fitting order that works: M4's — argued from value, never checked
+against an outcome — put **none** of its own survivors in the first 10% of its queue and
+was worse than a random shuffle. A logistic regression fitted to M4's 4,461 outcomes puts
+**58%** there. Detail in [`M5-RESULTS.md`](M5-RESULTS.md).
 
 > ⚠️ Everything this repo produces is **candidates that have not been ruled out**, never new
 > objects — and M4 measured exactly how much that distinction matters. Of the 30 links sent
@@ -106,6 +122,8 @@ itf-linker link                      # HelioLinC: propose links nobody has made
 itf-linker link-validate             # hide the trkSub linkage; measure recall + precision
 itf-linker link-populations          # re-link real NEOs/Centaurs/TNOs from Horizons astrometry
 itf-linker link-fit                  # fit saved links without repeating the search
+itf-linker link-fit-all              # fit the WHOLE gated set, survival-ranked, checkpointed
+itf-linker link-vet-extract          # reassemble a link report's survivors' astrometry
 itf-linker m3 --out m3-report.json   # link + gate + fit + rank as one JSON report
 ```
 
@@ -119,6 +137,14 @@ fitting the proposals is hours. Two things make that survivable — it saves the
 to `data/link-candidates.parquet` *before* fitting starts, and `--fit-resume` (or
 `link-fit --resume`) re-reads any `fo` chunk directory a previous run already completed
 rather than repeating it.
+
+`link-fit-all` is the long one *squared*: the pre-2023 slice gates 412,929 links. It orders
+them cross-observatory first and then by a survival score fitted to M4's own outcomes
+(`link/priority.py`), writes a JSON checkpoint per batch as it finishes, and re-reads any
+chunk — including another milestone's, via `--seed-workroot` — rather than refitting it. On
+Windows it runs `fo` in a Linux-side scratch directory, which is worth ~9× under load
+because `/mnt/c` is reached over WSL's 9p bridge; `--no-scratch` restores the earlier
+file layout.
 
 The fitting commands need Find_Orb. It is **not** bundled: build it once with the steps in
 [`DATA-SOURCES.md` §4](DATA-SOURCES.md#4-find_orb-build-wsl--verified-2026-07-29), which
