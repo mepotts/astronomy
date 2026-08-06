@@ -22,10 +22,24 @@
 name: ITF snapshot
 
 on:
-  schedule:
-    # 06:30 UTC daily. The MPC regenerates the ITF continuously, so the exact hour is not
-    # significant; consistency is.
-    - cron: "30 6 * * *"
+  # ⚠️ THE DAILY CRON IS DISABLED. It is kept here, commented, because the workflow is
+  # correct and should be re-enabled the moment the MPC is reachable from Actions again.
+  #
+  # Runs succeeded until 2026-08-04 and have failed on every run since with:
+  #
+  #   ConnectTimeout: HTTPSConnectionPool(host='www.minorplanetcenter.net', port=443)
+  #   Connection to www.minorplanetcenter.net timed out. (connect timeout=300)
+  #
+  # The TCP connection never establishes -- packets are dropped, not refused -- while the
+  # same request completes in ~0.1 s from a home connection. That is an IP-range block on
+  # datacenter traffic, which small free scientific services do routinely and are entitled
+  # to do. Retries do not help and working around it would be the wrong thing to attempt.
+  #
+  # Replaced by itf-linker/scripts/snapshot-local.sh on a local scheduled task. That misses
+  # days when the machine is off, which is strictly better than missing every day.
+  #
+  # schedule:
+  #   - cron: "30 6 * * *"
   workflow_dispatch:
 
 concurrency:
