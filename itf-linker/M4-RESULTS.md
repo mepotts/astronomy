@@ -1158,10 +1158,24 @@ cannot see any of it — a subset fit reports a respectable RMS precisely becaus
 the observations that did not fit.
 
 The practical consequence for anyone doing this work is that **a supplementary check the MPC
-does not publish is rejecting more solutions than every published criterion combined**, and
-its importance scales with how speculatively the links were generated. A pipeline that
-widens its search without adding a check of this kind will not notice it has stopped
-producing objects.
+does not publish rejects more converged solutions than the published RMS ceiling does** —
+9,383 against 6,312 on the new slice — and its importance scales with how speculatively the
+links were generated. A pipeline that widens its search without adding a check of this kind
+will not notice it has stopped producing objects.
+
+> ⚠️ **Corrected 2026-08-05.** This paragraph previously claimed the guard rejects more than
+> "every published criterion combined". That is **false as written**: measured over converged
+> fits, the published criteria collectively reject **9,876** against the guard's **9,383**.
+> The true and still-useful comparison is against the RMS ceiling alone, and the more
+> striking fact is that the ordering **reverses** with provenance — on M1's survey-made
+> associations the guard rejected 59 where the published criteria rejected 263. The error was
+> caught by an independent re-derivation from the per-fit records, not by re-reading the prose.
+>
+> A second overstatement in the same section: "a wrong link does not raise residuals" is too
+> strong. Guard-rejected fits *do* carry a higher median RMS (0.39″ against 0.21″). The
+> defensible claim is that the 0.25″ threshold does not **act** on that difference — **80% of
+> the converged fits inside the ceiling are subset fits**, and 583 of the 983 passing every
+> published criterion sit at RMS ≤ 0.10″.
 
 ### What was deliberately not done to produce a larger NEO count
 
