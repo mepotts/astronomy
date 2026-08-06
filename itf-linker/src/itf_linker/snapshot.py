@@ -273,12 +273,41 @@ def build_snapshot(
     )
     keyed.write_parquet(path / OBS_FILE, compression="zstd")
 
-    parent = previous[-1] if previous else None
-    delta = (
-        _delta_between(parent.observations().collect(), keyed)
-        if parent is not None and parent.has_full
-        else pl.DataFrame(schema=_DELTA_SCHEMA)
-    )
+    # Choose the newest ancestor that still has a full key set, not merely the newest
+    # ancestor. Retention prunes key sets on a rolling window, so the immediate parent's
+    # may be gone -- and diffing against an older one widens the interval but preserves
+    # the signal, which is the whole point of the archive.
+    #
+    # This previously took `previous[-1]` and, when that parent had been pruned, wrote an
+    # EMPTY delta and recorded nothing about why. On 2026-08-06 that silently logged
+    # {appeared: 0, disappeared: 0} across a step where 21,627 observations had in fact
+    # left the ITF -- indistinguishable from the genuine no-change of 2026-07-29. A
+    # measurement that cannot be taken must never be recorded as a measurement of zero.
+    parent = next((s for s in reversed(previous) if s.has_full), None)
+    immediate = previous[-1] if previous else None
+    delta_status: dict[str, Any]
+
+    if parent is not None:
+        delta = _delta_between(parent.observations().collect(), keyed)
+        delta_status = {
+            "computed": True,
+            "against": parent.snapshot_id,
+            "skipped_pruned_ancestors": [
+                s.snapshot_id for s in previous if s.snapshot_id > parent.snapshot_id
+            ],
+        }
+    else:
+        delta = pl.DataFrame(schema=_DELTA_SCHEMA)
+        delta_status = {
+            "computed": False,
+            "against": None,
+            "reason": (
+                "baseline snapshot -- no earlier snapshot exists"
+                if immediate is None
+                else "no ancestor retains a full key set; the delta could NOT be computed "
+                "and the empty delta below is absence of measurement, not absence of change"
+            ),
+        }
     delta.write_parquet(path / DELTA_FILE, compression="zstd")
 
     per_desig = (
@@ -318,11 +347,15 @@ def build_snapshot(
         "tracklets": int(per_desig["n_tracklets"].sum()),
         "designations_3plus_nights": int((per_desig["n_nights"] >= 3).sum()),
         "parent_snapshot": parent.snapshot_id if parent is not None else None,
-        "is_baseline": parent is None,
+        "immediate_predecessor": immediate.snapshot_id if immediate is not None else None,
+        "is_baseline": parent is None and immediate is None,
         "delta": {
             "appeared": int((delta["change"] == APPEARED).sum()) if delta.height else 0,
             "disappeared": int((delta["change"] == DISAPPEARED).sum()) if delta.height else 0,
         },
+        # Always present, so a reader never has to infer whether a zero delta means
+        # "nothing changed" or "nothing could be measured".
+        "delta_status": delta_status,
         "bytes": {
             OBS_FILE: (path / OBS_FILE).stat().st_size,
             DESIG_FILE: (path / DESIG_FILE).stat().st_size,
