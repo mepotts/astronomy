@@ -9,6 +9,7 @@ exact snapshot it came from. :func:`fetch_itf` records those to
 from __future__ import annotations
 
 import json
+import time
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -17,13 +18,60 @@ import requests
 
 from .. import config
 
+#: Transport-level retries for MPC fetches, with exponential backoff.
+#:
+#: The daily snapshot archive exists precisely because the ITF is regenerated
+#: continuously and the MPC serves only the current version -- a day not captured is
+#: ground truth that cannot be recovered later. A single un-retried ``requests.get`` made
+#: that archive as reliable as the flakiest minute of the MPC's morning: scheduled runs
+#: failed on 2026-07-30, 08-01, 08-05 and 08-06 while succeeding on the days between,
+#: each failure silently costing a day of delta history.
+#:
+#: Retries cover connection errors, timeouts, and the 5xx/429 responses that indicate a
+#: transient server-side problem. 4xx other than 429 are *not* retried -- those mean the
+#: request itself is wrong and repeating it just adds load.
+FETCH_ATTEMPTS = 4
+FETCH_BACKOFF_S = 5.0
+RETRY_STATUS = frozenset({408, 425, 429, 500, 502, 503, 504})
 
-def _get(url: str, *, stream: bool = False, timeout: int = 300) -> requests.Response:
-    resp = requests.get(
-        url, headers={"User-Agent": config.USER_AGENT}, stream=stream, timeout=timeout
-    )
-    resp.raise_for_status()
-    return resp
+
+def _get(
+    url: str,
+    *,
+    stream: bool = False,
+    timeout: int = 300,
+    attempts: int = FETCH_ATTEMPTS,
+    backoff_s: float = FETCH_BACKOFF_S,
+    sleep: Any = time.sleep,
+) -> requests.Response:
+    """GET ``url`` with bounded retries on transient failures.
+
+    Raises the final exception if every attempt fails, so a genuine outage still surfaces
+    as an error rather than being swallowed into a silently empty snapshot.
+    """
+    last: Exception | None = None
+    for attempt in range(attempts):
+        try:
+            resp = requests.get(
+                url,
+                headers={"User-Agent": config.USER_AGENT},
+                stream=stream,
+                timeout=timeout,
+            )
+            if resp.status_code in RETRY_STATUS and attempt < attempts - 1:
+                last = requests.HTTPError(f"{resp.status_code} from {url}", response=resp)
+                resp.close()
+                sleep(backoff_s * (2**attempt))
+                continue
+            resp.raise_for_status()
+            return resp
+        except (requests.ConnectionError, requests.Timeout) as exc:
+            last = exc
+            if attempt == attempts - 1:
+                break
+            sleep(backoff_s * (2**attempt))
+    assert last is not None
+    raise last
 
 
 def fetch_itf(dest: Path | None = None, *, force: bool = False) -> dict[str, Any]:
