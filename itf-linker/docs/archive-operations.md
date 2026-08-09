@@ -16,7 +16,23 @@ to protect it.
 **A Windows scheduled task on the local machine**, daily at 08:30, invoking
 [`scripts/snapshot-local.sh`](../scripts/snapshot-local.sh).
 
-Recreate it with:
+The script **fetches and archives into the development checkout** (that is where the
+snapshot data, the rolling windows and the venv live) but **commits from a separate clone**
+at `c:/Users/matth/projects/astronomy-archive`. Create it once:
+
+```bash
+git clone --branch main https://github.com/mepotts/astronomy.git \
+  c:/Users/matth/projects/astronomy-archive
+```
+
+Nothing human is ever edited there; the task owns it. Until 2026-08-06 the script ran
+`git checkout main` in the *shared* tree whenever that tree was clean — so committing your
+work on a feature branch and leaving it clean overnight was enough for the 08:30 task to
+move you to `main` and push from it. The dirty-tree guard only ever protected *uncommitted*
+work. Branch state in the development checkout is now irrelevant to the archive, and vice
+versa.
+
+Recreate the task with:
 
 ```powershell
 $name    = "ITF snapshot (daily)"
@@ -67,8 +83,18 @@ history says so.
 |---|---:|---|---|
 | `manifest.json` | ~1 KB | **committed** | Permanent record |
 | `delta.parquet` | ~1 KB | **committed** | What appeared/disappeared — the payload |
-| `observations.parquet` | ~178 MB | release asset `itf-state`, overwritten | Needed only to diff the *next* pull |
+| `observations.parquet` | ~178 MB | release asset `itf-state`, one per snapshot, rolling window of 4 | Needed only to diff the *next* pull |
 | `itf.txt.gz` | ~135 MB | local, rolling window | Re-fetchable |
+
+Assets are named `observations-<snapshot-id>.parquet`. They used to be a single
+`observations.parquet` overwritten each run, which meant exactly one generation of the
+irreplaceable key set existed anywhere at any moment — and `gh release upload --clobber`
+deletes the existing asset *before* uploading, so a failed upload destroyed it. `gh` takes
+an asset's name from the file's basename (the `file#label` suffix sets only a display
+label), so the script hardlinks the key set to its per-snapshot name before uploading.
+
+The pre-2026-08-06 asset is still called `observations.parquet` with no snapshot id. The
+prune step matches `observations-*` only, so it is never deleted automatically.
 
 ~2 KB/day committed is ~700 KB/year of permanently useful history. The key set in git
 would be ~60 GB/year of near-identical binaries, and GitHub hard-rejects files over
@@ -98,6 +124,25 @@ the measurement. Pinned by `tests/test_snapshot_delta_status.py`.
 `manifest.json` and `delta.parquet`; its key set exists solely as the overwritten release
 asset. On any other machine it looks pruned. This is why the walk-back exists, and it was
 misdiagnosed as over-aggressive retention first — `snaps[:-full_keep]` is correct.
+
+**Publishing the key set used to depend on git succeeding.** In the local script the
+upload sat *after* the commit-and-push block, and three ordinary paths returned before
+reaching it: a dirty development tree, an unchanged ITF ("nothing new"), and a failed push.
+So the step that makes the *next* delta computable was skipped by bookkeeping outcomes that
+have nothing to do with it. Observed on 2026-08-06: the archive on disk had reached
+`20260806T122651Z` while the newest published key set was still 08-04, because the 08-06
+run found the tree dirty and exited before publishing. The publish now runs **before** any
+git work and independently of it, retries three times, and a failure sets a non-zero exit
+so the task's `LastTaskResult` shows it. The Actions workflow's publish step carries
+`if: always()` for the same reason.
+
+**A failed `git add` used to report success.** The local script ran
+`git add -f … 2>/dev/null` and then treated an empty `git diff --cached` as "nothing new".
+A discarded add error therefore surfaced as the *success* message for "the ITF has not
+changed" — the same unmeasurable-state-recorded-as-a-measured-null shape as the zero delta
+above. The add is no longer silenced, its exit status is checked, and `git ls-files
+--error-unmatch` proves both paths actually reached the index before an empty diff is
+allowed to mean anything.
 
 **Recovering a lost delta.** If the release asset still holds the relevant key set, a
 delta can be recomputed after the fact. Done once, on 2026-08-06: downloaded the asset,
@@ -136,7 +181,8 @@ Not sent as of 2026-08-06.
 ## 6. What the archive has produced
 
 See [`../SNAPSHOT-VALIDATION.md`](../SNAPSHOT-VALIDATION.md). In eight days it
-independently confirmed **21 of M3's proposed tracklet groupings** — 14 of them
+independently confirmed **21 of M3's proposed tracklet groupings** (26 on a 2026-08-09
+re-run, and unchanged under the stricter "nothing of the member survives" test) — 14 of them
 cross-observatory — by recording their members leaving the ITF once other people linked
 them. That is the only validation in the project independent of the pipeline's own
 fitting and vetting.
