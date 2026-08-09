@@ -414,6 +414,12 @@ SCRATCH_ROOT = "$HOME/.cache/itf-linker-fo-work"
 #: write of about a megabyte.
 SCRATCH_OUTPUTS = ("total.json", "elements.txt", "covar.json")
 
+#: Exit code the scratch wrapper uses when ``fo`` succeeded but its ``total.json`` could not
+#: be copied back. Distinct from anything ``fo`` returns, so ``fo_invocation_failures``
+#: separates "the fit crashed" from "the fit worked and the plumbing lost it" -- which are
+#: diagnosed and fixed in completely different places.
+COPY_BACK_FAILED = 91
+
 
 def config_dir_listing(shell: Shell) -> list[str]:
     """Filenames in the shared Find_Orb configuration directory."""
@@ -529,17 +535,27 @@ def run_fo(
         # never reaches the host is indistinguishable from a chunk `fo` refused, and the
         # caller would respond by bisecting it into forty single-object runs. Failing
         # loudly on the copy is the only way that mistake stays visible.
+        #
+        # Fixed 2026-08-07: the script used to end `...; rm -rf {scratch}; exit $rc` with
+        # `$rc` captured from `fo` *before* the copy ran, so the paragraph above was not
+        # true of the code under it -- a failed copy-back exited 0 and was diagnosed as an
+        # `fo` abort. `fo`'s code still wins when it is non-zero (a crashed run has no
+        # total.json to copy, and that is its own failure, not the copy's); a copy that
+        # fails after a *successful* run now exits COPY_BACK_FAILED so
+        # `fo_invocation_failures` names the real cause.
         script = (
             f"rm -rf {quoted} && mkdir -p {quoted} && "
             f"cp {shq(wsl_work)}/obs.txt {quoted}/obs.txt && "
             f"cd {quoted} && " + " ".join(args) + "; rc=$?; "
-            + f"cp {quoted}/total.json {shq(wsl_work)}/ && "
+            + f"cp {quoted}/total.json {shq(wsl_work)}/; cprc=$?; "
             + "".join(
                 f"cp {quoted}/{shq(name)} {shq(wsl_work)}/ 2>/dev/null; "
                 for name in SCRATCH_OUTPUTS
                 if name != "total.json"
             )
-            + f"rm -rf {quoted}; exit $rc"
+            + f"rm -rf {quoted}; "
+            + "if [ $rc -ne 0 ]; then exit $rc; fi; "
+            + f"if [ $cprc -ne 0 ]; then exit {COPY_BACK_FAILED}; fi; exit 0"
         )
     else:
         script = f"cd {shq(run_in)} && " + " ".join(args)
@@ -598,8 +614,14 @@ def load_previous_run(workdir: Path, designations: Sequence[str]) -> dict[str, F
 
     This exists because fitting is the long pole: a full M3 batch is hours of ``fo``, and
     an interrupted run that had to start over would make the milestone unfinishable on a
-    laptop. Chunk membership is deterministic (designations are sorted before chunking),
-    so chunk *N* always holds the same objects and the check is exact rather than hopeful.
+    laptop. Chunk membership is deterministic **for a given input order** -- chunking slices
+    ``groups`` as the caller built it -- so a resumed run that rebuilds ``groups`` the same
+    way finds chunk *N* holding the same objects and the check is exact rather than hopeful.
+
+    Corrected 2026-08-07: this said "designations are sorted before chunking". They are not
+    (see :func:`run_fo_batched`). Nothing is unsafe about that here -- a reordered input
+    simply makes the membership check fail and the chunk is refitted -- but the guarantee is
+    same-order, not sorted.
     """
     total = workdir / "total.json"
     if not total.exists():
@@ -660,9 +682,20 @@ def run_fo_batched(
     interruption into total loss, and shipped ``--fit-resume`` for that. M4 hit the other
     half of the same problem: a fit large enough that it cannot be finished in the time
     available is worth reporting *as far as it got*, provided the report says so. The
-    chunking is deterministic and independent of band, rank and orbit -- designations are
-    sorted before chunking -- so the completed subset is an unbiased sample of the input,
-    which is what makes reporting it defensible rather than a silent truncation.
+    chunking is deterministic -- it slices ``groups`` in the order the caller built it.
+
+    **Corrected 2026-08-07, and it matters for how ``completed_only`` reports.** This said
+    "designations are sorted before chunking -- so the completed subset is an unbiased
+    sample of the input". They are not sorted: the line below is ``keys = list(groups)``,
+    which is insertion order. On the link path the caller builds ``groups`` from the ranked
+    fitting queue, so a partial run's completed subset is the **best-ranked prefix**, not an
+    unbiased sample. Reporting it is still defensible -- a prefix of a deliberate ordering
+    is a meaningful population -- but it must be described as "the top *N* by rank", never as
+    a random sample, and yield curves drawn from it will read high against the full input.
+
+    Deliberately not changed to ``sorted(groups)``: chunk membership would shift, every
+    already-computed chunk directory would stop matching, and ``--resume`` would refit from
+    scratch. Fitting best-first is also what you want when a run may be interrupted.
     """
     shell = shell or default_shell()
     workroot.mkdir(parents=True, exist_ok=True)
@@ -671,6 +704,9 @@ def run_fo_batched(
         # Reading back finished chunks must not touch fo's configuration directory: it is
         # a pure report, and a run that is only reading has no business deleting anything.
         clean_config_dir(shell)
+    # Insertion order, NOT sorted -- on the link path that is the ranked fitting queue, so
+    # chunk 0 holds the best-ranked links. See the note in the docstring before changing it:
+    # sorting here would invalidate every existing chunk directory for --resume.
     keys = list(groups)
     chunks = [keys[i : i + chunk_size] for i in range(0, len(keys), chunk_size)]
     # Appended to, never replaced, so the caller's list is the one that fills up.

@@ -19,7 +19,7 @@ from itf_linker.link.run import (
     FitBatch,
     checkpoint_payload,
     fit_links_batched,
-    meets_published_sigma_limits,
+    meets_published_quality_limits,
     merge_checkpoints,
     plan_batches,
     rank_survivor_rows,
@@ -243,23 +243,33 @@ def test_coverage_is_reported_against_the_whole_gated_set_not_the_part_fitted():
     assert merged["survivors"] == 0
 
 
-def test_sigma_limits_are_reported_for_every_survivor_not_only_three_night_ones():
-    """M4's discipline: a five-night link never has to meet these, and still shows them."""
+def test_quality_limits_are_reported_for_every_survivor_not_only_three_night_ones():
+    """M4's discipline: our gate never makes a five-night link meet these, and still shows them.
+
+    Five conditions, not four -- ``e < 0.5`` is published and was missing here until
+    2026-08-07, which is why ``high_e`` below used to be counted as meeting them all.
+    """
     good = _row("tight", rms=0.1, sigma_a=0.01, nights=5, ids=(1, 2),
-                sigma_e=0.01, sigma_i=0.1, sigma_q=0.01)
+                sigma_e=0.01, sigma_i=0.1, sigma_q=0.01, e=0.12)
     loose = _row("loose", rms=0.1, sigma_a=24.6, nights=5, ids=(3, 4),
-                 sigma_e=0.01, sigma_i=0.1, sigma_q=0.01)
-    missing = _row("no-covariance", rms=0.1, sigma_a=0.01, nights=5)
+                 sigma_e=0.01, sigma_i=0.1, sigma_q=0.01, e=0.12)
+    missing = _row("no-covariance", rms=0.1, sigma_a=0.01, nights=5, e=0.12)
     at_limit = _row("exactly-at-the-limit", rms=0.1, sigma_a=0.05, nights=3,
-                    sigma_e=0.01, sigma_i=0.1, sigma_q=0.01)
-    assert meets_published_sigma_limits(good)
-    assert not meets_published_sigma_limits(loose)
-    assert not meets_published_sigma_limits(missing)
-    assert not meets_published_sigma_limits(at_limit)   # the gate rejects on >=, so this does
+                    sigma_e=0.01, sigma_i=0.1, sigma_q=0.01, e=0.12)
+    high_e = _row("tight-but-eccentric", rms=0.1, sigma_a=0.01, nights=5, ids=(5, 6),
+                  sigma_e=0.01, sigma_i=0.1, sigma_q=0.01, e=0.984)
+    no_e = _row("eccentricity-unreported", rms=0.1, sigma_a=0.01, nights=5,
+                sigma_e=0.01, sigma_i=0.1, sigma_q=0.01)
+    assert meets_published_quality_limits(good)
+    assert not meets_published_quality_limits(loose)
+    assert not meets_published_quality_limits(missing)
+    assert not meets_published_quality_limits(at_limit)  # the gate rejects on >=, so this does
+    assert not meets_published_quality_limits(high_e)    # tight sigmas, e = 0.984
+    assert not meets_published_quality_limits(no_e)      # unreported is not "small"
 
     merged = merge_checkpoints(
-        [checkpoint_payload({"ranked": [good, loose], "links_fitted": 2}, "b0")],
-        gated_total=2,
+        [checkpoint_payload({"ranked": [good, loose, high_e], "links_fitted": 3}, "b0")],
+        gated_total=3,
     )
-    assert merged["survivors"] == 2
-    assert merged["survivors_meeting_all_sigma_limits"] == 1
+    assert merged["survivors"] == 3
+    assert merged["survivors_meeting_published_quality"] == 1

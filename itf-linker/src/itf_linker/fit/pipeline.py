@@ -219,10 +219,11 @@ def fit_candidates(
 def rank(outcomes: list[FitOutcome]) -> list[FitOutcome]:
     """Order surviving fits best-first: lowest RMS, then tightest sigma(a), then longest arc.
 
-    Ranking is *not* a second gate. In particular the MPC's sigma limits apply only to
-    three-night links, so a four-night fit with sigma(a) = 784 AU passes the published
-    criteria untouched; it sorts to the bottom here rather than being quietly dropped,
-    because the criteria are the MPC's and the ordering is ours.
+    Ranking is *not* a second gate. A four-night fit with sigma(a) = 784 AU clears our gate
+    untouched -- we scope the sigmas to three-night links -- so it sorts to the bottom here
+    rather than being quietly dropped, because the gate is the gate and the ordering is ours.
+    (That scoping is ours, not the MPC's: their published rule has a separate bullet for
+    links with more than 3 nights. See :mod:`itf_linker.fit.gates`.)
     """
     return sorted(
         outcomes,
@@ -243,13 +244,20 @@ def _status_histogram(outcomes: list[FitOutcome]) -> dict[str, int]:
 
 
 def _sigma_gate_counts(outcomes: list[FitOutcome]) -> dict[str, int]:
-    """How the tighter three-night sigma limits behave, separately from everything else."""
+    """How the quality limits behave on three-night links, separately from everything else.
+
+    Three-night links are the subset *our* gate applies the sigmas to. That scoping is ours,
+    not the MPC's -- their bullet 2 governs links with more than 3 nights too. The published
+    quality test also has a fifth condition, ``e < 0.5``, counted here as ``e_ok``; it used
+    to be omitted entirely and the total was reported as ``all_four_ok``.
+    """
     three = [o for o in outcomes if o.n_nights == 3 and o.fit.converged]
     from .gates import (
-        THREE_NIGHT_SIGMA_A_AU,
-        THREE_NIGHT_SIGMA_E,
-        THREE_NIGHT_SIGMA_I_DEG,
-        THREE_NIGHT_SIGMA_Q_AU,
+        MAX_ECCENTRICITY,
+        QUALITY_SIGMA_A_AU,
+        QUALITY_SIGMA_E,
+        QUALITY_SIGMA_I_DEG,
+        QUALITY_SIGMA_Q_AU,
     )
 
     def ok(value: float | None, limit: float) -> bool:
@@ -257,17 +265,19 @@ def _sigma_gate_counts(outcomes: list[FitOutcome]) -> dict[str, int]:
 
     return {
         "three_night_converged": len(three),
-        "sigma_a_ok": sum(1 for o in three if ok(o.fit.sigma_a, THREE_NIGHT_SIGMA_A_AU)),
-        "sigma_q_ok": sum(1 for o in three if ok(o.fit.sigma_q, THREE_NIGHT_SIGMA_Q_AU)),
-        "sigma_i_ok": sum(1 for o in three if ok(o.fit.sigma_i, THREE_NIGHT_SIGMA_I_DEG)),
-        "sigma_e_ok": sum(1 for o in three if ok(o.fit.sigma_e, THREE_NIGHT_SIGMA_E)),
-        "all_four_ok": sum(
+        "sigma_a_ok": sum(1 for o in three if ok(o.fit.sigma_a, QUALITY_SIGMA_A_AU)),
+        "sigma_q_ok": sum(1 for o in three if ok(o.fit.sigma_q, QUALITY_SIGMA_Q_AU)),
+        "sigma_i_ok": sum(1 for o in three if ok(o.fit.sigma_i, QUALITY_SIGMA_I_DEG)),
+        "sigma_e_ok": sum(1 for o in three if ok(o.fit.sigma_e, QUALITY_SIGMA_E)),
+        "e_ok": sum(1 for o in three if ok(o.fit.e, MAX_ECCENTRICITY)),
+        "all_five_ok": sum(
             1
             for o in three
-            if ok(o.fit.sigma_a, THREE_NIGHT_SIGMA_A_AU)
-            and ok(o.fit.sigma_q, THREE_NIGHT_SIGMA_Q_AU)
-            and ok(o.fit.sigma_i, THREE_NIGHT_SIGMA_I_DEG)
-            and ok(o.fit.sigma_e, THREE_NIGHT_SIGMA_E)
+            if ok(o.fit.sigma_a, QUALITY_SIGMA_A_AU)
+            and ok(o.fit.sigma_q, QUALITY_SIGMA_Q_AU)
+            and ok(o.fit.sigma_i, QUALITY_SIGMA_I_DEG)
+            and ok(o.fit.sigma_e, QUALITY_SIGMA_E)
+            and ok(o.fit.e, MAX_ECCENTRICITY)
         ),
         "more_than_three_nights": sum(1 for o in outcomes if o.n_nights > 3),
     }
