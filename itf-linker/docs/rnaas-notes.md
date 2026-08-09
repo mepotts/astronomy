@@ -58,6 +58,16 @@ Line numbers are as of this writing; section numbers are stable.
 
 ### Numbers in the draft that are **not** in any `M*-RESULTS.md`
 
+> **Correction, 2026-08-07 — read before quoting any "published criteria" figure below.**
+> Throughout this file, "published criteria" means whatever `gates.post_fit_gate` rejected.
+> That function is **our** gate and is stricter than the MPC's published rule on three
+> counts: it applies the 0.25″ RMS ceiling unconditionally where the MPC applies it only as
+> one conjunct of an arc-length bullet; it scopes the σ block to exactly-three-night links
+> where the MPC has a separate bullet for more than 3 nights; and it never implemented the
+> published `e < 0.5`. **The measurements below are unchanged and correct — they measure our
+> gate.** Only the label is wrong. Anything sent to a journal must say "our acceptance gate",
+> not "the MPC's published criteria". See `src/itf_linker/fit/gates.py`.
+
 Columns 5 and 6 of Table 1, and all of §3, are derived here from the per-fit records
 (`fits.outcomes[]`) in the four report JSONs. Method: a converged fit "meets all published
 criteria" iff every entry in its `gate_reasons` is one of the guard's own reason strings
@@ -112,8 +122,8 @@ by a reader.
    | M4 new | 11,113 | 9,383 | 9,876 | 6,311 | 8,590 |
    | M4 old | 1,738 | 874 | 1,307 | 932 | 760 |
 
-   Note the σ column is not an independent comparator: those limits apply only to
-   exactly-three-night links, and a fit can fail them *because* it fitted a subset. That is
+   Note the σ column is not an independent comparator: *our gate* applies those limits only
+   to exactly-three-night links, and a fit can fail them *because* it fitted a subset. That is
    also why the draft compares against the RMS ceiling, which applies to everything.
 5. **`m4-new.json` `fits.rms_le_0.25` = 4,801; the true count is 4,802.** Cause:
    `pipeline.py` l. 190 uses `(o.fit.rms_residual or 9e9) <= 0.25`, so an RMS of exactly

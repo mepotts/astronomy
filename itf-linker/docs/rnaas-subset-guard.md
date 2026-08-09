@@ -116,6 +116,11 @@ observatories over three nights, used 3 of its 11 observations and returned RMS 
 a = 1.4240 ± 0.0237 AU, q = 0.7083 ± 0.0066 AU — inside all four of the MPC's σ limits,
 formally an Apollo, and, at an inclination of 0.017° ± 0.004°, an artefact.
 
+> **Correction, 2026-08-07.** The MPC's orbit-quality test has **five** conditions, not
+> four: the four σ limits *and* `e < 0.5`. This fit has e = 1 − q/a ≈ 0.503, so it fails
+> the fifth. The paragraph's point stands — the σ limits do not catch it, and neither does
+> RMS — but "inside all four" should not be read as "the MPC's quality test passes it".
+
 ## 4. What this does and does not establish
 
 The grid is not simply failing to reach its targets: against JPL Horizons astrometry of
@@ -156,4 +161,4 @@ Gray, B., Find_Orb, https://www.projectpluto.com/find_orb.htm ·
 Holman, M. J., Payne, M. J., Blankley, P., Janssen, R., & Kuindersma, S. 2018, AJ, 156, 135 ·
 Nugent, C., Tan, A., & Bauer, J. 2025, PSJ, 6, 18 ·
 Minor Planet Center, identification acceptance criteria,
-https://www.minorplanetcenter.net/mpcops/submissions/identifications/
+https://www.minorplanetcenter.net/mpcops/documentation/identifications/additional/

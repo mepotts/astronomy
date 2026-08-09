@@ -25,6 +25,18 @@ grouping the world independently agreed with.
 | **Links where every member departed** | **21** |
 | …of those, **cross-observatory** | **14** |
 
+> **Re-run 2026-08-09: 26 complete, 16 cross-observatory.** The archive has three more days
+> in it; the table below is still the 2026-08-06 set. As the header says, re-run rather than
+> trust.
+>
+> **The "every member tracklet has since departed" claim was also checked at a stricter
+> granularity, and it holds.** §4's query takes `.unique()` on `desig`, so a trkSub counts as
+> departed once *any one* of its observations leaves — which is weaker than the sentence
+> above promises. Recomputed so that a member counts only when **no** observation of it
+> survives in the current key set: **26 complete, 16 cross-observatory — identical**. Of
+> 17,680 trkSubs with a departed observation, 17,596 are gone entirely, and not one of the
+> remaining 84 appears in a complete link. The stronger query is in §4.
+
 Fourteen of the twenty-one join tracklets from **different telescopes** — F51+O18,
 F52+V00, F52+W84, F52+G96, N94+V00, O18+X09, and one three-site F51+G96+O18. Those are
 associations no single survey is positioned to make, proposed from positions and epochs
@@ -87,6 +99,24 @@ complete = [r for r in links.iter_rows(named=True)
             if (m := set(r["source_desigs"])) & departed == m]
 print(len(complete), sum(1 for r in complete if r["cross_observatory"]))
 ```
+
+The query above is the weak form: `departed` is every trkSub with *at least one* departed
+observation. To test what the claim actually says — that nothing of the member is left —
+require that no observation of it survives in the newest key set:
+
+```python
+newest = sorted(d for d in root.iterdir() if (d / "observations.parquet").exists())[-1]
+surviving = set(pl.scan_parquet(newest / "observations.parquet")
+                  .select("desig").collect()["desig"].unique().to_list())
+gone = departed - surviving          # departed, and nothing of it left behind
+strict = [r for r in links.iter_rows(named=True)
+          if (m := set(r["source_desigs"])) and m <= gone]
+print(len(strict), sum(1 for r in strict if r["cross_observatory"]))
+```
+
+Both forms give the same answer as of 2026-08-09 (26 / 16). Run the strict one: it is the
+one that matches the sentence in the header, and it costs one extra parquet read. It needs a
+snapshot that still retains its key set — `FULL_KEEP` keeps the newest three.
 
 ⚠️ **Departure means somebody linked the tracklet. It does not date the designation.** A
 packed designation encodes the discovery half-month, not when a designation was issued —

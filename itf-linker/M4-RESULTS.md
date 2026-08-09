@@ -601,9 +601,15 @@ because a reader comparing `arc_days` (Find_Orb's, over the observations it used
 
 ### 5.4 The published σ limits, applied to every survivor
 
-M1's §7 and M3's §6.6 both found the same thing and it reproduces exactly: the MPC's σ
-limits are scoped to **exactly**-three-night links, so a four- or five-night fit is judged
-on RMS alone.
+M1's §7 and M3's §6.6 both found the same thing and it reproduces exactly: **our** σ limits
+are scoped to **exactly**-three-night links, so a four- or five-night fit clears our gate on
+RMS alone.
+
+> **Corrected 2026-08-07.** Written here as the MPC's scoping; it is ours. Their published
+> rule has a second bullet for links with **more than** 3 nights (arc < 10 d) and reaches
+> the quality block only when RMS > 0.25″ *and* the arc is short. It also has **five**
+> conditions — `e < 0.5` is absent from every count in this section. The measured columns
+> and the conclusion drawn from them are unaffected; the attribution was wrong.
 
 | | M4 | M3 |
 |---|---:|---:|
@@ -617,8 +623,8 @@ the last: **the widened grid added 26 survivors and not one additional well-cons
 one.** 140 against M3's 141, and 60 cross-observatory against M3's 60. Every extra survivor
 the widened grid produced is a four- or five-night link that the σ limits never examine.
 
-**The numbers are reported rather than filtered**, as M3 did: the criteria are the MPC's,
-the ranking is ours, and a five-night link with σ(a) = 96 AU sorts to the bottom on its own.
+**The numbers are reported rather than filtered**, as M3 did: the gate is the gate, the
+ranking is ours, and a five-night link with σ(a) = 96 AU sorts to the bottom on its own.
 
 ---
 

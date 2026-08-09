@@ -115,11 +115,22 @@ records. Coverage 2012-10-24 → 2018-04-20.
 Spec: `.../mpcops/documentation/identifications/submission-format/`.
 Reference client: `.../static/submissions/media/identifications_api_example.py`.
 
-**Published acceptance criteria** (`.../identifications/additional/`) — ITF-to-ITF links are
-auto-rejected if: fewer than 3 distinct nights · arc < 3 days · exactly 3 nights with arc > 15 days ·
-arc both starts *and* ends with a single-detection tracklet. After fitting: rejected if RMS > 0.25″ or
-non-convergence. Three-night links additionally need σ(a) < 0.05 AU, σ(q) < 0.05 AU, σ(i) < 0.5°,
-σ(e) < 0.05.
+**Published acceptance criteria** (`.../mpcops/documentation/identifications/additional/` —
+corrected 2026-08-07; the `/submissions/.../additional/` path cited here before that 404s).
+ITF-to-ITF links are auto-rejected **before fitting** if: the format is wrong · fewer than 3
+distinct nights · arc < 3 days · exactly 3 nights with arc > 15 days · a two-apparition linkage
+whose second apparition is a single tracklet · the arc both starts *and* ends with a
+single-detection tracklet.
+
+**After fitting**, rejected if any of three bullets holds: (1) exactly 3 nights **and** arc < 15 d
+**and** RMS > 0.25″ **and** orbit quality insufficient; (2) more than 3 nights **and** arc < 10 d
+**and** RMS > 0.25″ **and** orbit quality insufficient; (3) the fit did not converge. *Orbit quality
+sufficient* = σ(a) < 0.05 AU, σ(q) < 0.05 AU, σ(i) < 0.5°, σ(e) < 0.05, **and e < 0.5**.
+
+The first two bullets are **conjunctive** — there is no standalone RMS rule, and the quality block
+is not scoped to three-night links. The earlier summary here got all three points wrong; see
+`itf-linker/src/itf_linker/fit/gates.py`, which now implements both that rule and our own
+deliberately stricter one.
 
 ---
 
@@ -291,7 +302,8 @@ clear-eyed about that distinction before setting expectations.
 
 - ITF: `https://www.minorplanetcenter.net/iau/ITF/itf.txt.gz`
 - Identifications submission: `https://www.minorplanetcenter.net/mpcops/submissions/identifications/` ·
-  format `.../documentation/identifications/submission-format/` · criteria `.../identifications/additional/`
+  format `.../documentation/identifications/submission-format/` · criteria
+  `.../mpcops/documentation/identifications/additional/`
 - Astrometry guide: `https://www.minorplanetcenter.net/iau/info/Astrometry.html` · 80-col spec
   `.../info/OpticalObs.html` · ADES `.../info/ADES.html` · docs hub `https://docs.minorplanetcenter.net`
 - SARC: `https://www.minorplanetcenter.net/mpcops/documentation/sarc/`

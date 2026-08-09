@@ -287,18 +287,38 @@ is a way to break a fit silently. Full table in `fit/verify.py`.
   tracklets, `movgrp` carries `digest`/`mpcid`/`mpcsent`, coverage 2012-10-24 → 2018-04-20.
 - **Submission** — JSON to `.../mpcops/submissions/identifications/`; format spec at
   `.../documentation/identifications/submission-format/`; acceptance criteria at
-  `.../identifications/additional/`. **M3 only, sandbox first, per-batch human review.**
+  `.../mpcops/documentation/identifications/additional/` (**not** under `/submissions/` —
+  that path 404s). **M3 only, sandbox first, per-batch human review.**
 
-### Published acceptance criteria (implemented and tested in M0)
+### Published acceptance criteria (corrected 2026-08-07)
 
-ITF-to-ITF links are **auto-rejected** if: fewer than 3 distinct nights · arc < 3 days ·
-exactly 3 nights with arc > 15 days · the arc both starts *and* ends with a single-detection
-tracklet. After fitting: rejected if RMS > 0.25″ or non-convergence. Three-night links
-additionally need σ(a) < 0.05 AU, σ(q) < 0.05 AU, σ(i) < 0.5°, σ(e) < 0.05.
+Source: `.../mpcops/documentation/identifications/additional/`. **The `/submissions/` path
+this file cited until 2026-08-07 404s**, and the criteria quoted from it were wrong in three
+ways — see [`M5-RESULTS.md`](M5-RESULTS.md) §"Gate correction" and
+`src/itf_linker/fit/gates.py`.
+
+**Before fitting**, an ITF-to-ITF link is auto-rejected if: the format is wrong · fewer than
+3 distinct nights · arc < 3 days · exactly 3 nights with arc > 15 days · a two-apparition
+linkage whose second apparition is a single tracklet · the arc both starts *and* ends with a
+single-detection tracklet.
+
+**After fitting**, rejected if any of three bullets holds:
+
+1. exactly 3 nights **and** arc < 15 d **and** RMS > 0.25″ **and** orbit quality insufficient
+2. more than 3 nights **and** arc < 10 d **and** RMS > 0.25″ **and** orbit quality insufficient
+3. the orbit fit did not converge
+
+where *orbit quality is sufficient* means σ(a) < 0.05 AU, σ(q) < 0.05 AU, σ(i) < 0.5°,
+σ(e) < 0.05, **and e < 0.5** — five conditions, not four.
+
+The first two bullets are **conjunctive**: there is no standalone RMS rule, and the quality
+block is not scoped to three-night links (bullet 2 governs more than 3 nights). Our own gate
+is deliberately stricter than this on all three points and is the one every M1–M5 survivor
+count is against; `gates.mpc_published_gate` implements the rule above and is reported
+alongside.
 
 The night/arc/singleton gate is implemented in `verify/mpec.py::acceptance_summary` and
-verified to accept all three published MPECs while rejecting each failure mode. The
-post-fit RMS and covariance gates await the Find_Orb wrapper (M1).
+verified to accept all three published MPECs while rejecting each failure mode.
 ---
 
 ## 6. Vetting services (M2) — **(verified 2026-07-29)**
