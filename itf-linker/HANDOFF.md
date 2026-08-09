@@ -96,8 +96,13 @@ before re-deriving anything or asserting a claim from an older document.**
 - The **archive misses days when the machine is off.** An always-on host on a residential
   connection would close that; see `docs/archive-operations.md` §1.
 - The **MPC reachability email is drafted and unsent** — `docs/archive-operations.md` §5.
-- **The guard's false-rejection rate is measured nowhere.** "84.4% rejected" is not "84.4%
-  were wrong". This is the sharpest weakness in the publishable finding.
+- ~~**The guard's false-rejection rate is measured nowhere.**~~ **Measured 2026-08-07: zero
+  of 26.** Against the links the snapshot archive shows somebody else independently made,
+  the guard never rejected one on its own — every confirmed link it flagged was already
+  failing the acceptance gate. `scripts/guard_vs_confirmed.py`, `SNAPSHOT-VALIDATION.md`
+  §3a. Still a floor rather than a rate: *n* = 26, and the sample is biased toward links
+  easy enough for someone else to have made. **The acceptance gate is now the open
+  question** — it discards 22 of those 28 rows, where the MPC's published rule keeps 14.
 
 ## 5. If you are looking for a discovery
 

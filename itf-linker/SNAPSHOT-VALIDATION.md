@@ -85,6 +85,47 @@ archive covers eight days against a file spanning 1995–2026, so it samples onl
 whose members happened to be linked by others during that window. The true agreement rate
 is unknown and this number is a floor.
 
+## 3a. What the gates did to the confirmed links — the guard's first measured false-rejection rate
+
+`HANDOFF.md` §4 names this the sharpest weakness in the publishable finding: *"The guard's
+false-rejection rate is measured nowhere. '84.4% rejected' is not '84.4% were wrong'."* The
+links above are the first ground truth the project has had — somebody else agreed with them,
+without any fit, catalogue query or gate of ours. So: find them in a completed run and ask
+what each gate did.
+
+All 26 appear in the M4-new run (28 outcome rows — a member set can form more than one
+link). Reproduce with `scripts/guard_vs_confirmed.py`, which matches on **member trkSubs and
+never on `desig`**, because link ids are positional and mean different things in different
+tables.
+
+| | of 28 fitted rows |
+|---|---:|
+| Converged | 26 |
+| Passed every gate in the run | 6 |
+| Kept by our post-fit gate | 6 |
+| **Kept by the MPC's published rule** | **14** |
+| **Rejected by the subset guard alone** | **0** |
+
+**The guard did not falsely reject anything.** Not once did it discard a confirmed link that
+would otherwise have been kept: every confirmed link it flagged was already failing σ or RMS.
+Its false-rejection rate against ground truth is **0 of 26**. That is the number the RNAAS
+draft could not previously quote, and it is favourable.
+
+**Our acceptance gate is the thing rejecting confirmed links, not the guard.** It discards 22
+of the 28 — 62 σ failures and 12 RMS failures — for links the world independently confirmed
+are real. The MPC's published rule keeps **14**, more than twice as many, because its RMS
+condition is one conjunct rather than a ceiling (see `M5-RESULTS.md` §5.3). This is the
+A-series gate finding measured against ground truth instead of argued.
+
+**Two caveats, both real.** *n* = 26 is small, and one clean number is not a rate with an
+error bar on it. More importantly the sample is **biased toward easy links**: these are
+exactly the associations somebody else was able to make, so they are plausibly better
+conditioned than the general population, and a guard that never rejects an easy link may
+still reject hard ones wrongly. What this establishes is a floor — the guard is not
+indiscriminate — not that its false-rejection rate is zero in general.
+
+---
+
 ## 4. Regenerating this
 
 ```python

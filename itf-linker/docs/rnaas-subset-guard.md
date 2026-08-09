@@ -143,6 +143,18 @@ wide-grid runs agree far better (72.6% against 79.5%). And an 80% threshold with
 three-night rule is a blunt instrument that will reject some correct links whose astrometry
 merely contains an outlier.
 
+**How often it does reject a correct link is now measurable, and the answer is zero of 26.**
+The snapshot archive supplies ground truth independent of every gate here: a proposed link
+whose member tracklets have all since left the ITF is one somebody else independently made.
+Twenty-six such links exist as of 2026-08-09, and all appear in the wide-grid run (28
+outcome rows). The guard rejected **none** of them on its own — every confirmed link it
+flagged was already failing the acceptance gate's σ or RMS conditions. The acceptance gate
+discarded 22 of the 28; the guard added nothing to that. Two caveats belong with the number:
+*n* = 26 is small, and the sample is biased toward easy links, since these are precisely the
+associations somebody else was able to make. It establishes a floor — the guard is not
+indiscriminate — rather than a general false-rejection rate.
+(`scripts/guard_vs_confirmed.py`; `../SNAPSHOT-VALIDATION.md` §3a.)
+
 The practical claim is narrower than the numbers look, and is this: on the widest grid a
 check the MPC does not publish rejects more converged solutions than the published 0.25″
 residual ceiling does — 9,383 against 6,311 — where on survey-made associations the ordering
