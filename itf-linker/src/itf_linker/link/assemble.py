@@ -58,7 +58,20 @@ def link_id(index: int, prefix: str = "lnk") -> str:
 
 
 def links_frame(candidates: Sequence[LinkCandidate]) -> pl.DataFrame:
-    """A per-link frame shaped exactly like M1's per-designation frame."""
+    """A per-link frame shaped exactly like M1's per-designation frame.
+
+    ``first_night`` / ``last_night`` / ``arc_days_night`` carry a **different quantity here
+    than in the per-designation frame**, and the shared column names hide it. There they are
+    local-night indices from :func:`itf_linker.index.tracklets.add_night`, which is the
+    boundary the MPC's night counting uses. Here a :class:`LinkCandidate` has only
+    ``mjd_first`` / ``mjd_last``, so they are ``int(mjd)`` -- a **UTC-day truncation**, which
+    splits differently for any observatory whose night crosses UTC midnight.
+
+    Nothing reads them: the night count that matters is ``n_nights``, computed upstream on
+    real nights, and the pre-fit gate measures ``arc_days``. They exist for frame-shape
+    parity. Do not start using them, and do not join the two frames on them -- populate them
+    from a real night index first. Noted 2026-08-07.
+    """
     rows = []
     for i, c in enumerate(candidates):
         rows.append(

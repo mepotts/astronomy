@@ -28,6 +28,7 @@ looking at, and catalogue vetting before it is worth mentioning.
 from __future__ import annotations
 
 import itertools
+from collections.abc import Iterator
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -254,18 +255,59 @@ class LinkCandidate:
         }
 
 
-def _cell_keys(points: np.ndarray, cell: float, shift: tuple[float, ...]) -> np.ndarray:
-    """Pack a lattice cell index into one int64 per point.
+def _cell_keys(
+    points: np.ndarray, cell: float, shift: tuple[float, ...]
+) -> tuple[np.ndarray, np.ndarray]:
+    """Pack a lattice cell index into one int64 per point; return the key **and** the index.
 
     Two points closer than ``cell / 2`` in every coordinate are guaranteed to share a cell
     in at least one of the ``2**d`` lattices offset by half a cell, which is why the caller
     sweeps :func:`itertools.product` over the shifts rather than inspecting neighbours.
+
+    The multiply-and-XOR fold is **not injective** -- ``(-1, 59, 0)`` and ``(1, -59, 0)``
+    collide, found by brute force over a 120x120 scan. Wherever the key only ever *gathers*
+    candidates for an exact test that is harmless, and :func:`_neighbours_within` says so.
+    It is not harmless where a group's *size* is used to make a decision, so the true index
+    is returned alongside and the caller splits on it before applying any cap.
     """
     idx = np.floor(points / cell + np.asarray(shift)).astype(np.int64)
     key = idx[:, 0] * np.int64(73856093)
     key ^= idx[:, 1] * np.int64(19349663)
     key ^= idx[:, 2] * np.int64(83492791)
-    return key
+    return key, idx
+
+
+def _split_colliding(
+    groups: list[np.ndarray], cell_idx: np.ndarray, max_cell_members: int
+) -> Iterator[np.ndarray]:
+    """Re-split any over-cap group by its true ``(i, j, k)``, then yield.
+
+    The hash in :func:`_cell_keys` collides, so a group is a *superset* of one lattice cell.
+    Two harmless consequences and one that is not:
+
+    * under the cap, extra members only add candidates to the exact ``d <= radius`` test
+      that follows -- they cannot create a false cluster;
+    * a merged group that is still under the cap is therefore processed correctly;
+    * **over the cap it is discarded entirely** -- so a collision that folds a distant cell
+      into a nearly-full one silently destroys every genuine cluster in both, and inflates
+      the ``overflowed_cells`` counter that is supposed to be measuring real crowding.
+
+    Splitting only the over-cap groups keeps the fast single-int64 grouping for the ~99.9%
+    that never collide, and costs a lexsort on the handful that do. Genuinely crowded cells
+    still overflow -- that guard is doing real work and is left alone.
+    """
+    for group in groups:
+        if len(group) <= max_cell_members:
+            yield group
+            continue
+        sub = cell_idx[group]
+        order = np.lexsort((sub[:, 2], sub[:, 1], sub[:, 0]))
+        ordered = group[order]
+        rows = sub[order]
+        cuts = np.flatnonzero(np.any(rows[1:] != rows[:-1], axis=1)) + 1
+        for part in np.split(ordered, cuts):
+            if len(part) > 1:
+                yield part
 
 
 def _groups_by_key(keys: np.ndarray) -> list[np.ndarray]:
@@ -366,8 +408,8 @@ def cluster_states(
     found: dict[tuple[int, ...], np.ndarray] = {}
 
     for shift in itertools.product((0.0, 0.5), repeat=3):
-        keys = _cell_keys(pos, cell, shift)
-        for idx in _groups_by_key(keys):
+        keys, cell_idx = _cell_keys(pos, cell, shift)
+        for idx in _split_colliding(_groups_by_key(keys), cell_idx, max_cell_members):
             if len(idx) > max_cell_members:
                 counters["overflowed_cells"] += 1
                 continue
@@ -411,6 +453,7 @@ def isolated_groups(
     slot: np.ndarray,
     *,
     radius_au: float,
+    min_nights: int = 3,
     max_ball_members: int = MAX_BALL_MEMBERS,
     max_slot_candidates: int = MAX_SLOT_CANDIDATES,
 ) -> tuple[list[np.ndarray], int]:
@@ -460,7 +503,10 @@ def isolated_groups(
             if counts.size and counts.max() > max_slot_candidates:
                 rejected += 1
                 continue
-            if len(np.unique(night[group])) < 3:
+            # ``min_nights``, not a literal 3: ``cluster_states`` takes the same threshold
+            # as a parameter and the two must not be able to disagree. Inert today
+            # (everything passes 3) but a silent divergence the moment it is tuned.
+            if len(np.unique(night[group])) < min_nights:
                 rejected += 1
                 continue
             kept.append(group)
@@ -628,7 +674,8 @@ def link_window(
 
         state6 = np.concatenate([pos, vel * vel_scale_days], axis=1)
         groups, crowded = isolated_groups(
-            groups, state6, a["night"][sel], slot[sel], radius_au=radius_au
+            groups, state6, a["night"][sel], slot[sel],
+            radius_au=radius_au, min_nights=min_nights,
         )
         stats["rejected_not_isolated"] += crowded
 

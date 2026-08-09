@@ -14,6 +14,7 @@ from itf_linker.fit.classify import (
     NEO_POPULATIONS,
     classify_orbit,
     describe,
+    dynamically_distant,
     neo_score,
     population_histogram,
 )
@@ -96,6 +97,48 @@ def test_the_fitted_q_is_preferred_over_a_times_one_minus_e():
     """Find_Orb reports both and they can disagree in the last digits."""
     assert classify_orbit(2.0, 0.35, q=1.29) in NEO_POPULATIONS
     assert classify_orbit(2.0, 0.35, q=1.31) not in NEO_POPULATIONS
+
+
+def test_a_hungaria_that_also_crosses_mars_is_still_a_hungaria():
+    """M5's `lnk5er4`: a = 1.867, e = 0.140, i = 19.7 deg, q = 1.606 < 1.666.
+
+    Testing mars_crosser first shadowed these. Hungaria e runs 0.07-0.12 at a ~ 1.9, which
+    straddles the 1.666 AU perihelion boundary, so the shadowing was systematic rather than
+    a corner case.
+    """
+    assert classify_orbit(1.867, 0.140, q=1.606, incl=19.66) == "hungaria"
+    #  low inclination at the same a and e is not a Hungaria, and Mars-crossing wins
+    assert classify_orbit(1.867, 0.140, q=1.606, incl=3.0) == "mars_crosser"
+    #  and a genuine Mars-crosser outside the Hungaria box is untouched
+    assert classify_orbit(2.4, 0.35, q=1.56, incl=20.0) == "mars_crosser"
+
+
+def test_a_tno_label_is_not_a_claim_that_the_object_is_far_away():
+    """M5's `lnk2gkr`: a = 98.5 AU, q = 1.59 AU. SBDB calls it a TNO; it is belt-crossing.
+
+    The label follows JPL SBDB and is correct by that convention. The point of
+    ``dynamically_distant`` is that selecting on the label alone selects this too.
+    """
+    assert classify_orbit(98.53, 0.984, q=1.59) == "tno"
+    assert not dynamically_distant(98.53, 0.984, q=1.59)
+    #  a real one: perihelion never re-enters the belt
+    assert classify_orbit(43.53, 0.377, q=27.11) == "tno"
+    assert dynamically_distant(43.53, 0.377, q=27.11)
+
+
+@pytest.mark.parametrize(
+    ("a", "e", "q", "expected"),
+    [
+        (24.70, 0.565, 10.73, True),    # centaur, perihelion outside Jupiter
+        (22.74, 0.777, 5.07, False),    # q just inside 5.2 -- excluded on purpose
+        (3.0, 0.1, 2.7, False),         # belt, never distant
+        (98.53, 0.984, None, False),    # q derived as a(1-e) = 1.58
+        (None, 0.5, 9.0, False),        # no elements is not a distance claim
+        (10.0, 1.4, None, False),       # unbound
+    ],
+)
+def test_dynamically_distant_requires_both_a_and_perihelion(a, e, q, expected):
+    assert dynamically_distant(a, e, q) is expected
 
 
 def test_the_histogram_orders_populations_and_keeps_strangers():
