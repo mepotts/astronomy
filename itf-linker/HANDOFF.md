@@ -64,7 +64,7 @@ before re-deriving anything or asserting a claim from an older document.**
 | **Lines ≠ observations** | Space-based observations occupy two lines (`S` sky + `s` spacecraft, whose x/y/z sit in the RA/Dec columns). NEOWISE counted exactly half | `mpc80.py` |
 | **Find_Orb ships `PERTURBERS=0`** | Unperturbed fits, ~0.1″ over 7 days against a 0.25″ gate | `DATA-SOURCES.md` §4 |
 | **Find_Orb below ~0.05″ declared sigma** | Destabilises: at 0.01″ a main-belt object fits to a = 3.33 AU against truth 1.458, **with a plausible-looking uncertainty** | `M1-RESULTS.md` |
-| **`(rms or 9e9)`** | An RMS of exactly 0.0 is falsy; one record miscounted. Logged, not fixed | `pipeline.py:190`, `docs/rnaas-notes.md` |
+| **`(rms or 9e9)`** | An RMS of exactly 0.0 is falsy; one record miscounted. **Fixed 2026-08-07** in both counter sites | `fit/pipeline.py`, `link/run.py`, `docs/rnaas-notes.md` |
 | **Enumerated gitignore** | Listed report filenames one by one, missed M4's differently-named `m4-new.json` (108 MB), push rejected by GitHub | Now pattern `/m[0-9]*.json` |
 
 ### Environment and harness traps
