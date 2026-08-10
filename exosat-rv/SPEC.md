@@ -68,7 +68,13 @@ separation are**:
 ## Honest prior-art assessment
 
 - **This is not a novel method, and the analogue survey is not white space.** The technique
-  is the paper's. M5 measured the archive and found the shape of the programme behind it:
+  is the paper's. **Correction:** earlier drafts cited a "GQ Lup B exosatellite search
+  (Köhler et al. 2024)" at arXiv:2408.10299 as a viper/CRIRES+ precursor by the same group.
+  That paper uses **Keck/KPIC** — a different instrument — and the authorship attribution was
+  wrong. It *is* the first dedicated RV exosatellite search around a directly imaged
+  companion, and so is the right prior for M5, but not a viper result. The relevant Köhler
+  paper is the viper instrument paper, [arXiv:2505.08315](https://arxiv.org/abs/2505.08315),
+  A&A 698 A44 (2025). M5 measured the archive and found the shape of the programme behind it:
   **110.23RW** (Nov 2022 – Feb 2023) is a pilot across AB Pic B, beta Pic B and CD-35 2722 B;
   every later programme (112.25HG, 114.271E, 116.2AP9) is CD-35 2722 B alone. There is also a
   published null on [GQ Lup B](https://arxiv.org/abs/2408.10299) (Köhler et al. 2024, a

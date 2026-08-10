@@ -88,7 +88,9 @@ made much of — unlike §1, this one was checked against the actual PDF.
 | Reading a null result without a positive control | M2's null was equally consistent with an imprecise pipeline and a broken one. Only the GJ 229 B control (M3) distinguished them. **Never report a null from this pipeline without re-running the control.** |
 | Using a spectrally mismatched template | The GJ 229 B control returns reduced chi2 = 0.53 (nothing) with an L-dwarf template on a T dwarf, and 5.36 with a matched one. Template match is the difference between working and broken, not a refinement. |
 | Trusting viper's formal RV errors | Per-order rms exceeds the formal error by factors of 2-42. Measure precision from within-night repeats instead. |
-| Believing `-createtpl` or `-telluric add` would fix M2's precision | Both were tried. The co-added template changed nothing; telluric forward modelling tripled the scatter. See M2-RESULTS section 5. |
+| Believing `-createtpl` or `-telluric add` would fix M2's precision | Both were tried. The co-added template changed nothing. `-telluric add` is a **no-op on CRIRES** — `config_viper.ini`'s `[CRIRES]` section already sets it, along with `oset = 7:17` and `kapsig = 15 6`. **Read `config_viper.ini` before claiming any viper setting is off.** |
+| Adding `-tellshift` for cell-free data | It frees the telluric wavelengths, which for cell-free CRIRES+ *are* the wavelength reference and must stay fixed (Köhler+2025 §5.4). It tripled the scatter. |
+| Treating M6 as an independent test of the detection | Fitting the authors' published RVs tests their **inference**, not their **measurement**. A systematic in their extraction would reproduce perfectly. M6 rules out "they fit the model wrong"; it cannot rule out "the velocities are wrong". |
 | Trusting the NASA Exoplanet Archive alone for the M5 target list | It caps companion mass at 30 M_Jup and therefore **does not contain CD-35 2722 B**. M5 was rebuilt archive-first, with CD-35 2722 B's rediscovery as the control. |
 | Resolving companions by SIMBAD **name** | Identifiers are unforgiving about spacing: `CD-35  2722B` resolves, `CD-35 2722 B` and `BET PIC B` do not. Normalise and match against *all* identifiers instead. |
 | Resolving companions by **position alone** | A cone search finds the system, not the component. It resolved `BET PIC B` to beta Pic **c** and `PZ TEL B` to the G9IV primary. Two stages are needed: cone for the system, identifier match for the component. |
@@ -136,6 +138,22 @@ count.
 - **Two extra public nights (2023-01-04, 2023-02-01)** exist that the paper does not use.
   They are J/YJ band, not H, so they are not a discrepancy — see M0 §3. They may still be
   useful to M4 for baseline leverage.
+
+## 5b. The literature that should have been read first
+
+Reading these two before M2 would have saved most of it:
+
+- **Köhler et al. 2025, [arXiv:2505.08315](https://arxiv.org/abs/2505.08315)** (A&A 698 A44)
+  — the viper instrument paper. States that CRIRES+ is **not stabilised** and drifts up to
+  **1 km/s** without proper wavelength correction (which is precisely M2's ~800 m/s), that
+  telluric lines are the cell-free wavelength reference and must be held **fixed**, and that
+  the achievable cell-free precision is **10–16 m/s in K band on bright stars** (3 m/s with a
+  gas cell). It does **not** characterise cell-free H-band precision, which is the regime
+  this project needs.
+- **arXiv:2408.10299** — *"RV Measurements of Directly Imaged Brown Dwarf GQ Lup B to Search
+  for Exosatellites"*, using **Keck/KPIC**. The first dedicated RV exosatellite search around
+  a directly imaged companion, and the right prior for M5 — but SPEC wrongly described it as
+  a viper/CRIRES+ paper by the same group. Corrected.
 
 ## 6. Values still unverified
 

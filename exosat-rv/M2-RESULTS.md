@@ -119,24 +119,56 @@ this milestone learned, because it rules out the easy explanations.
    failure was a transient `ConnectionResetError` in viper's SIMBAD lookup — it caches to
    `<tag>.targ.csv`, so copying that file across tags avoids the fetch). Template S/N should
    have risen by ~√18. The precision did not move. **The template was not the limitation.**
-2. **Telluric forward modelling makes it worse.** `-telluric add -tellshift` roughly tripled
-   the scatter and several orders failed to converge outright
-   (`Optimal parameters not found: maxfev = 2600`). Default settings are clearly wrong for
-   this data; tuning them blind is not productive.
+2. **Telluric forward modelling makes it worse — but only because the flag was wrong.**
+   `-telluric add -tellshift` roughly tripled the scatter and several orders failed to
+   converge (`maxfev = 2600`).
 
-**Photon noise is not the constraint, for either party.** At R = 100,000, S/N ≈ 18 per pixel
-and ~40,000 usable pixels, the photon-limited floor is of order 1 m/s. The paper's 31.44 m/s
-is itself systematics-limited, and this run's ~800 m/s is systematics-limited far worse. The
-headroom is real; the configuration is wrong in a way these two experiments did not find.
+   > **CORRECTED after reading the viper paper (Köhler et al. 2025, A&A 698 A44).** Two
+   > errors here, running opposite ways.
+   >
+   > **(a) Telluric modelling was never off.** `config_viper.ini` ships a `[CRIRES]` section
+   > setting `telluric = add`, `oset = 7:17`, `kapsig = 15 6`, `deg_wave = 2`, `chunks = 1`.
+   > Passing `-telluric add` explicitly is a **no-op** — verified: the output is
+   > byte-identical to the run without it. Every number in this milestone was already
+   > produced *with* telluric forward modelling and viper's recommended CRIRES settings. The
+   > claim below that this run "used `-telluric ''` — no telluric modelling at all" is false,
+   > and so is the complaint that `-oset` "silently excludes 11 of 21 segments": 7:17 is the
+   > recommended order set, not an oversight.
+   >
+   > **(b) `-tellshift` was the actual mistake.** The paper is explicit that for cell-free
+   > data "the wavelengths of the telluric lines are **fixed** (meaning no telluric Doppler
+   > shift is applied) as they serve as the wavelength reference." `-tellshift` frees exactly
+   > that reference — switching on the anchor and then letting it drift.
+
+**What ~800 m/s actually is.** The viper paper names it: *"Since the CRIRES+ spectrograph is
+not stabilised to a level needed for precise RV measurements, an improper wavelength
+correction would lead to instrumental drifts up to 1 km/s."* That is the number this
+milestone measured. Telluric lines are the reference that removes it — stable to ~10 m/s, and
+the paper reaches **10–16 m/s cell-free** on bright M dwarfs (GJ 588, GJ 784, GJ 447,
+GJ 229A), or 3 m/s *with a gas absorption cell*.
+
+**But telluric modelling was already on here** (correction above), and still gives ~800 m/s.
+So the gap is not a missing flag. What genuinely differs from the paper:
+
+- **Target brightness.** viper's 10–16 m/s used bright RV standards. CD-35 2722 B is a faint
+  companion at S/N ≈ 18 per pixel.
+- **Band.** The cell-free demonstration is in **K**; this data is **H**, where the telluric
+  anchor is different and possibly weaker. The paper does not characterise cell-free H-band
+  precision.
+- **Per-nodding extraction**, worth the ~10% already quantified.
+
+**Photon noise constrains neither party.** At R = 100,000, S/N ≈ 18 and ~40,000 usable pixels
+the floor is of order 1 m/s.
 
 One structural difference remains, and it is small: the paper's 31.44 m/s came from treating
 individual nodding positions as separate observations, against 34.49 m/s for the combined
 product. ESO archives only the combined product, so ~10% is unavailable by construction — a
 rounding error next to a factor of 25, and **not** the explanation.
 
-Still untried: `-telluric mask` / `sig` / `add2` (rather than `add`), outlier clipping
-(`-kapsig`), IP model choice, `-chunks`, and the `-oset` default that silently excludes 11 of
-the 21 segments.
+Genuinely still untried, now that the config has been read: `-telluric mask` / `sig` /
+`add2`, IP models beyond the default `g`, `-chunks` > 1, and re-extracting the **individual
+nodding frames** from the public raw data with cr2res instead of using ESO's combined
+product. That last is the only remaining difference the authors themselves identify.
 
 ## 6. Verdict
 
