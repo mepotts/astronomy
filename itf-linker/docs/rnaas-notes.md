@@ -245,12 +245,26 @@ Ordered roughly by how much damage each does.
     on the unpushed `advance-portfolio` branch and `main` does not contain M4. There is no
     DOI. A Zenodo deposit of the pipeline **and the four report JSONs** would be needed
     before the availability statement in the draft is true.
-14. **The reference list is unverified.** Gray (Find_Orb) and the MPC criteria URL are safe.
-    The HelioLinC citation (Holman, Payne, Blankley, Janssen & Kuindersma 2018, AJ, 156, 135)
-    and FindPOTATOs (Nugent, Tan & Bauer 2025, PSJ, 6, 18 — DOI 10.3847/PSJ/ad9c6d, from
-    `CITATION.cff`) were written from repository metadata and **must be checked against ADS**
-    before submission. The draft calls the linker "HelioLinC-style", which is accurate as a
-    description of the approach and should not be read as a claim to use that codebase.
+14. ~~**The reference list is unverified.**~~ **Verified 2026-08-07, and two errors were in
+    it** — both traceable to the repository metadata the list was written from rather than
+    from the journals.
+
+    - **Holman, Payne, Blankley, Janssen & Kuindersma 2018, AJ, 156, 135** — correct as
+      cited. Bibcode `2018AJ....156..135H`, DOI `10.3847/1538-3881/aad69a`, AJ 156(3), 135.
+    - **Nugent, Tan & Bauer 2025, PSJ, 6, 18** — volume and article number correct, but the
+      second author's initial was wrong (**Tan, N.** — Nicole J. Tan, not "Tan, A."), and
+      the DOI carried in `CITATION.cff`, `10.3847/PSJ/ad9c6d`, **404s**. The real one is
+      **`10.3847/PSJ/ad94eb`** (PSJ 6(1), 18; arXiv:2501.12922). Both fixed in the draft and
+      in `CITATION.cff`, which also had "Tan, Alissa" and was missing the HelioLinC
+      reference entirely — that is now added with its DOI.
+    - Gray (Find_Orb) and the MPC criteria URL are unchanged and were already right; the MPC
+      URL was corrected separately (the `/submissions/` path 404s).
+
+    **Not yet done:** the draft's reference list still carries no DOIs, because the note is
+    at 1,499 of 1,500 words and two DOI strings do not fit. Adding them at submission means
+    cutting roughly ten words elsewhere. The draft calls the linker "HelioLinC-style", which
+    is accurate as a description of the approach and should not be read as a claim to use
+    that codebase.
 
 ---
 

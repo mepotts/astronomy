@@ -175,6 +175,6 @@ files carry.
 
 Gray, B., Find_Orb, https://www.projectpluto.com/find_orb.htm ·
 Holman, M. J., Payne, M. J., Blankley, P., Janssen, R., & Kuindersma, S. 2018, AJ, 156, 135 ·
-Nugent, C., Tan, A., & Bauer, J. 2025, PSJ, 6, 18 ·
+Nugent, C., Tan, N., & Bauer, J. 2025, PSJ, 6, 18 ·
 Minor Planet Center, identification acceptance criteria,
 https://www.minorplanetcenter.net/mpcops/documentation/identifications/additional/
