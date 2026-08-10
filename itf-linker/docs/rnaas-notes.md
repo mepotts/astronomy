@@ -310,7 +310,9 @@ Ordered roughly by how much damage each does.
 - ~~Commit the derivation scripts for Table 1 columns 5–6.~~ **Done — `scripts/table1_guard_rates.py`.**
 - Decide whether the older-slice row belongs in the table at all; it is the honest row and
   the confusing one.
-- Correct the sentence in `M4-RESULTS.md` §9 identified in §4 item 4 above. **Not done
-  here** —
-  the `M*-RESULTS.md` files belong to another agent this session — but it is a factual
-  error in the milestone report and it is the one sentence a reader would most likely quote.
+- ~~Correct the sentence in `M4-RESULTS.md` §9 identified in §4 item 4 above.~~ **Already
+  done on 2026-08-05**; this item was stale. Checking it on 2026-08-07 did turn up two more
+  things in the same block, both now fixed: it gave the RMS-ceiling count as **6,312** where
+  it is **6,311** (the one-record difference is the `(rms or 9e9)` falsy-zero bug, so that
+  bug had propagated a wrong digit into a milestone report), and it called our acceptance
+  gate "the published criteria" throughout.
