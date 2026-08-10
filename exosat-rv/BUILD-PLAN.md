@@ -98,11 +98,22 @@ injections frequently recover as 88 d, the paper's choice is sampling-driven.
 The two public J-band epochs from Jan/Feb 2023 (M0 §3) sit ~9 months before the paper's
 first epoch and may offer alias-breaking leverage, at the cost of a cross-setting zero-point.
 
-### M5 — Analogue survey
-Build the substellar-companion target list — wide (slit-resolvable), bright (H ≲ 16), with
-public CRIRES+ holdings — and apply the M2/M3 pipeline. **The expected deliverable is upper
-limits, not detections**, and limits are reported as the result.
-Blocked on nothing; can be built in parallel with M1–M4.
+### M5 — Analogue target list ✅ *(list built; application awaits M2)*
+Built **archive-first**, because a catalogue-first list cannot contain CD-35 2722 B at all.
+CD-35 2722 B being rediscovered is the control, and it passes. See
+[`M5-RESULTS.md`](M5-RESULTS.md).
+
+**Two targets survive the epoch-cadence test**, which frame counts badly mislead on
+(beta Pic b's 753 frames are 6 nights):
+- **eta Tel B** — 16 usable H-band nights over an **800-day baseline**, wider separation
+  (~4.2″) than CD-35 2722 B. The best analogue.
+- **GJ 229 B** — 11 usable H-band nights at 5.8 pc, and a **known binary brown dwarf**, so
+  it is a *positive control*: a target where a signal is expected. Run it before believing
+  any analogue null.
+
+The flux cut in SPEC never got used — the existence of usable CRIRES+ spectra turned out to
+be a better feasibility filter than an unsourced magnitude. Applying the M2/M3 pipeline
+still waits on M2. **Expected deliverable remains upper limits, not detections.**
 
 ---
 

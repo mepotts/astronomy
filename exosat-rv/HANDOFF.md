@@ -66,7 +66,11 @@ made much of — unlike §1, this one was checked against the actual PDF.
 | Reducing all 20 nights from raw with esorex/cr2res | M0 measured that 17 are already reduced by ESO. Building cr2res to recover 3 nights is a late optimisation, not a prerequisite. |
 | Using `EMPEROR` (the paper's sampler) for M3 | Would make the reproduction circular. `radvel` is used instead so that agreement means something. |
 | Using `sy_hmag` from the NASA Exoplanet Archive as the companion brightness cut | It is the **system** magnitude, dominated by the primary. Useless for a companion flux cut. |
-| Trusting the NASA Exoplanet Archive alone for the M5 target list | It caps companion mass at 30 M_Jup and therefore **does not contain CD-35 2722 B**. A list built from it would exclude the object being reproduced. |
+| Trusting the NASA Exoplanet Archive alone for the M5 target list | It caps companion mass at 30 M_Jup and therefore **does not contain CD-35 2722 B**. M5 was rebuilt archive-first, with CD-35 2722 B's rediscovery as the control. |
+| Resolving companions by SIMBAD **name** | Identifiers are unforgiving about spacing: `CD-35  2722B` resolves, `CD-35 2722 B` and `BET PIC B` do not. Normalise and match against *all* identifiers instead. |
+| Resolving companions by **position alone** | A cone search finds the system, not the component. It resolved `BET PIC B` to beta Pic **c** and `PZ TEL B` to the G9IV primary. Two stages are needed: cone for the system, identifier match for the component. |
+| Ranking M5 targets by **frame count** | beta Pic b has 753 frames — on 6 nights. AB Pic B's 64 frames span 3 days. An RV orbit needs epochs spread over time; rank by nights and baseline. |
+| Filtering companions by SIMBAD `otype` alone | `tau Boo B` (M3V) and `HD 149274B` (M5) are typed `*` and pass as "borderline". Spectral type is the more specific statement and must override. |
 
 ## 4. Silent failures that cost data
 
@@ -100,6 +104,9 @@ count.
 - **`sorted(...)[0]` on a settings set** looks arbitrary but is deliberate: reduced products
   carry no setting, so they inherit the night's raw settings, and a stable pick is needed.
   Now written as `min(...)`.
+- **`nan pc` distances** were SIMBAD returning NaN rather than NULL for a missing parallax,
+  which a bare truthiness check lets through as though it were a measurement. Now filtered
+  with `math.isfinite`.
 - **`archive.eso.org` timing out** is not a code fault. It served M0's queries, then went
   unreachable for all of M1 (connect timeout, HTTP 000) while `www.eso.org` returned 302 and
   other TAP services 200. Retry before debugging.

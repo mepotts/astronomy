@@ -67,10 +67,14 @@ separation are**:
 
 ## Honest prior-art assessment
 
-- **This is not a novel method.** The technique is the paper's. Applying RV to directly
-  imaged companions has an explicit precursor in the same group — a
-  [GQ Lup B exosatellite search](https://arxiv.org/abs/2408.10299) (Köhler et al. 2024, a
-  co-author here) — which found no satellite. That null result is the honest prior for M5.
+- **This is not a novel method, and the analogue survey is not white space.** The technique
+  is the paper's. M5 measured the archive and found the shape of the programme behind it:
+  **110.23RW** (Nov 2022 – Feb 2023) is a pilot across AB Pic B, beta Pic B and CD-35 2722 B;
+  every later programme (112.25HG, 114.271E, 116.2AP9) is CD-35 2722 B alone. There is also a
+  published null on [GQ Lup B](https://arxiv.org/abs/2408.10299) (Köhler et al. 2024, a
+  co-author here). **The same group is already running the survey M5 imagines.** Anything M5
+  produces is a reanalysis of their data, not an independent search, and must be described
+  that way.
 - **Reproductions rarely overturn detections, and should not be framed as trying to.** The
   169 d signal has a fitted amplitude of 246.45 m/s against ~31 m/s per-epoch errors. The
   realistic outcomes are: it reproduces (most likely and worth recording), or the second

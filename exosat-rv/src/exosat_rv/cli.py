@@ -10,6 +10,8 @@ import typer
 from .archive.fetch import describe, download
 from .archive.tap import build_inventory, query_reduced_products
 from .config import DATA, PUBLISHED
+from .targets.catalog import build as build_targets
+from .targets.catalog import shortlist
 
 app = typer.Typer(add_completion=False, help=__doc__, no_args_is_help=True)
 
@@ -105,3 +107,44 @@ def probe(
         if d.wav_min_nm is not None:
             typer.echo(f"  wavelength: {d.wav_min_nm:.1f} - {d.wav_max_nm:.1f}")
         typer.echo(f"  VERDICT   : {d.verdict()}")
+
+
+@app.command()
+def targets(
+    min_frames: int = typer.Option(4, help="Drop pointings with fewer frames than this."),
+    out: str = typer.Option("m5-targets.json", help="Report filename under data/."),
+) -> None:
+    """M5: substellar companions with public CRIRES+ data, searched archive-first.
+
+    Runs backwards on purpose -- the NASA Exoplanet Archive caps at 30 M_Jup and does not
+    contain CD-35 2722 B, so a catalogue-first list would omit the reproduction target.
+    CD-35 2722 B coming back out is the control.
+    """
+    ts = build_targets(min_frames)
+    sl = shortlist(ts)
+    strong = [t for t in sl if t.match_kind == "identifier" and t.is_substellar]
+    bord = [t for t in sl if t.match_kind == "identifier" and t.is_substellar is None]
+
+    typer.echo(f"{len(ts)} candidate companion pointings -> {len(sl)} shortlisted\n")
+    for label, group in (("STRONG (substellar, identifier-matched)", strong),
+                         ("BORDERLINE (star/BD boundary)", bord)):
+        typer.echo(f"{label}: {len(group)}")
+        for t in group:
+            d = f"{t.distance_pc:.1f} pc" if t.distance_pc else "d unknown"
+            names = ", ".join([t.eso_object] + t.aliases)
+            typer.echo(f"   {t.simbad_id!s:<16}{t.sp_type or '-'!s:<8}"
+                       f"{t.n_frames:>5} frames  {d:<12} [{names}]")
+
+    control = any("2722" in str(t.simbad_id or "") for t in sl)
+    typer.echo(f"\ncontrol -- CD-35 2722 B rediscovered: {'YES' if control else 'NO (pipeline broken)'}")
+
+    DATA.mkdir(exist_ok=True)
+    path = DATA / out
+    path.write_text(json.dumps([{
+        "eso_object": t.eso_object, "aliases": t.aliases, "simbad_id": t.simbad_id,
+        "otype": t.otype, "sp_type": t.sp_type, "plx_mas": t.plx_mas,
+        "distance_pc": t.distance_pc, "n_frames": t.n_frames, "n_public": t.n_public,
+        "match_kind": t.match_kind, "is_substellar": t.is_substellar,
+        "ra_deg": t.ra_deg, "dec_deg": t.dec_deg,
+    } for t in ts], indent=2), encoding="utf-8")
+    typer.echo(f"wrote {path}")

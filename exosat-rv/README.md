@@ -15,8 +15,9 @@ Everything this project does runs on a laptop against public archives. See
 [`DATA-SOURCES.md`](DATA-SOURCES.md) for endpoints and their known incompletenesses, and
 [`BUILD-PLAN.md`](BUILD-PLAN.md) for the milestone plan.
 
-**Current state: M0 and M1 complete.** Findings:
-[`M0-RESULTS.md`](M0-RESULTS.md), [`M1-RESULTS.md`](M1-RESULTS.md).
+**Current state: M0, M1 and M5 complete.** Findings:
+[`M0-RESULTS.md`](M0-RESULTS.md), [`M1-RESULTS.md`](M1-RESULTS.md),
+[`M5-RESULTS.md`](M5-RESULTS.md). Next is M2 (RV extraction).
 
 ⚠️ **M1 retracted two claims M0 published.** M0 asserted that a value in the paper
 (a "Hill radius" of 1.07 au) was impossible; it is a Domingos+2006 *stability limit*, the
@@ -75,11 +76,29 @@ spectral window function and injection-recovery across the alias family.
 orbit — is one the paper already fits and rejects at Δlog Z = 6.9. M4 was re-scoped once
 M1 read the source.)
 
+## The analogue targets (M5)
+
+Searched **archive-first** — a catalogue-first list cannot contain CD-35 2722 B, since the
+NASA Exoplanet Archive caps at 30 M_Jup. Rediscovering CD-35 2722 B is the control, and it
+passes. Frame counts mislead badly (beta Pic b's 753 frames are 6 nights); what matters is
+nights spread over time:
+
+| Target | Usable H nights | Baseline | Why it matters |
+|---|---:|---|---|
+| **eta Tel B** | 16 | 800 d | Best analogue — more baseline than CD-35 2722 B's own campaign, and a wider 4.2″ separation |
+| **GJ 229 B** | 11 | 361 d | 5.8 pc, and a **known binary brown dwarf** — a positive control where a signal is *expected* |
+
+M5 also found that this is **not white space**: programme 110.23RW is a pilot survey by the
+same group across AB Pic B, beta Pic B and CD-35 2722 B, and every later programme targets
+CD-35 2722 B alone.
+
 ## Quickstart
 
 ```bash
 python -m venv .venv && ./.venv/Scripts/python.exe -m pip install -e ".[dev]"
 exosat-rv inventory          # M0: what is public, reduced, and usable right now
+exosat-rv probe              # M1: open a reduced product, check viper can use it
+exosat-rv targets            # M5: analogue target list, archive-first
 pytest -m "not network"      # offline suite
 pytest                       # adds the live archive assertions
 ```
