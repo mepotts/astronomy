@@ -96,11 +96,17 @@ Derived figures used in §3, all from `m4-new.json`:
 - per-submitted-link rejection rates 59/975 = 6.1%, 4,413/13,618 = 32.4%,
   9,383/40,623 = 23.1% (§4 of the draft).
 
-The scripts that produced these are throwaway and live in the session scratchpad, not in the
-repo. **If the note is ever submitted, they should be committed** so column 6 is reproducible
-by a reader. Two of the draft's other numbers now are: `scripts/rescore_gates.py` re-derives
-the funnel under either gate from the on-disk fits, and `scripts/guard_vs_confirmed.py`
-produces the zero-of-26 ground-truth result in §4.
+~~The scripts that produced these are throwaway and live in the session scratchpad.~~
+**Committed 2026-08-07 as `scripts/table1_guard_rates.py`**, which regenerates all six columns
+of Table 1 from the four archived reports and self-checks each row against that run's own
+independently-computed `passed_all_gates`. All four rows reproduce. `scripts/rescore_gates.py`
+re-derives the funnel under either gate from the on-disk fits, and
+`scripts/guard_vs_confirmed.py` produces the zero-of-26 ground-truth result in §4, so every
+derived number in the note is now reproducible from the repo.
+
+**It found one error while doing it.** 288/497 = **57.9477%**, which is 57.9% to one decimal,
+not the **58.0%** the draft carried in both its abstract and Table 1. Corrected in both
+places. The other three rates are right: 4/132 = 3.03%, 983/1,237 = 79.47%, 313/431 = 72.62%.
 
 ---
 

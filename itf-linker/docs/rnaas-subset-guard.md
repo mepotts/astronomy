@@ -48,7 +48,7 @@ survey pipelines, 74.2% from a 387-hypothesis main-belt grid, and 84.4% from a
 2,555-hypothesis 0.55–50 AU grid. Nothing
 about the check changed between those runs. Restricted to solutions already passing this
 pipeline's acceptance gate, itself stricter than the MPC's published rule, it rejects 3.0%,
-58.0% and 79.5%. A wrong association converges on the subset belonging to one object,
+57.9% and 79.5%. A wrong association converges on the subset belonging to one object,
 reporting excellent residuals obtained by discarding the rest. Of twenty-six independently
 confirmed links, it rejects none.
 
@@ -103,7 +103,7 @@ filter would have passed.
 | Associations came from | Distance hypotheses | Converged fits | Rejected by the guard | Meet our acceptance gate | …of which guard-rejected |
 |---|---:|---:|---:|---:|---:|
 | Survey pipelines (survey-made groupings, whole file) | — | 917 | 59 (6.4%) | 132 | 4 (3.0%) |
-| 1.4–5.6 AU grid, 2023–2026 observations | 387 | 5,950 | 4,413 (74.2%) | 497 | 288 (58.0%) |
+| 1.4–5.6 AU grid, 2023–2026 observations | 387 | 5,950 | 4,413 (74.2%) | 497 | 288 (57.9%) |
 | 0.55–50 AU grid, 2023–2026 observations | 2,555 | 11,113 | 9,383 (84.4%) | 1,237 | 983 (79.5%) |
 | 0.55–50 AU grid, 1995–2023 observations ᵃ | 2,555 | 1,738 | 874 (50.3%) | 431 | 313 (72.6%) |
 
