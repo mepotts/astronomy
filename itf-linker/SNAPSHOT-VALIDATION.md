@@ -25,17 +25,23 @@ grouping the world independently agreed with.
 | **Links where every member departed** | **21** |
 | …of those, **cross-observatory** | **14** |
 
-> **Re-run 2026-08-09: 26 complete, 16 cross-observatory.** The archive has three more days
-> in it; the table below is still the 2026-08-06 set. As the header says, re-run rather than
-> trust.
+> **Re-run 2026-08-10: 30 complete, 20 cross-observatory** (21/14 on 08-06, 26/16 on 08-09).
+> The table below is still the 2026-08-06 set. As the header says, re-run rather than trust.
+>
+> **The rate is the point, not the number.** Cumulative confirmed links by snapshot: 0 · 0 ·
+> 0 · 0 · 16 · 17 · 17 · 21 · 21 · 25 · 26 · **30**, against 71,425 departed observations and
+> 19,524 trkSubs now gone entirely. That is roughly **1.75 confirmed links per day** and it
+> has not flattened. This archive is the only asset in the project that appreciates: every
+> other number here is fixed by a run that already happened.
 >
 > **The "every member tracklet has since departed" claim was also checked at a stricter
 > granularity, and it holds.** §4's query takes `.unique()` on `desig`, so a trkSub counts as
 > departed once *any one* of its observations leaves — which is weaker than the sentence
 > above promises. Recomputed so that a member counts only when **no** observation of it
-> survives in the current key set: **26 complete, 16 cross-observatory — identical**. Of
-> 17,680 trkSubs with a departed observation, 17,596 are gone entirely, and not one of the
-> remaining 84 appears in a complete link. The stronger query is in §4.
+> survives in the current key set: **identical at both re-runs** (26/16 on 08-09, 30/20 on
+> 08-10). At the 08-09 check, 17,596 of 17,680 trkSubs with a departed observation were gone
+> entirely and not one of the remaining 84 appeared in a complete link. The stronger query is
+> in §4 and is the one to run.
 
 Fourteen of the twenty-one join tracklets from **different telescopes** — F51+O18,
 F52+V00, F52+W84, F52+G96, N94+V00, O18+X09, and one three-site F51+G96+O18. Those are
@@ -99,36 +105,44 @@ links above are the first ground truth the project has had — somebody else agr
 without any fit, catalogue query or gate of ours. So: find them in a completed run and ask
 what each gate did.
 
-All 26 appear in the M4-new run (28 outcome rows — a member set can form more than one
-link). Reproduce with `scripts/guard_vs_confirmed.py`, which matches on **member trkSubs and
-never on `desig`**, because link ids are positional and mean different things in different
-tables.
+All of them appear in the M4-new run — every confirmed link so far has, which is itself worth
+noting, since the archive and that run were never coordinated. Reproduce with
+`scripts/guard_vs_confirmed.py`, which matches on **member trkSubs and never on `desig`**,
+because link ids are positional and mean different things in different tables.
 
-| | of 28 fitted rows |
-|---|---:|
-| Converged | 26 |
-| Passed every gate in the run | 6 |
-| Kept by our post-fit gate | 6 |
-| **Kept by the MPC's published rule** | **14** |
-| **Rejected by the subset guard alone** | **0** |
+| | 2026-08-09 (n=26) | 2026-08-10 (n=30) |
+|---|---:|---:|
+| Fitted rows | 28 | 32 |
+| Converged | 26 | 30 |
+| Kept by our post-fit gate | 6 | **6** |
+| **Kept by the MPC's published rule** | 14 | **18** |
+| **Rejected by the subset guard alone** | **0** | **0** |
 
-**The guard did not falsely reject anything.** Not once did it discard a confirmed link that
-would otherwise have been kept: every confirmed link it flagged was already failing σ or RMS.
-Its false-rejection rate against ground truth is **0 of 26**. That is the number the RNAAS
-draft could not previously quote, and it is favourable.
+Four new confirmed links arrived in one day, and **all four pass the MPC's published rule and
+fail ours**. The guard's zero holds; the gap between the two gates widened from 14–6 to 18–6.
+This is what the archive is for — the measurement sharpens on its own.
 
-**Our acceptance gate is the thing rejecting confirmed links, not the guard.** It discards 22
-of the 28 — 62 σ failures and 12 RMS failures — for links the world independently confirmed
-are real. The MPC's published rule keeps **14**, more than twice as many, because its RMS
-condition is one conjunct rather than a ceiling (see `M5-RESULTS.md` §5.3). This is the
-A-series gate finding measured against ground truth instead of argued.
+**The guard did not falsely reject anything, at either n.** Not once did it discard a
+confirmed link that would otherwise have been kept: every confirmed link it flagged was
+already failing σ or RMS. Its false-rejection rate against ground truth is **0 of 30**. That
+is the number the RNAAS draft could not previously quote, and it is favourable.
 
-**Two caveats, both real.** *n* = 26 is small, and one clean number is not a rate with an
-error bar on it. More importantly the sample is **biased toward easy links**: these are
-exactly the associations somebody else was able to make, so they are plausibly better
-conditioned than the general population, and a guard that never rejects an easy link may
-still reject hard ones wrongly. What this establishes is a floor — the guard is not
-indiscriminate — not that its false-rejection rate is zero in general.
+**Our acceptance gate is the thing rejecting confirmed links, not the guard.** It discards 26
+of the 32 for links the world independently confirmed are real, where the MPC's published
+rule keeps **18** — three times as many — because its RMS condition is one conjunct rather
+than a ceiling (see `M5-RESULTS.md` §5.3). This is the A-series gate finding measured against
+ground truth instead of argued, and the day's four new links moved it the same way.
+
+**Two caveats, both real, and one is now testable.** *n* = 30 is small, and one clean number
+is not a rate with an error bar. More importantly the sample is **biased toward easy links**:
+these are exactly the associations somebody else was able to make, so they are plausibly
+better conditioned than the general population, and a guard that never rejects an easy link
+may still reject hard ones wrongly. What this establishes is a floor — the guard is not
+indiscriminate — not a false-rejection rate in general. **But the bias is measurable once *n*
+is large enough to stratify.** At ~1.75 confirmed links per day that is a question of waiting,
+not of new work: if the links arriving in month three are no harder than those in week one,
+the bias is real and bounded; if they get harder and the guard still does not reject them,
+the floor starts becoming a rate.
 
 ---
 
@@ -161,7 +175,7 @@ strict = [r for r in links.iter_rows(named=True)
 print(len(strict), sum(1 for r in strict if r["cross_observatory"]))
 ```
 
-Both forms give the same answer as of 2026-08-09 (26 / 16). Run the strict one: it is the
+Both forms give the same answer as of 2026-08-10 (30 / 20). Run the strict one: it is the
 one that matches the sentence in the header, and it costs one extra parquet read. It needs a
 snapshot that still retains its key set — `FULL_KEEP` keeps the newest three.
 
