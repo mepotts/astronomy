@@ -58,6 +58,12 @@ class Published:
     parallax_mas: float = 44.7203           # [TAP] SIMBAD -> 22.36 pc
     star_mass_msun: float = 0.4             # [v1] M-type primary
     bd_mass_mjup: float = 37.0              # [v1]
+    bd_h_mag: float = 12.78
+    """[lit] MKO H of the companion, Wahhaj et al. 2011 (arXiv:1101.2893), +/- 0.12.
+    J = 13.63, K = 12.01. **SPEC previously estimated ~14 and was wrong by 1.2 mag** -- the
+    companion is brighter than assumed, which makes the M5 flux argument more favourable,
+    not less. That discovery paper also gives 31 +/- 8 M_Jup for the mass, consistent with
+    the 37 the RV fit uses."""
     bd_vsini_kms: float = 9.58              # [v1]
     bd_max_prot_days: float = 0.65          # [v1] from vsini; ~260x shorter than the signal
 
@@ -149,6 +155,39 @@ class Published:
 
 
 PUBLISHED = Published()
+
+
+@dataclass(frozen=True)
+class Gj229B:
+    """GJ 229 B (= HD 42581 B), M5's positive control.
+
+    Xuan et al. 2024, "The cool brown dwarf Gliese 229 B is a close binary", Nature
+    (doi:10.1038/s41586-024-08064-x, 2024-10-16). Resolved by VLTI/GRAVITY *and* CRIRES+ --
+    the same instrument this project uses -- into two brown dwarfs.
+
+    Why it is the control: unlike CD-35 2722 B's satellite, this signal is not in dispute.
+    A pipeline that cannot see it is not measuring radial velocities, whatever it prints.
+    """
+
+    period_d: float = 12.1                 # [lit]
+    sma_au: float = 0.042                  # [lit]
+    mass_ba_mjup: float = 38.1             # [lit]
+    mass_bb_mjup: float = 34.4             # [lit]
+    total_mass_mjup: float = 71.4          # [lit] +/- 0.6, dynamical
+    outer_period_yr: float = 250.0         # [lit] Bab about GJ 229 A
+    distance_pc: float = 5.8               # [TAP] SIMBAD parallax
+
+    k_ba_ms: float = 18070.0
+    """Reflex semi-amplitude of Ba due to Bb, from the masses and period above.
+
+    **Not what a single-template fit measures.** The pair is unresolved and double-lined, so
+    the fit tracks a flux-weighted centroid whose amplitude is suppressed because the two
+    components move in antiphase. M5 recovered 6165 m/s, which implies L_Bb/L_Ba ~ 0.45 --
+    entirely reasonable for 38.1 vs 34.4 M_Jup. The suppression is a feature of the target,
+    not a failure of the extraction."""
+
+
+GJ229B = Gj229B()
 
 SEARCH_RADIUS_DEG = 0.03
 """Cone radius for archive lookups. CD-35 2722 B sits 2.8" from its primary, so anything

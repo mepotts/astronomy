@@ -139,6 +139,16 @@ the 21 segments.
 
 ## 6. Verdict
 
+> **M3 settled the ambiguity this section left open.** A positive control on GJ 229 B — a
+> brown dwarf with a *known* 12.1-day binary — shows this pipeline **does** measure real
+> radial velocities: χ² about a constant drops from 80.4 to 16.6 when fitted at the known
+> period (Δχ² = 63.8). The null on CD-35 2722 B is an honest precision limit, not a broken
+> extraction. See [`M3-RESULTS.md`](M3-RESULTS.md).
+>
+> M3 also found that **template spectral match decides whether the extraction works at all**:
+> the same control run with a mismatched template returned reduced χ² = 0.53 — nothing —
+> where the matched template returns 5.36.
+
 **M3's reproduction verdict is: not achieved at this precision.** The published detection is
 neither confirmed nor contradicted by this work — the data as extracted here cannot see a
 246 m/s signal, so this is a null of *method*, not of *nature*.

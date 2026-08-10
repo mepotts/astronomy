@@ -99,10 +99,16 @@ the pipeline against a known answer rather than against a claim under dispute. T
 same shape as `itf-linker`'s ground-truth recovery test, and it should be run before any
 analogue null result is believed.
 
-**Not yet verified from primary sources:** the binary's orbital parameters, and hence the
-amplitude and period the pipeline should recover. Sourcing them is the first M5 task, and
-they must come from the discovery paper — not from recall. Compare
-[`HANDOFF.md`](HANDOFF.md) §1.
+**Now sourced** (Xuan et al. 2024, *Nature*, doi:10.1038/s41586-024-08064-x): period
+**12.1 d**, semi-major axis 0.042 au, component masses **38.1 and 34.4 M_Jup**, dynamical
+total 71.4 ± 0.6 M_Jup, and the pair orbits GJ 229 A every ~250 yr. It was resolved by
+VLTI/GRAVITY *and CRIRES+* — the same instrument this project uses. Implied reflex amplitude
+**K = 18.07 km/s**.
+
+**The control has been run, and it passes.** See [`M3-RESULTS.md`](M3-RESULTS.md): fitting at
+the known 12.1 d period drops χ² from 80.4 to 16.6 (Δχ² = 63.8 for two parameters). The
+recovered amplitude is 6165 m/s — 34% of 18.07 km/s — which is what an unresolved
+double-lined pair should give, and implies L_Bb/L_Ba ≈ 0.45.
 
 ## 6. Both targets already have reduced products
 
@@ -129,10 +135,13 @@ count is an upper bound until filtered by OBJECT name.**
 
 ## 7. What M5 does not establish
 
-- **No H magnitudes.** The flux cut in SPEC is still anchored on an unverified estimate of
-  CD-35 2722 B's H mag. SIMBAD does not resolve most companions' photometry. Empirically,
-  the existence of usable CRIRES+ spectra is a better feasibility proof than a magnitude
-  cut — which is how this list was built — but the cut itself remains unsourced.
+- ~~**No H magnitudes.**~~ **Resolved.** CD-35 2722 B is **H = 12.78 ± 0.12** (MKO;
+  Wahhaj et al. 2011, arXiv:1101.2893; J = 13.63, K = 12.01). SPEC had estimated ~14 and was
+  wrong by 1.2 mag — the companion is *brighter* than assumed, which makes the flux argument
+  more favourable. Rescaling the paper's 31.44 m/s from this anchor: DH Tau b (H = 14.96)
+  → ~86 m/s, kappa And b (15.01) → ~88, TYC 8998-760-1 b (15.87) → ~130, 51 Eri b (18.99)
+  → ~549. The empirical filter used to build this list — does usable CRIRES+ data exist —
+  remains the better test, but the cut is now anchored on a measured value.
 - **10 candidates are unresolved or weakly matched** and need by-hand checks: eps Ind B and
   B Aql resolved to nothing (eps Ind's proper motion is ~4.7″/yr, so its catalogue position
   is minutes of arc from where it was observed), and 8 more matched only by proximity.

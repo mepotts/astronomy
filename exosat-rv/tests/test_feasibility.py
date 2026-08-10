@@ -172,3 +172,52 @@ def test_table1_logz_difference_does_not_match_the_quoted_delta():
     Table 1's logZ values differ by 6.641, but the text quotes 6.9."""
     assert P.two_sat_logz - P.one_sat_logz == pytest.approx(6.641, abs=0.001)
     assert P.delta_logz_two_vs_one == 6.9
+
+
+# --- M3 positive control: GJ 229 B ------------------------------------------------------
+
+
+def test_gj229b_control_signal_dwarfs_the_achieved_precision():
+    """The control only means something if its signal is far above the pipeline's noise."""
+    from exosat_rv.config import GJ229B
+
+    k = rv_semi_amplitude(GJ229B.mass_bb_mjup, GJ229B.mass_ba_mjup, GJ229B.period_d)
+    assert k == pytest.approx(GJ229B.k_ba_ms, rel=0.02)
+    assert k / 1850.0 > 9          # vs the measured ~1850 m/s per-epoch precision
+    assert k / P.rv_err_nodding_ms > 500
+
+
+def test_gj229b_component_masses_sum_to_the_dynamical_total():
+    from exosat_rv.config import GJ229B
+
+    total = GJ229B.mass_ba_mjup + GJ229B.mass_bb_mjup
+    assert total == pytest.approx(GJ229B.total_mass_mjup, abs=1.5)
+
+
+def test_double_lined_dilution_explains_the_recovered_amplitude():
+    """K = 6165 m/s was measured; the antiphase blend suppresses it from 18.07 km/s.
+
+    Pinned so the explanation in M3-RESULTS section 4 cannot drift from the arithmetic.
+    """
+    from exosat_rv.config import GJ229B
+
+    k_ba, k_bb, measured = GJ229B.k_ba_ms, 20010.0, 6165.0
+    centroid = lambda f: (k_ba - f * k_bb) / (1 + f)
+    lo, hi = 0.0, 1.0
+    for _ in range(60):
+        mid = 0.5 * (lo + hi)
+        lo, hi = (mid, hi) if centroid(mid) > measured else (lo, mid)
+    assert 0.35 < 0.5 * (lo + hi) < 0.55      # a near-equal-luminosity pair
+    assert centroid(0.0) > measured * 2       # unblended would be far larger
+
+
+def test_companion_h_magnitude_is_sourced_and_bright():
+    """SPEC estimated ~14 and was wrong by 1.2 mag; Wahhaj+2011 measured 12.78."""
+    assert P.bd_h_mag == pytest.approx(12.78, abs=0.01)
+    assert photon_limited_precision(P.bd_h_mag, P.bd_h_mag, P.rv_err_nodding_ms) == pytest.approx(
+        P.rv_err_nodding_ms
+    )
+    # A companion 2 mag fainter costs a factor 10^0.4 in precision.
+    assert photon_limited_precision(P.bd_h_mag + 2, P.bd_h_mag, 31.44) == pytest.approx(
+        31.44 * 10**0.4, rel=1e-9
+    )
