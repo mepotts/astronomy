@@ -27,6 +27,16 @@ The setting before the comma is what selects the paper's H-band configuration.
    client-side.
 3. There is no `exptime` and no `tel_ambi_fwhm`. The exposure column is `exp_start`.
 
+**`filter_path` is not fully reliable.** M2 cross-checked all 18 reduced products against the
+raw table and found **1 mismatch in 18**: the two frames of 2024-01-03 are labelled
+`K,HK` in `dbo.raw`, but the ADP product built from exactly those frames (its `PROV1`/`PROV2`
+name them) carries `HIERARCH ESO INS WLEN ID = H1567`, `CWLEN = 1567.099 nm`, and spans
+1468.9–1779.9 nm. It is an H-band observation.
+
+**The product header is authoritative; `filter_path` is a hint.** Any band-based count taken
+from `dbo.raw` alone is therefore approximate — see M0-RESULTS §1 for the count this
+corrected.
+
 ### `ivoa.ObsCore` — one row per product
 
 `calib_level = 2` is a **pipeline-reduced 1-D spectrum**. These are what let this project

@@ -29,6 +29,17 @@ The paper's dataset *is* the set of public H-band nights, with nothing held back
 identity is asserted as a live test (`test_live_inventory_matches_the_published_epoch_count`)
 so it fails loudly when the embargo lifts rather than drifting unnoticed.
 
+> **CORRECTED BY M2 — the match is real but the arithmetic above is off by one, in both
+> terms.** `dbo.raw` mislabels 2024-01-03 as `K` when the product built from those exact
+> frames is `H1567` (see DATA-SOURCES). The true count is **18 reduced + 3 raw-only = 21
+> public H-band nights**, and the paper says it *obtained* **21 epochs and discarded one**
+> for continuum S/N ~5 — leaving the 20 it analysed. So the correspondence is
+> 21 nights ↔ 21 epochs, not 20 ↔ 20.
+>
+> M2 also identified the discarded epoch independently: **2024-10-21**, whose median
+> per-segment S/N is 2.2 against a median of 18.3 across the other epochs, and whose best
+> segment reaches 4.9 — the paper's "~5". See M2-RESULTS §1.
+
 Two independent corroborations that we are looking at the right data:
 
 - ObsCore reports the reduced products spanning **1469–1780 nm**, matching the paper's

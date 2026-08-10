@@ -105,5 +105,9 @@ def test_live_inventory_matches_the_published_epoch_count():
 
     inv = build_inventory("CD-35 2722 B", P.star_ra_deg, P.star_dec_deg)
     s = inv.summary("H")
+    # 20, not 21, because `dbo.raw` mislabels 2024-01-03 as K-band while the product built
+    # from those exact frames is H1567. The archive-only count is therefore one short of the
+    # 21 epochs the paper obtained; M2 verified the true band from the product header.
+    assert s["usable_now"] + s["reduction_gap"] == P.n_epochs_obtained - 1
     assert s["usable_now"] + s["reduction_gap"] == P.n_epochs_used
     assert s["usable_baseline"] == ["2023-10-13", "2025-01-21"]
