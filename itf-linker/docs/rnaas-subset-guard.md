@@ -2,11 +2,14 @@
 
 > **Front matter (not part of the note; excluded from the word count).**
 >
-> **Word count: 1,297 words** — title through references inclusive, counting the title,
+> **Word count: 1,499 words** — title through references inclusive, counting the title,
 > author line, abstract, section headings, every cell of the table, its caption and
 > footnote, and the reference list. The RNAAS limit is 1,500 with 150 reserved for a
-> required abstract: this abstract is **145 words** and the rest of the note is **1,152**,
-> so both budgets are met with 203 words spare. Counted by stripping this front-matter
+> required abstract: this abstract is **146 words** and the rest of the note is **1,353**,
+> so both budgets are met, with 1 words spare on the total and 4 on the
+> abstract. That is much tighter than the 203 spare of the 2026-08-06 draft: correcting the
+> statement of the MPC's criteria and adding the ground-truth result in §4 cost most of the
+> margin. Counted by stripping this front-matter
 > block, removing Markdown syntax characters (`| * # > _`), and counting whitespace-
 > separated tokens containing at least one alphanumeric character; the one-liner that
 > produces it is recorded in `rnaas-notes.md`.
@@ -14,15 +17,15 @@
 > **One table, no figure — and why.** RNAAS permits one or the other. The finding is a
 > comparison of exact rates across four runs, and every one of those rates needs its
 > denominator visible to be worth anything: "84.4%" means nothing without "of 11,113
-> converged fits", and the second rate — the guard's effect *restricted to solutions the
-> published criteria already accept* — is the load-bearing number and cannot be read off a
+> converged fits", and the second rate — the guard's effect *restricted to solutions our own
+> acceptance gate already accepts* — is the load-bearing number and cannot be read off a
 > bar chart. Four rows of five numeric columns gives a reader every count and every
 > denominator to check against the archived run reports, which a plot of four rates cannot.
 > The alternative considered and rejected was a scatter of
 > residual RMS against used-observation fraction, which would show the mechanism vividly but
 > would carry no denominators, would need a log axis to be legible, and would answer a
-> weaker question ("are these correlated?") than the table answers ("how often does the
-> published filter accept a subset fit?"). Two sentences of prose (§3) recover most of what
+> weaker question ("are these correlated?") than the table answers ("how often does an
+> RMS-based filter accept a subset fit?"). Two sentences of prose (§3) recover most of what
 > that figure would have shown.
 >
 > **Status: draft only.** Nothing here has been submitted anywhere, and the bibliographic
@@ -39,14 +42,15 @@
 Pipelines that link archival astrometry propose associations from a hypothesis grid and
 filter them on the residual RMS of a fitted orbit. That filter is weakest where it is most
 needed. In a HelioLinC-style linker over the Minor Planet Center's Isolated Tracklet File, a
-supplementary check — credit a converged fit only if Find_Orb used at least 80% of the
-observations and the used ones still span three nights — rejected 6.4% of converged fits
-when the associations came from survey pipelines, 74.2% when they came from a
-387-hypothesis main-belt grid, and 84.4% from a 2,555-hypothesis 0.55–50 AU grid. Nothing
-about the check changed between those runs. Restricted to solutions that already satisfy the
-MPC's published post-fit criteria, the same check rejects 3.0%, 58.0% and 79.5%. A wrong
-association converges on the subset belonging to one object and reports excellent residuals
-— obtained by discarding the rest.
+supplementary check — credit a converged fit only if the solver used at least 80% of the
+observations and those still span three nights — rejected 6.4% of converged fits from
+survey pipelines, 74.2% from a 387-hypothesis main-belt grid, and 84.4% from a
+2,555-hypothesis 0.55–50 AU grid. Nothing
+about the check changed between those runs. Restricted to solutions already passing this
+pipeline's acceptance gate, itself stricter than the MPC's published rule, it rejects 3.0%,
+58.0% and 79.5%. A wrong association converges on the subset belonging to one object,
+reporting excellent residuals obtained by discarding the rest. Of twenty-six independently
+confirmed links, it rejects none.
 
 ## 1. The question the published criteria do not ask
 
@@ -54,11 +58,18 @@ The Minor Planet Center's Isolated Tracklet File (ITF) holds roughly 9.3 million
 observations that no pipeline ever linked to an orbit. Recovering orbits from it is a
 hypothesis-grid problem: assume a heliocentric distance and radial velocity, propagate every
 tracklet to a common epoch, cluster, and fit the clusters. The MPC publishes the criteria an
-ITF-to-ITF identification must meet — at least three distinct nights, an arc of at least
-three days, a converged fit with residual RMS ≤ 0.25″, and, for links spanning exactly three
-nights, σ(a) and σ(q) < 0.05 AU, σ(i) < 0.5°, σ(e) < 0.05.
+ITF-to-ITF identification must meet: three distinct nights and a three-day arc before
+fitting, and after it, rejection only on non-convergence or when *every* clause of an
+arc-length rule holds at once — a short arc **and** RMS > 0.25″ **and** insufficient orbit
+quality (σ(a), σ(q) < 0.05 AU, σ(i) < 0.5°, σ(e) < 0.05, e < 0.5).
 
-None of them asks whether the fitted orbit accounts for all of the observations submitted
+Because those clauses are conjunctive, a converged fit with RMS ≤ 0.25″ is never
+quality-tested: the published filter is *more* permissive than a plain RMS ceiling.
+The pipeline here applies a stricter gate — an unconditional 0.25″ ceiling plus the σ limits
+on three-night links — and every rate below is measured against it, which understates the
+problem rather than overstating it.
+
+Neither rule asks whether the fitted orbit accounts for all of the observations submitted
 with it. Least-squares orbit determination is free to reject observations, and a wrong
 association gives it every reason to: the solver converges on the subset belonging to one
 object, drops the rest, and reports an RMS that is not merely acceptable but frequently
@@ -84,11 +95,12 @@ the earlier run's proposal, refusal, recall and precision figures digit for digi
 intervening rewrites are controlled for.
 
 **Table 1.** Rejection rate of the subset guard by provenance of the associations. Column 5
-counts converged fits meeting every published post-fit criterion (RMS, and the four σ limits
-where applicable); column 6 is the subset of those the guard nevertheless rejects — i.e. the
-solutions an RMS-based filter would have passed.
+counts converged fits meeting this pipeline's acceptance gate (an unconditional 0.25″ RMS
+ceiling plus the σ limits on three-night links, stricter than the published rule on both);
+column 6 is the subset of those the guard nevertheless rejects — the solutions an RMS-based
+filter would have passed.
 
-| Associations came from | Distance hypotheses | Converged fits | Rejected by the guard | Meet all published criteria | …of which guard-rejected |
+| Associations came from | Distance hypotheses | Converged fits | Rejected by the guard | Meet our acceptance gate | …of which guard-rejected |
 |---|---:|---:|---:|---:|---:|
 | Survey pipelines (survey-made groupings, whole file) | — | 917 | 59 (6.4%) | 132 | 4 (3.0%) |
 | 1.4–5.6 AU grid, 2023–2026 observations | 387 | 5,950 | 4,413 (74.2%) | 497 | 288 (58.0%) |
@@ -102,10 +114,10 @@ not fit the simple monotonic story — see §4.
 ## 3. The mechanism, and why RMS cannot see it
 
 Residual RMS is not uncorrelated with subset fitting — over the third row, median RMS is
-0.39″ for guard-rejected fits against 0.21″ for the rest. But the published threshold does
-not act on that difference usefully. Of the 4,802 converged fits with RMS ≤ 0.25″ in that
-run, 3,842 (80%) are subset fits; 583 of the 983 solutions that pass every published
-criterion and fail the guard have RMS ≤ 0.10″. Discarding observations improves the residual
+0.39″ for guard-rejected fits against 0.21″ for the rest. But a 0.25″ threshold does not act
+on that difference usefully. Of the 4,802 converged fits with RMS ≤ 0.25″ in that run, 3,842
+(80%) are subset fits; 583 of the 983 solutions that pass our acceptance gate and fail the
+guard have RMS ≤ 0.10″. Discarding observations improves the residual
 of what remains, so the statistic meant to detect a bad association is partly produced by
 it.
 
@@ -114,12 +126,9 @@ residuals and zero degrees of freedom, so the RMS is identically zero and the fo
 uncertainties are small. Eleven such fits sit in that run's 983. One, from three
 observatories over three nights, used 3 of its 11 observations and returned RMS 2 × 10⁻¹⁰″,
 a = 1.4240 ± 0.0237 AU, q = 0.7083 ± 0.0066 AU — inside all four of the MPC's σ limits,
-formally an Apollo, and, at an inclination of 0.017° ± 0.004°, an artefact.
-
-> **Correction, 2026-08-07.** The MPC's orbit-quality test has **five** conditions, not
-> four: the four σ limits *and* `e < 0.5`. This fit has e = 1 − q/a ≈ 0.503, so it fails
-> the fifth. The paragraph's point stands — the σ limits do not catch it, and neither does
-> RMS — but "inside all four" should not be read as "the MPC's quality test passes it".
+formally an Apollo, and, at an inclination of 0.017° ± 0.004°, an artefact. What catches it
+is the fifth published quality condition, not any uncertainty: e = 1 − q/a ≈ 0.503 just
+exceeds the e < 0.5 bound. The formal uncertainties it passes cleanly.
 
 ## 4. What this does and does not establish
 
@@ -143,17 +152,12 @@ wide-grid runs agree far better (72.6% against 79.5%). And an 80% threshold with
 three-night rule is a blunt instrument that will reject some correct links whose astrometry
 merely contains an outlier.
 
-**How often it does reject a correct link is now measurable, and the answer is zero of 26.**
-The snapshot archive supplies ground truth independent of every gate here: a proposed link
-whose member tracklets have all since left the ITF is one somebody else independently made.
-Twenty-six such links exist as of 2026-08-09, and all appear in the wide-grid run (28
-outcome rows). The guard rejected **none** of them on its own — every confirmed link it
-flagged was already failing the acceptance gate's σ or RMS conditions. The acceptance gate
-discarded 22 of the 28; the guard added nothing to that. Two caveats belong with the number:
-*n* = 26 is small, and the sample is biased toward easy links, since these are precisely the
-associations somebody else was able to make. It establishes a floor — the guard is not
-indiscriminate — rather than a general false-rejection rate.
-(`scripts/guard_vs_confirmed.py`; `../SNAPSHOT-VALIDATION.md` §3a.)
+**How often it rejects a correct link is measurable, and the answer is zero of 26.** A daily
+archive of the ITF gives ground truth independent of every gate here: a link whose members
+have all since left the file is one somebody else independently made. Twenty-six exist, all
+in the wide-grid run. The guard rejected none on its own; each it flagged was already failing
+the acceptance gate, which discarded 22 of the 28 fitted rows. With *n* = 26 and a sample
+biased toward easy links, this is a floor, not a rate.
 
 The practical claim is narrower than the numbers look, and is this: on the widest grid a
 check the MPC does not publish rejects more converged solutions than the published 0.25″

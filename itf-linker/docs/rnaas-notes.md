@@ -7,8 +7,12 @@ draft is a draft; several things below must be resolved before it could be.
 
 ## 1. Word count
 
-1,250 words for the note (title through references), of which the abstract is 145 — inside
-the 1,500 / 150 limits with 250 spare. Reproduce with:
+**1,499 words** for the note (title through references), of which the abstract is 146 —
+inside the 1,500 / 150 limits, but only just. It was 1,250 on 2026-08-06; the 2026-08-07
+revision spent the margin on correcting the statement of the MPC's criteria in §1 and adding
+the ground-truth result to §4. **There is one word of slack.** Anything added now has to
+displace something, and the counting method here is deliberately generous (every numeral in
+a table cell counts as a word), so the true submitted count will be lower. Reproduce with:
 
 ```bash
 python -c "
@@ -28,9 +32,9 @@ conventions will be lower, not higher.
 ## 2. Table, not figure
 
 Stated in the draft's front matter. The short version: the finding is four rates whose
-denominators are the whole argument, plus a second rate (guard rejections *among
-published-criteria passers*) that is the load-bearing number and is unreadable off a bar
-chart. The rejected alternative was a scatter of residual RMS against used-observation
+denominators are the whole argument, plus a second rate (guard rejections *among links our
+own acceptance gate already accepts*) that is the load-bearing number and is unreadable off a
+bar chart. The rejected alternative was a scatter of residual RMS against used-observation
 fraction; it shows the mechanism well but carries no denominators and answers a weaker
 question. §3 of the draft recovers most of it in two sentences.
 
@@ -65,8 +69,10 @@ Line numbers are as of this writing; section numbers are stable.
 > one conjunct of an arc-length bullet; it scopes the σ block to exactly-three-night links
 > where the MPC has a separate bullet for more than 3 nights; and it never implemented the
 > published `e < 0.5`. **The measurements below are unchanged and correct — they measure our
-> gate.** Only the label is wrong. Anything sent to a journal must say "our acceptance gate",
-> not "the MPC's published criteria". See `src/itf_linker/fit/gates.py`.
+> gate.** Only the label is wrong. **The draft itself was relabelled on 2026-08-07** and now
+> says "our acceptance gate" throughout, with §1 stating the MPC's actual conjunctive rule;
+> this file's own tables below still use the old wording and are left as the record of what
+> was measured. See `src/itf_linker/fit/gates.py`.
 
 Columns 5 and 6 of Table 1, and all of §3, are derived here from the per-fit records
 (`fits.outcomes[]`) in the four report JSONs. Method: a converged fit "meets all published
@@ -92,7 +98,9 @@ Derived figures used in §3, all from `m4-new.json`:
 
 The scripts that produced these are throwaway and live in the session scratchpad, not in the
 repo. **If the note is ever submitted, they should be committed** so column 6 is reproducible
-by a reader.
+by a reader. Two of the draft's other numbers now are: `scripts/rescore_gates.py` re-derives
+the funnel under either gate from the on-disk fits, and `scripts/guard_vs_confirmed.py`
+produces the zero-of-26 ground-truth result in §4.
 
 ---
 
