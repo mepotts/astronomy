@@ -136,6 +136,16 @@ M5 also found that this is **not white space**: programme 110.23RW is a pilot su
 same group across AB Pic B, beta Pic B and CD-35 2722 B, and every later programme targets
 CD-35 2722 B alone.
 
+## Continuing this work
+
+Start at [`HANDOFF.md`](HANDOFF.md) — it opens with where the project stands and the ordered
+next actions, then indexes every claim published here and later found false.
+
+To rebuild the RV extraction from scratch, [`docs/viper-runbook.md`](docs/viper-runbook.md)
+has the full sequence: WSL setup, the two gnuplot patches, the ADP→cr2res conversion, the
+Ångström-vs-nm template trap, the mandatory `-fts` H-band flag, and the positive control that
+must pass before any null from the pipeline means anything.
+
 ## Quickstart
 
 ```bash
@@ -143,6 +153,8 @@ python -m venv .venv && ./.venv/Scripts/python.exe -m pip install -e ".[dev]"
 exosat-rv inventory          # M0: what is public, reduced, and usable right now
 exosat-rv probe              # M1: open a reduced product, check viper can use it
 exosat-rv targets            # M5: analogue target list, archive-first
+exosat-rv alias              # M4: is the second period set by the data or the sampling?
+exosat-rv orbits             # M6: reproduce the model comparison from the published RVs
 pytest -m "not network"      # offline suite
 pytest                       # adds the live archive assertions
 ```

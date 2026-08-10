@@ -1,13 +1,48 @@
 # HANDOFF — exosat-rv
 
-Picking this up cold? Read in this order:
+## Where the project stands
+
+**The paper's conclusion reproduces. Its measurements do not.** Those are separate claims and
+this project conflated them for three milestones.
+
+- ✅ Fitting the authors' **published** RV table with an independent code recovers the 169-day
+  signal above the 0.1% FAP level, prefers an ~88-day second satellite over 14/70/115 d, and
+  matches K₂ to 0.1%. ([M6](M6-RESULTS.md))
+- ❌ Re-deriving the RVs from public archive spectra reaches ~800 m/s against the 31.44 m/s
+  needed. ([M2](M2-RESULTS.md))
+- ✅ A positive control on GJ 229 B proves the extraction is *coarse*, not *broken*. ([M3](M3-RESULTS.md))
+
+**This is what a new agent should do next**, in order:
+
+1. **Establish whether cell-free H-band precision is even capable of ~31 m/s.** No paper read
+   so far characterises it; Köhler et al. 2025's cell-free demonstration is K band. If the
+   answer is no, the archive route is closed and that is a publishable negative result.
+2. **Re-extract the individual nodding frames** with `cr2res` from the public raw data. ESO
+   archives only the combined product, and this is the only remaining difference the authors
+   themselves name. See [`docs/viper-runbook.md`](docs/viper-runbook.md) §7.
+3. **Only then** apply the pipeline to **eta Tel B** — 16 usable H-band nights over an
+   800-day baseline, no published RVs, nobody has looked. ([M5](M5-RESULTS.md))
+
+Any new detection requires step 1 or 2 to succeed. M6 contributes nothing to it: fitting
+someone's published velocities cannot find a new satellite.
+
+## Reading order
 
 1. [`SPEC.md`](SPEC.md) — what is being tested and why it is worth testing.
-2. [`M0-RESULTS.md`](M0-RESULTS.md) — what the archive actually contains.
-3. [`M1-RESULTS.md`](M1-RESULTS.md) — the source read properly, and three corrections to M0.
-   **Read this before trusting anything in M0.**
-4. [`BUILD-PLAN.md`](BUILD-PLAN.md) — stack, architecture, milestones.
-5. [`DATA-SOURCES.md`](DATA-SOURCES.md) — endpoints, and the traps in each.
+2. [`M0-RESULTS.md`](M0-RESULTS.md) — what the archive contains. **Its arithmetic is corrected
+   by M1 and M2; do not quote it alone.**
+3. [`M1-RESULTS.md`](M1-RESULTS.md) — the source read properly, and two retractions of M0.
+4. [`M2-RESULTS.md`](M2-RESULTS.md) — RV extraction, and why it falls short. Carries two
+   corrections of its own.
+5. [`M3-RESULTS.md`](M3-RESULTS.md) — the positive control that makes M2's null readable.
+6. [`M6-RESULTS.md`](M6-RESULTS.md) — **the reproduction of the conclusion.** Read before
+   forming any view on whether the paper holds up.
+7. [`M4-RESULTS.md`](M4-RESULTS.md) — the alias structure of the second signal.
+8. [`M5-RESULTS.md`](M5-RESULTS.md) — analogue targets, and the control's provenance.
+9. [`BUILD-PLAN.md`](BUILD-PLAN.md) — stack, architecture, milestones.
+10. [`DATA-SOURCES.md`](DATA-SOURCES.md) — endpoints, and the traps in each.
+11. [`docs/viper-runbook.md`](docs/viper-runbook.md) — **rebuild the RV pipeline from
+    scratch.** Nothing in it is documented upstream for archive data.
 
 The rest of this file is the expensive part: claims that turned out false, approaches
 measured and rejected, and silent failures that cost data. The code is not the expensive
@@ -170,11 +205,18 @@ consistency check, not evidence.
 
 ## 7. Risk register
 
-**The single unretired risk is whether ESO's `calib_level=2` products preserve what `viper`
-needs.** If they are order-merged or resampled such that the per-order wavelength solution
-is destroyed, forward-modelling RV extraction at tens of m/s is not possible from them, and
-the project reverts to building cr2res for all 20 nights — a much larger undertaking.
-**RETIRED in M1.** The products are per-order extractions with native wavelength solutions
+**OPEN — the only live risk: cell-free H-band RV precision may not reach ~31 m/s at all.**
+CRIRES+ is unstabilised and drifts up to 1 km/s without a good wavelength correction. Telluric
+lines are the cell-free reference and are stable to ~10 m/s, but every published
+characterisation of that regime (Köhler et al. 2025 §5.4) is **K band, on bright RV standard
+stars**. This project needs **H band, on an S/N ≈ 18 companion**, and nothing read so far says
+that is achievable. If it is not, the archive route to new exosatellites is closed — which is
+itself worth publishing. Establish this before more tuning.
+
+**RETIRED (M1) — whether ESO's `calib_level=2` products preserve what `viper` needs.**
+If they had been order-merged or resampled, forward-modelling RV extraction would have been
+impossible from them and the project would have reverted to building cr2res for all 20
+nights. The products are per-order extractions with native wavelength solutions
 (7 orders x 3 detectors x 2048 pixels, labelled by `ORDER`/`DETEC`/`XPOS`, curved dispersion
 within each segment). `viper` can use them. See M1-RESULTS §5.
 

@@ -1,0 +1,48 @@
+cff-version: 1.2.0
+message: "If you use exosat-rv in your research, please cite it as below."
+type: software
+title: "exosat-rv: an independent reproduction of the first exosatellite radial-velocity detection"
+abstract: >-
+  A Python pipeline that reproduces, from public ESO archive data, the first radial-velocity
+  detection of a satellite around a substellar object — a planetary-mass companion to the
+  brown dwarf CD-35 2722 B (Hoy et al. 2026). It inventories the CRIRES+ holdings, converts
+  ESO ADP spectra losslessly into the cr2res layout that the viper RV code consumes, extracts
+  velocities, and tests the published model comparison against an independent fitter. The
+  paper's conclusion reproduces from its published radial velocities; the velocities
+  themselves do not yet reproduce from the archive, and a positive control on the known
+  binary brown dwarf GJ 229 B establishes that the shortfall is precision rather than a
+  broken extraction. Every claim the project published and later found false is indexed in
+  HANDOFF.md. No discovery is claimed and nothing is submitted anywhere.
+authors:
+  - family-names: Potts
+    given-names: Matthew
+    email: matthew.e.potts@gmail.com
+    # orcid: "https://orcid.org/0000-0000-0000-0000"  # TODO: add your ORCID
+repository-code: "https://github.com/mepotts/astronomy/tree/main/exosat-rv"
+license: MIT
+version: "0.1.0"
+date-released: "2026-08-10"
+keywords:
+  - astronomy
+  - exomoon
+  - exosatellite
+  - radial velocity
+  - brown dwarf
+  - CRIRES+
+  - direct imaging
+  - reproducibility
+references:
+  - type: article
+    title: "Planetary-Mass Exosatellite Detected Around the Substellar Companion of a Star"
+    authors:
+      - family-names: Hoy
+        given-names: Kevin
+    year: 2026
+    notes: "arXiv:2607.05193; Nature. The claim under test."
+  - type: article
+    title: "viper: High-precision radial velocities from the optical to the infrared"
+    authors:
+      - family-names: "Köhler"
+        given-names: J.
+    year: 2025
+    notes: "arXiv:2505.08315; A&A 698, A44. The RV code used, and the source of the CRIRES+ configuration facts."

@@ -182,9 +182,10 @@ product. That last is the only remaining difference the authors themselves ident
 > the same control run with a mismatched template returned reduced χ² = 0.53 — nothing —
 > where the matched template returns 5.36.
 
-**M3's reproduction verdict is: not achieved at this precision.** The published detection is
-neither confirmed nor contradicted by this work — the data as extracted here cannot see a
-246 m/s signal, so this is a null of *method*, not of *nature*.
+**M3's reproduction verdict is: not achieved at this precision.** The *velocities* as
+extracted here cannot see a 246 m/s signal, so this is a null of *method*, not of *nature*.
+It bears on the measurement only — the paper's **conclusion** is reproduced separately and
+successfully in [`M6-RESULTS.md`](M6-RESULTS.md) from its published RVs.
 
 What the milestone does establish, and what is reusable:
 
