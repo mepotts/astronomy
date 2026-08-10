@@ -15,9 +15,29 @@ Everything this project does runs on a laptop against public archives. See
 [`DATA-SOURCES.md`](DATA-SOURCES.md) for endpoints and their known incompletenesses, and
 [`BUILD-PLAN.md`](BUILD-PLAN.md) for the milestone plan.
 
-**Current state: M0, M1 and M5 complete.** Findings:
-[`M0-RESULTS.md`](M0-RESULTS.md), [`M1-RESULTS.md`](M1-RESULTS.md),
-[`M5-RESULTS.md`](M5-RESULTS.md). Next is M2 (RV extraction).
+**Current state: M0–M5 complete.** Findings:
+[`M0`](M0-RESULTS.md) archive · [`M1`](M1-RESULTS.md) the source, and two retractions ·
+[`M2`](M2-RESULTS.md) RV extraction · [`M3`](M3-RESULTS.md) **the verdict** ·
+[`M4`](M4-RESULTS.md) aliases · [`M5`](M5-RESULTS.md) analogues.
+
+## The verdict
+
+**The published detection is neither confirmed nor contradicted by this work.** The pipeline
+built here reaches ~1850 m/s per epoch; the signal is 246 m/s. Non-detection is arithmetic,
+not evidence.
+
+That reading is only available because of a **positive control**. A null on its own cannot
+distinguish an imprecise pipeline from a broken one. Run against **GJ 229 B** — a brown dwarf
+with a *known* 12.1-day binary companion (Xuan et al. 2024) — the same pipeline recovers the
+signal: χ² about a constant falls from 80.4 to 16.6 when fitted at the known period,
+Δχ² = 63.8 for two parameters. It measures real velocities; it is simply coarse.
+
+| | |
+|---|---|
+| Precision achieved | ~1850 m/s (from within-night repeats, not formal errors) |
+| Paper's precision | 31.44 m/s |
+| Signal sought | 246 m/s |
+| Gap to close | 25–60× |
 
 ⚠️ **M1 retracted two claims M0 published.** M0 asserted that a value in the paper
 (a "Hill radius" of 1.07 au) was impossible; it is a Domingos+2006 *stability limit*, the
@@ -75,6 +95,23 @@ spectral window function and injection-recovery across the alias family.
 (The obvious alternative — that the second signal is a harmonic of an eccentric 169-day
 orbit — is one the paper already fits and rejects at Δlog Z = 6.9. M4 was re-scoped once
 M1 read the source.)
+
+## What else came out
+
+**M4 — the second signal's period.** All four candidates (14, 70, 88, 115 d) lie on a
+one-year alias comb built from the *primary* 169.45 d signal. Injection-recovery on the real
+cadence shows a true 115-day signal is recovered as ~87 d **92%** of the time, so peak
+position cannot discriminate. But a 115-day signal clears the 1% FAP only **6%** of the time
+against **74%** for 87.46 d — so the *significance* of the observed peak does favour the
+paper's choice, by an argument stronger than the Δlog Z = 2.6 it quotes.
+
+**M1 — two of M0's published claims were wrong**, found by reading the actual PDF. M0 had
+"disproved" a value in the paper that turned out to be correct. Both retractions are indexed
+in [`HANDOFF.md`](HANDOFF.md) §1.
+
+**M2 — a converter that unlocks the archive.** ESO's products can drive `viper` after a
+verified-lossless reshape into cr2res layout, plus four undocumented configuration facts
+(K-band FTS default, Ångström-vs-nm templates, gnuplot at import, `termios`).
 
 ## The analogue targets (M5)
 

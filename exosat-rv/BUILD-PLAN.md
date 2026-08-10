@@ -24,6 +24,10 @@ Desk/data/software-only: no telescope time, no proprietary data, no paid service
 **Deliberately deferred:** no parallelism, no database, no cr2res build. M0 showed the
 data volume is tens of spectra, not millions of rows.
 
+**Added after M2:** `viper` (external, run under WSL) for RV extraction, `scipy` for
+false-alarm levels, `pypdf` for reading the preprint. `radvel` was never reached — M3 ended
+at a precision limit before an independent Keplerian fitter would have meant anything.
+
 ---
 
 ## 2. Architecture
@@ -71,19 +75,19 @@ native pixels, labelled by `ORDER`/`DETEC`/`XPOS`, curved dispersion within each
 nodding frames, buying 31.44 m/s against 34.49 m/s. Archived products cost ~10% precision by
 construction, and M3 must not read that offset as a disagreement.
 
-### M2 — RV extraction
+### M2 — RV extraction ✅ *(runs; precision short)*
 Get `viper` running against the products; extract 17 RVs with uncertainties. Success is
 per-epoch precision in the tens of m/s, against the paper's quoted 18–54 m/s.
 *Control:* the primary CD-35 2722 A has 300 public CRIRES+ frames from an unrelated
 programme. It is a bright, RV-quiet M dwarf observed with the same instrument — the natural
 check on whether our extraction has an instrumental floor we are mistaking for signal.
 
-### M3 — Reproduction verdict
+### M3 — Reproduction verdict ✅ *(not achieved; settled by a positive control)*
 GLS periodogram, then `radvel` Keplerian fitting. Does 169.45 d / 0.743 M_Jup fall out of
 17 epochs analysed by a different sampler? Report the answer either way; a failure to
 reproduce is a result, not a bug to be tuned away.
 
-### M4 — The alias test *(re-scoped by M1)*
+### M4 — The alias test ✅ *(re-scoped by M1)*
 **Original scope was redundant.** M0 framed this as "is the 87 d signal a harmonic of an
 eccentric 169 d orbit?" — a question the paper asks, fits (e = 0.29, Table 1), and rejects
 at Δlog Z = 6.9.

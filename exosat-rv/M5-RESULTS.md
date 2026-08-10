@@ -142,8 +142,20 @@ count is an upper bound until filtered by OBJECT name.**
   → ~86 m/s, kappa And b (15.01) → ~88, TYC 8998-760-1 b (15.87) → ~130, 51 Eri b (18.99)
   → ~549. The empirical filter used to build this list — does usable CRIRES+ data exist —
   remains the better test, but the cut is now anchored on a measured value.
-- **10 candidates are unresolved or weakly matched** and need by-hand checks: eps Ind B and
-  B Aql resolved to nothing (eps Ind's proper motion is ~4.7″/yr, so its catalogue position
-  is minutes of arc from where it was observed), and 8 more matched only by proximity.
+- ~~**10 candidates are unresolved or weakly matched.**~~ **Closed without needing to
+  resolve them.** Applying the §3 cadence bar (≥8 public nights over ≥100 d) to all ten:
+
+  | ESO OBJECT | public nights | span |
+  |---|---:|---:|
+  | NGC-6618-B-22 | 6 | 151 d |
+  | EM98 DG TAU B CRN | 5 | 91 d |
+  | GSC 08047-00232 B | 2 | 4 d |
+  | M22-C_MCKENZIE | 2 | 323 d |
+  | 2M0103AB B, eps Ind B, B Aql, alf Cen B, alpha Cen B, Mon R2 IRS3-B | 1 each | 0 |
+
+  **None qualifies**, so identity is moot — no orbit can be constrained from any of them
+  however they resolve. (Two are of real astrophysical interest and simply lack epochs:
+  eps Ind Ba/Bb and 2M0103AB B. eps Ind also explains its own non-resolution: proper motion
+  ~4.7″/yr moves it minutes of arc from its catalogue position.)
 - **Data quality beyond availability.** `probe` reports structure, not S/N. Whether these
   spectra reach the ~31 m/s the method needs is an M2 question.

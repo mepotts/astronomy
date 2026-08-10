@@ -66,6 +66,10 @@ made much of — unlike §1, this one was checked against the actual PDF.
 | Reducing all 20 nights from raw with esorex/cr2res | M0 measured that 17 are already reduced by ESO. Building cr2res to recover 3 nights is a late optimisation, not a prerequisite. |
 | Using `EMPEROR` (the paper's sampler) for M3 | Would make the reproduction circular. `radvel` is used instead so that agreement means something. |
 | Using `sy_hmag` from the NASA Exoplanet Archive as the companion brightness cut | It is the **system** magnitude, dominated by the primary. Useless for a companion flux cut. |
+| Reading a null result without a positive control | M2's null was equally consistent with an imprecise pipeline and a broken one. Only the GJ 229 B control (M3) distinguished them. **Never report a null from this pipeline without re-running the control.** |
+| Using a spectrally mismatched template | The GJ 229 B control returns reduced chi2 = 0.53 (nothing) with an L-dwarf template on a T dwarf, and 5.36 with a matched one. Template match is the difference between working and broken, not a refinement. |
+| Trusting viper's formal RV errors | Per-order rms exceeds the formal error by factors of 2-42. Measure precision from within-night repeats instead. |
+| Believing `-createtpl` or `-telluric add` would fix M2's precision | Both were tried. The co-added template changed nothing; telluric forward modelling tripled the scatter. See M2-RESULTS section 5. |
 | Trusting the NASA Exoplanet Archive alone for the M5 target list | It caps companion mass at 30 M_Jup and therefore **does not contain CD-35 2722 B**. M5 was rebuilt archive-first, with CD-35 2722 B's rediscovery as the control. |
 | Resolving companions by SIMBAD **name** | Identifiers are unforgiving about spacing: `CD-35  2722B` resolves, `CD-35 2722 B` and `BET PIC B` do not. Normalise and match against *all* identifiers instead. |
 | Resolving companions by **position alone** | A cone search finds the system, not the component. It resolved `BET PIC B` to beta Pic **c** and `PZ TEL B` to the G9IV primary. Two stages are needed: cone for the system, identifier match for the component. |
@@ -116,19 +120,16 @@ count.
 
 ## 6. Values still unverified
 
-One remains, and it is load-bearing for M5:
+**None.** The last one — CD-35 2722 B's H magnitude — was sourced in M3 to Wahhaj et al.
+2011 (arXiv:1101.2893): **H = 12.78 ± 0.12** MKO, J = 13.63, K = 12.01. SPEC had estimated
+~14 and was wrong by 1.2 mag, in the favourable direction.
 
-**CD-35 2722 B's H magnitude.** Used as the brightness anchor for the whole analogue flux
-cut, and estimated at ~14 from an L4 spectral type at 22.36 pc. The preprint does not state
-it; SIMBAD does not resolve the companion separately (nor AB Pic b, PZ Tel B, GQ Lup B, AF
-Lep b, or 51 Eri b — of 17 companions tried, 6 returned photometry). It must come from
-Wahhaj et al. 2011 (the discovery paper) before M5's cut means anything. VizieR TAP is
-reachable at `https://tapvizier.cds.unistra.fr/TAPVizieR/tap`; the catalogue identifier was
-not resolved on the one attempt made.
+Companion magnitudes in hand for M5 calibration: DH Tau b 14.96, kappa And b 15.01,
+HN Peg b 15.40, TYC 8998-760-1 b 15.87, GU Psc b 17.70, 51 Eri b 18.99.
 
-Measured companion magnitudes already in hand, for calibration: DH Tau b H = 14.96,
-kappa And b H = 15.01, HN Peg b H = 15.40, TYC 8998-760-1 b H = 15.87, GU Psc b H = 17.70,
-51 Eri b H = 18.99.
+One value is *inferred rather than measured* and labelled as such: the GJ 229 Bb/Ba
+luminosity ratio ≈ 0.45 in M3 §4 is derived from the amplitude it explains, so it is a
+consistency check, not evidence.
 
 ## 7. Risk register
 
