@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "exosat-rv"
+version = "0.1.0"
+description = "Independently reproduce the CD-35 2722 B exosatellite radial-velocity detection from public ESO data, and search substellar-companion analogues with the same method."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Matthew Potts", email = "matthew.e.potts@gmail.com" }]
+keywords = ["astronomy", "exomoon", "exosatellite", "radial-velocity", "brown-dwarf", "CRIRES", "direct-imaging"]
+
+# M0 (inventory kill-check) needs only the archive half: pyvo for the ESO/NEA TAP services,
+# astropy for Time and SkyCoord, requests for the datalink downloads. The RV half (viper,
+# radvel) arrives at M2/M3 and is deliberately not a dependency yet -- see BUILD-PLAN.md.
+# Versions are floors, not pins.
+dependencies = [
+    "typer>=0.12",
+    "pyvo>=1.5",              # ESO tap_obs (dbo.raw + ivoa.ObsCore) and NASA Exoplanet Archive TAP
+    "astropy>=6.0",           # Time (MJD<->ISO), SkyCoord cross-match, FITS spectra
+    "numpy>=1.26",
+    "requests>=2.31",         # ESO datalink / product retrieval
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.5"]
+
+[project.scripts]
+exosat-rv = "exosat_rv.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/exosat_rv"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "network: performs a live TAP/HTTP request to ESO or the NASA Exoplanet Archive",
+    "slow: needs downloaded spectra in data/spectra",
+]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint.per-file-ignores]
+"src/exosat_rv/cli.py" = ["B008"]  # typer's API is `x: T = typer.Option(...)` in the signature
