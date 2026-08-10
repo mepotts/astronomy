@@ -583,7 +583,7 @@ def run_m3(
         )
     link_report["arrow_build"] = arrows.stats
     link_report["slice"] = {"mjd_min": mjd_min, "mjd_max": mjd_max}
-    gated, gate_report = gate_links(links)
+    gated, gate_report = gate_links(links, arrows.table)
     passing = gated.filter(pl.col("link_pass")) if gated.height else gated
     # Cross-observatory first: that ordering is what decides which links get fitted at all
     # when a limit is applied, and it is M3's whole strategic point.

@@ -91,6 +91,15 @@ before re-deriving anything or asserting a claim from an older document.**
 
 ## 4. Known-open items
 
+- **Every `lnk…` id in this repo is run-local, and the ones already written down cannot be
+  fixed.** `link_id` is a positional counter, so `lnk034r` means "row 4,347 of whichever
+  link table this run produced". Across the two link tables here, **13,618 ids appear in
+  both and not one denotes the same link.** Twice in one session this silently answered the
+  wrong question — see §2. New runs now also carry **`link_key`**, a content-addressed id
+  hashed from the member `(desig, obscode, night)` tracklets, which is stable across runs
+  and is the only one that should ever be cited or joined on. The ids printed in M3–M5,
+  `SNAPSHOT-VALIDATION.md` and the RNAAS drafts predate it and are **not** back-fillable
+  without re-running the linker against the same ITF snapshot. Treat them as row numbers.
 - The **RNAAS draft is a draft.** References unverified against ADS; nothing submitted.
 - **`pipeline.py:190`** `(rms or 9e9)` is logged but unfixed.
 - The **archive misses days when the machine is off.** An always-on host on a residential

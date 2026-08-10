@@ -42,6 +42,12 @@ F52+V00, F52+W84, F52+G96, N94+V00, O18+X09, and one three-site F51+G96+O18. Tho
 associations no single survey is positioned to make, proposed from positions and epochs
 alone, and subsequently made by someone else.
 
+> The `lnk…` ids below are **row numbers in the M3 link table**, not identifiers. They do
+> not survive a re-link and they do not mean the same thing in any other table — matching on
+> them across runs answers the wrong question silently. Runs from 2026-08-07 carry a stable
+> `link_key` instead; these predate it. Match on **member trkSubs**, as `scripts/
+> guard_vs_confirmed.py` does.
+
 | link | members | observatories | nights |
 |---|---:|---|---:|
 | `lnk00do` | 4 | F51 + O18 | 4 |
