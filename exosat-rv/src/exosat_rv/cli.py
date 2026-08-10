@@ -9,6 +9,7 @@ import typer
 from astropy.time import Time
 
 from .analysis import aliases as al
+from .analysis import orbits as orb
 from .archive.fetch import describe, download
 from .archive.tap import build_inventory, query_reduced_products
 from .config import DATA, PUBLISHED
@@ -219,3 +220,36 @@ def alias(
         "injection_recovery": report,
     }, indent=2), encoding="utf-8")
     typer.echo(f"\nwrote {path}")
+
+
+@app.command()
+def orbits(starts: int = typer.Option(400, help="Optimiser restarts per model.")) -> None:
+    """M6: reproduce the paper's model comparison from its OWN published RVs.
+
+    Independent of M2's extraction, which fell short of the precision needed. Extraction and
+    inference are separate claims; this tests the second.
+    """
+    data = orb.load_published()
+    typer.echo(f"{len(data.rv)} published RVs, baseline {data.baseline_d:.1f} d, "
+               f"mean error {data.erv.mean():.2f} m/s "
+               f"(paper states {PUBLISHED.rv_err_nodding_ms} m/s)")
+
+    one = orb.fit_fixed_periods(data, (PUBLISHED.sat1_period_d,), eccentric=True, n_starts=starts)
+    typer.echo(f"\n{'model (periods fixed)':<34}{'-lnL':>9}{'BIC':>9}{'dlogZ proxy':>13}")
+    typer.echo(f"{'1 satellite, eccentric':<34}{one.neg_log_like:>9.2f}{one.bic:>9.2f}"
+               f"{'--':>13}   e={one.ecc:.2f} K={one.amplitudes[0]:.0f} jit={one.jitter_ms:.1f}")
+
+    fits = {}
+    for p2 in PUBLISHED.alias_periods_d:
+        f = orb.fit_fixed_periods(data, (PUBLISHED.sat1_period_d, p2), n_starts=starts)
+        fits[p2] = f
+        typer.echo(f"{f'2 satellites, +{p2:g} d':<34}{f.neg_log_like:>9.2f}{f.bic:>9.2f}"
+                   f"{orb.delta_logz_proxy(f, one):>13.2f}   K2={f.amplitudes[1]:.0f} "
+                   f"jit={f.jitter_ms:.1f}")
+
+    best = min(fits.values(), key=lambda f: f.bic)
+    typer.echo(f"\nbest second period: {best.periods[1]:g} d  (paper: {PUBLISHED.sat2_period_d})")
+    typer.echo(f"  vs 115 d : dlogZ proxy {orb.delta_logz_proxy(best, fits[115.0]):.2f}  "
+               f"(paper quotes {PUBLISHED.delta_logz_88_vs_115})")
+    typer.echo(f"  vs 1-sat : dlogZ proxy {orb.delta_logz_proxy(best, one):.2f}  "
+               f"(paper quotes {PUBLISHED.delta_logz_two_vs_one})")

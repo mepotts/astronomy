@@ -10,6 +10,14 @@ radial velocities. It is simply 25–60× too coarse to see a 246 m/s signal.
 
 **Verdict: the CD-35 2722 B detection is neither confirmed nor contradicted by this work.**
 
+> ⚠️ **SCOPE CORRECTED BY M6.** That verdict is about the **extraction** — re-deriving the
+> radial velocities from archive spectra — and it stands. But it was written as though it
+> settled the paper's *conclusion*, and it does not: the two are separate claims. The
+> preprint publishes its full RV table, so the inference can be tested directly, and
+> **[M6](M6-RESULTS.md) reproduces it** — the ~169-day signal above the 0.1% FAP level, an
+> ~88-day second satellite preferred over 14/70/115 d, and K₂ agreeing to 0.1%. Read this
+> milestone as "the RVs could not be re-derived", not "the result could not be reproduced".
+
 ---
 
 ## 1. Why a control was necessary

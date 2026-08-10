@@ -9,7 +9,8 @@ extracts RVs for all 18 public epochs. But the precision reached is **~760 m/s f
 real scatter of 800–2800 m/s**, some 25–90× short of the paper's 31.44 m/s.
 
 **The 246 m/s signal is therefore not recovered, and this milestone does not reproduce the
-detection.** That is the result, not a bug to be tuned away in the write-up. §5 states
+*extraction*.** (It says nothing about the paper's *conclusion*, which
+**[M6](M6-RESULTS.md) does reproduce** from the RV table the preprint publishes.) That is the result, not a bug to be tuned away in the write-up. §5 states
 plainly what would be needed and what remains untried.
 
 ---

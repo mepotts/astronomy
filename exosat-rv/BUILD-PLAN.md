@@ -102,6 +102,14 @@ injections frequently recover as 88 d, the paper's choice is sampling-driven.
 The two public J-band epochs from Jan/Feb 2023 (M0 §3) sit ~9 months before the paper's
 first epoch and may offer alias-breaking leverage, at the cost of a cross-setting zero-point.
 
+### M6 — Reproducing the conclusion ✅ *(added after M3 mis-scoped its verdict)*
+The preprint publishes its full RV table, so the **inference** is testable independently of
+the extraction M2 failed at. Fitting it with a different code reproduces the paper's period
+choice (88 d over 14/70/115), its secondary amplitude (114 vs 113.92 m/s), and the direction
+of both model comparisons. `exosat-rv orbits`; see [`M6-RESULTS.md`](M6-RESULTS.md).
+Uses BIC/2 as a Δlog Z proxy rather than nested sampling — labelled as an approximation, and
+the reason my evidence differences run smaller than theirs.
+
 ### M5 — Analogue target list ✅ *(list built; application awaits M2)*
 Built **archive-first**, because a catalogue-first list cannot contain CD-35 2722 B at all.
 CD-35 2722 B being rediscovered is the control, and it passes. See

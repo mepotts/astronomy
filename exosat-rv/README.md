@@ -15,29 +15,36 @@ Everything this project does runs on a laptop against public archives. See
 [`DATA-SOURCES.md`](DATA-SOURCES.md) for endpoints and their known incompletenesses, and
 [`BUILD-PLAN.md`](BUILD-PLAN.md) for the milestone plan.
 
-**Current state: M0–M5 complete.** Findings:
+**Current state: M0–M6 complete.** Findings:
 [`M0`](M0-RESULTS.md) archive · [`M1`](M1-RESULTS.md) the source, and two retractions ·
-[`M2`](M2-RESULTS.md) RV extraction · [`M3`](M3-RESULTS.md) **the verdict** ·
-[`M4`](M4-RESULTS.md) aliases · [`M5`](M5-RESULTS.md) analogues.
+[`M2`](M2-RESULTS.md) RV extraction · [`M3`](M3-RESULTS.md) the positive control ·
+[`M4`](M4-RESULTS.md) aliases · [`M5`](M5-RESULTS.md) analogues ·
+[`M6`](M6-RESULTS.md) **the reproduction**.
 
 ## The verdict
 
-**The published detection is neither confirmed nor contradicted by this work.** The pipeline
-built here reaches ~1850 m/s per epoch; the signal is 246 m/s. Non-detection is arithmetic,
-not evidence.
+**The conclusion reproduces. The measurements do not.** Those are separate claims, and this
+project needed six milestones to stop conflating them.
 
-That reading is only available because of a **positive control**. A null on its own cannot
-distinguish an imprecise pipeline from a broken one. Run against **GJ 229 B** — a brown dwarf
-with a *known* 12.1-day binary companion (Xuan et al. 2024) — the same pipeline recovers the
-signal: χ² about a constant falls from 80.4 to 16.6 when fitted at the known period,
-Δχ² = 63.8 for two parameters. It measures real velocities; it is simply coarse.
+**Reproduced** — from the paper's *own published RV table* (Table 2, appendix A), fitted with
+an independent code:
 
-| | |
-|---|---|
-| Precision achieved | ~1850 m/s (from within-night repeats, not formal errors) |
-| Paper's precision | 31.44 m/s |
-| Signal sought | 246 m/s |
-| Gap to close | 25–60× |
+| Quantity | This work | Hoy et al. |
+|---|---|---|
+| ~169-day signal | power 0.831, **above the 0.1% FAP level** | detected |
+| Preferred second period | **88 d** (over 14, 70, 115) | 87.46 d |
+| Secondary amplitude K₂ | **114 m/s** | 113.92 m/s |
+| 88 d over 115 d | Δ = 1.85 | Δlog Z = 2.6 |
+| 2 satellites over eccentric 1 | Δ = 2.55 | Δlog Z = 6.9 |
+
+**Not reproduced** — the radial velocities themselves. Re-deriving them from public archive
+spectra reached ~1850 m/s per epoch against the 31.44 m/s needed; the 246 m/s signal sits
+7.5× below that floor, so its absence there is arithmetic, not evidence.
+
+That second reading is only trustworthy because of a **positive control**: run against
+**GJ 229 B**, a brown dwarf with a *known* 12.1-day binary (Xuan et al. 2024), the same
+pipeline recovers the signal — χ² about a constant falls from 80.4 to 16.6 at the known
+period, Δχ² = 63.8. It measures real velocities; it is simply coarse.
 
 ⚠️ **M1 retracted two claims M0 published.** M0 asserted that a value in the paper
 (a "Hill radius" of 1.07 au) was impossible; it is a Domingos+2006 *stability limit*, the

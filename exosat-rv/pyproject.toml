@@ -20,6 +20,7 @@ dependencies = [
     "typer>=0.12",
     "pyvo>=1.5",              # ESO tap_obs (dbo.raw + ivoa.ObsCore) and NASA Exoplanet Archive TAP
     "astropy>=6.0",           # Time (MJD<->ISO), SkyCoord cross-match, FITS spectra
+    "scipy>=1.11",            # Keplerian model comparison (M6), GLS false-alarm levels (M4)
     "numpy>=1.26",
     "requests>=2.31",         # ESO datalink / product retrieval
 ]
@@ -37,7 +38,7 @@ packages = ["src/exosat_rv"]
 testpaths = ["tests"]
 markers = [
     "network: performs a live TAP/HTTP request to ESO or the NASA Exoplanet Archive",
-    "slow: needs downloaded spectra in data/spectra",
+    "slow: needs downloaded spectra in data/spectra, or runs many optimiser restarts",
 ]
 
 [tool.ruff]

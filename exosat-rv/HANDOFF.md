@@ -44,6 +44,24 @@ the second signal. The evidence that a second satellite exists at all is **delta
 6.9**, against an eccentric one-satellite alternative. M0 understated the existence
 evidence and overstated the period certainty. See M1 §1.3.
 
+### "The detection is neither confirmed nor contradicted" as a statement about the paper (M3) — **TOO BROAD, corrected in M6**
+
+M3 established that the *radial velocities* could not be re-derived from the archive at the
+required precision. True, and it still stands. But it was written as the project's verdict on
+the **paper's conclusion**, which M3 never tested.
+
+Reproducing an analysis has two independent halves — obtaining the same measurements, and
+drawing the same inference from them. Failing the first says nothing about the second.
+
+**The preprint publishes its full RV table** (Table 2, appendix A). Feeding it to an
+independent fitter reproduces the conclusion: the ~169 d signal above the 0.1% FAP level, an
+~88 d second satellite preferred over 14/70/115 d, K₂ agreeing to 0.1%, and both model
+comparisons in the same direction as the paper's. See [`M6-RESULTS.md`](M6-RESULTS.md).
+
+**General lesson: before concluding a result cannot be reproduced, check whether the authors
+published the intermediate data.** Many papers do, in an appendix nobody reads. Three
+milestones were spent re-deriving numbers that were printed on page 23.
+
 ## 2. Inherited claims that do not survive checking
 
 ### Table 1's log-evidence difference does not match the quoted value — minor, real
@@ -66,6 +84,7 @@ made much of — unlike §1, this one was checked against the actual PDF.
 | Reducing all 20 nights from raw with esorex/cr2res | M0 measured that 17 are already reduced by ESO. Building cr2res to recover 3 nights is a late optimisation, not a prerequisite. |
 | Using `EMPEROR` (the paper's sampler) for M3 | Would make the reproduction circular. `radvel` is used instead so that agreement means something. |
 | Using `sy_hmag` from the NASA Exoplanet Archive as the companion brightness cut | It is the **system** magnitude, dominated by the primary. Useless for a companion flux cut. |
+| Treating "could not re-derive the measurements" as "could not reproduce the result" | They are separate claims. M2-M3 spent three milestones on the extraction while the paper's own RV table sat in appendix A. **Check for published intermediate data first.** |
 | Reading a null result without a positive control | M2's null was equally consistent with an imprecise pipeline and a broken one. Only the GJ 229 B control (M3) distinguished them. **Never report a null from this pipeline without re-running the control.** |
 | Using a spectrally mismatched template | The GJ 229 B control returns reduced chi2 = 0.53 (nothing) with an L-dwarf template on a T dwarf, and 5.36 with a matched one. Template match is the difference between working and broken, not a refinement. |
 | Trusting viper's formal RV errors | Per-order rms exceeds the formal error by factors of 2-42. Measure precision from within-night repeats instead. |
