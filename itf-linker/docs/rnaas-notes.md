@@ -276,11 +276,38 @@ Ordered roughly by how much damage each does.
 
 ## 7. If this goes further
 
-- Run the guard at 0.6 / 0.7 / 0.9 and report the curve — cheap, and it converts the
-  single most obvious objection into a measurement.
-- Split the two halves of the guard (used fraction vs used nights) in the table.
+- ~~Run the guard at 0.6 / 0.7 / 0.9 and report the curve.~~ **Done 2026-08-07 —
+  `scripts/guard_threshold_curve.py`, and the answer is better than expected.** Both halves
+  of the guard are reconstructible from the stored per-fit records, so no refitting was
+  needed; recomputing at 0.8 returns 9,383, matching what `m4-new.json` recorded, which is
+  the check that the reconstruction is faithful.
+
+  | used-fraction threshold | rejected of 11,113 converged | rejected of the 1,237 gate-passers | confirmed links rejected |
+  |---:|---:|---:|---:|
+  | 50% | 8,508 (76.6%) | 612 (49.5%) | 1 of 26 |
+  | 60% | 8,598 (77.4%) | 643 (52.0%) | 1 of 26 |
+  | 70% | 8,982 (80.8%) | 776 (62.7%) | 1 of 26 |
+  | **80% (shipped)** | **9,383 (84.4%)** | **983 (79.5%)** | **1 of 26** |
+  | 90% | 9,540 (85.8%) | 1,038 (83.9%) | 1 of 26 |
+  | 100% | 9,582 (86.2%) | 1,046 (84.6%) | 1 of 26 |
+
+  **The ground-truth column is flat across the whole range**, and that is the finding. The
+  choice of 0.8 — the note's most obvious soft spot — costs nothing against ground truth
+  anywhere between 0.5 and 1.0. The single confirmed link the guard touches, `lnk0caf`, uses
+  **7 of 7 observations**, so it passes the fraction half at *every* threshold; it is caught
+  by the *nights* half, and it was already failing the acceptance gate on RMS 0.766″ and all
+  four σ limits. So the guard's arbitrary-looking number is not what would discard a real
+  link, and the referee question "why 0.8?" has a measured answer rather than a defence.
+
+  **Not in the draft**, which is at 1,499 of 1,500 words. Adding even a one-sentence version
+  ("rejection rises from 76.6% to 86.2% across 0.5–1.0 while the ground-truth cost stays at
+  1 of 26") costs ~35 words and would have to displace something — most plausibly part of
+  §4's provenance discussion. That is an authorial call, not a mechanical one.
+- Split the two halves of the guard (used fraction vs used nights) in the table. The sweep
+  above makes this more attractive: the two halves behave completely differently against
+  ground truth.
 - Re-fit a sample with a second OD code.
-- Commit the derivation scripts for Table 1 columns 5–6.
+- ~~Commit the derivation scripts for Table 1 columns 5–6.~~ **Done — `scripts/table1_guard_rates.py`.**
 - Decide whether the older-slice row belongs in the table at all; it is the honest row and
   the confusing one.
 - Correct the sentence in `M4-RESULTS.md` §9 identified in §4 item 4 above. **Not done
