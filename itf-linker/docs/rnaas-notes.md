@@ -106,6 +106,26 @@ re-derives the funnel under either gate from the on-disk fits, and
 `scripts/guard_vs_confirmed.py` produces the zero-of-26 ground-truth result in §4, so every
 derived number in the note is now reproducible from the repo.
 
+**And from outside it.** The reports those scripts read are 157 MB and cannot live in git, so
+a reader could inspect the code and not run it. `scripts/build_archive.py` assembles the
+missing half into a **35.4 MB deposit** — the four reports gzipped (~7.5x), the M3 link table,
+the committed snapshot delta chain, and one projection of the newest key set — with a
+`MANIFEST.json` carrying sha256 for all 28 files and a README. The layout mirrors the repo's,
+so the three analysis scripts run against the unpacked deposit with their default arguments.
+
+Verified by running them against the deposit alone: Table 1 reproduces to the digit and
+self-checks on all four rows; the ground-truth result returns the same 26 confirmed links,
+0 guard false rejections, 6 kept by our gate against 14 by the MPC's rule.
+
+Building it found a gap that reading would not have: the survival half of the ground-truth
+test reads the newest snapshot's key set, which is 178 MB and excluded, so the deposit could
+not run that script at all. It now ships `desigs.parquet` — `SELECT DISTINCT desig` over that
+key set, 13.4 MB against 178 — and `confirmed_link_keys` prefers a real key set when present
+and falls back to the projection otherwise.
+
+**Not published.** Building and verifying is reversible; minting a DOI is not. The deposit is
+ready to attach to a GitHub release or a Zenodo record whenever that call is made.
+
 **It found one error while doing it.** 288/497 = **57.9477%**, which is 57.9% to one decimal,
 not the **58.0%** the draft carried in both its abstract and Table 1. Corrected in both
 places. The other three rates are right: 4/132 = 3.03%, 983/1,237 = 79.47%, 313/431 = 72.62%.

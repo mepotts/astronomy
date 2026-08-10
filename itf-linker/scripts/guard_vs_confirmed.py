@@ -61,16 +61,21 @@ def confirmed_link_keys(snapshots: Path, links: Path) -> set[frozenset[str]]:
         return set()
     departed = set(pl.concat(deltas)["desig"].unique().to_list())
 
+    # A full key set is 178 MB and is only kept for the newest few snapshots, so a
+    # distribution ships ``desigs.parquet`` instead -- SELECT DISTINCT desig over the same
+    # file, which is all the survival test reads. Prefer the real thing when it is present.
     keysets = sorted(d for d in snapshots.iterdir() if (d / "observations.parquet").exists())
-    if not keysets:
-        raise SystemExit("FATAL: no snapshot retains a key set; cannot test survival")
-    surviving = set(
-        pl.scan_parquet(keysets[-1] / "observations.parquet")
-        .select("desig")
-        .collect()["desig"]
-        .unique()
-        .to_list()
-    )
+    projections = sorted(d for d in snapshots.iterdir() if (d / "desigs.parquet").exists())
+    if keysets:
+        source = keysets[-1] / "observations.parquet"
+    elif projections:
+        source = projections[-1] / "desigs.parquet"
+    else:
+        raise SystemExit(
+            "FATAL: no snapshot retains a key set or a desigs.parquet projection; "
+            "the survival test cannot run"
+        )
+    surviving = set(pl.scan_parquet(source).select("desig").collect()["desig"].unique().to_list())
     gone = departed - surviving
 
     table = pl.read_parquet(links, columns=["source_desigs", "link_pass"]).filter(
