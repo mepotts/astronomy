@@ -187,7 +187,15 @@ def fit_candidates(
 
     converged = [o for o in outcomes if o.fit.converged]
     passed = [o for o in outcomes if o.gate_passes]
-    rms_ok = [o for o in converged if (o.fit.rms_residual or 9e9) <= 0.25]
+    # `is not None`, not `or 9e9`: an RMS of exactly 0.0 is falsy and was being replaced by
+    # 9e9, i.e. counted as failing a ceiling it passes. Zero RMS is not a rounding artefact
+    # -- it is what six elements fitted to three observations gives, with no degrees of
+    # freedom left -- so those records are real and the subset guard is what should reject
+    # them, on the grounds that they used 3 of 12 observations. One M4-new record affected.
+    rms_ok = [
+        o for o in converged
+        if o.fit.rms_residual is not None and o.fit.rms_residual <= 0.25
+    ]
 
     def _count(pred: Callable[[FitOutcome], bool]) -> int:
         return sum(1 for o in outcomes if pred(o))

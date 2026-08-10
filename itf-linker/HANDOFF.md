@@ -101,7 +101,8 @@ before re-deriving anything or asserting a claim from an older document.**
   `SNAPSHOT-VALIDATION.md` and the RNAAS drafts predate it and are **not** back-fillable
   without re-running the linker against the same ITF snapshot. Treat them as row numbers.
 - The **RNAAS draft is a draft.** References unverified against ADS; nothing submitted.
-- **`pipeline.py:190`** `(rms or 9e9)` is logged but unfixed.
+- ~~**`pipeline.py:190`** `(rms or 9e9)` is logged but unfixed.~~ **Fixed 2026-08-07**, in
+  `link/run.py` too. Stored reports predate it; a re-run now matches the drafts.
 - The **archive misses days when the machine is off.** An always-on host on a residential
   connection would close that; see `docs/archive-operations.md` §1.
 - The **MPC reachability email is drafted and unsent** — `docs/archive-operations.md` §5.

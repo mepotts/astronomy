@@ -130,8 +130,10 @@ by a reader.
    `0.0` is falsy and is replaced by 9e9. Exactly one record is affected — `lnk0mj2`, which
    used 3 of 12 observations and reports RMS 0.0. It fails both the three-night σ gate and
    the subset guard, so **no conclusion anywhere changes**; but the draft says 4,802 where
-   the report says 4,801 and the difference is this. **Not fixed here** — `src/` belongs to
-   another agent this session. Worth a one-character fix (`is None`) later.
+   the report says 4,801 and the difference is this. **Fixed 2026-08-07** in both
+   `fit/pipeline.py` and `link/run.py`, with a test. The stored `m4-new.json` still says
+   4,801 — it was written by the old code — so the draft's 4,802 is right and any *re-run*
+   will now agree with it.
 
 ---
 

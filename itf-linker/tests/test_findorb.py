@@ -252,6 +252,15 @@ def test_rms_exactly_at_the_limit_is_accepted():
     assert post_fit_gate(_fit(rms_residual=MAX_RMS_ARCSEC), n_nights=3).passes
 
 
+def test_an_rms_of_exactly_zero_passes_the_ceiling_rather_than_being_falsy():
+    """Six elements fitted to three observations give RMS identically 0.0, not a rounding
+    artefact. `(rms or 9e9)` treated that as failing; the counters used to disagree with the
+    gate by one record. The subset guard is what should reject these, on used-observations.
+    """
+    assert post_fit_gate(_fit(rms_residual=0.0), n_nights=3).passes
+    assert not post_fit_gate(_fit(rms_residual=None), n_nights=3).passes
+
+
 def test_our_gate_ignores_eccentricity_and_the_published_one_does_not():
     """``e < 0.5`` is published; our frozen gate never applied it. Both facts pinned."""
     hyperbolic = _fit(e=0.984, rms_residual=0.9, sigma_a=9.0)

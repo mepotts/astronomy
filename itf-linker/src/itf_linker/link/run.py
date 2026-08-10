@@ -178,7 +178,12 @@ def fit_links(
         "elapsed_s": round(time.monotonic() - started, 1),
         "converged": len(converged),
         "not_converged": len(outcomes) - len(converged),
-        "rms_le_0.25": sum(1 for o in converged if (o.fit.rms_residual or 9e9) <= 0.25),
+        # `is not None`, not `or 9e9` -- an RMS of exactly 0.0 is falsy. See fit/pipeline.py.
+        "rms_le_0.25": sum(
+            1
+            for o in converged
+            if o.fit.rms_residual is not None and o.fit.rms_residual <= 0.25
+        ),
         "failed_subset_guard": sum(
             1
             for o in converged
