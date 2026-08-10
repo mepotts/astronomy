@@ -105,22 +105,37 @@ surprising one.
 
 ## 5. What is missing, stated plainly
 
-The gap to 31.44 m/s is not a tuning detail. Three things differ from the paper:
+**The two obvious levers were tried, and neither helped.** That is the most useful thing
+this milestone learned, because it rules out the easy explanations.
 
-1. **The template.** Ours is a single epoch (S/N ~21). The paper used an empirical template;
-   viper builds one with `-createtpl`, which would raise template S/N by ~√18. **That run
-   failed here on a network fetch (`ConnectionResetError`) and was not retried.** This is the
-   most likely single largest win and the obvious next step.
-2. **Telluric handling.** The paper pinned its wavelength solution to stable telluric lines
-   at ~10 m/s. This run used `-telluric ''` — no telluric modelling at all. viper offers
-   `mask`, `sig`, `add`, `add2`, plus `-tellshift`; none were tried.
-3. **The nodding frames.** The paper's 31.44 m/s came from treating individual nodding
-   positions as separate observations; the combined product it compares against gave 34.49
-   m/s. ESO archives only the combined product, so ~10% is unavailable by construction —
-   but that is a rounding error next to the factor of 25 above, and does **not** explain it.
+| Configuration | rms (m/s) | median formal error (m/s) |
+|---|---:|---:|
+| single-epoch template, no tellurics | 823 | 763 |
+| **co-added template** (`-createtpl`, all 18 epochs) | 1782 | 743 |
+| co-added template + `-telluric add -tellshift` | **5398** | — |
 
-Also untried: order selection/clipping (`-kapsig`), IP model choice, `-chunks`, and the
-`-oset` default excluding 11 of 21 segments.
+1. **A co-added template changes nothing.** `-createtpl` succeeded on retry (the earlier
+   failure was a transient `ConnectionResetError` in viper's SIMBAD lookup — it caches to
+   `<tag>.targ.csv`, so copying that file across tags avoids the fetch). Template S/N should
+   have risen by ~√18. The precision did not move. **The template was not the limitation.**
+2. **Telluric forward modelling makes it worse.** `-telluric add -tellshift` roughly tripled
+   the scatter and several orders failed to converge outright
+   (`Optimal parameters not found: maxfev = 2600`). Default settings are clearly wrong for
+   this data; tuning them blind is not productive.
+
+**Photon noise is not the constraint, for either party.** At R = 100,000, S/N ≈ 18 per pixel
+and ~40,000 usable pixels, the photon-limited floor is of order 1 m/s. The paper's 31.44 m/s
+is itself systematics-limited, and this run's ~800 m/s is systematics-limited far worse. The
+headroom is real; the configuration is wrong in a way these two experiments did not find.
+
+One structural difference remains, and it is small: the paper's 31.44 m/s came from treating
+individual nodding positions as separate observations, against 34.49 m/s for the combined
+product. ESO archives only the combined product, so ~10% is unavailable by construction — a
+rounding error next to a factor of 25, and **not** the explanation.
+
+Still untried: `-telluric mask` / `sig` / `add2` (rather than `add`), outlier clipping
+(`-kapsig`), IP model choice, `-chunks`, and the `-oset` default that silently excludes 11 of
+the 21 segments.
 
 ## 6. Verdict
 
@@ -135,5 +150,6 @@ What the milestone does establish, and what is reusable:
 - The epoch inventory is corrected (21 ↔ 21) and the discarded epoch identified.
 - The precision floor of *this* configuration is measured: ~800 m/s, systematics-dominated.
 
-The path to a real reproduction runs through §5 item 1, and nothing further should be claimed
-until it is tried.
+The path to a real reproduction runs through §5's untried list, and specifically **not**
+through the two levers already eliminated. Nothing further should be claimed until one of
+them moves the precision by the order of magnitude required.
