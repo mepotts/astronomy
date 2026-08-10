@@ -6,7 +6,9 @@ import json
 from datetime import UTC
 
 import typer
+from astropy.time import Time
 
+from .analysis import aliases as al
 from .archive.fetch import describe, download
 from .archive.tap import build_inventory, query_reduced_products
 from .config import DATA, PUBLISHED
@@ -148,3 +150,72 @@ def targets(
         "ra_deg": t.ra_deg, "dec_deg": t.dec_deg,
     } for t in ts], indent=2), encoding="utf-8")
     typer.echo(f"wrote {path}")
+
+
+@app.command()
+def alias(
+    trials: int = typer.Option(400, help="Injection-recovery trials per scenario."),
+    out: str = typer.Option("m4-aliases.json", help="Report filename under data/."),
+) -> None:
+    """M4: is the second signal's period determined by the data, or by the sampling?
+
+    Uses only the observing cadence and synthetic signals -- no RVs required, which is why
+    it can run before M2.
+    """
+    import numpy as np
+    from astropy.timeseries import LombScargle
+
+    from .archive.tap import query_raw_frames
+
+    frames = [f for f in query_raw_frames(PUBLISHED.star_ra_deg, PUBLISHED.star_dec_deg)
+              if f.setting.upper().startswith("H") and f.night <= "2025-01-21"]
+    nights = sorted({f.night for f in frames})
+    t = np.array([Time(n).mjd for n in nights], dtype=float)
+    span = t.max() - t.min()
+    typer.echo(f"{len(nights)} H-band epochs, {nights[0]} -> {nights[-1]} ({span:.0f} d)")
+
+    sep = al.season_separation_d(t)
+    seasons = al.season_split(t)
+    typer.echo(f"seasons: {[len(x) for x in seasons]}   mean-to-mean separation "
+               f"{sep:.1f} d ({sep / al.YEAR_D:.3f} yr)")
+
+    typer.echo(f"\nalias comb from the {PUBLISHED.sat1_period_d} d signal, 1-yr sampling:")
+    for m in al.match_alias_comb(list(PUBLISHED.alias_periods_d),
+                                 PUBLISHED.sat1_period_d, 1 / al.YEAR_D):
+        typer.echo(f"   {m.period_d:6.1f} d   order m={m.order:+3d}   tooth off by "
+                   f"{m.period_error_d:6.3f} d   implied sampling {m.implied_sampling_period_d:7.1f} d")
+
+    fmin, fmax = 1 / 400, 1 / 8
+    freqs = np.linspace(fmin, fmax, int(20 * span * (fmax - fmin)))
+    rng = np.random.default_rng(20260810)
+    noise = float(np.hypot(PUBLISHED.rv_err_nodding_ms, PUBLISHED.two_sat_jitter_ms))
+    fap1 = float(LombScargle(t, rng.normal(0, noise, t.size), np.full(t.size, noise))
+                 .false_alarm_level(0.01, minimum_frequency=fmin, maximum_frequency=fmax))
+
+    cands = (14.0, 70.0, PUBLISHED.sat2_period_d, 115.0)
+    typer.echo(f"\ninjection-recovery ({trials} trials, noise {noise:.1f} m/s, "
+               f"1% FAP power {fap1:.3f}):")
+    report = {}
+    for label, sp in [("none", None), ("87.46", PUBLISHED.sat2_period_d),
+                      ("115", 115.0), ("70", 70.0), ("14", 14.0)]:
+        res = [al.recover_secondary(
+            t, rng, primary_period=PUBLISHED.sat1_period_d,
+            primary_k=PUBLISHED.sat1_amplitude_ms, secondary_period=sp,
+            secondary_k=PUBLISHED.sat2_amplitude_ms, noise_ms=noise,
+            freqs=freqs, candidates_d=cands) for _ in range(trials)]
+        counts = {c: sum(1 for w, _, _ in res if w == c) / len(res) for c in cands}
+        sig = sum(1 for _, _, mx in res if mx > fap1) / len(res)
+        report[label] = {"recovered": counts, "significant_frac": sig}
+        typer.echo(f"   injected {label:>6} d -> " +
+                   "  ".join(f"{c:g}d {100 * v:4.1f}%" for c, v in counts.items() if v) +
+                   f"   |  >1% FAP {100 * sig:5.1f}%")
+
+    DATA.mkdir(exist_ok=True)
+    path = DATA / out
+    path.write_text(json.dumps({
+        "nights": nights, "mjd": t.tolist(), "baseline_d": span,
+        "season_sizes": [len(x) for x in seasons], "season_separation_d": sep,
+        "noise_ms": noise, "fap1_power": fap1, "trials": trials,
+        "injection_recovery": report,
+    }, indent=2), encoding="utf-8")
+    typer.echo(f"\nwrote {path}")
