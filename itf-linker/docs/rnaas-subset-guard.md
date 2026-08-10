@@ -2,14 +2,14 @@
 
 > **Front matter (not part of the note; excluded from the word count).**
 >
-> **Word count: 1,499 words** — title through references inclusive, counting the title,
+> **Word count: 1,494 words** — title through references inclusive, counting the title,
 > author line, abstract, section headings, every cell of the table, its caption and
 > footnote, and the reference list. The RNAAS limit is 1,500 with 150 reserved for a
-> required abstract: this abstract is **146 words** and the rest of the note is **1,353**,
-> so both budgets are met, with 1 words spare on the total and 4 on the
-> abstract. That is much tighter than the 203 spare of the 2026-08-06 draft: correcting the
-> statement of the MPC's criteria and adding the ground-truth result in §4 cost most of the
-> margin. Counted by stripping this front-matter
+> required abstract: this abstract is **146 words** and the rest of the note is **1,348**,
+> so both budgets are met, with 6 words spare on the total and 4 on the abstract. The
+> 2026-08-06 draft had 203 spare; correcting the statement of the MPC's criteria and adding
+> two measured results (§3's split of the guard's two halves, §4's ground truth) spent it.
+> Counted by stripping this front-matter
 > block, removing Markdown syntax characters (`| * # > _`), and counting whitespace-
 > separated tokens containing at least one alphanumeric character; the one-liner that
 > produces it is recorded in `rnaas-notes.md`.
@@ -87,12 +87,11 @@ associations came from.
 ## 2. The measurement
 
 Four runs of the same pipeline, over the same source file, with the same fitter, the same
-0.25″ RMS ceiling and the same guard at the same settings. Only the provenance of the
-associations differs. Rows 2 and 3 differ in the hypothesis grid alone — its distances, and
-the window length each band's orbital curvature permits — with everything downstream held
-fixed: the narrower grid was re-run as one band of the wider configuration and reproduced
-the earlier run's proposal, refusal, recall and precision figures digit for digit, so the
-intervening rewrites are controlled for.
+0.25″ ceiling and the same guard at the same settings. Only the provenance of the
+associations differs. Rows 2 and 3 differ in the hypothesis grid alone, with everything
+downstream held fixed: the narrower grid was re-run as one band of the wider configuration
+and reproduced the earlier run's proposal, refusal, recall and precision figures digit for
+digit, so the intervening rewrites are controlled for.
 
 **Table 1.** Rejection rate of the subset guard by provenance of the associations. Column 5
 counts converged fits meeting this pipeline's acceptance gate (an unconditional 0.25″ RMS
@@ -107,9 +106,8 @@ filter would have passed.
 | 0.55–50 AU grid, 2023–2026 observations | 2,555 | 11,113 | 9,383 (84.4%) | 1,237 | 983 (79.5%) |
 | 0.55–50 AU grid, 1995–2023 observations ᵃ | 2,555 | 1,738 | 874 (50.3%) | 431 | 313 (72.6%) |
 
-ᵃ A deliberately best-ranked 1.08% sample of that slice's 412,929 gated links, not a random
-one; its rates are therefore optimistic. It is included because it is the one run that does
-not fit the simple monotonic story — see §4.
+ᵃ A best-ranked 1.08% sample of that slice's 412,929 gated links, not a random one, so its
+rates are optimistic. Included because it is the one run that breaks the monotonic story.
 
 ## 3. The mechanism, and why RMS cannot see it
 
@@ -120,6 +118,10 @@ on that difference usefully. Of the 4,802 converged fits with RMS ≤ 0.25″ in
 guard have RMS ≤ 0.10″. Discarding observations improves the residual
 of what remains, so the statistic meant to detect a bad association is partly produced by
 it.
+
+The two halves of the check are not independent: 8,261 of that run's 9,383 rejections fail
+both, and 90% lose the three-night span altogether. The solver is not discarding outliers but
+whole nights — what converging on one object's tracklets and dropping another's looks like.
 
 The limit is instructive. Six orbital elements fitted to three observations have six
 residuals and zero degrees of freedom, so the RMS is identically zero and the formal
@@ -134,25 +136,23 @@ exceeds the e < 0.5 bound. The formal uncertainties it passes cleanly.
 
 The grid is not simply failing to reach its targets: against JPL Horizons astrometry of
 thirteen real objects, the wide grid recovers 11 to the exact tracklet where the narrow grid
-recovers 4, with none merged into a neighbour. What the widening did not buy was candidates.
-It raised the hypothesis count 6.6× and yielded 26 more survivors and one fewer that is
-numerically well constrained (140 against 141); across both slices, 6,029 converged
-near-Earth orbits produced two surviving near-Earth candidates, both Amors the narrower grid
-already reached.
+recovers 4, none merged into a neighbour. What widening bought was not candidates — 6.6× the
+hypotheses gave 26 more survivors and one fewer well constrained (140 against 141), and 6,029
+converged near-Earth orbits produced two surviving near-Earth candidates, both Amors the
+narrower grid already reached.
 
 This is one guard, at one threshold, in one pipeline, on one file, and it should be read as
 suggestive for linking pipelines generally rather than established for them. The four rows
 differ in more than the hypothesis count: row 1's associations were made by surveys rather
 than by any grid and cover the whole file, so the 6.4% → 74.2% step measures provenance and
 population together. The rates condition on convergence, which is itself provenance-
-dependent (94%, 44%, 27%); per link submitted, the guard's rejections are 6.1%, 32.4% and
-23.1% — not monotonic. Row 4 shows the same wide grid rejecting half rather than
+dependent (94%, 44%, 27%); per link submitted the rejections are 6.1%, 32.4% and 23.1%,
+not monotonic. Row 4 shows the same wide grid rejecting half rather than
 five-sixths on older observations, though restricted to published-criteria passers the two
-wide-grid runs agree far better (72.6% against 79.5%). And an 80% threshold with a
-three-night rule is a blunt instrument that will reject some correct links whose astrometry
-merely contains an outlier.
+wide-grid runs agree far better (72.6% against 79.5%).
 
-**How often it rejects a correct link is measurable, and the answer is zero of 26.** A daily
+**An 80% threshold is a blunt instrument, but how often it discards a correct link is
+measurable, and the answer is zero of 26.** A daily
 archive of the ITF gives ground truth independent of every gate here: a link whose members
 have all since left the file is one somebody else independently made. Twenty-six exist, all
 in the wide-grid run. The guard rejected none on its own; each it flagged was already failing

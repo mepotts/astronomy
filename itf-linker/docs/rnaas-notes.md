@@ -7,12 +7,14 @@ draft is a draft; several things below must be resolved before it could be.
 
 ## 1. Word count
 
-**1,499 words** for the note (title through references), of which the abstract is 146 —
-inside the 1,500 / 150 limits, but only just. It was 1,250 on 2026-08-06; the 2026-08-07
-revision spent the margin on correcting the statement of the MPC's criteria in §1 and adding
-the ground-truth result to §4. **There is one word of slack.** Anything added now has to
-displace something, and the counting method here is deliberately generous (every numeral in
-a table cell counts as a word), so the true submitted count will be lower. Reproduce with:
+**1,494 words** for the note (title through references), of which the abstract is 146 —
+inside the 1,500 / 150 limits with **6 words spare**. It was 1,250 on 2026-08-06; the
+2026-08-07 revision spent that margin on correcting the statement of the MPC's criteria in
+§1 and adding two measured results (§3's split of the guard's two halves, §4's zero-of-26
+ground truth), then bought some back by compressing the grid-widening paragraph in §4, which
+is the part least connected to the thesis. Anything added now still has to displace
+something. The counting method is deliberately generous (every numeral in a table cell counts
+as a word), so the true submitted count will be lower. Reproduce with:
 
 ```bash
 python -c "
@@ -303,9 +305,24 @@ Ordered roughly by how much damage each does.
   ("rejection rises from 76.6% to 86.2% across 0.5–1.0 while the ground-truth cost stays at
   1 of 26") costs ~35 words and would have to displace something — most plausibly part of
   §4's provenance discussion. That is an authorial call, not a mechanical one.
-- Split the two halves of the guard (used fraction vs used nights) in the table. The sweep
-  above makes this more attractive: the two halves behave completely differently against
-  ground truth.
+- ~~Split the two halves of the guard (used fraction vs used nights) in the table.~~
+  **Measured 2026-08-07, and it went into §3 of the draft rather than the table** — it turned
+  out to be a mechanism result, not a bookkeeping one. Rejections decompose exactly (the
+  parts sum to each run's recorded total):
+
+  | run | converged | guard | fraction only | nights only | both |
+  |---|---:|---:|---:|---:|---:|
+  | m1-report (survey-made) | 917 | 59 | 11 | 28 | 20 |
+  | m3-fits (1.4–5.6 AU) | 5,950 | 4,413 | 509 | 126 | 3,778 |
+  | m4-new (0.55–50 AU) | 11,113 | 9,383 | 929 | 193 | 8,261 |
+  | m4-old (older slice) | 1,738 | 874 | 226 | 15 | 633 |
+
+  On grid-made associations **86–88% fail both halves at once**, and on `m4-new` 90% lose the
+  three-night span altogether. That is the difference between "the fit dropped a few
+  outliers" and "the fit dropped whole nights", and it is the second reading that supports
+  the paper's mechanism. On survey-made associations (row 1) the pattern is quite different
+  — nights-only exceeds fraction-only — which is consistent with those being real objects
+  whose arcs are merely thin.
 - Re-fit a sample with a second OD code.
 - ~~Commit the derivation scripts for Table 1 columns 5–6.~~ **Done — `scripts/table1_guard_rates.py`.**
 - Decide whether the older-slice row belongs in the table at all; it is the honest row and
