@@ -123,17 +123,21 @@ Measured companion magnitudes already in hand, for calibration: DH Tau b H = 14.
 kappa And b H = 15.01, HN Peg b H = 15.40, TYC 8998-760-1 b H = 15.87, GU Psc b H = 17.70,
 51 Eri b H = 18.99.
 
-## 7. Open risk, stated plainly
+## 7. Risk register
 
 **The single unretired risk is whether ESO's `calib_level=2` products preserve what `viper`
 needs.** If they are order-merged or resampled such that the per-order wavelength solution
 is destroyed, forward-modelling RV extraction at tens of m/s is not possible from them, and
 the project reverts to building cr2res for all 20 nights — a much larger undertaking.
-Nobody has opened one of these files yet. M1 tried and could not: `archive.eso.org` was
-unreachable for the entire attempt. `exosat-rv probe` is written and wired to answer it in
-one command, but its datalink branch has never run against a live URL.
+**RETIRED in M1.** The products are per-order extractions with native wavelength solutions
+(7 orders x 3 detectors x 2048 pixels, labelled by `ORDER`/`DETEC`/`XPOS`, curved dispersion
+within each segment). `viper` can use them. See M1-RESULTS §5.
 
-**Re-run `exosat-rv probe` when ESO returns. Nothing else should be built first.**
+Note the first automated verdict said the opposite — `describe()` counted wavelength columns,
+saw one, and reported ORDER-MERGED. **Acting on it would have meant rebuilding cr2res for 20
+nights that never needed it.** Structural columns beat statistical heuristics; the classifier
+now keys on ORDER/DETEC and `tests/test_fetch.py` pins both shapes.
 
-M1 §2 sharpened what the answer means: the authors did not use the combined product anyway,
-so even a usable archived product carries a ~10% precision penalty (34.49 vs 31.44 m/s).
+Residual cost, known in advance: the archived product is the *combined* one (ESO serves one
+per night; the paper used individual nodding frames), so it carries a ~10% precision penalty
+— 34.49 vs 31.44 m/s. M3 must not read that offset as disagreement.

@@ -31,6 +31,15 @@ SPECTRA = DATA / "spectra"
 TIMEOUT = 60
 
 
+def _safe_name(name: str) -> str:
+    """ESO product names embed an ISO timestamp -- ``ADP.2025-06-02T12:44:40.787.fits`` --
+    and Windows rejects ``:`` in filenames. Map the characters NTFS forbids to ``-`` so the
+    archive's identifier stays readable and reversible by eye."""
+    for ch in ':*?"<>|':
+        name = name.replace(ch, "-")
+    return name.strip() or "product.fits"
+
+
 @dataclass
 class ProductDescription:
     """What one downloaded product turned out to contain."""
@@ -41,9 +50,11 @@ class ProductDescription:
     columns: list[str]
     n_orders: int | None
     n_points: int | None
-    wav_min_nm: float | None
-    wav_max_nm: float | None
-    is_order_merged: bool | None
+    n_segments: int | None = None
+    """Distinct (order, detector) extractions found. ``None`` if the product is unlabelled."""
+    wav_min_nm: float | None = None
+    wav_max_nm: float | None = None
+    is_order_merged: bool | None = None
     """True if the product looks like a single merged spectrum rather than per-order data.
     ``None`` when it could not be determined -- never guessed."""
 
@@ -52,7 +63,8 @@ class ProductDescription:
             return "UNDETERMINED - inspect by hand"
         if self.is_order_merged:
             return "ORDER-MERGED - viper likely cannot use this; cr2res may be required"
-        return "PER-ORDER - wavelength solution preserved; viable for viper"
+        seg = f", {self.n_segments} (order,detector) segments" if self.n_segments else ""
+        return f"PER-ORDER - native wavelength solution preserved{seg}; viable for viper"
 
 
 def download(access_url: str, dest: Path | None = None) -> Path:
@@ -82,12 +94,26 @@ def download(access_url: str, dest: Path | None = None) -> Path:
         or "product.fits"
     )
     name = Path(name)
+    if dest is None:
+        name = name.parent / _safe_name(name.name)
     name.write_bytes(r.content)
     return name
 
 
 def describe(path: Path) -> ProductDescription:
-    """Open a product and report its structure without interpreting it charitably."""
+    """Open a product and report its structure without interpreting it charitably.
+
+    The decisive evidence is structural, not statistical: CRIRES+ ADP spectra carry
+    ``ORDER``, ``DETEC`` and ``XPOS`` columns alongside a single flat ``WAVE`` array. The
+    flat array is *concatenated* per-order data, not a resampled merge -- ``XPOS`` runs
+    1..2048 within each (order, detector) segment, preserving the native detector pixel.
+
+    An earlier version of this function counted wavelength *columns*, saw one, and declared
+    the product order-merged. That was wrong and would have sent the project off to build
+    cr2res for no reason. Spacing uniformity is kept as a secondary check for products that
+    lack the ORDER/DETEC labelling.
+    """
+    import numpy as np
     from astropy.io import fits
 
     with fits.open(path) as hdul:
@@ -96,28 +122,43 @@ def describe(path: Path) -> ProductDescription:
         n_orders = n_points = None
         wmin = wmax = None
         merged: bool | None = None
+        n_segments = None
 
         for h in hdul:
-            if getattr(h, "columns", None) is not None:
-                cols = [c.name for c in h.columns]
-                data = h.data
-                if data is not None and len(data) > 0:
-                    # CRIRES+ per-order products name columns like "0300_01_WL"/"SPEC";
-                    # a merged product typically carries a single WAVE/FLUX pair.
-                    wl_cols = [c for c in cols if "WL" in c.upper() or "WAVE" in c.upper()]
-                    n_orders = len(wl_cols) or None
-                    merged = len(wl_cols) <= 1 if wl_cols else None
-                    try:
-                        w = data[wl_cols[0]]
-                        w = w[0] if getattr(w, "ndim", 1) > 1 else w
-                        n_points = len(w)
-                        wmin, wmax = float(min(w)), float(max(w))
-                    except (IndexError, KeyError, TypeError, ValueError):
-                        pass
+            if getattr(h, "columns", None) is None:
+                continue
+            cols = [c.name for c in h.columns]
+            data = h.data
+            if data is None or len(data) == 0:
                 break
+
+            def col(name: str, _data=data, _cols=cols):
+                return np.asarray(_data[name][0]).ravel() if name in _cols else None
+
+            wl_name = next((c for c in cols if c.upper() in ("WAVE", "WAVELENGTH", "WL")), None)
+            w = col(wl_name) if wl_name else None
+            order, detec = col("ORDER"), col("DETEC")
+
+            if w is not None and len(w):
+                w = np.asarray(w, dtype=float)
+                n_points = int(w.size)
+                wmin, wmax = float(np.nanmin(w)), float(np.nanmax(w))
+
+            if order is not None:
+                # Definitive: the product labels each point by echelle order.
+                segs = set(zip(order.tolist(), detec.tolist())) if detec is not None                     else set(order.tolist())
+                n_segments = len(segs)
+                n_orders = len(set(order.tolist()))
+                merged = False
+            elif w is not None and w.size > 2:
+                # Fallback: a resampled merge has near-constant step; a native solution
+                # does not, and jumps by whole nm between orders.
+                dw = np.diff(w)
+                merged = bool(np.std(dw) / np.median(dw) < 0.05)
+            break
 
     return ProductDescription(
         path=path, n_hdus=len(kinds), hdu_kinds=kinds, columns=cols,
-        n_orders=n_orders, n_points=n_points,
+        n_orders=n_orders, n_points=n_points, n_segments=n_segments,
         wav_min_nm=wmin, wav_max_nm=wmax, is_order_merged=merged,
     )

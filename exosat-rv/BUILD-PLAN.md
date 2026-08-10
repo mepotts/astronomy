@@ -57,19 +57,16 @@ Is this reproducible, and how much reduction must be redone?
 Hill radius and exposed a provenance problem across the whole config. See
 [`M0-RESULTS.md`](M0-RESULTS.md).
 
-### M1 — Spectra in hand ◐ (half complete)
+### M1 — Spectra in hand ✅
 **Track A — read the source: DONE.** `pypdf` extracted the PDF that defeated M0's fetch
 (27 pages, no poppler/WSL needed). Every config field is now `[v1]` or `[TAP]`; the `[SUMM]`
 tier is eliminated. **Two claims M0 published were retracted** — see
 [`M1-RESULTS.md`](M1-RESULTS.md) §1.
 
-**Track B — open a product: BLOCKED.** `archive.eso.org` went unreachable (connect timeout,
-HTTP 000) while other hosts responded normally. `exosat-rv probe` is written and wired;
-its datalink branch is untested against a live URL.
-*Kill condition, unchanged:* if the ESO products are order-merged or resampled such that the
-per-order wavelength solution is destroyed, `viper` cannot use them and the project reverts
-to building cr2res for all 20 nights. **Re-run `exosat-rv probe` before building anything
-else.**
+**Track B — open a product: DONE, and it passes.** `exosat-rv probe` (after ESO's outage
+lifted) shows the products are **per-order extractions**: 7 orders x 3 detectors x 2048
+native pixels, labelled by `ORDER`/`DETEC`/`XPOS`, curved dispersion within each segment.
+`viper` can consume them. **The kill condition did not fire; cr2res is not needed.**
 *Now known:* the authors did not use the combined product either — they kept individual
 nodding frames, buying 31.44 m/s against 34.49 m/s. Archived products cost ~10% precision by
 construction, and M3 must not read that offset as a disagreement.

@@ -1,8 +1,9 @@
 # M1 — Reading the source, and three corrections to M0
 
-**Two tracks.** Track A: read the actual arXiv PDF and promote every `[SUMM]` config field.
-**Done, and it invalidated three things M0 published.** Track B: download an ESO reduced
-product and prove `viper` could use it. **Blocked — `archive.eso.org` was unreachable.**
+**Two tracks, both now complete.** Track A: read the actual arXiv PDF and promote every
+`[SUMM]` config field. **Done, and it invalidated three things M0 published.** Track B:
+download an ESO reduced product and prove `viper` could use it. **Done — and it passes.
+The project's one remaining kill-risk is retired.**
 
 The PDF that M0 could not extract yielded to `pypdf` (27 pages, 55,679 characters) — no
 poppler, no WSL, no sudo. That should have been tried first.
@@ -96,10 +97,12 @@ combined output**. They kept the individual nodding frames as separate observati
 | Separate nodding RVs, binned (**paper's choice**) | **31.44 m/s** |
 | Spectral combination first (standard pipeline output) | 34.49 m/s |
 
-ESO's archived `calib_level=2` product is almost certainly the combined one. **Working from
-it therefore costs ~10% precision by construction.** That is a quantified penalty, not a
-blocker — but M3 must not read the resulting offset as a disagreement with the paper. If
-the per-nodding route turns out to matter, the raw frames are public for all 20 nights.
+**Confirmed by the probe (§5):** ESO serves exactly **one product per night** — 18 products
+for 18 public nights — while each night is an AB nodding sequence of 2+ frames. The archived
+product is therefore the combined one. **Working from it costs ~10% precision by
+construction.** That is a quantified penalty, not a blocker; M3 must not read the resulting
+offset as a disagreement with the paper. If the per-nodding route turns out to matter, the
+raw frames are public for all 20 nights and can be re-extracted with cr2res.
 
 ---
 
@@ -150,26 +153,52 @@ moved. We will not know until those data are public.
 
 ---
 
-## 5. Blocked: the product kill-check
+## 5. The product kill-check — **PASSED**
 
-`archive.eso.org` became unreachable partway through M1 and stayed down: connect timeout at
-21 s, HTTP 000. Not a local problem — `www.eso.org` returned 302 and the NASA Exoplanet
-Archive 200 in the same second. It had served M0's queries an hour earlier.
+`archive.eso.org` was unreachable for most of M1 (connect timeout, HTTP 000, while
+`www.eso.org` returned 302 and the NASA archive 200 in the same second). It came back, and
+`exosat-rv probe` answered the question.
 
-So **the one risk M0 identified is still unretired**: nobody has opened a `calib_level=2`
-CRIRES+ product to see whether it is per-order or order-merged. `exosat-rv probe` is written
-and wired to answer it in one command; its datalink branch is untested against a live URL.
+**ESO's `calib_level=2` CRIRES+ products are per-order extractions with their native
+wavelength solutions intact.** Identical structure on all three nights probed
+(2023-10-13, 2023-12-02, 2023-12-07), 2.0 MB each:
 
-Section 2 sharpens what the answer means. If the products are order-merged, the ~10%
-penalty becomes moot because `viper` cannot use them at all, and the project reverts to
-running `cr2res` on public raw frames for all 20 nights.
+| Property | Value |
+|---|---|
+| Table columns | `WAVE, FLUX, ERR, QUAL, ORDER, DETEC, XPOS, TRACE` |
+| Points | 43,008 = **21 segments x 2048** |
+| Segments | **7 echelle orders x 3 detectors** |
+| `XPOS` | 1–2048 within each segment — **native detector pixel preserved** |
+| Coverage | 1468.9 – 1779.9 nm |
+| Dispersion within a segment | curved, std/median = 0.0117 — **not resampled** |
+| Dispersion across the array | std/median = 32.3; max step 18.1 nm at order boundaries |
+| Finite flux | ~99% per segment |
 
----
+The flat 43,008-point `WAVE` array is *concatenated* per-order data, not a merge. `ORDER`
+and `DETEC` label every point, so splitting back into 21 native spectra is exact. This is
+what `viper` consumes.
+
+**The first verdict was wrong, and nearly cost the project.** `describe()` initially counted
+wavelength *columns*, found one, and reported `ORDER-MERGED — cr2res may be required`. Acting
+on that would have meant rebuilding the ESO pipeline for 20 nights that never needed it. The
+structural evidence (`ORDER`/`DETEC`/`XPOS`) and the spacing spread both contradict it. The
+classifier now keys on those columns, with spacing uniformity as a fallback for unlabelled
+products, and `tests/test_fetch.py` pins both shapes against synthetic FITS.
+
+Two smaller things:
+
+- **Windows rejects ESO's filenames.** Products are named `ADP.2025-06-02T12:44:40.787.fits`;
+  NTFS forbids `:`. `_safe_name` maps the forbidden characters to `-`, reversibly by eye.
+- **The header disagrees with the paper on resolution.** `SPEC_RES = 86000`, while the paper
+  says ~100,000; the sampling implies ~150,000 at 2 px/resel. The header is a nominal
+  instrument value, not a measurement of this slit. Noted, not chased — R enters the RV
+  forward model through the measured line spread function, not through this keyword.
 
 ## 6. Status
 
 - `config.py` fully sourced; `[SUMM]` tier eliminated.
-- 29 tests (was 23), all passing; ruff clean.
-- `exosat-rv probe` written, **unexercised**.
+- 36 tests (was 23), all passing; ruff clean.
+- `exosat-rv probe` run against live ESO; **kill-risk retired**.
 - M4 re-scoped from harmonic leakage to alias structure.
-- **Next:** re-run `exosat-rv probe` when ESO returns. Nothing else should be built first.
+- **M1 is complete.** M2 (RV extraction with `viper`) is unblocked, working from the 17
+  public reduced nights, with the ~10% precision penalty of §2 understood in advance.

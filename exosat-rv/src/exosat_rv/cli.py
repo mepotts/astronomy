@@ -99,7 +99,9 @@ def probe(
         d = describe(path)
         typer.echo(f"  file      : {path.name} ({path.stat().st_size/1e6:.1f} MB)")
         typer.echo(f"  HDUs      : {d.n_hdus} {d.hdu_kinds}")
-        typer.echo(f"  orders    : {d.n_orders}   points/order: {d.n_points}")
+        per_seg = d.n_points // d.n_segments if (d.n_points and d.n_segments) else None
+        typer.echo(f"  orders    : {d.n_orders}   segments: {d.n_segments}   "
+                   f"points: {d.n_points} ({per_seg}/segment)")
         if d.wav_min_nm is not None:
             typer.echo(f"  wavelength: {d.wav_min_nm:.1f} - {d.wav_max_nm:.1f}")
         typer.echo(f"  VERDICT   : {d.verdict()}")

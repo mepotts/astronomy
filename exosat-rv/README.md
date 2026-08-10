@@ -15,7 +15,7 @@ Everything this project does runs on a laptop against public archives. See
 [`DATA-SOURCES.md`](DATA-SOURCES.md) for endpoints and their known incompletenesses, and
 [`BUILD-PLAN.md`](BUILD-PLAN.md) for the milestone plan.
 
-**Current state: M0 complete; M1 half complete.** Findings:
+**Current state: M0 and M1 complete.** Findings:
 [`M0-RESULTS.md`](M0-RESULTS.md), [`M1-RESULTS.md`](M1-RESULTS.md).
 
 ⚠️ **M1 retracted two claims M0 published.** M0 asserted that a value in the paper
@@ -52,9 +52,13 @@ Two archive facts decide the whole project, both measured in M0 rather than assu
 - The preprint's dataset — 20 H-band epochs, Oct 2023 to Jan 2025 — **has left its
   proprietary period.** The Dec-2025-onward frames that changed the accepted Nature
   numbers have not, and lift between Dec 2026 and May 2027.
-- ESO publishes **pipeline-reduced 1-D spectra** (`calib_level=2`) for 17 of those nights.
-  Reduced spectra are exactly what a forward-modelling RV code consumes, so the raw-to-1D
-  reduction — the expensive part — does not have to be redone for them.
+- ESO publishes **pipeline-reduced 1-D spectra** (`calib_level=2`) for 17 of those nights,
+  and M1 confirmed they are **per-order extractions with native wavelength solutions**:
+  7 echelle orders x 3 detectors x 2048 native pixels, labelled by `ORDER`/`DETEC`/`XPOS`.
+  That is exactly what a forward-modelling RV code consumes, so the raw-to-1D reduction —
+  the expensive part — does not have to be redone. **The project's last kill-risk is
+  retired.** Working from the combined product costs ~10% precision (34.49 vs 31.44 m/s),
+  which is understood in advance rather than discovered in M3.
 
 ## What "reproduce" means here
 
