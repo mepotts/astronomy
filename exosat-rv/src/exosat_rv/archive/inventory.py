@@ -29,6 +29,7 @@ class Frame:
     setting: str        # CRIRES+ wavelength setting, e.g. "H", "K", "HX5E-2", "J"
     release: datetime   # tz-aware UTC
     reduced: bool = False
+    access_url: str = ""   # populated for reduced products only; how `probe` fetches them
 
 
 @dataclass

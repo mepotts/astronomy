@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 import json
+from datetime import UTC
 
 import typer
 
-from .archive.tap import build_inventory
+from .archive.fetch import describe, download
+from .archive.tap import build_inventory, query_reduced_products
 from .config import DATA, PUBLISHED
 
 app = typer.Typer(add_completion=False, help=__doc__, no_args_is_help=True)
@@ -68,3 +70,36 @@ def inventory(
 
 if __name__ == "__main__":
     app()
+
+
+@app.command()
+def probe(
+    n: int = typer.Option(1, help="How many products to download and open."),
+) -> None:
+    """M1 kill-check: fetch reduced products and report whether viper could use them.
+
+    Answers the one question M0 left open -- do ESO's calib_level=2 CRIRES+ products keep
+    the per-order wavelength solution, or are they order-merged? If merged, this project
+    needs cr2res for all 20 nights and becomes a much larger undertaking.
+    """
+    from datetime import datetime
+
+    prods = query_reduced_products(PUBLISHED.star_ra_deg, PUBLISHED.star_dec_deg)
+    public = [p for p in prods if p.release <= datetime.now(UTC)]
+    public.sort(key=lambda p: p.night)
+    typer.echo(f"{len(public)} public reduced products; probing {min(n, len(public))}")
+
+    for frame in public[:n]:
+        typer.echo(f"\n--- {frame.night} ---")
+        try:
+            path = download(frame.access_url)
+        except Exception as exc:  # noqa: BLE001 - the outcome IS the result here
+            typer.echo(f"  download failed: {type(exc).__name__}: {exc}")
+            continue
+        d = describe(path)
+        typer.echo(f"  file      : {path.name} ({path.stat().st_size/1e6:.1f} MB)")
+        typer.echo(f"  HDUs      : {d.n_hdus} {d.hdu_kinds}")
+        typer.echo(f"  orders    : {d.n_orders}   points/order: {d.n_points}")
+        if d.wav_min_nm is not None:
+            typer.echo(f"  wavelength: {d.wav_min_nm:.1f} - {d.wav_max_nm:.1f}")
+        typer.echo(f"  VERDICT   : {d.verdict()}")

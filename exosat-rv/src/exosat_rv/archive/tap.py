@@ -92,6 +92,7 @@ def query_reduced_products(
             setting="?",
             release=parse_release(r["obs_release_date"]),
             reduced=True,
+            access_url=str(r["access_url"]),
         )
         for r in rows
     ]
@@ -116,7 +117,7 @@ def build_inventory(
     red = [
         Frame(f.target, f.night, f.prog_id,
               min(settings_by_night.get(f.night, {"?"})),
-              f.release, reduced=True)
+              f.release, reduced=True, access_url=f.access_url)
         for f in red
     ]
     return Inventory(target=target, nights=roll_up(raw + red), now=utcnow())

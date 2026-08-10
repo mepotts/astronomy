@@ -57,15 +57,22 @@ Is this reproducible, and how much reduction must be redone?
 Hill radius and exposed a provenance problem across the whole config. See
 [`M0-RESULTS.md`](M0-RESULTS.md).
 
-### M1 — Spectra in hand
-Download the 17 usable products and **open one**. Characterise: order structure, SNR per
-order, wavelength solution as delivered, whether telluric lines survive the pipeline's
-processing. Read the actual arXiv PDF (poppler under WSL) and promote the `[SUMM]` config
-fields to `[v1]`.
-*Kill condition:* if the ESO products are order-merged or resampled in a way that destroys
-the per-order wavelength solution, `viper` cannot use them and the project reverts to
-building cr2res for all 20 nights — a different, much larger project. **This is the real
-remaining risk and M1 exists to retire it.**
+### M1 — Spectra in hand ◐ (half complete)
+**Track A — read the source: DONE.** `pypdf` extracted the PDF that defeated M0's fetch
+(27 pages, no poppler/WSL needed). Every config field is now `[v1]` or `[TAP]`; the `[SUMM]`
+tier is eliminated. **Two claims M0 published were retracted** — see
+[`M1-RESULTS.md`](M1-RESULTS.md) §1.
+
+**Track B — open a product: BLOCKED.** `archive.eso.org` went unreachable (connect timeout,
+HTTP 000) while other hosts responded normally. `exosat-rv probe` is written and wired;
+its datalink branch is untested against a live URL.
+*Kill condition, unchanged:* if the ESO products are order-merged or resampled such that the
+per-order wavelength solution is destroyed, `viper` cannot use them and the project reverts
+to building cr2res for all 20 nights. **Re-run `exosat-rv probe` before building anything
+else.**
+*Now known:* the authors did not use the combined product either — they kept individual
+nodding frames, buying 31.44 m/s against 34.49 m/s. Archived products cost ~10% precision by
+construction, and M3 must not read that offset as a disagreement.
 
 ### M2 — RV extraction
 Get `viper` running against the products; extract 17 RVs with uncertainties. Success is
@@ -79,13 +86,20 @@ GLS periodogram, then `radvel` Keplerian fitting. Does 169.45 d / 0.743 M_Jup fa
 17 epochs analysed by a different sampler? Report the answer either way; a failure to
 reproduce is a result, not a bug to be tuned away.
 
-### M4 — The harmonic test
-The project's sharpest question. Is the 87.46 d signal a second satellite, or the first
-harmonic of an eccentric 169 d orbit? 169.45/2 = 84.7 d sits 4.34σ from it, and the paper's
-Δlog Z = 2.6 (Bayes factor ~14) is positive, not decisive.
-Method: inject single eccentric Keplerians at the recovered 169 d orbit into the real
-observing cadence, recover, and measure how often a spurious ~87 d signal appears at
-Δlog Z ≥ 2.6. Optionally add the two 2023 J-band epochs (M0 §3) for baseline leverage.
+### M4 — The alias test *(re-scoped by M1)*
+**Original scope was redundant.** M0 framed this as "is the 87 d signal a harmonic of an
+eccentric 169 d orbit?" — a question the paper asks, fits (e = 0.29, Table 1), and rejects
+at Δlog Z = 6.9.
+
+**The live question is the second signal's period.** The paper identifies 14, 70, 88 and
+115 d as aliases of one another caused by two observing seasons almost exactly a year apart,
+and prefers 88 d by only Δlog Z = 2.6.
+Method: compute the spectral window function of the real cadence and confirm it generates
+the 14/70/88/115 d family; then inject signals at each candidate period into the real
+cadence and measure how often the injected period is recovered as the favourite. If 115 d
+injections frequently recover as 88 d, the paper's choice is sampling-driven.
+The two public J-band epochs from Jan/Feb 2023 (M0 §3) sit ~9 months before the paper's
+first epoch and may offer alias-breaking leverage, at the cost of a cross-setting zero-point.
 
 ### M5 — Analogue survey
 Build the substellar-companion target list — wide (slit-resolvable), bright (H ≲ 16), with

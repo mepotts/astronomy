@@ -93,15 +93,17 @@ def test_empty_inventory_reports_no_baseline():
 
 @pytest.mark.network
 def test_live_inventory_matches_the_published_epoch_count():
-    """M0's headline, as a test: the paper's 20 epochs are exactly the 20 public H nights.
+    """M0's headline, as a test: 20 public H-band nights, and the paper analysed 20 epochs.
 
-    Marked ``network``; will drift when the embargoed frames release, at which point the
-    assertion should be updated deliberately rather than loosened.
+    Note the paper *obtained* 21 and discarded one for continuum S/N ~5, so this is an
+    equality of analysed epochs to public nights, not of observations to nights. Marked
+    ``network``; will drift when the embargoed frames release, at which point the assertion
+    should be updated deliberately rather than loosened.
     """
     from exosat_rv.archive.tap import build_inventory
     from exosat_rv.config import PUBLISHED as P
 
     inv = build_inventory("CD-35 2722 B", P.star_ra_deg, P.star_dec_deg)
     s = inv.summary("H")
-    assert s["usable_now"] + s["reduction_gap"] == P.n_epochs
+    assert s["usable_now"] + s["reduction_gap"] == P.n_epochs_used
     assert s["usable_baseline"] == ["2023-10-13", "2025-01-21"]

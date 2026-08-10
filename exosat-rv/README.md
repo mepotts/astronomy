@@ -15,8 +15,15 @@ Everything this project does runs on a laptop against public archives. See
 [`DATA-SOURCES.md`](DATA-SOURCES.md) for endpoints and their known incompletenesses, and
 [`BUILD-PLAN.md`](BUILD-PLAN.md) for the milestone plan.
 
-**Current state: M0 (archive kill-check) complete.** Findings:
-[`M0-RESULTS.md`](M0-RESULTS.md).
+**Current state: M0 complete; M1 half complete.** Findings:
+[`M0-RESULTS.md`](M0-RESULTS.md), [`M1-RESULTS.md`](M1-RESULTS.md).
+
+⚠️ **M1 retracted two claims M0 published.** M0 asserted that a value in the paper
+(a "Hill radius" of 1.07 au) was impossible; it is a Domingos+2006 *stability limit*, the
+companion's orbit is highly eccentric (e > 0.9, a ~ 222 au, not a circular 62.6 au), and
+recomputed properly the paper's value is **correct**. M0 also misreported what the paper's
+Δlog Z = 2.6 compares. Both retractions, with working, are in
+[`M1-RESULTS.md`](M1-RESULTS.md) §1 and indexed in [`HANDOFF.md`](HANDOFF.md) §1.
 
 ## M0 in one table
 
@@ -32,12 +39,11 @@ CRIRES+ H-band nights on CD-35 2722 B, measured 2026-08-09 (`exosat-rv inventory
 the set of public H-band nights, with nothing held back — asserted as a live test so it
 fails loudly when the embargo lifts. Usable baseline 2023-10-13 to 2025-01-21.
 
-M0 also **disproved a published-looking number**: a Hill radius of 1.07 au implies the
-companion orbits at 3.7 au, but it is imaged at 2.8" = 62.6 au, where the Hill radius is
-~18 au. That value came from an AI summary of the paper body rather than from the paper,
-which exposed a provenance problem across the whole config — every field is now tagged
-`[TAP]` (archive-confirmed), `[v1]` (read from the abstract), or `[SUMM]` (unverified, and
-barred from backing any test).
+M1 then read the actual PDF (`pypdf`, 27 pages — no poppler or WSL needed) and sourced every
+config value. The unverified `[SUMM]` tier is **eliminated**; two further values it held were
+wrong (primary mass 0.4 not 0.5 M☉; mean RV error 31.44 not 30 m/s). The lesson M0 drew —
+tag unverified values — was too weak: **an unverified value must not be an input to any
+conclusion, not merely absent from tests.**
 
 ## Why this is reproducible at all
 
@@ -55,10 +61,15 @@ Two archive facts decide the whole project, both measured in M0 rather than assu
 Not re-running the authors' pipeline on the authors' products. The inference stage is
 deliberately built on a *different* Keplerian fitter than the paper's, so agreement means
 something. The sharpest question in the data is not whether the 169-day signal is real —
-it is whether the **second, marginal 87-day signal** is a satellite or the first harmonic
-of an eccentric 169-day orbit. 169.45/2 = 84.7 d sits 4.34 sigma from the claimed
-87.46 +/- 0.63 d, and the paper's evidence for it (delta-log-Z = 2.6, a Bayes factor of
-~14) is positive rather than decisive. M4 exists to answer that.
+it is the **period of the second signal**. The paper is explicit that 14, 70, 88 and 115 days
+are aliases of one another, produced by two observing seasons almost exactly a year apart,
+and that its favoured 88-day model beats the 115-day one by only Δlog Z = 2.6. That is a
+*sampling* problem, and a reanalysis can attack it without new telescope time — via the
+spectral window function and injection-recovery across the alias family.
+
+(The obvious alternative — that the second signal is a harmonic of an eccentric 169-day
+orbit — is one the paper already fits and rejects at Δlog Z = 6.9. M4 was re-scoped once
+M1 read the source.)
 
 ## Quickstart
 

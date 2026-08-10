@@ -59,7 +59,13 @@ rediscovered later.
 
 ## 4. Findings that change how the rest of the project is written
 
-### 4.1 A published-looking number that cannot be true
+### 4.1 A published-looking number that cannot be true — **RETRACTED BY M1**
+
+> **This section was wrong.** 1.07 au is a Domingos+2006 *stability limit*, not a Hill
+> radius, and the companion's orbit is not circular at the projected separation — it has
+> e > 0.9 and a ~ 222 au. Recomputed properly, 1.07 au falls out at e_host ~ 0.93, well
+> inside the published ">0.9". The paper's value is correct. See
+> [`M1-RESULTS.md`](M1-RESULTS.md) section 1.1. The original text is kept below unaltered.
 
 `PUBLISHED.hill_radius_au = 1.07` came from an AI summary of the paper body. It is
 inconsistent with the system as imaged:
@@ -92,6 +98,12 @@ from AI summaries of the paper rather than from the paper. `config.py` now tags 
   `bd_max_prot_days`, both period uncertainties, both semi-major axes, `resolving_power`,
   the RV error range, `roche_limit_rbd`.
 
+> **M1 update:** the `[SUMM]` tier no longer exists — the PDF yielded to `pypdf` and every
+> field is now `[v1]` or `[TAP]`. Two further `[SUMM]` values were wrong: the primary mass
+> (0.5 assumed, 0.4 published) and the mean RV error (30 vs 31.44 m/s). The deeper lesson
+> M0 missed: tagging a value unverified does not make it safe to *reason* from, and M0
+> reasoned from one all the way to a published disproof.
+
 No test may assert against a `[SUMM]` field. **Reading the actual PDF and promoting those
 fields is a prerequisite for M3**, because `rv_err_mean_ms` and the period uncertainties are
 inputs to the reproduction verdict, not decoration. The PDF did not extract via the fetch
@@ -100,7 +112,8 @@ path used in M0 (`pdftoppm` absent, compressed content streams); WSL has poppler
 ## 5. What M0 does not establish
 
 - That the reduced products are of usable quality for 30 m/s RV work. ObsCore says they
-  exist; nobody has opened one. **First task of M1.**
+  exist; nobody has opened one. **First task of M1.** *(Still true after M1: `archive.eso.org`
+  was unreachable for the whole attempt. See M1-RESULTS section 5.)*
 - That `viper` runs on ESO-reduced CRIRES+ products without the authors' intermediate
   files. The paper's pipeline consumed its own extraction.
 - Anything about analogue targets. The NASA Exoplanet Archive caps companion mass at

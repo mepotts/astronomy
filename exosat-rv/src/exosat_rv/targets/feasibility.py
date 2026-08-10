@@ -87,6 +87,30 @@ def max_stable_sma_au(m_host_mjup: float, m_star_msun: float, sma_au: float) -> 
     return 0.4 * hill_radius_au(m_host_mjup, m_star_msun, sma_au)
 
 
+def semi_major_axis_au(period_yr: float, m_total_msun: float) -> float:
+    """Kepler's third law, in au / M_sun / yr."""
+    return (m_total_msun * period_yr**2) ** (1.0 / 3.0)
+
+
+def domingos_stability_limit_au(
+    m_host_mjup: float, m_star_msun: float, sma_au: float,
+    ecc_host: float = 0.0, ecc_sat: float = 0.0,
+) -> float:
+    """Outer edge for prograde coplanar satellites, Domingos et al. (2006) eq. 5.
+
+    a_E ~ 0.49 R_Hill (1 - 1.0305 e_host - 0.2738 e_satellite)
+
+    The host eccentricity term is brutal: at e_host = 0.9 the bracket collapses to ~0.07,
+    shrinking the stable zone by more than an order of magnitude relative to a circular
+    orbit. That is exactly why CD-35 2722 B's stability limit is ~1 au and not ~9 au, and
+    why M0's "this number is impossible" claim was wrong -- it assumed a circular orbit.
+    """
+    bracket = 1.0 - 1.0305 * ecc_host - 0.2738 * ecc_sat
+    if bracket <= 0:
+        return 0.0
+    return 0.49 * hill_radius_au(m_host_mjup, m_star_msun, sma_au) * bracket
+
+
 def harmonic_offset_sigma(
     fundamental_d: float, candidate_d: float, candidate_err_d: float, order: int = 2
 ) -> float:
