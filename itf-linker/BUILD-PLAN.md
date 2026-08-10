@@ -324,9 +324,28 @@ ITF"* plus the pipeline. **RNAAS** fits exactly (≤1,500 words, one figure or t
    "arc" here is a collision until proven otherwise, so the reuse filter has to run *before*
    any of this is treated as a target list.
 
-   **Recommendation:** if this is picked up, scope it to the 5–400 day band with reuse
-   screening applied first, and expect a target list in the low thousands. Do not scope it
-   to 19,287.
+   **The project's own reuse screen cuts it further.** `collide.MAX_TRKSUB_ARC_DAYS` is
+   200 days — M1 already treats a longer trkSub arc as a collision suspect. Applying that
+   one flag, which needs no observation parsing:
+
+   - 5–400 d band: **1,877**
+   - trip the long-arc flag (arc > 200 d): **505**
+   - **survive: 1,372 — 7.1% of the two-night population**, 158 of them cross-observatory
+
+   Across all 19,211 two-night designations, 1,622 trip the flag and 553 of those are
+   cross-observatory — 34% against a ~3% baseline, which is the reuse signature again from
+   a second direction.
+
+   **1,372 is an upper bound.** M1's other two screens (sustained rate > 5°/day, same-night
+   cross-site separation > 5°) need per-observation sky positions and were not applied here;
+   they can only reduce it. The raw ITF is on disk for the newest snapshot if someone wants
+   the exact number.
+
+   **Recommendation:** the honest target list is **~1,372 and falling**, not 19,287 — a
+   fourteenfold difference, and the band it survives in is the one where a 2-night arc
+   actually constrains anything. If this is picked up, scope it to 5–200 days with the full
+   reuse screen applied first. Or leave it: M4 and M5 already argue the cross-observatory
+   pool is exhausted, and nothing here contradicts that.
 
 ---
 

@@ -96,16 +96,20 @@ label), so the script hardlinks the key set to its per-snapshot name before uplo
 The pre-2026-08-06 asset is still called `observations.parquet` with no snapshot id. The
 prune step matches `observations-*` only, so it is never deleted automatically.
 
-**The prune had never executed as of 2026-08-10** — with a window of 4 and exactly four
-per-snapshot assets published (08-06 through 08-09), `drop` was 0 every run. It fires for the
-first time when the fifth lands. Because that is a destructive call running unattended
-against the one dataset that cannot be rebuilt, the selection was dry-run against the live
-release first: the glob matched the 4 per-snapshot assets and not the legacy one, and
-simulating a fifth gave `drop=1` selecting `observations-20260806T122651Z.parquet` — the
-oldest, which is correct. Asset names sort chronologically because the snapshot id is a
-zero-padded UTC timestamp, so the lexicographic `sort` is a chronological one. Losing that
-generation is by design: its manifest and delta are committed to git permanently, and only
-the key set, which exists to diff the next pull, is dropped.
+**The prune first executed on 2026-08-10, and did the right thing.** Until then `drop` was 0
+every run — a window of 4 against exactly four published assets — so the one destructive call
+in this script had never run, and it runs unattended against the dataset that cannot be
+rebuilt. It was therefore dry-run against the live release beforehand, which predicted it
+would take `observations-20260806T122651Z.parquet` and leave the legacy un-suffixed asset
+alone. The 08-10 run published `observations-20260810T122649Z.parquet` and logged
+`pruned old key set observations-20260806T122651Z.parquet`, leaving 08-07 through 08-10 plus
+the legacy asset. Prediction and outcome agree.
+
+Asset names sort chronologically because the snapshot id is a zero-padded UTC timestamp, so
+the lexicographic `sort` is a chronological one — that is the property the prune depends on,
+and it is worth not breaking. Losing a generation is by design: its manifest and delta are
+committed to git permanently, and only the key set, which exists to diff the next pull, is
+dropped.
 
 ~2 KB/day committed is ~700 KB/year of permanently useful history. The key set in git
 would be ~60 GB/year of near-identical binaries, and GitHub hard-rejects files over
