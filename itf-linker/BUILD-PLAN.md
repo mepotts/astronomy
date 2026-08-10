@@ -297,6 +297,37 @@ ITF"* plus the pipeline. **RNAAS** fits exactly (≤1,500 words, one figure or t
    more night, and a 2-night arc constrains where to look — a far better-conditioned
    search than blind 3-way linking, and now that fitting is cheap it is testable.
 
+   **Scoped 2026-08-10, and the premise mostly does not hold.** Measured on the archive's
+   own per-designation summary (`data/snapshots/<newest>/designations.parquet`, 2,590,654
+   designations; 19,214 with two nights at that pull — the count drifts):
+
+   | arc | designations | cross-observatory |
+   |---|---:|---:|
+   | 0–2 d | 11,167 | 3.0% |
+   | 2–5 d | 5,053 | 3.7% |
+   | 5–15 d | 531 | 16.6% |
+   | 15–60 d | 481 | 6.2% |
+   | 60–400 d | 865 | 10.4% |
+   | **> 400 d** | **1,117** | **45.0%** |
+
+   **58% of the population spans under two days and 84% under five.** A pair on consecutive
+   nights constrains an orbit barely better than one tracklet does, so for most of these the
+   search region for a third night is close to the blind-linking region the plan hoped to
+   avoid. The premise holds in the **5–400 day** band, which is **1,877 designations —
+   9.8%**, not 19,214.
+
+   And the apparently best-constrained tail is the least trustworthy. Cross-observatory
+   fraction sits near 3% everywhere short-arc and jumps to **45% beyond 400 days**; 82 pairs
+   span more than a decade and one spans 148 years (`140871`, two observations). Two
+   different surveys sharing a trkSub string produces exactly that signature, and M1 already
+   found name reuse in the 3+-night population (141 suspects of 1,120). A decades-long
+   "arc" here is a collision until proven otherwise, so the reuse filter has to run *before*
+   any of this is treated as a target list.
+
+   **Recommendation:** if this is picked up, scope it to the 5–400 day band with reuse
+   screening applied first, and expect a target list in the low thousands. Do not scope it
+   to 19,287.
+
 ---
 
 ## 5. Cost

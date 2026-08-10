@@ -96,6 +96,17 @@ label), so the script hardlinks the key set to its per-snapshot name before uplo
 The pre-2026-08-06 asset is still called `observations.parquet` with no snapshot id. The
 prune step matches `observations-*` only, so it is never deleted automatically.
 
+**The prune had never executed as of 2026-08-10** — with a window of 4 and exactly four
+per-snapshot assets published (08-06 through 08-09), `drop` was 0 every run. It fires for the
+first time when the fifth lands. Because that is a destructive call running unattended
+against the one dataset that cannot be rebuilt, the selection was dry-run against the live
+release first: the glob matched the 4 per-snapshot assets and not the legacy one, and
+simulating a fifth gave `drop=1` selecting `observations-20260806T122651Z.parquet` — the
+oldest, which is correct. Asset names sort chronologically because the snapshot id is a
+zero-padded UTC timestamp, so the lexicographic `sort` is a chronological one. Losing that
+generation is by design: its manifest and delta are committed to git permanently, and only
+the key set, which exists to diff the next pull, is dropped.
+
 ~2 KB/day committed is ~700 KB/year of permanently useful history. The key set in git
 would be ~60 GB/year of near-identical binaries, and GitHub hard-rejects files over
 100 MB.
