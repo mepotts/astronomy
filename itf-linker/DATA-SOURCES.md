@@ -319,6 +319,13 @@ alongside.
 
 The night/arc/singleton gate is implemented in `verify/mpec.py::acceptance_summary` and
 verified to accept all three published MPECs while rejecting each failure mode.
+
+**Which of the pre-fit conditions the code actually applies.** `fit/candidates.prefit_gate`
+implements four: nights, arc, three-nights-wide-arc, singleton ends. It does **not** implement
+the two-apparition condition, which is unreachable here — the linker's windows are at most 21
+days and cannot span two apparitions, so no candidate the gate sees can trip it. It must be
+implemented before any multi-apparition window uses that function. "The submission format is
+incorrect" is not a property of a candidate and is not a gate at all.
 ---
 
 ## 6. Vetting services (M2) — **(verified 2026-07-29)**

@@ -690,12 +690,23 @@ margin that was fully consumed rather than a clean pass.
 
 **All sixteen refusals are beyond-belt candidates, and they are exactly the sixteen §5.2's
 σ table said not to trust** — every one with σ(a)/a between 11% and 118%. The vetting layer
-refuses to ask a catalogue about an orbit whose own uncertainty exceeds the search radius,
-and it drew the line in the same place the σ column did, without being told to.
+declines to *credit* a catalogue non-match for an orbit whose own uncertainty exceeds the
+search radius, and it drew the line in the same place the σ column did, without being told
+to.
 
-The five beyond-belt candidates it *was* willing to query are precisely those with
-σ(a)/a ≤ 4.1% — `lnk690k`, `lnk5p9s`, `lnk2aoz`, `lnk2a3j`, and `lnk034r`. Four came back
+The five beyond-belt candidates it credited are precisely those with σ(a)/a ≤ 4.1% —
+`lnk690k`, `lnk5p9s`, `lnk2aoz`, `lnk2a3j`, and `lnk034r`. Four came back
 `no_catalogue_object_near_astrometry`; the fifth is 29P.
+
+> **Corrected 2026-08-10.** This said the layer "refuses to ask" and names the five it "was
+> willing to query". It asks about all of them. `vet.pipeline.vet_candidate` queries every
+> service at every selected epoch regardless of `well_constrained`; the constraint is applied
+> afterwards in `vet.verdict._why_unmatched`, which picks the weakest label the evidence
+> supports and returns `orbit_too_poorly_constrained` for those sixteen. The conservatism is
+> real and the conclusion below is unaffected — but it happens at labelling, not at asking.
+> **It has a cost the original wording hid:** those sixteen consumed live MPChecker requests,
+> which matters given §8's note that MPChecker spent its entire five-failure budget. A layer
+> that genuinely refused to ask would have saved them.
 
 M4 saw this on both of its slices and M5 sees it on the complete older slice. **The
 demotion of the distant candidates is not a judgement made in the write-up — it is what the
