@@ -54,6 +54,11 @@ inverted twice over.)
 - ✅ From-raw extraction now reaches **147–218 m/s** against the published Nature RVs and
   recovers **K = 304 ± 69 vs their 306.0** at the published period, injection-validated at
   100% ± 5%. ([M13](M13-RESULTS.md) §2–4)
+- ❌ **But the conclusion does NOT yet reproduce from raw data.** A blind period search on
+  our own series finds ~171 d as the **top peak** (ΔBIC +9 to +20) — and the detection
+  collapses under a BERV nuisance term, because orbital phase and BERV are −0.71
+  correlated across the archive epochs. Not separable until the embargoed epochs release
+  (Dec 2026 – May 2027) or the floor drops. ([M13](M13-RESULTS.md) §4b)
 - ⚠ Inference on the **published Nature table**: the 87.35 d second-period *choice*
   reproduces, but the second satellite's *existence* evidence flips to **−0.51** where the
   paper claims +2.62 (BIC/2 proxy; nested sampling is the open follow-up). The primary

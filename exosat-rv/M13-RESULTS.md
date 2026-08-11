@@ -174,6 +174,34 @@ cannot be cleanly separated. Recorded as a hint, testable only with epochs where
 and BERV decouple. The −0.71 itself is worth knowing: the published detection's epoch
 sampling is not BERV-orthogonal either.
 
+## 4b. The blind test — and why "reproduced from raw data" is still a NO
+
+§4 fits K at a period the paper supplied, which reproduces a *measurement*, not a
+*conclusion*. The conclusion-level test is a blind period search on our own series
+([`blind_search.py`](scripts/injection/blind_search.py): ΔBIC of a circular Keplerian
+vs constant, 4000 trial periods, 5–460 d, no published value entering the fit):
+
+- **All 18 epochs: no detection.** The epoch at BJD 2460604.821 — catastrophic on
+  internal evidence alone (per-order spread ±6000 m/s vs ±1000 typical; it is also the
+  one epoch absent from the published table) — buries everything.
+- **17 epochs, no BERV term: the satellite's period wins blind.** Top peak
+  P = 175.3 d, ΔBIC = +19.7, K = 420 (median combine); P = 174.5, ΔBIC = +9.4,
+  K = 310 (clipped). The ~355–373 d harmonic family sits second.
+- **17 epochs, BERV as a nuisance covariate: the detection collapses** (ΔBIC at
+  ~171 d goes negative or insignificant in every variant).
+
+The collapse is §4's confound doing its work: with corr(orbital phase, BERV) = −0.71
+in this sampling, our data cannot distinguish "171-day satellite" from "BERV-tracking
+systematic" — a real orbit is absorbed by the BERV term exactly as a systematic would
+be. The paper's own answer to this is presumably its five additional epochs (the ones
+extending the baseline to 851 d, embargoed until **Dec 2026 – May 2027**), which break
+the phase–BERV lockstep. Until those release, or until the residual floor drops enough
+to separate the hypotheses, **the primary satellite's from-raw status is: period
+recovered as the top blind candidate, amplitude consistent, existence not independently
+provable from the archive epochs alone.** For M14 target selection this is a design
+rule: pick epoch samplings where orbital phase and BERV decouple, or the same ambiguity
+will be baked in from the start.
+
 ## 5. The second satellite does not survive its own revised table
 
 `exosat-rv orbits` now takes `--version nature|v1`
