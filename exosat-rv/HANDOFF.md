@@ -1,6 +1,24 @@
 # HANDOFF — exosat-rv
 
-> ## ⚠ READ [`M13-RESULTS.md`](M13-RESULTS.md) FIRST, then [`M12-RESULTS.md`](M12-RESULTS.md) — each moves the ground under everything below
+> ## ⚠ READ [`M14-RESULTS.md`](M14-RESULTS.md) FIRST (then M13, M12) — M14 changes both headline verdicts
+>
+> **M14 (2026-08-11, COMPLETE):** (1) **The second-satellite flip survives nested
+> sampling**: dynesty on the Nature table gives ΔlogZ(2sat−1sat) between −0.8 and
+> −6.6 across three model pairings × three prior styles × two seeds — never positive —
+> against the paper's claimed +2.622. The M13 proxy (−0.51) was conservative.
+> (2) **The drift floor is closed and the conclusion reproduces from raw data.**
+> `-oversampling 2` (147→133) + a **second template iteration** (→ **85 m/s** mean,
+> archive route; guard passes 105% ± 4%, every order 92–112%, o18 healed) + the
+> paper's per-nodding-binned recipe on all 18 nights reduced from raw (→ **90 raw /
+> 70–76 centered-robust**). The **blind period search finds ~169–171 d at rank 1 in
+> every combine, ΔBIC +40 alone and +25 to +28 WITH a BERV nuisance covariate**, the
+> fatal 60604 epoch excluded by a fully internal 3×-spread screen. Attribution is
+> clean: at template iteration 1 the detection still collapses under BERV even
+> per-nodding — iteration 2 is the decisive change. Success criterion (rms_pub ≤ 90
+> AND BERV-robust blind detection) **met on both routes**. Amplitude runs 20–40% high
+> (confound-limited hint, M13 §4's rules still apply). All of it injection-validated,
+> including per-frame arms and an amplitude-matched K≈306 arm (9/11 orders 98–105%,
+> rms 5–29 m/s).
 >
 > **M13 (2026-08-11):** the paper's **eleven orders are identified** —
 > `oset 4,7,8,9,10,12,13,14,17,18,19`, confirmed three ways. The best config
@@ -47,26 +65,26 @@
 
 ## Where the project stands
 
-**The measurement now nearly reproduces. The conclusion only partly survives the authors'
-own revision.** (M12's framing — "the conclusion reproduces, the measurements do not" —
-inverted twice over.)
+**The primary satellite now reproduces from raw data; the second satellite is
+contradicted on the authors' own table.** (The project's verdict has inverted three
+times — M12, M13, and now M14 — each time on evidence.)
 
-- ✅ From-raw extraction now reaches **147–218 m/s** against the published Nature RVs and
-  recovers **K = 304 ± 69 vs their 306.0** at the published period, injection-validated at
-  100% ± 5%. ([M13](M13-RESULTS.md) §2–4)
-- ❌ **But the conclusion does NOT yet reproduce from raw data.** A blind period search on
-  our own series finds ~171 d as the **top peak** (ΔBIC +9 to +20) — and the detection
-  collapses under a BERV nuisance term, because orbital phase and BERV are −0.71
-  correlated across the archive epochs. Not separable until the embargoed epochs release
-  (Dec 2026 – May 2027) or the floor drops. ([M13](M13-RESULTS.md) §4b)
-- ⚠ Inference on the **published Nature table**: the 87.35 d second-period *choice*
-  reproduces, but the second satellite's *existence* evidence flips to **−0.51** where the
-  paper claims +2.62 (BIC/2 proxy; nested sampling is the open follow-up). The primary
-  satellite is untouched — its amplitude is what §4 reproduces. ([M13](M13-RESULTS.md) §5)
-- ✅ On the superseded v1 table the same code still prefers two satellites (+3.04), as M6
-  found — the flip is in the data revision, not the code. ([M6](M6-RESULTS.md), M13 §5)
-- ❌ Per-epoch precision is still 2.5–3.8× theirs: 147–218 m/s vs 57.68 claimed, Eq. (1)
-  331 vs 60.50. The floor is night-to-night per-order drift. ([M13](M13-RESULTS.md) §6)
+- ✅ **The conclusion reproduces from raw data.** Blind period search on our own
+  from-raw series: **~169–171 d, rank 1 in every combine, ΔBIC +40 alone, +25 to +28
+  with a BERV nuisance covariate**, fatal epoch excluded by an internal screen. Both
+  routes (archive-combined and per-nodding-binned) agree. ([M14](M14-RESULTS.md) §6, §8)
+- ✅ Per-epoch precision **70–90 m/s vs 57.68 claimed** (1.2–1.6×, from 25× at start);
+  the decisive changes were the second template iteration and `-oversampling 2`, both
+  injection-validated. ([M14](M14-RESULTS.md) §2, §5, §8)
+- ❌ **The second satellite is disfavoured on the paper's own Nature table**: ten
+  nested-sampling integrals, ΔlogZ −0.8 to −6.6, never positive, vs their +2.622.
+  The 87.35 d period *choice* still reproduces; the *existence* evidence does not
+  survive their own data revision. ([M14](M14-RESULTS.md) §1, §7)
+- ✅ On the superseded v1 table the same code still prefers two satellites (+3.04), as
+  M6 found — the flip is in the data revision, not the code. ([M6](M6-RESULTS.md), M13 §5)
+- ⚠ **Amplitude runs 20–40% high** (K 360–440 vs their 306; slope 1.19–1.24) — a hint
+  that rhymes with M11's measured template-absorption, not claimable while phase and
+  BERV are −0.71 entangled. Decidable when the embargoed epochs release. ([M14](M14-RESULTS.md) §9)
 
 **M7 read the paper's reference list and the project's assumptions moved.** Read
 [`M7-RESULTS.md`](M7-RESULTS.md) §0 before planning anything: the method was *proposed* in
@@ -76,11 +94,15 @@ archive; use [`scripts/fetch_paper.py`](scripts/fetch_paper.py) to add to it.
 
 **This is what a new agent should do next**, in order:
 
-0. **M13 leaves three successors** ([M13 §7](M13-RESULTS.md)): (a) nested sampling on the
-   Nature table to settle the second-satellite flip; (b) **M14 — take the validated recipe
-   to a new target** (template → telluric-selected orders → `kapsig 3` → median combine →
-   injection-validate; eta Tel B is the standing first pick, see step 4); (c) an
-   amplitude-matched (~300 m/s) injection arm to close the linearity assumption.
+0. **M14 closed all three of M13's successors** (nested sampling ✓, floor ✓,
+   amplitude-matched injection ✓) — see [M14 §10](M14-RESULTS.md): (a) update the
+   author query with the evidence integrals and the independent detection; (b) **M15 —
+   eta Tel B** with the full validated recipe (per-nodding, 2-iteration template with
+   `-kapsig 3` creation, telluric-selected orders, `-kapsig 3`, `-oversampling 2`,
+   robust combine, injection-validate, internal 3×-spread epoch screen), checking the
+   target's phase–BERV geometry first; (c) when the embargoed epochs release
+   (Dec 2026 – May 2027), settle the amplitude overshoot and the second satellite on
+   data the confound cannot reach.
 
 1. ~~**Establish why *this project's* extraction sits 25x above 31.44 m/s.**~~ **Answered
    across M12–M13**: superseded source + phantom gas cell + telluric template (M12), then
