@@ -11,7 +11,8 @@ import io, os, subprocess, sys, time
 from astropy.io import fits
 from astropy.table import Table
 
-ADP_DIR = "/mnt/c/Users/matth/projects/astronomy/exosat-rv/data/spectra"
+ADP_DIR = os.environ.get(
+    "ADP_DIR", "/mnt/c/Users/matth/projects/astronomy/exosat-rv/data/spectra")
 ENV = {k: v for k, v in os.environ.items() if k != "LD_LIBRARY_PATH"}
 
 def fetch(url, need, tries=12):

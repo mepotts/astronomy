@@ -4,8 +4,8 @@
 # cal_dark -> cal_flat -> cal_wave -> obs_nodding; the point is extractedA/extractedB.
 N=$1
 source /mnt/c/Users/matth/projects/astronomy/exosat-rv/scripts/cr2res/cr2env.sh
-RAW=$HOME/cr2res/raw/$N
-W=$HOME/cr2res/red/$N
+RAW=${RAW_BASE:-$HOME/cr2res/raw}/$N
+W=${RED_BASE:-$HOME/cr2res/red}/$N
 CLS=/mnt/c/Users/matth/projects/astronomy/exosat-rv/scripts/cr2res/classify.py
 PY=~/viperenv/bin/python
 mkdir -p "$W" && cd "$W" || exit 1
