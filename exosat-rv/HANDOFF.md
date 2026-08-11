@@ -1,6 +1,17 @@
 # HANDOFF — exosat-rv
 
-> ## ⚠ READ [`M14-RESULTS.md`](M14-RESULTS.md) FIRST (then M13, M12) — M14 changes both headline verdicts
+> ## ⚠ READ [`M15-RESULTS.md`](M15-RESULTS.md) and [`M14-RESULTS.md`](M14-RESULTS.md) FIRST (then M13, M12)
+>
+> **M15 (2026-08-11, archive route complete, per-nodding running):** the validated
+> recipe transferred to **eta Tel B** — which shares CD-35's exact H1567 setting —
+> and produced the **first RV constraint ever placed on the object**: 127–129 m/s
+> per epoch (beats the 163 forecast), r(RV,BERV) ≈ 0, injection gates at 99–101% ±1
+> with 12–23 m/s residuals (4× cleaner than CD-35), **no credible detection**, and
+> an injection-calibrated 90% limit of **msini ≳ 0.5–1.2 M_Jup across P = 20–300 d**
+> — sub-Jupiter over most of the range, 3× deeper than forecast. The machinery
+> detects its own end-to-end K=300 injection at rank 1, so the null is meaningful.
+> The phase–BERV geometry check (ten minutes) confirmed 150–300 d is fully
+> BERV-clean *before* any compute was spent — make that check permanent practice.
 >
 > **M14 (2026-08-11, COMPLETE):** (1) **The second-satellite flip survives nested
 > sampling**: dynesty on the Nature table gives ΔlogZ(2sat−1sat) between −0.8 and
