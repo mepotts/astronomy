@@ -1,0 +1,31 @@
+# CD-35 2722 B radial velocities, Hoy et al. 2026, Nature (published version),
+# 'A Full RV dataset' appendix Table 2. Extracted from papers/text/hoy2026_nature_published.txt
+# (pypdf extraction of the ESO-hosted published PDF).
+# Verification: 23 rows; mean of the error column = 57.68 m/s, matching the paper's
+# quoted mean RV error for the favoured (per-nodding, binned) extraction; median 57.0
+# matches the quoted median. RVs are RELATIVE, in m/s. BJD as published.
+# Supersedes hoy2026_table2_rvs.csv (arXiv v1: 20 epochs, timestamps off by 0.87 d).
+bjd,rv_ms,erv_ms
+2460230.8690,-63.2,70.8
+2460280.8132,-391.8,42.1
+2460285.8067,-310.4,58.1
+2460300.7913,66.3,60.3
+2460312.5617,-27.1,69.1
+2460318.7713,123.3,50.9
+2460320.6801,88.2,61.8
+2460328.5502,59.5,44.2
+2460339.6561,143.8,53.5
+2460370.5365,110.4,68.0
+2460388.6270,58.6,60.8
+2460600.7588,-437.0,47.8
+2460624.8336,-409.1,47.6
+2460647.8354,-19.9,46.3
+2460660.7900,138.5,62.7
+2460666.7973,154.5,66.5
+2460674.7425,169.5,49.3
+2460683.6364,61.3,45.6
+2460688.6133,225.5,57.0
+2460696.6456,63.2,79.1
+2461030.7490,171.2,86.3
+2461051.5616,108.9,44.3
+2461081.5592,-84.4,54.5

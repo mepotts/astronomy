@@ -1,6 +1,21 @@
 # HANDOFF — exosat-rv
 
-> ## ⚠ READ [`M12-RESULTS.md`](M12-RESULTS.md) FIRST — it moves the ground under everything below
+> ## ⚠ READ [`M13-RESULTS.md`](M13-RESULTS.md) FIRST, then [`M12-RESULTS.md`](M12-RESULTS.md) — each moves the ground under everything below
+>
+> **M13 (2026-08-11):** the paper's **eleven orders are identified** —
+> `oset 4,7,8,9,10,12,13,14,17,18,19`, confirmed three ways. The best config
+> (`-kapsig 3` on that set, robust order combine) reaches **147–218 m/s against the
+> published Nature RVs** (from 382 at M12 best), passes injection-recovery at
+> **100% ± 5%**, and recovers **K = 304 ± 69 m/s against the published 306.0** at the
+> published period — the amplitude reproduces from raw data. Re-running the inference on
+> the **Nature** table: the 87.35 d period choice reproduces, but the second satellite's
+> evidence **flips to −0.51** (paper: +2.62) under the same BIC/2 proxy that still
+> reproduces the v1 comparison. `exosat-rv orbits` now defaults to the Nature table
+> (`--version v1` for the superseded one). The scoring truth for any extraction change is
+> [`data/published/hoy2026_nature_table2_rvs.csv`](data/published/hoy2026_nature_table2_rvs.csv)
+> via [`scripts/injection/vs_published.py`](scripts/injection/vs_published.py).
+>
+> ## The M12 ground (still load-bearing)
 >
 > 1. **The paper was published in *Nature* on 22 July 2026 and M0–M11 all used the
 >    pre-peer-review arXiv v1**, which its own comments field asks readers not to draw
@@ -32,15 +47,21 @@
 
 ## Where the project stands
 
-**The paper's conclusion reproduces. Its measurements do not.** Those are separate claims and
-this project conflated them for three milestones.
+**The measurement now nearly reproduces. The conclusion only partly survives the authors'
+own revision.** (M12's framing — "the conclusion reproduces, the measurements do not" —
+inverted twice over.)
 
-- ✅ Fitting the authors' **published** RV table with an independent code recovers the 169-day
-  signal above the 0.1% FAP level, prefers an ~88-day second satellite over 14/70/115 d, and
-  matches K₂ to 0.1%. ([M6](M6-RESULTS.md))
-- ❌ Re-deriving the RVs from public archive spectra reaches ~800 m/s against the 31.44 m/s
-  needed. ([M2](M2-RESULTS.md))
-- ✅ A positive control on GJ 229 B proves the extraction is *coarse*, not *broken*. ([M3](M3-RESULTS.md))
+- ✅ From-raw extraction now reaches **147–218 m/s** against the published Nature RVs and
+  recovers **K = 304 ± 69 vs their 306.0** at the published period, injection-validated at
+  100% ± 5%. ([M13](M13-RESULTS.md) §2–4)
+- ⚠ Inference on the **published Nature table**: the 87.35 d second-period *choice*
+  reproduces, but the second satellite's *existence* evidence flips to **−0.51** where the
+  paper claims +2.62 (BIC/2 proxy; nested sampling is the open follow-up). The primary
+  satellite is untouched — its amplitude is what §4 reproduces. ([M13](M13-RESULTS.md) §5)
+- ✅ On the superseded v1 table the same code still prefers two satellites (+3.04), as M6
+  found — the flip is in the data revision, not the code. ([M6](M6-RESULTS.md), M13 §5)
+- ❌ Per-epoch precision is still 2.5–3.8× theirs: 147–218 m/s vs 57.68 claimed, Eq. (1)
+  331 vs 60.50. The floor is night-to-night per-order drift. ([M13](M13-RESULTS.md) §6)
 
 **M7 read the paper's reference list and the project's assumptions moved.** Read
 [`M7-RESULTS.md`](M7-RESULTS.md) §0 before planning anything: the method was *proposed* in
@@ -50,12 +71,17 @@ archive; use [`scripts/fetch_paper.py`](scripts/fetch_paper.py) to add to it.
 
 **This is what a new agent should do next**, in order:
 
-1. **Establish why *this project's* extraction sits 25x above 31.44 m/s.** ~~Whether
-   cell-free H-band precision can reach ~31 m/s~~ — **this is no longer the open question.**
-   Hoy et al. *are* the missing characterisation: 31.44 m/s, H band, cell-free, on an
-   S/N ~ 18 companion, with the same code. The risk register said no paper characterised
-   that regime; the paper under reproduction does. The gap is in the reproduction, not in
-   the physics.
+0. **M13 leaves three successors** ([M13 §7](M13-RESULTS.md)): (a) nested sampling on the
+   Nature table to settle the second-satellite flip; (b) **M14 — take the validated recipe
+   to a new target** (template → telluric-selected orders → `kapsig 3` → median combine →
+   injection-validate; eta Tel B is the standing first pick, see step 4); (c) an
+   amplitude-matched (~300 m/s) injection arm to close the linearity assumption.
+
+1. ~~**Establish why *this project's* extraction sits 25x above 31.44 m/s.**~~ **Answered
+   across M12–M13**: superseded source + phantom gas cell + telluric template (M12), then
+   wrong order set + no spectral outlier rejection + mean-over-orders combine (M13). What
+   is left of the gap (~2.5–3.8×) is night-to-night per-order drift, unexplained but
+   characterised.
 2. ~~**Fix the per-order forward model — the template first.**~~ **DONE, and it failed —
    [`M11`](M11-RESULTS.md).** Rebuilding the template the published way (Köhler et al. 2025
    §2.2, two iterations, `-tpl_wave tell`) makes CD-35 2722 B *look* better (776 → 620 m/s)

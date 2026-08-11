@@ -262,3 +262,26 @@ archive is not broken; the gain from working per-frame is the ~5% the paper quot
 Measured against the published RVs over five nights, the best configuration reaches
 **387 m/s rms against their 54 m/s.** Still a factor of 7. See M12 §9b.4 — and note that an
 A−B null test made this look like 66 m/s until it was checked against the published values.
+**Superseded by §10: M13 brought this to 147–218 m/s.**
+
+
+## 10. The M13 recipe — the closest configuration to the paper's
+
+[`scripts/injection/m13_batch.sh`](../scripts/injection/m13_batch.sh) is the whole thing:
+one telluric-free template over **all 21 segments** (`-createtpl -nocell -tpl_wave tell
+-oset 0:21`, one iteration), then RV runs on the reverse-engineered order set.
+
+- **Order set** (`H_C`): `-oset 4,7,8,9,10,12,13,14,17,18,19` — the paper's eleven orders
+  mapped through viper's pre-`6e1b19c` CRIRES numbering. M13 §1 has the three-way
+  confirmation; do not re-derive it from the paper's labels with current viper.
+- **`-kapsig 3`** — worth more than any other flag (rms_pub 492 → 218).
+- **Combine orders with the median, not the mean.** The set is bimodal (M13 §2): orders
+  7–10 carry night-to-night systematics that injections prove are not transmission
+  failures. Median: 147 m/s; clipped mean: 165; mean: 218.
+- **Score every change against the published table** with
+  [`vs_published.py`](../scripts/injection/vs_published.py), and **injection-validate**
+  anything adopted ([`inject_generic.sh`](../scripts/injection/inject_generic.sh) +
+  [`inject_score2.py`](../scripts/injection/inject_score2.py) — shift the template, never
+  the observation). M13's winner passed at 100% ± 5%.
+- Known bad: order 18 fails injection (8% ± 56%); `-chunks 2` helps the mean but not the
+  median; `-telluric add2` and `-deg_wave 3` do nothing here.

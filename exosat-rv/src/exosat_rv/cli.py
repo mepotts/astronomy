@@ -219,36 +219,47 @@ def alias(
 
 
 @app.command()
-def orbits(starts: int = typer.Option(400, help="Optimiser restarts per model.")) -> None:
-    """M6: reproduce the paper's model comparison from its OWN published RVs.
+def orbits(
+    starts: int = typer.Option(400, help="Optimiser restarts per model."),
+    version: str = typer.Option("nature", help="RV table: 'nature' (23 epochs) or 'v1' (superseded)."),
+) -> None:
+    """M6/M13: reproduce the paper's model comparison from its OWN published RVs.
 
     Independent of M2's extraction, which fell short of the precision needed. Extraction and
-    inference are separate claims; this tests the second.
+    inference are separate claims; this tests the second. Default is the Nature table; the
+    superseded arXiv v1 table (which M6 fitted) stays available via --version v1.
     """
-    data = orb.load_published()
-    typer.echo(f"{len(data.rv)} published RVs, baseline {data.baseline_d:.1f} d, "
-               f"mean error {data.erv.mean():.2f} m/s "
-               f"(paper states {PUBLISHED.rv_err_nodding_ms} m/s)")
+    nature = version == "nature"
+    p1_one = PUBLISHED.pub_one_sat_period_d if nature else PUBLISHED.sat1_period_d
+    p1_two = PUBLISHED.pub_sat1_period_d if nature else PUBLISHED.sat1_period_d
+    p2_pub = PUBLISHED.pub_sat2_period_d if nature else PUBLISHED.sat2_period_d
+    dlz_pub = PUBLISHED.pub_delta_logz_two_vs_one if nature else PUBLISHED.delta_logz_two_vs_one
+    alias = tuple(sorted({14.0, 70.0, round(p2_pub, 3), 115.0}))
 
-    one = orb.fit_fixed_periods(data, (PUBLISHED.sat1_period_d,), eccentric=True, n_starts=starts)
+    data = orb.load_published(version=version)
+    typer.echo(f"{len(data.rv)} published RVs ({version}), baseline {data.baseline_d:.1f} d, "
+               f"mean error {data.erv.mean():.2f} m/s "
+               f"(paper states {PUBLISHED.pub_rv_err_nodding_ms if nature else PUBLISHED.rv_err_nodding_ms} m/s)")
+
+    one = orb.fit_fixed_periods(data, (p1_one,), eccentric=True, n_starts=starts)
     typer.echo(f"\n{'model (periods fixed)':<34}{'-lnL':>9}{'BIC':>9}{'dlogZ proxy':>13}")
     typer.echo(f"{'1 satellite, eccentric':<34}{one.neg_log_like:>9.2f}{one.bic:>9.2f}"
                f"{'--':>13}   e={one.ecc:.2f} K={one.amplitudes[0]:.0f} jit={one.jitter_ms:.1f}")
 
     fits = {}
-    for p2 in PUBLISHED.alias_periods_d:
-        f = orb.fit_fixed_periods(data, (PUBLISHED.sat1_period_d, p2), n_starts=starts)
+    for p2 in alias:
+        f = orb.fit_fixed_periods(data, (p1_two, p2), n_starts=starts)
         fits[p2] = f
         typer.echo(f"{f'2 satellites, +{p2:g} d':<34}{f.neg_log_like:>9.2f}{f.bic:>9.2f}"
                    f"{orb.delta_logz_proxy(f, one):>13.2f}   K2={f.amplitudes[1]:.0f} "
                    f"jit={f.jitter_ms:.1f}")
 
     best = min(fits.values(), key=lambda f: f.bic)
-    typer.echo(f"\nbest second period: {best.periods[1]:g} d  (paper: {PUBLISHED.sat2_period_d})")
-    typer.echo(f"  vs 115 d : dlogZ proxy {orb.delta_logz_proxy(best, fits[115.0]):.2f}  "
-               f"(paper quotes {PUBLISHED.delta_logz_88_vs_115})")
+    typer.echo(f"\nbest second period: {best.periods[1]:g} d  (paper: {p2_pub})")
+    typer.echo(f"  vs 115 d : dlogZ proxy {orb.delta_logz_proxy(best, fits[115.0]):.2f}"
+               + ("" if nature else f"  (paper quotes {PUBLISHED.delta_logz_88_vs_115})"))
     typer.echo(f"  vs 1-sat : dlogZ proxy {orb.delta_logz_proxy(best, one):.2f}  "
-               f"(paper quotes {PUBLISHED.delta_logz_two_vs_one})")
+               f"(paper quotes {dlz_pub})")
 
 
 @app.command()

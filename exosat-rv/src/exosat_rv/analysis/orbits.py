@@ -25,6 +25,10 @@ from ..config import DATA
 from .aliases import keplerian_rv
 
 PUBLISHED_RVS = DATA / "published" / "hoy2026_table2_rvs.csv"
+"""arXiv v1 table: 20 epochs, timestamps wrong by 0.87 d (M12 SS1.1). Kept for M6 continuity."""
+
+PUBLISHED_RVS_NATURE = DATA / "published" / "hoy2026_nature_table2_rvs.csv"
+"""Nature (published) table: 23 epochs over 851 d, corrected timestamps. Use this one."""
 
 
 @dataclass
@@ -38,13 +42,14 @@ class RVSet:
         return float(self.bjd.max() - self.bjd.min())
 
 
-def load_published(path: Path | None = None) -> RVSet:
-    """Read the digitised Table 2.
+def load_published(path: Path | None = None, version: str = "nature") -> RVSet:
+    """Read the digitised Table 2 (``version="nature"`` by default, ``"v1"`` for the preprint).
 
     Parsed by hand rather than with ``genfromtxt(names=True)``: the provenance header
     contains commas, which makes numpy miscount the columns.
     """
-    src = Path(path or PUBLISHED_RVS)
+    default = PUBLISHED_RVS_NATURE if version == "nature" else PUBLISHED_RVS
+    src = Path(path or default)
     rows = []
     for line in src.read_text(encoding="utf-8").splitlines():
         line = line.strip()
