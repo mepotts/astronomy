@@ -6,7 +6,7 @@ inject_plan_big.json format ({file, bjd, v}). K=1530 and P=171.454 match the M13
 the phase reference is the first frame (the absolute phase is irrelevant to the
 recovery-slope metric — only the spread of v matters).
 
-Usage: python mkplan_nod.py M14_NODALL.rvo.dat inject_plan_nod.json [K]
+Usage: python mkplan_nod.py RVO OUT.json [K] [P_days]
 """
 import json
 import os
@@ -14,9 +14,9 @@ import sys
 
 import numpy as np
 
-P = 171.454
 rvo, out = sys.argv[1], sys.argv[2]
 K = float(sys.argv[3]) if len(sys.argv) > 3 else 1530.0
+P = float(sys.argv[4]) if len(sys.argv) > 4 else 171.454
 
 lines = [ln for ln in open(rvo).read().splitlines() if ln.strip()]
 plan = []

@@ -106,7 +106,7 @@ for label, y in (("mean", mean), ("median", med), ("clip", clip)):
         keep = ~bad
         report(f"{label}, internal screen", t_all[keep], y[keep])
         report(f"{label}, screened, +BERV", t_all[keep], y[keep], berv_all[keep])
-    if unmatched:
+    if unmatched and len(t_all) - len(unmatched) >= 5:
         keep = np.array([j for j in range(len(t_all)) if j not in unmatched])
         report(f"{label}, matched only", t_all[keep], y[keep])
         report(f"{label}, matched, +BERV", t_all[keep], y[keep], berv_all[keep])
