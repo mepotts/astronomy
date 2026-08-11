@@ -136,6 +136,22 @@ What *is* established:
 - Closing the 25–60× gap is the whole remaining problem, and M2 §5 records which levers are
   already eliminated (co-added template, telluric forward modelling) and which are untried.
 
+## 5b. What this control has since caught
+
+The rule this milestone established — *never report a result from this pipeline without
+re-running the control* — sat unused for three milestones and has now rejected **three
+separate changes that improved the science target**:
+
+| Change | CD-35 2722 B | Control | Verdict |
+|---|---|---|---|
+| Empirical order weighting (M9) | **514 m/s — best ever** | Δχ² 63.8 → 5.8 | deletes the signal |
+| Telluric-order screen (M9) | 1142 m/s | Δχ² 63.8 → 46.7 | rejected |
+| Published template recipe (M11) | **620 m/s** | K 5948 → 2452 m/s | suppresses the signal |
+
+The pattern is now the most reliable finding the project has: **on a target with no
+detection, anything that removes signal looks like success.** GJ 229 B is the only thing
+standing between this pipeline and a confidently wrong answer.
+
 ## 6. Caveats
 
 - **The control's period is not independently recovered**, only confirmed at the known value.

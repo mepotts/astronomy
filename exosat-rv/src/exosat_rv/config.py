@@ -130,13 +130,67 @@ class Published:
 
     rv_err_nodding_ms: float = 31.44
     """[v1] Mean RV error of the paper's FAVOURED method: separate RVs per nodding
-    position, then binned. This is what M2 must aim at."""
+    position, then binned.
+
+    **SUPERSEDED -- do not aim at this.** The peer-reviewed value is
+    `pub_rv_err_nodding_ms` = 57.68 m/s. Every `[v1]` field in this class comes from
+    arXiv:2607.05193v1, whose own comments field asks readers not to draw conclusions from
+    it. See M12-RESULTS.md section 1."""
 
     rv_err_combined_ms: float = 34.49
     """[v1] Mean RV error from combining the nodding frames into one spectrum first --
     the standard cr2res output, and most likely what ESO's archived calib_level=2 products
-    are. Using them therefore costs ~10% precision, which is a quantified penalty rather
-    than a blocker. See M1-RESULTS.md section 2."""
+    are. **SUPERSEDED**: the published value is 60.50 m/s, making the nodding gain 4.9%,
+    not ~10%. See M1-RESULTS.md section 2 and M12-RESULTS.md section 1."""
+
+    # ------------------------------------------------------------------------------
+    # [pub] Nature, 22 July 2026 (doi 10.1038/s41586-026-10751-w).
+    #
+    # The `[v1]` values above are the pre-peer-review preprint and are kept only so the
+    # revision stays visible. THESE are the values to reason from. The free copy ESO
+    # hosts with its press release is archived at papers/pdf/hoy2026_nature_published.pdf.
+    # ------------------------------------------------------------------------------
+    pub_rv_err_nodding_ms: float = 57.68
+    """[pub] Fig. 4 -- mean error of the binned per-nodding RVs. The reproduction target."""
+
+    pub_rv_err_combined_ms: float = 60.50
+    """[pub] Fig. 4 -- combining the nodding spectra first. The gain from keeping them
+    separate is 4.9%, which M9's ~10% overstated."""
+
+    pub_sat1_period_d: float = 171.454      # [pub] Table 1, 2-satellite  +0.191 -0.813
+    pub_sat1_amplitude_ms: float = 305.959  # [pub] Table 1  +17.532 -18.540
+    pub_sat1_msini_mjup: float = 0.869      # [pub] Table 1  +0.033 -0.025
+    pub_sat1_ecc: float = 0.001             # [pub] Table 1  -- circular in this fit
+    pub_sat2_period_d: float = 87.349       # [pub] Table 1  +0.641 -0.451
+    pub_sat2_amplitude_ms: float = 94.970   # [pub] Table 1  +19.881 -18.887
+    pub_sat2_msini_mjup: float = 0.219      # [pub] Table 1  +0.048 -0.046
+
+    pub_one_sat_period_d: float = 171.112   # [pub] Table 1, 1-satellite  +0.525 -0.363
+    pub_one_sat_msini_mjup: float = 0.918   # [pub] Table 1  +0.011 -0.045
+    pub_one_sat_ecc: float = 0.269          # [pub] Table 1 -- the eccentric alternative
+
+    pub_two_sat_logz: float = -141.701      # [pub] Table 1  +/- 0.691
+    pub_one_sat_logz: float = -144.323      # [pub] Table 1  +/- 0.695
+
+    pub_delta_logz_two_vs_one: float = 2.622
+    """[pub] Evidence for the SECOND satellite, from Table 1's own logZ values.
+
+    The preprint gave 6.641 (quoted as 6.9). Peer review more than halved it, and with
+    +/-0.7 on each term this is a marginal preference, not a strong one. M1 section 1.3
+    corrected M0 by establishing the 6.9 figure; that correction was right about the
+    preprint and is now wrong about the paper."""
+
+    pub_n_epochs: int = 23
+    """[pub] Table 2 -- 23 epochs over 851 days, against the preprint's 20 over 465."""
+
+    pub_n_orders_used: int = 11
+    """[pub] "the eleven included spectral orders". The preprint did not state a number."""
+
+    v1_bjd_offset_d: float = -0.8721
+    """[v1] The preprint's RV table timestamps are wrong by this much on 17 of its 18
+    epochs that we can check. Recomputing BJD_TDB from our own ESO product headers
+    (MJD-OBS + TEXPTIME/2, Paranal, barycentric light-travel) matches the PUBLISHED table
+    to a median of 232 s and the preprint's to -75 348 s. M6 fitted the wrong times."""
 
     # --- dynamical bounds ---
     roche_limit_rbd: float = 8.4

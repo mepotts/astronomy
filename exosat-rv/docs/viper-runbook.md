@@ -1,5 +1,23 @@
 # Runbook — extracting RVs from ESO archive spectra with `viper`
 
+> ## ⚠ THIS RUNBOOK REPRODUCES THREE KNOWN BUGS. Read [`M12-RESULTS.md`](../M12-RESULTS.md) first.
+>
+> 1. **§5's command is missing `-nocell`.** `[CRIRES]` in `config_viper.ini` is the
+>    *gas-cell* configuration; our data has `INS1 OPTI1 ID = FREE`. Without the flag viper
+>    multiplies the model by the SGC2 N₂O cell spectrum. Köhler §5.4: cell-free modelling
+>    proceeds *"just without the modelling of the cell lines."*
+> 2. **§4's template is wrong.** Copying an observation gives a template with the tellurics
+>    still in it, and they Doppler-shift with the fitted RV while the real ones stay put.
+>    Build it with `-createtpl 1 -nocell -tpl_wave tell` instead.
+> 3. **§7's precision target of 31.44 m/s is superseded.** The peer-reviewed figure is
+>    **57.68 m/s**.
+>
+> Fixing 1 and 2 takes the archive route from 763 to 480 m/s on the paper's own error
+> statistic and removes a significant RV–BERV correlation.
+>
+> **And the archive route is not the whole process.** For a new target you need the
+> reduction too — see §9 below and [`scripts/cr2res/`](../scripts/cr2res/).
+
 Everything needed to rebuild M2's pipeline from scratch. Written because the sequence took
 most of a working session to discover and none of it is documented upstream for archive data.
 
@@ -132,16 +150,47 @@ The same paper reaches **10–16 m/s cell-free** on bright M dwarfs and 3 m/s wi
 
 Three differences from the authors remain, in the order I would attack them:
 
-1. **Individual nodding frames.** The authors treat each nodding position as a separate
-   observation (31.44 m/s) rather than using the combined spectrum (34.49 m/s). **ESO
-   archives only the combined product**, so this requires running `cr2res` on the public raw
-   frames. It is the only remaining difference the authors themselves name.
+1. ~~**Individual nodding frames.**~~ **Demoted by M9 — it is a 10% lever.** The authors
+   treat each nodding position as a separate observation (31.44 m/s) rather than the
+   combined spectrum (34.49 m/s), and quantify the gain at ~10% in their own Fig. 4. It is
+   the only remaining difference they name, but it cannot close a factor of 25. Do this
+   last, not first. Order screening was measured too, at 6% — see
+   [`M9-RESULTS.md`](../M9-RESULTS.md).
+
+   **What to attack instead: the per-order forward model, template first.** M2's co-added
+   template made the scatter *worse* (823 → 1638 m/s), which is what co-adding without
+   correct RV alignment looks like.
 2. **Band.** Köhler's cell-free demonstration is in **K**. This data is **H**, and cell-free
    H-band precision is not characterised in any paper read so far. This may be the real
    ceiling and is worth establishing before more tuning.
 3. **Brightness.** Their 10–16 m/s used bright RV standards; CD-35 2722 B is S/N ≈ 18.
 
 Untried settings: `-telluric mask`/`sig`/`add2`, IP models beyond `g`, `-chunks` > 1.
+
+## 7b. Three traps M11 hit, all operational
+
+**1. `-tpl_wave` defaults to `initial`, which applies NO barycentric correction.**
+`viper.py` line 616 sets `bervt = 0` for `initial`. Köhler et al. 2025 §2.2 requires the
+correction — *"Co-adding several spectra that were taken at different barycentric
+velocities, and are corrected for that, helps reduce residuals from the telluric
+correction."* For cell-free CRIRES+ use `-tpl_wave tell` (telluric-derived solution).
+**Untested in isolation** — M11 changed it together with template iteration and cannot
+score it separately. One run with zero iterations would.
+
+**2. viper's printed `rms(RV)` is NOT the `RV` column it writes.** `vpr.info()` recomputes
+a *weighted* mean (`avg='wmean'`, `vpr.py` line 148); the `.rvo.dat` `RV` column is the
+plain mean. They differed by **1.8×** in M11 — 308.7 m/s on the banner against 620 m/s in
+the column. **Quote the column**, or runs stop being comparable across milestones.
+
+**3. DO NOT iterate a self-built template on a target whose signal you are measuring.**
+Two iterations per the published recipe improved CD-35 2722 B (776 → 620 m/s) and **halved
+the control's recovered amplitude** — 5948 → 2452 m/s on GJ 229 B's undisputed binary,
+after a *single* iteration, with no recovery on the second. Self-templating absorbs the
+signal: the template is co-added from the target's own spectra aligned by RVs measured
+against a template already containing the signal. See [`M11-RESULTS.md`](../M11-RESULTS.md).
+
+`-createtpl` *does* apply the RV shift (`viper.py` line 624) and Köhler's eq. 14 weighting
+(line 630). The recipe is implemented faithfully; the recipe itself is the hazard here.
 
 ## 8. Validate before believing any result
 
@@ -155,3 +204,61 @@ K ≈ 6 km/s, not 18 — the pair is unresolved and double-lined, so a single-te
 a suppressed flux-weighted centroid. See M3-RESULTS §4.
 
 **A null from this pipeline means nothing without this control passing.**
+
+
+## 9. From raw data — the half this runbook never covered
+
+Everything above starts from ESO's archived `calib_level=2` product. That only exists where
+ESO happened to reduce the night, and it is one spectrum per night rather than the two
+nodding frames the method wants. For a new target, build the reduction too.
+
+`cr2res` **1.6.10** — the paper's version — installs from ESO's self-contained kit. Three
+traps, all hit:
+
+- `install_pipeline` needs a **tty** (wrap it in `script`), refuses to rerun in a used kit
+  directory (**and a blank line at that prompt means ABORT**), and restarts from zero every
+  time. On a box where the WSL service crashes under load it therefore never finishes.
+  [`scripts/cr2res/build_cr2res.sh`](../scripts/cr2res/build_cr2res.sh) builds the eleven
+  components directly instead, with a stamp per component so it resumes.
+- CPL needs a **thread-safe cfitsio** (`--enable-reentrant`) and its bundled **libcext**
+  installed separately first; esorex and cr2re both need `--with-cext`.
+- cr2re needs **pkg-config** and **libcurl** headers. With no sudo, build both into the same
+  prefix ([`pkgconf.sh`](../scripts/cr2res/pkgconf.sh), [`curl.sh`](../scripts/cr2res/curl.sh)).
+
+> **Then do not source [`cr2env.sh`](../scripts/cr2res/cr2env.sh) in any shell that does
+> networking.** The minimal libcurl built above has **no SSL** and sits on
+> `LD_LIBRARY_PATH`, which shadows the system libcurl for *every* binary in that shell —
+> even `/usr/bin/curl` returns HTTP 000. Keep the download and reduction stages separate.
+
+### The cascade
+
+```bash
+scripts/cr2res/urls_for_night.py <ADP file> urls.txt   # resolve raw frames + masters
+scripts/cr2res/fetch_night.sh                          # ~1.5 GB per night
+scripts/cr2res/reduce_night.sh   # cal_dark -> cal_flat -> cal_wave -> obs_nodding
+```
+
+ESO's calselector serves mostly **raw** FLAT/DARK/WAVE_UNE/WAVE_FPET, not the master
+products it used, so the calibration cascade has to be run rather than downloaded. All twelve
+`cr2res_obs_nodding` defaults match what the ADP headers record ESO used, so the reduction
+differs from theirs only where you choose. Validated: our combined extraction reproduces
+ESO's archived product to **57 m/s** in wavelength and **42 m/s** in final RV.
+
+### Feeding the per-nodding products to viper
+
+`cr2res_obs_nodding_extractedA/B.fits` are already in viper's native layout — no converter.
+But **strip order 09 first** ([`strip09.py`](../scripts/cr2res/strip09.py)): cr2res extracts
+8 orders where ESO's IDP keeps 7, and viper derives the DRS order from `columns.names[-1]`
+separately for observation and template, so a different highest order puts them permanently
+one apart and every pixel is trimmed.
+
+### What you get, and what you do not
+
+The per-nodding products carry **separate wavelength solutions** (`trace_wave_A/B`), and A
+and B really are offset — median **4.1 px**, up to 8.6 — from slit tilt over the nodding
+throw. ESO's combined product handles this correctly (it resamples before summing), so the
+archive is not broken; the gain from working per-frame is the ~5% the paper quotes.
+
+Measured against the published RVs over five nights, the best configuration reaches
+**387 m/s rms against their 54 m/s.** Still a factor of 7. See M12 §9b.4 — and note that an
+A−B null test made this look like 66 m/s until it was checked against the published values.

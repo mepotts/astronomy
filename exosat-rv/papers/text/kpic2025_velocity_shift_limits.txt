@@ -1,0 +1,1564 @@
+<<<PAGE 1>>>
+arXiv:2505.09781v1  [astro-ph.EP]  14 May 2025
+Draft version June 9, 2025
+Typeset using LATEX twocolumn style in AASTeX631
+V elocity shift and SNR limits for high-resolution spectroscopy of hot Jupiters using Keck/KPIC
+Kevin S. Hong
+ ,1 Luke Finnerty
+ ,1 and Michael P. Fitzgerald
+ 1
+1Department of Physics & Astronomy, 430 Portola Plaza, University of California, Los Angeles, CA 90095, USA
+ABSTRACT
+High-resolution cross-correlation spectroscopy (HRCCS) is a technique for detecting the atmospheres
+of close-in planets using the change in the projected planet velocity over a few hours. To date, this
+technique has most often been applied to hot Jupiters, which show a large change in velocity on
+short timescales. Applying this technique to planets with longer orbital periods requires an improved
+understanding of how the size of the velocity shift and the observational signal-to-noise ratio impact
+detectability. We present grids of simulated Keck/KPIC observations of hot Jupiter systems, varying
+the observed planet velocity shift and signal-to-noise ratio (SNR), to estimate the minimum thresholds
+for a successful detection. These simulations realistically model the cross-correlation process, which
+includes a time-varying telluric spectrum in the simulated data and data detrending via PCA. We test
+three different planet models based on an ultra-hot Jupiter, a classical hot Jupiter, and a metal-rich
+hot Saturn. For a 6 σ detection suitable for retrieval analysis, we estimate a minimum velocity shift
+of ∆vpl ∼ 30, 50, 60 km s −1, compared to an instrumental resolution of 9 km s −1, and minimum SNR
+∼ 370, 800, 1200 for the respective planet models. We find that reported KPIC detections to-date fall
+above or near the 6 σ limit. These simulations can be efficiently re-run for other planet models and
+observational parameters, which can be useful in observation planning and detection validation.
+Keywords: Exoplanet atmospheres (487) — Exoplanet atmospheric composition (2021) — Hot Jupiters
+(753) — High resolution spectroscopy (2096)
+1. INTRODUCTION
+High-resolution cross-correlation spectroscopy
+(HRCCS) using ground-based telescopes has proven
+to be an effective technique in characterizing exoplanet
+atmospheres (e.g. Line et al. 2021; Pelletier et al. 2021;
+Finnerty et al. 2023a; Ramkumar et al. 2023; Finnerty
+et al. 2024). HRCCS serves as an important complement
+to low- to medium-resolution transmission spectroscopy
+using space-based telescopes (Lustig-Yaeger et al. 2023;
+August et al. 2023), allowing for the observation of non-
+transiting planets (e.g. Finnerty et al. 2025a) and direct
+measurements of atmospheric winds and circulation
+patterns. By resolving large numbers of spectral lines,
+HRCCS is capable of unambiguous molecular identifi-
+cation, measurement of atmospheric abundance ratios,
+and constraining vertical temperature structure (Brogi
+& Birkby 2021; Birkby 2018).
+Corresponding author: Kevin S. Hong
+kevinh29@ucla.edu
+HRCCS leverages the orbital motion of a close-in
+planet over several hours to isolate Doppler-shifted lines
+in the planet’s spectrum from the relatively static stellar
+and telluric lines. The residual spectrum after removing
+static features can then be compared with model planet
+spectra, which can be used to calculate the log-likelihood
+for Bayesian retrievals (e.g. Brogi & Line 2019; Gibson
+et al. 2020). This technique is effective for hot Jupiters
+that orbit close to their host star with a short orbital pe-
+riod for which we can observe a sufficient velocity shift
+in a single night.
+Data detrending processes used to remove time-
+varying telluric features necessitate a significant change
+in the projected planetary velocity. These techniques,
+such as PCA and SysRem (Tamuz et al. 2005), assume
+the observed spectrum is static except for planet fea-
+tures, and can significantly distort the original planet
+spectrum if the planet velocity shift is small relative
+to the instrumental resolution. This can decrease the
+detection significance or preclude detection entirely for
+small velocity shifts. Thus, a reliable detection of an ex-
+oplanet with HRCCS requires both sufficiently low noise
+
+<<<PAGE 2>>>
+2 Hong et al.
+and a sufficiently large planet velocity shift over the ob-
+servation such that the planet signal can be accurately
+isolated and measured.
+For high-resolution transmission spectroscopy, the ex-
+istence of planet-free out-of-transit frames can provide
+a sufficient basis for detrending to detect even sub-pixel
+velocity shifts of the planet during transit (Cheverall &
+Madhusudhan 2024). However, this is not applicable for
+emission spectroscopy of non-transiting planets. In this
+case, we must rely only on the planet velocity shift and
+the signal to noise ratio. The planet velocity vpl at any
+particular orbital phase ϕ is given by:
+vpl = Kp sin(2πϕ) + vsys − vbary (1)
+where Kp is the planet radial velocity semi-amplitude,
+vsys is the radial velocity of the planet system, and vbary
+is the barycentric velocity of Earth, which is subtracted
+from the radial velocity. Assuming constant systemic
+and barycentric velocities, the total change in planet
+velocity over an observed phase range ∆ ϕ = ϕ2 − ϕ1 is
+reduced to
+∆vpl = Kp[sin(2πϕ2) − sin(2πϕ1)] (2)
+Thus, the total planet velocity shift depends on the
+planet radial velocity semi-amplitude Kp and the total
+observed phase range ∆ ϕ. Setting the change in vbary
+to 0 is not expected to significantly impact subsequent
+analysis. In real observations, the change in vbary over a
+single night is a few hundred m s −1 at most, compared
+to the 3–9 km s −1 spectral resolution HRCCS instru-
+ments, and is incorporated into the forward model of
+the system.
+Following Birkby (2018) and Snellen et al. (2015), we
+can write to first-order the total signal-to-noise ratio
+(SNR) of the planet spectrum:
+SNRplanet =
+ Sp
+S⋆
+
+SNRstar
+p
+Nlines (3)
+where S p/S⋆ is the planet-to-star flux ratio, SNR star is
+the total signal-to-noise ratio of the host star which goes
+to √S⋆ in the bright/photon-limited regime, and N lines
+is the number of resolved lines detected in the observed
+wavelength range. We have neglected noise from the sky
+and telescope background, read-out noise, and the dark
+current from the detector. This effectively assumes our
+observations are in the photon-limited regime where the
+noise budget is dominated by the high flux of the star,
+which is generally appropriate for HRCCS targets.
+In this paper, we estimate the minimum planet veloc-
+ity shift and SNR required to detect hot Jupiters with
+the HRCCS technique using simulated high-resolution
+planet spectra based on Keck/KPIC. In Section 2, we
+detail the method for simulating exoplanet observations
+for three different planet models and determining de-
+tection strengths. We present the simulation results in
+Section 3 and discuss these findings in Section 4. Finally,
+we summarize our work in Section 5.
+2. SIMULATIONS
+We consider three planet models: an ultra-hot Jupiter
+system based on W ASP-33 b (Finnerty et al. 2023a), a
+hot Jupiter system based on HD 189733 b (Finnerty
+et al. 2024), and a metal-rich hot Saturn system based
+on HD 149026 b (Bean et al. 2023). The properties of
+these systems and the planet models are provided in
+Table 1.
+2.1. Keck/KPIC
+Our simulations are based on previous HRCCS re-
+sults using the Keck Planet Imager and Characterizer
+(KPIC; McLean et al. 1998; Martin et al. 2018; L´ opez
+et al. 2020; Delorme et al. 2021; Echeverri et al. 2022;
+Jovanovic et al. 2025) in the K-band. KPIC consists of
+a series of upgrades to the Keck II adaptive optics sys-
+tem and NIRSPEC high-resolution spectrograph to en-
+able diffraction-limited high-resolution spectroscopy in
+the K- and L-bands. Originally developed to enable
+spectroscopy of directly-imaged substellar companions,
+the improved wavelength and blaze function stability of-
+fered by the fiber feed also offers significant advantages
+for HRCCS applications. To-date, KPIC observations
+have led to published detections of four hot Jupiters
+(Finnerty et al. 2023a, 2024; Finnerty et al. 2025a,b),
+and analyses of several more targets are in preparation.
+KPIC K-band observations cover ∼ 1.9 − 2.5 µm in 9
+spectral orders. The three bluest orders are heavily con-
+taminated by telluric CO2 absorption and are not useful
+for analysis. In this work, we consider the four reddest
+orders of the K-band, covering ∼ 2.2 − 2.5 µm, with sig-
+nificant gaps (see Figure 1 for the wavelength coverage)
+at a spectral resolution R = λ/∆λ ∼ 35, 000. These or-
+ders cover the 2.3 µm CO bandhead, and also have sig-
+nificant H2O opacity (Finnerty et al. 2023a, 2024). Two
+additional orders can be calibrated to sufficient precision
+for HRCCS applications, but generally do not contribute
+significantly to HRCCS detections due to low molecular
+opacities in these bands (Finnerty et al. 2025a,b), and
+are therefore omitted from our simulations.
+Compared to other instruments used for HRCCS,
+KPIC has a relatively low spectral resolution ( ∼ 9
+km s−1). The HRCCS technique relies on the projected
+
+<<<PAGE 3>>>
+Hot Jupiter detectability with HRS 3
+Name Symbol W ASP-33 b HD 149026 b HD 189733 b
+Period [days] P 1.21983821 a 2.8758831a 2.21857480a
+Semi-major axis [AU] a 0.0259b 0.0432c 0.031d
+Inclination [deg] i 87.7b 84.55b 85.71b
+Planet R V semi-amplitude [km s−1] Kp 230.9 54.6 153
+Stellar Radius [ R⊙] R ∗ 1.55b 1.41b 0.75b
+Planet Radius [ RJ] R p 1.6b 0.74b 1.13b
+Planet Mass [ MJ] M p 1.17b 0.38b 1.13b
+log infrared opacity [cm 2g−1] log κIR [cm2g−1] -1.4 -1.0 -1.0
+log infrared/optical opacity log γ -0.55 -1.4 0.5
+Equilibrium temperature [K] T equ 2700 1640 800
+log cloud-top pressure [bar] log P cloud - - -1.0
+Rotational velocity [km s −1] vrot 4 4 4
+log H2O mass-mixing ratio log H 2O -4.1 -2.3 1.7
+log CO mass-mixing ratio log CO -1.1 -1.0 -1.8
+log OH mass-mixing ratio log OH -2.1 - -
+log H2S mass-mixing ratio log H 2S - -3 -
+log CO isotopologue ratio log
+13CO
+12CO -1.7 -1.6 -0.8
+log H2 mass-mixing ratio log H 2 -0.14 -0.4 -0.36
+Scale factor scale 1.0 1.0 4.9
+T able 1.List of parameter values for the planet model of each system. a NExScI (2022), b Stassun
+et al. (2017), cMent et al. (2018), d Rosenthal et al. (2021)
+planetary velocity changing by multiple times the in-
+strument resolution, and therefore we expect that the
+required minimum velocity shift will scale proportion-
+ally to the instrument resolution. While KPIC has a
+relatively low throughput from the top of the atmo-
+sphere (∼ 2 − 3% Echeverri et al. 2022), the 10m aper-
+ture of the Keck telescope offers a sensitivity comparable
+to higher-throughput instruments on smaller telescopes
+(such as Gemini/IGRINS). The simulations described
+below vary the total signal-to-noise ratio (SNR), which
+is instrument-agnostic. More sensitive instruments will
+reach a given SNR faster, but the detectability for a
+fixed spectral resolution is expected to be a function of
+the SNR, independent of the instrument.
+2.2. Planet Models
+All planet models were generated using
+petitRADTRANS (Molli` ere et al. 2019, 2020) with
+constant vertical mixing profiles and the pressure-
+temperature profile parameterization from Guillot
+(2010) with T int = 100 K. Planet model parameters
+are listed in Table 1. The radiative transfer calculation
+was performed with 80 pressure layers ranging from
+102 to 10 −6 bar and did not account for scattering.
+To simulate an ultra-hot Jupiter, we chose parameters
+based on the W ASP-33 b results from Finnerty et al.
+(2023a). For the case of a high-metallicity atmosphere,
+we use parameters based on those reported in Bean et al.
+(2023) for HD 149026 b. Finally, to simulate a cooler
+hot Jupiter, we use the maximum-likelihood parameters
+for HD 189733 b reported in Finnerty et al. (2024)
+The tabulated opacities H 2O, OH, 12CO, and 13CO
+were previously described in Finnerty et al. (2023b). For
+H2O, we used the Polyansky et al. (2018) partition func-
+tion and HITEMP 2010 linelist (Rothman et al. 2010).
+For both CO isotopologues, we used the HITEMP 2019
+lists (Gordon et al. 2022) and the Li et al. (2015) par-
+tition function. For OH, we used the partition function
+from Yousefi et al. (2018) and HITEMP 2020 linelist
+(Gordon et al. 2022). For H 2S, we used the HITRAN
+2012 linelist (Rothman et al. 2013). Opacities were gen-
+erated using ExoCross (Yurchenko et al. 2018) following
+instructions in the petitRADTRANS documentation. Col-
+lisionally induced absorption (CIA) opacity from H2 and
+He are included, but scattering is only included for the
+HD 189733 b model, which includes a grey cloud deck
+as described in Finnerty et al. (2024). The HD 189733
+b model is also scaled by a factor of 4.9 based on the
+cooler-than-expected retrieved P − T profile, which re-
+sults from limited sensitivity to absolute temperature
+in the free-retrieval framework as discussed in Finnerty
+et al. (2024). For the W ASP-33 b model, half of the
+
+<<<PAGE 4>>>
+4 Hong et al.
+0
+1
+2
+3Flux [erg/s/cm2/cm]
+1e13 Planet and Stellar Model Spectra
+Stellar Model
+WASP-33 b
+HD 189733 b
+HD 149026 b
+2.25 2.30 2.35 2.40 2.45
+Wavelength [micron]
+0.000
+0.001
+0.002
+0.003
+0.004Flux Ratio
+Spectral Contrast of Planet Models
+Figure 1. (Top) Planet and stellar model spectra in four
+KPIC orders used for simulating spectra. (Bottom) Planet-
+to-star spectroscopic flux ratio for each planet model. We
+assumed in our simulations that the planet and star radii
+were the same for all systems, resulting in a planet-to-star
+area ratio of 0.0145. The W ASP-33 b model has the great-
+est flux ratio among all planet models and shows a strong
+thermal inversion and strong continuum. The HD 189733 b
+and HD 149026 b models have a similar continuum, but the
+former shows slightly stronger spectral features relative to
+the continuum.
+total hydrogen mass is taken to be in the form of HI
+rather than H 2. The planet model spectra are plotted
+in Figure 1. Note that the W ASP-33 b model shows
+a strong thermal inversion and strong continuum and
+that the HD 189733 b and HD 149026 b models have a
+similar continuum level.
+2.3. Simulated Observations
+We use a PHOENIX stellar model (Husser et al. 2013)
+with T eq = 5800 K, log g = 4 .5, and [Fe/H] = 0 .0
+for each system. We apply rotational broadening with
+v sin i = 2 km s −1 and limb darkening coefficients from
+Sing (2010). While in reality the simulated planets or-
+bit very different host stars, we chose to use a single
+stellar model based on a G-type star in order to isolate
+the impact of differences in the planetary spectrum on
+detectability. For both planet and stellar models, we
+follow past observations using KPIC and use only the
+last four NIRSPEC orders ∼2.2 − 2.5 µm due to telluric
+contamination and inaccurate wavelength calibration in
+the first few orders (Finnerty et al. 2023a, 2024).
+Our simulations vary the total planet velocity shift
+∆vpl and the total SNR of the time series. For all simula-
+tions, we generate a simulated time series of spectra with
+evenly spaced orbital phases of step size δϕ = 0 .00174
+(0.0109 radians). This is based on an assumed orbital
+period of 2 days for all systems and a constant inte-
+gration time of 300 seconds per frame. For Kp = 150
+km s−1, the average planet velocity shift within a frame
+is ∼1.5 km s −1. This shift is substantially smaller than
+the ∼9 km s−1 instrument resolution, and we do not sim-
+ulate smearing of the planetary spectrum due to motion
+within a single frame.
+Based on Equation 2, the total velocity shift of the
+planet over an observation depends on both the planet
+radial velocity semi-amplitude Kp and the total ob-
+served phase range ∆ϕ. Thus, we consider two methods
+in varying the planet velocity shift for the simulations:
+• In the “fixed-phase” grid case, we use an evenly-
+spaced orbital phase range ϕ = 0.52 − 0.58 (∆ϕ =
+0.06) for a total of 35 frames for all simulations.
+Then, we produce the given simulated planet ve-
+locity shift ∆ vpl by varying Kp using Equation 2.
+• In the “fixed- Kp” grid case, we set a consistent
+Kp = 150 km s −1 for all simulations. Then, we
+generate a variable-size array of observed phases
+that begins at ϕ1 = 0.52 with the step size above,
+where final phase and total number of frames is
+determined by the given velocity shift ∆ vpl.
+The total SNR for a given simulation is divided be-
+tween each frame, given by:
+SNRtotal = SNRframe
+p
+Nframes (4)
+where N frames is the number of frames. Hence, for sim-
+ulated spectra with more frames (in the fixed- Kp grid
+case), the per-frame SNR is lower, but the total SNR
+remains constant.
+For both grid cases, ∆ vpl is varied from 2 km s −1 to
+101 km s −1 in steps of 1 km s −1. Total SNR is varied
+from 15 to 1500 in steps of 15. This results in a 100×100
+grid of simulations for a given planet model and grid
+case. The two grid cases are summarized in Table 2.
+To simulate an observed spectrum, we first scale the
+planet model by the planet-to-star area ratio, using a
+consistent planet radius of 1.2 RJ and stellar radius of
+1.0 R⊙ for an overall geometric contrast factor of 0.0152.
+We assume a systemic velocity and barycentric velocity
+
+<<<PAGE 5>>>
+Hot Jupiter detectability with HRS 5
+T able 2.The simulation parameters for the two grid cases. The SNR and ∆ vpl ranges are the same for both grid cases. We
+use a step size of 1 km s −1 for ∆vpl and a step size of 15 for SNR. In the fixed-phase grid case, we use a consistent orbital phase
+range from ϕ = 0.52 to ϕ = 0.58 (total ∆ ϕ = 0.06) while varying Kp to produce the simulated ∆ vpl. In the fixed- Kp case, we
+keep a constant Kp = 150 km s−1 and vary the total phase change ∆ϕ to produce the total velocity shift (starting at ϕ1 = 0.52).
+Grid Case SNR ∆ vpl [km s−1] Kp [km s−1] ∆ ϕ
+Fixed-phase [15, 1500, 15] [2, 101, 1] [6, 283, 2.8] 0.06 (0 .52 − 0.58)
+Fixed-Kp [15, 1500, 15] [2, 101, 1] 150 [0.002, 0.127, 0.001]
+of zero for all frames so the stellar model spectrum has
+no change in Doppler shift over the observed time se-
+ries. The change in barycentric velocity over a single
+night is small compared to the 3–9 km s −1 spectral res-
+olution HRCCS instruments so setting the barycentric
+velocity to 0 will not significantly impact the analysis.
+The planet model is Doppler shifted based on the planet
+velocities given by Equation 1 for each frame and in-
+terpolated onto the observed wavelength grid (Finnerty
+et al. 2023a). After the stellar and planet models to-
+gether, we multiply a time-varying telluric transmission
+model spectrum onto the combined spectrum. The tel-
+luric spectrum is generated using PSG (Villanueva et al.
+2018), which is varied based on an airmass that ranges
+from 1 to ∼1.4 over the observed phase, representing
+a typical change over a night of observing. By adding
+this simple time-varying telluric model, we can apply
+PCA to investigate the impact of typical detrending
+processes on detection strengths. The model spectrum
+is convolved with a 1.3 pixel Gaussian filter to sim-
+ulate the instrumental broadening of KPIC (Finnerty
+et al. 2023a, 2024). To simulate the total observed
+SNR, the combined spectrum is first mean-subtracted,
+and Gaussian noise is added frame-wise to the spectrum
+based on the given total SNR divided over each frame
+(σ ∼ 1/SNRframe; SNR frame = SNRtotal/√Nframes).
+The data detrending process for the simulated spectra
+follows (Finnerty et al. 2023a). This includes a time-
+series median division to remove static stellar features
+and principal component analysis (PCA) to remove
+time-varying features e.g. airmass and time-varying
+fringing effects from the optics of KPIC. While we do
+not explicitly include the fringing effects, we still use
+PCA to remove the time-varying telluric features that
+we simulated, which could be augmented to account for
+fringing. However, PCA can distort the planet signal,
+which is minimized by removing the smallest number of
+principal components (PCs) required to correct for in-
+strumental/telluric systematics Finnerty et al. (2022).
+For our analysis, we remove 4 PCs to be consistent with
+previous KPIC analyses (Finnerty et al. 2022, 2023a),
+but we note that removing only 2 PCs produced similar
+detection grids. We further assume that any distortions
+from PCA are included in the simulated noise of the
+spectra and that the residuals after PCA are Gaussian-
+distributed, which appears to be a good assumption for
+the data previously reported in Finnerty et al. (2023a).
+2.4. Cross-Correlation and Log-Likelihood
+For each simulated spectrum, we perform cross-
+correlation with a planet template model, which uses
+the same planet (and stellar) model used to generate
+the given spectrum. We cross-correlate over a grid of
+Kp and vsys values to produce a Kp − vsys diagram that
+can be used to quantify detection strengths. For a given
+Kp and vsys in this grid, we Doppler shift the planet
+and stellar models according to Equation 1 using the
+simulated observed phases for the simulation and com-
+bine the spectra. The generation of the template spec-
+trum is very similar to the simulation process, except it
+instead multiplies by a constant telluric spectrum and
+does not add any additional noise. We subsequently
+process the template by median dividing and perform-
+ing PCA, dropping 4 PCs, similar to the detrending of
+the simulated data. At this point, the simulated data
+and the template spectrum can be used to calculate the
+log-likelihood values (Brogi & Line 2019) over the entire
+Kp − vsys grid. For the Kp − vsys diagram, we vary Kp
+between -300 to 300 km s−1 and vary vsys between -40 to
+40 km s −1, both with a 4 km s −1 step size. By generat-
+ing a smaller Kp − vsys diagram with a lower resolution,
+we can simulate detections at a faster speed, which we
+discuss further in Section 4.6.
+Due to the detrending process and the dependence on
+the forward-model variance in the Brogi & Line (2019)
+log-likelihood function, a feature at Kp = 0 is produced
+in the Kp − vsys diagram from the self-division of planet
+lines at low velocities. To minimize the impact of this
+feature on our detection strength estimates, especially
+for low ∆ vpl simulations, we additionally process simu-
+lated Kp − vsys diagrams by dividing each Kp column
+by the average value of the respective negative Kp col-
+umn. Doing so removes the feature near Kp = 0 and
+
+<<<PAGE 6>>>
+6 Hong et al.
+mitigates artificially large detection strength estimates
+for low velocity simulations.
+In Figure 2, we compare the Kp − vsys diagrams for
+real Keck/KPIC observations of W ASP-33 b (Finnerty
+et al. 2023a) and for a simulated spectrum of W ASP-33
+b. The simulation uses the following parameters that
+closely match real observed values: ∆ vpl = 140 km s −1,
+SNR = 650, Kp = 226 km s −1, planet-to-star area ra-
+tio of ∼0.0114, phase range of 0.52–0.64, period of 1.22
+days, and integration time of 250 seconds (Finnerty et al.
+2023a).
+We can see clear detections in both Kp −vsys diagrams
+in Figure 2, represented by the peak in log-likelihood val-
+ues at the true planet and systemic velocities (note that
+the same scale is used for both grids). We can also see
+the correlation between Kp and vsys as expected based
+on Equation 2. In Figure 2, we calculate a detection
+strength of 8 .9σ and 10 .1σ for the observed and simu-
+lated data of W ASP-33 b, respectively (see Section 2.5).
+The slightly higher detection strength in the simulated
+data suggests there may be some residual model mis-
+match in the observed case, even after atmospheric re-
+trieval, which is not present in simulations. By instead
+taking the maximum likelihood value near the peak to
+account for the model mismatch, we obtain a detection
+of 10.0σ, which closely matches the simulated detection
+strength above. Therefore, the simulated and observed
+detection strengths are in reasonably good agreement,
+indicating our simulation framework provides a reason-
+ably accurate estimate of the detection strength, de-
+spite omitting instrumental systematics such as fring-
+ing. Based on the simulations, a factor of ∼1.1 reduc-
+tion in detection strength for real observations is plau-
+sible, but may depend on the exact difference in con-
+trast between simulation and observation for a given
+planet. The quantitative detection strength estimates
+from these Kp − vsys diagrams are discussed in more
+detail in the next section.
+2.5. Detection Strength Estimation
+Quantifying the detection strength from a Kp − vsys
+diagram can be challenging due to the presence of non-
+Gaussian features far from the planet peak. These fea-
+tures can arise from telluric or stellar contamination
+or from the way the log-likelihood mapping is imple-
+mented (Finnerty et al. 2024), which makes defining a
+true “noise” for signal-to-noise estimates difficult. To
+estimate the noise, we consider the log-likelihood values
+away from the peak value, or off-peak values, specifically
+in the non-physical velocity range Kp < −100 km s −1.
+Given our simulation parameters, this region ofKp−vsys
+space should not contain a detection and only include
+40
+20
+0
+20
+40
+vsys [km/s]
+8.9
+Observed Data
+WASP-33 b Detections
+160 180 200 220 240 260 280 300
+Kp [km/s]
+40
+20
+0
+20
+40
+vsys [km/s]
+10.1
+Simulated Data
+2
+0
+2
+4
+6
+8
+10
+12
+Figure 2. Kp − vsys diagrams for the 2021 November 21
+observations of W ASP-33 b (top; Finnerty et al. (2023a))
+and for simulated W ASP-33b data with observed parame-
+ters ∆ vpl = 140 km s −1and SNR = 650 that closely match
+observation (bottom). The red dashed lines mark the true
+velocities of W ASP-33 b (∆vsys = 0, Kp = 226). The orange
+dashed line show the estimated degeneracy between ∆ vsys
+and Kp based on the observed and simulated phase range
+(Equation 1). Note that the colorbar scale is the same be-
+tween both grids. The simulated data produces a detection
+strength estimate of 10 .1σ, which is slightly larger than the
+8.9σ detection in the observed data.
+noise while also avoiding the feature near Kp = 0 from
+the detrending process. As seen in Figure 3, this region
+of Kp − vsys space is dominated by Gaussian-distributed
+noise in the simulated spectrum (Brogi et al. 2012). The
+mean of the off-peak values is subtracted from the entire
+Kp − vsys diagram, which is then divided by the stan-
+dard deviation of the off-peak region. This scales the
+log-likelihood values to the noise far from the peak and
+represents the significance of the peak log-likelihood val-
+ues compared to the background noise in the Kp − vsys
+diagram, which is quantified by σ in this paper.
+We consider two methods to quantify the detection
+strength. In the first method, we take the significance
+value at the true velocities (Kp and vsys) of a given sim-
+ulation. In the second method, we take the maximum
+significance value in a diagonal area of the Kp − vsys
+diagram that is close to the true velocity shift of the
+planet. Specifically, we take the maximum in the re-
+gion that is within 10 km s −1 of the true velocity shift
+in every simulated frame, within 50 km s −1 of the true
+Kp, and within 50 km s −1 of the true vsys. In general,
+
+<<<PAGE 7>>>
+Hot Jupiter detectability with HRS 7
+3
+ 2
+ 1
+ 0 1 2 3
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5Density
+Observed
+Simulated
+Figure 3. Histogram of off-peak log-likelihood values in the
+Kp − vsys diagrams for the observed and simulated W ASP-33
+b data as in Figure 2. The Kp − vsys diagram is first shifted
+by the mean of off-peak values and scaled by the standard
+deviation of off-peak values as detailed in the text. A stan-
+dard Gaussian is shown in red. We can see that the off-peak
+likelihood values are approximately Gaussian-distributed for
+both the real and simulated data.
+these two methods produce similar detection strength
+estimates for a sufficient ∆vpl and SNR, where the max-
+imum value is found very close to the true velocities, as
+in Kp − vsys diagrams in Figure 2. However, at low ∆ vpl
+and low SNR, the maximum nearby detection strength
+may capture false detections that are the result of noise,
+artificially increasing the estimated detection strength.
+Therefore, for our main results, we use the detection
+strength at true velocity values because it produces more
+modest estimates compared to the maximum nearby de-
+tection strength. We further discuss the differences be-
+tween these two methods for determining the detection
+strength in Section 4.4.
+In many cases, especially in low-SNR data, there are
+often values of >4σ throughout the Kp − vsys space,
+which are false positives due to random noise in the data.
+We can see some of these false positive off-peak values in
+both observed and simulated Kp − vsys diagrams in Fig-
+ure 2. Due to the presence of these spurious peaks away
+from the true velocity values, it is important to choose
+an appropriate lower bound at which a detection is sig-
+nificant. In previous works, the planetary atmosphere is
+said to be detected if a high significance value, usually
+>6σ, is calculated at the true velocities (Brogi & Line
+2019; Finnerty et al. 2023a, 2024). However, the choice
+for a detection cutoff is arbitrary and depends on the
+given data and noise. For our simulations, we adopt a
+detection cutoff of 6σ because our simulations produced
+similar detections to real data given our realistic treat-
+ment of time-varying features and the detrending pro-
+cess. However, our simulations still include optimistic
+assumptions about observed systems, such as assuming
+there is no model mismatch which will always impact
+real observations.
+3. RESULTS
+3.1. 3 × 3 Detection Grid
+In Figure 4, we present a 3 × 3 grid of Kp − vsys dia-
+grams for the HD 189733 b simulations. We show part
+of the fixed-phase simulation grid with ∆ vpl = 10, 50,
+and 90 km s −1 (Kp= 28.5, 142.4, and 256.4 km s −1,
+respectively) and total SNR = 150, 750, and 1350. As
+expected, we see the strongest detection (8 .6σ) at ∆ vpl
+= 90 km s−1 and SNR = 1350 in the upper rightKp−vsys
+diagram in Figure 4. The detection strength decreases
+with decreasing ∆vpl and SNR, until the planet becomes
+undetected (< 3σ) in the Kp − vsys diagrams at the low-
+est ∆ vpl and SNR, again consistent with expectations.
+The maximum nearby detection strength (red) is con-
+sistent with the true velocity detection strength for the
+significant detections in Figure 4, but overestimates de-
+tection strength in some of the non-detections.
+3.2. 100 × 100 Detection Grids
+In Figure 5, we present the 100 × 100 grids of detec-
+tion strength estimates for each planet model and grid
+case. Each row presents a different planet model, and
+the left and right columns present the fixed-phase and
+fixed-Kp cases, respectively. In each grid, a clear re-
+gion of significant detection can be seen at high ∆ vpl
+and SNR. The W ASP-33 b model (ultra-hot Jupiter)
+in the top row of Figure 5 demonstrates the largest re-
+gion of >6σ detections, while the HD 140926 b model
+(high-metallicity hot Saturn) is the least detectable of
+the three models considered. Both the fixed-phase and
+fixed-Kp grids produce similar detection regions for the
+same planet model.
+To estimate the lower limits of detectability, we fit
+the detection grids with a contour curve of the following
+functional form:
+D = (∆vpl − A)(SNR − B)
+P × ∆vpl + Q × SNR (5)
+where D is the detection strength estimate, and
+{A, B, P, Q} are parameters of the contour model. In
+general, the first two parameters ( A, B) determine the
+shift in contour asymptotes along ∆ vpl and SNR while
+
+<<<PAGE 8>>>
+8 Hong et al.
+40
+20
+0
+20
+40
+0.3
+0.4
+vpl = 10.0
+SNR = 1350.0
+6.9
+7.1
+vpl = 50.0
+SNR = 1350.0
+8.6
+8.7
+vpl = 90.0
+SNR = 1350.0
+40
+20
+0
+20
+40
+-0.0
+0.8
+vpl = 10.0
+SNR = 750.0
+2.6
+3.1
+vpl = 50.0
+SNR = 750.0
+6.6
+6.9
+vpl = 90.0
+SNR = 750.0
+200
+ 0 200
+40
+20
+0
+20
+40
+0.3
+0.3
+vpl = 10.0
+SNR = 150.0
+200
+ 0 200
+3.8
+4.7
+vpl = 50.0
+SNR = 150.0
+200
+ 0 200
+1.1
+1.2
+vpl = 90.0
+SNR = 150.0
+0.0 0.2 0.4 0.6 0.8 1.0
+Kp [km/s]
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+vsys [km/s]
+2
+1
+0
+1
+2
+3
+4
+5
+6
+Figure 4. 3 × 3 grid of Kp − vsys diagrams of simulated HD 189733 b detections for ∆vpl = 10, 50, and 90 km s−1 and total SNR
+= 150, 750, and 1350. These diagrams are from the fixed-phase grid case using a consistent orbital phase range ϕ = 0.52 − 0.58
+(∆ϕ = 0.06). The color bar is scaled to a maximum of 6 σ to emphasize the non-detections of the low ∆ vpl and SNR regime.
+The red dashed lines indicate the true Kp and vsys for a given simulation, with the true velocity detection strength shown.
+The maximum nearby detection strength is shown as the red dot and red text. The orange dashed lines indicate the estimated
+correlation between Kp and vsys given the ∆ vpl and phase range (Equation 2). Note that the colorbar scale is the same for all
+diagrams. We can see that the two detection strength methods produce consistent results for high ∆ vpl and SNR, but deviates
+at lower ∆vpl and SNR.
+the last two parameters (P, Q) determine the gradient of
+the contours, respectively. This function is motivated by
+the apparent asymptotic nature of detection strengths at
+high ∆vpl or high SNR for a given significance shown in
+Figure 5. We use the curve fit function from scipy to
+fit the contour function to grid data.
+We compare this parameterization with the numeri-
+cal contours calculated using matplotlib on the grids
+shown in Figure 5 after smoothing with a 4-pixel Gaus-
+sian kernel. The best-fit analytic contours (solid white)
+and numerical contours (dashed cyan) are overplotted
+on the grids in Figure 5. We can see that the analytic
+contours are consistent with the numerical contours at
+the high velocity shift and high SNR asymptotic limits in
+each grid in Figure 5, with slight deviation at high-SNR
+asymptotes, where the analytic estimates are slightly
+more conservative than the numerical contours. There-
+fore, we can use the asymptotic limits as approximate
+estimates for the detection strength of observations in
+the high-∆ vpl or high-SNR regime. However, the ana-
+lytic contour deviates from the numerical contour in the
+intermediate, concave region in every grid, producing
+slightly lower limits. The lower limits in this intermedi-
+ate region by the analytic fit predicts that planets are
+easier to detect than the numerical contours suggest.
+Despite these deviations, the similar behavior between
+
+<<<PAGE 9>>>
+Hot Jupiter detectability with HRS 9
+the best-fit and numerical contours at the limits of ∆ vpl
+and SNR justifies the use of the contour function to es-
+timate detection strength limits.
+To estimate the 6σ detection limit on ∆vpl in the high-
+SNR limit, we use Equation 5 at the maximum SNR of
+the grid (SNR = 1500). This limit represents bright
+planets with a high spectral contrast but with a slow
+orbit or brief observation time. By calculating at the
+maximum SNR of the grid rather than taking SNR →
+∞, we produce more a modest and realistic bound for
+the minimum velocity shift because the grid represents
+typical values for SNR and ∆vpl. Similarly, in the high-
+∆vpl limit, we use the maximum velocity shift of the grid
+(∆vpl = 100 km s−1) to calculate the 6 σ detection limit
+on SNR in the limiting case of a dim but fast-orbiting
+planet. We present the resulting 6 σ detection limits for
+velocity shift ∆ vpl and SNR for each planet model and
+grid case in Table 3. The detection limits are calculated
+using the fit parameter values from the contour function
+in Equation 5. We also compute errors in the asymptotic
+limits using the approximate covariance matrix of the fit
+parameter values.
+T able 3.Lower limits for the planet velocity shift ∆ vpl
+and SNR for a 6 σ detection strength using the contour fit
+function in 5. Errors are calculated using the approximate
+analytic covariance matrix on the fit parameters.
+Planet Model Grid case ∆vpl Limit SNR Limit
+[km s−1]
+W ASP-33 b fixed-phase 33.4 ± 0.1 342 ± 2
+fixed-Kp 29.7 ± 0.1 374 ± 2
+HD 189733 b fixed-phase 46.7 ± 0.3 663 ± 4
+fixed-Kp 47.3 ± 0.4 807 ± 5
+HD 149026 b fixed-phase 52.9 ± 0.4 957 ± 5
+fixed-Kp 61.6 ± 0.6 1196 ± 7
+4. DISCUSSION
+Our results demonstrate a clear region of significant
+detection at high ∆ vpl and SNR for each planet model,
+which can be clearly seen in Figures 4 and 5. We con-
+firm that a velocity shift ∆vpl larger than 3× the instru-
+ment resolution ( ∼ 9 km s −1 in this case) is necessary
+to ensure that the planet signal is not removed during
+the median division (and data detrending) of the total
+spectrum. Furthermore, higher SNR provides greater
+robustness in the detection significance because noisy
+observations can result in false detections at invalid ve-
+locity parameters. We discuss the accuracy of the de-
+tection strength estimation contour fit in Section 4.1.
+We compare the two grid cases in Section 4.2 and com-
+pare the differences in planet models in Section 4.3. In
+Section 4.4, we briefly discuss the alternative method of
+using the maximum significance value nearby the true
+velocities as the detection strength. Finally, we discuss
+other factors that impact simulated detection estimates
+in Section 4.5 and the ease of running the simulations for
+different planet models and observational parameters in
+Section 4.6.
+4.1. Detection Strength Estimated Fit
+By fitting contours as described in Section 3.2, we
+can determine the ∆ vpl and SNR limits for a given
+planet model. The contour function (Equation 5) as-
+sumes asymptotic limits at high ∆ vpl and SNR, which
+allow us to place lower limits for a specific detection
+strength. For a high SNR target, it is expected that the
+planet signal will completely divide out below a certain
+velocity shift during the median division and detrending
+process, rendering the planet undetectable. Similarly,
+for a planet with a high velocity shift, there should be
+a minimum SNR below which the planet signal is indis-
+tinguishable from noise and cannot be detected. In this
+latter case, the cross-correlation is unable to effectively
+separate the planet signal at high levels of noise. Fur-
+thermore, while increasing the number of frames would
+generally improve detection strengths, because our grids
+change the total SNR, which is divided over the number
+of frames, detection strengths are not improved in the
+fixed-Kp grid. In Figure 5, the analytic limits appear to
+be consistent with the numerical contour limits for all
+planet models and grid cases, except in the low-∆ vpl,
+high-SNR regime where analytic limits are more conser-
+vative. Since the simulated region of ∆ vpl and SNR is a
+typical region of observational parameters, the contour
+fit provides reasonably accurate estimates for detection
+strength limits in ∆ vpl and SNR. Hence, we can use
+these asymptotic limits at high ∆ vpl and SNR, ensur-
+ing that our limits are appropriate for the given region of
+simulations and typical observations (e.g. Finnerty et al.
+2023a, 2024).
+However, as mentioned in Section 3.2, the contour
+function deviates from the numerical contours at inter-
+mediate ∆ vpl and SNR values, suggesting a mismatch
+in the contour fit. In every grid in Figure 5, the contour
+function fit appears to underestimate the lower detec-
+tion limit in the intermediate region. Hence, the con-
+tour function serves only as a rough estimate for detec-
+tion strengths at these intermediate values, and further
+investigation of accurate analytic functions is needed for
+accurate detection limits.
+
+<<<PAGE 10>>>
+10 Hong et al.
+40 80 120 160 200 240 280
+Kp [km/s]
+100
+300
+500
+700
+900
+1100
+1300
+1500T otal SNR
+2
+4
+ 6
+ 8
+10
+WASP-33 b
+Fixed-phase
+Analytic contour
+Numerical contour
+0.1 0.2 0.3 0.4 0.5 0.6
+2
+4
+6
+8
+10
+Fixed-Kp
+100
+300
+500
+700
+900
+1100
+1300
+1500T otal SNR
+2
+4
+ 6
+8
+10
+HD 189733 b
+2
+4
+6
+8
+10 20 30 40 50 60 70 80 90 100
+vpl [km s 1]
+100
+300
+500
+700
+900
+1100
+1300
+1500T otal SNR 2
+4
+6
+8
+HD 149026 b
+10 20 30 40 50 60 70 80 90 100
+vpl [km s 1]
+2
+4
+6
+0
+2
+4
+6
+8
+10
+12
+14
+Detection Strength [ ]
+Figure 5. 100 × 100 detection strength grids for each planet model and grid case. The left column show the fixed-phase
+simulations and the right column show the fixed- Kp simulations. The first row shows the W ASP-33 b grids, the middle row
+shows the HD 189733 b grids, and the last row shows the HD 149026 b grids. All grids have the same colorbar scale, with an
+upper bound of 15 σ to highlight the contrast of lower values. We plot the best-fit contours based on Equation 5 (white) and
+the numerical contours from matplotlib (green), which correspond closely except in the intermediate region of ∆ vpl and SNR.
+The W ASP-33 b model produces the strongest detection and thus lowest detection limits of all three planet models.
+
+<<<PAGE 11>>>
+Hot Jupiter detectability with HRS 11
+4.2. Fixed-Phase and Fixed- Kp Grids
+In Figure 5, we see that both the fixed-phase grids
+and the fixed-Kp grids give similar contours for all three
+planet models. This can also be seen in Figure 6 where
+the 6σ contours for each grid case and planet model are
+overlaid. However, the fixed- Kp grids produce slightly
+higher SNR limits and slightly lower ∆ vpl limits for all
+planet models, as shown in Figure 6 and Table 3. This
+suggests that the detection strength depends indepen-
+dently on the planet radial velocity semi-amplitude Kp
+and the observed phase range ∆ ϕ. Because the fixed-
+Kp grid varies the total velocity shift by adjusting the
+total length of the phase range, it may lead to slightly
+different detection limits. In the fixed- Kp grids, low ve-
+locity shifts produce shorter observed phase ranges, but
+the high Kp value of 150 km s −1 produces a sufficient
+velocity shift that slightly pushes the ∆ vpl limit down.
+At larger ∆ vpl and longer phase ranges, the velocity
+shift deviates further from a linear trend (Eq. 2), which
+may cause weaker detections compared to the fixed-
+phase grids and pushes the SNR limit slightly higher.
+When planning observations for transiting planets, the
+planet velocity semi-amplitude Kp is known, so it may
+be more useful to use the fixed- Kp simulation grid that
+varies the velocity shift by adjusting the phase range.
+However, the fixed-phase grids can be used for observa-
+tions in which the velocity semi-amplitude is not exactly
+known (e.g. for inclined planet orbits) and for determin-
+ing a minimum velocity needed for a detection given an
+observation duration. Further analysis using different
+fixed phases and velocity semi-amplitudes is needed to
+study the impact of each technique in generating detec-
+tion grids.
+4.3. Planet Model Comparisons
+The use of three planet models allows us to explore the
+effect of different atmospheric compositions and temper-
+atures on the detection strength of a planet. Figure 3
+lists the lower limits for a 6 σ detection for each planet
+model and grid case.
+The W ASP-33 b (ultra-hot Jupiter) model has the
+strongest detections and lowest ∆ vpl and SNR lim-
+its among the three planet models, with a minimum
+∆vpl = 29.7 ± 0.1 km s −1 and minimum SNR = 374 ± 2
+for a 6 σ detection in the fixed- Kp grid. We can clearly
+see the lower detection limits of the W ASP-33 b model in
+Figures 5 and 6. This is consistent with the high equilib-
+rium temperature and flux of W ASP-33 b relative to its
+host star. This allows for better detection of planet lines
+compared with other planet models, resulting in a high
+detection even at a low velocity and SNR. In particular,
+the W ASP-33 b planet model has the highest planet-to-
+20 40 60 80 100 120 140
+vpl [kms 1] 
+0
+250
+500
+750
+1000
+1250
+1500
+1750
+2000
+SNR
+6  Detection Contours
+WASP-33 b
+HD 189733 b
+HD 149026 b
+Figure 6. 6σ best-fit contour lines from the 100 × 100
+detection grids for each planet model and grid case. The
+fixed-phase grid contours are shown as the solid lines and the
+fixed-Kp grid contours are shown as the dashed lines. The
+W ASP-33 b (ultra-hot Jupiter) model provides lower ∆ vpl
+and SNR limits than the other two models. The ∆ vpl and
+SNR of Keck/KPIC observations of W ASP-33 b, HD 189733
+b, and HD 149026 b are also plotted (as stars). The observed
+parameters for W ASP-33 b and HD 189733 b fall above the
+6σ contours, suggesting that these observations will provide
+significant detections.
+star flux ratio, which can be seen in Figure 1. Therefore,
+even in scenarios where observations are short or noise-
+dominated, an ultra-hot Jupiter can often be detected,
+due to the large planet-to-star contrast. In Figure 5, the
+W ASP-33 b grids also have the steepest gradient in con-
+tour lines such that we see a faster increase in detection
+strength with increasing ∆ vpl or SNR compared to the
+other two models. This also attests to the large spec-
+tral contrast of the W ASP-33 b model whereby small
+increases in ∆ vpl or SNR in an observation can signifi-
+cantly improve detection strengths.
+The other two planet models have significantly lower
+planet-to-star flux ratios compared to the W ASP-33 b
+model. The HD 189733 b (classical hot Jupiter) model
+had 6σ detection limits of ∆vpl = 47.3 ± 0.4 km s−1 and
+SNR = 807 ± 5 in the fixed- Kp grid. The HD 149026
+b (metal-rich hot Saturn) model had limits of ∆ vpl =
+61.6 ± 0.6 km s −1 and SNR = 1196 ± 7 in the fixed-
+Kp grid. The HD 149026 b model produces a higher
+SNR limit than the HD 189733 b model, as shown in
+Figures 5 and 6. For a sufficient velocity shift, the HD
+
+<<<PAGE 12>>>
+12 Hong et al.
+149026 b model requires a higher SNR to be detected,
+likely due to its high metallicity which results in weaker
+planet lines relative to the continuum. In Figure 1, the
+spectral line depths relative to the star are smaller for
+the HD 149026 b model, even though the continuum
+level is higher than the HD 189733 b model. This results
+in lower detection strength estimates at low SNR where
+high noise can obscure the weak lines in the HD 149026
+b model. In the high-SNR regime, the HD 149026 b and
+HD 189733 b models produce consistent ∆vpl limits due
+to the relatively close flux ratio for the two models.
+4.4. Maximum Significance Estimate
+In Section 2.5, we previously discussed an alternative
+method of determining detection strengths by taking the
+maximum significance within a certain range of the true
+velocities, rather than using the detection strength at
+the injected planet velocity. We show the difference be-
+tween grids using the true velocity detection strength
+and the maximum nearby detection strength in Figure
+7 for the fixed-phase HD 189733 b model. For our sim-
+ulations which assume a perfect model match, the two
+methods generally produce the same detection strength
+estimates for sufficiently high ∆ vpl and SNR, where the
+peak significance value is found very close to the true
+velocities. We can see this in the upper right Kp − vsys
+diagrams (∆ vpl ≥ 50 km s −1, SNR ≥ 750) in Figure
+4, where the maximum value is marginally higher than
+the value at the true velocities. In Figure 7, both de-
+tection strength methods produce similar values above
+∼4σ. However, in the case of a model mismatch, it is
+possible for the peak to be shifted significantly away
+from the true velocities. Then, the true velocity de-
+tection strength would not accurately capture the de-
+tection significance of a shifted peak in the Kp − vsys
+diagram. For the maximum nearby detection strength,
+the bounds can be expanded to include a large region of
+Kp − vsys space in order to capture the detection peak
+that is shifted from the true velocities.
+In the lower regime of SNR, the maximum nearby
+detection strength produces significantly higher values
+than the true velocity detection strength, which can be
+seen in Figures 4 and 7. The maximum nearby detection
+strength consistently takes high significance values that
+represent false detections close to the peak, which are
+often the result of noise. While the true velocity detec-
+tion strength can still take high values in this region due
+to noise, it usually captures lower values that raises the
+detection limits. Furthermore, in Figure 7, the analytic
+contour and numerical contour appear to deviate more
+when taking the maximum nearby detection strength,
+suggesting greater mismatch between the analytic con-
+tour model to the data. Hence, in this noise-dominated
+regime of low ∆ vpl and low SNR, the maximum nearby
+detection strength overestimates the detection signifi-
+cance and artificially lowers the detection limit, result-
+ing in inaccurate detections.
+For simulations with low ∆ vpl, the artifact at Kp =
+0 dominates over the peak and after the column-wise
+division of average likelihood values, these detections are
+suppressed. Hence, both techniques produce similarly
+low detection strength values in this low-∆ vpl regime.
+At slightly larger ∆ vpl, the maximum nearby detection
+strength can still overestimate the detection significance
+due to false detections in background noise.
+To determine the effects of planet model mismatch
+on detection strength estimates, the simulations can be
+modified to include artificial model mismatch between
+the simulated planet spectrum and the template spec-
+trum. Then, when determining the detection strength,
+it may be useful to incorporate both methods such that
+the true velocity detection strength is used at low ∆ vpl
+and SNR while the maximum nearby detection strength
+is used at high ∆ vpl and SNR. Doing so will allow for
+more accurate detections in both the high SNR/∆ vpl
+regime, where model mismatch shifts the peak from the
+true velocities, and the low SNR/∆ vpl regime, where
+false detections dominate. This will likely produce more
+accurate results than using only one method for the rea-
+sons mentioned above.
+4.5. Other Considerations
+By using a typical 6 σ detection limit cutoff, these
+simulated grids serve as a lower-bound approximation
+to the detection limits for different planet types. How-
+ever, there were many factors that were ignored in this
+analysis. In our simulations, we assumed an identical
+and fixed stellar spectrum, planet radius, stellar radius,
+and orbital period for all planet models and zero sys-
+temic and barycentric velocities. These assumptions
+were made to reduce the number of independent parame-
+ters that may impact the cross-correlation and detection
+of a given planet.
+In particular, the stellar spectrum and planet-to-star
+area ratio are important factors that impact the overall
+contrast and thus detection strength, as exemplified by
+the W ASP-33 b model in Figure 2. A higher planet-
+to-star spectral contrast is expected to significantly im-
+prove detection strength estimates. Furthermore, the
+orbital period and telescope integration time affect the
+number of frames in a given phase range, which should
+increase detection strength estimates with more frames.
+The systemic velocity and barycentric velocity also af-
+fect the total velocity shift of the planet signal, which
+
+<<<PAGE 13>>>
+Hot Jupiter detectability with HRS 13
+30 60 90 120 150 180 210 240 270
+Kp [km/s]
+100
+300
+500
+700
+900
+1100
+1300
+1500T otal SNR 2
+4
+6
+8
+10
+True velocity
+ detection strength
+Analytic contour
+Numerical contour
+10 20 30 40 50 60 70 80 90 100
+vpl [km s 1]
+100
+300
+500
+700
+900
+1100
+1300
+1500T otal SNR
+2
+4
+6
+8
+10
+Maximum nearby
+ detection strength
+0
+2
+4
+6
+8
+10
+12
+14
+Detection Strength [ ]
+Figure 7.100×100 detection grids for simulated HD 189733
+b data, comparing the two methods of determining detection
+strengths. The upper grid uses the significance at the true ve-
+locities of the simulation. The lower grid uses the maximum
+significance in a simulated Kp − vsys diagram, given velocity
+bounds for planet velocity shift in a frame. The detection
+strength contours are consistent between both methods in
+the high-∆ vpl and high-SNR regime, where the maximum
+significance is near to the true velocity values. However,
+using the maximum significance produces a lower detection
+limit at the low-∆ vpl and low-SNR regions.
+may slightly shift the detection limit on ∆vpl. These pa-
+rameters should be further investigated with simulations
+to assess their impact on detection strength estimates.
+Time-variations in the airmass-dependent telluric
+spectrum and in the fringing of the KPIC spectrometer
+(Finnerty et al. 2024; Finnerty et al. 2025a) can signif-
+icantly impact the detection of exoplanets and require
+removal by detrending the data using techniques such
+as PCA/SVD (e.g. Cheverall & Madhusudhan 2024).
+PCA distorts the planet signal, which is typically cor-
+rected through a re-injection process (e.g. Brogi & Line
+2019; Gibson et al. 2020; Line et al. 2021; Finnerty et al.
+2023a). In our simulations, we model a simple time-
+varying telluric spectrum that is applied to each sim-
+ulation. We detrend the simulated data via PCA to
+remove these time-varying effects and study the impact
+of detrending processes on detection strengths. We show
+the effect of adding a time-varying telluric spectrum and
+detrending with PCA on the detection strength in Fig-
+ure 8. We find that the addition of time-varying tel-
+luric features completely suppresses the planet detec-
+tion and that performing PCA to remove 4 PCs recov-
+ers the planet signal at a lower detection strength (by
+∼4σ). With this semi-realistic treatment of time varia-
+tions, we improve the accuracy of the estimated detec-
+tion strengths as shown in Figures 2 and 6. The mod-
+eling of time-varying telluric or fringing effects can be
+extended to include more complicated time-dependence
+for more accurate detection strength estimates.
+Despite the many simplifying assumptions in our sim-
+ulations, we show in Figure 6 that recent Keck/KPIC
+observations of the planets are comparable to the 6 σ
+detection limit. The observed parameter values for
+W ASP-33 b (∆vpl = 140 km s −1, SNR= 650) and HD
+189733 b (∆ vpl = 54, SNR= 1860) fall in the high-
+∆vpl and high-SNR regime, respectively, so the analytic
+contours should serve as accurate detection limit esti-
+mates, as discussed in Section 4.1. Real Keck/KPIC
+observations of W ASP-33 b and HD 189733 b presented
+∼12σ and ∼7σ detections, respectively, using our detec-
+tion strength estimation method (Finnerty et al. 2023a,
+2024). Our analytic contour fit produce respective de-
+tection strength estimates of ∼12.1 and ∼7.9 at the ob-
+served ∆vpl and SNR, which are comparable to the real
+observed detection strength estimate. By re-running
+simulations using more accurate observational param-
+eters (e.g. in Figure 2), we can test the extent to which
+our simulations can predict true observations.
+However, the HD 149026 b observed parameters
+(∆vpl = 54 km s −1, SNR= 1400) are slightly below
+the analytic 6 σ threshold, but close to the intermedi-
+ate values of ∆vpl and SNR where the analytic contours
+were shown to be slightly inaccurate (see Section 4.1).
+In other words, the detection grid for the HD 149026 b
+simulations suggests that the real planet would not be
+detectable with a 6 σ significance. Regardless, observed
+values of ∆ vpl and SNR that fall close to the 6 σ limit
+could result in a detection, especially given our simpli-
+fied simulation assumptions, and using more accurate
+
+<<<PAGE 14>>>
+14 Hong et al.
+40
+20
+0
+20
+40
+vsys [km/s]
+10.1
+No tellurics
+HD 189733 b Simulated Detections
+40
+20
+0
+20
+40
+vsys [km/s]
+1.6
+With tellurics
+No PCs removed
+0 50 100 150 200 250 300
+Kp [km/s]
+40
+20
+0
+20
+40
+vsys [km/s]
+6.1
+With tellurics
+4 PCs removed
+2
+0
+2
+4
+6
+8
+10
+Figure 8. Kp − vsys diagrams for simulated HD 189733
+b detections with no added time-varying telluric spectrum
+(top), with added time-varying telluric spectrum but no
+PCA removal (middle), and with added time-varying tel-
+luric spectrum and 4 PCs removed (bottom). Each simula-
+tion used ∆vpl = 50 km s−1 and SNR= 1000 with the fiducial
+phase range for the fixed-phase grid. The simulation with no
+time-varying telluric features presents the highest detection
+strength as expected. By adding the time-varying tellurics,
+the planet becomes undetected until PCA is performed to
+remove 4 PCs, presenting a more realistic detection strength
+of 6.1σ.
+parameters for simulations may improve results. For
+the three planet models, we see that the simulations can
+serve as an approximate lower limit to a real detection
+that includes the complex effects mentioned above.
+4.6. Simulation Efficiency
+For each simulation, we generate a Kp − vsys diagram
+over a relatively small range of Kp and vsys with a rela-
+tively large step size. Although this may lower the accu-
+racy of the noise estimation and result in slightly less ac-
+curate detection strength estimates compared to a larger
+higher-resolution grid, the speed-up enables a reason-
+able runtime for the 100 × 100 detection grids. Another
+method for faster simulations involves cross-correlating
+each simulated spectrum over a 1D array of total planet
+velocity shifts for each frame and interpolating the like-
+lihood values onto a Kp − vsys diagram. However, this
+method is incompatible with our simulated detrending
+process and therefore produce very optimistic detection
+strengths and limits.
+With our given method, each simulation, including
+generating the data and running the cross-correlation
+to produce the Kp − vsys diagrams, runs in ∼5 minutes
+on a single CPU slot with 4GB memory, which varies
+slightly depending on the number of simulated frames.
+However, this process is easily parallelizable. A 100×100
+grid (10,000 total simulations) takes ∼2.5 hours to run
+in a cluster environment using an array job that simul-
+taneously performs several simulations as separate tasks
+on a single compute node with 4GB of memory. By im-
+proving parallelization using e.g. MPI, the runtime may
+be reduced further. Therefore, these simulations can be
+generalized to other planet models, stellar models, and
+system parameters with fairly little compute time. This
+is particularly useful for observation planning and fea-
+sibility, where the parameters and possible models of a
+target planet can be used to simulate detections and es-
+timate detection strength estimates for certain param-
+eters (e.g. ∆ vpl and SNR). The simulations can also
+be used to meaningfully explore non-detection in cross-
+correlation analyses by estimating expected detection
+strength based on observational parameters. Although
+the simulations in this work are somewhat optimistic, we
+can use this framework to study the effects of other pa-
+rameters on detection strength and make relative com-
+parisons between different planet or stellar models. Fur-
+ther research should be also conducted to study more
+complicated time-varying features and other likelihood
+models in the analysis of detection strength estimation.
+5. SUMMARY AND CONCLUSIONS
+We simulated high-resolution exoplanet spectra to de-
+termine the minimum observational parameters (∆ vpl
+and SNR) necessary for a significant detection (6σ). We
+tested three planet models that varied in temperature
+and composition, based on observations of an ultra-
+hot Jupiter (W ASP-33 b), a classical hot-Jupiter (HD
+189733 b), and a metal-rich hot Saturn (HD 149026
+b). We generated simulated spectra for each planet
+model that varied over the planet velocity shift ∆ vpl
+and total signal-to-noise ratio (SNR) in a 100×100 grid.
+These simulations included simple time-varying telluric
+effects and detrending via PCA to isolate the planet sig-
+nal. For each simulated spectrum, we calculate the log-
+
+<<<PAGE 15>>>
+Hot Jupiter detectability with HRS 15
+likelihood over Kp and vsys and estimate the detection
+strength using the significance value at the true veloc-
+ity parameters of the simulation. We fit contours to
+the detection strength grids to estimate the minimum
+∆vpl and SNR for a 6σ detection. In the fixed- Kp grids,
+we find 6 σ limits with a 9 km s −1 instrument resolu-
+tion of ∆ vpl = 29 .7 ± 0.1 km s −1 and SNR = 374 ± 2
+for the W ASP-33 b model, ∆ vpl = 47 .3 ± 0.4 km s −1
+and SNR = 807 ± 5 for the HD 189733 b model, and
+∆vpl = 61.6 ± 0.6 km s −1 and SNR = 1196 ± 7 for the
+HD 149026 b model. Observed ∆ vpl and SNR values for
+existing KPIC observations of each planet were found to
+be above or near the 6 σ contours, suggesting that our
+detection estimates are fairly accurate.
+The results of this paper provide an optimistic esti-
+mate of the lower limits of the planet velocity shift and
+signal-to-noise ratio required for a significant exoplanet
+detection. These limits can be used for effective obser-
+vation planning and feasibility of exoplanet targets and
+serve as a reliability test for future exoplanet detections
+with high-resolution spectroscopy. Due to the relatively
+fast speed of simulations, we can expand the simulations
+to include other planet models and other observational
+parameters to determine other parameter limits. How-
+ever, further research should be conducted on more com-
+plex simulations to more accurately determine the lower
+limits of exoplanet detectability.
+ACKNOWLEDGEMENTS
+This work was supported by the Anna and Kenneth
+Taylor Endowment and the Litton Industries Endow-
+ment, under the Undergraduate Research Fellows Pro-
+gram at UCLA.
+This work used computational and storage services as-
+sociated with the Hoffman2 Shared Cluster provided by
+UCLA Institute for Digital Research and Education ’s
+Research Technology Group. The contributed Hoffman2
+computing node used for this work was supported by the
+Heising-Simons Foundation grant #2020-1821.
+L. F. is a member of UA W local 4811. L.F. acknowl-
+edges the support of the W.M. Keck Foundation, which
+also supports development of the KPIC facility data re-
+duction pipeline.
+This research has made use of the NASA Exoplanet
+Archive, which is operated by the California Institute
+of Technology, under contract with the National Aero-
+nautics and Space Administration under the Exoplanet
+Exploration Program.
+Facilities: Keck:II(NIRSPEC/KPIC)
+Software: scipy (Virtanen et al. 2020)
+petitRADTRANS (Molli` ere et al. 2019, 2020)
+
+<<<PAGE 16>>>
+16 Hong et al.
+REFERENCES
+August, P. C., Bean, J. L., Zhang, M., et al. 2023, The
+Astrophysical Journal Letters, 953, L24,
+doi: 10.3847/2041-8213/ace828
+Bean, J. L., Xue, Q., August, P. C., et al. 2023, Nature,
+doi: 10.1038/s41586-023-05984-y
+Birkby, J. L. 2018, Exoplanet Atmospheres at High
+Spectral Resolution, doi: 10.48550/arXiv.1806.04617
+Brogi, M., & Birkby, J. 2021, in ExoFrontiers: Big questions
+in exoplanetary science (IOP Publishing),
+doi: 10.1088/2514-3433/abfa8fch8
+Brogi, M., & Line, M. R. 2019, The Astronomical Journal,
+157, 114, doi: 10.3847/1538-3881/aaffd3
+Brogi, M., & Line, M. R. 2019, AJ, 157, 114,
+doi: 10.3847/1538-3881/aaffd3
+Brogi, M., Snellen, I. A. G., de Kok, R. J., et al. 2012,
+Nature, 486, 502, doi: 10.1038/nature11161
+Cheverall, C. J., & Madhusudhan, N. 2024, The
+Astronomical Journal, 167, 272,
+doi: 10.3847/1538-3881/ad380c
+Delorme, J.-R., Jovanovic, N., Echeverri, D., et al. 2021,
+Journal of Astronomical Telescopes, Instruments, and
+Systems, 7, 035006, doi: 10.1117/1.JATIS.7.3.035006
+Echeverri, D., Jovanovic, N., Delorme, J.-R., et al. 2022, in
+Ground-based and Airborne Instrumentation for
+Astronomy IX, 66, doi: 10.1117/12.2630518
+Finnerty, L., Schofield, T., Delorme, J.-R., et al. 2022, in
+Ground-based and Airborne Instrumentation for
+Astronomy IX, ed. C. J. Evans, J. J. Bryant, &
+K. Motohara, Vol. 12184, International Society for Optics
+and Photonics (SPIE), 121844Y, doi: 10.1117/12.2630276
+Finnerty, L., Schofield, T., Sappey, B., et al. 2023a, The
+Astronomical Journal, 166, 31,
+doi: 10.3847/1538-3881/acda91
+—. 2023b, The Astronomical Journal, 166, 31,
+doi: 10.3847/1538-3881/acda91
+Finnerty, L., Xuan, J. W., Xin, Y., et al. 2024, The
+Astronomical Journal, 167, 43,
+doi: 10.3847/1538-3881/ad1180
+Finnerty, L., Xin, Y., Xuan, J. W., et al. 2025a, AJ, 169,
+94, doi: 10.3847/1538-3881/ada1d9
+—. 2025b, arXiv e-prints, arXiv:2503.01946,
+doi: 10.48550/arXiv.2503.01946
+Gibson, N. P., Merritt, S., Nugroho, S. K., et al. 2020,
+Monthly Notices of the Royal Astronomical Society, 493,
+2215, doi: 10.1093/mnras/staa228
+Gordon, I. E., Rothman, L. S., Hargreaves, R. J., et al.
+2022, JQSRT, 277, 107949,
+doi: 10.1016/j.jqsrt.2021.107949
+Guillot, T. 2010, Astronomy and Astrophysics, 520, A27,
+doi: 10.1051/0004-6361/200913396
+Husser, T. O., Wende-von Berg, S., Dreizler, S., et al. 2013,
+A&A, 553, A6, doi: 10.1051/0004-6361/201219058
+Jovanovic, N., Echeverri, D., Delorme, J.-R., et al. 2025,
+Journal of Astronomical Telescopes, Instruments, and
+Systems, 11, doi: 10.1117/1.jatis.11.1.015005
+Li, G., Gordon, I. E., Rothman, L. S., et al. 2015, ApJS,
+216, 15, doi: 10.1088/0067-0049/216/1/15
+Line, M. R., Brogi, M., Bean, J. L., et al. 2021, Nature,
+598, 580, doi: 10.1038/s41586-021-03912-6
+L´ opez, R. A., Hoffman, E. B., Doppmann, G., et al. 2020,
+in Society of Photo-Optical Instrumentation Engineers
+(SPIE) Conference Series, Vol. 11447, Society of
+Photo-Optical Instrumentation Engineers (SPIE)
+Conference Series, 114476B, doi: 10.1117/12.2563075
+Lustig-Yaeger, J., Fu, G., May, E. M., et al. 2023, Nature
+Astronomy, 7, 1317, doi: 10.1038/s41550-023-02064-z
+Martin, E. C., Fitzgerald, M. P., McLean, I. S., et al. 2018,
+in Society of Photo-Optical Instrumentation Engineers
+(SPIE) Conference Series, Vol. 10702, Ground-based and
+Airborne Instrumentation for Astronomy VII, ed. C. J.
+Evans, L. Simard, & H. Takami, 107020A,
+doi: 10.1117/12.2312266
+McLean, I. S., Becklin, E. E., Bendiksen, O., et al. 1998, in
+Society of Photo-Optical Instrumentation Engineers
+(SPIE) Conference Series, Vol. 3354, Infrared
+Astronomical Instrumentation, ed. A. M. Fowler,
+566–578, doi: 10.1117/12.317283
+Ment, K., Fischer, D. A., Bakos, G., Howard, A. W., &
+Isaacson, H. 2018, The Astronomical Journal, 156, 213,
+doi: 10.3847/1538-3881/aae1f5
+Molli` ere, P., Wardenier, J. P., van Boekel, R., et al. 2019,
+A&A, 627, A67, doi: 10.1051/0004-6361/201935470
+Molli` ere, P., Stolker, T., Lacour, S., et al. 2020, A&A, 640,
+A131, doi: 10.1051/0004-6361/202038325
+NExScI. 2022, Exoplanet Follow-up Observing Program
+Web Service, IPAC, doi: 10.26134/EXOFOP5
+Pelletier, S., Benneke, B., Darveau-Bernier, A., et al. 2021,
+AJ, 162, 73, doi: 10.3847/1538-3881/ac0428
+Polyansky, O. L., Kyuberis, A. A., Zobov, N. F., et al.
+2018, MNRAS, 480, 2597, doi: 10.1093/mnras/sty1877
+Ramkumar, S., Gibson, N. P., Nugroho, S. K., Maguire, C.,
+& Fortune, M. 2023, Monthly Notices of the Royal
+Astronomical Society, 525, 2985,
+doi: 10.1093/mnras/stad2476
+Rosenthal, L. J., Fulton, B. J., Hirsch, L. A., et al. 2021,
+The Astrophysical Journal Supplement Series, 255, 8,
+doi: 10.3847/1538-4365/abe23c
+
+<<<PAGE 17>>>
+Hot Jupiter detectability with HRS 17
+Rothman, L. S., Gordon, I. E., Barber, R. J., et al. 2010,
+JQSRT, 111, 2139, doi: 10.1016/j.jqsrt.2010.05.001
+Rothman, L. S., Gordon, I. E., Babikov, Y., et al. 2013,
+JQSRT, 130, 4, doi: 10.1016/j.jqsrt.2013.07.002
+Sing, D. K. 2010, A&A, 510, A21,
+doi: 10.1051/0004-6361/200913675
+Snellen, I., de Kok, R., Birkby, J. L., et al. 2015,
+Astronomy and Astrophysics, 576, A59,
+doi: 10.1051/0004-6361/201425018
+Stassun, K. G., Collins, K. A., & Gaudi, B. S. 2017, The
+Astronomical Journal, 153, 136,
+doi: 10.3847/1538-3881/aa5df3
+Tamuz, O., Mazeh, T., & Zucker, S. 2005, MNRAS, 356,
+1466, doi: 10.1111/j.1365-2966.2004.08585.x
+Villanueva, G. L., Smith, M. D., Protopapa, S., Faggi, S., &
+Mandell, A. M. 2018, JQSRT, 217, 86,
+doi: 10.1016/j.jqsrt.2018.05.023
+Virtanen, P., Gommers, R., Oliphant, T. E., et al. 2020,
+Nature Methods, 17, 261, doi: 10.1038/s41592-019-0686-2
+Yousefi, M., Bernath, P. F., Hodges, J., & Masseron, T.
+2018, Journal of Quantitative Spectroscopy and
+Radiative Transfer, 217, 416,
+doi: https://doi.org/10.1016/j.jqsrt.2018.06.016
+Yurchenko, S. N., Al-Refaie, A. F., & Tennyson, J. 2018,
+A&A, 614, A131, doi: 10.1051/0004-6361/201732531

@@ -119,6 +119,15 @@ this milestone learned, because it rules out the easy explanations.
    failure was a transient `ConnectionResetError` in viper's SIMBAD lookup — it caches to
    `<tag>.targ.csv`, so copying that file across tags avoids the fetch). Template S/N should
    have risen by ~√18. The precision did not move. **The template was not the limitation.**
+
+   > **CORRECTED BY M11 — both halves of this are wrong.** It did not change "nothing": it
+   > made the scatter **worse** (823 → 1638 m/s), which is not a null result and should have
+   > been read as a signal. And rebuilding the template properly (Köhler et al. 2025 §2.2,
+   > two iterations, `-tpl_wave tell`) takes the target to 620 m/s while the **GJ 229 B
+   > control collapses** — recovered amplitude falls to **41% of correct after a single
+   > iteration**. **Self-templating absorbs the signal**, so the template is not merely "not
+   > the limitation" — it is actively harmful on a target whose signal you are measuring.
+   > See [`M11-RESULTS.md`](M11-RESULTS.md).
 2. **Telluric forward modelling makes it worse — but only because the flag was wrong.**
    `-telluric add -tellshift` roughly tripled the scatter and several orders failed to
    converge (`maxfev = 2600`).

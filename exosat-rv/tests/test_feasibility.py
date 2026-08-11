@@ -221,3 +221,33 @@ def test_companion_h_magnitude_is_sourced_and_bright():
     assert photon_limited_precision(P.bd_h_mag + 2, P.bd_h_mag, 31.44) == pytest.approx(
         31.44 * 10**0.4, rel=1e-9
     )
+
+
+# --- M12: the published Nature version supersedes the preprint --------------------------
+
+def test_published_precision_target_replaces_the_preprint_one():
+    """Every milestone up to M11 aimed at 31.44 m/s. Peer review revised it to 57.68,
+    a factor of 1.83 -- so a large part of the "factor of 25" was never a gap at all."""
+    assert P.pub_rv_err_nodding_ms == pytest.approx(57.68)
+    assert P.pub_rv_err_nodding_ms / P.rv_err_nodding_ms == pytest.approx(1.83, abs=0.01)
+
+
+def test_nodding_gain_is_five_percent_not_ten():
+    """M9 demoted the nodding frames using the preprint's ~10%. The published Fig. 4
+    makes it 4.9%, so the lever is half what M9 recorded."""
+    gain = 1 - P.pub_rv_err_nodding_ms / P.pub_rv_err_combined_ms
+    assert gain == pytest.approx(0.047, abs=0.005)
+
+
+def test_second_satellite_evidence_more_than_halved_in_peer_review():
+    """M1 corrected M0 by establishing delta-logZ = 6.9 for the second satellite. That was
+    right about the preprint. The published Table 1 gives 2.622, with +/-0.7 on each term."""
+    assert P.pub_two_sat_logz - P.pub_one_sat_logz == pytest.approx(2.622, abs=0.001)
+    assert P.pub_delta_logz_two_vs_one < P.delta_logz_two_vs_one / 2
+
+
+def test_preprint_rv_timestamps_are_wrong_by_most_of_a_day():
+    """Confirmed against our own ESO product headers, not against the paper: the published
+    table matches the archive to 232 s, the preprint's to -75 348 s."""
+    assert P.v1_bjd_offset_d == pytest.approx(-0.8721, abs=0.0001)
+    assert abs(P.v1_bjd_offset_d * 86400) > 75_000

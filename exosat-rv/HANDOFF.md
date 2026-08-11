@@ -1,5 +1,35 @@
 # HANDOFF — exosat-rv
 
+> ## ⚠ READ [`M12-RESULTS.md`](M12-RESULTS.md) FIRST — it moves the ground under everything below
+>
+> 1. **The paper was published in *Nature* on 22 July 2026 and M0–M11 all used the
+>    pre-peer-review arXiv v1**, which its own comments field asks readers not to draw
+>    conclusions from. The precision target moved **31.44 → 57.68 m/s**, the RV table
+>    20 → 23 epochs with **timestamps corrected by 0.87 d**, the period 169.45 → 171.11 d,
+>    Msini 0.743 → 0.918 M_Jup, and the second satellite's evidence
+>    **delta-logZ 6.64 → 2.62**. `config.py` is pinned to superseded values throughout and
+>    M6 fitted the superseded table.
+> 2. **`viper` has been modelling a gas cell that was not in the beam** since M2 — `-nocell`
+>    was never set, on data with `INS1 OPTI1 ID = FREE`. And **the template is a raw
+>    observation with tellurics in it**, where the published recipe requires a telluric-free
+>    one. Fixing both takes the paper's own error statistic 763 → 480 m/s and removes an
+>    **RV–BERV correlation the authors explicitly report they do not have**.
+> 3. **The gap is 8.3x, not 25x**, and it is now decomposed: of the baseline 823 m/s,
+>    **522 m/s was BERV-correlated and is now 150 m/s**, while **~620 m/s of non-BERV
+>    per-order systematic is untouched by any of it.** That residual is the real problem.
+> 4. **Both fixes are adopted, and the GJ 229 B control has been overturned on evidence.**
+>    An injection-recovery test on CD-35 2722 B itself (M12 §8) returns **95% ± 7%** of an
+>    injected signal under the corrected model, where the control predicted **46%** — a 7σ
+>    disagreement on the object that matters. Per-order recovery is **81–112%** corrected
+>    against **−4% to 493%** at baseline. **Use injection recovery, not GJ 229 B, to judge
+>    any forward-model change** — the control's signal is ~70x the target's, so it screens
+>    the wrong regime. Build on `scratchpad/inject_run.sh`; and note M12 §8.1 — shift the
+>    *template*, never the observation, or 92% of the injection vanishes into the telluric
+>    anchor.
+> 5. Two of M11's open suspects are closed for free: the ADP→cr2res conversion is **correct**
+>    (checked against ESO's own `CWLEN` header values), and `-tpl_wave tell` is a **no-op**
+>    for RV runs.
+
 ## Where the project stands
 
 **The paper's conclusion reproduces. Its measurements do not.** Those are separate claims and
@@ -12,22 +42,81 @@ this project conflated them for three milestones.
   needed. ([M2](M2-RESULTS.md))
 - ✅ A positive control on GJ 229 B proves the extraction is *coarse*, not *broken*. ([M3](M3-RESULTS.md))
 
+**M7 read the paper's reference list and the project's assumptions moved.** Read
+[`M7-RESULTS.md`](M7-RESULTS.md) §0 before planning anything: the method was *proposed* in
+2018, its detectability was *forecast* in 2022 by four of Hoy et al.'s own co-authors, and
+**three published nulls preceded this detection**, not one. There is now a `papers/`
+archive; use [`scripts/fetch_paper.py`](scripts/fetch_paper.py) to add to it.
+
 **This is what a new agent should do next**, in order:
 
-1. **Establish whether cell-free H-band precision is even capable of ~31 m/s.** No paper read
-   so far characterises it; Köhler et al. 2025's cell-free demonstration is K band. If the
-   answer is no, the archive route is closed and that is a publishable negative result.
-2. **Re-extract the individual nodding frames** with `cr2res` from the public raw data. ESO
-   archives only the combined product, and this is the only remaining difference the authors
-   themselves name. See [`docs/viper-runbook.md`](docs/viper-runbook.md) §7.
-3. **Only then** apply the pipeline to **eta Tel B** — 16 usable H-band nights over an
-   800-day baseline, no published RVs, nobody has looked. ([M5](M5-RESULTS.md))
+1. **Establish why *this project's* extraction sits 25x above 31.44 m/s.** ~~Whether
+   cell-free H-band precision can reach ~31 m/s~~ — **this is no longer the open question.**
+   Hoy et al. *are* the missing characterisation: 31.44 m/s, H band, cell-free, on an
+   S/N ~ 18 companion, with the same code. The risk register said no paper characterised
+   that regime; the paper under reproduction does. The gap is in the reproduction, not in
+   the physics.
+2. ~~**Fix the per-order forward model — the template first.**~~ **DONE, and it failed —
+   [`M11`](M11-RESULTS.md).** Rebuilding the template the published way (Köhler et al. 2025
+   §2.2, two iterations, `-tpl_wave tell`) makes CD-35 2722 B *look* better (776 → 620 m/s)
+   and **collapses the control**: recovered amplitude on GJ 229 B's undisputed binary falls
+   to **41% of correct after one iteration** and does not recover. Self-templating absorbs
+   the signal. **Two suspects remain and the order has changed:**
 
-Any new detection requires step 1 or 2 to succeed. M6 contributes nothing to it: fitting
+   **2a. Check the ADP→cr2res conversion — now the leading suspect, and never tested.** M2
+   verified it is *lossless* (max difference 0), which proves the numbers arrived, not that
+   they arrived in the right order/detector slots. A mis-slotted segment gives viper a wrong
+   starting wavelength per chunk, the telluric fit never locks, and `atm0` stays
+   unconstrained — which M9 measured in **6 of 10 orders**.
+
+   **2b. Score `-tpl_wave tell` on its own.** M11 changed it together with template
+   iteration and cannot separate them. One run with zero iterations isolates the only part
+   of M11 that might be real.
+
+3. ~~Re-extract the individual nodding frames~~ — **last, not first.** M9 measured both
+   cheap levers: the nodding frames are worth **10%** (the authors' own Fig. 4, 31.44 vs
+   34.49 m/s) and order screening/reweighting **6%** (823 → 776 m/s), against a factor of 25.
+   The combination stage already works; **the whole shortfall is per-order.** See
+   [`M9-RESULTS.md`](M9-RESULTS.md) §7.
+4. **Only then** apply the pipeline to **eta Tel B** — 16 usable H-band nights over an
+   800-day baseline, no published RVs, nobody has looked. ([M5](M5-RESULTS.md)) M7 confirms
+   it independently: it ranks **4th of 38** in Lazzoni et al. 2022's physics-based detection
+   probability, having been ranked **1st** by M5 on archive holdings alone. Two rankings
+   sharing no assumptions agree. But note M7 §5 — a null there limits satellites to
+   ~3 M_Jup, a *binary-companion* limit, not an exomoon one.
+
+Any new detection requires step 2 to succeed. M6 contributes nothing to it: fitting
 someone's published velocities cannot find a new satellite.
+
+4. **In parallel, and independent of all of the above: probe a GRAVITY product.**
+   [`M10`](M10-RESULTS.md) found that **beta Pic b has 28 public pipeline-reduced VLTI/GRAVITY
+   nights over 2987 days** — 1.6x the epochs over 6.4x the baseline of the dataset the
+   published RV detection rests on — and that HD 206893 B, where Blunt et al. 2026 report a
+   tentative astrometric exomoon candidate, has 22 public nights. **Astrometry outranks RV in
+   Lazzoni et al.'s own table (P = 0.999 vs 0.996) and reaches below RV's ~0.4 M_Jup floor.**
+   The kill-check is open and cheap: download one `calib_level=2` visibility product and
+   verify it carries the dual-field differential phase astrometry needs. **M1's precedent
+   applies — the first automated verdict on ESO's CRIRES+ products was wrong and nearly cost
+   a needless pipeline rebuild.** See [`M10-RESULTS.md`](M10-RESULTS.md) §5.
+
+**Three new lines exist that need no CRIRES+ precision at all:**
+
+- [`M7`](M7-RESULTS.md) — the generalisation framework (`exosat-rv survey`), with the
+  detection threshold recalibrated on the achieved 31.44 m/s rather than a forecast.
+- [`M8`](M8-RESULTS.md) — satellites of **young close-in giants** (`exosat-rv closein`).
+  3-8 real targets survive both a tidal-survival and a cross-correlation-observability cut,
+  depending on the planetary tidal Q. The prize is not the moon: a limit at 10-30 M_Earth
+  around a young hot Jupiter **discriminates between hot-Jupiter migration channels**.
+- [`M10`](M10-RESULTS.md) — the **astrometric route** (`exosat-rv gravity`). Better public
+  data than the RV route has, and **beta Pic b is the crossover target**: #2 in M7's RV
+  ranking, one of Blunt et al.'s two best astrometric targets, and the best public GRAVITY
+  dataset. The one object where two independent techniques could be cross-checked.
 
 ## Reading order
 
+0. [`papers/`](papers/) — the source and its citation chain, as PDFs and extracted text.
+   **Read `papers/text/hoy2026_v1.txt` in full before forming any view.** It did not exist
+   until M7; six milestones ran on two papers and an appendix.
 1. [`SPEC.md`](SPEC.md) — what is being tested and why it is worth testing.
 2. [`M0-RESULTS.md`](M0-RESULTS.md) — what the archive contains. **Its arithmetic is corrected
    by M1 and M2; do not quote it alone.**
@@ -39,6 +128,21 @@ someone's published velocities cannot find a new satellite.
    forming any view on whether the paper holds up.
 7. [`M4-RESULTS.md`](M4-RESULTS.md) — the alias structure of the second signal.
 8. [`M5-RESULTS.md`](M5-RESULTS.md) — analogue targets, and the control's provenance.
+8b. [`M7-RESULTS.md`](M7-RESULTS.md) — the literature this method came from, three
+    attribution corrections, and the generalisation framework.
+8c. [`M8-RESULTS.md`](M8-RESULTS.md) — young close-in giants, and why satellite survival
+    and cross-correlation observability trade as an inverse cube.
+8d. [`M9-RESULTS.md`](M9-RESULTS.md) — **order screening falsified, and the reweighting that
+    fooled the target and was caught by the control.** Read §5 before touching order weights.
+8e. [`M10-RESULTS.md`](M10-RESULTS.md) — the astrometric route, inventoried. Read §5: its
+    kill-check is open.
+8f. [`M11-RESULTS.md`](M11-RESULTS.md) — **the template rebuilt the published way, and why
+    it suppresses the signal.** Third change running that improved the target and failed
+    the control. **Read M12 §5.3 alongside it: M11 changed three things at once and ran
+    with the cell error present, so its verdict is conditional.**
+8g. [`M12-RESULTS.md`](M12-RESULTS.md) — **read this first, not last.** The published Nature
+    version, the gas cell that was never switched off, the telluric-contaminated template,
+    and the RV–BERV correlation that ties them together.
 9. [`BUILD-PLAN.md`](BUILD-PLAN.md) — stack, architecture, milestones.
 10. [`DATA-SOURCES.md`](DATA-SOURCES.md) — endpoints, and the traps in each.
 11. [`docs/viper-runbook.md`](docs/viper-runbook.md) — **rebuild the RV pipeline from
@@ -97,6 +201,82 @@ comparisons in the same direction as the paper's. See [`M6-RESULTS.md`](M6-RESUL
 published the intermediate data.** Many papers do, in an appendix nobody reads. Three
 milestones were spent re-deriving numbers that were printed on page 23.
 
+### "The GQ Lup B null is Köhler et al. 2024, the first dedicated RV exosatellite search" (SPEC, M5) — **FALSE on both counts, corrected in M7**
+
+Found by extracting Hoy et al.'s reference list — something no earlier milestone did.
+
+1. **Wrong author.** arXiv:2408.10299 is **Horstman et al. 2024**. Köhler is not an author
+   on it. SPEC had already corrected the *instrument* (Keck/KPIC, not viper/CRIRES+) and
+   still kept the wrong name, then propagated it to M5-RESULTS.
+2. **Wrong priority.** It is not the first. **Ruffio et al. 2023** (HR 7672 B,
+   arXiv:2301.04206) and **Vanderburg & Rodriguez 2021** (HR 8799, arXiv:2110.14650)
+   precede it, and **Vanderburg, Rappaport & Mayo 2018** (arXiv:1805.01903) proposed the
+   method. **Three published nulls preceded Hoy et al.'s detection**, not one.
+
+**Root cause:** the project cited a paper by its arXiv number without opening it, twice,
+and corrected the detail that was challenged rather than re-deriving the claim. The
+reference list of the source paper was never extracted in six milestones.
+
+**Rule: when a citation is found to be wrong in one respect, re-check every other claim
+attached to it.** A partial correction is how the wrong author survived M5.
+
+### "The individual nodding frames are the lever that closes the precision gap" (HANDOFF, runbook) — **WRONG BY 2 ORDERS OF MAGNITUDE, corrected in M9**
+
+HANDOFF §next-actions and `docs/viper-runbook.md` §7 both put re-extracting the nodding
+frames first, on the grounds that it is "the only remaining difference the authors
+themselves name". True — and the authors also **quantify** it, in their own Fig. 4:
+**31.44 m/s vs 34.49 m/s, a ~10% gain.** Against a factor of 25 it cannot be the answer, and
+nothing in the project had checked the size of a lever before ranking it first.
+
+M9 then measured the other cheap lever, order screening: **6%** (823 → 776 m/s).
+
+**Rule: before ranking a fix, find the number the source attaches to it.** Both of these
+were quantified in the paper we are reproducing.
+
+### "Weighting orders by their measured scatter improves the RVs" (M9, briefly) — **FALSE, caught by the control before publication**
+
+Empirical weighting (1/rms_order²) gives **514 m/s on CD-35 2722 B, the best number M9
+produced and a 1.6x gain on viper's own output.** It also drops the GJ 229 B control from
+Δχ² = 63.8 to **5.8**, and the recovered amplitude from 6165 to 1825 m/s.
+
+For a target with a real signal, an order's scatter *is* the signal, so inverse-scatter
+weighting downweights exactly the orders carrying it. On a target with no detected signal
+the pathology is invisible.
+
+**This is the case HANDOFF's control rule was written for, and it is the first time the rule
+has actually caught something.** Without GJ 229 B the screen would have been adopted and
+every subsequent null would have been deeper and more wrong. Pinned by
+`test_empirical_weighting_looks_best_on_target_and_destroys_the_control`.
+
+### "M2's co-added template failed because it skipped RV alignment" (M9 §7) — **FALSE, disproved in M11 by reading the source**
+
+M9 named this the leading suspect: the co-added template made things worse (823 → 1638 m/s),
+which is the signature of co-adding without aligning spectra in velocity first.
+
+**viper does align.** `viper.py` line 624 divides by `(1 + par.rv/c)` before co-adding, and
+line 630 applies exactly Köhler et al.'s eq. 14 weighting, `w = T_atm/ε²`. The published
+recipe is implemented faithfully.
+
+**Reading the code cost minutes; testing the hypothesis cost an afternoon.** When a suspicion
+is about what a program does, read the program.
+
+### "Rebuilding the template per the published recipe will close the gap" (M9 §7) — **FALSE, and it suppresses signal, M11**
+
+Two template iterations with `-tpl_wave tell`, exactly as Hoy et al. describe, takes
+CD-35 2722 B from 776 to 620 m/s — and collapses the GJ 229 B control from Δχ² 76.5 to 23.7,
+with recovered amplitude falling from 5948 to **2452 m/s, 41% of correct, after a single
+iteration**.
+
+**Self-templating absorbs the signal**: the template is co-added from the target's own
+spectra aligned by RVs measured against a template that already contains the signal, so the
+residual is baked in and later velocities are partly the star measured against itself.
+Köhler et al. §2.2 flag the hazard for targets with real Doppler shifts; their prescribed
+workaround is what viper implements and was not sufficient at our precision.
+
+**Do not iterate a self-built template on a target whose signal you are trying to measure,
+without verifying amplitude recovery on a known signal.** Pinned by
+`test_self_templating_suppresses_a_known_signal`.
+
 ## 2. Inherited claims that do not survive checking
 
 ### Table 1's log-evidence difference does not match the quoted value — minor, real
@@ -110,6 +290,12 @@ made much of — unlike §1, this one was checked against the actual PDF.
 
 | Approach | Why rejected |
 |---|---|
+| Working from a source paper without archiving it or its references | Six milestones ran on the Hoy PDF read once and discarded, plus two hand-picked citations. The reference list named the framework paper (Lazzoni+2022), the method's proposal (Vanderburg+2018) and two unnoticed prior nulls. `papers/` and `scripts/fetch_paper.py` now exist; **extract the reference list first.** |
+| Reading a null result on the close-in case as "hot Jupiter moons are impossible" | The naive tidal argument (all stable orbits inside corotation) assumes a *synchronised* planet. Young planets are not synchronised, and tau_spin-down goes as a^6 — the answer flips over a factor of 3 in orbital distance. See [`M8-RESULTS.md`](M8-RESULTS.md) §2. |
+| Defaulting a host's density to Jupiter's when computing a Roche limit | A 37 M_Jup object in 1.2 R_Jup is ~27 g/cm^3, not 1.3. The wrong default returns 3.1 R_host against the paper's 8.4 — a plausible-looking number, no error raised. Densities are now computed from mass and radius and pinned by a test. |
+| Weighting viper's per-order RVs by inverse **formal** variance | Not merely useless but **actively harmful**: 2620 m/s against 823 for a plain mean. Order 8 has the largest scatter (4130 m/s) and the smallest formal error (101 m/s), so it dominates. M2 knew the errors were untrustworthy; M9 measured the cost of using them anyway. |
+| Applying the paper's telluric-order rule to ESO's combined product | Keeping only orders where viper constrains the telluric abundance (12/14/15/16) makes the target **worse** (1142 vs 823 m/s) and weakens the control (63.8 → 46.7). Either our `atm0` errors do not mean what they appear to, or the rule needs the per-nodding data. |
+| Masking per-order RVs on the RV value alone | An order counts only if its RV *and* its error are finite and positive — what viper itself does. Masking on RV alone shifts the plain mean from 823 to 878 m/s: it looks like rounding and is a silent failure to reproduce M2. |
 | Populating `config.py` from AI summaries of the paper body | Produced three wrong values and one false published claim (§1). The `[SUMM]` tier is now **eliminated**, not merely flagged. |
 | Extracting the PDF via WebFetch, then via poppler under WSL | WebFetch returned only compressed streams; poppler is not installed in WSL and would need sudo. **`pypdf` in the project venv did it in one call** — 27 pages, 55,679 chars. Try the pure-Python route first. |
 | Framing M4 as "is the 87-day signal a harmonic of the 169-day orbit?" | The paper asks exactly this, fits the eccentric one-satellite model (e = 0.29), and rejects it by delta-log-Z = 6.9. Re-scoped to the **alias structure**, which the paper states openly is unresolved. See M1 §3-4. |
@@ -205,13 +391,18 @@ consistency check, not evidence.
 
 ## 7. Risk register
 
-**OPEN — the only live risk: cell-free H-band RV precision may not reach ~31 m/s at all.**
-CRIRES+ is unstabilised and drifts up to 1 km/s without a good wavelength correction. Telluric
-lines are the cell-free reference and are stable to ~10 m/s, but every published
-characterisation of that regime (Köhler et al. 2025 §5.4) is **K band, on bright RV standard
-stars**. This project needs **H band, on an S/N ≈ 18 companion**, and nothing read so far says
-that is achievable. If it is not, the archive route to new exosatellites is closed — which is
-itself worth publishing. Establish this before more tuning.
+**DOWNGRADED (M7) — "cell-free H-band RV precision may not reach ~31 m/s at all."**
+The register said every published characterisation of the cell-free regime (Köhler et al.
+2025 §5.4) is K band on bright standards, and that nothing established H band on a faint
+companion. **The paper under reproduction is that characterisation**: 31.44 m/s, H band,
+cell-free, S/N ~ 18 companion, same instrument, same code. It was in hand the whole time and
+was never read as evidence about the instrument.
+
+The risk as worded is therefore closed. What replaces it is narrower and entirely ours:
+**why does this project's extraction sit 25x above a precision the same configuration is
+documented to reach?** M2 §5 lists what remains untried. This is a reproduction gap, not a
+physics limit — a materially better position, and it means a null from this pipeline cannot
+be published as "the archive route is closed".
 
 **RETIRED (M1) — whether ESO's `calib_level=2` products preserve what `viper` needs.**
 If they had been order-merged or resampled, forward-modelling RV extraction would have been

@@ -1,0 +1,1946 @@
+<<<PAGE 1>>>
+DRAFT VERSION AUGUST 29, 2019
+Typeset using LATEX preprint2 style in AASTeX62
+Sodium and Potassium Signatures of V olcanic Satellites Orbiting Close-in Gas Giant Exoplanets
+APURVA V. OZA,1 ROBERT E. J OHNSON ,2, 3 EMMANUEL LELLOUCH ,4 CARL SCHMIDT ,5 NICK SCHNEIDER ,6 CHENLIANG HUANG ,7
+DIANA GAMBORINO ,1 ANDREA GEBEK ,1, 8 AURELIEN WYTTENBACH ,9 BRICE -OLIVIER DEMORY ,10 CHRISTOPH MORDASINI ,1
+PRABAL SAXENA ,11 DAVID DUBOIS ,12 ARIELLE MOULLET ,12 AND NICOLAS THOMAS 1
+1Physikalisches Institut, Universit¨at Bern, Bern, Switzerland
+2Engineering Physics, University of Virginia, Charlottesville, VA 22903, USA
+3Physics, New York University, 4 Washington Place, NY 10003, USA
+4LESIA-Observatoire de Paris, CNRS, UPMC Univ. Paris 06, Univ. Denis Diderot, Sorbonne Paris Cite, Meudon, France
+5Center for Space Physics, Boston University, Boston, USA
+6Laboratory for Atmospheric and Space Physics,University of Colorado, Boulder, CO, USA
+7Department of Physics and Astronomy, University of Nevada, Las Vegas, NV , USA
+8Departement Physik, Eidgen¨ossische Technische Hochschule Z¨urich, Switzerland
+9Leiden Observatory, Leiden University, Netherlands
+10Center for Space and Habitability, Universit¨at Bern, Bern, Switzerland
+11NASA, Goddard Space Flight Center, Greenbelt, MD, USA
+12NASA, Ames Research Center, Space Science Division, Moffett Field, Ca, USA
+ABSTRACT
+Extrasolar satellites are generally too small to be detected by nominal searches. By analogy to the most active
+body in the Solar System, Io, we describe how sodium (Na I) and potassium (K I) gas could be a signature
+of the geological activity venting from an otherwise hidden exo-Io. Analyzing ∼ a dozen close-in gas giants
+hosting robust alkaline detections, we show that an Io-sized satellite can be stable against orbital decay below
+a planetary tidalQp ≲ 1011. This tidal energy is focused into the satellite driving a ∼ 105±2 higher mass loss
+rate than Io’s supply to Jupiter’s Na exosphere, based on simple atmospheric loss estimates. The remarkable
+consequence is that several exo-Io column densities are on average more than sufﬁcient to provide the∼ 1010±1
+Na cm−2 required by the equivalent width of exoplanet transmission spectra. Furthermore, the benchmark
+observations of both Jupiter’s extended (∼ 1000 RJ) Na exosphere and Jupiter’s atmosphere in transmission
+spectroscopy yield similar Na column densities that are purely exogenic in nature. As a proof of concept, we
+ﬁt the “high-altitude” Na at W ASP 49-b with an ionization-limited cloud similar to the observed Na proﬁle
+about Io. Moving forward, we strongly encourage time-dependent ingress and egress monitoring along with
+spectroscopic searches for other volcanic volatiles.
+Keywords: Planets and Satellites: detection; atmospheres; physical evolution; magnetic ﬁelds; composition;
+dynamical evolution and stability
+1. INTRODUCTION
+The 1970s discoveries of sodium (Na I) and potassium (K
+I) clouds at Io (Brown (1974); Brown & Chaffee (1974);
+Trafton (1975) ) turned out to be a revealing observational
+signature motivating the tidal dissipation theory developed
+by Peale et al. (1979) which predicted extreme volcanic
+activity on Io even before V oyager 1’s ﬁrst images of the
+system (Morabito et al. 1979). This activity was conﬁrmed
+to be globally extensive by remarkable infrared images by
+subsequent spacecraft missions, decades of direct imag-
+ing monitoring (e.g. Spencer et al. (2000); Marchis et al.
+(2005); Spencer et al. (2007); de Pater et al. (2017); Skrut-
+apurva.oza@space.unibe.ch
+skie et al. (2017); de Kleer & de Pater (2016)), and of course
+the direct detection of volcanic sulfur species (Lellouch et al.
+(1990); Lellouch et al. (1996)). Na & K observations at
+Io encouraged the search for the venting parent molecules.
+The subsequent discovery of ionized chlorine in the plasma
+torus (K ¨uppers & Schneider 2000), suggested the presence
+of the subsequent direct observations of volcanic salts in the
+mm/sub-mm, NaCl (Lellouch et al. 2003) and KCl (Moul-
+let et al. 2013). The strong resonance lines in the optical:
+Na D1 (5895.92 ˚A), Na D2 (5889.95 ˚A); K D1 (7699 ˚A),
+K D2 (7665 ˚A) have therefore been pivotal for astronomers
+characterizing physical processes in atmospheres on Solar
+System bodies, starting from the early observations of Na I
+in Earth’s upper atmosphere in 1967 (Hunten (1967); Hunten
+& Wallace (1967); Hanson & Donaldson (1967)). Thanks
+to advances in remote and in-situ instrumentation, Na I &
+arXiv:1908.10732v1  [astro-ph.EP]  28 Aug 2019
+
+<<<PAGE 2>>>
+2 O ZA ET AL .
+K I have been detected in silicate (i.e. Io; Mercury; Moon)
+and icy (i.e. Europa; comets) bodies, but never in H/He
+envelopes such as the giant planet atmospheres of our Solar
+System. In fact, the origin of Jupiter’s Na I exosphere extend-
+ing to∼ 1000RJ is Io’s volcanism interacting with Jupiter’s
+magnetospheric plasma (e.g. Mendillo et al. (1990); Wilson
+et al. (2002); Thomas et al. (2004)). Table 1 summarizes
+the spectral observations of the Na & K alkaline metals at
+several Solar System bodies.
+Following the ﬁrst detection of a component of an extra-
+solar atmosphere, Na I at HD209458b (Charbonneau et al.
+(2002)), Johnson & Huggins (2006) considered the possi-
+ble effect of material from an orbiting moon, gas torus, or
+debris ring on the exoplanet transit spectra. At the time it
+was thought that satellite orbits around close-in gas giant ex-
+oplanets (hot Jupiters) might not be stable, therefore Johnson
+& Huggins (2006) suggested that large outgassing clouds of
+neutrals and/or ions might only be observable for giant exo-
+planets orbiting at & 0.2 AU. While larger orbital distances
+are still safer places to search for a satellite, we conﬁrm that
+close-in gas giant satellites can be more stable than expected.
+Furthermore, the rapid orbital periods of these close-in satel-
+lites enables an efﬁcient transit search. While the above-
+mentioned Na I exosphere out to∼ 1000RJ shrinks to∼ 1RJ
+due to the far shorter photoionization lifetime of Na I, recent
+understanding on orbital stability by Cassidy et al. (2009)
+results in a stabilizing stellar tide well within< 0.2 AU driv-
+ing up to six orders of magnitude more heat into the satellite
+sourcing a density enhancement of∼ 3 - 6 orders of magni-
+tude into the planetary system. This in turn results in Na I
+clouds ranging from∼ 1010− 1013 Na cm−2 readily discern-
+able by transmission spectroscopy. In fact, a large number
+of new transmission spectroscopy observations have detected
+this range of alkaline column densities which we will evalu-
+ate individually in this work. This pursuit was also motivated
+by the recent evaluation of the uncertainties in the interpreta-
+tion of the alkaline absorption features at hot Jupiters (Heng
+et al. (2015); Heng (2016)) which has led to the suggestion
+described here, that an exogenic1 source from an active satel-
+lite might not be unreasonable for certain hot Jupiters. There-
+fore, we ﬁrst review recent work describing the range of sta-
+ble orbits for moons at close-in hot Jupiters. We then analyze
+a recently published observation of Jupiter showing the spec-
+tral signature of Na I has an external origin. We then describe
+the mass loss history and inﬂuence of an irradiated, active ex-
+omoon at a hot Jupiter and, ﬁnally, translate these mass loss
+rates to column densities tentatively conﬁrming that such a
+signature is consistent with observations at a number of hot
+Jupiters. Lastly, we provide order of magnitude predictions
+on additional signatures which could more conclusively con-
+ﬁrm the ﬁrst exo-Io.
+1 In the following, we refer to processes intrinsic to the gas giant as en-
+dogenic and those external, in our case to the satellite or debris ring, as
+exogenic.
+2. TIDAL STABILITY OF AN EXO-IO
+The dynamic stability of extrasolar satellites depends
+strongly on the uncertain tidal factor: Qp,s ∝ ÛE−1
+p,s. Here
+ÛEp is the energy dissipated by tides into the planetary body
+(orbital decay) andÛEs into its orbiting satellite (satellite heat-
+ing) which is also forced by a third body, the host star. Cas-
+sidy et al. (2009) studied both the orbital decay and heating
+of satellites by considering the circular restricted three-body
+problem for a satellite, a hot Jupiter, and a host star. It was
+shown that if the tidalQ for the planet,Qp is of the order of
+the equilibrium tide limit,Qp∼ 1012 as ﬁrst derived by Gol-
+dreich & Nicholson (1977) and improved by Wu (2005a),
+even Earth-mass exomoons around hot Jupiters could be
+tidally-stable on∼ Gyr timescales. Kepler data has not yet
+detected such exomoons, except for the recent tentative iden-
+tiﬁcation of a Uranus-sized candidate Kepler 1625-b at ∼ 1
+AU (Teachey & Kipping (2018); Kreidberg et al. (2019)).
+The observation of a close-in exomoon would in principle be
+able to constrain the low tidalQ values used in the literature
+(Barnes & O’Brien (2002); Weidner & Horne (2010)) pre-
+viously set to Jupiter’s∼ 105 (Lainey & Tobie (2005)). As
+shown by Cassidy et al. (2009), and later expanded upon in
+sections 4 & 4.2.3, signiﬁcant mass loss might have substan-
+tially eroded large satellites (e.g. Domingos et al. (2006)),
+decreasing their ability to be detected by mass-dependent
+searches such as transit timing variations (e.g., Agol et al.
+(2005); Kipping (2009)). An exomoon search independent
+of the satellite size is therefore needed.
+The semimajor axis of a stable exomoon orbiting a close-
+in gas giant exoplanet of eccentricities es and ep respectively
+is narrowly conﬁned, as ≲ 0.49aH(1.0− 1.0ep− 0.27es)
+(Domingos et al. 2006), at roughly half of the Hill radius,
+aH = ap( Mp
+3M∗
+)1/3. These orbital and observational parame-
+ters, for a sample of 14 gas giants out to∼ 10R∗ are computed
+in Table 2. For nearly circular orbits, we ﬁnd that for a s ≲
+2.3 Rp the satellite remains stable, where Rp is the exoplanet
+transit radius. Table 3 gives a s and a H, along with several
+other length scales such as Ri = Rp +δRi the apparent transit
+radius at line center due to the presence of a speciesi, absorb-
+ing at resonance wavelengthλi adding an apparent change in
+radius δRi. The observed absorption depth, δi = ∆Fλ, i
+Fλ, i
+re-
+veals the equivalent width, Wλ,i = δi∆λi, whereFλ,i is the
+fractional change in the stellar ﬂux at line center, and ∆λi
+is the bandpass of the spectrograph. In Section 4.3 we will
+describe how this information can yield the approximate col-
+umn density of the absorbing species. As the geometry of
+the absorbing gas is unknown, spherical symmetry is often
+assumed while the exoplanet transits a star of radius R ∗, so
+that the absorption depth can also be indicative of the ratio
+of the effective areas: the absorbing layer (assumed to be an
+annulus) to the stellar disk, δi =
+R2
+i−R2
+p
+R2∗
+∼ 2πRpδRi
+πR2∗
+. The
+Roche radius further conﬁnes the satellite’s orbit, R r oche =
+2.456
+(ρp
+ρs
+) 1/3
+(Chandrasekhar 1969), inside which a possi-
+
+<<<PAGE 3>>>
+EXO-I O SODIUM CLOUDS 3
+Body N N a [cm−2] Na/K Origin
+aComets ∼ 8× 1011 Na/K = 54± 14 Photo-desorption/Solar wind sputtering
+bMercury ∼ 8× 1011 Na/K = 80-190 Photon-stimulated Desorption
+cIo ∼ 5· 109− 1012 Na/K = 10± 3 Atmospheric Sputtering/Pick-up Ions
+NaCl/KCl = 5.75± 0.5
+dEuropa ∼ 2× 1010 Na/K = 25± 2 Surface Sputtering; Cryovolcanism?
+eMoon ∼ 5× 1010 Na/K = 6 Photo-desorption & Meteors
+f Enceladus ≲ 109 Na/K∼ 100 Cryovolcanism
+gEarth* ∼ 8× 1011 Na/K∼ 100 Micrometeorite ablation
+hJupiter** ∼ 7× 109 Unknown Iogenic streams; micrometeorites; impacts
+iSun Solar Abundance Na/K∼ 16± 2 Protosolar Nebula
+Table 1. Alkaline Atmospheres for silicate and icy bodies measured in-situ and remotely in the Solar System. For each body we quote the
+zenith column density for Na I, if observed. The origin of Na I & K I for most bodies is due to space weathering or [cryo]volcanism. We
+note that Europa and Enceladus likely source Na I from a NaCl-rich water ocean, and therefore Na I could also indicate the presence of water.
+Direct [cryo]volcanism at both Io and Enceladus is also expected to be NaCl-rich, which subsequently dissociates to Na. The K I observed at
+Io is thought to be of similar origin to Na I, dissociating from KCl as well. The NaCl/KCl ratio in the atmosphere is a factor of two less than the
+Na/K ratio in the escaping atmosphere, probing the lower and upper atmosphere of Io respectively. *Earth’s Na I observed in the mesosphere
+originates from ablation of interplanetary dust particles. **Jupiter’s upper atmosphere Na I column density is computed in Section 3 of this
+work. Na/K for the solar abundance is also tabulated∼ 16± 5.
+a Leblanc et al. (2008); Schmidt et al. (2015b) & Schmidt et al. (2016); Schmidt (2016)
+Fulle et al. (2013)
+bSprague et al. (1997)
+Potter & Morgan (1985); Potter & Morgan (1986)
+c Burger et al. (2001)
+Trafton (1975); Thomas (1996)
+Lellouch et al. (2003); Moullet et al. (2015)
+d Leblanc et al. (2005); Leblanc et al. (2002); Brown & Hill (1996)
+Brown (2001a)
+e Szalay et al. (2016); Wilson et al. (2006)
+Potter & Morgan (1988)
+f Postberg et al. (2009); Schneider et al. (2009)
+g Slipher 1929; Hunten (1967)
+Sullivan & Hunten (1962), Sullivan & Hunten (1964); Gardner et al. (2014)
+h Monta˜n´es-Rodr´ıguez et al. (2015); This Work.
+i Asplund et al. (2009)
+ble debris disk from a disintegrated satellite could be present
+as discussed later in Section 4.
+Our study of a tidally-locked exoplanet system with plan-
+etary orbital period τor b = 2π
+ωor b
+and τs = 2π
+ωs
+will result in
+a moon orbiting faster than the planet’s rotationωs > ωor b,
+opposite to the Jupiter-satellite system. When solving the
+dispersion relation ωs = k2ωor b, Wu (2005a); Wu (2005b);
+Ogilvie & Lin (2004); Ogilvie & Lin (2007); Ogilvie (2014)
+found that ωs > ωor b, speciﬁcally deriving τs < τor b/2 as
+an orbital stability limit due to the lack of tidal dissipation
+waves into the gas giant’s convective envelope from a satel-
+lite. The low tidal dissipation ÛEp results in a much higher
+tidalQp again contrasting the ωs < ωor b of the Jupiter sys-
+tem, of low tidalQ (Lainey & Tobie 2005).
+Cassidy et al. (2009) showed that whenQp is large enough,
+orbital decay is slow and the satellite will not be destroyed
+by tidal decay. That is, the satellite is stable after a time t, if
+Qp >Qp,crit(τor b), where the critical tidalQ factor for the
+gas giant based on their Eq. 12 is:
+Qp,crit(t) = c ms
+Mp
+( 1
+τs
+) 13/3
+t10/3
+dyn t (1)
+Here m s and M p are the satellite and planet masses with
+dynamical time tdyn = 2π
+(
+R3
+p
+G Mp
+) 1/2
+, and c = 1.9× 102. Us-
+ing Eq. 1, an Io-mass satellite in a stable orbit at 2 Rp around
+HD189733b givesτs/τor b = 0.18 hence consistent with the
+use ofτs/τor b = 0.2 in Cassidy et al. (2009). Therefore, ac-
+counting for eccentricities driven by the parent star by using
+Eq. 1, an Io-like satellite orbiting a Jovian mass exoplanet
+(ms/Mp = 4.7× 10−5), for which tdyn = 0.12 days, and
+
+<<<PAGE 4>>>
+4 O ZA ET AL .
+Figure 1. Satellite stability diagram of a close-in gas giant exoplanet system. Critical tidalQ function,Q p, cr i t, versus planetary orbital period τp for
+100 Myr (dashed) and 10 Gyr (solid) gas giant systems. The equilibrium tidal Q p from Goldreich & Nicholson (1977) and Wu (2005a) (horizontal, dash-dot),
+Q p∼ 1012, deﬁnes the region of stability,Q p >Q p, cr i t, based on the known semimajor axis ap, stellar age t∗, and an assumed Io-mass satellite. The tidally-
+stable region evolves in time towards larger orbital periods, illustrated from light orange (τp, cr i t(100M yr) & 0.2 days) to dark orange (τp, cr i t(10Gyr) & 0.43
+days). The orange circles and purple stars show the calculated tidal Q p, cr i t for all > 3σ detections to our knowledge of Na I & K I exoplanetary systems
+respectively. The empty circles and stars, show tentative detections of Na & K, while X shows that current observations have not detected Na I or K I, yet an
+atmosphere has been detected. The Na I & K I observations when examined in conjunction with the tidally-stable region show that all robust detections of Na
+I & K I exoplanets can host an Io-mass satellite. The current non-detections (i.e. W ASP 19b) could suggest a more moderate stability limit Q p ≲ 1011. The
+tentative detections at ultra-hot Jupiters have high tidal Qs (i.e. W ASP-12b, W ASP-103b) which could also suggest a mass loss history inside the equilibrium
+Teq & 2000K, and tidal TT & 2000K (Eqn. 4) temperature limits computed for a Sun-like star. Within these orbital periods with (red: τp ≲ 2.6 days) and
+without (yellow: τp, cr i t ≲ 1 day)) efﬁcient tidal heating, the extreme mass loss could result in desorbing debris and/or plasma tori. The ultimate survival of
+exo-Ios is expanded upon in Section 4.
+τor b = 5τs can be sustained beyond a critical orbital period
+of the planet τcrit = 150×( t/Qcrit, p)3/13 for t Gyr. This
+results in a regime stable to orbital decay for 0.1 and 10 Gyr
+as indicated by the solid and dashed lines in Fig. 1.
+Using the large equilibrium tide value, Qcrit, p = 1012
+(Goldreich & Nicholson 1977), τcrit,10Gyr & 0.43 days, or
+τcrit,0.1Gyr & 0.2 days, much closer-in than our sample of
+hot Jupiters, as indicated by the shaded regions in Figure 1.
+All of the observed Na I (red points) and K I (purple points)
+exoplanets reside in a region where an Io-mass exomoon can
+be dynamically stable throughout the lifetime of the stellar
+system unlessQp exceedsQp,crit as given above. Determin-
+ing this region of stability could also be suggestive of the un-
+known tidalQ. Our calculations in Figure 1 suggest a more
+moderate range than the equilibrium tide limit of ∼ 1012,
+rather a Qcrit,J−exoI o ∼ 106− 1010 for a hot Jupiter-exo-
+Io system. The lower tidalQ may explain the lack of robust
+Na detections for planets outside the inner ’stable exo-Ios’
+regime. Since turbulent viscosity increases with heat ﬂux,
+and the large radii of many hot Jupiters might indicate larger
+internal heat ﬂux, a more moderateQcrit , could be expected.
+Given that a stable exomoon uniquely orbits at close prox-
+imity (Domingos et al. 2006), survival against gas drag of an
+extended and ionized atmosphere should be considered (see
+Fig. 4). At∼ 2RJ the plasma density is ≲ 107 cm−3 (Huang
+et al. 2017), where the relative plasma-satellite velocity is
+
+<<<PAGE 5>>>
+EXO-I O SODIUM CLOUDS 5
+Stellar System Type T ∗ mv M∗ [M⊙] M p [MJ] R ∗ [RP] R p [RJ] ρ [g/cm3] t ∗ [Gyr] a p [R∗] τp [days]
+W ASP-52 K2V 5000 12.0 0.87 0.46 6.06 1.27 0.28 0.40 7.40 1.75
+W ASP-76 F7 6250 9.5 1.46 0.92 9.20 1.83 0.19 5.00 4.10 1.81
+HD189733 K2V 4875 7.66 0.85 1.16 6.88 1.14 0.98 0.60 8.28 2.22
+XO-2 N K0V 5340 11.18 0.98 0.62 9.64 0.97 0.83 2.00 8.23 2.62
+W ASP-49 G6V 5600 11.36 0.72 0.38 9.06 1.11 0.34 5.00 7.83 2.78
+HAT-P-12 K4 4650 12.84 0.73 0.21 7.14 0.95 0.30 2.50 11.80 3.21
+W ASP-6 G8V 5450 12.4 0.89 0.50 6.92 1.22 0.34 11.00 10.41 3.36
+W ASP-31 F 5540 11.7 1.16 0.48 7.85 1.54 0.16 5.00 8.08 3.41
+W ASP-96 G8 5540 12.2 1.06 0.48 8.51 1.20 0.34 8.00 9.28 3.43
+HD209458 G0V 6092 7.65 1.13 0.69 8.48 1.38 0.33 4.00 8.04 3.50
+W ASP-17 F4 6650 11.6 1.20 0.51 6.74 1.99 0.08 3.00 8.02 3.74
+W ASP-69 K5 4715 12.4 0.83 0.26 7.48 1.06 0.27 2.00 11.97 3.87
+W ASP-39 G8 5400 12.11 0.93 0.28 6.86 1.27 0.17 5.00 11.68 4.06
+HAT P 1 G0V 5980 10.4 1.15 0.53 8.66 1.32 0.29 3.60 10.19 4.47
+Table 2. Observed stellar system parameters. Spectral type, V band apparent magnitude m v, stellar mass M ∗ (in Solar masses: M⊙ =
+1.9884× 1033g), planet mass Mp (in Jovian masses MJ =1.8983×1030 g), stellar radius R∗ (in planetary radii Rp in Jovian radii RJ = 7.1492
+×108cm), planetary density ρ in g cm−3, stellar age t∗ (if unknown set to average value∼ 5 Gyrs), semimajor axis a p (in stellar radii R∗), and
+observed periodτp in days. The tidalQ calculations rely only on these known quantities.
+∼ 10 km/s. Using an expression for the drag force with a
+drag coefﬁcient that equals one (Passy et al. (2012)) the time
+for orbital decay is of the order of, τdr ag∼ L
+T . Here T is the
+gas torque from the ionized escaping atmosphere on a satel-
+lite with angular momentum L, giving a τdr ag & 200Gyr
+which is a few orders of magnitude longer than the lifetime
+of the stellar system. Thus its contribution to orbital de-
+cay is negligible. Moreover we note that while we focus on
+Io throughout this work, the expected thermal and plasma-
+driven mass loss described in Section 4, imply the radius
+of an Io could erode to an Enceladus-mass satellite affecting
+theQp,crit needed on the order of magnitude level, thereby
+extending the region of stability to closer-in orbits (Fig.1).
+Given that all alkaline exoplanets can host an Io-mass satel-
+lite, in principle, the absorption could be evidence of tidal
+activity from a satellite. Markedly, a benchmark case of Na
+I absorption in transmission spectroscopy has been recently
+observed in Jupiter’s upper atmosphere presenting the oppor-
+tunity to evaluate the endogenic and/or exogenic origin of Na
+I. In the following, we therefore consider the sources of Na I
+required to supply the observed line-of-sight column density
+derived from the Na I ﬂux decrease in transit as a guide.
+3. EXOGENIC SODIUM IN JUPITER’S ATMOSPHERE
+Atomic lines of Na I (and several other species, such as
+Mg I, Fe I, Ca I, Mn I, Li I, Cr I) were brieﬂy ( < 1 hour)
+detected in emission from the plumes associated with the im-
+pacts of the largest fragments of comet Shoemaker-Levy 9
+(SL9) at Jupiter in July 1994 (see review in Crovisier (1996)).
+Most of these emission lines are also observed in the spectra
+of sungrazing comets, shedding little doubt that the atoms
+responsible for these atomic lines were present in the im-
+pactor itself. Although masses of deposited elements have
+been quoted in some papers (e.g. Noll et al. (1995)), they are
+quite uncertain because (i) they assume non-saturated lines,
+where optical depth effects are difﬁcult to assess and could
+lead to underestimating the abundances by several orders of
+magnitude (ii) they were derived upon the assumption that
+resonant ﬂuorescence is the only excitation mechanism; in
+reality, other mechanisms, such as thermal excitation by col-
+lisions, electronic recombination and prompt emissions may
+also contribute (Crovisier 1996).
+Recently, Monta ˜n´es-Rodr´ıguez et al. (2015) (their Fig.4)
+obtained the ﬁrst transmission spectrum of Jupiter’s limb
+by observing an eclipse of Ganymede as it entered Jupiter’s
+shadow. The observation was carried out with VLT/XSHOOTER
+at a spectral resolution of∼ 0.34 ˚A. Jupiter’s cold atmosphere
+at T∼ 170K absorbed∼ 15 % of the planet’s continuum ﬂux
+at the Na D1 and D2 doublet during transit. This ﬁrst detec-
+tion of Na I in Jupiter’s upper atmosphere offers an avenue
+for endogenic-exogenic comparisons to hot Jupiters. We
+perform a simple model based on the contribution functions
+(Fig. 3 Monta ˜n´es-Rodr´ıguez et al. (2015)) at Ptot = 30 mbar.
+For the Na lines, we used spectroscopic parameters kindly
+provided to us by B. B ´ezard, including a collisional half-
+width of 0.270 cm−1/atm at 300 K. For simplicity, the entire
+stratosphere above 30 mbar was assumed isothermal at 170
+K. Fig. 2 shows our modeled spectrum for a line-of-sight
+(LOS) Na column density of 7×1011 cm−2 fortuitously close
+to the optically-thin column density based on the equivalent
+width Wλ,i of the spectral line (Eqn 14). Accounting for the
+Chapman enhancement factor
+√
+2π RJ
+H ∼ 132, where RJ is
+Jupiter’s radius and H∼ 25km the atmospheric scale height
+in the region of interest, gives a radial column density of
+
+<<<PAGE 6>>>
+6 O ZA ET AL .
+Planetary System W λ,i [m ˚A] T eq [K] H [km] τi [min] v min [km/s] R i [Rp] R Roche [Rp] a Hill [RP] a s [RP] τs [hours]
+1•W ASP-52b⊖ 58 1315.00 669 13.0 (3.5) 7.82 1.07 1.11 2.40 1.17 8.40
+2• W ASP-76b⊖ 2.78 2190.00 1156 1.4 (0.4) 228.47 1.15 0.97 2.21 1.08 8.69
+3• HD189733b 6.72 1200.00 194 16.9 (4.5) 11.40 1.14 1.69 4.32 2.11 10.65
+4•⋆ XO-2 N b 20 (10) 1500.00 332 3.8 (1.02) 6.81 1.02 1.60 4.21 2.07 12.56
+5•W ASP-49b⊖ 6.05 1400.00 668 4.0 (1.1) 157.57 1.48 1.19 3.56 1.74 13.35
+6⋆ HAT-P-12b⊖ (160) 960.00 604 26.0 (7.0) (2.84) (1.03) 1.14 3.79 1.86 15.42
+7⋆ W ASP-6b⊖ (110) 1150.00 500 5.0 (1.3) (18.6) (1.02) 1.19 3.84 1.77 16.13
+8⋆ W ASP-31b⊖ (10) 1580.00 1128 2.8 (0.7) (59.4) (1.44) 0.93 3.23 1.58 16.35
+9• W ASP-96b⊖ 110 1285.00 559 5.8 (1.5) 6.12 1.02 1.19 4.29 2.10 16.44
+10• HD209458b⊖ 1.01 1450.00 580 5.7 (1.5) 13.69 1.05 1.17 3.95 1.93 16.80
+11• W ASP-17b⊖ 13 1740.00 1961 3.4 (0.9) 240.90 1.35 0.73 2.70 1.28 17.93
+12•W ASP-69b⊖ 8.04 963.00 600 35.9 (9.6) 6.47 1.18 1.10 3.97 1.94 18.57
+13•⋆ W ASP-39b⊖ 0.93 (430) 1120.00 936 6.7 (1.8) 6.54 1.03 0.94 3.66 1.79 19.47
+14•⋆ HAT P 1-b⊖ 28 (34) 1322.00 629 8.7 (2.3) 14.95 (12.2) 1.08 (1.10) 1.12 4.65 2.28 21.46
+Table 3. Observed planetary system parameters. W λ,i = δi∆λ, i, the equivalent width in m ˚A is reported directly from the corresponding Na
+I (•) (and low-resolution K I (⋆) observations if resolved. If not explicitly stated it is computed based on the spectral resolution R = ∆λ
+λ and
+wavelength of Na D2. T eq is the radiative equilibrium temperature for a zero-albedo surface in Kelvins. The corresponding scale height H =
+kbTeq
+µmg , is computed for a hydrogen/helium envelope. τi alkaline Na I (and K I) lifetime limited by photoionization using rates from Huebner
+& Mukherjee (2015) for G stars: k N aD2,G = 5.92× 10−6 s−1. For the F and K stars in our sample we use k N aD2,F = 1.3× 10−5 s−1 and
+k N aD2,K = 9.5× 10−7 s−1 the latter being the value adopted for HD189733b in (Huang et al. 2017). The minimum, ionization-limited velocity
+is given by vmin ∼ Ri/τi, where Ri =
+(
+δi R2∗ + R2p
+)1/2
+is constrained by the transit depth at line center assuming a spherically symmetric
+alkaline i, envelope as described in the text. For planets with a relatively low Ri, adequate endogenic explanations exist (e.g.Sing et al. (2016);
+Nikolov et al. (2018))
+. The Roche limit, RRoche = 2.456Rp
+(ρp
+ρs
+)1/3
+, is computed for an Io-like satellite of densityρI o = 3.5 g cm−3. The Hill sphere,
+aHill = ap(1− ep)
+( Mp
+3M∗
+)1/3
+, the minimum satellite semimajor axis as (in Rp) is computed following Domingos et al. (2006), yielding the
+corresponding minimum satellite orbital periodτs in hours.
+1 Chen et al. (2017) 2 Seidel et al. (2019) 3 Huitson et al. (2012); Wyttenbach et al. (2015); Khalaﬁnejad et al. (2017) 4 Sing et al. (2011); Sing
+et al. (2012) 5 Wyttenbach et al. (2017) 6 Barstow et al. (2017); Alexoudi et al. (2018) 7 Barstow et al. (2017); Nikolov et al. (2014) 8 Sing
+et al. (2015); Gibson et al. (2019) 9 Nikolov et al. (2018) 10 Charbonneau et al. (2002); Snellen et al. (2008); Langland-Shula et al. (2009);
+Vidal-Madjar et al. (2011); Sing et al. (2016) 11 Barstow et al. (2017); Khalaﬁnejad et al. (2018) 12 Casasayas-Barris et al. (2017) 13 Nikolov
+et al. (2016); Fischer et al. (2016) 14 Wilson et al. (2015); Sing et al. (2016)
+∼5×109 Na cm−2 above 30 mbar, i.e. a volume mixing ratio2
+Na/H2∼ 10−15 or XN a∼ 10−9 ppm (demonstrating the ex-
+traordinary sensitivity of the lunar eclipse technique by Pall´e
+et al. (2009); Monta˜n´es-Rodr´ıguez et al. (2015)). We assume
+below that this mixing ratio holds to deeper levels, as a result
+of vertical mixing.
+We note that a Na/H 2 volumetric mixing ratio of 10−15 at
+the 30 mbar level corresponds to a partial pressure of Na of
+∼ 3× 10−17 bar. Although the vapor pressure of Na is not
+well measured at low temperatures, this most likely implies
+a strong supersaturation of Na. Using the recommended Na
+vapor pressure expression Psat(bar) = 10(5.298−5603/T(K)) by
+2 N.B: Solar abundance: (N a/H2))⊙ ∼ 10−6 or XN a,⊙ ∼ 1.7 ppm
+Asplund et al. 2009 is assumed in endogenic Na models
+the CRC handbook of Chemistry and Physics (Lide 1994),
+yields∼ 2× 10−28 bar at 170 K, implying that the derived
+partial pressure of∼ 3× 10−17 bar, requires equilibrium at∼
+255 K. Such a temperature is reached in Jupiter’s atmosphere
+near the 0.25 µbar region. If the Na detected by Monta ˜n´es-
+Rodr´ıguez et al. (2015) lay in the sub-microbar region, the re-
+quired Na LOS column density would be considerably higher
+than 7× 1011 cm−2 because at these lower pressures, pressure
+broadening becomes unimportant, leading to more saturated
+and narrower lines requiring higher opacities. It is striking
+however that the strongest Na lines observed by Monta ˜n´es-
+Rodr´ıguez et al. (2015) occur during the umbra (their Fig.
+4). This suggests that the bulk of the Na lies in the atmo-
+spheric region sampled during the eclipse, i.e. near ∼ 30
+mbar, and a possibility would be that Na is supersaturated
+in Jupiter’s stratosphere, perhaps due to inefﬁcient condensa-
+tion on aerosols.
+
+<<<PAGE 7>>>
+EXO-I O SODIUM CLOUDS 7
+Gaseous Na observed in Jupiter’s stratosphere is most cer-
+tainly of external origin given that any Na-bearing species
+originating from the interior are expected to condense out in
+the cold upper troposphere. To assess the external ﬂux re-
+quired by the observations, we followed the simple approach
+of B ´ezard et al. (2002), in which the deposition rate of Na
+is balanced by its removal from the stratosphere by vertical
+transport. We used an eddy diffusion coefﬁcient K increas-
+ing as n−1/2 (where n is the atmospheric number density),
+above a pressure level P0 = 300 mbar, where K has a mini-
+mum value K0 = 700 cm2s−1. Following B´ezard et al. (2002)
+(Eqn.3) where the column density of CO above P 0 was de-
+rived based on the source ﬂux Φ, we rewrite this expression
+based on a spherically-symmetric mass accretion rate of an
+exogenic source ÛMexo yielding a radial column density:
+Nexo =
+ÛMexo H2
+2πR2pmiK0
+(2)
+which corresponds to∼ 5× 1010 Na cm−2 above P0 = 300
+mbar. Solving for the supply rate we obtain ÛMexo∼ 0.05 g/s.
+This meager mass supply can be understood in terms of the
+total volatile mass in the envelope. Using the observed col-
+umn density at 30 mbars: Nexo∼5×109 cm−2 we ﬁnd a total
+mass of≈ 1.2×108g of Na integrated over Jupiter. Despite
+the simplicity of the model, this number is likely accurate to
+within a factor of a few.
+3.1. Exogenic Sources
+Possible external sources for the Na I currently observed
+in Jupiter include: (i) the Shoemaker-Levy 9 (SL9) collision
+(ii) past cometary impacts (iii) micrometeoritic ﬂux and (iv)
+Na I escaping from Io’s atmosphere. We demonstrate below
+that each of these sources is in fact sufﬁcient to account for
+the above accretion rate ÛMexo .
+3.1.1. Shoemaker-Levy 9 Impacts
+The best determined amount of materials delivered/produced
+at Jupiter by the SL9 impacts is for the long-lived species
+(CO, HCN, CS), as those were observed both just after the
+impacts (see review Lellouch (1996)) as well as monitored
+on yearly timescales. The mass of CO produced in par-
+ticular, has been estimated to be typically ∼5×1014g (Lel-
+louch et al. (1997); Moreno et al. (2003)), with a probable
+uncertainty better than a factor-of-two. This ﬁgure corre-
+sponds to∼2.2×1014g of atomic O, of cometary origin. The
+Na/O ratio for cosmic abundance can be taken as Na / O =
+3.6×10−3 (recommended value from Lodders (2010)) 3. As-
+suming cosmic abundances in SL9 would thus imply a mass
+of∼8×1011g of Na deposited by the impacts. Given our esti-
+mate of MN a above, it would appear that impacts can easily
+source the required Na. However, the SL9-delivered material
+was primarily deposited at the∼0.1 mbar level (e.g. Lellouch
+3 Lodders indicates Na/O = 7.5 ×10−3 for chondritic composition and
+Na/O = 3.7×10−3 in the Sun
+et al. (1997)) and that as of today, it has likely diffused down
+to pressures of only a few millibars. Thus a constant Na
+source today from the SL9 impacts is unlikely as the Na is
+observed to be present down to at least 30 mbar.
+3.1.2. Older Cometary Impacts
+B´ezard et al. (2002) showed that CO in Jupiter actually
+originates from three different components (i) internal CO
+(ii) CO deposited by the SL9 impacts (ii) additional strato-
+spheric CO, most probably due to the deposition by a suite
+of ”old” cometary impacts with some size distribution for
+the impactors, which has by now invaded the entire strato-
+sphere. The third component is associated with ∼ 44 - 300
+kg/s of CO. Rescaling the above by the Na/O cosmic ratio,
+suggests that these old impacts would have additionally de-
+livered∼ 0.13− 0.9 kg/s more than sufﬁcient to explain the
+equivalent mass of Na observed.
+3.1.3. Cosmic Dust
+Micrometeoritic ﬂux is also a permanent source of external
+material, especially oxygen, to the outer planets (see Moses
+& Poppe (2017) and references therein). These interplane-
+tary dust particles (IDP) originate from comet activity or dis-
+ruption, from collisions in the asteroid and Kuiper belts, and
+from interstellar dust particles streaming into the solar sys-
+tem. Even though comets are an important source of microm-
+eteorites, an important difference for planetary atmospheres
+is that micrometeoritic impacts are thought to preserve the
+H2O molecules upon entry and ablation, while cometary im-
+pacts convert cometary H 2O into atmospheric CO due to
+shock chemistry. At Jupiter, based on the observed H2O ver-
+tical proﬁle in 1997, which was essentially consistent with
+expectations from a SL9 source, Lellouch et al. (2002) found
+that the production of H 2O due to permanent micromete-
+oritic inﬂux is less than ∼1.5 kg/s , with a best-guess es-
+timated value of ∼0.75 kg/s. This surprisingly low value,
+compared to expectations from the dynamical dust model of
+Poppe (2016) (who predict typically 2 orders of magnitude
+larger ﬂuxes) may suggest that a dominant fraction of the
+H2O contained in IDPs is in fact not preserved at microme-
+teoritic entry. Notwithstanding with this poorly understood
+issue (see also Moses & Poppe (2017)), we note that even a
+scaling of the above H 2O production rate from micromete-
+orites by the Na/O cosmic abundance yields a Na deposition
+rate of∼ 3.7 g/s, once again more than sufﬁcient to explain
+the required Na production rate of∼ 0.05 g/s.
+3.1.4. Sodium Accretion from Io
+Finally, we calculate the Na I deposition rate on Jupiter
+from Io, the focus of our work. The accretion rate onto
+Jupiter assuming the Na I is escaping isotropically by the
+physical processes we describe in Section 4 is: ÛMacc ∼(
+RJ
+as
+) 2
+ÛMI o. For a lower limit to the Na mass loss rate at
+Io, ÛMI o & 10 kg/s and a semimajor axis of as = 5.9 R J the
+Na accretion rate is 0.1 kg/s, roughly 2000 times larger than
+
+<<<PAGE 8>>>
+8 O ZA ET AL .
+required by the observations. In the anisotropic case, the Na
+could be collimated into a jet leaving Io at∼ 3.8 g/s (Schmidt
+et al. 2015a), which would accrete onto Jupiter at a more
+moderate rate of∼ 0.11 g/s, yielding the observed mass ﬂux
+within a factor of 2. We illustrate the physical process of
+such jets in Figure 3. As discussed below, this source is ev-
+idently variable, but appears to be quite consistent with the
+observations. All exogenic sources are capable of supplying
+considerable amounts of atomic Na I, possibly in excess of
+the minimum abundance. This may suggest a dominant frac-
+tion of the incoming Na ﬂux is chemically converted to other
+Na-bearing species, with NaH being a logical candidate.
+Besides Na I, recent observations by Juno suggest that Io’s
+jets are spraying Jupiter with volatiles based on the detection
+of sulfur and oxygenions (S III, O II) in Jupiter’s atmosphere
+at equatorial latitudes (Valek et al. 2018) strongly comple-
+menting the exogenic nature of Na we propose. The extreme
+tidal heating and mass loss at exo-Ios we will now describe
+may maintain a viable source of Na to a hot Jupiter’s upper
+atmosphere.
+4. EXOGENIC SODIUM IN JUPITER’S EXOSPHERE:
+SATELLITE ATMOSPHERIC ESCAPE
+Io’s geologic activity, which results in the ejection of NaCl
+& KCl into Io’s atmosphere is driven by tidally-heated vol-
+canism whereas the observed and widely distributed Na I &
+K I are primarily produced by the interaction of the volatiles
+with the plasma ﬂow in Jupiter’s ∼ 4.17 Gauss magnetic
+ﬁeld. The net plasma ﬂow, which governs the momentum
+and eventual knock-off of volatiles from the moon as we
+will describe, is set by the velocity difference between the
+plasma torus and the outgassing moon. This feedback pro-
+cess has produced a number of observed alkaline features
+driven by several molecular physics processes (e.g., Wilson
+et al. (2002)). Although this has resulted in an extensive
+literature, our focus is on determining the ability of a close-
+in exoplanetary system to invigorate a volcanic moon and
+drive a range of possible alkaline source rates to the sys-
+tem by scaling to our robust understanding of the Jupiter-Io
+system. The resulting column densities can then be directly
+compared to the observed equivalent widths of alkalis at exo-
+planets, Wλ,i (Table 3). We describe the mass loss of Na I &
+K I at an Exo-Io, generalized for a close-in rocky body sub-
+ject to tidal heating and irradiation. As potassium’s signature
+as a volcanic alkali is similar at Io (Thomas 1996), we focus
+the following in terms of the robust spectral observations of
+sodium for simplicity.
+4.1. Tidally-Driven Volcanism at an Exo-Io
+Tidal heating of Io has been shown to be responsible for
+its widespread volcanism. The tidal heating rate of Jupiter’s
+tidally-locked moon, ÛEs ∝ e2
+Qs
+driven by forced eccentric-
+ities, e, locked by Europa and Ganymede’s Laplace Reso-
+nance with Io, is the dominant interior heating source. Sim-
+ilarly, the tidal heating of an exomoon will likely dominate
+the interior energy budget due to the additional stellar tide.
+Consequently the tidal heating rate is orders of magnitude
+higher than at Io, which for an exo-Io of similar rheological
+properties (Qs∼ 100, Rs = RI o,ρs = ρI o), can be written as
+following (Cassidy et al. 2009) (Eqn. 19& 20) as:
+ÛEs = υ
+Qs
+ρ2
+s R7
+s
+τ4pτs
+(3)
+where υ = 3× 10−7 cm3 erg−1, and τs = τp/5 based on
+the tidal stability criterion discussed in Section 2. For utility,
+we describe the exo-Io’s tidal efﬁciency as:ηT =
+ÛEs
+ÛEI o
+, which
+can readily be computed for any 3-body system as tabulated
+in Table 4. The enhanced tidal-heating described in Eqn. 3
+will also contribute to a tidally-heated surface temperature
+T0 = Teq + ∆T0 which is very roughly approximated as:
+∆T0 =
+( ÛEs
+4πR2sσsb
+) 1/4
+(4)
+where σsb is the Stefan-Boltzmann constant. At Io, the
+total neutral volcanic content (SO 2, SO, NaCl, KCl, Cl, and
+dissociation products) ejected to space (Section 4.2.1) by the
+incident plasma is estimated to be on average ∼ 1000 kg/s
+(e.g. Thomas et al. (2004)) varying within an order of magni-
+tude over decades of observations (Burger et al. (2001); Wil-
+son et al. (2002); Thomas et al. (2004)). While the source of
+the dominant gas SO2 is ultimately tidally-driven volcanism,
+the near-surface atmosphere is mostly dominated by the sub-
+limation of SO 2 frost (Tsang et al. 2016). By observing the
+atmospheric evolution of the SO2 column density with helio-
+centric distance, Tsang et al. (2013) estimated the direct vol-
+canic component to be Nvolc∼ 6.5× 1016 cm−2 typically∼ 1
+3
+of the total observed SO 2 column density. Ingersoll (1989)
+demonstrated the relative contributions due to both sublima-
+tion and volcanic sources in maintaining Io’s atmosphere,
+and established a relationship relating the volcanic source
+rate to the volcanically-supplied atmospheric pressure:
+Pvolc = v√
+32πα R2
+I o
+ÛM0,volc :I o (5)
+This expression is also equivalent to the volcanic column
+density Nvolc = Pv ol c
+mi g , where g is the acceleration due to
+gravity. Adopting an observed atmospheric temperature of
+Tat m = 170 K by Lellouch et al. (2015) corresponding to
+an atmospheric scale height of H = 12km, thermal velocity
+v =√gH equal to 150 m/s, and a sticking coefﬁcientα = 0.5
+for the SO 2 mass of 64 amu yields a volcanic source rate of
+ÛM0,volc :I o∼ 6.9× 106 kg/s of SO2 integrated over Io’s mass
+MI o. The average volumetric mixing ratio for NaCl to SO2 at
+Io is observed to be XN aCl∼ 3× 10−3 (Lellouch et al. 2003).
+This leads to a source rate of ÛM0,volc :I o∼ 7.4× 103 kg/s of
+NaCl, somewhat larger, yet reasonably consistent with the di-
+rect measurement of the NaCl volcanic source rate of 0.8-3.1
+× 103 kg/s (Lellouch et al. 2003). From these estimates, we
+will adopt∼ 3× 103 kg/s of Na I as the volcanic source rate
+for Io.
+
+<<<PAGE 9>>>
+EXO-I O SODIUM CLOUDS 9
+ 0.8
+ 0.85
+ 0.9
+ 0.95
+ 1
+ 1.05
+ 1.1
+ 0.5886  0.5888  0.589  0.5892  0.5894  0.5896  0.5898  0.59
+Transmission
+Wavelength ( µm)
+Observations
+ 0.8
+ 0.85
+ 0.9
+ 0.95
+ 1
+ 1.05
+ 1.1
+ 0.5886  0.5888  0.589  0.5892  0.5894  0.5896  0.5898  0.59
+Transmission
+Wavelength ( µm)
+Observations
+Model
+Figure 2. Jupiter’s calculated transmission spectrum in the vicinity of the Na D lines for tangent level at 30 mbar (black line). The line-of-sight
+Na column density is 7×1011 cm−2 and the spectral resolution is 17500. The model provides a good match of the observed spectrum (green
+line) by Monta˜n´es-Rodr´ıguez et al. (2015) when Ganymede was in eclipse (their Fig. 4).
+This source rate is tidally-driven. If this source rate was
+tidally-limited with an efﬁciency of 1 (as described further
+in Section 4.2.3), the implied heating rate is within a factor
+of∼ 5 of Io’s theoretically-derived ÛE = 1.6× 1019 (Peale
+et al. (1979)) validating the ability of ηT to probe a supply
+rate efﬁciency.
+4.2. Exo-Io Mass Loss Processes: Exogenic Sodium and
+Potassium Sources in an Exoplanet Magnetosphere
+Moons are well known to be signiﬁcant plasma sources
+in gas giant magnetospheres (Johnson et al. (2006b); John-
+son et al. (2006a)). At Io the ejected species are eventually
+ionized by the plasma and radiation environment forming a
+toroidal plasma co-rotating with the Jovian magnetic ﬁeld
+which has been remarkably imaged in a sequence of S II &
+O II spectra gyrating with Jupiter’s B-ﬁeld (see Fig.1 Schnei-
+der et al. (1991)) and its corresponding Na features which we
+identify in the context of an exo-Io transit in Fig. 3. The
+plasma interaction with Io’s upper atmosphere produces a
+number of distinguishable Na features produced by a multi-
+tude of physical processes including ion-neutral momentum
+transfer, charge exchange and dissociative recombination of
+NaCl+ as analyzed and simulated by Wilson et al. (2002). In
+Fig. 3 we identify three principal Na features in Jupiter’s ex-
+osphere, all ultimately Iogenic 4: cloud, stream, and nebula.
+At an exoplanet these features are averaged over the planet’s
+transit duration and are spatially unresolved. Therefore, an
+estimate of the line-of-sight (LOS) column density indepen-
+dent of the spatial distribution is needed during an exoplanet
+transit. The average LOS column density ⟨N⟩ is simply the
+4 sourced by Io
+total number of atomsN in the system which is obtained by
+integrating the LOS column over the surface area of the star:
+⟨N⟩ = N
+πR2∗
+(6)
+As a thought experiment, the average Na I column den-
+sity an external observer would notice if Jupiter’s exosphere
+(∼ 1000RJ) were transiting the Sun is∼ 2.5× 1010 Na cm−2.
+This quantity using the inset image from Fig. 3 is within a
+factor of 3 of Jupiter’s atmospheric sodium (Section 3).
+At a close-in exoplanet system the total quantity of Na atoms
+can be estimated based on a model of tidally-driven mass loss
+and ionization as we will describe in Section 4.3. Due to ion-
+ization and tidal heating the close stellar proximity will si-
+multaneously compactify the overall Na exosphere by∝ 1
+a2p
+and magnify the overall Na source rate by∝ a15/2
+p . Further-
+more, as we will describe the minimum observed quantity
+of Na atoms can also be estimated if the equivalent width of
+the spectral line is resolved in high-resolution transmission
+spectroscopy.
+Due to the tilt of the magnetic equator to Io’s orbit and
+the variation in the sourcing, these features are also variable.
+Only recently has a magnetic ﬁeld been observed around sub-
+stellar bodies; L and T dwarfs (Kao et al. 2018). While
+an exoplanetary magnetic ﬁeld is expected, it is still uncon-
+strained (Christensen et al. (2009); Matsakos et al. (2015);
+Kislyakova et al. (2014) ; Grießmeier et al. (2007) ; Rogers
+(2017) ). The activity from the type of satellite we describe
+here could be used to indicate the presence of such a ﬁeld.
+It is clear that a description of the magnetospheric environ-
+ment is needed before assessing the nature of the Na I and
+K I absorption features seen at hot Jupiters. Due to the
+shorter photoionization lifetime of the alkalis at a close-in ex-
+
+<<<PAGE 10>>>
+10 O ZA ET AL .
+Figure 3. 2-D “Face-On” Architecture of a Sodium Exosphere imaged at the Jupiter System. The rectangular Na I exosphere beyond
+Io at 15RJ, 70RJ, and 1000RJ is adopted from a 1995 emission observation (Fig.8 of Wilson et al. (2002)). In the image sequence at Io’s
+orbit observed by Schneider et al. (1991) fast Na streams < 100 km/s are seen to emit from the plasma torus (the data can be accessed on
+Apurva Oza‘s webpage under “exo-Io”). We identify the two principal Na I features at Io’s orbit capable of contributing to a close-in gas giant
+exosphere: a local cloud and a plasma-driven stream. N cloud (black circle) is driven by atmospheric sputtering at∼ 10km/s, where the radial
+proﬁle corresponds to Burger et al. (2001) (similar to Eqn. 16). N str eam can be derived based on a cross-sectional stream (white rectangle)
+extended to a length scale ∼ vτN a, with height equivalent to that of the ion torus ∼ as v+
+vor b , driving the stream. As described in the text, if
+the entirety of the Jupiter system were to transit the Sun the total LOS column density would be ∼ 2.5× 1010 Na cm−2 easily discernable by
+current ground-based transmission spectroscopy.
+oplanet (τi;Table 3 scaled to Huebner & Mukherjee (2015)),
+the Na I features seen at an exo-Io would be far smaller than
+the imaged Jovian system (Figure 3). For example, assum-
+ing a spherically symmetric endogenic Na I cloud of ap-
+parent radius RN a∼ 1.14Rp (c.f. Table 3) about the exo-
+planet HD189733b corresponds to an absorbing layer of area
+∼ 6× 1019 cm 2 compared to Jupiter’s magnanimous Na I
+cloud∼ 1024 cm 2 evaluated at radius 70 RJ. If Jupiter were
+close-in, the photoionization time will signiﬁcantly reduce
+this area to πR2
+c∼ π(viτi)2∼ 3× 1018 cm 2 when consid-
+ering a Na I cloud outgassed at vi∼ 10km/s due to an exo-
+Io (Johnson & Huggins 2006). In the following guided by
+molecular kinetic simulations and Io observations described
+above, we estimate an exo-Io’s Na I escape rate based on its
+volcanic gas source rate. This will provide rough lower lim-
+its on possible alkaline column densities based on our knowl-
+edge of tidal heating and thermal desorption from a close-in
+rocky body.
+We will rely on molecular kinetic simulations and Io’s
+observations described above to estimate an exo-Io’s Na I
+escape rate based on its volcanic gas source rate to pro-
+vide rough lower limits on possible alkaline column densi-
+ties based on our knowledge of tidal and thermal heating,
+relevant for a close-in rocky body. In all scenarios we self-
+consistently include the expected tidal heating based on the
+above discussion.We focus on three principal drivers of at-
+
+<<<PAGE 11>>>
+EXO-IO SODIUM CLOUDS 11
+mospheric escape described in Johnson et al. (2015); Johnson
+(2004).
+4.2.1. ÛMP Plasma-driven escape: Atmospheric Sputtering of an
+Exo-Io
+Io’s volcanic mass loss is due to momentum exchange with
+the incident plasma, and is often referred to as atmospheric
+sputtering (Haff et al. 1981). Here, sputtering is used as a
+proxy to account for net loss due to the ambient plasma and
+its accompanying ﬁelds. Scaling to the plasma pressure at Io,
+PI o∼ 1.8× 10−5 dynes cm−2 Johnson (1990) one can derive
+the tidally-driven atmospheric sputtering of atomic Na I at an
+exomoon building on Johnson (2004) as,
+ÛMP∼ xi
+Ps
+PI o
+U(Rx)I o
+U(Rx)s
+R2
+x,s
+R2
+x,I o
+ÛMI o (7)
+which is scaled to Io’s measured mass loss rate, ÛMI o ∼
+1000kg/s. This is generalized for a volatile species i, where
+xi is the mass fraction. This is set to 0.1 in the exobase re-
+gion using the 1995 Na I emission (Figure 4) based on the
+total SO 2 mass, Ps is the plasma pressure at the extrasolar
+satellite, U(Rx) the satellite’s gravitational binding energy at
+its exobase of radius, R x, s. A lower bound to the exobase
+based on an exponential atmosphere with a scale height H 0
+determined by the surface temperature and a surface density,
+n0, that is enhanced by the extreme tidal heating is:
+Rx,s∼ Rs + H0 ln(n0H0σi) (8)
+Here, Rs, is the satellite radius, H0 the volcanic (SO2) scale
+height at the tidally-heated surface temperature T 0, and σi
+the collisional cross section 5 between the escaping alkaline
+species and ambient atmosphere. Table 4 tabulates lower and
+upper bounds to the exobase, for an exponential atmosphere.
+Since the loss due to ionization occurs in the exobase re-
+gion, in Eqn. 8 we use for simplicity:
+n0 ∼ τN a, e x o−I o
+τN a, I o
+xN aηT n0,SO2, where τN a, e x o−I o
+τN a, I o
+, accounts
+for rapid ionization at an exo-Io based on Io’s Na lifetime
+of τN a, I o∼ 4 hours, and ηT is a factor accounting for the
+enhanced tidal-heating (Equation 3). This heating would en-
+hance the surface column density at Io, which we approx-
+imate here as the product of the surface number density
+n0,SO2 = 1.8× 1011SO2 cm−3 and the scale height (Lel-
+louch et al. 2015). We use a near-surface mixing ratio of
+XN a = 0.013 from the direct detection of NaCl accounting
+for venting (Lellouch et al. 2003).
+Io’s exobase is ∼ 465 km or ≈ 1.25RI o (McDoniel
+et al. (2017); Wong & Johnson (1996a); Wong & John-
+son (1996b)) whereas the observed Na I proﬁle is far more
+extended and not exponential (c.f. Section 5 Eqn. 5.2.3 and
+Burger et al. (2001)). Such an atmospheric tail is not unlike
+that for a comet or disintegrating rocky body as we describe
+in Section 4.2.3. However, the exobase altitude is limited
+5 for the dominant volcanic species we use:σS O2 = 1.62× 10−14 cm 2
+by its Hill sphere, so that Rx,s ∼ aHill,s in which case the
+satellite atmosphere experiences Roche-lobe overﬂow. The
+satellite Hill radius aHill,s ∼ as
+(
+MI o
+3Mp
+) 1/3
+is tabulated in
+4 where the exo-Io is assumed to be in a circular orbit of
+semimamjor axis as (c.f. Table 2).
+The plasma pressure at the exobase can be roughly written
+as Pp = Pmag + Pther mal + Pr am where the magnetic and
+ram pressures dominate at Io. Therefore, a lower bound at an
+exo-Io is obtained usingPs∼ Pmag +Pr am∼ B2
+r
+2µ0
++nimi(ui)2,
+where Br is the planetary magnetic ﬁeld strength at the orbit
+of the satellite, µ0 the permeability of the vacuum, n i, m i
+and u i are the ion number density, average mass, and ion
+ﬂow speed respectively. At an exo-Io the pressure could be
+larger based on the unknown magnetic ﬁeld strength of the
+gas giant. As a lower limit, we assume an unmagnetized gas
+giant where in Table 4 we calculate the ram pressure at each
+exoplanet, based on Parker’s solar wind model (Parker 1964),
+scaling to the ion density at 1 AU. We ﬁnd that in the unlikely
+absence of a magnetic ﬁeld on the gas giant, a satellite would
+experience a stellar wind ram pressure comparable to the ram
+pressure at Ios exobase as indicated by the parameter f r am
+(Table 4). As an upper limit we assume a Jovian-like B-ﬁeld
+leading to a large magnetic pressure as is the case at Io. At
+an exo-Io∼ 2Rp away it is∼ 700 that at Io as indicated by
+the parameter f mag (Table 4) . We ﬁnd plasma-driven loss
+dominates at most alkaline systems with the exceptions of
+three W ASP systems, 52-b, 76-b, and 69-b (energy limited
+escape) and HAT P 12-b (thermal evaporation), driven by the
+mechanisms which we shall now describe.
+4.2.2. ÛMU: Energy-limited escape from an Exo-Io
+We evaluate the simple energy-limited escape (Watson
+et al. 1981) regime shown to dominate close-in exoplanet at-
+mospheric escape in the Kepler data (Jin et al. (2014); Ful-
+ton & Petigura (2018)). Due to the extreme irradiation at a
+close-in gas giant, the incoming UV and X-ray (XUV) radia-
+tion will heat the upper atmosphere of the outgassing exo-Io.
+The heating will expand the gas and result in hydrodynamic
+escape which is typically approximated as:
+ÛMU∼ mi xi
+Q
+Us(Ra) (9)
+where Q = ηXUV 4πR2
+aFXUV is the heating rate due to
+the incident XUV ﬂux FXUV , R a, m i the volatile mass, x i
+the mass fraction, and U s the binding energy as described
+in Johnson et al. (2015) for small bodies. Absorption in
+the upper atmosphere should be efﬁcient due to the pres-
+ence of volcanic molecules. In Jin & Mordasini (2018) a
+heating efﬁciency of 0.1 is used for H/He atmospheres, and
+for Io’s volcanically-generated atmosphere Lellouch et al.
+(1992) used a heating efﬁciency of 0.35. To account for
+both the expansion of the atmosphere and the heating efﬁ-
+ciency, for simplicity we use Ra∼ Rs andηXUV = 0.1− 0.4
+(c.f. Murray-Clay et al. (2009)). We caution that the escape
+may be further reduced due to transonic escape, which oc-
+curs when Q > Qc (c.f. Eqn. 10; and Fig. 2 Johnson et al.
+
+<<<PAGE 12>>>
+12 O ZA ET AL .
+(2013)). If Q is too large, the escape is limited by the surface
+source rate which we describe below.
+4.2.3. ÛMS Source-limited escape: thermal evaporation of an
+Exo-Io
+Due to the extreme tidal heating and irradiation, thermal
+escape at an exo-Io may also contribute to the total Na I &
+K I mass loss. Based on the surface T 0, we compute two
+possible surface source rates as at Io: ÛM0,evap and ÛM0,volc .
+Improving upon previous calculations (Eqn. 36: Cassidy
+et al. (2009) derived from Fegley & Cameron (1987) ), we
+use the experimentally-derived values of van Lieshout et al.
+(2014),based on an Arrhenius-type vapor pressure relation:
+Pvap = exp(−A/T0 + B) (Eqn. 13 van Lieshout et al. (2014)),
+where we use the average of two rocky mineral end members,
+enstatite MgSiO3: A= 68 908± 8773 K; B = 38.1± 5.0 and
+fayalite Fe 2SiO4: A= 60 377 ± 1082; B= 37.7 ± 0.7. The
+source rate due to thermal evaporation can be written as:
+ÛM0,evap = xi4πR2
+s Pvap(T0)
+( mi
+2πkbT0
+) 1/2
+(10)
+where m i is the mass of the volatile atom or molecule in
+question and xi is the mass fraction. We use a lower limit
+to the chondritic composition of Io constrained by Fegley
+& Zolotov (2000) to be xN a = 0.05. Based on the variety
+of Na/K ratios in Table 1, it is conceivable that xN a will
+vary over time and further geophysical modeling assessing
+interior-atmosphere coupling is needed (e.g. Noack et al.
+(2017); Bower et al. (2019)).
+The tidally-limited volcanic source rate for an exo-Io can
+be roughly estimated as ∼ ηmi
+ÛEs
+Us
+based on Eqn. 3 with an
+efﬁciency η. In Section 4.1, based on direct observations of
+the volcanic species NaCl and SO2, we validated the tidally-
+driven Na I supply at Io. Directly scaling to this supply, albeit
+variable, we can write the tidally-driven volcanic source rate
+at an exo-Io as:
+ÛM0,volc :E xo−I o∼ηT ÛM0,volc :I o (11)
+The total source rate, like at Io, is evaporative and volcanic
+: ÛM0∼ ÛM0,evap + ÛM0,volc . Therefore, the source-limited es-
+cape rate due to surface heating for a given species of surface-
+Jeans parameterλ0 = Gm s mi
+Rs kbT0
+can be written as:
+ÛMS =R ÛM0(1 +λ0)exp(−λ0) (12)
+whereR depends on n0 the surface density of the species
+following Eqn. 2A in Johnson et al. (2015) 6 whereσi is the
+collisional cross section of the escaping species in question,
+typically∼ 10−15cm2 for N2 in the molecular kinetic simu-
+lations from V olkov & Johnson (2013) to which the parame-
+ter is ﬁt to. This estimate is in principle more accurate than
+6 R =
+(
+(n0σRs)−0.09 +(0.014n0σRsλ2.55
+0 ex p(−λ0))
+)−1
+the standard Jeans escape used in the literature as it includes
+the suppressed escape due to Fourier conduction as demon-
+strated in recent molecular kinetic simulations of volatile es-
+cape at small bodies ( V olkov et al. (2011); V olkov & John-
+son (2013); Johnson et al. (2015)). In Table 5 we consider the
+evaporation timescale of the entirety of an exo-Io (composed
+of MgSiO3 - Fe2SiO4) by focusing on only the total source-
+limited escape described above, as a ﬁrst approximation.
+Finally, we estimate t evap ∼ MI o
+ÛMS, t ot
+the critical timescale
+to evaporate the entirety of the exo-Io. As a rough bound to
+the silicate component of the exo-Io we assume the total loss
+eroding the surface is ÛMS,tot ∼ ÛMS where xi = 1.0. As the
+evaporation timescale describes the entirety of the exo-Io de-
+scribing the silicate evaporation of MgSiO 3 & Fe2SiO4, we
+consider only source-limited escape (Eqn.12 improved from
+Jeans escape). We ﬁnd that for several candidate systems less
+than 1% of an exo-Io would have evaporated throughout the
+stellar lifetime (t∗: Table 2) which we have boldfaced based
+on our range of mass loss rates. We ﬂag potentially disinte-
+grated exo-Io systems from our mass loss model as⊘ as well
+as the T0 & 2000 K catastrophic disintegration from Perez-
+Becker & Chiang (2013) as ©. The large uncertainties in
+stellar age permit the possibility that several of these ﬂagged
+system still have an Io-mass satellite today. While we have
+modeled the principal mass loss processes, these estimates
+should only be used as a guide as more detailed modeling is
+needed to assess the fate of these systems. That is, we have
+assumed the rheological properties of the moons are similar
+to Io’s yielding the tidally-heated surface temperatures (Table
+4:T0) dominating the putative satellite destruction. Figure 1
+additionally marks the critical destruction limit for Sun-like
+systems using Eq. 4 at T0 = Teq + ∆T0 (yellow) and T0 = Teq
+(red).
+Satellite destruction implies a large source of circumplan-
+etary material possibly in the form of a planetary ring (e.g.
+Burns et al. (1999)) or gas torus (Johnson & Huggins (2006))
+capable of generating alkaline signatures due to the extreme
+photodesorption. Saturn’s stable toroidal atmosphere of O2 is
+supplied purely by the photodesorption and sputtering of ice
+grains in its planetary ring (Johnson et al. 2006b). A lower
+limit to desorption from such debris is provided in Table 5
+as⟨ÛM0⟩d, which also serves as a lower limit for a desorb-
+ing Trojan source with negligible tidal heating. Dust signa-
+tures from a catastrophically disintegrating body appear to
+be rare as is the case for the planetary systems at the anoma-
+lous stars KIC12557548, KIC 8462852, RZ Piscium and WD
+1145+017 (Rappaport et al. (2012); Boyajian et al. (2016);
+Punzi et al. (2018); Vanderburg et al. (2015)). Nonetheless,
+the fact that all strongly outgassing alkaline systems have
+sub-Saturnian densities (Table 3:⊖) may suggest a close-in
+torus of exogenic material (Zuluaga et al. 2015).
+As a ﬁnal step we take the net mass loss rates ÛME xo−I o,
+and translate them to the Na I supply rates for the exoplane-
+tary system, and compute the line-of-sight column densities
+
+<<<PAGE 13>>>
+EXO-IO SODIUM CLOUDS 13
+Alkaline System L XUV [ergs/s] fmag fr am β η T T0 [K] H 0 [km] λ0, N a RSO2 Rx [RI o] a Hill,s [RI o]
+Io 1.4 × 1028 1.0 1.0 1.0 1.0 110 8.3 83 10 −13 1.25 5.8
+W ASP-52b 3 × 1029 2× 104 1.8 27 9.5 × 105 2211 160 4.1 10 −7 3.2 1.9
+W ASP-76b 8 × 1027 3× 104 0.5 243 8.1 × 105 3049 220 3.0 10 −11 4 2
+HD189733b 1028 5× 102 1.9 6 2.9 × 105 1866 135 4.9 10 −5 2.7 2.2
+XO-2 N b 8 × 1027 6× 102 1.4 13 1.3 × 106 2042 147 4.4 10 −6 2.8 2.3
+W ASP-49b 8 × 1027 2× 103 2.3 38 9.4 × 105 1902 137 4.8 10 −5 2.6 2.6
+HAT-P-12b 3 × 1028 103 2.2 9 4.6 × 105 1379 100 6.6 1 2.1 2.9
+W ASP-6b 3 × 1027 103 1.6 17 3.6 × 105 1546 112 5.9 10 −1 2.3 2.6
+W ASP-31b 8 × 1027 3× 103 1 82 3.4 × 105 1970 142 4.6 5 × 10−6 2.6 3.0
+W ASP-96b 5 × 1027 5× 102 1.2 24 3.3 × 105 1672 121 5.4 10 −3 2.4 3.2
+HD209458b 1028 103 1.1 43 3.0 × 105 1827 132 5.0 5 × 10−5 2.5 2.9
+W ASP-17b 1028 104 0.9 173 2.1 × 105 2087 151 4.3 5 × 10−7 2.7 3.1
+W ASP-69b 4 × 1028 9× 102 1.7 9 1.8 × 105 1296 94 7.0 1 2.0 3.2
+W ASP-39b 8 × 1027 103 1.4 25 1.4 × 105 1433 104 6.3 1 2.1 3.4
+HAT P 1-b 1028 8× 102 0.9 30 8.7 × 104 1600 116 5.7 10 −1 2.2 3.2
+Table 4. Exoplanetary Sodium and Potassium Parameters. Listed quantities are computed from known stellar quantities in Table 2. The
+XUV luminosities LXUV are computed from G and K stars from Lammer et al. (2009). The ratio of magnetic and ram pressures at the alkaline
+planetary system with Io are described as the parameters fmag = Pm a g, p
+Pm a g, I o and fr am = Pr a m, p
+Pr a m, I o where Pmag, I o = 1.5× 10−5 dynes cm−2
+and Pr am, I o = 2.4× 10−6 dynes cm−2. The canonical ratio of radiation pressure acceleration to gravity, β, is estimated using the parameters
+in Table 2. The satellite βs is additionally deﬁned in Eqn. 15. The tidal efﬁciency, ηT , with respect to Io is the ratio of tidal dissipation rates
+ÛEs/ÛEI o as in Eqn. 3. The net surface temperature including tidal heating is T 0, as in Eqn. 4. The scale height evaluated at T 0 for the volcanic
+volatile SO2 is listed as H0. The Jeans parameter for Na is λ0. The conduction prefactor,RSO2, describes suppressed surface Jeans escape of
+the entire atmosphere as in Eqn. 12. The exobase radius as deﬁned in Eqn. 8, R x, is in units of Io radii: R I o = 1822 km. As described in the
+text, the exobase for Na is derived using the observed SO2 density at the surface n0,SO2 = 1.8× 1011 cm−3 (Lellouch et al. 2015) and mixing
+ratio, XN aCl = 0.013 (Lellouch et al. 2003), based on venting from the surface.
+averaged over the entire stellar disk (Eqn.6) shown in Table
+5:
+⟨N⟩E xo−I o =
+⟨ÛME x o−I o⟩
+mi
+τi
+πR2∗
+(13)
+ÛME xo−I o is the dominant mass loss rate based on the
+three mechanisms we compute: source-limited ÛMP (Eqn.
+7), energy-limited ÛMP (Eqn. 7), and plasma-limited ÛMP
+(Eqn. 7) in Table 5. Therefore, the total number of absorbers
+N along a LOS, is limited by the alkaline lifetime so that:
+N ∼
+ÛME x o−I o
+mi
+τi, where τi is assumed to be limited by ion-
+ization. The line-of-sight column against the stellar disk is
+then simply NI o∼ N
+π R2∗
+. The average LOS column densities
+we estimate in Table 5 can exceed both Jupiter’s atmospheric
+column density∼ 7×1011cm−2 as well as Jupiter’s∼ 1000RJ
+exospheric column∼ 2.5× 1010cm−2 (Section 3.1), by three
+orders of magnitude.
+These range of predicted exo-Io column densities can be
+directly compared to the minimum required column den-
+sity derived from the observed equivalent widths from high-
+resolution transmission spectra observations which we will
+now describe.
+4.3. Sodium and Potassium Gas Column Densities:
+Constraints from Observations
+Despite considerable advances in instrumentation and ad-
+vanced techniques to probe exoplanet atmospheres with line
+proﬁles, the geometrical distribution of the Na I & K I seen
+in transit cannot be inferred. Given that Na I and K I line
+cores are capable of probing extremely tenuous pressures, the
+optically-thin regime can illuminate a minimum line-of-sight
+column density:
+⟨N⟩obs = Wλ,i
+πe2
+me c2 fikλ2
+(14)
+(Draine 2011), where fik is the oscillator strength, for the
+Na D1 and D2 lines and the equivalent width in angstroms
+Wλ,i. We can now compare this observed column density
+to our estimates of an exo-Io at a hot Jupiter based on our
+understanding of alkaline mass loss. The comparison of re-
+quired column densities indicates that a large majority of the
+systems are consistent with an exogenic supply of Na I atoms
+such as an exo-Io. Based on these rough extimates, the sup-
+ply of exogenic Na I appears to be dominated by atmospheric
+sputtering (ÛMP) for six systems and by energy-limited escape
+(ÛMU) for six systems, with only two systems by escape due
+to surface heating ( ÛMS). The maximum supply, considering
+
+<<<PAGE 14>>>
+14 O ZA ET AL .
+all upper limits, is underlined in Table 5. We discuss lim-
+itations and additional plasma interactions in the following
+section in the context of observing and characterizing these
+signatures with upcoming instrumentation.
+5. DISCUSSION
+The activity occurring on close-in, irradiated exomoons,
+as described here, appears to be capable of delivering a sig-
+niﬁcant volatile mass to its host exoplanetary system. The
+principal question which remains is how signiﬁcant is the
+exogenic mass when compared to the expected endogenic
+mass, and is this additional mass already detected in the ro-
+bust transmission spectra observations of Na I and K I? Nom-
+inal mass loss models from hot Jupiters estimate ∼ 107 kg/s
+of total mass corresponding to roughly ∼ 10 kg/s of Na for
+the nominal solar abundance scenarios whereas our exo-Io
+model can supply on the order of4×106 kg/s of pure Na I, ap-
+proaching the maximum volcanic output of Io and in effect,
+the possible destruction limit of an exo-Io. Section 3 helped
+qualify the mass of exogenic Na I probed in transmission at
+a cold Jupiter. For hot Jupiters more comprehensive searches
+of volatiles and their spectral imprint with high-resolution
+´echelle spectrographs will certainly improve our understand-
+ing of endogenic-exogenic interactions. In the last decade
+our early understanding of a hot Jupiter’s environment was
+limited to H I and Na I detections at HD209458b Charbon-
+neau et al. (2002), and was largely described in the seminal
+paper on atmospheric escape from hot Jupiters (c.f. Murray-
+Clay et al. (2009) Figure 8 summarizing the environment in
+1-D). Since then a series of observations may have enhanced
+our picture.
+5.1. A 2-D View of Atmospheric Escape: Plasma Tori
+In addition to the dozens of alkaline detections, several
+other extrasolar volatile species, He I (Salz et al. (2018);
+Spake et al. (2018)), Mg I Vidal-Madjar et al. (2013) and
+also the ions Ca II (Astudillo-Defru & Rojo (2013); Ridden-
+Harper et al. (2016)), Fe II, Ti II (Hoeijmakers et al. (2018)),
+along with tentative detections of doubly ionized species Mg
+III (Fossati et al. 2010) have been observed ; reminiscent of
+not only Io’s volatiles but also Mercury’s where the stellar
+wind interaction is well-observed and well-simulated (e.g.
+Killen et al. (2001); Leblanc & Johnson (2010); Schmidt
+(2013a)). The magnesium ions were observed in the ultravi-
+olet, where anomalies in the ingress and egress transit spec-
+tra at HD189733b and W ASP 12-b have already tentatively
+suggested a plasma torus (Fossati et al. (2010); Kislyakova
+et al. (2016); Ben-Jaffel & Ballester (2014)) as predicted in
+general by Johnson & Huggins (2006). A plasma torus is a
+natural consequence when volatiles emanate from an orbit-
+ing exogenic source within the magnetosphere of a planet, as
+the volatiles will eventually be ionized and form a torus of
+its ejected material. The possibility of a plasma torus adds a
+2nd dimension to the hot Jupiters 1-D environment described
+previously, which we illustrate in black in Figure 4. This
+2-D illustration summarizes the Na I exosphere we describe
+in this work by our orbital stability constraints and simple
+modeling of an exo-Io’s Na I escape. We indicate the vari-
+ous scale lengths following the same convention as Murray-
+Clay et al. (2009) inspired by parameters from HD209458b,
+whose escaping atmosphere has been shown to be consistent
+with the energetic neutral atoms (ENA) H ∗ , O∗, and C +*
+(Ben-Jaffel & Sona Hosseini 2010). The dissociative recom-
+bination of NaCl+ as mentioned in Section 4 yields the ENA
+Na∗ in the form of streams as shown in Fig. 3. A unique
+consequence of exomoons orbiting hot Jupiters is that they
+would be directly embedded in the hydrodynamically escap-
+ing endogenic medium rendering the distinction between the
+two difﬁcult at present. However, the recent the discovery of
+Na I at a remarkably high altitude RN a∼ 1.5Rp for W ASP
+49-b Wyttenbach et al. (2017) we discuss may be a strong
+indication of exogenic sodium, although not unambiguous at
+present. Further testable predictions as we have described
+include non-solar Na/K ratios, and spectral shifts due to radi-
+ation pressure.
+5.2. Evidence of Geologically-Active Satellites?
+5.2.1. Radiation Pressure and Variability Signatures
+The radiation pressure on any emitted alkaline atom at hot
+Jupiters is signiﬁcant, roughly ∼ 10× that at Mercury and
+may lead to an observable spectral shift ∆vr ad analogous to
+Mercury’s comet-like Na I and K I tails (Schmidt (2013b)
+; Schmidt et al. (2018)). We compute the acceleration due
+to radiation pressure on a Na I atom following Chamberlain
+(1961), which can be understood by the commonly used pa-
+rameter β as the ratio of accelerations due to radiation pres-
+sure and gravity. For an orbiting atom the latter is
+v2
+or b
+as
+so
+that the parameter can be written as βs:
+βs =
+Fλ πe2λ2
+mN a me c3( fD1 + fD2)
+v2
+or b
+as
+(15)
+whereFλ is the incident stellar radiation ﬂux (Rybicki &
+Lightman 1979) at the doublet wavelength λN aD1,D2 and
+fN aD2 = 0.641, fN aD1 = 0.320 the oscillator strength of the
+Na D2 and D1 resonance lines respectively (Draine 2011). In
+Table 4 we give the value ofβ for each exoplanetary system,
+where the stellar spectrum for an F, G, and K is used. To ap-
+preciate this effect, given that∼ 50.7km/s corresponds to a
+shift of 1 ˚A, the linear velocity shift on a stagnant Na I cloud
+due to radiation pressure alone is then ∆vr ad ∼ ar adτN a,
+resulting in shifts between 10-70 km/s ( ∼ 0.2− 1.4 ˚A). Of
+course if the cloud is vented from an orbiting satellite, the
+observed shift would be± & 20 km/s depending on both the
+movement of the ejected gas and the satellite’s orbital mo-
+tion during the observation. Accounting for these additional
+motions, one may expect Na I and K I clouds to move with
+respect to the planet’s rest frame velocity on the∼ km/s level.
+Since a molten exo-Io will additionally thermally evaporate
+material asymmetrically at the subsolar hemisphere, it is con-
+ceivable that spectral shifts due to radiation pressure could be
+strongly mitigated. Furthermore, at HD189733b the leading
+
+<<<PAGE 15>>>
+EXO-IO SODIUM CLOUDS 15
+Exo-Io ⟨ÛM0⟩evap ⟨ÛM0⟩volc ⟨ÛM0⟩d ⟨ ÛMS⟩ ⟨ ÛMU⟩ ⟨ ÛMP⟩ ⋆⟨N⟩K,E xo−I o •⟨N⟩N a,E xo−I o ⟨N⟩Obs ⟨t⟩evap t∗
+[kg/s] [kg/s] [kg/s] [kg/s] [kg/s] [kg/s] [K cm −2] [Na cm −2] [Na cm −2] [Gyr] [Gyr]
+© W ASP-52 b I 1012.1±0.8 109.4±1 103.6±1.4 102.6±.1 106.8±.2 104.7±1.9 1011.2±1 1013±1 1011.5±0.05 360± 60 0.4 ± 0.3
+© W ASP-76 b I 1015.5±0.5 109.3±1 1012±0.8 102.9±.1 105.1±2.6 104.7±2.2 107.8±.6 109.6±.6 1010.1±0.05 180± 35 ∼5
+HD189733 b I 109.8±1 108.9±1 101.6±1.5 102.8±.3 105.4±0.2 104±1.2 109.8±.5 1011.6±.5 1010.4±0.05 230± 110 4.3 ± 2.8
+© XO-2 N b I 1011.1±0.9 108.5±1 106.2±1.2 102.5±.1 105±0.2 104±1.3 108.6±.5 1010.5±.5 1011±0.05 430.± 64 6.3 ± 2.4
+W ASP-49 b I 1010.1±1 108.4±1 104.9±1.3 102.5±.1 105±0.2 104.3±1.5 108.6±.4 1010.4±.4 1010.7±0.05 400.± 30 ∼5
+⊘ HAT-P-12 b I 104.6±1.3 108±1 10−4.2±1.9 105.8±.9 105.6±0.2 104.2±1.6 1010.6±.7 1013.3±.2 – 0.20 ± 0.18 2.5 ± 2
+⊘W ASP-6 b I 106.7±1.1 108±1 100.6±1.6 104.1±1.1 104.5±0.2 104.2±1.7 109±.3 1011.1±.1 – 12 ± 10 11 ± 7
+W ASP-31 b I 1010.6±0.9 107.9±1 107.1±1.2 102.5±0.1 104.8±0.2 104.3±1.9 108.1±.7 109.9±.7 – 470 ± 70 ∼5
+W ASP-96 b I 108.1±1.1 107.9±1 103.1±1.4 103.1±.6 104.6±0.2 104±1.6 108.3±.5 1010.3±.5 < 1011.7±0.05 110± 84 8 ± 8
+HD209458 b I 109.5±1.0 107.9±1 103.4±2.4 102.5±0.1 105±0.2 103.8±2.7 108.6±1 1010.4±1 109.7±0.05 410± 56 3.5 ± 1.4
+© W ASP-17 b I 1011.4±0.9 107.7±1 108.7±1.1 102.5±.1 105±0.2 104.6±2.2 108.3±.8 1010.1±.8 1010.8±0.05 422.± 80 3 ± 2.6
+⊘W ASP-69 b I 103.3±1.4 107.6±1 10−4.1±1.9 105.9±.3 105.6±0.2 104±1.7 1010.3±1 1013±.1 1010.7±0.05 0.18± 0.08 2 ± –
+⊘ W ASP-39 b I 105.3±1.3 107.5±1 10−0.1±1.7 104.9±1.1 104.8±0.2 104.2±1.8 109.3±.4 1011.7±.2 109.7±0.05 1.8± 1.7 ∼ 5 –
+HA T-P-1 b I 107.3±1.1 107.3±1 103.7±1.4 103.2±.7 104.8±0.2 104.1±1.6 108.6±.8 1010.6±.8 1011.2±0.05 91± 74 3.6 ± –
+Table 5. Candidate Exo-Io Sodium & Potassium Mass Loss Calculations. Order of magnitude estimates to assess the plausibility of an exo-Io source at each alkaline exoplanetary
+system.⟨ÛM0⟩evap (Eqn. 10 ) and ⟨ÛM0⟩volc (Eqn. 11) are the Na I source rates at T 0 (Eqn. 4) due to thermal evaporation and volcanism respectively. For thermal evaporation we
+consider a range of mineral vapor pressures bounded by MgSiO3 and Fe2SiO4. For tidally-driven volcanism our results are scaled to Io for a range of tidal efﬁcienciesηT corresponding
+to≈ 2 dex in rheology parameters. ⟨ÛM0⟩d is a lower bound to thermal evaporation (Eqn. 12) evaluated at the equilibrium temperature T eq with a nul value of tidal heating ÛEs = 0
+(Eqn. 3). The subsequent mass loss ranges ⟨ ÛMS⟩ (Eqn. 12), ⟨ ÛMU⟩ (Eqn. 9), ⟨ ÛMP⟩ (Eqn. 7) are provided for completeness considering 3 principal mechanisms: surface heating,
+upper-atmospheric heating, and plasma heating respectively. ⟨ ÛMS⟩: Source-limited escape is directly limited by ⟨ÛM0⟩ and is strongly dependent on conduction to the surface as
+described byR, as provided in Table 4. ⟨ ÛMU⟩: Upper-atmosphere/Energy-limited escape depends on the incident L xuv radiation at the star derived from Lammer et al. as in Jin
+& Mordasini (2018), where we consider heating efﬁciencies between 0.1-0.4. Due to the extreme irradiation we note that it is likely that this rate is an upper limit (Johnson et al.
+(2013)).⟨ ÛMP⟩: Plasma-limited escape depends strongly on the exobase radius, and the incident plasma pressure Ps where our lower bound is stellar-wind limited and an upper bound
+including the magnetic pressure of the gas-giant (see Table 4 and c.f. Table 4.1 Johnson (1990)). The maximum mass loss rates are underlinedbased on the upper limits. The predicted
+average exo-Io column density based on the principal mass loss source for Na I (•) and K I (⋆) is provided as:⟨N⟩E xo−I o (Eqn. 13) and directly compared to the derived column from
+transmission spectroscopy observations⟨N⟩Obs (Eqn. 14). The range of values from transmission spectroscopy is tightly constrained as the equilibrium optical depth is fundamentally
+τ∼ 1, although the equivalent width can indeed vary. Systems where⟨N⟩E xo−I o<⟨N⟩Obs are ﬂagged as problematic for an exogenic lunar source. The evaporation timescale for the
+Exo-Io tevap is estimated based on our knowledge of the surface loss rate⟨ ÛMS⟩ and compared to the system age t∗. Potentially disintegrated debris systems are ﬂagged as⊘ from our
+mass loss model, whereas© indicates that the tidally-heated T0 >2000K may imply catastrophic disintegration (Perez-Becker & Chiang (2013)). Following analysis, the top exomoon
+systems are boldfaced.
+
+<<<PAGE 16>>>
+16 O ZA ET AL .
+Figure 4. 2-D “Birds-Eye” Architecture of a Sodium Exosphere at a Close-in Gas Giant Exoplanet System. Endogenic: An extended
+sodium layer above the hot Jupiter is shown to illustrate a well-mixed Na I component (yellow). Exogenic: An exo-Io sodium cloud (yellow)
+is shown at∼ 2Rp. Parameters for an escaping atmosphere are overlayed, inspired by the 1-D hot Jupiter atmosphere by Murray-Clay et al.
+(2009). Several other desorbing-exogenic sources (comets, micrometeorites, debris) illustrate the possible endogenic-exogenic interaction
+contributing to the light yellow exosphere. A full Monte Carlo simulation is likely necessary to describe the precise ion-neutral and electron-
+neutral interactions in detail, yet a upper atmosphere model by Huang et al. (2017) along with high-resolution observations of HD189733b
+(Wyttenbach et al. (2015)) and W ASP 49-b (Wyttenbach et al. (2017)) are suggestive of the parameter space. If the hot Jupiter is magnetic, a
+slowly rotating plasma torus carrying ejected material (in black) should be present. Given that an active satellite would be orbiting close-in,
+orbiting at∼ 20km/s with ejected sodium speeds∼ 10 km/s due to sputtering (i.e. Io), the corresponding kinetic temperature will be on the
+order of 10 5 K, far hotter than the escaping hydrodynamic wind of the gas giant providing a source for line broadening. The ionized gas H,
+H+ above the photoionization base should also contribute strongly to the plasma density (ne∼ 109) possibly resulting in stray sodium spraying
+throughout the system and into the exosphere.
+
+<<<PAGE 17>>>
+EXO-IO SODIUM CLOUDS 17
+and trailing limbs (−5.3+1.0
+−1.4 km/s (blueshift) +2.23+1.3
+−1.5 km/s
+(redshift) respectively) Louden & Wheatley (2015) have not
+been attributed to radiation pressure but rather eastard equa-
+torial jets, motivated by atmospheric circulation models. On
+the other hand, HD209458b (-14.7 km/s), HAT-P-1b (-3
+km/s), Kelt 20-b (26 km/s), HD 80606b (-4 km/s) and possi-
+bly the super earth 55 Cancri-e (-27 km/s) also exhibit spec-
+tral shifts of Na I and K I (Snellen et al. (2008); Wilson et al.
+(2015); Col ´on et al. (2012) ; Ridden-Harper et al. (2016))
+suggesting time-sensitive monitoring of these systems is re-
+quired. This interaction implies there would be considerable
+variability in the Na I & K I lines, an effect observed for
+W ASP 31-b, attributed so far to instrumental effects (Gibson
+et al. 2019). Ingress and egress observations probing the en-
+tirety of the planetary Hill sphere would also help constrain
+possible variability.
+5.2.2. Sodium/Potassium Ratios: Lessons from the Solar System
+As Fig.3 depicts, Io’s Na I jets can travel the entirety of
+Jupiter’s magnetosphere. Therefore whether Io was the ex-
+ogenic source of the Na I discovered at Europa Brown &
+Hill (1996) was uncertain until the discovery of K I Brown
+(2001b). As Na/K ratios are suggestive of physical pro-
+cesses, the theoretical Na/K ratio at Europa by Leblanc et al.
+(2002) and (Johnson et al. (2002) Table I) when compared
+to the observational Na/K ratios at Io and Europa, demon-
+strated that Europa’s Na I was primarily an endogenic ocean
+source. As we have no knowledge of the geological com-
+position of the exo-Ios we describe in this work, we can
+only say with conﬁdence that the ratios should be non-solar
+as tabulated in Table 1. Given that current working mod-
+els of Na I at hot Jupiters use solar abundance based on the
+early atomic gas phase predictions for brown dwarfs (Sea-
+ger & Sasselov (2000); Sudarsky et al. (2000)), the obser-
+vations of Na/K should roughly follow suit allowing for dif-
+ference in the volatility and the mass of Na & K. The fact
+that certain alkaline planets have observed K I without a
+corresponding Na I signature and vice-versa at certain alka-
+linene planets is likely problematic for a purely endogenic
+source. Assuming core accretion or disk instability planet
+formation mechanisms for the gas giants, the metals should
+roughly follow solar abundance along the mass-metallicity
+trend (Thorngren et al. (2016), Mordasini et al. (2012)). De-
+spite the differences in mass and in alkaline ionization po-
+tentials, the Na/K ratios at the three exoplanets with both Na
+& K are still quite unusual (e.g., (Na/K) H1b ∼ 0.5 along
+with lunar-like ratios at (Na/K)XO2b∼ 6 & (Na/K)W 39∼ 7).
+We encourage follow-up observations of these bodies espe-
+cially in K I, which is more difﬁcult to probe than Na I, pos-
+sibly explaining the non-detections. While no body in the
+Solar System can explain a K I enhancement relative to Na I,
+or the non-detections (Nikolov et al. (2018) retrieval results
+in (Na/K)W 96 & 10000) such a stark contrast could be con-
+ceivable geophysically or be indicative of an extreme case of
+mass loss.
+5.2.3. An Exo-Io at WASP 49-b ?
+The Na I transit depth was observed at the hot-Saturn
+W ASP 49-b to extend to R N a∼ 1.5Rp (Wyttenbach et al.
+2017). This anomalously high altitude is roughly 3× higher
+than HD189733b possibly warranting an alternative expla-
+nation on the origin of Na I. Furthermore, the line is signif-
+icantly broader than HD189733b, suggesting a far more en-
+ergetic sodium component. Wyttenbach et al. (2017) showed
+with isothermal transmission spectra models that the Na I
+line wings and line core can be ﬁt individually with two
+distinct temperatures (1400 K and 2950K respectively). We
+conﬁrm that the transit depth can be roughly reproduced with
+an essentially isothermal hydrostatic atmosphere at 2950K
+(Fig. 5 hydrostatic: dotted line). The state-of-the-art 1-D
+hydrodynamic model developed for W ASP 49-b by Cubillos
+et al. (2017) suggests however that the temperature proﬁle
+derived based on the XUV heating, Ly- α cooling, dissocia-
+tion, ionization, and recombination is not isothermal. Figure
+2 of Cubillos et al. (2017) shows that temperatures near
+3000K only persist between 0.01 - 10 nbars, after which
+the atmosphere signiﬁcantly cools. Cubillos et al. (2017)
+Figure 8 attempted to ﬁt the full line proﬁle with a quasi-
+hydrodynamic model corresponding to two hydrostatic lay-
+ers at T = 1000K and an arbitrary isothermal layer at T =
+2950K escaping above an assumed Na 2S haze layer at ∼ 1
+nbar at 100× solar abundance, X⊙. Reproducing this model
+(Fig. 5: blue line), we conﬁrm that it fails to reproduce the
+transit depth and is far too narrow as stated by the authors.
+The endogenic models are problematic due to the large mass
+of Na I required by the large transit depths. The minimum
+LOS columns given in Table 5 can easily be converted to
+total mass integrated over the stellar disk, for which we ﬁnd
+a minimum Na I mass of MN a,min > 1.3× 106kg or 10×
+Jupiter’s atmospheric Na I (Section 3.1). As hot Jupiters’
+mass loss are dominated by energy-limited escape (Eqn. 9)
+for an incoming EUV ﬂux of FEUV = 2500 ergs/s/cm2, and a
+range ofηXUV described above, leads to atotal mass loss rate
+of ÛMtot,W 49b ∼ 107.1±0.3kg/s. Assuming solar abundance,
+the Na I mass loss rate of ÛMN a,W 49b ∼ 101.4±0.3kg/s cor-
+responds to a total mass of only MN a,escape ∼ 103.8±0.3kg.
+This implies that the Na I abundance, if endogenically es-
+caping, must be XN a∼ 5000× X⊙. A strongly super-solar
+metallicity is consistent with the calculations of Cubillos
+et al. (2017) yet such a haze model has difﬁculty ﬁtting the
+transit depth. It is possible that at such high altitudes local
+thermodynamic equilibrium (LTE) breaks down, and a non-
+LTE distribution could better ﬁt the transit depth as suspected
+by recent atmospheric retrieval modeling by Fisher & Heng
+(2019); however the precise broadening mechanism is as of
+yet unidentiﬁed.
+Using the highest quality observations of the Na I column
+abundance in Io’s corona from 1985-1997 by Burger et al.
+(2001), we test the presence of an orbiting exo-Io (Fig. 5:
+red line) based on the parameters in Table 4 and 5. Assuming
+the observations can be scaled and then extrapolated inwards
+to the surface, a tidally-heated, ionization-limited radial pro-
+ﬁle of an exo-Io consistent with the power law for Io’s Na I
+
+<<<PAGE 18>>>
+18 O ZA ET AL .
+Figure 5. Transmission spectrum of W ASP 49-b at the Na doublet. We model the endogenic atmosphere with both hydrostatic and quasi-
+hydrodynamic assumptions. The hydrostatic model (dotted, black) is isothermal at T∼ 2950K equivalent to the temperature probed by Wytten-
+bach et al. (2017). The quasi-hydrodynamic atmosphere in blue as modeled by Cubillos et al. (2017), corresponds to an isothermal planetary
+wind of T∼ 3000K above a supposed isothermal T∼ 1000K Na2S haze layer ﬁxed at∼ 100x solar abundance. We note that like HD189733b
+Huang et al. (2017) an isothermal atmosphere is unlikely. The true non-isothermal hydrodynamic solution would produce even smaller transit
+depth due to cooling (Fig.2 Cubillos et al. (2017)). The exogenic source (red) is identical to the exo-Io of ηT∼ 105±0.5 we describe in the
+text, driving a plasma-driven sodium enhancement of ∼ 103.7±0.5× that at Io due to the expected stellar forcing. We employ an escaping
+sodium density proﬁle (Eqn. 16) equivalent to the 1985-1997 observations of Io’s sodium corona (Burger et al. 2001) and ∼ 10km/s velocity
+characteristic of atmospheric sputtering. While our energy-limited escape rates also conﬁrm a similar > 100X solar abundance, the planetary
+wind model cannot reproduce the transit depth Cubillos et al. (2017). Based on the state-of-the-art 1-D hydrodynamic modeling including XUV
+heating, Ly-α cooling, dissociation, ionization and recombination by Cubillos et al. (2017) an endogenic atmosphere appears to be unlikely for
+W ASP 49-b at present. We therefore ﬁnd the exo-Io source to be a promising candidate for the sodium line.
+corona would be:
+nE xo−I o(b) =ηT
+(τN a,exo−I o
+τN a, I o
+)
+nI o,0 b−3.34 cm−3 (16)
+Here b is the impact parameter in units of R s, τ the Na
+I lifetime ( τN a,I o ∼ 4hour s Wilson et al. (2002)), and a
+tidal efﬁciency of ηT∼ 105±0.5 in good agreement with the
+plasma-driven loss described in Section 4. The column den-
+sity we estimate in Table 5∼ 9× 1010±0.4 is well within error
+of the required column density from observations. The ef-
+fective kinetic temperature of the gas we set to∼ 1.4× 105K
+equivalent to the canonical atmospheric sputtering distribu-
+tion velocity of∼ 10 km/s Wilson et al. (2002). We note that
+the line proﬁle becomes too narrow for a thermal velocity
+distribution, suggesting a non-thermal velocity distribution
+venting from an exomoon. If our orbital stability calculation
+of a critical tidalQp,W 49b∼ 4× 109 for an Io-sized satellite
+holds against the equilibrium tide limit for hot Jupiters, one
+might conclude that a geologically-active satellite is a natural
+
+<<<PAGE 19>>>
+EXO-IO SODIUM CLOUDS 19
+source for the planetary system’s Na I as at our Jupiter.
+6. CONCLUSIONS
+Given that the prospect of discovering extrasolar satel-
+lites with masses M ≲10−2 M⊕ by radial velocity, or radii
+R ≲ 3× 10−1R⊕ by transit techniques are bleak at present
+(Teachey & Kipping (2018); Kreidberg et al. (2019)), we de-
+scribed in this work howgas signatures of Na I & K I at a hot
+Jupiter could be indicating the presence of a geologically-
+active satellite subject to the ambient plasma. This appears
+to be the case for at least one such system, W ASP 49-b. We
+use the Jupiter-Io Na I system extending to ∼ 1000RJ as a
+benchmark for our case study of an exo-Io, remarking on the
+fact that∼ dozen exoplanetary systems host robust alkaline
+detections since the initial suggestion of a toroidal exoplanet
+atmosphere by Johnson & Huggins (2006). We therefore use
+the well-known orbital parameters of this sample to assess
+both the survival and possible gas contribution of an exo-Io
+by modeling the Na I mass loss applicable to the order of
+magnitude level. Working towards a general description of a
+rocky exomoon orbiting a hot Jupiter, we ﬁnd several natural
+consequences.
+Foremost, in Section 2 we built on the calculations of mas-
+sive satellites around tidally-locked close-in exoplanets in
+Cassidy et al. (2009), showing that smaller exo-Ios can in
+principle survive aroundall observed alkaline systems to date
+(Fig. 1) due to the gravitational forcing of the host star. If an
+exo-Io were to exist the canonical condition requires that the
+critical tidalQ of the planet must sufﬁceQp,crit < Qp where
+the upper limit of Q p is∼ 1012 as found by Goldreich &
+Nicholson (1977) and improved by Wu (2005a). Based on
+the non-detection of alkalis around W ASP 19-b along with
+the marginal detections around the ultra-short period Jupiters
+W ASP 43-b, W ASP 12-b, and W ASP 103-b it is conceivable
+that this upper limit for hot Jupiters is closer to ∼ 1011. Al-
+though the critical orbital period we derive,τcrit & 0.5 days,
+holds true gravitationally over the lifetime of the planetary
+system, the thermal destruction of an exo-Io is far more jeop-
+ardous based on our mass loss model of molten irradiated
+bodies (Section 4.2.3). Catastrophic disintegration due to
+tidally-heated surface temperatures exceeding the ∼ 2000K
+threshold simulated by Perez-Becker & Chiang (2013) may
+also suggest a critical exo-Io period beyond∼ 2 days (Figure
+1).
+Consequently, the Na I at the destroyed systems (Table 5 )
+if conﬁrmed, would then be the volcanic remnants of a dis-
+integrated exomoon, possibly still desorbing in the form of
+debris depending on the timescales. Survival of an exo-Io
+should therefore be considered in tandem with its mass loss,
+as orbital stability dependent on semimajor axis is a neces-
+sary yet insufﬁcient condition. Although the stellar proximity
+and insolation is threatening for the above systems, we ﬁnd
+that, for the majority of systems, the stellar tides not only
+force the exo-Io to remain in orbit, but also drive signiﬁcant
+tidal heating within the satellite, roughly 5 orders of magni-
+tude higher than Io. This signiﬁcantly increases the mass ﬂux
+to the planetary system, possibly contributing to the observed
+Na I spectra in transmission at hot Jupiters which could be of
+endogenic or exogenic origin. While we do not conclude that
+the rest of the Na I signals are solely exogenic, we cannot rule
+this possibility out at present. Our case for the exogenic ori-
+gin of alkalis is made by our Solar System’s benchmark case
+of Jupiter’s atmospheric transmission spectrum (section 3)
+for the ﬁrst time, and the ability of Io’s magnetospherically-
+driven activity to dominate Jupiter’s exospheric Na I emis-
+sion (section 4).
+Our simple estimates result in a line-of-sight column den-
+sity of∼ 7× 1011 Na cm−2 for Jupiter’s atmosphere. The
+corresponding mass arriving at Jupiter’s upper atmosphere
+ÛMexo ∼ 0.05 g/s (or MN a ∼ 1.2× 108 g integrated over
+Jupiter) we conclude can be sourced exogenically, even in
+excess of the required amount. In addition to Io’s powerful
+Na I supply of∼ 110 g/s, the corresponding mass from cos-
+mic dust∼ 3.7 g/s and cometary impacts∼ 1.3 - 9× 102 g/s
+could also supply the Na I based on the decades of monitor-
+ing following the 1994 Shoemaker-Levy 9 impact which we
+walk through in detail starting in section 3.1. To obtain a ﬁrst
+estimate on how an exo-Io’s Na I supply alone can inﬂuence
+the transmission spectrum of a hot Jupiter, we focus on the
+range of line-of-sight column densities which easily trans-
+late to equivalent widths in Table 3, and described in Section
+4. Scaling to Io’s measured atmospheric sputtering rate of
+∼ 10− 100 kg/s of Na in Equation 7, and acknowledging the
+fact that an exo-Io orbiting a hot Jupiter would reduce its av-
+erage Na I lifetime to∼ 10 minutes resulting in an occulting
+Na I cloud of order∼ 1RJ, nevertheless yields Na I clouds 3
+- 6 orders of magnitude more dense on average than at Io due
+to the expected close-in irradiation acting on a tidally-active
+body we described. The increase in density, when compared
+to the minimum observed column densities are well in agree-
+ment and can even be in excess of the required amount as
+dictated by the equivalent widths in Table 3. We conclude
+several hot Jupiters can be sourced in principle by thermally-
+driven or plasma-driven Na & K loss from an active exo-Io,
+boldfaced in Table 5.
+Several Na I spectra appear to suggest that the Na I is dy-
+namic either redshifted or blueshifted possibly due to radi-
+ation pressure, or broadened suggesting collisions or a non-
+thermal Na I distribution. Finally when compared to K I, the
+few planets have ratios which are largely non-solar, contrary
+to endogenic formation theory Kreidberg et al. (2014).
+This ﬁrst work on exo-Ios hints at the presence of hidden
+geologically-active satellites in several candidate systems at
+present, where we suggest for one such system W ASP 49-b,
+an exo-Io may be the leading explanation. That is to date, en-
+dogenic models cannot reproduce the extraordinarily high al-
+titude of the observed Na even with parameters from a state-
+of-the-art hydrodynamically escaping atmosphere. The pa-
+rameters we derive for our candidate exo-Io orbiting W ASP
+49-b are consistent with our predictions in Tables 4 and 5,
+and the number density proﬁle and corresponding velocity of
+Na I we ﬁt is identical to the precise 1985-1997 observations
+of Io’s Na I corona.
+
+<<<PAGE 20>>>
+20 O ZA ET AL .
+As the physical processes we describe in this work are ca-
+pable of expanding material to the edge of the magnetosphere
+and/or Hill sphere of a Gas Giant system, it is important in
+this coming decade to start considering exoplanets as exo-
+planetary systems. The boon of the bright sodium and K I
+lines may be providing astronomers the ﬁrst inferences of
+activity from the remnants of small bodies.
+ACKNOWLEDGEMENTS
+We thank the anonymous referee for helpful comments and
+suggestions, in particular, in motivating an extensive alkaline
+metal mass loss model from an irradiated rocky exomoon.
+The authors thank Phil Arras for guidance and discussion
+on eddy diffusion and tidal dissipation theory at hot Jupiters.
+A.V .O and E.L thank Kevin Heng for insightful discussions
+on the normalization degeneracy, Na I resonance line the-
+ory and our ability to constrain alkaline abundances today.
+A.V .O expresses gratitude to Pierre Auclair-Desrotour, Wade
+Henning, Adrien Leleu, and Sebastien Charnoz for insight
+on dynamic stability and discussions on tidalQ. A.V .O also
+thanks Mike Skrutskie for instrumental insight on Na and K
+variability. REJ acknowledges grant support from the NASA
+PDS program. C.H is supported in part by NASA under
+grant program NNX16AK08G and thanks J.Steffen. A.V .O.
+& C.M. acknowledge the support from the Swiss National
+Science Foundation under grant BSSGI0 155816 “PlanetsIn-
+Time”. Parts of this work have been carried out within the
+frame of the National Center for Competence in Research
+PlanetS supported by the SNSF.
+
+<<<PAGE 21>>>
+EXO-IO SODIUM CLOUDS 21
+REFERENCES
+Agol, E., Steffen, J., Sari, R., & Clarkson, W. 2005, MNRAS, 359,
+567
+Alexoudi, X., Mallonn, M., von Essen, C., et al. 2018, A&A, 620,
+A142
+Asplund, M., et al. 2009, Annu. Rev. Astron. Astrophys., 47
+Astudillo-Defru, N., & Rojo, P. 2013, A&A, 557, A56
+Barnes, J. W., & O’Brien, D. P. 2002, ApJ, 575, 1087
+Barstow, J. K., et al. 2017, ApJ, 834
+Ben-Jaffel, L., & Ballester, G. E. 2014, ApJL, 785, L30
+Ben-Jaffel, L., & Sona Hosseini, S. 2010, ApJ, 709, 1284
+B´ezard, B., Lellouch, E., Strobel, D., Maillard, J.-P., & Drossart, P.
+2002, Icarus, 159, 95
+Bower, D. J., Kitzmann, D., Wolf, A. S., et al. 2019, arXiv e-prints,
+arXiv:1904.08300
+Boyajian, T. S., LaCourse, D. M., Rappaport, S. A., et al. 2016,
+MNRAS, 457, 3988
+Brown, M. E. 2001a, Icarus, 151, 190
+—. 2001b, Icarus, 151, 190
+Brown, M. E., & Hill, R. E. 1996, Nature, 380, 229
+Brown, R. A. 1974, in IAU Symposium, V ol. 65, Exploration of the
+Planetary System, ed. A. Woszczyk & C. Iwaniszewska, 527
+Brown, R. A., & Chaffee, Jr., F. H. 1974, ApJL, 187, L125
+Burger, M. H., Schneider, N. M., de Pater, I., et al. 2001, ApJ, 563,
+1063
+Burns, J. A., Showalter, M. R., Hamilton, D. P., et al. 1999,
+Science, 284, 1146
+Casasayas-Barris, N., et al. 2017, A&A, 608
+Cassidy, T. A., Mendez, R., Arras, P., Johnson, R. E., & Skrutskie,
+M. F. 2009, ApJ, 704, 1341
+Chamberlain, J. W. 1961, Physics of the aurora and airglow
+Chandrasekhar, S. 1969, Ellipsoidal ﬁgures of equilibrium
+Charbonneau, D., Brown, T. M., Noyes, R. W., & Gilliland, R. L.
+2002, ApJ, 568, 377
+Chen, G., et al. 2017, A&A, 600
+Christensen, U. R., Holzwarth, V ., & Reiners, A. 2009, Nature,
+457, 167
+Col´on, K. D., et al. 2012, MNRAS, 419
+Crovisier, J. 1996, in IAU Colloq. 156: The Collision of Comet
+Shoemaker-Levy 9 and Jupiter, ed. K. S. Noll, H. A. Weaver, &
+P. D. Feldman, 31
+Cubillos, P. E., Fossati, L., Erkaev, N. V ., et al. 2017, ApJ, 849, 145
+de Kleer, K., & de Pater, I. 2016, Icarus, 280, 378
+de Pater, I., de Kleer, K., Davies, A. G., & ´Ad´amkovics, M. 2017,
+Icarus, 297, 265
+Domingos, R. C., Winter, O. C., & Yokoyama, T. 2006, MNRAS,
+373, 1227
+Draine, B. T. 2011, Physics of the Interstellar and Intergalactic
+Medium
+Fegley, B., & Cameron, A. G. W. 1987, Earth and Planetary
+Science Letters, 82, 207
+Fegley, B., & Zolotov, M. Y . 2000, Icarus, 148, 193
+Fischer, P. D., Knutson, H. A., Sing, D. K., et al. 2016, ApJ, 827,
+19
+Fisher, C., & Heng, K. 2019, The Astrophysical Journal, 881, 25
+Fossati, L., Haswell, C. A., Froning, C. S., et al. 2010, ApJ, 714,
+L222
+Fulle, M., Molaro, P., Buzzi, L., & Valisa, P. 2013, ApJL, 771, L21
+Fulton, B. J., & Petigura, E. A. 2018, AJ, 156, 264
+Gardner, C. S., Liu, A. Z., Marsh, D. R., Feng, W., & Plane,
+J. M. C. 2014, Journal of Geophysical Research (Space Physics),
+119, 7870
+Gibson, N. P., de Mooij, E. J. W., Evans, T. M., et al. 2019,
+MNRAS, 482, 606
+Goldreich, P., & Nicholson, P. D. 1977, Icarus, 30, 301
+Grießmeier, J.-M., Zarka, P., & Spreeuw, H. 2007, A&A, 475, 359
+Haff, P. K., Watson, C. C., & Yung, Y . L. 1981, J. Geophys. Res.,
+86, 6933
+Hanson, W. B., & Donaldson, J. S. 1967, Journal of Geophysical
+Research, 72, 5513
+Heng, K. 2016, ApJL, 826, L16
+Heng, K., Wyttenbach, A., Lavie, B., et al. 2015, ApJL, 803, L9
+Hoeijmakers, H. J., Ehrenreich, D., Heng, K., et al. 2018, Nature,
+560, 453
+Huang, C., Arras, P., Christie, D., & Li, Z.-Y . 2017, ApJ, 851, 150
+Huebner, W. F., & Mukherjee, J. 2015, Planet. Space Sci., 106, 11
+Huitson, C. M., Sing, D. K., Vidal-Madjar, A., et al. 2012,
+MNRAS, 422, 2477
+Hunten, D. M. 1967, SSRv, 6, 493
+Hunten, D. M., & Wallace, L. 1967, Journal of Geophysical
+Research, 72, 69
+Ingersoll, A. P. 1989, Icarus, 81, 298
+Jin, S., & Mordasini, C. 2018, ApJ, 853, 163
+Jin, S., Mordasini, C., Parmentier, V ., et al. 2014, ApJ, 795, 65
+Johnson, R. E. 1990, Energetic Charged-Particle Interactions with
+Atmospheres and Surfaces, 84
+—. 2004, ApJL, 609, L99
+Johnson, R. E., & Huggins, P. J. 2006, PASP, 118, 1136
+Johnson, R. E., Leblanc, F., Yakshinskiy, B. V ., & Madey, T. E.
+2002, Icarus, 156, 136
+Johnson, R. E., Oza, A., Young, L. A., V olkov, A. N., & Schmidt,
+C. 2015, ApJ, 809, 43
+Johnson, R. E., Smith, H. T., Tucker, O. J., et al. 2006a, ApJL, 644,
+L137
+Johnson, R. E., V olkov, A. N., & Erwin, J. T. 2013, ApJL, 768, L4
+Johnson, R. E., Luhmann, J. G., Tokar, R. L., et al. 2006b, Icarus,
+180, 393
+
+<<<PAGE 22>>>
+22 O ZA ET AL .
+Kao, M. M., Hallinan, G., Pineda, J. S., Stevenson, D., &
+Burgasser, A. 2018, ApJS, 237, 25
+Khalaﬁnejad, S., von Essen, C., Hoeijmakers, H. J., et al. 2017,
+A&A, 598, A131
+Khalaﬁnejad, S., et al. 2018, apJ
+Killen, R. M., Potter, A. E., Reiff, P., et al. 2001, J. Geophys. Res.,
+106, 20509
+Kipping, D. M. 2009, MNRAS, 392, 181
+Kislyakova, K. G., Holmstr¨om, M., Lammer, H., Odert, P., &
+Khodachenko, M. L. 2014, Science, 346, 981
+Kislyakova, K. G., Pilat-Lohinger, E., Funk, B., et al. 2016,
+MNRAS, 461, 988
+Kreidberg, L., Luger, R., & Bedell, M. 2019, ApJ, 877, L15
+Kreidberg, L., Bean, J. L., D´esert, J.-M., et al. 2014, ApJL, 793,
+L27
+K¨uppers, M., & Schneider, N. M. 2000, Geophys. Res. Lett., 27,
+513
+Lainey, V ., & Tobie, G. 2005, Icarus, 179, 485
+Lammer, H., Odert, P., Leitzinger, M., et al. 2009, A&A, 506, 399
+Langland-Shula, L. E., V ogt, S. S., Charbonneau, D., Butler, P., &
+Marcy, G. 2009, ApJ, 696, 1355
+Leblanc, F., & Johnson, R. E. 2010, Icarus, 209, 280
+Leblanc, F., Johnson, R. E., & Brown, M. E. 2002, Icarus, 159, 132
+Leblanc, F., Potter, A. E., Killen, R. M., & Johnson, R. E. 2005,
+Icarus, 178, 367
+Leblanc, F., Doressoundiram, A., Schneider, N., et al. 2008,
+Geophys. Res. Lett., 35, L18204
+Lellouch, E. 1996, in IAU Colloq. 156: The Collision of Comet
+Shoemaker-Levy 9 and Jupiter, ed. K. S. Noll, H. A. Weaver, &
+P. D. Feldman, 213
+Lellouch, E., Ali-Dib, M., Jessup, K.-L., et al. 2015, Icarus, 253, 99
+Lellouch, E., Belton, M., de Pater, I., Gulkis, S., & Encrenaz, T.
+1990, Nature, 346, 639
+Lellouch, E., Belton, M., de Pater, I., et al. 1992, Icarus, 98, 271
+Lellouch, E., Paubert, G., Moses, J. I., Schneider, N. M., &
+Strobel, D. F. 2003, Nature, 421, 45
+Lellouch, E., Strobel, D. F., Belton, M. J. S., et al. 1996, ApJL,
+459, L107
+Lellouch, E., B´ezard, B., Moreno, R., et al. 1997,
+Planet. Space Sci., 45, 1203
+Lellouch, E., B´ezard, B., Moses, J. I., et al. 2002, Icarus, 159, 112
+Lide, D. R. 1994, CRC Handbook of chemistry and physics. A
+ready-reference book of chemical and physical data
+Lodders, K. 2010, Astrophysics and Space Science Proceedings,
+16, 379
+Louden, T., & Wheatley, P. J. 2015, ApJL, 814, L24
+Marchis, F., Le Mignant, D., Chaffee, F. H., et al. 2005, Icarus,
+176, 96
+Matsakos, T., Uribe, A., & K¨onigl, A. 2015, A&A, 578, A6
+McDoniel, W. J., Goldstein, D. B., Varghese, P. L., & Trafton,
+L. M. 2017, Icarus, 294, 81
+Mendillo, M., Baumgardner, J., Flynn, B., & Hughes, W. J. 1990,
+Nature, 348, 312
+Monta˜n´es-Rodr´ıguez, P., Gonz´alez-Merino, B., Pall´e, E.,
+L´opez-Puertas, M., & Garc´ıa-Melendo, E. 2015, ApJL, 801, L8
+Morabito, L. A., Synnott, S. P., Kupferman, P. N., & Collins, S. A.
+1979, Science, 204, 972
+Mordasini, C., Alibert, Y ., Benz, W., Klahr, H., & Henning, T.
+2012, A&A, 541, A97
+Moreno, R., Marten, A., Matthews, H. E., & Biraud, Y . 2003,
+Planet. Space Sci., 51, 591
+Moses, J. I., & Poppe, A. R. 2017, Icarus, 297, 33
+Moullet, A., Lellouch, E., Gurwell, M., et al. 2015, in
+AAS/Division for Planetary Sciences Meeting Abstracts,
+V ol. 47, AAS/Division for Planetary Sciences Meeting Abstracts
+#47, 311.31
+Moullet, A., Lellouch, E., Moreno, R., et al. 2013, ApJ, 776, 32
+Murray-Clay, R. A., Chiang, E. I., & Murray, N. 2009, ApJ, 693,
+23
+Nikolov, N., Sing, D. K., Pont, F., et al. 2014, MNRAS, 437, 46
+Nikolov, N., et al. 2016, ApJ, 832
+Nikolov, N., Sing, D. K., Fortney, J. J., et al. 2018, Nature, 557,
+526
+Noack, L., Rivoldini, A., & Van Hoolst, T. 2017, Physics of the
+Earth and Planetary Interiors, 269, 40
+Noll, K. S., Geballe, T. R., & Knacke, R. F. 1995, ApJL, 453, L49
+Ogilvie, G. I. 2014, ARA&A, 52, 171
+Ogilvie, G. I., & Lin, D. N. C. 2004, ApJ, 610, 477
+—. 2007, ApJ, 661, 1180
+Pall´e, E., Zapatero Osorio, M. R., Barrena, R.,
+Monta˜n´es-Rodr´ıguez, P., & Mart´ın, E. L. 2009, Nature, 459, 814
+Parker, E. N. 1964, ApJ, 139, 72
+Passy, J.-C., Mac Low, M.-M., & De Marco, O. 2012, ApJL, 759,
+L30
+Peale, S. J., Cassen, P., & Reynolds, R. T. 1979, Science, 203, 892
+Perez-Becker, D., & Chiang, E. 2013, MNRAS, 433, 2294
+Poppe, A. R. 2016, Icarus, 264, 369
+Postberg, F., Kempf, S., Schmidt, J., et al. 2009, Nature, 459, 1098
+Potter, A., & Morgan, T. 1985, Science, 229, 651
+Potter, A. E., & Morgan, T. H. 1986, Icarus, 67, 336
+—. 1988, Science, 241, 675
+Punzi, K. M., Kastner, J. H., Melis, C., et al. 2018, AJ, 155, 33
+Rappaport, S., Levine, A., Chiang, E., et al. 2012, ApJ, 752, 1
+Ridden-Harper, A. R., et al. 2016, A&A, 593
+Rogers, T. M. 2017, Nature Astronomy, 1, 0131
+Rybicki, G. B., & Lightman, A. P. 1979, Radiative processes in
+astrophysics
+Salz, M., Czesla, S., Schneider, P. C., et al. 2018, A&A, 620, A97
+Schmidt, C. 2016, Icarus, 265, 35
+
+<<<PAGE 23>>>
+EXO-IO SODIUM CLOUDS 23
+Schmidt, C., Johnson, R. E., Mendillo, M., et al. 2015a, AGU Fall
+Meeting Abstracts, SM31B
+Schmidt, C., Reardon, K., Killen, R. M., et al. 2016, AGU Fall
+Meeting Abstracts, P53B
+Schmidt, C. A. 2013a, PhD thesis, Boston University
+—. 2013b, Journal of Geophysical Research (Space Physics), 118,
+4564
+Schmidt, C. A., Johnson, R. E., Baumgardner, J., & Mendillo, M.
+2015b, Icarus, 247, 313
+Schmidt, C. A., Leblanc, F., Reardon, K., et al. 2018, in LPI
+Contributions, V ol. 2047, Mercury: Current and Future Science
+of the Innermost Planet, 6022
+Schneider, N. M., Burger, M. H., Schaller, E. L., et al. 2009,
+Nature, 459, 1102
+Schneider, N. M., Hunten, D. M., Wells, W. K., Schultz, A. B., &
+Fink, U. 1991, ApJ, 368, 298
+Seager, S., & Sasselov, D. D. 2000, ApJ, 537, 916
+Seidel, J. V ., Ehrenreich, D., Wyttenbach, A., et al. 2019, arXiv
+e-prints, arXiv:1902.00001 [astro-ph.EP]
+Sing, D. K., D´esert, J.-M., Fortney, J. J., et al. 2011, A&A, 527,
+A73
+Sing, D. K., Huitson, C. M., Lopez-Morales, M., et al. 2012,
+MNRAS, 426, 1663
+Sing, D. K., Wakeford, H. R., Showman, A. P., et al. 2015,
+MNRAS, 446, 2428
+Sing, D. K., et al. 2016, Nature, 529
+Skrutskie, M. F., de Kleer, K. R., Stone, J., et al. 2017, in
+AAS/Division for Planetary Sciences Meeting Abstracts,
+V ol. 49, AAS/Division for Planetary Sciences Meeting Abstracts
+#49, 407.02
+Snellen, I. A. G., et al. 2008, A&A, 487
+Spake, J. J., Sing, D. K., Evans, T. M., et al. 2018, Nature, 557, 68
+Spencer, J. R., Rathbun, J. A., Travis, L. D., et al. 2000, Science,
+288, 1198
+Spencer, J. R., Stern, S. A., Cheng, A. F., et al. 2007, Science, 318,
+240
+Sprague, A. L., Kozlowski, R. W. H., Hunten, D. M., et al. 1997,
+Icarus, 129, 506
+Sudarsky, D., Burrows, A., & Pinto, P. 2000, ApJ, 538, 885
+Sullivan, H. M., & Hunten, D. M. 1962, Nature, 195, 589
+—. 1964, Canadian Journal of Physics, 42, 937
+Szalay, J. R., Hor´anyi, M., Colaprete, A., & Sarantos, M. 2016,
+Geophys. Res. Lett., 43, 6096
+Teachey, A., & Kipping, D. M. 2018, Science Advances, 4,
+eaav1784
+Thomas, N. 1996, A&A, 313, 306
+Thomas, N., Bagenal, F., Hill, T. W., & Wilson, J. K. 2004, The Io
+neutral clouds and plasma torus, ed. F. Bagenal, T. E. Dowling,
+& W. B. McKinnon, 561
+Thorngren, D. P., Fortney, J. J., Murray-Clay, R. A., & Lopez,
+E. D. 2016, ApJ, 831, 64
+Trafton, L. 1975, Nature, 258, 690
+Tsang, C. C. C., Spencer, J. R., Lellouch, E., Lopez-Valverde,
+M. A., & Richter, M. J. 2016, Journal of Geophysical Research
+(Planets), 121, 1400
+Tsang, C. C. C., Spencer, J. R., Lellouch, E., et al. 2013, Icarus,
+226, 1177
+Valek, P., McComas, D., Kurth, W., et al. 2018, in COSPAR
+Meeting, V ol. 42, 42nd COSPAR Scientiﬁc Assembly, B5.1
+van Lieshout, R., Min, M., & Dominik, C. 2014, A&A, 572, A76
+Vanderburg, A., Johnson, J. A., Rappaport, S., et al. 2015, Nature,
+526, 546
+Vidal-Madjar, A., et al. 2011, A&A, 527
+Vidal-Madjar, A., Huitson, C. M., Bourrier, V ., et al. 2013, A&A,
+560, A54
+V olkov, A. N., & Johnson, R. E. 2013, ApJ, 765, 90
+V olkov, A. N., Johnson, R. E., Tucker, O. J., & Erwin, J. T. 2011,
+ApJL, 729, L24
+Watson, A. J., Donahue, T. M., & Walker, J. C. G. 1981, Icarus, 48,
+150
+Weidner, C., & Horne, K. 2010, A&A, 521, A76
+Wilson, J. K., Mendillo, M., Baumgardner, J., et al. 2002, Icarus,
+157, 476
+Wilson, J. K., Mendillo, M., & Spence, H. E. 2006, Journal of
+Geophysical Research (Space Physics), 111, A07207
+Wilson, P. A., et al. 2015, MNRAS, 450
+Wong, M. C., & Johnson, R. E. 1996a, J. Geophys. Res., 101,
+23243
+—. 1996b, J. Geophys. Res., 101, 23255
+Wu, Y . 2005a, ApJ, 635, 674
+—. 2005b, ApJ, 635, 688
+Wyttenbach, A., Ehrenreich, D., Lovis, C., Udry, S., & Pepe, F.
+2015, A&A, 577, A62
+Wyttenbach, A., Lovis, C., Ehrenreich, D., et al. 2017, A&A, 602,
+A36
+Zuluaga, J. I., Kipping, D. M., Sucerquia, M., & Alvarado, J. A.
+2015, ApJL, 803, L14

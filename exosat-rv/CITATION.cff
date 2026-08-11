@@ -12,7 +12,13 @@ abstract: >-
   themselves do not yet reproduce from the archive, and a positive control on the known
   binary brown dwarf GJ 229 B establishes that the shortfall is precision rather than a
   broken extraction. Every claim the project published and later found false is indexed in
-  HANDOFF.md. No discovery is claimed and nothing is submitted anywhere.
+  HANDOFF.md. No discovery is claimed and nothing is submitted anywhere. Beyond the reproduction
+  it derives a feasibility framework for applying the method to other directly imaged
+  companions, calibrated on the achieved precision rather than a forecast, and inventories the
+  public VLTI/GRAVITY holdings that make an independent astrometric route possible. Its most
+  transferable result is negative: three separate changes that improved the science target were
+  rejected by the GJ 229 B positive control, because on a target with no detection anything that
+  removes signal looks like success.
 authors:
   - family-names: Potts
     given-names: Matthew
@@ -31,6 +37,9 @@ keywords:
   - CRIRES+
   - direct imaging
   - reproducibility
+  - astrometry
+  - VLTI/GRAVITY
+  - interferometry
 references:
   - type: article
     title: "Planetary-Mass Exosatellite Detected Around the Substellar Companion of a Star"
@@ -45,4 +54,25 @@ references:
       - family-names: "Köhler"
         given-names: J.
     year: 2025
-    notes: "arXiv:2505.08315; A&A 698, A44. The RV code used, and the source of the CRIRES+ configuration facts."
+    notes: "arXiv:2505.08315; A&A 698, A44. The RV code used, the source of the CRIRES+ configuration facts, and the template recipe M11 tested."
+  - type: article
+    title: "Detectability of satellites around directly imaged exoplanets and brown dwarfs"
+    authors:
+      - family-names: Lazzoni
+        given-names: C.
+    year: 2022
+    notes: "arXiv:2207.07569; MNRAS 516, 391. The detectability framework M7 reproduces and recalibrates."
+  - type: article
+    title: "Detecting Exomoons via Doppler Monitoring of Directly Imaged Exoplanets"
+    authors:
+      - family-names: Vanderburg
+        given-names: A.
+    year: 2018
+    notes: "arXiv:1805.01903; AJ 156, 184. Proposed the method; its section 2.4 is the false-positive taxonomy."
+  - type: article
+    title: "Exomoon search with VLTI/GRAVITY around the substellar companion HD 206893 B"
+    authors:
+      - family-names: Blunt
+        given-names: S.
+    year: 2026
+    notes: "arXiv:2511.20091; A&A. The first astrometric exomoon search, and the basis of M10's target list."

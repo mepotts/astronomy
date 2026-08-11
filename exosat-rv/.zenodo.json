@@ -1,11 +1,25 @@
 {
   "title": "exosat-rv: an independent reproduction of the first exosatellite radial-velocity detection",
   "upload_type": "software",
-  "description": "A Python pipeline that reproduces, from public ESO archive data, the first radial-velocity detection of a satellite around a substellar object — a planetary-mass companion to the brown dwarf CD-35 2722 B (Hoy et al. 2026). It inventories the CRIRES+ holdings, converts ESO ADP spectra losslessly into the cr2res layout the viper RV code consumes, extracts velocities, and tests the published model comparison with an independent fitter. The paper's conclusion reproduces from its published radial velocities; the velocities themselves do not yet reproduce from the archive, and a positive control on the known binary brown dwarf GJ 229 B establishes that the shortfall is precision rather than a broken extraction. Every claim the project published and later found false is indexed in HANDOFF.md. No discovery is claimed.",
+  "description": "A Python pipeline that reproduces, from public ESO archive data, the first radial-velocity detection of a satellite around a substellar object — a planetary-mass companion to the brown dwarf CD-35 2722 B (Hoy et al. 2026). It inventories the CRIRES+ holdings, converts ESO ADP spectra losslessly into the cr2res layout the viper RV code consumes, extracts velocities, and tests the published model comparison with an independent fitter. The paper's conclusion reproduces from its published radial velocities; the velocities themselves do not yet reproduce from the archive, and a positive control on the known binary brown dwarf GJ 229 B establishes that the shortfall is precision rather than a broken extraction. Every claim the project published and later found false is indexed in HANDOFF.md. No discovery is claimed. Beyond the reproduction it derives a feasibility framework for applying the method to other directly imaged companions, calibrated on the achieved precision rather than a forecast, and inventories the public VLTI/GRAVITY holdings that make an independent astrometric route possible. Its most transferable result is negative: three separate changes that improved the science target were rejected by the GJ 229 B positive control, because on a target with no detection anything that removes signal looks like success.",
   "creators": [
-    {"name": "Potts, Matthew"}
+    {
+      "name": "Potts, Matthew"
+    }
   ],
   "license": "MIT",
   "access_right": "open",
-  "keywords": ["astronomy", "exomoon", "exosatellite", "radial velocity", "brown dwarf", "CRIRES+", "direct imaging", "reproducibility"]
+  "keywords": [
+    "astronomy",
+    "exomoon",
+    "exosatellite",
+    "radial velocity",
+    "brown dwarf",
+    "CRIRES+",
+    "direct imaging",
+    "reproducibility",
+    "astrometry",
+    "VLTI/GRAVITY",
+    "interferometry"
+  ]
 }

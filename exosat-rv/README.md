@@ -15,11 +15,15 @@ Everything this project does runs on a laptop against public archives. See
 [`DATA-SOURCES.md`](DATA-SOURCES.md) for endpoints and their known incompletenesses, and
 [`BUILD-PLAN.md`](BUILD-PLAN.md) for the milestone plan.
 
-**Current state: M0–M6 complete.** Findings:
+**Current state: M0–M11 complete.** Findings:
 [`M0`](M0-RESULTS.md) archive · [`M1`](M1-RESULTS.md) the source, and two retractions ·
 [`M2`](M2-RESULTS.md) RV extraction · [`M3`](M3-RESULTS.md) the positive control ·
 [`M4`](M4-RESULTS.md) aliases · [`M5`](M5-RESULTS.md) analogues ·
-[`M6`](M6-RESULTS.md) **the reproduction**.
+[`M6`](M6-RESULTS.md) **the reproduction** · [`M7`](M7-RESULTS.md) the literature, and
+three attribution corrections · [`M8`](M8-RESULTS.md) young close-in giants ·
+[`M9`](M9-RESULTS.md) order screening falsified, and a trap the control caught ·
+[`M10`](M10-RESULTS.md) the astrometric route · [`M11`](M11-RESULTS.md) the template
+rebuilt the published way — and why it suppresses the signal.
 
 ## The verdict
 
@@ -136,6 +140,129 @@ M5 also found that this is **not white space**: programme 110.23RW is a pilot su
 same group across AB Pic B, beta Pic B and CD-35 2722 B, and every later programme targets
 CD-35 2722 B alone.
 
+## Generalising the method (M7–M8)
+
+The obvious next question — *where else does this work?* — turned out to have a published
+answer the project had never read. Hoy et al.'s reference [11] is
+[Lazzoni et al. 2022](https://arxiv.org/abs/2207.07569), by four of their own co-authors,
+which simulates satellite populations around 38 imaged companions and computes RV detection
+probabilities for each. The method itself was proposed by
+[Vanderburg, Rappaport & Mayo 2018](https://arxiv.org/abs/1805.01903), and **three published
+nulls preceded this detection**, not the one SPEC named (under the wrong author). There is
+now a `papers/` archive and [`scripts/fetch_paper.py`](scripts/fetch_paper.py) to extend it.
+
+**[`M7`](M7-RESULTS.md) — the feasibility framework.** Four conditions, not two: wobble,
+flux, dynamical allowance, and *survival*. Two results worth stating:
+
+- **eta Tel B is the best analogue on two independent criteria.** M5 ranked it #1 on archive
+  holdings alone; Lazzoni et al. rank it **4th of 38** on physics alone. Neither ranking
+  shares an assumption with the other.
+- **No imaged companion reaches planet-like (Galilean/Titan-class) satellites.** This method
+  finds binary-like satellites or nothing — reproducing Lazzoni et al.'s central conclusion
+  from a threshold recalibrated on the *achieved* 31.44 m/s rather than their forecast, which
+  the real instrument beat by 1.6x.
+
+**[`M8`](M8-RESULTS.md) — young close-in giants.** Pushing the M_host^(-2/3) scaling to
+hot Jupiters: an Earth-mass moon there gives K ~ 71 m/s, and a 10 M_Earth one ~708 m/s,
+*larger* than the 246 m/s actually detected. The signal is easy; survival is the problem.
+
+An old hot Jupiter is tidally locked to its star, which puts its corotation radius outside
+the Hill-stability limit — so **every dynamically stable satellite is inside corotation and
+spirals in**. A *young* planet has not been despun and the window is open. The catch is that
+hot Jupiters cannot be spatially resolved, so the slit trick is replaced by cross-correlation
+spectroscopy, which needs the planet's velocity to sweep >= 30 km/s in a night. Survival wants
+a wide orbit; cross-correlation wants a narrow one, and the trade is
+**tau_spin-down ~ M_star t^3 / dv^3** — a factor 2 in observability costs 8 in survival time.
+
+**3 known planets clear both cuts at the pessimistic tidal Q, 8 at the optimistic one**
+(`exosat-rv closein`). And planet mass is the cheapest lever: the planetary range runs to
+13 M_Jup, spin-down goes as M_p while the satellite geometry is self-similar, so **from
+~5 M_Jup upward the observability bar clears unaided.** No such planet is currently known
+young *and* close enough — CoRoT-20 b (4.3 M_Jup, 0.090 au) misses by 1.25x — which makes
+that a gap in the catalogue rather than in the physics.
+
+The prize is not the moon. Massive satellites do not survive high-eccentricity migration
+([Martinez et al. 2020](https://arxiv.org/abs/2008.13778)) and preferentially do survive
+disc migration, so **a limit at 10–30 M_Earth around a young hot Jupiter discriminates
+between hot-Jupiter migration channels** — and RV is most sensitive to exactly the massive
+satellites the theory says are the survivors.
+
+## The control earned its keep (M9)
+
+M9 tested whether per-order screening could close the extraction gap. It cannot — **6%**,
+against the factor of 25 needed — and the individual nodding frames the plan had ranked first
+turn out to be a **10%** lever, quantified in the paper's own Fig. 4. Both cheap levers are
+now measured rather than assumed, and the conclusion is that the shortfall is **entirely
+per-order**: median per-order rms is 2133 m/s over 10 orders, the √10 floor is 674, and viper
+delivers 823. The combination stage was never the problem.
+
+The more useful result is a near miss. **Weighting orders by their measured scatter gives the
+best number the project has produced on CD-35 2722 B — 514 m/s, a 1.6× gain — and destroys
+the GJ 229 B control**, dropping Δχ² from 63.8 to 5.8 and the recovered amplitude from 6165
+to 1825 m/s on a binary nobody disputes. For a target with a real signal, an order's scatter
+*is* the signal, so inverse-scatter weighting deletes exactly what it should keep. On a target
+with no detection that is invisible.
+
+HANDOFF has said since M3 that no result from this pipeline may be reported without re-running
+the control. **M9 is the first time that rule actually caught something**, and without it the
+screen would have been adopted and every later null made deeper and more wrong.
+
+## The template, rebuilt the published way (M11)
+
+M9 named the template as the leading suspect, so M11 ran it: viper under WSL, the recipe from
+Köhler et al. 2025 §2.2 that Hoy et al. defer to, two template iterations, telluric-derived
+wavelength solution. **CD-35 2722 B improved, 776 → 620 m/s. The control collapsed.**
+
+| Template | Control Δχ² | Recovered K | vs. correct |
+|---|---:|---:|---:|
+| 0 iterations (baseline) | 76.5 | 5948 m/s | 100% |
+| 1 iteration | 23.7 | 2452 m/s | **41%** |
+| 2 iterations (the published recipe) | 21.1 | 2360 m/s | **40%** |
+
+**Self-templating absorbs the signal.** The template is co-added from the target's own spectra
+aligned by RVs measured against a template that already contains the signal, so the residual
+is baked in and later velocities are partly the star measured against itself. The damage
+arrives with the *first* iteration and does not recover. Köhler et al. flag the hazard for
+targets with real Doppler shifts; their prescribed workaround is what viper implements, and
+at our precision it was not enough.
+
+CD-35 2722 B "improved" because that is what suppression looks like on a target with no
+detected signal. **Three changes in a row have now improved the science target and been
+rejected by the control** — M9's empirical weighting, M9's telluric screen, and this. On a
+non-detection, anything that removes signal looks like success.
+
+**Net movement on the reproduction: none.** Still 776 m/s against 31.44 needed. What it did
+buy is elimination: the template, order screening and the nodding frames are all now measured
+rather than assumed, and the leading suspect is what remains — the ADP→cr2res conversion,
+verified *lossless* but never verified to put segments in the right order/detector slots.
+
+## A second route, with better data (M10)
+
+M9 closed the cheap options on the RV extraction gap, so M10 asked whether the project's
+actual goal — bounding a *new* exosatellite — has another path. It does, and its public
+dataset is better:
+
+| Dataset | Nights | Baseline |
+|---|---:|---:|
+| CD-35 2722 B — the published RV detection | 18 | 466 d |
+| eta Tel B — M5's best RV analogue | 16 | 800 d |
+| **beta Pic b — VLTI/GRAVITY astrometry** | **28** | **2987 d** |
+
+Astrometry also **outranks RV in Lazzoni et al.'s own table** (P = 0.999 vs 0.996) and reaches
+*below* RV's ~0.4 M_Jup floor. And **HD 206893 B, where Blunt et al. 2026 report a tentative
+astrometric exomoon candidate, has 22 public reduced nights** — their result is reanalysable.
+
+**beta Pic b is the crossover target**: #2 in M7's RV ranking, one of Blunt et al.'s two best
+astrometric targets, and the best public GRAVITY dataset of the five. It is the one object
+where an RV limit and an astrometric limit could be set independently and cross-checked.
+(M5 *rejected* it for RV — 753 frames on 6 nights. The same target can be hopeless for one
+technique and best-in-class for another.)
+
+⚠️ **A kill-check is open.** This is the M0-equivalent, not the M1-equivalent: the data is
+public and reduced, but whether those visibility products carry the dual-field differential
+phase astrometry needs is unverified. M1's precedent applies — the first automated verdict on
+ESO's CRIRES+ products was wrong. See [`M10-RESULTS.md`](M10-RESULTS.md) §5.
+
 ## Continuing this work
 
 Start at [`HANDOFF.md`](HANDOFF.md) — it opens with where the project stands and the ordered
@@ -155,6 +282,10 @@ exosat-rv probe              # M1: open a reduced product, check viper can use i
 exosat-rv targets            # M5: analogue target list, archive-first
 exosat-rv alias              # M4: is the second period set by the data or the sampling?
 exosat-rv orbits             # M6: reproduce the model comparison from the published RVs
+exosat-rv survey             # M7: which imaged companions can the method work on?
+exosat-rv closein            # M8: can it reach satellites of young close-in giants?
+exosat-rv orders             # M9: per-order screening, and the ceiling on what it buys
+exosat-rv gravity            # M10: public VLTI/GRAVITY data on the astrometric shortlist
 pytest -m "not network"      # offline suite
 pytest                       # adds the live archive assertions
 ```

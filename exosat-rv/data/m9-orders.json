@@ -1,0 +1,176 @@
+{
+  "tag": "full1",
+  "orders": [
+    {
+      "order": 7,
+      "wavelength_nm": 1567.1390990343257,
+      "rms_ms": 1768.3606218098332,
+      "median_formal_err_ms": 533.8972558917335,
+      "error_ratio": 3.312174022801928,
+      "median_fit_rms": 5.450694349866512,
+      "telluric_snr": 0.30667351466024206,
+      "dropped": false
+    },
+    {
+      "order": 8,
+      "wavelength_nm": 1577.7169118942033,
+      "rms_ms": 4130.374948183564,
+      "median_formal_err_ms": 101.13220901769016,
+      "error_ratio": 40.84134014575984,
+      "median_fit_rms": 30.394699379360752,
+      "telluric_snr": 0.009216392420796573,
+      "dropped": true
+    },
+    {
+      "order": 9,
+      "wavelength_nm": 1600.4503422946193,
+      "rms_ms": 2485.132128667735,
+      "median_formal_err_ms": 356.60789581114,
+      "error_ratio": 6.968808480852774,
+      "median_fit_rms": 7.904540483113189,
+      "telluric_snr": 0.01275761533682625,
+      "dropped": false
+    },
+    {
+      "order": 10,
+      "wavelength_nm": 1611.8925412645992,
+      "rms_ms": 1784.7570444120859,
+      "median_formal_err_ms": 429.7114407425688,
+      "error_ratio": 4.153384981623742,
+      "median_fit_rms": 7.258974812156437,
+      "telluric_snr": 0.024187533074853138,
+      "dropped": false
+    },
+    {
+      "order": 11,
+      "wavelength_nm": 1622.776911421611,
+      "rms_ms": 3954.497488659616,
+      "median_formal_err_ms": 1221.065087834068,
+      "error_ratio": 3.2385640438497227,
+      "median_fit_rms": 4.6868823987499,
+      "telluric_snr": 0.7724374009168117,
+      "dropped": false
+    },
+    {
+      "order": 12,
+      "wavelength_nm": 1647.4955933899357,
+      "rms_ms": 1395.9699906486092,
+      "median_formal_err_ms": 444.19151645859256,
+      "error_ratio": 3.1427209636470876,
+      "median_fit_rms": 6.010620189754201,
+      "telluric_snr": 1.482970615219124,
+      "dropped": false
+    },
+    {
+      "order": 13,
+      "wavelength_nm": 1659.2604197184687,
+      "rms_ms": 2113.2386511281165,
+      "median_formal_err_ms": 455.9918696649608,
+      "error_ratio": 4.634377917046668,
+      "median_fit_rms": 4.159795039404315,
+      "telluric_snr": 0.12610370974062074,
+      "dropped": false
+    },
+    {
+      "order": 14,
+      "wavelength_nm": 1670.455069525999,
+      "rms_ms": 2152.3831010677363,
+      "median_formal_err_ms": 483.51770249896356,
+      "error_ratio": 4.451508372792928,
+      "median_fit_rms": 4.9370824214743685,
+      "telluric_snr": 1.835148130122848,
+      "dropped": false
+    },
+    {
+      "order": 15,
+      "wavelength_nm": 1697.3682695277428,
+      "rms_ms": 2326.526926181267,
+      "median_formal_err_ms": 445.84682121073604,
+      "error_ratio": 5.218220284409294,
+      "median_fit_rms": 4.637743497818948,
+      "telluric_snr": 4.011448938824394,
+      "dropped": false
+    },
+    {
+      "order": 16,
+      "wavelength_nm": 1709.4777851317806,
+      "rms_ms": 1082.2112627302622,
+      "median_formal_err_ms": 264.1386940877335,
+      "error_ratio": 4.097132631278954,
+      "median_fit_rms": 4.1525538017708055,
+      "telluric_snr": 4.611212357737474,
+      "dropped": false
+    }
+  ],
+  "screens": {
+    "all orders, equal (viper as-run)": {
+      "target_rms_ms": 823.1,
+      "control_dchi2": 63.8,
+      "control_k_ms": 6165.0
+    },
+    "all orders, inverse formal variance": {
+      "target_rms_ms": 2620.0,
+      "control_dchi2": 20.5,
+      "control_k_ms": 5421.5
+    },
+    "drop order 8, equal": {
+      "target_rms_ms": 775.5,
+      "control_dchi2": 76.5,
+      "control_k_ms": 5948.1
+    },
+    "drop order 8, empirical weights": {
+      "target_rms_ms": 513.7,
+      "control_dchi2": 5.8,
+      "control_k_ms": 1825.3
+    },
+    "telluric-constrained orders only": {
+      "target_rms_ms": 1141.8,
+      "control_dchi2": 46.7,
+      "control_k_ms": 3620.3
+    }
+  },
+  "accepted_screen": "drop order 8, equal",
+  "combined_rms_ms": 775.5250858903697,
+  "ceiling_ms": 775.5,
+  "target_ms": 31.44,
+  "bjd": [
+    2460696.6456115656,
+    2460312.5616805987,
+    2460318.7712704595,
+    2460320.6801158413,
+    2460328.5502090706,
+    2460339.6560602556,
+    2460647.8354338035,
+    2460666.7973373244,
+    2460674.742469253,
+    2460624.8335913285,
+    2460600.758799942,
+    2460604.821429683,
+    2460280.813205721,
+    2460285.8067494896,
+    2460300.7913322095,
+    2460230.868964207,
+    2460370.536457152,
+    2460388.6269674073
+  ],
+  "rv_ms": [
+    -1565.4298438433145,
+    -699.8685526098163,
+    -1105.3786092671369,
+    -998.7356304122064,
+    -1624.7255295871066,
+    -743.0916548763026,
+    -450.81155361102145,
+    -1233.50282282365,
+    -668.6078408673062,
+    -1177.814681257999,
+    -2086.3398785513755,
+    -4046.8874060173525,
+    -913.9470134420212,
+    -1034.7193232253098,
+    -1077.3129563702346,
+    -1324.0452185836884,
+    -752.7469195956263,
+    -1271.9863801301706
+  ]
+}

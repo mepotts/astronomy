@@ -73,10 +73,6 @@ def inventory(
     typer.echo(f"\nwrote {path}")
 
 
-if __name__ == "__main__":
-    app()
-
-
 @app.command()
 def probe(
     n: int = typer.Option(1, help="How many products to download and open."),
@@ -253,3 +249,86 @@ def orbits(starts: int = typer.Option(400, help="Optimiser restarts per model.")
                f"(paper quotes {PUBLISHED.delta_logz_88_vs_115})")
     typer.echo(f"  vs 1-sat : dlogZ proxy {orb.delta_logz_proxy(best, one):.2f}  "
                f"(paper quotes {PUBLISHED.delta_logz_two_vs_one})")
+
+
+@app.command()
+def survey(
+    threshold: str = typer.Option("hoy", help="Detection threshold: 'hoy' (calibrated) or 'lazzoni'."),
+    out: str = typer.Option("m7-survey.json", help="Report filename under data/."),
+) -> None:
+    """M7: which directly imaged companions can the Hoy et al. method work on?"""
+    from .analysis.survey import run_survey
+
+    rows, meta = run_survey(threshold=threshold)
+    typer.echo(f"Hoy-method feasibility, {len(rows)} directly imaged companions "
+               f"({meta['threshold_label']})\n")
+    typer.echo(f"{'companion':24s}{'M/MJup':>8s}{'K':>7s}{'sigma_RV':>10s}"
+               f"{'min m_sat':>11s}{'a_stable':>10s}  verdict")
+    typer.echo("-" * 92)
+    for r in rows:
+        typer.echo(f"{r['name']:24s}{r['m_host_mjup']:8.1f}{r['k_mag']:7.2f}"
+                   f"{r['threshold_ms']:9.1f}{r['min_sat_mearth']:11.2f}"
+                   f"{r['stability_au']:10.3f}  {r['verdict']}")
+    typer.echo(f"\n  planet-like reachable: {meta['n_pass']}   sub-Jovian: {meta['n_marginal']}   "
+               f"binary-like or out of reach: {meta['n_fail']}")
+    typer.echo(f"  {meta['note']}")
+
+    DATA.mkdir(exist_ok=True)
+    path = DATA / out
+    path.write_text(json.dumps({"targets": rows, "meta": meta}, indent=2), encoding="utf-8")
+    typer.echo(f"\nwrote {path}")
+
+
+@app.command()
+def closein(
+    max_age_myr: float = typer.Option(200.0, help="Age cut, Myr."),
+    t_obs_hr: float = typer.Option(8.0, help="Length of one observing block, hours."),
+    q_planet: float = typer.Option(1e5, help="Planetary tidal quality factor."),
+    out: str = typer.Option("m8-closein.json", help="Report filename under data/."),
+) -> None:
+    """M8: can the method reach satellites of young close-in giants ('hot Jupiters')?"""
+    from .analysis.closein import run_closein
+
+    rows, meta = run_closein(max_age_myr=max_age_myr, t_obs_hr=t_obs_hr, q_planet=q_planet)
+    typer.echo(f"Young close-in giants, age < {max_age_myr:.0f} Myr, Q_p = {q_planet:.0e}\n")
+    typer.echo(f"{'planet':20s}{'age':>6s}{'a/au':>7s}{'Mp':>6s}{'spin':>6s}"
+               f"{'window/dex':>11s}{'dv/kms':>8s}{'m_min/ME':>9s}  verdict")
+    typer.echo("-" * 96)
+    for r in rows:
+        typer.echo(f"{r['name']:20s}{r['age_myr']:6.0f}{r['sma_au']:7.3f}{r['m_planet_mjup']:6.2f}"
+                   f"{'sync' if r['synchronised'] else 'fast':>6s}{r['window_dex']:11.2f}"
+                   f"{r['swing_kms']:8.1f}{r['min_sat_mearth']:9.1f}  {r['verdict']}")
+    typer.echo(f"\n  survivable: {meta['n_survivable']}   observable: {meta['n_observable']}   "
+               f"BOTH: {meta['n_both']}")
+    for line in meta["conclusion"]:
+        typer.echo(f"  {line}")
+
+    DATA.mkdir(exist_ok=True)
+    path = DATA / out
+    path.write_text(json.dumps({"targets": rows, "meta": meta}, indent=2), encoding="utf-8")
+    typer.echo(f"\nwrote {path}")
+
+
+@app.command()
+def orders(
+    tag: str = typer.Option("full1", help="viper run tag under data/viper/."),
+    out: str = typer.Option("m9-orders.json", help="Report filename under data/."),
+) -> None:
+    """M9: per-order screening -- and the measured ceiling on what it can buy."""
+    from ._orders_cmd import run
+
+    run(tag, out)
+
+
+@app.command()
+def gravity(
+    out: str = typer.Option("m10-gravity.json", help="Report filename under data/."),
+) -> None:
+    """M10: public VLTI/GRAVITY data on the astrometric exomoon shortlist."""
+    from ._gravity_cmd import run
+
+    run(out)
+
+
+if __name__ == "__main__":
+    app()

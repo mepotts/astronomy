@@ -68,19 +68,39 @@ separation are**:
 ## Honest prior-art assessment
 
 - **This is not a novel method, and the analogue survey is not white space.** The technique
-  is the paper's. **Correction:** earlier drafts cited a "GQ Lup B exosatellite search
-  (Köhler et al. 2024)" at arXiv:2408.10299 as a viper/CRIRES+ precursor by the same group.
-  That paper uses **Keck/KPIC** — a different instrument — and the authorship attribution was
-  wrong. It *is* the first dedicated RV exosatellite search around a directly imaged
-  companion, and so is the right prior for M5, but not a viper result. The relevant Köhler
-  paper is the viper instrument paper, [arXiv:2505.08315](https://arxiv.org/abs/2505.08315),
-  A&A 698 A44 (2025). M5 measured the archive and found the shape of the programme behind it:
-  **110.23RW** (Nov 2022 – Feb 2023) is a pilot across AB Pic B, beta Pic B and CD-35 2722 B;
-  every later programme (112.25HG, 114.271E, 116.2AP9) is CD-35 2722 B alone. There is also a
-  published null on [GQ Lup B](https://arxiv.org/abs/2408.10299) (Köhler et al. 2024, a
-  co-author here). **The same group is already running the survey M5 imagines.** Anything M5
-  produces is a reanalysis of their data, not an independent search, and must be described
-  that way.
+  is the paper's, and it has a documented prior literature that M7 finally read in full
+  (`papers/`). **Two corrections, the second found only in M7 by reading Hoy et al.'s own
+  reference list:**
+
+  1. Earlier drafts cited the GQ Lup B exosatellite search at arXiv:2408.10299 as a
+     viper/CRIRES+ precursor. It uses **Keck/KPIC**, a different instrument.
+  2. That paper is **Horstman et al. 2024**, not "Köhler et al. 2024" — Köhler is not an
+     author on it at all. And it is **not** the first dedicated RV exosatellite search
+     around a directly imaged companion: **Ruffio et al. 2023** (HR 7672 B, AJ 165 113,
+     arXiv:2301.04206) and **Vanderburg & Rodriguez 2021** (HR 8799, arXiv:2110.14650)
+     both precede it, and **Vanderburg, Rappaport & Mayo 2018** (arXiv:1805.01903)
+     proposed the method. Three published nulls existed before Hoy et al.'s detection;
+     SPEC previously named one of them, under the wrong author, with the wrong priority.
+
+  The relevant Köhler paper is the viper instrument paper,
+  [arXiv:2505.08315](https://arxiv.org/abs/2505.08315), A&A 698 A44 (2025). M5 measured the
+  archive and found the shape of the programme behind it: **110.23RW** (Nov 2022 – Feb 2023)
+  is a pilot across AB Pic B, beta Pic B and CD-35 2722 B; every later programme (112.25HG,
+  114.271E, 116.2AP9) is CD-35 2722 B alone. **The same group is already running the survey
+  M5 imagines.** Anything M5 produces is a reanalysis of their data, not an independent
+  search, and must be described that way.
+- **The detectability of this method was forecast before it worked, and the forecast is
+  citable.** Hoy et al.'s reference [11] is **Lazzoni et al. 2022** (MNRAS 516 391,
+  arXiv:2207.07569), by four of their own co-authors, which simulates satellite populations
+  around 38 directly imaged companions and predicts that *binary-like* satellites are
+  detectable by RV (P ~ 0.996 at f = 1) while *planet-like* ones are not (P ~ 0.08). M7
+  reproduces that split and recalibrates its threshold on the real detection.
+- **A second, independent exosatellite candidate now exists, by astrometry.** Blunt et al.
+  2026 ([arXiv:2511.20091](https://arxiv.org/abs/2511.20091), A&A) report tentative
+  VLTI/GRAVITY astrometric residuals around **HD 206893 B** consistent with a ~0.4 M_Jup
+  companion at P ~ 0.76 yr, and flag them as possibly systematic. Two tentative candidates
+  around substellar companions, by two techniques, inside a year. Any framing of Hoy et al.
+  as a lone result is out of date. See [`M7-RESULTS.md`](M7-RESULTS.md) §6b.
 - **Reproductions rarely overturn detections, and should not be framed as trying to.** The
   169 d signal has a fitted amplitude of 246.45 m/s against ~31 m/s per-epoch errors. The
   realistic outcomes are: it reproduces (most likely and worth recording), or the second
@@ -94,6 +114,21 @@ separation are**:
   publishing exactly that — [astrometric limits on beta Pic b satellites](https://arxiv.org/abs/2512.00160)
   (2025) — and limits on satellite mass around imaged companions are a real contribution.
   Framing M5 as a discovery hunt would be dishonest about the base rate.
+
+## Scope added after M6, and how it is labelled
+
+The reproduction is a *prerequisite*, not the goal — the goal is to find or bound a **new**
+exosatellite. Four milestones extend the project toward that, and they are not all equal in
+standing:
+
+- **M7 (generalisation) and M10 (astrometric route) are on the main line.** Both stay within
+  "apply the same method to substellar-companion analogues", both are archive-first, and both
+  serve the goal directly.
+- **M8 (young close-in giants) is a spur, and is labelled one.** It is not ESO archive data,
+  not CRIRES+, not a reproduction of anything, and its observable is cross-correlation
+  spectroscopy rather than slit spectroscopy of a resolved companion. It answers a real
+  question and it is not the same project. Do not let it drift into the main sequence.
+- **M9 and M11 are diagnostic**, both negative, both aimed squarely at the prerequisite.
 
 ## Non-goals
 

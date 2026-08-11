@@ -1,0 +1,1214 @@
+<<<PAGE 1>>>
+MNRAS000, 1–14 (2025) Preprint 17 September 2025 Compiled using MNRAS L ATEX style file v3.2
+Massive Retrograde Moons May Survive During Different Hot Jupiters’
+Migration Scenario
+Yangjun Pu,1★ Chenyang Li,1 and Bohang Zhu1
+1School of Astronomy and Space Science, Nanjing University, Nanjing 210023, China
+Accepted XXX. Received YYY; in original form ZZZ
+ABSTRACT
+Searching for exomoons is attempted via Kepler and TESS, but none is confirmed. Theoretically, similar with Jupiter, the gas
+giants are possible to generate moons. However, HJs which are considered to form outside and then move close to the star are
+thought not easy to sustain the original moons via dynamical effects. In this paper, we assume the HJ to form at 1 AU and
+move inward via disk migration or migration due to planet secular coplanar. Then we simulate the dynamics of exomoon-planet
+systems during migration, and we want to study the fates of different original moons. We find that both prograde and retrograde
+moons could maintain stable after disk migration, although the retained fraction of retrograde moons is 5 times higher than
+the prograde moons. Only massive and retrograde moons (greater than 10 Earth masses) might survive around HJs during the
+coplanar excitation. Furthermore, 6% of the original Jupiter-like planet can also form free-floating planets after undergoing
+coplanar excitation, and most of them retain their moons. Our results focus on the fate of the exomoons and provide a clue on
+where to find the moon for future missions.
+Key words:Exomoon – Hot Jupiter – Disk Migration – High Eccentricity Migration
+1 INTRODUCTION
+Exomoons are natural satellites that orbit exoplanets. The discovery
+and characterization of exomoons could help us understand their
+distinctformationmechanismsincludinggiantimpactsandaccretion
+in circumplanetary envelopes [e.g.Canup (2004); Morbidelli et al.
+(2012)]. Large exomoons around gas giants might have water on
+their surfaces and could be habitable for humanoids [e.g.Williams
+etal.(1997);Kaltenegger(2010)].Althoughexomoonsareexpected
+to be abundant, their existence remains challenging to observe and
+none have been confirmed [Strøm (2024)].
+Since exomoons can induce significant variations in the transit
+lightcurve,thetransitmethodandTTV(transittimingvariations)are
+theprimarytechniquestodetectthem[Kipping(2009),Kippingetal.
+(2013)]. Direct imaging, orbital phase variations, and gravitational
+microlensing also have the potential to detect exomoons [Agol et al.
+(2015), Brahm et al. (2015), Limbach et al. (2023)].
+Kippingetal.(2013)conductedacomprehensivesearchforex-
+omoons around cold Jupiters, utilizing the Kepler Space Telescope.
+However, to date, only two promising candidates have been iden-
+tified: Kepler-1625 b-i and Kepler-1708 b-i [Kipping et al. (2022),
+Teachey&Kipping(2018)].Theradiiofthesetwoexomoonsare0.5
+and 2.6 Earth radii, respectively. These discoveries do not confirm
+the widespread existence of massive moons in the universe, since
+large moons may be more easily detected through transit observa-
+tions. Moreover, some researchers argue that these exomoons do not
+actually exist and that the observed signals could be attributable to
+★ E-mail: 221840318@smail.nju.edu.cn
+planetaryringsorperturbationsfromotherplanets[Heller&Hippke
+(2024)].
+In addition to the observed cold Jupiters, exomoons orbiting
+hot Jupiters have also been extensively investigated. Planets with
+masses greater than 0.25 Jupiter masses and orbital periods of less
+than10daysaretypicallyclassifiedashotJupiters[Dawson&John-
+son (2018)]. Previous theoretical studies have suggested that hot
+Jupiters are unlikely to retain satellites. For these hot Jupiters, from
+the perspective of tidal interactions, the tidal equilibrium point of
+the star–planet–satellite system either does not exist or lies beyond
+the stable Hill sphere [Adams & Bloch (2016)]. When considering
+magnetic fields, moons around hot Jupiters tend to lie within the
+corotationradiusandareexpectedtoeventuallyspiralinward,cross-
+ingtheplanetaryRochelimitonaMyrtimescale[Wei&Lin(2024)].
+Overall, moons orbiting hot Jupiters lack long-term stability.
+Existing theories suggest that hot Jupiters achieve their current
+orbits through two primary mechanisms, disk migration or high-
+eccentricity migration [Dawson & Johnson (2018)]. In the disk mi-
+gration model, a massive planet exchanges angular momentum with
+thesurroundinggasandopensagapintheprotoplanetarydisk.Asa
+result, it experiences inward Lindblad torques, causing it to migrate
+from an initial orbit of 1–5 AU to within 0.1 AU before the disk
+dissipates [Goldreich & Tremaine (1980), Lin & Papaloizou (1986),
+Baruteau et al. (2014)]. In the high-eccentricity migration scenario,
+giant planets undergo eccentricity excitation through mechanisms
+such as the Lidov-Kozai mechanism, planet-planet scattering, secu-
+larchaos,andcoplanarinteractions[Kozai(1962),Kozai(1962),Ida
+& Lin (2004), Laskar (1989),Petrovich (2015)]. Subsequently, the
+planet transfers orbital energy to the star through tidal dissipation at
+©2025 The Authors
+arXiv:2509.13263v1  [astro-ph.EP]  16 Sep 2025
+
+<<<PAGE 2>>>
+2Pu et al.
+periastron, ultimately circularizing its orbit and transforming into a
+hot Jupiter [Eggleton et al. (1998)].
+From the perspective of different hot Jupiters formation pro-
+cesses, Namouni (2010) found that the timescale for the tidal effects
+ofplanetarytidesonsatelliteorbitsismuchlongerthanthetimescale
+fordiskmigration.Therefore,aplanetislikelytobecomehotJupiter
+wellbeforeitsmoonmigratesinsidethefinalHillSpherebecauseof
+stellar tides. For satellites in close orbits, Barnes & O’Brien (2002)
+investigated the orbital stability of satellites around hot Jupiters, and
+argued that low-mass, hard-to-detect satellites are more stable than
+high-masssatellites.However,otherresearchersusingdifferenttidal
+modelshavereachedtheoppositeconclusion,suggestingthatEarth-
+masssatellitesincloseorbitscouldremainstableoverGyrtimescales
+[Cassidy et al. (2009)].
+In the high-eccentricity migration mechanism, the process of
+eccentricity excitation is likely to lead to the destabilization of satel-
+lites. For the planet-planet scattering mechanism, it is generally a
+destructive process for the planet-satellite system, and the resulting
+hot Jupiters are almost incapable of retaining moons [Gong et al.
+(2013)]. In terms of the distribution of satellite semi-major axes,
+satellites with semi-major axes greater than 0.1 times the Hill ra-
+dius are systematically removed from the system, while satellites
+with semi-major axes smaller than 0.04 times the Hill radius have a
+survival rate of 20-40% [Hong et al. (2018)]. For the Lidov-Kozai
+mechanism, Trani et al. (2020) found that satellites cannot survive
+eccentricity excitation, but there is a 1-6%chance of becoming sta-
+ble planets. Specifically, for Neptune-mass satellites, there is a 10%
+chance of suppressing eccentricity excitation.
+Although a series of previous research have suggested that hot
+Jupiters might not retain exomoons, their methodologies often con-
+tain significant flaws. On one hand, some papers focused on exo-
+moons stability when hot Jupiter have resided under tides, magnetic
+field, concluding that they may not survive after 1 Gyr; However,
+many projects concentrated young clusters, where exomoons orbit-
+ing gas giants are too young to become unstable. On the other hand,
+otherresearchexaminingthestabilityofexomoonsduringmigration
+processes—such as disk migration and high-eccentricity migration
+oftenoverlookretrogrademoons,whichhavebeenshowntobemore
+stable than their prograde counterparts. Furthermore, the different
+patternsofeccentricityexcitationcandramaticallyinfluencethefate
+ofbothplanetsandmoons.Thecoplanarmechanism,forinstance,of-
+tenexcitesplanetswithin0.1Myranddoesnotrequirecloseencoun-
+terswithotherplanets.Thisreducesthemagnitudeofthedestructive
+processes involved and shortens the excitation timescale compared
+to secular chaos and the Lidov-Kozai mechanism. This study aims
+to investigate the stability of exomoons with varying inclinations or
+masses during these two migration patterns through the Rebound
+Code and IAS15 Integrator [Rein & Liu (2012); Rein & Spiegel
+(2015)]. Special attention is given to the fate of massive retrograde
+moons, as they are more likely to survive and be observed.
+The following sections are organized as follows: Part II de-
+scribes the methods and models used to study planetary migration,
+Part III presents the simulation results, Part IV discusses moon for-
+mation before planetary migration and compares our results with
+other studies, Finally, Part V summarizes the study.
+2 METHODS
+2.1 Disk Migration Model
+Planets more massive than Saturn can carve a gap in the disk. The
+giant planet becomes trapped in the annular gap, as both the inner
+and outer parts of the protoplanetary disk exert forces that keep it
+away and the total torques cause it to migrate inward with the disk.
+The process is known as disk migration and its timescale is of the
+same order as the viscous accretion timescale [Lin & Papaloizou
+(1986),Baruteau et al. (2014)]. Meanwhile, stellar tides can drive
+planetsoutward,whichresultsintheslowingandstagnationofplan-
+etarymigration[Heller(2019)].Thetheorycreatesatidalmigration
+barrier and can explain the concentration of hot Jupiters at∼0.04
+AU [Irwin et al. (2008),Schneider et al. (2011)].
+SeveralviscousevolutiondiskmodelsincorporatingMHDhave
+beenproposedtoaddresstherelationshipof𝑀 acc∝𝑀 𝛼
+★𝑡𝛽;However,
+there are ongoing debates whether a single power law is preferable
+to a double power law [Almendros-Abad et al. (2024)]. Moreover,
+although most studies set𝛼to 1,𝛼is only restricted to lie between
+0.7 and 1.5 [Lodato et al. (2017),Somigliana et al. (2022)]. The
+dispersion of mass-accretion rates is generally high, even for disks
+older than 5 Myr, which presents another challenge [Manara et al.
+(2020),Somigliana et al. (2024)].
+In contrast, we select a model based on observations of the
+Orion Nebula by Manara et al. (2012), to evaluate the survival rates
+ofmoonsorbitinghotJupiters.Thismodelisapplicabletostarmasses
+ranging from red dwarfs to A-type stars, with ages spanning from
+0.3 to 10 Myr. The model provides the following:
+log[𝑀𝑎𝑐𝑐]=−5.12−0.46 log
+ 𝑡
+yr
+
+−5.75 log
+𝑀★
+𝑀⊙
+
++1.17 log
+ 𝑡
+yr
+
+log
+𝑀★
+𝑀⊙
+ (1)
+TheplanetmigrationmodelisadaptedfromArmitage’slecture
+notes, which provide the following formula[Armitage (2007)]:
+d𝑎
+d𝑡 = ¤𝑀acc𝑎0.5/(9400𝜋)(2)
+Our stellar tide model chooses a time-dependent tidal dissipa-
+tionformulasummarizedbyHeller(formula7∼17)by:[Hut(1981),
+Eggleton et al. (1998), Hansen (2010), Heller (2019)].
+d𝑎=−𝑎
+∑︁
+𝑖=★,p
+1
+𝑇𝑖
+𝑓1(𝑒)
+𝛽15 − 𝑓2(𝑒)
+𝛽12
+Ω𝑖
+𝑛
+
+d𝑡 (3)
+Exomoonsorbitinggasgiantscouldmigrateinwardoroutward
+during planets’ migration. The timescale of Type-II migration is
+shorterthanthatforthetidalevolutionofmoonorbits.Therefore,the
+semi-majoraxisofthemoonremainsnearlystationaryduringthedisk
+migration, eventually leading to exomoons’ collision with the planet
+oritsescapefromthesystem[Namouni(2010)]whenthemoon’sor-
+bitexceedsHill’sSphere.Althoughanabruptchangeintheplanetary
+radius and rotation could push moons outward, mitigating the likeli-
+hood of them being disrupted by the planet [Alvarado-Montes et al.
+(2017)], planets undergoing disk migration typically do not experi-
+ence this scenario because of the steady disk conditions. Moreover,
+Glanz et al. (2022) claimed that gas giants cool and contract slowly,
+thusmakingasuddenchangeintheplanetaryradiushighlyunlikely.
+We also consider the formula proposed by Alvarado-Montes et al.
+(2017) in our tests, and the results demonstrate that the tidal effects
+on moons are negligible in the disk migration scenario. As such, we
+donotaccountforanytidalforcesactingonmoonsinoursimulation.
+Additionally, we examine the contraction and reinflation of hot
+Jupiters during the disk migration. Gas giants after runaway gas
+accretionmayhaveradiiupto100𝑅 𝐽 inthefirst10000years,followed
+by a rapid contracting phase to 3𝑅𝐽 lasting10 6 years[Ginzburg &
+Chiang(2019)].Thefinalcontractingphasecanbeslow,extending1
+MNRAS000, 1–14 (2025)
+
+<<<PAGE 3>>>
+Massive Moons Around Hot Jupiters3
+Gyr,whilehotJupitersaresensitivetoa10%changeinradiationand
+canundergoarapidreinflationprocess[Thorngrenetal.(2021)].Not
+only does a planet’s radius affect its migration rate, but its relatively
+large radius also compresses the region where moons can form and
+reduces the area of the stable region.
+We employ a thermal model concerning effective tempera-
+ture, core temperature, radius, radiation and emission developed by
+[Rozneretal.(2022)],themodelforhotJupiterinflationisasfollows:
+𝑑𝑅𝑝
+𝑑𝑡 ∝ 5𝛾−6
+3𝛾−4
+𝑅2𝑝
+𝐺𝑀 2𝑝
+(𝐿ext−𝐿 cool)
+𝑑𝑇𝑐
+𝑑𝑡 = 𝑚𝑝
+𝑀𝑝𝑘𝐵(𝐿ext−𝐿 cool)
+(4)
+2.2 High-eccentricity Migration Model
+Inthehigh-eccentricitymigrationscenario,thegasgiant’seccentric-
+ityisexcitedbyvariousmechanisms,afterwhichitundergoesorbital
+circulationanddecaythroughtidaldissipation.Herewefocussolely
+on the excitation by planet secular coplanar cases, where the inner
+planetmayevolveintoanon-inclinedhotJupiterunderthefollowing
+conditions [Petrovich (2015)]:
+𝑒1≤0.1,𝑒 2≥0.67,𝑚 1/𝑚2(𝑎1/𝑎2)1/2≤0.3(5)
+We adopt only dynamic tidal models. Considering a time-
+averaged evolution of orbital parameters in equilibrium tides cases,
+when the planet’s rotation and orbit are pseudo-synchronized,
+the changes in the planet’s semi-major axis and eccentricity can
+be given[Hut (1981), Hamers & Tremaine (2017),Glanz et al.
+(2022),Rozner et al. (2022)], where𝜏=0.66,𝑘𝐴𝑀 =0.25
+𝑑𝑎
+𝑑𝑡 𝑑𝑦𝑛 =−21𝑘 AM𝑛2𝜏𝑝
+𝑀★
+𝑀𝑝
+𝑅𝑝
+𝑎
+ 5
+𝑎 1
+(1−𝑒)21/2
+𝑑𝑒
+𝑑𝑡 𝑑𝑦𝑛 =− 21
+2 𝑘AM𝑛2𝜏𝑝
+𝑀★
+𝑀𝑝
+𝑅𝑝
+𝑎
+ 5 (1−𝑒 2)
+𝑒(1−𝑒)21/2
+(6)
+We do not consider equilibrium tides for several reasons. First,
+dynamical tides are significantly stronger than equilibrium tides for
+an extremely eccentric orbit (a=1, e=0.97). Gas giants could ex-
+perience orbital decay of greater than 0.0001 AU each year under
+dynamical tides, while planets undergoing merely equilibrium tides
+experienceorbitalchangessmallerthan10 −9 AUeachyear,whichis
+even less than the perturbation raised by the outer planet. Therefore,
+fortheinnerplanettobecomeahotJupiterundertheequilibriumtide
+scenario, its eccentricity usually needs to be excited to above 0.988.
+ThisprocessoftenresultsintheplanetfallinginsidetheRocheradius
+of the star or escaping from the system, even if the two planets are
+not completely coplanar. The slow migration rate in this case also
+significantly increases simulation time.
+Second, although two tidal models are apparently similar dur-
+ing low-eccentricity stages, we concentrate on the final phase of
+excitation and migration process. The initial period of the simula-
+tion is relatively inconsequential to the results, so the substitution of
+dynamical tides is unimportant.
+We also do not consider changes in the radius of hot Jupiters
+duringhigh-eccentricitymigration.Sinceeccentricityexcitationmay
+occur much later than disk dissipation, planets could contract suffi-
+ciently.EventhoughplanetsreinflatewhentheybecomehotJupiters,
+their radius hardly exceeds 2𝑅𝐽, and we place those moons at least
+0.001 AU from the planets. Therefore, the variation of the planetary
+radius could be neglected in this scenario.
+Figure 1.The evolution of hot Jupiter’s semi-major axisaduring Disk mi-
+gration.
+3 RESULTS
+3.1 Disk Migration
+3.1.1 Formation of Hot Jupiter through Disk Migration
+In the disk migration scenario, we begin each simulation with a
+Jupiter-mass planet located at 1 AU, and assume the stellar age is
+uniformly distributed between 0.3 and 3 Myr. The initial planetary
+radius is 2𝑅𝐽. We terminate the simulation once the hot Jupiter
+reachesitsfinalpositionandcompletes10,000orbitsaroundthestar.
+Inourprocedure,therealoneyearisequivalentto100years,andthe
+migration rate is correspondingly scaled. Therefore, the simulation
+terminates in 8000 Earth years when the migration completes.
+Fig. 1 shows the variation in the semi-major axis of the hot
+Jupiter during the disk migration. It takes 35000 years for a gas
+giant beginning at 1 AU to become a hot Jupiter with a period of
+3 days, and once it completes migration, its orbits remain nearly
+stagnant. The initial stellar age does not influence the final orbital
+elements.Additionally,thetimescaleofmigrationisonlymarginally
+influenced.Itcouldbepuzzlingtofindsuchashorttype-IImigration
+timescale. This is primarily due to the increased disk torque in the
+region close to the star. We also examine the mechanism by placing
+the planet initially at 5 AU, where the timescale is found to be 1.5
+Myr. As a result, our disk migration models are feasible and could
+provide plausible results regarding the stability of exomoons.
+3.1.2 Fate of Single Moon through Disk Migration
+In our simulation, the mass of moon is uniformly distributed loga-
+rithmically between10−12 and10 −4 solar mass, with a density of
+5𝑔/𝑐𝑚 3. The initial semi-major axis of prograde moons is scattered
+between 0.0275𝑅𝐻 and 0.0475𝑅𝐻, while that of retrograde moons
+is scattered between 0.014𝑅𝐻 and 0.055𝑅𝐻 and their eccentricities
+are uniformly set to 0.01. The inner boundary ofais close to the
+planetary radius, while the outer boundary ofais set to ensure it
+reaches the unstable region. As the gas giant migrates inward, its
+reduced Hill Sphere will shrink. However, the planet remains puffy
+sincethetimescaleofdiskmigrationisinsufficientforittocooldown
+and contract. For these highly inflated planets, their radii are even
+larger than their Roche limit. In most cases, the hot Jupiter ceases
+MNRAS000, 1–14 (2025)
+
+<<<PAGE 4>>>
+4Pu et al.
+migration when its semi-major axis reaches 0.043 AU, thus creating
+a belt between reduced Hill Sphere and planetary radius, the widths
+ofwhichareapproximately10 5 kmand3×10 5 kmforprogradeand
+retrograde moons, respectively.
+Fig.2showstheevolutionofthesemi-majoraxisofaprograde
+moon and a retrograde moon located 170 thousand kilometers away
+from the center of hot Jupiter. It can be observed that the moon
+generally maintains its initial semi-major axis during the migration
+process,butitseccentricitytendstoincreasebecauseofstellargravi-
+tationalperturbations.Evenifthesemi-majoraxisofprogrademoons
+issmallerthanthereducedHillSphere,theirorbitsareoftendisrupted
+oncethegasgiantbecomesahotJupiter.Theincreasingeccentricity
+may push the moon beyond the planet’s gravitational influence or
+cause it to sink within the gas giant’s atmospheric envelope. Retro-
+grade moons residing in the stable belt usually survive because of
+the wider belt and more stable configuration. Even if itsais close
+to the planetary radius, its eccentricity will not be excited, and the
+moon will not be torn apart.
+We simulated 3000 groups of gas giant disk migration with a
+prograde moon or a retrograde moon, respectively, and plotted the
+relationship between satellite survival rate and its mass or initial
+semi-major axis in Fig. 3. It is evident that retrograde moons orbit-
+ing hot Jupiters formed by disk migration have a higher chance of
+survival.
+For prograde cases, if we define the stable region as the area
+where a satellite has more than a 50% chance of survival at the start
+ofthesimulation,thewidthofthisregionwillbemerely30,000km.
+The inner boundary of the stable zone is approximately 155000 km,
+and the outer boundary of the survival region is about 185000 km.
+The reduced Hill Sphere for a 1𝑀𝐽 hot Jupiter holding a prograde
+moon is 230000 km, exceeding the stable zone. The difference be-
+tween reduced Hill Sphere in the Appendix and stable zone can be
+attributed to the addition of planetary radius. The simulation of Hill
+SphereBoundarytreatstheplanetasapointmass.Indiskmigration
+simulation, moons approaching reduced the Hill Sphere boundary
+would be perturbed by stellar gravitational force and their eccen-
+tricity would be excited. Eventually, they would be disrupted by the
+planet before they escape from the gravitational range of a planet.
+Fig. 3 also demonstrates that the survival rate is independent
+of the moon’s mass (unless its mass exceeds 3𝑀𝐸), which is evident
+because the planetary gravitational range is unassociated with the
+mass of a third celestial body.
+For gas giants born at 5 AU rather than 1 AU, the chance of a
+moon’s survival will not increase. Since changes in orbital elements
+causedbytidalforcesaremuchweakerthanthedisktorquesexerted
+on the planet, the survival rates of the moon are completely reliant
+on the original parameters. If we consider that the semi-major axis
+ofmoonsislogarithmicallyuniformlydistributedinthecircumplan-
+etary disk, the ratio of prograde moons surviving disk migration is
+4.89% for a gas giant born at 1 AU and 3.38% for a planet accreting
+gas at 5 AU. For retrograde moons, the values are 23.7% and 17.2%
+respectively.Moreover,thelargergravitationalrangeofcoldJupiters
+mightresultinmoonsdwellingatagreaterdistancefromtheplanet,
+and these moons will not survive disk migration.
+When it comes to retrograde moons, they seem to have a sig-
+nificantly higher chance of survival. The outer boundary exceeds
+400,000 km, which is close to the reduced Hill Sphere boundary for
+a retrograde body. The survival rate is the same for a moon with
+Mimas’s mass or Earth’s mass. Although the chance of survival de-
+creases for a mini-Neptune-mass moon, it may still survive if it is
+close enough to the planet.
+3.1.3 Fate of Multiple Moons through Disk Migration
+GiventhatintheSolarSystem,JupiterhasfourlargeGalileanmoons
+and Saturn has six medium-sized icy moons and one large moon,
+Titan, it is necessary to investigate the planetary systems holding
+multiple moons in the beginning of simulation. We simulated 1,200
+casesofdiskmigrationwithmultipleprogradeorretrogrademoons.
+In each simulation, the system incorporates 3 moons with the same
+massandsimilarinclination.Thedistributionofthesemi-majoraxis
+of the innermost moon is the same as the simulation of a single
+moon, and the moon is separated by80∼200𝑅 𝐻 (prograde) or
+40∼120𝑅 𝐻 (retrograde).Thiscriterionnotonlyensuresmoonsare
+stable at the beginning, but also guarantees that the circumplanetary
+diskcanprovidesufficientmaterialstosustainthegrowthofmoons.
+The other parameters are the same as the disk migration procedure
+for single-moon cases.
+Fig. 4 shows the relationship between the survival rate of the
+moons and their mass or initial semi-major axis. Here, we only con-
+sider whether the system could retain one of the three moons and
+we do not distinguish whether one moon or three moons survive.
+Comparingfig.4withfig.3,weobservethatthesurvivalrateofret-
+rograde moons has not shown significant changes. Nevertheless, the
+stability of prograde massive moons is reduced, though the width of
+thestabilityzoneremainsunchanged.Thiscouldbeexplainedbythe
+following procedures. The relatively large distances of the massive
+moons cause the outer moons to become unstable before the planet
+migrates to become a hot Jupiter. Since the planet’s orbit is continu-
+allydamped,thetimescalefromwhenamoonbeginstolosestability
+until it either becomes a planet or crashes into the planet’s surface is
+relativelyshort.Forretrogrademassivemoons,thisdynamicprocess
+willnothaveadevastatingimpactonitsstability.Forprogrademas-
+sive moons, even though the inner moon is disrupted shortly, given
+itsrelativelynarrowstablezone,anyslightdeviationfromitsoriginal
+semi-majoraxisormoderateexcitationofeccentricitycouldresultin
+itsdestructioneventually.Therefore,theexistenceofmultiplemoons
+would not interfere with the stability of retrograde moons, but the
+stability of massive, prograde moons is disturbed.
+3.2 Planet Secular Coplanar
+3.2.1 Formation of Hot Jupiters through Planet Secular Coplanar
+Forhigheccentricitymigrationscenario,weplacedtheinnergasgi-
+ant(abouttobecomehotJupiter)nearcircularorbits(𝑒 𝑝,𝑖𝑛 =0.1)at
+1AU,andplacedtheouterplanet(theperturbator)ateccentricorbits
+(𝑒𝑝,𝑜𝑢𝑡 =0.7)at5AU.Themassesoftheinneronesare1𝑀 𝐽 andfor
+the outer ones are5𝑀𝐽, which satisfies equation 5. For inclinations,
+since this is "coplanar", we set the inclinations of the two planets
+randomlybetween−9◦ to9◦ relativetothereferenceplane.Forother
+parameters like true anomaly, longitude of the ascending node and
+argumentofperihelion,wesetcompletelyrandomly.Thesimulations
+continueuntil theinnerplanet reacheshotJupiter’s location,usually
+needs several million years, or the planet might be scattered out of
+the system or collides with the star.
+Fig. 5 shows the evolution of the inner planet’s orbit. As men-
+tioned in section 2.2, during the first 20000 year, the inner planet’s
+orbital eccentricity steadily increased until it reached almost 0.99.
+Duringthisprocess,thesemimajoraxisoftheinnerplanetremained
+unchanged, which means that it lost angular momentum in its inter-
+action with outer planets, but its energy remained unchanged. After
+the eccentricity is sufficiently excited, the inner planet’s pericenter
+became close enough to the star, and during its passing through the
+pericenter,theplanetsufferedextremelystrongtidalinteractionswith
+MNRAS000, 1–14 (2025)
+
+<<<PAGE 5>>>
+Massive Moons Around Hot Jupiters5
+Figure 2.The evolution of prograde moon’s semi-major axis (left) and retrograde moon’s semi-major axis (right) during Disk migration process. The blue line
+shows the changes of semi-major axis and the shallow blue region around shows the distance ranges from the center. The green line exhibits the reduced Hill
+Sphere, the orange line means planetary radius and the red line is the Roche sphere of planet. The green region is the theoretically stable gap between reduced
+Hill Sphere and planetary radius.
+Figure3.Therelationshipbetweenthesurvivalrateofaprogrademoon(left)andaretrogrademoon(right)goingthroughDiskmigrationanditsmassorinitial
+semi-majoraxis.ThemoonsinaeroregionhaveahigherchancetosurviveandmoonsingoldenregionmightnotsurviveinDiskmigration.Theredlinemarks
+the reduced Hill Sphere of the hot Jupiter. The purple cross in each line is the fitted stability boundary for each moons’ mass scope.
+thestar,namely,dynamicaltidesbegantotakeeffectsothattheorbit
+began to damp. Because the orbital decay rate is extremely sensitive
+to the orbital eccentricity, we can notice that after 40,000 years of
+star formation, as the eccentricity has dropped below 0.9, the orbital
+decayrateslowsdownsignificantly,andtheentiremigrationprocess
+is prolonged to millions of years. Although orbital circularization
+takes a long time, it is worth noting that the main process of semi-
+majoraxisdecayonlytakestensofthousandsofyears,witharateas
+high as 0.0001AU per year, which indicates planet secular coplanar
+is a highly efficient way to form Hot Jupiters, and furtherly imply
+that this model is suitable to consider exomoon stability around Hot
+Jupiters.
+3.2.2 Fate of Moons Around Hot Jupiters Originated from Planet
+Secular Coplanar
+Basedonthenumericalsimulationcodebuiltupinsection3.2.1,we
+add an extra moon to each of the system to examine their stability
+during the migration process. The parameters are listed as follows:
+for masses, we set Logarithmic randomly between2×10 18𝑘𝑔to
+2×10 26𝑘𝑔; for semimajor axis, we set randomly between0.03𝑅𝐻
+and0.11𝑅 𝐻; the initial eccentricity is 0.1; for inclinations, we did
+the same to the two planets, so as well true anomaly, longitude of
+the ascending node and argument of perihelion. We designed 1011
+systems for prograde scenario and 1016 for retrograde. The simula-
+tions would end as soon as the inner planet’s orbital configuration
+becomes that of a hot Jupiter or whether any of the bodies in the
+system is ejected or collides with other bodies.
+We have made statistics on the fates of planets and satellites.
+The fate of moons are listed in Table 1. It can be seen that almost
+all the moons became unstable during the planet migration. Only 3
+outof2027moonssurvived,allofwhichareretrogradelargemoons
+and their parent planet succceeded to become a hot Jupiter.
+For prograde moons, none of them stay stable if their planet
+became hot Jupiter. This is likely due to the fact that Hill sphere
+would be relatively smaller for prograde bodies, as shown in eq. A2,
+MNRAS000, 1–14 (2025)
+
+<<<PAGE 6>>>
+6Pu et al.
+Figure 4.The relationship between the survival rate of multiple prograde moons (left) and multiple retrograde moons (right) going through Disk migration and
+its mass or initial semi-major axis. The moons in aero region have a higher chance to survive and moons in golden region might not survive in Disk migration.
+The red line marks the reduced Hill Sphere of the hot Jupiter. The purple cross in each line is the fitted stability boundary for each moons’ mass scope.
+Prograde Moons Retrograde Moons
+Large Moons Small Moons Large Moons Small Moons
+Hot Jupiter + Stable Moon 0.00% 0.00% 0.57% 0.00%
+Hot Jupiter + Moon Collided on Star 22.45% 23.29% 14.69% 16.18%
+Hot Jupiter + Moon Collided on Planet 37.92% 42.95% 59.43% 59.45%
+Hot Jupiter + Moon Escaped 26.04% 20.51% 14.31% 11.13%
+Hot Jupiter + Moon Become Planet 2.06% 1.28% 3.03% 1.98%
+Escape Jupiter + Stable Moon 2.45% 3.29% 3.95% 3.99%
+Escape Jupiter + Moon Collided on Star 0.75% 0.43% 0.19% 0.24%
+Escape Jupiter + Moon Collided on Planet 1.89% 1.05% 1.97% 1.47%
+Escape Jupiter + Moon Escaped 0.94% 1.26% 0.75% 0.42%
+Escape Jupiter + Moon Become Planet 0.75% 0.21% 0.19% 0.28%
+Normal Jupiter 4.72% 6.62% 4.90% 3.99%
+Table 1.Statistics on the proportion of planets and satellites with different fates. "Small moon" represents those moons have a mass less than2×1022𝑘𝑔and
+"large moon" represents those above.
+Prograde Moons Retrograde Moons Reference (No Moons)
+Large Moons Small Moons Large Moons Small Moons
+Hot Jupiter 88.49% 88.03% 89.45% 89.50% 90.41%
+Warm Jupiter 4.72% 6.62% 4.90% 3.99% 3.91%
+Escape Jupiter 6.79% 5.34% 5.65% 6.51% 4.50%
+Planet Collided on Star 0.00% 0.00% 0.00% 0.00% 0.39%
+Table 2.Statistics of planetary fates under different satellite configurations. "Small moon" represents those moons have a mass less than2×1022𝑘𝑔and "large
+moon" represents those above.
+MNRAS000, 1–14 (2025)
+
+<<<PAGE 7>>>
+Massive Moons Around Hot Jupiters7
+Figure 5.The semimajor-axis, eccentricity and inclination evolution of a
+hot Jupiter, whose satellite stays stable during the process. Magenta dots:
+semimajor axis evolution of the planet, black dots: eccentricity evolution of
+the planet, blue dots: inclination evolution of the planet
+Hill sphere of prograde bodies is about half compared to retrograde
+ones, meaning a much narrower stability gap for moons to survive.
+While for retrograde moons, as mentioned above, there exists
+stableonesaroundhotJupiters,whichonlyaccountsforatinyfraction
+ofallthesystems.Interestingly,asshowninTable1,wefoundmany
+stablemoonsaroundplanetsthatescapedfromthesystem,namely,in
+these cases, a whole planet-moon system is ejected from the system
+as an integral. More surprisingly, these systems account for about
+2%to4%, which means a relatively considerable number of moons
+withthisinterestingconfiguration.Thismayindicatesthatsomefree-
+floating planets may could have a companion moon orbiting around
+them. Since this result for free-floating planets is counterintuitive,
+we made further work, which is illustrated in Section 3.2.4.
+For planets becoming hot Jupiters, we made a plot that shows
+a statistic of their moons with different fates; see Fig. 6. In these 2
+panels, the moons on the left-hand side tend to be magenta squares,
+meaning moons close to hot Jupiters are easily to crash onto the
+planet. On the other hand, moons on the right-hand side are easily
+to escape from the Hill sphere and then crash onto the star or be
+scattered out of the solar system. It is worth to emphasize that the
+only 3 stable moons around hot Jupiters settle in the left top of the
+right panel, which gives us the opportunity to suspect that if a moon
+orbitingahotJupiterwantstostaystable,itneeds:aretrogradeorbit,
+arelativehighmass(largerthanatleast0.01𝑀 𝐽)andaclose-inorbit.
+This conjecture will be further verified in Section 3.2.3.
+Other information is contained in Table 1. Most of the moons
+around hot Jupiters eventually collided onto the planet, followed by
+moons collided on star and escaped from the solar system. After
+moons are peeled off from the planet, since its orbit around the star
+is very close to the planet, it could be easily scattered either to the
+star or out of the system. This could also explain why there are few
+moons became stable planet after escaping from the planet.
+3.2.3 Verifying Stable Moons Hypothesis: Massive Retrograde
+Close-in Moons
+In the primary results of Section 3.2.2, we found that there are 3
+stable moons survived the process that their host planets turning
+to hot Jupiters, whose features are: relative massive, close-in orbit,
+retrograde orbit. Due to the fact that within the parameter space that
+satisfiestheabovecharacteristics,thedatapointsarerelativelysparse
+and the statistical samples are too small, it is difficult to verify the
+correctness of the above conjecture. To verify this conjecture, we
+enlarged the upper left and lower left corners of the parameter space
+in fig. 6 and scattered more parameter points in these areas for a
+densersimulation,andweonlyconsiderretrogrademoonsthistime.
+We set the semi-major axis between1.9𝑅𝐽 to3.1𝑅 𝐽, and set the
+mass of moons between10−9𝑀𝐽 to10−8𝑀𝐽 for small moons and
+10−2𝑀𝐽 to10−1𝑀𝐽 for large moons. The reason for choosing such
+a parameter space is as follows: First, according to the eq. A2, the
+Hill sphere radius of a retrograde moon is larger, and theoretically,
+it is easier to stabilize. Secondly, in the previous simulations, not a
+singlestablesampleoftheprogrademoonsemerged,whichforcedus
+to abandon the prograde moons and instead consider the retrograde
+ones. Thirdly, it is intuitive that closer satellites are more likely to
+stabilize. Therefore, this time we only consider satellites at a short
+distance,andthusonlytakeintoaccounttheimpactofsatellitemass
+on stability.
+Theresultsareplottedinfig.8.Itisobviousthattherearemore
+and denser stable satellites in the panel on the right. This also en-
+ablesustodrawtheconclusionwithconfidencethatinretrogradeand
+close-inorbits,itismucheasierforlargemoonstoremainstablethan
+forsmallones.Wemadestatisticsofallsimulated1466systems.We
+found that for small moons, 6 out of 637 systems, namely 0.0094%
+of the total, have a stable moon around a hot Jupiter. While for large
+moons, 131 out of 829 systems, namely 15.8% of the total, have
+stable a stable moon around a hot Jupiter. Obviously, the previous
+hypothesis has been successfully verified: a retrograde large moon
+withmasslargerthanasuperearth(over0.01𝑀 𝐽),andaclose-inorbit
+between about2𝑅𝐽 to3𝑅 𝐽, could have a relative considerable pos-
+sibility (∼16%) to survive the chaotic process of high-eccentricity
+migration of a Jovian planet in planet secular coplanar model.
+Toexplainwhythisisthecase,wesubsequentlyinvestigatedthe
+relationbetweenthefinalsemi-majoraxisofthehotJupitersandthe
+massofmoons,seeinfig.9.Althoughthereexistsnosignificantrule
+on the left panel, it can be seen that in the right panel, the massive
+stablemoonstendtoraiseupthefinalsemi-majoraxisofhotJupiters,
+and this is the explanation: a massive moon somehow sometimes
+pulls up the final semi-major axis of the planet, leading to a larger
+Hill Sphere according to eq.A2, causing it has more opportunity to
+stay within the stable range and prevent itself from the perturbation
+of the star.
+A possible explanation for this "raise-up" could be associated
+with the inhibition of eccentricity excitation by large moons. Eq.6
+showsthatthetidaldissipationbecomesprominentwheneccentricity
+is greater than 0.97, where da reaches 0.001 AU / year. Since a
+massive moon could prolong the time of eccentricity excitation (see
+section4.1), when the eccentricity of inner planets without massive
+moons increases to 0.975, those hosting a large moon will only have
+𝑒=0.9725. However, gas giants with𝑒∼0.9725undergo damping
+of the semi-major axis at a rate of 0.003 AU / year, which could
+MNRAS000, 1–14 (2025)
+
+<<<PAGE 8>>>
+8Pu et al.
+Figure6.PlotofmoonswithdifferentinitialsemimajoraxisanddifferentmassaroundgasgiantsthatbecamehotJupiters.Theleftpanelisforprogrademoons
+and the right one is for retrograde. Orange circle: normal stable moons, blue triangle: moons collided with star, magenta square: moons collided with planet,
+green rhombus: moons escaped from the solar system; purple pentagon: moons become planet.
+Figure 7.Orbital evolution of one of the stable moons around planets that
+become hot Jupiter. Green dots: Planet’s Hill Sphere Radius, Green region:
+Stability gap between Roche limit and Hill Sphere of the planet, blue dots:
+exomoon’s semi-major axis, blue region: exomoon’s range of distances from
+thecenter,redline:hotJupiter’sRochelimit,orangeline:hotJupiter’satmo-
+sphere boundary.
+accumulate in 100 years and result in decoupling with the outer
+planet. Therefore, gas giants with massive moons generally have
+larger perihelion than those with small moons, and their final semi-
+major axis is larger, providing more space for moons to be stable.
+3.2.4 Free-floating Planets from Coplanar Mechanism and
+Stability of Their Moons
+In Section. 3.2.2, we mentioned that some high-e-migration-
+producedfree-floatingplanetscouldretainastablemoonwhilebeing
+scattered out of the system, which is kind of counterintuitive. In this
+part, we would made further research on this issue.
+We made another 2047 simulations whose conditions are same
+tothoseinSection3.2.2.Wecollectedtheshortestdistancebetween
+the inner planet and the other outer planet of the systems in which
+the inner planet became free-floating planet before the inner planet
+was ultimately scattered out of the system ("Minimum distance"
+since here). And we study the relationship between these minimum
+distances and the ultimate fate of these planets’ moons.
+Among these systems, there are few free-floating planets. For
+prograde scenario we get 53 out of 1023 systems and for retrograde
+wegot54outof1024.Wemadeaplotshowstherelationbetweenthe
+minimumdistanceandfateofmoons,seeinfig.10.Itisnotdifficult
+tonoticefromtheleft2panelsthatifamoonisstable,theminimum
+distance tends be larger, and for other scenarios that are unstable,
+like collision or escape, the minimum distance tends be smaller. It
+can also be seen in the right 2 panels that the escapers tends to have
+a larger initial semimajor-axis and a smaller minimum distance. For
+stable ones, they tend to have a smaller initial semimajor-axis and
+a larger minimum distance while collided ones, they tend to have
+a smaller initial semimajor-axis and a smaller minimum distance,
+though the difference between the minimum distance of stable ones
+and collided ones are not very obvious.
+These results are reasonable since if the minimum distance is
+large, the inner planet’s moon won’t suffer significant perturbation
+fromthe outerplanet, thusleadingto theresult thatitcould bemore
+probabletobestable.Ifthisdistanceissmall,theperturbationwould
+beintenseandmoonswouldbemoreeasiertobepeeledofthesystem
+or its eccentricity would be excited so that it will crash onto the host
+planet.
+4 DISCUSSION
+4.1 Moon Shielding Effect in Coplanar Excitation
+Trani et al. (2020) found that in 10% of the systems, a Neptune-
+sized moon could prevent the planet from perturbation by the sec-
+ondarystarintheVonZeipel-Lidov-Kozai(ZLK)mechanism[Kozai
+(1962),Lidov(1962)].Theshieldingeffectcanbeestimatedbycom-
+paring the quadrupole ZLK timescale𝑇𝑍𝐿𝐾 of the inner (the moon-
+planet-star system) and outer (planet-star-perturber) triple systems
+[Hamerset al.(2015)].The oscillationsintheplanetary orbitscould
+be alleviated when the inner ZLK timescale is much shorter than
+the outer timescale. Trani claimed a stronger shielding effect in the
+coplanarexcitationscenariobecausetheouterZLKtimescaleismuch
+longerthantheinnerone,andtheshieldingconditionisdescribedin
+[Antognini (2015),Trani et al. (2020)].
+𝑇ZLK,inn
+𝑇ZLK,out
+=
+
+𝑎3
+1
+𝑎𝑚𝑎2
+2
+ 3/2  𝑚moon+𝑚planet
+𝑚moon+𝑚planet+𝑚star
+ 1/2
+· 𝑚2
+𝑚star
+
+1−𝑒 2
+1
+1−𝑒 2
+2
+ 3/2
+≪1
+𝜖oct= 𝑎1
+𝑎2
+𝑒2
+1−𝑒 2
+2𝑇ZLK,inn
+𝑇ZLK,out
+√𝜖oct≪1
+(7)
+MNRAS000, 1–14 (2025)
+
+<<<PAGE 9>>>
+Massive Moons Around Hot Jupiters9
+Figure 8.Additional plot of moons with different small semimajor axis and low (10−9𝑀𝐽 to10−8𝑀𝐽) or high (10−2𝑀𝐽 to10−1𝑀𝐽) mass around gas giants
+thatbecamehotJupiters.Theleftpanelisforsmallmoonsandtherightoneisforlargeones.Orangecircle:normalstablemoons,bluetriangle:moonscollided
+with star, magenta square: moons collided with planet, green rhombus: moons escaped from the solar system; purple pentagon: moons become planet.
+Figure9.PlotoftherelationshipfinalsemimajoraxisofthehotJupitersandmassofmoons.Theleftpanelareforsmallmoonsandtherightpanelareforlarge
+ones. Blue: stable moons, green: moons collided on planets, orange: moons escaped from the system, purple: moons escaped from planet but remained in the
+system.
+In our results, in the absence of satellites, the eccentricity of
+the planet has a 3.9% probability of remaining uninfluenced due to
+the orbital configuration. When prograde or retrograde moons are
+added, the chance of not being excited is 5.6% and 4.6%, which
+are statistically insignificant. This could be attributed to different
+moon masses, as only Neptune-sized moons exhibit the shielding
+effect, while super-Earth-sized moons do not [Trani et al. (2020)],
+butoursimulationsincorporateveryfewNeptune-sizedmoons(less
+than 6%). Therefore, we conducted another simulation considering
+onlyNeptune-sizedmoons.Wefindthatcloseprogrademoonshavea
+12.8%chanceofpreventingtheplanetsfromperturbation,anddistant
+moons have a 14.7% chance of shielding its host from disruption.
+Fig.11presentsthecumulativedistributionfunctionoftheexci-
+tation time (e≥0.95) of different moons. It is evident that terrestrial
+moons in a coplanar scenario cannot extend the timescale of eccen-
+tricityexcitation.Theeffectofclosemassivemoonsonthetimescale
+is also negligible. By contrast, not only could distant Neptune-sized
+moonspreventtheplanetsfromeccentricityexcitation,buttheycould
+also prolong the excitation timescale. These results are remarkable,
+but not as striking as Trani’s prediction, which can be explained as
+follows: In Trani’s setup, the ratio of the inner ZLK timescale to the
+outer timescale is approximately10−8, whereas in our simulation,
+the value is 0.06. Even if we set the semi-major axis of the moon as
+1.5 million kilometers, the value is 1/1000, much larger than Trani’s
+results.Moreover,consideringthattheaveragedurationofeccentric-
+ity excitation in a coplanar scenario is less than 50 thousand years,
+much shorter than the Lidov-Kozai and secular chaos mechanisms,
+the inability of moon shielding to prevent excitation is understand-
+able.
+If the outer planets’ semi-major axes were raised to 15 AU,
+the orbital elements would still conform to the criterion of coplanar
+excitation. Furthermore, the eccentricity excitation timescale would
+be greatly extended, and the octuple moment would also be larger,
+where the moon shielding could be more significant. However, this
+would result in an excessively long simulation time.
+4.2 Comparison with Hot Jupiters produced by Other
+mechanisms
+Wehaveshownthatcoplanarexcitation-higheccentricitymigration
+is an efficient method to produce hot Jupiters with low inclination.
+The eccentricity of the inner gas giant could be excited to approxi-
+mately0.97inlessthan100,000years,followedbyarapidmigration
+lasting 10,000 years. The damping of the eccentricity occurs more
+MNRAS000, 1–14 (2025)
+
+<<<PAGE 10>>>
+10Pu et al.
+Figure 10.Statistics of the relationship between the minimum distance and fate of moons. The upper 2 panels are for prograde moons and the lower 2 are for
+retrograde. Blue: stable moons, green: moons collided on planets, orange: moons escaped from the system, purple: moons escaped from planet but remained in
+the system.
+Figure11.Thecumulativedistributionfunctionofexcitationtimeofdifferent
+moons. Blue line: control group (no moon), orange line: retrograde Super-
+Earth-sized(1∼10𝑀 𝐸𝑎𝑟𝑡ℎ )moons,greenline:progradeSuper-Earth-sized
+(1∼10𝑀 𝐸𝑎𝑟𝑡ℎ )moons,redline:closeNeptune-sizedprogrademoons,pur-
+ple line: distant Neptune sized prograde moons (a= 1.5 million kilometers).
+slowly, but the process is completed within 100 Myr. During the
+excitation and migration stage, close-in (0.02𝑅𝐻), massive retro-
+grademoonscouldpotentiallysurvive.Herewediscusswhetherhot
+Jupiters produced by other mechanisms, such as the Lidov-Kozai
+mechanism, planet-planet scattering (PPS), and secular chaos could
+also retain their moons, and whether such moons could shield their
+hosts from eccentricity excitation.
+Tranietal.(2020)investigatedthestabilityofmassive,prograde
+moonsundertheLidov-Kozaimechanismandfoundthatnoneofthe
+moons survives. However, all of the moons in their simulation were
+located 0.01 AU away from the planets, which would obviously not
+survive, as 1.5 million kilometers exceeds far beyond the eventual
+planetarystabilitysphere.Ifretrograde,closemoonsareconsidered,
+hotJupitersundergoingtheLidov-Kozaiexcitationmightalsoretain
+theirmoons.Thelikelihoodofretainingtheirmoonsshouldbelower
+in our simulation, as the timescale for exciting eccentricity by a
+distant stellar companion is longer. Since the perihelion of a gas
+giant at a = 1 AU, e = 0.97 is 0.03 AU, but its final semi-major axis
+after circularization is 0.06 AU, a slower excitation timescale can
+result in longer periods at lower perihelion, thereby weakening the
+stability of close moons.
+PPSisalsoaneffectivemechanismtoproducehotJupiters,par-
+ticularly when there are more than 3 gas giants in the systems [Na-
+gasawa et al. (2008); Nagasawa & Ida (2011); Beaugé & Nesvorný
+(2012)]. Hong et al. (2018) found that moons beyond 0.1𝑅𝐻 are
+systematically destroyed, while moons within 0.04𝑅𝐻 have at least
+a 20% to survive. Considering the Galilean moons, if the encounter
+distance between Jupiter and another icy planet exceeds 0.03 AU,
+the perturbation on the moons could be negligible [Deienno et al.
+MNRAS000, 1–14 (2025)
+
+<<<PAGE 11>>>
+Massive Moons Around Hot Jupiters11
+(2014)]. Since a close encounter of about 0.05 AU could already
+induce significant variations in the orbital elements, moons in close
+orbits are highly likely to survive such events and migrate with the
+gas giants.
+Regarding secular chaos [Laskar (1989, 1997)], the growth of
+eccentricity is attributed to the overlap of higher-order resonances
+[Wu & Lithwick (2011)]. Theoretically predicting the survival rate
+andmoonshieldingeffectsduetomassivemoonsisdifficultbecause
+of the complex dynamical processes. Moreover, the efficiency of SC
+is slow, which hampers the simulation. When it comes to the E2
+mechanisms proposed by Wang et al. (2017), the stability of moons
+could be compromised due to the frequent flipping of the planetary
+inclination. However, moons in E1 mechanisms may provide a valu-
+able opportunity to test the moon shielding effect due to a longer
+timescale and a lower ZLK timescale.
+4.3 Massive Moon Formation Before Migration
+ToproduceobservablesignalsintransitorTTV,exomoonsneedtobe
+more massive than the Galilean moons or Mars. In previous results,
+we have found that both prograde and retrograde moons could sur-
+vive in disk migration, and only close, massive (≥3𝑀𝐸), retrograde
+moons might endure. There are three major moon formation mecha-
+nisms, including capture, giant impact, and in-situ circumplanetary
+disk accretion. Here, we discuss whether these mechanisms could
+support a sub-Neptune-mass moon to form or to be captured around
+a Jovian planet, and whether moons can form before disk migration.
+4.3.1 Massive Moons’ Formation Before High-e Migration
+Firstly, we consider the scenario where a super-Earth or a sub-
+Neptune is captured by a gas giant, thereby becoming a moon. In
+thesolarsystem,Tritonistheonlymajormoononaretrogradeorbit,
+and Agnor & Hamilton (2006) claimed that an encounter event of
+Neptune and a binary planetary pair consisting of two thousand km-
+sized celestial bodies could explain Triton’s peculiar orbit. When it
+comestoexomooncandidates,Kepler-1625bmaybeasuperJupiter,
+anditmighthaveaNeptune-massmoon[Teachey&Kipping(2018)].
+Heller (2018) found that a Neptune-mass object could be captured
+by Kepler-1625 b, though the event could eject mass equivalent to a
+mini-Neptune.Therefore,formassivehotJupiterssuchasTOI-5261
+b [Schulte et al. (2025)], they are capable of seizing a gas dwarf and
+might migrate with its massive moon. Typical hot Jupiters may be
+unable to capture a sub-Neptune, but they are capable of gaining an
+Earth-mass moon before eccentricity excitation.
+Secondly, the mechanism underlying the giant impacts is ex-
+plored. The Moon is formed through a significant collision between
+the proto-Earth and a Mars-sized planet [(e.g. Hartmann & Davis
+1975)]. Therefore, it is reasonable to anticipate that a larger planet
+could host a more massive moon, with a mass ratio comparable to
+the Moon-Earth ratio. The formation of massive moons is primarily
+determined by the collision process and the gas content in the disks,
+asdifferentmodelsgeneratediskswithvaryingvapormassfractions.
+Circumplanetarydiskswithmorevaporhavedifficultyformingmas-
+sive moons as vapor exerts a strong drag on moonlets, causing them
+to rapidly fall toward the planet’s surface [Nakajima et al. (2022)].
+DuringtheformationofMoon,thecanonicalmodelispreferredover
+half-Earths model and the multiple impacts model [e.g.Cameron &
+Ward (1976),Canup (2012),Rufu et al. (2017)], since the canonical
+model produces disks lacking vapor. Unfortunately, rocky planets
+larger than 6𝑀𝐸 or icy planets larger than 1𝑀𝐸 generate disks
+filledwithvapor,thusimpedingmassivemoonsformingthroughgi-
+ant impact [Nakajima et al. (2022)]. Gas dwarfs and gas giants also
+face difficulties in producing large moons as their disks incorporate
+morehydrogenandheliumgasfromtheirenvelopes[Reinhardtetal.
+(2020)]. Therefore, it is difficult to generate massive moons through
+the giant impact mechanism.
+Finally, we discuss whether in-situ formation in circumplan-
+etary disk could support the growth of a massive moon. Different
+models have been proposed, including solids enhanced minimum
+mass model [Mosqueira & Estrada (2003a),Mosqueira & Estrada
+(2003b)], actively supplied gaseous accretion disk model [Canup
+& Ward (2002),Canup & Ward (2006)], and tidally spreading disk
+model [Canup (2012)]. None of these models predict moons larger
+than Mars in the Jovian system (e.g. Ogihara & Ida 2012),Malamud
+et al. (2020)]. One reason is that Jupiter-mass planets at 1 AU or
+5 AU do not exhibit ice features due to the effects of planetary il-
+lumination and viscous heating, which reduces disk solid mass and
+decreasesfinalmoonmass.ForsuperJupiterssuchasKepler-1625b,
+theirmassivedisksmayormaynotbeabletosustainthegrowthofa
+Neptune-sized moon [Moraes & Vieira Neto (2020),Heller (2018)].
+However, massive moons in these systems tend to grow at greater
+distances from giant planets, outside the snow line, which is at least
+15 planetary radii from the planet’s surface [Ogihara & Ida (2012);
+Heller&Pudritz(2015)].Therefore,theseplanetscannotpersistdur-
+ing the planet migration process. In summary, typical hot Jupiters
+can capture an Earth-like planets and super Jupiters can seize a sub-
+Neptune. Moons formed by giant impact or in-situ circumplanetary
+accretion are not sufficiently massive enough to be observed or they
+are too distant to endure the migration.
+4.3.2 Early Moon Formation Before Disk Migration
+Asshownintheresults,moonsclosetotheplanetcouldsurvivedur-
+ing disk migration, independent of their inclination and mass. It is
+worthy of discussing whether observable moons could form before
+disk migration. In the in-situ accretion scenario, solids enhanced
+minimum mass model support that Ganymede could grow from a
+1000 km-sized protomoon to its current volume in 10,000 years
+[Mosqueira & Estrada (2003b)], but the theory does not consider
+dustcoagulationincircumplanetarydisks.Protoplanetarydiskstend
+tocircularizetheorbitsofcelestialbodies,reducingtheprobabilities
+of close encounters. Moreover, gas giants create a gap and prevent
+materials from approaching their gravitational influence. There may
+bechancesthatplanetsaccretinggascouldcaptureterrestrialplanets
+inthetype-Imigrationprocess,butthistheoryrequiresmoresimula-
+tionstosupport.Inanutshell,giantimpactandcaptureeventsrarely
+occur before disk migration.
+4.4 The long-term orbital evolution of moons around hot
+Jupiters
+Althoughtidalforcescouldbeneglectedinoursimulation,sincethe
+timescalesonwhichtidalforcescansignificantlyaffectmoons’orbits
+aremuchlongerthanthoseofdiskmigrationandthoseofeccentric-
+ity excitation and planetary orbit decay in the coplanar excitation
+mechanism, they must be considered during the long-term orbital
+evolution. There is debate over whether massive moons around hot
+Jupiters can be stable on a Gyr timescale, but it is certain that tidal
+heating and magnetic fields have a crucial effect on close-in moons.
+Firstly, considering tidal heating, close moons may experience
+significant heating rates, which could significantly evaporate their
+MNRAS000, 1–14 (2025)
+
+<<<PAGE 12>>>
+12Pu et al.
+atmospheres. Cassidy et al. (2009) found that moons with a thin at-
+mospherecouldbeseverelyerodediftheirhosts’orbitalperiodisless
+than 6.6 days. For moons with thick envelopes, the limit is 2.4 days.
+Inotherwords,thesizeofsuper-Earthscouldbereduced,whichpre-
+ventsthemfrombeingobserved.Asformagneticfields,planet-moon
+magneticinteractionplaysasignificantroleinthemoons’dynamics,
+especially when planetary fields are strong [Strugarek et al. (2017)].
+For moons located at 0.04𝑅𝐻, their orbits lie within the corotation
+radius and they will fall within the Roche Limit in 3 Myr [Wei &
+Lin (2024)]. Icy and silicate moons are more resistant to magnetic
+torques. However, icy moons born beyond the snow line should lose
+their water content during migration, and their conductivity will el-
+evate. Therefore, close-in massive moons are susceptible to tidal
+heating and magnetic forces, and they might only be stable around
+hot Jupiters that have just completed their track.
+Although WASP-12 b shows clear signs of orbital decay and
+the timescale is 2.9 Myr [Turner et al. (2021)], most of the hot
+Jupiters are dynamically stable and could stay in their orbits for 1
+Gyr. This observation suggests that the duration for which massive,
+nearmoonsremainstablearoundhotJupitersismuchshorterthanthe
+averagelifespanoftheirhosts.Tofindsignsofexomoons,targetsare
+preferred to planets in younger systems such as IRAS 04125+2902
+b or hot Jupiters with a moderate eccentricity [Barber et al. (2024)],
+because these hot Jupiters have just completed their migration and
+their moons haven’t had time to become unstable yet.
+5 CONCLUSION
+Thediscoveryofexomoonscanprovideinsightsintotheirformation
+and their evolution with planets. Large, temperate exomoons can be
+habitable and host exotic life. However, to date, there have been no
+confirmed exomoons, and none of the promising candidates orbit
+hot Jupiters. Previous studies indicated that hot Jupiters excited by
+planet-planet scatter or the Lidov-Kozai mechanism and followed
+high-eccentricity migration could not retain moons [e.g.Gong et al.
+(2013); Trani et al. (2020)], while there is ongoing debate about
+whether large moons around hot Jupiters through disk migration
+exhibit long-term dynamic stability [e.g.Barnes & O’Brien (2002);
+Cassidyetal.(2009)].Thisstudyfocusedontheevolutionofmoons
+of varying mass and inclination during disk migration and coplanar
+excitation – high-eccentricity migration, using new models and an
+integrator, because hot Jupiters undergoing these mechanisms have
+a large chance of retaining a moon. The findings are as follows:
+1.Indiskmigration,progrademoonslocated155000to185000
+kilometersawayfromhotJupitersexhibitlong-termdynamicstabil-
+ity, which is independent of their mass, while retrograde moons
+within the distance of 400000 kilometers remain stable.
+2.IfhotJupitersformedviadiskmigrationholdmultiplemoons
+initially, the stability of prograde, massive moons is significantly
+reduced, but the orbits of retrograde moons are not disrupted.
+3. All prograde moons are unable to survive in coplanar exci-
+tation - high eccentricity migration, but 1% of massive retrograde
+moonsretainandbecomemoonsorbitinghotJupiters.Thesemoons
+are close-in moons with masses equivalent to super-Earths or sub-
+Neptunes. 20% of moons are torn by stars, and half of them are torn
+by planets. 2% moons can become ploonets.
+4.Wefoundthatmorethan10%ofNeptune-sizedmoonscould
+shield the planets from gravitational perturbation and eccentricity
+excitation. The phenomenon was predicted by Trani et al. (2020),
+though the rate does not align with the expectation.
+5.About6%ofplanetsescapefromthesystemandhalfofthem
+retaintheirmoons,offeringopportunitiestodiscovermoonsorbiting
+free floating planets.
+6 ACKNOWLEDGMENTS
+This work has been recognized as a national-level innovation and
+entrepreneurship project for undergraduate students, and we appre-
+ciate the financial support provided by this project. We appreciate
+the suggestions of Jiwei Xie at Nanjing University and Shangfei Liu
+at Sun Yat-sen University. We also thank Keting Xin and Qingfeng
+Pang at Nanjing University for their assistance with Rebound. This
+research made use ofRebound[Rein & Liu (2012)],astropy, a
+community-developedcorePythonpackageforAstronomy[Astropy
+Collaboration et al. (2013)], as well asNumPyandSciPy[(Van Der
+Walt et al. 2011)], andMatplotlib[(Hunter 2007)].
+REFERENCES
+Adams F. C., Bloch A. M., 2016, MNRAS, 462, 2527
+Agnor C. B., Hamilton D. P., 2006, Nature, 441, 192
+Agol E., Jansen T., Lacy B., Robinson T. D., Meadows V., 2015, ApJ, 812, 5
+Almendros-Abad V., et al., 2024, A&A, 685, A118
+Alvarado-Montes J. A., Zuluaga J. I., Sucerquia M., 2017, MNRAS, 471,
+3019
+Antognini J. M. O., 2015, MNRAS, 452, 3610
+Armitage P. J., 2007, arXiv e-prints, pp astro–ph/0701485
+Astropy Collaboration et al., 2013, A&A, 558, A33
+Barber M. G., et al., 2024, Nature, 635, 574
+Barnes J. W., O’Brien D. P., 2002, ApJ, 575, 1087
+BaruteauC.,etal.,2014,inBeutherH.,KlessenR.S.,DullemondC.P.,Hen-
+ningT.,eds,ProtostarsandPlanetsVI.pp667–689(arXiv:1312.4293),
+doi:10.2458/azu_uapress_9780816531240-ch029
+Beaugé C., Nesvorný D., 2012, ApJ, 751, 119
+Brahm R., et al., 2015, AJ, 150, 33
+Cameron A. G. W., Ward W. R., 1976, in Lunar and Planetary Science
+Conference. p. 120
+Canup R. M., 2004, ARA&A, 42, 441
+Canup R. M., 2012, Science, 338, 1052
+Canup R. M., Ward W. R., 2002, AJ, 124, 3404
+Canup R. M., Ward W. R., 2006, Nature, 441, 834
+Cassidy T. A., Mendez R., Arras P., Johnson R. E., Skrutskie M. F., 2009,
+ApJ, 704, 1341
+Cincotta P. M., Simó C., 2000, A&AS, 147, 205
+Dawson R. I., Johnson J. A., 2018, ARA&A, 56, 175
+Deienno R., Nesvorný D., Vokrouhlický D., Yokoyama T., 2014, AJ, 148, 25
+Domingos R. C., Winter O. C., Yokoyama T., 2006, MNRAS, 373, 1227
+Eggleton P. P., Kiseleva L. G., Hut P., 1998, ApJ, 499, 853
+Gautam A., Bashyal A., Bhattarai S. K., Satyal S., 2022, PASJ, 74, 815
+Ginzburg S., Chiang E., 2019, MNRAS, 490, 4334
+Glanz H., Rozner M., Perets H. B., Grishin E., 2022, ApJ, 931, 11
+Goldreich P., Tremaine S., 1980, ApJ, 241, 425
+Gong Y.-X., Zhou J.-L., Xie J.-W., Wu X.-M., 2013, ApJ, 769, L14
+Goździewski K., Bois E., Maciejewski A. J., Kiseleva-Eggleton L., 2001,
+A&A, 378, 569
+Hamers A. S., Tremaine S., 2017, AJ, 154, 272
+HamersA.S.,PeretsH.B.,AntoniniF.,PortegiesZwartS.F.,2015,MNRAS,
+449, 4221
+Hamilton D. P., Krivov A. V., 1997, Icarus, 128, 241
+Hansen B. M. S., 2010, ApJ, 723, 285
+Hartmann W. K., Davis D. R., 1975, Icarus, 24, 504
+Heller R., 2018, A&A, 610, A39
+Heller R., 2019, A&A, 628, A42
+Heller R., Hippke M., 2024, Nature Astronomy, 8, 193
+Heller R., Pudritz R., 2015, A&A, 578, A19
+Hinkel N. R., Kane S. R., 2013, ApJ, 774, 27
+MNRAS000, 1–14 (2025)
+
+<<<PAGE 13>>>
+Massive Moons Around Hot Jupiters13
+Hong Y.-C., Raymond S. N., Nicholson P. D., Lunine J. I., 2018, ApJ, 852,
+85
+Hunter R. B., 1967, MNRAS, 136, 245
+Hunter J. D., 2007, Computing in Science and Engineering, 9, 90
+Hut P., 1981, A&A, 99, 126
+Ida S., Lin D. N. C., 2004, ApJ, 604, 388
+Irwin J., Hodgkin S., Aigrain S., Bouvier J., Hebb L., Irwin M., Moraux E.,
+2008, MNRAS, 384, 675
+Kaltenegger L., 2010, ApJ, 712, L125
+Kipping D. M., 2009, MNRAS, 392, 181
+Kipping D. M., Forgan D., Hartman J., Nesvorný D., Bakos G. Á., Schmitt
+A., Buchhave L., 2013, ApJ, 777, 134
+Kipping D., et al., 2022, Nature Astronomy, 6, 367
+Kozai Y., 1962, AJ, 67, 579
+Laskar J., 1989, Nature, 338, 237
+Laskar J., 1997, A&A, 317, L75
+Lidov M. L., 1962, Planet. Space Sci., 9, 719
+Limbach M. A., et al., 2023, PASP, 135, 014401
+Lin D. N. C., Papaloizou J., 1986, ApJ, 309, 846
+LodatoG.,ScardoniC.E.,ManaraC.F.,TestiL.,2017,MNRAS,472,4700
+Malamud U., Perets H. B., Schäfer C., Burger C., 2020, MNRAS, 492, 5089
+ManaraC.F.,RobbertoM.,DaRioN.,LodatoG.,HillenbrandL.A.,Stassun
+K. G., Soderblom D. R., 2012, ApJ, 755, 154
+Manara C. F., et al., 2020, A&A, 639, A58
+Moraes R. A., Vieira Neto E., 2020, MNRAS, 495, 3763
+Morbidelli A., Tsiganis K., Batygin K., Crida A., Gomes R., 2012, Icarus,
+219, 737
+Mosqueira I., Estrada P. R., 2003a, Icarus, 163, 198
+Mosqueira I., Estrada P. R., 2003b, Icarus, 163, 232
+Nagasawa M., Ida S., 2011, ApJ, 742, 72
+Nagasawa M., Ida S., Bessho T., 2008, ApJ, 678, 498
+Nakajima M., Genda H., Asphaug E., Ida S., 2022, Nature Communications,
+13, 568
+Namouni F., 2010, ApJ, 719, L145
+Ogihara M., Ida S., 2012, ApJ, 753, 60
+Payne M. J., Deck K. M., Holman M. J., Perets H. B., 2013, ApJ, 775, L44
+Petrovich C., 2015, ApJ, 805, 75
+Rein H., Liu S. F., 2012, A&A, 537, A128
+Rein H., Spiegel D. S., 2015, MNRAS, 446, 1424
+Reinhardt C., Chau A., Stadel J., Helled R., 2020, MNRAS, 492, 5336
+Rozner M., Glanz H., Perets H. B., Grishin E., 2022, ApJ, 931, 10
+Rufu R., Aharonson O., Perets H. B., 2017, Nature Geoscience, 10, 89
+SchneiderJ.,DedieuC.,LeSidanerP.,SavalleR.,ZolotukhinI.,2011,A&A,
+532, A79
+Schulte J., et al., 2025, MNRAS,
+Somigliana A., Toci C., Rosotti G., Lodato G., Tazzari M., Manara C. F.,
+Testi L., Lepri F., 2022, MNRAS, 514, 5927
+Somigliana A., et al., 2024, A&A, 689, A285
+Strøm P. A., 2024, arXiv e-prints, p. arXiv:2410.06248
+Strugarek A., Bolmont E., Mathis S., Brun A. S., Réville V., Gallet F., Char-
+bonnel C., 2017, ApJ, 847, L16
+Sucerquia M., Cuello N., 2025, A&A, 694, L8
+Teachey A., Kipping D. M., 2018, Science Advances, 4, eaav1784
+Thorngren D. P., Fortney J. J., Lopez E. D., Berger T. A., Huber D., 2021,
+ApJ, 909, L16
+Trani A. A., Hamers A. S., Geller A., Spera M., 2020, MNRAS, 499, 4195
+Turner J. D., Ridden-Harper A., Jayawardhana R., 2021, AJ, 161, 72
+Van Der Walt S., Colbert S. C., Varoquaux G., 2011, Computing in Science
+and Engineering, 13, 22
+Wang Y., Zhou J.-l., hui-gen L., Meng Z., 2017, ApJ, 848, 20
+Wei X., Lin D. N. C., 2024, ApJ, 965, 88
+Williams D. M., Kasting J. F., Wade R. A., 1997, Nature, 385, 234
+Wu Y., Lithwick Y., 2011, ApJ, 735, 109
+APPENDIX A: STABILITY HILL SPHERE BOUNDARY
+SIMULATION
+The Hill sphere is a roughly spherical region around a celestial
+body, also known as the Roche sphere. For a planet, the Hill sphere
+is typically defined as the region where the planet’s gravitational
+influence dominates the motion of its satellite (or other orbiting
+objects), which could be expressed as:
+𝑅𝐻 =𝐴𝑎 𝑝
+ 1−𝑒 𝑝
+  𝑀𝑝
+3𝑀∗
+ 1/3
+(A1)
+where A is correlated with the moon’s inclination and simulation
+procedures.
+StudieshavefoundthatsatellitesneartheouteredgeoftheHill
+sphere experience long-term orbital instability, with the possibility
+of falling into the Roche lobe of the planet or escaping [Hunter
+(1967)]. Hamilton and Krivov contended that for prograde moons,
+A = 0.53, and for retrograde moons, A = 0.69 [Hamilton & Krivov
+(1997)], while Hinkel took A = 0.3 for prograde cases based on
+Barnes analysis [Barnes & O’Brien (2002); Hinkel & Kane (2013)].
+Domingos reached 0.49 and 0.93, respectively, through simulation
+[Domingos et al. (2006)], which was used extensively to define the
+stabilityboundariesofexoplanetssuchasHD100777bandWASP-49
+Ab [Gautam et al. (2022); Sucerquia & Cuello (2025)].
+However,thestableHillSphereformuladerivedintheprevious
+workwasobtainedfromnumericalsimulationsofcoldJupiters,thus
+the associated constants may not be applicable to the case of hot
+Jupiters.Inaddition,thetermsrelatedtotheinclinationarediscrete,
+calling for a revised formula concerning the reduced Hill Sphere
+reliant on the inclination.
+In this study, we used numerical simulations to investigate the
+empirical formula for the stable Hill sphere in the region of hot
+Jupiters. In order to simulate the stability of a reduced three-body
+problem under different parameter spaces, a good quantitative crite-
+rionisessentialtodescribethestabilityofasystem.Forthispurpose,
+we used the indicator𝑀𝐸𝐺𝑁𝑂(mean exponential growth factor of
+nearbyorbits),whichwasusedincelestialmechanicsandnon-linear
+dynamics.Itassessedthedegreeofchaosbyaveragingtheexponen-
+tial growth of orbital distances, thus quantifying the chaotic nature
+oforbitsinthevicinity[Cincotta&Simó(2000);Goździewskietal.
+(2001)]. If the𝑀𝐸𝐺𝑁𝑂value is close to 2, the system is almost
+periodic, and the orbital perturbations do not grow significantly. If
+the𝑀𝐸𝐺𝑁𝑂value is greater than 3, the system exhibits chaotic
+behavior, and the distance between the orbits grows exponentially
+over time.
+We primarily studied the influence of two variables on the sta-
+bleregionoftheHillsphere:theplanet’ssemi-majoraxis𝑎,planets’
+orbitaleccentricity𝑒andthemoon’sorbitalinclination𝑖.Wefirstset
+𝑖to 0 and vary𝑎,𝑒to study the range of the reduced Hill sphere𝑅ℎ.
+Afterward, we fixed𝑎,𝑒and examined the effects of orbital inclina-
+tion. Each simulation runs for 10,000 years in each case. We then
+used𝑀𝐴𝑇𝐿𝐴𝐵toperformalinearfittingonthestabilityboundaries
+of the Hill sphere for each plot. Based on the results from each plot,
+weobtainedthestabilityboundaryoftheHillspherethatincludedall
+the simulated parameters. The graph and formula are shown below:
+MNRAS000, 1–14 (2025)
+
+<<<PAGE 14>>>
+14Pu et al.
+FigureA1.Left:ThevariationofMEGNOwithsemimajoraxisofmoons(x
+axis) and orbital eccentricity of the planet (y axis). A high value of MEGNO
+(red color) expresses the chaotic behavior and low value (green color) shows
+theregularity.Right:ThevariationofMEGNOwithsemimajoraxisofmoons
+(xaxis)andmoon’sorbitalinclination.Noticethattheinclinationisexpressed
+by radians in the graph.
+𝑅𝐻 =𝑎(1−𝑒)
+ 𝑚
+3𝑀
+ 1
+3
+·𝐼
+𝐼=0.52(1+0.0036𝑖), 𝑖∈(0,50)
+=0.25, 𝑖∈(50,140)
+=0.52[1+0.022(𝑖−140)], 𝑖∈(140,180)
+(A2)
+With the new model, we can use it to assess the stability of
+moons in our work. Although systems with multiple planets may
+decrease the size of reduced Hill Sphere (prograde moons: I=0.4;
+retrograde moons: I=0.65) [Payne et al. (2013)], this phenomenon
+generally will not affect the results of simulation because we set a
+relatively loose condition to guarantee the escape of moons.
+This paper has been typeset from a TEX/LATEX file prepared by the author.
+MNRAS000, 1–14 (2025)

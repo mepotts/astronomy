@@ -79,6 +79,33 @@ companions — of 17 tried in M0 scoping, 6 returned H magnitudes.
 
 ---
 
+## ESO Science Archive — VLTI/GRAVITY (M10)
+
+Same TAP endpoint, different instrument. Two facts worth recording:
+
+- `dbo.raw` rows use `instrument='GRAVITY'` and `dp_cat='SCIENCE'`; calibrations (`FLAT`,
+  `DARK`) dominate the table and must be filtered out or counts are meaningless.
+- `ivoa.ObsCore` serves reduced products as **`dataproduct_type='visibility'`**, not
+  `spectrum`, with `calib_level=2`. Query on `instrument_name LIKE 'GRAVITY%'`.
+
+Holdings measured 2026-08-10: beta Pic b **322 products / 28 nights / 2987 d**,
+HD 206893 B 234 / 22 / 2153 d, AF Lep b 34 / 6 / 711 d.
+
+**Whether those visibility products carry the dual-field differential phase that companion
+astrometry is extracted from is UNVERIFIED.** Existence is not usability — M1 learned that
+the hard way for CRIRES+. See [`M10-RESULTS.md`](M10-RESULTS.md) §5.
+
+## NASA Exoplanet Archive — young close-in planets (M8)
+
+`pscomppars` filtered on `st_age < 0.2` (Gyr), `pl_orbsmax < 2.0`, and a giant-ish cut
+`(pl_bmassj > 0.05 OR pl_radj > 0.4)` returns ~32 rows. Caveats that bite:
+
+- **Most masses come from mass–radius relations, not measurements**, and M8's survival
+  window depends on both M_p and R_p.
+- `st_age` is the *host* age and is often poorly constrained for young stars.
+- The 30 M_Jup companion-mass cap that excludes CD-35 2722 B (see below) does not bite here,
+  since M8 targets are all well under it.
+
 ## SIMBAD
 
 Via `astroquery.simbad`, for target coordinates, parallaxes, and such companion photometry

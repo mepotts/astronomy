@@ -127,6 +127,48 @@ The flux cut in SPEC never got used — the existence of usable CRIRES+ spectra 
 be a better feasibility filter than an unsourced magnitude. Applying the M2/M3 pipeline
 still waits on M2. **Expected deliverable remains upper limits, not detections.**
 
+### M7 — Generalising the method ✅ *(and the literature the project had not read)*
+Hoy et al.'s reference list named the detectability framework (Lazzoni et al. 2022), the
+paper that **proposed** the method (Vanderburg et al. 2018) and **two prior nulls nobody had
+noticed**. There is now a `papers/` archive and `scripts/fetch_paper.py`. Three attribution
+errors in SPEC/M5 corrected. `exosat-rv survey` scores 38 imaged companions on a four-way
+conjunction; **eta Tel B is confirmed best by two rankings sharing no assumptions**, and
+**no target reaches Galilean-class satellites**. See [`M7-RESULTS.md`](M7-RESULTS.md).
+
+### M8 — Young close-in giants ✅ *(a spur, not on the reproduction path)*
+Whether the method reaches satellites of "hot" young planets. Signal is easy (an Earth-mass
+moon of a 1 M_Jup planet gives K ~ 71 m/s); **survival is the constraint**, decided by the
+planet's spin, and observability needs cross-correlation rather than a slit. 3–8 real
+targets clear both cuts depending on tidal Q. `exosat-rv closein`.
+**Labelled a spur deliberately** — it is not ESO archive data, not CRIRES+, and reproduces
+nothing. See [`M8-RESULTS.md`](M8-RESULTS.md).
+
+### M9 — Order screening ✅ *(hypothesis falsified)*
+Can per-order screening close the extraction gap? **No — 6%** (823 → 776 m/s). The
+combination stage already works; the shortfall is entirely per-order. Also measured that the
+nodding frames are a **10%** lever, quantified in the authors' own Fig. 4 — so the plan had
+ranked a 10% fix first. `exosat-rv orders`. See [`M9-RESULTS.md`](M9-RESULTS.md).
+
+### M10 — The astrometric route ✅ *(inventory only; kill-check OPEN)*
+An independent path to the goal that does not need the RV gap closed. **beta Pic b has 28
+public reduced VLTI/GRAVITY nights over 2987 days** — 1.6× the epochs over 6.4× the baseline
+of the dataset the published detection rests on. `exosat-rv gravity`.
+**This is the M0-equivalent, not the M1-equivalent**: whether those visibility products
+carry the dual-field differential phase astrometry needs is unverified. See
+[`M10-RESULTS.md`](M10-RESULTS.md) §5.
+
+### M11 — The template, rebuilt the published way ✅ *(fails; suppresses signal)*
+Köhler et al. 2025 §2.2's recipe, two iterations, `-tpl_wave tell`. Target improved
+(776 → 620 m/s); **control collapsed** — recovered amplitude on GJ 229 B's known binary fell
+to **41% of correct after one iteration**. Self-templating absorbs the signal.
+**Net movement on the reproduction: none.** See [`M11-RESULTS.md`](M11-RESULTS.md).
+
+### M12 — Verify the ADP→cr2res segment mapping ⬜ *(next; leading suspect)*
+M2 verified the conversion is *lossless* (max difference 0), which proves the numbers
+arrived — not that they arrived in the right order/detector slots. A mis-slotted segment
+gives viper a wrong starting wavelength per chunk, the telluric fit never locks, and `atm0`
+stays unconstrained — which M9 measured in **6 of 10 orders**. Never tested.
+
 ---
 
 ## 4. Standing constraints
