@@ -102,7 +102,11 @@ archive; use [`scripts/fetch_paper.py`](scripts/fetch_paper.py) to add to it.
    robust combine, injection-validate, internal 3×-spread epoch screen), checking the
    target's phase–BERV geometry first; (c) when the embargoed epochs release
    (Dec 2026 – May 2027), settle the amplitude overshoot and the second satellite on
-   data the confound cannot reach.
+   data the confound cannot reach. The full target order — including the young
+   self-luminous planetary-mass class (beta Pic b, PDS 70 b, and the limits tier) —
+   is now in [docs/target-queue.md](docs/target-queue.md): eta Tel B is the only
+   orbit-capable archive today; beta Pic b's 753 frames are 6 nights (spot-check, not
+   orbit); PDS 70 b is the flagship proposal target.
 
 1. ~~**Establish why *this project's* extraction sits 25x above 31.44 m/s.**~~ **Answered
    across M12–M13**: superseded source + phantom gas cell + telluric template (M12), then
