@@ -19,15 +19,17 @@ TAP = "https://archive.eso.org/tap_obs/sync"
 
 # (label, ADQL where-clause fragment for one representative night)
 PROBES = [
-    ("BETPIC 110.23NC 2022-12-23", "object = 'BET PIC' AND prog_id LIKE '110.23NC%' AND date_obs BETWEEN '2022-12-23' AND '2022-12-24'"),
-    ("BETPIC 114.27DX 2025-01-11", "object = 'BET PIC' AND prog_id LIKE '114.27DX%' AND date_obs BETWEEN '2025-01-11' AND '2025-01-12'"),
-    ("BETPIC 114.27C6 2024-11-22", "object = 'BET PIC' AND prog_id LIKE '114.27C6%' AND date_obs BETWEEN '2024-11-22' AND '2024-11-23'"),
-    ("HD1160 114.27C6 2024-10-24", "object = 'HD  1160' AND date_obs BETWEEN '2024-10-24' AND '2024-10-25'"),
-    ("HD26820 114.27C6 2024-10-24", "object = 'HD 26820' AND date_obs BETWEEN '2024-10-24' AND '2024-10-25'"),
-    ("PDS70 (CD-40 8434)", "object = 'CD-40 8434'"),
-    ("HIP65426", "(object = 'HIP 65426' OR object = 'HIP65426B' OR object = 'HD 116434')"),
-    ("AF LEP", "object = 'AF LEP'"),
-    ("51 ERI", "object = '51 ERI'"),
+    ("2M0103AB B (25 nights!)", "object = '2M0103AB B' AND date_obs > '2024-01-01'"),
+    ("2M0103AB B (early)", "object = '2M0103AB B' AND date_obs < '2023-06-01'"),
+    ("HIP81208 113.26AY", "prog_id LIKE '113.26AY%' AND ra BETWEEN 248.9 AND 249.1 AND dec BETWEEN -55.6 AND -55.4"),
+    ("CD-35 2722 (host-name frames)", "object = 'CD-35 2722' "),
+    ("CD-35 2722B (nospace)", "object = 'CD-35 2722B' AND date_obs > '2025-02-01'"),
+    ("PDS70 2025 raw H-labeled", "object = 'CD-40 8434' AND date_obs BETWEEN '2025-04-04' AND '2025-04-05'"),
+    ("HD206893", "object = 'HD 206893'"),
+    ("GQ LUP", "(object = 'GQ LUP' OR object = 'V GQ LUP') AND date_obs > '2022-01-01'"),
+    ("YSES1 (TYC 8998)", "(object = 'TYC 8998-760-1B' OR object = 'YSES 1BC')"),
+    ("HR8799 (HD 218396)", "object = 'HD 218396'"),
+    ("HD19467", "(object = 'HD 19467' OR object = 'HD19467')"),
 ]
 
 

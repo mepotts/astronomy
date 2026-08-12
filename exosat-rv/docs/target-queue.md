@@ -29,6 +29,20 @@
 > (raw-first fetch + direct-CALIB fallback), staring branch in `reduce_one.sh`,
 > `ctcha_screen.py` (two-arm order screen). Downloads SERIAL always.
 >
+> ## Census v2 additions (2026-08-12, header-verified; fetch chain M26 running)
+>
+> | target | verified data (public) | grade |
+> |---|---|---|
+> | **YSES 1 b/c** (2-planet system) | 4 K2166 nodding nights / ~290 d | mini-series — best of the new tier |
+> | **HIP 81208 B** (~67 M_Jup in a 4-body hierarchy) | 6 H staring + 3 K2166 nodding / ~470 d | two sub-series; eta-Tel-lite |
+> | **HD 206893** (BD + inner planet host) | 1 deep K2166 nodding + 2 H staring | spot-check |
+> | **HD 19467 B** (benchmark T dwarf) | 2 H staring (+1 embargoed) | spot-check |
+> | **PDS 70** (H side) | 3 H1567 staring nights 2025 | adds a second setting to the system |
+> | **CD-35 2722 B extras** | 2 deep public H/K nights (Oct 2024, 150 frames each) + pilot K/J; **ten embargoed 116.2AP9 nights Dec 2025–May 2026** (the campaign continues!) | deep pair analyzable now; embargo calendar grows |
+> | 2M0103AB b | 1 pilot night public (the "25-night cluster" is mostly J-band monitoring of the host binary); 6-night multi-band deep campaign embargoed to late 2026 | reframed: calendar item |
+> | HR 8799 b–e | 2 K2148 nights (new setting) | shelf until worth a new order map |
+> | GQ Lup b | Y1029 | out of scope (no Y telluric reference) |
+>
 > **What reopens the queue (all dated or decisions):**
 > - Embargoes: GSC product; PDS 70's 2025 K nights; eta Tel's K epochs; beta Pic b's
 >   late-2025 K2166 nights; **CD-35's decisive epochs Dec 2026 – May 2027** (settles
