@@ -1,0 +1,445 @@
+<title>CD-35 2722 B reproduction & eta Tel B limits — draft</title>
+<style>
+  :root {
+    --plane: #eceae5;
+    --sheet: #fcfcfb;
+    --ink: #141413;
+    --ink-2: #52514e;
+    --muted: #898781;
+    --hairline: #e1e0d9;
+    --rule: #c3c2b7;
+    --us: #2a78d6;
+    --them: #eb6834;
+    --draft: #b0473a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --plane: #131312; }
+  }
+  :root[data-theme="dark"] { --plane: #131312; }
+
+  body {
+    background: var(--plane);
+    margin: 0;
+    padding: 40px 16px 72px;
+    font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+    color: var(--ink);
+  }
+  .sheet {
+    max-width: 760px;
+    margin: 0 auto;
+    background: var(--sheet);
+    color: var(--ink);
+    padding: 64px 72px 72px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.14), 0 12px 40px rgba(0,0,0,.10);
+    border-radius: 2px;
+  }
+  @media (max-width: 700px) { .sheet { padding: 40px 22px 48px; } }
+
+  .draftbar {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--draft); border: 1px solid currentColor; border-radius: 2px;
+    display: inline-block; padding: 3px 10px; margin-bottom: 28px;
+  }
+  h1 {
+    font-size: 27px; line-height: 1.28; font-weight: 700; margin: 0 0 14px;
+    text-wrap: balance; letter-spacing: -0.005em;
+  }
+  .byline { font-size: 14.5px; color: var(--ink-2); margin: 0 0 4px; }
+  .byline b { color: var(--ink); font-weight: 600; }
+  .dateline {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 12px; color: var(--muted); margin: 0 0 30px;
+  }
+  .abstract {
+    border-top: 2px solid var(--ink); border-bottom: 1px solid var(--hairline);
+    padding: 18px 0 20px; margin: 0 0 34px;
+  }
+  .abstract .eyebrow {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 11px; letter-spacing: .16em; color: var(--ink-2);
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .abstract p { font-size: 15.5px; line-height: 1.62; margin: 0; }
+
+  h2 {
+    font-size: 19px; font-weight: 700; margin: 40px 0 12px;
+    letter-spacing: -0.004em; text-wrap: balance;
+  }
+  h2 .no { color: var(--muted); font-weight: 400; margin-right: 10px; }
+  h3 { font-size: 15.5px; font-weight: 700; margin: 26px 0 8px; }
+  p { font-size: 16px; line-height: 1.66; margin: 0 0 14px; }
+  .us { color: var(--us); font-weight: 600; }
+  .them { color: var(--them); font-weight: 600; }
+  em { font-style: italic; }
+  sup { font-size: 11px; }
+
+  figure { margin: 28px 0 30px; }
+  figure img { width: 100%; height: auto; display: block; border: 1px solid var(--hairline); border-radius: 2px; }
+  figcaption {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 12.5px; line-height: 1.55; color: var(--ink-2); margin-top: 10px;
+  }
+  figcaption b { color: var(--ink); }
+
+  .tablewrap { overflow-x: auto; margin: 24px 0 28px; }
+  table {
+    border-collapse: collapse; width: 100%;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 13px; line-height: 1.5;
+    font-variant-numeric: tabular-nums;
+  }
+  caption {
+    text-align: left; font-size: 12.5px; color: var(--ink-2);
+    padding-bottom: 8px; caption-side: top;
+  }
+  caption b { color: var(--ink); }
+  th {
+    text-align: left; font-weight: 600; color: var(--ink);
+    border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule);
+    padding: 7px 14px 7px 0; white-space: nowrap;
+  }
+  td { padding: 6px 14px 6px 0; border-bottom: 1px solid var(--hairline); color: var(--ink-2); vertical-align: top; }
+  tr.last td, tbody tr:last-child td { border-bottom: 2px solid var(--ink); }
+  td.k, th.k { color: var(--ink); }
+  .num { text-align: right; }
+  th.num { text-align: right; }
+  .good { color: #006300; }
+
+  .refs { font-size: 14px; line-height: 1.6; }
+  .refs p { margin: 0 0 8px; padding-left: 22px; text-indent: -22px; font-size: 14px; }
+  .foot {
+    margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--hairline);
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 12px; color: var(--muted); line-height: 1.6;
+  }
+  code {
+    font-family: Consolas, "Cascadia Mono", monospace; font-size: 13px;
+    background: #f2f1ed; padding: 1px 5px; border-radius: 3px; color: var(--ink-2);
+  }
+</style>
+
+<div class="sheet">
+  <div class="draftbar">Draft · internal reproduction report · not submitted</div>
+
+  <h1>An independent reproduction of the radial-velocity companion of CD-35 2722 B from archival CRIRES+ data, and first radial-velocity limits on η Tel B</h1>
+  <p class="byline"><b>Matthew Potts</b> · independent analysis</p>
+  <p class="dateline">11 August 2026 · reproduces Hoy et al. (2026), <em>Nature</em> · all data from the public ESO archive</p>
+
+  <div class="abstract">
+    <div class="eyebrow">Abstract</div>
+    <p>
+    Hoy et al. (2026) report the radial-velocity detection of a ~0.9 M<sub>Jup</sub>
+    companion to the young brown dwarf CD-35 2722 B, with tentative evidence for a second,
+    smaller companion. Starting from the raw CRIRES+ frames in the ESO archive and an
+    independently configured extraction (cr2res 1.6.10 + viper), we reproduce the primary
+    detection blind: a period search with no reference to the published values finds
+    P&nbsp;≈&nbsp;169–171&nbsp;d as the top peak (ΔBIC&nbsp;+40), and the detection survives a
+    barycentric-correction nuisance term (ΔBIC&nbsp;+25 to +28) despite the strong
+    phase–BERV degeneracy of the epoch sampling. Our per-epoch precision reaches
+    70–90&nbsp;m&nbsp;s<sup>−1</sup> against the published 57.7, and our semi-amplitude runs
+    20–40% high — a hint, entangled with the same degeneracy, that we do not claim. The
+    second companion does not reproduce: on the published <em>Nature</em> RV table itself,
+    nested-sampling model comparison disfavours the two-companion model by
+    ΔlnZ&nbsp;=&nbsp;−0.8 to −6.6 across every prior family tried, against the claimed +2.6.
+    Applying the validated pipeline to η&nbsp;Tel&nbsp;B — a brown dwarf with no previous RV
+    measurements — yields a null with injection-calibrated 90% limits of
+    m&nbsp;sin&nbsp;i&nbsp;≳&nbsp;0.5–1.2&nbsp;M<sub>Jup</sub> for companions with
+    P&nbsp;=&nbsp;20–300&nbsp;d, the first such constraint on the object.
+    </p>
+  </div>
+
+  <h2><span class="no">1</span>Introduction</h2>
+  <p>
+  Companion-side radial velocities — measuring the reflex motion of a directly imaged
+  brown dwarf or giant planet from its own spectrum — were proposed by Vanderburg et al.
+  (2018) and forecast to be feasible with CRIRES+ by Ruffio et al. (2022, in the framework
+  of Lazzoni et al.). Three published searches returned nulls before
+  Hoy et al. (2026, hereafter <span class="them">H26</span>) reported the first detection: a
+  P&nbsp;=&nbsp;171.1&nbsp;d, K&nbsp;≈&nbsp;306&nbsp;m&nbsp;s<sup>−1</sup> signal in the
+  L0-type companion CD-35 2722 B (31–37&nbsp;M<sub>Jup</sub>, AB Dor moving group),
+  interpreted as a 0.92&nbsp;M<sub>Jup</sub> satellite, with tentative evidence
+  (ΔlnZ&nbsp;=&nbsp;+2.62) for a second companion at 87.3&nbsp;d.
+  </p>
+  <p>
+  A detection of this kind is worth reproducing end to end: the claimed amplitude sits far
+  below the per-spectrum noise, the epoch sampling entangles the orbital phase with the
+  barycentric correction (§4), and the published evidence for the second companion moved
+  substantially between the preprint and the accepted version. This draft reports
+  (i)&nbsp;a from-raw, independently configured reproduction of the
+  <span class="them">H26</span> measurement (§2–4, Figs.&nbsp;1–3), (ii)&nbsp;a
+  re-examination of the two-companion evidence on the published RV table
+  (§5, Table&nbsp;3), and (iii)&nbsp;the first application of the validated pipeline to a
+  new target, η&nbsp;Tel&nbsp;B (§6, Fig.&nbsp;4). Every stage is validated by
+  signal injection rather than by internal fit statistics; the distinction turns out to
+  matter (§7).
+  </p>
+
+  <h2><span class="no">2</span>Data and reduction</h2>
+  <p>
+  All data are public ESO archive holdings. For CD-35 2722 B we use the 18 archival
+  CRIRES+ H1567 epochs (2023 Oct – 2025 Jan; ESO programmes 110.23RW, 111.24M0). Every
+  epoch was re-reduced from the raw frames with the same pipeline version as
+  <span class="them">H26</span> (cr2res 1.6.10; <code>cal_dark → cal_flat → cal_wave →
+  obs_nodding</code>), keeping the two nodding positions as separate spectra — the
+  extraction <span class="them">H26</span> favour. Our from-raw reduction reproduces
+  ESO's archived combined products to 42&nbsp;m&nbsp;s<sup>−1</sup> in the final RV.
+  For η&nbsp;Tel&nbsp;B (§6) the same cascade was run on all 20 public H1567 epochs
+  (2023 May – 2025 Aug; programmes 111.24M0, 113.268Y, 115.287U).
+  </p>
+
+  <h2><span class="no">3</span>Radial-velocity extraction</h2>
+  <p>
+  RVs are measured with viper in its gas-cell-free CRIRES+ mode, forward-modelling each
+  spectral order against a telluric-free stellar template built from the observations
+  themselves. <span class="them">H26</span> describe their configuration qualitatively;
+  Table&nbsp;1 lists their stated choices beside the configuration adopted here and how
+  each element was fixed. Three elements deserve note. The eleven spectral orders were
+  recovered by mapping the paper's order labels through a pre-2024 change in viper's
+  CRIRES+ order numbering, and independently confirmed by the paper's own selection
+  criterion (telluric line density) and by head-to-head scoring. The stellar template
+  requires two build iterations, as <span class="them">H26</span> state; we find the
+  second iteration is <em>decisive</em> — without it the blind detection of §4 fails its
+  robustness test. Template oversampling and the instrumental-profile model are
+  unstated in <span class="them">H26</span>; a sweep fixes oversampling at 2 and shows
+  the IP choice to be degenerate at this signal-to-noise.
+  </p>
+
+  <div class="tablewrap">
+  <table>
+    <caption><b>Table 1.</b> Extraction configuration: as stated by <span class="them">H26</span>, and as adopted here. The scoring metric for every choice was the rms against the published RV series; every adopted change was additionally required to pass signal-injection recovery (shift the template, re-run the full fit per epoch).</caption>
+    <thead><tr>
+      <th>element</th><th>H26 (stated)</th><th>this work (adopted)</th><th>fixed by</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="k">pipeline</td><td>cr2res 1.6.10</td><td>cr2res 1.6.10, from raw</td><td>header archaeology; 42 m s⁻¹ product match</td></tr>
+      <tr><td class="k">nodding positions</td><td>separate RVs, then binned</td><td>same (36–40 frames per target)</td><td>paired test vs combined products</td></tr>
+      <tr><td class="k">gas cell model</td><td>none in beam</td><td><code>-nocell</code></td><td>INS1 OPTI1 ID = FREE</td></tr>
+      <tr><td class="k">spectral orders</td><td>"eleven orders", telluric criterion</td><td>oset 4,7,8,9,10,12,13,14,17,18,19</td><td>numbering-change map + criterion + score</td></tr>
+      <tr><td class="k">template</td><td>telluric-free, two iterations</td><td>two iterations, all 21 segments</td><td>iteration 2 gated by injection (§3.1)</td></tr>
+      <tr><td class="k">outlier rejection</td><td>—</td><td>κσ = 3</td><td>largest single-flag gain</td></tr>
+      <tr><td class="k">template oversampling</td><td>—</td><td>2</td><td>sweep (1/2/4/8)</td></tr>
+      <tr><td class="k">IP model</td><td>—</td><td>default (Gaussian-degenerate)</td><td>sweep; alternatives worse or identical</td></tr>
+      <tr class="last"><td class="k">order combination</td><td>—</td><td>mean over orders (post-iteration-2)</td><td>median needed only at iteration 1</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>3.1 Validation by injection, not by fit statistics</h3>
+  <p>
+  Self-built templates can absorb the very signal being measured; on the known binary
+  GJ&nbsp;229&nbsp;B, one template-iteration recipe recovered only 41% of a known
+  amplitude. Every configuration adopted here was therefore required to transmit an
+  injected Keplerian — imposed by shifting the <em>template</em> per epoch, never the
+  observation, and re-running the full fit — at both K&nbsp;=&nbsp;1530 and an
+  amplitude-matched K&nbsp;≈&nbsp;306&nbsp;m&nbsp;s<sup>−1</sup>. The final CD-35
+  configuration recovers 105&nbsp;±&nbsp;4% (all eleven orders individually at
+  92–112%), with the core orders linear at the matched amplitude to 2–8%. The final
+  η&nbsp;Tel&nbsp;B configuration recovers 99–101&nbsp;±&nbsp;1%.
+  </p>
+
+  <h2><span class="no">4</span>CD-35 2722 B: the companion reproduces</h2>
+  <p>
+  Figure&nbsp;1 shows our binned per-nodding series against the published table: 17
+  usable archival nights match, with rms difference 90&nbsp;m&nbsp;s<sup>−1</sup>
+  (mean order combine; 70–76 with per-order centering and robust combines) against the
+  published per-epoch precision of 57.7. One archival night (BJD&nbsp;2460604.8) is
+  excluded by an internal quality screen — its across-order scatter is 7× the median
+  night's — and is, independently, the one archival epoch absent from the published
+  table. Figure&nbsp;2 folds both series on the published period.
+  </p>
+
+  {{FIG1}}
+  {{FIG2}}
+
+  <p>
+  The conclusion-level test is a blind period search (ΔBIC of a circular Keplerian over
+  a constant, 4000 trial periods, 5–460&nbsp;d) on our series alone
+  (Fig.&nbsp;3, left). The published period family emerges as the top peak
+  (P&nbsp;=&nbsp;169–171&nbsp;d, ΔBIC&nbsp;=&nbsp;+40), and — the decisive property —
+  <em>survives the addition of a BERV nuisance covariate</em> (ΔBIC&nbsp;=&nbsp;+25 to
+  +28, rank 1 in mean, median, and clipped combines, on both extraction routes). This
+  matters because the archival sampling correlates orbital phase with the barycentric
+  correction at r&nbsp;=&nbsp;−0.71: with a poorer extraction the same test previously
+  destroyed the detection entirely. Without the second template iteration it still
+  does — per-nodding extraction alone does not rescue it — identifying the template as
+  the decisive systematic.
+  </p>
+  {{FIG3}}
+  <p>
+  Two quantitative disagreements persist. Our semi-amplitude runs high: fitting at the
+  published period gives K&nbsp;=&nbsp;380–470&nbsp;m&nbsp;s<sup>−1</sup> against the
+  published 306, a 20–40% overshoot (slope of our RVs on theirs:
+  1.19–1.24&nbsp;±&nbsp;0.10). The same phase–BERV degeneracy that once hid the signal
+  also prevents a clean amplitude measurement from these epochs — controlling for BERV
+  absorbs real signal (slope&nbsp;→&nbsp;1.16&nbsp;±&nbsp;0.12) — so we record the
+  overshoot as a hint only. It is at least consistent in direction with a measured
+  property of the template recipe: on GJ 229 B, self-templating absorbs amplitude, and
+  a recipe that absorbs less would read systematically higher than one that absorbs
+  more. Second, our per-epoch precision remains 1.2–1.6× the published value
+  (Table&nbsp;2); the residual is night-to-night per-order zero-point scatter that no
+  smooth nuisance model we tried removes without damaging the signal.
+  </p>
+
+  <div class="tablewrap">
+  <table>
+    <caption><b>Table 2.</b> Headline comparison for CD-35 2722 B. "Blind ΔBIC" is the period-search peak with the BERV covariate included; <span class="them">H26</span> did not publish an equivalent statistic.</caption>
+    <thead><tr>
+      <th>quantity</th><th class="num">H26</th><th class="num">this work</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="k">period (d)</td><td class="num">171.11 / 171.45</td><td class="num">169–171 (blind top peak)</td></tr>
+      <tr><td class="k">K (m s⁻¹)</td><td class="num">306 ± 18</td><td class="num">380–470 (20–40% high; hint only)</td></tr>
+      <tr><td class="k">m sin i (M<sub>Jup</sub>)</td><td class="num">0.918</td><td class="num">consistent family; amplitude caveat</td></tr>
+      <tr><td class="k">per-epoch precision (m s⁻¹)</td><td class="num">57.7</td><td class="num">70–90</td></tr>
+      <tr><td class="k">epochs</td><td class="num">23 (5–6 still embargoed)</td><td class="num">17 public archival nights</td></tr>
+      <tr class="last"><td class="k">detection robust to BERV term</td><td class="num">not reported</td><td class="num">yes: ΔBIC +25 to +28, rank 1</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2><span class="no">5</span>The second companion does not survive its own table</h2>
+  <p>
+  <span class="them">H26</span> report lnZ&nbsp;=&nbsp;−144.32&nbsp;±&nbsp;0.70 for a
+  one-companion (eccentric) model and −141.70&nbsp;±&nbsp;0.69 for two companions:
+  ΔlnZ&nbsp;=&nbsp;+2.62&nbsp;±&nbsp;~1.0 in favour of two. Fitting the same published
+  23-epoch table with nested sampling (dynesty; likelihood identical to our fitter,
+  priors symmetric between models), we find the <em>opposite sign in every variant
+  tried</em> (Table&nbsp;3): pinning the periods at the published values, freeing them
+  in the paper's own windows, or matching the paper's literal both-eccentric pairing;
+  under uniform, linear-jitter, or log-amplitude priors. The 87.3&nbsp;d period
+  <em>choice</em> does reproduce — it beats the 70/115&nbsp;d aliases in both table
+  versions, as in <span class="them">H26</span> — but the <em>existence</em> evidence
+  does not. Notably, the same comparison run on the superseded preprint table still
+  favours two companions (+3.0): the flip lives in the authors' own data revision
+  (three added epochs, corrected timestamps, near-doubled errors), not in the fitting
+  code. Evidence values are prior-dependent and EMPEROR's exact priors are not
+  published in full; we would welcome the comparison under their exact configuration.
+  </p>
+
+  <div class="tablewrap">
+  <table>
+    <caption><b>Table 3.</b> Nested-sampling evidence for the second companion on the published <em>Nature</em> RV table: ΔlnZ (two-companion − one-companion); positive favours two. Two independent seeds per cell (nlive = 500). The paper claims +2.62 ± ~1.0.</caption>
+    <thead><tr>
+      <th>model pairing</th><th>priors</th><th class="num">ΔlnZ, seed 1</th><th class="num">ΔlnZ, seed 2</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="k">1-ecc vs 2-circ, periods fixed at published</td><td>uniform</td><td class="num">−1.42 ± 0.24</td><td class="num">−1.96 ± 0.24</td></tr>
+      <tr><td class="k">1-ecc vs 2-circ, periods in H26's windows</td><td>uniform</td><td class="num">−3.23 ± 0.27</td><td class="num">−3.65 ± 0.27</td></tr>
+      <tr><td class="k">both eccentric (H26's Table 1 pairing)</td><td>uniform</td><td class="num">−5.41 ± 0.27</td><td class="num">−6.63 ± 0.27</td></tr>
+      <tr><td class="k">free periods</td><td>jitter U(0,300)</td><td class="num">−4.35 ± 0.27</td><td class="num">−2.88 ± 0.27</td></tr>
+      <tr><td class="k">both eccentric</td><td>jitter U(0,300)</td><td class="num">−4.64 ± 0.27</td><td class="num">−2.23 ± 0.27</td></tr>
+      <tr><td class="k">free periods</td><td>K log-uniform</td><td class="num">−2.32 ± 0.27</td><td class="num">−2.30 ± 0.28</td></tr>
+      <tr class="last"><td class="k">both eccentric</td><td>K log-uniform</td><td class="num">−0.83 ± 0.27</td><td class="num">−0.79 ± 0.27</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2><span class="no">6</span>η Tel B: a first radial-velocity limit, below a Jupiter mass</h2>
+  <p>
+  η&nbsp;Tel&nbsp;B (M7.5, ~47&nbsp;M<sub>Jup</sub>, β Pic moving group) shares CD-35
+  2722 B's instrument setting and has no RV measurements in the literature. Before any
+  extraction we checked the property that compromised the CD-35 sampling: over the 17
+  usable modern epochs, only 11% of the 5–460&nbsp;d period grid is BERV-degenerate,
+  and the 150–300&nbsp;d decade is fully clean — this target cannot hide an orbit
+  behind the barycentric correction. The transferred pipeline delivers
+  127–129&nbsp;m&nbsp;s<sup>−1</sup> per epoch (the M7.5 spectrum is far richer in
+  H-band lines than an early-L), r(RV,&nbsp;BERV)&nbsp;=&nbsp;+0.03, and injection
+  recovery of 99–101&nbsp;±&nbsp;1% with per-epoch injection residuals of only
+  12–26&nbsp;m&nbsp;s<sup>−1</sup>.
+  </p>
+  <p>
+  The blind search returns no credible signal on either extraction route
+  (Fig.&nbsp;3, right): the whole BERV-clean window is negative, and the only
+  structure — a weak comb below 20&nbsp;d whose leading period moves between routes
+  and combines, and which strengthens only when the BERV term is added — behaves as a
+  sampling alias, in the same period regime <span class="them">H26</span> themselves
+  discard as artifacts. The null is calibrated end to end: a real
+  K&nbsp;=&nbsp;300&nbsp;m&nbsp;s<sup>−1</sup>, P&nbsp;=&nbsp;200&nbsp;d Keplerian,
+  injected at the template level and pushed through the full pipeline, is recovered by
+  the same search at rank 1 (ΔBIC +15 to +19). Marginalizing injected phase and
+  demanding ΔBIC ≥ 10 with rank 1 at the injected period gives the 90% exclusion of
+  Figure&nbsp;4 and Table&nbsp;4: companions of m&nbsp;sin&nbsp;i&nbsp;≳
+  0.5–1.2&nbsp;M<sub>Jup</sub> are ruled out across P&nbsp;=&nbsp;20–300&nbsp;d. A twin
+  of the CD-35 companion would have been detected with ~70% probability.
+  </p>
+
+  {{FIG4}}
+
+  <div class="tablewrap">
+  <table>
+    <caption><b>Table 4.</b> η Tel B 90% companion exclusion (phase-marginalized; detection = ΔBIC ≥ 10 and top-ranked peak at the injected period; M<sub>host</sub> = 47 M<sub>Jup</sub>). K<sub>90</sub> is the smallest injected semi-amplitude detected in ≥ 90% of phases.</caption>
+    <thead><tr>
+      <th class="num">period (d)</th><th class="num">K₉₀ (m s⁻¹)</th><th class="num">m sin i limit (M<sub>Jup</sub>)</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="num">20</td><td class="num">300</td><td class="num k">0.5</td></tr>
+      <tr><td class="num">60</td><td class="num">250</td><td class="num k">0.6</td></tr>
+      <tr><td class="num">120</td><td class="num">250</td><td class="num k">0.8</td></tr>
+      <tr><td class="num">200</td><td class="num">300</td><td class="num k">1.1</td></tr>
+      <tr class="last"><td class="num">300</td><td class="num">300</td><td class="num k">1.2</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2><span class="no">7</span>Discussion</h2>
+  <p>
+  Three conclusions. <em>First</em>, the central claim of
+  <span class="them">H26</span> stands up to a from-raw, independently configured,
+  injection-validated reproduction: CD-35 2722 B's RVs contain a coherent
+  ~170-day signal that a blind search finds at high significance and that survives the
+  BERV degeneracy of the sampling. <em>Second</em>, the second companion does not: on
+  the paper's own revised table the evidence integral lands on the other side of zero
+  in every prior family we tried, and the claimed +2.62 is itself within ~2.7σ of zero
+  by the paper's own quoted lnZ uncertainties. <em>Third</em>, the method transfers:
+  on its first new target it produced a sub-Jupiter companion limit from archival data
+  alone.
+  </p>
+  <p>
+  A metrological note. The paper's per-epoch precision statistic (its Eq.&nbsp;1, an
+  error-weighted across-order dispersion) moved <em>against</em> our two largest real
+  improvements while the external agreement improved by 40%: it is invariant to a
+  common-mode signal by construction, and it does not measure night-level accuracy. In
+  a regime where every internal statistic we tried was, at least once, anti-correlated
+  with truth, injection recovery plus an external reference series were the only
+  reliable guides. Reproductions of this class of measurement should assume the same.
+  </p>
+  <p>
+  The open items are dated. The 20–40% amplitude question and the second-companion
+  discrepancy both become decidable when the embargoed 2026 epochs release (Dec 2026 –
+  May 2027), which break the phase–BERV degeneracy; and the η&nbsp;Tel&nbsp;B limit can
+  be extended by the 2009 pre-upgrade CRIRES epochs (a 16-year baseline) and by the
+  K-band epochs still under embargo. The natural next targets, in order of readiness:
+  β&nbsp;Pic&nbsp;b (six archival nights; a first RV series of the planet, not yet an
+  orbit), and PDS&nbsp;70&nbsp;b, where ~200–300&nbsp;M<sub>⊕</sub> exomoon-regime
+  companions would be within reach of a dedicated campaign.
+  </p>
+
+  <h2><span class="no"> </span>Data & code availability</h2>
+  <p class="refs" style="font-size:14.5px">
+  All spectra are public ESO archive products and raw frames (programmes 110.23RW,
+  111.24M0, 113.268Y, 115.287U, 083.C-0759, 383.D-0183). The full pipeline —
+  reduction drivers, the converter, injection harness, nested-sampling code, and every
+  script behind the figures and tables — lives in the project repository
+  (<code>exosat-rv/</code>, milestones M0–M15). The published RV table is transcribed
+  from the <span class="them">H26</span> appendix with provenance headers.
+  </p>
+
+  <h2><span class="no"> </span>References</h2>
+  <div class="refs">
+    <p>Hoy, K., et al. 2026, <em>Nature</em>, "A satellite orbiting the directly-imaged brown dwarf CD-35 2722 B" (published version; supersedes arXiv:2607.05193v1).</p>
+    <p>Köhler, R., et al. 2025, A&amp;A, viper: velocity and IP estimator for CRIRES+.</p>
+    <p>Lazzoni, C., et al. 2022, A&amp;A, on satellite detectability around directly imaged companions.</p>
+    <p>Peña, R., et al. 2025, A&amp;A 706, 323, EMPEROR/reddemcee.</p>
+    <p>Speagle, J. S. 2020, MNRAS 493, 3132, dynesty.</p>
+    <p>Wahhaj, Z., et al. 2011, ApJ, discovery of CD-35 2722 B.</p>
+  </div>
+
+  <div class="foot">
+    Draft prepared 2026-08-11 from milestones M13–M15 of the exosat-rv reproduction
+    project. Figures 1–4 are generated by <code>scripts/m16_figures.py</code> from the
+    exported series in <code>data/export/</code>. This document reports an independent
+    analysis and is not affiliated with or endorsed by the authors of H26. Based on data
+    obtained from the ESO Science Archive Facility.
+  </div>
+</div>
