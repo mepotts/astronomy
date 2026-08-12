@@ -1,6 +1,6 @@
 # M20–M22 — The census harvest: a contrast wall measured on beta Pic b, a quiet star at PDS 70, and the first companion monitoring of HIP 65426 b
 
-> **Status: M21 and M22 complete; M20's final arm (beta Pic b v3) still computing.**
+> **Status: COMPLETE (M20, M21, M22).**
 > Covers the work that followed the coordinate census (M19 scripts, commit 465d27a).
 
 **Question:** the coordinate census found three campaigns filed under host-star names.
@@ -42,12 +42,16 @@ Three passes, each isolating one cause:
 |---|---|---|---|
 | v1 | reused M17's single-night template | 4712 m/s night scatter, r(BERV) = +0.94; blind peaks collapse under a BERV term | a single-night template cannot separate planet lines from telluric residue (no BERV lever within one night) — it drags a fraction of Earth's motion into every epoch |
 | v2 | rebuilt across all 28 frames / 813 d | scatter halves to 2466 m/s; r(BERV) = +0.88 persists; injections 99–100% | the residual is not the template: it is **starlight**. The K2166 setting is centered on Br-γ, the host's dominant absorption line, 130 km/s wide, riding in the contaminating halo and moving with BERV while tellurics stand still |
-| v3 | v2 template + Br-γ order masked + six injection-unstable orders dropped | **running** | decides whether a multi-km/s-level companion bound survives, or M20 closes as a pure contamination measurement |
+| v3 | v2 template + Br-γ order masked + six injection-unstable orders dropped | scatter 2962 m/s, r(BERV) = **+0.88 unchanged**; injections 99–100% on the 11 kept orders; every long-period peak dies under the BERV term (−1.7 to +0.4 near 171 d) | the contamination is **pervasive, not surgical**: the starlight carries broad low-level features across the whole band, and no order subset rescues a ~5000× contrast slit |
 
-Both failure modes are now permanent rules: **never build a template from a single
-night**, and **expect slit spectroscopy to fail at small separation from bright
-hosts** (§6). Whatever v3 returns, no companion claim comes out of this series —
-the 2σ-level structure that remains under BERV control is not evidence of anything.
+**Final verdict: contamination-limited at the km/s level.** No companion claim, and
+no defensible K exclusion either — the variance-based limit assumes the observed
+scatter is noise, and here it is a BERV-locked systematic. What M20 delivers instead
+is the measurement that this target class *requires* hardware starlight suppression,
+plus two permanent rules: **never build a template from a single night**, and
+**expect slit spectroscopy to fail at small separation from bright hosts** (§6).
+The short-period comb (5–17 d, ΔBIC +9–15 under BERV control) is the same
+sampling-alias family seen on eta Tel and is not evidence of anything.
 
 ## 3. PDS 70: the star, measured properly (M21)
 
