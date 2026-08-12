@@ -1,6 +1,16 @@
 # HANDOFF — exosat-rv
 
-> ## ⚠ READ [`M15-RESULTS.md`](M15-RESULTS.md) and [`M14-RESULTS.md`](M14-RESULTS.md) FIRST (then M13, M12)
+> ## ⚠ READ [`M15-RESULTS.md`](M15-RESULTS.md) and [`M14-RESULTS.md`](M14-RESULTS.md) FIRST (then M13, M12); [`M17`](M17-RESULTS.md) adds the K-band tier
+>
+> **M17 (2026-08-11):** K-band spot-checks on the tier-2 targets — first-ever RVs of
+> **beta Pic b** (162 m/s within-night on the planet, injection 100±0% in all 18
+> K2166 orders → a campaign could reach ~100 M⊕ exomoons), **AB Pic b** (~120–190
+> m/s over 2 nights, gates pass), and **CT Cha B** (usable only with per-order
+> screening; disk emission suspected). viper's K-band branch is 1-indexed
+> (`oset 1:19` for K2166); filter_path is now at five documented lies. The paper
+> draft ([docs/paper/](docs/paper/)) carries the CD-35 + eta Tel story with
+> figures/tables; beta Pic b's raw K-nights (night-to-night repeatability of a
+> planet RV) are the next queue item.
 >
 > **M15 (2026-08-11, COMPLETE):** the validated recipe transferred to **eta Tel B**
 > — which shares CD-35's exact H1567 setting — and produced the **first RV

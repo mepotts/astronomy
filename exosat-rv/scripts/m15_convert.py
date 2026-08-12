@@ -28,11 +28,11 @@ from astropy.io import fits
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def convert(src: Path, dst: Path) -> str:
+def convert(src: Path, dst: Path, want_wlen: str = "H1567") -> str:
     with fits.open(src) as h:
         hdr = h[0].header.copy()
         wlen = hdr.get("HIERARCH ESO INS WLEN ID") or hdr.get("ESO INS WLEN ID")
-        if wlen != "H1567":
+        if wlen != want_wlen:
             return f"skip ({wlen})"
         t = h[1].data
         wave, flux, err = (np.asarray(t["WAVE"][0]).ravel(),
@@ -61,8 +61,8 @@ def convert(src: Path, dst: Path) -> str:
                      fits.Column(name=f"{p}_WL", format="D", array=w)]
         hdus.append(fits.BinTableHDU.from_columns(cols, name=f"CHIP{det}"))
 
-    if len(seg_centres) != 21:
-        return f"FAIL {len(seg_centres)} segments (want 21)"
+    if len(seg_centres) < 15:
+        return f"FAIL only {len(seg_centres)} segments"
     det1 = np.mean([c for d, _, c in seg_centres if d == 1])
     det3 = np.mean([c for d, _, c in seg_centres if d == 3])
     if det1 >= det3:
@@ -85,6 +85,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--src", default=str(ROOT / "data" / "spectra_etatel"))
     ap.add_argument("--dst", default=str(ROOT / "data" / "etatel_cr2res"))
+    ap.add_argument("--wlen", default="H1567")
     args = ap.parse_args()
     srcd, dstd = Path(args.src), Path(args.dst)
     dstd.mkdir(parents=True, exist_ok=True)
@@ -96,7 +97,7 @@ def main() -> None:
             print(f"have {f.name}")
             n_ok += 1
             continue
-        v = convert(f, out)
+        v = convert(f, out, args.wlen)
         print(f"{f.name}: {v}")
         if v == "ok":
             n_ok += 1
