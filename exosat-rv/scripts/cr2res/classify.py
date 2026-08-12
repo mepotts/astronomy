@@ -15,6 +15,7 @@ for f in sorted(glob.glob(os.path.join(d, "*.fits"))):
     pro = h.get("HIERARCH ESO PRO CATG") or h.get("ESO PRO CATG")
     dpr = h.get("HIERARCH ESO DPR TYPE") or h.get("ESO DPR TYPE") or ""
     cat = h.get("HIERARCH ESO DPR CATG") or h.get("ESO DPR CATG") or ""
+    tech = h.get("HIERARCH ESO DPR TECH") or h.get("ESO DPR TECH") or ""
     wlen = h.get("HIERARCH ESO INS WLEN ID") or h.get("ESO INS WLEN ID") or ""
     dit = h.get("HIERARCH ESO DET SEQ1 DIT") or h.get("ESO DET SEQ1 DIT") or ""
     if pro:
@@ -28,7 +29,9 @@ for f in sorted(glob.glob(os.path.join(d, "*.fits"))):
     elif "FPET" in dpr:
         tag = "WAVE_FPET"
     elif cat == "SCIENCE" or "OBJECT" in dpr:
-        tag = "OBS_NODDING_OTHER"
+        # staring-mode science (HD 1160, AF Lep, 51 Eri campaigns) has no NODDING
+        # in DPR TECH and must go to cr2res_obs_staring, not obs_nodding
+        tag = "OBS_NODDING_OTHER" if "NODDING" in tech else "OBS_STARING_OTHER"
     else:
         tag = "UNKNOWN:" + dpr
     rows.append((f, tag, str(wlen), str(dit)))

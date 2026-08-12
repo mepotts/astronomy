@@ -1,5 +1,32 @@
 # Target interrogation queue (post-M14)
 
+> ## Plan of attack (2026-08-12, post-census — supersedes the tiers below where they conflict)
+>
+> The coordinate census + header verification (M19, `data/m19-coord-census.json`)
+> found campaigns filed under host names. Working order:
+>
+> | milestone | target | data | actions | state |
+> |---|---|---|---|---|
+> | **M20** | beta Pic b | 13 K2166 nights / ~810 d (114.27DX + 2023 pilot) | serial fetch+reduce → combined run → blind search + injections | **fetch running** |
+> | **M21** | PDS 70 b | ≥5 K2166 product epochs 2022–23 (+9 products to retry, +3 raw 2025 nights, +2 embargoed) | finish product fetch → convert → `m2x_run_target.sh` → verdict | products partly on disk |
+> | **M22** | HIP 65426 b | 8 nights: ~4 H-family (H1575) + ~4 K-family | fetch products → per-setting sub-series; H1575 oset by wavelength-overlap map from H_C | queued |
+> | **M23** | HD 1160 B | 9 staring H1567 nights / 42 d, DIT 1200 (+1 K pilot night) | staring recipe **now wired in** (classify + reduce_one) → fetch → run | engineering done, unfetched |
+> | **M24** | AF Lep b + 51 Eri b | 2 + 1 public staring nights | piggyback on M23's staring path; single-epoch RVs | queued |
+> | — | CT Cha B | 3 epochs on disk | injection-based order screen, re-verdict | idle task |
+> | — | GSC 08047-00232 B | 2 raw K nights + embargoed product | reduce when convenient; embargo calendar | parked |
+>
+> Standing machinery: `m2x_run_target.sh` (generic ladder→RV→diag→injection runner),
+> `m19_urls_from_raw.py` (raw-first fetch, no PROV chain needed), staring branch in
+> `reduce_one.sh`. Order sets: K-band targets run all orders + injection screening
+> (M13's order-drop rule); H1575 maps H_C by wavelength overlap — the raw-FTS
+> line-count deriver failed validation (`m2x_derive_oset.py` docstring) and the
+> fitted-molecule variant is future work. Downloads SERIAL always (parallel lanes
+> saturate the portal — measured twice).
+>
+> Embargo calendar: PDS 70 K nights (2025-08 obs), 51 Eri (2025-09), GSC product,
+> eta Tel K epochs, beta Pic b late-2025 K nights, CD-35's decisive epochs
+> (**Dec 2026 – May 2027**).
+
 The validated recipe (per-nodding from raw, 2-iteration template with `-kapsig 3`
 creation and the injection guard, telluric-selected orders, `-kapsig 3`,
 `-oversampling 2`, robust combine, internal 3×-spread epoch screen, blind search that

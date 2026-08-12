@@ -47,13 +47,28 @@ run cr2res_cal_wave wave.sof wave || echo "   ($N continuing with flat TW)"
 WTW=$(ls "$W"/cr2res_cal_wave_tw*.fits 2>/dev/null | head -1)
 [ -z "$WTW" ] && WTW="$FTW"
 
-{ for f in $(pick OBS_NODDING_OTHER); do echo "$f OBS_NODDING_OTHER"; done
-  [ -n "$WTW" ]  && echo "$WTW CAL_WAVE_TW"
-  [ -n "$FMAS" ] && echo "$FMAS CAL_FLAT_MASTER"
-  [ -n "$FEXT" ] && echo "$FEXT CAL_FLAT_EXTRACT_1D"
-  [ -n "$BPM" ]  && echo "$BPM CAL_DARK_BPM"
-  for f in $(pick CAL_DETLIN_COEFFS); do echo "$f CAL_DETLIN_COEFFS"; done
-  for f in $(pick PHOTO_FLUX); do echo "$f PHOTO_FLUX"; done; } > nod.sof
-run cr2res_obs_nodding nod.sof nod || exit 1
-[ -f "$W/cr2res_obs_nodding_extractedA.fits" ] && [ -f "$W/cr2res_obs_nodding_extractedB.fits" ] \
-  && touch "$W/.done" && echo "$N REDUCED OK" || { echo "$N missing extractedA/B"; exit 1; }
+N_NOD=$(pick OBS_NODDING_OTHER | wc -l)
+N_STARE=$(pick OBS_STARING_OTHER | wc -l)
+if [ "$N_NOD" -gt 0 ]; then
+  { for f in $(pick OBS_NODDING_OTHER); do echo "$f OBS_NODDING_OTHER"; done
+    [ -n "$WTW" ]  && echo "$WTW CAL_WAVE_TW"
+    [ -n "$FMAS" ] && echo "$FMAS CAL_FLAT_MASTER"
+    [ -n "$FEXT" ] && echo "$FEXT CAL_FLAT_EXTRACT_1D"
+    [ -n "$BPM" ]  && echo "$BPM CAL_DARK_BPM"
+    for f in $(pick CAL_DETLIN_COEFFS); do echo "$f CAL_DETLIN_COEFFS"; done
+    for f in $(pick PHOTO_FLUX); do echo "$f PHOTO_FLUX"; done; } > nod.sof
+  run cr2res_obs_nodding nod.sof nod || exit 1
+  [ -f "$W/cr2res_obs_nodding_extractedA.fits" ] && [ -f "$W/cr2res_obs_nodding_extractedB.fits" ] \
+    && touch "$W/.done" && echo "$N REDUCED OK (nodding)" || { echo "$N missing extractedA/B"; exit 1; }
+elif [ "$N_STARE" -gt 0 ]; then
+  # staring-mode science: one collapsed extraction per night (cr2res_obs_staring)
+  { for f in $(pick OBS_STARING_OTHER); do echo "$f OBS_STARING_OTHER"; done
+    [ -n "$WTW" ]  && echo "$WTW CAL_WAVE_TW"
+    [ -n "$BPM" ]  && echo "$BPM CAL_DARK_BPM"
+    for f in $(pick CAL_DETLIN_COEFFS); do echo "$f CAL_DETLIN_COEFFS"; done; } > stare.sof
+  run cr2res_obs_staring stare.sof stare || exit 1
+  ls "$W"/cr2res_obs_staring_extracted*.fits > /dev/null 2>&1 \
+    && touch "$W/.done" && echo "$N REDUCED OK (staring)" || { echo "$N missing staring extraction"; exit 1; }
+else
+  echo "$N: no science frames tagged"; exit 1
+fi
