@@ -63,10 +63,16 @@ def convert(src: Path, dst: Path, want_wlen: str = "H1567") -> str:
 
     if len(seg_centres) < 15:
         return f"FAIL only {len(seg_centres)} segments"
-    det1 = np.mean([c for d, _, c in seg_centres if d == 1])
-    det3 = np.mean([c for d, _, c in seg_centres if d == 3])
-    if det1 >= det3:
-        return "FAIL detector 1 not bluest"
+    # within each order, wavelength must increase with detector number (the
+    # global det-mean comparison broke on K2192, where order 02 has no det3
+    # segment and skews the means)
+    by_order: dict[int, dict[int, float]] = {}
+    for d, o, c in seg_centres:
+        by_order.setdefault(o, {})[d] = c
+    for o, dets in by_order.items():
+        ds = sorted(dets)
+        if any(dets[a] >= dets[b] for a, b in zip(ds, ds[1:])):
+            return f"FAIL detector order inverted in order {o:02d}"
     cwlens = [hdr[k] for k in hdr if k.startswith("CWLEN")]
     if cwlens:
         centres_by_order: dict[int, list[float]] = {}

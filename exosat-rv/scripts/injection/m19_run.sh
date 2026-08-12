@@ -27,8 +27,10 @@ echo "M19_BPB rc=$? rows=$(wc -l < M19_BPB.rvo.dat 2>/dev/null)"
 
 echo "=== diag ==="
 $PY $SC/m15_diag.py M19_BPB.rvo.dat
-echo "=== verdict ==="
+echo "=== verdict (nightly chi2 + K exclusion) ==="
 $PY $SC/m19_verdict.py M19_BPB.rvo.dat
+echo "=== blind search (binned nights; meaningful now that the series is 13+ epochs) ==="
+$PY $SC/blind_search.py M19_BPB.rvo.dat --nod
 
 for arm in "M19K15 1530" "M19K3 300"; do
   set -- $arm

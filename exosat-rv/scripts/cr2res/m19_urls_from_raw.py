@@ -69,23 +69,49 @@ urls = [f"https://dataportal.eso.org/dataPortal/file/{d}" for d in sci]
 seen = set(urls)
 
 # calibrations from calSelector on the first science frame
-t = Table.read(io.BytesIO(fetch(
-    f"https://archive.eso.org/datalink/links?ID=ivo://eso.org/ID?{sci[0]}",
-    b"calSelector_raw2master")), format="votable")
-mu = [str(r["access_url"]) for r in t
-      if "raw2mast" in str(r["semantics"]) and str(r["access_url"]).strip()][0]
-m = Table.read(io.BytesIO(fetch(mu, b"dataPortal")), format="votable")
 n_cal = 0
-for r in m:
-    u = str(r["access_url"])
-    if str(r["eso_category"]) == "ASSOCIATION_TREE" or not u.startswith("https://dataportal"):
-        continue
-    if u not in seen:
-        seen.add(u)
-        urls.append(u)
-        n_cal += 1
-print(f"{night}: +{n_cal} calibration files -> {len(urls)} total")
+try:
+    t = Table.read(io.BytesIO(fetch(
+        f"https://archive.eso.org/datalink/links?ID=ivo://eso.org/ID?{sci[0]}",
+        b"calSelector_raw2master")), format="votable")
+    mu = [str(r["access_url"]) for r in t
+          if "raw2mast" in str(r["semantics"]) and str(r["access_url"]).strip()][0]
+    m = Table.read(io.BytesIO(fetch(mu, b"dataPortal")), format="votable")
+    for r in m:
+        u = str(r["access_url"])
+        if str(r["eso_category"]) == "ASSOCIATION_TREE" or not u.startswith("https://dataportal"):
+            continue
+        if u not in seen:
+            seen.add(u)
+            urls.append(u)
+            n_cal += 1
+except Exception as e:  # noqa: BLE001
+    print(f"calSelector failed: {e}", file=sys.stderr)
+print(f"{night}: +{n_cal} calibration files via calSelector")
+
 if n_cal < 3:
-    raise SystemExit(f"only {n_cal} calibs resolved; refusing")
+    # Fallback (M23: calSelector returns ZERO for the HD 1160 staring frames —
+    # plausibly no association for 1200 s darks): pull the night's own CALIB
+    # frames directly and let classify.py + the recipes sort them by type/DIT.
+    from datetime import date, timedelta
+    d0 = date.fromisoformat(night)
+    d1 = d0 + timedelta(days=1)
+    cal = tap(f"""
+        SELECT dp_id, dp_type FROM dbo.raw
+        WHERE instrument = 'CRIRES' AND dp_cat = 'CALIB'
+          AND date_obs BETWEEN '{d0}' AND '{d1}T20:00:00'
+          AND (dp_type LIKE 'DARK%' OR dp_type LIKE 'FLAT%'
+               OR dp_type LIKE '%UNE%' OR dp_type LIKE '%FPET%')
+        """)
+    n_fb = 0
+    for r in cal:
+        u = f"https://dataportal.eso.org/dataPortal/file/{r['dp_id']}"
+        if u not in seen:
+            seen.add(u)
+            urls.append(u)
+            n_fb += 1
+    print(f"{night}: +{n_fb} calibration files via direct CALIB query (fallback)")
+    if n_cal + n_fb < 3:
+        raise SystemExit(f"only {n_cal + n_fb} calibs resolved; refusing")
 with open(out, "w") as f:
     f.write("\n".join(urls) + "\n")
