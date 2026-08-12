@@ -1,9 +1,8 @@
 # M15 — eta Tel B: the recipe transfers, nothing is orbiting loudly, and the first RV limit on the object is sub-Jupiter
 
-> **Status: archive route complete; per-nodding route running** (20 epochs fetching
-> from raw; endgame chain armed). The numbers below are the archive-product route —
-> on CD-35 the per-nodding route *improved* them, so these limits are, if anything,
-> conservative.
+> **Status: COMPLETE.** Both routes ran: archive products and the full per-nodding
+> recipe from raw (all 20 epochs reduced, zero failed downloads). The per-nodding
+> route confirms the archive route at equal depth — §6.
 
 **Question:** M14 validated a full extraction recipe on CD-35 2722 B. Does it
 transfer to a target with no published RVs, and what does it find there? eta Tel B —
@@ -138,22 +137,44 @@ is grid-pointwise, not a continuous exclusion curve; the limit is the archive-ro
 series — the per-nodding route (running) should tighten it; the 2009 old-CRIRES
 epochs and the embargoed 2025–2026 K-band epochs are untouched levers.
 
-## 6. ⏳ Pending
+## 6. The per-nodding route confirms at equal depth
 
-- Per-nodding route: 20 epochs reducing from raw ([`m15_allnights.sh`](scripts/cr2res/m15_allnights.sh));
-  endgame armed ([`m15_nodall.sh`](scripts/injection/m15_nodall.sh)): full-recipe
-  series → diag → blind search → per-frame K=300 injection.
-- Re-test of the weak short-period comb on the per-nodding series.
-- Writeup candidate: "First radial-velocity constraints on the eta Tel B brown
-  dwarf" — an RNAAS-scale null with an injection-calibrated limit, or folded into a
-  method paper with the CD-35 reproduction.
+All 20 epochs were fetched raw and reduced through the cr2res cascade (zero failed
+downloads — the ESO archive cooperated twice in one day), giving 40 per-nodding
+frames. The full paper recipe (iter-2 template, `H_C`, `-kapsig 3`,
+`-oversampling 2`, bin A/B; double-visit nights merge under the 0.2 d binning →
+18 nights):
+
+- **Per-frame injection (K=300, P=200, 40 full re-runs): 100% ± 3% mean /
+  94% ± 2% median, residuals 19–26 m/s.** Every order 87–117%. The per-nodding
+  pipeline transmits as cleanly as the archive one.
+- **Blind search: the null holds.** Every variant in the 150–300 d clean window is
+  negative (ΔBIC −2.7 to −4.8 near 171–182 d; fitted K only 40–116 m/s). Per-night
+  precision ≈ 130 m/s — parity with the archive route, not the ~20% gain CD-35
+  showed; the resampling penalty the per-nodding route avoids is evidently not the
+  limiting noise on this target.
+- **The short-period comb is behaving like an alias, not a signal.** On the archive
+  series it led at 5.7 d; here it leads at 7.1/10.0/12.1 d — different periods,
+  inconsistent across combines (median +13.7 at 10.0 d, but mean/clip only +5 to
+  +11), all inside the < 20 d regime the Hoy paper itself rejects as low-cadence
+  artifacts. Its strongest variant (+25.6 at 7.1 d) appears only *with* the BERV
+  covariate in the model — the opposite of robustness. Not claimed; a proper
+  window-function/alias analysis is the follow-up if anyone wants to chase it.
+
+The §5 limit therefore stands as quoted, now confirmed by two independent
+extraction routes.
 
 ## 7. For the next agent
 
-1. Finish the per-nodding endgame when the raw pipeline lands; update §5's table if
-   it tightens.
+1. Writeup: "First radial-velocity constraints on the eta Tel B brown dwarf" — an
+   RNAAS-scale null with an injection-calibrated limit, or the second half of a
+   method paper with the CD-35 reproduction (M14). All numbers, scripts and JSONs
+   are in place.
 2. The 2009 CRIRES epochs: an old-instrument RV point would stretch the baseline to
    16 years for free — separate tooling (no cr2res), separate milestone.
-3. The embargoed epochs release on their own schedule; re-run then.
-4. beta Pic b spot-check (6 nights) is the next queue item after eta Tel closes
+3. The embargoed 2025–26 epochs release on their own schedule; re-run then.
+4. beta Pic b spot-check (6 nights) is the next queue item
    (docs/target-queue.md tier 2).
+5. If the short-period comb itches: window-function analysis first (M4's machinery
+   exists in `analysis/aliases.py`), and remember it must survive all three
+   combines and both routes before it is anything.
