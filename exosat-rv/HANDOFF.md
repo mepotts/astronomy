@@ -1,6 +1,18 @@
 # HANDOFF — exosat-rv
 
-> ## ⚠ READ [`M15-RESULTS.md`](M15-RESULTS.md) and [`M14-RESULTS.md`](M14-RESULTS.md) FIRST (then M13, M12); [`M17`](M17-RESULTS.md) adds the K-band tier
+> ## ⚠ READ [`M15-RESULTS.md`](M15-RESULTS.md) and [`M14-RESULTS.md`](M14-RESULTS.md) FIRST (then M13, M12); [`M17`](M17-RESULTS.md) adds the K-band tier; [`M20`](M20-RESULTS.md) the census harvest
+>
+> **M20–M22 (2026-08-12):** the coordinate census's three host-name campaigns
+> resolved. **HIP 65426 b**: 5 clean planet nights / 422 d at 131 m/s → companions
+> ≥ ~0.4 M_Jup (~115 M⊕) excluded at P ≤ 100 d (90%), gates 98–101% — the
+> exomoon-regime constraint (priority caveat: another team's active-programme data;
+> M20 §5). **PDS 70**: the star, not the planet — flat at 130 m/s, ~3 M_Jup stellar
+> limit. **beta Pic b**: km/s starlight contamination (Br-γ in the halo of a
+> naked-eye star at 0.55″), diagnosed and halved; v3 (masked orders) pending. The
+> **contrast wall is measured** (clean at 0.8″/2000×, flooded at 0.55″/5000×; M20
+> §6). Correction log in M20 §5: "first RVs of beta Pic b" was wrong (2024 CRIRES+
+> paper); all firsts now hedged. Two permanent rules: never single-night templates;
+> product headers are the only band truth (six filter_path lies).
 >
 > **M17 (2026-08-11):** K-band spot-checks on the tier-2 targets — first-ever RVs of
 > **beta Pic b** (162 m/s within-night on the planet, injection 100±0% in all 18

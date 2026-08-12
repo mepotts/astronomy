@@ -3,12 +3,19 @@
 **Question:** what does the validated recipe return on the tier-2 targets — the ones
 with some archival data but not enough for an orbit (docs/target-queue.md)?
 
-**Answer:** first-ever RV measurements of AB Pic b, CT Cha B, and beta Pic b, each
-injection-validated in K-band (a new configuration for this project), with per-epoch
-precisions that beat the survey forecasts by ~2× on the well-behaved targets. The
-headline is beta Pic b: **162 m/s within-night repeatability on a directly imaged
-planet at K = 14.9, with 100% ± 0% injection recovery in every one of 18 orders** —
-a dedicated campaign at this precision would probe ~100 M⊕ exomoons.
+**Answer:** first multi-epoch RV series of AB Pic b and CT Cha B, and a
+demonstration on beta Pic b, each injection-validated in K-band (a new configuration
+for this project), with per-epoch precisions that beat the survey forecasts by ~2×
+on the well-behaved targets. The headline is beta Pic b: **162 m/s within-night
+repeatability on a directly imaged planet at K = 14.9, with 100% ± 0% injection
+recovery in every one of 18 orders** — a dedicated campaign at this precision would
+probe ~100 M⊕ exomoons.
+
+> **Correction (M20 §5):** this document originally claimed "first-ever RV
+> measurements of beta Pic b." That is wrong — a 2024 CRIRES+ study published the
+> planet's spin and radial velocity (single-epoch). The defensible statements are
+> the *monitoring/precision* forms, hedged "to the best of our knowledge after a
+> literature search." AB Pic b / CT Cha B firsts stand under the same hedge.
 
 ## 0. What ran
 
