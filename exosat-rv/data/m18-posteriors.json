@@ -1,0 +1,155 @@
+{
+  "host_mass_mjup": 38.0888217015582,
+  "t_ref": 2460230.869,
+  "nlive": 800,
+  "h26": {
+    "P1_1sat": 171.112,
+    "e1_1sat": 0.269,
+    "K1_1sat": 318.5,
+    "msini1_1sat": 0.918,
+    "P1_2sat": 171.454,
+    "K1_2sat": 306.0,
+    "e1_2sat": 0.001,
+    "msini1_2sat": 0.918,
+    "P2": 87.349,
+    "e2": 0.008,
+    "msini2": 0.219,
+    "logz1": -144.323,
+    "logz1_err": 0.695,
+    "logz2": -141.701,
+    "logz2_err": 0.691,
+    "dlogz": 2.622,
+    "v1_P1": 169.45,
+    "v1_msini1": 0.743,
+    "v1_P2": 87.46,
+    "v1_msini2": 0.277,
+    "v1_dlogz": 6.641
+  },
+  "fig5_peaks": [
+    14.0,
+    70.0,
+    88.0,
+    115.0
+  ],
+  "runs": {
+    "sat1_ecc": {
+      "logz": -141.126294991093,
+      "logzerr": 0.14161386265170836,
+      "labels": [
+        "offset",
+        "log10_jit",
+        "P1",
+        "K1",
+        "om1",
+        "e1",
+        "tpf1"
+      ],
+      "secs": 20.2,
+      "note": "1-satellite eccentric, P ~ U(150,200); H26 Fig. 8 counterpart"
+    },
+    "sat2_win88": {
+      "logz": -147.75824005104337,
+      "logzerr": 0.16032359388573914,
+      "labels": [
+        "offset",
+        "log10_jit",
+        "P1",
+        "K1",
+        "om1",
+        "e1",
+        "tpf1",
+        "P2",
+        "K2",
+        "om2",
+        "e2",
+        "tpf2"
+      ],
+      "secs": 50.5,
+      "note": "2-satellite eccentric, P1 ~ U(150,200), P2 ~ U(75,100); H26 Fig. 9"
+    },
+    "two_wideP2": {
+      "logz": -146.81150011336163,
+      "logzerr": 0.15728201018925395,
+      "labels": [
+        "offset",
+        "log10_jit",
+        "P1",
+        "K1",
+        "om1",
+        "P2",
+        "K2",
+        "om2"
+      ],
+      "secs": 13.4,
+      "note": "2-satellite circular, P2 ~ U(5,150); H26 Fig. 5 panel 1"
+    },
+    "win14": {
+      "logz": -147.33272059068076,
+      "logzerr": 0.15518641617071918,
+      "labels": [
+        "offset",
+        "log10_jit",
+        "P1",
+        "K1",
+        "om1",
+        "P2",
+        "K2",
+        "om2"
+      ],
+      "secs": 12.0,
+      "note": "2-satellite circular, P2 ~ U(11.9,16.1) around H26 peak 14 d",
+      "dlogz_vs_1sat": -6.206
+    },
+    "win70": {
+      "logz": -146.7100889877347,
+      "logzerr": 0.15762766102371198,
+      "labels": [
+        "offset",
+        "log10_jit",
+        "P1",
+        "K1",
+        "om1",
+        "P2",
+        "K2",
+        "om2"
+      ],
+      "secs": 12.4,
+      "note": "2-satellite circular, P2 ~ U(59.5,80.5) around H26 peak 70 d",
+      "dlogz_vs_1sat": -5.584
+    },
+    "win88": {
+      "logz": -143.95318453174409,
+      "logzerr": 0.15067878266719736,
+      "labels": [
+        "offset",
+        "log10_jit",
+        "P1",
+        "K1",
+        "om1",
+        "P2",
+        "K2",
+        "om2"
+      ],
+      "secs": 11.7,
+      "note": "2-satellite circular, P2 ~ U(74.8,101.2) around H26 peak 88 d",
+      "dlogz_vs_1sat": -2.827
+    },
+    "win115": {
+      "logz": -146.0221733266734,
+      "logzerr": 0.14935965265880938,
+      "labels": [
+        "offset",
+        "log10_jit",
+        "P1",
+        "K1",
+        "om1",
+        "P2",
+        "K2",
+        "om2"
+      ],
+      "secs": 12.0,
+      "note": "2-satellite circular, P2 ~ U(97.8,132.2) around H26 peak 115 d",
+      "dlogz_vs_1sat": -4.896
+    }
+  }
+}

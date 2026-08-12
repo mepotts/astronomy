@@ -46,6 +46,10 @@ TWO_PI = 2 * np.pi
 
 PRIOR_STYLE = "default"   # "default" | "linjit" (jitter U(0,300)) | "logK" (K log-U(1,1000))
 
+# Windowed period priors, per satellite. The defaults are the paper's own windows, used
+# for every M14 result; M18 overrides the second window to walk H26's Fig. 5 peaks.
+P_WINDOWS = [(150.0, 200.0), (75.0, 100.0)]
+
 
 def make_model(periods_fixed, n_sats, eccentric):
     """Return (ndim, prior_transform, loglike, labels) for one model.
@@ -57,7 +61,7 @@ def make_model(periods_fixed, n_sats, eccentric):
     tp is sampled as a fraction of that satellite's period so the prior volume
     is well-defined when P floats.
     """
-    p_windows = [(150.0, 200.0), (75.0, 100.0)][:n_sats]
+    p_windows = list(P_WINDOWS)[:n_sats]
     labels = ["offset", "log10_jit"]
     for i in range(n_sats):
         if periods_fixed is None:

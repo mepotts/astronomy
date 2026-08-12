@@ -82,6 +82,34 @@
   }
   figcaption b { color: var(--ink); }
 
+  /* Figure correspondence (§8): every figure in the appendix answers a numbered
+     figure in H26, so the pairing gets its own header strip above the image. */
+  .pairhead {
+    display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 11px; letter-spacing: .07em; text-transform: uppercase;
+    padding-bottom: 8px; margin-bottom: 10px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .chip { border: 1px solid currentColor; border-radius: 2px; padding: 2px 7px; }
+  .chip.them { color: var(--them); }
+  .chip.us { color: var(--us); }
+  .pairhead .to { color: var(--muted); letter-spacing: 0; }
+  .verdict {
+    margin-left: auto; letter-spacing: .09em; font-weight: 600;
+    color: var(--muted);
+  }
+  .verdict.yes { color: #006300; }
+  .verdict.no { color: var(--draft); }
+  .verdict.part { color: #8a6d1f; }
+  figure.pair { margin: 34px 0 32px; }
+
+  td .mark { font-weight: 600; }
+  td .mark.yes { color: #006300; }
+  td .mark.no { color: var(--draft); }
+  td .mark.part { color: #8a6d1f; }
+  td .mark.none { color: var(--muted); }
+
   .tablewrap { overflow-x: auto; margin: 24px 0 28px; }
   table {
     border-collapse: collapse; width: 100%;
@@ -124,7 +152,7 @@
 
   <h1>An independent reproduction of the radial-velocity companion of CD-35 2722 B from archival CRIRES+ data, and first radial-velocity limits on η Tel B</h1>
   <p class="byline"><b>Matthew Potts</b> · independent analysis</p>
-  <p class="dateline">11 August 2026 · reproduces Hoy et al. (2026), <em>Nature</em> · all data from the public ESO archive</p>
+  <p class="dateline">11 August 2026 · figure-by-figure appendix added 12 August 2026 · reproduces Hoy et al. (2026), <em>Nature</em> · all data from the public ESO archive</p>
 
   <div class="abstract">
     <div class="eyebrow">Abstract</div>
@@ -172,7 +200,10 @@
   (§5, Table&nbsp;3), and (iii)&nbsp;the first application of the validated pipeline to a
   new target, η&nbsp;Tel&nbsp;B (§6, Fig.&nbsp;4). Every stage is validated by
   signal injection rather than by internal fit statistics; the distinction turns out to
-  matter (§7).
+  matter (§7). §8 then rebuilds the whole comparison in
+  <span class="them">H26</span>'s own order — one figure of ours for each figure of
+  theirs (Figs.&nbsp;5–12, Table&nbsp;5) — for readers who want to check the
+  reproduction panel by panel rather than argument by argument.
   </p>
 
   <h2><span class="no">2</span>Data and reduction</h2>
@@ -415,13 +446,137 @@
   companions would be within reach of a dedicated campaign.
   </p>
 
+  <h2><span class="no">8</span>Figure by figure against H26</h2>
+  <p>
+  Sections 4–7 argue the case in our own order. This section reorganises the same
+  analysis into <span class="them">H26</span>'s: for each figure in the published
+  paper, the corresponding figure made here, on the same axes and the same statistic
+  wherever the data allow. Eight of their nine figures have a counterpart
+  (Table&nbsp;5); the exception is their Fig.&nbsp;3, the slit-viewer PSF fits and
+  stellar-contamination contrast curve, which needs the acquisition imaging this
+  project has never reduced — we take their ~15% worst-night contamination estimate
+  as given.
+  </p>
+  <p>
+  Two conventions throughout. Where a panel can be built from
+  <span class="them">H26</span>'s own published table it is, and drawn in orange
+  beside ours in blue, so the two are computed identically and differ only in the
+  data. Where the comparison is against a number rather than a series — their
+  Table&nbsp;1 parameters, their Fig.&nbsp;4 percentage — that number is drawn on our
+  posterior as a marker or rule. And a caution for anyone reading along in the arXiv
+  HTML: <em>the preprint's figures are not the published ones.</em> Between v1 and the
+  accepted version the RV table grew from 20 epochs to 23, the timestamps moved by
+  0.87&nbsp;d, the period went 169.45&nbsp;→&nbsp;171.11&nbsp;d, m&nbsp;sin&nbsp;i
+  0.743&nbsp;→&nbsp;0.918&nbsp;M<sub>Jup</sub>, and the second satellite's evidence
+  fell from +6.64 to +2.62. Everything below compares against the <em>published</em>
+  version.
+  </p>
+
+  <div class="tablewrap">
+  <table>
+    <caption><b>Table 5.</b> Correspondence between the figures of <span class="them">H26</span> and this work, with the verdict each comparison returns.</caption>
+    <thead><tr>
+      <th>H26</th><th>what it shows</th><th>here</th><th>verdict</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="k">Fig. 1</td><td>periodogram of the RVs and of the model residuals</td><td class="k">Fig. 5</td><td><span class="mark yes">reproduces</span> — same peak, same significance</td></tr>
+      <tr><td class="k">Fig. 2</td><td>RVs with the one- and two-satellite models</td><td class="k">Fig. 6</td><td><span class="mark yes">reproduces</span> — amplitude runs high</td></tr>
+      <tr><td class="k">Fig. 3</td><td>slit-viewer PSF fits, stellar contamination</td><td class="k">—</td><td><span class="mark none">not attempted</span> — no SV imaging reduced</td></tr>
+      <tr><td class="k">Fig. 4</td><td>per-nodding versus combined-spectrum extraction</td><td class="k">Fig. 7</td><td><span class="mark part">direction confirmed</span>, size combine-dependent</td></tr>
+      <tr><td class="k">Fig. 5</td><td>period posteriors for the second signal</td><td class="k">Fig. 8</td><td><span class="mark part">peaks reproduce</span>, evidence does not</td></tr>
+      <tr><td class="k">Fig. 6</td><td>the high-evidence two-satellite models</td><td class="k">Fig. 9</td><td><span class="mark part">same four models</span>, all lose to one</td></tr>
+      <tr><td class="k">Fig. 7</td><td>GLS of every viper output</td><td class="k">Fig. 10</td><td><span class="mark yes">reproduces</span> — <em>and</em> adds the BERV panel</td></tr>
+      <tr><td class="k">Fig. 8</td><td>corner plot, large satellite</td><td class="k">Fig. 11</td><td><span class="mark yes">reproduces</span> — their values inside ours</td></tr>
+      <tr class="last"><td class="k">Fig. 9</td><td>corner plot, small satellite</td><td class="k">Fig. 12</td><td><span class="mark no">does not</span> — K₂ consistent with zero</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>8.1 The detection itself (their Figs. 1, 2, 7)</h3>
+  <p>
+  The primary result reproduces in the plainest possible terms. Run the same
+  generalised Lomb-Scargle on their published table and on our from-raw series and the
+  two periodograms are near-twins (Fig.&nbsp;5, top row): their 23 epochs peak at
+  171.0&nbsp;d with power 0.85, our 17 nights at 170.3&nbsp;d with power 0.93, both
+  past the 0.1% false-alarm level, both with the same ~365&nbsp;d alias shoulder. On
+  the model-residual rows the two series part company in an informative way. After
+  removing one satellite, <em>their</em> residuals peak at 87.2&nbsp;d — this is the
+  second satellite, visible exactly where their Fig.&nbsp;1 puts it — while ours peak
+  at 44.3&nbsp;d, and neither peak clears 1%.
+  </p>
+  {{FIG5}}
+  {{FIG6}}
+  <p>
+  Their Fig.&nbsp;7 is the paper's systematics defence: GLS periodograms of every
+  viper output, showing that no instrumental or atmospheric parameter repeats the RV
+  periodicity. It reproduces (Fig.&nbsp;10) — across ten fitted quantities the largest
+  power at 171&nbsp;d is 0.42, from the linear wavelength-solution coefficient, and
+  most sit below 0.2. But the panel that matters most is one their figure does not
+  contain. The barycentric correction is not a viper output, so it is not in their
+  grid; put it there and it carries power 0.66 at the signal period, three times the
+  typical instrumental term. That is the phase–BERV degeneracy of §4 seen directly,
+  and it is why our detection is quoted with a BERV nuisance covariate rather than
+  without one.
+  </p>
+  {{FIG10}}
+
+  <h3>8.2 The extraction choice (their Fig. 4)</h3>
+  <p>
+  <span class="them">H26</span>'s Fig.&nbsp;4 makes one measurement: how much is
+  gained by computing RVs for the two nodding positions separately and binning,
+  instead of combining the spectra first. Their published answer is 4.9%
+  (60.50&nbsp;→&nbsp;57.68&nbsp;m&nbsp;s<sup>−1</sup> mean internal error); the
+  preprint's was ~10%, on a different error scale. Our answer depends on the order
+  combine, which theirs cannot show because a single number hides it: paired on five
+  nights at identical configuration the per-nodding route is 21% better, and across
+  all 17 matched nights it is 18% better with a robust combine — but 6%
+  <em>worse</em> with a plain mean (Fig.&nbsp;7). The direction they report is real
+  and if anything understated; the magnitude is not a property of the nodding choice
+  alone.
+  </p>
+  {{FIG7}}
+
+  <h3>8.3 The second satellite (their Figs. 5, 6, 8, 9)</h3>
+  <p>
+  Here the comparison is at its sharpest, because the parameters reproduce and the
+  conclusion does not. Their Fig.&nbsp;5 shows the second signal's period posterior
+  falling into four peaks — ~14, 70, 88 and 115&nbsp;d — and argues the 88&nbsp;d one
+  is the real solution. Give the same table a wide P<sub>2</sub> prior and three of
+  those four peaks come back unprompted (Fig.&nbsp;8, top): 70, 88 and 115&nbsp;d,
+  with 14&nbsp;d essentially unpopulated. Fit each window separately and the
+  88&nbsp;d window is the best of the four, exactly as they conclude. Their
+  Fig.&nbsp;6 makes the case against the 14&nbsp;d solution visually; ours does too
+  (Fig.&nbsp;9) — the 14&nbsp;d model is the same implausible high-frequency comb
+  through the same points.
+  </p>
+  <p>
+  What does not follow is the existence claim. Every one of those four windows is
+  <em>worse</em> than a single eccentric satellite on the same table under the same
+  priors: ΔlnZ = −2.8 at 88&nbsp;d, and −4.9, −5.6, −6.2 at the others. The
+  best-supported second satellite available in this data still loses to no second
+  satellite at all. The corner plots say the same thing in parameter space. For the
+  large satellite (Fig.&nbsp;11) their Table&nbsp;1 values sit comfortably inside our
+  posterior — P = 171.6<sup>+1.0</sup><sub>−1.2</sub>&nbsp;d against their 171.11,
+  m&nbsp;sin&nbsp;i = 0.96&nbsp;±&nbsp;0.1&nbsp;M<sub>Jup</sub> against their 0.918,
+  with only eccentricity marginally high. For the small satellite (Fig.&nbsp;12) the
+  same fit that recovers their period to 90.4<sup>+5.4</sup><sub>−8.0</sub>&nbsp;d
+  leaves its <em>amplitude</em> unconstrained: K<sub>2</sub> peaks at zero, and
+  m&nbsp;sin&nbsp;i = 0.07<sup>+0.08</sup><sub>−0.05</sub>&nbsp;M<sub>Jup</sub> puts
+  their 0.219 in the tail. A period can be well determined for a signal whose
+  amplitude is consistent with nothing being there; that is the whole disagreement.
+  </p>
+  {{FIG8}}
+  {{FIG9}}
+  {{FIG11}}
+  {{FIG12}}
+
   <h2><span class="no"> </span>Data & code availability</h2>
   <p class="refs" style="font-size:14.5px">
   All spectra are public ESO archive products and raw frames (programmes 110.23RW,
   111.24M0, 113.268Y, 115.287U, 083.C-0759, 383.D-0183). The full pipeline —
   reduction drivers, the converter, injection harness, nested-sampling code, and every
   script behind the figures and tables — lives in the project repository
-  (<code>exosat-rv/</code>, milestones M0–M15). The published RV table is transcribed
+  (<code>exosat-rv/</code>, milestones M0–M18). The published RV table is transcribed
   from the <span class="them">H26</span> appendix with provenance headers.
   </p>
 
@@ -437,9 +592,14 @@
 
   <div class="foot">
     Draft prepared 2026-08-11 from milestones M13–M15 of the exosat-rv reproduction
-    project. Figures 1–4 are generated by <code>scripts/m16_figures.py</code> from the
-    exported series in <code>data/export/</code>. This document reports an independent
-    analysis and is not affiliated with or endorsed by the authors of H26. Based on data
-    obtained from the ESO Science Archive Facility.
+    project; §8 added 2026-08-12. Figures 1–4 are generated by
+    <code>scripts/m16_figures.py</code> and Figures 5–12 by
+    <code>scripts/m18_figures.py</code>, from the exported series in
+    <code>data/export/</code> and the posterior samples written by
+    <code>scripts/m18_posteriors.py</code>. No figure of H26's is reproduced here:
+    every panel is computed from the published RV table, from the published Table 1
+    values, or from our own extraction. This document reports an independent analysis
+    and is not affiliated with or endorsed by the authors of H26. Based on data obtained
+    from the ESO Science Archive Facility.
   </div>
 </div>
