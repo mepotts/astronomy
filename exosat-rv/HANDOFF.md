@@ -1,6 +1,18 @@
 # HANDOFF — exosat-rv
 
-> ## ⚠ READ [`M15-RESULTS.md`](M15-RESULTS.md) and [`M14-RESULTS.md`](M14-RESULTS.md) FIRST (then M13, M12); [`M17`](M17-RESULTS.md) adds the K-band tier; [`M20`](M20-RESULTS.md) the census harvest
+> ## ⚠ READ [`M15-RESULTS.md`](M15-RESULTS.md) and [`M14-RESULTS.md`](M14-RESULTS.md) FIRST (then M13, M12); [`M17`](M17-RESULTS.md) adds the K-band tier; [`M20`](M20-RESULTS.md) the census harvest; [`M23`](M23-RESULTS.md) closes the roster
+>
+> **M23–M24 (2026-08-12, THE PLAN IS WALKED):** HD 1160 B — first multi-epoch series
+> via the new staring branch, quality-limited (725 m/s / 41 d; one ±37 m/s night
+> shows the ceiling), no claim. AF Lep b (68% transmission — dilution) and 51 Eri b
+> (3 of 11 orders) land on the far side of the contrast wall, as predicted.
+> CT Cha B: screened series leaves a 3.3σ variability candidate, undecidable at
+> n=3. **PDS 70's nine-night upgrade FAILED its injection gate (−62%) — a
+> fake-quiet series caught by machinery; the validated six-night state restored
+> and reproduced exactly.** Final roster in M23 §5: eleven systems — one
+> confirmation, one contradiction, four limits, one contamination case, four
+> data-limited. Next levers are all dated (embargoes, M23 §6) or decisions
+> (HIP 65426 b priority; the proposal case, now fully measured).
 >
 > **M20–M22 (2026-08-12):** the coordinate census's three host-name campaigns
 > resolved. **HIP 65426 b**: 5 clean planet nights / 422 d at 131 m/s → companions
