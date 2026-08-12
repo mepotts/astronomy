@@ -1,31 +1,42 @@
-# Target interrogation queue (post-M14)
+# Target interrogation queue — FINAL STATUS (plan complete, 2026-08-12)
 
-> ## Plan of attack (2026-08-12, post-census — supersedes the tiers below where they conflict)
+> ## The roster, adjudicated (M14–M24; detail per milestone doc)
 >
-> The coordinate census + header verification (M19, `data/m19-coord-census.json`)
-> found campaigns filed under host names. Working order:
+> Every target with public data has a verdict. All claims injection-gated; all
+> "firsts" hedged to a literature search (M20 §5).
 >
-> | milestone | target | data | actions | state |
+> | target | data used | setting | **verdict** | doc |
 > |---|---|---|---|---|
-> | **M20** | beta Pic b | 13 K2166 nights / ~810 d (114.27DX + 2023 pilot) | serial fetch+reduce → combined run → blind search + injections | **fetch running** |
-> | **M21** | PDS 70 b | ≥5 K2166 product epochs 2022–23 (+9 products to retry, +3 raw 2025 nights, +2 embargoed) | finish product fetch → convert → `m2x_run_target.sh` → verdict | products partly on disk |
-> | **M22** | HIP 65426 b | 8 nights: ~4 H-family (H1575) + ~4 K-family | fetch products → per-setting sub-series; H1575 oset by wavelength-overlap map from H_C | queued |
-> | **M23** | HD 1160 B | 9 staring H1567 nights / 42 d, DIT 1200 (+1 K pilot night) | staring recipe **now wired in** (classify + reduce_one) → fetch → run | engineering done, unfetched |
-> | **M24** | AF Lep b + 51 Eri b | 2 + 1 public staring nights | piggyback on M23's staring path; single-epoch RVs | queued |
-> | — | CT Cha B | 3 epochs on disk | injection-based order screen, re-verdict | idle task |
-> | — | GSC 08047-00232 B | 2 raw K nights + embargoed product | reduce when convenient; embargo calendar | parked |
+> | **CD-35 2722 B** | 18 nights / 466 d | H1567 nodding | ✅ **CONFIRMED** — satellite 1 reproduces blind, BERV-robust (ΔBIC +25–28); ❌ satellite 2 **CONTRADICTED** on their own table (10/10 integrals negative) | M14 |
+> | **eta Tel B** | 18 nights / 815 d | H1567 nodding | ⛔ **NULL** — msini ≳ 0.5–1.2 M_Jup excluded, P = 20–300 d (90%), both routes | M15 |
+> | **HIP 65426 b** | 5 nights / 422 d | K2192 nodding | ⛔ **NULL** — ≳0.4 M_Jup (~115 M⊕) excluded at P ≤ 100 d; *priority caveat: active-programme data* | M20 §4–5 |
+> | **PDS 70 (star)** | 6 nights / 426 d | K2166 nodding | ⛔ **NULL** — flat at 130 m/s; ~3 M_Jup stellar-companion limit; planet b unreachable by slit. (9-night rebuild **gate-rejected**, 6-night state reproduced) | M20 §3, M23 §4 |
+> | **beta Pic b** | 13 nights / 813 d | K2166 nodding | 🚧 **CONTAMINATION-LIMITED** — km/s BERV-locked starlight (0.55″ / ~5000×); no claim possible; the measured case for fiber-fed suppression | M20 §2 |
+> | **HD 1160 B** | 9 nights / 41 d | H1567 staring | 📊 **FIRST SERIES, quality-limited** — 725 m/s, night quality varies 70×; no claim; ±37 m/s best night shows the ceiling | M23 §1 |
+> | **CT Cha B** | 3 epochs / 70 d | K2166 nodding | ❓ **VARIABILITY CANDIDATE** — 3.3σ epoch survives the order screen; undecidable at n=3; two more epochs settle it | M17, M23 §3 |
+> | **AB Pic b** | 2 epochs / 3 d | K2166 nodding | 📊 clean repeatability datum (~120–190 m/s, gates pass); archive exhausted — **top proposal target** (lighter host than CD-35) | M17 |
+> | **AF Lep b** | 2 epochs / 3 d | H1567 staring | 🚧 **DILUTION-LIMITED** — 68% injection transmission at ~30,000× contrast; no measurement | M23 §2 |
+> | **51 Eri b** | 1 epoch | H1567 staring | 🚧 **BEYOND SLIT REACH** — 3 of 11 orders respond | M23 §2 |
+> | **GSC 08047-00232 B** | — | K | ⏸ **EMBARGOED** — 2 raw K nights bankable on release | — |
 >
-> Standing machinery: `m2x_run_target.sh` (generic ladder→RV→diag→injection runner),
-> `m19_urls_from_raw.py` (raw-first fetch, no PROV chain needed), staring branch in
-> `reduce_one.sh`. Order sets: K-band targets run all orders + injection screening
-> (M13's order-drop rule); H1575 maps H_C by wavelength overlap — the raw-FTS
-> line-count deriver failed validation (`m2x_derive_oset.py` docstring) and the
-> fitted-molecule variant is future work. Downloads SERIAL always (parallel lanes
-> saturate the portal — measured twice).
+> **The contrast wall (M20 §6, now measured at four points):** clean ≥ 0.8″/2000×;
+> flooded at 0.55″/5000×; gone at ≤ 0.45″/30,000× and at 0.17″. Inside the wall:
+> fiber-fed starlight suppression (HiRISE/KPIC) is the instrument requirement.
 >
-> Embargo calendar: PDS 70 K nights (2025-08 obs), 51 Eri (2025-09), GSC product,
-> eta Tel K epochs, beta Pic b late-2025 K nights, CD-35's decisive epochs
-> (**Dec 2026 – May 2027**).
+> **Standing machinery** (all committed): `m2x_run_target.sh` (per-target
+> ladder→RV→diag→injections; improvement logged: gate every template iteration —
+> would have caught the PDS 70 collapse at build time), `m19_urls_from_raw.py`
+> (raw-first fetch + direct-CALIB fallback), staring branch in `reduce_one.sh`,
+> `ctcha_screen.py` (two-arm order screen). Downloads SERIAL always.
+>
+> **What reopens the queue (all dated or decisions):**
+> - Embargoes: GSC product; PDS 70's 2025 K nights; eta Tel's K epochs; beta Pic b's
+>   late-2025 K2166 nights; **CD-35's decisive epochs Dec 2026 – May 2027** (settles
+>   the amplitude overshoot and satellite 2 for good).
+> - Matthew's decisions: HIP 65426 b priority handling (gates the paper fold-in of
+>   M20–M24); sending the author email; proposals (AB Pic b campaign; fiber-fed
+>   beta Pic b / PDS 70 b — every sensitivity number measured, not forecast).
+> - CT Cha B: any two new epochs decide the variability candidate.
 
 The validated recipe (per-nodding from raw, 2-iteration template with `-kapsig 3`
 creation and the injection guard, telluric-selected orders, `-kapsig 3`,
