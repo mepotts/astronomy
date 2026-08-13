@@ -1,64 +1,105 @@
-# Astronomy Projects
+# Astronomy — independent research on public archives
 
 [![CI](https://github.com/mepotts/astronomy/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mepotts/astronomy/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Open-data astronomy work along two axes:
+Independent astronomy research built entirely on public data — no telescope, no
+institutional affiliation. Everything here runs on a laptop against open archives
+(ESO, MPC, Gaia, TAP services), and every result is reproducible from the code and
+milestone documents that sit next to it.
 
-1. **Tools** — the usability layer between raw public archives and the humans who want to use them. Astronomy data is now open and abundant, but the translation layer (query linting, aggregation, interactive explanation) is systematically missing.
-2. **Discovery** — pipelines that mine those same public archives for genuinely new objects and submit them to the bodies that formally review and credit discoveries: the Minor Planet Center, the Transient Name Server.
-
-Everything here runs on public data, needs no telescope, and is designed for **zero marginal cost** — build once, unlimited users, no per-user charge.
+Two conventions distinguish this repository. **Every claim is gated**: results are
+scored against published values or positive controls, adopted changes must pass
+injection-recovery, and nothing is submitted anywhere automatically. And **every
+dead end stays on the record**: retractions, corrections, and approaches that
+failed are indexed, not deleted — for an independent researcher, the audit trail
+*is* the credential. See [PUBLISHING.md](PUBLISHING.md) for how this work is
+headed into the formal record.
 
 ---
+
+## Research
+
+### [`exosat-rv/`](exosat-rv/) — testing the first exosatellite RV detection, then surveying the archive
+
+The deepest project here: an independent reproduction of Hoy et al. 2026
+([Nature](https://www.nature.com/articles/s41586-026-10751-w)), which measured the
+radial velocity of the imaged companion CD-35 2722 B *itself* — not its host star —
+and reported a planetary-mass satellite around it.
+
+**The primary conclusion reproduces — from the raw data.** An independent
+re-reduction (ESO cr2res + viper forward modeling) reaches 70–90 m/s rms against
+the paper's published per-epoch RVs, and a blind period search re-detects the
+~171-day signal at rank 1 with a barycentric nuisance covariate in the model, on
+two independent reduction routes. **The claimed second satellite does not survive
+the paper's own table**: nested sampling gives it negative evidence in 10 of 10
+configurations, against the paper's reported +2.6.
+
+The validated method was then pointed at every archival CRIRES+
+companion-spectroscopy campaign a coordinate census could find. Eighteen systems
+adjudicated — one confirmation, one contradiction, four upper limits (including
+the first RV constraint a literature search can find on **eta Tel B**:
+msini ≳ 0.5–1.2 M_Jup at 90% across P = 20–300 d), one contamination-limited,
+four data-limited — plus a measured contrast wall for slit spectroscopy and an
+open front ([M27](exosat-rv/docs/target-queue.md)): the discovery that the
+archive's "staring" datasets are fiber-fed starlight-suppressed HiRISE
+observations, including six public nights of beta Pic b.
+
+A manuscript draft lives in [`exosat-rv/docs/paper/`](exosat-rv/docs/paper/);
+[`exosat-rv/LESSONS.md`](exosat-rv/LESSONS.md) is the consolidated trap catalog.
+
+### [`itf-linker/`](itf-linker/) — linking the Minor Planet Center's orphan observations
+
+The MPC's Isolated Tracklet File holds ~9.3 million astrometric observations never
+linked to any orbit. This project links them: HelioLinC over a 0.55–50 AU distance
+grid, Find_Orb orbit fitting validated round-trip against JPL Horizons, and a
+vetting gate (MPChecker / SkyBoT / SBIDENT) so nothing known is "rediscovered."
+Validated by hiding the linkages the file already contains: the grid re-derives
+**93.0%** of them exactly, and recovers 11 of 13 real objects spanning an Atira to
+TNOs. Links proposed here have since been independently published by the MPC
+(30 at last count — external validation, claimed as nothing more). A daily
+snapshot pipeline keeps the pool current. **No submission is automated; none ever
+will be.** An RNAAS method note is drafted in
+[`itf-linker/docs/`](itf-linker/docs/).
 
 ## Tools
 
 | Project | What it does | Status |
 |---|---|---|
-| [`seti-ellipsoid-broker/`](seti-ellipsoid-broker/) | Fuses transient alerts × Gaia DR3 into nightly SN 1987A ellipsoid-crossing target lists | **M1.5 — live, externally validated.** Account-free path (anonymous Gaia DR3 TAP, no token) with the Lindegren+2021 parallax zero-point correction. Crossing epochs reproduce all 217 SN 1987A targets of Nilipour+2023 to <5×10⁻⁴ yr. 84 tests |
-| [`pta-explainer/`](pta-explainer/) | Pulsar-timing-array / Hellings–Downs interactive explainer — **[live demo](https://mepotts.github.io/pta-explainer/)** | **M2 — deployed.** HD demo, source sandbox (residuals, sky-map marker, 2-source superposition), and a monopole/dipole/quadrupole overlay showing why only the quadrupole implies gravitational waves. 64 tests |
-| [`adql-copilot/`](adql-copilot/) | Schema-aware ADQL linter over Virtual-Observatory TAP endpoints | **M1.1 — correctness hardened.** Deterministic linter validated against the real 6,614-column Gaia `TAP_SCHEMA`; fixed case-sensitivity, `TAP_UPLOAD`, join-key and spatial-clause false positives; honest unchecked-identifier reporting. 46 tests |
-| [`exosat-rv/`](exosat-rv/) | Independently reproduces the first exosatellite radial-velocity detection (CD-35 2722 B) from public ESO data, then applies the validated method across the archival CRIRES+ companion-spectroscopy corpus | **M0–M26 complete, M27 open.** **The primary conclusion reproduces — from the raw data**: an independent re-reduction reaches 70–90 m/s rms against the paper's published RVs and a blind search re-detects the ~171-d signal at rank 1 through a BERV covariate; **the second satellite does not survive the paper's own table** (nested sampling: ΔlogZ negative in 10/10 configurations vs the claimed +2.6). A coordinate census then adjudicated 18 archival companion campaigns — 1 confirmation, 1 contradiction, 4 upper limits (incl. the first RV constraint a literature search can find on eta Tel B: msini ≳ 0.5–1.2 M_Jup), 1 contamination-limited, 4 data-limited — measured the slit contrast wall, and found the "staring" tier is fiber-fed HiRISE data (M27, open). Every adopted change injection-gated; every dead end and retraction on the record ([`LESSONS.md`](exosat-rv/LESSONS.md)) |
+| [`pta-explainer/`](pta-explainer/) | Pulsar-timing-array / Hellings–Downs interactive explainer — **[live demo](https://mepotts.github.io/pta-explainer/)** | Deployed. HD curve, source sandbox, and a monopole/dipole/quadrupole overlay showing why only the quadrupole implies gravitational waves. 64 tests |
+| [`seti-ellipsoid-broker/`](seti-ellipsoid-broker/) | Fuses transient alerts × Gaia DR3 into nightly SN 1987A ellipsoid-crossing target lists | Live, externally validated — crossing epochs reproduce all 217 targets of Nilipour+2023 to <5×10⁻⁴ yr. Account-free Gaia TAP path. 84 tests. RNAAS tool note drafted |
+| [`adql-copilot/`](adql-copilot/) | Schema-aware ADQL linter for Virtual-Observatory TAP endpoints | Correctness-hardened against the real 6,614-column Gaia `TAP_SCHEMA`; honest unchecked-identifier reporting. 46 tests. JOSS paper drafted in [`adql-copilot/paper/`](adql-copilot/paper/) |
 
-## Discovery
+## The lab notebook
 
-[`DISCOVERY/`](DISCOVERY/README.md) is the research dossier: eight sprint-level plans for routes where an individual with public data and no institutional affiliation can find a new object and get it formally recognised. Every URL live-verified 2026-07-28; unconfirmed claims are marked unverified rather than asserted.
+[`DISCOVERY/`](DISCOVERY/README.md) and [`IDEAS/`](IDEAS/README.md) are **planning
+documents, not results** — kept public because verified research about *where
+discovery is possible* is useful in its own right. DISCOVERY maps the routes by
+which an individual with public data can find a new object and have it formally
+recognised (every URL live-verified; unconfirmed claims marked, not asserted), and
+records which routes are closed. IDEAS holds sprint-level build plans not yet
+started — top picks: a Gaia DR4 diff auditor (DR4 releases 2026-12-02) and an MCP
+server built from adql-copilot.
 
-Ranked by **whether a recognised body issues a designation** — not by difficulty:
+## Conventions
 
-| Tier | Plan | The record you get |
-|---|---|---|
-| **A** | [ITF linker](DISCOVERY/itf-linker.md) | Provisional designation + your name on an MPEC `Id.` line |
-| **A** | [TNS alert miner](DISCOVERY/tns-alert-miner.md) | `AT 2026xyz` IAU designation + ADS bibcode |
-| **A** | [Plate archaeology](DISCOVERY/plate-archaeology.md) | IAU designation from century-old glass; near-zero competition |
-| **A** | [DAD triage](DISCOVERY/dad-triage.md) | MPC designations — gated on a SARC kill-check |
-| **A** | [Coronagraph comets](DISCOVERY/coronagraph-comets.md) | Real IAU comet designation (named for the instrument, not the finder) |
-| **B** | [Nebula hunt](DISCOVERY/nebula-hunt.md) · [VSX characterization](DISCOVERY/vsx-characterization.md) | Catalogue entry; weak-to-minimal personal credit |
-| **C** | [LSB survey](DISCOVERY/lsb-survey.md) | Co-authorship only — no registry exists for static objects |
+Each project directory is self-contained — its own toolchain, tests, and
+virtualenv — and holds `SPEC.md` (verified research dossier), `DATA-SOURCES.md`
+(exact endpoints and their failure modes), `BUILD-PLAN.md` (milestones), numbered
+`M*-RESULTS.md` findings, and a `HANDOFF.md` that indexes every claim later found
+false. There is no root-level build. [CONTRIBUTING.md](CONTRIBUTING.md) has test
+commands; all projects are MIT-licensed with `CITATION.cff`, and a tagged release
+mints a Zenodo DOI.
 
-Two findings that motivate the whole folder. The MPC publishes a 135 MB file of **9,359,693 observations never linked to any orbit**; link three nights into a valid orbit and it credits you by name — it did so for three separate individuals in July 2026 alone. And on TNS, "discoverer" formally means *first to report*, not first to observe: a two-person team mining the public ZTF alert stream logged ~100 IAU designations in twelve months with no telescope.
-
-The dossier also records what is **closed** — ExoFOP community-TOI submissions paused since March 2026, Rubin imaging proprietary until ~2028, a dozen dormant Zooniverse projects — and the two procedural gates (**SARC**, **ADES**) that otherwise waste a first submission.
-
-**In progress:** [`itf-linker/`](itf-linker/) implements the Tier-A ITF pathway. **M1 complete** — Find_Orb built and validated by a closed loop against JPL Horizons (not merely by compiling), 140 tests. Of 2,515 multi-night ITF designations, 128 pass every published MPC acceptance gate. **None are claimed as discoveries**: catalogue vetting against MPChecker, SkyBoT and JPL SBIDENT is M2 and has not been done, and one candidate already resolved to the known comet 73P-C.
-
-## Planned, not started
-
-Eight sprint-level build plans in [`IDEAS/`](IDEAS/README.md), deliberately in subfields the original research sweep never covered (high-energy, planetary/meteor, satellites/SSA, historical archives) and the AI patterns it skipped (MCP tooling, agentic reproduction, accessibility). Top picks: the **[Gaia DR4 diff auditor](IDEAS/gaia-dr4-diff-auditor.md)** — hard dated catalyst, DR4 releases 2 December 2026 — and **[astro-mcp](IDEAS/astro-mcp.md)**, which turns adql-copilot into an MCP server reaching every LLM client.
-
-Further candidates surfaced but not planned: cosmology tensions monitor, interactive asteroseismology simulator, strong-lens training dataset generator, δ Scuti mode identification, amateur-observation quality weighting, DESI reproducibility kit, AAVSO broker filter, SHARP→NOAA API, multi-messenger overlay, observatory bias auditor, CHIME Cat-2 pipeline, RR Lyrae calibration audit.
-
----
-
-## Repository conventions
-
-Each project directory is self-contained — its own toolchain, tests, and virtualenv — and holds `SPEC.md` (verified research dossier), `DATA-SOURCES.md` (exact APIs, endpoints, formats, limits), and `BUILD-PLAN.md` (stack decisions, architecture, milestones). There is no root-level build. See [CONTRIBUTING.md](CONTRIBUTING.md) for test commands and the standards this repository holds itself to.
-
-**Citation.** All projects are MIT-licensed with a `CITATION.cff` and `.zenodo.json`; a tagged GitHub release mints a Zenodo DOI. [`adql-copilot/paper/`](adql-copilot/paper/) holds a JOSS paper draft; `seti-ellipsoid-broker/docs/rnaas-draft.md` holds a draft RNAAS tool note, gated on the Nilipour validation, which passes.
-
-**Safety.** Several projects here can write to shared scientific registries. Bad or duplicate submissions pollute resources the whole field depends on and damage submitter reputation such that future reports get disregarded. Automated end-to-end submission is permanently out of scope — every submission path is gated behind per-batch human review and validates against a sandbox endpoint first.
+**Safety.** Several projects could write to shared scientific registries (MPC,
+TNS). Bad submissions pollute resources the whole field depends on, so automated
+end-to-end submission is permanently out of scope — every submission path is
+gated behind per-batch human review.
 
 ## Origin
 
-The tools began with an agent-driven idea-research run (2026-06-14): 13 subfield sweeps → ~78 candidates → a 15-item ranked shortlist, each adversarially verified for prior art. The three builds above were the top-ranked picks; [`IDEAS/`](IDEAS/README.md) holds the second sweep's white space. The discovery axis came later, from a 2026-07-28 research fan-out that asked a different question — not *what can be built*, but *what can be found and formally credited*. Upstream research notes are kept outside this repo.
+Started from an agent-driven research sweep (2026-06): 13 subfield sweeps → ~78
+candidates → a ranked shortlist, each adversarially checked for prior art. The
+tools were the top picks; the research projects grew out of asking a harder
+question — not *what can be built*, but *what can be found, tested, and formally
+credited*.
