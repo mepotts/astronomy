@@ -308,10 +308,10 @@ dataset is better:
 | **beta Pic b — VLTI/GRAVITY astrometry** | **28** | **2987 d** |
 
 Astrometry also **outranks RV in Lazzoni et al.'s own table** (P = 0.999 vs 0.996) and reaches
-*below* RV's ~0.4 M_Jup floor. And **HD 206893 B, where Blunt et al. 2026 report a tentative
+*below* RV's ~0.4 M_Jup floor. And **HD 206893 B, where Kral et al. 2026 report a tentative
 astrometric exomoon candidate, has 22 public reduced nights** — their result is reanalysable.
 
-**beta Pic b is the crossover target**: #2 in M7's RV ranking, one of Blunt et al.'s two best
+**beta Pic b is the crossover target**: #2 in M7's RV ranking, one of Kral et al.'s two best
 astrometric targets, and the best public GRAVITY dataset of the five. It is the one object
 where an RV limit and an astrometric limit could be set independently and cross-checked.
 (M5 *rejected* it for RV — 753 frames on 6 nights. The same target can be hopeless for one

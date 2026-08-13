@@ -380,7 +380,7 @@ def hrccs_velocity_swing_kms(
     spectroscopy work at all: the planet's lines must walk across the detector far enough
     to separate from the static stellar and telluric lines.
 
-    **Horstman et al. 2025 (arXiv:2505.09781) put the bar at Delta v ~ 30-60 km/s** for a
+    **Hong et al. 2025 (arXiv:2505.09781) put the bar at Delta v ~ 30-60 km/s** for a
     6-sigma Keck/KPIC detection (30 for an ultra-hot Jupiter, 50 classical, 60 hot Saturn),
     against a 9 km/s instrumental resolution, and note the threshold scales with resolution.
 
@@ -396,7 +396,7 @@ def hrccs_velocity_swing_kms(
 
 
 HRCCS_MIN_SWING_KMS = 30.0
-"""Most optimistic of Horstman et al. 2025's three thresholds (ultra-hot Jupiter model).
+"""Most optimistic of Hong et al. 2025's three thresholds (ultra-hot Jupiter model).
 Used as the admission cut so the close-in survey over-admits rather than wrongly excludes."""
 
 
