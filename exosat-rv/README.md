@@ -15,40 +15,90 @@ Everything this project does runs on a laptop against public archives. See
 [`DATA-SOURCES.md`](DATA-SOURCES.md) for endpoints and their known incompletenesses, and
 [`BUILD-PLAN.md`](BUILD-PLAN.md) for the milestone plan.
 
-**Current state: M0–M11 complete.** Findings:
+**Current state: M0–M26 complete, M27 open.** Start at [`LESSONS.md`](LESSONS.md) — the
+consolidated trap catalog and the map of which milestone document owns which conclusion —
+then [`HANDOFF.md`](HANDOFF.md) and the roster ledger
+[`docs/target-queue.md`](docs/target-queue.md). Milestone documents:
 [`M0`](M0-RESULTS.md) archive · [`M1`](M1-RESULTS.md) the source, and two retractions ·
 [`M2`](M2-RESULTS.md) RV extraction · [`M3`](M3-RESULTS.md) the positive control ·
 [`M4`](M4-RESULTS.md) aliases · [`M5`](M5-RESULTS.md) analogues ·
-[`M6`](M6-RESULTS.md) **the reproduction** · [`M7`](M7-RESULTS.md) the literature, and
-three attribution corrections · [`M8`](M8-RESULTS.md) young close-in giants ·
-[`M9`](M9-RESULTS.md) order screening falsified, and a trap the control caught ·
-[`M10`](M10-RESULTS.md) the astrometric route · [`M11`](M11-RESULTS.md) the template
-rebuilt the published way — and why it suppresses the signal.
+[`M6`](M6-RESULTS.md) reproduction from the published table ·
+[`M7`](M7-RESULTS.md) the literature, and three attribution corrections ·
+[`M8`](M8-RESULTS.md) young close-in giants · [`M9`](M9-RESULTS.md) order screening
+falsified, and a trap the control caught · [`M10`](M10-RESULTS.md) the astrometric route ·
+[`M11`](M11-RESULTS.md) self-templating suppresses the signal ·
+[`M12`](M12-RESULTS.md) injection discipline (shift the template, never the observation) ·
+[`M13`](M13-RESULTS.md) the paper's own eleven orders, and the evidence flip ·
+[`M14`](M14-RESULTS.md) **the floor closed and the flip confirmed** ·
+[`M15`](M15-RESULTS.md) **eta Tel B's first RV limit** · [`M17`](M17-RESULTS.md) the
+K-band tier · [`M20`](M20-RESULTS.md) the census harvest and the contrast wall ·
+[`M23`](M23-RESULTS.md) the roster closed.
 
 ## The verdict
 
-**The conclusion reproduces. The measurements do not.** Those are separate claims, and this
-project needed six milestones to stop conflating them.
+**The primary conclusion reproduces — now from the raw data too. The second satellite does
+not survive the paper's own table.** Getting to sentence one took fourteen milestones;
+sentence two emerged on the way.
 
-**Reproduced** — from the paper's *own published RV table* (Table 2, appendix A), fitted with
-an independent code:
+**Reproduced.** An independent re-reduction (cr2res from raw frames, viper forward
+modeling, the paper's own eleven-order set found in M13) reaches **70–90 m/s rms against
+the paper's published per-epoch RVs** — down from ~1850 m/s at M6 — and a **blind period
+search re-detects the ~171-day signal at rank 1 with a BERV nuisance covariate in the
+model** (ΔBIC +26 to +28), on two independent reduction routes. Fitted amplitude
+K = 304 ± 69 m/s against the published 306. Every adopted pipeline change passed
+injection-recovery gating; the decisive levers were a second template iteration,
+oversampling, and per-nodding-frame extraction (M14).
 
-| Quantity | This work | Hoy et al. |
-|---|---|---|
-| ~169-day signal | power 0.831, **above the 0.1% FAP level** | detected |
-| Preferred second period | **88 d** (over 14, 70, 115) | 87.46 d |
-| Secondary amplitude K₂ | **114 m/s** | 113.92 m/s |
-| 88 d over 115 d | Δ = 1.85 | Δlog Z = 2.6 |
-| 2 satellites over eccentric 1 | Δ = 2.55 | Δlog Z = 6.9 |
+**Contradicted.** Nested sampling (dynesty) on the paper's *own published RV table* gives
+ΔlogZ(two satellites − one eccentric satellite) between **−0.8 and −6.6 across ten
+configurations** (three model pairings × prior styles × seeds), never positive, against
+the paper's claimed **+2.62**. The evidence for the second satellite does not reproduce
+on the data as published (M13 §4, M14 §1).
 
-**Not reproduced** — the radial velocities themselves. Re-deriving them from public archive
-spectra reached ~1850 m/s per epoch against the 31.44 m/s needed; the 246 m/s signal sits
-7.5× below that floor, so its absence there is arithmetic, not evidence.
+**Caveats, stated plainly.** The recovered amplitude runs 20–40% high and the published
+RVs correlate with BERV at r = −0.71, so the reproduction is confound-limited at current
+sampling; the epochs that decide it are embargoed until Dec 2026 – May 2027
+(the calendar is in [`docs/target-queue.md`](docs/target-queue.md)).
 
-That second reading is only trustworthy because of a **positive control**: run against
-**GJ 229 B**, a brown dwarf with a *known* 12.1-day binary (Xuan et al. 2024), the same
-pipeline recovers the signal — χ² about a constant falls from 80.4 to 16.6 at the known
-period, Δχ² = 63.8. It measures real velocities; it is simply coarse.
+The floor-closing is only trustworthy because of the **positive control** discipline from
+M3 onward (GJ 229 B, a known 12.1-day binary — Δχ² = 63.8) and injection gates on every
+change: three separate "improvements" that deleted signal were caught and rejected by
+exactly that machinery (M9, M11, M23).
+
+## After the reproduction: the survey (M15–M26) and what it found
+
+The validated recipe was then pointed at **every archival CRIRES+ companion-spectroscopy
+campaign** a coordinate-based census could find (names lie; a 50,000-frame sky-clustered
+sweep does not). Eighteen systems adjudicated; final roster in M23 §5 — **one
+confirmation, one contradiction, four upper limits, one contamination-limited case, four
+data-limited**. Highlights:
+
+- **eta Tel B** — the first RV constraint a literature search can find on the object:
+  no detection, **msini ≳ 0.5–1.2 M_Jup (90%) across P = 20–300 d**, confirmed on both
+  reduction routes; the injection-calibrated machinery re-finds its own end-to-end
+  K = 300 m/s injection at rank 1, so the null is meaningful (M15).
+- **The K-band tier** — RVs of **beta Pic b itself** at 162 m/s within-night scatter
+  (adding night-to-night repeatability to the 2024 CRIRES+ spin/RV literature), AB Pic b,
+  and CT Cha B with a 3.3σ variability candidate undecidable at n = 3 (M17, M23).
+- **The contrast wall, measured** — slit companion-RV is clean at ≥0.8″/2000× contrast,
+  flooded at 0.55″/5000×, and the star *is* the spectrum at 0.17″ (M20 §6). Where the
+  wall stands, fiber starlight suppression is the instrument answer.
+- **YSES 1 b** — 34 m/s night-to-night, the best per-epoch quality of the whole campaign
+  (~20–30 M⊕ satellite reach if its blocked 2022 pair is recovered) (M25–M26).
+- **The machinery catches fakes** — PDS 70's nine-night template upgrade *looked* quieter
+  and failed its injection gate at −62% recovery; rejected, and the validated six-night
+  state restored bit-for-bit (M23).
+
+**M27, open:** a header audit revealed that every dataset this project had classed as
+"staring mode" is actually **HiRISE** — fiber-fed SPHERE→CRIRES+ starlight-suppressed
+observations — which retracted three staring-tier verdicts (our slit-recipe reductions,
+not the sky) and revealed **six public suppressed nights of beta Pic b** awaiting a
+fiber-appropriate reduction. The correction log lives at the top of
+[`docs/target-queue.md`](docs/target-queue.md).
+
+A Hoy-style manuscript draft (CD-35 + eta Tel, figure-for-figure against the paper) is
+generated in [`docs/paper/`](docs/paper/) — built from `draft.template.html`, never
+hand-edited.
 
 ⚠️ **M1 retracted two claims M0 published.** M0 asserted that a value in the paper
 (a "Hill radius" of 1.07 au) was impossible; it is a Domingos+2006 *stability limit*, the
@@ -56,6 +106,15 @@ companion's orbit is highly eccentric (e > 0.9, a ~ 222 au, not a circular 62.6 
 recomputed properly the paper's value is **correct**. M0 also misreported what the paper's
 Δlog Z = 2.6 compares. Both retractions, with working, are in
 [`M1-RESULTS.md`](M1-RESULTS.md) §1 and indexed in [`HANDOFF.md`](HANDOFF.md) §1.
+
+---
+
+> **The sections below are the M0–M11 record, kept as written.** Several of their verdicts
+> were later superseded — most importantly, "the measurements do not reproduce" (M6's
+> ~1850 m/s floor, M9/M11's 776 m/s) was closed by M13–M14, and M10's astrometric route
+> was shelved once the RV route worked. They stay because the dead ends are the method:
+> each one was closed by a control or an injection gate, and
+> [`LESSONS.md`](LESSONS.md) §7 maps every conclusion to the milestone that owns it.
 
 ## M0 in one table
 
@@ -265,13 +324,17 @@ ESO's CRIRES+ products was wrong. See [`M10-RESULTS.md`](M10-RESULTS.md) §5.
 
 ## Continuing this work
 
-Start at [`HANDOFF.md`](HANDOFF.md) — it opens with where the project stands and the ordered
-next actions, then indexes every claim published here and later found false.
+Reading order: [`LESSONS.md`](LESSONS.md) (every trap this project paid for, so you don't
+pay twice) → [`HANDOFF.md`](HANDOFF.md) (state and next actions) →
+[`docs/target-queue.md`](docs/target-queue.md) (the per-system roster, embargo calendar,
+and the M27/HiRISE front) → the latest `M*-RESULTS.md`.
 
 To rebuild the RV extraction from scratch, [`docs/viper-runbook.md`](docs/viper-runbook.md)
 has the full sequence: WSL setup, the two gnuplot patches, the ADP→cr2res conversion, the
 Ångström-vs-nm template trap, the mandatory `-fts` H-band flag, and the positive control that
-must pass before any null from the pipeline means anything.
+must pass before any null from the pipeline means anything. The M12+ machinery (reduction
+cascade, injection harness, census, per-target runners) lives in
+[`scripts/`](scripts/) — the CLI below covers the M0–M10 layer.
 
 ## Quickstart
 
