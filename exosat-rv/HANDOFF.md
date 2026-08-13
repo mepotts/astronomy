@@ -1,5 +1,11 @@
 # HANDOFF — exosat-rv
 
+> ## ⚠ START AT [`LESSONS.md`](LESSONS.md) — the consolidated trap catalog + map of all conclusions
+> Then [`docs/target-queue.md`](docs/target-queue.md) for the roster and the
+> **HiRISE revelation (M27 pending)**: the entire "staring" tier is fiber-fed
+> HiRISE data, three verdicts were corrected, and six public starlight-suppressed
+> beta Pic b nights are waiting on a fiber-appropriate reduction.
+
 > ## ⚠ READ [`M15-RESULTS.md`](M15-RESULTS.md) and [`M14-RESULTS.md`](M14-RESULTS.md) FIRST (then M13, M12); [`M17`](M17-RESULTS.md) adds the K-band tier; [`M20`](M20-RESULTS.md) the census harvest; [`M23`](M23-RESULTS.md) closes the roster
 >
 > **M23–M24 (2026-08-12, THE PLAN IS WALKED):** HD 1160 B — first multi-epoch series
