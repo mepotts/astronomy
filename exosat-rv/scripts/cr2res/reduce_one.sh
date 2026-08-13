@@ -12,7 +12,13 @@ mkdir -p "$W" && cd "$W" || exit 1
 
 $PY "$CLS" "$RAW" > tags.tsv 2> tags.err
 echo "=== $N frame inventory ==="; cut -f2 tags.tsv | sort | uniq -c
-pick () { awk -F'\t' -v t="$1" '$2==t{print $1}' tags.tsv; }
+# pick TAG [WLEN] -- the optional second argument filters by wavelength setting
+# (column 3 of tags.tsv). A night carrying two settings otherwise feeds both into one
+# SOF, which crashes obs_nodding ("Expect only one DROT POSANG") or writes empty
+# extractions (LESSONS section 4). Set WLEN=H1567 to reduce one setting of a mixed
+# night; leave it unset and behaviour is exactly as before.
+pick () { awk -F'	' -v t="$1" -v w="${2:-}" '$2==t && (w=="" || $3==w){print $1}' tags.tsv; }
+WLEN=${WLEN:-}
 
 run () {  # run <recipe> <sof> <label>
   echo "--- $N $1 ---"
@@ -30,7 +36,7 @@ for f in $(pick DARK); do echo "$f DARK"; done > dark.sof
 run cr2res_cal_dark dark.sof dark || echo "   ($N continuing without master dark)"
 BPM=$(ls -S "$W"/cr2res_cal_dark_*bpm.fits 2>/dev/null | head -1)
 
-{ for f in $(pick FLAT); do echo "$f FLAT"; done
+{ for f in $(pick FLAT "$WLEN"); do echo "$f FLAT"; done
   for f in $(pick UTIL_WAVE_TW); do echo "$f UTIL_WAVE_TW"; done
   for f in $(pick CAL_DETLIN_COEFFS); do echo "$f CAL_DETLIN_COEFFS"; done
   [ -n "$BPM" ] && echo "$BPM CAL_DARK_BPM"; } > flat.sof
@@ -39,8 +45,8 @@ FTW=$(ls "$W"/cr2res_cal_flat_*tw*.fits 2>/dev/null | head -1)
 FMAS=$(ls "$W"/cr2res_cal_flat_*master*.fits 2>/dev/null | head -1)
 FEXT=$(ls "$W"/cr2res_cal_flat_*extract*.fits 2>/dev/null | head -1)
 
-{ for f in $(pick WAVE_UNE); do echo "$f WAVE_UNE"; done
-  for f in $(pick WAVE_FPET); do echo "$f WAVE_FPET"; done
+{ for f in $(pick WAVE_UNE "$WLEN"); do echo "$f WAVE_UNE"; done
+  for f in $(pick WAVE_FPET "$WLEN"); do echo "$f WAVE_FPET"; done
   [ -n "$FTW" ] && echo "$FTW CAL_FLAT_TW"
   for f in $(pick EMISSION_LINES); do echo "$f EMISSION_LINES"; done
   for f in $(pick CAL_DETLIN_COEFFS); do echo "$f CAL_DETLIN_COEFFS"; done
@@ -49,10 +55,10 @@ run cr2res_cal_wave wave.sof wave || echo "   ($N continuing with flat TW)"
 WTW=$(ls "$W"/cr2res_cal_wave_tw*.fits 2>/dev/null | head -1)
 [ -z "$WTW" ] && WTW="$FTW"
 
-N_NOD=$(pick OBS_NODDING_OTHER | wc -l)
-N_STARE=$(pick OBS_STARING_OTHER | wc -l)
+N_NOD=$(pick OBS_NODDING_OTHER "$WLEN" | wc -l)
+N_STARE=$(pick OBS_STARING_OTHER "$WLEN" | wc -l)
 if [ "$N_NOD" -gt 0 ]; then
-  { for f in $(pick OBS_NODDING_OTHER); do echo "$f OBS_NODDING_OTHER"; done
+  { for f in $(pick OBS_NODDING_OTHER "$WLEN"); do echo "$f OBS_NODDING_OTHER"; done
     [ -n "$WTW" ]  && echo "$WTW CAL_WAVE_TW"
     [ -n "$FMAS" ] && echo "$FMAS CAL_FLAT_MASTER"
     [ -n "$FEXT" ] && echo "$FEXT CAL_FLAT_EXTRACT_1D"
@@ -64,7 +70,7 @@ if [ "$N_NOD" -gt 0 ]; then
     && touch "$W/.done" && echo "$N REDUCED OK (nodding)" || { echo "$N missing extractedA/B"; exit 1; }
 elif [ "$N_STARE" -gt 0 ]; then
   # staring-mode science: one collapsed extraction per night (cr2res_obs_staring)
-  { for f in $(pick OBS_STARING_OTHER); do echo "$f OBS_STARING_OTHER"; done
+  { for f in $(pick OBS_STARING_OTHER "$WLEN"); do echo "$f OBS_STARING_OTHER"; done
     [ -n "$WTW" ]  && echo "$WTW CAL_WAVE_TW"
     [ -n "$BPM" ]  && echo "$BPM CAL_DARK_BPM"
     for f in $(pick CAL_DETLIN_COEFFS); do echo "$f CAL_DETLIN_COEFFS"; done; } > stare.sof
