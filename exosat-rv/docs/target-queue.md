@@ -65,7 +65,7 @@
 >
 > | target | series | **verdict** |
 > |---|---|---|
-> | **YSES 1 b** (2-planet system, 1.7″) | 2023 pair, A/B ×2 | **34 m/s night-to-night, gates 101±2% — best per-epoch quality of the campaign**; ~20–30 M⊕ satellite sensitivity per epoch. 2022 pair blocked on an empty-extraction cr2res issue (queued) — fixing it makes a 4-night/290-d series, the exomoon-depth prize |
+> | **YSES 1 b** (2-planet system, 1.7″) | 2023 pair, A/B ×2 | **34 m/s night-to-night, gates 101±2% — best per-epoch quality of the campaign**; ~20–30 M⊕ satellite sensitivity per epoch. **The 2022 “pair” is CLOSED and REJECTED (M29):** `yses1a`/`yses1b` were byte-identical duplicates of one night, whose 8-exposure template aborted after 7 — `cr2res_obs_nodding` requires an even count and wrote 11 empty products at exit 0. It reduces correctly once even, but fails the pre-committed M13 order screen (56% of orders kept, below the 2/3 bar), and even screened sits at 157–270 m/s. **YSES 1 b is a two-night series; the 290-d baseline does not exist in usable form.** |
 > | **HIP 81208 B** (0.3″ from B9 host) | 5 H staring + 3 K nodding | **methods finding: nodding survives where staring drowns** — H staring flooded (r(BERV)=+0.94, km/s), K nodding flat and clean (124 m/s, χ²=1.1/2, gates 99±1%). First RV series of the object, hedged |
 > | **HD 19467 B** (benchmark T dwarf, wide) | 2 H staring nights | clean 45 m/s pair, gates 101±5% — excellent future target, archive thin |
 > | **HD 206893** | 1 K night + 2 H staring | clean data both settings (gates 100–102%); epochs banked |
