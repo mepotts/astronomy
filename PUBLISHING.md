@@ -129,6 +129,29 @@ an ICLR 2025 workshop; Stanford's Agents4Science 2025, where AI agents are
 primary authors and reviewers by design) are sandboxed meta-science
 experiments, not channels for astronomy results.
 
+**Worked examples of AI-driven papers (found 2026-08-13):**
+- *Transit Timing Variations of Exoplanet WASP-4b: Evidence of Orbital Decay* —
+  [Agents4Science 2025](https://openreview.net/forum?id=Yja2KMahOL), AI primary
+  author with a working exoplanet astronomer (A. Shporer, MIT) as human
+  co-author. Archival public-data orbit reanalysis — the same shape as the
+  exosat-rv work. Its mandatory AI-involvement checklist (disclosure by research
+  stage: planning, execution, writing) is the closest thing to a standard
+  "methods section for AI-driven work" that exists; readable in a browser
+  (OpenReview blocks automated fetchers).
+- *QITT-Enhanced … Cosmological Parameter Estimation* — same venue; the AI
+  framework is literally the named first author ("Denario Astropilotai"), with
+  professional cosmologists as co-authors ([Denario project,
+  arXiv:2510.26887](https://arxiv.org/abs/2510.26887)).
+- *Kosmos* ([arXiv:2511.02824](https://arxiv.org/abs/2511.02824)) — autonomous
+  discovery system; its report style is the model for quantified transparency:
+  independent scientists audited its statements (79.4% accurate) and the papers
+  disclose the AI/human split explicitly.
+- Sakana's AI Scientist-v2 passed an ICLR 2025 *workshop* review fully
+  AI-generated — then was withdrawn by design; the enduring peer-reviewed
+  artifact is the human-authored Nature paper about the system. The lesson:
+  AI-as-author remains a sandboxed experiment; AI-driven work with a human
+  accountable author is the publishable path in mainstream venues.
+
 **AI never submits.** Three independent reasons, any one sufficient: (1)
 submission portals require legal representations — originality, licensing,
 accountability — that only a human can truthfully make; (2) peer review is a
