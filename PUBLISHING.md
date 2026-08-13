@@ -89,6 +89,54 @@ it is the thing an institutional byline would otherwise vouch for.
   without per-batch human review — automated submission is permanently out of
   scope.
 
+## AI authorship, disclosure, and submission
+
+Most of the work in this repository was carried out by AI agents (Claude, via
+Claude Code) operating under the owner's direction. The rules, per the 2026
+publishing consensus (ICMJE, COPE, Springer Nature, Elsevier, Science, AAS
+ethical standards):
+
+**AI is never an author.** Every major publisher and ethics body rejects AI
+authorship on the same ground: authorship means accountability, and only a
+human can be accountable to a journal, a referee, or the record. The human
+owner is the sole author and answers for every claim.
+
+**Substantive AI use must be disclosed — and here it is methodology, not a
+footnote.** The 2026 norm is a dedicated AI-use statement at submission plus
+description in the manuscript where the use occurred. Grammar-level assistance
+is exempt everywhere; analysis-level involvement is not. Since in this work the
+agent drove the analysis, the honest form is a Methods paragraph describing the
+agentic workflow itself — model and version, what the agent did, and the
+verification discipline that gated its output (positive controls,
+injection-recovery gates, scoring only against published values, the
+correction log). This repository's audit trail is the evidence that the
+discipline existed. Template statement:
+
+> *The archival analysis, literature search, and manuscript drafting were
+> performed by an AI agent (Claude [version], Anthropic), operating under the
+> author's direction in an environment with verification gates described in
+> §[Methods]; every adopted result passed injection-recovery validation or a
+> positive control, and all claims were reviewed by the author, who takes full
+> responsibility for the content. The complete agent-produced audit trail,
+> including retracted intermediate claims, is preserved in the companion
+> repository.*
+
+**Check the target venue's current AI policy at submission time** — policies
+are converging but not identical (Science required a policy change to allow
+disclosed AI text at all; some funders now reject substantially-AI-developed
+proposals). Venues that experiment with AI-as-author (Sakana's AI Scientist at
+an ICLR 2025 workshop; Stanford's Agents4Science 2025, where AI agents are
+primary authors and reviewers by design) are sandboxed meta-science
+experiments, not channels for astronomy results.
+
+**AI never submits.** Three independent reasons, any one sufficient: (1)
+submission portals require legal representations — originality, licensing,
+accountability — that only a human can truthfully make; (2) peer review is a
+months-long correspondence with an accountable person; (3) this repository's
+standing safety policy gates every outward send behind per-item human review.
+Agents prepare submission packages down to the last byte; the owner presses
+submit.
+
 ## The current queue, mapped to venues
 
 | Work | State | Natural venue |
