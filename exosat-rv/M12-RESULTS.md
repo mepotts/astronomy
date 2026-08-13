@@ -102,7 +102,8 @@ one**, and it is a check only the raw metadata can make.
 ## 2. What 57.68 m/s actually is — the project has been comparing two different statistics
 
 The published version prints the error definition the preprint only described in words —
-Köhler et al. (2025) Eq. 1, reproduced as the paper's Eq. (1):
+the paper's Eq. (1) — which is Köhler et al. (2025) Eq. **6**, not their Eq. 1
+(their Eq. 1 is the forward model; Eq. 5 is the weighted-mean RV):
 
 ```
 eps_RV = sqrt( 1/(No-1) * sum_o eps_o^-2 (RV_o - RVbar)^2 / sum_o eps_o^-2 )

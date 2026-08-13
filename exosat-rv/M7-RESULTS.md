@@ -3,7 +3,7 @@
 **Question:** how do you apply the Hoy et al. method to other candidate exosatellites?
 
 **Answer: the question was already answered in print, by four of their own co-authors, and
-this project had not read it.** Hoy et al.'s reference [11] is Lazzoni et al. 2022,
+this project had not read it.** Hoy et al. cite **Lazzoni et al. 2022**,
 *Detectability of satellites around directly imaged exoplanets and brown dwarfs*
 ([MNRAS 516, 391](https://arxiv.org/abs/2207.07569)) — a population study that simulates
 satellites around 38 directly imaged companions and computes RV detection probabilities for
@@ -21,7 +21,7 @@ list was never extracted, so the following went unnoticed:
 
 | Reference | What it is | Status before M7 |
 |---|---|---|
-| **[11] Lazzoni et al. 2022** | detectability of satellites around DI companions — *the* framework | never mentioned |
+| **Lazzoni et al. 2022** | detectability of satellites around DI companions — *the* framework | never mentioned |
 | **[32] Vanderburg, Rappaport & Mayo 2018** | **proposed this method**, and enumerates its false positives | never mentioned |
 | **[14] Ruffio et al. 2023** | prior null on HR 7672 B + instrument forecasts to TMT | never mentioned |
 | **[15] Vanderburg & Rodriguez 2021** | prior null on HR 8799 | never mentioned |
@@ -83,7 +83,9 @@ that factor, which is the wrong direction for a triage cut.
 Checked, not assumed: **the 38 companions in Lazzoni et al.'s Table 1 do not include
 CD-35 2722 B.** Hoy et al. write that "it has been calculated that, given the existence of
 satellites orbiting CD-35 B, the radial velocity method would be relatively likely to find
-them [11]" — but [11] evaluated the *class*, not this object.
+them [10]" (published wording; the preprint reads "given the existence of
+satellites" and numbers the same reference [11]) — but that study evaluated the
+*class*, not this object.
 
 **The first exosatellite was found on a target the predictive study never scored.** That is
 not a criticism of either paper; it is a caution about how much weight any ranking of this

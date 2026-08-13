@@ -413,3 +413,42 @@ version", or renumber to the published version, which is the one the paper cites
   … 2505.09781"). Harmless build artifacts; they regenerate.
 - **`papers/text/abs.html`** is the arXiv abstract page for 2607.05193 (preprint title), not a
   paper. Harmless, but it is the only non-`.txt` file in that directory.
+
+---
+
+## Resolution of the two open findings (M29, decided 2026-08-13)
+
+Both were left for a decision about what the surrounding sentence meant. Both are now
+settled against the source texts, and the corrections are applied.
+
+### 1. The "reference [11]" claim — cite by author, not by number
+
+Verified directly in `papers/text/`:
+
+- **Preprint (arXiv v1):** "…given the existence of satellites orbiting CD-35 B, the
+  radial velocity method would be relatively likely to find them **11**. We conducted a
+  VLT/CRIRES+ **12** program…"
+- **Published (Nature):** "…**in the event of** satellites orbiting CD-35 B, the radial
+  velocity method would be relatively likely to find them **10**. We conducted a
+  VLT/CRIRES+ **11** program…"
+
+So the sentence survives publication with reworded phrasing, Lazzoni moves **[11] → [10]**,
+and **[11] in the published version is the CRIRES+ instrument paper** — which is how the
+project's own claim became false without anyone touching it.
+
+**Decision: bracket numbers are removed everywhere and the reference is cited by author.**
+A number is an artifact of one version's reference list, not a property of the work. The
+substantive finding is untouched and true in *both* versions: Hoy et al. justify the RV
+likelihood by citing a population study that scored the class of directly imaged
+companions but never scored CD-35 2722 B itself. Where the project quotes the sentence, it
+now quotes the **published** wording and records the preprint's variant alongside.
+
+### 2. "Köhler et al. 2025 Eq. 1" — it is their Eq. 6, and it is H26's Eq. 1
+
+Verified in `papers/text/kohler2025_viper.txt`: Eq. **(5)** is the weighted-mean RV over
+chunks, Eq. **(6)** is the ε_RV uncertainty. Köhler's Eq. 1 is the forward model.
+
+**Decision: attribute the statistic as H26's Eq. (1), noting it is Köhler et al.'s Eq. 6.**
+The project scores against the precision statistic *as H26 state it*, so H26's numbering is
+the primary reference; Köhler's is given so the derivation remains traceable. "Köhler
+Eq. 1" was simply wrong and is gone.

@@ -90,7 +90,7 @@ separation are**:
   M5 imagines.** Anything M5 produces is a reanalysis of their data, not an independent
   search, and must be described that way.
 - **The detectability of this method was forecast before it worked, and the forecast is
-  citable.** Hoy et al.'s reference [11] is **Lazzoni et al. 2022** (MNRAS 516 391,
+  citable.** Hoy et al. cite **Lazzoni et al. 2022** (MNRAS 516 391,
   arXiv:2207.07569), by four of their own co-authors, which simulates satellite populations
   around 38 directly imaged companions and predicts that *binary-like* satellites are
   detectable by RV (P ~ 0.996 at f = 1) while *planet-like* ones are not (P ~ 0.08). M7

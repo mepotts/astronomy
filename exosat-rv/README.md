@@ -202,7 +202,7 @@ CD-35 2722 B alone.
 ## Generalising the method (M7–M8)
 
 The obvious next question — *where else does this work?* — turned out to have a published
-answer the project had never read. Hoy et al.'s reference [11] is
+answer the project had never read. Hoy et al. cite
 [Lazzoni et al. 2022](https://arxiv.org/abs/2207.07569), by four of their own co-authors,
 which simulates satellite populations around 38 imaged companions and computes RV detection
 probabilities for each. The method itself was proposed by
