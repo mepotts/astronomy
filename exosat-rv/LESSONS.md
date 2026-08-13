@@ -51,6 +51,7 @@ not either.
 
 - Mixed-setting nights crash `obs_nodding` ("Expect only one DROT POSANG") — split SOFs per setting (queued: cd35d1).
 - A recipe can "succeed" in 0.656 s and write **empty extractions** (YSES 1 2022) — staging must verify *table contents*, not file existence.
+- **`cr2res_obs_nodding` requires an EVEN number of science frames.** That *is* the YSES 1 2022 cause, found M29: an 8-exposure template aborted after 7 (the archive holds 7 too — nothing was lost in download), leaving 3 A and 4 B. The log says `Require an even number of raw frames` / `Invalid Inputs` / `Failed to reduce detector 1,2,3` — and the recipe then writes **all 11 products anyway, empty, and exits 0**. Drop one frame to make the count even. Check `ESO TPL EXPNO` vs `ESO TPL NEXP` at staging: an aborted sequence is common and silent.
 - Some frames arrive with UTC/LST stripped — patch placeholder keywords at staging (AF Lep).
 - Dark failures are non-fatal (`reduce_one.sh` continues); missing darks ≠ dead night.
 - Delete raw after a reduction verifies — raw kept "just in case" filled 1007G to 100% and killed a batch.
@@ -58,6 +59,7 @@ not either.
 ## 5. Ops rules (WSL/Windows/harness)
 
 - Long shell chains go in **committed script files** — inline one-liners died silently twice and cost whole runs.
+- **Line endings will break every script in this repo.** Git is configured `core.autocrlf=true`, so it rewrites `*.sh` to CRLF on checkout; WSL's bash then fails with `$'': command not found`, a bogus `No such file or directory` on the sourced env file, and a syntax error — while the *task* still reports exit 0. All 39 shell scripts were in this state (found M29, after a "completed" reduction had done nothing). Fixed by `.gitattributes` pinning `*.sh`/`*.py`/`*.sof` to `eol=lf`. Diagnose with `file script.sh` **from inside WSL** — a `grep $''` from git-bash reports LF and will mislead you.
 - `git commit -F <file>` always; PowerShell here-strings mangle multi-line messages.
 - Read **full** logs on failure — `tail -30` hid the actual retry error once.
 - Long WSL jobs run as harness background tasks; recover from TAP outages with a probe-then-rerun loop and a 6 h ceiling.
