@@ -24,7 +24,7 @@ They are the highest-value-per-hour ideas in this file.
 > - **Within-night frame scatter.** Frames of one night are minutes apart, so a
 >   satellite orbit cannot move between them — pure noise, in principle ideal. But the
 >   campaigns take only **~2 frames per night**, giving too few degrees of freedom. The
->   built-in control settles it: CD-35 2722 B, which carries a known ~430 m/s signal,
+>   built-in control settles it: CD-35 2722 B, which carries a real signal (published K = 306 m/s, fitted here at 426-472),
 >   resolves its excess at only **1.4σ**. A method that cannot recover a known signal
 >   cannot certify a null, so every other object's "no excess" is a power failure, not
 >   a physical result.

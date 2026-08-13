@@ -30,8 +30,9 @@ BOUND on jitter. That is still the number a proposal needs -- what limits an exo
 search is the total night-to-night floor, not its split -- but it must not be quoted as
 purely astrophysical.
 
-Two built-in controls: CD-35 2722 B carries a known ~430 m/s satellite signal and must
-show a large resolved excess; eta Tel B carries the project's tightest null and should
+Two built-in controls: CD-35 2722 B carries a real satellite signal (published
+K = 306 m/s; fitted here at 426-472 m/s by direct fit at the published period) and
+must show a large resolved excess; eta Tel B carries the project's tightest null and should
 be consistent with zero.
 
 Usage (WSL): python m29_jitter.py label=path [label=path ...]

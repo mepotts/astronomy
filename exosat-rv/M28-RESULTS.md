@@ -245,7 +245,7 @@ configuration at nlive = 2000 as a convergence check.
 
 1. **The conclusion holds and is now properly bounded.** Every configuration's mean is
    negative, from −1.42 to −5.51. Of 82 individual runs, **81 are below zero**; the
-   single exception reaches **+0.91**, still far short of the claimed +2.62. The old
+   single exception reaches **+0.90**, still far short of the claimed +2.62. The old
    "10/10 negative" phrasing was true of the runs then in hand but is superseded — the
    draft now states the 81/82 figure.
 
