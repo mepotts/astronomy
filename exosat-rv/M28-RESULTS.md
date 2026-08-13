@@ -225,4 +225,51 @@ draft quotes 1.19–1.24, which is the adopted-combine subset). Fix before submi
 
 ## 7. The second satellite at honest error bars
 
-*(filled in when the 10-seed rerun completes)*
+82 independent sampler runs: 10 seeds per configuration at nlive = 500, plus 4 seeds per
+configuration at nlive = 2000 as a convergence check.
+
+| priors | pairing | nlive | ΔlnZ (mean ± s.e.) | run-to-run σ | quoted | ratio |
+|---|---|---:|---:|---:|---:|---:|
+| uniform | periods fixed | 500 | −1.83 ± 0.08 | 0.25 | 0.24 | 1.1x |
+| uniform | periods in windows | 500 | −4.60 ± 0.27 | 0.87 | 0.27 | **3.3x** |
+| uniform | both eccentric | 500 | −5.51 ± 0.69 | 2.18 | 0.27 | **8.1x** |
+| jitter U(0,300) | free periods | 500 | −3.82 ± 0.20 | 0.62 | 0.27 | 2.3x |
+| jitter U(0,300) | both eccentric | 500 | −3.37 ± 0.38 | 1.19 | 0.27 | **4.4x** |
+| K log-uniform | free periods | 500 | −3.77 ± 0.30 | 0.96 | 0.27 | 3.5x |
+| K log-uniform | both eccentric | 500 | −1.42 ± 0.44 | 1.40 | 0.27 | **5.3x** |
+| uniform | periods fixed | 2000 | −1.50 ± 0.24 | 0.49 | 0.12 | **4.1x** |
+| uniform | periods in windows | 2000 | −4.46 ± 0.31 | 0.62 | 0.13 | **4.7x** |
+| uniform | both eccentric | 2000 | −3.49 ± 0.27 | 0.54 | 0.13 | **4.1x** |
+
+**Three findings.**
+
+1. **The conclusion holds and is now properly bounded.** Every configuration's mean is
+   negative, from −1.42 to −5.51. Of 82 individual runs, **81 are below zero**; the
+   single exception reaches **+0.91**, still far short of the claimed +2.62. The old
+   "10/10 negative" phrasing was true of the runs then in hand but is superseded — the
+   draft now states the 81/82 figure.
+
+2. **More live points do not fix it — they make the understatement worse.** At nlive =
+   2000 the internal estimate shrinks to ±0.12–0.13 exactly as its N^(−1/2) scaling
+   demands, while the empirical scatter stays at 0.49–0.62. The ratio therefore *rises*
+   to 4–5x. The internal number measures the sampler's accounting of its own
+   integration, not the dispersion of answers the procedure returns.
+
+3. **The nlive = 500 `eccP` row was partly unconverged.** Its scatter of 2.18 and mean of
+   −5.51 tighten to 0.54 and −3.49 at 4x live points, so the original −5.41/−6.63 pair
+   sat in the tail. The direction is unchanged; the magnitude was overstated. This is
+   the one place where the previously published numbers were not merely
+   under-uncertain but off-centre, and the draft now carries the converged values
+   alongside.
+
+**What this does to the disagreement with H26** — and it is more collegial than it
+sounds. Their +2.62 rests on lnZ uncertainties of ±0.70 and ±0.69, the same class of
+internal estimate, plausibly understated by a similar factor. If so, **+2.62 is not
+significant on its own terms**, before any argument about priors, and consistent with
+their own word "tentative". We cannot test their sampler and do not claim to. The
+falsifiable version is a question they can answer in an afternoon: how many independent
+runs stand behind +2.62, and what is the scatter among them? That is now the lead ask in
+`docs/author-query-draft.md`.
+
+Drafted into the manuscript as Table 3 (rebuilt with mean ± s.e. and run-to-run σ as
+separate columns) and a new §5.1.

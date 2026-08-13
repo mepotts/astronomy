@@ -402,10 +402,12 @@
   one-companion (eccentric) model and −141.70&nbsp;±&nbsp;0.69 for two companions:
   ΔlnZ&nbsp;=&nbsp;+2.62&nbsp;±&nbsp;~1.0 in favour of two. Fitting the same published
   23-epoch table with nested sampling (dynesty; likelihood identical to our fitter,
-  priors symmetric between models), we find the <em>opposite sign in every variant
-  tried</em> (Table&nbsp;3): pinning the periods at the published values, freeing them
-  in the paper's own windows, or matching the paper's literal both-eccentric pairing;
-  under uniform, linear-jitter, or log-amplitude priors. The 87.3&nbsp;d period
+  priors symmetric between models), <em>every configuration we tried returns the
+  opposite sign</em> (Table&nbsp;3): pinning the periods at the published values, freeing
+  them in the paper's own windows, or matching the paper's literal both-eccentric
+  pairing; under uniform, linear-jitter, or log-amplitude priors. Across 82 independent
+  sampler runs, 81 land below zero; the single exception reaches +0.91, still far short
+  of the claimed +2.62. The 87.3&nbsp;d period
   <em>choice</em> does reproduce — it beats the 70/115&nbsp;d aliases in both table
   versions, as in <span class="them">H26</span> — but the <em>existence</em> evidence
   does not. Notably, the same comparison run on the superseded preprint table still
@@ -417,21 +419,54 @@
 
   <div class="tablewrap">
   <table>
-    <caption><b>Table 3.</b> Nested-sampling evidence for the second companion on the published <em>Nature</em> RV table: ΔlnZ (two-companion − one-companion); positive favours two. Two independent seeds per cell (nlive = 500). The paper claims +2.62 ± ~1.0.</caption>
+    <caption><b>Table 3.</b> Nested-sampling evidence for the second companion on the published <em>Nature</em> RV table: ΔlnZ (two-companion − one-companion); positive favours two. Each row is <b>ten independent sampler runs</b>; we quote the mean with the standard error on that mean, and separately the run-to-run scatter — the reproducibility of a <em>single</em> run, which is the quantity comparable to a published ΔlnZ. The paper claims +2.62 ± ~1.0. The last block repeats the uniform-prior rows at 4× the live points as a convergence check.</caption>
     <thead><tr>
-      <th>model pairing</th><th>priors</th><th class="num">ΔlnZ, seed 1</th><th class="num">ΔlnZ, seed 2</th>
+      <th>model pairing</th><th>priors</th><th class="num">ΔlnZ (mean ± s.e.)</th><th class="num">run-to-run σ</th><th class="num">range over 10 runs</th>
     </tr></thead>
     <tbody>
-      <tr><td class="k">1-ecc vs 2-circ, periods fixed at published</td><td>uniform</td><td class="num">−1.42 ± 0.24</td><td class="num">−1.96 ± 0.24</td></tr>
-      <tr><td class="k">1-ecc vs 2-circ, periods in H26's windows</td><td>uniform</td><td class="num">−3.23 ± 0.27</td><td class="num">−3.65 ± 0.27</td></tr>
-      <tr><td class="k">both eccentric (H26's Table 1 pairing)</td><td>uniform</td><td class="num">−5.41 ± 0.27</td><td class="num">−6.63 ± 0.27</td></tr>
-      <tr><td class="k">free periods</td><td>jitter U(0,300)</td><td class="num">−4.35 ± 0.27</td><td class="num">−2.88 ± 0.27</td></tr>
-      <tr><td class="k">both eccentric</td><td>jitter U(0,300)</td><td class="num">−4.64 ± 0.27</td><td class="num">−2.23 ± 0.27</td></tr>
-      <tr><td class="k">free periods</td><td>K log-uniform</td><td class="num">−2.32 ± 0.27</td><td class="num">−2.30 ± 0.28</td></tr>
-      <tr class="last"><td class="k">both eccentric</td><td>K log-uniform</td><td class="num">−0.83 ± 0.27</td><td class="num">−0.79 ± 0.27</td></tr>
+      <tr><td class="k">1-ecc vs 2-circ, periods fixed at published</td><td>uniform</td><td class="num">−1.83 ± 0.08</td><td class="num">0.25</td><td class="num">−2.24 … −1.42</td></tr>
+      <tr><td class="k">1-ecc vs 2-circ, periods in H26's windows</td><td>uniform</td><td class="num">−4.60 ± 0.27</td><td class="num">0.87</td><td class="num">−5.90 … −3.23</td></tr>
+      <tr><td class="k">both eccentric (H26's Table 1 pairing)</td><td>uniform</td><td class="num">−5.51 ± 0.69</td><td class="num">2.18</td><td class="num">−8.87 … −1.74</td></tr>
+      <tr><td class="k">free periods</td><td>jitter U(0,300)</td><td class="num">−3.82 ± 0.20</td><td class="num">0.62</td><td class="num">−4.61 … −2.88</td></tr>
+      <tr><td class="k">both eccentric</td><td>jitter U(0,300)</td><td class="num">−3.37 ± 0.38</td><td class="num">1.19</td><td class="num">−5.29 … −2.07</td></tr>
+      <tr><td class="k">free periods</td><td>K log-uniform</td><td class="num">−3.77 ± 0.30</td><td class="num">0.96</td><td class="num">−5.05 … −2.30</td></tr>
+      <tr><td class="k">both eccentric</td><td>K log-uniform</td><td class="num">−1.42 ± 0.44</td><td class="num">1.40</td><td class="num">−4.52 … <b>+0.91</b></td></tr>
+      <tr><td class="k">periods fixed <i>(nlive ×4)</i></td><td>uniform</td><td class="num">−1.50 ± 0.24</td><td class="num">0.49</td><td class="num">−2.06 … −0.87</td></tr>
+      <tr><td class="k">periods in windows <i>(nlive ×4)</i></td><td>uniform</td><td class="num">−4.46 ± 0.31</td><td class="num">0.62</td><td class="num">−5.14 … −3.77</td></tr>
+      <tr class="last"><td class="k">both eccentric <i>(nlive ×4)</i></td><td>uniform</td><td class="num">−3.49 ± 0.27</td><td class="num">0.54</td><td class="num">−4.06 … −2.84</td></tr>
     </tbody>
   </table>
   </div>
+
+  <h3>5.1 What a published ΔlnZ uncertainty does and does not mean</h3>
+  <p>
+  Table&nbsp;3 quotes two uncertainties per row because they differ by up to an order of
+  magnitude, and only one of them is the quantity a reader needs. dynesty's internal
+  estimate — the number a single run reports, and the analogue of what published evidence
+  comparisons normally quote — sits at ±0.24–0.27 in every row here. The <em>measured</em>
+  run-to-run scatter of the same comparison, same data, same priors, differing only in
+  the random seed, is 0.25, 0.62, 0.87, 0.96, 1.19, 1.40 and 2.18 depending on
+  configuration: understated by factors of 1.1 to 8.1.
+  </p>
+  <p>
+  This is not a convergence problem that more live points repair. Raising nlive fourfold
+  shrinks the internal estimate to ±0.12–0.13, as its <i>N</i><sup>−1/2</sup> scaling
+  demands, while the empirical scatter stays at 0.49–0.62 — the understatement gets
+  <em>worse</em>, reaching 4–5×. The internal number tracks the sampler's own accounting
+  of its integration, not the dispersion of answers the procedure actually returns.
+  </p>
+  <p>
+  The consequence for the disagreement in this section is worth stating plainly, because
+  it is more collegial than it first sounds. <span class="them">H26</span>'s
+  ΔlnZ&nbsp;=&nbsp;+2.62 rests on lnZ uncertainties of ±0.70 and ±0.69, which are of the
+  same class and, on this evidence, likely to be understated by a similar factor. If the
+  reproducibility of their comparison resembles what we measure for ours, <b>+2.62 is not
+  significant on its own terms</b> — before any argument about priors, and consistent with
+  their own description of the second companion as tentative. We cannot test their sampler
+  and do not claim to have. The falsifiable version of this is a question they can answer
+  in an afternoon: how many independent runs stand behind +2.62, and what is the scatter
+  among them? We would publish that number gladly, whichever way it falls.
+  </p>
 
   <h2><span class="no">6</span>η Tel B: a first radial-velocity limit, below a Jupiter mass</h2>
   <p>

@@ -31,15 +31,30 @@ phase BERV entanglement rather than on anything real.
 
 Now the two asks.
 
-1. The EMPEROR configuration for the model comparison, ideally the priors on each
+1. How many independent sampler runs stand behind the +2.622, and what is the scatter
+among them? This is my main question, and it is not really about priors. Running the
+comparison on your published Table 2 with dynesty, I found that the sampler's own
+internal logZ uncertainty badly understates how much the answer moves between runs that
+differ only in the random seed. Same data, same priors, same model pair: the internal
+estimate says +/- 0.27, while ten independent runs scatter by 0.25 to 2.18 depending on
+configuration, so a factor of 1 to 8. Raising the live points fourfold does not fix it:
+the internal number shrinks as N^-1/2, to +/- 0.13, while the real scatter stays near
+0.5, so the gap gets worse rather than better.
+
+If EMPEROR behaves at all similarly, then the +/- 0.70 and +/- 0.69 on your two logZ
+values may be measuring the sampler's accounting of its own integration rather than the
+reproducibility of the comparison, and +2.622 would not be significant on its own terms
+before anyone argues about priors, which would sit comfortably with your own description
+of the second satellite as tentative. I want to stress I cannot test your sampler and am
+not asserting this about your result. A handful of reruns at different seeds would settle
+it either way, and I would happily publish the answer whichever direction it falls.
+
+Alongside that, the EMPEROR configuration itself would help: the priors on each
 parameter (periods, amplitudes, eccentricity terms, jitter, offset), the period windows
-behind the windowed evidences, and the sampler settings. The reason I ask: running
-nested sampling myself on your published Table 2, one satellite eccentric versus two
-satellites as in your Table 1, I get log evidence differences that favor the one
-satellite model under every prior choice I have tried, where the paper quotes +2.622
-for two. I would much rather run your exact setup and find my priors were the problem
-than speculate. If you have the per window logZ values for the 70, 88 and 115 day
-models from the Nature run, those would help too.
+behind the windowed evidences, and the sampler settings. On my side the one satellite
+model wins under every prior family I have tried, and I would much rather run your exact
+setup and find my priors were the problem than speculate. If you have the per window logZ
+values for the 70, 88 and 115 day models from the Nature run, those would help too.
 
 2. The order level RVs, before combining, for even one or two nights. My remaining
 precision gap is small but stubborn, and comparing per order values would localize it
