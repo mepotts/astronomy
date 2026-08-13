@@ -144,7 +144,7 @@ def test_spin_down_time_scales_as_the_sixth_power_of_separation() -> None:
 
 
 def test_massive_moons_inspiral_fastest_under_stellar_tides_alone() -> None:
-    """...and Tokadjian & Piro 2023 say the opposite once the moon torques back.
+    """...and Makarov & Efroimsky 2023 say the opposite once the moon torques back.
 
     Both are recorded because the module reports both regimes rather than choosing. This
     pins only the direction of the naive clock, so that a future change that silently
@@ -153,7 +153,7 @@ def test_massive_moons_inspiral_fastest_under_stellar_tides_alone() -> None:
     light = moon_inspiral_yr(0.1, 1.0, 1.2, 3.0 * R_JUP_AU)
     heavy = moon_inspiral_yr(10.0, 1.0, 1.2, 3.0 * R_JUP_AU)
     assert heavy < light
-    # Tokadjian & Piro eq. 9: a moon-synchronised state needs P_spin < P_orb / 5.05.
+    # Makarov & Efroimsky eq. 9: a moon-synchronised state needs P_spin < P_orb / 5.05.
     assert moon_can_synchronise_planet(p_spin_d=0.4, p_orbit_d=6.0)
     assert not moon_can_synchronise_planet(p_spin_d=3.0, p_orbit_d=6.0)
 

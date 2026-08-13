@@ -74,7 +74,7 @@ of the Hoy method.
 The substitute separates planet from star in **velocity** instead of position:
 high-resolution cross-correlation spectroscopy. It requires the planet's line-of-sight
 velocity to sweep far enough during one observation to walk its lines clear of the static
-stellar and telluric lines. Horstman et al. 2025
+stellar and telluric lines. Hong et al. 2025
 ([arXiv:2505.09781](https://arxiv.org/abs/2505.09781)) put that at **Δv ≈ 30–60 km/s** for
 a 6σ Keck/KPIC detection against 9 km/s resolution, and note it scales with resolution.
 
@@ -198,12 +198,12 @@ the full window.
 
 Three papers, none previously in this project, converge on something better:
 
-- **Martinez, Stone & Muñoz 2020** ([arXiv:2008.13778](https://arxiv.org/abs/2008.13778)) —
+- **Trani et al. 2020** ([arXiv:2008.13778](https://arxiv.org/abs/2008.13778)) —
   moons do not survive high-eccentricity (ZLK) migration, and massive moons *prevent* it.
 - **arXiv:2509.13263 (2025)** — after *disc* migration, both prograde and retrograde moons
   survive, retrograde 5× more often; under coplanar secular excitation **only massive
   (> 10 M_⊕) retrograde moons** make it.
-- **Tokadjian & Piro 2023** ([arXiv:2302.04646](https://arxiv.org/abs/2302.04646)) — a moon
+- **Makarov & Efroimsky 2023** ([arXiv:2302.04646](https://arxiv.org/abs/2302.04646)) — a moon
   of ~1% of the planet's mass can synchronise the planet *to itself*, overpowering the
   star and holding corotation inside its own orbit. **Massive moons are therefore more
   likely to survive** — the opposite of what the naive tidal clock in §2 predicts, and a
@@ -225,7 +225,7 @@ rather than an open-ended "are there moons".
 
 ## 7. Where the idea is genuinely novel, and where it is not
 
-- **Not novel:** that young hot Jupiters are the preferred exomoon targets. Tokadjian &
+- **Not novel:** that young hot Jupiters are the preferred exomoon targets. Makarov &
   Piro 2023 say so explicitly, and derive the stability niches. Of their sample of hundreds
   of innermost exoplanets, only **26 have any niche at all and 5 a niche wider than 1 R_p**
   — a useful reality check on §4's counts, which are more permissive because they assume a
@@ -244,7 +244,7 @@ rather than an open-ended "are there moons".
 - **Q_p is doing more work than any other parameter, and it is unmeasured.** The candidate
   list triples across its plausible range. Nothing here should be quoted without it.
 - **The spin evolution is decoupled.** §2 evolves the planet's spin under stellar tides
-  alone; Tokadjian & Piro solve the coupled planet–moon–star problem and find the moon can
+  alone; Makarov & Efroimsky solve the coupled planet–moon–star problem and find the moon can
   win. The two regimes are reported separately rather than resolved
   (`moon_can_synchronise_planet` implements their criterion, P_spin < P_orb/5.05).
 - **1 km/s cross-correlation velocity precision is assumed, not sourced.** Horstman et al.

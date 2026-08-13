@@ -241,7 +241,7 @@ young *and* close enough — CoRoT-20 b (4.3 M_Jup, 0.090 au) misses by 1.25x �
 that a gap in the catalogue rather than in the physics.
 
 The prize is not the moon. Massive satellites do not survive high-eccentricity migration
-([Martinez et al. 2020](https://arxiv.org/abs/2008.13778)) and preferentially do survive
+([Trani et al. 2020](https://arxiv.org/abs/2008.13778)) and preferentially do survive
 disc migration, so **a limit at 10–30 M_Earth around a young hot Jupiter discriminates
 between hot-Jupiter migration channels** — and RV is most sensitive to exactly the massive
 satellites the theory says are the survivors.

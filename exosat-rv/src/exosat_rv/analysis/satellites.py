@@ -344,10 +344,10 @@ def survival_window(
     )
 
 
-TOKADJIAN_SPIN_RATIO = 1.0 / 0.198
+MAKAROV_SPIN_RATIO = 1.0 / 0.198
 """A moon can hold its planet's spin fast only if ``P_spin < P_orbit / 5.05``.
 
-Tokadjian & Piro 2023 (A&A 672 A5, arXiv:2302.04646) eq. 9: ``n_p < 0.198 theta_dot_p
+Makarov & Efroimsky 2023 (A&A 672 A5, arXiv:2302.04646) eq. 9: ``n_p < 0.198 theta_dot_p
 (1 - 1.03 e_p)^(3/2)``. Below that ratio the moon-synchronised state puts the synchronous
 radius inside the reduced Hill radius, and the pair is self-consistent.
 
@@ -356,7 +356,7 @@ way to naive intuition.** Treating the planet's spin as evolving under stellar t
 makes massive moons die fastest (``moon_inspiral_yr`` goes as 1/m_sat). But a massive moon
 torques the planet too, and a moon of ~1% of the planet's mass can *synchronise the planet
 to itself*, overpowering the star and holding corotation inside the moon's orbit
-indefinitely. Tokadjian & Piro's conclusion is therefore that **massive moons are more
+indefinitely. Makarov & Efroimsky's conclusion is therefore that **massive moons are more
 likely to survive** -- and massive moons are exactly the ones RV detects.
 
 So the close-in case has two regimes, and which one a system is in depends on the moon:
@@ -366,7 +366,7 @@ into a stable configuration. This module reports both rather than choosing.
 
 
 def moon_can_synchronise_planet(p_spin_d: float, p_orbit_d: float, ecc_planet: float = 0.0) -> bool:
-    """Tokadjian & Piro 2023 eq. 9 -- is a moon-synchronised end state self-consistent?"""
+    """Makarov & Efroimsky 2023 eq. 9 -- is a moon-synchronised end state self-consistent?"""
     return p_spin_d < p_orbit_d * (1.0 - 1.03 * ecc_planet) ** 1.5 * 0.198
 
 

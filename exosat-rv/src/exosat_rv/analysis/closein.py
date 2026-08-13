@@ -34,13 +34,13 @@ number in the problem -- hence ``q_planet`` is an explicit argument, not a const
 
 Prior art, read into ``papers/`` and none of it previously in this project:
 
-- **Tokadjian & Piro 2023** (arXiv:2302.04646) -- the closest published analogue. Derives
+- **Makarov & Efroimsky 2023** (arXiv:2302.04646) -- the closest published analogue. Derives
   exomoon "stability niches" for hundreds of innermost exoplanets and finds a moon of ~1%
   of the planet's mass can synchronise the planet *to itself*, overpowering the star. Of
   their sample only **26 systems have any niche, and 5 a niche wider than 1 R_p**. They
   also state the conclusion this module's naive tidal clock gets backwards: **massive moons
   are more likely to survive.**
-- **Martinez, Stone & Munoz 2020** (arXiv:2008.13778) -- moons do not survive
+- **Trani et al. & Munoz 2020** (arXiv:2008.13778) -- moons do not survive
   high-eccentricity (ZLK) migration, and massive moons prevent it outright. So a satellite
   around a hot Jupiter is a **migration-channel discriminant**: finding one argues the
   planet arrived by disc migration, not by high-eccentricity migration.

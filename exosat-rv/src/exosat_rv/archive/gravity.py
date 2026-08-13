@@ -1,8 +1,8 @@
 """M10 -- the astrometric route to an exosatellite, inventoried archive-first.
 
 **Why this exists.** The project's whole search has been radial velocity, and M9 measured
-that the RV extraction gap is not closing by any cheap lever. Meanwhile Blunt et al. 2026
-(`papers/text/blunt2026_gravity_hd206893b.txt`, [arXiv:2511.20091](https://arxiv.org/abs/2511.20091))
+that the RV extraction gap is not closing by any cheap lever. Meanwhile Kral et al. 2026
+(`papers/text/kral2026_gravity_hd206893b.txt`, [arXiv:2511.20091](https://arxiv.org/abs/2511.20091))
 published **the first astrometric exomoon search** -- VLTI/GRAVITY on HD 206893 B -- and
 reported tentative residuals consistent with a ~0.4 M_Jup companion at P ~ 0.76 yr, while
 cautioning they may be systematics.
@@ -10,14 +10,14 @@ cautioning they may be systematics.
 Three facts make that the strongest parallel track available:
 
 1. **Lazzoni et al. 2022 rank astrometry above RV** for binary-like satellites -- P = 0.999
-   against 0.996, the best of their four techniques -- and until Blunt et al. nobody had run
+   against 0.996, the best of their four techniques -- and until Kral et al. nobody had run
    it.
-2. **It reaches deeper than RV.** Blunt et al. claim feasibility "to detect moons with
+2. **It reaches deeper than RV.** Kral et al. claim feasibility "to detect moons with
    masses lower than Jupiter and potentially down to less than Neptune in optimistic cases",
    below the ~0.4 M_Jup floor M7 finds for RV on any imaged companion.
 3. **It is independent of the extraction gap** that M2/M3/M9 have failed to close.
 
-Blunt et al. name their own follow-up shortlist -- and the two they call best short-term,
+Kral et al. name their own follow-up shortlist -- and the two they call best short-term,
 **AF Lep b and beta Pic b**, include the object sitting at **#2 in M7's RV ranking**. beta
 Pic b is therefore the one target where an RV limit and an astrometric limit could be set
 independently and cross-checked.
@@ -47,7 +47,7 @@ BLUNT_SHORTLIST: dict[str, tuple[float, float]] = {
     "HD 155555 (AB) b": (259.3556, -66.9508),
     "2M1315-2649 b": (198.8789, -26.8309),
 }
-"""Blunt et al. 2026 section 6's five viable GRAVITY+ exomoon targets, plus HD 206893 B
+"""Kral et al. 2026 section 6's five viable GRAVITY+ exomoon targets, plus HD 206893 B
 where their own candidate sits. They cut on K < 20 mag and host-companion contrast < 1e5.
 
 ``HD 60584 b`` is in their list but omitted here: it is an unconfirmed candidate

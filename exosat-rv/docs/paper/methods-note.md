@@ -595,7 +595,7 @@ milestone document in the repository.
     Rodriguez 2021 are **not** given here because they are not confirmed anywhere in the
     repository. Fill from ADS before submission.
 10. **Kral et al. 2025** is stored in the repository under the filename
-    `blunt2026_gravity_hd206893b.*`, which is misleading — S. Blunt is a co-author, Q. Kral
+    `kral2026_gravity_hd206893b.*`, which is misleading — S. Blunt is a co-author, Q. Kral
     is first author on the text as archived. Verify the citation, not the filename.
 11. **Peña R. et al. 2025 (EMPEROR/reddemcee)** and **Wahhaj et al. 2011** appear in the HTML
     draft's reference list but are not cited here. Add only if used.

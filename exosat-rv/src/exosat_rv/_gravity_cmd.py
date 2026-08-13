@@ -13,7 +13,7 @@ from .config import DATA
 def run(out: str) -> None:
     targets = inventory()
 
-    typer.echo("VLTI/GRAVITY holdings on Blunt et al. 2026's exomoon shortlist")
+    typer.echo("VLTI/GRAVITY holdings on Kral et al. 2026's exomoon shortlist")
     typer.echo("")
     typer.echo(
         f"{'target':18s}{'reduced':>9s}{'nights':>8s}{'baseline':>26s}"
