@@ -1,0 +1,513 @@
+{
+  "summary": {
+    "target": "CD-35 2722 B",
+    "band": "H",
+    "nights_total": 28,
+    "usable_now": 17,
+    "reduction_gap": 3,
+    "embargoed": 8,
+    "usable_baseline": [
+      "2023-10-13",
+      "2025-01-21"
+    ],
+    "gap_nights": [
+      "2024-12-16",
+      "2025-01-08",
+      "2025-01-13"
+    ],
+    "embargo_lifts": [
+      "2026-12-19",
+      "2026-12-21",
+      "2027-01-11",
+      "2027-02-09",
+      "2027-02-10",
+      "2027-03-08",
+      "2027-03-24",
+      "2027-04-04"
+    ]
+  },
+  "nights": [
+    {
+      "night": "2023-01-01",
+      "n_raw": 8,
+      "n_reduced": 0,
+      "settings": [
+        "K"
+      ],
+      "prog_ids": [
+        "110.23RW.002"
+      ],
+      "public": true,
+      "release": "2024-01-01T02:10:37+00:00"
+    },
+    {
+      "night": "2023-01-04",
+      "n_raw": 24,
+      "n_reduced": 0,
+      "settings": [
+        "K"
+      ],
+      "prog_ids": [
+        "110.23RW.002"
+      ],
+      "public": true,
+      "release": "2024-01-04T04:45:56+00:00"
+    },
+    {
+      "night": "2023-02-01",
+      "n_raw": 6,
+      "n_reduced": 0,
+      "settings": [
+        "J"
+      ],
+      "prog_ids": [
+        "110.23RW.005"
+      ],
+      "public": true,
+      "release": "2024-02-01T04:26:09+00:00"
+    },
+    {
+      "night": "2023-10-13",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "112.25HG.001"
+      ],
+      "public": true,
+      "release": "2024-10-13T08:55:31+00:00"
+    },
+    {
+      "night": "2023-12-02",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "112.25HG.001"
+      ],
+      "public": true,
+      "release": "2024-12-02T07:36:27+00:00"
+    },
+    {
+      "night": "2023-12-07",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "112.25HG.001"
+      ],
+      "public": true,
+      "release": "2024-12-07T07:25:53+00:00"
+    },
+    {
+      "night": "2023-12-22",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "112.25HG.001"
+      ],
+      "public": true,
+      "release": "2024-12-22T07:01:40+00:00"
+    },
+    {
+      "night": "2024-01-03",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "K"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "112.25HG.001"
+      ],
+      "public": true,
+      "release": "2025-01-03T01:35:32+00:00"
+    },
+    {
+      "night": "2024-01-09",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "112.25HG.001"
+      ],
+      "public": true,
+      "release": "2025-01-09T06:35:55+00:00"
+    },
+    {
+      "night": "2024-01-11",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "112.25HG.001"
+      ],
+      "public": true,
+      "release": "2025-01-11T04:25:55+00:00"
+    },
+    {
+      "night": "2024-01-19",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "HX5E-2"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "112.25HG.001"
+      ],
+      "public": true,
+      "release": "2025-01-19T01:15:30+00:00"
+    },
+    {
+      "night": "2024-01-30",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "112.25HG.001"
+      ],
+      "public": true,
+      "release": "2025-01-30T03:50:34+00:00"
+    },
+    {
+      "night": "2024-03-01",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "112.25HG.001"
+      ],
+      "public": true,
+      "release": "2025-03-01T00:55:35+00:00"
+    },
+    {
+      "night": "2024-03-19",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "HX5E-2"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "112.25HG.001"
+      ],
+      "public": true,
+      "release": "2025-03-19T03:05:37+00:00"
+    },
+    {
+      "night": "2024-10-17",
+      "n_raw": 152,
+      "n_reduced": 1,
+      "settings": [
+        "H",
+        "K"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "114.271E.001",
+        "114.27LL.002"
+      ],
+      "public": true,
+      "release": "2025-10-17T06:20:47+00:00"
+    },
+    {
+      "night": "2024-10-19",
+      "n_raw": 150,
+      "n_reduced": 0,
+      "settings": [
+        "K"
+      ],
+      "prog_ids": [
+        "114.27LL.002"
+      ],
+      "public": true,
+      "release": "2025-10-19T06:15:48+00:00"
+    },
+    {
+      "night": "2024-10-21",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "HX5E-2"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "114.271E.001"
+      ],
+      "public": true,
+      "release": "2025-10-21T07:56:26+00:00"
+    },
+    {
+      "night": "2024-11-10",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "114.271E.001"
+      ],
+      "public": true,
+      "release": "2025-11-10T08:10:35+00:00"
+    },
+    {
+      "night": "2024-12-03",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "114.271E.001"
+      ],
+      "public": true,
+      "release": "2025-12-03T08:10:45+00:00"
+    },
+    {
+      "night": "2024-12-16",
+      "n_raw": 2,
+      "n_reduced": 0,
+      "settings": [
+        "HX5E-2"
+      ],
+      "prog_ids": [
+        "114.271E.001"
+      ],
+      "public": true,
+      "release": "2025-12-16T07:05:33+00:00"
+    },
+    {
+      "night": "2024-12-22",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "114.271E.001"
+      ],
+      "public": true,
+      "release": "2025-12-22T07:15:38+00:00"
+    },
+    {
+      "night": "2024-12-30",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "HX5E-2"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "114.271E.001"
+      ],
+      "public": true,
+      "release": "2025-12-30T05:55:35+00:00"
+    },
+    {
+      "night": "2025-01-08",
+      "n_raw": 2,
+      "n_reduced": 0,
+      "settings": [
+        "HX5E-2"
+      ],
+      "prog_ids": [
+        "114.271E.001"
+      ],
+      "public": true,
+      "release": "2026-01-08T03:20:43+00:00"
+    },
+    {
+      "night": "2025-01-13",
+      "n_raw": 2,
+      "n_reduced": 0,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "114.271E.001"
+      ],
+      "public": true,
+      "release": "2026-01-13T02:45:40+00:00"
+    },
+    {
+      "night": "2025-01-21",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "HX5E-2"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "114.271E.001"
+      ],
+      "public": true,
+      "release": "2026-01-21T03:35:44+00:00"
+    },
+    {
+      "night": "2025-12-19",
+      "n_raw": 4,
+      "n_reduced": 0,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "116.2AP9.001"
+      ],
+      "public": false,
+      "release": "2026-12-19T05:06:22+00:00"
+    },
+    {
+      "night": "2025-12-21",
+      "n_raw": 4,
+      "n_reduced": 0,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "116.2AP9.001"
+      ],
+      "public": false,
+      "release": "2026-12-21T06:01:04+00:00"
+    },
+    {
+      "night": "2026-01-11",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "116.2AP9.002"
+      ],
+      "public": false,
+      "release": "2027-01-11T01:30:52+00:00"
+    },
+    {
+      "night": "2026-02-09",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "116.2AP9.003"
+      ],
+      "public": false,
+      "release": "2027-02-09T04:46:01+00:00"
+    },
+    {
+      "night": "2026-02-10",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "116.2AP9.003"
+      ],
+      "public": false,
+      "release": "2027-02-10T01:30:45+00:00"
+    },
+    {
+      "night": "2026-03-08",
+      "n_raw": 2,
+      "n_reduced": 0,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "116.2AP9.004"
+      ],
+      "public": false,
+      "release": "2027-03-08T00:35:43+00:00"
+    },
+    {
+      "night": "2026-03-24",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "116.2AP9.005"
+      ],
+      "public": false,
+      "release": "2027-03-24T00:56:36+00:00"
+    },
+    {
+      "night": "2026-04-04",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "H"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "116.2AP9.006"
+      ],
+      "public": false,
+      "release": "2027-04-04T01:16:09+00:00"
+    },
+    {
+      "night": "2026-04-07",
+      "n_raw": 2,
+      "n_reduced": 0,
+      "settings": [
+        "K"
+      ],
+      "prog_ids": [
+        "116.2AP9.004"
+      ],
+      "public": false,
+      "release": "2027-04-07T00:55:57+00:00"
+    },
+    {
+      "night": "2026-05-02",
+      "n_raw": 2,
+      "n_reduced": 1,
+      "settings": [
+        "K"
+      ],
+      "prog_ids": [
+        "(reduced)",
+        "116.2AP9.004"
+      ],
+      "public": false,
+      "release": "2027-05-02T23:20:50+00:00"
+    }
+  ],
+  "generated_utc": "2026-08-10T01:39:27.420517+00:00"
+}

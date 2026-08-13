@@ -122,6 +122,13 @@ def prefit_gate(per_desig: pl.DataFrame) -> pl.DataFrame:
 
     Auto-reject if: fewer than 3 distinct nights; arc < 3 days; exactly 3 nights with arc
     > 15 days; or the arc both starts *and* ends with a single-detection tracklet.
+
+    **Four of the MPC's five substantive pre-fit conditions.** The omitted one is "a
+    two-apparition linkage whose second apparition is represented only by a single
+    tracklet". It is unreachable here: the linker's windows are at most 21 days and cannot
+    span two apparitions, so no candidate this gate sees can trip it. Implement it before
+    any linker with a multi-apparition window uses this function. (A sixth published
+    condition, "the submission format is incorrect", is not a property of a candidate.)
     """
     too_few = pl.col("n_nights") < MIN_NIGHTS
     short = pl.col("arc_days") < MIN_ARC_DAYS

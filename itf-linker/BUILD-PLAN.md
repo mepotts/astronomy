@@ -297,6 +297,56 @@ ITF"* plus the pipeline. **RNAAS** fits exactly (≤1,500 words, one figure or t
    more night, and a 2-night arc constrains where to look — a far better-conditioned
    search than blind 3-way linking, and now that fitting is cheap it is testable.
 
+   **Scoped 2026-08-10, and the premise mostly does not hold.** Measured on the archive's
+   own per-designation summary (`data/snapshots/<newest>/designations.parquet`, 2,590,654
+   designations; 19,214 with two nights at that pull — the count drifts):
+
+   | arc | designations | cross-observatory |
+   |---|---:|---:|
+   | 0–2 d | 11,167 | 3.0% |
+   | 2–5 d | 5,053 | 3.7% |
+   | 5–15 d | 531 | 16.6% |
+   | 15–60 d | 481 | 6.2% |
+   | 60–400 d | 865 | 10.4% |
+   | **> 400 d** | **1,117** | **45.0%** |
+
+   **58% of the population spans under two days and 84% under five.** A pair on consecutive
+   nights constrains an orbit barely better than one tracklet does, so for most of these the
+   search region for a third night is close to the blind-linking region the plan hoped to
+   avoid. The premise holds in the **5–400 day** band, which is **1,877 designations —
+   9.8%**, not 19,214.
+
+   And the apparently best-constrained tail is the least trustworthy. Cross-observatory
+   fraction sits near 3% everywhere short-arc and jumps to **45% beyond 400 days**; 82 pairs
+   span more than a decade and one spans 148 years (`140871`, two observations). Two
+   different surveys sharing a trkSub string produces exactly that signature, and M1 already
+   found name reuse in the 3+-night population (141 suspects of 1,120). A decades-long
+   "arc" here is a collision until proven otherwise, so the reuse filter has to run *before*
+   any of this is treated as a target list.
+
+   **The project's own reuse screen cuts it further.** `collide.MAX_TRKSUB_ARC_DAYS` is
+   200 days — M1 already treats a longer trkSub arc as a collision suspect. Applying that
+   one flag, which needs no observation parsing:
+
+   - 5–400 d band: **1,877**
+   - trip the long-arc flag (arc > 200 d): **505**
+   - **survive: 1,372 — 7.1% of the two-night population**, 158 of them cross-observatory
+
+   Across all 19,211 two-night designations, 1,622 trip the flag and 553 of those are
+   cross-observatory — 34% against a ~3% baseline, which is the reuse signature again from
+   a second direction.
+
+   **1,372 is an upper bound.** M1's other two screens (sustained rate > 5°/day, same-night
+   cross-site separation > 5°) need per-observation sky positions and were not applied here;
+   they can only reduce it. The raw ITF is on disk for the newest snapshot if someone wants
+   the exact number.
+
+   **Recommendation:** the honest target list is **~1,372 and falling**, not 19,287 — a
+   fourteenfold difference, and the band it survives in is the one where a 2-night arc
+   actually constrains anything. If this is picked up, scope it to 5–200 days with the full
+   reuse screen applied first. Or leave it: M4 and M5 already argue the cross-observatory
+   pool is exhausted, and nothing here contradicts that.
+
 ---
 
 ## 5. Cost

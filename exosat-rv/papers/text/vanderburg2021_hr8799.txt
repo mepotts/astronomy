@@ -1,0 +1,712 @@
+<<<PAGE 1>>>
+Draft version October 29, 2021
+Typeset using LATEX twocolumn style in AASTeX63
+First Doppler Limits on Binary Planets and Exomoons in the HR 8799 System
+Andrew V anderburg1 and Joseph E. Rodriguez 2
+1Department of Physics and Kavli Institute for Astrophysics and Space Research, Massachusetts Institute of Technology, 77
+Massachusetts Avenue, Cambridge, MA 02139, USA
+2Department of Physics and Astronomy, Michigan State University, East Lansing, MI 48824, USA
+Submitted to ApJL
+ABSTRACT
+We place the ﬁrst constraints on binary planets and exomoons from Doppler monitoring of directly
+imaged exoplanets. We model radial velocity observations of HR 8799 b, c, and d from Ruﬃo et al.
+(2021) and determine upper limits on the m sini of short-period binary planets and satellites. At 95%
+conﬁdence, we rule out companions orbiting the three planets more massive than m sini = 2 MJ with
+orbital periods shorter than 5 days. We achieve our tightest constraints on moons orbiting HR 8799
+c, where with 95% conﬁdence we rule out out edge-on Jupiter-mass companions in periods shorter
+than 5 days and edge-on half-Jupiter-mass moons in periods shorter than 1 day. These radial velocity
+observations come from spectra with resolution 20 times lower than typical radial velocity instruments
+and were taken using a spectrograph that was designed before the ﬁrst directly imaged exoplanet
+was discovered. Similar datasets from new and upcoming instruments will probe signiﬁcantly lower
+exomoon masses.
+Keywords: planetary systems, planets and satellites: detection, stars: individual (HR 8799)
+1. INTRODUCTION
+Three decades of exoplanet discovery have resulted
+in the detection of over 4500 planets outside the solar
+system1 (Akeson et al. 2013) and the knowledge that
+planets outnumber stars in our galaxy (e.g. Swift et al.
+2013; Dressing & Charbonneau 2015). However, despite
+the prevalence of planets in our galaxy and the ubiquity
+of moons orbiting the planets in our solar system, as-
+tronomers have not yet securely detected any exomoons
+and have only a handful of unconﬁrmed candidates (e.g.
+Teachey & Kipping 2018; Lazzoni et al. 2020; Limbach
+et al. 2021, but see also Kreidberg et al. 2019). Given the
+importance of Earth’s moon on our planet’s spin dynam-
+ics (Li & Batygin 2014) and the potential habitability of
+icy moons in the outer solar system (e.g. Reynolds et al.
+1983), continuing to search for moons beyond our solar
+system is a worthwhile endeavor.
+There are two likely reasons for the lack of secure ex-
+omoon detections. First, large exomoons and binary
+planets (deﬁned here as objects orbiting planets with
+Corresponding author: Andrew Vanderburg
+andrewv@mit.edu
+1 https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/
+nph-tblView?app=ExoTbls&conﬁg=PS&constraint=
+default ﬂag=1, accessed 18 September, 2021.
+enough mass that the system’s center of mass is outside
+the primary planet, Stern & Levison 2002) are appar-
+ently rare. The Kepler mission would have be highly
+sensitive to any nearly equal-sized binary-planet com-
+panions, but detected none (Lewis et al. 2015; Teachey
+et al. 2018). In a number of cases, upper limits on
+the presence of exomoons and binary-planet compan-
+ions have been placed using transit photometry that rule
+out moons larger than Earth, and in the best cases rule
+out moons almost as small as Ganymede (Kipping et al.
+2014, 2015). The rarity of large exomoons can be under-
+stood by the fact that moons forming circumplanetary
+disks are expected to have masses smaller than 10 −4
+times that the planetary host (Canup & Ward 2006),
+while the gravitational capture of giant moons or binary
+planets is likely to be a rare dynamical event (Ochiai
+et al. 2014). Second, our observations are not yet sensi-
+tive to small moons. There are over 200 moons orbiting
+the 8 major Solar System planets and many more or-
+biting smaller bodies, but none of these moons would
+be detectable from afar with our current technology.
+Many diﬀerent exomoon detection methods have been
+proposed (e.g. Sartoretti & Schneider 1999; Hook 2005;
+Cabrera & Schneider 2007; Lewis et al. 2008; Kipping
+2009; Agol et al. 2015; Heller 2016; Sengupta & Marley
+2016; Forgan 2017; Hwang et al. 2018; Vanderburg et al.
+2018; Lazzoni et al. 2020) but so far only transit photom-
+arXiv:2110.14650v1  [astro-ph.EP]  27 Oct 2021
+
+<<<PAGE 2>>>
+2 V anderburg & Rodriguez
+etry (Kipping et al. 2015; Teachey et al. 2018) and direct
+imaging (Lazzoni et al. 2020) have yielded constraints
+on the presence of exomoons. Future space observations
+from the Roman Space Telescope microlensing survey
+(Spergel et al. 2013; Penny et al. 2019) are expected to
+either detect or constrain planets/moons orbiting low-
+mass brown dwarfs or free-ﬂoating planets, although un-
+ambiguous detections will be challenging (Hwang et al.
+2018).
+In this work, we place the ﬁrst limits on exomoons
+and binary planets from radial velocity measurements
+of directly imaged exoplanets. This method has been
+mentioned occasionally in literature since 2005 (Hook
+2005; Cabrera & Schneider 2007; Heller 2016; Lillo-
+Box et al. 2018) and was recently discussed in detail
+by Vanderburg et al. (2018) who showed that existing
+and forthcoming instruments could yield strong con-
+straints on moons orbiting bright directly imaged plan-
+ets. We apply this method to three such planets in
+the HR 8799 multi-planet system (Marois et al. 2008,
+2010). HR 8799 hosts four directly imaged super-Jovian
+exoplanets named HR 8799 e, HR 8799 d, HR 8799 c,
+and HR 8799 b (in order of increasing orbital semimajor
+axis). HR 8799 c, d, and e all have masses of 7.2+0.6
+−0.7MJ,
+while the outermost planet HR 8799 b has a slightly
+lower mass of 5 .8± 0.5MJ (Wang et al. 2018b). Re-
+cently, Ruﬃo et al. (2021) observed HR 8799 b, c, and
+d and reported repeated planetary radial velocity mea-
+surements with a typical precision of 1 km s−1. Here, we
+show that these radial velocity observations are sensitive
+to massive exomoons in short-period orbits and use the
+time series to place upper limits on the presence of ex-
+omoon and binary companions to the HR 8799 planets.
+This Letter is organized as follows: Section 2 describes
+the observations and our radial velocity analysis, Sec-
+tion 3 describes the constraints we are able to place, and
+Section 4 discusses the implications of our upper limits
+and the prospects for improved constraints or exomoon
+detections with future datasets.
+2. OBSERVATIONS AND ANALYSIS
+2.1. Keck OSIRIS Radial Velocities
+We use the radial velocity observations of HR 8799
+b, c, and d reported by Ruﬃo et al. (2021). These
+observations were made over the course of a decade
+(between UT 2010 July 11 and UT 2020 August 03)
+with the OH-Suppressing Infrared Integral Field Spec-
+trograph (OSIRIS, Larkin et al. 2006; Mieda et al. 2014)
+on the Keck telescopes. OSIRIS is a moderate-resolution
+(λ/∆λ≈ 4000) integral ﬁeld spectrograph capable of
+measuring the spectra of multiple objects across a small
+ﬁeld of view. While almost all observations were taken
+with the smallest plate scale (with 0 .′′02 pixels and a
+0.′′32×1.′′28 ﬁeld of view), one was taken with a slightly
+larger plate scale (0 .′′035 pixels and a 0 .′′56×2.′′24 ﬁeld
+of view). Most of the observations reported were made
+in the K-band, some were derived from both H- and
+K-bands, and others were made entirely from the H-
+band observations (see Table 1). Ruﬃo et al. (2021)
+extracted spectra and measured radial velocities using
+least-squares template ﬁtting, while simultaneously ﬁt-
+ting for stellar contamination and modeling telluric ab-
+sorption as a sum of vectors from a principal component
+analysis of many spectroscopic observations. The radial
+velocity calibration was performed by measuring the lo-
+cation of OH− sky emission lines. In total, Ruﬃo et al.
+(2021) reported 11 observations of HR 8799 b, 8 obser-
+vations of HR 8799 c, and 7 observations of HR 8799 d.
+We list the these radial velocity measurements in Table
+1 and show them in Figure 1.
+Two other groups have reported radial velocity mea-
+surements of the HR 8799 planets using diﬀerent in-
+struments on the Keck telescopes. Wang et al. (2018a)
+used the NIRSPEC near infrared spectrograph behind
+the Keck adaptive optics system to measure the radial
+velocity of HR 8799 c and Wang et al. (2021a) used
+NIRSPEC with the the Keck Planet Imager and char-
+acterizer (KPIC) front-end to measure the radial veloc-
+ity of all four planets in the HR 8799 system. Both
+groups achieved radial velocity uncertainties as small as
+1-2 km/s, at the level of the OSIRIS observations used
+here, but only reported one measurement per planet.
+Because the diﬀerent instruments used to collect the ob-
+servations and the diﬀerent data analysis methods likely
+introduce oﬀsets between these measurements and the
+OSIRIS datasets, we do not include them in our analy-
+sis.
+2.2. MCMC Radial Velocity Analysis
+We searched the radial velocity time series of all three
+planets for evidence of orbiting companions. We calcu-
+lated Lomb-Scargle periodograms (Lomb 1976; Scargle
+1982) of the three time series, and saw no clear peaks at
+periods between 0.1 and 10 days. A boot-strap analysis
+yielded false alarm probabilities for the highest peaks in
+the power spectra for HR 8799 b, c, and d of 68%, 49%,
+and 15%, respectively. We concluded that there is no
+evidence for orbiting companions in the OSIRIS radial
+velocity observations.
+We therefore determined upper limits on the presence
+of putative companions to the HR 8799 planets using
+Markov Chain Monte Carlo (MCMC) explorations of
+plausible short-period orbits. Radial velocity observa-
+tions are unable to constrain the true mass of plane-
+tary companions because of a well-known degeneracy
+with the companion’s orbital inclination,i. We therefore
+place constraints on m sini rather than the true masses
+of orbiting binary planets or moon. In our MCMC
+ﬁts, we modeled each planets’ radial velocity time se-
+ries as the sum of a single Keplerian signal describing
+a moon/binary-planet companion (restricted to circular
+orbits), a constant radial velocity oﬀset, and a linear
+velocity trend in time (to model each planets’ orbital
+motion). We ﬁt for a white noise “jitter” term, j, which
+
+<<<PAGE 3>>>
+HR 8799 Exomoon Limits 3
+20
+15
+10
+5
+0
+HR 8799 b
+20
+15
+10
+5
+0
+Radial Velocity, km/s
+HR 8799 c
+2010 2012 2014 2016 2018 2020 2022
+Time, year
+20
+15
+10
+5
+0
+HR 8799 d
+Figure 1. Radial velocity observations of the HR 8799 planets: HR 8799 b (top), HR 8799 c (middle), and HR 8799 d (bottom).
+The points show the radial velocity measurements from Ruﬃo et al. (2021) with their uncertainties inﬂated by adding the jitter
+term from our analysis in Section 2.2 in quadrature. The transparent rectangular regions show the best-ﬁt mean radial velocities
+from our analysis for each planet and their 1 σ uncertainties.
+we added in quadrature to the error bars, σ, reported
+by Ruﬃo et al. (2021) to account for any additional
+sources of radial velocity uncertainty. That is, the eﬀec-
+tive uncertainty,σnew, of each observation was inﬂated
+to σnew ≡
+√
+σ2 +j2. We imposed a Gaussian prior
+on the masses of the three planets with central values
+and widths for HR 8799 b, c, and d of Mb = 5.8± 0.5,
+Mc = 7.2±0.7, andMd = 7.2±0.7 (Wang et al. 2018b).
+The radial velocity datasets from Ruﬃo et al. (2021) are
+sparsely sampled, so we were forced to restrict the puta-
+tive companion orbital periods to be between 0 and 10
+days. This restricted parameter space is still interesting
+though; more than a quarter of the moons in the so-
+lar system, comprising nearly half the total moon mass,
+orbit in periods shorter than 10 days 2. We forced the
+m sini of the putative companion to be nonnegative with
+a uniform prior over the interval [0,∞). Finally, we re-
+stricted the orbital phase of conjunction to be between
+0 and 1.
+All in all, our model included seven parameters: the
+mass of each host planet, the m sini, orbital period,
+and phase of conjunction for the putative moon/binary-
+planet companion, a radial velocity oﬀset, a linear ra-
+dial velocity trend, and an excess radial velocity “jitter”
+term. We explored this seven-dimensional parameter
+space using edmcmc (Vanderburg 2021), a Python im-
+2 https://ssd.jpl.nasa.gov/sats/elem/
+plementation3 of the diﬀerential evolution MCMC sam-
+pler of Ter Braak (2006). For each planet, we ran 50
+parallel chains for 400,000 links, discarding the ﬁrst
+20,000 links as burn-in. We assessed convergence using
+the Gelman-Rubin diagnostic (Gelman & Rubin 1992),
+which was below 1.02 for all parameters. As an indepen-
+dent check on our analysis, we ran a similar MCMC ﬁt
+for HR 8799 b using the EXOFASTv2 software (East-
+man et al. 2019) and found consistent results.
+3. RESULTS
+Once our MCMC analysis was complete, we marginal-
+ized over most of our free parameters to yield constraints
+on the presence of exomoons and binary-planet compan-
+ions as a function of moon m sini and orbital period.
+Our constraints are summarized in Figure 2, and our
+1σ, 2σ, and 3σ limits are provided as Data Behind the
+Figure.
+We ﬁnd that for all three planets, we are able to rule
+out most companions with m sini greater than 2M J in
+periods shorter than 5 days. In particular, our 95% con-
+ﬁdence limits for companions in periods shorter than 5
+days are 1.1 M J, 0.82 M J, and 1.7 M J for HR 8799 b, c,
+and d respectively. Between 5 and 10 days, our results
+are less constraining: we rule out companions more mas-
+sive than m sini = 2.4 M J, 1.8 M J, and 2.3 M J for the
+3 https://github.com/avanderburg/edmcmc
+
+<<<PAGE 4>>>
+4 V anderburg & Rodriguez
+0
+2
+4
+6
+8
+HR 8799 b
+99.7% confidence
+95% confidence
+68% confidence
+Moon/Binary cutoff
+0
+2
+4
+6
+8Companion Mass, MJupsini
+HR 8799 c
+0 1 2 3 4 5 6 7 8 9 10
+Period, days
+0
+2
+4
+6
+8
+HR 8799 d
+Figure 2. Limits on the presence of orbiting companions to the HR 8799 planets: HR 8799 b ( top), HR 8799 c ( middle),
+and HR 8799 d ( bottom). The background shading shows the posterior probability distribution of allowed moon/binary planet
+m sini as a function of orbital period. The dark, medium, and light purple lines show the 1 σ, 2σ, and 3σ (68%, 95%, and 99.7%
+conﬁdence) contours as a function of orbital period. The grey lines show the boundary between a binary-planet system and a
+planet/moon system based on the deﬁnition of Stern & Levison (2002) – objects below the grey lines are moons, while objects
+above the grey lines are binary-planet companions. The spiky vertical structures in the probability distribution and contours
+at longer orbital periods are due to the dataset’s sparse sampling.
+
+<<<PAGE 5>>>
+HR 8799 Exomoon Limits 5
+T able 1. Radial Velocities of HR 8799 b, c, and d
+Planet Time R V σR V Pixel Filter/
+Name BJD km s −1 km s−1 Scale(′′) Band
+HR 8799 b 2455389.05 -10.6 1.1 0.02 K
+HR 8799 b 2455390.04 -12.4 1.1 0.02 K
+HR 8799 b 2455391.12 -3.7 2.2 0.02 H
+HR 8799 b 2456499.05 -9.5 1.0 0.02 K
+HR 8799 b 2456500.0 -8.4 1.3 0.02 K
+HR 8799 b 2456501.01 -9.1 1.9 0.02 K
+HR 8799 b 2457698.82 -8.2 2.2 0.02 K
+HR 8799 b 2457699.82 -9.7 1.5 0.02 K
+HR 8799 b 2457700.84 -3.2 2.1 0.02 K
+HR 8799 b 2458322.02 -6.2 1.3 0.035 K
+HR 8799 b 2459064.96 -9.9 2.3 0.02 K
+HR 8799 c 2455393.05 -11.8 0.7 0.02 K
+HR 8799 c 2455504.81 -11.0 0.7 0.02 H/K
+HR 8799 c 2455766.04 -10.0 1.3 0.02 K
+HR 8799 c 2455767.06 -10.8 2.1 0.02 H/K
+HR 8799 c 2455768.07 -11.0 2.2 0.02 H/K
+HR 8799 c 2456500.08 -15.8 3.5 0.02 K
+HR 8799 c 2458060.75 -10.5 0.9 0.02 H/K
+HR 8799 c 2459060.0 -10.6 1.3 0.02 K
+HR 8799 d 2457224.01 -13.8 2.8 0.02 K
+HR 8799 d 2457227.02 -18.3 2.7 0.02 K
+HR 8799 d 2457263.04 -13.6 3.5 0.02 K
+HR 8799 d 2459060.09 -11.4 1.6 0.02 K
+HR 8799 d 2459061.06 -12.9 1.9 0.02 K
+HR 8799 d 2459062.04 -10.8 1.1 0.02 K
+HR 8799 d 2459065.05 -10.1 1.8 0.02 K
+These observations are as reported by Ruﬃo et al. (2021).
+three planets at 95% conﬁdence. Our constraints are
+stronger for short-period companions for two reasons:
+1) the radial velocity signal scales with period as P−1/3
+so longer-period companions induce smaller signals and
+2) the sparse sampling of the RV observations causes
+poor phase coverage at longer orbital periods, making
+it more diﬃcult to rule out all companions. The eﬀects
+of the sparse radial velocity sampling is visible in Fig-
+ure 2 as vertical spikes in both the posterior probability
+distribution and our 1 σ, 2σ, and 3 σ limits at speciﬁc
+orbital periods. The spikes become more prominent at
+periods longer than 5 days, reﬂecting the typical sam-
+pling of the dataset, which have observations on a few
+consecutive nights interspersed between years-long gaps
+without data.
+To determine whether our limits predominantly rule
+out exomoons versus binary planets, we calculated
+the boundary between these two classes of objects in
+m sini/period space (assuming edge-on inclinations).
+Stern & Levison (2002) deﬁne a moon as an orbiting
+companion with a small enough mass and semimajor
+axis that the moon/planet system center of mass re-
+mains within the radius of the primary planet. A binary
+planet is any companion massive enough that the sys-
+tem center of mass lies outside the primary planet. Us-
+ing this rule, we calculate the mass boundary,Mboundary
+above which a companion is a binary planet rather than
+a moon:
+Mboundary = MpRp
+a−Rp
+(1)
+where Mp, Rp, and a are the planet mass, planet ra-
+dius, and companion semimajor axis, respectively. We
+plot this curve in m sini/period space in Figure 2 and
+ﬁnd that our radial velocity constraints are suﬃcient
+to rule out almost all edge-on binary planets and some
+massive edge-on exomoons with periods shorter than 1-2
+days. At orbital periods longer than about 2 days, our
+observations are only sensitive to binary planets.
+A natural by-product of our MCMC analysis is that
+we measure the mean velocity of each planet over the
+span of the observations. Since we also ﬁt for a linear
+velocity trend, we calculate the velocity of each planet at
+the mean time of all of its observation timestamps. We
+measure mean velocities of −8.4± 1.7 km s−1,−11.1±
+1.1 km s−1, and−13.0±1.8 km s−1 for HR 8799 b, c, and
+d, respectively. These velocities are largely consistent
+with the values (−9.1± 0.4 km s−1,−11.1± 0.4 km s−1,
+and−11.6± 0.8 km s−1 for HR 8799 b, c, and d) calcu-
+lated by Ruﬃo et al. (2021), but have larger error bars
+(due to our use of a jitter term to inﬂate the individual
+error bars) and are slightly more extreme (likely because
+including the jitter term gives slightly more relative cre-
+dence to apparently outlying datapoints). The more ex-
+treme velocities we measure for the planets match the
+predicted velocities from orbital ﬁts ( −8.6+0.5
+−0.6 km s−1,
+−10.5+0.5
+−0.6 km s−1, and −13.2+0.6
+−0.7 km s−1 for HR 8799
+b, c, and d, Wang et al. 2021a) slightly better than the
+Ruﬃo et al. (2021) averages, indicating that this type of
+jitter term may be a useful model of the dataset’s noise
+properties.
+Another by-product of our MCMC analysis is an
+estimate of the radial velocity “jitter,” or excess ra-
+dial velocity scatter in each dataset. We measure an
+excess radial velocity uncertainty of 2 .1+1.3
+−1.0 km s−1,
+0.7+1.0
+−0.5 km s−1, and 1.3+1.9
+−0.9 km s−1 for the HR 8799 b,
+c, and d observations respectively. For both HR 8799 c
+and d the most probable value of the jitter value is 0, but
+the HR 8799 b dataset shows a preference for non-zero
+jitter. This likely because HR 8799 b is the faintest of
+the HR 8799 planets, and therefore is the most suscepti-
+ble to low-level residual systematic errors in the spectral
+extraction or the telluric and starlight correction.
+4. DISCUSSION
+It is not particularly surprising that the HR 8799 plan-
+ets do not have detectable short-period Jovian moons
+or binary-planet companions. Among the thousands of
+known exoplanets, there are still no securely detected ex-
+omoons or binary planets, even though companions the
+mass and size of Jupiter should have been detectable
+around most Kepler target stars (Lewis et al. 2015).
+
+<<<PAGE 6>>>
+6 V anderburg & Rodriguez
+Nevertheless, our constraints ruling out massive edge-
+on exomoons and binary planets around HR 8799 are
+novel. Almost all published limits on the presence of
+exomoons (e.g. Kipping et al. 2014, 2015) come from
+transiting exoplanet systems, which due to selection ef-
+fects orbit close to their host stars (within 1-2 AU). At
+these short orbital periods, the planets’ Hill spheres are
+smaller, limiting the parameter space in which moons
+can survive. Indeed, only three of the hundreds of known
+moons in the solar system are found within 2 AU of the
+Sun. So far, only Lazzoni et al. (2020) have published
+constraints on moons orbiting planets at similar orbital
+radii to the HR 8799 planets, and their direct imag-
+ing constraints only probe moons orbiting far from their
+host planets. Our constraints are ﬁrst probes of moons
+and binary planets in a new parameter space (planet
+semimajor axis & 10 AU and moon orbital period ≲ 10
+days).
+One limitation of the radial velocity method of exo-
+moon (and exoplanet) detection is that it is most sensi-
+tive to companions with close to edge-on orbital inclina-
+tions. The radial velocity signal induced by a companion
+is proportional to the sine of its orbital inclination, and
+generally it is not possible to measure a companion’s
+true mass without an independent inclination measure-
+ment. It is therefore possible that massive exomoons or
+binary planets are hiding around the HR 8799 planets in
+nearly face-on orbits. The HR 8799 planets orbit their
+host star with orbital inclinations of about 20 degrees; if
+moons or binary planets in the system orbit in the same
+plane, their radial velocity signals would be attenuated
+by about a factor of 3. However, such massive moons
+and binary planets likely must have formed by dynami-
+cal capture, and would not necessarily orbit in the same
+plane as the planetary orbits.
+Another promising way to detect exomoons around
+directly imaged planets is by measuring the astromet-
+ric wobble of the planet due to an orbiting satellite
+(Agol et al. 2015). Recently, the GRAVITY instrument
+on the Very Large Telescope Interferometer (VLTI) has
+achieved extremely precise astrometric measurements
+(uncertainties ranging from 20-150 microarcseconds) of
+directly imaged planets (Gravity Collaboration et al.
+2020; Lagrange et al. 2020; Lacour et al. 2021), includ-
+ing HR 8799 e (Gravity Collaboration et al. 2019). The
+astrometric signal induced by a Jupiter-mass compan-
+ion in a 10 day orbit around one of the HR 8799 plan-
+ets would be about 60 microarcseconds, roughly 3 times
+larger than the smallest single-point GRAVITY astro-
+metric uncertainties. Since the radial velocity semi-
+amplitude of a Jupiter-mass companion in a 10 day or-
+bit around one of the HR 8799 planets (≈ 2.4 km s−1) is
+also about 3 times larger than the best smallest single-
+point OSIRIS radial velocity uncertainty measurement,
+astrometry and radial velocities are likely to be simi-
+larly sensitive to companions at 10 day orbital periods.
+These techniques are highly complementary because a
+companion’s radial velocity amplitude decreases with or-
+bital period (radial velocity semiamplitude k∝P−1/3),
+while the astromeric amplitude increases with orbital
+period (astrometric amplitude θ∝ P 2/3). So while ra-
+dial velocities will likely provide the tightest constraints
+on close-in exomoons, astrometry could be a more sen-
+sitive probe of long-period companions. Owing to its
+extremely high angular resolution, GRAVITY can spa-
+tially resolve the Hill spheres of many nearby directly
+imaged exoplanets (Wang et al. 2021b), including those
+around HR 8799. It therefore may also be possible to
+use GRAVITY to directly detect luminous orbiting ex-
+omoons and binary-planet companions on wide orbits
+around their primary planet. Detecting exomoons or-
+biting directly imaged planets using the transit method
+(e.g. Cabrera & Schneider 2007) will be very challeng-
+ing given the need for high-duty cycle observations on 10
+meter class telescopes (required to resolve the individ-
+ual planets). However, targeted observations following
+up on known signals from either radial velocities or as-
+trometry could be feasible.
+Perhaps the most interesting result of this work is
+not the limits on exomoons and binary planets them-
+selves, but the fact that it was possible to constrain
+the presence of companions in the ﬁrst place. De-
+tecting exoplanets around stars with the radial veloc-
+ity method requires many high signal-to-noise observa-
+tions with stabilized high-resolution spectrographs, but
+the observational requirements for detecting exomoons
+are dramatically lessened due to the low mass of the
+host planet. This is why it was possible for us to place
+meaningful constraints on the presence of exomoons us-
+ing a moderate resolution spectrograph ( λ/∆λ≈ 4000)
+that was designed (Larkin et al. 2003) before the dis-
+covery of the ﬁrst directly imaged exoplanet (Chau-
+vin et al. 2004). A new generation of specially de-
+signed instruments for taking high resolution spectra of
+directly imaged planets will dramatically improve the
+detection limits. Doppler uncertainties scale with the
+full width at half maximum of spectral lines to the 1.5
+power (Lovis & Fischer 2010), so increasing the spec-
+tral resolution from λ/∆λ ≈ 4000 (with OSIRIS) to
+λ/∆λ ≈ 40000 (with an instrument like KPIC) with
+signal-to-noise held constant could decrease radial ve-
+locity uncertainties by a factor of 30. Upgrades to exist-
+ing instruments like KPIC/Keck (Jovanovic et al. 2020),
+CRIRES+/SPHERE/HiRISE/VLT (Dorn et al. 2014;
+Vigan et al. 2018), and IRD/SCExAO/REACH/Subaru
+(Kotani et al. 2020) and new instruments on 30 meter
+class telescopes like GMTNIRS/GMT (Jaﬀe et al. 2016)
+and HIRES/ELT (Marconi et al. 2021) will yield high
+signal-to-noise spectra, potentially enabling Doppler de-
+tections of rocky exomoons.
+
+<<<PAGE 7>>>
+HR 8799 Exomoon Limits 7
+ACKNOWLEDGMENTS
+We thank Jason Eastman for helpful discussions. We
+thank the anonymous referee for a quick and construc-
+tive report and for the idea that GRAVITY’s high angu-
+lar resolution could allow it to actually resolve luminous
+moons and binary-planet companions. This research
+has made use of NASA’s Astrophysics Data System, the
+NASA Exoplanet Archive, which is operated by the Cal-
+ifornia Institute of Technology, under contract with the
+National Aeronautics and Space Administration under
+the Exoplanet Exploration Program, and the SIMBAD
+database, operated at CDS, Strasbourg, France.
+Facilities: Keck I (OSIRIS)
+Software: matplotlib (Hunter 2007), numpy
+(Oliphant 2006), scipy (Virtanen et al. 2020), EXO-
+FASTv2 (Eastman et al. 2019), edmcmc (Vanderburg
+2021)
+REFERENCES
+Agol, E., Jansen, T., Lacy, B., Robinson, T. D., &
+Meadows, V. 2015, ApJ, 812, 5,
+doi: 10.1088/0004-637X/812/1/5
+Akeson, R. L., Chen, X., Ciardi, D., et al. 2013, PASP, 125,
+989, doi: 10.1086/672273
+Cabrera, J., & Schneider, J. 2007, A&A, 464, 1133,
+doi: 10.1051/0004-6361:20066111
+Canup, R. M., & Ward, W. R. 2006, Nature, 441, 834,
+doi: 10.1038/nature04860
+Chauvin, G., Lagrange, A. M., Dumas, C., et al. 2004,
+A&A, 425, L29, doi: 10.1051/0004-6361:200400056
+Dorn, R. J., Anglada-Escude, G., Baade, D., et al. 2014,
+The Messenger, 156, 7
+Dressing, C. D., & Charbonneau, D. 2015, ApJ, 807, 45,
+doi: 10.1088/0004-637X/807/1/45
+Eastman, J. D., Rodriguez, J. E., Agol, E., et al. 2019,
+arXiv e-prints, arXiv:1907.09480.
+https://arxiv.org/abs/1907.09480
+Forgan, D. H. 2017, MNRAS, 470, 416,
+doi: 10.1093/mnras/stx1217
+Gelman, A., & Rubin, D. B. 1992, Statistical science, 457
+Gravity Collaboration, Lacour, S., Nowak, M., et al. 2019,
+A&A, 623, L11, doi: 10.1051/0004-6361/201935253
+Gravity Collaboration, Nowak, M., Lacour, S., et al. 2020,
+A&A, 633, A110, doi: 10.1051/0004-6361/201936898
+Heller, R. 2016, A&A, 588, A34,
+doi: 10.1051/0004-6361/201527496
+Hook, I. 2005, The science case for the European Extremely
+Large Telescope : the next step in mankind’s quest for
+the Universe
+Hunter, J. D. 2007, Computing in Science and Engineering,
+9, 90, doi: 10.1109/MCSE.2007.55
+Hwang, K. H., Udalski, A., Bond, I. A., et al. 2018, AJ,
+155, 259, doi: 10.3847/1538-3881/aac2cb
+Jaﬀe, D. T., Barnes, S., Brooks, C., et al. 2016, in
+Proc. SPIE, Vol. 9908, Ground-based and Airborne
+Instrumentation for Astronomy VI, 990821,
+doi: 10.1117/12.2232994
+Jovanovic, N., Calvin, B., Porter, M., et al. 2020, in Society
+of Photo-Optical Instrumentation Engineers (SPIE)
+Conference Series, Vol. 11447, Society of Photo-Optical
+Instrumentation Engineers (SPIE) Conference Series,
+114474U, doi: 10.1117/12.2563107
+Kipping, D. M. 2009, MNRAS, 392, 181,
+doi: 10.1111/j.1365-2966.2008.13999.x
+Kipping, D. M., Nesvorn´ y, D., Buchhave, L. A., et al. 2014,
+ApJ, 784, 28, doi: 10.1088/0004-637X/784/1/28
+Kipping, D. M., Schmitt, A. R., Huang, X., et al. 2015,
+ApJ, 813, 14, doi: 10.1088/0004-637X/813/1/14
+Kotani, T., Kawahara, H., Ishizuka, M., et al. 2020, in
+Society of Photo-Optical Instrumentation Engineers
+(SPIE) Conference Series, Vol. 11448, Society of
+Photo-Optical Instrumentation Engineers (SPIE)
+Conference Series, 1144878, doi: 10.1117/12.2561755
+Kreidberg, L., Luger, R., & Bedell, M. 2019, ApJL, 877,
+L15, doi: 10.3847/2041-8213/ab20c8
+Lacour, S., Wang, J. J., Rodet, L., et al. 2021, arXiv
+e-prints, arXiv:2109.10671.
+https://arxiv.org/abs/2109.10671
+Lagrange, A. M., Rubini, P., Nowak, M., et al. 2020, A&A,
+642, A18, doi: 10.1051/0004-6361/202038823
+Larkin, J., Barczys, M., Krabbe, A., et al. 2006, in Society
+of Photo-Optical Instrumentation Engineers (SPIE)
+Conference Series, Vol. 6269, Society of Photo-Optical
+Instrumentation Engineers (SPIE) Conference Series, ed.
+I. S. McLean & M. Iye, 62691A, doi: 10.1117/12.672061
+
+<<<PAGE 8>>>
+8 V anderburg & Rodriguez
+Larkin, J. E., Quirrenbach, A., Krabbe, A., et al. 2003, in
+Society of Photo-Optical Instrumentation Engineers
+(SPIE) Conference Series, Vol. 4841, Instrument Design
+and Performance for Optical/Infrared Ground-based
+Telescopes, ed. M. Iye & A. F. M. Moorwood, 1600–1610,
+doi: 10.1117/12.461775
+Lazzoni, C., Zurlo, A., Desidera, S., et al. 2020, A&A, 641,
+A131, doi: 10.1051/0004-6361/201937290
+Lewis, K. M., Ochiai, H., Nagasawa, M., & Ida, S. 2015,
+ApJ, 805, 27, doi: 10.1088/0004-637X/805/1/27
+Lewis, K. M., Sackett, P. D., & Mardling, R. A. 2008,
+ApJL, 685, L153, doi: 10.1086/592743
+Li, G., & Batygin, K. 2014, ApJ, 790, 69,
+doi: 10.1088/0004-637X/790/1/69
+Lillo-Box, J., Kipping, D., Rebollido, I., et al. 2018, ArXiv
+e-prints. https://arxiv.org/abs/1803.04010
+Limbach, M. A., Vos, J. M., Winn, J. N., et al. 2021, ApJL,
+918, L25, doi: 10.3847/2041-8213/ac1e2d
+Lomb, N. R. 1976, Ap&SS, 39, 447,
+doi: 10.1007/BF00648343
+Lovis, C., & Fischer, D. 2010, Radial Velocity Techniques
+for Exoplanets, ed. S. Seager, 27–53
+Marconi, A., Abreu, M., Adibekyan, V., et al. 2021, The
+Messenger, 182, 27, doi: 10.18727/0722-6691/5219
+Marois, C., Macintosh, B., Barman, T., et al. 2008, Science,
+322, 1348, doi: 10.1126/science.1166585
+Marois, C., Zuckerman, B., Konopacky, Q. M., Macintosh,
+B., & Barman, T. 2010, Nature, 468, 1080,
+doi: 10.1038/nature09684
+Mieda, E., Wright, S. A., Larkin, J. E., et al. 2014, PASP,
+126, 250, doi: 10.1086/675784
+Ochiai, H., Nagasawa, M., & Ida, S. 2014, ApJ, 790, 92,
+doi: 10.1088/0004-637X/790/2/92
+Oliphant, T. E. 2006, A guide to NumPy, USA: Trelgol
+Publishing
+Penny, M. T., Gaudi, B. S., Kerins, E., et al. 2019, ApJS,
+241, 3, doi: 10.3847/1538-4365/aafb69
+Reynolds, R. T., Squyres, S. W., Colburn, D. S., & McKay,
+C. P. 1983, Icarus, 56, 246,
+doi: 10.1016/0019-1035(83)90037-4
+Ruﬃo, J.-B., Konopacky, Q. M., Barman, T., et al. 2021,
+arXiv e-prints, arXiv:2109.07614.
+https://arxiv.org/abs/2109.07614
+Sartoretti, P., & Schneider, J. 1999, A&AS, 134, 553,
+doi: 10.1051/aas:1999148
+Scargle, J. D. 1982, ApJ, 263, 835, doi: 10.1086/160554
+Sengupta, S., & Marley, M. S. 2016, ApJ, 824, 76,
+doi: 10.3847/0004-637X/824/2/76
+Spergel, D., Gehrels, N., Breckinridge, J., et al. 2013, arXiv
+e-prints, arXiv:1305.5422.
+https://arxiv.org/abs/1305.5422
+Stern, S. A., & Levison, H. F. 2002, Highlights of
+Astronomy, 12, 205
+Swift, J. J., Johnson, J. A., Morton, T. D., et al. 2013,
+ApJ, 764, 105, doi: 10.1088/0004-637X/764/1/105
+Teachey, A., & Kipping, D. M. 2018, Science Advances, 4,
+eaav1784, doi: 10.1126/sciadv.aav1784
+Teachey, A., Kipping, D. M., & Schmitt, A. R. 2018, AJ,
+155, 36, doi: 10.3847/1538-3881/aa93f2
+Ter Braak, C. J. 2006, Statistics and Computing, 16, 239
+Vanderburg, A. 2021, avanderburg/edmcmc: v1.0.0, v1.0.0,
+Zenodo, doi: 10.5281/zenodo.5599854
+Vanderburg, A., Rappaport, S. A., & Mayo, A. W. 2018,
+AJ, 156, 184, doi: 10.3847/1538-3881/aae0fc
+Vigan, A., Otten, G. P. P. L., Muslimov, E., et al. 2018, in
+Society of Photo-Optical Instrumentation Engineers
+(SPIE) Conference Series, Vol. 10702, Ground-based and
+Airborne Instrumentation for Astronomy VII, ed. C. J.
+Evans, L. Simard, & H. Takami, 1070236,
+doi: 10.1117/12.2313681
+Virtanen, P., Gommers, R., Oliphant, T. E., et al. 2020,
+Nature Methods, 17, 261, doi: 10.1038/s41592-019-0686-2
+Wang, J., Mawet, D., Fortney, J. J., et al. 2018a, AJ, 156,
+272, doi: 10.3847/1538-3881/aae47b
+Wang, J. J., Graham, J. R., Dawson, R., et al. 2018b, AJ,
+156, 192, doi: 10.3847/1538-3881/aae150
+Wang, J. J., Ruﬃo, J.-B., Morris, E., et al. 2021a, arXiv
+e-prints, arXiv:2107.06949.
+https://arxiv.org/abs/2107.06949
+Wang, J. J., Vigan, A., Lacour, S., et al. 2021b, AJ, 161,
+148, doi: 10.3847/1538-3881/abdb2d

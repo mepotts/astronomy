@@ -23,12 +23,49 @@ from itf_linker.link.geometry import (
 from itf_linker.link.heliolinc import (
     MAX_SLOT_CANDIDATES,
     HypothesisGrid,
+    _pack_cells,
+    _split_colliding,
     cluster_states,
     drop_subsets,
     isolated_groups,
     link_window,
 )
 from itf_linker.link.pipeline import rank_links, yield_summary
+
+# --- the spatial hash collides, and the cap is the one place that matters ------------
+
+def test_the_cell_hash_is_not_injective():
+    """Found by brute force over a 120x120 index scan. The fix below depends on it."""
+    a = np.array([[-1, 59, 0]], dtype=np.int64)
+    b = np.array([[1, -59, 0]], dtype=np.int64)
+    assert _pack_cells(a)[0] == _pack_cells(b)[0]
+
+
+def test_a_hash_collision_cannot_discard_a_cell_through_the_overflow_cap():
+    """Collisions only *add* candidates to an exact test -- except where size decides.
+
+    Two colliding cells of 3 merge into a group of 6. Against a cap of 4 the whole group
+    used to be discarded, silently destroying every genuine cluster in both and inflating
+    `overflowed_cells`, which is meant to be measuring real crowding.
+    """
+    cell_idx = np.array([[-1, 59, 0]] * 3 + [[1, -59, 0]] * 3, dtype=np.int64)
+    out = list(_split_colliding([np.arange(6)], cell_idx, max_cell_members=4))
+    assert [g.tolist() for g in out] == [[0, 1, 2], [3, 4, 5]]
+
+
+def test_a_genuinely_crowded_cell_still_overflows():
+    """The cap is doing real work; splitting must not become a way to evade it."""
+    cell_idx = np.array([[7, 7, 7]] * 6, dtype=np.int64)
+    out = list(_split_colliding([np.arange(6)], cell_idx, max_cell_members=4))
+    assert len(out) == 1 and len(out[0]) == 6      # still over the cap, still dropped
+
+
+def test_groups_under_the_cap_are_passed_through_untouched():
+    """The fast path: no lexsort for the ~99.9% of groups that never collide."""
+    cell_idx = np.array([[-1, 59, 0]] * 2 + [[1, -59, 0]] * 2, dtype=np.int64)
+    out = list(_split_colliding([np.arange(4)], cell_idx, max_cell_members=400))
+    assert [g.tolist() for g in out] == [[0, 1, 2, 3]]
+
 
 SITES = {
     "F51": (203.74409, 0.936241, 0.351543),

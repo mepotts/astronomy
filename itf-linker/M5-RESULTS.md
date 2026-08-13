@@ -109,15 +109,26 @@ slice's gated links are three-tracklet.
 |---|---:|---:|---:|---:|---:|---:|
 | pass rate | **23.2%** | 10.4% | 8.5% | 3.9% | 2.4% | < 1% |
 
-and how many independent distance hypotheses recovered the same tracklet set:
+and how many times the search rediscovered the same tracklet set:
 
 | `n_hypotheses_found` | 1 | 2–3 | 4–10 | 11–50 | 50+ |
 |---|---:|---:|---:|---:|---:|
 | fitted | 1,089 | 1,012 | 896 | 689 | 775 |
 | pass rate | 0.55% | 0.99% | 1.90% | 2.18% | **9.03%** |
 
-A link that only one hypothesis in 2,555 ever proposed passes at a sixteenth of the rate of
-one that hundreds proposed independently. That is the single most useful pre-fit number in
+> **Corrected 2026-08-07.** This was described as "how many *independent distance
+> hypotheses* recovered the same tracklet set", and below as "one hypothesis in 2,555". It
+> is not that. `merge_links` accumulates the counter on every merge of the same arrow set,
+> and links merge across overlapping **time windows** and across **bands** as well as across
+> hypotheses — a 14-day window at a 3.5-day step offers the same link from up to four
+> windows, each sweeping the full grid, and four bands merge on top. The quantity is roughly
+> `windows × hypotheses × bands`, so it mixes hypothesis diversity with how centrally the
+> arc happens to sit in the window grid. The **measured pass rates above are unaffected** —
+> they are a marginal on the column as computed — but the column does not mean independent
+> confirmation, and the model's strongest feature is therefore partly a geometry artefact.
+
+A link the search found once passes at a sixteenth of the rate of one it rediscovered
+hundreds of times. That is the single most useful pre-fit number in
 the file and M3 and M4 both computed it and neither ranked on it.
 
 ### 2.2 The ranking M5 uses
@@ -143,6 +154,16 @@ so it barely measures the contrast — and the tier does not rest on it.
 | `obscodes_over_2` | −0.766 | a third observatory code is worse |
 | `min_trk_n_obs` | −0.660 | thicker tracklets are worse |
 | `prefit_arc_days` | +0.292 | a longer arc is better |
+
+> **Do not read these magnitudes against each other** (noted 2026-08-07). `logistic_fit`
+> applies a single ridge λ = 1 to **unstandardised** columns: `prefit_arc_days` spans ~3–20,
+> `min_trk_n_obs` ~2–6, the `log10` terms ~−4.5 to −2.5, and the band dummies are 0/1. One λ
+> penalises those by wildly different amounts, so a coefficient here is in the units of its
+> own feature and the column is not an effect-size ranking. Statements like "`band_belt` is
+> the largest positive coefficient" compare unlike things. **Signs and the resulting ordering
+> are unaffected** — which is all the model is used for. To read effect sizes, standardise
+> inside `design_matrix` and refit; that is deliberately not done here, because refitting
+> would change the shipped coefficients and with them the fitting order that M5 ran.
 
 `min_trk_n_obs` is the one whose sign looks wrong and is not: the thickest tracklets belong
 to the archival deep-drilling fields where agreement between tracklets is cheapest, and the
@@ -348,9 +369,15 @@ Find_Orb was given.
 The σ limits, applied to every survivor regardless of night count — the discipline M4
 established after demoting six beyond-belt candidates on inspecting σ(a):
 
-| | survivors | meeting all four published σ limits |
+> **Corrected 2026-08-07.** Two errors run through this table and the paragraph under it.
+> (1) The scoping to three-night links is **ours**, not the MPC's — their rule has a second
+> bullet for links with more than 3 nights, so "escape by scope" describes our gate, not
+> theirs. (2) These are **four of five** published quality conditions; `e < 0.5` is
+> published and is not counted here. See §5.6 for both gates applied to this population.
+
+| | survivors | meeting four of the five published σ limits |
 |---|---:|---:|
-| Three-night links (the limits are *scoped* to these) | 2,896 | **2,896 — 100% by construction** |
+| Three-night links (*our* gate scopes the limits to these) | 2,896 | **2,896 — 100% by construction** |
 | Four-night links | 272 | **49 — 18%** |
 | Five-night links | 22 | **5 — 23%** |
 | **All** | **3,190** | **2,950 — 92%** |
@@ -358,7 +385,9 @@ established after demoting six beyond-belt candidates on inspecting σ(a):
 
 The 92% is high only because 91% of the survivors are three-night links, which the gate
 itself tests against those limits. The informative row is the second: **four-night links
-escape the σ limits by scope, and 82% of them would fail if the limits were applied.**
+escape our σ limits by scope, and 82% of them would fail if the limits were applied.**
+(Under the MPC's published rule they escape for a different reason — a converged fit with
+RMS ≤ 0.25″ is never quality-tested at all, on any night count.)
 
 #### The twenty-one beyond-belt survivors, σ(a) first
 
@@ -405,6 +434,103 @@ link from the same two telescopes with the same elements. Completing the slice a
 semimajor axes. Two are Subaru alone; one is Palomar alone. That is the complete
 trans-Neptunian result for the pre-2023 ITF at this grid and these gates: **no TNO whose
 orbit is actually known.**
+
+---
+
+### 5.3 Gate correction (2026-08-07): our gate is not the MPC's published rule
+
+Everything above, and every survivor count in M1–M4, is measured against a gate this project
+described as "the MPC's published post-fit criteria, and nothing more". It is not. The page
+cited — `.../mpcops/submissions/identifications/additional/` — **404s**; the live page is
+`.../mpcops/documentation/identifications/additional/`, and its post-fit rule is **three
+conjunctive bullets**:
+
+1. exactly 3 nights **and** arc < 15 d **and** RMS > 0.25″ **and** orbit quality insufficient
+2. more than 3 nights **and** arc < 10 d **and** RMS > 0.25″ **and** orbit quality insufficient
+3. the fit did not converge
+
+with *quality sufficient* = σ(a) < 0.05 AU, σ(q) < 0.05 AU, σ(i) < 0.5°, σ(e) < 0.05, **and
+e < 0.5**. Our gate rejects on `not converged OR RMS > 0.25 OR (3 nights AND any σ fails)`.
+Three differences, all in the conservative direction — we reject a superset, so **nothing was
+ever wrongly promoted**:
+
+| | Ours (the gate every number above is against) | MPC published |
+|---|---|---|
+| RMS ceiling | unconditional | one conjunct of bullets 1–2; no standalone RMS rule |
+| σ block | exactly-3-night links only | governed by arc length, and bullet 2 covers >3 nights |
+| `e < 0.5` | not implemented anywhere | published, fifth quality condition |
+
+**What this changes in the numbers above.** Recomputed from `m5-old.json`, which reproduces
+the published `survivors_meeting_all_sigma_limits` = 2,950 exactly before the fifth condition
+is added:
+
+| | survivors |
+|---|---:|
+| Meeting the four σ limits (as reported in §5.2) | 2,950 |
+| **Meeting all five published conditions** (adds `e < 0.5`) | **2,403** — 547 fewer |
+| Survivors with e ≥ 0.5 | **564 of 3,190 — 17.7%** |
+| …of the 21 beyond-belt survivors in §5.2 | **14** |
+| Cross-observatory survivors meeting all five | 171 (of 213) |
+
+`lnk2gkr`, presented in §5.2 as a TNO, has **e = 0.984** with q = 1.59 AU and a = 98.5 AU —
+it fails the published `e < 0.5`. Its "TNO" label is an artefact of the classifier's
+boundaries: `classify_orbit` tests perihelion only for the NEO cut (q < 1.3 AU), and above
+the belt branches on semimajor axis alone (`a > 30.1 → tno`), so an orbit with perihelion
+between Earth and Mars and aphelion near 195 AU is labelled trans-Neptunian. That is the JPL
+SBDB convention and is not wrong, but it is nowhere stated in these write-ups, and "TNO"
+here should not be read as "distant object".
+
+**Applying that distinction to §5.2's twenty-one beyond-belt survivors: three survive it.**
+`classify.dynamically_distant` (new) requires `a > 5.5` **and** perihelion beyond Jupiter
+(q > 5.2 AU) — distant throughout the orbit, not merely on average:
+
+| | survivors |
+|---|---:|
+| Beyond-belt by label (§5.2) | 21 |
+| **Dynamically distant (q > 5.2 AU)** | **3** — `lnk2aqt`, `lnk2cbo`, `lnk2aqg` |
+
+The other eighteen have perihelia inside or at the edge of the asteroid belt: `lnk1w42` at
+q = 1.56 AU with a = 28.9, `lnk2zwg` at q = 1.56, `lnk2a3j` at q = 5.07. §8's vetting
+selection is built on the *label*, so it selected those eighteen as distant-object
+candidates. That does not invalidate the vetting — it queried what it queried — but "21
+beyond-belt candidates" should be read as 21 large-`a` **solutions**, of which 3 are
+distant orbits and the rest are short-arc fits with eccentricity doing the work.
+
+The §5.2 claim that four-night links "escape the σ limits by scope" describes **our** gate.
+Under the MPC's rule the >3-night regime is governed by bullet 2, and **284 survivors** sit in
+it (>3 nights, submitted arc < 10 d), of which **232 fail the four σ limits**. The conclusion
+that four- and five-night survivors are poorly constrained is unaffected; its stated
+justification was wrong.
+
+**Both gates over the whole funnel.** `scripts/rescore_gates.py` re-reads every fit from the
+on-disk `total.json` chunks and applies both rules, at zero Find_Orb cost:
+
+| over 408,457 re-read fits | links |
+|---|---:|
+| Pass our gate | 9,733 |
+| Pass the MPC's published gate | **40,582 — 4.2×** |
+| Pass ours but not theirs | **0** |
+| Pass theirs but not ours | 30,849 |
+
+**`strict_only = 0` is the load-bearing result.** On 408,457 real fits, every link our gate
+accepts the MPC's rule also accepts — our gate is a *strict subset*, empirically, not just by
+argument. That is what makes this a correction to the write-ups rather than to the science:
+no candidate was ever promoted that the MPC's filter would have rejected. The 30,849 in the
+other direction are links we discarded that the published rule would not reject on sight,
+27,443 of them three-night links.
+
+These counts are **not** comparable to the 3,190 survivors above: they are the post-fit gate
+alone, before the subset guard (which removed 52,408) and before conflict resolution.
+
+**Caveat on the totals, stated because the script refuses to hide it.** The re-read recovers
+408,457 of 412,929 links and 66,090 of 67,828 converged fits — 97.4%. The gap is fully
+accounted for: **70 chunk `total.json` files are truncated mid-object**, ending in `},` with
+no closing braces — and this run recorded **exactly 70** `fo_invocation_failures`, all
+`returncode` 134, all one stderr signature:
+`orb_func.cpp:1038: Assertion 'fabs(jd1) < 1e+9' failed`. The correspondence is one-to-one,
+none of them was a copy-back failure, and `load_previous_run` refuses partial files by
+design. 70 × 64 = 4,480 against an observed 4,472. So the absolute counts are a 97–99% sample, while
+the strict-versus-published split is **exact** — both gates saw the identical 408,457 rows.
 
 ---
 
@@ -564,12 +690,23 @@ margin that was fully consumed rather than a clean pass.
 
 **All sixteen refusals are beyond-belt candidates, and they are exactly the sixteen §5.2's
 σ table said not to trust** — every one with σ(a)/a between 11% and 118%. The vetting layer
-refuses to ask a catalogue about an orbit whose own uncertainty exceeds the search radius,
-and it drew the line in the same place the σ column did, without being told to.
+declines to *credit* a catalogue non-match for an orbit whose own uncertainty exceeds the
+search radius, and it drew the line in the same place the σ column did, without being told
+to.
 
-The five beyond-belt candidates it *was* willing to query are precisely those with
-σ(a)/a ≤ 4.1% — `lnk690k`, `lnk5p9s`, `lnk2aoz`, `lnk2a3j`, and `lnk034r`. Four came back
+The five beyond-belt candidates it credited are precisely those with σ(a)/a ≤ 4.1% —
+`lnk690k`, `lnk5p9s`, `lnk2aoz`, `lnk2a3j`, and `lnk034r`. Four came back
 `no_catalogue_object_near_astrometry`; the fifth is 29P.
+
+> **Corrected 2026-08-10.** This said the layer "refuses to ask" and names the five it "was
+> willing to query". It asks about all of them. `vet.pipeline.vet_candidate` queries every
+> service at every selected epoch regardless of `well_constrained`; the constraint is applied
+> afterwards in `vet.verdict._why_unmatched`, which picks the weakest label the evidence
+> supports and returns `orbit_too_poorly_constrained` for those sixteen. The conservatism is
+> real and the conclusion below is unaffected — but it happens at labelling, not at asking.
+> **It has a cost the original wording hid:** those sixteen consumed live MPChecker requests,
+> which matters given §8's note that MPChecker spent its entire five-failure budget. A layer
+> that genuinely refused to ask would have saved them.
 
 M4 saw this on both of its slices and M5 sees it on the complete older slice. **The
 demotion of the distant candidates is not a judgement made in the write-up — it is what the

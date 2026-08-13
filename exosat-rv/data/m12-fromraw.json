@@ -1,0 +1,176 @@
+{
+ "milestone": "M12",
+ "date": "2026-08-11",
+ "source_correction": {
+  "note": "M0-M11 used arXiv:2607.05193v1, the pre-peer-review version.",
+  "published": "Nature 2026-07-22, doi 10.1038/s41586-026-10751-w",
+  "free_copy": "https://www.eso.org/public/archives/releases/sciencepapers/eso2610/eso2610a.pdf",
+  "rv_err_ms": {
+   "v1": 31.44,
+   "published": 57.68
+  },
+  "rv_err_combined_ms": {
+   "v1": 34.49,
+   "published": 60.5
+  },
+  "epochs": {
+   "v1": 20,
+   "published": 23
+  },
+  "baseline_d": {
+   "v1": 465,
+   "published": 851
+  },
+  "period1_d": {
+   "v1": 169.45,
+   "published_1sat": 171.112,
+   "published_2sat": 171.454
+  },
+  "msini1_mjup": {
+   "v1": 0.743,
+   "published_1sat": 0.918,
+   "published_2sat": 0.869
+  },
+  "delta_logz_two_vs_one": {
+   "v1": 6.641,
+   "published": 2.622
+  },
+  "v1_bjd_offset_s": -75348,
+  "published_bjd_offset_vs_archive_s": -232
+ },
+ "forward_model_errors": {
+  "nocell_missing": {
+   "note": "[CRIRES] config is the gas-cell section; data has INS1 OPTI1 ID = FREE",
+   "h_band_cell_depth": {
+    "scatter": 0.033,
+    "deepest_line": 0.174,
+    "frac_below_0.95": 0.02
+   }
+  },
+  "template_not_telluric_free": {
+   "note": "runbook template is an ADP science spectrum (PRO CATG OBS_NODDING_EXTRACTC_IDP)"
+  },
+  "archive_route_eq1_ms": {
+   "baseline": 763,
+   "nocell": 568,
+   "nocell_plus_clean_template": 480
+  },
+  "archive_route_epoch_rms_ms": {
+   "baseline": 823,
+   "nocell": 672,
+   "nocell_plus_clean_template": 638
+  },
+  "berv_correlation_r": {
+   "baseline": -0.63,
+   "nocell": -0.4,
+   "nocell_plus_clean_template": -0.23
+  },
+  "berv_variance_split_ms": {
+   "baseline": {
+    "berv": 522,
+    "non_berv": 637
+   },
+   "nocell": {
+    "berv": 266,
+    "non_berv": 617
+   },
+   "nocell_plus_clean_template": {
+    "berv": 150,
+    "non_berv": 620
+   }
+  }
+ },
+ "injection_recovery": {
+  "method": "shift the TEMPLATE per epoch; shifting observations is 92% absorbed by the telluric anchor",
+  "obs_shift_recovery_frac": 0.083,
+  "K1530_corrected": {
+   "recovery": 0.95,
+   "err": 0.07,
+   "resid_rms_ms": 295
+  },
+  "K1530_baseline": {
+   "recovery": 1.21,
+   "err": 0.32,
+   "resid_rms_ms": 1373
+  },
+  "per_order_recovery_corrected": {
+   "7": 1.12,
+   "8": 0.81,
+   "9": 0.99,
+   "10": 0.87,
+   "11": 0.97,
+   "12": 1.02,
+   "13": 0.99,
+   "14": 0.98,
+   "15": 0.98,
+   "16": 0.98
+  },
+  "per_order_recovery_baseline": {
+   "7": 0.83,
+   "8": -0.04,
+   "9": 0.77,
+   "10": 0.86,
+   "11": 0.6,
+   "12": 0.96,
+   "13": 1.01,
+   "14": 1.14,
+   "15": 1.0,
+   "16": 1.14
+  },
+  "gj229b_control_predicted_recovery": 0.46,
+  "verdict": "control overturned; 7 sigma disagreement with the target's own measurement"
+ },
+ "from_raw": {
+  "cr2res_version": "1.6.10 (the paper's version)",
+  "nights_reduced": 5,
+  "validation_vs_eso_products": {
+   "wavelength_ms": 57,
+   "final_rv_ms": 42
+  },
+  "ab_nodding_offset_px": {
+   "median": -4.09,
+   "max_abs": 8.62,
+   "flux_xcorr_median_px": -4.12
+  },
+  "eso_combined_is_naive_sum": false,
+  "eso_combined_resampled_model_wins_segments": "19/21",
+  "telluric_anchor_correlation": {
+   "spearman_rho": -0.36,
+   "p": 0.015,
+   "n_pairs": 45
+  },
+  "anchor_tercile_median_abs_ab_ms": {
+   "weak": 923,
+   "middle": 416,
+   "strong": 286
+  },
+  "ab_rms_ms": {
+   "base_no_screen": 581,
+   "base_screen": 269,
+   "kapsig3_screen": 132
+  },
+  "eq1_per_night_ms": {
+   "base_screen": 537,
+   "kapsig3_screen": 398
+  },
+  "rv_vs_published_rms_ms": {
+   "base_screen": 617,
+   "kapsig3_screen": 387
+  },
+  "published_errors_ms": 54,
+  "factor_short": 7.2
+ },
+ "retractions": [
+  "A-B is NOT a sufficient metric: it implied 66 +/- 23 m/s per night (0.36 sigma from the paper) but the direct comparison to published RVs gives 387 m/s. It probes only 10 minutes; per-order zero points drift between nights.",
+  "The archive route is NOT structurally broken by A/B merging: cr2res resamples B onto A's grid before summing (19/21 segments favour the resampled model).",
+  "The repeated build failures were NOT a pty deadlock; the WSL service was crashing (Wsl/Service/E_UNEXPECTED)."
+ ],
+ "closed_suspects": {
+  "adp_to_cr2res_conversion": "correct -- every viper order maps to a segment matching ESO's own INS WLEN CWLENn",
+  "tpl_wave_tell": "no-op for RV runs; read only inside `if createtpl:`"
+ },
+ "open": {
+  "residual": "per-order zero points drifting night to night; 387 m/s vs 54 m/s needed",
+  "note": "the anchor screen fixes 10-minute repeatability (2-3x) without improving Eq.1, which is why it does not close the gap"
+ }
+}

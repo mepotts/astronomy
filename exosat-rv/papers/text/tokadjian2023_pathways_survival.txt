@@ -1,0 +1,1935 @@
+<<<PAGE 1>>>
+arXiv:2302.04646v4  [astro-ph.EP]  30 Mar 2023
+Astronomy & Astrophysics manuscript no. Exomoons ©ESO 2023
+March 31, 2023
+Pathways of survival for exomoons and inner exoplanets
+V aleri V . Makarov1 and Michael Efroimsky2
+1 US Naval Observatory, 3450 Massachusetts Avenue NW, Washington DC 20392 USA
+e-mail: valeri.makarov@gmail.com
+2 US Naval Observatory, 3450 Massachusetts Avenue NW, Washington DC 20392 USA
+e-mail: michael.efroimsky@gmail.com
+Received November 22, 2022; accepted February 9, 2023
+ABSTRACT
+Context. It is conceivable that a few thousand conﬁrmed exoplanets in itially harboured satellites similar to the moons of the Sol ar
+System or larger. We ask the question of whether some of them h ave survived over the æons of dynamical evolution to the pres ent
+day. The dynamical conditions are harsh for exomoons in such systems because of the greater inﬂuence of the host star and o f the
+tidal torque it exerts on the planet.
+Aims. We investigate the stability niches of exomoons around hund reds of innermost exoplanets for which the needed parameter s are
+known today, and we determine the conditions of these moons’ long-term survival. General lower and upper bounds on the ex omoon
+survival niches are derived for orbital separations, perio ds, and masses.
+Methods. The fate of an exomoon residing in a stability niche depends o n the initial relative rate of the planet’s rotation and on th e
+ability of the moon to synchronise the planet by overpowering the tidal action from the star. State-of-the-art models of tidal dissipation
+and secular orbital evolution are applied to a large sample o f known exoplanet systems, which have the required estimate d physical
+parameters.
+Results. We show that in some plausible scenarios, exomoons can preve nt close exoplanets from spiralling into their host stars, t hus
+extending these planets’ lifetimes. This is achieved when e xomoons synchronise the rotation of their parent planets, o verpowering the
+tidal action from the stars.
+Conclusions. Massive moons are more likely to survive and help their host p lanets maintain a high rotation rate (higher than these
+planets’ mean motion).
+Key words. Planets and satellites: general – Planets and satellites: d ynamical evolution and stability – Planets and satellites: gaseous
+planets – Planets and satellites: terrestrial planets
+1. Introduction
+A common convention regarding the rotation of close-in exo-
+planets is that their tidal de-spinning is fully deﬁned by th e tides
+generated on these planets by their host stars. It is for this rea-
+son that close-in gas giants are assumed to be synchronised o r
+pseudo-synchronised. We pose the question of whether a moon
+orbiting a planet can change the outcome of the planet’s tida l
+de-spinning and make the planet end up in a non-synchronous
+(perhaps, even retrograde) spin state. Speciﬁcally, we exp lore
+the possibility of a planet being synchronised not by the sta r
+but by a moon. If this scenario is plausible for some inner pla n-
+ets, these planets’ rotation will be much faster than the spe ed
+at which they orbit the star. These planets then avoid spiral -
+ing into their host stars, and maintain ﬁnite orbital eccent rici-
+ties. 1 An internally synchronised planet–moon pair continues to
+shrink because of the tides caused by the star, but the rate of
+this process is orders of magnitude slower than the orbital d ecay
+of a moon-less planet. Indeed, in an internally synchronise d or
+pseudo-synchronised planet-moon system, the tidal torque act-
+ing on the planet from the star is counterbalanced by the tida l
+torque acting on the planet from the moon. The time-averaged
+1 As follows from the ﬁrst line of Eq. (143) in Boué & Efroimsky
+(2019), a rotation rate faster than the mean motion works to t idally in-
+crease the semi-major axis in the two-body problem. Also, ac cording to
+their equations (156 -157), fast rotators tend to boost the e ccentricity.
+total torque on the planet in a stable equilibrium is nil, but both
+these components continue to dissipate energy. This energy is
+taken from the orbital kinetic energy of the planet and the mo on,
+respectively. The supply of orbital energy is orders of magn itude
+greater than the rotational energy of the planet, which make s the
+decay process very slow. A decisive test of these models will
+be possible once more accurate photometric measurements of
+the secondary eclipses of hot Jupiters become available (i. e. the
+transits of the planets behind the disks of the stars in the up per
+conjunction), where a non-synchronous rotation is expecte d to
+produce a measurable phase shift with the peak brightness of the
+out-of-eclipse light curve. A statistically signiﬁcant sh ift towards
+the evening terminator was detected for the W ASP-12b planetby
+Owens et al. (2021). On a fast-rotating planet, the hot spot g en-
+erated by the stellar irradiation is not stationary but rath er leads
+the substellar meridian.
+The dynamical evolution of exomoons in star-planet sys-
+tems has been investigated in a number of publications (e.g. ,
+Sasaki et al. 2012; Barnes & O’Brien 2002; Guimarães & V alio
+2018). The commonly shared conclusion is that the chances of
+exomoons surviving for an extended duration of time in known
+planetary systems are low. Considering three basic scenari os for
+a moon in such systems, with only one of these scenarios allow -
+ing the moon to survive for at least 1 Gyr, Dobos et al. (2021)
+conclude that the survival rate is close to nil for planets wi th or-
+bital periods of 10 d or less, and that it gradually increases to
+Article number, page 1 of 15
+
+<<<PAGE 2>>>
+A&A proofs: manuscript no. Exomoons
+70% for periods of 300 d. The median orbital period of all de-
+tected and
+tentative exoplanets is about 11.8 d, and only 10% of them hav e
+periods above 442 d, so we should expect to ﬁnd very few exo-
+planets with moons.
+In the current work, our goal is to demonstrate that there are
+additional pathways for exomoons to survive, even around fa irly
+close-in planets. Furthermore, exomoons can help their par ent
+planets survive for longer times in the close vicinity of sta rs. As
+an example of such previously ignored possibilities, moons that
+are initially on retrograde orbits with respect to the spin o f a
+slowly rotating planet will generate a tidal torque on the pl anet
+that will be opposed to the torque caused by the star. Possibl e in
+principle, this particular scenario is unlikely to play a la rge role
+in real systems, because the capture of external moons onto r et-
+rograde orbits is relatively rare. 2 Starting with solid principles
+of tidal dynamics, we aim to show the existence of mechanisms
+plausible for a long-term coexistence of moons with their planets
+(most of the considered planets being dangerously close to t heir
+stars). Along with Earths and super-Earths, our study addre sses
+Jupiters. It is commonly assumed that close-in low-viscosi ty gi-
+ant planets are synchronised by their host stars. Although t he
+tidal quality of Jupiters is likely to be as high as that of our own
+Jupiter (Efroimsky & Makarov 2022), the dissipation of orbi tal
+energy inside a synchronised planet is almost nulliﬁed beca use
+of the circularisation process bringing down the planet’s e ccen-
+tricity. The fate of the planet is then deﬁned by the rotation rate
+of the host star, which is often slower than the mean motion.
+Slowly but relentlessly, the tidal break will remove the orb ital
+energy, and the planet will plunge into the star. We however show
+here that a su ﬃciently massive moon can arrest or even reverse
+this process for a signiﬁcantly long time, until the moon’s o rbital
+energy is depleted.
+2. The Hill sphere and the reduced Hill sphere
+The Hill sphere is a region where the motion of moons is deﬁned
+predominantly by the gravity of the planet, and less by that of the
+star. Analysis by Hamilton & Burns (1992) set its radius at
+rH = ap (1 − ep)
+( Mp
+3 M∗
+) 1/3
+, (1)
+where ap and ep are the planet’s semi-major axis and eccentric-
+ity, while Mp and M∗ are the masses of the planet and the star,
+correspondingly.
+However, numerical analysis by Astakhov et al. (2003) and
+Domingos et al. (2006) indicated that the orbits too closely ap-
+proaching this radius become unstable in the long term, whil e
+those conﬁned to a smaller domain (which we term ‘the reduced
+Hill sphere’) remain stable. The radius of the reduced Hill s phere
+(‘the reduced Hill radius’) for a circular ( em = 0 ) orbit of the
+2 Two capture mechanisms are known to permit the acquisition o f
+not only prograde but also retrograde moons: a binary-plane t gravita-
+tional encounter (Agnor & Hamilton 2006) and chaos-assiste d capture
+(Astakhov & Farrelly 2004; Astakhov et al. 2003). The latter mecha-
+nism was studied for small irregular moons, though in princi ple it may
+facilitate a capture of a larger body.
+The possibility of moons’ inclination ﬂips under close enco unters is still
+awaiting exploration. For comets and asteroids, such ﬂips a re deﬁnitely
+possible (V alsecchi, G. B. et al. 2022).
+0 1 2 3 4 5
+0
+1
+2
+3
+4
+5
+Rp /RJup 
+rH'/RJup 
+Fig. 1. Reduced Hill radii of 580 known inner exoplanets versus thei r
+radii in units of Jupiter’s radius. The diagonal line indica tes the equality
+of the two radii.
+moon is
+r
+′
+H = B a p (1 − b e p)
+( Mp
+3 M∗
+) 1/3
+(2)
+and depends on the direction of the orbit:
+B = 0.49 , b = 1.03 , for prograde-orbiting moons; (3a)
+B = 0.93 , b = 1.08 , for retrograde-orbiting moons . (3b)
+Figure 1 shows the distribution of calculated reduced Hill
+radii for a sample of 580 inner exoplanets with the necessary es-
+timated parameters entering Eq. (2) provided in the NASA Ex-
+oplanet Archive 3 (assuming prograde orbits). These values are
+plotted against the estimated radii of the planets themselves. One
+should expect the Hill spheres to be outside of the planets’ r adii,
+but this seems to not always be the case. The planets orbiting
+HA T-P-32, HA T-P-65, HA TS-27, HA TS-69, HIP 65 A, W ASP-
+121, and W ASP-19 appear to be in violation of this condition.
+These are bloated Jupiters with orbital periods between 0.7 9 and
+4.64 d orbiting solar-type stars. However, caution should b e ex-
+ercised with the archival data for speciﬁc exoplanets, wher e gen-
+erous upper limits are sometimes given for orbital eccentri city
+instead of true determinations. This concerns the planets H A T-P-
+65, HA TS-27, and HA TS-69. Still, the existing models sugges t
+that these giant planets, being so close to the Hill radii, sh ould
+be shedding their outer layers, probably forming a gaseous d isk
+around the stars. The origin of such critical proximity of in ﬂated
+hot Jupiters to their host stars is not known.
+Equations (2 - 3) also yield an inequality to be utilised below:
+am < r ′
+H ≈ B ap
+( Mp
+3 M∗
+) 1/3
+, (4)
+3 https://exoplanetarchive.ipac.caltech.edu/docs/data.html
+The version as of December 2022.
+Article number, page 2 of 15
+
+<<<PAGE 3>>>
+V aleri V .Makarov and Michael Efroimsky: Pathways of survival for exomoons and inner exoplanets
+Table 1. Symbol key
+Notation Explanation Reference
+M∗ mass of the star
+Mp mass of the planet
+Mm mass of the moon
+ρm density of the moon
+Rp radius of the planet
+Rm radius of the moon
+Cp maximal moment of inertia of the planet
+Cm maximal moment of inertia of the moon
+θp rotation angle of the planet
+ap semi-major axis of the planet
+am semi-major axis of the moon
+ep eccentricity of the planet
+em eccentricity of the moon
+np mean motion of the planet
+nm mean motion of the moon
+lmpq integers used to number the tidal Fourier modes eqn (20)
+Flmp (i) inclination functions eqn (20)
+Glpq (e) eccentricity function eqn (20)
+ωlmpq Fourier modes of the tides in the planet eqn (21)
+χlmpq ≡ | ωlmpq | forcing frequencies excited in the planet eqn (22)
+ǫl = ǫl(ωlmpq ) tidal phase lags in the planet
+kl = kl(ωlmpq ) dynamical Love numbers of the planet
+Kl(ωlmpq ) = kl(ωlmpq) sin ǫl(ωlmpq ) quality functions of the planet eqn (23a)
+Ql(ωlmpq) ≡ 1 / | sin ǫl(ωlmpq ) | tidal quality factors eqn (24)
+rH Hill radius of the planet eqn (1)
+r ′
+H reduced Hill radius of the planet eqn (2)
+rR Roche radius of the planet eqn (6)
+a(s)
+m synchronous value of the lunar semi-major axis eqn (7)
+T (∗) solar polar tidal torque acting on the planet
+T (m) lunar polar tidal torque acting on the planet
+G Newton’s gravitational constant
+am and ap being the semi-major axes of the moon and the planet.
+3. The Roche radius
+The Roche radius (or the Roche limit) is the closest distance at
+which a moon can get to its planet without being pulled apart b y
+tides. This parameter sets the lower limit on the survival ni che
+for exomoons. For a spherical host, the Roche radius is given by
+rR = A Rm
+( Mp
+Mm
+) 1/3
+, (5)
+where Mm and Rm are the mass and radius of the moon, while
+Mp is the mass of the planet.
+For a strength-less moon, the dimensionless parameter
+would assume the value A ≈ 2.46 borrowed from a calculation
+by Chandrasekhar (1987) for an incompressible ﬂuid body. Th e
+shear strength of realistic rubble piles enables them, howe ver, to
+survive at smaller radii, with A ≈ 2.2 (Leinhardt et al. 2012). 4
+If the moon was not captured by the planet but formed along-
+side, the parameter A assumes the value 2 .2 appropriate for rub-
+ble piles, because freshly accreted layers of a moon in forma tion
+are rubble. So we agree to use the expression
+rR = 2.2 Rm
+( Mp
+Mm
+) 1/3
+. (6)
+4. The synchronous value of the semi-major axis
+Deﬁned by the synchronicity condition ˙θ p = nm , the syn-
+chronous value a(s)
+m of the moon’s semi-major axis is
+a(s)
+m =
+
+
+
+
+
+
+
+
+
+
+G(Mp + Mm)
+/squaresmallsolid
+θ
+2
+p
+
+
+
+
+
+
+
+
+
+
+1/3
+, (7)
+4 For porous aggregates stronger than rubble but weaker than s olid,
+like Phobos, the presence of tensile strength renders the va lues of A that
+may, probably, be about or slightly below 2. (Hurford et al. 2 016).
+Article number, page 3 of 15
+
+<<<PAGE 4>>>
+A&A proofs: manuscript no. Exomoons
+where G = 6.6743 × 10−11 m3 kg−1 s−2 is Newton’s gravita-
+tional constant, while θp and ˙θ p are the sidereal rotation angle
+and rotation rate of the planet. Commonly, a(s)
+m is referred to as
+the synchronous radius.
+Bear in mind that this radius is deﬁned only for moons in or-
+bits prograde relative to the planet’s spin. For a retrograd e moon,
+the semi-diurnal tidal bulge it creates on the planet will al ways
+be pulling the moon back in its orbital motion, and thus will b e
+working to bring it down. 5
+5. A planet synchronised by its moon
+As we shall see below, a moon whose mass is about one per-
+cent of the planet’s mass can in some situations synchronise the
+planet. For this to happen, two inequalities must be obeyed.
+First, a synchronised moon’s apocentre, a(s)
+m (1 + em), must
+end up below the reduced Hill radius. For small em , we write
+this simply as
+a(s)
+m < r ′
+H . (8)
+Combined with formulae (2), (3a), and (7), this inequality i n-
+dicates that the planet’s mean motion must be about ﬁve times
+smaller than its rotation rate:
+np < 0.198
+/squaresmallsolid
+θ p (1 − 1.03 ep)3/2 . (9)
+Second, a synchronised moon’s pericentre, a(s)
+m (1 − em), must
+be higher than the planet’s Roche radius rR. For low em , it is
+suﬃcient to simply compare a(s)
+m with rR. By inserting Eqs. (6)
+and (7) into the inequality
+rR < a(s)
+m (10)
+and approximating the moon’s density with that of our own
+Moon, we ﬁnd (see Appendix A) that the planet’s rotation rate
+in the end state, when it is synchronised by the moon, must obe y
+/squaresmallsolid
+θ p < 1.07 hr −1 . (11)
+This sets a lower bound on the length of the sidereal day of the
+planet:
+T p = 2 π
+/squaresmallsolid
+θ p
+> 5.87 hr . (12)
+The sidereal year of almost all known exoplanets satisﬁes th e
+same restriction: 6
+Pp = 2 π
+np
+> 5.87 hr . (13)
+Bear in mind that we are addressing the planets synchronised by
+their moons, not stars. So the coincidence of the low bounds ( 12)
+and (13) in no way implies the equality of
+/squaresmallsolid
+θ p and np .
+A close-in planet lacking a moon or having a moon incapable
+of synchronising the planet either will be tidally synchron ised by
+5 The principal input into
+/squaresmallsolid
+a m contributed by the lunar tides in the planet
+is of the same sign as
+/squaresmallsolid
+θ p − nm (Boué & Efroimsky 2019, Section 4.2).
+This result, however, was derived with nm positive deﬁnite. So, for a
+retrograde moon, we must set
+/squaresmallsolid
+θ p negative — which again will render
+tidal descent.
+6 As of November 2021, of the 4409 exoplanets with orbital peri -
+ods Pp determined, 4405 have periods longer than 5 .87 hr. Exceptions
+from this rule are: K2-137 b, KIC 10001893 b, KOI-55 b, PSR J17 19-
+1438 b.
+the star or will end up in a higher spin-orbit resonance, if it has
+a suﬃcient eccentricity (Makarov et al. 2018). According to Eq.
+(150) from Boué & Efroimsky (2019), the tides in a synchro-
+nised planet will be working to reduce the planet’s semimajo r
+axis. The planet will therefore spiral in and get engulfed by the
+star.
+As an interesting aside, lower bound (13) on the planet pe-
+riod is remarkably close to the shortest rotation periods of ﬁeld
+solar-type stars (Schmitt & Mittag 2020). This suggests tha t a
+moon-less planet, if it migrates too close to the star, is not ca-
+pable of synchronising the star rotation, and therefore get s de-
+stroyed. Indeed, had such a planet been able to orbit faster t han
+5.87 hr and to synchronise the star, then stars with such short
+rotation periods would have been observed — which is not the
+case.
+On the other hand, a planet with a period of ∼ 6 h can hardly
+harbour a moon, because the gap between the planet’s radius a nd
+reduced Hill radius (Sect. 2) vanishes in most cases or becom es
+quite small. We estimate that for our working sample of 580 in -
+ner exoplanets, the reduced Hill radius computed for the cri tical
+value of orbital period is above the actual planet’s radius f or just
+26 systems, with only 5 of them having a niche for exomoons
+that is wider than 1 Rp.
+6. The niche for exomoons
+For a moon to survive on an orbit around a planet, two conditions
+must be fulﬁlled. They may come out stronger than (8) and (10) ,
+because those were set on the end-state — while here we intend
+to address moons’ parameters prior to synchronisation.
+(1) Its apocentre must be conﬁned to the reduced Hill sphere:
+am (1 + em) < r
+′
+H ; (14)
+(2) Its pericentre must stay above the Roche sphere:
+am (1 − em) > rR . (15)
+The following sequence of inequalities ensues:
+r
+′
+H > am > rR . (16)
+Most of the known exoplanets have r
+′
+H > rR, but not all.
+We ﬁnd 31 planets that possibly violate this rule, and, there fore,
+cannot harbour any satellites. Figure 2 shows them as dots ly -
+ing below the diagonal line of equal radii. These planets hav e
+ultra-short periods between 0.447 d (TOI-561 b) and 3.313 d
+(HA TS-10 b), with more than half (18) being shorter than 1 d.
+Their eccentricities are often unknown, with only upper lim its
+given in the literature. For example, e < 0.519 for HA TS-69 b.
+In our calculations involving the reduced Hill radius, this intro-
+duces additional dispersion and bias. The outlying planets are
+likely to have small eccentricities below the sensitivity t hreshold
+of the transit detection method. The planet HA TS-69 b, for ex -
+ample, orbits an inconspicuous solar twin that does not have any
+known stellar companions or detectable outer planetary compan-
+ions (Hord et al. 2021), in agreement with the eccentricity m i-
+gration model. There are no alternative mechanisms to excit e the
+eccentricity of close planets apart from outer massive pert urbers.
+Only one of the planets in this category, HIP 65 A b (with e = 0),
+resides in a wide stellar binary with a smaller red dwarf comp an-
+ion, which apparently failed to perturb its orbit because of the
+signiﬁcant separation > 230 AU.
+Additional useful constraints on the orbital parameters of the
+planet-moon system can be obtained from the brackets for the
+Article number, page 4 of 15
+
+<<<PAGE 5>>>
+V aleri V .Makarov and Michael Efroimsky: Pathways of survival for exomoons and inner exoplanets
+0 1 2 3 4 5
+0
+1
+2
+3
+4
+5
+rR/RJup 
+rH'/RJup 
+Fig. 2. Reduced Hill radii of 580 known inner exoplanets versus thei r
+estimated Roche limits in units of Jupiter’s radius. The das hed diago-
+nal line marks the locus of equal radii where the dynamical ni che for
+satellites vanishes. The planets that fall below this line c annot have any
+stable satellites.
+moon separation. By Kepler’s third law for the planet-moon a nd
+star-planet pairs, we have:
+Mp P2
+m
+M∗ P2p
+≃ a3
+m
+a3p
+. (17)
+Combining this approximate equality with inequality (4) an d
+with the expression (2) for the reduced Hill radius, we obtai n
+Pm
+Pp
+< 0.198 (1 − 1.03 ep)3/2 . (18)
+This result is stronger than formula (4), because it pertain s to
+a prograde moon at any stage of its evolution, not only at the
+synchronous end state (if that state is achieved).
+Thus, prograde moons cannot have longer orbital periods
+than about 0 .2 Pp . This condition is obviously satisﬁed for the
+Earth-Moon system. We note that this upper bound on the orbital
+period ratio is independent of the three masses.
+On the other hand, utilising the lower bound on the moon
+separation am > rR , Eq. (6), and Kepler’s third law, we derive
+the lower bound on the orbital period of the moon in its surviv al
+niche:
+Pm > 5.55
+√G ρm
+= [3.26 hr]
+√
+ρMoon / ρm , (19)
+where ρm is the average density of the moon and ρMoon is the
+average density of the Moon. This constraint depends only on
+the average density.
+7. Mutual synchronisation of a planet with its moon
+In this work, we consider the case of a planet mutually synchr o-
+nised with its moon. This conﬁguration can be attained withi n
+two diﬀerent scenarios, the ﬁrst of which can be initiated by var-
+ious means.
+Scenario 1.
+Mutual synchronism is achieved through mutual receding ac-
+companied with a slow-down of both bodies’ rotation. For
+this process to begin, the moon should ﬁnd itself above the
+synchronicity orbit of the planet, and should not have too
+large an eccentricity. 7 This initial state can be prepared by
+three diﬀerent methods:
+(1.1) the moon is formed above the synchronicity orbit of the
+planet;
+(1.2) the moon is captured above the synchronicity orbit of t he
+planet;
+(1.3) a rapidly rotating moon is formed or captured slightly
+below synchronism. If the initial spin is in the vicinity of
+the quality function peak above the synchronous rate and
+the separation from the synchronous orbit is small, the
+tides in the moon can overpower those in the planet and
+can push the moon above the synchronous radius.
+Whichever of the three mechanisms places the moon above
+the planet’s synchronous orbit, the moon begins receding
+away, and the planet begins slowing down its spin.
+Scenario 2.
+Mutual synchronism is achieved for a moon in a prograde
+orbit below the synchronous radius, or a moon in a retro-
+grade orbit. In both cases, the tides in the planet work to
+shrink the moon’s orbit. The tides in the moon, if its spin is
+synchronised with the orbital motion, work in the same di-
+rection when em > 0. As the moon descends onto the planet,
+the planet’s spin is either accelerated, for a prograde moon ,
+or decelerated, for a retrograde moon. In the latter case, th e
+planet may stop rotating in the sidereal frame — and then
+start rotating in the opposite direction. If the planet’s an gu-
+lar acceleration rate is higher than the rate of moon’s orbit
+decay, the planet’s spin can be equalised with the orbital ro -
+tation before the moon reaches the Roche radius.
+Our overall objective is to understand how the star-induced tidal
+torque is acting on an internally synchronised planet-moon sys-
+tem.
+8. Tidal torques
+To simplify the terminology, here we often employ the adjec-
+tives ‘solar’ and ‘lunar’ in application to the properties o f the
+star and the moon. For example, instead of the clumsy ‘star-
+generated tidal torque’ or ‘moon-generated tidal torque’, we say
+‘solar torque’ or ‘lunar torque’ (with the word ‘tidal’ omit ted,
+because no other torques are to be included).
+8.1. Setting
+Our study will address a two-dimensional conﬁguration: the lu-
+nar orbit coincides with the ecliptic, while both the planetary and
+7 The limitation on eccentricities is needed here, because a s ynchro-
+nised moon with an appreciable eccentricity can move inside the syn-
+chronicity orbit, if the planet-produced tides in it are abl e to overpower
+the moon-produced tides in the planet. This is probably how P hobos
+crossed the synchronous orbit of Mars (Bagheri et al. 2021).
+Article number, page 5 of 15
+
+<<<PAGE 6>>>
+A&A proofs: manuscript no. Exomoons
+lunar obliquities onto the equator of the planet are zero. Th is will
+enable us to consider only the polar components of tidal torq ues.
+A justiﬁcation for the neglect of the lunar orbit inclinatio n
+on the planet’s orbit comes from the assumption that a signif -
+icant initial inclination would make the hierarchical trip le star-
+planet-moon system subject to strong Lidov-Kozai interact ions,
+which would increase interchangeably the inclinations and ec-
+centricity of the inner pair (Innanen et al. 1997; Ford et al. 2000;
+V eras & Ford 2010; Batygin et al. 2011; Correia et al. 2011;
+V eras et al. 2018). As discussed in this paper, the dynamical
+niche for satellites is quite narrow for most known exoplane ts. A
+large increase in eccentricity would push the reduced Hill r adius
+limit down, possibly eliminating the niche altogether per E q. (2).
+On the other hand, close-in moons can be disrupted if the peri -
+centre distance becomes smaller than the Roche radius. This fac-
+tor further diminishes the expected frequency of exomoons. The
+surviving moons are thus likely to have orbits nearly coplan ar
+with the ecliptic.
+Depending on the balance of the solar and lunar torques act-
+ing on the close planet, their latitudinal components shoul d rel-
+atively quickly align the planet’s rotation axis with eithe r the
+planet-star or the planet-moon orbit axis (see Sect. 9). In t he lat-
+ter case, the moons may be long-term viable near close planet s.
+A limited nodal precession and nutation of the planet caused by
+the residual latitudinal component of the tidal torque crea ted by
+the star adds to tidal dissipation in the planet and to the ens uing
+orbital evolution. Complex three-dimensional dynamical i nter-
+actions in such nearly coplanar three-body systems are best in-
+vestigated by numerical simulations, which are outside the scope
+of this study.
+8.2. Secular part of the polar torque
+A derivation of the secular polar tidal torque from the Darwi n
+(1880) and Kaula (1964) theory is provided in Efroimsky (201 2,
+Eq. 109), see also Boué & Efroimsky (2019, Eqs. 123, 132, and
+191):
+T = 2 G M
+′ 2
+a
+∞∑
+l=2
+( Rp
+a
+) 2l + 1 l∑
+m=0
+(l − m)!
+(l + m)! m
+(20)
+l∑
+p=0
+F
+2
+lmp(i)
+∞∑
+q=−∞
+G
+2
+lpq (e) Kl(ωlmpq) ,
+where M
+′
+is the mass of the perturber, G is the Newton grav-
+ity constant, while Rp is the radius of the planet. The expres-
+sion involves the inclination functions Flmp(i) and the eccen-
+tricity functions related to the Hansen coe ﬃcients by Glpq (e) =
+X −(l+1), l−2p
+l−p+q (e) , see e.g., Murray & Dermott (1999, p. 232).
+The quantities
+ωlmpq ≡ (l − 2p) ˙ω + (l − 2p + q)n + m ( ˙Ω− ˙θp )
+(21)
+≈ (l − 2p + q)n − m ˙θp
+are the Fourier tidal modes over which both the potential of t he
+perturber and the additional tidal potential of the body are ex-
+panded. These modes’ absolute values,
+χlmpq =| ωlmpq | , (22)
+are the actual physical forcing frequencies excited in the p lanet
+by the perturber. 8
+The order-l quality functions of the perturbed body are
+Kl(ωlmpq ) ≡ kl(ωlmpq) sin ǫl(ωlmpq ) , (23a)
+where both the Love numbers kl and the phase lags ǫl are func-
+tions of the Fourier tidal modes ωlmpq . They can also be written
+as 9
+Kl(ωlmpq ) ≡ kl(ωlmpq )
+Ql(ωlmpq ) Sign (ωlmpq ) , (23b)
+where Ql are the tidal quality factors introduced via
+Q−1
+l (ωlmpq ) = | sin ǫl(ωlmpq ) | . (24)
+Phase lags ǫl(ωlmpq ) being odd functions, their absolute val-
+ues Q−1
+l (ωlmpq ) are obviously even. Even are also the Love num-
+bers kl(ωlmpq ) . So, altogether, the quality functions are odd. A
+function Kl(ωlmpq ) changes its sign when the system is crossing
+the lmpq spin-orbit resonance, one deﬁned by ωlmpq = 0 . On this
+crossing, the passage of the function Kl(ωlmpq) through the zero
+value goes rapidly but smoothly (see Eq. 32).
+Since the functions kl(ωlmpq ) and Q−1
+l (ωlmpq) are even, we
+always can regard both the Love numbers and quality factors a s
+functions of the positive deﬁnite physical frequencies (22 ):
+kl(ωlmpq ) = kl(χlmpq ) , Ql(ωlmpq ) = Ql(χlmpq) . (25)
+Combined with Eq. (23b), this gives:
+Kl(ωlmpq ) = Kl(χlmpq) Sign( ωlmpq ) . (26)
+The quality functions appear not only in the expression for
+the tidal torque, but also in the formulae for the tidal heati ng rate
+and the tidal evolution rates of orbital elements. A detaile d dis-
+cussion of the generic shape of a quality function Kl(ωlmpq ) is
+provided in Appendix B. There, it is explained that such a fun c-
+tion has the form of a kink, as in Fig. 3. For simple rheologies
+(Maxwell, Andrade), the kink has only one sharp maximum on
+the right and one sharp minimum on the left. These principal e x-
+trema come into being due to interplay of self-gravitation w ith
+rheological response. 10 For more elaborate rheological models
+containing Debye peaks (i.e., Sundberg-Cooper or Burgers) , ad-
+ditional maxima — and symmetrically located minima — will
+emerge. Additional local extrema show up also when a multi-
+layer structure of the body is taken into consideration. 11 One
+way or another, the principal extrema shown in Fig. 3 exist fo r
+any realistic rheology and supersede in magnitude other pos sible
+peaks.
+Dictated by hydrodynamical e ﬀects, tidal response of gas
+planets is much more complex. Nonetheless, qualitatively, the
+behaviour near a resonance must be similar: the largest peak s
+8 This can be observed from Eqs. (15 - 16) in Efroimsky & Makarov
+(2013).
+9 Be mindful that Sign ǫl(ωlmpq) = Sign ωlmpq , see Eq. (24) in
+Efroimsky & Makarov (2013).
+10 Gravity is working to pull the tidal bulge down, thus adding t o the
+rigidity of the tidally perturbed body. Weak at frequencies much higher
+than the inverse Maxwell time, this e ﬀect becomes relevant at lower
+frequencies — and leading in the zero-frequency limit.
+11 As was demonstrated by Gevorgyan (2021), the tidal response of a
+homogeneous body that obeys the Sundberg-Cooper model is id entical
+to the response of a body consisting of two Maxwell or Andrade layers
+that have di ﬀerent relaxation times. In application to the Moon, this
+correspondence was explored in detail by Walterova et al. (2 022).
+Article number, page 6 of 15
+
+<<<PAGE 7>>>
+V aleri V .Makarov and Michael Efroimsky: Pathways of survival for exomoons and inner exoplanets
+1.5 1.0 0.5 0.0 0.5 1.0 1.5
+0.10
+0.05
+0.00
+0.05
+0.10
+tidal mode ω 
+kl (ω)  sin ε l (ω) 
+Fig. 3. Typical shape of the quality function Kl(ω) = kl(ω) sin ǫl(ω) ,
+where ω is a shortened notation for the tidal Fourier mode ωlmpq .
+(Reprinted from Icarus, V ol. 241, Noyelles et al., Spin-orb it evolution
+of Mercury revisited, Pages 26-44, Copyright (2014), with p ermission
+from Elsevier.)
+are deﬁned, at large, by combination of material response an d
+self-gravitation, and the transition through zero must be s mooth.
+As demonstrated in Appendix B for a homogeneous
+Maxwell sphere (in realistic situations, also for a homogen eous
+Burgers, Andrade, or Sundberg-Cooper sphere, see Footnote17),
+the depicted in Fig. 3 two extrema of Kl(ω) are positioned at
+ωpeak l = ± τ−1
+M
+1 + Al
+, (27)
+the corresponding extrema being
+K(peak)
+l = ± 3
+2 (l − 1)
+Al
+1 + Al
+. (28)
+In these expressions, Al are dimensionless e ﬀective rigidities
+rendered by Eq. (B.6). Proportional to the mean shear rigidi ty µ,
+these parameters serve as dimensionless measures of rheolo gy-
+dominated versus gravity-dominated tidal responses, see S ects.
+4.1 and 5.2 in Efroimsky (2015). For the Earth, Mars, and the
+Moon, the dimensionless parameter A2 assumes the values of
+2.2 , 19 , and 64 .5 , correspondingly. Assuming that an exomoon
+is smaller than Mars, we have 12
+Al
+(1 + Al) ≃ 1 , for moons , (29)
+wherefrom
+K(peak)
+l ≃ ± 3
+4 (l − 1) , for moons , (30)
+an observation to be utilised down the road.
+Equation (28) also renders an overall limit on the values of a
+quality function:
+|Kl| < 3
+4 (l − 1) . (31)
+Within the narrow inter-peak interval, the functions Kl(ω) are
+near-linear:
+| ω | < | ωpeakl | =⇒ Kl(ω) ≃ 3
+2 (l − 1)
+Al
+1 + Al
+ω
+| ωpeak l | , (32)
+12 Approximations (29) and (30) may be not so exact for middle-s ized
+and large planets. For example, a hypothetical super-Earth of the same
+rheology as the Earth and of a twice larger radius, will have A2 = 0.55
+and, consequently, Al/(1 + Al) ≃ 1/3 and K(peak)
+l ≃ ± 1
+4 (l − 1) .
+and fall oﬀas ω−1 outside it:
+| ω | > | ωpeak l | =⇒ Kl(ω) ≃ 3
+2 (l − 1)
+Al
+1 + Al
+| ωpeakl |
+ω , (33)
+an expression to be employed shortly.
+8.3. Approximation valid under no synchronism
+The secular part of the polar torque may be approximated with
+T = T
+l=2
++ O
+(
+ǫ (R/a)7 )
+(34)
+= T(lmp)=(220) + O(ǫ i 2) + O
+(
+ǫ (R/a)7)
+,
+where ǫ is a typical value of a phase lag (Efroimsky 2012, Eq.
+114). Details on this are provided in Appendix C, both for the
+solar torque acting on the planet and for the lunar torque act ing
+on the planet. When the planet is not synchronised with eithe r
+orbital motion, the leading parts of the lunar and solar torq ues
+are
+T
+(m)
+(lmp)=(2200)
+= 3
+2
+G M 2
+m
+am
+( Rp
+am
+) 5
+K2( 2nm − 2
+/squaresmallsolid
+θ p ) (35)
+and
+T (∗)
+(lmp)=(2200)
+= 3
+2
+G M 2
+∗
+ap
+( Rp
+ap
+) 5
+K2( 2np − 2
+/squaresmallsolid
+θ p ) , (36)
+correspondingly. Hence, in neglect of O(e2), the planetary rota-
+tion is described by
+/squaresmallsolid/squaresmallsolid
+θ p = 3
+2 G ξ−1 M −1
+p R 3
+p
+[
+M 2
+m a−6
+m K2( 2nm − 2
+/squaresmallsolid
+θ p )
+(37)
++ M 2
+∗ a−6
+p K2( 2np − 2
+/squaresmallsolid
+θ p )
+]
+,
+ξ being the prefactor of the moment of inertia ξ Mp R 2
+p of the
+planet. The lunar and stellar inputs in expression (37) rela te as
+T
+(m)
+(lmp)=(2200)
+T (∗)
+(lmp)=(2200)
+=
+( Mm
+M∗
+) 2 ( ap
+am
+) 6 K2( 2nm − 2
+/squaresmallsolid
+θ p )
+K2( 2np − 2
+/squaresmallsolid
+θ p )
+. (38)
+If the moon is massive and close enough, it can synchronise
+the planet. As the system is approaching synchronicity (i.e ./squaresmallsolid
+θ p → nm ), the quality function K2( 2nm − 2
+/squaresmallsolid
+θ p ) in the numer-
+ator of (38) goes through a sharp peak and rapidly approaches
+zero (see Fig. 3). The solar torque will then try to drive the planet
+out of its synchronism with the moon. Whether it will succeed
+in doing this will depend on the ratio between the peak value o f
+the lunar torque and a non-peak value of the solar torque.
+9. Two pathways to a synchronous planet–moon
+system
+As we explained in Sect. 7, mutual synchronism of the planet and
+the moon can be attained within two distinct dynamical scenarios
+having diﬀerent initial conditions.
+Article number, page 7 of 15
+
+<<<PAGE 8>>>
+A&A proofs: manuscript no. Exomoons
+9.1. Scenario 1: The moon is initially on a wide prograde orbi t
+The ﬁrst pathway to the 1:1 inner resonance is for the moons
+that are initially above the synchronous radius. By constru ction,
+the initial mean motion of such a moon falls short of the ini-
+tial rotation rate of the planet: nm <
+/squaresmallsolid
+θ p . Both the tides raised
+in the planet by the moon and the tides raised in the planet by
+the star are working in the same direction — to slow down the
+spin of the planet and, consequently, to increase its synchr onic-
+ity radius. The moon is receding from the planet (and, possi-
+bly, is increasing its eccentricity em ). The planet-moon 1:1 spin-
+orbit resonance can be reached if the growing synchronous ra -
+dius catches up with the expanding orbit while the moon is sti ll
+within the reduced Hill sphere. We now show that the vicinity of
+this resonance may be stable under certain conditions, whic h are
+plausible.
+9.1.1. Approach to synchronism
+Under the exact planet–moon synchronicity, i.e., for nm =
+/squaresmallsolid
+θ p ,
+the e0 part of the lunar torque (C.1) vanishes, while the O(e2)
+part of this torque survives and becomes leading. It writes a s:
+T
+(m)
+moon−synchr = 12 e2
+m
+G M 2
+m
+am
+( R
+am
+) 5
+K2( nm ) + O(e4
+mǫ) , (39)
+the stellar torque still being given by expression (36).
+Quadratic in eccentricity, torque (39) may appear to be much
+smaller than the torque exerted by the star. However, it is no t
+the small torque at the exact resonance but the maximum torqu e
+value at a slightly shifted peak of the tidal quality functio n that
+matters in the subtle mechanism of resonance capture.
+In the vicinity of the 1:1 resonance, the quadrupole tidal
+quality of the planet, K2(ω2200), is an odd function of the semi-
+diurnal tidal mode
+ω2200 = 2 (nm −
+/squaresmallsolid
+θ p) , (40)
+as in Fig. 3, with two symmetric extrema bracketing the point of
+resonance crossing. Were it not for the star, the 1:1 planet- moon
+spin-orbit resonance would imply nm =
+/squaresmallsolid
+θ p , and consequently
+ω2200 = 0 , and therefore T
+(m)
+(lmp)=(2200)
+= 0 according to Eq. (35).
+In a triple system under consideration, the tides generated by the
+star in the planet are working to drive the planet out of its sp in-
+orbit resonance with the moon. Aiming to synchronise the pla net
+not with the moon but with the star, the solar tides are slowin g
+down the spin of the planet. For this reason, the tidal mode ω2200
+is not exactly zero but acquires a slightly positive value. T he
+value of the quality function K2 begins to climb, from the left,
+the steep positive peak in Fig. 3. Therefrom emerges a positi ve
+lunar torque compensating for the negative solar torque — an d
+the equilibrium stays stable.
+For the planet to leave said equilibrium, that is, to break ou t
+of the resonance, the tidal torque from the star has to overpo wer
+the peak tidal torque from the moon. The maximal tidal qualit y
+value achieved at the peak frequency depends on the e ﬀective
+rigidity Al via Eq. (28). For l = 2, the tidal quality of the planet
+cannot exceed 3/4, for a homogeneous planet. For our purposes,
+it will be justiﬁed to use in the following estimates the maxi mal
+possible value of the torque exerted on the planet by the moon .
+Using this value, we write the ratio of the torques (given by E qs.
+30 and 36, correspondingly) wherewith the star and the moon are
+acting on the planet:
+| T (∗) |
+T (m, peak) ≃ 4
+3
+( M∗
+Mm
+) 2 ( am
+ap
+) 6 ⏐
+⏐
+⏐K2( 2np − 2
+/squaresmallsolid
+θ p s)
+⏐
+⏐
+⏐. (41)
+For the moon to remain locked in the 1:1 spin-orbit resonance ,
+this ratio must be less than unity.
+The equilibrium state of a synchronised planet–moon system
+depends on the composition of the planet. To illustrate this , we
+resort to Fig. 4. There, the blue solid line depicts the leadi ng,
+semi-diurnal component (35) of the lunar tidal torque appli ed
+to the planet. Proportional to the semi-diurnal quality fun ction
+K2(ω2200) = K2( 2(nm −
+/squaresmallsolid
+θ p) ) , this torque naturally comes out
+kink-shaped. Bear in mind, though, that in Fig. 4 this torque is
+given as a function of the di ﬀerence
+/squaresmallsolid
+θ p − nm , not of the semi-
+diurnal frequency ω2200 = 2 (nm −
+/squaresmallsolid
+θ p) . The red solid line in Fig.
+4 is the opposite torque with which the planet is acting on the
+moon’s orbit.
+Within Scenario 1, the moon starts above synchronism, so
+initially we have
+/squaresmallsolid
+θ p − nm > 0 . As the moon is receding, and the
+planet is slowing down its rotation, the system is moving, in Fig.
+4, from the right to the left. At the point of exact 1:1 resonan ce,
+where
+/squaresmallsolid
+θ p − nm = 0 , the tidal torque generated by the moon van-
+ishes, while the negative torque applied by the star on the pl anet
+(the dashed blue line) is ﬁnite. For a rigid planet with a ﬁnit e
+triaxial elongation, this negative solar torque gets compe nsated
+by a positive torque from the moon, caused by a constant tilt
+of the planet’s longest axis with respect to the moon directi on,
+which resembles the constant tilt of the Moon with respect to the
+mean Earth direction (Rambaux & Williams 2011). This way, a
+planet having a permanent dynamic triaxiality (a terrestrial or icy
+world) can be captured into an exact spin-orbit resonance wi th
+the moon, due to the presence of a restoring triaxial torque.
+Inner giant planets are more likely to be ﬂuid, apart from a
+possible compact rigid core. If their e ﬀective viscosity is lower
+than a critical value (Makarov 2015), the planet gets locked in
+a pseudo-sychronous rotation, a long-term stable equilibr ium
+where the relative frequency
+/squaresmallsolid
+θ p − nm changes with time very
+slowly, as we shall see now.
+Since no restoring triaxial torque is acting on a ﬂuid planet at
+the point of exact 1:1 synchronism, evolution of this planet does
+not stop on arrival to that resonance. Indeed, for
+/squaresmallsolid
+θ p − nm = 0 the
+net torque is negative due to the presence of the negative tor que
+from the star. As a result of this, the angular acceleration
+/squaresmallsolid/squaresmallsolid
+θ p is
+negative there. In Fig. 4, the system transcends the resonan ce
+and keeps moving leftwards — and approaches the dotted verti -
+cal line, which denotes a situation where the two torques act ing
+on the planet are compensating each other. There, the angula r
+acceleration of the planet becomes zero:
+/squaresmallsolid/squaresmallsolid
+θ p = 0 . This state is
+still not the end point, and gets transcended too, because a n ega-
+tive torque from the planet (shown by the red curve) is acting on
+the lunar orbit. Impelled by this torque, the moon is now slow ly
+descending, and the value of nm is increasing. Thus, the negative
+relative frequency
+/squaresmallsolid
+θ p − nm is decreasing, and the system keeps
+moving leftwards in the ﬁgure.
+The system eventually reaches an quasi-equilibrium point re-
+siding somewhere to the left of the dotted vertical line, but to the
+right of the peak tidal torque. The equilibrium point is wher e the
+relative angular acceleration equalises, i.e.
+/squaresmallsolid/squaresmallsolid
+θ p =
+/squaresmallsolid
+n m . This equi-
+librium, however, will be slowly evolving. Indeed, in the in ter-
+val between said peak and the dotted line, the net torque on th e
+Article number, page 8 of 15
+
+<<<PAGE 9>>>
+V aleri V .Makarov and Michael Efroimsky: Pathways of survival for exomoons and inner exoplanets
+T m, peak
+0
+00
+θ
+
+p - nm
+torque
+Fig. 4. Schematic depiction of the three torques involved in the qua si-
+stable pseudo-synchronous equilibrium of the planet-moon system. The
+tidal torque wherewith the moon is acting on the planet (soli d blue
+line) is coupled with an opposite torque wherewith the plane t is act-
+ing on the orbit of the moon (red curve). The negative tidal to rque on
+the planet from the star (dashed blue line) is weakly depende nt on the
+relative frequency. The vertical dotted line indicates the location where
+the tidal torques acting on the planet are equalised. Secula r equilibrium
+is achieved between this location and 0.
+planet is positive, resulting in a spin-up. The net torque on the
+moon’s orbit is negative, so the moon is very slowly descendi ng
+back onto the planet. Therefore, in Scenario 1, the moon of a
+ﬂuid planet is initially rapidly receding, and then, on arri val to
+equilibrium, begins to slowly descend.
+In this complex pseudo-equilibrium, there is one source of
+energy (the orbital energy of the moon) and three sinks (tida l
+dissipation in the planet, planet’s rotation spin-up, and t he ex-
+pansion of the planet’s orbit around the star). From the ener gy
+exchange aspect, the necessary condition for this equilibr ium to
+be stable is ˙Ekin / | ˙Eorb| < 1 , that is to say, the rate of the released
+orbital energy should be greater than the rate of the planet’ s rota-
+tional energy. This condition coincides with the requireme nt that
+the right-hand part of Eq. (50) should be less than 1. The devi a-
+tion from the exact synchronicity is expected to slowly dimi nish
+due to the decay of the moon’s orbit and the corresponding in-
+crease of the amplitude of the tidal torque.
+The relative contribution of the lunar tide (as compared to
+the solar one) diminishes and becomes minimal near the reduc ed
+Hill radius. Using inequality (4) and the Kepler law, we obta in
+the condition on the torque ratio required for the moon to rem ain
+locked in the 1:1 spin-orbit resonance up to the Hill radius a s
+| T (∗) |
+T (m, peak) ≤ 0.002
+( Mp
+Mm
+) 2 ⏐
+⏐
+⏐K2( 2np − 2
+/squaresmallsolid
+θ p )
+⏐
+⏐
+⏐< 1 . (42)
+For realistic moons whose mass is about 1% of the planet’s mass,
+this condition is fulﬁlled if the tidal quality of the planet at the
+solar-tide frequency satisﬁes
+⏐
+⏐
+⏐K2( 2np − 2
+/squaresmallsolid
+θ p )
+⏐
+⏐
+⏐< 1
+20 . (43)
+Inequality (43) is easily obeyed even by Earth-like terrest rial
+planets, because the rate of the planet’s rotation in our sce nario
+is
+/squaresmallsolid
+θ p ≃ nm ≫ np , (44)
+and therefore the semi-diurnal tidal frequency
+χ = χ2200 = | ω2200 | = | 2np − 2
+/squaresmallsolid
+θ p | ≃ 2 nm (45)
+is much greater than the degree-two peak frequency
+χpeak2 = | ωpeak2 | =
+τ−1
+M
+1 + A2
+, (46)
+which is close to zero. For χ ≫ χpeak2 , the quadrupole quality
+function is given by expression (33), with l = 2 :
+K2(ω) = 3
+2
+A2
+1 + A2
+| ωpeak 2 |
+ω = 3
+2
+A2
+(1 + A2)2
+1
+ω τM
+. (47)
+The third fraction in this expression, 1 /( ω τM
+) , assumes very
+small values for planets with the mean Maxwell times longer
+than their orbital periods around the host stars (like the Ea rth or
+Mars — planets whose Maxwell times are in the hundreds of
+years). This warrants the smallness of K2(ω) of these planets.
+The mean Maxwell times of hot Jupiters and hot super-
+Earths may be comparable to or even shorter than these plan-
+ets’ orbital periods, in which case the factor 1 /( ω τM
+) is not
+warranted to be small. For such planets, however, the e ﬀective
+rigidities A2 are very large 13. Hence, the ratio A2/ (1 + A2)2
+is vanishingly small, and the condition for resonance is sti ll ful-
+ﬁlled, even at the maximum planet-moon separation equal to t he
+reduced Hill radius.
+9.1.2. Competition in speed
+In Scenario 1, the 1:1 resonance, nm ≃
+/squaresmallsolid
+θ p , must be attained
+before the moon reaches its reduced Hill radius. Since in thi s
+scenario the moon starts above synchronism (
+/squaresmallsolid
+θ p − nm > 0 ),
+a conﬁguration with
+/squaresmallsolid
+θ p − nm = 0 can be achieved only if
+d
+dt
+( /squaresmallsolid
+θ p − nm
+)
+< 0 , that is to say, if
+/squaresmallsolid/squaresmallsolid
+θ p <
+/squaresmallsolid
+n m . (48)
+Both these rates being negative, we can rewrite the above as
+|
+/squaresmallsolid/squaresmallsolid
+θ p | > |
+/squaresmallsolid
+n m | . (49)
+Thus, the absolute rate of the planet’s spin-down (which is equiv-
+alent to the lengthening of the day on Earth) must be higher than
+the absolute rate of moon’s orbital slowdown.
+As demonstrated in Appendix D, in a two-body planet-moon
+system (i.e., in neglect of the torques from star) the ratio o f the
+orbital expansion and the planet’s spin-down rate, for em = 0
+and Mp Mm/(Mp + Mm) ≈ Mm , is:
+/squaresmallsolid
+n m
+/squaresmallsolid/squaresmallsolid
+θ p
+≈ 3 ξ Mp
+Mm
+( Rp
+am
+) 2
+, (50)
+which is independent of the tidal quality or a speciﬁc tidal m odel.
+Within the considered scenario, both the orbital angular ac celer-
+ation in the numerator and the spin acceleration in the denom i-
+nator of this expression are initially negative.
+From Eq. (49), the necessary condition for the moon’s sur-
+vival is that the value of ratio (50) must become less than 1, b e-
+ginning from some value am. Assuming for an estimate that the
+13 From Eq. (B.6), we have Al ∝ µ. Also, within the Maxwell model
+an approach to viscosity dominance (i.e., to the lack of shea r rigidity)
+implies J − →0, which is µ − → ∞ (Efroimsky 2015, Section 5.2.3).
+Article number, page 9 of 15
+
+<<<PAGE 10>>>
+A&A proofs: manuscript no. Exomoons
+factor 3 ξ equals 1, we get a limit on the moon’s semi-major axis
+value, starting from which inequality (49) must become vali d:
+am > acrit = Rp
+√
+Mp
+Mm
+. (51)
+If condition (49) never gets obeyed, the moon will leave the
+reduced Hill sphere before synchronising the planet, and wi ll
+eventually be lost. On the other hand, the fulﬁlment of condi tion
+(49) since the birth of the moon is not necessary for synchron isa-
+tion to happen. Right after accretion, the moon must be locat ed
+above synchronism (as required by Scenario 1), but it may sti ll
+be so close to the planet, that the right-hand side of Eq. (50) is
+larger than unity. In this situation, while both
+/squaresmallsolid
+n m and
+/squaresmallsolid/squaresmallsolid
+θ p are neg-
+ative, the moon’s orbital recession is initially going fast er than
+the planet’s despinning. In the course of recession, am is grow-
+ing, and, according to Eq. (50) the evolution of the di ﬀerence/squaresmallsolid
+θ p − nm may reverse. If, beginning from some value of am , in-
+equality (49) gets satisﬁed, the moons acquires a chance to s yn-
+chronise its host planet.
+A moon of 1% relative mass should be initially separated by
+more than ten planet’s radii. The Moon, for example, is well o ut-
+side this critical radius, and the lengthening of the day is f aster
+than the expansion rate of the lunar orbit. So the Moon will even-
+tually synchronise the Earth. 14 Equation (50) does not take into
+account the contribution of the solar tidal brake, which in t his
+scenario will make |
+/squaresmallsolid/squaresmallsolid
+θ p | larger and push the lower bound of am
+slightly lower.
+9.1.3. Scenario 1 is realisable only for small planets
+Replacing, in Eq. (51), am with the reduced Hill radius r ′
+H , we es-
+timate the minimum relative mass of the moon, Mm/Mp, required
+to achieve the critical radius within the reduced Hill spher e:
+Mm
+Mp
+>
+( Rp
+r ′
+H
+) 2
+. (52)
+Figure 5 shows the results for 580 inner exoplanets from our
+working sample, which have all the required values in the
+database. The horizontal lines are shown for two speciﬁc Mm/Mp
+values, 0.01 and 0.05, as benchmarks of regular and massive
+moons. Only those planets that are located above these lines can
+possibly have moons of the corresponding mass. We note that
+the majority of hot Jupiters lie below the limit even for the m ost
+imaginably massive moons, because for such Jupiters inequa lity
+(52) is violated. Hence, they cannot be synchronised by moon s,
+and such systems should be long-term unstable. The situatio n
+is diﬀerent with smaller planets. Generally, we count 58 planets
+that can be synchronised by a 0.01 Mp moon (10% of the general
+sample) and 150 (26%) by a 0 .05 Mp moon.
+9.2. Scenario 2: The moon is initially below the synchronous
+radius
+We now consider an initial conﬁguration, in which the moon
+is sandwiched between the Roche radius and the synchronous
+radius. The moon moves fast with respect to the planet’s sur-
+face, and the tide raised by it lags the centre line. The tide b rakes
+14 A calculation based on the angular-momentum conservation demon-
+strates that under synchronism the lunar semi-major axis wi ll assume
+the value of am = 5.72 × 108 m, which will barely ﬁt into the reduced
+Hill radius r ′
+H = 7.09 × 108 m.
+Mm = 0.01 Mp
+Mm = 0.05 Mp
+0.0 0.5 1.0 1.5 2.0 2.5 3.0 
+0.0 
+0.5 
+1.0 
+1.5 
+2.0 
+Rp /RJup 
+Log10 [rH'/Rp ]
+Fig. 5. Relative reduced Hill radii of 580 known inner exoplanets versus
+their radii in units of Jupiter’s radius. Dashed horizontal lines mark the
+lower boundaries of plot areas where these exoplanets can in principle
+have moons with the smallest masses as labelled in the graph. For each
+speciﬁc exoplanet shown with a dot in this plot, the mass of a s urvivable
+moon should be above the dashed line (above the upper line, for putative
+moons of Mm = 0.01 Mp, or above the lower line, for putative moons of
+Mm = 0.05 Mp).
+the orbital momentum, and the moon’s orbit decays. It appear s
+that the moon is doomed to reach the Roche limit and disin-
+tegrate. However, the same tidal interaction makes the plan et’s
+rotation accelerate. The outcome of these two parallel proc esses
+depends on the ratio of the characteristic times of orbital d ecay
+and planet’s spin-up.
+In this scenario, the system from the start satisﬁes
+/squaresmallsolid
+θ p < nm ,
+where, by distinction from the previous scenario, both rate s are
+now positive. Equation (50) is still valid, and this ratio mu st
+be always less than 1, in order for the moon to have a chance
+to synchronise the planet and survive. There is no possibili ty
+of survival for the moon if this ratio is initially greater th an 1,
+because as the orbit shrinks, the ratio of the accelerations can
+only increase — so the moon will simply spiral onto the Roche
+limit, with the planet still rotating slower than the moon’s or-
+bital motion. Thus, a signiﬁcant initial separation betwee n the
+planet and the moon (e.g., greater than ∼ 10 planet’s radii for
+Mm/Mp = 0.01; cf. Eq. 51) is required. The initial separation
+is limited from above by the reduced Hill radius. Relatively
+few inner planets have su ﬃciently large reduced Hill radii, cf.
+Figures 2 and 5. Thus, most of the known exoplanets, if they
+have moons located below the synchronous radius, would de-
+stroy these moons before their rotation could be synchronis ed.
+The major di ﬀerence between Scenario 1 and Scenario 2 is
+that in the former the tidal torques from the star and from the
+moon, initially, are both negative, whereas in the latter, t hey are
+likely to be counter-directed. E ﬀectively, the torque from the
+rapidly moving moon is initially positive in Scenario 2, and the
+torque from the star is negative, unless the planet initiall y rotates
+slower than its mean orbital motion. Equation (38) is valid, given
+that the torque from the star and the corresponding quality f unc-
+Article number, page 10 of 15
+
+<<<PAGE 11>>>
+V aleri V .Makarov and Michael Efroimsky: Pathways of survival for exomoons and inner exoplanets
+tion are negative. The planet-moon system approaches the po int
+of equilibrium from the left in Fig. 4, and that point is locat ed to
+the left of the peak tidal torque. The general necessary cond ition
+is that the torque from the moon overpowers the torque from th e
+star. The exact relation between the two torques in Scenario 2
+cannot be estimated without knowing the planet’s rate of rot a-
+tion and its rheological properties. If we ignore the third f raction
+on the right-hand side of Eq. (38) for a very rough estimate, t he
+minimum mass of the moon can be estimated by using condi-
+tion (19), assuming that the moon’s average density equals t hat
+of the Moon, and requiring that the ratio of the torques shoul d be
+greater than 1 in absolute value:
+Mm > Mp
+[ 3.26 hr
+Pp
+] 2
+(53)
+This turns out to be a relatively loose requirement even for t he
+close-in exoplanets. Out of 1366 planets with available estimates
+of Pp and Mp in the NASA Archive, 735 (54%) have lower
+bounds on Mm/MMoon within 1, and 834 (61%) within 5. There is
+a caveat in this consideration, though. The outcome of the co m-
+petition in speed also depends on the initial rate of planet’ s ro-
+tation
+/squaresmallsolid
+θ p and its tidal properties. If the initial rotation is very
+slow,
+/squaresmallsolid
+θ p < np, or even retrograde, the planet also has to cross
+the 1:1 spin-orbit resonance with the star before it can be sy n-
+chronised by the moon. To avoid capture into this resonance,
+the quality function in the numerator in Eq. (38), which is ap -
+proximately K2( 2nm − 2 np) , should not be much smaller than
+the peak quality of the tide caused by the star. A wide range of
+fairly complex scenarios emerge for planets of terrestrial com-
+position. The most important and poorly known parameters ar e
+the eﬀective viscosity of the mantle, how close the mantle is to
+solidus (Makarov et al. 2018), and the possible contributio n of
+the Andrade-type dissipation mechanisms.
+If the braking torque from the star overpowers the torque
+from a small or distant moon, the planet gets synchronised by
+the star. The moon will then inevitably spiral in to the Roche
+radius and disintegrate. The characteristic times for this process
+strongly depends on a number of planet’s parameters includi ng
+its rheology. Somewhat counterintuitively, Earth-like rigid plan-
+ets may be less eﬃcient in dissipating tidal energy because of the
+large diﬀerence between np and nm, i.e., the high tidal frequency.
+The time of orbital decay for such systems (and the life time o f
+their satellites) is also dependent on the residual eccentr icity of
+the moon.
+10. Discussion
+We have demonstrated, on very general principles, that exo-
+moons can orbit most of known exoplanets only within a rela-
+tively thin shell of a few to several Jupiter radii (Figs. 1 an d 2).
+The dynamics of triple star-planet-moon systems is deter-
+mined by the interplay of direct gravitational interaction , on the
+one hand, and the tidally caused exchange of spin and orbital an-
+gular momenta, on the other. For various initial conﬁgurati ons,
+this interplay leads to a multitude of possible scenarios of dy-
+namical evolution (Dobos et al. 2021; Tokadjian & Piro 2020,
+2022). Most of them, however, predict a short-lived moon des -
+tined either to spiral in to the planet’s Roche radius or to re treat
+from the planet and be ejected by the gravitational pull of th e
+star. In this study, we focus on the remaining possibilities for
+hypothetical exomoons to survive over longer timescales. T hese
+possibilities are critically dependent on the ability of the moon to
+synchronise the planet, that is to say, to overpower the tida l ac-
+tion from the star on the planet. This scenario is not far-fet ched,
+for it is actually epitomised by our own Moon — which is in
+the process of synchronising the Earth. The settings for mos t of
+the known exoplanets are much less accommodating, however.
+These planets are closer to their hosts and are larger than th e So-
+lar System planets. On the one hand, in order to exert a strong
+torque on the planet, a moon should be su ﬃciently close to it
+and su ﬃciently massive. On the other hand, a very close moon
+would undergo fast orbital expansion (cf. Eq. 50) with a like ly
+outcome of being driven outside the Hill sphere before the planet
+becomes synchronised. This places an additional lower boun d
+on the relative mass of the moon, Mm/Mp , as expressed by Eq.
+(52) and depicted in Fig. 5. For each speciﬁc exoplanet shown
+with a dot in this plot, the mass of a survivable moon should be
+well above the dashed lines (above the upper line, for putati ve
+moons of Mm = 0.01 Mp, or above the lower line, for putative
+moons of Mm = 0.05 Mp). Only small fractions of the avail-
+able sample satisfy this condition: 10% at Mm/Mp > 0.01 , and
+26% at Mm/Mp > 0.05. The majority of discovered exoplan-
+ets are massive, and the median limiting mass 0 .05 Mp equals
+917 MMoon , while 0 .01 Mp equals to 183 MMoon . It is doubtful
+that such massive satellites are common, or that any even ex-
+ist. Limiting our consideration to satellites less massive than
+7 MMoon , we estimate that only 10% of all known planets sat-
+isfy the Mm/Mp > 0.01 requirement. We therefore predict that
+exoplanet systems stabilised by their moons should be quite rare
+in the current compendium, perhaps a few per hundred.
+Another set of constraints on a planet-stabilising moon can
+be derived from the condition of relative angular accelerat ion
+(given by Eq. 50) being less than 1. Irrespective of the rheol ogi-
+cal properties of the planet, a moon has a chance to synchroni se
+its host planet only if ˙ nm < ¨θ p. Otherwise, because of the nar-
+rowness of the exomoon niche, it is likely to bump into either
+the reduced Hill limit or the Roche limit, depending on the in i-
+tial ¨θ p. The initial am is arbitrary in this equation, but it should
+be between rR and r ′
+H. Substituting am with these limits, and as-
+suming 3 ξ = 1, we can estimate the corresponding limits M−
+and M+ for the mass of the moon. The results for 580 exoplanets
+with su ﬃcient data in the database are presented in Fig. 6. We
+note that both these limits are one-sided, in that the mass sh ould
+be greater than the limit, for the moon to survive. The Mp > M−
+condition is applicable in the Scenario 1 pathway, wherein t he
+moon’s orbit is initially expanding. The Mp > M+ condition is
+applicable in the Scenario 2 pathway, wherein the moon’s orb it
+is initially shrinking. The graph shows that the bulk of know n
+inner exoplanets, seen as a dense cloud in the upper-right co rner,
+require extremely massive satellites in the range of Earth- like
+planets for the pathways to work. We estimate the number of ex -
+oplanets with survivable moons within 5 MMoon to be 28 (out of
+580) for pathway 1, and only 2 for pathway 2. Thus, exomoons
+that can survive in the vicinity of known close-in planets ov er
+stellar lifetime durations should be rare.
+This leads to question of how theoretical cogitations can
+be test using observations. Exomoons, even unusually massi ve
+ones, cannot be imaged in the glare of the close host stars. Ex o-
+planets harbouring synchronising moons should have ﬁnite e c-
+centricities because of the residual tidal torque couple to the
+star. They may also be impervious to the tidal orbital decay,
+which is expected from moon-less close-in planets. Dependi ng
+on the balance of the tidal torques in the star-planet pair, a moon-
+synchronous planet may exhibit orbital expansion instead o f or-
+bital decay. These are indirect indicators, however, which allow
+for an alternative interpretation. The best promise is o ﬀered by
+Article number, page 11 of 15
+
+<<<PAGE 12>>>
+A&A proofs: manuscript no. Exomoons
+-2 0 2 4 6
+-2
+0
+2
+4
+6
+Log10 [M-/MMoon ]
+Log10 [M+/MMoon ]
+Fig. 6. Lower masses of exomoons that can in principle synchronise
+their host planets for 580 known exoplanet systems, in units of the mass
+of the Moon. The M− limits are derived from the estimated reduced
+Hill radii and refer to the Scenario 1 pathway, when the exomo on is
+initially above the synchronous radius. The M+ limits are derived from
+the estimated Roche radii and refer to the Scenario 2 pathway , when the
+exomoon is initially below the synchronous radius.
+precision photometry of transiting exoplanets. The light reﬂected
+by the planet modulates the general light curve due to the pla ne-
+tary phases. The peak ﬂux is expected to coincide with the upp er
+conjunction, which may be observable as a shallow secondary
+transit. Hot Jupiters are also expected to irradiate substa ntial
+amounts of infrared light from their surfaces. Due to therma l
+inertia, rapidly rotating planets would have hot spots with phase
+shifts leading the planet-star directions, which would res ult in an
+observable shift between the overall light curve and the ecl ipse
+in the upper conjunction. This, however, can be ambiguously
+interpreted as a ﬁnite eccentricity of the star-planet pair . De-
+spite these di ﬃculties, a search for exomoons has a tremendous
+impact on our understanding of cosmogony of other planetary
+worlds, and it should continue along both theoretical and pr acti-
+cal routes. The two tidal-orbital pathways to long-term sur vival
+of exomoons in the harsh conditions of known systems suggest
+that the fate of close-in exoplanets may be intertwined with the
+fate of their satellites.
+Article number, page 12 of 15
+
+<<<PAGE 13>>>
+V aleri V .Makarov and Michael Efroimsky: Pathways of survival for exomoons and inner exoplanets
+Appendix A: Comparing the Roche radius and the
+synchronous value of the semi-major axis
+We wish to know for what critical spin rate
+/squaresmallsolid
+θ
+(crit)
+p the semi-major
+axis of the synchronous orbit of the moon about the planet, a(s)
+m ,
+coincides with the planet’s Roche radius rR. Formulae (6) and
+(7) entail:
+rR < a(s)
+m =⇒
+(A.1)
+/squaresmallsolid
+θ p <
+√
+4
+3 π ρm G
+A3
+√
+Mp + Mm
+Mp
+≈
+√
+4
+3 π ρm G
+A3 .
+For A = 2.2 , and for the density ρm of the moon given in kg/m3 ,
+this renders:
+/squaresmallsolid
+θ p < 5.12 × 10−6 √ρm s−1 = 1.84 × 10−2 √ρm hr−1 , (A.2)
+For the density of our Moon, ρm = 3340 kg m −3, we have
+/squaresmallsolid
+θ p < 1.07 hr −1 . (A.3)
+Appendix B: Quality functions. A typical shape
+To get an idea of a typical shape of a quality function, consid er a
+tidally perturbed homogeneous body whose rheology is deﬁne d
+by a complex compliance
+¯J(χ) = Re
+[ ¯J(χ)
+]
++ i Im
+[ ¯J(χ)
+]
+, (B.1)
+with
+χ = χlmpq (B.2)
+being a concise notation for a tidal frequency χlmpq = |ωlmpq|
+exerted by tides.
+For example, the Maxwell rheology looks like
+(Maxwell) ¯J(χ) = J + i
+(
+− 1
+η χ
+)
+= J
+(
+1 − 1
+τM χ
+)
+, (B.3)
+where η is the shear viscosity, J is the unrelaxed sheer compli-
+ance (the inverse of the unrelaxed shear rigidity µ), and τM =
+η J = η/µ is the Maxwell time. In the more realistic Andrade
+model, one has to include terms responsible for transient pr o-
+cesses. The elastic, instantaneous, part of the complex com pli-
+ance will, though, still be J. Neither the Maxwell nor the An-
+drade model are capable of taking the relaxation of the elast ic
+part into consideration. (This relaxation is, however, an a ctual
+eﬀect taking place mainly due to grain-boundary sliding.) So
+these models fail to distinguish between the unrelaxed and r e-
+laxed values of J. To ﬁx this ﬂaw, a more detailed model by
+Sundberg and Cooper should be employed. A simple review on
+the topic is available in Section 3 of Walterova et al. (2022) and
+in Section 2 of Bagheri et al. (2022).
+As demonstrated, for example, in Efroimsky (2015), Eq.
+(40), the quality function of a homogeneous body is 15
+Kl(χ) ≡ kl(χ) sin ǫl(χ)
+= − 3
+2(l − 1)
+Bl Im
+[ ¯J(χ)
+]
+(
+Re
+[ ¯J(χ)
+]
++ Bl
+) 2
++
+(
+Im
+[ ¯J(χ)
+]) 2 (B.4a)
+= − 3
+2(l − 1)
+Al Im
+[ ¯J(χ) J−1
+]
+(
+Re
+[ ¯J(χ) J−1
+]
++ Al
+) 2
++
+(
+Im
+[ ¯J(χ) J−1
+]) 2 , (B.4b)
+with the dimensional constants Bl and dimensionless constants
+Al deﬁned as
+Bl ≡ (2 l 2 + 4 l + 3)
+l g ρ R = 3 (2 l 2 + 4 l + 3)
+4 l π G ρ2 R2 , (B.5)
+Al ≡ B l J−1 = Bl µ , (B.6)
+G being Newton’s gravitational constant, and g, ρ, R be-
+ing the surface gravity, density, and radius of the body. Be
+mindful that expression (20) for the secular part of the po-
+lar tidal torque contains not Kl(χlmpq ) but the odd function
+Kl(ωlmpq ) = Kl(χlmpq) Sign( ωlmpq ) .
+For the Maxwell or Andrade model, the function Kl(ωlmpq )
+has the shape of a kink, shown in Figure 3. 16 Speciﬁcally, for
+the Maxwell rheology (B.3), the quality functions become
+Kl(ω) = 3
+2(l − 1)
+τM ω Al
+1 + ( τM ω) 2 (
+1 + A2
+l
+) , (B.7)
+ω being a short notation for ωlmpq .
+From the above expression, we observe that for a Maxwell
+body — and, in realistic situations, for Andrade, Burgers, a nd
+Sundberg-Cooper bodies also 17 — the extrema of the kink
+Kl(ω) are residing at
+ωpeakl = ± τ−1
+M
+1 + Al
+, (B.8)
+the corresponding peak values being
+K(peak)
+l = ± 3
+4 (l − 1)
+Al
+1 + Al
+. (B.9)
+15 To obtain (B.4b), we divided both the numerator and denomina tor
+of (B.4a) by the squared elastic part J of the complex compliance ¯J, to
+make both the numerator and denominator dimensionless.
+16 It can also be shown from Eq. (45) in (Efroimsky 2015) that the
+frequency-dependence of sin ǫl(ω) = Q−1
+l (ω) Sign(ω ) has a similar
+shape, with each of the two extrema located within less than a decade
+from a corresponding extremum of Kl.
+17 Transient processes in these materials are pronounced main ly over
+seismic frequencies, the rheological response at low frequ encies thus
+being close to Maxwell. Consequently, the peaks for an Andra de body
+are very similar, in both amplitude and location, to the Maxw ell values
+given by Eq. (B.8).
+Article number, page 13 of 15
+
+<<<PAGE 14>>>
+A&A proofs: manuscript no. Exomoons
+In the inter-peak interval, a quality function Kl(ω) is almost lin-
+ear: 18
+| ω | < | ωpeakl | =⇒
+(B.10)
+Kl(ω) ≃ 3
+2 (l − 1)
+Al
+1 + Al
+ω
+| ωpeakl | .
+Outside this interval, it falls o ﬀas the inverse ω :
+| ω | > | ωpeakl | =⇒
+(B.11)
+Kl(ω) ≃ 3
+2 (l − 1)
+Al
+1 + Al
+| ωpeak l |
+ω .
+From Eq. (B.9), we observe that the peaks’ amplitude is inde-
+pendent of the viscosity value η . On the other hand, the spread
+between the extrema is inversely proportional to η , as follows
+from expression (B.8). For solid terrestrial planets, the m ean vis-
+cosity values are high, wherefore the extrema are located cl ose
+to zero (i.e., to the resonance ω ≡ ωnmpq = 0), so the inter-peak
+interval of linear frequency-dependence of Kl is very narrow and
+the peaks are sharp.
+For a Maxwell or Andrade body, both the kink function
+Kl(ω) and the similar to it function sin ǫl(ω) = Q−1
+l (ω) Sign(ω )
+have only one peak for a positive ω. The situation will, however,
+change if we plug into formula (B.4), and into its counterpar t for
+sin ǫn(ω) = Q−1
+n (ω) Sign(ω ), a complex compliance appropri-
+ate to a more accurate description, such as the Sundberg-Coo per
+rheology. In that case, an additional, smaller local maximu m
+will appear on the right slope (an a similar local minimum wil l
+emerge on the left slope). These additional peaks may have bi g
+geophysical consequences for the Moon (Walterova et al. 202 2).
+18 The linearity of Kl(ω) is equivalent to the frequency-independence
+of the time lag: ∆tl(ωlmpq ) = ∆t (Efroimsky & Makarov 2013). This is
+why the Constant Time Lag (CTL) tidal model can be used exclus ively
+for | ω | < | ωpeakl | , and is badly misleading outside this interval. Also,
+it is owing to this linearity of Kl(ω) in the inter-peak interval that the
+tidal torque value transcends spin-orbit resonances conti nuously, not in
+abrupt steps.
+Appendix C: Secular components of the solar and
+lunar tidal torques acting on the planet
+The quadrupole part of the torque looks like (Efroimsky 2012 ):
+T
+(lmp)=(220)
+=
+3
+2
+G M ′ 2
+a
+( Rp
+a
+) 5 [ 1
+2304 e6 K2( − n − 2 ˙θp )
++
+( 1
+4 e2 − 1
+16 e4 + 13
+768 e6
+)
+K2( n − 2 ˙θp )
++
+(
+1 − 5 e2 + 63
+8 e4 − 155
+36 e6
+)
+K2( 2n − 2 ˙θp )
++
+( 49
+4 e2 − 861
+16 e4 + 21975
+256 e6
+)
+K2( 3n − 2 ˙θp )
++
+( 289
+4 e4 − 1955
+6 e6
+)
+K2( 2n − ˙θp )
++ 714025
+2304 e6 K2( 5n − 3 ˙θp )
+]
+(C.1)
++ O(e8 ǫ) + O(i 2 ǫ) ,
+where M ′ is the mass of the perturber, ǫ is a typical value of
+the phase lag in the perturbed planet, and the perturber’s or bital
+inclination i on the planet’s equator is small enough for the order-
+i2 terms to be dropped.
+This formula will render the solar torque T
+(∗)
+, provided we
+identify the mass of the perturber with that of the star: M
+′
+=
+M ∗ , and employ the elements a = ap , e = ep , and use the
+mean motion n = np of the planet’s orbit.
+The formula will give us the lunar torque T
+(m)
+, if we set
+M
+′
+= Mm , a = am , e = em , and n = nm .
+Appendix D: Derivation of Eq. (50)
+For the planet-moon two-body system, the angular momentum
+is given by
+H = Mp Mm
+Mp + Mm
+√
+G (Mp + Mm) am (1 − e2
+m)
+(D.1)
++ Cp
+/squaresmallsolid
+θ p + Cm
+/squaresmallsolid
+θ m ,
+Cp and Cm being the maximal moments of inertia of the planet
+and the moon, correspondingly, and
+/squaresmallsolid
+θ p and
+/squaresmallsolid
+θ m being their ro-
+tation rates. If we neglect the eccentricity and assume that the
+spin angular momentum of the moon is negligible as compared
+to that of the planet, the above expression will get simpliﬁe d to
+H = Mp Mm
+Mp + Mm
+√
+G (Mp + Mm) am + Cp
+/squaresmallsolid
+θ p , (D.2)
+Article number, page 14 of 15
+
+<<<PAGE 15>>>
+V aleri V .Makarov and Michael Efroimsky: Pathways of survival for exomoons and inner exoplanets
+diﬀerentiation whereof will give us:
+0 = Mp Mm
+Mp + Mm
+√
+G (Mp + Mm) d
+dt a1/2
+m + Cp
+/squaresmallsolid/squaresmallsolid
+θ p . (D.3)
+Casting the deﬁnition nm =
+√
+G(Mp + Mm) a−3m into the form of
+a1/2
+m = (G (Mp + Mm))1/6n−1/3
+m , we derive:
+d
+dt a1/2
+m = − 1
+3 (G(Mp + Mm))1/6 n−4/3
+m
+/squaresmallsolid
+n m
+(D.4)
+= − 1
+3 (G(Mp + Mm))−1/2 a2
+m
+/squaresmallsolid
+n m ,
+insertion whereof into Eq. (D.3) entails
+0 = − 1
+3
+Mp Mm
+Mp + Mm
+a2
+m
+/squaresmallsolid
+n m + Cp
+/squaresmallsolid/squaresmallsolid
+θ p . (D.5)
+Through a dimensionless coe ﬃcient ξ, the maximal moment of
+inertia is conventionally expressed as Cp = ξ Mp R2
+p . Also, since
+en route from Eq. (D.1) to Eq. (D.2) we set |Cm
+/squaresmallsolid
+θ m| ≪ | Cp
+/squaresmallsolid
+θ p| ,
+then in about the same approximation we may put Mp Mm/(Mp+
+Mm) ≈ Mm into Eq. (D.5). This gives us
+0 = − 1
+3 Mm a2
+m
+/squaresmallsolid
+n m + ξ Mp R2
+p
+/squaresmallsolid/squaresmallsolid
+θ p . (D.6)
+Acknowledgements. The authors are grateful to James L. Hilton for useful com-
+ments and recommendations. We also thank our anonymous revi ewer for a sub-
+stantial and deep review, which resulted in a more consisten t and focused paper.
+References
+Agnor, C. B. & Hamilton, D. P . 2006, Nature, 441, 192
+Astakhov, S. A., Burbanks, A. D., Wiggins, S., & Farrelly, D. 2003, Nature, 423,
+264
+Astakhov, S. A. & Farrelly, D. 2004, Monthly Notices of the Royal Astronomical
+Society, 354, 971
+Bagheri, A., Efroimsky, M., Castillo-Rogez, J., et al. 2022 , Advances in Geo-
+physics, 63, 231
+Bagheri, A., Khan, A., Efroimsky, M., Kruglyakov, M., & Giar dini, D. 2021,
+Nature Astronomy, 5, 539
+Barnes, J. W. & O’Brien, D. P . 2002, The Astrophysical Journa l, 575, 1087
+Batygin, K., Morbidelli, A., & Tsiganis, K. 2011, Astronomy and Astrophysics,
+533, A7
+Boué, G. & Efroimsky, M. 2019, Celestial Mechanics and Dynam ical Astron-
+omy, 131, 30
+Chandrasekhar, S. 1987, Ellipsoidal ﬁgures of equilibrium
+Correia, A. C. M., Laskar, J., Farago, F., & Boué, G. 2011, Cel estial Mechanics
+and Dynamical Astronomy, 111, 105
+Darwin, G. H. 1880, Philosophical Transactions of the Royal Society of London,
+171, 713
+Dobos, V ., Charnoz, S., Pál, A., Roque-Bernard, A., & Szabó, G. M. 2021, Pub-
+lications of the Astronomical Society of the Paciﬁc, 133, 09 4401
+Domingos, R. C., Winter, O. C., & Y okoyama, T. 2006, Monthly N otices of the
+Royal Astronomical Society, 373, 1227
+Efroimsky, M. 2012, Celestial Mechanics and Dynamical Astr onomy, 112, 283
+Efroimsky, M. 2015, The Astronomical Journal, 150, 98
+Efroimsky, M. & Makarov, V . V . 2013, The Astrophysical Journal, 764, 26
+Efroimsky, M. & Makarov, V . V . 2022, Universe, 8, 211
+Ford, E. B., Kozinsky, B., & Rasio, F. A. 2000, The Astrophysi cal Journal, 535,
+385
+Gevorgyan, Y . 2021, Astronomy & Astrophysics, 650, A141
+Guimarães, A. & V alio, A. 2018, The Astronomical Journal, 15 6, 50
+Hamilton, D. P . & Burns, J. A. 1992, Icarus, 96, 43
+Hord, B. J., Colón, K. D., Kostov, V ., et al. 2021, The Astronomical Journal, 162,
+263
+Hurford, T. A., Asphaug, E., Spitale, J. N., et al. 2016, Jour nal of Geophysical
+Research (Planets), 121, 1054
+Innanen, K. A., Zheng, J. Q., Mikkola, S., & V altonen, M. J. 19 97, The Astro-
+nomical Journal, 113, 1915
+Kaula, W. M. 1964, Reviews of Geophysics and Space Physics, 2 , 661
+Leinhardt, Z. M., Ogilvie, G. I., Latter, H. N., & Kokubo, E. 2 012, Monthly
+Notices of the Royal Astronomical Society, 424, 1419
+Makarov, V . V . 2015, The Astrophysical Journal, 810, 12
+Makarov, V . V ., Berghea, C. T., & Efroimsky, M. 2018, The Astrophysical Jour-
+nal, 857, 142
+Murray, C. D. & Dermott, S. F. 1999, Solar System Dynamics (Ca mbridge Uni-
+versity Press)
+Owens, N., de Mooij, E. J. W., Watson, C. A., & Hooton, M. J. 202 1, Monthly
+Notices of the Royal Astronomical Society, 503, L38
+Rambaux, N. & Williams, J. G. 2011, Celestial Mechanics and D ynamical As-
+tronomy, 109, 85
+Sasaki, T., Barnes, J. W., & O’Brien, D. P . 2012, The Astrophysical Journal, 754,
+51
+Schmitt, J. H. M. M. & Mittag, M. 2020, Astronomische Nachric hten, 341, 497
+Tokadjian, A. & Piro, A. L. 2020, The Astronomical Journal, 1 60, 194
+Tokadjian, A. & Piro, A. L. 2022, The Astrophysical Jopurnal Letters, 929, L2
+V alsecchi, G. B., Rickman, H., Morbidelli, A., et al. 2022, A stronomy and As-
+trophysics, 667, A91
+V eras, D. & Ford, E. B. 2010, The Astrophysical Journal, 715, 803
+V eras, D., Georgakarakos, N., Gänsicke, B. T., & Dobbs-Dixon, I. 2018, Monthly
+Notices of the Royal Astronomical Society, 481, 2180
+Walterova, M., Bˇehounková, M., & Efroimsky, M. 2022, Journal of Geophysical
+Research. Planets, Submitted, https: //arxiv.org/abs/2301.02476
+Article number, page 15 of 15

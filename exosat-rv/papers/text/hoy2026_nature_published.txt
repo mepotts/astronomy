@@ -1,0 +1,1250 @@
+Satellite Detected Around a Star’s Substellar
+Companion
+Kevin Hoy1,2,3*, Alice Zurlo 1,3, Pablo A. Pe˜ na R.1,4, Jana
+K¨ ohler5, Silvano Desidera 7, Raffaele Gratton 7, Cecilia Lazzoni 7,3,
+Simon Petrus6,3, Florian Rodler 2, Jonathan Smoker 2, Valentina
+D’Orazi8,9, Ilaria Carleo 7, Ilaria Giovannini 10,1,7,3
+1Instituto de Estudios Astrof ´ ısicos, Facultad de Ingenier ´ ıa y Ciencias,
+Universidad Diego Portales, Av. Ej´ ercito Libertador 441, Santiago,
+Chile.
+2European Southern Observatory, Alonso de C´ ordova 3107, Casilla 19,
+Santiago 19001, Chile.
+3Millennium Nucleus on Young Exoplanets and their Moons (YEMS).
+4Centro de Astrof ´ ısica y Tecnolog ´ ıas Afines (CATA), Casilla 36-D,
+Santiago, Chile.
+5TLS Tautenburg, Sternwarte 5, 07778 Tautenburg, Germany.
+6NASA-Goddard Space Flight Center, Greenbelt, MD 20771, USA.
+7INAF-Osservatorio Astronomico di Padova, Vicolo Osservatorio 5,
+35122 Padova, Italy.
+8Dept. of Physics, University of Rome Tor Vergata, via della Ricerca
+Scientifica 1, 00133 Rome, Italy.
+9INAF Osservatorio Astronomico di Roma, via Frascati 33, Monte
+Porzio Catone, 00040 Rome, Italy.
+10Dipartimento di Fisica e Astronomia, Universit` a degli Studi di
+Padova, Vicolo dell’Osservatorio 3, 35122 Padova, Italy.
+*Corresponding author(s). E-mail(s): kevin.hoy@mail.udp.cl;
+Abstract
+Despite more than 6000 exoplanets being discovered to date 1, no
+satellite orbiting an exoplanet, anexomoon, has ever been confidently
+detected. While there are some candidates, they lack clear and con-
+vincing confirmation and remain controversial 2–5. Beyond the innate
+1
+value of discovering new types of objects in the Universe, satellites
+can help give key insights into formation mechanisms and the dynam-
+ical evolution histories of their systems. In this work, we present
+evidence for the existence of a satellite orbiting the directly-imaged
+brown dwarf companion CD-35 2722 B. W e have applied radial veloc-
+ity analysis, the same technique used to discover the first exoplanet
+around a Solar-type star 6, on spectra of this brown dwarf obtained
+with VL T/CRIRES+. W e have found what appears to be the periodic
+signal induced by at least one orbiting satellite. This is the first time
+this technique has successfully produced evidence of satellites around
+a companion brown dwarf. Our best-fitting model includes a satellite
+candidate with a minimum mass of∼0.7 Jupiter masses and an orbital
+period of∼170 days. While it is uncertain if this satellite fulfills the
+presently-undefined criteria to qualify as an exomoon, it is a signif-
+icant step towards that first detection, as advancing technology will
+allow the same method to be applied to less massive targets.
+1 Main
+CD-35 2722 B (hereafter CD-35 B for brevity) is a young brown dwarf (BD) discovered
+via direct imaging in 2011 7. At a projected separation of∼2.8”, it is well-resolved
+from its host star. It’s orbit was partially constrained in a future study, finding that
+it has a high eccentricity (>0.9) and a long period of∼5000 years, although many
+parameters are poorly constrained due to the short coverage of its wide orbit 8. It is
+a 37 M Jup companion to a 0.4 M ⊙ M-type star, making the mass ratio between host
+and companion relatively low for this system 7,9. It has been calculated that, in the
+event of satellites orbiting CD-35 B, the radial velocity method would be relatively
+likely to find them 10.
+We conducted a VLT/CRIRES + 11 program (PI: Zurlo, 0112.C-2053(A), 0114.C-
+2039(A)& PI: Hoy , 116.2AP9) to monitor the radial velocity (R V) variation of
+the target induced by possible satellites from October 2023 throughF ebruary 2026.
+Given the projected separation of CD-35 B and the narrow 0.2” slit of CRIRES +, we
+were able to obtain the spectra of the companion itself, without significant contamina-
+tion of the primary star.W e obtained 26 epochs in total, but one is discarded
+in this analysis due to a very low signal, while two more are rejected for
+poor weather (these latter observations were quickly redone in better con-
+ditions), thus we are left with 23 high-quality observations.Each epoch is an
+AB nodding sequence, giving us the ability to subtract sky contamination while also
+taking two separate spectra each night. The data were reduced using the official ESO
+pipeline recipes [1] .
+The method employed in this work was first suggested in 2018 12. It
+has been attempted in the past, targeting other directly-imaged substel-
+lar companions with different instruments. GQ Lup B 13 and HR 7672
+1https://www.eso.org/sci/software/pipelines/cr2res/cr2res-pipe-recipes.html
+2
+B 14 were observed with KPIC, a high-resolution spectrograph (R≈35,000)
+built for characterizing directly-imaged planets. The HR 8799 planets were
+observed with Keck/OSIRIS, a medium-resolution integral-field spectro-
+graph (R≈4000) 15. None of those companions showed R V variation at each
+work’s respective precisions. Compared to those works, we are able to
+achieve R V results one to two orders of magnitude more precise. These pre-
+vious works employed a forward modeling approach in order to properly
+account for stellar contamination in the brown dwarf/planetary spectra.
+This method has known challenges for R V extraction, including disparate
+result when fitting different orders 16. Our data, lacking stellar contamina-
+tion, allows us to avoid the use of theoretical models. See Section 2.1 of
+Methods for a more detailed discussion of contamination characterization.
+The higher resolution of our data (R≈100,000), should also provide some
+precision improvement, although this difference is likely small compared
+to the difference in methodology .
+Objects orbiting such high-mass substellar companions, having not been
+discovered before, have some ambiguity regarding their taxonomy . F or this
+work, we will use the term ”satellite” to refer to the body/bodies we are
+presenting. This is meant as a neutral term simply meaning ”an object
+orbiting a significantly larger object”, in the same sense that the Moon is
+a satellite of Earth, and the Earth is a satellite of the Sun. More discussion
+on this question of classification is included at the end of the article.
+To extract the R Vs of CD-35 B, we usedviper17,18, a template-matching R V code
+with built-in CRIRES +support. This code creates an empirical template combining
+every spectrum to maximize its signal-to-noise ratio. The individual spectra can then
+be compared to this template to measure their relative R V over time. We runviper
+for all 46 (23 nights, 2 nodding positions per night) spectra of CD-35 B, then bin
+the R Vs of the nodding pairs to maximize precision (more details in Methods). The
+extracted R Vs are shown in Fig. 1.
+As an initial check for periodicity in our R Vs, we created a Generalized Lomb-
+Scargle (GLS) periodogram 19. This is a function that measures how likely it is that
+a data set is periodic at a given period. GLS periodograms often produce false peaks
+aliased from artifacts in the data, and so to determine the validity of a peak, there
+are defined False Alarm Probability (F AP) thresholds that can be calculated based
+on the number of observations and their relative time sampling 20. In our data, there
+is a peak near a 170-day periodicity that crosses the 0.1% F AP threshold, denoting
+a high degree of confidence that there is some periodic signal in the data. The GLS
+periodogram for our data is shown in the first panel of Fig. 2.
+Beyond observing a strong periodicity in our data, we use theEMPERORcode ? for
+Keplerian fitting of the R V data. The best-fitting models are presented in Fig. 1. We
+are able to fit our data with different models invoking different numbers of satellites.
+EMPERORiterates through these models until the current iteration fails to meet a fit-
+quality criterion, at which point the previous is accepted as the best-fitting model.
+T o check for time-dependent noise (and rotational effects, to be discussed
+later), we applied Gaussian Processes (GPs), but ultimately found that
+3
+400
+300
+200
+100
+0
+100
+200
+300
+Relative RV (m/s)
+CD-35 2722 B Radial Velocities with Best-Fit Models
+1-Satellite Model
+2-Satellite Model
+Extracted RVs
+150
+0
+150
+1-Satellite
+Residual (m/s)
+RMS = 53.4 m/s
+0 100 200 300 400 500 600 700 800
+Barycentric Julian Date - 2460231 (days)
+150
+0
+150
+2-Satellite
+Residual (m/s)
+RMS = 51.0 m/s
+0 2 4 6
+Count
+0 2 4
+Count
+Fig. 1Extracted relative R Vs for CD-35 2722 B with best-fitting one-satellite and two-satellite
+models. All BJD, R V, and R V error values are available in Appendix A, with the full corner plot for
+the favored model in Appendix B.
+we do not recover any extra signals. W e therefore assume an independent
+gaussian noise model for this work, in order to avoid over-modeling the
+noise. It is likely that, due to a combination of factors, our systematic
+errors are significantly higher than any real jitter caused by unconstrained
+physics, and thus this noise model is the most applicable. Section 2.3 of
+Methods contains details on this analysis.
+There are two models which are almost equally capable of explaining the
+data. One is a one-satellite model, with a period of∼170 days, an msiniof
+∼0.9M Jupand an eccentricity of∼0.27. The other model involves a similar
+satellite, but on a circular orbit, with an accompanying inner satellite.
+There is some degeneracy for the parameters of this inner satellite, hence
+the multiple peaks in panel C of Fig. 2. The most likely model, though,
+gives a period of∼86 days, very near a 2:1 mean-motion-resonance (MMR).
+The best-fitting model parameters are shown in T able 1.
+These two models are very similar, due to the known degeneracy
+between single eccentric orbits and MMR orbits 21. F rom simulations, it
+is common for 2:1 MMR orbits to mimic eccentricities near 0.3, the same
+as the best-fitting one-satellite model 22. This means that, from R V data
+alone, it is presently very difficult to distinguish between the two models.
+The derived periods are slightly different from such an exact resonance,
+so over time the models should diverge.
+4
+As a test to help confirm the detection(s) of the satellite(s), we used
+N-body simulations withREBOUNDto test the stability of the models 23,24.
+The one-satellite model is generally stable over long timespans, even in
+what we expect to be its most unstable configuration. The two-satellite
+model, however, is highly unstable. Even internally , ignoring any pertur-
+bation from the central star, the BD-satellites system is so chaotic that
+for most configurations, one of the satellites is ejected within 500 years, a
+small fraction of the BD’s orbit. The only stable configurations are when
+the two satellites are within 20◦ of coplanar orbits, and they have counter-
+rotating orbits. While there are some questions surrounding formation for
+both models, which must be addressed in future work, this need to pro-
+duce counter-rotating, circular, 2:1 MMR orbits seems significantly more
+difficult than the challenges facing the formation of the single eccentric
+satellite (many of which are shared with the two satellite model as well).
+A more detailed exploration of system stability is present in section 2.4 of
+Methods.
+Therefore, while both models are strictly possible, and cannot be
+distinguished between by our R V data, we find it more likely that the one-
+satellite model is accurate due to these stability considerations. F urther
+discussion will thus center on this model.
+Unfortunately , we cannot make any assumption about the inclination
+of the orbit of the satellite and therefore, estimate its true mass. In the
+Solar System, while all the planets orbit within the ecliptic, their moons
+do not. Rather, regular satellites (which includes all of the most massive
+moons in the Solar System except Neptune’s T riton) orbit in the plane
+of their hosts’ equator, and the obliquity of CD-35 B is entirely uncon-
+strained. The extreme eccentricity of the BD’s orbit also makes assuming
+orbit-rotation axis alignment more dubious, as it suggests a more com-
+plex dynamical history . However, it is quite unlikely that the satellite is a
+second brown dwarf, as the inclination correlated with a true mass of 13
+MJup, the generally-accepted lower limit for brown dwarfs, is only∼4 ◦,
+very close to a face-on orbit.
+This eccentric single-satellite model is a contextually interesting result for the sys-
+tem, as a high satellite eccentricity would align with the host’s very high eccentricity
+of>0.9 8. As the host-satellite pair follows its own highly eccentric orbit, the variation
+in gravitational force from the host star could cause an increase in the eccentricity of
+the satellite. For exoplanets in S-type orbits in stellar binary systems, high eccentric-
+ities are common, and a satellite in the CD-35 2722 system would experience similar
+dynamics 25.
+Another concern for the reality of this detection is the rotation of the host. While
+CD-35 B does not have the same kind of spots or chromospheric activity of stars, it
+may have clouds which could experience circulation, driving brightness variations over
+time. This effect could drive R V signals on the rotation period of the BD, or on the
+timescale of cloud restructuring in the atmosphere. There is some doubt that there is
+5
+0.0
+0.2
+0.4
+0.6
+0.8Power
+1% FAP
+0.1% FAP
+88.9 d
+116.2 d
+170.5 d
+333.8 d
+Raw RVs
+Raw RVs
+0.0
+0.2
+0.4
+0.6
+0.8Power
+1% FAP
+0.1% FAP
+Eccentric 1-Satellite Residuals
+Eccentric 1-Satellite Residuals
+0.0
+0.2
+0.4
+0.6
+0.8Power
+1% FAP
+0.1% FAP
+70.1 d
+87.5 d
+113.6 d
+Circular 1-Satellite Residuals
+Circular 1-Satellite Residuals
+101 102 103
+Period (days)
+0.0
+0.2
+0.4
+0.6
+0.8Power
+1% FAP
+0.1% FAP
+2-Satellite Residuals
+2-Satellite Residuals
+Fig. 2Periodogram associated with the R V values seen in Figure 1 in the first panel. The other
+panels show periodograms for the residuals of the model fits.
+substantial cloud coverage in this object, with cloudless models providing better fits
+during atmospheric modeling 26.
+Importantly , the target is expected to rotate much faster than late-type
+stars tend to, due to its significantly smaller radius. W e cannot directly
+measure the rotation period from our data and no prior measurements
+exist. The vsinihas been measured to be 9.58 km/s, giving a maximum
+6
+T able 1Best-fit orbital parameters for one- and two-satellite models.
+Period, amplitude, phase, eccentricity, and longitude of periastron are the
+components of a Keplerian equation. Offset is not a physically meaningful
+parameter, it is a constant offset subtracted from the model to align the
+model and R V points. Jitter is a parameter that models instrumental R V
+errors, which is then added in quadrature with the measured R V errors.
+Parameter 1-satellite Fit 2-satellite Fit
+Period 1 (days) 171.112 +0.525
+−0.363 171.454+0.191
+−0.813
+Amplitude 1 (m/s) 318.479 +5.022
+−12.718 305.959+17.532
+−18.540
+Phase 1 (rad) 4.706 +0.083
+−0.053 2.541+3.660
+−2.002
+Eccentricity 1 0.269 +0.013
+−0.037 0.001+0.013
+−0.001
+Longitude of Periastron 1 (rad) 3.459 +0.071
+−0.084 5.647+0.636
+−4.742
+Semi-Major Axis 1 (au) 0.200 +0.001
+−0.004 0.195+0.005
+−0.004
+Msini1 (M Jup) 0.918 +0.011
+−0.045 0.869+0.033
+−0.025
+Period 2 (days) — 87.349 +0.641
+−0.451
+Amplitude 2 (m/s) — 94.970 +19.881
+−18.887
+Phase 2 (rad) — 0.543 +1.806
+−0.543
+Eccentricity 2 — 0.008 +0.006
+−0.008
+Longitude 2 (rad) — 0.352 +5.929
+−0.352
+Semi-Major Axis 2 (au) — 0.125 +0.002
+−0.000
+Msini2 (M Jup) — 0.219 +0.048
+−0.046
+Offset (m/s)−86.778 +5.493
+−5.684 −87.86+7.667
+−3.808
+Jitter (m/s) 1.125 +2.902
+−1.123 2.014+2.041
+−1.983
+logZ−144.323±0.695−141.701±0.691
+rotation period of 0.65 days 26. This is significantly shorter than the long-
+period signal derived in this work. It also demonstrates that there is likely
+not a large rotational signal embedded in the data, as we do not see any
+strong R V changes on timescales as short as the maximum rotation period.
+F or a photometric variability of 0.5%, there is an expected∼50 m/s vari-
+ability , on the order of the residuals of our fits 12. W e do not recover any
+periodic signal within the possible rotation period regime, neither in the
+periodograms nor in the GP modeling we performed.
+Although long-timescale variability driven by magnetic activity cycles
+or large-scale atmospheric circulation cannot be ruled out in principle, it is
+unclear if they could drive such a signal. Such cycles with a period over 1
+year are present in about 5% of non-active M-dwarfs, with only one object
+shown to have correlated R V variations on the order of 6-7 m/s 27. Brown
+dwarfs can exhibit these cycles as well28. While such activity is potentially
+present in CD-35 B, it has not yet been observed, and would need to have
+an R V influence orders of magnitude stronger than has been seen in the
+past in objects of other spectral types.
+At a minimum, the apparent R Vs of CD-35 B show strong periodicity. This
+periodicity is well-modelled by an eccentric Keplerian orbit. With future follow-up
+7
+observations, we hope to further confirm the detection and better characterize the
+orbital elements of the candidate(s). Should this signal prove legitimate, this is the
+first time such a hierarchical system has been observed, with a satellite orbiting a
+substellar object (a brown dwarf in this case), which in turn orbits a star.
+This system is unique in many ways. Although some satellites around
+isolated BDs have been discovered in the past, they were found via direct
+imaging and are on orbits with significantly longer periods than 170
+days 29,30. In terms of hierarchy , perhaps the most comparable system is the
+Proxima Centauri /αCentauri system, which has the largest mass ratio
+between the planet-hosting star and its companion(s). Proxima Centauri
+being∼0.12 M ⊙and both stars comprising theαCentauri binary system
+being∼1 M ⊙ 31, this mass ratio of about 10% is quite similar to the mass
+ratio between CD-35 B and the central star. However, that is a triple sys-
+tem composed of 3 stars, and the planets orbiting Proxima Centauri are
+significantly smaller than the satellite of CD-35 B, so the comparison is
+largely limited to this mass ratio.
+The discovery and characterization of satellites will open many new lines of inves-
+tigation in the realms of exoplanetary science. Planet formation theory already makes
+some predictions regarding satellite formation and statistics which can be refined with
+comparison to a real sample. Dynamicists will have access to a new dimension of
+system hierarchical structure. Although those discovered in this work are likely too
+massive to be viable hosts for it, satellites are also fascinating targets in the search
+for life, as they can receive tidal heating from their host planet, potentially allowing
+them to be habitable beyond classical stellar habitable zones 32.
+The nature of this system prompts an important question: how do we define an
+exomoon? The satellite described here orbits a substellar host, with a minimum mass
+ratio of∼2.5%, and is positioned as the last component in a three-tier hierarchical
+system. These facts would support a moon-like classification. Conversely, both the
+satellites and their primary are unusually massive, placing them in regimes that blur
+the distinctions between moons, planets, and stars.
+The current IAU definition of planet states, ”Objects with true masses
+below the limiting mass for thermonuclear fusion of deuterium (cur-
+rently calculated to be 13 Jupiter masses for objects of solar metallicity)
+that orbit stars, brown dwarfs or stellar remnants and that have a mass
+ratio with the central object below the L4 / L5 instability(M/M central <
+2/(25 +
+√
+621)≈1/25)) are ’planets’, no matter how they formed” 33. This
+definition makes no reference to system hierarchy beyond its direct host
+and explicitly states that planetary-mass objects orbiting brown dwarfs are
+planets. However, the CD-35 2722 system brings into stronger relief the
+difference in the future evolution between B’s satellite and a hypothetical
+planet orbiting A. When this system reaches the same age as the current
+Solar System, the BD is expected to be approximately two orders of mag-
+nitude less luminous, while the central star continues shining, as bright
+as it is now 34,35. This difference between a stellar host (a constant source
+8
+of radiative energy) and a substellar host has deep ramifications for the
+satellite itself, and it may be worth revisiting this aspect of the definition.
+At present, there is no accepted definition of an exomoon, and a single crite-
+rion may prove inadequate, although this classification may also not be apt for this
+satellite. Perhaps we are approaching the limit of language invented to describe the
+Solar System, which is entirely unlike CD-35 2722. In which case, it may be best to
+define a new category for objects like the satellite of CD-35 2722 B, including those
+previously-discovered satellites orbiting BDs. With forthcoming observational facilities
+expected to uncover many similar systems, establishing a clear taxonomy will become
+increasingly important.
+9
+2 Methods
+2.1 Observations and Data Reduction
+The data presented are part of a survey conducted with VLT/CRIRES +, a high-
+resolution cross-dispersed infrared echelle spectrograph, recently upgraded to greatly
+increase wavelength coverage, incorporate new calibration elements, and add a variety
+of other features 11. We have obtained 24 epochs of observations of CD-35 B. The
+spectra have a resolution of∼100,000 and span a wavelength range between 1469 and
+1780 nm. The observations took place from October 2023 through February 2026. In
+order to achieve the S/N necessary (∼25) for this analysis, we required 10-minute
+exposures. They were observed in an AB nodding pattern in order to subtract the
+sky emission contamination that is especially strong with such long exposure times,
+as well as the instrumental background.
+To minimize the potential for stellar contamination, the slit was aligned to be
+perpendicular to CD-35 B’s orbital vector, maximizing the distance between the host
+star and any given position on the slit. Adaptive optics is also employed to sharpen the
+target point-spread function and further reduce contamination. Finally, because CD-35
+B is on such a wide-separation orbit, there should be very little reflected light from the
+host star compared to its intrinsic brightness. Any potential contamination would also
+be reduced by the nodding subtraction, although the increased distance from the host
+star to the other nodding position limits the potential correction. Combining these
+factors, the stellar contamination is likely negligible and does not need to be modeled
+together with the companion’s signal.
+To quantitatively demonstrate the lack of contamination in our data, we fit model
+point-spread functions (PSFs) to the slit viewer (SV) camera images associated with
+our data. For our observation strategy, we guide the telescope on the host star, while
+offsetting the spectrograph slit to the known position of the companion. The SV images
+show the PSF of the host star, as reflected off of a panel surrounding the instrument’s
+two slits. To model the host star PSF, we fit a 2D Moffat function. This function is
+the best approximation of the shape of the AO-corrected PSF.
+Fig. 3 shows the PSF fits to the SV camera images along with a 1D radial projec-
+tion to measure the contamination as a function of angular distance. The night with
+the worst conditions was January 30, 2024 (seeing up to 1.73 arcsec). In that worst
+case scenario, the potential flux ratio between the companion and the contamination
+is∼13%, excluding that which is subtracted in the nodding. The effect of this can
+potentially be seen in Fig. 1. This epoch is the third to last point in the first year of
+observations, which has slightly larger error bars and is lower than the neighboring
+points. Even assuming this reduction in measured R V is due to the contamination,
+this would demonstrate that its influence is, at worst, some tens of meters per second,
+far lower than the measured amplitude of either signal. This PSF is also significantly
+worse than the average, with all other points having an apparent contamination orders
+of magnitude lower.
+10
+Fig. 3Selected SV images associated with our spectra, fit with Moffat model functions. The contrast
+curve in the rightmost panels shows the log-scale H-band flux ratio (∆LogH) between the host star and
+CD-35 B as a function of angular distance from the star, specifically marking the position of the slit.
+This is based on the relative diminishment of the model and the contrast of the star and companion
+given in the discovery paper 7. The first row is the night with the worst observing conditions, and
+shows a maximum contamination of∼15%. The other two selected epochs are under better weather
+conditions. The dark pixels in the center of the real PSF are due to saturation of the detector. These
+points are masked when fit, but not having central pixels does complicate the fit, as can be seen in
+the residual ring for the two good weather observations. This effect should not significantly affect the
+results at separations as distant as the slit.
+To reduce the data, we used the official ESO pipeline, using the cr2res recipes
+(version 1.6.10) [2] . This reduction was performed using the default settings of the
+pipeline.
+When reducing nodding observations, it is common practice to not only subtract
+the nodding frames to remove sky contamination, but also to combine the extracted
+2https://www.eso.org/sci/software/pipelines/cr2res/cr2res-pipe-recipes.html
+11
+spectra into a single combined spectrum in order to improve S/N. In this work, how-
+ever, we choose to use the individual nodding frames as separate observations through
+the R V extraction phase, after which they are binned into a single R V measurement
+per night of observation. This is motivated by the need for a wavelength solution that
+maintains the highest possible accuracy. CRIRES+is not a stabilized instrument, so it
+is not guaranteed that the wavelength solutions between the A and B nodding frames
+are the same, and minute-to-minute drifts are known to exist within the instrument.
+Therefore, we choose to eschew the S/N gain of spectral combination for the ability
+to recalibrate the wavelength solutions separately for the two nodding positions.
+In short, by using the frames separately, we lose R V precision through S/N loss,
+but gain higher-precision wavelength calibrations for each frame. Then, assuming the
+true R V of the target is constant over the short time between the two nodding posi-
+tions, we can bin these two measurements with a weighted mean and associated error
+propagation to produce a single, higher-precision R V measurement for each night. The
+precision gain of this method is approximately 10%, as can be seen in Fig. 4.
+2.2 Radial Velocity Extraction:viper
+To extract the R Vs, we use the R V pipelineviper 17,18 which employs a forward-
+modeling approach. The code offers the option to co-add all spectra to create a telluric-
+free, high S/N template of the target. This template serves as a reference for the
+calculation of the R V values. The creation of the template is an iterative process. In
+the first step, the telluric-corrected spectra are co-added after shifting them into the
+same barycentric rest frame. In a next step, this template can be used as an input for a
+second round of template creation, allowing the code to correct for R V shifts between
+the different observations, improving the next template. The results in this work are
+based on two template iterations, as subsequent iterations showed little to no change
+in the extracted R Vs.
+Since the parameters vary strongly with wavelength, the R Vs are cal-
+culated separately for each spectral order. The final R V is the weighted
+mean of the individual R V values of all spectral orders. The corresponding
+final uncertainty is given by this equation from K¨ ohler et al. (2025)18:
+ϵR V=
+s
+1
+No −1 ·
+P ϵ−2o ·(R Vo −R V)2
+P ϵ−2o
+(1)
+Here,N o is the number of orders included,ϵ o is the R V variance of a given
+order as given by that order’s covariance matrix,RV o is the R V of a given
+order, andRVis the weighted mean R V. F or more details regarding the
+R V calculation, see K¨ ohler et al. (2025)18.
+Inviper, all parameters are optimized simultaneously, including the wavelength
+solution. In our case, it uses the telluric lines as a reference frame, as these lines
+are expected to be stable to about 10 m/s 36. However, not all orders contain suffi-
+cient telluric lines for a high-quality recalibration. These orders are excluded from the
+calculation, as this failed calibration produces highly erratic results.
+12
+0 200 400 600 800
+Barycentric Julian Date - 2460231
+600
+500
+400
+300
+200
+100
+0
+100
+Relative RV
+Nodding Spectra Utilization: Individual RV Binning vs Spectral Combination
+Binned Separate Nodding RVs, mean error = 57.68 m/s
+Spectral Combination RVs, mean error = 60.50 m/s
+Fig. 4Comparison of final R V calculation methods. The blue points are the favored method, in
+which we calculate separate R Vs for both nodding positions, then bin the results. The orange points
+are based on combining the two nodded spectra before calculating the R V. The precision improvement
+with the former method is∼10%, as seen in the mean error in the legend.
+2.3 Keplerian Orbit Fitting:EMPEROR
+After obtaining the R Vs fromviper, they are used as input for the Keplerian orbit-
+fitting codeEMPEROR(see Pe˜ na et al. 2025 for details on its underlying mathematics and
+algorithm) 37. This code employs adaptive parallel tempering MCMC fitting through
+reddemcee 38 to quickly probe the large parameter space of possible orbits. It iterates
+through Keplerian models of different degrees (i.e., one orbiting body, two orbiting
+bodies, etc.) until the Nth Keplerian model is not a significantly better fit than the
+last.
+When usingEMPEROR, we use a different parameterization of the orbital elements
+than the one presented in the results. Instead of directly probing the eccentricity
+(e) and longitude of periastron (ω), as reported, we fit √esinωand √ecosω. This
+generally favors lower-eccentricity orbits and prevents the model from overfitting the
+data with high-eccentricity, short-period orbits in higher order Keplerian models 39.
+High-eccentricity orbits tend to be capable of fitting a Keplerian signal to any given
+dataset, even where none exists. We convert these parameters back to eccentricity
+and longitude of periastron when reporting them, as those quantities are more easily
+conceptualized independently.
+For the initial run, we employ wide uninformative priors to avoid biasing the fit.
+From that run, we identify symmetrical solutions in the posteriors, as the code cannot
+define which signal should be “satellite 1” or “satellite 2”, just that both signals exist.
+We then narrow the period prior for “satellite 1” to only include the strong, long-period
+peak, limiting “satellite 2” to shorter-period signals.
+13
+When we separate these signals into greater than or less than 150 days, we always
+recover the strong∼170 day period in the long regime. However, in the short-period
+regime, there are degeneracies in the posterior, showing multiple potential secondary
+signals. These posteriors are in the first panel of Fig. 5. In order to compare which
+model fits best, we break these posteriors into multiple windows covering each period
+separately in order to get a Bayesian evidence estimation for each solution. There
+are 4 possible solutions at periods of 14 days, 70 days, 88 days, and 115 days. These
+periods are all aliases of each other with our current sampling, due to the two sets of
+observations being almost exactly a year apart. Observing this target again, avoiding
+this∼1 year mean time difference will help break this degeneracy.
+The 14-day period model is somewhat of a special case, as the window encom-
+passing it showed, in itself, a highly multimodal peak around this solution spanning
+13 to 17 days. This leads us to believe that periods this short are simply too diffi-
+cult to constrain with our current dataset. Below this∼20 day period limit, there are
+many solutions which could potentially fit, but these are likely artifacts of our low-
+cadence sampling. Periods that are very short compared to the sampling of the data
+are often capable of resolving the residuals of an imperfect fit, which, in this case, is
+the 1-satellite circular orbit fit. Thus, we reject the models in this period window.
+F or the other three windows, we must rely on the evidence estimations
+to determine the most favored model, as the posteriors are all singular and
+approximately gaussian in these windows. Based on the derived evidences,
+the 88-day model is about 4.5x more likely than the 115-day model, and 6x
+more likely than the 70-day model. While this difference is not negligible,
+it is not sufficient to claim with any degree of certainty a known period
+for the potential secondary signal.
+The full posteriors for all windowed fits are shown in Fig. 5. The best-fit models
+and their residuals are shown in Fig. 6.
+W e further usedEMPERORto search for any additional signals in the R V
+data, which may be correlated to the rotation of the BD or other effects
+independent of an orbiting satellite. W e used Gaussian Processes (GPs) 40
+withcelerite2 41 to search for any signal which could be correlated to
+the rotation of the BD. W e used the Rotation kernel and Simple Har-
+monic Oscillator (SHO) kernel to search for the effects of spots, faculae,
+differential rotation, and granulation 41,42.
+The Rotation kernel is capable of modeling spots, faculae, and dif-
+ferential rotation, all of which have have signals associated with Q0
+hyperparameter values of<10. Our fit recovered a largely flat posterior in
+Q0, favoring larger values up to 10,000, indicating that we do not recover
+any of these rotational signals. Such high values of Q0 mean that the signal
+is best fit with pure sinusoids, which could be degenerate with Keplerian
+solutions. Likewise, we used the SHO kernel to model potential granula-
+tion (or a similar effect, such variable cloud coverage), and again recovered
+flat posteriors in Q spanning1/
+√
+2to 1. If granulation were a strong noise
+factor, the Q value should be within this range, and we identify no strong
+signal here. These GP posteriors are shown in Fig. 7.
+14
+Overall, glean two important insights from this analysis. First, it is less
+likely that the observed R V signal could be caused by intrinsic changes with
+the BD, as we recover no potential signals at appropriate hyperparameter
+values. Second, as we are unable to model the remaining jitter after fitting
+the Keplerians, we thus assume an indepdendent gaussian noise model for
+this work.
+2.4 Orbital Stability Analysis:REBOUND& the Roche Limit
+T o confirm the stability of the proposed satellite system(s), we employed
+the N-body simulation codeREBOUND. The code includes a suite of tools for
+integrating a wide array of system configurations, including the inclusion
+of moons/satellites.
+Initial tests revealed the two-satellite model to be highly unstable, with
+one of the two satellites being ejected in some hundreds of years in most
+configurations. T o test this model, we used the IAS15 integrator, as it can
+accurately simulate this high degree of chaos 43. Looking specifically at the
+BD-satellite component of the system, the only meaningful variable for the
+satellites’ orbits are their inclinations, due to the orbits’ circularity . W e
+examine the parameter space of both inclinations separately , rather than a
+single parameter of their relative inclination, as this allows us to make use
+of the known msiniof both satellites, so that the implied true mass can be
+factored into the stability analysis. Inclination values within 5 ◦ of 0 ◦ and
+180◦ are excluded due to the rapidly increasing mass of the satellite.
+Across this inclination parameter space, we use the MEGNO value to
+determine the stability of the system. This value converges to 2 when
+a system is stable, and is higher for unstable systems. W e integrate the
+BD-satellite system for only 5000 years, as MEGNO is capable of deter-
+mining long-term stability without overly long N-body integrations. W e
+find a single strip of stable configurations, shown in Fig. 8 This shows
+that the two-satellite model is only stable when the two satellites are on
+counter-rotating orbits and are within∼20 ◦ of coplanar. This requirement
+for stability has been observed in exoplanet stability studies in the past,
+specifically in cases of MMR 44. As discussed in the main article, this con-
+figuration is significantly more difficult to form than the 1-satellite model,
+and leads us to disfavor this model.
+This initial analysis only considers the BD-satellite system, ignoring
+the perturbation from the host star. However, we can use this result to
+significantly narrow the parameter space necessary to model the stability
+of the overall system. If the satellites are coplanar, then we are only con-
+cerned with the overall inclination and longitude of their orbits around
+the BD. This leaves a 2-dimension parameter space, covering 0 ◦ to 180 ◦
+in inclination and 0 ◦ to 360 ◦ in longitude. W e cannot make further use
+of symmetry , as it is possible that the stability of the system is affected
+by which satellite is prograde with respect to the BD orbit, and which is
+15
+retrograde. Simulating the entire Star-BD-Satellites system requires sig-
+nificantly longer integration times, as the BD orbital period is around 5000
+years. This means that we cannot as narrowly probe all parameter space,
+and are forced to use much wider bins to avoid an excessive number of
+simulations. W e integrate this configuration for 100,000 years, around 20
+BD orbits, which should be sufficient for the MEGNO value to show that
+the perturbation of the host star can cause the system to be unstable.
+In the lower-resolution stability map, Fig. 9, we find islands of insta-
+bility , when the satellite orbits are approximately coplanar with the BD
+orbit. There are also strips of instability for inclinations that would give a
+nearly face-on orbit, indicating that the satellites have a maximum mass
+for which orbits are stable. These results further challenge the plausibility
+of this model, as even in the regimes where the BD-satellite system is inter-
+nally stable, the star’s influence can destabilize the system on relatively
+short timescales.
+W e now discuss the stability analysis of the one-satellite model. It has
+been shown that coplanar, prograde orbits are the most unstable for satel-
+lites 45. W e can make use of this fact to test the general stability of this
+configuration while ruling out large areas of parameter space. If the sys-
+tem is stable when the satellite is coplanar and prograde, it will also be
+stable in most other configurations. This leaves only a single variable: the
+argument of periapsis. W e therefore simulate this model across an array
+values for the argument of periastron, relative to that of the BD’s to sim-
+plify the geometry . W e integrate this system three times, for 30, 300, 3,000
+orbits. By doing so, we can show longer-term stability . If all three simula-
+tions agree, that shows that the system does not evolve into an unstable
+state over these timescales, and is instead either immediately unstable or
+stable over long timescales. W e find that this system is generally stable
+for most values of this orbital element, although near±115 ◦ we find small
+islands of instability , as can be seen in Fig. 10. While the existence of these
+islands is interesting, and warrants further study , we leave that for a future
+work, as the core result of relevance to this work is the general stability of
+the model. W e do see that the three simulations generally agree in their
+results, indicating that short-term instability is possible, but instability is
+not likely to emerge in the long term. The 3,000 orbit case shows some
+instability around a value of two, but as this integration covers 10% of the
+total system lifetime, without the system experiencing large changes. This
+likely reflects accumulated numerical instability over the long integration,
+rather than dynamical instability in the system.
+WhileREBOUNDis capable of simulating collisions and tides, we exclude
+such effects from the analysis to limit computation times. W e perform such
+calculations ourselves, in order to be sure that the satellite’s orbit is not
+too close to the BD to survive.
+The Roche limit depends on the radius of the host, and the densities of
+both host and satellite. Using isochrones with CD-35 B’s age and mass, we
+16
+find a radius of 1.2 R Jup, and thus 29 g/cm 3 for the mean density 9,46. F or
+the possible satellites, we conservatively estimate that they both have the
+same density as Saturn (0.687 g/cm3). It is impossible to say how accurate
+this approximation is, as we have no information regarding the satellite
+radii, but this should be a realistic underestimate of the true densities.
+If the satellites are outside of this upper limit on the Roche limit at this
+underestimated density , they must also clear this criterion at their true
+densities. W e calculate a maximum Roche limit of 8.4 R CD-35b, which is
+only 0.0064 AU, well below the periapse distance of any satellite in either
+model.
+2.5 Verifying the periodicity of the signal
+On initial inspection, the period of the outer/lone satellite could be seen as suspicious,
+as it is relatively near 182.5 days, half an Earth year. If there are imperfect corrections
+applied to, say, the barycentric velocity or instrument profile 47, this could create a
+false signal with a true period of 365 days, which could be aliased to the 182.5 days by
+sampling. However, we have extensively investigated this possibility and have found no
+correlations between the derived R Vs and the applied barycentric correction. We have
+also looked at atmospheric parameters (seeing, precipitable water vapor, etc), which
+could also be periodic in yearly weather patterns, and again found no correlations with
+our data. The derived large satellite period is also very well-constrained to 169.45+1.1
+−1.06
+days (in the 2-satellite model), meaning 182.5 days is off by approximately 11σ. Thus,
+while this period could seem suspicious, it is highly improbable that it is due to any
+unaccounted for Earth-based effect.
+Further, we compared our results to GLS periodograms made using the model
+parameters fit byviperin conjunction with the R Vs, to see if they shared any peri-
+odicity with the R Vs themselves. No correlation can be found, with no significant
+periodicities present in these parameters, and even the insignificant peaks do not align
+with the derived periods of the satellites. These periodograms can be compared in
+Fig. 11. Specifically, the ”instrument profile” periodogram could be influenced by the
+rotation of the target. We assume that the primary contributor to the line profile is
+instrumental, hence the name, but it is theoretically possible that if there are real
+changes in the line profile of the object, they would manifest here. However, no peri-
+odicity is recovered for this variable, meaning it is unlikely for rotational modulation
+of line profiles to be a significant driver of the R V variation. Of these periodograms,
+the one with the strongest peaks is the one for precipitable water vapor, but those
+peaks are much nearer to an Earth year and its aliases, denoting seasonal weather
+cycles, rather than the periods of our proposed satellites.
+W e have also performed an orbital fit in which we do not combine the
+R V values from the eleven included spectral orders. W e bin the R V values
+for each order across the two nodding frames, but leave each order as a
+separate measurement, giving us 11 measurements in a given night. Indi-
+vidually , these points have significantly higher errors than the combined
+points used for the main analysis. However, by leaving them separate, we
+can see if there exists any order with especially low errors that may be
+17
+too heavily weighted is driving the fit, or if the points are distributed
+about mean values which continue to show periodicity . In this case, the
+latter appears to be correct, as we are able to recover an almost identical
+best-fit model which the orders are dispersed about. The only significant
+difference between the models is a slightly amplified eccentricity in the
+individual-orders case, which is 0.3 instead of 0.27. Both models can be
+seen in Fig. 12, along with these order-separated points. In this plot, it
+can be seen that Order 11 is relatively unstable. Despite this, we include it
+in the main analysis because it is still stable compared to those orders we
+have excluded, and we prefer to err on side of caution and include as many
+orders as possible. This order’s high error measure mitigates its effect on
+the weighted binning, in any case.
+There are four specific epochs that are key to this result, which constitute the
+limited sampling of the lower end of our orbital fits. From our examination, there is
+nothing unique about these points beyond their low R V. They were all taken in excel-
+lent weather conditions, as were many of the points with higher R Vs. The points have
+no outlying instrumental parameters, such as detector temperature, grating position,
+S/N, or telescope position. These points also come in pairs, with each point having a
+correlated low R V point as well. If we exclude any one of these points, we recover the
+exact same signal because of the neighboring point containing the same information
+as the one removed.It is also the case that when we separate each epoch into
+its individual orders, there is clear general agreement on a significantly
+lower R V for these four epochs. While a more complete orbital sampling would
+be ideal, we have found no reason to doubt the validity of these four crucial points.
+18
+a b
+c
+d
+period 2 (days)
+period 2 (days)
+period 2 (days)
+period 2 (days)
+period 2 (days)
+a
+b
+c
+d
+Fig. 5Period posteriors for the main and windowed 2-satellite model fits. The first panel shows all
+the periods recovered for the second signals. The other panels are windowed fits for each of the peaks
+seen in the first panel, and are labeled 1-4 accordingly.19
+All Potential 2-Satellite Models
+Period 2 = 87.35 days Period 2 = 115.81 days
+Period 2 = 69.80 days
+Period 2 = 14.33 days
+Fig. 6All high-evidence 2-satellite models. One can see the reason for distrusting the 14-day model,
+as these high-frequency oscillations would appear more likely to be an artifact of the sampling, rather
+than a true signal we could recover from this data.
+20
+GP + Satellite ModelPure GP Model
+GP Posteriors
+Fig. 7Posteriors for Gaussian Process fitting. The left column shows that we do not successfully
+recover any signals indicative of activity. The right column shows a lack of a meaningful noise model
+when combining GPs with Keplerian model fitting.
+21
+Fig. 8MEGNO map showing the regions of stability for the best-fit two-satellite model. For stable
+systems, the MEGNO converges to 2, while all other values are considered unstable. The x-axis covers
+the inclination angles of the inner satellite, while the y-axis is the inclination of the outer satellite.
+The y-axis is limited to a maximum value of 180ºbecause higher values will result in duplicated
+configurations.
+Fig. 9MEGNO map showing the regions of stability for the two-satellite model, with both satellites
+on coplanar, counter-rotating orbits. Both satellites share the same longitude, with the outer satellite
+being inclined 180 ◦ to the inclination given by the y-axis. The red dots indicate the orbits which are
+coplanar with the BD’s orbit around the star. There we see islands of instability, along with strips of
+instability at nearly face-on orbits.
+22
+Fig. 10MEGNO curve showing the stability of the one-satellite model, depending on the satellite’s
+initial argument of periapsis. The horizontal line marks the value of maximum stability, while a
+maximum value has been placed at 10, at and above which orbits are highly unstable, no matter the
+true MEGNO value.
+23
+0.0
+0.2
+0.4
+0.6
+0.8
+0.1% FAP
+1.6 d
+7.0 d
+14.3 d
+89.1 d
+116.8 d
+171.1 d
+335.5 d
+RV
+0.0
+0.2
+0.4
+0.6
+0.8
+0.1% FAP
+1.6 d
+7.0 d
+14.5 d
+85.0 d
+110.4 d
+155.4 d
+276.8 d
+Instrument Profile
+0.0
+0.2
+0.4
+0.6
+0.8
+0.1% FAP
+1.6 d
+7.0 d
+14.5 d
+93.0 d
+123.2 d
+187.2 d
+374.3 d
+0th Order Normalization Coefficient
+0.0
+0.2
+0.4
+0.6
+0.8
+0.1% FAP
+1.6 d
+7.0 d
+14.5 d
+84.0 d
+110.4 d
+156.2 d
+282.2 d
+1st Order Normalization Coefficient
+0.0
+0.2
+0.4
+0.6
+0.8
+0.1% FAP
+1.6 d
+7.0 d
+14.4 d
+87.2 d
+113.8 d
+167.8 d
+311.0 d
+0th Order Wavelength Calibration Coefficient
+0.0
+0.2
+0.4
+0.6
+0.8
+0.1% FAP
+1.6 d
+7.0 d
+14.5 d
+89.1 d
+118.1 d
+177.3 d
+353.0 d
+1st Order Wavelength Calibration Coefficient
+100 101 102 103
+Period [days]
+0.0
+0.2
+0.4
+0.6
+0.8
+0.1% FAP
+1.6 d
+7.0 d
+14.1 d
+92.8 d
+120.8 d
+190.5 d
+382.7 d
+Precipitable Water Vapor Coefficient
+100 101 102 103
+Period [days]
+0.0
+0.2
+0.4
+0.6
+0.8
+0.1% FAP
+1.6 d
+7.0 d
+14.6 d
+92.7 d
+112.9 d
+153.7 d
+265.9 d
+Non-Water T elluric Abundance Coefficient
+Power
+Generalized Lomb Scargle Periodograms for RV and Mean Non-RV Viper Parameters
+Fig. 11GLS periodograms for allviperoutputs. The first panel is the same as Fig. 2 above, and
+is reiterated for comparison. The spectra have been normalized and wavelength calibrated with 2nd
+order polynomials, hence the paired coefficients, but the 2nd order coefficients in both cases do not
+significantly vary, and are thus omitted for readability. The dashed lines in each panel are the maxima
+located nearest to those shown in the R V panel, to show that none repeat the same periodicities.
+24
+0 100 200 300 400 500 600 700 800
+Barycentric Julian Date - 2460231 (days)
+1000
+750
+500
+250
+0
+250
+500
+750
+1000
+Relative RV (m/s)
+CD-35 2722 B Radial Velocities with Best-Fit Models
+Combined Orders Model
+Individual Orders Model
+Order 2
+Order 5
+Order 6
+Order 7
+Order 8
+Order 10
+Order 11
+Order 12
+Order 15
+Order 16
+Order 17
+Fig. 12R V curve showing each order independently, instead of combined as employed in the main
+analysis. The best-fitting model from the main analysis is compared to the model which best fits
+these points.
+25
+References
+[1] Schneider, J., Dedieu, C., Le Sidaner, P., Savalle, R., Zolotukhin, I.: The extrasolar
+planets encyclopaedia: A database for exoplanets and their host stars. Astronomy
+& Astrophysics532, 79 (2011) https://doi.org/10.1051/0004-6361/201116713
+[2] Lazzoni, C., Zurlo, A., Desidera, S., Mesa, D., Fontanive, C., Bonavita, M., Ertel,
+S., Rice, K., Vigan, A., Boccaletti, A., Bonnefoy, M., Chauvin, G., Delorme, P.,
+Gratton, R., Houll´ e, M., Maire, A.L., Meyer, M., Rickman, E., Spalding, E.A.,
+Asensio-Torres, R., Langlois, M., M¨ uller, A., Baudino, J.-L., Beuzit, J.-L., Biller,
+B., Brandner, W., Buenzli, E., Cantalloube, F., Cheetham, A., Cudel, M., Feldt,
+M., Galicher, R., Janson, M., Hagelberg, J., Henning, T., Kasper, M., Keppler,
+M., Lagrange, A.-M., Lannier, J., LeCoroller, H., Mouillet, D., Peretti, S., Perrot,
+C., Salter, G., Samland, M., Schmidt, T., Sissa, E., Wildi, F.: The search for disks
+or planetary objects around directly imaged companions: a candidate around dh
+tauri b. Astronomy amp; Astrophysics641, 131 (2020) https://doi.org/10.1051/
+0004-6361/201937290
+[3] Oza, A.V., Johnson, R.E., Lellouch, E., Schmidt, C., Schneider, N.,et al.: Sodium
+and potassium signatures of volcanic satellites orbiting close-in gas giant exo-
+planets. The Astrophysical Journal885, 168 (2019) https://doi.org/10.3847/
+1538-4357/ab48e2
+[4] Kipping, D., Yahalomi, D.A.: A search for transit timing variations within the
+exomoon corridor using kepler data. Monthly Notices of the Royal Astronomical
+Society518(3), 3482–3493 (2022) https://doi.org/10.1093/mnras/stac3360
+[5] Kipping, D., Bryson, S., Burke, C., Christiansen, J., Hardegree-Ullman, K., Quar-
+les, B., Hansen, B., Szul´ agyi, J., Teachey, A.: An exomoon survey of 70 cool
+giant exoplanets and the new candidate kepler-1708 b-i. Nature Astronomy6(3),
+367–380 (2022) https://doi.org/10.1038/s41550-021-01539-1
+[6] Mayor, M., Queloz, D.: A Jupiter-mass companion to a solar-type star.
+378(6555), 355–359 (1995) https://doi.org/10.1038/378355a0
+[7] Wahhaj, Z., Liu, M.C., Biller, B.A., Clarke, F., Nielsen, E.L., Close, L.M., Hay-
+ward, T.L., Mamajek, E.E., Cushing, M., Dupuy, T., Tecza, M., Thatte, N.,
+Chun, M., Ftaclas, C., Hartung, M., Reid, I.N., Shkolnik, E.L., Alencar, S.H.P.,
+Artymowicz, P., Boss, A., de Gouveia Dal Pino, E., Gregorio-Hetem, J., Ida,
+S., Kuchner, M., Lin, D.N.C., Toomey, D.W.: The Gemini NICI Planet-finding
+Campaign: Discovery of a Substellar L Dwarf Companion to the Nearby Young
+M Dwarf CD-35 2722.729(2), 139 (2011) https://doi.org/10.1088/0004-637X/
+729/2/139 arXiv:1101.2893 [astro-ph.SR]
+[8] Bowler, B.P., Blunt, S.C., Nielsen, E.L.: Population-level eccentricity distribu-
+tions of imaged exoplanets and brown dwarf companions: Dynamical evidence
+for distinct formation channels*. The Astronomical Journal159(2), 63 (2020)
+26
+https://doi.org/10.3847/1538-3881/ab5b11
+[9] Gratton, R., Bonavita, M., Mesa, D., Zurlo, A., Marino, S., Desidera, S., D’Orazi,
+V., Rigliaco, E., Squicciarini, V., Nogueira, P.H.: Implications of the discovery
+of AF Lep b. The mass-luminosity relation for planets in theβPic Moving
+Group and the L-T transition for young companions and free-floating planets.
+684, 69 (2024) https://doi.org/10.1051/0004-6361/202348012 arXiv:2402.09067
+[astro-ph.EP]
+[10] Lazzoni, C., Desidera, S., Gratton, R., Zurlo, A., Mesa, D., Ray, S.: Detectability
+of satellites around directly imaged exoplanets and brown dwarfs.516(1), 391–
+409 (2022) https://doi.org/10.1093/mnras/stac2081 arXiv:2207.07569 [astro-
+ph.EP]
+[11] Dorn, R.J., Bristow, P., Smoker, J.V., Rodler, F., Lavail, A., Accardo, M., van
+den Ancker, M., Baade, D., Baruffolo, A., Courtney-Barrer, B., Blanco, L., Bru-
+calassi, A., Cumani, C., Follert, R., Haimerl, A., Hatzes, A., Haug, M., Heiter,
+U., Hinterschuster, R., Hubin, N., Ives, D.J., Jung, Y., Jones, M., Kaeufl, H.-
+U., Kirchbauer, J.-P., Klein, B., Kochukhov, O., Korhonen, H.H., K¨ ohler, J.,
+Lizon, J.-L., Moins, C., Molina-Conde, I., Marquart, T., Neeser, M., Oliva, E.,
+Pallanca, L., Pasquini, L., Paufique, J., Piskunov, N., Reiners, A., Schneller, D.,
+Schmutzer, R., Seemann, U., Slumstrup, D., Smette, A., Stegmeier, J., Stempels,
+E., Tordo, S., Valenti, E., Valenzuela, J.J., Vernet, J., Vinther, J., Wehrhahn,
+A.: CRIRES + on sky at the ESO Very Large Telescope. Observing the Uni-
+verse at infrared wavelengths and high spectral resolution.671, 24 (2023)
+https://doi.org/10.1051/0004-6361/202245217 arXiv:2301.08048 [astro-ph.IM]
+[12] Vanderburg, A., Rappaport, S.A., Mayo, A.W.: Detecting exomoons via doppler
+monitoring of directly imaged exoplanets. The Astronomical Journal156(5), 184
+(2018) https://doi.org/10.3847/1538-3881/aae0fc
+[13] Horstman, K., Ruffio, J.-B., Batygin, K., Mawet, D., Baker, A., Hsu, C.-C.,
+Wang, J.J., Wang, J., Blunt, S., Xuan, J.W., Xin, Y., Liberman, J., Agrawal, S.,
+Konopacky, Q.M., Blake, G.A., O, C.R.D., Bartos, R., Bond, C.Z., Calvin, B.,
+Cetre, S., Delorme, J.-R., Doppmann, G., Echeverri, D., Finnerty, L., Fitzgerald,
+M.P., Jovanovic, N., Lopez, R., Martin, E.C., Morris, E., Pezzato, J., Ruane, G.,
+Sappey, B., Schofield, T., Skemer, A., Venenciano, T., Wallace, J.K., Wallack,
+N.L., Wizinowich, P.: R V measurements of directly imaged brown dwarf GQ Lup
+B to search for exo-satellites (2024). https://arxiv.org/abs/2408.10299
+[14] Ruffio, J.-B., Horstman, K., Mawet, D., Rosenthal, L.J., Batygin, K., Wang ,
+J.J. Millar-Blanchaer, M., Wang , J. Fulton, B.J., Konopacky, Q.M., Agrawal,
+S., Hirsch, L.A., Howard, A.W., Blunt, S., Nielsen, E., Baker, A., Bartos, R.,
+Bond, C.Z., Calvin, B., Cetre, S., Delorme, J.-R., Doppmann, G., Echeverri, D.,
+Finnerty, L., Fitzgerald, M.P., Jovanovic, N., L´ opez, R., Martin, E.C., Morris,
+E., Pezzato, J., Ruane, G., Sappey, B., Schofield, T., Skemer, A., Venenciano, T.,
+27
+Wallace, J.K., Wallack, N.L., Wizinowich, P., Xuan, J.W.: Detecting exomoons
+from radial velocity measurements of self-luminous planets: Application to obser-
+vations of hr 7672 b and future prospects. The Astronomical Journal165(3), 113
+(2023) https://doi.org/10.3847/1538-3881/acb34a
+[15] Vanderburg, A., Rodriguez, J.E.: First Doppler Limits on Binary Planets and
+Exomoons in the HR 8799 System.922(1), 2 (2021) https://doi.org/10.3847/
+2041-8213/ac33b4 arXiv:2110.14650 [astro-ph.EP]
+[16] Palma-Bifani, P., Chauvin, G., Bonnefoy, M., Rojo, P.M., Petrus, S., Rodet, L.,
+Langlois, M., Allard, F., Charnay, B., Desgrange, C., Homeier, D., Lagrange, A.-
+M., Beuzit, J.-L., Baudoz, P., Boccaletti, A., Chomez, A., Delorme, P., Desidera,
+S., Feldt, M., Ginski, C., Gratton, R., Maire, A.-L., Meyer, M., Samland, M.,
+Snellen, I., Vigan, A., Zhang, Y.: Peering into the young planetary system AB Pic.
+Atmosphere, orbit, obliquity, and second planetary candidate.670, 90 (2023)
+https://doi.org/10.1051/0004-6361/202244294 arXiv:2211.01474 [astro-ph.EP]
+[17] Zechmeister, M., K¨ ohler, J., Chamarthi, S.: Viper: Velocity and IP EstimatoR
+[18] K¨ ohler, J., Zechmeister, M., Hatzes, A., Chamarthi, S., Nagel, E., Seemann, U.,
+Ballester, P., Bristow, P., Chaturvedi, P., Dorn, R.J., Guenther, E., Ivanov, V.D.,
+Jung, Y., Kochukhov, O., Marquart, T., Nortmann, L., Palsa, R., Piskunov, N.,
+Reiners, A., Rodler, F., Smoker, J.V.: viper: High-precision radial velocities from
+the optical to the infrared: Reaching 3 m/s in the K band of CRIRES + with
+telluric modelling.698, 44 (2025) https://doi.org/10.1051/0004-6361/202553919
+arXiv:2505.08315 [astro-ph.IM]
+[19] Lomb, N.R.: Least-Squares Frequency Analysis of Unequally Spaced Data.39(2),
+447–462 (1976) https://doi.org/10.1007/BF00648343
+[20] Burt, J.A., Dumusque, X., Halverson, S.: Precise Radial Velocities. arXiv e-prints,
+2511–01954 (2025) https://doi.org/10.48550/arXiv.2511.01954 arXiv:2511.01954
+[astro-ph.EP]
+[21] Anglada-Escud´ e, G., L´ opez-Morales, M., Chambers, J.E.: How Eccentric Orbital
+Solutions Can Hide Planetary Systems in 2:1 Resonant Orbits.709(1),
+168–178 (2010) https://doi.org/10.1088/0004-637X/709/1/168 arXiv:0809.1275
+[astro-ph]
+[22] Wittenmyer, R.A., Clark, J.T., Zhao, J., Horner, J., Wang, S., Johns, D.: Truly
+eccentric - I. Revisiting eight single-eccentric planetary systems.484(4), 5859–
+5867 (2019) https://doi.org/10.1093/mnras/stz290 arXiv:1901.08471 [astro-
+ph.EP]
+[23] Rein, H., Liu, S.-F.: REBOUND: an open-source multi-purpose N-body code
+for collisional dynamics.537, 128 (2012) https://doi.org/10.1051/0004-6361/
+201118085 arXiv:1110.4876 [astro-ph.EP]
+28
+[24] Rein, H., Tamayo, D.: Second-order variational equations for N-body sim-
+ulations.459(3), 2275–2285 (2016) https://doi.org/10.1093/mnras/stw644
+arXiv:1603.03424 [astro-ph.EP]
+[25] Su, X.-N., Xie, J.-W., Zhou, J.-L., Thebault, P.: Demographics of exoplanets in
+binaries. i. architecture of s-type planetary systems revealed by the radial-velocity
+sample. The Astronomical Journal162(6), 272 (2021) https://doi.org/10.3847/
+1538-3881/ac2ba3
+[26] Wang, G., Xuan, J.W., Gonz´ alez Picos, D., Zhang, Z., Zhang, Y., Mawet, D.,
+Hsu, C.-C., Wang, J.J., Blake, G.A., Ruffio, J.-B., Horstman, K., Sappey, B.,
+Xin, Y., Finnerty, L., Echeverri, D., Jovanovic, N., Baker, A., Bartos, R., Calvin,
+B., Cetre, S., Delorme, J.-R., Doppmann, G.W., Fitzgerald, M.P., Liberman, J.,
+L´ opez, R.A., Morris, E., Pezzato-Rovner, J., Phillips, C.L., Schofield, T., Skemer,
+A., Wallace, J.K., Wang, J.: Chemical and Isotopic Homogeneity between the
+L Dwarf CD-35 2722 B and Its Early M Host Star.997(2), 195 (2026) https:
+//doi.org/10.3847/1538-4357/ae232f
+[27] Robertson, P., Endl, M., Cochran, W.D., Dodson-Robinson, S.E.: H activity of
+old m dwarfs: Stellar cycles and mean activity levels for 93 low-mass stars in the
+solar neighborhood. The Astrophysical Journal764(1), 3 (2013) https://doi.org/
+10.1088/0004-637x/764/1/3
+[28] Route, M.: The discovery of solar-like activity cycles beyond the end of the main
+sequence? The Astrophysical Journal Letters830(2), 27 (2016) https://doi.org/
+10.3847/2041-8205/830/2/l27
+[29] Chauvin, G., Lagrange, A.-M., Dumas, C., Zuckerman, B., Mouillet, D., Song, I.,
+Beuzit, J.-L., Lowrance, P.: Giant planet companion to 2masswj1207334-393254.
+Astronomy amp; Astrophysics438(2), 25–28 (2005) https://doi.org/10.1051/
+0004-6361:200500116
+[30] Gauza, B., B´ ejar, V.J.S., P´ erez-Garrido, A., Osorio, M.R.Z., Lodieu, N., Rebolo,
+R., Pall´ e, E., Nowak, G.: Discovery of a young planetary mass companion to the
+nearby m dwarf vhs j125601.92-125723.9. The Astrophysical Journal804(2), 96
+(2015) https://doi.org/10.1088/0004-637x/804/2/96
+[31] Turnbull, M.C.: ExoCat-1: The Nearby Stellar Systems Catalog for Exoplanet
+Imaging Missions. arXiv e-prints, 1510–01731 (2015) https://doi.org/10.48550/
+arXiv.1510.01731 arXiv:1510.01731 [astro-ph.SR]
+[32] Heller, R., Williams, D., Kipping, D., Limbach, M.A., Turner, E.,et al.: Forma-
+tion, habitability, and detection of extrasolar moons. Astrobiology14(9), 798–835
+(2014) https://doi.org/10.1089/ast.2014.1147
+[33] Etangs, A., Lissauer, J.J.: The iau working definition of an exoplanet. New
+Astronomy Reviews94, 101641 (2022) https://doi.org/10.1016/j.newar.2022.
+29
+101641
+[34] Marley, M.S., Saumon, D., Visscher, C., Lupu, R., Freedman, R., Morley, C.,
+Fortney, J.J., Seay, C., Smith, A.J.R.W., Teal, D.J., Wang, R.: The sonora brown
+dwarf atmosphere and evolution models. i. model description and application to
+cloudless atmospheres in rainout chemical equilibrium. The Astrophysical Journal
+920(2), 85 (2021) https://doi.org/10.3847/1538-4357/ac141d
+[35] Dieterich, S.B., Simler, A., Henry, T.J., Jao, W.-C.: The solar neighborhood. xlvii.
+comparing m-dwarf models with hubble space telescope dynamical masses and
+spectroscopy*. The Astronomical Journal161(4), 172 (2021) https://doi.org/10.
+3847/1538-3881/abd2c2
+[36] Figueira, P., Pepe, F., Lovis, C., Mayor, M.: Evaluating the stability of atmo-
+spheric lines with harps. Astronomy and Astrophysics515, 106 (2010) https:
+//doi.org/10.1051/0004-6361/201014005
+[37] Pe˜ na R., P.A., Jenkins, J.S.: EMPEROR: I. Exoplanet MCMC parallel temper-
+ing for R V orbit retrieval.704, 323 (2025) https://doi.org/10.1051/0004-6361/
+202554336 arXiv:2511.05331 [astro-ph.EP]
+[38] Pe˜ na R, Pablo A., Jenkins, James S.: Closing the evidence gap: reddemcee, a
+fast adaptive parallel tempering sampler - next-generation ladder adaptation and
+evidence estimators for parallel tempering. AA706, 323 (2026) https://doi.org/
+10.1051/0004-6361/202556609
+[39] Hou, F., Goodman, J., Hogg, D.W., Weare, J., Schwab, C.: An Affine-
+invariant Sampler for Exoplanet Fitting and Discovery in Radial Veloc-
+ity Data.745(2), 198 (2012) https://doi.org/10.1088/0004-637X/745/2/198
+arXiv:1104.2612 [astro-ph.IM]
+[40] Rasmussen, C.E., Williams, C.K.I.: Gaussian Processes for Machine Learning.
+The MIT Press, ??? (2006)
+[41] Foreman-Mackey, D., Agol, E., Angus, R., Ambikasaran, S.: Fast and scalable
+gaussian process modeling with applications to astronomical time series. ArXiv
+(2017)
+[42] Foreman-Mackey, D.: Scalable Backpropagation for Gaussian Processes using
+Celerite. Research Notes of the American Astronomical Society2(1), 31 (2018)
+https://doi.org/10.3847/2515-5172/aaaf6c
+[43] Rein, H., Spiegel, D.S.: IAS15: a fast, adaptive, high-order integrator for gravita-
+tional dynamics, accurate to machine precision over a billion orbits.446(2), 1424–
+1437 (2015) https://doi.org/10.1093/mnras/stu2164 arXiv:1409.4779 [astro-
+ph.EP]
+30
+[44] Gayon, J., Bois, E., Scholl, H.: Dynamics of planets in retrograde mean motion res-
+onance. Celestial Mechanics and Dynamical Astronomy103(3), 267–279 (2009)
+https://doi.org/10.1007/s10569-009-9191-8 arXiv:0902.0428 [astro-ph.EP]
+[45] Domingos, R.C., Winter, O.C., Yokoyama, T.: Stable satellites around extrasolar
+giant planets.373(3), 1227–1234 (2006) https://doi.org/10.1111/j.1365-2966.
+2006.11104.x
+[46] Baraffe, I., Homeier, D., Allard, F., Chabrier, G.: New evolutionary models for
+pre-main sequence and main sequence low-mass stars down to the hydrogen-
+burning limit.577, 42 (2015) https://doi.org/10.1051/0004-6361/201425481
+arXiv:1503.04107 [astro-ph.SR]
+[47] Latouf, N., Wang, S.X., Cale, B., Plavchan, P.: Characterizing and Mitigating
+Telluric Absorption in Precise Radial Velocities. II. A Study of an M2-type Star.
+164(5), 212 (2022) https://doi.org/10.3847/1538-3881/ac947b arXiv:2206.05233
+[astro-ph.EP]
+Author Contributions
+K.H. wrote the manuscript, analyzed the data, and obtained the results, A.Z. con-
+tributed to the writing of the article, conceived the idea, and led the survey. P.P.
+ran theEMPERORanalysis, J.K. assisted with theviperanalysis, S.D., R.G., and C.L.
+worked on the observations and analysis. S.P. contributed target-specific insights and
+contextualization, F.R. and J.S. provided instrument-specific insights, V.d’O., I.C.,
+and I.G. contributed to the observations execution. All the authors reviewed the article
+and provided feedback.
+Competing Interests
+The authors declare no competing interests.
+Materials & Correspondence
+All correspondence and request for materials can be made to Kevin Hoy
+(kevin.hoy@mail.udp.cl).
+31
+Supplemental Information
+A Full R V dataset
+BJD Relative R V (m/s) R V Error (m/s)
+2460230.8690 -63.2 70.8
+2460280.8132 -391.8 42.1
+2460285.8067 -310.4 58.1
+2460300.7913 66.3 60.3
+2460312.5617 -27.1 69.1
+2460318.7713 123.3 50.9
+2460320.6801 88.2 61.8
+2460328.5502 59.5 44.2
+2460339.6561 143.8 53.5
+2460370.5365 110.4 68.0
+2460388.6270 58.6 60.8
+2460600.7588 -437.0 47.8
+2460624.8336 -409.1 47.6
+2460647.8354 -19.9 46.3
+2460660.7900 138.5 62.7
+2460666.7973 154.5 66.5
+2460674.7425 169.5 49.3
+2460683.6364 61.3 45.6
+2460688.6133 225.5 57.0
+2460696.6456 63.2 79.1
+2461030.7490 171.2 86.3
+2461051.5616 108.9 44.3
+2461081.5592 -84.4 54.5
+T able 2Barycentric Julian dates, radial velocities, and their
+correlated errors used in this work.
+32
+B Full one-satellite model fit corner plot
+Fig. 13Corner plot for the derived orbital parameters.
+33
+C Phase-folded best-fitting Keplerian models
+a
+One-Satellite Model
+ Two-Satellite Model
+c Inner Satellite
+b Outer Satellite
+Fig. 14Best-fitting one-satellite and two-satellite models, phase-folded.
+34
+D Projected Model Orbits for Future Observations
+0 200 400 600 800 1000 1200
+Barycentric Julian Date - 2460231 (days)
+400
+300
+200
+100
+0
+100
+200
+300
+400
+Relative RV (m/s)
+2026-03-29
+2026-06-01
+2026-09-18
+2026-11-21
+2027-03-10
+2027-05-13
+CD-35 2722 B Radial Velocities with Best-Fit Models
+1-Satellite Model
+2-Satellite Model
+Extracted RVs
+Fig. 15Best-fitting models projected into the future, to show how they differentiate over time. The
+strongest differences occur near the maxima and minima, and they grow more disparate over time,
+due to the orbits not being in exactly 2:1 MMR. The local maxima and minima for the two-satellite
+model are labelled. While the maxima largely vary in amplitude, the minima more quickly diverge
+in timing from the one-satellite model.
+35

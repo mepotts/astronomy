@@ -7,8 +7,14 @@ draft is a draft; several things below must be resolved before it could be.
 
 ## 1. Word count
 
-1,250 words for the note (title through references), of which the abstract is 145 — inside
-the 1,500 / 150 limits with 250 spare. Reproduce with:
+**1,494 words** for the note (title through references), of which the abstract is 146 —
+inside the 1,500 / 150 limits with **6 words spare**. It was 1,250 on 2026-08-06; the
+2026-08-07 revision spent that margin on correcting the statement of the MPC's criteria in
+§1 and adding two measured results (§3's split of the guard's two halves, §4's zero-of-26
+ground truth), then bought some back by compressing the grid-widening paragraph in §4, which
+is the part least connected to the thesis. Anything added now still has to displace
+something. The counting method is deliberately generous (every numeral in a table cell counts
+as a word), so the true submitted count will be lower. Reproduce with:
 
 ```bash
 python -c "
@@ -28,9 +34,9 @@ conventions will be lower, not higher.
 ## 2. Table, not figure
 
 Stated in the draft's front matter. The short version: the finding is four rates whose
-denominators are the whole argument, plus a second rate (guard rejections *among
-published-criteria passers*) that is the load-bearing number and is unreadable off a bar
-chart. The rejected alternative was a scatter of residual RMS against used-observation
+denominators are the whole argument, plus a second rate (guard rejections *among links our
+own acceptance gate already accepts*) that is the load-bearing number and is unreadable off a
+bar chart. The rejected alternative was a scatter of residual RMS against used-observation
 fraction; it shows the mechanism well but carries no denominators and answers a weaker
 question. §3 of the draft recovers most of it in two sentences.
 
@@ -58,6 +64,18 @@ Line numbers are as of this writing; section numbers are stable.
 
 ### Numbers in the draft that are **not** in any `M*-RESULTS.md`
 
+> **Correction, 2026-08-07 — read before quoting any "published criteria" figure below.**
+> Throughout this file, "published criteria" means whatever `gates.post_fit_gate` rejected.
+> That function is **our** gate and is stricter than the MPC's published rule on three
+> counts: it applies the 0.25″ RMS ceiling unconditionally where the MPC applies it only as
+> one conjunct of an arc-length bullet; it scopes the σ block to exactly-three-night links
+> where the MPC has a separate bullet for more than 3 nights; and it never implemented the
+> published `e < 0.5`. **The measurements below are unchanged and correct — they measure our
+> gate.** Only the label is wrong. **The draft itself was relabelled on 2026-08-07** and now
+> says "our acceptance gate" throughout, with §1 stating the MPC's actual conjunctive rule;
+> this file's own tables below still use the old wording and are left as the record of what
+> was measured. See `src/itf_linker/fit/gates.py`.
+
 Columns 5 and 6 of Table 1, and all of §3, are derived here from the per-fit records
 (`fits.outcomes[]`) in the four report JSONs. Method: a converged fit "meets all published
 criteria" iff every entry in its `gate_reasons` is one of the guard's own reason strings
@@ -80,9 +98,37 @@ Derived figures used in §3, all from `m4-new.json`:
 - per-submitted-link rejection rates 59/975 = 6.1%, 4,413/13,618 = 32.4%,
   9,383/40,623 = 23.1% (§4 of the draft).
 
-The scripts that produced these are throwaway and live in the session scratchpad, not in the
-repo. **If the note is ever submitted, they should be committed** so column 6 is reproducible
-by a reader.
+~~The scripts that produced these are throwaway and live in the session scratchpad.~~
+**Committed 2026-08-07 as `scripts/table1_guard_rates.py`**, which regenerates all six columns
+of Table 1 from the four archived reports and self-checks each row against that run's own
+independently-computed `passed_all_gates`. All four rows reproduce. `scripts/rescore_gates.py`
+re-derives the funnel under either gate from the on-disk fits, and
+`scripts/guard_vs_confirmed.py` produces the zero-of-26 ground-truth result in §4, so every
+derived number in the note is now reproducible from the repo.
+
+**And from outside it.** The reports those scripts read are 157 MB and cannot live in git, so
+a reader could inspect the code and not run it. `scripts/build_archive.py` assembles the
+missing half into a **35.4 MB deposit** — the four reports gzipped (~7.5x), the M3 link table,
+the committed snapshot delta chain, and one projection of the newest key set — with a
+`MANIFEST.json` carrying sha256 for all 28 files and a README. The layout mirrors the repo's,
+so the three analysis scripts run against the unpacked deposit with their default arguments.
+
+Verified by running them against the deposit alone: Table 1 reproduces to the digit and
+self-checks on all four rows; the ground-truth result returns the same 26 confirmed links,
+0 guard false rejections, 6 kept by our gate against 14 by the MPC's rule.
+
+Building it found a gap that reading would not have: the survival half of the ground-truth
+test reads the newest snapshot's key set, which is 178 MB and excluded, so the deposit could
+not run that script at all. It now ships `desigs.parquet` — `SELECT DISTINCT desig` over that
+key set, 13.4 MB against 178 — and `confirmed_link_keys` prefers a real key set when present
+and falls back to the projection otherwise.
+
+**Not published.** Building and verifying is reversible; minting a DOI is not. The deposit is
+ready to attach to a GitHub release or a Zenodo record whenever that call is made.
+
+**It found one error while doing it.** 288/497 = **57.9477%**, which is 57.9% to one decimal,
+not the **58.0%** the draft carried in both its abstract and Table 1. Corrected in both
+places. The other three rates are right: 4/132 = 3.03%, 983/1,237 = 79.47%, 313/431 = 72.62%.
 
 ---
 
@@ -112,16 +158,18 @@ by a reader.
    | M4 new | 11,113 | 9,383 | 9,876 | 6,311 | 8,590 |
    | M4 old | 1,738 | 874 | 1,307 | 932 | 760 |
 
-   Note the σ column is not an independent comparator: those limits apply only to
-   exactly-three-night links, and a fit can fail them *because* it fitted a subset. That is
+   Note the σ column is not an independent comparator: *our gate* applies those limits only
+   to exactly-three-night links, and a fit can fail them *because* it fitted a subset. That is
    also why the draft compares against the RMS ceiling, which applies to everything.
 5. **`m4-new.json` `fits.rms_le_0.25` = 4,801; the true count is 4,802.** Cause:
    `pipeline.py` l. 190 uses `(o.fit.rms_residual or 9e9) <= 0.25`, so an RMS of exactly
    `0.0` is falsy and is replaced by 9e9. Exactly one record is affected — `lnk0mj2`, which
    used 3 of 12 observations and reports RMS 0.0. It fails both the three-night σ gate and
    the subset guard, so **no conclusion anywhere changes**; but the draft says 4,802 where
-   the report says 4,801 and the difference is this. **Not fixed here** — `src/` belongs to
-   another agent this session. Worth a one-character fix (`is None`) later.
+   the report says 4,801 and the difference is this. **Fixed 2026-08-07** in both
+   `fit/pipeline.py` and `link/run.py`, with a test. The stored `m4-new.json` still says
+   4,801 — it was written by the old code — so the draft's 4,802 is right and any *re-run*
+   will now agree with it.
 
 ---
 
@@ -225,25 +273,83 @@ Ordered roughly by how much damage each does.
     on the unpushed `advance-portfolio` branch and `main` does not contain M4. There is no
     DOI. A Zenodo deposit of the pipeline **and the four report JSONs** would be needed
     before the availability statement in the draft is true.
-14. **The reference list is unverified.** Gray (Find_Orb) and the MPC criteria URL are safe.
-    The HelioLinC citation (Holman, Payne, Blankley, Janssen & Kuindersma 2018, AJ, 156, 135)
-    and FindPOTATOs (Nugent, Tan & Bauer 2025, PSJ, 6, 18 — DOI 10.3847/PSJ/ad9c6d, from
-    `CITATION.cff`) were written from repository metadata and **must be checked against ADS**
-    before submission. The draft calls the linker "HelioLinC-style", which is accurate as a
-    description of the approach and should not be read as a claim to use that codebase.
+14. ~~**The reference list is unverified.**~~ **Verified 2026-08-07, and two errors were in
+    it** — both traceable to the repository metadata the list was written from rather than
+    from the journals.
+
+    - **Holman, Payne, Blankley, Janssen & Kuindersma 2018, AJ, 156, 135** — correct as
+      cited. Bibcode `2018AJ....156..135H`, DOI `10.3847/1538-3881/aad69a`, AJ 156(3), 135.
+    - **Nugent, Tan & Bauer 2025, PSJ, 6, 18** — volume and article number correct, but the
+      second author's initial was wrong (**Tan, N.** — Nicole J. Tan, not "Tan, A."), and
+      the DOI carried in `CITATION.cff`, `10.3847/PSJ/ad9c6d`, **404s**. The real one is
+      **`10.3847/PSJ/ad94eb`** (PSJ 6(1), 18; arXiv:2501.12922). Both fixed in the draft and
+      in `CITATION.cff`, which also had "Tan, Alissa" and was missing the HelioLinC
+      reference entirely — that is now added with its DOI.
+    - Gray (Find_Orb) and the MPC criteria URL are unchanged and were already right; the MPC
+      URL was corrected separately (the `/submissions/` path 404s).
+
+    **Not yet done:** the draft's reference list still carries no DOIs, because the note is
+    at 1,499 of 1,500 words and two DOI strings do not fit. Adding them at submission means
+    cutting roughly ten words elsewhere. The draft calls the linker "HelioLinC-style", which
+    is accurate as a description of the approach and should not be read as a claim to use
+    that codebase.
 
 ---
 
 ## 7. If this goes further
 
-- Run the guard at 0.6 / 0.7 / 0.9 and report the curve — cheap, and it converts the
-  single most obvious objection into a measurement.
-- Split the two halves of the guard (used fraction vs used nights) in the table.
+- ~~Run the guard at 0.6 / 0.7 / 0.9 and report the curve.~~ **Done 2026-08-07 —
+  `scripts/guard_threshold_curve.py`, and the answer is better than expected.** Both halves
+  of the guard are reconstructible from the stored per-fit records, so no refitting was
+  needed; recomputing at 0.8 returns 9,383, matching what `m4-new.json` recorded, which is
+  the check that the reconstruction is faithful.
+
+  | used-fraction threshold | rejected of 11,113 converged | rejected of the 1,237 gate-passers | confirmed links rejected |
+  |---:|---:|---:|---:|
+  | 50% | 8,508 (76.6%) | 612 (49.5%) | 1 of 26 |
+  | 60% | 8,598 (77.4%) | 643 (52.0%) | 1 of 26 |
+  | 70% | 8,982 (80.8%) | 776 (62.7%) | 1 of 26 |
+  | **80% (shipped)** | **9,383 (84.4%)** | **983 (79.5%)** | **1 of 26** |
+  | 90% | 9,540 (85.8%) | 1,038 (83.9%) | 1 of 26 |
+  | 100% | 9,582 (86.2%) | 1,046 (84.6%) | 1 of 26 |
+
+  **The ground-truth column is flat across the whole range**, and that is the finding. The
+  choice of 0.8 — the note's most obvious soft spot — costs nothing against ground truth
+  anywhere between 0.5 and 1.0. The single confirmed link the guard touches, `lnk0caf`, uses
+  **7 of 7 observations**, so it passes the fraction half at *every* threshold; it is caught
+  by the *nights* half, and it was already failing the acceptance gate on RMS 0.766″ and all
+  four σ limits. So the guard's arbitrary-looking number is not what would discard a real
+  link, and the referee question "why 0.8?" has a measured answer rather than a defence.
+
+  **Not in the draft**, which is at 1,499 of 1,500 words. Adding even a one-sentence version
+  ("rejection rises from 76.6% to 86.2% across 0.5–1.0 while the ground-truth cost stays at
+  1 of 26") costs ~35 words and would have to displace something — most plausibly part of
+  §4's provenance discussion. That is an authorial call, not a mechanical one.
+- ~~Split the two halves of the guard (used fraction vs used nights) in the table.~~
+  **Measured 2026-08-07, and it went into §3 of the draft rather than the table** — it turned
+  out to be a mechanism result, not a bookkeeping one. Rejections decompose exactly (the
+  parts sum to each run's recorded total):
+
+  | run | converged | guard | fraction only | nights only | both |
+  |---|---:|---:|---:|---:|---:|
+  | m1-report (survey-made) | 917 | 59 | 11 | 28 | 20 |
+  | m3-fits (1.4–5.6 AU) | 5,950 | 4,413 | 509 | 126 | 3,778 |
+  | m4-new (0.55–50 AU) | 11,113 | 9,383 | 929 | 193 | 8,261 |
+  | m4-old (older slice) | 1,738 | 874 | 226 | 15 | 633 |
+
+  On grid-made associations **86–88% fail both halves at once**, and on `m4-new` 90% lose the
+  three-night span altogether. That is the difference between "the fit dropped a few
+  outliers" and "the fit dropped whole nights", and it is the second reading that supports
+  the paper's mechanism. On survey-made associations (row 1) the pattern is quite different
+  — nights-only exceeds fraction-only — which is consistent with those being real objects
+  whose arcs are merely thin.
 - Re-fit a sample with a second OD code.
-- Commit the derivation scripts for Table 1 columns 5–6.
+- ~~Commit the derivation scripts for Table 1 columns 5–6.~~ **Done — `scripts/table1_guard_rates.py`.**
 - Decide whether the older-slice row belongs in the table at all; it is the honest row and
   the confusing one.
-- Correct the sentence in `M4-RESULTS.md` §9 identified in §4 item 4 above. **Not done
-  here** —
-  the `M*-RESULTS.md` files belong to another agent this session — but it is a factual
-  error in the milestone report and it is the one sentence a reader would most likely quote.
+- ~~Correct the sentence in `M4-RESULTS.md` §9 identified in §4 item 4 above.~~ **Already
+  done on 2026-08-05**; this item was stale. Checking it on 2026-08-07 did turn up two more
+  things in the same block, both now fixed: it gave the RMS-ceiling count as **6,312** where
+  it is **6,311** (the one-record difference is the `(rms or 9e9)` falsy-zero bug, so that
+  bug had propagated a wrong digit into a milestone report), and it called our acceptance
+  gate "the published criteria" throughout.

@@ -1,0 +1,1457 @@
+<<<PAGE 1>>>
+Preprint typeset using L ATEX style emulateapj v. 12/16/11
+DETECTING EXOMOONS VIA DOPPLER MONITORING OF DIRECTLY IMAGED EXOPLANETS
+Andrew V anderburg1,†, Saul A. Rappaport 2, and Andrew W. Mayo 3,4
+ABSTRACT
+Recently, Teachey, Kipping, and Schmitt (2018) reported the detection of a candidate exomoon,
+tentatively designated Kepler-1625b I, around a giant planet in the Kepler ﬁeld. The candidate
+exomoon would be about the size and mass of Neptune, considerably larger than any moon in our Solar
+System, and if conﬁrmed, would be the ﬁrst in a new class of giant moons or binary planets. Motivated
+by the large mass ratio in theKepler-1625b planet and satellite system, we investigate the detectability
+of similarly massive exomoons around directly imaged exoplanets via Doppler spectroscopy. The
+candidate moon around Kepler-1625b would induce a radial velocity signal of about 200 m s−1 on its
+host planet, large enough that similar moons around directly imaged planets orbiting bright, nearby
+stars might be detected with current or next generation instrumentation. In addition to searching
+for exomoons, a radial velocity survey of directly imaged planets could reveal the orientations of the
+planets’ spin axes, making it possible to identify Uranus analogs.
+Subject headings: planetary systems, planets and satellites: detection
+1. INTRODUCTION
+Exomoons, or moons orbiting planets around stars
+other than our own Sun, are hard to detect. It is a
+challenge, in fact, to even detect the extrasolar planets
+which might host these moons – only in the last three
+decades has astronomical instrumentation advanced to
+the point where exoplanets could be conﬁdently claimed
+(Campbell et al. 1988; Latham et al. 1989; Wolszczan &
+Frail 1992; Mayor & Queloz 1995). Exoplanets are of-
+ten detected by measuring small signals in light coming
+from their host stars – such as low-amplitude periodic
+modulations in the radial velocity (RV) of the host star
+(e.g. Mayor & Queloz 1995), small dimmings in the host
+star’s brightness as the planet transits, passing in front
+of the star in our line of sight (e.g. Charbonneau et al.
+2009), or perturbations to the gravitational potential in a
+system from a planet, illuminated through gravitational
+microlensing (e.g. Bond et al. 2004). In rare cases, it
+is possible to actually take images (and spectra) of a
+planet by angularly resolving the planet and the star
+using adaptive optics (AO) imaging (e.g. Marois et al.
+2008). Advances in adaptive optics and the next genera-
+tion of extremely large telescopes promise to make these
+directly imaged planets more common (e.g. Quanz et al.
+2015).
+Detecting exomoons orbiting these planets adds an ex-
+tra level of diﬃculty because, in general, moons con-
+tribute only tiny perturbations on top of the already
+small signals caused by exoplanets. So far, there are nu-
+merous proposed methods for detecting exomoons, rang-
+ing from measuring photocenter motion of a directly im-
+aged but unresolved planet/moon system (Cabrera &
+1 Department of Astronomy, The University of Texas at
+Austin, Austin, TX 78712, USA
+2 Department of Physics, and Kavli Institute for Astrophysics
+and Space Research, M.I.T., Cambridge, MA 02139, USA
+3 DTU Space, National Space Institute, Technical University
+of Denmark, Elektrovej 327, DK-2800 Lyngby, Denmark
+4 Centre for Star and Planet Formation, Natural History Mu-
+seum of Denmark & Niels Bohr Institute, University of Copen-
+hagen, Øster Voldgade 5-7, DK-1350 Copenhagen K.
+† NASA Sagan Fellow, avanderburg@utexas.edu
+Schneider 2007; Agol et al. 2015), to detecting tran-
+sits of self-luminous planets by their moons 6 (Cabrera &
+Schneider 2007), to observing changes in the polarization
+signature of giant exoplanets (Sengupta & Marley 2016).
+Today, however, the most sensitive searches for exomoons
+look for small perturbations to transit light curves from
+stars hosting giant transiting planets (e.g. Kipping et al.
+2013, 2015b; Hippke 2015; Teachey et al. 2018). A moon
+orbiting a transiting planet would cause small variations
+in the timing and duration of transits of the planet across
+the stellar host (Sartoretti & Schneider 1999; Kipping
+2009). Moons would also block starlight themselves, per-
+turbing the shape of transits and potentially increasing
+the total transit duration. It is possible to identify ex-
+omoon candidates by detecting changes to the average
+shape of the host planets’ transits (Heller 2014), but the
+most sophisticated searches for exomoons today involve
+full photo-dynamical modeling of light curves of stars
+hosting transiting planets using specialized codes (Kip-
+ping et al. 2012).
+Recently, Teachey et al. (2018) reported perhaps the
+strongest yet exomoon candidate around a giant planet
+in the Kepler ﬁeld, Kepler-1625b7. A photodynamical
+ﬁt to three transits of the planet observed by Kepler
+during its original mission suggests that the candidate
+moon, Kepler-1625b I, is about the size and mass of Nep-
+tune. While the detection is tentative, and historically,
+exomoon candidates have not survived further scrutiny
+(Cabrera et al. 2014; Kipping et al. 2015a), the candidate
+around Kepler-1625b has so far passed standard tests in-
+cluding cross-validation between diﬀerent data segments
+and careful inspection of pixel-level Kepler data. The
+inferred orbit of the moon is physically plausible, far
+enough from the planet to avoid Roche lobe overﬂow,
+and close enough to remain dynamically stable. Further-
+6 If a moon is found to transit its planet, even more could be
+learned by observing the Rossiter McLaughlin eﬀect as the moon
+transits its host planet (Heller & Albrecht 2014).
+7 Kepler-1625b was identiﬁed as a transiting planet candidate
+by the Kepler pipeline (Mullally et al. 2015) and subsequently sta-
+tistically validated by Morton et al. (2016).
+arXiv:1805.01903v2  [astro-ph.EP]  11 Sep 2018
+
+<<<PAGE 2>>>
+2 Vanderburg, Rappaport, and Mayo
+TABLE 1
+Summary of Relevant Radial Velocity Signals
+Section Signal Self-Luminous Reﬂected-Light RV Timescale
+Planets Planets Amplitude
+2.1 Exomoon Reﬂex Motion Yes Yes Up to ∼ 1 km s−1 days to months
+2.2 Planet Orbit Yes Yes ∼ 5− 50 km s−1 years to decades
+2.3 Planetary Illumination No Yes Up to ∼ 10 km s−1 same as planet’s orbit
+2.4 Planetary Activity Yes Yes (lower amplitude) Up to ∼100 m s−1 hours to days
+2.5 Peak-pulling by Exomoon Maybe Yes similar to moon’s fraction of moon’s orbit
+orbital motion near conjunction phases
+2.6 Disk Clump Occultation Maybe No Up to ∼ 100 m s−1 Aperiodic variations
+over days to weeks
+more, the inferred masses of both the moon and planet
+from the photodynamical ﬁt are consistent with empiri-
+cally determined mass/radius relationships. The candi-
+date signal was therefore compelling enough to warrant
+follow-up observations with the Hubble Space Telescope,
+which were executed in October 2017, and which may
+either conﬁrm or refute the proposed moon scenario.
+If the candidate exomoon around Kepler-1625b is con-
+ﬁrmed by Hubble observations, it would be a historic dis-
+covery. In addition to being the ﬁrst moon (or binary
+planet, depending on one’s deﬁnition) discovered around
+a planet outside our solar system, it would be the ﬁrst
+in a new class of massive moons (Heller 2018), larger
+than most of the planets known to exist in our galaxy
+(Fressin et al. 2013). While a priori, the discovery of an
+object so diﬀerent from anything found in our solar sys-
+tem might seem unlikely, historically exoplanet searches
+have yielded one surprising result after another, from hot
+Jupiters (Mayor & Queloz 1995) to multi-planet systems
+orbiting pulsars (Wolszczan & Frail 1992). These dis-
+coveries have shown that searches in new regimes, even
+for objects with no known analogs within our own solar
+system, can bear fruit (Struve 1952).
+Here, we propose that massive exomoons similar to
+Kepler-1625b I might be detected by radial velocity mon-
+itoring of directly imaged planets. Recently, signiﬁcant
+progress has been made in detecting thermal light from
+hot exoplanets using high-resolution near infrared spec-
+trographs (Snellen et al. 2014; Bryan et al. 2018; Schwarz
+et al. 2016; Hoeijmakers et al. 2018). The detection
+of spectral features at high resolution makes it possi-
+ble to measure the radial velocity of the planets them-
+selves. While others have previously discussed detecting
+exomoons with radial velocity observations of directly
+imaged planets (Hook 2005; Cabrera & Schneider 2007;
+Heller 2016; Lillo-Box et al. 2018), here we quantitatively
+assess the various RV signals one might expect to detect
+when observing directly imaged planets. This paper is
+organized as follows. In Section 2 we describe and esti-
+mate the RV signals induced by exomoons on their host
+planets as well as other “nuisance” signals due to the
+planets’ orbital motion, changes to the planets’ illumina-
+tion, and inhomogeneities on the planets’ surfaces. We
+ﬁnd that the signals of giant, Kepler-1625b I-like exo-
+moons should either be easily separable from or domi-
+nate over nuisance signals, making their detection astro-
+physically plausible. In Section 3, we estimate the fea-
+sibility of measuring radial velocities with high enough
+precision to detect RV signals caused by massive orbit-
+ing exomoons and conclude that massive moons could
+be detected around bright directly imaged planets with
+present-day instrumentation8. In Section 4, we discuss
+the potential impact of a radial velocity exomoon search
+and point out that a Doppler monitoring program aimed
+at detecting exomoons would naturally yield interesting
+additional results even if no exomoons are detected. Fi-
+nally, in Section 5, we summarize our results and their
+implications.
+2. RELEVANT RADIAL VELOCITY SIGNALS
+In this section we discuss the various radial velocity
+signals which might be present in observations of directly
+imaged giant planets. We summarize the diﬀerent signals
+in Table 1 and show an example of how these signals
+might present for a moon-hosting exoplanet imaged in
+reﬂected light in Figure 1.
+2.1. Reﬂex Motion from an Exomoon
+A moon orbiting an exoplanet will induce a Keplerian
+radial velocity reﬂex motion on the planet. The radial
+velocity semiamplitude of the Keplerian signal, Kp, in-
+duced by a moon with mass m$ on a planet with mass
+mp is given by:
+Kp =
+[
+2πG
+P$(1−e2
+$)3/2
+m3
+$ sin3i$
+(mp +m$)2
+]1/3
+(1)
+where G is Newton’s gravitational constant, e$ is the
+orbital eccentricity, and i$ is the orbital inclination. If
+we assume circular orbits and take the planet’s mass to
+be much larger than the moon’s mass (mp >>m $), the
+expression for the RV semiamplitude reduces to:
+Kp≈
+[ 2πG
+Pm 2p
+]1/3
+m$ sini$ (2)
+Table 2 lists the Solar System moons which induce
+the largest RV semiamplitude on their host planet.
+While most moons in the Solar System cause only low-
+amplitude radial velocity reﬂex motion on their host
+planets, a handful of the more massive moons (in par-
+ticular, Charon and Earth’s moon) can induce signals of
+tens of meters per second.
+8 In particular, we show that detecting massive exomoons could
+be feasible using a high-resolution infrared echelle spectrograph be-
+hind a modern high-contrast adaptive optics system on an 8m class
+telescope. While there is not yet such a spectrograph/AO combi-
+nation, the major technical hurdles necessary for the observations
+have been overcome.
+
+<<<PAGE 3>>>
+Radial Velocity Detection of Exomoons 3
+0 100 200 300
+Time (days)
+−40
+−20
+0
+20
+40
+Radial Velocity (km s−1 )
+Planet Orbital Velocity
+Moon−Induced Reflex Velocity
+Planetary Illumination Effect
+Total Radial Velocity
+Fig. 1.— Simulated RV signals of a hypothetical directly imaged exoplanet illuminated by reﬂected light from its host star. The planet is
+the mass and radius of Jupiter, and has a rotation period of 18 hours. The various components of the RV signal are shown as thin colored
+lines, and the total RV signal for the planet is shown as a thick black line. The planet orbits a sun-like star in a 360 day period and hosts
+a Neptune-mass exomoon in a 5 day orbit. The RV contribution due to the varying illumination of the planet is calculated for a planet
+with an orbital inclination of 85 ◦, with the spin angle ξ =60◦. The planetary activity contribution for this particular planet, assuming
+photometric variations similar to Neptune, is smaller than the width of the curves.
+TABLE 2
+Largest R V Signals From Solar System Moons
+Moon Planet Orbital RV Semi-
+Name Name Period (days) Amplitude (m s −1)
+1. Charon Pluto 6.39 21.91
+2. Moon Earth 27.32 12.46
+3. Titan Saturn 15.95 1.32
+4. Triton Neptune 5.88 0.92
+5. Ganymede Jupiter 7.16 0.85
+6. Io Jupiter 1.77 0.82
+7. Callisto Jupiter 16.69 0.46
+8. Europa Jupiter 3.55 0.35
+9. Titania Uranus 8.71 0.14
+10. Oberon Uranus 13.46 0.10
+Note. — Moon data are taken from https://ssd.jpl.nasa.
+gov/?sat_phys_par and https://ssd.jpl.nasa.gov/?sat_elem.
+If real, the candidate exomoon around Kepler-1625b
+would cause a far larger RV signal on its host planet than
+the small moons in our Solar system. A Neptune-mass
+moon orbiting a 10 MJ planet with a 1.8 day orbital pe-
+riod9 like Kepler-1625b I should induce a radial velocity
+signal on its host planet of Kp≈ 200 m s−1. While the
+RV semi-amplitude induced by Kepler-1625b I is large,
+it is by no means the extreme. If this same moon were
+found orbiting a planet with the mass of Jupiter, it could
+induce an RV semiamplitude as large as 900 m s−1, and
+if the moon were orbiting near its Roche limit ( P≈ 10
+hours), the RV semiamplitude could be boosted by an-
+other 50%. Kepler-1625b I-like moons are not the only
+9 The 1.8 day orbital period is estimated from the reported semi-
+major axis and planet mass from the Teachey et al. (2018) photo-
+dynamical ﬁts.
+class which might induce large RV semiamplitudes; an
+Earth-mass exomoon in a similar orbit around a Jupiter-
+mass planet would induce a signal with an amplitude of
+approximately 50 m s−1, while a rocky super-Earth-sized
+moon (analogous to super-Earth planets like LHS 1140 b,
+Dittmann et al. 2017) in a 2 day orbit around a Jupiter-
+mass planet could induce a signal upwards of 300 m s−1.
+In favorable conditions, rocky exomoons like these might
+be habitable (Hill et al. 2018).
+Thanks to advances in instrumentation and data pro-
+cessing techniques (Butler et al. 1996; Mayor et al. 2003),
+in the last few decades it has become possible to de-
+tect RV signals with semiamplitudes as small as about
+1 m s−1 (e.g. Motalebi et al. 2015) around stars brighter
+than about V=10 th magnitude, and future instruments
+are being designed with the goal of remaining stable at
+the level of 10 cm s−1. While achieving RV precision of a
+few meters per second or better in spectroscopic observa-
+tions of directly imaged exoplanets is likely out of reach,
+instrumental stability should not be a limiting factor in
+RV searches for exomoons, which can induce RV varia-
+tions considerably larger than those routinely detected
+with precise Doppler spectroscopy.
+The orbital periods of Solar System moons range
+widely from the 7 hour orbits of Naiad about Neptune
+and Metis around Jupiter to the Neso’s 27 year orbit
+around Neptune, but the most massive moons tend to
+have a more narrow range of orbital periods. Among the
+17 Solar system moons with mass greater than 10 20 kg,
+the orbital periods range from about 1.4 days to 80 days.
+The estimated 1.8 day orbital period of Kepler-1625b I
+also falls within this range.
+2.2. Orbit about the Host Star
+
+<<<PAGE 4>>>
+4 Vanderburg, Rappaport, and Mayo
+Fig. 2.— Geometry used in analytic description of the planetary
+illumination RV eﬀect. The planet is shown as a sphere being
+illuminated by a light source along the X axis, which is observed
+by an observer in the X−Y plane at angle α. The planet is
+rotating with an angular momentum vector in the direction of the
+Z axis; the color of the planet represents the line-of-sight projected
+rotational velocity at each point on the surface. The integration
+is performed over the polar angle θ and azimuthal angle φ. The
+setup is adapted from that of Lester et al. (1979).
+The short-period radial velocity signal of an exomoon
+induced on its host planet will be overlaid on the longer-
+period Keplerian radial velocity signal of the planets’ own
+orbit around its host star. A planet’s radial velocity sig-
+nal from its orbit about a star with mass M⋆ in an orbit
+with period Po has a semi-amplitude Ko given by:
+Ko≈
+[2πGM⋆
+Po
+]1/3
+sinio (3)
+where io is the inclination of the planet’s orbit about
+the host star. The amplitude of this signal is large;
+for Kepler-1625b, the semiamplitude should be about 33
+km s−1, and for the directly imaged planetβ Pictoris b10,
+the semiamplitude should be about 13 km s −1. Because
+this signal is strictly periodic and on a much longer pe-
+riod than any moon signals, it will be straightforward to
+model away the long-term orbital signal to detect short-
+period moon signals. The typical orbital periods for di-
+rectly imaged planets will be years to decades, far longer
+than the typical moon orbital periods of days to weeks.
+2.3. Planetary Illumination Eﬀect
+Planets which are detected in reﬂected light (and are
+not self-luminous) will show an additional long-period
+signal as the host star’s light illuminates diﬀerent por-
+tions of the planet’s surface, with diﬀerent local rota-
+tional velocities, as viewed from Earth. Following Lester
+et al. (1979), for a planet which reﬂects like a Lamber-
+tian sphere being illuminated by a uniform light source
+from the positiveX direction, the phase law Ψ(α), or the
+amount of ﬂux reﬂected towards an observer at angle α
+10 Using orbital parameters from Wang et al. (2016).
+in the X−Y plane, is given by: 11
+Ψ(α) = 3
+2π
+∫ π
+0
+sin3θdθ
+∫ π/2
+α−π/2
+cosφ cos (α−φ)dφ (4)
+whereθ is the polar spherical angle andφ is the azimuthal
+spherical angle, as shown in Figure 2. Equation 4 is
+only valid over the interval 0 ≤ α≤ π due to the way
+the bounds of integration are deﬁned. To calculate the
+phase function over the intervalπ≤α≤ 2π, the bounds
+of the φ integral in Equation 4 must be changed so that
+the integral is evaluated between φ = 3π/2 and φ =
+α+π/2. When the integral is evaluated over these limits,
+the result is:
+Ψ(α) = sign (π−α)sin(α) + (π−α) cos(α)
+π (5)
+where sign (x) = 1 for x >0, sign (x) =−1 for x <0,
+and sign (x) = 0 for x = 0. Equation 5 is valid over the
+interval 0≤α≤ 2π.
+The radial velocity signal due to planetary illumina-
+tion can be calculated by modifying this phase function
+by including a term describing the radial velocity of the
+planet’s surface, vs, at every point ( θ,φ ). We calculate
+the average vs over the same illuminated region of the
+sphere:
+RV(α) = 1
+Ψ(α)
+x
+vs sin3 (θ) cos (φ) cos (φ−α)dφdθ
+(6)
+In the special case where the planet’s orbit is viewed
+edge on (io = 90◦) and the rotational axis of the planet
+is aligned with its orbital angular momentum, vs can be
+written as:
+vs =−veq sin (φ−α) sin (θ) (7)
+where veq is the planet’s equatorial rotational speed.
+Evaluating the integral gives:
+RV(α) =veq sign (π−α) 3π sinα(cosα + 1)
+16(sinα + (π−α) cosα) (8)
+The illumination and radial velocity curves as a func-
+tion of phase in this special case are shown in Figure 3. In
+general, when planets are not viewed edge-on ( io⁄= 90◦)
+and do not have spins which are aligned with their or-
+bits, the illumination eﬀect is more complex and diﬃcult
+to study analytically. We have developed a framework
+to calculate the illumination RV eﬀect in general cases
+numerically, which we describe in more detail in the Ap-
+pendix. We show a handful of illustrative RV illumina-
+tion curves in Figure 4.
+Like the planet’s orbit, the planetary illumination RV
+function is strictly periodic (on the planet’s orbital pe-
+riod). The planetary illumination function can have
+sharp/short timescale features, like the discontinuity
+shown in Figure 3, but these sharp features typically take
+place when the planet’s brightness is very low, making
+11 The following expression is equivalent to Equation 34 of Lester
+et al. (1979) multiplied by the normalization constant 3 /(2π).
+
+<<<PAGE 5>>>
+Radial Velocity Detection of Exomoons 5
+0.0 0.2 0.4 0.6 0.8 1.0
+Orbital Phase
+-20
+-10
+0
+10
+20
+Radial Velocity (km s-1)
+Radial Velocity
+Illumination
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+Fractional Illumination
+Fig. 3.— Brightness and radial velocity signals due to partial illumination of a directly imaged exoplanet detected in reﬂected light. The
+radial velocity signal due to the planetary illumination eﬀect as a function of the planet’s orbital phase is shown as a solid orange curve,
+and the brightness of the planet is shown as a dashed purple curve. These curves assume the planet reﬂects like a Lambertian sphere, the
+inclination of the planet’s orbit is io = 90◦, and the planet’s spin angular momentum is aligned with the orbital angular momentum (that
+is,β =ξ = 0 using the deﬁnitions described in the Appendix). Above the curves are diagrams of the illumination of the planet at a handful
+of orbital phases. The color on the planet’s surface shows the radial velocity, where blue is a velocity of −veq, white is a velocity of 0, and
+red is a velocity of +veq.
+them practically diﬃcult to see. The planetary illumina-
+tion RV signal should therefore not signiﬁcantly compli-
+cate the detection of exomoons.
+2.4. Planetary Activity Signals
+RV observations of directly imaged exoplanets would
+also likely show spurious RV variations due to inhomo-
+geneities on the planet rotating in and out of view. Sim-
+ilar apparent RV variations have been observed and ex-
+tensively studied on stars (Saar & Donahue 1997; Wright
+2005; Dumusque et al. 2011a; Boisse et al. 2011; Aigrain
+et al. 2012; Rajpaul et al. 2015; Haywood et al. 2016). On
+stars, these variations are often referred to as “stellar ac-
+tivity signals” because the surface inhomogeneities which
+cause the variations, like starspots, faculae, or plage, are
+usually the result of magnetic activity.
+On the surface of a planet, inhomogeneities like clouds
+or storms rotating in and out of view on a planet’s sur-
+face may cause analogous “planetary activity signals”.
+We can estimate the impact of planetary activity using
+similar methods as used to estimate activity signals on
+stars. The RV variation ∆R Vcaused by a dark spot with
+ﬂux contrast Fspot rotating in and out of view on the
+planet’s surface is approximated as:
+∆R V≈Fspot×v sini (9)
+where v sini is the planet’s projected rotational veloc-
+ity. Giant solar system planets (Rowe et al. 2017) 12
+12 The variability can be strongly wavelength-dependent (Gelino
+& Marley 2000; Stauﬀer et al. 2016).
+and brown dwarfs (see Wilson et al. 2014; Radigan 2014;
+Biller et al. 2015; Metchev et al. 2015; Vos et al. 2018;
+Artigau 2018, and references therein) can show variabil-
+ity up to a few percent peak to peak, translating into
+spot ﬁlling fractions of order a few percent. Combining
+these photometric amplitudes with typical 13 planetary
+rotational velocities up to 10-25 km s−1 gives RV varia-
+tions with amplitudes up to a few hundred meters per
+second peak to peak.
+Like their stellar counterparts, planetary activity sig-
+nals present as quasi-periodic radial velocity variability,
+contributing strong signals at the planet’s rotation pe-
+riod and its harmonics. We estimate the form of a plan-
+etary activity signal using the FF’ method developed by
+Aigrain et al. (2012), which is a technique to predict the
+radial velocity signal caused by dark spots rotating on
+the surface of a star using photometric observations 14.
+Highly precise and continuous photometric observations
+of planets are rare, but recently, the planet Neptune was
+observed by the K2 mission for about 50 days (Rowe
+et al. 2017). We ﬁt the K2 light curve of Neptune with
+a basis spline to smooth out high-frequency noise, and
+calculate the expected planetary activity signals using
+FF’. We show the spline-smoothed light curve and re-
+13 Jupiter has a rotational velocity of about 12 km s −1, Saturn
+has a rotational velocity of about 10 km s−1, Uranus and Neptune
+each have rotational velocities of about 2.5 km s−1, and β Pictoris
+b has a rotational velocity of about 25 km s−1(Snellen et al. 2014).
+14 The FF’ method also predicts RV variations on stars due to
+the suppression of convective blueshift in active areas. Since this
+phenomenon is unlikely to be important on directly imaged planets,
+we ignore it here.
+
+<<<PAGE 6>>>
+6 Vanderburg, Rappaport, and Mayo
+Fig. 4.— Sample planetary illumination RV curves for diﬀerent spin and orbital orientations. The signal is speciﬁed by the planet’s
+orbital inclination io and two angles ξ and β, which describe the orientation of the planet’s spin axis. These angles and geometry are
+described in the Appendix. We have arbitrarily chosen the host planet to be about the size of Jupiter with a rotation period of 18 hours.
+Above each of the curves are diagrams of the illumination of the planet at a handful of orbital phases. The color on the planet’s surface
+shows the radial velocity, where blue is a velocity of −veq, white is a velocity of 0, and red is a velocity of + veq.
+sulting planetary activity signal in Figure 5 for the case
+of a Jupiter-sized planet with Neptune-like photometric
+variability and a rotation period of 18 hours 15.
+The above calculations and discussion are for the case
+of self-luminous planets. Planets imaged in reﬂected light
+will also present quasi-periodic radial velocity variations
+on the timescale of the planetary rotation period, but
+because only part of the planetary disk is illuminated,
+these signals will have somewhat diﬀerent morphology
+and lower amplitude.
+While planetary activity could produce spurious RV
+signals with about the same amplitude as the expected
+RV signal for moons like Kepler-1625b I, planetary ac-
+15 To simulate the activity signals for stars with diﬀerent rotation
+periods, we scaled the time axis of the K2 observations by the ratio
+between the desired rotation period and Neptune’s actual rotation
+period of 16.1 days.
+tivity should not prove prohibitive for detecting moons.
+In many cases, it is possible to ﬁlter and separate ac-
+tivity signals from center-of-mass radial velocity signals
+when the timescales of these signals are somewhat diﬀer-
+ent (e.g. Dumusque et al. 2011b; Haywood et al. 2014;
+Vanderburg et al. 2016) 16. For rapidly rotating planets
+which will induce the largest spurious RV signals, the ro-
+tation periods (typically ∼ 10 hours, Biller et al. 2015;
+Vos et al. 2018; Lew et al. 2016; Zhou et al. 2016) should
+be shorter 17 than the orbital periods of most massive
+16 It is most challenging to separate activity and center-of-mass
+radial velocity signals when the orbital period is within about 10%
+of the characteristic activity timescale or its harmonics (see Figure
+4 of Vanderburg et al. 2016 and Figure 13 of Damasso et al. 2018).
+17 Frequently, the dominant periods of RV activity signals are at
+the ﬁrst or second harmonics of the rotation period (Vanderburg
+et al. 2016), further separating the rotation signals from exomoon
+
+<<<PAGE 7>>>
+Radial Velocity Detection of Exomoons 7
+      
+0.98
+0.99
+1.00
+1.01
+1.02Relative Brightness
+      
+0.98
+0.99
+1.00
+1.01
+1.02Relative Brightness
+Photometric Light Curve: Scatter = 0.6 %
+0 2 4 6 8 10
+Scaled Time (days)
+−200
+−100
+0
+100
+200
+Radial Velocity (m s−1 )
+0 2 4 6 8 10
+Scaled Time (days)
+−200
+−100
+0
+100
+200
+Radial Velocity (m s−1 ) Radial Velocity Activity Signal: Scatter = 26 m s−1
+Fig. 5.— Simulated RV activity signal for a directly imaged planet. The top panel shows the spline-smoothed brightness of the planet
+Neptune as a function of time (scaled so that the planet’s rotation period is 18 hours), as recorded by the K2 mission (Rowe et al.
+2017). The bottom panel shows the planetary activity radial velocity signals calculated using the FF’ method (Aigrain et al. 2012). The
+planetary activity signal is calculated assuming the planet is the radius of Jupiter, is self-luminous, and has an 18 hour rotation period.
+The RMS scatter of the planetary activity signal is about 25 m s −1, but larger and more rapidly rotating planets like β Pictoris b can
+induce higher-amplitude activity signals (see Figure 6).
+exomoons, making it possible to eﬀectively ﬁlter away
+the planetary activity (if RV observations are taken with
+a high-enough cadence, Dumusque et al. 2011b; L´ opez-
+Morales et al. 2016). These planetary activity signals
+should also cause signiﬁcant changes to the shapes and
+proﬁles of spectral lines 18, which can be used to diﬀer-
+entiate activity signals from the signals of exomoons. It
+should be possible to take advantage of techniques and
+observing strategies being developed for mitigating stel-
+lar activity for RV planet searches and apply them to RV
+moons searches (e.g. Haywood et al. 2014; Rajpaul et al.
+2015; Donati et al. 2016).
+2.5. Peak-pulling by Light from the Exomoon
+While detecting exomoons by Doppler monitoring of
+directly imaged planets is in many ways similar to de-
+tecting exoplanets by Doppler monitoring of stars, the
+analogy is not perfect. One diﬀerence between detecting
+exoplanets and exomoons with radial velocities is that
+exomoons may be bright enough compared to their host
+planets to contribute signiﬁcant light to the planetary
+orbits.
+18 These line shape diagnostics include the “bisector span”, a
+measurement of the skew of the line, the average “full width at half
+maximum” or FWHM width of the spectral features, and others
+(Queloz et al. 2001; Dumusque et al. 2011c; Figueira et al. 2013).
+Line shape diagnostics like these sometimes correlate with spurious
+radial velocity signals caused by activity (see for example Figure 7
+of Queloz et al. 2001). The bisector span is particularly useful for
+particularly active stars with dark spots, a situation likely analo-
+gous to the planetary activity considered here, while the FWHM is
+more useful for quiet stars like the sun, and may be less sensitive to
+the large planetary activity signals. Additional diagnostics might
+be identiﬁed, or new techniques might be developed which can
+translate spectral line shapes into spurious radial velocity signals.
+See Collier Cameron (2017) for a recent review of the subject.
+spectrum, which can perturb the measured radial veloc-
+ity of the planet. This eﬀect, which is known as peak-
+pulling, has been studied in the case of double-lined spec-
+troscopic binary stars and has been shown to signiﬁcantly
+aﬀect radial velocity measurements if not taken into ac-
+count (Zucker & Mazeh 1994). Because exoplanets are
+at least thousands (and often millions) of times fainter
+than their host stars, this eﬀect can generally be ignored
+for exoplanet detection.
+In the case of a planet/moon system imaged in re-
+ﬂected light, we can write the brightness ratioρb between
+the planet and moon as:
+ρb = αpr2
+p
+α$r2
+$
+(10)
+whererp andαp are the radius and albedo of the planet,
+and r$ and α$ are the radius and albedo of the moon.
+Assuming similar albedos, a Jupiter-sized planet imaged
+in reﬂected light will therefore only be about 8 times
+brighter than its Neptune-sized exomoon, close enough
+in brightness that the moon might signiﬁcantly aﬀect
+the measured planetary radial velocity. If peak-pulling
+is not accounted for in the radial velocity extraction,
+the measured radial velocity (RV measured) will be the
+brightness-weighted average of the radial velocity of the
+planet (RVp) and moon (RV $):
+RVmeasured = RVpρb + RV$
+1 +ρb
+(11)
+The radial velocity of the moon about the center of
+mass of the planet/moon system is a Keplerian function
+with the same orbital parameters but opposite direction
+
+<<<PAGE 8>>>
+8 Vanderburg, Rappaport, and Mayo
+as the planet’s motion, with a semiamplitude:
+K$ =Kp
+mp
+m$
+(12)
+If the contribution from the moon is not taken into
+account, the measured radial velocity will therefore be
+a Keplerian function with a semi-amplitude Kmeasured
+given by:
+Kmeasured =Kp
+ρb−mp/m$
+1 +ρb
+(13)
+In many cases, including the case of a Neptune-like
+moon orbiting a Jupiter-like planet detected in reﬂected
+light, the radial velocity contribution from the moon’s
+light might actually dominate over the signal from the
+planet’s light. If measured without taking the moon’s
+contribution into account, the radial velocity signal de-
+tected will be opposite in sign and signiﬁcantly diﬀerent
+in amplitude from the motion of the planet.
+In practice, peak-pulling will only take place when the
+radial velocity of the moon is close enough to the ra-
+dial velocity of the planet that spectral features from the
+planet and moon overlap in the combined spectrum. In
+particular, peak-pulling will only be important for the
+parts of the planet/moon orbit near conjunctions, when
+the radial velocity of the moon is within about v sini
+of the radial velocity of the planet. Even when spectral
+features from the planet and moon do overlap, analy-
+sis techniques have been developed over the years (e.g.
+Zucker & Mazeh 1994; Czekala et al. 2017) to disentangle
+the contributions from each component of a double-lined
+spectrum. If these spectral features can indeed be disen-
+tangled, then the secondary lines from the moon could
+yield the true mass ratio between the planet and moon,
+helping to clarify the moon’s nature.
+Peak pulling is likely to be less important for self-
+luminous planets, since massive planets should cool more
+slowly (and therefore stay luminous longer) than lower-
+mass objects. However, one could envision scenarios
+where the moon formed after the planet, making it possi-
+ble to detect spectral features from a self-luminous moon.
+2.6. Partial Occultation by Disk Clumps
+Some young, self-luminous planets may still be em-
+bedded within the protoplanetary disks from which
+they formed. Observations of young stars have shown
+that in many cases, protoplanetary disks have optically
+thick clumps which can occult the parent stars, quasi-
+periodically blocking signiﬁcant fractions of the star’s
+light (e.g. Cody et al. 2014; Rodriguez et al. 2015). These
+dips can repeat on timescales from days to decades, and
+can cause eclipses which last for timescales ranging from
+hours to years (Rodriguez et al. 2017). Disk clumps that
+occult a rotating planet might cause radial velocity sig-
+nals by introducing asymmetries in the planet’s rotation
+proﬁle.
+To estimate the radial velocity signal caused by disk
+clumps occulting a young, self-luminous planet, we as-
+sume that clumps in the disk have roughly the same
+properties close to the host star and far away where di-
+rectly imaged planets might orbit. Cody et al. (2014)
+reported observations of “dipper” stars, which undergo
+roughly day-long occultations by disk clumps which re-
+peat quasi-periodically on timescales of order 5-10 days.
+The Keplerian 19 velocity of a disk clump, vclump, which
+orbits with a quasi-period, Pq, is given by:
+vclump =
+[2πGM⋆
+Pq
+]1/3
+(14)
+For a typical dipper, which has a quasi-periodicity of
+about a week and orbits a star with M⋆≈ 0.5 M⊙, the
+Keplerian velocity of the clump is about 80 km s−1. Com-
+bined with a dip duration, tdip, of about a day, this ve-
+locity implies the clump size,
+rclump∼ vclumptdip
+2 (15)
+is likely of order 5 R⊙, considerably larger than the host
+stars. Since the dips only block 30-50% of the star’s light,
+the clumps are likely not optically thick.
+If similar disk clumps exist farther away from the host
+star, at orbital distances of 1-50 AU around more mas-
+sive stars like those which have been found to host di-
+rectly imaged exoplanets, the Keplerian velocities will
+be smaller, on the order of 5-30 km s−1. Occultations of
+stars (and directly imaged planets orbiting far out in the
+disk) by these long-period disk clumps would last for a
+few days to a few weeks.
+Any velocity signal induced by an occulting disk clump
+would be due to an asymmetry in the ﬂux received from
+the approaching hemisphere and the receding hemisphere
+of the rotating planet. We estimate this asymmetry by
+calculating the change in the ﬂux transmitted through
+the clump over a distance from the center of the clump,
+dI
+dx. We write:
+dI
+dx∼ dI
+dt
+dt
+dx∼ dI
+dt
+1
+vclump
+(16)
+Here, dI
+dt is just the time derivative light curve of a
+dipper star. For typical dippers in short-period orbits
+with vclump∼ 80 km s−1and which cause 30-50% drops
+in ﬂux on timescales of 12 hours to a day, dI
+dt is a few
+percent per hour. Combining this value with the orbital
+velocity gives dI
+dx ∼ 10−5% per km, or about 1% per
+Jupiter radius.
+The velocity signal caused by this ﬂux gradient due to
+an occulting disk clump is therefore given by:
+RVclump∼rp
+dI
+dxv sini (17)
+where rp is the radius of the planet. For a Jupiter-
+sized planet with an 18 hour rotation period, the RV
+signal from disk clump occultations will have an am-
+plitude somewhere around 10-50 m s −1, while a larger,
+more rapidly rotating planet likeβ Pictoris b could show
+signals up to a few hundred meters per second. The
+timescales for these signals would be days to weeks (the
+crossing time for the clumps over the planet assuming
+19 The dust clumps may not be strictly undergoing Keplerian
+motion if they are trapped by the star’s magnetic ﬁeld near the
+corotation radius, but even in this case the clump velocity will still
+be close to Keplerian.
+
+<<<PAGE 9>>>
+Radial Velocity Detection of Exomoons 9
+relative velocities close to the Keplerian orbital velocity),
+and the disk occultation signals would likely not repeat
+periodically, since the occulting clumps show evolution
+on timescales much shorter than the orbit of a directly
+imaged planet.
+Disk clump occultations will only be a concern for the
+very youngest directly imaged planets, whose host stars
+still retain their protoplanetary disks. Even the young
+exoplanet β Pictoris b is too old for disk clump occul-
+tations to be present; the star, β Pictoris, only hosts a
+debris disk. Even around very young stars where disk
+clump occultations could introduce stochastic variability
+into planetary radial velocity time series, the signals in-
+troduced should not preclude the detection of massive
+exomoons. Like “planetary activity” signals, disk clump
+occultations do not produce RV signals with amplitudes
+greatly exceeding the amplitudes of RV signals from mas-
+sive exomoons. Disk clump occultations should also be
+identiﬁable by changes to the planetary line proﬁle. Fi-
+nally, statistical techniques designed to aid in the de-
+tection of low-mass planets around stars should help to
+separate out the stochastic signals from disk clump oc-
+cultations from the periodic signals caused by exomoons.
+3. DETECTION FEASIBILITY
+In this section, we estimate the feasibility of detect-
+ing exomoons with Doppler monitoring. We base our
+estimates on the successful detection of thermal light
+from β Pictoris b by Snellen et al. (2014). Snellen et al.
+(2014) observed β Pictoris b with the Cryogenic High-
+Resolution Infrared Echelle Spectrograph (CRIRES) be-
+hind the Multi-Application Curvature Adaptive Optics
+(MACAO) system on the Very Large Telescope (VLT).
+At the time of the observations, β Pictoris b was located
+about 0.4 arcseconds from its host star, and the adap-
+tive optics system attenuated the light fromβ Pictoris by
+factors between 8 and 30 at the position of the planet.
+Snellen et al. (2014) detected spectral features from β
+Pictoris b with a signal-to-noise ratio of 6.4 after a total
+exposure time of about 30 minutes 20.
+From their low signal-to-noise detection of spectral fea-
+tures from β Pictoris b, Snellen et al. (2014) were able
+to measure the radial velocity of β Pictoris b with a pre-
+cision21 of about 1.5 km s−1.
+Detecting exomoons inducing RV semiamplitudes of
+about 200 m s−1 is not feasible when the precision of an
+individual measurement is limited to 1.5 km s−1, but for-
+tunately, higher precision RV measurements are possible.
+Following Lovis & Fischer (2010), the photon-limited un-
+certainty of a radial velocity observation, σR V, scales as:
+σR V∝ FWHM3/2
+S/N (18)
+where FWHM is the width of the lines as seen by the
+spectrograph22 and S/N is the signal-to-noise ratio of
+20 The total observing time was closer to an hour after including
+overheads (Snellen et al. 2014).
+21 Snellen et al. (2014) report an uncertainty of 1.7 km s −1 on
+the RV of β Pictoris b, but included a 0.7 km s −1 systematic un-
+certainty term based on the uncertainty of the absolute RV, so the
+photon-limited Doppler precision is closer to 1.5 km s−1.
+22 This term includes both the natural broadness of the spectrum
+and instrumental line broadening.
+the detection. In particular, S/N is proportional to:
+S/N∝
+√
+S
+√
+Nlines (19)
+whereS is the suppression factor of starlight at the posi-
+tion of the planet compared to what would be observed
+at the center of the PSF andNlines is the number of spec-
+tral lines observed 23. A natural way to improve the RV
+precision in a given observation is to increase the signal-
+to-noise of the observations 24, which should be possible
+with modern instrumentation capabilities.
+One way to improve the detection strength would be
+to increase the bandpass of the instrument used to ob-
+serve radial velocities so that it can observe more plan-
+etary spectral features. Snellen et al. (2014) obseved
+with CRIRES, which only had one spectral order (which
+for these observations was centered on the CO band-
+head at 2.3 microns). The upgraded version of CRIRES,
+CRIRES+ (Dorn et al. 2014), will be able to cover 10
+times the bandpass as the original instrument, signiﬁ-
+cantly increasing the number of planetary spectral fea-
+tures to use in an RV analysis. If all spectral orders are
+equal in terms of the number and depth of lines, a boost
+of a factor of 10 in spectral bandpass could improve the
+S/N by a factor of roughly 3; realistically, not all spectral
+orders will have as many deep and sharp lines as the CO
+bandhead, so the improvement will not be as great.
+Another way to increase the strength of the detection
+would be to use modern high-contrast adaptive optics
+imaging and coronagraphy to separate the starlight from
+the light of the planet. The observations conducted by
+Snellen et al. (2014) achieved a starlight suppression of
+about a factor of 8-30 at a distance of 0 .′′4 from the po-
+sition of β Pictoris b. Modern adaptive optics systems
+equipped with coronagraphs, like GPI (Macintosh et al.
+2014) and SPHERE (Beuzit et al. 2008), can signiﬁcantly
+improve upon this level of starlight suppression. Accord-
+ing to the SPHERE instrument handbook 25, on a bright
+star in imaging mode, SPHERE can suppress starlight by
+factors of a few thousand or more at distances of 0.′′4, and
+can yield even greater suppression (factors of up to 10 4)
+when a coronagraph is used. Compared to the Snellen
+et al. (2014) observations, using a modern high contrast
+AO system could yield a signal-to-noise boost of a factor
+of 10, and potentially up to a factor of 30 in S/N.
+Altogether, a one-hour observation similar to that con-
+ducted by Snellen et al. (2014) using a CRIRES+-like
+spectrograph behind a SPHERE-like adaptive optics sys-
+tem could yield a detection of β Pictoris b with signal-
+to-noise somewhere between 120 and 300, which would
+yield a photon-limited Doppler precision on β Pictoris b
+between 30 m s−1 and 75 m s−1, suﬃcient to detect mas-
+sive exomoons like Kepler-1625b I. We show a simulated
+23 The number of lines is typically in the range of 10 3− 104
+for broadband spectrographs observing stars. Both self-luminous
+and reﬂected-light planets will likely have more lines due to the
+presence of molecular absorption in the spectra.
+24 Alternatively, the precision of RV observations could be im-
+proved by observing a planet that rotates more slowly than β Pic-
+toris b and therefore has narrower spectral features. Indeed, obser-
+vations of GQ Lupi b (Schwarz et al. 2016), which is more slowly
+rotating than β Pictoris b, achieved RV precision of about 400
+m s−1.
+25 See Figure 13 of https://www.eso.org/sci/facilities/
+paranal/instruments/sphere/doc/VLT-MAN-SPH-14690-0430_
+v95.pdf
+
+<<<PAGE 10>>>
+10 Vanderburg, Rappaport, and Mayo
+0 5 10 15 20
+Time (days)
+0
+200
+400
+600
+800
+1000Radial Velocity (ms-1)
+Simulated observations of β  Pictoris b
+with Kepler-1625b I-like moon
+0 5 10 15 20
+Time (days)
+0
+200
+400
+600
+800
+1000Radial Velocity (ms-1)
+Fig. 6.— Simulated observations of the self-luminous directly imaged planetβ Pictoris b, assuming it hosts a Kepler-1625b I-like exomoon.
+The purple points simulate a nightly observing cadence, and assume 30 m s −1 RV photon-limited uncertainties (see Section 3). The red
+curve is the center-of-mass motion of the planet; the long-term trend is due to the orbit of the planet about its host star, and the fast
+sinusoid is due to the orbit of the moon about the planet. The grey curve is the total expected RV curve, including “planetary activity”
+caused by inhomogeneities rotating in and out of view on the surface of the planet. We calculated the planetary activity signal using the
+FF’ method described by Aigrain et al. (2012), assuming a planetary radius of 1.45 R J (Morzinski et al. 2015), and photometric variability
+from K2 obserations of Neptune (Rowe et al. 2017), with the timescale of the variations scaled from Neptune’s 16 hour rotation period to
+β Pictoris b’s likely 7 hour rotation period. The RV signal due to the exomoon in this case is clearly detected (with a bootstrapped false
+alarm probability of p≈ 5× 10−4) in only three weeks of nightly observations.
+RV detection of a Kepler-1625b I-like moon orbiting β
+Pictoris b in Figure 6.
+While it should be possible to detect planetary spec-
+tral features with high enough signal-to-noise to mea-
+sure precise radial velocities on planets like β Pictoris
+b with existing telescopes and modern instrumentation,
+we note that this capability should be dramatically in-
+creased when the next generation of 30-meter-class tele-
+scopes come on line. All else being equal, the signal-
+to-noise ratio of a direct imaging detection of a planet
+is proportional to the diameter of the telescope squared.
+Compared to the observations performed by Snellen et al.
+(2014) on the 8 meter VLT, a similar observation a 30-
+meter-class telescope (such as using GMTNIRS on the
+Giant Magellan Telescope, Jaﬀe et al. 2016) would yield
+a signal-to-noise roughly (30/8)2≈ 15 times higher. Ad-
+ditionally, starlight suppression on 30 meter class tele-
+scopes should be much better than on 8 meter class tele-
+scopes at a given separation on the sky, because the sep-
+aration will be greater in terms of the telescope’s reso-
+lution elements. In fact, Snellen et al. (2014) argue that
+thanks to the higher resolution of 30 meter class tele-
+scopes, scattered light from β Pictoris should have negli-
+gible impact on spectroscopic observations of β Pictoris
+b, making it possible to obtain high-quality planetary
+spectra with only short observations. When combined
+with the expected improvement in the performance of
+high-contrast imaging systems in the coming years, 30-
+meter-class telescopes should make Doppler surveys of
+large numbers of directly imaged planets feasible (Quanz
+et al. 2015).
+Detecting exomoons around planets imaged in reﬂected
+light will be more diﬃcult. So far, no exoplanets have
+been detected in reﬂected light by direct imaging 26, but
+improvements to adaptive optics systems and the con-
+struction of 30 meter class telescopes are expected to lead
+to detections of these planets (Artigau et al. 2018 27, J.
+Males et al. in prep). These planets detected in reﬂected
+light are likely to be quite faint, with nearby ( ≈ 10 pc)
+giant planets in Jupiter-like orbits having optical appar-
+ent magnitudes around 25, which will make precise RVs
+diﬃcult but not impossible. Using the 10m Keck I tele-
+scope, Johnson et al. (2012) measured radial velocities of
+a V=17 star with precision of 20 m s−1 in 20 minute ex-
+posures. Scaling these observations to a 30m class tele-
+scope, with a wider spectral bandpass (Johnson et al.
+2012 used an iodine cell to calibrate their radial velocity
+observations which limited their bandpass to about 100
+nm) and higher spectral resolution expected for future
+26 Reﬂected light from short-period exoplanets has been detected
+by Kepler and CoRoT (e.g. Alonso et al. 2009; Borucki et al. 2009;
+Sanchis-Ojeda et al. 2013; Malavolta et al. 2018).
+27 http://surveygizmoresponseuploads.s3.
+amazonaws.com/fileuploads/15647/4139225/
+235-ba43dcc83ed8463dd0e7af6cb4f510ba_FitzgeraldMichaelP.
+pdf
+
+<<<PAGE 11>>>
+Radial Velocity Detection of Exomoons 11
+generations of precise spectrographs, it should be pos-
+sible to measure RVs with a bit lower precision ( ≈ 100
+m s−1) on 26th magnitude stars in one hour exposures.
+Also, planets more readily detectable in reﬂected light
+than Jupiter may be discovered – the brightness of a
+planet in reﬂected light is inversely proportional to its
+orbital distance squared, so closer planets to their host
+stars will be much easier to detect (Traub & Oppen-
+heimer 2010). However, close-in exoplanets may be less
+likely to host exomoons than more distant exoplanets be-
+cause requirements for dynamical stability closer to the
+star are more stringent.
+4. DISCUSSION
+So far, we have shown that massive exomoons like the
+candidate moon around Kepler-1625b could induce large
+RV variations on the moon’s host planet, and we have
+shown that RV variations of this amplitude could be
+detected with present-day or forthcoming instrumenta-
+tion. Here, we argue that a radial velocity survey of di-
+rectly imaged exoplanets to detect massive exomoons is a
+worthwhile endeavor, and we describe additional science
+which might come from such a survey.
+First and foremost, if an RV exomoon survey of directly
+imaged exoplanets is successful, the detection of an exo-
+moon (or exomoons) would provide new and important
+knowledge about planetary systems that could not be ac-
+cessed in any other way. For example, either the discov-
+ery of massive exomoons, or limits placed on the presence
+of such moons, would directly inform models of planet
+and moon formation. It is generally believed that moons
+as large as the proposed Kepler-1625b I cannot form via
+in-situ accretion in a circumplanetary disk; the mass ra-
+tio of Kepler-1625b I to its host planet is too large to be
+formed in this way. Therefore, the presence of moons like
+Kepler-1625b I around giant planets would likely indicate
+that some dynamic process (either a capture process or
+a giant impact) took place. If a population of massive
+Kepler-1625b I-like exomoons were to be found, it would,
+like the discovery of hot Jupiters, indicate that planet
+(and moon) formation is a more dramatic and eventful
+process than previously thought. The successful detec-
+tion of massive exomoons could turn planetary formation
+theory on its head the way the detection of hot Jupiters
+did decades ago.
+Even if massive exomoons turn out to be rare or don’t
+exist, there are strong scientiﬁc motivations to conduct
+an RV survey of directly imaged planets. One such moti-
+vation would be detecting planetary activity signals due
+to the surface inhomogeneities rotating in and out of view
+on the planets’ surfaces. While these signals are a nui-
+sance to detecting center-of-mass radial velocity varia-
+tions like those caused by exomoons, the planetary ac-
+tivity signals encode the rotation period of the planet.
+When combined with a spectroscopic estimate of the pro-
+jected rotational velocity (from the broadening of spec-
+tral features) and planet radii, these measured planetary
+rotation periods could yield some of the ﬁrst measure-
+ments of line-of-sight exoplanet obliquities (angles be-
+tween the planet orbits and spin axes). A survey which
+yields the rotation periods for a sample of directly imaged
+planets could begin to assess whether strong dynamical
+interactions like those which tilted Uranus in our own
+Solar system are common or rare.
+Additionally, measurements of the obliquities of plan-
+ets detected in reﬂected light might be obtained by mea-
+suring the planetary illumination RV eﬀect, which en-
+codes the planet’s obliquity both in the line-of-sight and
+sky-projected directions. The planetary illumination RV
+eﬀect could yield even more information than combining
+rotational velocities and rotation periods if it is possible
+to disentangle the signal from the planet’s orbital motion.
+One way to disentangle the signals is to take advantage
+of the fact that the planetary illumination eﬀect is only
+present in reﬂected-light observations. Comparing RV
+observations of the same planet in the visible, where re-
+ﬂected light is dominant, and far enough in the infrared
+that even cool planets are self-luminous could cleanly
+separate these two signals, making obliquity measure-
+ments possible.
+Another outcome from an RV survey of directly im-
+aged planets would be to very precisely trace out the
+spectroscopic orbit of self-luminous planets (and planets
+imaged in reﬂected light if the orbital signal can be dis-
+entangled from the planetary illumination eﬀect). The
+RV signals due to the planets’ orbits around their host
+stars have amplitudes much higher than the RV preci-
+sion necessary for the survey, so these observations could
+yield highly precise orbital elements. For directly imaged
+planets around stars for which precise radial velocities
+are diﬃcult or infeasible (like rapidly rotating and active
+young stars), measuring the planet’s spectroscopic orbit
+could reﬁne orbital elements like period and eccentricity,
+and could yield a precise dynamical mass measurement
+for the host star. Measuring the spectroscopic orbit of a
+planet which has already been detected in radial velocity
+monitoring of its host star could yield model independent
+masses for both objects.
+Finally, an important byproduct of an RV survey of di-
+rectly imaged planets will be very high signal-to-noise co-
+added planetary spectra. We estimate that with present-
+day instrumentation, it should be possible to detect spec-
+tral features inβ Pictoris b at a signiﬁcance of 120-300σ
+in an hour of observations. Over the course of a Doppler
+survey, there may be 50-100 individual observations of
+the planet with this quality. Co-adding all of these spec-
+tra could yield some of the highest-quality spectra ever
+taken of exoplanets. High quality spectra like these could
+lead to the detection of trace elements in the planet at-
+mospheres.
+5. SUMMARY
+In this paper, we investigate the feasibility of detect-
+ing exomoons by conducting a Doppler survey of directly
+imaged exoplanets. We drew inspiration from the detec-
+tion of a massive candidate exomoon (about the size and
+mass of Neptune) around the planet Kepler-1625b. If the
+candidate exomoon around Kepler-1625b is conﬁrmed, it
+would be the ﬁrst in a new class of moons unlike anything
+seen before in our Solar System.
+We suggest that in analogy to the discovery of the ﬁrst
+exoplanets orbiting sun-like stars (Struve 1952; Mayor &
+Queloz 1995), some of the ﬁrst exo-moons discovered, like
+the proposed Kepler-1625b I, might be massive and or-
+biting in short periods around their host planets, making
+them well suited for detection via radial velocity moni-
+toring. We estimate the amplitudes and timescales of
+radial velocity signals that might be present in observa-
+
+<<<PAGE 12>>>
+12 Vanderburg, Rappaport, and Mayo
+tions of directly imaged planets, and ﬁnd that the RV
+semiamplitudes induced by massive moons like Kepler-
+1625b I could range from a few hundred meters per sec-
+ond up to a kilometer per second. These signals from
+massive exomoons are large enough that astrophysical
+nuisance signals and instrumental stability should not
+prevent their detection.
+Based on previous spectroscopic observations of
+directly imaged exoplanets, we estimate that it should
+be possible to measure radial velocities with fairly high
+photon-limited precision with reasonable exposure times
+on bright directly imaged exoplanets. We estimate that
+using a wide-bandpass high-resolution near infrared
+spectrograph like CRIRES+ or IGRINS on an 8 meter
+class telescope behind a modern high-contrast adaptive
+optics imaging system like GPI or SPHERE, it should
+be possible to attain photon-limited Doppler precision
+between 30 and 75 m s −1 on β Pictoris b, suﬃcient
+to detect the RV signal caused by a Kepler-1625b
+I-like moon. The observations required to detect
+giant exomoons around directly imaged planets should
+yield additional scientiﬁc byproducts, including high
+signal-to-noise planet spectra and measurements of the
+spin axis orientation (obliquity) of these directly imaged
+exoplanets.
+Note in Review: Since this manuscript was completed,
+we have become aware of some impressive analytic work
+by Kawahara (2012) on the planetary illumination/spin
+eﬀect. He was able to carry out the illumination-phase
+spin radial-velocity integral (RV(α)) analytically for arbi-
+trary orbital inclinations as well as planetary spin vectors
+for a couple of simple scattering laws. We have veriﬁed
+that his analytic expression for the case of Lambertian
+scattering does indeed match our numerical integrations.
+However, for more complicated and realistic planetary at-
+mospheric scattering functions, the numerical approach
+we describe is likely to be necessary.
+We thank Brendan Bowler, Cyndi Froning, Eric Gai-
+dos, Adam Kraus, Caroline Morley, Sam Quinn, Aaron
+Rizzuto, and Joey Rodriguez for valuable conversations.
+We are indebted the anonymous referee for a constructive
+report which improved this paper. This work was per-
+formed in part under contract with the California Insti-
+tute of Technology (Caltech)/Jet Propulsion Laboratory
+(JPL) funded by NASA through the Sagan Fellowship
+Program executed by the NASA Exoplanet Science In-
+stitute. This paper includes data collected by the Kepler
+mission. Funding for the Kepler mission is provided by
+the NASA Science Mission directorate.
+Facilities: ADS, CDS
+APPENDIX
+In this appendix, we describe a numerical scheme to determine the integrated radial velocity of the illuminated surface
+of a planet imaged in reﬂected light. We perform the integration numerically by randomly sampling points on the
+illuminated hemisphere of an exoplanet, calculating the velocity contribution from each point on the hemisphere, and
+summing the contributions. For this process, we need to know (1) the radial velocity of each point on the illuminated
+surface of the planet, (2) the brightness of that point for diﬀerent assumed scattering laws, and (3) whether, in fact,
+that point is visible to a distant observer. The velocity of an arbitrary point on the surface of the planet can be written
+schematically as:
+⃗V = ⃗Vo +⃗Vp +⃗Vs (A.1)
+where ⃗Vo is the orbital velocity of the center of mass (‘CM’) of the planet/moon (or binary planet) system in its ‘outer’
+orbit about the host star; ⃗Vp the orbital velocity of the primary planet about the CM of the planet/moon system
+(which we assume here to be coplanar with the outer orbit); and ⃗Vs the velocity associated with the inertial spin rate
+of the primary planet about its center.
+The velocity of the CM of the planet/moon system is given by
+⃗Vo =− Ωoao√
+1−e2o
+[
+{cos(ϕ−ϕe) +eo sinω} ˆX +{sin(ϕ−ϕe)−eo cosωo} ˆY
+]
+(A.2)
+where Ωoao/
+√
+1−e2o, eo, and ωo are the conventional radial velocity semiamplitude (Ko, see Equation 3 in the main
+paper), eccentricity, and argument of periastron, while ϕ is the true anomaly of the planet/moon CM in its outer
+orbit, and ϕe is the true anomaly at the time of superior conjunction (or eclipse). The geometry of the X−Y plane
+is speciﬁed in Figure A.1. This form for ⃗Vo is especially useful in the case of orbits with small eccentricity. If, on
+the other hand, we wish to deal with substantial eccentricities, then we can simply revert to the more usual form by
+setting ϕe +ω =π/2.
+We assume that the planet/moon system has an orbit that has been circularized and is coplanar with the orbit of
+its CM around the host star. The velocity of the primary planet around the planet/moon CM is then:
+Vp =−Ωpap
+( m$
+mp +m$
+)[
+cosφp ˆX + sinφp ˆY
+]
+(A.3)
+where the leading factor outside the square brackets is just the radial velocity semiamplitude of the primary planet
+in its orbit about the planet/moon CM ( Kp, see Equation 1 in the main paper), and φp is the planet/moon system’s
+orbital phase. The same X−Y orbital plane is used here as for the outer orbit.
+
+<<<PAGE 13>>>
+Radial Velocity Detection of Exomoons 13
+Fig. A.1.— Schematic of the illuminated planet geometry, not to scale. The host star is located at the origin of the {X,Y} coordinate
+system. The ‘illumination coordinates’, along with the true anomaly of the outer orbit relative to the eclipse, ϕo, and the outer orbital
+inclination angle, i, determine the planetary phase. The planetary hemisphere facing the host star contains the set of normal vectors ˆ n,
+whose origin is at the planet center and whose constant vector components are with respect to the {x′,y′,z′} coordinate frame. The two
+frames are both right-handed, so the Z and z′ axes come directly out of the page/screen.
+Fig. A.2.— Schematic of the sky-projected coordinate system. The observer is looking along the ˆ y direction, while the plane of the sky
+coincides with the x−z plane. Left: The system viewed from the positive ˆx direction. The observer is shown at the left, and the orbit of
+the planet projected on the y−z plane is a straight line tilted by the inclination angle io with respect to the y axis. The angle β is the
+cone angle between the planet’s spin and the line of sight (the ˆy direction). Right: The system viewed from the negative ˆy direction (the
+observer’s point of view). The orbit of the planet is shown projected on the sky plane, and is represented by a circle that has been tilted
+by the inclination angle io. When the spin vector is projected onto the sky plane, its orientation is described by the angle ξ that it makes
+with respect to the x axis.
+If we now perform a rotation about the ˆX axis, which lies in the plane of the sky, by an angle io (the orbital
+inclination angle), we ﬁnd for the radial velocities:
+Vro = Ωoao√
+1−e2o
+[sin(ϕ−ϕe)−eo cosωo] sinio (A.4)
+Vrp = Ωpap
+( m$
+mp +m$
+)
+sinφp sinio (A.5)
+All of the above holds whether the primary planet is self-luminous or illuminated by the host star. The following,
+however, holds only for externally illuminated planets. For self-luminous planets, the following terms average to zero
+(unless some other asymmetry is introduced in the planet’s brightness proﬁle, like a disk clump occultation or planetary
+activity). Computing the Doppler shifts for the case of an externally illuminated planet is the more challenging part
+of the calculation.
+We ﬁrst select a set of unit vectors, ˆn′, which point from the center to the surface of the planet. The two angles
+describing each unit vector are Θ and Φ such that
+ˆn′ = sin Θ cos Φ ˆx′− cos Θ ˆy′ + sin Θ sin Φ ˆz′ (A.6)
+(see the diagram in Figure A.1 for the deﬁnition of the {x′,y′,z′} coordinate system). In order to populate these
+vectors over the hemisphere that is illuminated by the very distant host star, the angles Φ are uniformly sampled
+around 2π, while the angle Θ is distributed with a probability per unit Θ of 2 cos Θ sin Θ.
+
+<<<PAGE 14>>>
+14 Vanderburg, Rappaport, and Mayo
+For diﬀerent true anomalies of the outer orbit, and an outer orbital inclination angle of io, a distant observer sees
+these normal vectors as
+nx =n′
+x cosϕo−n′
+y sinϕo (A.7)
+ny =n′
+x sinϕo sinio +n′
+y cosϕo sinio−n′
+z cosio (A.8)
+nz =n′
+x sinϕo cosio +n′
+y cosϕo cosio +n′
+z sinio (A.9)
+where the directions{ˆx, ˆy, ˆz} refer to the observer’s coordinates, and, in particular, ˆy is the observer’s view direction
+(see Figure A.2 for a schematic of the geometry). Here we have used a shorthand notation with ϕo≡ ϕ−ϕe. The
+velocity of a point on the planet’s surface speciﬁed by ˆ n has a velocity in the observer’s ﬁxed coordinate system of
+⃗Vs =rp⃗ ωs× ˆn which can be written as the expansion of the following determinant:
+⃗Vs =rp
+⏐⏐⏐⏐⏐
+ˆx ˆy ˆz
+ωs,x ωs,y ωs,z
+nx ny nz
+⏐⏐⏐⏐⏐
+where the angular velocity vector,⃗ ωs, rotated to the observer’s ﬁxed coordinate system has the following components:
+ωs,x =ωs sinβ cosξ (A.10)
+ωs,y =ωs cosβ (A.11)
+ωs,z =ωs sinβ sinξ (A.12)
+and whereβ is the angle between the planet’s spin vector and the observer’s view direction, and ξ is the angle that the
+planet’s spin vector, projected onto the sky plane, makes with respect to the x axis (see the geometry in Figure A.2).
+In general, the cross product, ⃗ ωs× ˆn is a fairly messy expression, except for the trivial case where β = 0 (i.e., we
+are looking along the planet’s spin vector), in which case the radial component of ⃗Vs = 0. However, the determinant
+is simple enough to evaluate numerically.
+The information contained in the ˆn vectors is suﬃcient to determine (1) whether that point on the planet’s surface is
+visible at a given instant, and (2) the surface brightness of that point, depending on the scattering law. To determine
+the visibility of the surface point speciﬁed by a given ˆ n, we simply examine the dot product of that vector with the
+line of sight vector ˆy, and require that it be negative:
+ˆy· ˆn =ny = sin Θ cos Φ sinϕo sinio− cos Θ cosϕo sinio− sin Θ sin Φ cosio < 0 (A.13)
+In the restricted case of viewing the outer orbit edge on, this reduces to the condition that
+sin Θ cos Φ sinϕo− cos Θ cosϕo < 0 (A.14)
+tan Θ cos Φ tanϕo < 1 (A.15)
+Once the dot product of a normal vector with respect to the view direction has been computed, this yields the cosine
+of the emission angle with respect to the normal to the planetary surface. This can be used to compute the intensity
+of the radiation from that surface element if the scattering law is speciﬁed. For example, if the radiation obeys a
+Lambertian law, then one multiplies by the dot product to ﬁnd the relative amount of radiation from that surface
+element. For isotropic scattering the factor is just unity, and so forth. Finally, the total integrated radial velocity
+can be calculated by summing the contribution from each sampled surface element and dividing by the total summed
+intensity from the samples.
+REFERENCES
+Agol, E., Jansen, T., Lacy, B., Robinson, T. D., & Meadows, V.
+2015, ApJ, 812, 5
+Aigrain, S., Pont, F., & Zucker, S. 2012, MNRAS, 419, 3147
+Alonso, R., Alapini, A., Aigrain, S., et al. 2009, A&A, 506, 353
+Artigau, ´E. 2018, ArXiv e-prints, arXiv:1803.07672
+Artigau, E., Bernstein, R. A., Brandt, T., et al. 2018, ArXiv
+e-prints, arXiv:1808.09632
+Beuzit, J.-L., Feldt, M., Dohlen, K., et al. 2008, in Proc. SPIE,
+Vol. 7014, Ground-based and Airborne Instrumentation for
+Astronomy II, 701418
+Biller, B. A., Vos, J., Bonavita, M., et al. 2015, ApJ, 813, L23
+Boisse, I., Bouchy, F., H´ ebrard, G., et al. 2011, A&A, 528, A4
+Bond, I. A., Udalski, A., Jaroszy´ nski, M., et al. 2004, ApJ, 606,
+L155
+Borucki, W. J., Koch, D., Jenkins, J., et al. 2009, Science, 325,
+709
+Bryan, M. L., Benneke, B., Knutson, H. A., Batygin, K., &
+Bowler, B. P. 2018, Nature Astronomy, 2, 138
+Butler, R. P., Marcy, G. W., Williams, E., et al. 1996, PASP,
+108, 500
+Cabrera, J., & Schneider, J. 2007, A&A, 464, 1133
+Cabrera, J., Csizmadia, S., Lehmann, H., et al. 2014, ApJ, 781, 18
+Campbell, B., Walker, G. A. H., & Yang, S. 1988, ApJ, 331, 902
+Charbonneau, D., Berta, Z. K., Irwin, J., et al. 2009, Nature, 462,
+891
+Cody, A. M., Stauﬀer, J., Baglin, A., et al. 2014, AJ, 147, 82
+Collier Cameron, A. 2017, The Impact of Stellar Activity on the
+Detection and Characterization of Exoplanets, 23
+Czekala, I., Mandel, K. S., Andrews, S. M., et al. 2017, ApJ, 840,
+49
+Damasso, M., Bonomo, A. S., Astudillo-Defru, N., et al. 2018,
+A&A, 615, A69
+Dittmann, J. A., Irwin, J. M., Charbonneau, D., et al. 2017,
+Nature, 544, 333
+Donati, J. F., Moutou, C., Malo, L., et al. 2016, Nature, 534, 662
+Dorn, R. J., Anglada-Escude, G., Baade, D., et al. 2014, The
+Messenger, 156, 7
+
+<<<PAGE 15>>>
+Radial Velocity Detection of Exomoons 15
+Dumusque, X., Santos, N. C., Udry, S., Lovis, C., & Bonﬁls, X.
+2011a, A&A, 527, A82
+Dumusque, X., Udry, S., Lovis, C., Santos, N. C., & Monteiro,
+M. J. P. F. G. 2011b, A&A, 525, A140
+Dumusque, X., Lovis, C., S´ egransan, D., et al. 2011c, A&A, 535,
+A55
+Figueira, P., Santos, N. C., Pepe, F., Lovis, C., & Nardetto, N.
+2013, A&A, 557, A93
+Fressin, F., Torres, G., Charbonneau, D., et al. 2013, ApJ, 766, 81
+Gelino, C., & Marley, M. 2000, in Astronomical Society of the
+Paciﬁc Conference Series, Vol. 212, From Giant Planets to Cool
+Stars, ed. C. A. Griﬃth & M. S. Marley, 322
+Haywood, R. D., Collier Cameron, A., Queloz, D., et al. 2014,
+MNRAS, 443, 2517
+Haywood, R. D., Collier Cameron, A., Unruh, Y. C., et al. 2016,
+MNRAS, 457, 3637
+Heller, R. 2014, ApJ, 787, 14
+—. 2016, A&A, 588, A34
+—. 2018, A&A, 610, A39
+Heller, R., & Albrecht, S. 2014, ApJ, 796, L1
+Hill, M. L., Kane, S. R., Seperuelo Duarte, E., et al. 2018, ApJ,
+860, 67
+Hippke, M. 2015, ApJ, 806, 51
+Hoeijmakers, H. J., Schwarz, H., Snellen, I. A. G., et al. 2018,
+ArXiv e-prints, arXiv:1802.09721
+Hook, I. 2005, The science case for the European Extremely Large
+Telescope : the next step in mankind’s quest for the Universe
+Jaﬀe, D. T., Barnes, S., Brooks, C., et al. 2016, in Proc. SPIE,
+Vol. 9908, Ground-based and Airborne Instrumentation for
+Astronomy VI, 990821
+Johnson, J. A., Gazak, J. Z., Apps, K., et al. 2012, AJ, 143, 111
+Kawahara, H. 2012, ApJ, 760, L13
+Kipping, D. M. 2009, MNRAS, 392, 181
+Kipping, D. M., Bakos, G. ´A., Buchhave, L., Nesvorn´ y, D., &
+Schmitt, A. 2012, ApJ, 750, 115
+Kipping, D. M., Forgan, D., Hartman, J., et al. 2013, ApJ, 777,
+134
+Kipping, D. M., Huang, X., Nesvorn´ y, D., et al. 2015a, ApJ, 799,
+L14
+Kipping, D. M., Schmitt, A. R., Huang, X., et al. 2015b, ApJ,
+813, 14
+Latham, D. W., Stefanik, R. P., Mazeh, T., Mayor, M., & Burki,
+G. 1989, Nature, 339, 38
+Lester, T. P., McCall, M. L., & Tatum, J. B. 1979, JRASC, 73,
+233
+Lew, B. W. P., Apai, D., Zhou, Y., et al. 2016, ApJ, 829, L32
+Lillo-Box, J., Kipping, D., Rebollido, I., et al. 2018, ArXiv
+e-prints, arXiv:1803.04010
+L´ opez-Morales, M., Haywood, R. D., Coughlin, J. L., et al. 2016,
+AJ, 152, 204
+Lovis, C., & Fischer, D. 2010, Radial Velocity Techniques for
+Exoplanets, ed. S. Seager, 27–53
+Macintosh, B., Graham, J. R., Ingraham, P., et al. 2014,
+Proceedings of the National Academy of Science, 111, 12661
+Malavolta, L., Mayo, A. W., Louden, T., et al. 2018, AJ, 155, 107
+Marois, C., Macintosh, B., Barman, T., et al. 2008, Science, 322,
+1348
+Mayor, M., & Queloz, D. 1995, Nature, 378, 355
+Mayor, M., Pepe, F., Queloz, D., et al. 2003, The Messenger, 114,
+20
+Metchev, S. A., Heinze, A., Apai, D., et al. 2015, ApJ, 799, 154
+Morton, T. D., Bryson, S. T., Coughlin, J. L., et al. 2016, ApJ,
+822, 86
+Morzinski, K. M., Males, J. R., Skemer, A. J., et al. 2015, ApJ,
+815, 108
+Motalebi, F., Udry, S., Gillon, M., et al. 2015, A&A, 584, A72
+Mullally, F., Coughlin, J. L., Thompson, S. E., et al. 2015, ApJS,
+217, 31
+Quanz, S. P., Crossﬁeld, I., Meyer, M. R., Schmalzl, E., & Held,
+J. 2015, International Journal of Astrobiology, 14, 279
+Queloz, D., Henry, G. W., Sivan, J. P., et al. 2001, A&A, 379, 279
+Radigan, J. 2014, ApJ, 797, 120
+Rajpaul, V., Aigrain, S., Osborne, M. A., Reece, S., & Roberts, S.
+2015, MNRAS, 452, 2269
+Rodriguez, J. E., Pepper, J., Stassun, K. G., et al. 2015, AJ, 150,
+32
+Rodriguez, J. E., Zhou, G., Cargile, P. A., et al. 2017, ApJ, 836,
+209
+Rowe, J. F., Gaulme, P., Lissauer, J. J., et al. 2017, AJ, 153, 149
+Saar, S. H., & Donahue, R. A. 1997, ApJ, 485, 319
+Sanchis-Ojeda, R., Rappaport, S., Winn, J. N., et al. 2013, ApJ,
+774, 54
+Sartoretti, P., & Schneider, J. 1999, A&AS, 134, 553
+Schwarz, H., Ginski, C., de Kok, R. J., et al. 2016, A&A, 593,
+doi:10.1051/0004-6361/201628908
+Sengupta, S., & Marley, M. S. 2016, ApJ, 824, 76
+Snellen, I. A. G., Brandl, B. R., de Kok, R. J., et al. 2014,
+Nature, 509, 63
+Stauﬀer, J., Marley, M. S., Gizis, J. E., et al. 2016, AJ, 152, 142
+Struve, O. 1952, The Observatory, 72, 199
+Teachey, A., Kipping, D. M., & Schmitt, A. R. 2018, AJ, 155, 36
+Traub, W. A., & Oppenheimer, B. R. 2010, Direct Imaging of
+Exoplanets, ed. S. Seager, 111–156
+Vanderburg, A., Plavchan, P., Johnson, J. A., et al. 2016,
+MNRAS, 459, 3565
+Vos, J. M., Allers, K. N., Biller, B. A., et al. 2018, MNRAS, 474,
+1041
+Wang, J. J., Graham, J. R., Pueyo, L., et al. 2016, AJ, 152, 97
+Wilson, P. A., Rajan, A., & Patience, J. 2014, A&A, 566, A111
+Wolszczan, A., & Frail, D. A. 1992, Nature, 355, 145
+Wright, J. T. 2005, PASP, 117, 657
+Zhou, Y., Apai, D., Schneider, G. H., Marley, M. S., & Showman,
+A. P. 2016, ApJ, 818, 176
+Zucker, S., & Mazeh, T. 1994, ApJ, 420, 806

@@ -40,6 +40,7 @@ from ..fit.wsl import Shell, default_shell
 from .assemble import LineIndex, gate_links, link_astrometry
 from .heliolinc import HypothesisGrid, LinkCandidate
 from .pipeline import Band, link_arrows, link_bands, yield_summary
+from .priority import rank_for_fitting
 
 
 def resolve_conflicts(outcomes: Sequence[FitOutcome], arrows_by_link: dict[str, list[int]]):
@@ -177,7 +178,12 @@ def fit_links(
         "elapsed_s": round(time.monotonic() - started, 1),
         "converged": len(converged),
         "not_converged": len(outcomes) - len(converged),
-        "rms_le_0.25": sum(1 for o in converged if (o.fit.rms_residual or 9e9) <= 0.25),
+        # `is not None`, not `or 9e9` -- an RMS of exactly 0.0 is falsy. See fit/pipeline.py.
+        "rms_le_0.25": sum(
+            1
+            for o in converged
+            if o.fit.rms_residual is not None and o.fit.rms_residual <= 0.25
+        ),
         "failed_subset_guard": sum(
             1
             for o in converged
@@ -452,32 +458,35 @@ def merge_checkpoints(
     merged["survivors_by_band"] = _histogram(r.get("band", "?") for r in kept)
     merged["survivors_by_nights"] = _histogram(r.get("n_nights", "?") for r in kept)
     merged["survivors_neo_by_q"] = sum(1 for r in kept if r.get("is_neo_by_q"))
-    merged["survivors_meeting_all_sigma_limits"] = sum(
-        1 for r in kept if meets_published_sigma_limits(r)
+    merged["survivors_meeting_published_quality"] = sum(
+        1 for r in kept if meets_published_quality_limits(r)
     )
     merged["ranked"] = kept
     merged["conflicted"] = dropped
     return merged
 
 
-#: The MPC's published post-fit uncertainty limits, taken from :mod:`itf_linker.fit.gates`
-#: rather than restated, and compared with the same ``>=`` the gate itself uses. They are
-#: scoped to *exactly*-three-night links -- M1 established that and M3 and M4 both
-#: reproduced it -- so a four- or five-night fit is judged on RMS alone and never has to
-#: meet them. Applied to every survivor here regardless of night count, because a
-#: five-night link with sigma(a) = 96 AU should be visible in the column rather than
-#: escape it.
-SIGMA_LIMITS: dict[str, float] = {
-    "sigma_a": gates.THREE_NIGHT_SIGMA_A_AU,
-    "sigma_e": gates.THREE_NIGHT_SIGMA_E,
-    "sigma_i": gates.THREE_NIGHT_SIGMA_I_DEG,
-    "sigma_q": gates.THREE_NIGHT_SIGMA_Q_AU,
+#: The MPC's published "orbit quality is sufficient" test, taken from
+#: :mod:`itf_linker.fit.gates` rather than restated, and compared with the same ``>=`` the
+#: gate itself uses. **Five** conditions, not four: ``e < 0.5`` is published alongside the
+#: four uncertainties and was missing from this project until 2026-08-07.
+#:
+#: Applied to every survivor here regardless of night count. Our own gate scopes the sigmas
+#: to exactly-three-night links, but that scoping is ours -- the MPC's published rule has a
+#: separate bullet for links with more than 3 nights -- so a five-night link with
+#: sigma(a) = 96 AU should be visible in this column rather than escape it.
+QUALITY_LIMITS: dict[str, float] = {
+    "sigma_a": gates.QUALITY_SIGMA_A_AU,
+    "sigma_e": gates.QUALITY_SIGMA_E,
+    "sigma_i": gates.QUALITY_SIGMA_I_DEG,
+    "sigma_q": gates.QUALITY_SIGMA_Q_AU,
+    "e": gates.MAX_ECCENTRICITY,
 }
 
 
-def meets_published_sigma_limits(row: dict[str, Any]) -> bool:
-    """Does this fit meet all four published sigma limits, whatever its night count?"""
-    for key, limit in SIGMA_LIMITS.items():
+def meets_published_quality_limits(row: dict[str, Any]) -> bool:
+    """Does this fit meet all five published quality conditions, whatever its night count?"""
+    for key, limit in QUALITY_LIMITS.items():
         value = row.get(key)
         if value is None or value >= limit:
             return False
@@ -579,18 +588,31 @@ def run_m3(
         )
     link_report["arrow_build"] = arrows.stats
     link_report["slice"] = {"mjd_min": mjd_min, "mjd_max": mjd_max}
-    gated, gate_report = gate_links(links)
+    gated, gate_report = gate_links(links, arrows.table)
     passing = gated.filter(pl.col("link_pass")) if gated.height else gated
     # Cross-observatory first: that ordering is what decides which links get fitted at all
-    # when a limit is applied, and it is M3's whole strategic point. ``fit_order`` puts
-    # whole distance bands ahead of that, which is M4's: a main-belt link is a population
-    # every survey re-detects constantly, and an NEO- or TNO-distance link is not.
+    # when a limit is applied, and it is M3's whole strategic point.
+    #
+    # Changed 2026-08-07 (audit B3). This used to sort by
+    # ``[band_priority, cross_observatory, cross_designation, n_nights, pos_spread_au]``
+    # with nights *descending* -- M4's order. M5 section 2 measured that order as **worse
+    # than a random shuffle at every depth** (0.000 against 0.127 capture in the top 10%),
+    # because more nights is worse rather than better: 3-night links survived 6.7% and
+    # six-night links none. ``link-fit-all`` had already moved to the fitted survival model
+    # while ``m3``/``m4`` were still running the discredited order by default.
+    #
+    # Ordering cannot change the result of a *complete* run -- every link gets the same
+    # gates whenever it is reached -- so this only affects which part of a partial run
+    # exists, which is exactly what it should affect. ``fit_order``, when a caller asks for
+    # it explicitly, still puts whole distance bands first; the survival model now orders
+    # within them instead of the nights-descending sort.
     if passing.height:
-        passing = prioritise_bands(passing, fit_order).sort(
-            ["band_priority", "cross_observatory", "cross_designation",
-             "n_nights", "pos_spread_au"],
-            descending=[False, True, True, True, False],
-        )
+        passing = rank_for_fitting(passing)
+        if fit_order:
+            passing = prioritise_bands(passing, fit_order).sort(
+                ["band_priority", "fit_tier", "survival_score", "desig"],
+                descending=[False, False, True, False],
+            )
 
     if links_out is not None and gated.height:
         # Written before fitting starts. Linking is ~30 minutes and fitting is hours, so a

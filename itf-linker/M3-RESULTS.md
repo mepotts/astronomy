@@ -462,7 +462,15 @@ Two changes make the milestone finishable on a laptop, and both are now shipped:
 re-reads any chunk directory a previous run completed. The resume check is strict — it
 requires a parseable `total.json` covering *every* designation in the chunk, because half a
 chunk silently converts "not fitted" into "did not converge" — and chunk membership is
-deterministic because designations are sorted before chunking. Three tests pin it.
+deterministic because chunking slices the input in the order the caller built it. Three
+tests pin it.
+
+> **Corrected 2026-08-07.** This said "because designations are sorted before chunking".
+> They are not sorted: `run_fo_batched` does `keys = list(groups)`. Resume is unaffected —
+> a run that rebuilds the input the same way gets the same chunks, and a reordered input
+> just fails the membership check and refits. But the related claim that a partially
+> completed run is an *unbiased sample* does not hold on the link path, where the input is
+> the ranked queue and the completed subset is therefore the best-ranked prefix.
 
 A second failure was a real scaling bug, not a harness one. `isolated_groups` built a
 `clusters × arrows × 6` distance array in one allocation: 167 MB for 151 clusters against a
@@ -471,8 +479,16 @@ while asking for 26 MB. It is batched now.
 
 ### 6.6 The published criteria are still not sufficient — again
 
-M1's §7 finding reproduces exactly. The MPC's σ limits are scoped to *exactly*-three-night
-links, so a four- or five-night fit is judged on RMS alone:
+M1's §7 finding reproduces exactly. *Our* gate scopes the σ limits to exactly-three-night
+links, so a four- or five-night fit clears it on RMS alone:
+
+> **Corrected 2026-08-07.** This paragraph said the scoping was the MPC's. It is ours. The
+> MPC's published rule has a second bullet governing links with **more than** 3 nights
+> (arc < 10 d), and applies the quality block only when RMS > 0.25″ *and* the arc is short —
+> so under their rule these survivors are not quality-tested at all, on any night count.
+> There are also **five** published quality conditions, not four: `e < 0.5` is missing from
+> every count below. The conclusion — four- and five-night survivors are poorly constrained
+> — is unaffected; only its justification was wrong.
 
 - **All 136 three-night survivors meet all four σ limits** — as they must, because the gate
   tests them.

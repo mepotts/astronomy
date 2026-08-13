@@ -1,0 +1,1277 @@
+<<<PAGE 1>>>
+Draft version August 21, 2024
+Typeset using LATEX twocolumn style in AASTeX631
+R V measurements of directly imaged brown dwarf GQ Lup B to search for exo-satellites
+Katelyn Horstman
+ ,1 Jean-Baptiste Ruffio
+ ,2 Konstantin Batygin
+ ,3 Dimitri Mawet
+ ,1, 4 Ashley Baker,1
+Chih-Chun Hsu
+ ,5 Jason J. W ang (王劲飞)
+ ,5 Ji W ang (王吉)
+ ,6 Sarah Blunt
+ ,5 Jerry W. Xuan
+ ,1
+Yinzi Xin,1 Joshua Liberman
+ ,7 Shubh Agrawal
+ ,1, 8 Quinn M. Konopacky
+ ,2 Geoffrey A. Blake, 3
+Clarissa R. Do ´O
+ ,9 Randall Bartos,4 Charlotte Z. Bond, 10 Benjamin Calvin,1, 11 Sylvain Cetre,12
+Jacques-Robert Delorme
+ ,12, 1 Greg Doppmann,12 Daniel Echeverri
+ ,1 Luke Finnerty
+ ,11
+Michael P. Fitzgerald
+ ,11 Nemanja Jovanovic
+ ,1 Ronald L´opez,11 Emily C. Martin
+ ,13 Evan Morris,13
+Jacklyn Pezzato,1 Garreth Ruane
+ ,1, 4 Ben Sappey
+ ,2 Tobias Schofield,1 Andrew Skemer,13
+Taylor Venenciano,14 J. Kent W allace
+ ,4 Nicole L. W allack
+ ,15 and Peter Wizinowich 12
+1Department of Astronomy, California Institute of Technology, Pasadena, CA 91125, USA∗
+2Department of Astronomy & Astrophysics, University of California, San Diego, La Jolla, CA 92093, USA
+3Division of Geological and Planetary Sciences California Institute of Technology, Pasadena, CA 91125, USA
+4Jet Propulsion Laboratory, California Institute of Technology, 4800 Oak Grove Dr.,Pasadena, CA 91109, USA
+5Center for Interdisciplinary Exploration and Research in Astrophysics (CIERA), Northwestern University, 1800 Sherman, Evanston, IL,
+60201, USA
+6Department of Astronomy, The Ohio State University, 100 W 18th Ave, Columbus, OH 43210 USA
+7Department of Astronomy, California Institute of Technology, Pasadena, CA 91125, USA, James C. Wyant College of Optical Sciences,
+University of Arizona, Meinel Building 1630 E. University Blvd., Tucson, AZ. 85721
+8Department of Physics and Astronomy, University of Pennsylvania, Philadelphia, PA 19104, USA
+9Department of Physics, University of California, San Diego, La Jolla, CA 92093
+10UK Astronomy Technology Centre, Royal Observatory, Edinburgh EH9 3HJ, United Kingdom
+11Department of Physics & Astronomy, 430 Portola Plaza, University of California, Los Angeles, CA 90095, USA
+12W. M. Keck Observatory, 65-1120 Mamalahoa Hwy, Kamuela, HI, USA
+13Department of Astronomy & Astrophysics, University of California, Santa Cruz, CA95064, USA
+14Physics and Astronomy Department, Pomona College, 333 N. College Way, Claremont, CA 91711, USA
+15Earth and Planets Laboratory, Carnegie Institution for Science, Washington, DC 20015, USA
+ABSTRACT
+GQ Lup B is one of the few substellar companions with a detected cicumplanetary disk, or CPD.
+Observations of the CPD suggest the presence of a cavity, possibly formed by an exo-satellite. Using
+the Keck Planet Imager and Characterizer (KPIC), a high contrast imaging suite that feeds a high
+resolution spectrograph (1.9-2.5 microns, R ∼35,000), we present the first dedicated radial velocity
+(R V) observations around a high-contrast, directly imaged substellar companion, GQ Lup B, to search
+for exo-satellites. Over 11 epochs, we find a best and median R V error of 400-1000 m/s, most likely
+limited by systematic fringing in the spectra due to transmissive optics within KPIC. With this R V
+precision, KPIC is sensitive to exomoons 0.6-2.8% the mass of GQ Lup B ( ∼ 30 MJup) at separations
+between the Roche limit and 65 RJup, or the extent of the cavity inferred within the CPD detected
+around GQ Lup B. Using simulations of HISPEC, a high resolution infrared spectrograph planned to
+debut at W.M. Keck Observatory in 2026, we estimate future exomoon sensitivity to increase by over
+an order of magnitude, providing sensitivity to less massive satellites potentially formed within the
+CPD itself. Additionally, we run simulations to estimate the amount of material that different masses
+of satellites could clear in a CPD to create the observed cavity. We find satellite-to-planet mass ratios
+of q >2 × 10−4 can create observable cavities and report a maximum cavity size of ∼ 51 RJup carved
+from a satellite.
+Corresponding author: Katelyn Horstman
+khorstma@caltech.edu
+arXiv:2408.10299v1  [astro-ph.EP]  19 Aug 2024
+
+<<<PAGE 2>>>
+2 Horstman et al.
+Keywords: Natural satellites (Extrasolar) (483) — Direct imaging (387) — Radial velocity (1332) —
+Exoplanet detection methods (489)
+1. INTRODUCTION
+1.1. Exo-satellites as potential planet formation probes
+Understanding the striking diversity of planetary sys-
+tems requires an exploration of how they form and
+evolve, yet fundamental questions remain unanswered,
+such as how common our own solar system is. By exam-
+ining the over 200 moons in our solar system, ranging
+over a variety of inclinations, eccentricities, and compo-
+sitions, we have gained a wealth of knowledge about how
+our solar system formed and how it achieved its current
+architecture. Similarly, we can also study exomoons, or
+moons beyond our solar system, to gain valuable insights
+into how planets form, both within and beyond our solar
+system (Heller et al. 2014; Teachey 2024).
+The satellites around exoplanets, or exo-satellites/ ex-
+omoons, have been predicted to form in a variety of
+ways: in the circumplanetary disk (CPD) surrounding
+an exoplanet; from capture, such as Neptune’s moon
+Triton (Agnor & Hamilton 2006); collisions with pro-
+toplanets, such the Moon (Canup & Asphaug 2001);
+or even disk instabilities, such as brown dwarf binaries
+(Lazzoni et al. 2020a). When forming exo-satellites from
+the dust and gas surrounding the companion, the CPD
+is believed to be a decretion disk where dust of critical
+size becomes trapped within the disk and fragments into
+satellitesimals once the disk reaches a supersolar metal-
+licty. These satellitesimals can then grow and migrate
+inward due to gas drag (Batygin & Morbidelli 2020),
+implying moons are a natural consequence of planet for-
+mation. The typical CPD total dust mass relative to
+the planet is around 10 −4 (Canup & Ward 2006; Sasaki
+et al. 2010) which is consistent with the mass ratio of
+the Galilean satellites around Jupiter. Additionally, this
+measurement of dust mass is also consistent with ob-
+servations of the CPD around PDS 70 c from ALMA
+continuum observations (Benisty et al. 2021).
+Theoretical models also suggest that it is possible mas-
+sive planets form even more massive moons following
+the scaling m ∝ M3/2, with m and M the masses of the
+moon and the planet respectively (based on equation
+43 in Batygin & Morbidelli (2020)). Therefore, satel-
+lites around brown dwarfs could likely reach the critical
+mass ( ∼ 10M⊕ from Piso & Youdin (2014)) necessary
+for runaway gas accretion, leading to much higher mass
+ratios than the Galilean moons ( > 10−3). Recent simu-
+∗ NSF Graduate Research Fellow
+lations suggest that it is possible to form a single, mas-
+sive moon in the CPD rather than smaller mass moons.
+Fujii & Ogihara (2020) found there are favorable viscous
+parameters that lead to the formation and stability of
+singular moons around a gas giant planets. Addition-
+ally, 3D hydrodynamical simulations propose eccentric
+companions can incite retrograde CPDs capable of form-
+ing retrograde satellites, suggesting formation pathways
+for retrograde, higher mass satellites other than capture
+(Chen et al. 2022).
+1.2. Exo-satellite candidates and observations
+The field of exosolar satellite theory and detection has
+experienced significant growth over the past decade and
+is being used to answer questions about planet forma-
+tion, within and beyond our own solar system. Tran-
+siting surveys have been the dominant method used to
+conduct exomoon searches and have yielded two cur-
+rent, yet contested, exomoon candidates (Teachey et al.
+2018; Kipping et al. 2022; Heller & Hippke 2024; Kip-
+ping et al. 2024). Studies continue to look for exo-
+satellites using transits to place limits on the detectable
+masses and probe different system architectures, even
+when no strong evidence of a satellite is present (Lim-
+bach et al. 2021; Ohno et al. 2022; Ehrenreich et al.
+2023). Other exo-satellite detection techniques include
+microlensing, which identified candidates in the MOA-
+2011-BLG-262 and MOA-2015-BLG-337 systems (Ben-
+nett et al. 2014; Miyazaki et al. 2018), searching for
+sodium and potassium due to geological activity on vol-
+canic worlds (Oza et al. 2019; Gebek & Oza 2020), and
+looking for exoplanet-satellite interactions in radio wave-
+lengths (Pineda et al. 2017; Narang et al. 2023; Kao &
+Pineda 2024).
+Due to their larger size and therefore larger Hill
+Spheres, directly-imaged exoplanets may be more likely
+to harbor larger satellites. Lazzoni et al. (2020a) claims
+high contrast imaging detected an exomoon candidate
+(estimated 1 MJup orbiting a directly imaged BD, DH
+Tau B). Additionally, the combination of high con-
+trast imaging and high resolution spectroscopy is al-
+ready a viable method to detect small satellites around
+directly-imaged planets. Motivated by Teachey et al.
+(2018), Vanderburg et al. (2018) started exploring the
+detectability of exo-satellites around directly imaged
+planets using Doppler spectroscopy. Shortly after, Van-
+derburg & Rodriguez (2021) placed the first limits on
+binary planets and exo-satellites using OH-Suppressing
+
+<<<PAGE 3>>>
+Search for exo-satellites around GQ Lup B 3
+Infrared Integral Field Spectrograph (OSIRIS) radial ve-
+locity observations of HR 8799 b, c, and d from Ruffio
+et al. (2021) and found sensitivity to companions more
+massive than 2 MJup, or with a mass ratio greater than
+20%, for orbital periods less than five days. Influenced
+by this work, the Keck Planet Imager and Characterizer
+(KPIC) team analyzed existing observations of the BD
+companion HR 7672 B and achieved 2 km/s R V preci-
+sion for 5 min exposures, demonstrating sensitivity to
+moon-to-planet mass ratios between 1 and 4% (Ruffio
+et al. 2023).
+Although there have been quite a few notable exo-
+moon candidates, there has still not been a definitive de-
+tection. So, it is natural to wonder where the best places
+to look for exo-satellites are. One option beginning to be
+explored is within the CPD around a still forming exo-
+planet, especially with the first CPD detections around
+companions PDS 70 c and GQ Lupi B (Benisty et al.
+2021; Stolker et al. 2021).
+1.3. The curious case of GQ Lupi B
+GQ Lupi B was discovered by Neuh¨ auser et al. (2005)
+at a separation of approximately 100 AU from host star
+GQ Lupi in the Lupus star forming region. With an
+apparent magnitude of 13 .1 ± 0.1 and a contrast ratio
+of 4 × 10−3 in K-band (Neuh¨ auser et al. 2005), it is
+a favorable companion to observe in the near-infrared.
+The companion historically had an uncertain mass be-
+tween 10 − 40 MJup (Marois et al. 2007; McElwain et al.
+2007; Seifahrt et al. 2007) for its measured temperature
+of 2650 ± 100 K (Seifahrt et al. 2007), but recent stud-
+ies have constrained the mass to 30 MJup (Stolker et al.
+2021; Xuan et al. 2024a).
+Early observations of GQ Lup B, based on HST and
+Subaru data, suggest that the system is still in its for-
+mation phase and is actively accreting based on de-
+tections of H α emission (Marois et al. 2007). Further
+follow up has confirmed the accretion signature in H α
+(Zhou et al. 2014; Wu et al. 2017; Stolker et al. 2021)
+and Pa β (Seifahrt et al. 2007; Demars et al. 2023).
+GQ Lup B is estimated to be accreting at a rate of
+M ≈ 10−6.5MJ yr−1 (Stolker et al. 2021) while its emis-
+sion line variability suggests magnetospheric accretion
+(Demars et al. 2023). GQ Lup B is also measured to
+have a v sin i of 5-6 km/s using VLT/CRIRES and KPIC
+data respectively, indicating that it is a slow rotator
+(Schwarz et al. 2016; Xuan et al. 2024a). It is thought
+to be a slow rotator since it is still young (2-5 Myr) and
+is expected to spin up as it continues to accrete more
+material and contract (Donati et al. 2012).
+The inclination of the disk around GQ Lupi is re-
+ported to be 60.5±0.5 degrees with respect to the line of
+sight, and it is observed to be misaligned with the spin
+axis of the star by approximately 30 degrees (MacGre-
+gor et al. 2017; Wu et al. 2017). Observations by van
+Holstein et al. (2021) show spiral-like structure in the
+circumstellar disk which may be due to gravitational
+interaction with GQ Lup B. Radial velocity measure-
+ments of 2 .0 ± 0.4 km /s, along with astrometry data
+from VLT/NACO and HST, have been utilized to con-
+strain the orbit of GQ Lup B (Schwarz et al. 2016).
+Its orbit exhibits a mutual inclination of 84 ± 9 degrees
+relative to the circumstellar disk (Stolker et al. 2021).
+The orientation of GQ Lup B’s orbit relative to the cir-
+cumstellar disk, combined with measurements of CO,
+H2O, and metallicity, suggests that GQ Lup B formed
+via gravitational collapse (Stolker et al. 2021; Demars
+et al. 2023; Xuan et al. 2024a). Adding to its interest-
+ing system architecture, a second companion, GQ Lup
+C, has been detected at an approximate separation of
+2400 AU (Alcal´ a et al. 2020; Lazzoni et al. 2020b).
+Interestingly, a potential protolunar disk has been de-
+tected from infrared excess around GQ Lup B. Using
+ALMA observations of the GQ Lup system, MacGre-
+gor et al. (2017) placed an upper limit of 0 .04 MEarth
+on the dust mass in the CPD surrounding GQ Lup B,
+arguing that a non-detection of the disk could be due
+to its compact and optically thick nature. However,
+a recent detection of the CPD around GQ Lup B by
+Stolker et al. (2021) suggests that the non-detection of
+dust grains by ALMA may actually be due to the deple-
+tion of dust in the inner disk due to satellite formation.
+Stolker et al. (2021) claims the existence of a 65 ± 1 RJ
+cavity in the CPD might be caused by one or multi-
+ple young moons carving away material, since the size
+of the cavity is larger than the expected dust sublima-
+tion radius calculated from the effective temperature of
+GQ Lup B. While this paper was in preparation, addi-
+tional JWST observations of GQ Lup B also investigated
+the cavity within the CPD, finding a cavity size rang-
+ing between 8 − 40 RJup depending on the model CPD
+proposed (Cugno et al. 2024).
+Looking for exoplanets carving the gaps and cavities in
+protoplanetary disks is already a common strategy used
+to search for new exoplanets and is therefore an appeal-
+ing way to search for a moon in the cavity of the CPD
+around GQ Lup B (Ruane et al. 2017). Both ALMA
+and SPHERE data have revealed dust substructures and
+cavities within protoplanetary disks that could poten-
+tially be attributed to the presence of planets (Long
+et al. 2018; Asensio-Torres et al. 2021) and notably two
+planets were discovered within the gap of the disk in
+the PDS 70 system, illustrating the effectiveness of this
+method (Keppler et al. 2018; Haffert et al. 2019).
+
+<<<PAGE 4>>>
+4 Horstman et al.
+GQ Lup B is the ideal candidate to probe for satel-
+lites because of the detected cavity in the CPD, pos-
+sibly caused by moon formation, the likelihood of this
+young brown dwarf to harbor proportionally more mas-
+sive moons, and the ability of KPIC to achieve high
+precision R V measurements via direct imaging spec-
+troscopy.
+1.4. Outline
+In this paper, we aim to search for an exo-satellite
+in the cavity of the CPD surrounding brown dwarf GQ
+Lup B. In section 2 and section 3, we present the first
+dedicated R V survey to search for satellites around a
+high contrast companion using KPIC and explain how
+we obtained our R V measurements. In section 4 we
+present the exo-satellite sensitivity achieved with KPIC,
+and compare the results obtained to the predicted cavity
+carving nature of exomoons in section 5. Finally, in sec-
+tion 6 we conclude by discussing the future prospects for
+exo-satellite searches with high resolution spectrographs
+and hypothesize about their occurrence rates.
+2. KPIC OBSER V ATIONS
+We carried out 11 observations of GQ Lup B with
+KPIC (R ∼ 35, 000) in K-band (1.94-2.49 µm) (Mawet
+et al. 2017; Delorme et al. 2021), a high contrast imaging
+suite that feeds the high resolution spectrograph NIR-
+SPEC (McLean et al. 1998; Martin et al. 2018), between
+2021 and 2023. The first 4 observations were completed
+during KPIC Phase 1 (2019-2021) (Delorme et al. 2021).
+Since 2022, KPIC received several upgrades (Echeverri
+et al. 2022), and in May 2023, we began the first ded-
+icated R V exo-satellite survey to monitor GQ Lup B.
+Since GQ Lup B is at a relatively low elevation in the
+northern hemisphere (DEC = −35◦ 39′ 5.0539′′), we ob-
+served the brown dwarf for only 1.5-2.5 hours per night
+for 7 nights between May and July 2023. A summary of
+our observations is provided in Table 1.
+We use the same observing techniques as in Wang
+et al. (2021b), except we switch between the two high-
+est performing fibers, determined by measuring which of
+the four fibers has the best end-to-end throughput, to
+aid in background subtraction between exposures. The
+relative astrometry of GQ Lup B was computed using
+whereistheplanet.com (Wang et al. 2021a) so the posi-
+tion of the fiber is correctly aligned with the companion
+on a given night.
+3. DATA REDUCTION
+Spectra were reduced using the KPIC Data Reduction
+Pipeline (DRP) 1 following the same procedure as de-
+scribed in Wang et al. (2021b). In summary, the KPIC
+DRP performs background subtraction, bad pixel cor-
+rection, and spectral trace calibration to determine the
+location and width of each of the nine NIRSPEC spec-
+troscopic orders, orders 31-39, on the detector for each
+of KPIC’s four fibers. Using calibration data taken dur-
+ing the night of observation, the spectrum of an early
+M giant star is used to derive a wavelength solution for
+each spectroscopic order. Spectral lines from the M-
+calibrator star, in this case primarily HIP 81497, and
+telluric lines from the atmosphere are modeled with a
+PHOENIX model (Husser et al. 2013) and the Plane-
+tary Spectrum Generator (Villanueva et al. 2018) re-
+spectively to obtain best fit parameters for the final
+wavelength solution in each order. Additionally, during
+our observing sequence on GQ Lup B, we take intermit-
+tent observations of the host star, GQ Lup, to account
+for additional light from the host star leaking into the
+science fiber model.
+3.1. Forward model and likelihood
+We jointly model the host and companion spectra by
+using the python package breads2 (Agrawal et al. 2023)
+to measure the R V of GQ Lup B for each exposure fol-
+lowing the same method used in Ruffio et al. (2023).
+We define our forward model as,
+d = MR Vϕ + n, (1)
+where d is the data vector of size Nd, MR Vis the linear
+model, ϕ are the linear parameters, and n is a random
+vector of the noise with a diagonal covariance matrix Σ,
+where Σ = Σ0s2. Σ0 is defined using both the data
+vector and the standard deviation of the noise, and is
+multiplied by a free parameter scaling factor s2 to ac-
+count for any underestimation of the noise.
+Observations of GQ Lup, the host star, are used to
+empirically derive both a stellar spectrum and instru-
+ment transmission. The stellar spectrum is necessary to
+model stellar speckles leaking into the fiber placed on
+the position of the companion. The companion is mod-
+eled using a BT-Settl atmospheric model 3 (log g = 4.0;
+Teff = 2700 K, Allard et al. 2012) broadened by the em-
+pirical line spread function (LSF), then multiplied by
+the telluric spectrum and instrument transmission pro-
+file. To model the stellar and planet continuum, we
+1 https://github.com/kpicteam/kpic pipeline
+2 https://breads.readthedocs.io/en/latest/
+3 https://phoenix.ens-lyon.fr/Grids/BT-Settl/CIFIST2011c/
+
+<<<PAGE 5>>>
+Search for exo-satellites around GQ Lup B 5
+Date (UT) Number of Exposures Exposure time (sec) Seeing Throughput
+2021-04-24 6 600 1.0′′ 1.6%
+2022-07-20 39 60 0.6′′ 2.0%
+2022-07-20 6 600 0.6′′ 2.0%
+2022-07-21 4 600 0.5′′ 3.0%
+2022-07-23 2 600 0.6′′ 2.2%
+2023-05-06 21 180 0.7′′ 1.7%
+2023-06-04 18 180 0.6′′ 0.8%
+2023-06-21 34 180 0.7′′ 1.8%
+2023-06-23 33 180 0.4′′ 2.8%
+2023-06-24 32 180 0.9′′ 2.2%
+2023-06-29 32 180 0.5′′ 3.8%
+2023-07-02 25 180 0.6′′ 2.4%
+T able 1.K-band observations of GQ Lup B with KPIC. The end-to-end throughput is measured from top of the atmosphere
+and is a better metric of performance than seeing for KPIC. We report the 95% percentile throughput over theK band, averaged
+over all frames.
+control the number of nodes used in a 3 rd order spline
+model. To account for inaccuracies in the continuum of
+the atmospheric model, ten spline nodes are used in each
+spectral order (∆ λ ∼ 0.05 µm) for the planet model.
+This is equivalent to a 200 pixel wide high-pass filter, to
+balance the number of parameters modeled with the op-
+timal high-pass filter scale of 100 pixels found in Xuan
+et al. (2022). Three spline modes are used to model the
+speckle continuum to account for speckles appearing in
+the fiber location as function of wavelength. The R V of
+GQ Lup B is the only non-linear parameter we fit for
+in our forward modeling framework. An example of our
+forward model for a single exposure is shown in Figure 1.
+KPIC residuals show systematic fringing, or periodic
+oscillations in the continuum flux as a function of wave-
+length, due to Fabry-P´ erot etalons created by the trans-
+missive optics in both NIRSPEC (Hsu et al. 2021) and
+KPIC (Finnerty et al. 2022). Fringing is a persistent
+problem and can greatly affect our ability to fit the data.
+For high signal-to-noise (S/N) observations, the fringing
+amplitude can reach up to 15% of the stellar continuum
+(Finnerty et al. 2022). Several different attempts have
+been made to mitigate the fringing signal. For temporal
+observations of Hot Jupiters, Finnerty et al. (2023) re-
+moved the time-varying fringing signal attributed to the
+KPIC optics by using PCA analysis. Additionally, Xuan
+et al. (2024b) incorporated a physical fringing model fit
+to the contaminated residuals of their spectra to account
+for the extra systematics. After exploring various fring-
+ing mitigation options, we follow the same procedure as
+in Ruffio et al. (2023) and apply a Fourier filter to re-
+move the main frequencies associated with the periodic
+fringing signal.
+The likelihood function is defined from a multivariate
+Gaussian distribution as,
+L(R V, ϕ, s2) = 1p
+(2π)Nd |Σ0|s2Nd
+exp
+
+− 1
+2s2 (d − MR Vϕ)⊤Σ−1
+0 (d − MR Vϕ)
+
+. (2)
+We find the maximum likelihood R V for each exposure
+using a linear least square solver on a grid of R V values
+ranging from −400 to 400 km/s in steps of 0.2 km/s. We
+derive 1σ R V uncertainties according to Equation 10 in
+Ruffio et al. (2021) from each R V posterior distribution.
+Each spectral order is fit separately to the determine the
+R V. Only the three orders with both sufficient stellar
+and telluric lines in K-band were used in this analysis:
+2.29 − 2.34 µm (order 33), which coincides with the CO
+bandhead, 2.36 − 2.41 µm (order 32), and 2.44 − 2.49 µm
+(order 31), giving three R V measurements per exposure,
+as shown in Figure 2.
+3.2. R V measurements
+Following the procedure outlined in the previous sec-
+tion, we measure the barycentric-corrected R V for each
+order, shown in Figure 2. We do not correct for the or-
+bital motion of GQ Lup B, as over the timescale of our
+observations, its radial velocity is expected to change
+by less than 10−12 km/s due to its wide separation. For
+each exposure, we compute a cross-correlation function
+(CCF) S/N to estimate the companion flux as a func-
+tion of R V as in Ruffio et al. (2019); Wang et al. (2021b).
+To prevent spurious detections, we limit our final data
+set to R Vs with a CCF S/N >3 and a measured value
+between -5 to 5 km/s.
+Over 11 epochs we use in this analysis, we find a best
+and median R V error of 400 m/s and 1 km/s respec-
+
+<<<PAGE 6>>>
+6 Horstman et al.
+0
+50
+100 Data
+Combined model
+Planet model
+Starlight model
+50
+0
+50 Residuals
+Data uncertainty
+0
+25
+50
+Planet model
+Subcomponents
+2.300 2.305 2.310 2.315 2.320 2.325 2.330 2.335 2.340
+ 
+0
+25
+50 
+Starlight model
+Subcomponents
+ ( m)
+Data number
+Figure 1. An example GQ Lup B spectrum and forward model from a single exposure on 06/29/2023 (UT). T op:The full
+spectrum is in black, while the combined model, consisting of the planet model (purple) and the stellar model (orange), is in pink.
+Second panel: The residuals (data-model) are shown in gray, while the shaded gray region represents the data uncertainty
+measured by the KPIC DRP. The data uncertainties are derived from optimal extraction (Horne 1986), which fits a vertical
+Gaussian profile to the horizontal spectral trace on the detector at each wavelength, outlined in Section 3.1 of Wang et al.
+(2021b). Third panel: The forward model of the companion spectrum taken from a BT-Settl atmospheric model (log g = 4.0;
+Teff = 2700 K, Allard et al. (2012)). The ten spline nodes used to model the continuum are shown in gray and black.
+Bottom: The forward model of the starlight derived from empirical observations of GQ Lup to account for speckle light
+leaking into the fiber. The three spline nodes used to model the continuum are shown in gray and black.
+tively for individual exposures, most likely limited by
+systematic fringing instead of photon noise.
+4. EXO-SATELLITE SENSITIVITY AROUND GQ
+LUP B WITH KPIC
+We use the open-source Python package RVSearch4
+(Rosenthal et al. 2021) to look for possible satellites
+around GQ Lup B and derive the sensitivity of our KPIC
+R V time series. RVSearch is a planet search algorithm
+developed by the California Legacy Survey to search for
+periodic signals in an R V time series (Howard & Fulton
+2016; Rosenthal et al. 2021; Fulton et al. 2021). The
+algorithm searches over orbital periods defined by the
+4 https://github.com/California-Planet-Search/rvsearch
+user, computing a the difference in Bayesian Information
+Criterion (BIC) between a model including a companion
+signal and a model with no companion signal (Rosenthal
+et al. 2021). For each iterative search, the algorithm fits
+the histogram of ∆BIC periodogram values using the
+power law noise model described in Howard & Fulton
+(2016) to derive a detection threshold for orbiting com-
+panions.
+Figure 4 shows the exo-satellite detection probabil-
+ity around GQ Lup B. Due to the different properties
+of each KPIC fiber, we assume a different zero point
+R V for each fiber and use RVSearch to jointly estimate
+the offsets between them. The same approach typically
+used for combining datasets from different R V instru-
+ments. We also use this same feature to account for
+possible systematics, primarily in the wavelength solu-
+
+<<<PAGE 7>>>
+Search for exo-satellites around GQ Lup B 7
+0.0 0.2 0.4 0.6 0.8 1.0
+time (h)
+5
+0
+5
+RV (km/s)
+04-24-2021 MJD=59328
+0.0 0.2 0.4 0.6 0.8
+time (h)
+5
+0
+5
+RV (km/s)
+07-20-2022 MJD=59780
+0.0 0.2 0.4 0.6
+time (h)
+5
+0
+5
+RV (km/s)
+07-21-2022 MJD=59781
+0.1
+ 0.0 0.1 0.2
+time (h)
+5
+0
+5
+RV (km/s)
+07-23-2022 MJD=59783
+0.0 0.5 1.0
+time (h)
+5
+0
+5
+RV (km/s)
+05-06-2023 MJD=60070
+0.0 0.5 1.0 1.5
+time (h)
+5
+0
+5
+RV (km/s)
+06-04-2023 MJD=60099
+0.0 0.5 1.0 1.5 2.0
+time (h)
+5
+0
+5
+RV (km/s)
+06-21-2023 MJD=60116
+0.0 0.5 1.0 1.5 2.0 2.5
+time (h)
+5
+0
+5
+RV (km/s)
+06-23-2023 MJD=60118
+0.0 0.5 1.0 1.5 2.0 2.5
+time (h)
+5
+0
+5
+RV (km/s)
+06-24-2023 MJD=60119
+0.0 0.5 1.0 1.5 2.0
+time (h)
+5
+0
+5
+RV (km/s)
+06-29-2023 MJD=60124
+0.0 0.5 1.0 1.5
+time (h)
+5
+0
+5
+RV (km/s)
+07-02-2023 MJD=60127
+Order 33 2.29 2.34 m
+Order 32 2.36 2.41 m
+Order 31 2.44 2.49 m
+Figure 2. Measured R Vs of GQ Lup B with KPIC. Each panel represents a different epoch. In the forward modeling framework
+used, each spectral order is fit separately to measure a R V. Orange represents order 33, pink represents order 32, and purple
+represents order 31. Each marker shape denotes a specific KPIC fiber where ’x’ represents fiber 2, ’+’ represents fiber 3, ’ ⋆’
+represents fiber 4. We limit our final data set to R Vs with a CCF S/N >3 and a measured value between -5 to 5 km/s.
+tion, between different NIRSPEC orders, as shown in
+Figure 3.2.
+If a satellite was indeed forming within the cavity, it
+would have an orbit of less than two weeks, similar to the
+Galilean moons. Figure 3 shows that the strongest peri-
+odic signal in the R V time series falls below the threshold
+necessary to claim a satellite detection. Additionally,
+∆BIC≤ 0 for the majority of periods sampled, confirm-
+ing the model including a satellite signal is never favored
+over the model without a satellite signal.
+Although no exo-satellites were detected, we use
+RVSearch to perform injection-recovery tests to deter-
+mine what moons KPIC could detect given its current
+R V precision. Figure 4 shows KPIC’s exo-satellite sen-
+sitivity within the measured cavity of GQ Lup B, given
+a GQ Lup B mass of 30 MJup (Stolker et al. 2021; Xuan
+et al. 2024a). The 50% completeness contour, shown
+in the right panel of Figure 3 and in Figure 4, shows
+the mass ratios and orbital periods of exomoons KPIC
+has the probability of recovering 50% of the time. Us-
+ing injection-recovery tests, RVSearch creates a simu-
+lated exomoon signal, as described in (Rosenthal et al.
+2021), with a period and M sin i from log-uniform distri-
+butions, and eccentricity from an empirically calibrated
+beta distribution (Kipping 2013) and injects it into the
+existing R V time series data. If the signal surpasses
+the ∆BIC threshold, finding that a model including a
+satellite is favored over a model without a satellite, the
+exo-satellite at the given orbital period and mass ratio
+is detectable. As expected, given a constant R V semi-
+amplitude, K, the mass of the exo-satellite must increase
+as the semi-major axis increases to remain detectable,
+following the relationship K ∝ MM oona−1/2.
+We find KPIC is sensitive to exo-satellites 2.8% the
+mass of GQ Lup B at a separation of (65 RJup), or the
+extent of the cavity measured in the CPD. Between the
+rigid and fluid Roche limits, KPIC is sensitive to 0.6-
+1.0% mass ratios. Given our current R V precision, KPIC
+is much better suited to search for companions with
+larger mass ratios and to place constraints on satellites
+
+<<<PAGE 8>>>
+8 Horstman et al.
+MJD Order 33 R V Error Inflated Err Order 32 R V Error Inflated Err Order 31 R V Error Inflated Err
+(km/s) (km/s) (km/s) (km/s) (km/s) (km/s) (km/s) (km/s) (km/s)
+59328 -0.78 0.32 - 0.69 0.45 0.62 -0.16 0.59 1.39
+59780 -0.25 17.82 - -3.11 0.61 1.29 4.00 47.86 -
+59781 -0.77 0.24 - -0.37 0.33 0.35 1.37 0.39 0.71
+59783 -0.33 0.29 - 0.81 0.39 - 0.87 0.43 -
+60070 -1.24 0.99 - -0.60 1.65 - -0.48 1.04 -
+60099 -1.82 0.59 - -1.62 1.04 1.30 -0.22 0.75 0.94
+60116 -0.34 0.16 0.19 -0.04 0.18 0.28 0.71 0.22 0.35
+60118 -0.37 0.14 0.15 0.54 0.18 0.25 1.44 0.22 0.29
+60119 -0.44 0.18 0.25 -0.20 0.19 0.31 0.15 0.26 0.38
+60124 -0.57 0.12 - 0.35 0.14 0.17 0.94 0.19 0.26
+60127 -1.21 0.20 0.30 -0.39 0.28 0.32 0.98 0.42 0.45
+T able 2.Combined nightly R V of GQ Lup B for each order with KPIC. For each order, irrespective of fiber number, the mean
+weighted R V, 1σ error, and inflated error are reported. The inflated errors normalize the reduced chi-squared, χ2
+r, value to unity
+to compensate for underestimated systematic errors within a single epoch. If χ2
+r < 1, we report the 1 σ error only and leave
+the inflated error column blank. Since there are inconsistencies between combined R Vs in a single epoch for orders 31-33, we
+assume a different zero point R V for each order and fiber pair with RVSearch to jointly estimate the offsets between them. A
+full table with measured R Vs and errors for each exposure, as seen in Figure 2, can be found attached to this table.
+10 2
+ 10 1
+ 100 101
+Period (day)
+12
+10
+8
+6
+4
+2
+0
+2
+BIC
+BICthresh = 29.2
+(a) Periodogram
+100 101 102
+Semi-major axis (RJup)
+10 5
+10 4
+10 3
+10 2
+10 1
+100
+MMoon sin i/MBD
+Injection recovered
+Injection missed
+50% completeness
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Probability of detection (b) Completeness
+Figure 3. Exo-satellite detection limits around GQ Lup B with the Keck Planet Imager and Characterizer (KPIC) using the
+open-source python module RVsearch (Rosenthal et al. 2021). Left: Periodogram of the R V times series shown in Figure 2
+expressed a ∆BIC comparing a model with and a model without a satellite signal. The empirical detection threshold is indicated
+in the legend and is much higher than the power expressed for the strongest periodic signal, indicating the model without a
+satellite signal is favored over a model with a satellite signal. Right: Exo-satellite completeness derived from injection and
+recovery tests. Recovered injections are standard circles, while missed injections are crosses. The 50% completeness contour
+represents the mass ratio and orbital period space where the probability of satellite detection is at least 50% based on injection
+and recovery tests.
+
+<<<PAGE 9>>>
+Search for exo-satellites around GQ Lup B 9
+100 101 102
+Semi-major axis (RJup)
+10 5
+10 4
+10 3
+10 2
+10 1
+100
+(MMoon/Mplanet) sin i
+Io
+Europa
+Ganymede
+Callisto
+TitanTriton
+Stolker et al. 2021
+Cugno et al. 2024
+Roche limit KPIC
+HISPEC, sim
+1h 1d 1wk 1mo
+Period
+10 1
+100
+101
+102
+103
+(MMoon/MEarth) sin i
+Figure 4. Exo-satellite sensitivity of KPIC around GQ Lup B. The current sensitivity of KPIC given the R V time series in
+Figure 2 is shown as blue line. KPIC is sensitive to exo-satellites 2.8% the mass of GQ Lup B (30 MJup) at a separation of
+65 RJup and between 0.6-1.0% at the intersection of the rigid and fluid Roche limits respectively. The expected sensitivity of
+a next generation high resolution spectrograph, HISPEC, is shown as a dashed purple line. To create the simulated R V time
+series of GQ Lup B using HISPEC, we assume 18 hours of observation spread across 6 nights and that each 180s exposure
+has an average R V sensitivity of 22.8 m/s. The darker and lighter gray dashed lines represent the Roche limit for rigid and
+fluid satellites respectively. The orange dashed-dotted line represents the measured radius of the CPD by Stolker et al. (2021),
+65 RJup, while the dotted pink lines represent the range of model dependent CPD radii measured from JWST data by Cugno
+et al. (2024), 8 − 40 RJup. Several solar system moons are plotted for reference.
+
+<<<PAGE 10>>>
+10 Horstman et al.
+100 101 102
+Distance from star (RJup)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0g(r) / 0
+q = 3e-03
+q = 2e-03
+q = 1e-03
+q = 9e-04
+q = 2e-04
+Figure 5. Simulated cavity depth carved by a single satel-
+lite. The vertical axis represents the normalized surface den-
+sity of the CPD, which must be ≤ 0.5 to produce an promi-
+nent cavity. Each colored line represents a different satellite-
+to-planet mass ratio (q). The blacked dashed line represents
+the measured radius of the CPD, 65 RJup. We adjust the
+semi-major axis of the satellite to be consistent with form-
+ing a cavity at 65 RJup, regardless of the mass ratio. We
+find a minimum satellite-to-planet mass ratio of 2 × 10−4 is
+capable of carving a cavity, while the maximum cavity size
+produced is ∼ 51 RJup.
+likely formed through gravitational instabilities, versus
+those formed in the CPD.
+5. COMPARISON WITH CA VITY CAR VING
+SIMULATIONS
+Stolker et al. (2021) fits a disk profile to mid-infrared
+(MIR) excess found in GQ Lup B observations, deter-
+mining the temperature and inner radius of the disk to
+be Tdisk = 461 ± 2 K and Rdisk = 65 ± 1 RJ respec-
+tively. Recent JWST data also suggests that the cavity
+may be smaller than originally measured, ranging be-
+tween 8 − 40 RJup depending on the model CPD used
+(Cugno et al. 2024). To investigate the possibility that
+satellites could create cavities as large as the one ob-
+served, we use simulations to estimate the amount of
+material that different masses of satellites could clear
+in a CPD. Given that GQ Lup B is actively accreting
+(M ≈ 10−6.5MJ yr−1, Stolker et al. 2021) and its CPD
+is no longer in the decretion phase, we extrapolate phys-
+ical mechanisms that apply to planets carving out gaps
+in protoplanetary disks to satellites carving out gaps in
+circumplanetary disks.
+In general, to create cavities in accretion disks sur-
+rounding stars, planets excite density waves in the sur-
+rounding medium, facilitating the transfer of angular
+momentum outward. This creates pressure minima and
+maxima that effectively trap and clear dust. To esti-
+mate the amount of material, primarily small dust grains
+(radii of <
+∼ 0.1 mm), that could be carved out by a sin-
+gle satellite residing in a CPD, we use the prescription
+to model planetary gap depth outlined in the python
+package DustPy5 (Stammler & Birnstiel 2022), follow-
+ing the relations in Kanagawa et al. (2015) modified for
+the case of a circumplanetary disk instead of a proto-
+planetary disk,
+Σp
+Σ0
+= 1
+1 + 0.04K (3)
+where
+K =
+ Ms
+Mp
+2
+h−5
+p α−1. (4)
+In Equation 4, Ms represents the mass of the satellite,
+Mp represents the mass of the planet or brown dwarf,
+hp represents the disk aspect ratio, and α represents the
+viscosity term from the α-prescription of kinematic vis-
+cosity, ν = αcsh (Shakura & Sunyaev 1973). To recover
+the equations above, we consider an axisymmetric, thin
+disk in two dimensions and embed a satellite within the
+disk. The satellite exerts a strong gravitational torque
+on the disk, creating a cavity coinciding with its or-
+bit. Equation 3 is an empirical formula relating the gap
+depth to the mass ratio of the system and disk properties
+and agrees with observations of cavities carved out by
+planets in protoplanetary disks (Kanagawa et al. 2017).
+It does not account for satellite growth or migration.
+For our simple estimation of gap depth, the parameter
+K <1 × 104 so the disk gap remains in a non-eccentric,
+steady state. If K becomes too large from increasing the
+mass ratio between the satellite and companion, Fung &
+Chiang (2016) suggests Rayleigh instability may cause
+filaments of gas and dust to stream into the gap from
+beyond the edges, thus placing a maximum size on the
+gap carved. We adopt standard values of α = 1 × 10−4
+and hp = 0.1 for a common CPD based on Batygin &
+Morbidelli (2020) and vary the satellite-to-planet mass
+ratio. To maintain consistency with existing literature,
+we define a cavity as visible when the initial surface den-
+sity of the disk drops by a factor of 2, thus setting a
+lower limit on acceptable mass ratios of q = 2 × 10−4.
+Furthermore, we impose the condition K < 1 × 104,
+establishing an upper limit on accepted mass ratios of
+q = 3 × 10−3 so the cavity remains in a non-eccentric,
+steady state. Note that the mass ratio corresponding to
+the largest gap depth is order of magnitude lower than
+5 https://stammler.github.io/dustpy/
+
+<<<PAGE 11>>>
+Search for exo-satellites around GQ Lup B 11
+what is currently detectable with KPIC around GQ Lup
+B.
+Figure 5 illustrates the cavity size and depth that we
+can expect from mass ratios between 2 × 10−4 < q <
+3 × 10−3, although this upper limit on the mass ratio
+does not forbid more massive satellites from forming or
+creating cavities. Although we see for larger mass ra-
+tios that it is possible to carve out a cavity that extends
+the approximate radius of the one detected in Stolker
+et al. (2021), the semi-major axis of the exo-satellite is
+tuneable parameter in this simulation. We adjust the
+semi-major axis of the satellite to be consistent with
+forming a cavity at 65 RJup, regardless of the mass ra-
+tio. Given these constraints, we find mass ratios akin
+to Galilean satellites around Jupiter or larger can carve
+noticeable cavity sizes, carving a maximum cavity size
+of ∼ 51 RJup. Although this is shy of the estimated
+65 RJup from Stolker et al. (2021), it is consistent with
+recent cavity size estimates from Cugno et al. (2024).
+Additionally, our estimation of gap depth does not it
+does not take into account other physical mechanisms
+that can also contribute to clearing out the material in
+the disk closer to the brown dwarf, such as sublimation,
+magnetic truncation, or the existence of multiple moons.
+6. DISCUSSION
+6.1. Prospects with HISPEC
+Looking to the future, we expect substantial gains
+in R V precision by using the next generation of high-
+resolution spectrographs on large telescopes. These
+gains in R V precision will lead to enhanced sensitivity to
+systems with lower mass, close in satellites. The High-
+resolution Infrared Spectrograph for Exoplanet Char-
+acterization, Keck/HISPEC, has an expected first light
+date in late 2026 and will specialize in the high con-
+trast detection and spectroscopy of spatially separated
+substellar companions (Mawet et al. 2019). With an
+increased resolution ( R ∼ 100, 000), wider wavelength
+coverage (0.98-2.46 µm), and state of the art calibration
+techniques facilitated by a laser frequency comb (LFC),
+HISPEC will be much more sensitive to lower mass com-
+panions than current instrumentation. Using the HIS-
+PEC Exposure Time Calculator (ETC) 6, we estimate
+an average R V precision of 22.8 m/s for 180s observa-
+tions of GQ Lup B. Assuming 18 hours of observation
+spread across 6 nights, HISPEC achieves the sensitiv-
+ity shown by the dashed purple line in Figure 4. HIS-
+PEC will increase the expected exo-satellite sensitivity
+by over an order of magnitude within the measured cav-
+6 http://specsim.astro.caltech.edu/hispec snr
+ity, making it sensitive to moons that may have formed
+in the CPD, with mass ratios between 10 −3 − 10−4. It
+will allow access to these seemingly common objects,
+as outlined in subsection 6.2, marking a significant step
+forward in our ability to explore and better understand
+planetary formation. Within the next decade, we expect
+ELTs to reach R V sensitivity of ∼1 m/s for an object
+like GQ Lup B, translating to a exo-satellite sensitivity
+(∼ 10−5), exceeding what is needed to detect Galilean
+satellite analogs (Ruffio et al. 2023).
+6.2. Occurrence Rates
+From the theory of how CPDs form satellites, we ex-
+pect the masses of exo-satellites formed to reflect those
+of the satellites we see in the solar system, around 10 −4
+of the mass of their host (Canup & Ward 2006; Sasaki
+et al. 2010). However, outside of theoretical models and
+our own solar system, we know little about what to ex-
+pect. Within the next decade, we can expect Extremely
+Large Telescopes (ELTs) to be sensitive to Galilean
+satellites around Jupiter-mass planets, but much sooner,
+we can expect HISPEC to be sensitive to mass ratios
+down to 10 −4, as described in subsection 6.1. Theories
+about forming objects with satellite-to-planet mass ra-
+tios above 10 −4 have not been studied in great detail,
+most likely due to the lack of such larger satellites in
+the solar system. If planets and satellites formation is
+governed by similar physics, such as through the aggre-
+gation of solid material in disk to form a more mas-
+sive object (Canup & Ward 2002, 2009; Miguel & Ida
+2016; Ronnet & Johansen 2020; Batygin & Morbidelli
+2020), it is reasonable to start probing the occurrence
+rate of this mass regime by extrapolating occurrence ra-
+tios for planet-to-star mass ratios and applying them
+to satellite-to-planet mass ratios. Suzuki et al. (2016)
+found a peak in the occurrence rate of planets that have
+a planet-to-star mass ratio between 10−3 and 10−4 in the
+MOA-II microlensing survey; however, Pascucci et al.
+(2018) finds that Kepler data disagrees and argues that
+this peak in occurrence exists between 10 −4 and 10 −5.
+HISPEC will be able to probe the former mass ratios,
+while ELTs will be able to access the latter mass ratios,
+placing lower mass satellite searches within the capabil-
+ities of instruments and facilities in the near future.
+For larger mass ratios, Lazzoni et al. (2024) found that
+simulations of tidal dissipation during close encounters
+of massive planets (1−15 MJup) formed via gravitational
+instability produced binary planets 14.3% of the time.
+If the previous occurrence rates hold true for satellites,
+they could lend credence to dedicated surveys searching
+for higher-mass ratio systems, which current and soon-
+to-be available technologies are sensitive to.
+
+<<<PAGE 12>>>
+12 Horstman et al.
+7. CONCLUSION
+In this work, we present the first dedicated R V sur-
+vey searching for satellites around the directly imaged
+brown dwarf, GQ Lup B. GQ Lup B stood out as the
+prime candidate for satellite investigation due to it be-
+ing the only known companion with a cavity in its CPD
+(Stolker et al. 2021; Cugno et al. 2024), its potential to
+host moons of comparatively larger masses (Batygin &
+Morbidelli 2020), and its capability for achieving highly
+precise R V measurements. Although no exo-satellites
+were found within the cavity of the disk, KPIC is sen-
+sitive to exo-satellites 2.8% the mass of GQ Lup B at
+a separation of 65 RJup, or the measured radius of the
+cavity. At the inner most stable point of the cavity, be-
+tween the rigid and fluid Roche limits, KPIC is sensitive
+to 0.6-1.0% mass ratios.
+To explore the feasibility of satellites creating cavities
+as large as the one observed, we ran simulations to es-
+timate the amount of material that different masses of
+satellites could clear in a CPD. We expect to see no-
+ticeable cavities for mass ratios between q > 2 × 10−4
+From our simulations, we find a maximum cavity size
+of ∼ 51 RJup carved from a single satellite. Our max-
+imum size estimate does not take into account other
+mechanisms that can also contribute to clearing out the
+material in the disk closer to the brown dwarf, such as
+sublimation, magnetic truncation, or the existence of
+multiple moons.
+Within the next three years, we expect to receive sub-
+stantial gains in R V precision by using the next gener-
+ation of high-resolution spectrograph, HISPEC, to con-
+tinue searching for satellites. The exo-satellite sensi-
+tivity of HISPEC will increase by almost two orders of
+magnitude at close separations, making it sensitive to
+moons with mass ratios between 10 −3 − 10−4. Sensitiv-
+ity to mass ratios within this range is exciting because
+it is the expected mass range of satellites forming in the
+CPD, allowing insights into planet formation and system
+architecture. Further in the future, the next generation
+instruments on ELTs are expected to reach R V sensitiv-
+ity of ∼1 m/s for an object like GQ Lup B, translating to
+a exo-satellite sensitivity ( ∼ 10−5) great enough to de-
+tect solar system moon analogs. Using upcoming high
+resolution spectrographs to take R V measurements of
+directly imaged companions is another promising tech-
+nique that could lead to the discovery of the first exo-
+satellite.
+K.H. is supported by the National Science Foundation
+Graduate Research Fellowship Program under Grant
+No. 2139433.
+J.X. is supported by the NASA Future Investigators
+in NASA Earth and Space Science and Technology (FI-
+NESST) award #80NSSC23K1434.
+Funding for KPIC has been provided by the Califor-
+nia Institute of Technology, the Jet Propulsion Labo-
+ratory, the Heising-Simons Foundation (grants #2015-
+129, #2017-318, #2019-1312, #2023-4598), the Simons
+Foundation, and the NSF under grant AST-1611623.
+The W. M. Keck Observatory is operated as a scien-
+tific partnership among the California Institute of Tech-
+nology, the University of California, and NASA. The
+Keck Observatory was made possible by the generous
+financial support of the W. M. Keck Foundation. We
+also wish to recognize the very important cultural role
+and reverence that the summit of Maunakea has always
+had within the indigenous Hawaiian community. We
+are most fortunate to have the opportunity to conduct
+observations from this mountain. K.H. wishes to ac-
+knowledge her settler status on the ancestral lands of
+the Gabrielino/Tongva people and recognizes that the
+astronomical observations in this paper were possible be-
+cause of the dispossession of Maunakea from the Kan¯ aka
+Maoli.
+Facilities: Keck II (KPIC)
+Software: Astropy7 (Astropy Collaboration et al.
+2013, 2018, 2022), Matplotlib 8 (Hunter 2007), PSIsim 9,
+R VSearch10 (Rosenthal et al. 2021), KPIC Data Reduc-
+tion Pipeline11 (Delorme et al. 2021), BREADS12 (Ruffio
+et al. 2021; Agrawal 2022)
+REFERENCES
+7 http://www.astropy.org
+8 https://matplotlib.org
+9 https://github.com/planetarysystemsimager/psisim
+10 https://github.com/California-Planet-Search/rvsearch
+11 https://github.com/kpicteam/kpic pipeline
+12 https://github.com/jruffio/breads
+Agnor, C. B., & Hamilton, D. P. 2006, Nature, 441, 192,
+doi: 10.1038/nature04792
+Agrawal, S. 2022, Senior thesis (Major), California Institute
+of Technology, doi: 10.7907/17sv-vf40
+Agrawal, S., Ruffio, J.-B., Konopacky, Q. M., et al. 2023,
+AJ, 166, 15, doi: 10.3847/1538-3881/acd6a3
+
+<<<PAGE 13>>>
+Search for exo-satellites around GQ Lup B 13
+Alcal´ a, J. M., Majidi, F. Z., Desidera, S., et al. 2020, A&A,
+635, L1, doi: 10.1051/0004-6361/201937309
+Allard, F., Homeier, D., & Freytag, B. 2012, Philosophical
+Transactions of the Royal Society of London Series A,
+370, 2765, doi: 10.1098/rsta.2011.0269
+Asensio-Torres, R., Henning, T., Cantalloube, F., et al.
+2021, A&A, 652, A101,
+doi: 10.1051/0004-6361/202140325
+Astropy Collaboration, Robitaille, T. P., Tollerud, E. J.,
+et al. 2013, A&A, 558, A33,
+doi: 10.1051/0004-6361/201322068
+Astropy Collaboration, Price-Whelan, A. M., Sip˝ ocz, B. M.,
+et al. 2018, AJ, 156, 123, doi: 10.3847/1538-3881/aabc4f
+Astropy Collaboration, Price-Whelan, A. M., Lim, P. L.,
+et al. 2022, ApJ, 935, 167, doi: 10.3847/1538-4357/ac7c74
+Batygin, K., & Morbidelli, A. 2020, ApJ, 894, 143,
+doi: 10.3847/1538-4357/ab8937
+Benisty, M., Bae, J., Facchini, S., et al. 2021, ApJL, 916,
+L2, doi: 10.3847/2041-8213/ac0f83
+Bennett, D. P., Batista, V., Bond, I. A., et al. 2014, ApJ,
+785, 155, doi: 10.1088/0004-637X/785/2/155
+Canup, R. M., & Asphaug, E. 2001, Nature, 412, 708
+Canup, R. M., & Ward, W. R. 2002, AJ, 124, 3404,
+doi: 10.1086/344684
+—. 2006, Nature, 441, 834, doi: 10.1038/nature04860
+—. 2009, in Europa, ed. R. T. Pappalardo, W. B.
+McKinnon, & K. K. Khurana, 59,
+doi: 10.48550/arXiv.0812.4995
+Chen, Y.-X., Bailey, A., Stone, J., & Zhu, Z. 2022, ApJL,
+939, L23, doi: 10.3847/2041-8213/ac9b3e
+Cugno, G., Patapis, P., Banzatti, A., et al. 2024, arXiv
+e-prints, arXiv:2404.07086,
+doi: 10.48550/arXiv.2404.07086
+Delorme, J.-R., Jovanovic, N., Echeverri, D., et al. 2021,
+Journal of Astronomical Telescopes, Instruments, and
+Systems, 7, 035006, doi: 10.1117/1.JATIS.7.3.035006
+Demars, D., Bonnefoy, M., Dougados, C., et al. 2023, arXiv
+e-prints, arXiv:2305.09460,
+doi: 10.48550/arXiv.2305.09460
+Donati, J. F., Gregory, S. G., Alencar, S. H. P., et al. 2012,
+MNRAS, 425, 2948,
+doi: 10.1111/j.1365-2966.2012.21482.x
+Echeverri, D., Jovanovic, N., Delorme, J.-R., et al. 2022, in
+Ground-based and Airborne Instrumentation for
+Astronomy IX, ed. C. J. Evans, J. J. Bryant, &
+K. Motohara, Vol. 12184, International Society for Optics
+and Photonics (SPIE), 121841W, doi: 10.1117/12.2630518
+Ehrenreich, D., Delrez, L., Akinsanmi, B., et al. 2023,
+A&A, 671, A154, doi: 10.1051/0004-6361/202244790
+Finnerty, L., Schofield, T., Delorme, J.-R., et al. 2022, in
+Ground-based and Airborne Instrumentation for
+Astronomy IX, ed. C. J. Evans, J. J. Bryant, &
+K. Motohara, Vol. 12184, International Society for Optics
+and Photonics (SPIE), 121844Y, doi: 10.1117/12.2630276
+Finnerty, L., Schofield, T., Sappey, B., et al. 2023, AJ, 166,
+31, doi: 10.3847/1538-3881/acda91
+Fujii, Y. I., & Ogihara, M. 2020, A&A, 635, L4,
+doi: 10.1051/0004-6361/201937192
+Fulton, B. J., Rosenthal, L. J., Hirsch, L. A., et al. 2021,
+ApJS, 255, 14, doi: 10.3847/1538-4365/abfcc1
+Fung, J., & Chiang, E. 2016, ApJ, 832, 105,
+doi: 10.3847/0004-637X/832/2/105
+Gebek, A., & Oza, A. V. 2020, MNRAS, 497, 5271,
+doi: 10.1093/mnras/staa2193
+Haffert, S. Y., Bohn, A. J., de Boer, J., et al. 2019, Nature
+Astronomy, 3, 749, doi: 10.1038/s41550-019-0780-5
+Heller, R., & Hippke, M. 2024, Nature Astronomy, 8, 193,
+doi: 10.1038/s41550-023-02148-w
+Heller, R., Williams, D., Kipping, D., et al. 2014,
+Astrobiology, 14, 798, doi: 10.1089/ast.2014.1147
+Horne, K. 1986, PASP, 98, 609, doi: 10.1086/131801
+Howard, A. W., & Fulton, B. J. 2016, PASP, 128, 114401,
+doi: 10.1088/1538-3873/128/969/114401
+Hsu, C.-C., Burgasser, A. J., Theissen, C. A., et al. 2021,
+ApJS, 257, 45, doi: 10.3847/1538-4365/ac1c7d
+Hunter, J. D. 2007, Computing In Science & Engineering,
+9, 90, doi: 10.1109/MCSE.2007.55
+Husser, T. O., Wende-von Berg, S., Dreizler, S., et al. 2013,
+A&A, 553, A6, doi: 10.1051/0004-6361/201219058
+Kanagawa, K. D., Muto, T., Tanaka, H., et al. 2015, ApJL,
+806, L15, doi: 10.1088/2041-8205/806/1/L15
+Kanagawa, K. D., Tanaka, H., Muto, T., & Tanigawa, T.
+2017, PASJ, 69, 97, doi: 10.1093/pasj/psx114
+Kao, M. M., & Pineda, J. S. 2024, MNRAS,
+doi: 10.1093/mnras/stae905
+Keppler, M., Benisty, M., M¨ uller, A., et al. 2018, A&A,
+617, A44, doi: 10.1051/0004-6361/201832957
+Kipping, D., Bryson, S., Burke, C., et al. 2022, Nature
+Astronomy, 6, 367, doi: 10.1038/s41550-021-01539-1
+Kipping, D., Teachey, A., Yahalomi, D. A., et al. 2024,
+arXiv e-prints, arXiv:2401.10333,
+doi: 10.48550/arXiv.2401.10333
+Kipping, D. M. 2013, MNRAS, 434, L51,
+doi: 10.1093/mnrasl/slt075
+Lazzoni, C., Rice, K., Zurlo, A., Hinkley, S., & Desidera, S.
+2024, MNRAS, 527, 3837, doi: 10.1093/mnras/stad3443
+Lazzoni, C., Zurlo, A., Desidera, S., et al. 2020a, A&A, 641,
+A131, doi: 10.1051/0004-6361/201937290
+
+<<<PAGE 14>>>
+14 Horstman et al.
+Lazzoni, C., Gratton, R., Alcal´ a, J. M., et al. 2020b, A&A,
+635, L11, doi: 10.1051/0004-6361/202037622
+Limbach, M. A., Vos, J. M., Winn, J. N., et al. 2021, ApJL,
+918, L25, doi: 10.3847/2041-8213/ac1e2d
+Long, F., Pinilla, P., Herczeg, G. J., et al. 2018, ApJ, 869,
+17, doi: 10.3847/1538-4357/aae8e1
+MacGregor, M. A., Wilner, D. J., Czekala, I., et al. 2017,
+ApJ, 835, 17, doi: 10.3847/1538-4357/835/1/17
+Marois, C., Macintosh, B., & Barman, T. 2007, ApJL, 654,
+L151, doi: 10.1086/511071
+Martin, E. C., Fitzgerald, M. P., McLean, I. S., et al. 2018,
+in Society of Photo-Optical Instrumentation Engineers
+(SPIE) Conference Series, Vol. 10702, Ground-based and
+Airborne Instrumentation for Astronomy VII, ed. C. J.
+Evans, L. Simard, & H. Takami, 107020A,
+doi: 10.1117/12.2312266
+Mawet, D., Delorme, J. R., Jovanovic, N., et al. 2017, in
+Society of Photo-Optical Instrumentation Engineers
+(SPIE) Conference Series, Vol. 10400, Society of
+Photo-Optical Instrumentation Engineers (SPIE)
+Conference Series, ed. S. Shaklan, 1040029,
+doi: 10.1117/12.2274891
+Mawet, D., Fitzgerald, M., Konopacky, Q., et al. 2019, in
+Bulletin of the American Astronomical Society, Vol. 51,
+134. https://arxiv.org/abs/1908.03623
+McElwain, M. W., Metchev, S. A., Larkin, J. E., et al.
+2007, ApJ, 656, 505, doi: 10.1086/510063
+McLean, I. S., Becklin, E. E., Bendiksen, O., et al. 1998, in
+Society of Photo-Optical Instrumentation Engineers
+(SPIE) Conference Series, Vol. 3354, Infrared
+Astronomical Instrumentation, ed. A. M. Fowler,
+566–578, doi: 10.1117/12.317283
+Miguel, Y., & Ida, S. 2016, Icarus, 266, 1,
+doi: 10.1016/j.icarus.2015.10.030
+Miyazaki, S., Sumi, T., Bennett, D. P., et al. 2018, AJ, 156,
+136, doi: 10.3847/1538-3881/aad5ee
+Narang, M., Oza, A. V., Hakim, K., et al. 2023, AJ, 165, 1,
+doi: 10.3847/1538-3881/ac9eb8
+Neuh¨ auser, R., Guenther, E. W., Wuchterl, G., et al. 2005,
+A&A, 435, L13, doi: 10.1051/0004-6361:200500104
+Ohno, K., Thao, P. C., Mann, A. W., & Fortney, J. J. 2022,
+ApJL, 940, L30, doi: 10.3847/2041-8213/ac9f3f
+Oza, A. V., Johnson, R. E., Lellouch, E., et al. 2019, ApJ,
+885, 168, doi: 10.3847/1538-4357/ab40cc
+Pascucci, I., Mulders, G. D., Gould, A., & Fernandes, R.
+2018, ApJL, 856, L28, doi: 10.3847/2041-8213/aab6ac
+Pineda, J. S., Hallinan, G., & Kao, M. M. 2017, ApJ, 846,
+75, doi: 10.3847/1538-4357/aa8596
+Piso, A.-M. A., & Youdin, A. N. 2014, ApJ, 786, 21,
+doi: 10.1088/0004-637X/786/1/21
+Ronnet, T., & Johansen, A. 2020, A&A, 633, A93,
+doi: 10.1051/0004-6361/201936804
+Rosenthal, L. J., Fulton, B. J., Hirsch, L. A., et al. 2021,
+ApJS, 255, 8, doi: 10.3847/1538-4365/abe23c
+Ruane, G., Mawet, D., Kastner, J., et al. 2017, AJ, 154, 73,
+doi: 10.3847/1538-3881/aa7b81
+Ruffio, J.-B., Macintosh, B., Konopacky, Q. M., et al. 2019,
+AJ, 158, 200, doi: 10.3847/1538-3881/ab4594
+Ruffio, J.-B., Konopacky, Q. M., Barman, T., et al. 2021,
+AJ, 162, 290, doi: 10.3847/1538-3881/ac273a
+Ruffio, J.-B., Horstman, K., Mawet, D., et al. 2023, AJ,
+165, 113, doi: 10.3847/1538-3881/acb34a
+Sasaki, T., Stewart, G. R., & Ida, S. 2010, ApJ, 714, 1052,
+doi: 10.1088/0004-637X/714/2/1052
+Schwarz, H., Ginski, C., de Kok, R. J., et al. 2016, A&A,
+593, A74, doi: 10.1051/0004-6361/201628908
+Seifahrt, A., Neuh¨ auser, R., & Hauschildt, P. H. 2007,
+A&A, 463, 309, doi: 10.1051/0004-6361:20066463
+Shakura, N. I., & Sunyaev, R. A. 1973, A&A, 24, 337
+Stammler, S. M., & Birnstiel, T. 2022, ApJ, 935, 35,
+doi: 10.3847/1538-4357/ac7d58
+Stolker, T., Haffert, S. Y., Kesseli, A. Y., et al. 2021, AJ,
+162, 286, doi: 10.3847/1538-3881/ac2c7f
+Suzuki, D., Bennett, D. P., Sumi, T., et al. 2016, ApJ, 833,
+145, doi: 10.3847/1538-4357/833/2/145
+Teachey, A. 2024, arXiv e-prints, arXiv:2401.13293,
+doi: 10.48550/arXiv.2401.13293
+Teachey, A., Kipping, D. M., & Schmitt, A. R. 2018, AJ,
+155, 36, doi: 10.3847/1538-3881/aa93f2
+van Holstein, R. G., Stolker, T., Jensen-Clem, R., et al.
+2021, A&A, 647, A21, doi: 10.1051/0004-6361/202039290
+Vanderburg, A., Rappaport, S. A., & Mayo, A. W. 2018,
+AJ, 156, 184, doi: 10.3847/1538-3881/aae0fc
+Vanderburg, A., & Rodriguez, J. E. 2021, ApJL, 922, L2,
+doi: 10.3847/2041-8213/ac33b4
+Villanueva, G. L., Smith, M. D., Protopapa, S., Faggi, S., &
+Mandell, A. M. 2018, JQSRT, 217, 86,
+doi: 10.1016/j.jqsrt.2018.05.023
+Wang, J. J., Kulikauskas, M., & Blunt, S. 2021a,
+whereistheplanet: Predicting positions of directly imaged
+companions, Astrophysics Source Code Library, record
+ascl:2101.003. http://ascl.net/2101.003
+Wang, J. J., Ruffio, J.-B., Morris, E., et al. 2021b, AJ, 162,
+148, doi: 10.3847/1538-3881/ac1349
+Wu, Y.-L., Sheehan, P. D., Males, J. R., et al. 2017, ApJ,
+836, 223, doi: 10.3847/1538-4357/aa5b96
+Xuan, J. W., Wang, J., Ruffio, J.-B., et al. 2022, ApJ, 937,
+54, doi: 10.3847/1538-4357/ac8673
+Xuan, J. W., Hsu, C.-C., Finnerty, L., et al. 2024a, ApJ,
+970, 71, doi: 10.3847/1538-4357/ad4796
+
+<<<PAGE 15>>>
+Search for exo-satellites around GQ Lup B 15
+Xuan, J. W., Wang, J., Finnerty, L., et al. 2024b, ApJ, 962,
+10, doi: 10.3847/1538-4357/ad1243
+Zhou, Y., Herczeg, G. J., Kraus, A. L., Metchev, S., &
+Cruz, K. L. 2014, ApJL, 783, L17,
+doi: 10.1088/2041-8205/783/1/L17

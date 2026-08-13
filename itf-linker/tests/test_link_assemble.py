@@ -13,6 +13,7 @@ from itf_linker.link.assemble import (
     gate_links,
     link_astrometry,
     link_id,
+    link_key,
     links_frame,
     tracklet_line_index,
 )
@@ -50,6 +51,70 @@ def test_link_ids_are_seven_characters_and_unique():
 def test_link_id_refuses_to_overflow_silently():
     with pytest.raises(ValueError):
         link_id(36**4)
+
+
+# --- link_key: the one that survives a re-run --------------------------------------
+
+def _arrows(rows):
+    """(arrow_id, desig, obscode, night) -- the four columns link_key is built from."""
+    return pl.DataFrame(
+        rows, schema={"arrow_id": pl.Int64, "desig": pl.String,
+                      "obscode": pl.String, "night": pl.Int32},
+        orient="row",
+    )
+
+
+TRK = [(0, "A", "F51", 60000), (1, "B", "G96", 60004), (2, "C", "W84", 60008)]
+
+
+def test_link_key_does_not_depend_on_member_order():
+    a = link_key([("A", "F51", 60000), ("B", "G96", 60004)])
+    b = link_key([("B", "G96", 60004), ("A", "F51", 60000)])
+    assert a == b
+
+
+def test_link_key_does_not_depend_on_arrow_numbering():
+    """The whole point: arrow ids are positional, tracklets are not.
+
+    The same three tracklets renumbered must produce the same key, or the id is no more
+    stable than the counter it replaces.
+    """
+    one = links_frame([_link(ids=(0, 1, 2))], _arrows(TRK))
+    renumbered = _arrows([(70, "A", "F51", 60000), (71, "B", "G96", 60004),
+                          (72, "C", "W84", 60008)])
+    two = links_frame([_link(ids=(70, 71, 72))], renumbered)
+    assert one["desig"][0] == two["desig"][0] == "lnk0000"      # the counter says nothing
+    assert one["link_key"][0] == two["link_key"][0]             # the key says everything
+
+
+def test_link_key_separates_links_that_every_summary_field_agrees_on():
+    """`lnk0018` and `lnk001e` in link-candidates.parquet differ in one arrow of six.
+
+    Same trkSubs, same observatory codes, same MJD bounds, same observation and tracklet
+    counts. Any key built from summary columns merges them; 197 such pairs exist in that
+    one table.
+    """
+    arrows = _arrows(TRK + [(3, "C", "W84", 60009)])
+    a = links_frame([_link(ids=(0, 1, 2))], arrows)["link_key"][0]
+    b = links_frame([_link(ids=(0, 1, 3))], arrows)["link_key"][0]
+    assert a != b
+
+
+def test_link_key_is_null_without_arrows_rather_than_wrong():
+    frame = links_frame([_link(ids=(0, 1, 2))])
+    assert "link_key" in frame.columns
+    assert frame["link_key"][0] is None
+
+
+def test_a_link_whose_members_are_not_all_resolvable_gets_no_key():
+    """A key from a partial member set is another link's key, which is worse than none."""
+    partial = _arrows(TRK[:2])
+    assert links_frame([_link(ids=(0, 1, 2))], partial)["link_key"][0] is None
+
+
+def test_gate_links_carries_the_key_through():
+    gated, _ = gate_links([_link(ids=(0, 1, 2))], _arrows(TRK))
+    assert gated["link_key"][0] == link_key([t[1:] for t in TRK])
 
 
 def test_relabel_replaces_only_columns_1_to_12():

@@ -60,6 +60,15 @@ def classify_orbit(
 ) -> str:
     """Dynamical class of an osculating orbit, by the standard element boundaries.
 
+    **Above the belt this is a semimajor-axis classification, not a distance one.** Once the
+    NEO cut (``q < 1.3 AU``) has been passed, ``centaur`` and ``tno`` are decided by ``a``
+    alone with no perihelion condition -- the JPL SBDB ``CEN``/``TNO`` convention. On the
+    short arcs this project fits, that admits very eccentric solutions: M5's ``lnk2gkr`` is
+    labelled ``tno`` with ``a`` = 98.5 AU and ``q`` = 1.59 AU, and three ``centaur`` labels
+    have perihelia inside the asteroid belt. The label is correct by the convention and is
+    *not* a claim that the object is far away. Anything selecting "distant objects" should
+    test ``q`` as well -- see :func:`dynamically_distant`.
+
     ``q`` is taken from the fit when given and derived as ``a(1-e)`` otherwise, because
     Find_Orb reports both and they can differ in the last digits.
     """
@@ -82,10 +91,15 @@ def classify_orbit(
         return "jupiter_trojan"
     if 3.3 <= a <= 4.6:
         return "cybele_hilda"
-    if peri < 1.666 and a < 3.2:
-        return "mars_crosser"
+    # Hungaria BEFORE mars-crosser (fixed 2026-08-07). Real Hungaria eccentricities are
+    # 0.07-0.12 at a ~ 1.9, which puts perihelion either side of 1.666 AU -- so testing
+    # mars-crosser first shadowed part of the Hungaria population and under-counted it
+    # systematically. A high-inclination body at a = 1.87, e = 0.14 is a Hungaria that also
+    # happens to cross Mars, not a Mars-crosser. M5: one survivor of 3,190 changes label.
     if 1.78 <= a < 2.0 and e < 0.18 and (incl is None or incl > 12.0):
         return "hungaria"
+    if peri < 1.666 and a < 3.2:
+        return "mars_crosser"
     if 2.0 <= a < 2.5:
         return "inner_belt"
     if 2.5 <= a < 2.82:
@@ -93,6 +107,31 @@ def classify_orbit(
     if 2.82 <= a <= 3.3:
         return "outer_belt"
     return "other_bound"
+
+
+#: Perihelion above which an orbit is outside the main belt at *every* point of it. Jupiter
+#: sits at 5.2 AU; a body that never comes closer than this is dynamically distant in a way
+#: a semimajor axis alone cannot establish.
+DISTANT_PERIHELION_AU = 5.2
+
+
+def dynamically_distant(a: float | None, e: float | None, q: float | None = None) -> bool:
+    """Is this orbit distant *throughout*, not merely distant on average?
+
+    :func:`classify_orbit` calls anything with ``a > 5.5`` a Centaur and ``a > 30.1`` a TNO,
+    following JPL SBDB, with no condition on perihelion. On short arcs that admits solutions
+    that spend most of their orbit far away and the rest of it inside the asteroid belt --
+    M5's ``lnk2gkr`` is ``a`` = 98.5 AU with ``q`` = 1.59 AU. Selecting distant objects on
+    the label alone therefore selects eccentric garbage too.
+
+    This requires both: beyond the belt *and* a perihelion that never re-enters it.
+    """
+    if a is None or e is None or not math.isfinite(a) or not math.isfinite(e):
+        return False
+    if e >= 1.0 or a <= 0.0:
+        return False
+    peri = q if q is not None and math.isfinite(q) else a * (1.0 - e)
+    return a > 5.5 and peri > DISTANT_PERIHELION_AU
 
 
 def neo_score(q: float | None, sigma_q: float | None) -> float | None:

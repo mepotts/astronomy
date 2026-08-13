@@ -23,8 +23,11 @@ from itf_linker.fit.findorb import (
     rms_from_residuals,
 )
 from itf_linker.fit.gates import (
+    MAX_ECCENTRICITY,
     MAX_RMS_ARCSEC,
-    THREE_NIGHT_SIGMA_A_AU,
+    QUALITY_SIGMA_A_AU,
+    mpc_published_gate,
+    orbit_quality_sufficient,
     post_fit_gate,
 )
 from itf_linker.fit.wsl import Shell, from_wsl_path, shq, shq_expand, to_wsl_path
@@ -198,7 +201,7 @@ def test_elements_txt_without_a_perturber_line_returns_empty():
 
 
 # ----------------------------------------------------------------------------------
-# The published post-fit gate
+# Our post-fit gate (strict), and the MPC's published one
 # ----------------------------------------------------------------------------------
 
 def _fit(**kw) -> FitResult:
@@ -219,7 +222,7 @@ def test_gate_accepts_a_good_three_night_fit():
     [
         ({"rms_residual": MAX_RMS_ARCSEC + 0.001}, "RMS"),
         ({"converged": False, "status": "no_covariance"}, "non-convergence"),
-        ({"sigma_a": THREE_NIGHT_SIGMA_A_AU}, "sigma(a)"),
+        ({"sigma_a": QUALITY_SIGMA_A_AU}, "sigma(a)"),
         ({"sigma_q": 0.06}, "sigma(q)"),
         ({"sigma_i": 0.5}, "sigma(i)"),
         ({"sigma_e": 0.05}, "sigma(e)"),
@@ -233,8 +236,12 @@ def test_gate_rejects_each_published_failure_mode(kwargs, fragment):
     assert any(fragment in r for r in result.reasons), result.reasons
 
 
-def test_sigma_limits_apply_only_to_three_night_links():
-    """The MPC imposes them on 3-night links; a 4-night link is judged on RMS alone."""
+def test_our_gate_scopes_the_sigmas_to_three_night_links():
+    """*Our* scoping, not the MPC's -- their bullet 2 governs >3-night links too.
+
+    Pinned because M1-M5 pass rates are all against this behaviour; the naming used to
+    claim the MPC imposed the scoping, which :func:`mpc_published_gate` shows it does not.
+    """
     loose = _fit(sigma_a=784.0, sigma_q=9.0, sigma_i=90.0, sigma_e=0.9)
     assert not post_fit_gate(loose, n_nights=3).passes
     assert post_fit_gate(loose, n_nights=4).passes
@@ -243,6 +250,65 @@ def test_sigma_limits_apply_only_to_three_night_links():
 
 def test_rms_exactly_at_the_limit_is_accepted():
     assert post_fit_gate(_fit(rms_residual=MAX_RMS_ARCSEC), n_nights=3).passes
+
+
+def test_an_rms_of_exactly_zero_passes_the_ceiling_rather_than_being_falsy():
+    """Six elements fitted to three observations give RMS identically 0.0, not a rounding
+    artefact. `(rms or 9e9)` treated that as failing; the counters used to disagree with the
+    gate by one record. The subset guard is what should reject these, on used-observations.
+    """
+    assert post_fit_gate(_fit(rms_residual=0.0), n_nights=3).passes
+    assert not post_fit_gate(_fit(rms_residual=None), n_nights=3).passes
+
+
+def test_our_gate_ignores_eccentricity_and_the_published_one_does_not():
+    """``e < 0.5`` is published; our frozen gate never applied it. Both facts pinned."""
+    hyperbolic = _fit(e=0.984, rms_residual=0.9, sigma_a=9.0)
+    assert post_fit_gate(hyperbolic, n_nights=4).passes is False  # rejected on RMS, not e
+    assert post_fit_gate(_fit(e=0.984), n_nights=4).passes  # good RMS -> our gate lets it by
+    assert not orbit_quality_sufficient(_fit(e=MAX_ECCENTRICITY))
+    assert orbit_quality_sufficient(_fit(e=0.49))
+
+
+# --- the MPC's published rule: conjunctive, so RMS alone never rejects ---------------
+
+def test_published_gate_does_not_reject_on_rms_alone():
+    """The conjunct our gate applies unconditionally. 36,192 M5 fits turn on this."""
+    noisy_but_well_constrained = _fit(rms_residual=3.0)
+    assert not post_fit_gate(noisy_but_well_constrained, n_nights=4).passes
+    assert mpc_published_gate(noisy_but_well_constrained, n_nights=4, arc_days=6.0).passes
+
+
+def test_published_gate_rejects_only_when_every_conjunct_holds():
+    bad_quality = {"sigma_a": 9.0, "sigma_q": 9.0, "sigma_i": 90.0, "sigma_e": 0.9}
+    doomed = _fit(rms_residual=3.0, **bad_quality)
+    #  3 nights, arc < 15 d, RMS > 0.25", quality insufficient -> all four conjuncts
+    assert not mpc_published_gate(doomed, n_nights=3, arc_days=6.0).passes
+    #  break any single conjunct and it survives
+    assert mpc_published_gate(doomed, n_nights=3, arc_days=20.0).passes      # arc too long
+    assert mpc_published_gate(_fit(**bad_quality), n_nights=3, arc_days=6.0).passes  # RMS ok
+    assert mpc_published_gate(_fit(rms_residual=3.0), n_nights=3, arc_days=6.0).passes  # quality ok
+
+
+def test_published_gate_uses_the_ten_day_ceiling_above_three_nights():
+    """Bullet 2 exists: >3 nights is governed, not exempt -- the A3 misreading."""
+    doomed = _fit(rms_residual=3.0, sigma_a=9.0, sigma_q=9.0, sigma_i=90.0, sigma_e=0.9)
+    assert not mpc_published_gate(doomed, n_nights=5, arc_days=6.0).passes
+    assert mpc_published_gate(doomed, n_nights=5, arc_days=12.0).passes   # 12 d > 10 d
+    assert not mpc_published_gate(doomed, n_nights=3, arc_days=12.0).passes  # but < 15 d
+
+
+def test_published_gate_rejects_non_convergence_regardless():
+    assert not mpc_published_gate(
+        _fit(converged=False, status="no_covariance"), n_nights=4, arc_days=6.0
+    ).passes
+
+
+def test_published_gate_counts_high_eccentricity_as_insufficient_quality():
+    doomed = _fit(rms_residual=3.0, e=0.984)
+    result = mpc_published_gate(doomed, n_nights=3, arc_days=6.0)
+    assert not result.passes
+    assert any("e 0.984" in r for r in result.reasons), result.reasons
 
 
 # ----------------------------------------------------------------------------------
@@ -425,8 +491,31 @@ def test_scratch_run_copies_total_json_back_and_cleans_up(tmp_path):
     # nothing" and bisected into forty single-object runs.
     assert 'cp "$HOME/.cache/w/chunk0000"/total.json' in script
     assert "total.json '/mnt/c/work/chunk0000/' 2>/dev/null" not in script
-    assert script.rstrip().endswith("exit $rc")
     assert "rm -rf" in script
+
+
+def test_a_failed_copy_back_does_not_exit_with_fo_s_return_code(tmp_path):
+    """The script used to end `exit $rc` with `$rc` captured *before* the copy ran.
+
+    So `fo` succeeding and the copy-back failing exited 0, and the chunk was diagnosed as an
+    `fo` abort and bisected forty ways. Both outcomes must now be distinguishable from the
+    exit code alone: `fo`'s own failure still wins, a copy failure after a good run reports
+    COPY_BACK_FAILED.
+    """
+    from itf_linker.fit.findorb import COPY_BACK_FAILED, run_fo
+
+    shell = _RecordingShell()
+    run_fo(["obs line"], tmp_path, designations=["lnk0000"], shell=shell,
+           config_dir="/cfg/", scratch_dir="$HOME/.cache/w/chunk0000")
+    script = shell.scripts[0].rstrip()
+
+    assert not script.endswith("exit $rc"), "fo's code must not be the last word"
+    assert "cprc=$?" in script                                  # the copy's status is kept
+    assert "if [ $rc -ne 0 ]; then exit $rc; fi" in script       # a crashed fo still wins
+    assert f"if [ $cprc -ne 0 ]; then exit {COPY_BACK_FAILED}; fi" in script
+    assert script.endswith("exit 0")
+    # and the scratch directory is still removed on every path
+    assert "rm -rf" in script.split("cprc=$?")[1]
 
 
 def test_scratch_and_direct_runs_pass_fo_the_same_arguments(tmp_path):

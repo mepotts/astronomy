@@ -601,9 +601,15 @@ because a reader comparing `arc_days` (Find_Orb's, over the observations it used
 
 ### 5.4 The published σ limits, applied to every survivor
 
-M1's §7 and M3's §6.6 both found the same thing and it reproduces exactly: the MPC's σ
-limits are scoped to **exactly**-three-night links, so a four- or five-night fit is judged
-on RMS alone.
+M1's §7 and M3's §6.6 both found the same thing and it reproduces exactly: **our** σ limits
+are scoped to **exactly**-three-night links, so a four- or five-night fit clears our gate on
+RMS alone.
+
+> **Corrected 2026-08-07.** Written here as the MPC's scoping; it is ours. Their published
+> rule has a second bullet for links with **more than** 3 nights (arc < 10 d) and reaches
+> the quality block only when RMS > 0.25″ *and* the arc is short. It also has **five**
+> conditions — `e < 0.5` is absent from every count in this section. The measured columns
+> and the conclusion drawn from them are unaffected; the attribution was wrong.
 
 | | M4 | M3 |
 |---|---:|---:|
@@ -617,8 +623,8 @@ the last: **the widened grid added 26 survivors and not one additional well-cons
 one.** 140 against M3's 141, and 60 cross-observatory against M3's 60. Every extra survivor
 the widened grid produced is a four- or five-night link that the σ limits never examine.
 
-**The numbers are reported rather than filtered**, as M3 did: the criteria are the MPC's,
-the ranking is ours, and a five-night link with σ(a) = 96 AU sorts to the bottom on its own.
+**The numbers are reported rather than filtered**, as M3 did: the gate is the gate, the
+ranking is ours, and a five-night link with σ(a) = 96 AU sorts to the bottom on its own.
 
 ---
 
@@ -1158,24 +1164,31 @@ cannot see any of it — a subset fit reports a respectable RMS precisely becaus
 the observations that did not fit.
 
 The practical consequence for anyone doing this work is that **a supplementary check the MPC
-does not publish rejects more converged solutions than the published RMS ceiling does** —
-9,383 against 6,312 on the new slice — and its importance scales with how speculatively the
+does not publish rejects more converged solutions than a 0.25″ RMS ceiling does** —
+9,383 against 6,311 on the new slice — and its importance scales with how speculatively the
 links were generated. A pipeline that widens its search without adding a check of this kind
 will not notice it has stopped producing objects.
 
 > ⚠️ **Corrected 2026-08-05.** This paragraph previously claimed the guard rejects more than
 > "every published criterion combined". That is **false as written**: measured over converged
-> fits, the published criteria collectively reject **9,876** against the guard's **9,383**.
+> fits, our acceptance gate collectively rejects **9,876** against the guard's **9,383**.
 > The true and still-useful comparison is against the RMS ceiling alone, and the more
 > striking fact is that the ordering **reverses** with provenance — on M1's survey-made
-> associations the guard rejected 59 where the published criteria rejected 263. The error was
+> associations the guard rejected 59 where our gate rejected 263. The error was
 > caught by an independent re-derivation from the per-fit records, not by re-reading the prose.
+>
+> **Two further corrections, 2026-08-07.** The RMS-ceiling count was **6,312**; it is
+> **6,311**. The one-record difference is the `(o.fit.rms_residual or 9e9)` falsy-zero bug —
+> an RMS of exactly 0.0 was counted as failing a ceiling it passes — fixed the same day in
+> `fit/pipeline.py` and `link/run.py`. And "the published criteria" throughout this block
+> means **our** acceptance gate, which is stricter than the MPC's published rule on three
+> counts; see `M5-RESULTS.md` §5.3. The measurements are unchanged, only the label.
 >
 > A second overstatement in the same section: "a wrong link does not raise residuals" is too
 > strong. Guard-rejected fits *do* carry a higher median RMS (0.39″ against 0.21″). The
 > defensible claim is that the 0.25″ threshold does not **act** on that difference — **80% of
 > the converged fits inside the ceiling are subset fits**, and 583 of the 983 passing every
-> published criterion sit at RMS ≤ 0.10″.
+> gate criterion sit at RMS ≤ 0.10″.
 
 ### What was deliberately not done to produce a larger NEO count
 

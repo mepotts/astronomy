@@ -25,6 +25,7 @@ designation. **It is not a designation and it is not submitted anywhere.**
 
 from __future__ import annotations
 
+import hashlib
 import string
 from collections.abc import Iterable, Sequence
 from pathlib import Path
@@ -43,8 +44,49 @@ MIN_OBS_PER_NIGHT = 2
 _B36 = string.digits + string.ascii_lowercase
 
 
+#: Characters of blake2b hex kept in a ``link_key``. 16 gives 64 bits, so across the 567,838
+#: links a full-file run produces the chance of any collision at all is about 1e-8. 12 would
+#: have been ~1e-3, which is small but not small enough for something meant to be cited.
+#: Member sets are themselves exactly unique -- 0 duplicates in each of the three link tables
+#: in this repo -- so the hash width is the only source of ambiguity.
+LINK_KEY_CHARS = 16
+
+
+def link_key(tracklets: Iterable[tuple[str, str, int]], *, prefix: str = "lk") -> str:
+    """A **stable, content-addressed** identifier for a link: what it is made of.
+
+    ``link_id`` is a positional counter, so ``lnk034r`` means "the 4,347th row of whichever
+    link table this run happened to produce". Re-run the linker, change the slice, or widen
+    the grid, and the same string denotes a different link -- across the two link tables in
+    this repo, 13,618 ids appear in both and **not one** refers to the same link. Every id
+    quoted in M3-M5, in ``SNAPSHOT-VALIDATION.md`` and in the RNAAS drafts is therefore
+    meaningless outside the exact parquet it came from, which makes them uncitable and makes
+    cross-run comparison silently answer the wrong question.
+
+    A link *is* its set of member tracklets, and a tracklet is ``(desig, obscode, night)`` --
+    all three straight from the ITF, none of them positional. Hashing the sorted set gives an
+    id that is identical wherever the same link is rediscovered and different whenever it is
+    not.
+
+    Summary fields are **not** enough to key on, which is why this takes tracklets. On
+    ``link-candidates.parquet``, 197 pairs of genuinely distinct links share their member
+    trkSubs, observatory codes, MJD bounds, observation count *and* tracklet count, differing
+    only in which tracklet of a trkSub they use: ``lnk0018`` and ``lnk001e`` differ in one
+    arrow out of six.
+    """
+    joined = "\n".join(
+        f"{desig}|{obscode}|{night}" for desig, obscode, night in sorted(tracklets)
+    )
+    digest = hashlib.blake2b(joined.encode("utf-8"), digest_size=16).hexdigest()
+    return prefix + digest[:LINK_KEY_CHARS]
+
+
 def link_id(index: int, prefix: str = "lnk") -> str:
-    """A 7-character temporary identifier for a link: ``lnk`` plus base-36 counter."""
+    """A 7-character temporary identifier for a link: ``lnk`` plus base-36 counter.
+
+    **Run-local.** See :func:`link_key` for one that is not, and prefer it for anything that
+    leaves this run -- a citation, a cross-run join, or a published table.
+    """
     n = len(prefix)
     width = 7 - n
     digits = []
@@ -57,13 +99,58 @@ def link_id(index: int, prefix: str = "lnk") -> str:
     return prefix + "".join(reversed(digits))
 
 
-def links_frame(candidates: Sequence[LinkCandidate]) -> pl.DataFrame:
-    """A per-link frame shaped exactly like M1's per-designation frame."""
+def _tracklet_lookup(arrows: pl.DataFrame | None) -> dict[int, tuple[str, str, int]] | None:
+    """``arrow_id -> (desig, obscode, night)``, the stable identity of one tracklet."""
+    if arrows is None or arrows.height == 0:
+        return None
+    needed = ("arrow_id", "desig", "obscode", "night")
+    if any(c not in arrows.columns for c in needed):
+        return None
+    return {
+        int(a): (str(d), str(o), int(n))
+        for a, d, o, n in zip(
+            arrows["arrow_id"], arrows["desig"], arrows["obscode"], arrows["night"],
+            strict=True,
+        )
+    }
+
+
+def links_frame(
+    candidates: Sequence[LinkCandidate], arrows: pl.DataFrame | None = None
+) -> pl.DataFrame:
+    """A per-link frame shaped exactly like M1's per-designation frame.
+
+    ``arrows`` is the table the links were built from. Given it, every row also carries a
+    ``link_key`` -- a content-addressed id derived from the member tracklets, stable across
+    runs where ``desig`` is not. See :func:`link_key`. Without it ``link_key`` is null, and
+    the frame is exactly what it always was.
+
+    ``first_night`` / ``last_night`` / ``arc_days_night`` carry a **different quantity here
+    than in the per-designation frame**, and the shared column names hide it. There they are
+    local-night indices from :func:`itf_linker.index.tracklets.add_night`, which is the
+    boundary the MPC's night counting uses. Here a :class:`LinkCandidate` has only
+    ``mjd_first`` / ``mjd_last``, so they are ``int(mjd)`` -- a **UTC-day truncation**, which
+    splits differently for any observatory whose night crosses UTC midnight.
+
+    Nothing reads them: the night count that matters is ``n_nights``, computed upstream on
+    real nights, and the pre-fit gate measures ``arc_days``. They exist for frame-shape
+    parity. Do not start using them, and do not join the two frames on them -- populate them
+    from a real night index first. Noted 2026-08-07.
+    """
+    lookup = _tracklet_lookup(arrows)
     rows = []
     for i, c in enumerate(candidates):
+        key = None
+        if lookup is not None:
+            members = [lookup[a] for a in c.arrow_ids if a in lookup]
+            # All or nothing: a key built from a partial member set would be a *different*
+            # link's key, which is worse than not having one.
+            if len(members) == len(c.arrow_ids):
+                key = link_key(members)
         rows.append(
             {
                 "desig": link_id(i),
+                "link_key": key,
                 "n_tracklets": len(c.arrow_ids),
                 "n_nights": c.n_nights,
                 "n_obscodes": c.n_obscodes,
@@ -96,7 +183,8 @@ def links_frame(candidates: Sequence[LinkCandidate]) -> pl.DataFrame:
     if not rows:
         return pl.DataFrame(
             schema={
-                "desig": pl.String, "n_tracklets": pl.Int64, "n_nights": pl.Int64,
+                "desig": pl.String, "link_key": pl.String,
+                "n_tracklets": pl.Int64, "n_nights": pl.Int64,
                 "n_obscodes": pl.Int64, "obscodes": pl.List(pl.String), "n_obs": pl.Int64,
                 "first_night": pl.Int64, "last_night": pl.Int64, "first_mjd": pl.Float64,
                 "last_mjd": pl.Float64, "first_trk_n_obs": pl.Int64,
@@ -113,9 +201,15 @@ def links_frame(candidates: Sequence[LinkCandidate]) -> pl.DataFrame:
     return pl.DataFrame(rows)
 
 
-def gate_links(candidates: Sequence[LinkCandidate]) -> tuple[pl.DataFrame, dict[str, Any]]:
-    """Apply the MPC's published pre-fit criteria, plus the >= 2-per-night rule."""
-    frame = links_frame(candidates)
+def gate_links(
+    candidates: Sequence[LinkCandidate], arrows: pl.DataFrame | None = None
+) -> tuple[pl.DataFrame, dict[str, Any]]:
+    """Apply the MPC's published pre-fit criteria, plus the >= 2-per-night rule.
+
+    ``arrows`` is passed through to :func:`links_frame` so gated links carry a stable
+    ``link_key``; see :func:`link_key` for why the positional ``desig`` is not enough.
+    """
+    frame = links_frame(candidates, arrows)
     if frame.height == 0:
         return frame, {"designations_considered": 0, "prefit_pass": 0}
     gated = prefit_gate(frame).with_columns(

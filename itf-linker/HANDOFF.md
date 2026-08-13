@@ -64,7 +64,7 @@ before re-deriving anything or asserting a claim from an older document.**
 | **Lines ≠ observations** | Space-based observations occupy two lines (`S` sky + `s` spacecraft, whose x/y/z sit in the RA/Dec columns). NEOWISE counted exactly half | `mpc80.py` |
 | **Find_Orb ships `PERTURBERS=0`** | Unperturbed fits, ~0.1″ over 7 days against a 0.25″ gate | `DATA-SOURCES.md` §4 |
 | **Find_Orb below ~0.05″ declared sigma** | Destabilises: at 0.01″ a main-belt object fits to a = 3.33 AU against truth 1.458, **with a plausible-looking uncertainty** | `M1-RESULTS.md` |
-| **`(rms or 9e9)`** | An RMS of exactly 0.0 is falsy; one record miscounted. Logged, not fixed | `pipeline.py:190`, `docs/rnaas-notes.md` |
+| **`(rms or 9e9)`** | An RMS of exactly 0.0 is falsy; one record miscounted. **Fixed 2026-08-07** in both counter sites | `fit/pipeline.py`, `link/run.py`, `docs/rnaas-notes.md` |
 | **Enumerated gitignore** | Listed report filenames one by one, missed M4's differently-named `m4-new.json` (108 MB), push rejected by GitHub | Now pattern `/m[0-9]*.json` |
 
 ### Environment and harness traps
@@ -91,13 +91,28 @@ before re-deriving anything or asserting a claim from an older document.**
 
 ## 4. Known-open items
 
+- **Every `lnk…` id in this repo is run-local, and the ones already written down cannot be
+  fixed.** `link_id` is a positional counter, so `lnk034r` means "row 4,347 of whichever
+  link table this run produced". Across the two link tables here, **13,618 ids appear in
+  both and not one denotes the same link.** Twice in one session this silently answered the
+  wrong question — see §2. New runs now also carry **`link_key`**, a content-addressed id
+  hashed from the member `(desig, obscode, night)` tracklets, which is stable across runs
+  and is the only one that should ever be cited or joined on. The ids printed in M3–M5,
+  `SNAPSHOT-VALIDATION.md` and the RNAAS drafts predate it and are **not** back-fillable
+  without re-running the linker against the same ITF snapshot. Treat them as row numbers.
 - The **RNAAS draft is a draft.** References unverified against ADS; nothing submitted.
-- **`pipeline.py:190`** `(rms or 9e9)` is logged but unfixed.
+- ~~**`pipeline.py:190`** `(rms or 9e9)` is logged but unfixed.~~ **Fixed 2026-08-07**, in
+  `link/run.py` too. Stored reports predate it; a re-run now matches the drafts.
 - The **archive misses days when the machine is off.** An always-on host on a residential
   connection would close that; see `docs/archive-operations.md` §1.
 - The **MPC reachability email is drafted and unsent** — `docs/archive-operations.md` §5.
-- **The guard's false-rejection rate is measured nowhere.** "84.4% rejected" is not "84.4%
-  were wrong". This is the sharpest weakness in the publishable finding.
+- ~~**The guard's false-rejection rate is measured nowhere.**~~ **Measured 2026-08-07: zero
+  of 26.** Against the links the snapshot archive shows somebody else independently made,
+  the guard never rejected one on its own — every confirmed link it flagged was already
+  failing the acceptance gate. `scripts/guard_vs_confirmed.py`, `SNAPSHOT-VALIDATION.md`
+  §3a. Still a floor rather than a rate: *n* = 26, and the sample is biased toward links
+  easy enough for someone else to have made. **The acceptance gate is now the open
+  question** — it discards 22 of those 28 rows, where the MPC's published rule keeps 14.
 
 ## 5. If you are looking for a discovery
 

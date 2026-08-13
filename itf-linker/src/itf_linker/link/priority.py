@@ -30,8 +30,18 @@ marginals it was built without:
   does;
 * **exactly two observatory codes** beat three or more: 3.5% against 0.9% and 0.6%;
 * the two strongest signals were not in M4's sort at all: ``pos_spread_au`` (23% at
-  <1e-4 AU falling to under 1% past 1e-3) and ``n_hypotheses_found`` (9.0% for links
-  recovered by 50+ independent distance hypotheses against 0.55% for links seen once).
+  <1e-4 AU falling to under 1% past 1e-3) and ``n_hypotheses_found`` (9.0% for links with
+  a count of 50+ against 0.55% for links seen once).
+
+  **``n_hypotheses_found`` is not a count of independent distance hypotheses** -- corrected
+  2026-08-07. :func:`itf_linker.link.pipeline.merge_links` accumulates it across every merge
+  of the same arrow set, and links are merged across overlapping *time windows* and across
+  *bands* as well as across hypotheses. A 14-day window at a 3.5-day step offers the same
+  link from up to four windows, each sweeping the full grid, and ``link_bands`` merges four
+  bands on top, so the quantity is roughly ``windows x hypotheses x bands``. It conflates
+  hypothesis diversity with how centrally the arc sits in the window grid. It remains the
+  strongest single feature (+0.961 on log10) and is kept for that reason -- but read it as
+  "how many times the search rediscovered this arrow set", not as independent confirmation.
 
 So the ordering here is a **logistic regression fitted to those outcomes**, not a hand
 weighting. :data:`SURVIVAL_MODEL` holds its coefficients; :func:`fit_survival_model`
@@ -137,6 +147,15 @@ def logistic_fit(
     libraries and this is fifteen lines. The ridge is what keeps a separating feature
     (there are several here -- no six-night link passed anything) from sending a
     coefficient to infinity.
+
+    **The columns are not standardised, so the ridge is scale-dependent and the fitted
+    coefficients are not comparable to each other as effect sizes.** ``prefit_arc_days``
+    spans ~3-20, ``min_trk_n_obs`` ~2-6, the ``log10`` terms ~-4.5 to -2.5 and the band
+    dummies are 0/1; one lambda penalises those by very different amounts. Signs and the
+    induced ordering are fine -- ordering is the only thing this model is used for -- but do
+    not rank features by ``|coefficient|``. Standardising inside :func:`design_matrix` would
+    fix the comparison and change the shipped :data:`SURVIVAL_MODEL`, which would change the
+    fitting order M5 actually ran; that is why it has not been done.
     """
     w = np.zeros(x.shape[1])
     ridge = l2 * np.eye(x.shape[1])

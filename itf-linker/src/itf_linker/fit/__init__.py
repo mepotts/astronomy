@@ -18,7 +18,13 @@ from .findorb import (
     run_fo,
     run_fo_batched,
 )
-from .gates import GateResult, post_fit_gate
+from .gates import (
+    GateResult,
+    mpc_published_gate,
+    orbit_quality_reasons,
+    orbit_quality_sufficient,
+    post_fit_gate,
+)
 from .wsl import Shell, default_shell, from_wsl_path, to_wsl_path
 
 __all__ = [
@@ -28,6 +34,9 @@ __all__ = [
     "Shell",
     "default_shell",
     "from_wsl_path",
+    "mpc_published_gate",
+    "orbit_quality_reasons",
+    "orbit_quality_sufficient",
     "parse_covar_json",
     "parse_elements_txt",
     "parse_total_json",

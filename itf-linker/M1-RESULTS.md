@@ -234,7 +234,13 @@ failures despite having printable elements.
 
 ### The three-night sigma gate is where most candidates die
 
-Of 862 converged three-night fits, the four published limits are met by:
+> **Corrected 2026-08-07.** These four are only four of the **five** published quality
+> conditions — `e < 0.5` is published alongside them and was implemented nowhere in this
+> project when M1 ran, so it is not in the table below and the "all four" column is not the
+> published quality test. Scoping the block to three-night links is *our* choice, not the
+> MPC's. See [`DATA-SOURCES.md`](DATA-SOURCES.md) §"Published acceptance criteria".
+
+Of 862 converged three-night fits, four of the five published limits are met by:
 
 | | σ(a) < 0.05 AU | σ(q) < 0.05 AU | σ(i) < 0.5° | σ(e) < 0.05 | **all four** |
 |---|---:|---:|---:|---:|---:|
@@ -285,9 +291,12 @@ that pattern, and at least one is present.
 recent tracking names, not a cross-archive result. Whether Rubin has already linked these
 internally is exactly the M2 question.
 
-**(c) 29 of the 128 pass on a technicality.** The MPC's sigma limits apply *only* to
-three-night links, so a fit with more nights is judged on RMS alone. Applying the same four
-limits to every passer regardless of night count leaves **99 of 128**. The 29 that fall out
+**(c) 29 of the 128 pass on a technicality.** *Our* gate applies the sigma limits only to
+three-night links, so a fit with more nights clears it on RMS alone. (Corrected 2026-08-07:
+this was written as the MPC's scoping. It is not — their published rule has a separate
+bullet for links with more than 3 nights, and applies the quality block only when RMS
+> 0.25″ *and* the arc is short. The technicality is real but it is ours.) Applying the same
+four limits to every passer regardless of night count leaves **99 of 128**. The 29 that fall out
 are distant-object candidates whose arcs cannot constrain distance — fitted a of 58–304 AU
 with σ(a) of 37–784 AU — and one, `t75502b`, is worse than that:
 
@@ -444,7 +453,13 @@ Finding out which is a catalogue-lookup problem, not an orbit problem, and it is
 thing to build.
 
 The second-order finding is that **the MPC's published post-fit criteria are not
-sufficient on their own**. They admit a fit with σ(a) = 8,173 AU because the sigma limits
-are scoped to exactly-three-night links, and they would admit a subset fit of a colliding
-trkSub because RMS says nothing about how many observations were used. Both holes are
-closed here by additional checks that are clearly labelled as ours, not the MPC's.
+sufficient on their own**. They admit a fit with σ(a) = 8,173 AU, and they would admit a
+subset fit of a colliding trkSub because RMS says nothing about how many observations were
+used. Both holes are closed here by additional checks that are clearly labelled as ours,
+not the MPC's.
+
+> **Corrected 2026-08-07.** The first hole was attributed to the sigma limits being "scoped
+> to exactly-three-night links". That scoping is *ours*. The MPC's actual rule admits
+> σ(a) = 8,173 AU for a different and larger reason: its post-fit conditions are
+> **conjunctive**, so a converged fit with RMS ≤ 0.25″ is never quality-tested at all,
+> whatever its night count. The finding stands and is in fact stronger than stated.

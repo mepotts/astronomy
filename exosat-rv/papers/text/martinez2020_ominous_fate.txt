@@ -1,0 +1,1525 @@
+<<<PAGE 1>>>
+MNRAS 000, 1–12 (2020) Preprint 27 October 2020 Compiled using MNRAS L ATEX style ﬁle v3.0
+The ominous fate of exomoons around hot Jupiters in the
+high-eccentricity migration scenario
+Alessandro A. Trani 1,2⋆ Adrian S. Hamers, 3 Aaron Geller, 4,5 and Mario Spera 4
+1Department of Earth Science and Astronomy, College of Arts and Sciences, The University of Tokyo, 3-8-1 Komaba, Meguro-ku,
+Tokyo 153-8902, Japan
+2Department of Astronomy, Graduate School of Science, The University of Tokyo, 7-3-1 Hongo, Bunkyo-ku, Tokyo, 113-0033, Japan
+3Max-Planck-Institut f ¨ur Astrophysik, Karl-Schwarzschild-Str. 1, 85741 Garching, Germany
+4Center for Interdisciplinary Exploration and Research in Astrophysics (CIERA) and Department of Physics and Astronomy,
+Northwestern University, 1800 Sherman Ave., Evanston, IL 60201, USA
+5Adler Planetarium, Department of Astronomy, 1300 S. Lake Shore Drive, Chicago, IL 60605, USA
+Accepted XXX. Received YYY; in original form ZZZ
+ABSTRACT
+All the giant planets in the solar system host a large number of natural satellites.
+Moons in extrasolar systems are diﬃcult to detect, but a Neptune-sized exomoon
+candidate has been recently found around a Jupiter-sized planet in the Kepler-1625b
+system. Due to their relative ease of detection, hot Jupiters (HJs), which reside in
+close orbits around their host stars with a period of a few days, may be very good
+candidates to search for exomoons. It is still unknown whether the HJ population
+can host (or may have hosted) exomoons. One suggested formation channel for HJs
+is high-eccentricity migration induced by a stellar binary companion combined with
+tidal dissipation. Here, we investigate under which circumstances an exomoon can
+prevent or allow high-eccentricity migration of a HJ, and in the latter case, if the
+exomoon can survive the migration process. We use both semianalytic arguments,
+as well as direct N-body simulations including tidal interactions. Our results show
+that massive exomoons are eﬃcient at preventing high-eccentricity migration. If an
+exomoon does instead allow for planetary migration, it is unlikely that the HJ formed
+can host exomoons since the moon will either spiral onto the planet or escape from
+it during the migration process. A few escaped exomoons can become stable planets
+after the Jupiter has migrated, or by tidally migrating themselves. The majority of
+the exomoons end up being ejected from the system or colliding with the primary star
+and the host planet. Such collisions might nonetheless leave observable features, such
+as a debris disc around the primary star or exorings around the close-in giant.
+Key words: planets and satellites: dynamical evolution and stability – planet-star
+interactions – binaries: general – celestial mechanics
+1 INTRODUCTION
+The abundance of moons in the Solar system suggests that
+moons might be common in extrasolar systems. Exomoons
+might be detected by a number of techniques, including their
+eﬀect on the transit signal of the host planet (both in tran-
+sit timing, and duration), or a direct transit signature for
+large exomoons (see, e.g., Heller 2018a for an overview).
+However, despite much eﬀort, no exomoons have been con-
+ﬁrmed to date (e.g., Kipping et al. 2012, 2013a,b, 2014).
+A total of 7 exomoon candidates, including Kepler-1625b I ,
+⋆ E-mail: aatrani@gmail.com
+have been reported so far (Teachey & Kipping 2018; Fox &
+Wiegert 2020); however, the exomoon interpretation of such
+systems has been put into doubt and is still subject to debate
+(Heller et al. 2019; Kreidberg et al. 2019; Teachey et al. 2019;
+Kipping 2020). Nevertheless, Kepler-1625b I has opened up
+questions as to how such massive exomoons could be formed
+(e.g., Heller 2018b; Hamers & Portegies Zwart 2018).
+The apparent absence of exomoons in detections so
+far suggests that there is a shortage of satellites around
+planets—at least, within the range of exoplanets detected
+to date. The depletion of exomoons has been studied the-
+oretically by a number of authors in a variety of contexts,
+including migration due to tides (Barnes & O’Brien 2002;
+© 2020 The Authors
+arXiv:2008.13778v2  [astro-ph.EP]  25 Oct 2020
+
+<<<PAGE 2>>>
+2 A. A. Trani et al.
+Adams & Bloch 2016; Sucerquia et al. 2019, 2020) or proto-
+planetary disc torques (Namouni 2010; Spalding et al. 2016),
+and planet-planet scattering (Nesvorn´ y et al. 2007; Gong
+et al. 2013; Hong et al. 2018).
+Another possibility for exomoons to become unbound
+from their host planet is excitation of the planet’s orbital ec-
+centricity around the parent star by von Zeipel-Lidov-Kozai
+(ZLK) oscillations (von Zeipel 1910; Lidov 1962; Kozai 1962;
+Ito & Ohtsuka 2019; see Naoz 2016 and Shevchenko 2017 for
+a review and a book) induced by a stellar binary companion.
+These oscillations, combined with tidal evolution, can shrink
+the host planet’s orbit and transform the planet into a hot
+Jupiter (HJ; see, e.g., Fabrycky & Tremaine 2007; Wu et al.
+2007; Naoz et al. 2011, 2012; Anderson et al. 2016; Hamers
+2017a; Stephan et al. 2018).
+In this paper, we study in more detail the latter sce-
+nario, and focus speciﬁcally on the survivability of exomoons
+around Jupiter-like planets that are migrating due to the
+ZLK mechanism with tidal friction. Recently, Martinez et al.
+(2019) presented a similar work studying tidal detachment
+of exomoons around exoplanets excited to high eccentricity
+through ZLK oscillations induced by a stellar binary com-
+panion. Our work can be considered to be complementary,
+in the sense that we consider in more detail compared to
+Martinez et al. (2019) the secular four-body eﬀects. In par-
+ticular, we take into account the fact that a massive exo-
+moon, through its precession induced on the planetary or-
+bit, can also aﬀect the secular evolution of the planet and
+even prevent ZLK-driven high eccentricity of the planet in
+the ﬁrst place. In addition, we carry out direct four-body
+integrations of the entire evolution of the system (with the
+planet starting with a small eccentricity), unlike Martinez
+et al. (2019), who in their four-body integrations focus on
+the detachment phase when the exoplanet is already highly
+eccentric. Furthermore, unlike Martinez et al. (2019), in our
+four-body integrations we include tidal interactions between
+all bodies.
+Here we consider moons more massive than solar system
+counterparts (mmoon > 10−4 MJ). Albeit the mass of natural
+satellites is considered to be restricted within 10 −4mplanet,
+wheremplanet is the host planet mass (Canup & Ward 2006),
+recent works point out the possibility of large single-moon
+systems forming in proto-planetary discs (Cilibrasi et al.
+2018; Fujii & Ogihara 2020; Moraes & Vieira Neto 2020).
+Moreover, the exoomon candidate Kepler-1625b I appears
+to be in plain violation of the mass scaling relation of satel-
+lites in the solary system (Heller 2018c), and massive moons
+are more likely to be detected with current observational
+facilities (Sucerquia et al. 2020).
+The plan of this paper is as follows. In Section 2, we esti-
+mate the role of exomoons in the high-eccentricity migration
+process of HJs using analytic arguments. In Section 3, we
+conﬁrm and reﬁne our analysis by means of direct N-body
+simulations. In Section 4 we discuss our results and extend
+them to other high-eccentricity migration mechanisms. and
+conclude in Section 5.
+2 EXPECTATIONS BASED ON SEMI-ANALYTIC
+ARGUMENTS
+Before presenting detailedN-body simulations in Section 3,
+we ﬁrst discuss our expectations of the evolution of exo-
+moons around migrating Jupiter-like planets using semian-
+alytic arguments. Consider a moon (mass mmoon) around a
+Jupiter-like planet (mass mplanet) in an orbit with semima-
+jor axis a1; we will refer to the latter orbit simply as the
+‘lunar orbit’. The planet-moon system is orbiting around a
+primary star (mass mprim) with semimajor axis a2 ≫ a1,
+and we refer to the latter orbit as the ‘planetary orbit’. The
+primary star has a companion star, the secondary star (mass
+msec), in an orbit (the ‘stellar orbit’) with semimajor axis
+a3≫a2.
+If the planetary and stellar orbits are mutually highly
+inclined (with an inclination i23 close to 90 ◦), then high-
+eccentricity ZLK oscillations can be induced in the planetary
+orbit with a maximum eccentricity approximately given by
+e2,max =
+√
+1− 5
+3 cos2(i23). (1)
+Equation 1 ignores the presence of the moon and assumes
+the test particle limit (the planet being much less massive
+than the stars), the quadrupole-order expansion order only,
+and zero initial planetary eccentricity. The presence of short-
+range forces (SRFs) in the planetary orbit (for example, due
+to general relativity, tidal bulges, and/or rotation) will typ-
+ically reduce the maximum eccentricity implied by Equa-
+tion 1. The maximum eccentricity in that case can be cal-
+culated semianalytically to quadrupole order using conser-
+vation of energy and angular momentum (e.g., Blaes et al.
+2002; Fabrycky & Tremaine 2007; Liu et al. 2015).
+In an orbit-averaged sense, a moon in orbit around the
+planet eﬀectively acts as an additional SRF in the planetary
+orbit. Therefore, a moon can ‘shield’ the planetary orbit
+from the secular torque of the stellar companion, and pre-
+vent high eccentricities and tidal migration (e.g., Hamers
+et al. 2015, 2016). An example of the shielding eﬀect (ac-
+cording to an N-body integration) is given in Figure 1, in
+which the presence of the moon quenches the excitation of
+the planetary eccentricity, thus preventing the tidal migra-
+tion that would otherwise happen in the absence of the moon
+(see Section 3 for details on the simulation).
+Taking into account the secular eﬀects of the moon and
+restricting to the quadrupole expansion order, the maximum
+eccentricity in the planetary orbit can be calculated approx-
+imately by solving for the algebraic equation for the station-
+ary e2 based on energy conservation (Hamers et al. 2015)
+C12
+(
+1−e2
+2,i
+)−3/2
+fq(e1,i, e2,i, 1,i, 2,i)
++C23
+(
+1−e2
+3,i
+)−3/2
+fq(e2,i, e3,i, 2,i, 3,i)
+=C12
+(
+1−e2
+2
+)−3/2
+fq(e1,i, e2, 1,i, 2)
++C23
+(
+1−e2
+3,i
+)−3/2
+fq(e2, e3,i, 2, 3,i), (2)
+where we deﬁned the function
+fq(ein, eout, in, out)≡ 1−e2
+in + 15e2
+in (ˆein· ˆeout)2
+− 3
+(
+1−e2
+in
+)
+(ˆin· ˆout)2, (3)
+MNRAS 000, 1–12 (2020)
+
+<<<PAGE 3>>>
+Can hot Jupiters host exomoons? 3
+Companion-Star
+Jupiter-Star
+Moon-Jupiter
+semimajor	axis	[AU]
+0.1
+1
+10
+100
+With	moon
+Without	moon
+eccentricity
+0
+0.2
+0.4
+0.6
+0.8
+1
+time	[Myr]
+0
+0.2
+0.4
+0.6
+0.8
+1
+Figure 1. Evolution of semimajor axis and eccentricity of the orbits
+in two simulations, one with a 0 .01 MJ moon orbiting a Jupiter-
+sized planet, and one without. The companion star has a mass
+of 0.5 M⊙ and it is inclined by 90 ◦ with respect to the Jupiter’s
+orbit. The orbits of the moon and the Jupiter are coplanar and
+prograde. The moon ‘shields’ the Jupiter from the perturbing
+companion star, preventing the increase in eccentricity and the
+tidal migration.
+and the constants are
+C12 = 1
+8
+Ga2
+1
+a3
+2
+mmoonmplanetmprim
+mmoon +mplanet
+; (4a)
+C23 = 1
+8
+Ga2
+2
+a3
+3
+(mmoon +mplanet)mprimmsec
+mmoon +mplanet +mprim
+. (4b)
+The eccentricity and normalized angular-momentum vectors
+of orbitk are ek and k, respectively; the subscript i denotes
+the initial vector. Stationary points in eccentricity (i.e., min-
+ima or maxima) correspond to
+(ˆe2· ˆe3,i)2 = 1−
+(ˆ2· ˆ3,i
+)2
+, (5)
+whereas the value of ˆ2· ˆ3 at any point (including the
+stationary point) can be obtained from angular-momentum
+conservation (neglecting the angular momentum of the lunar
+orbit), i.e.,
+ˆ2· ˆ3,i = 1
+2
+√
+1−e2
+2
+√
+1−e2
+3,i
+[
+2
+√
+1−e2
+2,i
+√
+1−e2
+3,i ˆ2,i· ˆ3,i
++Λ2
+Λ3
+(
+e2
+2−e2
+2,i
+)]
+. (6)
+Here, Λk is the circular angular momentum of orbit k, i.e.,
+Λ1 = Ga1mmoonmplanet
+mmoon +mplanet
+; (7a)
+Λ2 = Ga2(mmoon +mplanet)mprim
+mmoon +mplanet +mprim
+. (7b)
+Equation 2 is approximate in the sense that it is valid to
+quadrupole expansion order only, and that the state of the
+lunar orbit at the stationary point of the planetary orbit is
+set to the initial one, i.e., e1 = e1,i in Equation 2, and simi-
+larly for 1. In practice, this is a reasonable approximation,
+since we are interested in the stationary point of e2 and not
+of e1.
+1 2 3 4 5 6 7 8 9 1010□4
+10□3
+10□2
+10□1
+100
+r [au]
+mmoon = 0.1 MJ
+SRF excluded
+Moon survival
+Planet migration
+1 2 3 4 5 6 7 8 9 1010□4
+10□3
+10□2
+10□1
+100
+r [au]
+mmoon = 0.01 MJ a2(1 □ e2,max) (Eq.2)
+rHill,2 (Eq.8)
+rperi,2,TF (Eq.9)
+rTD,planet (Eq.12)
+Rplanet
+SecularMultiple
+1 2 3 4 5 6 7 8 9 10
+a2 [au]
+10□4
+10□3
+10□2
+10□1
+100
+r [au]
+mmoon = 0.001 MJ
+Figure 2. Various distances as a function of a2. Top, middle and
+bottom panels correspond to mmoon = 0.1, 0.01 and 0.001 MJ.
+Dashed black lines show periapsis distances of the planetary or-
+bit calculated using Equation 2; black circles show results from
+numerical solutions of the equations of motion using Secular-
+Multiple. The green dotted line shows the Hill radius of the
+planet corresponding to Equation 2 (see Equation 8). The blue
+dashed line shows the critical periapsis distance of the planetary
+orbit below which we expect the planet to migrate due to tidal
+dissipation (see Equation 9). The horizontal red dotted line shows
+the tidal disruption radius of the planet (see Equation 12). The
+yellow dotted horizontal lines indicate the planetary radius. The
+green and blue shaded areas indicate the region where the moon
+could theoretically survive and the region where the tidal migra-
+tion is expected to occur, respectively. Massive moons prevent the
+formation of a HJ due to the shielding eﬀect, whereas low-mass
+moons typically cannot survive the high-eccentricity migration
+process.
+MNRAS 000, 1–12 (2020)
+
+<<<PAGE 4>>>
+4 A. A. Trani et al.
+In Figure 2 we show various distances, in particular, the
+periapsis distance of the planetary orbit,rperi,2 =a2(1−e2),
+as a function of a2, whereas other parameters are ﬁxed. We
+choose three diﬀerent moon masses: mmoon = 0.1, 0.01 and
+0.001 MJ (top to bottom panels). All other parameters are
+set tomplanet = 1 MJ,mprim = 1 M⊙,msec = 0.6 M⊙,a1 =
+10−3 au anda3 = 600 au. The other (initial) orbital param-
+eters are e1 =e2 = 0.01,e3 = 0.4,i1 =i2 = 0.57◦,i3 = 89◦,
+ω1 =ω3 = 180◦, ω2 = 68.4◦, Ω1 = Ω2 = Ω3 = 0.01◦. Here,
+ik, ωk, and Ω k denote the inclination, argument of periap-
+sis, and longitude of the ascending of orbit k, respectively.
+Note that, with this choice of initial parameters, the initial
+mutual lunar orbit-planetary orbit inclination is i12 = 0 ◦,
+and the initial mutual planetary-stellar orbit inclination is
+i23 = 89◦.
+We compute the maximum e2 by solving Equation 2,
+neglecting other SRFs such as tidal bulges and general rel-
+ativistic corrections, and show the results in Figure 2 with
+black dashed lines. In the absence of the moon, the maxi-
+mum planetary orbital eccentricity would be instead given
+by Equation 1. With a moon included, the maximum ec-
+centricity is strongly reduced depending on parameters such
+as mmoon and a2. As a2 is increased, the ‘shielding’ eﬀect
+of the moon decreases, and the periapsis distance shrinks.
+The circles in Figure 2 show the periapsis distances obtained
+by numerically solving the secular equations of motion us-
+ing SecularMultiple (Hamers & Portegies Zwart 2016;
+Hamers 2018, 2020), and are in good agreement with the
+semianalytic solutions of Equation 2.
+As the planetary orbit is excited in its eccentricity, its
+decreased periapsis distance implies that satellites orbiting
+around the planet could become unbound. Approximately,
+the orbital radius around the planet for which satellites can
+remain stable is described by the following ad hoc expression
+of the Hill radius,
+rHill,2 = 1
+2a2(1−e2)
+(mplanet
+3mprim
+)1/3
+, (8)
+where the maximum eccentricity e2 is obtained from Equa-
+tion 2, and which is shown in Figure 2 with the dotted green
+lines. The moon is expected to remain bound to the planet as
+long as its orbital distance around the planet is ≲rH,planet.
+Tidal migration of the planet becomes possible only if
+its eccentricity becomes suﬃciently high. In Figure 2, we
+show with the blue dashed lines the periapsis distances of
+the planetary orbit, rperi,2,TF, below which we expect tidal
+dissipation to be eﬃcient to shrink the planetary orbit, and
+produce a HJ. We estimate the latter boundary by equating
+the timescale for tidal friction to shrink the orbital semima-
+jor axis by the order of itself (in the limit of e2→ 1) to the
+ZLK timescale of the planetary orbit excited by the stellar
+binary companion, which yields
+rperi,2,TF∼ a2
+2
+[
+τZLK
+τTF
+βa
+(Rplanet
+a2
+)8]2/15
+, (9)
+where the ZLK timescale is deﬁned as
+τZLK≡ P3
+P2
+P3
+mmoon +mplanet +mprim +msec
+msec
+(
+1−e2
+3
+)3/2
+,
+(10)
+and the tidal dissipation-related timescale is
+τTF≡ 1
+27
+tV,planet
+3(kAM,planet + 2)
+(mplanet
+Mprim
+)2
+, (11)
+with tV,planet, kAM,planet, and Rplanet the viscous timescale,
+apsidal motion constant, and radius of the planet, respec-
+tively. Furthermore, βa ≡ 451/160, and Pk denotes the
+orbital period of orbit k. Equation 9 was derived by as-
+suming the equilibrium tide model (Hut 1981), and assum-
+ing pseudosynchronisation (i.e., that the spin frequency is
+close to the orbital frequency at periapsis). Here, we set
+kAM,planet = 0.19, tV,planet = 1.3× 104 hr (Socrates et al.
+2012).
+The condition rperi,2 < rperi,2,TF is not suﬃcient for
+successful migration of the planet, since the planet could
+be tidally disrupted if it ventures too close to the primary
+star. Speciﬁcally, the latter is expected to occur if rperi,2 <
+rTD,planet, where
+rTD,planet =ηRplanet
+( mprim
+mplanet
+)1/3
+, (12)
+where we adopt η = 2.7 (Guillochon et al. 2011). Finally,
+we should consider that, for survival of the moon, the lunar
+orbit should, evidently, at least be larger than Rplanet; in
+Figure 2, we show a yellow dotted horizontal line indicating
+r =Rplanet.
+Figure 2, which does not include additional SRFs,
+paints the following picture: even a relatively low-mass moon
+(10−3 MJ; bottom panel) is able to eﬀectively shield the
+planet, and prevent excitation of the planetary orbit, un-
+lessa2 is large (& 5 au). The shielding eﬀect originates from
+an eﬀective additional SRF acting on the orbit of the planet
+around the primary star. This SRF is due to the quadrupole
+moment of the moon, and causes the circulation of the plan-
+etary argument of pericenter, suppressing the ZLK oscilla-
+tions. However, for largea2 and lowmmoon, the excited plan-
+etary eccentricity is very high, and the planet is expected to
+be tidally disrupted, rather than to tidally migrate. Even if
+the planet manages to survive migration, the small Hill ra-
+dius during the migration phase would imply that no moon
+could survive the process.
+The region in a2 space that allows for the planetary
+migration never overlaps with the region in which the moon
+can remain bound to the planet. This is especially true for
+low-mass moons; for higher-mass moons the two regions get
+closer, but still do not overlap, i.e., the planet’s Hill radius
+is so small that no moon could feasibly remain in a stable
+orbit around it (Domingos et al. 2006).
+For higher-mass moons (0.1 MJ; top panel), the shield-
+ing eﬀect is much more severe, and even planets at 10 au
+are still aﬀected by the presence of the moon. The planetary
+orbit can nevertheless become suﬃciently eccentric to po-
+tentially tidally migrate ifa2∼ 8 au (although the planet in
+that case is also close to being tidally disrupted). However,
+the Hill radius for that a2 is suﬃciently small that moons
+are not expected to survive the migration process.
+The above picture remains unchanged when also con-
+sidering other short-range force such as relativistic and tidal
+precession (see the Appendix and Figure A1). On the other
+hand, these arguments are based on the secular (i.e., orbit-
+averaged) approximation, and ignore many potentially im-
+portant eﬀects such as non-secular evolution, and tides in
+MNRAS 000, 1–12 (2020)
+
+<<<PAGE 5>>>
+Can hot Jupiters host exomoons? 5
+the lunar orbit in addition to those in the planetary orbit.
+In Sect. 3, we carry out more detailed N-body simulations
+to address these caveats.
+3 N -BODY SIMULATIONS
+3.1 Numerical setup
+We employ the TSUNAMI code (A.A.Trani, in prep.) to di-
+rectly integrate the 4-body system consisting of a moon-
+hosting planet, the parent star and the stellar compan-
+ion. TSUNAMI integrates the equations of motion derived
+from a logarithmic Hamiltonian in an extended phase space
+(Mikkola & Tanikawa 1999), using a chain coordinate sys-
+tem to reduce round-oﬀ errors (Mikkola & Aarseth 1990),
+combined with Bulirsh-Stoer extrapolation to increase ac-
+curacy (Stoer & Bulirsch 1980). We include the ﬁrst-order
+post-Newtonian correction to the gravitational acceleration,
+and the tidal interaction force from Hut (1981).
+As with the analytic estimates, we drop the spin-
+orbit tidal coupling term, i.e. we assume mutual pseudo-
+synchronization at every timestep. Tidal interactions be-
+tween all the bodies in the simulations are considered. We
+set the apsidal motion constant kAM = 0.1 for the planet
+and the moon, and kAM = 0.014 for the two stars. In the
+Hut (1981) model, the eﬃciency of the tides is parametrized
+by the time-lag of the bulges. We set the time-lag to τ =
+0.66× 102 s for the planet and moon, and to τ = 0.15 s for
+the two stars, respectively. The time-lag for the planet and
+the moon is about 10 2 higher than what is estimated for
+high-eccentricity migration (Socrates et al. 2012); we make
+this choice in order to shorten the computational time of
+the simulations. Such approach has been commonly used in
+similar studies (e.g. Antonini et al. 2016). The time-lag and
+tidal eﬃciency are nonetheless largely uncertain and strictly
+depend on the rheology of the bodies (Ogilvie 2013; Makarov
+& Efroimsky 2014; Efroimsky & Makarov 2014).
+The radius of the bodies is chosen to be 1 R ⊙ for the
+star and 1 R J for the planet. The radius of the moon is
+calculated from its mass following Chen & Kipping (2017),
+while the radius of the companion in solar radii is given by
+(msec/1 M⊙)0.881 (Kippenhahn et al. 2012). We also check
+for collisions at every timestep; if a collision between two
+bodies is detected the integration is automatically stopped.
+3.2 Comparison with our analytic estimate
+We ﬁrst run a controlled grid of simulations to better com-
+pare our analytic estimate with the results from direct in-
+tegration. We ﬁx all the initial parameters but the semi-
+major axis of the planet’s orbit a2, which ranges between 1
+and 10 au. All the initial parameters are listed in Table 1.
+We run two sets of simulations for diﬀerent lunar masses:
+mmoon = 0.01 MJ and mmoon = 0.1 MJ. Each set consists
+of 200 realizations with diﬀerent a2. The simulations were
+run for 2× 107 yr. Table 2 summarizes the outcomes of the
+simulations.
+Figure 3 shows the minimum periapsis distance and
+other quantities obtained from the simulations, along with
+the analytic estimates analogue as in Figure 2. There is a
+m moon 	=	0.1	M J r
+peri,	2
+	(collision)
+r
+peri,	2
+	(bound	moon)
+r
+peri,	2
+	(escaped	moon)
+r
+Hill,	2
+R
+planet
+rmin 	[au]
+10
+−3
+0.01
+0.1
+1
+ 10
+a
+2
+	(1	-	
+e
+2
+)		(Eq.	2)
+r
+peri,	2,	TF
+		(Eq.	9)
+r
+TD,	planet
+		(Eq.	12)
+m
+moon
+	=	0.01	M
+J
+rmin 	[au]
+10
+−3
+0.01
+0.1
+1
+10
+a
+planet
+	[au]
+2
+4
+6
+8
+10
+Figure 3. Same as Figure 2, but compared to the direct N-body
+simulations. Various distances as a function of the initial semi-
+major axis of the planet. Each marker is obtained from a sin-
+gle simulation, lines are obtained from analytic arguments as in
+Section 2. Empty circle, cross or square show the minimum peri-
+apsis distance of the planet. The marker shape denotes the end-
+state of the system. Empty circle: the moon is still bound to the
+planet. Cross (any color): the moon escaped from the planet. Red
+square: the simulation stopped because a collision occurred be-
+tween two bodies. Black (blue) marker: the ﬁnal planetary semi-
+major axis is larger (smaller) than 1 au. Green dot: Hill radius
+corresponding to the minimum periapsis distance. Dashed black
+line: minimum periapsis distance of the planet as obtained from
+Equation 2. Dot-dashed black line: minimum periapsis distance
+allowed by the quadrupole approximation alone, neglecting the
+moon (Equation 1). Blue dashed line: minimum periapsis distance
+that allows migration of the planet (Equation 9). Red dotted line:
+tidal disruption radius of the planet (Equation 12). Orange dot-
+ted line: planetary radius. Top panel: mmoon = 0.1 MJ; bottom
+panel: mmoon = 0.01 MJ. Note how the results from the simu-
+lations start to diverge from the semi-analytical results as soon
+as the planetary Hill radius becomes comparable to the moon’s
+semimajor axis at 0.01 au.
+MNRAS 000, 1–12 (2020)
+
+<<<PAGE 6>>>
+6 A. A. Trani et al.
+Table 1. Initial parameters for the controlled grid of simulations.
+Parameter Value
+mprim [ M⊙] 1
+msec [ M⊙] 0 .6
+mplanet [ MJ] 1
+mmoon [ MJ] 0 .1, 0.01 MJ
+a3 [ au] 600
+a2 [ au] 1–10
+a1 [ au] 0 .01
+e3 0.4
+e2 0.01
+e1 0.01
+i12 0
+i23 π/2
+ω3 π
+ω2 0.38π
+ω1 π
+Ω3 0.01
+Ω2 0.01
+Ω1 0.01
+M3 π
+M2 0.3π
+M1 1.66π
+m: mass; a: semimajor axis; e: eccentricity; i: inclination; ω: argument of
+periapsis; Ω: longitude of the ascending node; M: mean anomaly. The
+subscripts 1, 2 and 3 refer to the primary-secondary orbit, the
+planet-primary orbit and the moon-planet orbit, respectively. All angles
+are expressed in radians.
+tight agreement between the minimum periapsis distance ex-
+pected from Equation 2 and the results from the simulations
+until rHill,2∼ a1,i, i.e. when the planetary Hill radius be-
+comes comparable to the initial semimajor axis of the moon.
+When this occurs, the moon becomes dynamically unstable
+and the secular approximation does not hold anymore. As
+expected, less massive moons become dynamically unstable
+at smaller a2, because the shielding eﬀect is lower and the
+Jupiter can reach higher eccentricities at the same a2.
+3.2.1 Dynamical instability of low-mass moons
+For low-mass moons, (mmoon = 0.01 MJ), the most common
+outcome after the dynamical instability is the escape of the
+moon from the planet. When this occurs, in about 60% of
+the simulations the moon gets immediately ejected from the
+system during the periapsis passage of the planet. In the
+other 40%, the moon becomes a planet orbiting the primary
+star. This phase is only temporary, however: once the moon
+escapes, its orbit is strongly perturbed by the planet and
+its eccentricity grows until a collision with the star occurs.
+This outcome is shown in the top-left panel of Figure 4. In
+12 realizations, the moon collides with the planet instead.
+In only one realization the moon becomes a planet, because
+the planet dynamically decouples from the moon by tidal
+circularization before the moon can collide with the star.
+After the moon escapes, the planetary eccentricity can
+be freely excited by the ZLK mechanism and the Jupiter
+can tidally migrate. In 63 realizations the ﬁnal planetary
+semimajor axis becomes less than 1 au due to tidal circular-
+ization (blue crosses in Figure 3). Notice, however, that in
+all migration cases, the minimum periapsis distance during
+Table 2. Outcome fractions of the controlled grid simulations. Left
+column: set with low-mass moons. Right column: set with high-
+mass moons. Each set consists of 200 realizations.
+Collisions mmoon
+0.01 MJ 0.1 MJ
+Planet-star - 0.015
+Moon-star 0.27 0.005
+Moon-planet 0.06 0.02
+Total 0.33 0.04
+Moon escaped
+From planet 0.555 0.215
+From system 0.345 0.145
+Planet escaped
+From system - 0.045
+Planet migration within 1 au
+0.315 0.015
+Moon-turned-planet migration within 1 au
+- 0.055
+Planet+moon migration within 1 au
+- -
+the migration is less than the tidal disruption radius (red
+dotted line in Figure 3), suggesting that the Jupiter will be
+tidally disrupted in the process.
+3.2.2 Dynamical instability of massive moons
+For higher moon masses, the dynamical instability of the
+moon triggers an interesting interplay between tidal dissi-
+pation and the ZLK mechanism. Once rHill,2 ∼ a1,i, the
+eccentricity of the lunar orbit is excited, which triggers the
+tidal circularization of the lunar orbit. After the lunar orbit
+becomes tighter, the shielding eﬀect is smaller and the eccen-
+tricity of planet can be excited further, so that the minimum
+periapsis distance is smaller than the one expected from the
+analytic estimate, which assumes energy conservation (i.e.
+no change in semimajor axis). In the top-right panel of Fig-
+ure 4 we show the typical evolution of the orbital parameters
+in this scenario. Such systems can be thus identiﬁed in the
+bottom panel of Figure 3 as the empty circles below the
+dashed black line that denotes the semi-analytic result from
+Equation 2. Only in a few simulations, the tidal decay causes
+the inspiral and collision of the moon onto the planet.
+Another unforeseen outcome is the ejection of the planet
+from the system. In many cases, the planet-moon system
+eﬀectively undergoes a three-body encounter with the pri-
+mary star. This often leads to the prompt ejection of the
+moon and, in 9 simulations, even the ejection of the planet.
+The planet can also be scattered on an outward orbit,
+while the moon remains on an inner orbit around the pri-
+mary star. However, the new orbit of the planet might be
+unstable due to the secondary star: in this case, it will be
+ejected from the system following a scattering with the sec-
+ondary. This latter case is shown in the bottom-left panel of
+MNRAS 000, 1–12 (2020)
+
+<<<PAGE 7>>>
+Can hot Jupiters host exomoons? 7
+m moon 	=	0.01	M J Star-Companion
+Jupiter-Star
+Moon-Jupiter
+Moon-Star
+Jupiter	
+R
+Hill
+a	[AU]
+0.01
+0.1
+1
+10
+ 1001000e
+0
+0.2
+0.4
+0.6
+0.8
+1
+Moon-Star	to	Binary	plane
+Jupiter-Star	to	Binary	plane
+Moon-Jupiter	to	Jupiter-Star
+i
+0°
+25°
+50°
+75°
+100°
+125°
+150°
+time	[yr]
+0
+10
+4
+2×10
+4
+3×10
+4
+4×10
+4
+5×10
+4
+6×10
+4
+7×10
+4
+[+3.95×10
+6
+]
+m moon 	=	0.1	M J Star-Companion
+Jupiter-Star
+Moon-Jupiter
+Jupiter	
+R
+Hill
+a	[AU]
+0.01
+0.1
+1
+10
+ 1001000e
+0
+0.2
+0.4
+0.6
+0.8
+1
+Jupiter-Star	to	Binary	plane
+Moon-Jupiter	to	Jupiter-Star
+i
+0°
+25°
+50°
+75°
+100°
+125°
+150°
+175°
+time	[Myr]
+0
+2.5
+5
+7.5
+10
+12.5
+15
+17.5
+m moon 	=	0.1	M J Star-Companion
+Jupiter-Star
+Moon-Jupiter
+Jupiter	
+R
+Hill
+Moon-Star
+a	[AU]
+0.01
+0.1
+1
+10
+1000 10 4e
+0
+0.2
+0.4
+0.6
+0.8
+1
+Moon-Star	to	Binary	plane
+Jupiter-Star	to	Binary	plane
+Moon-Jupiter	to	Jupiter-Star
+i
+0°
+25°
+50°
+75°
+100°
+125°
+time	[Myr]
+0
+2.5
+5
+7.5
+10
+12.5
+15
+17.5
+m moon 	=	0.1	M J
+Star-Companion
+Jupiter-Star
+Moon-Jupiter
+Jupiter	
+R
+Hill
+Moon-Star
+a	[AU]
+10
+−3
+0.01
+0.1
+1
+10
+ 1001000e
+0
+0.2
+0.4
+0.6
+0.8
+1
+Moon-Star	to	Binary	plane
+Jupiter-Star	to	Binary	plane
+Moon-Jupiter	to	Jupiter-Star
+i
+0°
+20°
+40°
+60°
+80°
+100°
+time	[Myr]
+0
+2
+4
+6
+8
+Figure 4. Evolution of orbital parameter for 4 diﬀerent realization of the simulation grid of Section 3.2. Each realization represents a
+possible outcome of the system evolution after the moon becomes dynamically unstable. Top panels: semimajor axis. Middle panels:
+eccentricity. Bottom panels: mutual inclination. Top-left panel: collision of the moon with the primary star following lunar escape, which
+is the most common outcome for low-mass moons. Top-right: tidal decay of the moon following the excitation of its eccentricity due
+to the dynamical instability. Bottom-left panel: three-body scattering of the planet-moon system with the primary star, with inward
+scattering of the moon and outward scattering of the planet. The planetary orbit gets subsequently ejected due to dynamical instability
+triggered by the secondary star. Bottom-right panel: tidal migration of the moon around primary star after the three-body scattering.
+MNRAS 000, 1–12 (2020)
+
+<<<PAGE 8>>>
+8 A. A. Trani et al.
+Figure 4. By this scattering mechanism, 10 moons end up as
+planets around the primary star on a orbit at less then 1 au.
+In one case, after becoming a planet, the moon migrates to a
+short-period orbit via high-eccentricity tidal circularization
+(bottom-right panel of Figure 4).
+3.3 Population synthesis study
+To investigate the role of moons in a more general and realis-
+tic setup, we ﬁrst generate a Monte Carlo set of star-planet-
+companion systems in the following way. The mass of the
+primary star and the planet are ﬁxed to 1 M ⊙ and 1 MJ,
+respectively, while the secondary mass is drawn from a uni-
+form distribution between 0 .08 and 0.6 (Ngo et al. 2016).
+The binary orbital period and eccentricity are drawn from
+Raghavan et al. (2010). The semimajor axis of the planet
+is uniformly sampled between 1 and 5 au. We also impose
+that the planet fulﬁlls the stability criterion of Holman &
+Wiegert (1999). The inclination i23 between the orbit of the
+companion and the orbit of the planet is drawn uniformly
+in cosi23 between 70◦ and 110◦.
+We generate a total of 6000 triple systems, and we
+evolve them for 2 Myr. At the end of the run, we select
+those simulations in which the Jupiter migrates below 1 au
+and re-run them adding a moon around the planet. In to-
+tal we ﬁnd 1854 simulations in which the Jupiter migrates
+below 1 au without colliding with the star. Afterwards, we
+randomly select 1000 initial conditions from these 1854 runs,
+and add a moon around the Jupiter. The semimajor axis of
+the moon is uniformly sampled between 2(Rplanet +Rmoon)
+and rHill,2, and its eccentricity is set to 0 .01. We perform a
+total of 2 sets of 1000 realizations, one withmmoon = 0.1 MJ
+and one with mmoon = 0.01 MJ, and run them for 10 Myr.
+Table 3 summarizes the outcome of the Monte Carlo
+simulations. The results conﬁrm the trends presented in Sec-
+tion 3.2: there are no cases of planets successfully migrating
+together with the moon.
+Small moons are less likely to remain bound to their
+host planets, and more likely to collide with the primary
+star. More massive moons induce more eﬃcient shielding, so
+that in about 9% of the systems the planet remains on its
+original orbit along with its moon.
+In all the other cases, the moon becomes dynamically
+unstable, and either in-spirals on the planet, collides with the
+star or escapes from the planet. The moon can be ejected
+immediately from the system or remain orbiting the primary
+star as a planet.
+This latter state is however temporary, because once
+the moon escapes, its orbit remains very close to that of the
+host planet (e.g. Trani et al. 2016). Thus, the moon under-
+goes scatterings with the planet until there is a collision,
+an ejection or the two orbits dynamically decouple via tidal
+circularization around the primary.
+Figure 5 shows the semimajor axis and eccentricity of
+stable moons-turned-planets. The orbit of the moon can be-
+come stable only if (1) the moon or the planet tidally circu-
+larize turning into short-period planets, (2) the planet col-
+lides with the star or (3) the planet gets ejected (only possi-
+ble for massive moons). The color of the markers in Figure 5
+indicates the scenario that led the moon to become a stable
+planet.
+About 6% of the 0 .1 MJ moons can become a stable
+Table 3. Outcome fractions of the Monte Carlo simulations. Left
+column: set with low-mass moons. Right column: set with high-
+mass moons.
+Moon fate mmoon
+0.01 MJ 0.1 MJ
+Bound to planet (eﬃcient shielding) 0.006 0.091
+Inspiral on planet 0.186 0.196
+Collision with primary at planet periapsis 0.296 0.227
+Escape from planet 0.512 0.486
+Post-escape fate:
+collision with primary 0.138 0.122
+collision with planet 0.003 0.009
+turned primary planet 0.013 0.064
+turned circumbinary planet - 0.001
+ejected from system 0.358 0.290
+Collisions mmoon
+Planet-primary 0.024 0.037
+Moon-primary 0.434 0.349
+Moon-planet 0.189 0.205
+Total 0.647 0.591
+Planet migration within 1 au
+0.172 0.150
+Moon-turned-planet migration within 1 au
+- 0.022
+Planet+moon migration within 1 au
+- -
+planet around the primary. Of those, more than 33% un-
+dergo tidal migration around the primary, becoming hot
+Neptunes. Due to the higher number of collision and ejec-
+tions from the system, fewer 0.01 MJ moons turn into plan-
+ets. A substantial fraction of moons ( ∼36% and ∼29% for
+0.01 and 0.1 MJ, respectively) get ejected from the system,
+becoming free-ﬂoating planets. There is a very small prob-
+ability (0.1%) that a 0 .1 MJ massive moon can become a
+circumbinary planet, orbiting the binary in a P-type orbit.
+4 DISCUSSION
+4.1 Relevance to other high-eccentricity migration models
+Both the N-body simulations and the semi-analytic argu-
+ments indicate that it is highly unlikely for HJs to migrate
+inwards while retaining their moons in the binary-ZLK mi-
+gration model. Moreover, the moon can actually damp the
+excitation of the planetary eccentricity, preventing the tidal
+decay of the Jupiter.
+It is reasonable to ask to what extent our results hold in
+the other high-eccentricity migration scenarios, such as the
+coplanar model (Petrovich 2015), the secular chaos model
+(Wu & Lithwick 2011; Hamers et al. 2017), the ZLK model
+with a planetary perturber (e.g. Naoz et al. 2011; Hamers
+2017b), or the planet-planet scattering model (Rasio & Ford
+1996; Weidenschilling & Marzari 1996; Chatterjee et al.
+2008). Assessing the survivability of moons in these scenar-
+MNRAS 000, 1–12 (2020)
+
+<<<PAGE 9>>>
+Can hot Jupiters host exomoons? 9
+m
+moon
+	=	0.1	M
+j
+m
+moon
+	=	0.01	M
+j
+Planet	collided	with	star
+Planet	ejected	from	system
+Planet	tidally	migrated
+e moon-primary
+0
+0.2
+0.4
+0.6
+0.8
+a
+moon-primary
+	[au]
+0.01
+0.1
+1
+Figure 5. Semimajor axis and eccentricity of stable moon-turned-
+planets around the primary after escaping the host planet.
+Squares: 0.1 MJ moons. Triangles: 0.01 MJ moons. The color in-
+dicates the pathway that led the lunar orbit to become stable.
+Red color: the host planet collided with the star. Green color:
+the host planet was ejected from the system. Blue color: the host
+planet tidally migrated close to the star. The cluster at ∼0.01 au
+and zero eccentricity is constituted by moons that have tidally
+migrated around the primary star.
+ios would require detailed calculations, but it is possible to
+estimate the eﬀect of the presence of the moon with simple
+analytic considerations.
+The picture outlined in Section 2 is largely unchanged
+when the ZLK oscillations are induced by a massive plan-
+etary perturber. In general, the shielding eﬀect can be ap-
+proximately estimated by comparing the quadrupole ZLK
+timescaleTZLK of the inner and outer triple systems, consti-
+tuted by the moon-planet-star system and the planet-star-
+perturber system, respectively. When inner ZLK timescale
+is much shorter than the outer one, TZLK,inn ≪ TZLK,out,
+the ZLK oscillations of the outer orbit will be quenched, i.e.
+(Hamers et al. 2015):
+TZLK,inn
+TZLK,out
+=
+=
+( a3
+2
+a1a2
+3
+)3/2( mmoon +mplanet
+mmoon +mplanet +mprim
+)1/2
+·
+· mpert
+mprim
+(1−e2
+2
+1−e2
+3
+)3/2
+≪ 1 (13)
+where mpert is the mass of the perturber, whether a com-
+panion star or a planet. The main diﬀerence with respect
+to a stellar perturber is that, to compensate for the smaller
+mass (TZLK,out∝ 1/mpert), the perturbing planet needs to
+be very close to the orbit of the Jupiter, in order for the
+outer ZLK timescale to be shorter than the inner one.
+Our analysis also applies to the coplanar model pro-
+posed by Petrovich (2015), wherein the planetary eccentric-
+ity is excited by an outer planet lying in the same orbital
+plane. In this case, the same Hamiltonian expansion used for
+the ZLK mechanism can describe the evolution of the sys-
+tem. However, diﬀerently from the mutually inclined case,
+there is no angular momentum exchange between the two
+planets at the quadrupole-order approximation. In fact, the
+eccentricity growth occurs on the timescale of the octupole-
+order approximation. As described in Section 2, the pres-
+ence of the moon acts as an additional short-range force
+that causes the apsidal precession of the planetary orbit.
+In this sense, we can estimate the shielding eﬀect by com-
+paring the quadrupole time scale of the moon with the
+octupole timescale from the perturbing planet. From An-
+tognini (2015), T oct
+ZLK =T quad
+ZLK/√ϵoct, where
+ϵoct = a2
+a3
+e3
+1−e2
+3
+(14)
+Hence, we can write the shielding condition (Equation 13)
+for the coplanar scenario as
+TZLK,inn
+TZLK,out
+√ϵoct≪ 1 (15)
+Since the octupole timescale is longer than the quadruple
+one, the moon shielding eﬀect is increased in this scenario:
+moons can better shield perturbations from a coplanar per-
+turber compared to an inclined pertuber.
+It is more challenging to predict the role of moons in the
+secular chaos model of Wu & Lithwick (2011). In this sce-
+nario, the eccentricity growth is due to the overlap of higher
+order secular resonances, e.g. between apsidal or nodal pre-
+cession frequencies, in a multi-planet system. The moon
+presence would aﬀect such frequencies, likely shifting the
+loci in phase space where eccentricity diﬀusion among plan-
+ets takes place.
+Finally, in the planet-planet scattering scenario, the ec-
+centricity grows at the dynamical timescale (comparable to
+the planetary orbital period), much faster than the secu-
+lar timescale of the ZLK mechanism. Hence the presence of
+the moon does not aﬀect the growth of eccentricity. On the
+other hand, close planetary encounters can eject the moons
+on wide orbits and perturb the innermost ones (Deienno
+et al. 2014).
+4.2 Comparison to related works and impact on exomoon
+detectability
+Recent works have investigated survivability of exomoons
+of close-in giant planets. Alvarado-Montes et al. (2017),
+Sucerquia et al. (2019) and Tokadjian & Piro (2020) assume
+that the giant planet has successfully migrated close to star,
+and focus on the spin-orbit evolution of the coupled giant-
+star-moon system driven by mutual tides. They show that
+tides drive the migration of the lunar orbit over the timescale
+of >1 Gyr, possibly leading the lunar ejection.
+Particularly, Sucerquia et al. (2019) assume that once
+the moon reaches the planetary Hill radius, it will escape
+from the system, and model the post-escape dynamical evo-
+lution for 0.5 Myr usingN-body simulations. They ﬁnd that
+about 50% of the moons survive the escape and become tem-
+porary planets on unstable orbits. This ﬁgure agrees with
+our results for low-mass moons (left column of Table 3),
+even though the mechanism leading to the instability is in-
+herently diﬀerent.
+We further show that by ∼10 Myr, most of the moons
+have either collided or have been ejected from the system.
+Only∼1% of the low-mass moons can remain as a stable
+planet, after their host planet has migrated close to the star.
+As a cautionary note, perturbations from the secondary star
+might increase the likelihood of the moon to collide with the
+primary star, so that such collisions could be increased in
+our scenario with respect to the single-star systems.
+MNRAS 000, 1–12 (2020)
+
+<<<PAGE 10>>>
+10 A. A. Trani et al.
+The detectability of exomoons around close-in giants
+was recently investigated by Sucerquia et al. (2020), who
+studied their secular migration due to time-dependent
+spin-orbit tidal coupling. They ﬁnd that low mass
+(mmoon/mplanet < 10−4) moons are less likely to survive
+migration and they are also diﬃcult to detect. On the
+other hand, large exomoons migrate slower, and are more
+likely to be detected via transit-timing-variation and transit-
+duration-variation. Here we have shown that regardless of
+the lunar mass, moons are unlikely to survive the ZLK high-
+eccentricity migration of HJs. Thus, any future detection of
+an exomoon around a HJ would rule out its migration via
+this mechanism.
+Our results also indicate that the lunar dynamical in-
+stability does not necessarily lead to the lunar ejection, but
+can lead the moon to tidally migrate towards stabler, tighter
+orbits around the planet (top-right panel of Figure 4), and
+even spiraling onto the planet. This interplay occurs when
+the perturbation from the secondary star onto the planet is
+barely strong enough to aﬀect the lunar orbit, i.e. when the
+planetary Hill radius during one ZLK cycle is comparable to
+the lunar semimajor axis. The same mechanism could also
+occur in other scenarios, such as when the dynamical insta-
+bility is triggered by the lunar outward migration, as consid-
+ered in the works cited above. Spiral-in events could result in
+exorings around close-in giants, observable as additional dips
+in the planetary transit light curve (Canup 2010; Tusnski &
+Valio 2011; Kenworthy & Mamajek 2015). Debris around
+close-in giants could also outgas, fueling a plasma torus ob-
+servable via high-resolution transmission spectroscopy (Oza
+et al. 2019; Gebek & Oza 2020)
+The collision of the moon and planets with the host star
+could also leave a debris disc of gas and dust around the star.
+This particular case was considered in detail by Martinez
+et al. (2019), who ﬁnd that tidally detached exomoons on a
+highly eccentric orbit could evaporate, leaving an eccentric
+debris disc around the primary. Such a disc could explain
+the unusual dipping and secular dimming in the light curve
+of KIC 8462852 , also known as Boyajian’s Star (Boyajian
+et al. 2016; Wright & Sigurdsson 2016; Metzger et al. 2017;
+Boyajian et al. 2018; Wyatt et al. 2018).
+In the present work we have neglected the spin-orbit
+coupling term of tidal interactions. While spin-orbit cou-
+pling is an important factor when assessing the long term
+stability of exomoons, previous studies have shown that such
+evolution occurs over timescales much longer than than the
+timescales considered in our work ( ≲10 Myr vs &1 Gyr, e.g.
+Alvarado-Montes et al. 2017; Sucerquia et al. 2019). There-
+fore, including the eﬀect of spin would not alter our conclu-
+sions.
+5 CONCLUSIONS
+The ﬁrst exomoon detection might occur in this decade. Be-
+sides the speculation that they might harbor life (Williams
+et al. 1997; Heller & Zuluaga 2013; Heller et al. 2014;
+Mart´ ınez-Rodr´ ıguez et al. 2019), the detection of exomoons
+can provide unique insights on planetary formation and evo-
+lution.
+In this work we have explored the role of exomoons in
+the high-eccentricity migration of HJs in the binary-ZLK
+scenario. Exomoons around Jupiters are not only unlikely
+to survive the migration of their host planet, but can even
+prevent the migration process by suppressing the ZLK os-
+cillations induced by the secondary star. We term this eﬀect
+as ‘moon shielding’.
+The shielding eﬀect is caused by apsidal precession
+induced by the moon on the planetary orbit around the
+primary star, which occurs on the ZLK timescale of the
+primary-planet-moon system. If this ZLK timescale is longer
+than that of the primary-secondary-Jupiter system, the
+planetary eccentricity can be freely excited. The periapsis
+of the planet shrinks until the moon becomes dynamically
+unstable, which can lead to a variety of outcomes, the most
+common of which is the collision of the moon with the pri-
+mary star.
+We sampled a slice of the initial parameter space that
+leads to the formation of a HJ in this scenario, and evolved
+such systems by including the presence of a moon around the
+planet. We evolved the systems using highly-accurate direct
+N-body integration, which included the eﬀects of tides on
+each body, and relativistic precession.
+In∼10% of the systems, a massive (0 .1 MJ) moon is
+able to shield the planet eﬃciently from the perturbations
+of the secondary star. For less massive moons (0.01 MJ), the
+percentage of eﬃciently shielded planets drops to 0 .6%, in
+qualitative agreement with our semi-analytic predictions. In
+all other cases, the moon becomes dynamically unstable.
+In∼20% of the times, the dynamical instability leads
+the moon to inspiral onto the planet. These kind of events
+can potentially form a system of rings around close-in gi-
+ants, which would be detectable as additional dips in the
+planetary transit light curve (e.g. Heller 2018a).
+Between∼20–30% of the exomoons collide immediately
+with the primary star, while the others will temporarily keep
+orbiting the primary as planets. In this latter case, the lu-
+nar orbit undergoes scatterings with the former host planet,
+until either one collides, gets ejected, or tidally circularizes
+around the primary. In total, ∼30–35% of the moons get
+ejected from the system and become free-ﬂoating planets.
+A moon colliding with its parent star might leave an
+eccentric debris disc around the star. Such a disc could be
+at the origin of the anomalous lightcurve of KIC 8462852
+(Metzger et al. 2017; Martinez et al. 2019), and even be ob-
+servable in the near-infrared (e.g. Jura 2003; Farihi et al.
+2013). The engulfment of massive exomoons could also ex-
+plain the chemical dishomogeneity in binary systems (e.g.
+Nagar et al. 2020).
+Only about 1–6% of the moon-turned-planets can be-
+come a stable planet around the primary, and about 2% of
+the most massive moons undergo tidal decay and become
+hot Neptunes (Figure 5).
+In the case that an exomoon will be detected around a
+close-in giant, this will be indicative of the migration mech-
+anism of its host planet. Based on our population synthesis
+study and semi-analytic calculations, we can exclude that
+an exomoon could survive the migration of its host Jupiter
+in the binary-ZLK scenario.
+ACKNOWLEDGEMENTS
+We thank the referee for his/her positive and constructive
+MNRAS 000, 1–12 (2020)
+
+<<<PAGE 11>>>
+Can hot Jupiters host exomoons? 11
+review of the manuscript. The simulations were run on the
+CfCA Calculation Server at NAOJ. A.A.T. acknowledges
+support from JSPS KAKENHI Grant Numbers 17F17764
+and 17H06360. A.A.T. also thanks the Center for Interdisci-
+plinary Exploration and Research in Astrophysics at North-
+western University for its hospitality. A.S.H. thanks the Max
+Planck Society for support through a Max Planck Research
+Group.
+DATA A V AILABILITY
+The TSUNAMI code, the initial conditions and the simulation
+data underlying this article will be shared on reasonable re-
+quest to the corresponding author.
+REFERENCES
+Adams F. C., Bloch A. M., 2016, MNRAS, 462, 2527
+Alvarado-Montes J. A., Zuluaga J. I., Sucerquia M., 2017, MN-
+RAS, 471, 3019
+Anderson K. R., Storch N. I., Lai D., 2016, MNRAS, 456, 3671
+Antognini J. M. O., 2015, MNRAS, 452, 3610
+Antonini F., Hamers A. S., Lithwick Y., 2016, AJ, 152, 174
+Barnes J. W., O’Brien D. P., 2002, ApJ, 575, 1087
+Blaes O., Lee M. H., Socrates A., 2002, ApJ, 578, 775
+Boyajian T. S., et al., 2016, MNRAS, 457, 3988
+Boyajian T. S., et al., 2018, ApJ, 853, L8
+Canup R. M., 2010, Nature, 468, 943
+Canup R. M., Ward W. R., 2006, Nature, 441, 834
+Chatterjee S., Ford E. B., Matsumura S., Rasio F. A., 2008, ApJ,
+686, 580
+Chen J., Kipping D., 2017, ApJ, 834, 17
+Cilibrasi M., Szul´ agyi J., Mayer L., Dr ↪a˙ zkowska J., Miguel Y.,
+Inderbitzi P., 2018, MNRAS, 480, 4355
+Deienno R., Nesvorn´ y D., Vokrouhlick´ y D., Yokoyama T., 2014,
+AJ, 148, 25
+Domingos R. C., Winter O. C., Yokoyama T., 2006, MNRAS, 373,
+1227
+Efroimsky M., Makarov V. V., 2014, ApJ, 795, 6
+Fabrycky D., Tremaine S., 2007, ApJ, 669, 1298
+Farihi J., G¨ansicke B. T., Koester D., 2013, Science, 342, 218
+Fox C., Wiegert P., 2020, arXiv e-prints, p. arXiv:2006.12997
+Fujii Y. I., Ogihara M., 2020, A&A, 635, L4
+Gebek A., Oza A. V., 2020, MNRAS, 497, 5271
+Gong Y.-X., Zhou J.-L., Xie J.-W., Wu X.-M., 2013, ApJ, 769,
+L14
+Guillochon J., Ramirez-Ruiz E., Lin D., 2011, ApJ, 732, 74
+Hamers A. S., 2017a, ApJ, 835, L24
+Hamers A. S., 2017b, ApJ, 835, L24
+Hamers A. S., 2018, MNRAS, 476, 4139
+Hamers A. S., 2020, MNRAS, 494, 5492
+Hamers A. S., Portegies Zwart S. F., 2016, MNRAS, 459, 2827
+Hamers A. S., Portegies Zwart S. F., 2018, ApJ, 869, L27
+Hamers A. S., Perets H. B., Antonini F., Portegies Zwart S. F.,
+2015, MNRAS, 449, 4221
+Hamers A. S., Perets H. B., Portegies Zwart S. F., 2016, MNRAS,
+455, 3180
+Hamers A. S., Antonini F., Lithwick Y., Perets H. B., Portegies
+Zwart S. F., 2017, MNRAS, 464, 688
+Heller R., 2018a, Detecting and Characterizing Exomoons and
+Exorings. p. 35, doi:10.1007/978-3-319-55333-7 35
+Heller R., 2018b, A&A, 610, A39
+Heller R., 2018c, A&A, 610, A39
+Heller R., Zuluaga J. I., 2013, ApJ, 776, L33
+Heller R., et al., 2014, Astrobiology, 14, 798
+Heller R., Rodenbeck K., Bruno G., 2019, A&A, 624, A95
+Holman M. J., Wiegert P. A., 1999, AJ, 117, 621
+Hong Y.-C., Raymond S. N., Nicholson P. D., Lunine J. I., 2018,
+ApJ, 852, 85
+Hut P., 1981, A&A, 99, 126
+Ito T., Ohtsuka K., 2019, Monographs on Environment, Earth
+and Planets, 7, 1
+Jura M., 2003, ApJ, 584, L91
+Kenworthy M. A., Mamajek E. E., 2015, ApJ, 800, 126
+Kippenhahn R., Weigert A., Weiss A., 2012, Stellar Structure and
+Evolution, doi:10.1007/978-3-642-30304-3.
+Kipping D., 2020, arXiv e-prints, p. arXiv:2008.03613
+Kipping D. M., Bakos G. ´A., Buchhave L., Nesvorn´ y D., Schmitt
+A., 2012, ApJ, 750, 115
+Kipping D. M., Hartman J., Buchhave L. A., Schmitt A. R., Bakos
+G. ´A., Nesvorn´ y D., 2013a, ApJ, 770, 101
+Kipping D. M., Forgan D., Hartman J., Nesvorn´ y D., Bakos G.´A.,
+Schmitt A., Buchhave L., 2013b, ApJ, 777, 134
+Kipping D. M., Nesvorn´ y D., Buchhave L. A., Hartman J., Bakos
+G. ´A., Schmitt A. R., 2014, ApJ, 784, 28
+Kozai Y., 1962, AJ, 67, 591
+Kreidberg L., Luger R., Bedell M., 2019, ApJ, 877, L15
+Lidov M. L., 1962, Planet. Space Sci., 9, 719
+Liu B., Mu˜ noz D. J., Lai D., 2015, MNRAS, 447, 747
+Makarov V. V., Efroimsky M., 2014, ApJ, 795, 7
+Mart´ ınez-Rodr´ ıguez H., Caballero J. A., Cifuentes C., Piro A. L.,
+Barnes R., 2019, ApJ, 887, 261
+Martinez M. A. S., Stone N. C., Metzger B. D., 2019, MNRAS,
+489, 5119
+Metzger B. D., Shen K. J., Stone N., 2017, MNRAS, 468, 4399
+Mikkola S., Aarseth S. J., 1990, Celestial Mechanics and Dynam-
+ical Astronomy, 47, 375
+Mikkola S., Tanikawa K., 1999, MNRAS, 310, 745
+Moraes R. A., Vieira Neto E., 2020, MNRAS, 495, 3763
+Nagar T., Spina L., Karakas A. I., 2020, ApJ, 888, L9
+Namouni F., 2010, ApJ, 719, L145
+Naoz S., 2016, ARA&A, 54, 441
+Naoz S., Farr W. M., Lithwick Y., Rasio F. A., Teyssandier J.,
+2011, Nature, 473, 187
+Naoz S., Farr W. M., Rasio F. A., 2012, ApJ, 754, L36
+Nesvorn´ y D., Vokrouhlick´ y D., Morbidelli A., 2007, AJ, 133, 1962
+Ngo H., et al., 2016, ApJ, 827, 8
+Ogilvie G. I., 2013, MNRAS, 429, 613
+Oza A. V., et al., 2019, ApJ, 885, 168
+Petrovich C., 2015, ApJ, 799, 27
+Raghavan D., et al., 2010, ApJS, 190, 1
+Rasio F. A., Ford E. B., 1996, Science, 274, 954
+Shevchenko I. I., 2017, The Lidov-Kozai Eﬀect - Applications in
+Exoplanet Research and Dynamical Astronomy. Vol. 441,
+doi:10.1007/978-3-319-43522-0,
+Socrates A., Katz B., Dong S., 2012, preprint, (arXiv:1209.5724)
+Spalding C., Batygin K., Adams F. C., 2016, ApJ, 817, 18
+Stephan A. P., Naoz S., Gaudi B. S., 2018, AJ, 156, 128
+Stoer J., Bulirsch R., 1980, Introduction to Numerical Analysis
+Sucerquia M., Alvarado-Montes J. A., Zuluaga J. I., Cuello N.,
+Giuppone C., 2019, MNRAS, 489, 2313
+Sucerquia M., Ram´ ırez V., Alvarado-Montes J. A., Zuluaga J. I.,
+2020, MNRAS, 492, 3499
+Teachey A., Kipping D. M., 2018, Science Advances, 4, eaav1784
+Teachey A., Kipping D., Burke C. J., Angus R., Howard A. W.,
+2019, arXiv e-prints, p. arXiv:1904.11896
+Tokadjian A., Piro A. L., 2020, arXiv e-prints, p.
+arXiv:2007.01487
+Trani A. A., Mapelli M., Spera M., Bressan A., 2016, ApJ, 831,
+61
+Tusnski L. R. M., Valio A., 2011, ApJ, 743, 97
+Weidenschilling S. J., Marzari F., 1996, Nature, 384, 619
+MNRAS 000, 1–12 (2020)
+
+<<<PAGE 12>>>
+12 A. A. Trani et al.
+Williams D. M., Kasting J. F., Wade R. A., 1997, Nature, 385,
+234
+Wright J. T., Sigurdsson S., 2016, ApJ, 829, L3
+Wu Y., Lithwick Y., 2011, ApJ, 735, 109
+Wu Y., Murray N. W., Ramsahai J. M., 2007, ApJ, 670, 820
+Wyatt M. C., van Lieshout R., Kennedy G. M., Boyajian T. S.,
+2018, MNRAS, 473, 5286
+von Zeipel H., 1910, Astronomische Nachrichten, 183, 345
+APPENDIX A: ANALYTIC ESTIMATES INCLUDING
+SHORT RANGE FORCES
+In Section 2 we calculated the maximum eccentricity reached
+by the planet using Equation 2, which considers the eﬀect of
+the moon but neglects additional short-range forces such as
+those due to general relativistic corrections and tidal bulges.
+In Figure A1, we show a similar ﬁgure as Figure 2, except
+that we included short-range forces in the planet-moon or-
+bit due to the lowest-order post-Newtonian (PN) terms, as
+well as due to tidal bulges. These short-range forces give rise
+to additional apsidal motion, which tends to quench secular
+eccentricity excitation. Here, the semianalytic calculation is
+carried out by adding the relevant terms to the Hamiltonian
+in Equation 2 (e.g., Fabrycky & Tremaine 2007), assuming a
+planetary apsidal motion constant of kAM, planet = 0.19, and
+a planetary radius ofRplanet = 1 RJ. We also include numer-
+ical results using SecularMultiple (black open circles),
+which conﬁrm the validity of the semianalytic approach.
+With additional short-range forces included, the pic-
+ture described in Section 2 does not fundamentally change:
+moons around relatively close planets ( a2 ∼ few au) are
+eﬀectively able to shield the planetary orbit, preventing mi-
+gration of the planet. Much less massive moons, or moons
+around planets with larger a2, have less shielding strength,
+but in this case, it is unlikely that they could survive the
+migration process.
+This paper has been typeset from a T EX/LATEX ﬁle prepared by
+the author.
+1 2 3 4 5 6 7 8 9 1010□4
+10□3
+10□2
+10□1
+100
+r [au]
+mmoon = 0.1 MJ
+SRF included
+Moon survival
+Planet migration
+1 2 3 4 5 6 7 8 9 1010□4
+10□3
+10□2
+10□1
+100
+r [au]
+mmoon = 0.01 MJ a2(1 □ e2,max) (Eq.2)
+rHill,2 (Eq.8)
+rperi,2,TF (Eq.9)
+rTD,planet (Eq.12)
+Rplanet
+SecularMultiple
+1 2 3 4 5 6 7 8 9 10
+a2 [au]
+10□4
+10□3
+10□2
+10□1
+100
+r [au]
+mmoon = 0.001 MJ
+Figure A1. Similar to Figure 2, here with the inclusion of addi-
+tional short-range forces in the planet-moon orbit due to general
+relativistic corrections (1PN terms), and tidal bulges in the planet
+assuming an apsidal motion constant of kAM, planet = 0.19, and
+a planetary radius of Rplanet = 1 RJ.
+MNRAS 000, 1–12 (2020)

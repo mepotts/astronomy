@@ -84,11 +84,13 @@ jobs:
           echo "Previous snapshot: $prev"
           mkdir -p "data/snapshots/$prev"
           if gh release download itf-state \
-               --pattern observations.parquet \
+               --pattern "observations-$prev.parquet" \
                --dir "data/snapshots/$prev" --clobber 2>/dev/null; then
+            mv "data/snapshots/$prev/observations-$prev.parquet" \
+               "data/snapshots/$prev/observations.parquet"
             echo "Restored key set for $prev"
           else
-            echo "::warning::No release asset found. Delta for this run will be empty."
+            echo "::warning::No release asset for $prev. Delta for this run is unmeasurable."
           fi
 
       - name: Pull and archive
@@ -110,7 +112,11 @@ jobs:
           git commit -m "ITF snapshot $sid [skip ci]"
           git push origin HEAD:${{ github.ref_name }}
 
+      # always(): this is what makes the NEXT run's delta computable, so it must not be
+      # skipped just because the commit step failed. The permanent record can be caught up
+      # later from disk; an unpublished key set cannot be reconstructed once the ITF moves.
       - name: Publish key set for the next diff
+        if: always()
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -118,11 +124,17 @@ jobs:
           gh release view itf-state >/dev/null 2>&1 || \
             gh release create itf-state \
               --title "ITF snapshot state" \
-              --notes "Rolling key set for the most recent ITF snapshot. Overwritten each run; used only to diff the next pull. Not a source of truth -- the permanent record is the committed manifest.json and delta.parquet chain under itf-linker/data/snapshots/." \
+              --notes "Key sets for the most recent ITF snapshots, one asset per snapshot (observations-<snapshot-id>.parquet), pruned to a rolling window. Used only to diff the next pull. Not a source of truth -- the permanent record is the committed manifest.json and delta.parquet chain under itf-linker/data/snapshots/." \
               --latest=false
-          gh release upload itf-state \
-            "data/snapshots/$sid/observations.parquet" --clobber
-          echo "Published key set for $sid"
+          # Named per snapshot, never a single overwritten asset: one generation on the
+          # server means a half-finished --clobber upload destroys the only copy in
+          # existence. gh takes the asset name from the file's basename -- `file#label`
+          # sets only a display label -- so the name has to come from a staged filename.
+          ln "data/snapshots/$sid/observations.parquet" "observations-$sid.parquet" \
+            || cp "data/snapshots/$sid/observations.parquet" "observations-$sid.parquet"
+          gh release upload itf-state "observations-$sid.parquet" --clobber
+          rm -f "observations-$sid.parquet"
+          echo "Published key set for $sid as observations-$sid.parquet"
 
       - name: Summary
         run: |

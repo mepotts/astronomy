@@ -1,0 +1,1719 @@
+<<<PAGE 1>>>
+Draft version February 8, 2023
+Typeset using LATEX twocolumn style in AASTeX631
+Detecting exomoons from radial velocity measurements of self-luminous planets: application to
+observations of HR 7672 B and future prospects
+Jean-Baptiste Ruffio
+ ,1, 2 Katelyn Horstman
+ ,1 Dimitri Mawet
+ ,1, 3 Lee J. Rosenthal
+ ,1
+Konstantin Batygin
+ ,4 Jason J. Wang (王劲飞)
+ ,5 Maxwell Millar-Blanchaer
+ ,6 Ji Wang (王吉)
+ ,7
+Benjamin J. Fulton
+ ,8 Quinn M. Konopacky
+ ,2 Shubh Agrawal
+ ,1, 9 Lea A. Hirsch
+ ,10
+Andrew W. Howard
+ ,1 Sarah Blunt
+ ,1 Eric Nielsen
+ ,11 Ashley Baker,1 Randall Bartos,3
+Charlotte Z. Bond, 12 Benjamin Calvin,1, 13 Sylvain Cetre,14 Jacques-Robert Delorme
+ ,14, 1 Greg Doppmann,14
+Daniel Echeverri
+ ,1 Luke Finnerty
+ ,13 Michael P. Fitzgerald
+ ,13 Nemanja Jovanovic
+ ,1 Ronald L´opez,13
+Emily C. Martin
+ ,15 Evan Morris,15 Jacklyn Pezzato,1 Garreth Ruane
+ ,1, 3 Ben Sappey
+ ,16
+Tobias Schofield,1 Andrew Skemer,15 Taylor Venenciano,17 J. Kent Wallace,3 Nicole L. Wallack
+ ,18
+Peter Wizinowich,14 and Jerry W. Xuan
+ 1
+1Department of Astronomy, California Institute of Technology, Pasadena, CA 91125, USA
+2Center for Astrophysics and Space Science, University of California, San Diego; La Jolla, CA 92093, USA
+3Jet Propulsion Laboratory, California Institute of Technology, 4800 Oak Grove Dr.,Pasadena, CA 91109, USA
+4Division of Geological and Planetary Sciences California Institute of Technology, Pasadena, CA 91125, USA
+5Center for Interdisciplinary Exploration and Research in Astrophysics (CIERA) and Department of Physics and Astronomy,
+Northwestern University, Evanston, IL 60208, USA
+6Department of Physics, University of California, Santa Barbara, Santa Barbara, California, USA
+7Department of Astronomy, The Ohio State University, 100 W 18th Ave, Columbus, OH 43210 USA
+8NASA Exoplanet Science Institute, Caltech/IPAC-NExScI, 1200 East California Boulevard, Pasadena, CA 91125, USA
+9Department of Physics and Astronomy, University of Pennsylvania, Philadelphia, PA 19104, USA
+10Department of Chemical & Physical Sciences, University of Toronto Mississauga, 3359 Mississauga Road Mississauga , Ontario L5L
+1C6m, Canada
+11Department of Astronomy, New Mexico State University, P.O. Box 30001, MSC 4500, Las Cruces, NM 88003, USA
+12UK Astronomy Technology Centre, Royal Observatory, Edinburgh EH9 3HJ, United Kingdom
+13Department of Physics & Astronomy, 430 Portola Plaza, University of California, Los Angeles, CA 90095, USA
+14W. M. Keck Observatory, 65-1120 Mamalahoa Hwy, Kamuela, HI, USA
+15Department of Astronomy & Astrophysics, University of California, Santa Cruz, CA95064, USA
+16Center for Astrophysics and Space Sciences, University of California, San Diego, La Jolla, CA 92093
+17Physics and Astronomy Department, Pomona College, 333 N. College Way, Claremont, CA 91711, USA
+18Earth and Planets Laboratory, Carnegie Institution for Science, Washington, DC 20015, USA
+Submitted to AJ
+ABSTRACT
+The detection of satellites around extrasolar planets, so called exomoons, remains a largely unex-
+plored territory. In this work, we study the potential of detecting these elusive objects from radial
+velocity monitoring of self-luminous directly imaged planets. This technique is now possible thanks
+to the development of dedicated instruments combining the power of high-resolution spectroscopy and
+high-contrast imaging. First, we demonstrate a sensitivity to satellites with a mass ratio of 1 − 4% at
+separations similar to the Galilean moons from observations of a brown-dwarf companion (HR 7672 B;
+Kmag=13; 0.7′′ separation) with the Keck Planet Imager and Characterizer (KPIC; R∼ 35, 000 in K
+band) at the W. M. Keck Observatory. Current instrumentation is therefore already sensitive to large
+unresolved satellites that could be forming from gravitational instability akin to binary star formation.
+Using end-to-end simulations, we then estimate that future instruments such as MODHIS, planned for
+Corresponding author: Jean-Baptiste Ruﬃo
+jruﬃo@caltech.edu
+arXiv:2301.04206v2  [astro-ph.EP]  6 Feb 2023
+
+<<<PAGE 2>>>
+2 Ruffio et al.
+the Thirty Meter Telescope, should be sensitive to satellites with mass ratios of ∼ 10−4. Such small
+moons would likely form in a circumplanetary disk similar to the Jovian satellites in the solar system.
+Looking for the RossiterMcLaughlin eﬀect could also be an interesting pathway to detecting the small-
+est moons on short orbital periods. Future exomoon discoveries will allow precise mass measurements
+of the substellar companions that they orbit and provide key insight into the formation of exoplanets.
+They would also help constrain the population of habitable Earth-sized moons orbiting gas giants in
+the habitable zone of their stars.
+Keywords: Natural satellites (Extrasolar) (483) — Direct imaging (387) — Radial velocity (1332) —
+Exoplanet detection methods (489)
+1. INTRODUCTION
+1.1. Exomoon formation pathways
+Moons similar to those around Jupiter are expected
+to form in circumplanetary disks (CPD) as a by-product
+of planet formation (Batygin & Morbidelli 2020). The
+typical CPD total dust mass relative to the planet is
+around 10−4 (Canup & Ward 2006) commensurate with
+the mass ratios of solar system satellites around the gas
+giants listed in Table 1. This is consistent with the mea-
+sured value of the CPD around PDS 70 c from ALMA
+observations (Benisty et al. 2021), which is 0.031MEarth
+and corresponds to a mass ratio of about 5 × 10−5,
+assuming a 2 MJup planet (Benisty et al. 2021). It is
+also possible to form larger moons from the merger of
+Galilean-like multiple systems. This is the proposed sce-
+nario to explain the high-eccentricity and large mass of
+Saturn’s moon Titan (Asphaug & Emsenhuber 2018).
+Alternative formation pathways include the capture of
+satellites (e.g., Neptune’s moon Triton, Agnor & Hamil-
+ton (2006)), collisions with protoplanets (e.g., the Moon,
+Canup & Asphaug (2001)]), or even gravitational insta-
+bility like in the formation of brown dwarf binaries (Laz-
+zoni et al. 2020). The detection of satellites that formed
+in a CPD remains challenging with current instrumenta-
+tion, but binary planets and brown dwarfs are already
+accessible with various techniques depending on their
+separation (Lazzoni et al. 2022). Characterizing the dif-
+ferent populations with diﬀerent mass ratios, such as
+binary brown-dwarf companions (ie, triple systems) and
+smaller CPD moons, could help inform the formation
+pathways of directly imaged planets. Indeed, binary
+companions could only occur in a top-down scenario,
+while CPD formation could occur in all cases. An im-
+portant lesson from early exoplanet discoveries is that
+the solar system is not a good predictor of exoplanet de-
+mographics. Planet formation theories also often strug-
+gle to account for the diversity of new discoveries. For
+example, the ﬁrst discoveries of hot Jupiters and the
+ubiquity of super-Earths and mini Neptunes were ini-
+tially a surprise to the community (Batalha 2014). As
+a corollary, it would be unwise to assume that exomoon
+searches should be any diﬀerent (Kipping et al. 2015).
+It is therefore important that we keep pushing the dis-
+covery space with new observational methods.
+1.2. Status of exomoon searches
+For the past decade, transiting surveys have unequiv-
+ocally dominated the landscape of exomoon searches
+(Kipping et al. 2012) through the analysis of transit
+timing variations and additional transit signal from the
+moon. They have placed the ﬁrst constraints on exo-
+moon occurrence rates and shown that high-mass ratio
+satellites are not common around short-period exoplan-
+ets (Kipping et al. 2015; Teachey et al. 2018). Other
+detection techniques have been used to look for exo-
+moons around directly imaged exoplanets such as as-
+trometry or direct imaging. While these terms also re-
+fer to planet detection techniques, in this context, direct
+imaging means to spatially resolve the satellite from the
+planet. Astrometric detections refers to the measure-
+ment of the astrometric wobble of a planet caused by
+orbiting moons with precise interferometric instruments
+such as VLTI/GRAVITY (Gravity Collaboration et al.
+2021). To date, only a handful of exomoon candidates
+have been proposed: for example two around transit-
+ing planets (Teachey & Kipping 2018; Kipping et al.
+2022), one orbiting a directly-imaged brown dwarf (Laz-
+zoni et al. 2020), and another around an isolated plan-
+etary mass object (Limbach et al. 2021). None have
+been conﬁrmed. Most notably, the exomoon candidate
+Kepler 1708 b-i is a transiting 2.6 Earth radii object or-
+biting a Jupiter-sized planet, which, if conﬁrmed, would
+be several orders of magnitude larger than the Galilean
+moons in terms of mass ratio (Kipping et al. 2022).
+Transiting planets generally have short orbital peri-
+ods and smaller Hill spheres. These conditions could be
+less favorable to moon formation and retention, while
+observed transits of long period exoplanets (> 1 au) are
+intrinsically rare. For example, it has been suggested
+
+<<<PAGE 3>>>
+RV detection of exomoons 3
+that planets could lose their satellites as they migrate
+inward (Spalding et al. 2016). The detection of exo-
+moons around imaged planets with astrometry or direct
+imaging is more sensitive to longer-period moons (Laz-
+zoni et al. 2022). These two techniques might not be
+well suited for satellites with mass ratios and separa-
+tions (< 30RJup) similar to the ones orbiting the solar
+system gas giants.
+1.3. A promising alternative: RV detections around
+directly imaged planets
+Another technique has been proposed to look for
+moons around directly imaged planets using RV mea-
+surements of the planet itself (Vanderburg et al. 2018;
+Vanderburg & Rodriguez 2021). By measuring the wob-
+ble of planets caused by orbiting satellites, planetary RV
+surveys is a promising alternative for ﬁnding Galilean
+moons analogs. Directly-imaged companions are likely
+to have a diﬀerent formation and migration history com-
+pared to transiting exoplanets. They are also gener-
+ally more massive and further away resulting in much
+more extended Hill spheres. Models suggest that larger
+planets form even larger moons following the scaling
+m∝M3/2, with m and M the masses of the moon and
+the planet respectively (based on equation 43 in Baty-
+gin & Morbidelli (2020)). As another formation path-
+way, binary systems forming as the tail end of stellar
+formation through gravitational instability of the proto-
+stellar cloud or the protoplanetary disk could lead to a
+population of easily detectable high-mass ratio satellites
+and binary companions (Lazzoni et al. 2022). In sum-
+mary, directly imaged companions could be more likely
+to host larger moons, which could be detected from RV
+monitoring of the planets themselves.
+1.4. Recent technology developments
+There are two aspects to optimizing the choice of a
+target for exomoon searches: the RV precision that can
+be achieved and the probability of the object to host a
+moon. In this work, we focus on the former and study
+the detectable mass ratios for exomoons as a function of
+the instrument, the telescope, and the planet or brown-
+dwarf properties. Although the RV detection of exo-
+moons remains challenging due to the intrinsic faintness
+of planets and the light contamination from the glare
+of the host star, the expertise obtained from 30 years
+of stellar RV exoplanet detections is an invaluable as-
+set. Indeed, stable high-resolution spectrographs and
+data analysis techniques are already demonstrating sta-
+bility and performance in excess of the level of preci-
+sion needed for exomoons. Vanderburg & Rodriguez
+(2021) derived the ﬁrst exomoon mass upper limits with
+this technique around the HR 8799 planets based on the
+planetary RV time series reported by Ruﬃo et al. (2021)
+using OSIRIS, an R = 4, 000 spectrograph, at the W.
+M. Keck observatory. This study ruled out moons with
+mass greater than a Jupiter mass and period less than
+one day that would be orbiting the 7 Jupiter mass planet
+HR 8799 c.
+Recent technological advances in infrared high-
+resolution spectroscopy for high-contrast companions
+are enabling the ﬁrst planetary RV searches for exo-
+moons (Snellen et al. 2015; Jovanovic et al. 2017; De-
+lorme et al. 2021; Otten et al. 2021). The Keck Planet
+Imager and Characterizer (KPIC) recently demon-
+strated R = 35, 000 K-band spectroscopy of directly-
+imaged exoplanets, including the HR 8799 system, mea-
+suring their RVs and obtaining spin measurements for
+the ﬁrst time (Wang et al. 2021b). KPIC is the ﬁrst
+implementation of a new class of spectrographs that
+combines the power of the Keck II adaptive optics sys-
+tems, the stability and starlight suppression of single
+mode ﬁbers, and the high spectral resolution of the NIR-
+SPEC spectrograph for the detailed study of directly
+imaged planets (Delorme et al. 2021). We observed a
+bright brown dwarf companion (HR 7672 B,K = 13.04,
+∼ 0.7′′, Liu et al. (2002); Boccaletti et al. (2003)) as part
+of the commissioning and science veriﬁcation of KPIC
+(Delorme et al. 2021; Wang et al. 2022a). While it is
+at the boundary of the stellar regime, HR 7672 B is an
+interesting benchmark companion, because it has a dy-
+namically measured mass of 72.7±0.8MJup (Crepp et al.
+2012; Brandt et al. 2019) and its composition should be
+similar to that of the star due to its assumed formation
+history from gravitational instability. Using this target,
+Wang et al. (2022a) showed that accurate atmospheric
+compositions could be retrieved using KPIC’s high re-
+solving power and angular resolution by demonstrating
+a 1.5σ consistency between the composition of HR 7672
+B and its host star (see also Xuan et al. 2022). HR
+7672 B was also observed for a full night with KPIC as
+a test case for variability studies. This time series can
+be used to put the deepest limits to date on the mass
+of an orbiting satellite around the sub-stellar compan-
+ion, which we are demonstrating in this work. KPIC
+is already undergoing several upgrades including a laser
+frequency comb which will enable precise RV science (Yi
+et al. 2016; Jovanovic et al. 2020). The expected dou-
+bling of the instrumental throughput will signiﬁcantly
+improve its sensitivity (Jovanovic et al. 2020; Echev-
+erri et al. 2022). The next generation of high-contrast
+high-resolution spectrograph such as HISPEC at the
+W. M. Keck Observatory and MODHIS on the future
+Thirty Meter Telescope (TMT) will undoubtedly open
+
+<<<PAGE 4>>>
+4 Ruffio et al.
+new frontiers in this ﬁeld by allowing 0.98− 2.46µm si-
+multaneous coverage at an average spectral resolution
+R> 100, 000 (Mawet et al. 2019; Mawet et al. 2022).
+1.5. Outline
+In section 2, we present exomoon RV detection lim-
+its for the brown dwarf companion HR 7672 B using
+KPIC. In section 3, we then simulate observations of the
+same brown dwarf and the planet HR 8799 c with next
+generation facilities and compare their sensitivity to the
+moons in the solar system. In section 4, we explore the
+parameter space of satellites that could be detected with
+TMT/MODHIS as a function of planet properties. Fi-
+nally, we conclude on the prospects for RV detections of
+exomoons in section 5.
+2. EXOMOON LIMITS AROUND HR 7672 B WITH
+KPIC
+2.1. Observations and data reduction
+The brown dwarf companion HR 7672 B was observed
+three times in 2020 and then for a full night on July 4,
+2021 with KPIC (R∼ 35, 000) inK band (1.9−2.4µm)
+(Mawet et al. 2017; Delorme et al. 2021). These obser-
+vations are detailed in Table 2. The ﬁrst three epochs
+included one to two hours of on-target exposures per
+night and were already published in Wang et al. (2022a)
+and Delorme et al. (2021). Unfortunately, the condi-
+tions on July 4, 2021 were well below average with the
+companion undetectable in some individual 5-minute ex-
+posures. During this one night speciﬁcally, we used an
+ABAB pattern to nod the companion between two KPIC
+ﬁbers, ﬁber 1 and 2, to limit or identify any ﬁber-speciﬁc
+biases. There was no nodding during the other epochs.
+The data was reduced with the KPIC data reduction
+pipeline (DRP)1 following the same approach described
+in Wang et al. (2021b, 2022a). The ﬁrst steps include
+background subtraction, bad pixel correction, and the
+calibration of the ﬁber trace location and width on the
+detector for each NIRSPEC spectroscopic order. Opti-
+mal extraction is then used to extract the spectra and
+the wavelength solution is derived from the telluric and
+stellar lines of a M giant, namely HIP 81497, taken on
+the same night. For this purpose, the telluric model is
+generated with the Planetary Spectrum Generator (Vil-
+lanueva et al. 2018) and star is modeled by a Phoenix
+model (log(g/[1 cm.s−2]) = 1; Teﬀ = 3600 K Husser
+et al. (2013)).
+2.2. Forward model and likelihood
+1 https://github.com/kpicteam/kpic pipeline
+We use a forward modelling approach similar to Wang
+et al. (2021b) and Ruﬃo et al. (2021) to measure the RV
+of HR 7672 B, which includes a joint modelling of the
+starlight and the companion signal. Wang et al. (2021c)
+showed that the continuum could be included in the for-
+ward model with a fourth order polynomial, therefore
+not requiring the data to be high-pass ﬁltered nor contin-
+uum normalized. In this work, we model the continuum
+using a spline-based linear model, which can be ana-
+lytically marginalized using the general purpose python
+module breads2 (Broad Repository for Exoplanet Anal-
+ysis, Discovery, and Spectroscopy) based on the formal-
+ism in Ruﬃo et al. (2019). The spline forward mod-
+eling has the advantage of being more robust to bad
+pixels than a Fourier based high-pass ﬁlter and avoids
+the non-linearity of a sliding-window median ﬁlter. The
+spline parameters are also easier to optimize than the
+coeﬃcients of a high order polynomial for example.
+We deﬁne the forward model as,
+d =MRVφ +n, (1)
+whered is the data vector of size Nd,MRV is the linear
+model, φ are the linear parameters, and n is a ran-
+dom vector of the noise with a diagonal covariance ma-
+trix Σ. Oﬀ-diagonal elements in the covariance matrix
+are neglected here, but subsequent data processing steps
+would correct for this inaccuracy. The diﬀerent column
+vectors of the linear model are illustrated in Figure 1.
+The data vector and the standard deviation of the noise
+used to deﬁne Σ0 are direct outputs of the KPIC data
+reduction pipeline. The variance of the noise is multi-
+plied by a free parameter scaling factors2 to account for
+any underestimation of the noise.
+KPIC includes four single mode ﬁbers separated by
+0.8′′ on a line. We can therefore acquire simultaneous
+spectra of the companion and the host star, more specif-
+ically the speckle ﬁeld, by rotating the ﬁeld of view using
+the Keck II adaptive optics system front-end K-mirror
+rotator. The observations of the star are used to derive
+simultaneous empirical models of the transmission and
+the starlight spectra used in the forward model. The
+starlight is used to model the speckle noise leaking into
+the ﬁber at the position of the companion. The wave-
+length calibration is diﬀerent in each ﬁber so the spectra
+are linearly interpolated to match the sampling of the
+science ﬁber. The planet model is deﬁned as the spin-
+broadened best ﬁt model from Wang et al. (2022a) using
+petitRADTRANS (Molli` ere et al. 2019) multiplied by
+the empirical telluric and instrument transmission pro-
+2 https://github.com/jruﬃo/breads
+
+<<<PAGE 5>>>
+RV detection of exomoons 5
+Moon Planet Mass Mass ratio Semi-Major axis Period RV semi-amplitude
+(M⊕) ( RJup) (day) (m /s)
+Io Jupiter 1 .50× 10−2 4.71× 10−5 5.90 1.77 0.82
+Europa Jupiter 8 .04× 10−3 2.53× 10−5 9.39 3.55 0.35
+Ganymede Jupiter 2 .48× 10−2 7.81× 10−5 14.97 7.15 0.85
+Callisto Jupiter 1 .80× 10−2 5.67× 10−5 26.33 16.69 0.46
+Titan Saturn 2 .25× 10−2 2.37× 10−4 17.09 15.95 1.32
+Titania Uranus 5 .73× 10−4 3.94× 10−5 6.10 8.71 0.14
+Oberon Uranus 4 .82× 10−4 3.32× 10−5 8.16 13.46 0.10
+Triton Neptune 3 .58× 10−2 2.09× 10−4 4.96 -5.88 0.92
+Kepler-1708 b-i Kepler-1708 b < 37 < 0.11(2σ)
+T able 1. Properties of the largest satellites orbiting the solar system gas giants from the NASA Space Science Data Coordinated
+Archive (https://nssdc.gsfc.nasa.gov/planetary/). The negative period of Triton is indicating its retrograde orbit. Kepler-1708
+b-i is a transiting exomoon candidate (Kipping et al. 2022). The period and RV semi-amplitude for these moons can also be
+found in Vanderburg et al. (2018).
+Object Date Exposure time Seeing Throughput
+HR 7672 B 2020-06-08 11 × 10 min 0 .4′′ 1%
+HR 7672 B 2020-06-09 10 × 10 min 0 .6′′ 1.5%
+HR 7672 B 2020-09-28 7 × 10 min 0 .4′′ 2.7%
+HR 7672 B 2021-07-04 61 × 5 min 1 ′′ 2%
+T able 2. K-band observations of HR 7672 A and B with KPIC. The quoted throughput is the end-to-end from the top of the
+atmosphere, which is a better proxy of performance than the seeing for KPIC.
+ﬁle. The continuum of both the planet and the speckle
+are modulated by a 3 rd order spline model. Ten spline
+nodes are used in each spectral order (∆λ∼ 0.05µm) for
+the planet model to manage any inaccuracies in the con-
+tinuum due to imperfections in the atmosphere model
+ﬁt. This number of nodes is analogous to a 200 pixel-
+wide high-pass ﬁlter. The number of nodes was chosen
+as a trade-oﬀ between the number of additional param-
+eters and the optimal high-pass ﬁlter scale of 100 pixels
+found in Xuan et al. (2022). The speckle continuum is
+modeled with three spline nodes to model any speckle
+crossing the ﬁber location as the wavelength changes.
+This results in 13 linear parameters per spectral order
+representing the values of the continua at the location of
+the nodes (See Figure 1). This deﬁnes the linear model
+MRV with dimensions Nd× 13, which is also a function
+of the RV of the planet, the only non-linear parameter
+ﬁtted for here.
+KPIC data features strong spectral fringing due to
+the FabryP´ erot cavities formed by the transmissive op-
+tics inside the NIRSPEC spectrograph (Hsu et al. 2021)
+and within the KPIC ﬁber injection unit (Finnerty et al.
+2022). This eﬀect is made worse by the high spatial co-
+herence of the wavefront in KPIC. We therefore apply a
+Fourier ﬁlter to the data and the forward model by zero-
+ing frequencies corresponding to the fringes. A physical
+model of the fringing such as Cale et al. (2019) could be
+explored in the future.
+The likelihood function is deﬁned from a multivariate
+Gaussian distribution as,
+L(RV,φ,s 2) = 1√
+(2π)Nd|Σ0|s2Nd
+exp
+[
+− 1
+2s2 (d−MRVφ)⊤Σ−1
+0 (d−MRVφ)
+]
+. (2)
+The likelihood is maximized using a linear least square
+solver on a grid of RV values from −400 to 400 km/s in
+steps of 0.2 km/s. The 1σ RV uncertainties are derived
+from the RV posterior calculated analytically according
+to Equation 10 in Ruﬃo et al. (2021) on this RV sam-
+pling. This method analytically marginalized the RV
+posterior for the modulation of the continuum and the
+noise scaling factor. The linear spline parameters used
+to ﬁt the continuum are forced to be positive. This is
+theoretically inconsistent with the framework, which as-
+sumes unconstrained parameters, but it does not appear
+to signiﬁcantly impact the RV time series.
+Only the three reddest orders, out of nine in K band,
+are used in this analysis. The bluest three orders (num-
+bered 39-37; 1 .94− 2.09µm) were discarded because
+they feature strong saturated CO2 telluric lines that are
+generally harder to model, but also make for an unsta-
+ble ﬁt due to overlapping frequencies with the fringing
+
+<<<PAGE 6>>>
+6 Ruffio et al.
+and the simple Fourier ﬁlter. The middle three orders
+(2.10− 2.27µm) lack suﬃcient stellar and telluric spec-
+tral lines to calibrate the wavelength precisely enough.
+Thus, only the remaining three orders are used in this
+analysis: 2.29−2.34µm (order 33), 2.36−2.41µm (order
+32), and 2.44− 2.49µm (order 31). Order 33 includes
+the carbon monoxide bandhead and therefore results in
+the strongest signal-to-noise ratio (S/N) and the most
+precise radial velocity measurement. Each NIRSPEC
+spectral order is ﬁtted separately resulting in three RV
+estimates for each exposure.
+2.3. RV measurements
+The barycentric corrected RV measurements for the
+four epochs and three orders are shown in Figure 2.
+Following the method described in subsection 2.2, the
+median RV uncertainties in ﬁve minute exposures are
+2.5 km.s−1,4.0 km.s−1,4.9 km.s−1 for order 6, 7, and 8
+respectively. We overplot the predicted radial velocity of
+the brown dwarf from orbital ﬁts to the relative astrom-
+etry from Crepp et al. (2012) and RV measurements of
+the host star (Crepp et al. 2012; Rosenthal et al. 2021).
+The orbit ﬁts were done with orbitize! (Blunt et al.
+2020) following its RV tutorial 3 and using the emcee
+(Foreman-Mackey et al. 2013) sampler to obtain a pos-
+terior of allowed orbits. This orbital RV of the compan-
+ion in each epoch is predicted from this orbit ﬁt and is
+subsequently subtracted from the estimated RV of the
+planet when running the exomoon search. Similarly to
+ﬁtting the centroid of a Gaussian (King 1983), the RV
+precision goes as the typical linewidth in the spectrum
+divided by the total S/N of the detection. In the case of
+HR 7672 B, the large spin withv sini = 45.0±0.5 km.s−1
+(Wang et al. 2022a) is a limiting factor in deriving more
+precise RVs. The impact on the exomoon sensitivity of
+other fundamental parameters such as the brightness,
+age, mass, and separation from the star are discussed in
+section 4 in the context of TMT/MODHIS.
+2.4. Exomoon sensitivity
+The open-source Python package RVSearch4 (Rosen-
+thal et al. 2021) is used to look for possible exomoons
+around HR 7672 B and derive the sensitivity of our
+KPIC RV time series. RVSearch is a planet search algo-
+rithm that was developed by the California Legacy Sur-
+vey for high-precision radial velocity surveys (Howard &
+Fulton 2016; Rosenthal et al. 2021; Fulton et al. 2021).
+Planets are detected from periodograms, which are ex-
+3 https://orbitize.readthedocs.io/en/latest/tutorials/
+RV MCMC Tutorial.html
+4 https://github.com/California-Planet-Search/rvsearch
+pressed as the diﬀerence in Bayesian Information Cri-
+terion (BIC) between a model including the planet and
+a model without it (Rosenthal et al. 2021). The ∆BIC
+can be used to select the model that best represents the
+data, or, in other words, determine if a planet is neces-
+sary to explain the observations. Planet candidates are
+detected by iteratively adding additional planet signal
+to the model (Rosenthal et al. 2021). For each iterative
+search, the algorithm ﬁts a detection threshold to the
+periodogram using the power law noise model described
+in Howard & Fulton (2016). To characterize the search
+completeness of a dataset, RVSearchperforms injection-
+recovery tests, drawing many synthetic planet signals,
+injecting them in the data, and checking whether their
+signals surpass the last detection threshold. The sim-
+ulated signals were injected as described in (Rosenthal
+et al. 2021) with period and M sini from log-uniform
+distributions, and eccentricity from an empirically cali-
+brated beta distribution (Kipping 2013).
+RVSearch is directly applicable to the search for ex-
+omoons by replacing the properties of the star by the
+ones of the planet. We assume that each spectral order
+in NIRSPEC has a diﬀerent zero RV point due to pos-
+sible inconsistencies between them. This can be done
+with RVSearch, which linearly solves for oﬀsets between
+subsets of RVs, and uses a wide, Gaussian, uninforma-
+tive prior on white noise for each subset. This fea-
+ture is usually used to ﬁt data from diﬀerent instru-
+ments. Two analyses are performed, ﬁrst only using the
+long night of observations (07/04/2021) and then all the
+available data. The latter provides a longer time base-
+line. The resulting periodograms and exomoon com-
+pleteness are shown in Figure 3. By combining the four
+epochs, the observations are sensitive to satellites with
+a mass ratio of 1% at semi-major axes similar to that
+of Io (6RJup) around Jupiter or 4% at the distance of
+Callisto (15RJup). While these are encouraging results,
+the smallest detectable satellites would be as large as
+Jupiter due to the already large mass of HR 7672 B. As
+shown in section 4, targeting smaller brown dwarfs and
+planets does not generally allow the detection of moons
+with smaller absolute masses, because the S/N drops
+faster than the mass of the object due to the decreas-
+ing brightness. If satellites around HR 7672 B were to
+orbit within∼ 10RJup of the brown-dwarf, they would
+likely fall within the Roche radius (See Figure 4). Such
+satellites would be tidally disrupted and likely result in
+the formation of rings around the planet. It is possible
+that this issue would prevent the formation of a reso-
+nant chain of satellites if the inner edge of the decretion
+disk falls within the Roche limit. This is for example
+cited as a possibility to explain the diﬀerence between
+
+<<<PAGE 7>>>
+RV detection of exomoons 7
+2.30 2.31 2.32 2.33
+200
+0
+200
+400
+600
+Data number
+Data
+Combined model
+Planet model
+Starlight model
+Residuals
+Data uncertainty
+2.30 2.31 2.32 2.33
+200
+0
+200
+400
+600
+Data number
+Planet model
+Sub-components
+Single sub-component
+2.30 2.31 2.32 2.33
+ ( m)
+20
+0
+20
+40
+60
+80
+100Data number
+Starlight model
+Sub-components
+Single sub-component
+Figure 1. Illustration of the forward model used to derive the RV of HR 7672 B. This ﬁgure shows a single NIRSPEC order
+overlapping with the CO bandhead. (Top panel) A planet and a starlight model are jointly ﬁtted to the data to account for
+the diﬀracted starlight contamination at the location of the companion. The data uncertainty measured by the KPIC DRP
+(shaded grey) slightly underestimates the amplitude of the residuals. (Center panel) The planet model is itself made of a linear
+combination of ten spline modes to model the continuum of the companion spectrum. (Bottom panel) The starlight intensity
+is also ﬁtted with a spline using three nodes to account for speckles crossing at the location of the ﬁber. This ﬂexible model of
+the continuum is an alternative to high-pass ﬁltering and continuum normalization of high-resolution spectra.
+the Galilean and the Saturnian satellite systems in Baty-
+gin & Morbidelli (2020). At the other end of possible
+satellite semi-major axes, stable orbits can generally ex-
+ist up to one half of the Hill sphere for prograde orbits
+(Shen & Tremaine 2008). The Hill sphere of HR 7672
+B being rH ≈ 5.6 au = 1.2× 104RJup, time series like
+these ones will not be sensitive to the vast majority of
+possible orbits without observations spanning years or
+decades.
+3. FUTURE PROSPECTS FOR HR 7672 B AND HR
+8799 C
+3.1. Simulations
+In this section, we simulate observations from current
+and future instrumentation at the Keck observatory and
+TMT to estimate the properties of putative satellites
+that should be detectable using planetary RVs. We use
+an instrument and observation simulator called PSIsim
+5, which was ﬁrst developed for the Planet Systems Im-
+ager (PSI Fitzgerald et al. 2022) instrument concept for
+TMT, and then expanded to include other instruments
+and telescopes. PSIsim is ﬁrst used to estimate the RV
+precision. Then, RV times series are simulated assuming
+6 full nights of observations over 25 days, and the ex-
+omoon sensitivity is ﬁnally computed using RVSearch.
+These simulations are meant to represent an ideal sce-
+nario in terms of instrument performance and telescope
+time allocation.
+We simulate observations of two substellar compan-
+ions, the brown-dwarf companion HR 7672 B and the
+planet HR 8799 c, with four generations of instru-
+ments. An exhaustive analysis of all directly imaged
+companions is beyond the scope of this work so HR
+5 https://github.com/planetarysystemsimager/psisim
+
+<<<PAGE 8>>>
+8 Ruffio et al.
+0.0 0.5 1.0 1.5 2.0
+time (h)
+10.0
+7.5
+5.0
+2.5
+0.0
+2.5
+5.0
+7.5
+10.0
+RV (km/s)
+06-08-2020 MJD=59399.308804+t/24
+0.0 0.5 1.0 1.5
+time (h)
+10.0
+7.5
+5.0
+2.5
+0.0
+2.5
+5.0
+7.5
+10.0
+RV (km/s)
+06-09-2020 MJD=59008.421342+t/24
+0.00 0.25 0.50 0.75 1.00
+time (h)
+10.0
+7.5
+5.0
+2.5
+0.0
+2.5
+5.0
+7.5
+10.0
+RV (km/s)
+09-28-2020 MJD=59009.452114+t/24
+0 1 2 3 4 5 6 7
+time (h)
+10.0
+7.5
+5.0
+2.5
+0.0
+2.5
+5.0
+7.5
+10.0
+RV (km/s)
+07-04-2021 MJD=59120.258465+t/24
+Prediction
+fiber 1 order 6
+fiber 2 order 6
+fiber 1 order 7
+fiber 2 order 7
+fiber 1 order 8
+fiber 2 order 8
+Figure 2. Measured RVs of HR 7672 B with KPIC. The grey lines are predicted RVs from one hundred posterior samples of
+the orbital motion of the brown dwarf.
+8799 c was chosen as a representative example of the
+ﬁeld with a planetary mass. HR 8799 is also the
+only other high-contrast system with published RV time
+series and exomoon upper limits (Vanderburg & Ro-
+driguez 2021). The four instruments considered in this
+work are Keck/KPIC I, Keck/KPIC II, Keck/HISPEC,
+and TMT/MODHIS. KPIC I corresponds to obser-
+vations carried out pre-2022A (Delorme et al. 2021).
+KPIC II refers to the series of upgrades started dur-
+ing the ﬁrst semester of 2022 with the primary goal
+of doubling the instrument throughput Jovanovic et al.
+(2020); Echeverri et al. (2022). The High-resolution
+Infrared Spectrograph for Exoplanet Characterization
+(HISPEC) is expected to provide Y-K (0 .98− 2.46µm)
+spectroscopy at a spectral resolution of R > 100, 000
+(Mawet et al. 2019). The Multi-Object Diﬀraction-
+limited High-resolution Infrared Spectrograph (MOD-
+HIS) is a similar instrument to HISPEC planned for the
+future TMT. A broader range of exoplanet masses is
+explored in section 4 for this latter TMT instrument.
+PSIsim includes full budgets of the throughput and
+thermal background for each instrument, telescope, and
+the Earth atmosphere. The Strehl ratio is calculated
+based on a empirically calibrated model of the adaptive
+optics’ performance under median seeing conditions for
+Maunakea. For KPIC I and KPIC II, we assumed Keck
+AO’s current performance with the infrared Pyramid
+Wavefront Sensor described in Bond et al. (2020). For
+HISPEC, we assumed extreme-AO performance as pre-
+dicted for the upcoming HAKA high-density deformable
+mirror upgrade (W.M. Keck Observatory, private com-
+munication). The star is modeled with a PHOENIX
+model (Husser et al. 2013) and the substellar companion
+with a BT-Settl atmospheric model grid 6 (Allard et al.
+2012a). Table 3 includes the input parameters and the
+predicted RV precision for these simulations. The simu-
+lations include a level of systematics at 1% of the contin-
+uum, which is modeled by an additional white Gaussian
+noise. Otherwise, the estimated RV precision assumes a
+perfect data reduction.
+6 https://phoenix.ens-lyon.fr/Grids/BT-Settl/CIFIST2011c/
+
+<<<PAGE 9>>>
+RV detection of exomoons 9
+10 2
+ 10 1
+ 100 101 102
+Period (day)
+10
+8
+6
+4
+2
+BIC
+All data, BICthresh = 13.1
+One night, BICthresh = 10.5
+(a) Periodogram
+100 101 102
+Semi-major axis (RJup)
+10 3
+10 2
+10 1
+100
+MMoon sini/MBD
+Injection recovered
+Injection missed
+50% completeness - One night
+50% completeness - All data
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Probability of detection (b) Completeness
+Figure 3. Exomoon detection limits around HR 7672 B with the Keck Planet Imager and Characterizer (KPIC) using the
+open-source python module RVsearch (Rosenthal et al. 2021). (Left) Periodogram of the RV times series shown in Figure 2
+expressed a ∆BIC comparing a model with and a model without a planet. The empirical detection threshold is indicated in the
+legend. (Right) Exomoon completeness derived from injection and recovery tests. The periodogram and the completeness are
+shown for two cases: the single full night of observations on 07/04/2022 and all the available data including three additional
+epochs with 1-2 hours of data each. The variable conditions on 07/04/2022 led to HR 7672 B to not be detected during portions
+of the night, or in the RV precision to get signiﬁcantly worse. By simulating RV time series, we estimate that the lost data only
+aﬀected the ﬁnal sensitivity by 20%.
+The predictions from PSI-sim are about a factor two
+more sensitive than existing measurements with KPIC I
+(See Table 3). This diﬀerence can ﬁrst be explained by
+uncorrected wavefront errors reducing the throughput,
+both non-common path aberrations and uncorrected at-
+mospheric turbulence. Then, our current data analy-
+sis framework remains limited in its ability to model
+KPIC systematics. As explained in subsection 2.2, only
+the redder orders of NIRSPEC are being reduced due
+to strong telluric lines in the bluer orders, and an im-
+perfect Fourier ﬁltering is used to remove the fringing.
+The gap between the simulations and the measurements
+should decrease as observing strategies and data reduc-
+tion frameworks are improved.
+The ﬁnal expected exomoon sensitivity of the four in-
+struments is shown for the two companions in Figure 4.
+For a ﬁxed time sampling of the RV series, the minimum
+detectable mass ratio is approximately proportional to
+the RV semi amplitude of the signal, which is also pro-
+portional to the RV precision of the instrument, so the
+improvement for each generation of instrument can be
+read from the simulated RV precision shown at the bot-
+tom of Table 3. These simulations are compared to other
+detection techniques in Appendix A, speciﬁcally astro-
+metric monitoring of the companion or spatially resolv-
+ing the moon through imaging. We separately discuss
+the possibility of detecting transiting exomoons using
+the Rossiter-McLaughlin (RM) eﬀect in subsection 5.2.
+3.2. Comparing to solar system moons
+The mass ratios of the largest gas giant satellites in
+the solar system are also shown in Figure 4 for compar-
+ison. The higher planet masses, M, of directly imaged
+planets and brown dwarfs compared to the solar sys-
+tem could yield signiﬁcantly bigger moons, so we also
+include scaled-up mass ratios, q, according to q∝
+√
+M
+(Batygin & Morbidelli 2020). While the CPD does scale
+with the Hill Sphere, we do not expect the semi-major
+axis of satellites to depend on this parameter. Indeed,
+young moons are thought to migrate toward the planet
+during their formation due to the interaction with the
+gas. The migration is stopped at the inner radius of the
+CPD which is set by the magnetic ﬁeld of the planet
+(Batygin & Morbidelli 2020). In this work, we therefore
+keep the semi-major axis of the solar system satellites
+constant. A caveat is that large moons could be suscep-
+tible to tidal forces if they form or migrate too close to
+the planet within the Roche limit. The Roche limit is
+calculated using the mass-radius relationship from Chen
+
+<<<PAGE 10>>>
+10 Ruffio et al.
+& Kipping (2017) and their associated Python package7.
+However, this relationship does not account for the fact
+that young objects are likely inﬂated.
+Parameters
+Star - Phoenix model HR 7672 HR 8799
+Apparent K mag 4.4 a 5.2a
+Eﬀective temperature (Teﬀ) 6000 K b 7400 Kc
+Surface gravity (log(g)) 4.5 b 4.5c
+Spin (vsin(i); km/s) 5.6 d 49e
+Companion - BTsettl model HR 7672 B HR 8799 c
+Mass 73 MJup
+b 7MJup
+f
+Apparent K mag 13.0 b 16.1g
+Eﬀective temperature (Teﬀ) 1800 K b 1200 Kh
+Surface gravity (log(g)) 5.5 b 4.0h
+Spin (vsin(i)) 45 km .s−1b 10 km.s−1i
+Separation 0 .72′′j 0.95′′j
+Telescope and instrument
+airmass 1.2
+water vapor column 1 .5 mm
+integration time (tint) 5 min
+Predicted RV sensitivity (m.s−1)
+assuming 0.6′′− 1.0′′ seeing
+HR 7672 B HR 8799 c
+Keck/KPIC I (measured) ∼ 2, 000k ∼ 7, 000i
+Keck/KPIC I (simulated) 800-1400 3,000-5,000
+Keck/KPIC II 500-800 2,000-3,000
+Keck/HISPEC ∼ 200 100-200
+TMT/MODHIS 30-40 10-20
+T able 3. Radial velocity (RV) precision simulations of cur-
+rent and future instrumentation for two substellar compan-
+ions: HR 7672 B and HR 8799 c. (Top) Representative pa-
+rameters for the telescope, instrument, star, and companions
+used in the PSIsim simulations. (Bottom) Predicted RV sen-
+sitivity for values of seeing ranging from 0.6′′ to 1.0′′.
+References—a: Cutri et al. (2003), b: Wang et al.
+(2022a), c: Wang et al. (2020), d: Luck (2017), e: Royer
+et al. (2007), f: Wang et al. (2018), g: Currie et al. (2011),
+h: Wang et al. (2018), i: Wang et al. (2021b), j:
+http://whereistheplanet.com/ (Wang et al. 2021a), k: This
+work
+4. FUTURE EXOMOON SENSITIVITY OF
+TMT/MODHIS
+Looking to the future, we expect substantial gains
+in RV precision by using the next generation of high-
+resolution spectrographs on large telescopes. These
+7 https://github.com/chenjj2/forecaster
+gains in RV precision will lead to enhanced sensitivity
+to systems with lower mass, close in exomoons, which
+would form in a similar way to the Galilean moons
+around Jupiter.
+Using the same framework as in section 3, we calcu-
+late the RV sensitivity for a variety of simulated planets
+that could exist around a host star with the properties
+of HR 8799 referenced in Table 3. We modeled planets
+with varying eﬀective temperatures and apparent mag-
+nitudes, ﬁxing the separation between the planet and
+star to 700 mas and the surface gravity of the planet to
+log(g) = 4.5cm.s−2, and used PSIsim to calculate the
+RV sensitivity. The eﬀect of the starlight contamination
+on RV sensitivity can be neglected for the type of di-
+rectly imaged planets that are known today and would
+be observed with TMT. The RV sensitivity vary by less
+than 20 percent for planets that lie beyond 500 mas and
+have a ﬂux ratio greater than ∼ 3× 10−6. On aver-
+age, for every 0.5 dex change in surface gravity on the
+planet, the RV sensitivity changes by ±0.7 m/s. Fig-
+ure 5 (a) shows the RV sensitivity MODHIS could have
+for a single, two hour exposure, for planets of varying
+eﬀective temperatures and apparent magnitudes around
+an HR 8799 like star. The RV sensitivity of MODHIS
+driven by the brightness of the planet more than than its
+temperature. However, the RV sensitivity is decreased
+for planets with temperatures between 1500 and 1700
+K using the BT-settl model grid due to the L-T transi-
+tion. At these temperatures, clouds form in the upper
+layers of the atmosphere, shrouding detectable spectral
+lines. For a given planet temperature and magnitude,
+the RV precision of TMT/MODHIS Figure 5 (a) can
+be compared to the RV semi amplitude in Figure 5 (b)
+as a function of the planet mass, the mass ratio, and
+the period of the satellite. However, such a comparison
+assumes multiple epochs of observations with a given
+sensitivity in order to detect a moon with a similar RV
+semi amplitude.
+In the following, the surface gravity, temperature, and
+mass of the planet are treated more self-consistently us-
+ing BT-Settl evolutionary grids (Allard et al. 2012b).
+The dependence of the exomoon sensitivity to the num-
+ber of observations is also made explicit by using simu-
+lated RV time series. We therefore express the RV pre-
+cision and exomoon sensitivity as a function of planet
+mass and distance to the Sun in Figure 6. We ﬁxed
+the age of the system to diﬀerent values to represent
+the parameter space occupied by diﬀerent populations
+of stars. The 3 Myr age group is representative of the
+youngest stars, such as those found in star forming re-
+gions (e.g. Ophiuchus, Taurus, etc). The 30 Myr age
+group is representative of young moving groups, such
+
+<<<PAGE 11>>>
+RV detection of exomoons 11
+100 101 102 103 104
+Semi-major axis (RJup)
+10 5
+10 4
+10 3
+10 2
+10 1
+100
+(MMoon/Mplanet) sini
+Hill sphere
+Roche limit
+Io
+Europa
+GanymedeCallisto
+Titan
+Triton
+Titania Oberon
+KPIC I (Data)
+KPIC I
+KPIC II
+HISPEC
+MODHIS
+1h 1d 1wk 1mo 1yr 10yr 100yr
+Period
+100
+101
+102
+103
+104
+(MMoon/MEarth) sini
+(a) HR 7672 B
+100 101 102 103 104
+Semi-major axis (RJup)
+10 5
+10 4
+10 3
+10 2
+10 1
+100
+(MMoon/Mplanet) sini
+Hill sphere
+Roche limit
+Io
+Europa
+GanymedeCallisto
+Titan
+Triton
+Titania Oberon
+KPIC I
+KPIC II
+HISPEC
+MODHIS
+1h 1d 1wk 1mo 1yr 10yr 100yr
+Period
+10 1
+100
+101
+102
+103
+(MMoon/MEarth) sini (b) HR 8799 c
+Figure 4. Future prospects for exomoon detections around the brown dwarf companion HR 7672 B (left) and planet HR 8799
+c (right). Simulated sensitivity for Keck/KPIC I, Keck/KPIC II, Keck/HISPEC, and TMT/MODHIS are shown in colored
+curves assuming 6 nights of observations over 25 days. The sensitivity demonstrated in this work from ∼ 1.5 nights of KPIC
+observations is labeled as KPIC I (Data). The mass ratios of the Galilean satellites are shown as black dots for comparison.
+Their predicted scaled-up mass ratios, q, accounting for the larger mass, M, of the brown dwarf compared to Jupiter are shown
+as grey crosses ( q∝
+√
+M; Batygin & Morbidelli (2020)). The Roche limit is computed for both a rigid and a ﬂuid satellite
+shown as the inner and outer greyed region respectively.
+as Beta Pictoris Moving Group and the Tucana and
+Horologium Associations. The 300 Myr age group is
+representative of the oldest directly imaged substellar
+companions. The RV sensitivity decreases the further
+the system is away at each distinct age. For younger
+systems, there is larger decrease in sensitivity as the
+mass of the planet decreases below ∼ 13 MJup. The
+large decrease in RV sensitivity once the object is below
+∼ 13MJup is due to the onset of deuterium burning for
+brown dwarfs, which makes them much more luminous
+than a planet of a similar mass. Another interesting fea-
+ture in Figure 6 (a) is the apparent independence of the
+RV precision to the brown dwarf mass above∼ 13MJup
+at 30 Myr. This can be explained by the facts that the
+RV precision is mostly driven by the brightness of the
+object, and that brown dwarfs have a similar brightness
+over a range of masses around this age. Indeed, larger
+brown dwarfs cool faster than smaller ones resulting in
+the diﬀerent cooling curves to meet over a small range
+of brightness around 30 Myr as illustrated in Figure 7
+in Burrows et al. (1997).
+Figure 6 (b) shows the moons that could be detected
+around a planet from Figure 6 (a) if they were placed
+at the distance of Callisto. For each planetary mass and
+distance, we create an RV time series assuming six full
+eight-hour nights of observations over 25 days with er-
+ror bars that represent the RV sensitivity calculated by
+PSIsim. The detection threshold was computed from
+simulated data created by RVsearch as in section 3.
+For more massive planets and brown dwarfs, we expect
+TMT/MODHIS to reach the RV sensitivity needed to
+look for close in moons with mass ratios smaller than
+10−4 around brown-dwarfs, similar to the ones found in
+the solar system for a median age of 30 Myr. However, to
+detect moons around lower mass, directly imaged plan-
+ets of the same age, we are sensitive to mass ratios of
+10−3 or larger.
+5. DISCUSSION
+5.1. The viability of exomoon RV searches
+Using KPIC, we derive the most sensitive upper limits
+on the mass ratio of satellites orbiting a high-contrast
+substellar companion. We rule out satellites larger
+than 1-4% the mass of the brown dwarf HR 7672 B
+at separations similar to the Galilean moons. Based
+on end-to-end simulations, we predict that instruments
+such as TMT/MODHIS could be two orders of mag-
+nitude more sensitive. This would be suﬃcient to de-
+tect moons forming in the CPD of a planet with mass
+ratios of ∼ 10−4, albeit with a substantial investment
+in observing time. If the satellite to planet mass ra-
+tio grows as q∝
+√
+M, with M the mass of the planet,
+
+<<<PAGE 12>>>
+12 Ruffio et al.
+5 10 15 20 25
+Planet Magnitude
+500
+1000
+1500
+2000
+2500 T eff (K)
+0.5 m/s
+1 m/s
+2 m/s
+5 m/s20 m/s
+100 m/s
+500 m/s
+1 km/s
+3 km/s
+100
+101
+102
+103
+RV Sensitivity (m/s)
+(a) RV sensitivity
+100
+101
+102
+1day
+1 m/s 10 m/s100 m/s1 km/s 10 km/s
+1mo
+1 m/s 10 m/s100 m/s1 km/s
+10 4
+ 10 3
+ 10 2
+ 10 1
+ 100
+Mass ratio (q)
+100
+101
+102
+Planet mass (MJup) 1yr
+0.1 m/s1 m/s 10 m/s100 m/s1 km/s
+10 4
+ 10 3
+ 10 2
+ 10 1
+ 100
+10yr
+0.1 m/s1 m/s 10 m/s100 m/s1 km/s (b) RV semi-amplitude
+Figure 5. RV precision of MODHIS. (Left) The RV sensitivity of MODHIS for model planets around a HR 8799-like host star
+using BT-Settl models (Allard et al. 2012a). The RV sensitivity was predicted using PSIsim for a single, two hour exposure.
+Both the contour curves and color map indicate the RV sensitivity for a speciﬁed eﬀective temperature and apparent magnitude
+of the model planet. The RV sensitivity relies more on the brightness of the planet than its eﬀective temperature. However, the
+RV sensitivity decreases for planets with temperatures between 1500 and 1700 K due to the L-T transition. (Right) The RV
+semi-amplitude for diﬀerent planet masses and mass ratios. Note, increasing the exposure time will increase the RV sensitivity.
+the Keck/HISPEC should be sensitive to these objects
+around brown dwarfs. Any detection with HISPEC, or
+lack thereof, will therefore already be capable of con-
+straining CPD formation models. In order to validate
+our instrument simulations, we compared them with
+existing observations. The gap in sensitivity can be
+explained by imperfections in the data reductions. A
+continued investment in more accurate data processing
+algorithms or observing strategies is therefore required
+in order to realize these predictions. Planet variability
+will also be a challenge to overcome using the diﬀerent
+timescales and the wavelength dependence of the vari-
+ability compared an exomoon signal for example (Van-
+derburg et al. 2018). Measuring the variability of sub-
+stellar companions would in fact be an important result
+of exomoon surveys to better understand the physics of
+their atmospheres (Biller 2017).
+Binary formation processes favor high-mass ratios so
+they would be more easily detectable than the smaller
+satellites forming by accretion in the CPD. The ma-
+jority of multiplicity surveys for isolated brown dwarfs
+(Fontanive et al. 2018), or companion brown dwarfs
+(Burgasser et al. 2005; Lazzoni et al. 2020), have
+searched for visual companions, leaving the separation
+regime of < 1 au underexplored. Figure 5 (b) shows
+that unresolved binary substellar companion would be
+detectable with RV precision between 0 .1− 1 km.s−1,
+which is already routinely achieved with KPIC. As an
+example, the measured dynamical mass of the brown
+dwarf companion HD 47127 B suggest that it could be
+a binary (Bowler et al. 2021), but this speciﬁc compan-
+ion is too faint ( K∼ 18.4) to be a practical target for
+KPIC.
+From Appendix A and Figure 7, we conclude that the
+diﬀerent detection techniques are sensitive to distinct
+regions of the parameter space, and therefore comple-
+mentary, not unlike exoplanet searches. If exomoons
+follow the model of solar system gas giant satellites, RV
+searches could be the most promising approach due to
+its sensitivity to short period moons. However, unless
+the theoretical prediction that bigger planets form even
+bigger moons hold true, small satellites with mass ratios
+∼ 10−4 might only be detectable around brown dwarfs.
+5.2. Detections of moons using the
+Rossiter-McLaughlin eﬀect
+As suggested in Heller & Albrecht (2014), an alterna-
+tive strategy to look for exomoons around directly im-
+aged planets using RV measurements could be to look
+for transiting moons through the Rossiter-McLaughlin
+(RM; Gaudi & Winn 2007) eﬀect on the planet. Precise
+photometric calibration and stability of high-constrast
+instrument is notoriously diﬃcult (Wang et al. 2022b),
+
+<<<PAGE 13>>>
+RV detection of exomoons 13
+2
+5
+10
+20
+30
+50
+70
+2 m/s
+3 m/s
+4 m/s
+5 m/s
+10 m/s
+50 m/s
+4
+10
+20
+30
+50
+70Planet Mass (MJup)
+2 m/s 3 m/s 4 m/s
+5 m/s
+10 m/s
+50 m/s
+100 m/s
+20 40 60 80 100 120 140
+Distance (pc)
+11
+20
+30
+40
+50
+60
+70
+2 m/s3 m/s4 m/s5 m/s
+20 m/s30 m/s
+40 m/s
+50 m/s
+100 m/s
+200 m/s
+100
+101
+102
+103
+RV Sensitivity (m/s)
+3 Myr
+30 Myr
+300 Myr
+(a) RV sensitivity
+2
+5
+10
+20
+30
+50
+70
+2.5e-5
+5e-5 1e-4
+5e-4 1e-3
+4
+10
+20
+30
+50
+70Planet Mass (MJup)
+2.5e-5
+5e-5 1e-4
+5e-4
+1e-3
+5e-3 1e-2
+20 40 60 80 100 120 140
+Distance (pc)
+11
+20
+30
+40
+50
+60
+70
+2.5e-5
+5e-5 1e-4
+5e-4
+1e-3
+5e-3 1e-2
+10 5
+10 4
+10 3
+10 2
+(MMoon/MBD) sin i
+3 Myr
+30 Myr
+300 Myr (b) Detectable mass ratio
+Figure 6. RV precision and detectable mass ratio of MODHIS similar to Figure 5, but as a function of planet mass, distance,
+and age of the system. (Left) BT-Settl evolutionary models (Allard et al. 2012b) were used to infer the mass of the planet and
+distance to the system at an age of 3, 30, and 300 Myr. The minor contour lines cover an evenly spaced, 50 step log scale from
+0 to 1 km/s. RV sensitivity decreases the further the system is away and the lower in mass the planet is. The large decrease in
+RV sensitivity when the companion mass is below∼ 13MJup for young systems is due to the diﬀerence in cooling rates between
+brown dwarfs and planets over time. (Right) The mass ratio detectable by MODHIS assuming a ﬁxed semi major axis for the
+moon equal to that of Callisto (≈ 26RJup). For each planetary mass and distance from panel (a), we create an RV time series
+assuming six nights of observations over 25 days with error bars that represent the RV sensitivity calculated by PSIsim.
+so detecting a RM event during a transit could be easier
+than detecting its photometric counterpart.
+An RM event consists of the subsequent masking of a
+portion of the blue and red-shifted areas of the surface
+of a spinning object, therefore leading to large and very
+distinct deviations of the measured RV. The amplitude
+of the RV signal can be hundreds of times larger than
+the RV semi amplitude due to the orbital motion of the
+moon. Its amplitude is proportional to the spin of the
+planet, which could make it an interesting alternative
+to detect the smallest moons around rapidly rotating
+planets and brown dwarfs. Indeed, the RV uncertainties
+scale with the spin of the object so detecting the orbital
+signal of small exomoons could be more challenging.
+The Galilean moons have rather small orbital periods
+from days to weeks. Assuming a random inclination dis-
+
+<<<PAGE 14>>>
+14 Ruffio et al.
+tribution, the transit probability of a moon (P ) is given
+by the ratio of the planet radius ( Rp) and the moon
+semi-major axis ( dm), P = Rp/dm (Borucki & Sum-
+mers 1984). Therefore, the probability of a transit of
+a moon at the separation of Io around Jupiter is 1:6,
+and 1:27 for the farthest Galilean moon Callisto. As-
+suming a full 8 hour night of observations, we estimate
+the probability of observing an RM event for Galilean-
+like moons around a Jupiter like planet to be around 3%
+for Io, 1% for Europa, 0.3% for Ganymede, and 0.07%
+for Callisto. However, the orbital periods of the moons
+would be even shorter around larger substellar compan-
+ions, which would increase the probabilities up to 17%
+for Io, 8% for Europa, 2.6% for Ganymede, and 0.6% for
+Callisto . The transits would last between ∼2-5 hours
+for the Galilean moons around Jupiter, but they would
+only last 15-30 minutes for similar moons around HR
+7672 B.
+As an example, a satellite around HR 7672 B with a
+mass of 1M⊕ (q = 5×10−5) would generate a RM signal
+of∼ 300 m.s−1 compared to the ∼ 0.5 m.s−1 generated
+by the orbital motion (Gaudi & Winn 2007). The am-
+plitude would be ∼ 5 km.s−1 for a Neptune-size moon.
+Multiple satellite systems would increase the probability
+of a detection. Given the low detection probability, RM
+searches could be carried out in synergy with other sci-
+ence cases such as brown dwarf variability (Biller 2017).
+For example, Doppler spectroscopy also favors long ob-
+servations of rapidly rotating objects, which would make
+for ideal datasets for exomoon RM searches.
+5.3. Searching for Pandora: Habitable exomoons
+Estimating the occurrence rate of Earth-sized exo-
+planets in the habitable zone (HZ) of Sun-like star,
+calledη⊕, has been an important goal of exoplanet sur-
+veys. While such planets remain challenging to detect,
+the best estimates of η⊕ range between 5− 50% to date
+(Gaudi et al. 2021). However, these are not the only
+Earth-sized objects that could harbor life in the HZ of
+their stars. Any rocky satellites orbiting HZ gas giant
+planets could also provide suitable conditions for life.
+Close-in exomoons can be protected from stellar radia-
+tion by the strong magnetic ﬁeld of Jovian mass planets
+(Heller & Zuluaga 2013).
+Integrating the distribution of gas giants with an inci-
+dent ﬂux between 0.3− 1.5 times the solar irradiance on
+Earth for an optimistic habitable zone, or 0 .3− 1 for a
+conservative habitable zone (Kasting & Harman 2013),
+yields about 5 − 7 giant planets per hundred FGKM
+stars. This is using the giant planet (30− 6000M⊕ sini)
+occurrence rates derived from the California Legacy Sur-
+vey as a function of stellar irradiation (ﬁgure 11; Fulton
+et al. 2021). Given that each planet can have multiple
+satellites, this could represent a signiﬁcant number of
+habitable Earth-size moons that are not accounted for
+in η⊕. The occurence rate of habitable exomoons could
+be constrained by measuring the population of satellites
+around more distant directly imaged planets and brown-
+dwarfs.
+6. CONCLUSION
+In this work, we aimed at evaluating the prospects
+for radial velocity (RV) detections of exomoons around
+self-luminous directly-imaged planets. We used real ob-
+servations as well as end-to-end simulations of future
+facilities at the Keck observatory and the Thirty Meter
+Telescope (TMT). Using data from KPIC, we were able
+to derive upper limits for satellites orbiting the brown
+dwarf companion HR 7672 B at a mass ratio of 1−4% for
+separations similar to the Galilean moons. Current in-
+strumentation is already sensitive to unresolved binary
+companions that could form through gravitational in-
+stability. We demonstrate that future thirty-meter class
+telescopes will likely push the sensitivity down to the
+mass ratios of solar system satellites (∼ 10−4), which are
+thought to form in a circumplanetary disk. We note that
+second generation instruments like Keck/HISPEC on
+current ten meter class telescopes might be suﬃcient to
+detect these moons if theoretical predictions that larger
+planets form even larger moons hold true. Everything
+else being equal and considering the RV signal from the
+orbital motion of the moon, the deepest exomoon sen-
+sitivity will be reached for the brightest substellar com-
+panions with the smallest spin. Small moons could also
+be detected from their Rossiter-McLaughlin (RM) ef-
+fect on the planetary RV signal. An RM event can be
+orders of magnitude larger than the orbital signal, albeit
+with percents level detection probability assuming a full
+night of observation. We conclude that the detection of
+exomoons from planetary RV surveys is now becoming
+a reality thanks to the development of high-resolution
+spectrographs dedicated to directly imaged planets.
+
+<<<PAGE 15>>>
+RV detection of exomoons 15
+J.-B. R. acknowledges support from the David and Ellen
+Lee Prize Postdoctoral Fellowship.
+Funding for KPIC has been provided by the California
+Institute of Technology, the Jet Propulsion Laboratory,
+the Heising-Simons Foundation through grants #2019-
+1312 and #2015-129, the Simons Foundation, and the
+United States National Science Foundation Grant No.
+AST-1611623.
+Ji Wang acknowledges the support by the National
+Science Foundation under Grant No. 2143400.
+The W. M. Keck Observatory is operated as a scien-
+tiﬁc partnership among the California Institute of Tech-
+nology, the University of California, and NASA. The
+Keck Observatory was made possible by the generous
+ﬁnancial support of the W. M. Keck Foundation. We
+also wish to recognize the very important cultural role
+and reverence that the summit of Maunakea has always
+had within the indigenous Hawaiian community. We are
+most fortunate to have the opportunity to conduct ob-
+servations from this mountain.
+Facilities: Keck II (KPIC)
+Software: astropy8 (Astropy Collaboration et al.
+2013), Matplotlib9 (Hunter 2007), PSIsim10, RVSearch11
+(Rosenthal et al. 2021), KPIC Data Reduction Pipeline12
+(Delorme et al. 2021), BREADS 13 (Ruﬃo et al. 2021;
+Agrawal 2022),
+APPENDIX
+8 http://www.astropy.org
+9 https://matplotlib.org
+10 https://github.com/planetarysystemsimager/psisim
+11 https://github.com/California-Planet-Search/rvsearch
+12 https://github.com/kpicteam/kpic pipeline
+13 https://github.com/jruﬃo/breads
+
+<<<PAGE 16>>>
+16 Ruffio et al.
+100 101 102 103 104
+Semi-major axis (RJup)
+10 5
+10 4
+10 3
+10 2
+10 1
+100
+(MMoon/Mplanet) sini
+Hill sphere
+Roche limit
+10 as astrometry
+100 as astrometry
+Io
+Europa
+GanymedeCallisto
+Titan
+Triton
+Titania Oberon
+Keck
+TMT
+VLTI
+KPIC I (Data)
+KPIC I
+KPIC II
+HISPEC
+MODHIS
+1h 1d 1wk 1mo 1yr 10yr 100yr
+Period
+100
+101
+102
+103
+104
+(MMoon/MEarth) sini
+(a) HR 7672 B
+100 101 102 103 104
+Semi-major axis (RJup)
+10 5
+10 4
+10 3
+10 2
+10 1
+100
+(MMoon/Mplanet) sini
+Hill sphere
+Roche limit
+10 as astrometry
+100 as astrometry
+Io
+Europa
+GanymedeCallisto
+Titan
+Triton
+Titania Oberon
+Keck
+TMT
+VLTI
+KPIC I
+KPIC II
+HISPEC
+MODHIS
+1h 1d 1wk 1mo 1yr 10yr 100yr
+Period
+10 1
+100
+101
+102
+103
+(MMoon/MEarth) sini (b) HR 8799 c
+Figure 7. Similar to Figure 4, but including idealized exomoon sensitivities of alternative detection techniques. The diagonal
+dashed black lines represent the simpliﬁed sensitivity of VLTI/Gravity through astrometry. The vertical gray scale bars represent
+the diﬀraction limit of diﬀerent telescopes for direct imaging of satellites, namely the W. M. Keck observatory, the future Thirty
+Meter Telescope (TMT), and the Very Large Telescope Interferometer (VLTI).
+APPENDIX
+A. COMPARING TO OTHER DETECTION METHODS
+Alternative exomoon detection techniques include astrometry and direct imaging of imaged planets. Figure 7 shows
+their idealized detection limits to be compared to the RV sensitivity originally presented in Figure 4. With an
+astrometric precision of 10− 100µas (Gravity Collaboration et al. 2021), interferometry with VLTI/GRAVITY could
+be sensitive to moons further away than radial velocity, but remains limited by the orbital period of the satellite at
+the furthest separations. The simpliﬁed detection limits are computed by matching the astrometric precision ( σastro)
+of VLTI/GRAVITY with the amplitude of the planet astrometric displacement in the sky around the center of mass.
+The smallest detectable mass ratio (q) is given by
+q =
+[
+2∗
+(sma
+1 au
+)(1 pc
+d
+)( 1 as
+σastro
+)
+− 1
+]−1
+, (A1)
+with d the distance of the star to the Sun, and sma the semi major axis of the moon. We use the diﬀraction limit
+of the telescope to illustrate the parameter space that might be accessible to direct imaging. More speciﬁcally, the
+detection threshold is taken at twice the spatial resolution of the telescope ( ∼ 2λ/D) with D the diameter of the
+telescope and λ = 2µm. Unfortunately, estimating the brightness of low mass objects ( < 1MJup) remains challenging
+and will depend on the age of the system, so we arbitrarily chose a lower limit of one Jupiter mass for Keck and VLTI,
+and a mass similar to the solar system ice giants for TMT. Direct imaging would be sensitive to the longest periods
+and largest moons.
+REFERENCES
+Agnor, C. B., & Hamilton, D. P. 2006, Nature, 441, 192,
+doi: 10.1038/nature04792
+Agrawal, S. 2022, Senior thesis (Major), California Institute
+of Technology, doi: 10.7907/17sv-vf40
+
+<<<PAGE 17>>>
+RV detection of exomoons 17
+Allard, F., Homeier, D., & Freytag, B. 2012a, Philosophical
+Transactions of the Royal Society of London Series A,
+370, 2765, doi: 10.1098/rsta.2011.0269
+Allard, F., Homeier, D., Freytag, B., & Sharp, C. M. 2012b,
+in EAS Publications Series, Vol. 57, EAS Publications
+Series, ed. C. Reyl´ e, C. Charbonnel, & M. Schultheis,
+3–43, doi: 10.1051/eas/1257001
+Asphaug, E., & Emsenhuber, A. 2018, in European
+Planetary Science Congress, EPSC2018–569
+Astropy Collaboration, Robitaille, T. P., Tollerud, E. J.,
+et al. 2013, A&A, 558, A33,
+doi: 10.1051/0004-6361/201322068
+Batalha, N. M. 2014, Proceedings of the National Academy
+of Science, 111, 12647, doi: 10.1073/pnas.1304196111
+Batygin, K., & Morbidelli, A. 2020, ApJ, 894, 143,
+doi: 10.3847/1538-4357/ab8937
+Benisty, M., Bae, J., Facchini, S., et al. 2021, ApJL, 916,
+L2, doi: 10.3847/2041-8213/ac0f83
+Biller, B. 2017, The Astronomical Review, 13, 1,
+doi: 10.1080/21672857.2017.1303105
+Blunt, S., Wang, J. J., Angelo, I., et al. 2020, AJ, 159, 89,
+doi: 10.3847/1538-3881/ab6663
+Boccaletti, A., Chauvin, G., Lagrange, A. M., & Marchis,
+F. 2003, A&A, 410, 283, doi: 10.1051/0004-6361:20031216
+Bond, C. Z., Cetre, S., Lilley, S., et al. 2020, Journal of
+Astronomical Telescopes, Instruments, and Systems, 6,
+039003, doi: 10.1117/1.JATIS.6.3.039003
+Borucki, W. J., & Summers, A. L. 1984, Icarus, 58, 121,
+doi: 10.1016/0019-1035(84)90102-7
+Bowler, B. P., Endl, M., Cochran, W. D., et al. 2021, ApJL,
+913, L26, doi: 10.3847/2041-8213/abfec8
+Brandt, T. D., Dupuy, T. J., & Bowler, B. P. 2019, AJ,
+158, 140, doi: 10.3847/1538-3881/ab04a8
+Burgasser, A. J., Kirkpatrick, J. D., & Lowrance, P. J.
+2005, AJ, 129, 2849, doi: 10.1086/430218
+Burrows, A., Marley, M., Hubbard, W. B., et al. 1997, ApJ,
+491, 856, doi: 10.1086/305002
+Cale, B., Plavchan, P., LeBrun, D., et al. 2019, AJ, 158,
+170, doi: 10.3847/1538-3881/ab3b0f
+Canup, R. M., & Asphaug, E. 2001, Nature, 412, 708
+Canup, R. M., & Ward, W. R. 2006, Nature, 441, 834,
+doi: 10.1038/nature04860
+Chen, J., & Kipping, D. 2017, ApJ, 834, 17,
+doi: 10.3847/1538-4357/834/1/17
+Crepp, J. R., Johnson, J. A., Fischer, D. A., et al. 2012,
+ApJ, 751, 97, doi: 10.1088/0004-637X/751/2/97
+Currie, T., Burrows, A., Itoh, Y., et al. 2011, ApJ, 729,
+128, doi: 10.1088/0004-637X/729/2/128
+Cutri, R. M., Skrutskie, M. F., van Dyk, S., et al. 2003,
+VizieR Online Data Catalog, II/246
+Delorme, J.-R., Jovanovic, N., Echeverri, D., et al. 2021,
+Journal of Astronomical Telescopes, Instruments, and
+Systems, 7, 035006, doi: 10.1117/1.JATIS.7.3.035006
+Echeverri, D., Jovanovic, N., Delorme, J.-R., et al. 2022, in
+Ground-based and Airborne Instrumentation for
+Astronomy IX, ed. C. J. Evans, J. J. Bryant, &
+K. Motohara, Vol. 12184, International Society for Optics
+and Photonics (SPIE), 121841W, doi: 10.1117/12.2630518
+Finnerty, L., Schoﬁeld, T., Delorme, J.-R., et al. 2022, in
+Ground-based and Airborne Instrumentation for
+Astronomy IX, ed. C. J. Evans, J. J. Bryant, &
+K. Motohara, Vol. 12184, International Society for Optics
+and Photonics (SPIE), 121844Y, doi: 10.1117/12.2630276
+Fitzgerald, M. P., Sallum, S., Millar-Blanchaer, M. A., et al.
+2022, in Ground-based and Airborne Instrumentation for
+Astronomy IX, ed. C. J. Evans, J. J. Bryant, &
+K. Motohara, Vol. 12184, International Society for Optics
+and Photonics (SPIE), 1218426, doi: 10.1117/12.2630410
+Fontanive, C., Biller, B., Bonavita, M., & Allers, K. 2018,
+MNRAS, 479, 2702, doi: 10.1093/mnras/sty1682
+Foreman-Mackey, D., Hogg, D. W., Lang, D., & Goodman,
+J. 2013, PASP, 125, 306, doi: 10.1086/670067
+Fulton, B. J., Rosenthal, L. J., Hirsch, L. A., et al. 2021,
+ApJS, 255, 14, doi: 10.3847/1538-4365/abfcc1
+Gaudi, B. S., Meyer, M., & Christiansen, J. 2021, in
+ExoFrontiers; Big Questions in Exoplanetary Science, ed.
+N. Madhusudhan, 2–1, doi: 10.1088/2514-3433/abfa8fch2
+Gaudi, B. S., & Winn, J. N. 2007, ApJ, 655, 550,
+doi: 10.1086/509910
+Gravity Collaboration, Abuter, R., Amorim, A., et al. 2021,
+A&A, 647, A59, doi: 10.1051/0004-6361/202040208
+Heller, R., & Albrecht, S. 2014, ApJL, 796, L1,
+doi: 10.1088/2041-8205/796/1/L1
+Heller, R., & Zuluaga, J. I. 2013, ApJL, 776, L33,
+doi: 10.1088/2041-8205/776/2/L33
+Howard, A. W., & Fulton, B. J. 2016, PASP, 128, 114401,
+doi: 10.1088/1538-3873/128/969/114401
+Hsu, C.-C., Burgasser, A. J., Theissen, C. A., et al. 2021,
+ApJS, 257, 45, doi: 10.3847/1538-4365/ac1c7d
+Hunter, J. D. 2007, Computing In Science & Engineering,
+9, 90, doi: 10.1109/MCSE.2007.55
+Husser, T. O., Wende-von Berg, S., Dreizler, S., et al. 2013,
+A&A, 553, A6, doi: 10.1051/0004-6361/201219058
+Jovanovic, N., Guyon, O., Kotani, T., et al. 2017, arXiv
+e-prints, arXiv:1712.07762.
+https://arxiv.org/abs/1712.07762
+
+<<<PAGE 18>>>
+18 Ruffio et al.
+Jovanovic, N., Calvin, B., Porter, M., et al. 2020, in Society
+of Photo-Optical Instrumentation Engineers (SPIE)
+Conference Series, Vol. 11447, Society of Photo-Optical
+Instrumentation Engineers (SPIE) Conference Series,
+114474U, doi: 10.1117/12.2563107
+Kasting, J. F., & Harman, C. E. 2013, Nature, 504, 221,
+doi: 10.1038/504221a
+King, I. R. 1983, PASP, 95, 163, doi: 10.1086/131139
+Kipping, D., Bryson, S., Burke, C., et al. 2022, Nature
+Astronomy, 6, 367, doi: 10.1038/s41550-021-01539-1
+Kipping, D. M. 2013, MNRAS, 434, L51,
+doi: 10.1093/mnrasl/slt075
+Kipping, D. M., Bakos, G. ´A., Buchhave, L., Nesvorn´ y, D.,
+& Schmitt, A. 2012, ApJ, 750, 115,
+doi: 10.1088/0004-637X/750/2/115
+Kipping, D. M., Schmitt, A. R., Huang, X., et al. 2015,
+ApJ, 813, 14, doi: 10.1088/0004-637X/813/1/14
+Lazzoni, C., Desidera, S., Gratton, R., et al. 2022, MNRAS,
+doi: 10.1093/mnras/stac2081
+Lazzoni, C., Zurlo, A., Desidera, S., et al. 2020, A&A, 641,
+A131, doi: 10.1051/0004-6361/201937290
+Limbach, M. A., Vos, J. M., Winn, J. N., et al. 2021, ApJL,
+918, L25, doi: 10.3847/2041-8213/ac1e2d
+Liu, M. C., Fischer, D. A., Graham, J. R., et al. 2002, ApJ,
+571, 519, doi: 10.1086/339845
+Luck, R. E. 2017, AJ, 153, 21,
+doi: 10.3847/1538-3881/153/1/21
+Mawet, D., Delorme, J. R., Jovanovic, N., et al. 2017, in
+Society of Photo-Optical Instrumentation Engineers
+(SPIE) Conference Series, Vol. 10400, Society of
+Photo-Optical Instrumentation Engineers (SPIE)
+Conference Series, ed. S. Shaklan, 1040029,
+doi: 10.1117/12.2274891
+Mawet, D., Fitzgerald, M., Konopacky, Q., et al. 2019, in
+Bulletin of the American Astronomical Society, Vol. 51,
+134. https://arxiv.org/abs/1908.03623
+Mawet, D., Fitzgerald, M. P., Konopacky, Q., et al. 2022, in
+Ground-based and Airborne Instrumentation for
+Astronomy IX, ed. C. J. Evans, J. J. Bryant, &
+K. Motohara, Vol. 12184, International Society for Optics
+and Photonics (SPIE), 121841R, doi: 10.1117/12.2630142
+Molli` ere, P., Wardenier, J. P., van Boekel, R., et al. 2019,
+arXiv e-prints, arXiv:1904.11504.
+https://arxiv.org/abs/1904.11504
+Otten, G. P. P. L., Vigan, A., Muslimov, E., et al. 2021,
+A&A, 646, A150, doi: 10.1051/0004-6361/202038517
+Rosenthal, L. J., Fulton, B. J., Hirsch, L. A., et al. 2021,
+ApJS, 255, 8, doi: 10.3847/1538-4365/abe23c
+Royer, F., Zorec, J., & G´ omez, A. E. 2007, A&A, 463, 671,
+doi: 10.1051/0004-6361:20065224
+Ruﬃo, J.-B., Macintosh, B., Konopacky, Q. M., et al. 2019,
+AJ, 158, 200, doi: 10.3847/1538-3881/ab4594
+Ruﬃo, J.-B., Konopacky, Q. M., Barman, T., et al. 2021,
+AJ, 162, 290, doi: 10.3847/1538-3881/ac273a
+Shen, Y., & Tremaine, S. 2008, AJ, 136, 2453,
+doi: 10.1088/0004-6256/136/6/2453
+Snellen, I., de Kok, R., Birkby, J. L., et al. 2015, A&A, 576,
+A59, doi: 10.1051/0004-6361/201425018
+Spalding, C., Batygin, K., & Adams, F. C. 2016, ApJ, 817,
+18, doi: 10.3847/0004-637X/817/1/18
+Teachey, A., & Kipping, D. M. 2018, Science Advances, 4,
+eaav1784, doi: 10.1126/sciadv.aav1784
+Teachey, A., Kipping, D. M., & Schmitt, A. R. 2018, AJ,
+155, 36, doi: 10.3847/1538-3881/aa93f2
+Vanderburg, A., Rappaport, S. A., & Mayo, A. W. 2018,
+AJ, 156, 184, doi: 10.3847/1538-3881/aae0fc
+Vanderburg, A., & Rodriguez, J. E. 2021, ApJL, 922, L2,
+doi: 10.3847/2041-8213/ac33b4
+Villanueva, G. L., Smith, M. D., Protopapa, S., Faggi, S., &
+Mandell, A. M. 2018, JQSRT, 217, 86,
+doi: 10.1016/j.jqsrt.2018.05.023
+Wang, J., Wang, J. J., Ma, B., et al. 2020, AJ, 160, 150,
+doi: 10.3847/1538-3881/ababa7
+Wang, J., Kolecki, J. R., Ruﬃo, J.-B., et al. 2022a, AJ, 163,
+189, doi: 10.3847/1538-3881/ac56e2
+Wang, J. J., Kulikauskas, M., & Blunt, S. 2021a,
+whereistheplanet: Predicting positions of directly imaged
+companions, Astrophysics Source Code Library, record
+ascl:2101.003. http://ascl.net/2101.003
+Wang, J. J., Graham, J. R., Dawson, R., et al. 2018, AJ,
+156, 192, doi: 10.3847/1538-3881/aae150
+Wang, J. J., Ruﬃo, J.-B., Morris, E., et al. 2021b, AJ, 162,
+148, doi: 10.3847/1538-3881/ac1349
+Wang, J. J., Delorme, J.-R., Ruﬃo, J.-B., et al. 2021c, in
+Society of Photo-Optical Instrumentation Engineers
+(SPIE) Conference Series, Vol. 11823, Society of
+Photo-Optical Instrumentation Engineers (SPIE)
+Conference Series, 1182302, doi: 10.1117/12.2596484
+Wang, J. J., Gao, P., Chilcote, J., et al. 2022b, arXiv
+e-prints, arXiv:2208.05594.
+https://arxiv.org/abs/2208.05594
+Xuan, J. W., Wang, J., Ruﬃo, J.-B., et al. 2022, ApJ, 937,
+54, doi: 10.3847/1538-4357/ac8673
+Yi, X., Vahala, K., Li, J., et al. 2016, Nature
+Communications, 7, 10436, doi: 10.1038/ncomms10436
