@@ -51,7 +51,11 @@
 > | **51 Eri b** | 1 epoch | H1567 staring | 🚧 **BEYOND SLIT REACH** — 3 of 11 orders respond | M23 §2 |
 > | **GSC 08047-00232 B** | — | K | ⏸ **EMBARGOED** — 2 raw K nights bankable on release | — |
 >
-> **The contrast wall (M20 §6, now measured at four points):** clean ≥ 0.8″/2000×;
+> **⚠ SUPERSEDED by M29 §§6–8 — the axis was wrong.** Neither contrast nor separation
+> orders the outcomes; **S = contrast/θ²** does (clean S ≲ 4300, flooded S ≳ 15 000,
+> transition never observed). The contrast figures below were never derived anywhere,
+> and deriving them from primary sources moved them. Kept for the record:
+> **The contrast wall (M20 §6, measured at four points):** clean ≥ 0.8″/2000×;
 > flooded at 0.55″/5000×; gone at ≤ 0.45″/30,000× and at 0.17″. Inside the wall:
 > fiber-fed starlight suppression (HiRISE/KPIC) is the instrument requirement.
 >

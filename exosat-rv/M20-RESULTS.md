@@ -109,6 +109,13 @@ at a separation but at a *contrast* — and the roster now brackets it empirical
 | separation | host:companion flux | measured outcome |
 |---:|---:|---|
 | ≥ 2.7″ | ≤ ~2000× | clean (CD-35, eta Tel, AB Pic, CT Cha geometry) |
+
+> **⚠ SUPERSEDED (M29 §§6–8).** The contrast values in this table were asserted, not
+> derived. Deriving them from primary sources changed them (CD-35 is 97×, not ≥2000×;
+> β Pic b ~3950× from Currie+2013, not ~5000×), and the ordering variable is wrong:
+> outcomes are ordered by **S = contrast/θ²**, not by contrast or separation alone.
+> The measured *outcomes* in this table stand; the axis they are plotted against does not.
+
 | 0.8″ | ~2000× | **clean** — 131 m/s (HIP 65426 b) |
 | 0.55″ | ~5000× | **flooded** — km/s BERV-locked star pull (beta Pic b) |
 | 0.17″ | any | the star *is* the spectrum (PDS 70) |

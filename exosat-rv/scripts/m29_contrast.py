@@ -28,29 +28,44 @@ SIMBAD = "https://simbad.cds.unistra.fr/simbad/sim-tap/sync"
 
 # companion -> host, for the systems the wall is stated on
 HOSTS = {
-    "CD-35 2722 B": "CD-35 2722",
-    "beta Pic b": "bet Pic",
-    "PDS 70 b": "PDS 70",
-    "PDS 70 c": "PDS 70",
-    "HIP 65426 b": "HIP 65426",
-    "eta Tel B": "eta Tel",
-    "HD 1160 B": "HD 1160",
-    "AF Lep b": "AF Lep",
-    "51 Eri b": "51 Eri",
-    "HIP 81208 B": "HIP 81208",
-    "YSES 1 b": "TYC 8998-760-1",
-    "HD 19467 B": "HD 19467",
-    "HD 206893 B": "HD 206893",
-    "AB Pic b": "AB Pic",
-    "CT Cha B": "CT Cha",
-    "2M0103AB b": "2MASS J01033563-5515561",
+    # keys MUST match data/m7-survey.json's own names exactly -- a mismatch drops the row
+    # before SIMBAD is ever queried, which is why an earlier run resolved only six systems.
+    "CD-35 2722 B":      "CD-35 2722",
+    "beta Pic b":        "bet Pic",
+    "PDS 70 b":          "PDS 70",
+    "PDS 70 c":          "PDS 70",
+    "HIP65426 b":        "HIP 65426",
+    "eta Tel B":         "eta Tel",
+    "HD1160 c":          "HD 1160",
+    "AF Lep b":          "AF Lep",
+    "51 Eri b":          "51 Eri",
+    "HIP 81208 B":       "HIP 81208",
+    "TYC 8998-760-1 b":  "TYC 8998-760-1",
+    "TYC 8998-760-1 c":  "TYC 8998-760-1",
+    "HD19467 B":         "HD 19467",
+    "HD 206893 B":       "HD 206893",
+    "AB Pic b":          "AB Pic",
+    "CT Cha b":          "CT Cha",
+    "PZ Tel B":          "PZ Tel",
 }
 
 # separations in arcsec as used by the wall (M20 sec 6, M23, M28 sec 5)
+# Separations. Sourced from Lazzoni+2022 Table 1 (Sep, mas) wherever that table has the
+# system -- the column this project never transcribed -- and from the discovery paper
+# otherwise. Values previously carried without provenance are marked with their old value.
 SEP_ARCSEC = {
-    "CD-35 2722 B": 2.8, "beta Pic b": 0.55, "PDS 70 b": 0.17, "PDS 70 c": 0.24,
-    "HIP 65426 b": 0.8, "eta Tel B": 4.2, "AF Lep b": 0.45, "51 Eri b": 0.45,
-    "HIP 81208 B": 0.3, "YSES 1 b": 1.7,
+    "CD-35 2722 B": 2.8,      # M0-RESULTS (2.8" at 22.36 pc = 62.6 au); H26 quote ~2.8"
+    "beta Pic b":   0.511,    # Lazzoni T1: 510.8 mas   (was 0.55, unsourced)
+    "PDS 70 b":     0.173,    # Lazzoni T1: 173.5 mas
+    "PDS 70 c":     0.213,    # Lazzoni T1: 213.2 mas   (was 0.24, unsourced)
+    "51 Eri b":     0.434,    # Lazzoni T1: 434.0 mas   (was 0.45, unsourced)
+    "AB Pic b":     5.400,    # Lazzoni T1: 5400 mas    (was blank)
+    "eta Tel B":    4.210,    # Lazzoni T1: 4210 mas
+    "CT Cha b":     2.680,    # Lazzoni T1: 2680 mas    (was absent)
+    "HIP 81208 B":  0.325,    # Viswanath+2023: 320.9 / 328.7 mas over two epochs
+    "TYC 8998-760-1 b": 1.7,      # queue; not in Lazzoni T1 under this name -- UNSOURCED
+    "HIP65426 b":   0.8,      # UNSOURCED
+    "AF Lep b":     0.45,     # UNSOURCED
 }
 
 
@@ -84,6 +99,13 @@ def simbad_flux(name):
     return {}
 
 
+# Lazzoni's companion column is apparent magnitude (validated on YSES 1 b against
+# Bohn+2020 to 0.14 mag) but not uniformly reliable. Primary sources override it.
+OVERRIDE = {
+    "beta Pic b": (12.47, "Currie+2013 Gemini/NICI Ks (via Bonnefoy+2014)"),
+}
+
+
 def main():
     survey = json.loads((ROOT / "data" / "m7-survey.json").read_text(encoding="utf-8"))
     # exclude entries the survey itself flags as limits rather than measurements
@@ -107,6 +129,9 @@ def main():
         kc = comp.get(c)
         if kc is None:
             continue
+        src = "Lazzoni T1"
+        if c in OVERRIDE:
+            kc, src = OVERRIDE[c]
         f = simbad_flux(host)
         mh, band = (f.get("K"), "K") if f.get("K") is not None else (f.get("H"), "H")
         sep = SEP_ARCSEC.get(c)
@@ -118,7 +143,8 @@ def main():
         ratio = 10 ** (0.4 * d)
         rows.append((c, sep, ratio, band))
         print(f"{c:<16s} {str(sep) if sep else '-':>7s} {kc:>7.2f} {host:<24s} "
-              f"{mh:>7.2f} {band:>5s} {d:>6.2f} {ratio:>10.0f}x")
+              f"{mh:>7.2f} {band:>5s} {d:>6.2f} {ratio:>10.0f}x"
+              f"{'  <- ' + src if c in OVERRIDE else ''}")
 
     print("\n# the wall's quoted figures, against these derived values")
     for label, quoted, who in (("clean", 2000, ["HIP 65426 b", "CD-35 2722 B"]),

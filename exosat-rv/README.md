@@ -80,8 +80,12 @@ data-limited**. Highlights:
 - **The K-band tier** — RVs of **beta Pic b itself** at 162 m/s within-night scatter
   (adding night-to-night repeatability to the 2024 CRIRES+ spin/RV literature), AB Pic b,
   and CT Cha B with a 3.3σ variability candidate undecidable at n = 3 (M17, M23).
-- **The contrast wall, measured** — slit companion-RV is clean at ≥0.8″/2000× contrast,
-  flooded at 0.55″/5000×, and the star *is* the spectrum at 0.17″ (M20 §6). Where the
+- **The feasibility limit, and what it is actually a function of** — neither contrast nor
+  separation orders the outcomes. Their combination does: **S = contrast/θ²**, the ratio of
+  scattered host flux to companion flux at the slit. Clean at S ≲ 4300, flooded at
+  S ≳ 15 000, with the transition interval never observed by anyone (M29 §§6–8; the
+  earlier "2000×/5000× contrast wall" of M20 §6 is superseded — those figures were never
+  derived, and the axis was wrong). Where the
   wall stands, fiber starlight suppression is the instrument answer.
 - **YSES 1 b** — 34 m/s night-to-night, the best per-epoch quality of the whole campaign
   (~20–30 M⊕ satellite reach if its blocked 2022 pair is recovered) (M25–M26).
