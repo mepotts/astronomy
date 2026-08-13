@@ -681,24 +681,34 @@
   slit — the trace-wave order height is 179.8&nbsp;px at 0.056″/px, i.e.
   <b>10.07″</b>, sampled by a 512-point slit function at 0.0197″ per point — and the
   slit position angle is pinned at <b>POSANG&nbsp;=&nbsp;153.1°</b> on all eighteen
-  nights with a 6″ nod throw. The primary, 3.17″ away, therefore falls a fixed
-  <b>161 points</b> from the companion trace, on one side or the other, in every frame of
-  the campaign.
+  nights with a 6″ nod throw. The primary therefore falls at a fixed offset from the
+  companion trace, on one side or the other, in every frame of the campaign. Rather than
+  assume that offset we scan it: each profile is searched over 1.5–4.5″ on both sides,
+  which brackets both the 2.8″ projected separation this work adopts and the 3.17″ value
+  in the literature.
   </p>
   <p>
-  Measured there, <b>no primary peak is detected on any night</b>. The slit-function
-  height at the primary's offset, relative to the companion's peak, has a median of
-  <b>0.0006</b> against a local profile noise of 0.0072 — 0.1σ. Per-night 3σ upper
-  bounds run from 1% to 11%, median 2.5%: consistent with
-  <span class="them">H26</span>'s estimate and, on most nights, tighter than it. The
-  geometry predicts exactly this, since a primary 3.17″ off-axis along a slit only
-  0.2″ wide contributes no core flux. Two caveats belong with the number. The profile
-  median is removed before measurement, so this bounds a <em>resolved</em> second trace
-  and not a smooth halo pedestal — it complements the slit-viewer method rather than
-  replacing it. And the one epoch our internal screen rejects, BJD&nbsp;2460604.81,
-  carries the largest ratio of the eighteen (0.019) — but only at 2.0σ, and on the
-  campaign's best seeing (image-analysis FWHM 0.60″). Contamination does not explain
-  why that night is bad; we record it as unexplained.
+  <b>No primary peak is detected.</b> At the adopted 2.8″ the slit-function height
+  relative to the companion's peak has a median of <b>0.0014</b> against a local profile
+  noise of 0.0057 — <b>0.25σ</b>. The corresponding 3σ bound is
+  <b>1.7%</b> of the companion's peak, well inside
+  <span class="them">H26</span>'s ~15% worst-night estimate. Two internal checks say the
+  non-detection is not an artefact of where we looked. First, the fraction of profiles
+  exceeding 3σ is the same at 2.8″ (3.6%) and at 3.17″ (3.1%) — no localised excess
+  singles out either separation. Second, across the full scan the strongest feature sits
+  at a median of 1.75″, at the inner edge of the search: that is the companion's own PSF
+  skirt, and 23.8% of profiles exceed 3σ <em>somewhere</em> in the scan purely because a
+  wide search offers many chances. The geometry predicts a non-detection anyway, since a
+  primary several arcseconds off-axis along a slit only 0.2″ wide contributes no core
+  flux.
+  </p>
+  <p>
+  Two caveats belong with the number. The profile median is removed before measurement,
+  so this bounds a <em>resolved</em> second trace and not a smooth halo pedestal — it
+  complements the slit-viewer method rather than replacing it. And the one epoch our
+  internal screen rejects, BJD&nbsp;2460604.81, is not explained by contamination: it
+  sits within the scatter of the other seventeen and was taken on the campaign's best
+  seeing (image-analysis FWHM 0.60″). We record it as unexplained.
   </p>
 
   <h2><span class="no"> </span>AI contribution and responsibility statement</h2>

@@ -19,7 +19,14 @@ import numpy as np
 from astropy.io import fits
 
 PIXSCALE = 0.056
-SEP_LIT = 3.17
+# The A-B separation this project documents is 2.8" (M0-RESULTS: 2.8" at 22.36 pc =
+# 62.6 au). An earlier version of this script assumed 3.17" from memory and sampled a
+# +-0.15" window around it, i.e. 153-169 points -- which does not contain the 2.8"
+# position at 142 points. That measurement looked in the wrong place and is withdrawn.
+# This version SCANS the profile instead of trusting any single value.
+SEP_DOC = 2.8
+SEP_ALT = 3.17
+SCAN_LO, SCAN_HI = 1.5, 4.5     # arcsec, the range a primary could plausibly occupy
 HEIGHT_PX = 179.8
 
 
@@ -44,7 +51,6 @@ def main():
                     if v.size < 100 or not np.isfinite(v).any():
                         continue
                     scale = HEIGHT_PX * PIXSCALE / v.size
-                    off = int(round(SEP_LIT / scale))
                     v = np.nan_to_num(v)
                     base = np.median(v)
                     v = v - base
@@ -55,16 +61,26 @@ def main():
                     # local noise: robust scatter of the profile away from both
                     # the companion and either candidate primary position
                     mask = np.ones(v.size, bool)
-                    for c in (i1, i1 - off, i1 + off):
-                        mask[max(0, c - 25):c + 26] = False
+                    mask[max(0, i1 - 25):i1 + 26] = False
                     noise = 1.4826 * np.median(np.abs(v[mask] - np.median(v[mask])))
                     for sign in (-1, +1):
-                        j = i1 + sign * off
-                        if 0 <= j < v.size:
-                            # take the best of a +-0.15" window (pointing wander)
-                            w = int(round(0.15 / scale))
-                            seg = v[max(0, j - w):j + w + 1]
-                            vals.append((sign, seg.max() / peak, noise / peak))
+                        lo = i1 + sign * int(round(SCAN_LO / scale))
+                        hi = i1 + sign * int(round(SCAN_HI / scale))
+                        a, b = (lo, hi) if lo < hi else (hi, lo)
+                        a, b = max(a, 0), min(b, v.size - 1)
+                        if b - a < 5:
+                            continue
+                        seg = v[a:b + 1]
+                        k = int(np.argmax(seg))
+                        best_sep = abs((a + k) - i1) * scale
+                        w = int(round(0.15 / scale))
+                        def at(sep):
+                            j = i1 + sign * int(round(sep / scale))
+                            if not (0 <= j < v.size):
+                                return np.nan
+                            return v[max(0, j - w):j + w + 1].max() / peak
+                        vals.append((sign, seg.max() / peak, noise / peak,
+                                     best_sep, at(SEP_DOC), at(SEP_ALT)))
         if vals:
             per_night[night] = vals
             rows.extend(vals)
@@ -72,24 +88,33 @@ def main():
     if not rows:
         print("no slit functions found")
         return
-    a = np.array([r[1] for r in rows])
+    a  = np.array([r[1] for r in rows])
     nz = np.array([r[2] for r in rows])
-    print(f"# CD-35 2722 A contamination at the companion trace, from {len(per_night)} "
-          f"nights, {len(rows)} order-side measurements")
-    print(f"# slit 10.07\" over 512 pts = 0.0197\"/pt; primary offset {SEP_LIT}\" "
-          f"= {int(round(SEP_LIT / 0.0197))} pts")
-    print(f"# ratio at the primary position / companion peak:")
+    sp = np.array([r[3] for r in rows])
+    d28 = np.array([r[4] for r in rows], float)
+    d317 = np.array([r[5] for r in rows], float)
+    print(f"# CD-35 2722 A contamination, SCANNED over {SCAN_LO}-{SCAN_HI} arcsec")
+    print(f"# {len(per_night)} nights, {len(rows)} order-side profiles; "
+          f"slit 10.07\" over 512 pts = 0.0197\"/pt")
+    print(f"# strongest structure anywhere in the scan / companion peak:")
     print(f"#   median {np.median(a):.5f}   90th pct {np.percentile(a, 90):.5f}   "
           f"max {a.max():.5f}")
     print(f"# profile noise / companion peak: median {np.median(nz):.5f}")
-    print(f"# => contamination is {'DETECTED' if np.median(a) > 3 * np.median(nz) else 'NOT detected'} "
-          f"({np.median(a) / np.median(nz):.1f}x the local profile noise)")
-    print(f"\n# per night (median over orders/sides, and 3-sigma upper bound)")
-    print(f"# {'night':<9s} {'ratio':>9s} {'3sig_lim':>9s}")
-    for k in sorted(per_night, key=lambda s: int(s[5:])):
-        v = np.array([x[1] for x in per_night[k]])
-        z = np.array([x[2] for x in per_night[k]])
-        print(f"  {k:<9s} {np.median(v):>9.5f} {3 * np.median(z):>9.5f}")
+    print(f"# separation of that strongest feature: median {np.median(sp):.2f}\"  "
+          f"(16-84 pct {np.percentile(sp,16):.2f}-{np.percentile(sp,84):.2f}\")")
+    print(f"#")
+    print(f"# value AT the documented separation {SEP_DOC}\": "
+          f"median {np.nanmedian(d28):.5f}  max {np.nanmax(d28):.5f}")
+    print(f"# value at the previously-assumed {SEP_ALT}\":  "
+          f"median {np.nanmedian(d317):.5f}  max {np.nanmax(d317):.5f}")
+    thr = 3 * np.median(nz)
+    print(f"#")
+    print(f"# 3-sigma detection threshold (ratio): {thr:.5f}")
+    for lbl, arr in ((f"{SEP_DOC}\"", d28), (f"{SEP_ALT}\"", d317),
+                     ("anywhere in scan", a)):
+        det = int(np.nansum(arr > thr))
+        print(f"#   profiles above 3 sigma at {lbl:<18s}: {det}/{len(arr)} "
+              f"({100*det/len(arr):.1f}%)")
 
 
 if __name__ == "__main__":

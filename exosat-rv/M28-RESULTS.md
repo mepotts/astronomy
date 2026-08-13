@@ -130,11 +130,32 @@ function** measures the same thing directly: the extraction swath spans the full
 PA is pinned at **POSANG = 153.1 deg on all 18 nights** with a 6" nod throw, so the
 primary at 3.17" lands **161 points** from the companion trace.
 
-**Result: no primary peak is detected on any night.** Ratio at the primary position to
-the companion peak: median **0.0006**, versus a profile noise of 0.0072 — 0.1 sigma.
-Per-night 3-sigma upper bounds run 1–11% (median 2.5%), i.e. **tighter than, and
-consistent with, H26's ~15% worst-night estimate**. The primary's core is outside the
-0.2" slit, as the geometry implies.
+**Result: no primary peak is detected.** ⚠ **CORRECTED (M29).** The first pass sampled
+a single offset computed from a 3.17" separation recalled from the literature, in a
++-0.15" window (points 153-169). This project's own documented value is **2.8"**
+(M0-RESULTS: 2.8" at 22.36 pc = 62.6 au), which lands at point **142** — outside that
+window. The original measurement looked in the wrong place and its numbers are
+withdrawn. `m28_contam.py` now **scans** 1.5-4.5" on both sides instead of trusting any
+single separation.
+
+Corrected numbers, 640 order-side profiles over 18 nights:
+
+| quantity | at 2.8" (adopted) | at 3.17" (literature) | anywhere in 1.5-4.5" |
+|---|---:|---:|---:|
+| median ratio to companion peak | **0.00143** | 0.00059 | 0.00855 |
+| profiles above 3 sigma | 23/640 (3.6%) | 20/640 (3.1%) | 152/640 (23.8%) |
+
+Local profile noise is 0.00567, so the ratio at 2.8" is **0.25 sigma** — not detected —
+and the 3-sigma bound is **1.7%** of the companion peak, still comfortably inside H26's
+~15%. Two internal checks show the non-detection is not an artefact of where we looked:
+the above-3-sigma fraction is the same at both candidate separations (3.6% vs 3.1%), so
+nothing singles either out; and across the full scan the strongest feature sits at a
+median of 1.75", the inner scan edge, which is the companion's own PSF skirt — 23.8%
+of profiles clear 3 sigma *somewhere* simply because a wide search offers many chances.
+
+The earlier claim that the rejected epoch BJD 2460604.814 carried the largest ratio does
+not survive the corrected measurement either; it sits within the scatter of the other
+seventeen. It remains unexplained, and its seeing was the campaign's best.
 
 Caveat to state when publishing this: the profile median is subtracted, so this bounds a
 *resolved* second trace, not a smooth halo pedestal. It is complementary to the
