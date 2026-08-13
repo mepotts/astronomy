@@ -59,10 +59,33 @@ not either.
 ## 5. Ops rules (WSL/Windows/harness)
 
 - Long shell chains go in **committed script files** — inline one-liners died silently twice and cost whole runs.
-- **Line endings will break every script in this repo.** Git is configured `core.autocrlf=true`, so it rewrites `*.sh` to CRLF on checkout; WSL's bash then fails with `$'': command not found`, a bogus `No such file or directory` on the sourced env file, and a syntax error — while the *task* still reports exit 0. All 39 shell scripts were in this state (found M29, after a "completed" reduction had done nothing). Fixed by `.gitattributes` pinning `*.sh`/`*.py`/`*.sof` to `eol=lf`. Diagnose with `file script.sh` **from inside WSL** — a `grep $''` from git-bash reports LF and will mislead you.
+- **`cr2res_obs_nodding` needs an EVEN frame count** — see §4. An aborted template leaves an odd number and the recipe writes 11 empty products at exit 0.
+- **Line endings will break every script in this repo.** Git is configured `core.autocrlf=true`, so it rewrites `*.sh` to CRLF on checkout; WSL's bash then fails with `$'
+': command not found`, a bogus `No such file or directory` on the sourced env file, and a syntax error — while the *task* still reports exit 0. All 39 shell scripts were in this state (found M29, after a "completed" reduction had done nothing). Fixed by `.gitattributes` pinning `*.sh`/`*.py`/`*.sof` to `eol=lf`. Diagnose with `file script.sh` **from inside WSL** — a `grep $'
+'` from git-bash reports LF and will mislead you.
 - `git commit -F <file>` always; PowerShell here-strings mangle multi-line messages.
 - Read **full** logs on failure — `tail -30` hid the actual retry error once.
 - Long WSL jobs run as harness background tasks; recover from TAP outages with a probe-then-rerun loop and a 6 h ceiling.
+
+## 5b. Attribution and sourcing traps (M29 — nine errors in one day, none found by doing science)
+
+A day of checking old work against its actual sources turned up fourteen wrong citations
+and thirty-four conflicting property values. Not one was found by producing a new result.
+The failure has one shape: **when a fact was not in front of the writer, a plausible one
+got generated instead of the source being opened.**
+
+| # | Trap | What it cost | Rule |
+|---|------|--------------|------|
+| 1 | **The filename is not the citation.** `tokadjian2023_pathways_survival.pdf` contains Makarov & Efroimsky; `martinez2020_ominous_fate.pdf` is Trani et al.; `blunt2026_gravity_*.pdf` is Kral et al. Papers were downloaded correctly by *topic*, named from a remembered author, and every later reader trusted the name. | 14 wrong citations in 60+ places, including a shipped constant `TOKADJIAN_SPIN_RATIO` and user-visible CLI output | **Read the title page. Never cite from a filename, and never verify one citation against another** — verify against the PDF |
+| 2 | **An unsourced number will eventually be generated.** The A–B separation was taken as 3.17″ from memory when the repo documents 2.8″; the contamination measurement sampled 161 points instead of 142 and had to be withdrawn. The "2000×/5000×/30 000×" contrast wall was asserted in M20 and propagated to the README, the queue and a draft paper with no derivation anywhere. | one withdrawn measurement; a paper rebuilt three times | **Every externally-sourced number carries its source or the mark UNSOURCED.** A number with neither is a guess with good posture |
+| 3 | **Check what a table column actually *is*.** Lazzoni's `Kp` is apparent magnitude (validated on YSES 1 b to 0.14 mag) but wrong by 2.4 mag on β Pic b. Bohn's and Viswanath's equivalent columns are **Δmag, not apparent magnitude** — read the header, or watch whether the value falls J→K→L (contrast) or tracks the host (magnitude). | contrast wrong by ~9×, twice, in opposite directions | **Before using a column, confirm its quantity and band from the paper's own header** |
+| 4 | **A true claim decays when the paper publishes.** "H26's reference [11] is Lazzoni" was correct against the preprint and became false on publication — the list went 37 → 47 entries, Lazzoni moved to [10], and [11] became the CRIRES+ instrument paper. | a headline finding wrong in 5 places | **Cite by author, never by bracket number**, and record which *version* a claim was checked against |
+| 5 | **Over-correction is its own failure.** After finding the contrast figures underived, this project declared them "wrong by one to two orders of magnitude" — and that was also wrong. The truth needed a third pass. | two reversals on one axis in a day | When a correction rests on a single un-validated input, **say the axis is unresolved** rather than asserting the replacement |
+
+The compounding defence is cheap: `scripts/fetch_paper.py` archives a paper and extracts
+its text in one command. Four of the day's errors would not have survived it, and the two
+papers whose absence blocked the contrast question (Bohn 2020, Currie 2013) took minutes
+to add once anyone looked.
 
 ## 6. Human-gated actions (never automate)
 
@@ -81,6 +104,10 @@ not either.
 | `M23-RESULTS.md` | Roster closed: 1 confirmation, 1 contradiction, 4 limits, 1 contamination, 4 data-limited (§5); embargo calendar (§6) |
 | `docs/target-queue.md` | **The living ledger**: every system's verdict + the HiRISE/M27 banner + archive traps + standing machinery |
 | `docs/paper/draft.template.html` | The manuscript (generated, never hand-edited) + Figs 5–12 answering Hoy figure-for-figure |
+| `M28-RESULTS.md` | The audit: common-mode test (171 d exists nowhere else), permutation significance (p=5e-4), jackknife 17/17, eta Tel limit verified, slit-function contamination bound |
+| `M29-RESULTS.md` | YSES 1 b's 2022 night reduced then **rejected** by a pre-committed screen; the CRLF defect; the contrast axis derived, twice corrected, and finally replaced by **S = contrast/theta^2** (§§6-8) |
+| `docs/REFERENCE-AUDIT.md` | Every citation checked against source PDFs: 14 wrong across 60+ sites |
+| `docs/PROPERTY-AUDIT.md` | 268 object properties: 171 verified, 34 conflicting, 63 unsourced |
 | `~/.claude/.../memory/` | Cross-session index of all of the above |
 
 **Open front (M27):** proper HiRISE reduction → re-do the fiber tier → beta Pic b's
