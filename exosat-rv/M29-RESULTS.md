@@ -369,3 +369,46 @@ matching counterexample from the other side.
 **Consequence:** `docs/paper/contrast-wall-note.md` is drafted against the old numbers and
 must be revised before it goes anywhere. Its own pre-submission list already flagged that
 the ratios had no derivation; the derivation now exists and disagrees.
+
+## 8. Testing S on held-out systems — and why it barely counts
+
+`scripts/m29_wallpredict.py` parses **31 of Lazzoni's 37 companions** (Sep in mas, host
+and companion magnitudes) and applies S with the thresholds **fixed in advance** from the
+construction set: CLEAN below 4327, FAILS above 15 202. Where a primary source exists it
+overrides Lazzoni — β Pic b uses Currie+2013 (3954×), not Lazzoni's 36 983×.
+
+| system | sep | contrast | S | predicted | observed | role |
+|---|---:|---:|---:|---|---|---|
+| GSC 6214-210 B | 2.21″ | 182× | 37 | clean | *no data* | held out |
+| CT Cha b | 2.68″ | 285× | 40 | clean | **clean** | **held out ✓** |
+| DH Tau B | 2.35″ | 224× | 41 | clean | *no data* | held out |
+| AB Pic b | 5.40″ | 1768× | 61 | clean | **clean** | **held out ✓** |
+| η Tel B | 4.21″ | 1888× | 107 | clean | clean | built-on |
+| 1RXS J1609 b | 2.22″ | 1562× | 318 | clean | *no data* | held out |
+| PDS 70 b | 0.17″ | 460× | 15 297 | fails | fails | built-on |
+| β Pic b | 0.51″ | 3954× | 15 154 | *indeterminate* | fails | built-on |
+
+**Four agree, none disagree — and it barely counts.** The script says so in its own output
+rather than only here:
+
+1. **Only two systems were genuinely held out**, CT Cha b and AB Pic b, both CLEAN, both
+   sitting **50–100× below** the clean threshold. Predicting "clean" for a target two
+   orders below the boundary is not a discriminating test.
+2. **There is no held-out FAILS case at all.** S has never been asked to predict a failure
+   it did not already know about.
+3. **β Pic b at its sourced contrast lands *on* the threshold** (15 154 vs 15 202) — of
+   course it does, the threshold was set by β Pic b. Correcting its contrast from
+   Lazzoni's bad 36 983× to Currie's 3954× collapsed the failure side onto two points 1%
+   apart, and one of those (PDS 70 b, inside the AO core) may fail by a different
+   mechanism entirely.
+
+**The honest statement: S is consistent with every outcome this project has measured, and
+is not yet tested by any of them.** The informative experiment needs a target with S
+between 4327 and 15 202 — precisely the interval where nothing has been observed. That is
+the same gap §6 identified on the contrast axis, and it has survived every reframing:
+whatever variable is used, this campaign never sampled the transition.
+
+**Three falsifiable predictions** for systems with archival data but no reduction here:
+DH Tau B (S = 41), GSC 6214-210 B (S = 37), 1RXS J160929.1-210524 b (S = 318) — all
+predicted CLEAN. They are weak tests for the same reason, but they are on the record
+before the fact, which is the only way this stops being curve-fitting.
