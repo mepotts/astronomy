@@ -179,15 +179,21 @@ def main():
             unknown.append((len(b["nights"]), ra, dec, sorted(b["objs"]),
                             sorted(b["progs"])))
     unknown.sort(reverse=True)
+    import os
+    cap = int(os.environ.get("REVERSE_CAP", "25"))
     print(f"\n[reverse] {len(unknown)} unexplained clusters with >=3 nights; "
-          "identifying top 25 via SIMBAD:")
+          f"identifying top {cap} via SIMBAD:")
+    SUBSTELLAR = ("BD*", "LM*", "Pl", "Y*O", "BD?", "Pl?", "PM*")
     rev = []
-    for nn, ra, dec, objs, progs in unknown[:25]:
+    for nn, ra, dec, objs, progs in unknown[:cap]:
         ids = simbad_cone(ra, dec)
+        flag = ""
+        if ids and any(o in SUBSTELLAR for _, o in ids[:2]):
+            flag = "  <-- SUBSTELLAR-TYPE"
         rev.append({"nights": nn, "ra": ra, "dec": dec, "objs": objs,
                     "progs": progs, "simbad": ids})
         idstr = "; ".join(f"{a} ({b})" for a, b in ids[:2]) or "no SIMBAD match"
-        print(f"  {nn:>3} nights  {objs[0][:22]:<22} {','.join(progs)[:20]:<20} -> {idstr}")
+        print(f"  {nn:>3} nights  {objs[0][:22]:<22} {','.join(progs)[:20]:<20} -> {idstr}{flag}")
 
     out = ROOT / "data" / "m25-census2.json"
     out.write_text(json.dumps({"generated_utc": now,

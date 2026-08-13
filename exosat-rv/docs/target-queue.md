@@ -1,5 +1,37 @@
 # Target interrogation queue — FINAL STATUS (plan complete, 2026-08-12)
 
+> ## ⚠ THE HiRISE REVELATION (2026-08-13) — reopens the "staring" tier as M27
+>
+> Every dataset this project classified as "staring-mode" is actually **HiRISE**:
+> fiber-fed SPHERE→CRIRES+ observations (`ESO INS MODE=HIRISE`, original files
+> `HIRISE_SPEC_OBS*`) — the starlight-suppression hardware we said required new
+> proposals. Verified on HD 1160 B, AF Lep b, 51 Eri b, HIP 81208 B (H series),
+> PDS 70 (H nights), and the "BET PIC" H series — which is therefore **six public
+> fiber nights of beta Pic b (Oct–Dec 2024), wall-free**. HD 26820's 11 nights and
+> HD 19467/HD 206893's H pairs are the same programme family.
+>
+> **Corrections to ledgered conclusions:**
+> - The M26 "nodding survives where staring drowns" methods finding is WRONG as
+>   stated: HIP 81208's H series was fiber data mis-reduced through the slit
+>   recipe; the km/s scatter is OUR processing, not the sky.
+> - AF Lep b's "68% dilution" and 51 Eri b's "beyond slit reach": same error class.
+> - HD 1160 B's "quality-limited" verdict: to be re-derived with fiber-appropriate
+>   handling before it stands.
+> - Conclusions that SURVIVE: everything on nodding data (CD-35, eta Tel,
+>   HIP 65426 b, PDS 70-K, beta Pic b K-contamination, YSES 1, CT Cha, AB Pic),
+>   and HD 19467/HD 206893's clean epochs (fiber data that happened to reduce well).
+>
+> **M27 (next):** learn the proper HiRISE reduction path, re-reduce the fiber
+> tier, and run beta Pic b's six fiber nights — the starlight-suppressed flagship
+> series this project thought it couldn't have.
+>
+> **KOA/KPIC census (idea #2, probed):** HR 8799 holds ~25 NIRSPEC nights
+> (2012–2024) and DH Tau ~27 (2000–2025) in the Keck archive; beta Pic b one.
+> A NIRSPEC/KPIC pipeline is a real project with a real ceiling — parked as the
+> post-M27 frontier. Ideas #3/#4 (full reverse census, isolated objects): closed,
+> negative — the ESO sweep is exhaustive. Idea #5: no new claims to reproduce;
+> Hoy et al. remains alone in the genre.
+
 > ## The roster, adjudicated (M14–M24; detail per milestone doc)
 >
 > Every target with public data has a verdict. All claims injection-gated; all
