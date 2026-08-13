@@ -587,7 +587,7 @@ milestone document in the repository.
 
 **Bibliography**
 
-8. **Köhler initial.** The existing HTML draft's reference list reads "Köhler, R.". The
+8. **Köhler initial.** The existing HTML draft's reference list reads "Köhler, J.". The
    paper text in `papers/text/kohler2025_viper.txt` gives **J. Köhler**, and the H26 author
    list includes Jana Köhler. This note uses J.; the HTML draft should be corrected.
 9. **Journal, volume and year** for Köhler et al. 2025, Lazzoni et al. 2022, Ruffio et al.

@@ -222,7 +222,7 @@ someone's published velocities cannot find a new satellite.
 4. **In parallel, and independent of all of the above: probe a GRAVITY product.**
    [`M10`](M10-RESULTS.md) found that **beta Pic b has 28 public pipeline-reduced VLTI/GRAVITY
    nights over 2987 days** — 1.6x the epochs over 6.4x the baseline of the dataset the
-   published RV detection rests on — and that HD 206893 B, where Blunt et al. 2026 report a
+   published RV detection rests on — and that HD 206893 B, where Kral et al. 2026 report a
    tentative astrometric exomoon candidate, has 22 public nights. **Astrometry outranks RV in
    Lazzoni et al.'s own table (P = 0.999 vs 0.996) and reaches below RV's ~0.4 M_Jup floor.**
    The kill-check is open and cheap: download one `calib_level=2` visibility product and
@@ -240,7 +240,7 @@ someone's published velocities cannot find a new satellite.
   around a young hot Jupiter **discriminates between hot-Jupiter migration channels**.
 - [`M10`](M10-RESULTS.md) — the **astrometric route** (`exosat-rv gravity`). Better public
   data than the RV route has, and **beta Pic b is the crossover target**: #2 in M7's RV
-  ranking, one of Blunt et al.'s two best astrometric targets, and the best public GRAVITY
+  ranking, one of Kral et al.'s two best astrometric targets, and the best public GRAVITY
   dataset. The one object where two independent techniques could be cross-checked.
 
 ## Reading order

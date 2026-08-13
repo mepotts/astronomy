@@ -162,7 +162,7 @@ M5 answered only the first.
 ## 6b. There is now a second exosatellite candidate, by a different technique
 
 Found while answering "what else is worth pulling on", and it postdates every other paper
-in `papers/`: **Blunt et al. 2026, *Exomoon search with VLTI/GRAVITY around the substellar
+in `papers/`: **Kral et al. 2026, *Exomoon search with VLTI/GRAVITY around the substellar
 companion HD 206893 B*** ([arXiv:2511.20091](https://arxiv.org/abs/2511.20091), A&A Jan 2026)
 — "the first application of high-precision astrometry to search for exomoons".
 

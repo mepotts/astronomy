@@ -95,7 +95,7 @@ separation are**:
   around 38 directly imaged companions and predicts that *binary-like* satellites are
   detectable by RV (P ~ 0.996 at f = 1) while *planet-like* ones are not (P ~ 0.08). M7
   reproduces that split and recalibrates its threshold on the real detection.
-- **A second, independent exosatellite candidate now exists, by astrometry.** Blunt et al.
+- **A second, independent exosatellite candidate now exists, by astrometry.** Kral et al.
   2026 ([arXiv:2511.20091](https://arxiv.org/abs/2511.20091), A&A) report tentative
   VLTI/GRAVITY astrometric residuals around **HD 206893 B** consistent with a ~0.4 M_Jup
   companion at P ~ 0.76 yr, and flag them as possibly systematic. Two tentative candidates
