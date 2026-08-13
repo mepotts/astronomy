@@ -29,6 +29,23 @@
 > (raw-first fetch + direct-CALIB fallback), staring branch in `reduce_one.sh`,
 > `ctcha_screen.py` (two-arm order screen). Downloads SERIAL always.
 >
+> ## M26 verdicts (2026-08-13 — census v2 analyzed)
+>
+> | target | series | **verdict** |
+> |---|---|---|
+> | **YSES 1 b** (2-planet system, 1.7″) | 2023 pair, A/B ×2 | **34 m/s night-to-night, gates 101±2% — best per-epoch quality of the campaign**; ~20–30 M⊕ satellite sensitivity per epoch. 2022 pair blocked on an empty-extraction cr2res issue (queued) — fixing it makes a 4-night/290-d series, the exomoon-depth prize |
+> | **HIP 81208 B** (0.3″ from B9 host) | 5 H staring + 3 K nodding | **methods finding: nodding survives where staring drowns** — H staring flooded (r(BERV)=+0.94, km/s), K nodding flat and clean (124 m/s, χ²=1.1/2, gates 99±1%). First RV series of the object, hedged |
+> | **HD 19467 B** (benchmark T dwarf, wide) | 2 H staring nights | clean 45 m/s pair, gates 101±5% — excellent future target, archive thin |
+> | **HD 206893** | 1 K night + 2 H staring | clean data both settings (gates 100–102%); epochs banked |
+> | **2M0103AB b** | 1 K2166 pilot night | within-night pair agrees at ~53 m/s, gates 100±0%; awaits the embargoed 2026 deep campaign |
+> | PDS 70 (H side) | 3 staring nights | blocked on a viper order-mapping quirk that survives column-order normalization (queued, notes in scripts) |
+> | CD-35 "deep pair" | — | **M4368 thermal-IR** — shelved with the L/M class; only cd35d1's 2 H monitoring frames recoverable (per-setting split, queued) |
+>
+> Archive quirk #7: some staring products store spectral columns in DESCENDING
+> order, breaking viper's last-column convention (normalize at staging).
+> Disk rule from the 100%-full incident: delete raw once its reduction verifies —
+> the archive is the backup.
+>
 > ## Census v2 additions (2026-08-12, header-verified; fetch chain M26 running)
 >
 > | target | verified data (public) | grade |

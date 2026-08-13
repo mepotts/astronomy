@@ -25,7 +25,9 @@ run () {  # run <recipe> <sof> <label>
 
 for f in $(pick DARK); do echo "$f DARK"; done > dark.sof
 [ -s dark.sof ] || { echo "$N: no DARK frames"; exit 1; }
-run cr2res_cal_dark dark.sof dark || exit 1
+# BPM is optional downstream ([0 to 1] in both obs recipes): a failed master
+# dark degrades the reduction, it should not kill the night (M26: h81208f)
+run cr2res_cal_dark dark.sof dark || echo "   ($N continuing without master dark)"
 BPM=$(ls -S "$W"/cr2res_cal_dark_*bpm.fits 2>/dev/null | head -1)
 
 { for f in $(pick FLAT); do echo "$f FLAT"; done
