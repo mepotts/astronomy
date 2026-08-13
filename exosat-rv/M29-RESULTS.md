@@ -114,7 +114,52 @@ astrophysical jitter required.
 | shell toolchain | assumed working | was **entirely CRLF-broken**; fixed |
 | jitter floor | proposed as the top new idea | closed negative, with an observing-strategy result |
 
-## 6. The contrast wall's x-axis: derived at last, and it does not match
+## 6. The contrast wall's x-axis — derived, then the derivation itself put in doubt
+
+> ### ⚠ CORRECTION (same day, after the property audit)
+>
+> **§6 below over-claimed, and the over-claim is mine.** It states that the ledger's
+> contrast figures are "wrong by one to two orders of magnitude". That conclusion rests
+> entirely on the companion-magnitude column of Lazzoni et al. 2022 Table 1 — transcribed
+> into `data/m7-survey.json` as `k_mag`, and labelled **`Kp`** in `survey.py`'s own
+> provenance comment. The band and photometric system of that column were never
+> established, and the property audit found it fails a physical check:
+>
+> - SIMBAD gives **η Tel B: H = 11.93** (verified directly). Lazzoni's Kp for the same
+>   object is **13.2**, which implies **H − K = −1.27** — K fainter than H. Late-M and L
+>   dwarfs are red; H − K is positive. One of the two numbers is not what it is labelled.
+> - The same doubt reaches β Pic b, whose Kp of 14.9 sits ~2.4 mag fainter than the K
+>   magnitude commonly published for it. Were its true K ≈ 12.5, its contrast would be
+>   ~4000× rather than 36 983× — **close to the ~5000× the ledger asserted all along.**
+>
+> **So the honest state of the contrast axis is: unresolved.** Two things are established
+> and survive. The ledger's figures were never derived anywhere in this repository — that
+> remains true and was worth finding. And deriving them from the only table available
+> gives numbers that disagree with the ledger. What is *not* established is which set is
+> right, because the input column fails its own consistency check.
+>
+> The host-magnitude column is not in doubt: 3.480 (β Pic), 5.010 (η Tel), 8.542 (PDS 70)
+> match published K magnitudes exactly. The problem is confined to the companion column.
+>
+> **Consequence.** `docs/paper/contrast-wall-note.md` was rebuilt on the derived values
+> and must now say the axis is unresolved rather than corrected. Nothing about the
+> *mechanism* changes — contamination rather than photon noise, β Pic b's r(BERV) = +0.88
+> at 99–100% injection transmission, the CD-35 slit-function bound, and the separation
+> axis being independent are all measured here and use no contrast figure at all.
+>
+> **To close it:** Lazzoni's own sources are not archived. Adding **Langlois et al. 2021b**
+> (η Tel B, AB Pic b) and **Bohn et al. 2020** (YSES 1 b) to `papers/` would settle the
+> companion magnitudes for four of the load-bearing systems.
+>
+> One genuinely good thing came out of the audit: **Lazzoni Table 1 also carries `Sep` in
+> mas and the host K for all 37 companions**, and the project never transcribed those
+> columns. Every arcsec separation quoted here could have been read off disk — η Tel B
+> 4210 mas, PDS 70 b 173.5, β Pic b **510.8 (0.51″, not 0.55″)**, 51 Eri b **434 (0.43″)**,
+> AB Pic b **5400 (5.4″)**, which this project had left blank.
+
+*The original §6 follows, unaltered:*
+
+### The derivation as first reported
 
 `scripts/m29_contrast.py` computes what nothing in this repository ever did:
 contrast = 10^(0.4 (m_comp - m_host)), companion K from `data/m7-survey.json`, host
