@@ -112,14 +112,32 @@ injection-recovery gates, scoring only against published values, the
 correction log). This repository's audit trail is the evidence that the
 discipline existed. Template statement:
 
-> *The archival analysis, literature search, and manuscript drafting were
-> performed by an AI agent (Claude [version], Anthropic), operating under the
-> author's direction in an environment with verification gates described in
-> §[Methods]; every adopted result passed injection-recovery validation or a
-> positive control, and all claims were reviewed by the author, who takes full
-> responsibility for the content. The complete agent-produced audit trail,
-> including retracted intermediate claims, is preserved in the companion
-> repository.*
+The canonical, paper-ready version — two sections modeled on the WASP-4b
+Agents4Science precedent but adapted to this project's actual division of labor
+— now lives in the exosat-rv manuscript template
+([`exosat-rv/docs/paper/draft.template.html`](exosat-rv/docs/paper/draft.template.html),
+"AI agent setup" and "Roles and responsible AI statement") and is reused,
+adjusted per project, for every paper from this repository. The honest
+adaptation: where the WASP-4b paper's human co-author was a domain expert
+auditing the AI's analysis, here verification is primarily *mechanical*
+(injection gates, amplitude-matched positive controls, published-values-only
+scoring) plus the public audit trail, and the human role is direction,
+adversarial challenge, external-consequence decisions, and sole accountability.
+The statement says so explicitly rather than borrowing the expert-audit framing.
+
+Mapped to the CRediT taxonomy journals ask for (AI listed as a disclosed tool,
+never an author):
+
+| CRediT role | Matthew Potts (author) | Claude agents (disclosed tool) |
+|---|---|---|
+| Conceptualization | direction, research questions | approach within those questions |
+| Methodology, Software, Data curation | — | ✓ |
+| Formal analysis, Investigation, Visualization | — | ✓ |
+| Validation | adversarial review of claims | machine-enforced gates |
+| Writing — original draft | — | ✓ |
+| Writing — review & editing | ✓ | revisions under review |
+| Supervision, Project administration | ✓ | — |
+| Accountability for the published record | ✓ (sole) | none — cannot hold it |
 
 **Check the target venue's current AI policy at submission time** — policies
 are converging but not identical (Science required a policy change to allow
