@@ -191,7 +191,56 @@ astrophysical jitter required.
 > where the wall sits should be made in print until β Pic b is settled, because it is the
 > sole anchor of the flooded end.
 >
-> **Still to close:** Lazzoni's own sources are not archived. Adding **Langlois et al. 2021b**
+> ### ✅ CLOSED — and the wall is misnamed
+>
+> β Pic b is settled from the primary source. Bonnefoy et al. 2014 states that β Pic b's
+> Ks photometry comes from **Currie et al. 2013**; that paper (now archived,
+> arXiv:1306.0610) gives **Gemini/NICI Ks = 12.47 ± 0.13**. With the host at K = 3.48,
+> Δmag = 8.99 → contrast **≈ 3950×**.
+>
+> **So Lazzoni's Kp = 14.9 is wrong for β Pic b, and the ledger's asserted "~5000×" was
+> approximately right all along.** My derived 36 983× was the error. The Kp column is
+> apparent magnitude (validated on YSES 1 b to 0.14 mag) but it is not uniformly reliable:
+> right for YSES 1 b, wrong by 2.4 mag for β Pic b.
+>
+> #### The finding this exposes
+>
+> With every point sourced or flagged, the outcomes order like this:
+>
+> | separation | contrast | extraction | system |
+> |---:|---:|---|---|
+> | 0.17″ | 460× | **fails** | PDS 70 b |
+> | 0.51″ | 3 950× | **fails** | β Pic b |
+> | 1.70″ | 10 280× | clean, 34 m/s | YSES 1 b |
+> | 2.80″ | 97× | clean, 70–90 m/s | CD-35 2722 B |
+> | 4.21″ | 1 888× | clean, 116–130 m/s | η Tel B |
+>
+> **Sorted by separation the column reads fails, fails, clean, clean, clean — perfectly
+> monotonic. Sorted by contrast it reads clean, fails, clean, fails, clean — it alternates,
+> and predicts nothing.**
+>
+> The decisive pair is YSES 1 b against β Pic b: **YSES 1 b extracts cleanly at 10 280×
+> while β Pic b floods at 3950×.** A target 2.6× harder in contrast is clean, because it
+> sits 3.3× further out. No contrast threshold can separate this set; separation separates
+> it completely.
+>
+> **The "contrast wall" is misnamed.** On this evidence the binding axis is angular
+> separation — consistent with the physical mechanism already measured, which is that
+> starlight enters the *slit*, a geometric aperture, and pervades the band rather than
+> concentrating in any order subset (M20 §2, three-pass template ladder, r(BERV) = +0.88
+> unchanged after masking).
+>
+> **The one potential counterexample:** HIP 81208 B is reported clean at 0.3″, which would
+> break the ordering. Its separation is **UNSOURCED** (property audit) and must be settled
+> before this is written up. If it holds, the rule is not separation alone either.
+>
+> **Consequence:** `docs/paper/contrast-wall-note.md` needs a third revision — not to fix a
+> number, but because its organising axis is the wrong one. That is a better paper than the
+> one it replaces, and it is the sort of conclusion only reachable once the numbers have
+> sources.
+
+> **Closed:** Lazzoni's sources are now archived (Langlois 2021b, Bohn 2020, Currie 2013,
+> Bonnefoy 2014). Adding **Langlois et al. 2021b**
 > (η Tel B, AB Pic b) and **Bohn et al. 2020** (YSES 1 b) to `papers/` would settle the
 > companion magnitudes for four of the load-bearing systems.
 >

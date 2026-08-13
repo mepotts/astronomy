@@ -1,0 +1,1846 @@
+<<<PAGE 1>>>
+arXiv:1306.0610v2  [astro-ph.EP]  13 Aug 2013
+Draft version July 22, 2018
+Preprint typeset using L ATEX style emulateapj v. 5/2/11
+A COMBINED VLT AND GEMINI STUDY OF THE ATMOSPHERE OF THE DIREC TLY-IMAGED PLANET,
+β PICTORIS b
+Thayne Currie 1, Adam Burrows 2, Nikku Madhusudhan 3, Misato Fukagaw a4, Julien H. Girard 5, Rebekah
+Dawson6, Ruth Murray-Clay 6, Scott Kenyon 6, Marc Kuchner 7, Soko Matsumura 8, Ray Jayaw ardhana1, John
+Chambers9, Ben Bromley 10
+Draft version July 22, 2018
+ABSTRACT
+We analyze new/archival VLT/NaCo and Gemini/NICI high-contrast imaging of the young, self-
+luminous planet β Pictoris b in seven near-to-mid IR photometric ﬁlters, using advanc ed image pro-
+cessing methods to achieve high signal-to-noise, high precision meas urements. While β Pic b’s near-IR
+colors mimick that of a standard, cloudy early-to-mid L dwarf, it is ov erluminous in the mid-infrared
+compared to the ﬁeld L/T dwarf sequence. Few substellar/planet- mass objects – i.e. κ And b and
+1RXJ 1609B – match β Pic b’s J HKsL′ photometry, and its 3.1 µm and 5 µm photometry are
+particularly diﬃcult to reproduce. Atmosphere models adopting clou d prescriptions and large ( ∼ 60
+µm ) dust grains fail to reproduce the β Pic b spectrum. However, models incorporating thick clouds
+similar to those found for HR 8799 bcde but also with small (a few micro ns) modal particle sizes yield
+ﬁts consistent with the data within uncertainties. Assuming solar ab undance models, thick clouds,
+and small dust particles ( < a > = 4 µm ) we derive atmosphere parameters of log(g) = 3.8 ± 0.2 and
+Tef f = 1575–1650 K, an inferred mass of 7 +4
+−3 MJ , and a luminosity of log(L/L ⊙) ∼ -3.80 ± 0.02.
+The best-estimated planet radius, ≈ 1.65 ± 0.06 RJ , is near the upper end of allowable planet radii
+for hot-start models given the host star’s age and likely reﬂects ch allenges with constructing accurate
+atmospheric models. Alternatively, these radii are comfortably co nsistent with hot-start model pre-
+dictions if β Pic b is younger than ≈ 7 Myr, consistent with a late formation, well after its host star’s
+birth ∼ 12+8
+−4 Myr ago.
+Subject headings: planetary systems, stars: early-type, stars: individual: β Pictoris
+1. INTRODUCTION
+The method of detecting extrasolar planets by di-
+rect imaging , even in its current early stage, ﬁlls in
+an important gap in our knowledge of the diversity of
+planetary systems around nearby stars. Direct imag-
+ing searches with the best conventional AO systems (e.g.
+Keck/NIRC2, VLT/NaCo, Subaru/HiCIAO) are sensi-
+tive to very massive planets ( M /greaterorsimilar5–10 MJ ) at wide
+separation (a ∼ 10-30 AU to 100 AU ) and young ages ( t
+≲ 100 Myr), which are not detectable by the radial ve-
+locity and transit methods (e.g. Lafreni` ere et al. 2007a;
+Vigan et al. 2012; Rameau et al. 2013; Galicher et al.
+2013). Planets with these masses and orbital sepa-
+rations pose a stiﬀ challenge to planet formation the-
+ories (e.g. Kratter et al. 2010; Raﬁkov 2011). Young
+self-luminous directly-imageable planets provide a criti-
+cal probe of planet atmospheric evolution (Fortney et al.
+2008; Currie et al. 2011a; Spiegel and Burrows 2012;
+Konopacky et al. 2013).
+1 Department of Astronomy and Astrophysics, University of
+Toronto
+2 Department of Astrophysical Sciences, Princeton Universi ty
+3 Department of Astronomy, Yale University
+4 Osaka University
+5 European Southern Observatory
+6 Harvard-Smithsonian Center for Astrophysics
+7 NASA-Goddard Space Flight Center
+8 Department of Astronomy, University of Maryland-College
+Park
+9 Department of Terrestrial Magnetism, Carnegie Institutio n
+of W ashington
+10 Department of Physics, University of Utah
+The directly-imaged planet around the nearby star β
+Pictoris ( β Pictoris b) is a particularly clear, crucial
+test for understanding the formation and atmospheric
+evolution of gas giant planets (Lagrange et al. 2009a,
+2010). At 12 +8
+−4 Myr old (Zuckerman et al. 2001), the
+β Pictoris system provides a way to probe planet at-
+mospheric properties only ≈ 5–10 Myr after the disks
+from which planets form dissipate ( ≈ 3–10 Myr, e.g.
+Pascucci et al. 2006; Currie et al. 2009). Similar to
+the case for the HR 8799 planets (Marois et al. 2010a;
+Fabrycky and Murray-Clay 2010; Currie et al. 2011a;
+Sudol and Haghighipour 2012), β Pic b’s mass can
+be constrained without depending on highly-uncertain
+planet cooling models: in this case, R V-derived dynam-
+ical mass upper limits when coupled with the range of
+plausible orbits ( a ∼ 8–10 AU) imply masses less than
+∼ 10–15 MJ (Lagrange et al. 2012a; Currie et al. 2011b;
+Chauvin et al. 2012; Bonnefoy et al. 2013), a mass range
+consistent with estimates derived from the planet’s inter-
+action with the secondary disk (Lagrange et al. 2009a;
+Dawson et al. 2011).
+Furthermore, while other likely/candidate planets
+such as Fomalhaut b and LkCa 15 b are proba-
+bly made detectable by circumplanetary emission in
+some poorly constrained geometery (Currie et al. 2012a;
+Kraus and Ireland 2012), β Pic b’s emission appears to
+be consistent with that from a self-luminous planet’s
+atmosphere (Currie et al. 2011b; Bonnefoy et al. 2013).
+Other objects of comparable mass appear to have formed
+more like low-mass binary companions. Thus, com-
+bined with the planets HR 8799 bcde, β Pic b pro-
+
+<<<PAGE 2>>>
+2
+vides a crucial reference point with which to interpret
+the properties of many soon-to-be imaged planets with
+upcoming extreme AO systems like GP I, SCExAO , and
+SP HERE (Macintosh et al. 2008; Martinache et al.
+2009; Beuzit et al. 2008).
+However, investigations into β Pic b’s atmosphere are
+still in an early stage compared to those for the at-
+mospheres of the HR 8799 planets and other very low-
+mass, young substellar objects (e.g. Currie et al. 2011a;
+Skemer et al. 2011; Konopacky et al. 2013; Bailey et al.
+2013). Of the current published photometry, only
+Ks (2.18 µm ) and L′ (3.78 µm ) have photometric er-
+rors smaller than ∼ 0.1 mag (Bonnefoy et al. 2011;
+Currie et al. 2011b). Other high SNR detections such
+as at M ′ were obtained without reliable ﬂux calibra-
+tion (Currie et al. 2011b) or with additional, large pho-
+tometric uncertainties due to processing (Bonnefoy et al.
+2013). As a result, the best-ﬁt models admit a wide range
+of temperatures, surface gravities, and cloud structures
+(e.g. Currie et al. 2011b). Thus, new higher signal-to-
+noise/precision and ﬂux-calibrated photometry at 1–5
+µm should provide a clearer picture of the clouds, chem-
+istry, temperature, and gravity of β Pic b. Moreover, new
+near-to-mid IR data may identify distinguishing char-
+acteristics of β Pic b’s atmosphere, much like clouds
+and non-equilibrium carbon chemistry for HR 8799 bcde
+(Currie et al. 2011a; Galicher et al. 2011; Skemer et al.
+2012; Konopacky et al. 2013).
+In this study, we present new 1.5–5 µm observations
+for β Pic b obtained with N aCo on the Very Large Tele-
+scope and N ICI on Gemini-South. We extract the ﬁrst
+detection at the 3.09 µm water-ice ﬁlter; the ﬁrst high
+signal-noise, well calibrated H, [4.05], and M ′ detections;
+and higher signal-to-noise detections at Ks and L′ (2.18
+and 3.8 µm ). To our new data, we add rereduced β Pic
+data obtained in J (1.25 µm ) and H (1.65 µm ) bands
+and ﬁrst presented in Bonnefoy et al. (2013), recovering
+β Pic b at a slightly higher signal-to-noise and deriving
+its photometry with smaller errors.
+We compare the colors derived from broadband pho-
+tometry to that for ﬁeld substellar objects with a range
+of spectral types to assess whether β Pic b’s col-
+ors appear anomalous/redder than the ﬁeld sequence
+like those for planets around HR 8799 and κ And;
+planet-mass companions like 2M 1207 B, GSC 06214 B,
+and 1RXJ 1609 B (Chauvin et al. 2004; Ireland et al.
+2011; Lafreni´ ere et al. 2008); and other substellar ob-
+jects like Luhman 16B (Luhman et al. 2013). We use
+atmosphere modeling to constrain the range of tem-
+peratures, surface gravities, and cloud structures plau-
+sible for the planet. While previous studies have
+shown the importance of clouds and non-equilibrium
+carbon chemistry in ﬁtting the spectra/photometry of
+directly-imaged planets (Bowler et al. 2010; Currie et al.
+2011a; Madhusudhan et al. 2011; Galicher et al. 2011;
+Skemer et al. 2012; Konopacky et al. 2013), here the as-
+sumed sizes of dust particles entrained in the clouds plays
+a critical role.
+2. OBSER V ATIONS AND DATA REDUCTION
+2.1. VLT/NaCo Data and Basic Processing
+We observed β Pictoris under photometric condi-
+tions on 14 December to 17 December 2012 with
+the NAOS-CONICA instrument (NaCo; Rousset et al.
+2003) on the Very Large Telescope UT4/Yepun at
+Paranal Observatory (Program ID 090.C-0396). All data
+were taken in pupil-tracking/angular diﬀerential imaging
+(Marois et al. 2006) and data cube mode. Table 1 sum-
+marizes the basic properties of these observations. Our
+full complement of data during the run includes imag-
+ing at 1.04 µm , 2.12 µm , Ks/2.18 µm , 2.32 µm , 3.74
+µm , L′/3.78 µm , Br- α /4.05 µm , and M ′. Here, we fo-
+cus only on the L′, [4.05], and M ′ data, deferring the
+rest to a later study. Each observation was centered on
+β Pictoris’s transit for a total ﬁeld rotation of ∼ 50–70
+degrees and a total observing times ranging between ∼
+30 minutes and 59 minutes.
+To these new observations, we rereduce J-band and H-
+band data ﬁrst presented in Bonnefoy et al. (2013) and
+taken on 16 December 2011 and 11 January 2012, re-
+spectively. The saturated J band science images are
+bracketed by two sequences of unsaturated images ob-
+tained in neutral density ﬁlter for ﬂux calibration. While
+there were additional frames taken but not analyzed in
+Bonnefoy et al., we found these to be of signiﬁcantly
+poorer quality and thus do not consider them here. In
+total, the J-band data we consider covers 40 minutes of
+integration time and ∼ 23o of ﬁeld rotation. The H-band
+data cover ∼ 92 minutes of integration time and ∼ 36o
+of ﬁeld rotation.
+Basic NaCo image processing steps were performed as
+in Currie et al. (2010, 2011b). The thermal IR data at
+L′ and [4.05] ( M ′) were obtained in a dither pattern with
+oﬀsets every 2 (1) images to remove the sky background.
+As all data were obtained in data cube mode, we in-
+creased our PSF quality by realigning each individual
+exposure in the cube to a common center position and
+clipping out frames with low encircled energy (i.e. those
+with a core/halo ratio < max(core/halo) - 3 × σ (core-to-
+halo ratio)).
+2.2. Gemini/NICI Data and Basic Processing
+We obtained Gemini imaging for β Pic b using the
+Near-Infrared Coronagraphic Imager (NICI) on 23 De-
+cember 2012 and 26 December 2012 in the H 2O ﬁlter
+(λ o = 3.09 µm ) and 9 January 2013 in the H and Ks
+ﬁlters (dual-channel imaging), both under photometric
+conditions (Program GS-2012B-Q-40). These observa-
+tions were also executed in angular diﬀerential imaging
+mode. For the H2O data, we dithered each 38 s expo-
+sure for sky subtraction for a total of ∼ 38 minutes of
+integration time over a ﬁeld rotation of ∼ 30 degrees.
+For the H/K s data, we placed the star behind the r =
+0.′′22 partially-transmissive coronagraphic mask to sup-
+press the stellar halo. Here, we took shorter exposures
+of β Pic ( tint ∼ 11.4 s) to better identify and ﬁlter out
+frames with bad AO correction. Our observing sequence
+consists of ∼ 22 minutes of usable data centered on tran-
+sit with a ﬁeld rotation of ∼ 41 degrees.
+Basic image processing follows steps described above
+for NaCo data. The PSF halo was saturated out to r ∼
+0.′′32–0.′′36 in H during most of the observations and our
+sequence suﬀered periodic seeing bubbles that saturated
+the halo out to angular separations overlapping with the
+β Pic b PSF. Thus, we focus on reducing only those
+H-band frames with less severe halo saturation ( rsat <
+0.′′36). The Ks observations, obtained at a higher Strehl
+
+<<<PAGE 3>>>
+3
+ratio, never suﬀered halo saturation. The ﬁrst of the
+two H20 sets, suﬀered from severe periodic seeing bub-
+bles and thus generally poor AO performance. We iden-
+tify and remove from analysis frames whose halo ﬂux
+exceeded the Fmin+3σ , where Fmin is the minimum ﬂux
+within an aperture covering β Pic b and σ is the disper-
+sion in this ﬂux: about 10-25% of the frames, depending
+on the data set in question.
+2.3. PSF Subtraction
+To remove the noisy stellar halo and reveal β Pic b, we
+process the data with our “adaptive” LOCI (A-LOCI)
+pipeline (Currie et al. 2012a,b, T. Currie 2013 in prep.).
+This approach adopts “locally optimized combination
+of images” (LOCI) formalism (Lafreni` ere et al. 2007b),
+where we perform PSF subtraction in small annular re-
+gions (the “subtraction zone”) at a time over each im-
+age. Previously-described A-LOCI components we use
+here include “subtraction zone centering” (Currie et al.
+2012b); “speckle ﬁltering” to identify and remove images
+with noise structure poorly correlated with that from the
+science image we are wanting to subtract (Currie et al.
+2012b); a moving pixel mask to increase point source
+throughput and normalize it as a function of azimuthal
+angle (Currie et al. 2012a). We do not consider a PSF
+reference library (Currie et al. 2012a) since β Pictoris is
+our only target.
+Into A-LOCI as recently utilized in Currie et al.
+(2012a), we incorporate a component diﬀerent from but
+complementary to our “speckle ﬁltering”, using singular
+value decomposition (SVD) to limit the number of images
+used in a given annular region (i.e. for a given optimiza-
+tion zone) to construct and subtract a reference. Brieﬂy,
+in the (A-)LOCI formalism a matrix inversion yields the
+set of coeﬃcients ck applied to each image making up the
+reference “image”: ck = A−1b. Here, A is the covariance
+matrix and b is a column matrix deﬁned from i pixels
+in the “optimization zones” of the j-th reference image
+section Oj and the science image, OT : bj = ∑
+i
+Oj
+i OT
+i
+(see Lafreni` ere et al. 2007b). In the previous versions of
+our codes, we use a simple double-precision matrix inver-
+sion to invert the covariance matrix and then solve for
+ck after multiplying by b.
+In this work, we instead use SVD to rewrite A as
+UΣ VT such that A−1 = VΣ −1UT , where the T super-
+script stands for the transpose of the matrix. Prior to
+inversion, we truncate the number of singular values at a
+predeﬁned cutoﬀ, svdlim. This eigenvalue truncation is
+very similar to and functions the same as the truncation
+of principle components, Npca, in the Karhunen-Loeve
+image projection (KLIP) (Soummer et al. 2012) and
+has been successfully incorporated before (Marois et al.
+2010b). We found that both speckle ﬁltering and SVD
+truncation within our formalism can yield signiﬁcant con-
+trast gains over LOCI and KLIP/Principle Component
+Analysis (PCA), although in this study at the angular
+separation of β Pic b ( ≈ 0.′′45) the gains over LOCI are
+typically about a factor of 1.5, albeit with substantially
+higher throughput 11.
+11 Recently, Amara and Quanz (2012) claimed a contrast gain
+of ∼ 5× over LOCI using PCA. However, optimal set-ups even
+within a given formalism like LOCI or PCA/KLIP are very dataset-
+2.4. Planet Detections
+Figures 1, 2, and 3 display reduced NaCo and NICI
+images of β Pic. We detect β Pic b in all datasets (sum-
+marized in Table 2). To compute the signal-to-noise ra-
+tio (SNR) for β Pic b, we determine the dispersion, σ , in
+pixel values of our ﬁnal image convolved with a gaussian
+along a ring with width of 1 FWHM at the same angu-
+lar separation as β Pic b but excluding the planet (e.g.
+Thalmann et al. 2009), and average the SNR/pixel over
+the aperture area. For the Gemini-NICI H, Ks, and two
+[3.1] datasets, the SNRs are thus 6.4, 11, 4.6, and 10, re-
+spectively. For the J and H-band NaCo data previously
+presented in Bonnefoy et al. (2013), we achieve SNR ∼
+9 and SNR ∼ 30, respectively. Generally speaking, our
+3.8–5 µm NaCo data are deeper than the near-IR NaCo
+and especially near-IR NICI data, where we detect β Pic
+b at SNR = 40 in L′ and 22 at M ′, roughly a factor of
+two higher than previously reported (Currie et al. 2011b;
+Bonnefoy et al. 2013), gains due to β Pic b now being
+at a wider projected separation ( L′) or post-processing
+and slightly better observing conditions ( M ′). The high
+SNR detections obtained with NaCo also leverage on re-
+cent engineering upgrades that substantially improved
+the instrument’s image quality and the stability of its
+PSF (Girard et al. 2012).
+The optimal A-LOCI algorithm parameters vary sig-
+niﬁcantly from dataset to dataset. The rotation gap
+(∆PA in units of the image full-width half maximum)
+criterion used to produce most of the images is δ ∼ 0.6–
+0.65, although it is signiﬁcantly larger for the J and H
+data sets ( δ = 0.75–0.95). Generally speaking, the opti-
+mization areas we use NA are signiﬁcantly smaller ( NA
+= 50-150) than those typically adopted (i.e. NA=300;
+Lafreni` ere et al. 2007b). We speculate that the pixel
+masking component of A-LOCI drives the optimal NA
+settings toward these smaller values since the planet ﬂux
+(ostensibly within the subtraction zone) no longer signif-
+icantly biases the coeﬃcient determinations to the point
+of reducing the planet’s SNR. Filtering parameters rcorr
+and svdlim likewise vary wildly from rcorr = 0 and svdlim
+= 2.5× 10−7 at J to rcorr = 0.9 for the NICI H-band data
+or svdlim = 2.5 × 10−2 for the M ′ NaCo data.
+While the many algorithm free parameters make ﬁnd-
+ing an optimal combination diﬃcult and computation-
+ally expensive, our ﬁnal image quality is nevertheless
+extremely sensitive to some values, in particular svdlim
+and rcorr. As a test, we explored other image process-
+ing methods – ADI-based classical PSF subtraction and
+LOCI. While A-LOCI always yields deeper contrasts, we
+easily detect β Pic b in the mid-IR NaCo data using any
+method and only the poorer of the two [3.1] data sets re-
+quires A-LOCI to yield a better than 4- σ detection (i.e.
+where σdet = 1.0857/SNR = 0.27 mags). We will present
+a detailed analysis of image processing methods and al-
+gorithm parameters in an upcoming study (T. Currie,
+2013 in prep.).
+Adopting the pixel scales listed in Table 1, β Pic b is
+speciﬁc (cf. Lafreni` ere et al. 2007b; Currie et al. 2012a,b ). With
+LOCI, we obtained roughly equivalent SNRs for β Pic b obtained
+during the same observing run but on a night with poorer ob-
+serving conditions (29 December 2009) than their test data s et
+(Currie et al. 2011b). Implementing some A-LOCI ﬁltering an d
+pixel masking yields SNR ≈ 30–35.
+
+<<<PAGE 4>>>
+4
+detected at an angular separation of r ∼ 0.′′46 in each
+data set. The position angle of β Pic b is consistent with
+previously-listed values (PA ≈ 210o) and in between val-
+ues for the main disk and the warp, intermediate be-
+tween the results presented in Currie et al. (2011b) and
+Lagrange et al. (2012b). While the NICI north position
+angle on the detector is precisely known and determined
+from facilty observations, we have not yet used our as-
+trometric standard observations to derive the NaCo po-
+sition angle oﬀset, which changes every time NaCo is re-
+moved from the telescope. To dissuade others from using
+the poorly calibrated NaCo data and precisely calibrated
+data (Lagrange et al. 2012b) together, we reserve a de-
+tailed determination of β Pic b’s astrometry and a study
+of its orbit for a future study. We also detect the β Pic
+debris disk in each new broadband data set and at [4.05]
+(Figure 4). We will analyze its properties at a later time
+as well.
+2.5. Planet Photometry
+To derive β Pic b photometry, we ﬁrst measured its
+brightness within an aperture roughly equal to the image
+FWHM in each case, which was known since we either
+had AO-corrected standard star observations (NICI H,
+Ks, and [3.1]), unsaturated images of the primary as seen
+through the coronagraphic mask (NICI Ks), unsaturated
+neutral density ﬁlter observations (NaCo J, H, L′, and
+M ′), or unsaturated images of the primary (NaCo L′ and
+[4.05]). We assessed and corrected for planet throughput
+losses due to processing by comparing the ﬂux of syn-
+thetic point sources within this aperture implanted into
+registered images at the same angular separation as β
+Pic b before and after processing. To derive β Pic b’s
+throughput and uncertainty in the throughput ( σatten),
+we repeat these measurements at 15 diﬀerent position
+angles and adopt the clipped mean of the throughput as
+our throughput and standard deviation of this mean as
+its uncertainty. The planet throughput ranges from 0.38
+for the J-band data to 0.82 for the [4.05] data and 0.96
+for the NICI H-band data, even with aggressive algo-
+rithm parameters (i.e. δ ∼ 0.6), due to the throughput
+gains yielded by our pixel masking and the SVD cutoﬀ.
+For photometric calibration, we followed several dif-
+ferent approaches. For the NICI data, we used TYC
+7594-1689-1 and HD 38921 as photometric standards.
+We were only able to obtain photometric calibrations for
+the ﬁrst of the two [3.1] datasets. For all other data we
+used the primary star, β Pic, for ﬂux calibration adopt-
+ing the measurements listed in Bonnefoy et al. (2013).
+For the J and H NaCo data, we used images of the pri-
+mary as viewed through the neutral density ﬁlter. For
+the M ′ NaCo data, we obtained neutral density ﬁlter
+observations and very short exposures. While the lat-
+ter were close to saturation and were probably in the
+non-linear regime, the implied photometry for β Pic was
+consistent to within errors. The primary was unsatu-
+rated in the [4.05]. Finally, for the L′ data, we took
+8.372 ms unsaturated images of β Pic for ﬂux calibra-
+tion. In all cases, we again adopt the clipped mean of
+individual measurements as our photometric calibration
+uncertainty, σf luxcal. To compute the photometric un-
+certainty for each data set, we considered the SNR of
+our detection, the uncertainty in the planet throughput,
+and the uncertainty in absolute ﬂux calibration: σ =
+√
+σ 2
+det + σ 2
+atten + σ 2
+f luxcal.
+Table 2 reports our photometry and Table 3 lists sam-
+ple error budgets for two NICI photometric measure-
+ments and two NaCo measurements. The relative contri-
+butions from each source of photometric uncertainty to
+the total uncertainty are representative of our combined
+data set. For the [3.09] data, residual speckle noise/sky
+ﬂuctuations greatly limit the planets SNR and thus σdet
+is the primary source of photometric uncertainty. For the
+Ks data, the intrinsic SNR and the two other sources of
+photometric uncertainty contribute in a more equal pro-
+portion. The L′ and M ′ data error budgets are charac-
+teristic of most of our other data, where the photometric
+uncertainty is primarily due to the absolute photomet-
+ric calibration and throughput. With the exception of
+the [3.09] NICI data, the intrinsic SNR of the detection
+does not dominate the error budget. For the best-quality
+(mid-IR NaCo) data, the throughput uncertainty was
+small ( ≈ 5%) and was never any larger than 15% ( J
+band data) in any data set 12.
+In general, we ﬁnd fair agreement with previously pub-
+lished photometry, where our measurements are usually
+consistent within photometric errors with those reported
+previously (e.g. mH = 13.32 ± 0.14 and 13.25 ± 0.18 vs.
+13.5 ± 0.2 in Bonnefoy et al. 2013). Our L′ photometry
+is more consistent with Currie et al.’s measurement of
+mL′=9.73 ± 0.06 than with that listed in Bonnefoy et al.
+(2013) ( mL′=9.5 ± 0.2), though it is nearly identical
+to that derived for some β Pic b data sets listed in
+Lagrange et al. (2010). Our [4.05] photometry implies
+that β Pic b is ∼ 15-20% brighter there than previously
+assumed (Quanz et al. 2010) and may have a slightly red
+L′-[4.05] color. The major diﬀerence from previous stud-
+ies, though, is that our photometric errors are consis-
+tently much smaller. For example, the uncertainty in
+the [4.05] photometry is reduced to 0.08 mag from 0.23
+mag due both to higher SNR detections and lower un-
+certainty in our derived photometry (e.g. throughput
+corrections). NICI photometry is also substantially less
+uncertain than in Boccaletti et al. (2013) because β Pic
+b is not occulted by the focal plane mask. These lower
+uncertainties should allow more robust comparisons be-
+tween β Pic b and other substellar objects and, from
+modeling, more precise limits on the best-ﬁtting planet
+atmosphere properties.
+3. EMPIRICAL COMPARISONS TO β PIC B
+12 In principle, tuning the algorithm parameters to maximize
+the SNR of β Pic b could introduce additional photometric un-
+certainties if the planet is in signiﬁcant residual speckle contami-
+nation. In such a case, the algorithm parameters maximizing the
+SNR could instead be the set that maximizes the residual spec kle
+contamination within the the planet aperture while minimiz ing it
+elsewhere, especially as the pixel masking technique norma lizes the
+point source throughput but not the noise as a function of az-
+imuthal angle. However, we do not ﬁnd substantial diﬀerence s in
+the derived photometry if we adopt a default set of algorithm pa-
+rameters. Furthermore, the parameters maximizing the SNR a re
+never the ones maximizing the planet throughput, and our tun -
+ing is not just ﬁnding the parameter set making pixels within the
+planet aperture ’noisiest’. Adopting slightly diﬀerent pa rameters
+from the ’optimized’ case yields nearly identical photometry. More-
+over, residual speckle contamination in most data sets is ex tremely
+low, and for the mid-IR data the intrinsic SNR is limited by sk y
+background ﬂuctuations in addition to speckles.
+
+<<<PAGE 5>>>
+5
+Our new data allows us to compare the spectral energy
+distribution of β Pic b to that for the many ﬁeld L/T-
+type brown dwarfs as well that for directly-imaged low-
+surface gravity, low-mass brown dwarf companions and
+directly-imaged planets. Our goal here is to place β Pic
+b within the general L/T type spectral sequence, iden-
+tify departures from this sequence such as those seen for
+low surface gravity objects like HR 8799 bcde, and iden-
+tify the substellar object(s) with the best-matched SED.
+Some bona ﬁde directly-imaged planets like HR 8799
+bcde and at least some of the lowest-mass brown dwarfs
+like 2M 1207 B appear redder/cloudier than their ﬁeld
+dwarf counterparts at comparable temperatures ( Tef f
+≈ 900-1100 K). However, it is unclear whether hotter
+imaged exoplanets appear diﬀerent from their (already
+cloudy) ﬁeld L dwarf counterparts, and β Pic b provides
+a test of any such diﬀerences. We will use our compar-
+isons to the L/T dwarf sequence and the SEDs of other
+substellar objects to inform our atmosphere model com-
+parisons later to derive planet physical parameters (e.g.
+Tef f and log(g)).
+3.1. Infrared Colors of β Pic b
+To compare the near-to-mid IR properties of β Pic
+b with those for other cool, substellar objects, we
+primarily use the sample of L/T dwarfs compiled by
+Leggett et al. (2010), which include ﬁeld dwarfs spec-
+tral classes between ∼ M7 and T5, corresponding to
+a range of temperatures between ∼ 2500 K and 700
+K. To explore how the β Pic b SED compares to
+those with other directly-imaged planets/planet candi-
+dates and very low-mass brown dwarf companions within
+this temperature range, we include objects listed in Ta-
+ble 4. These include the directly-imaged planets around
+HR 8799 (Marois et al. 2008, 2010a; Currie et al. 2011a)
+and the directly-imaged planet candidate around κ And
+(Carson et al. 2013). Additionally, we include high mass
+ratio brown dwarf companions with masses less than
+the deuterium-burning limit ( ∼ 13–14 MJ ) and higher-
+mass companions whose youth likely favors a lower
+surface gravity than for ﬁeld brown dwarfs, a diﬀer-
+ence that aﬀect the objects’ spectra (e.g. Luhman et al.
+2007). Among these objects are 1RXJ 1609B, AB Pic B,
+and Luhman 16 B (Lafreni´ ere et al. 2008; Chauvin et al.
+2005; Luhman et al. 2013). Table 5 compiles photometry
+for all of these low surface gravity objects.
+Figure 5 compares the IR colors of β Pic b (dark
+blue diamonds) to those for ﬁeld M dwarfs (small
+black dots), ﬁeld L0–L5 dwarfs (grey dots), ﬁeld L5.1-
+L9 dwarfs (asterisks), T dwarfs (small light-grey dots),
+and planets/low-mass young brown dwarfs (light-blue
+squares). The J-H/H-Ks colors for β Pic b appear
+slightly blue in J-H and red in H-Ks compared to ﬁeld
+L0–L5 dwarfs, though the diﬀerence here is not as large
+as was found in Bonnefoy et al. (2013). Other young
+substellar objects appear to have similar near-IR colors,
+in particular κ And b, GSC 06214 B, USco CTIO 108B,
+2M 1207A, and Luhman 16 B, whose spectral types range
+between M8 and T0.5.
+The mid-IR colors of β Pic b (top-right and bottom
+panels) show a more complicated situation. In J-Ks/Ks-
+L′ and H-Ks/Ks-L′, β Pic b lies along the ﬁeld L/T
+dwarf locus with colors in between those for L0–L5 and
+L5.1–L9 dwarfs, overlapping in color with κ And b, 1RXJ
+1609B, GSC 06214B, HR 8799 d, and 2M 1207 B. Com-
+pared to the few ﬁeld L/T dwarfs from the Leggett et al.
+sample with M ′ photometry, β Pic b appears rather red,
+most similar in Ks-M ′ color to GSC 06214 B.
+The color-magnitude diagram positions of β Pic b (Fig-
+ure 6) better clarify how its near-to-mid SED compares to
+the ﬁeld L/T dwarf sequence and to very low-mass (and
+gravity?) young substellar objects. In general, compared
+to the ﬁeld L dwarf sequence, β Pic b appears progres-
+sively redder at mid-IR wavelengths. Similar to the case
+for GSC 06214 B (Bailey et al. 2013), β Pic b appears
+overluminous compared to the entire L/T dwarf sequence
+in the mid-IR.
+3.2. Comparisons to SEDs of Other Substellar Objects
+To further explore how the SED of β Pic b agrees
+with/departs from the ﬁeld L/T dwarf sequence and
+other young substellar objects, we ﬁrst compare its pho-
+tometry to spectra from the SPeX library (Cushing et al.
+2005; Rayner et al. 2009) of brown dwarfs with data
+overlapping with our narrowband mid-IR ﬁlters ([3.09]
+and [4.05]) spanning spectral classes between L1 and
+L5: 2MASS J14392836+1929149 (L1), Kelu-1AB (L2),
+2MASS J15065441+1321060 (L3), 2MASS J15074769-
+1627386 (L5). To compare the β Pic b pho-
+tometry with cooler L dwarfs, we add combined
+IRTF/SpeX and Subaru/IRCS spectra from 1 to 4.1
+µm for 2MASS J08251968+2115521 (L7.5) and DENIS-
+P J025503.3-470049 (L8) (Cushing et al. 2008). Finally,
+we add spectra for the low surface-gravity L4.5 dwarf,
+2MASSJ22244381-0158521 (Cushing et al. 2008). To
+highlight diﬀerences between β Pic b and these L dwarfs,
+we scale the ﬂux densities for each of these standards to
+match β Pic b at ∼ 2.15 µm (Ks band).
+To convert our photometry derived in magnitudes to
+ﬂux density units, we use the zeropoint ﬂuxes listed in
+Table 6. The J HKs and L′M ′(4.78 µm ) zeropoints
+are from Cohen et al. (2003) and Tokunaga and Vacca
+(2005), respectively. We base the other zeropoints oﬀ
+of Rieke et al. (2008), although alternate sources (e.g.
+Cohen et al. 1995) yield nearly identical values. Because
+the overlap in wavelengths between β Pic and these ob-
+jects is not uniform, we do not perform a rigorous ﬁt
+between the two, ﬁnding the scaling factor that mini-
+mizes the χ 2 value deﬁned from the planet ﬂux density,
+comparison object ﬂux density, and photometric errors
+in both. Rather, we focus on a simple ﬁrst-order com-
+parison between β Pic b and the comparison objects to
+motivate detailed atmospheric modeling later in Section
+4.
+Figure 7 (left panel) compares photometry for β Pic b
+to spectra for ﬁeld L1–L5 dwarfs. While the L1 standard
+slightly overpredicts the ﬂux density at J band, the other
+three early/mid L standards match the β Pic b near-
+IR SED quite well, indicating a “near-IR spectral type”
+of ∼ L2–L5. The L7.5 and L8 standards also produce
+reasonable matches, although they tend to underpredict
+the brightness at J band (right panel).
+However, all standards have diﬃculty matching the β
+Pic b SED from 3–4 µm . In particular, the β Pic b ﬂux
+density from ∼ 3 to ∼ 5 µm is nearly constant, whereas it
+rises through 4 µm and then steeply drops in all six stan-
+dards depicted here. Focused on only β Pic b photom-
+etry at 3.8–4.1 µm , the “mid-IR spectral type” is hard
+
+<<<PAGE 6>>>
+6
+to deﬁne, the low surface gravity L4.5 dwarf bears the
+greatest resemblance, although we fail to identify good
+matches at all wavelengths with any of our spectral tem-
+plates, where the 3.1 µm , L′, and [4.05] data points are
+the most problematic. While none of our standards have
+measurements fully overlapping with the M ′ ﬁlter, the
+ﬂux densities at 5.1 µm indicate that they may have a
+very hard time simultaneously reproducing our measure-
+ments at all four ﬁlters between 3 and 5 µm . Although
+non-equilibrium carbon chemistry can ﬂatten the spectra
+of low surface gravity L/T dwarfs (Skemer et al. 2012),
+its eﬀect is to weaken the methane absorption trough at
+∼ 3.3 µm and suppress emission at ∼ 5 µm . Thus, it
+is unclear whether this eﬀect can explain the enhanced
+emission at ∼ 3.1 µm (mostly outside of the CH4 ab-
+sorption feature to begin with) and 5 µm .
+To understand whether β Pic b’s SED is unique even
+amongst other very low-mass substellar objects, we com-
+pare our photometry to that for companions listed in
+Table 4 that have photometry from 1 µm through ∼ 4–5
+µm : HR 8799 bcd, κ And b, 1RXJ 1609 B, GSC 06214B,
+HIP 78530 B, 2M 1207A/B, HR 7329B, and AB Pic. Two
+objects – 1RXJ 1609 B and GSC 06214B – have 3.1 µm
+photometry: 1RXJ 1609 B from (Bailey et al. 2013) and
+κ And b has [4.05] from data obtained by T. C. (M [4. 05]
+= 9.45 ± 0.20) (Bonnefoy, Currie et al., 2013 in prep.).
+The two far-right columns of Table 5 lists the re-
+duced χ 2 and goodness-of-ﬁt statistics between β Pic
+b’s J HKsL′ ([3.1],[4.05]) photometry, while Figure 8
+displays these comparisons for κ And b, 1RXJ 1609B,
+and GSC 06214B, which are all thought to be low sur-
+face gravity companions with Tef f ∼ 1700 K, 1800 K,
+and 2200 K (Carson et al. 2013; Lafreni` ere et al. 2010;
+Bowler et al. 2011; Bailey et al. 2013). Overall, κ And
+b provides the best match to β Pic b’s photometry, re-
+quires negligible ﬂux scaling, and is essentially the same
+within the 68% conﬁdence limit (C.L.) ( χ 2 = 0.946, C.L.
+= 0.186), although the large photometric uncertainties
+in the near-IR limit the robustness of these conclusions.
+The companion to 1RXJ 1609 likewise produces a very
+good match ( χ 2 = 1.369, C.L. = 0.287), while the slightly
+more luminous (and massive) GSC 06214B appears to be
+much bluer, (relatively) overluminous in L′ and M ′ (or,
+conversely, overluminous at J HKs) by ∼ 30%. In com-
+parison, the cooler ( Tef f ≈ 900-1100 K) exoplanets HR
+8799 bcd provide far poorer matches ( χ 2 ∼ 6–52).
+Still, it is unclear whether any object matches β Pic b’s
+photometry at all wavelengths: both of the objects for
+which we have [3.1] data, GSC 06214B and 1RXJ 1609B,
+are still slightly underluminous here. Moreover, the best-
+matching companions – κ And b and 1RXJ 1609B – are
+still not identical, as the scaling factors between β Pic b’s
+spectrum and these companions’ spectra that minimize
+χ 2 are ∼ 0.83 and 0.53, respectively. While compan-
+ions with identical temperatures but radii 10% and 30%
+larger than β Pic b would achieve this scaling, κ And
+b and 1RXJ 1609B are respectively older and younger
+than β Pic b, whereas for a given initial entropy of for-
+mation planet radii are expected to decrease with time
+(Spiegel and Burrows 2012).
+In summary, young (low surface gravity?), low-mass
+objects may provide a better match to β Pic b’s pho-
+tometry than do ﬁeld dwarfs, especially those with tem-
+peratures well above 1000 K but slightly below 2000 K
+(κ And b, 1RXJ 1609 B). However, we fail to ﬁnd a
+match (within error bars) between the planet’s photom-
+etry spanning the full range of wavelengths for which we
+have data, especially at ∼ 3 µm . As the planet spectra
+depend critically on temperature, surface gravity, clouds
+and (as we shall see) dust particle sizes, our comparisons
+imply that β Pic b may diﬀer from most young substellar
+objects in one of these respects. Next, we turn to detailed
+atmospheric modeling to identify the set of atmospheric
+parameters that best ﬁt the β Pic b data.
+4. PLANET ATMOSPHERE MODELING
+To further explore the physical properties of β Pic b,
+we compare its photometry to planet atmosphere models
+adopting a range of surface gravities, eﬀective tempera-
+tures, and cloud prescriptions/dust. For a given sur-
+face gravity and eﬀective temperature, a planet’s emitted
+spectrum depends primarily on the atmosphere’s com-
+position, the structure of its clouds, and the sizes of
+the dust particles of which the clouds are comprised
+(Burrows et al. 2006). For simplicity, we assume solar
+abundances except where noted and leave consideration
+of anomalous abundances for future work.
+Based on β Pic b’s expected luminosity (log(L p/L ⊙)
+∼ -3.7 to -4, Lagrange et al. 2010; Bonnefoy et al. 2013)
+and age, it is likely too hot ( Tef f ∼ 1400-1800 K) for
+non-equilibrium carbon chemistry to play a dominant
+role (Hubeny and Burrows 2007; Galicher et al. 2011).
+Therefore, our atmosphere models primarily diﬀer in
+their treatment of clouds and the dust particles entrained
+in clouds. For each model, we explore a range of surface
+gravities and eﬀective temperatures.
+4.1. Limiting Cases: The Burrows et al. (2006) E60
+and A60 Models and AMES-DUSTY Models
+4.1.1. Model Descriptions
+We begin by applying an illustrative collection of
+previously-developed atmosphere models to β Pic b.
+These models will produce limiting cases for the planet’s
+cloud structure and typical dust grain size, which we re-
+ﬁne in Section 4.2. To probe the impact of cloud thick-
+ness, we ﬁrst adopt a (large) modal particle size of 60 µ m
+and consider three diﬀerent cloud models: the standard
+chemical equilibrium atmosphere thin-cloud models from
+Burrows et al. (2006), which successfully reproduces the
+spectra of ﬁeld L dwarfs, moderately-thick cloud models
+from Madhusudhan et al. (2011), and thick cloud mod-
+els used in Currie et al. (2011a). To investigate the im-
+pact of particle size, we then apply the AMES-DUSTY
+models. The DUSTY models lack any dust grain sed-
+imentation, such that the dust grains are everywhere
+in the atmosphere, similar to the distribution of dust
+grains entrained in thick clouds. However, they adopt
+far smaller dust grains than do the thick cloud mod-
+els from Madhusudhan et al. (2011) and Currie et al.
+(2011a), where the grains are submicron in size and fol-
+low the interstellar grain size distribution (Allard et al.
+2001). All models described here and elsewhere in the
+paper assume that the planet is in hydrostatic and ra-
+diative equilibrium. None of them consider irradiation
+from the star, as this is likely unimportant at β Pic b’s
+orbital separation. Table 7 summarizes the range of at-
+mospheric properties we consider for each model.
+
+<<<PAGE 7>>>
+7
+The Burrows et al. (2006) E60 Thin Cloud,
+Large Dust Particle Models – As described in
+Burrows et al. (2006) and later works (e.g. Currie et al.
+2011a; Madhusudhan et al. 2011), the Model E60 case
+assumes that the clouds are conﬁned to a thin layer,
+where the thickness of the ﬂat part of the cloud encom-
+passes the condensation points of diﬀerent species with
+diﬀerent temperature-pressure point intercepts. Above
+and below this ﬂat portion, the cloud shape function de-
+cays as the -6 and -10 powers respectively, so that the
+clouds have scale heights of ∼ 1/7th and 1/11th that of
+the gas. We adopt a modal particle size of 60 µm and
+a particle size distribution drawn from terrestrial water
+clouds (Deirmendjian 1964). We consider surface grav-
+ities with log(g) = 4 and 4.5 and temperatures with a
+range of Tef f = 1400–1800 K in increments of 100 K.
+The Madhusudhan et al. (2011) AE60
+Moderately-Thick Cloud, Large Dust Parti-
+cle Models – Described in Madhusudhan et al. (2011),
+the Model AE60 case assumes a shallower cloud shape
+function of su = 1, such that the cloud scale height
+is half that of the gas as a whole. We again adopt a
+modal particle size of 60 µm and the same particle size
+distribution. We consider surface gravities with log(g) =
+4 and 4.5 and temperatures between Tef f = 1000–1700
+K in increments of 100 K.
+The Burrows et al. (2006) A60 Thick Cloud,
+Large Dust Particle Models – As described in
+Currie et al. (2011a), the Model A60 case diﬀers in that
+it assumes that the clouds extend with a scale height
+that tracks that of the gas as a whole. Below the ﬂat
+part of the cloud, the shape function decays as the -10
+power as in the E60 and AE60 models, although devi-
+ations from this do not aﬀect the emergent spectrum.
+Here, we consider surface gravities with log(g) = 4 and
+4.5 and temperatures with a range of Tef f = 1000-1700
+K in increments of 100 K.
+AMES-DUSTY Thick-Cloud, Small Dust Par-
+ticle Limit – The AMES-DUSTY atmosphere models
+(Allard et al. 2001) leverage on the PHOENIX radiative
+transfer code (Hauschildt and Baron 1999) and explore
+the limiting case where dust grains do not sediment/rain
+out in the atmosphere. Unlike the Burrows et al.
+(2006) models and those considered in later works (e.g.
+Spiegel and Burrows 2012), the AMES-DUSTY models
+adopt a interstellar grain size distribution favoring far
+tinier dust grains with higher opacities. The grains’
+higher opacities reduce the planet’s radiation at shorter
+wavelengths. Thus, these models have dramatically
+diﬀerent near-IR planet spectra from the E/A/AE60
+type models with larger modal grain sizes even at the
+same temperatures and gravities (cf. Burrows et al. 2006;
+Currie et al. 2011a). Here we consider AMES-DUSTY
+models with log(g) = 3.5, 4, and 4.5 and Tef f = 1000–
+2000 K (∆ Tef f=100 K).
+4.1.2. Fitting Method
+To transform the DUSTY spectra into predicted ﬂux
+density measurements (at 10 pc), we convolve the spec-
+tra over the ﬁlter response functions and scale by a di-
+lution factor of f = ( Rplanet/10 pc) 2. We consider a
+range of planet radii between 0.9 RJ and 2 RJ . Like-
+wise, we convolve the E60 and A60 model spectra over
+ﬁlter response functions. The E60 models (as do all
+other Burrows et al. 2006 and Madhusudhan et al. 2011
+models) adopt a mapping between planet radius and
+surface gravity/temperature set by the Burrows et al.
+(1997) planet evolution models. To explore departures
+from these models, we allow the the radius to vary by an
+additional scale factor of 0.7 to 1.7. For most of our grid,
+this translates into a radius range of 0.9 to 2 RJ .
+Our atmosphere model ﬁtting follows methods in
+Currie et al. (2011a,b), where we quantify the model ﬁts
+with the χ 2 statistic,
+χ 2 =
+n∑
+i=0
+(fdata,i − Fmodel,i )2/σ 2
+data,i . (1)
+We weight each datapoint equally. Because our pho-
+tometric calibration fully considers uncertainties due to
+the signal-to-noise ratio, the processing-induced attentu-
+ation, and the absolute photometric calibration, we do
+not set a 0.1 mag ﬂoor to σ for each data point as we
+have done previously.
+We determine which models are formally consistent
+with the data by comparing the resulting χ 2 value to that
+identifying the 68% and identify those that can clearly
+be ruled out by computed the 95% conﬁdence limit.
+Note here that these limits are signiﬁcantly more strin-
+gent compared to the ones we adopted in Currie et al.
+(2011a). Treating the planet radius as a free parameter,
+we have ﬁve degrees of freedom for seven data points,
+leading to χ 2
+68% = 5.87 and χ 2
+95% = 11.06. ‘
+4.1.3. Results
+Table 8 summarizes our ﬁtting results using the E60,
+AE60, A60, and DUSTY models. Figure 9 displays some
+of these ﬁtting results, where the left-hand panels show
+the χ 2 distributions with the 68% and 95% conﬁdence
+limits indicated by horizontal lines dashed and dotted
+lines. The right-hand panels and middle-left panel show
+the best-ﬁtting models for each atmosphere prescription.
+A successful model must match three key properties of
+the observed SED: (1) At 3–5 µ m, the SED is relatively
+ﬂat, (2) at 1–3 µ m, the spectral slope is relatively shal-
+low, and (3) the overall normalization of the 3–5 µ m ﬂux
+relative to the 1–3 µ m ﬂux must match the data.
+For the E60, AE60, and A60 models, we ﬁnd χ 2 min-
+ima at log(g) = 4–4.5 and Tef f = 1400 K in each case
+with radius scaling factors, the constant we multiple the
+nominal Burrows et al. planet radii, between 1.185 and
+1.680. For the Burrows et al. (1997) evolutionary mod-
+els, these scaling factors imply planet radii between ∼
+1.8 and 2 RJ , at the upper extrema of our grid in radius.
+Figure 9 illustrates the impact on the SED of chang-
+ing cloud models, given a ﬁxed grain size. The best-ﬁt
+temperature does not vary dramatically because, roughly
+speaking, the relative ﬂuxes at 1–3 µ m and 3–5 µ m are
+determined by the SED’s blackbody envelope. However,
+cloud thickness dramatically aﬀects the depths of absorp-
+tion bands superimposed on that envelope. Atmosphere
+models presented here do not feature temperature inver-
+sions. As such, high opacity molecular lines have low
+ﬂux densities because they originate at high altitudes
+where the temperature is low. When clouds are thin, op-
+tical depth unity is achieved at very diﬀerent altitudes in
+and outside of absorption bands such as those at 3.3 µ m
+
+<<<PAGE 8>>>
+8
+(methane) and 4.5 µ m (primarily CO), and the bands
+appear deep.
+For a ﬁxed observed eﬀective temperature, thicker
+clouds translate into hotter temperature proﬁles (i.e. at
+a given pressure in the atmosphere, the temperature is
+higher) (e.g. Madhusudhan et al. 2011). The total Rosse-
+land mean optical depth of the atmosphere at a given
+pressure is higher (Madhusudhan et al. 2011). As the
+clouds become thicker, the τ = 1 surface also is more uni-
+form, such that molecular features wash out and the spec-
+trum overall appears ﬂatter and more like a blackbody
+(Burrows et al. 2006). Hence, the prominent molecular
+absorption bands seen in the best-ﬁt E60 (thin cloud)
+model are substantially reduced in the A60 (thick cloud)
+model, with AE60 lying in between. The planet’s ﬂat
+3–5 µ m SED is best ﬁt by A60.
+Although the χ 2 minima for all four of the models we
+consider are sharply peaked, none yield ﬁts falling within
+the 68% conﬁdence interval. The ﬁts from E60 and AE60
+are particularly poor, ruled out at a greater than 5- σ
+level, whereas the A60 model quantitatively does bet-
+ter but still is ruled out as an acceptably-ﬁtting model
+(C.L. ∼ 3.9-σ ). The best-ﬁt AMES-DUSTY model ﬁts
+the SED even better than A60, with parameters of Tef f
+= 1700 and log(g) = 3.5 and a radius of r = 1.35 RJ , sim-
+ilar parameters to those found in Bonnefoy et al. (2013).
+However, the best-ﬁt DUSTY model still falls outside
+the 68% conﬁdence limit (C.L. = 0.84). These exercises
+suggest that the atmospheric parameters assumed in the
+models need to be modiﬁed in order to better reproduce
+the β Pic b photometry. To achieve this, we restrict
+ourselves to thick clouds and consider more carefully the
+impact of dust size.
+4.2. A4, Thick Cloud/Small Dust Models
+4.2.1. The Eﬀect of Small Dust Particles
+Our analyses in the previous section show the extreme
+mismatch between standard L dwarf atmosphere models
+assuming thin clouds and large dust particles and the
+data. While our χ 2 values for the Burrows thick cloud,
+large dust particle models are systematically much lower,
+they likewise are a poor match to the data. In contrast,
+ﬁts from the AMES-DUSTY models only narrowly lie
+outside the 68% conﬁdence interval.
+A closer inspection of the best-ﬁtting models in each
+case (right-hand panels) illustrates how they fail. The
+main diﬃculty with matching these models to β Pic b
+spectrum is the planet’s ﬂat SED from 2 µm to 5 µm ,
+where models tend to underpredict the ﬂux density at
+3.1 µm and/or M ′. The slope from J to Ks is also a
+challenge. Reducing dust sizes can further ﬁll in absorp-
+tion troughs by increasing the opacities of the clouds.
+The AMES-DUSTY model, however, appears to over-
+correct as its spectrum exhibits sharp peaks due to its
+submicron sized grains that degrade its ﬁt to the data.
+Therefore, we consider grain sizes intermediate between
+those in A60 and AMES-DUSTY (e.g. ∼ 1–30 µm ).
+A4 Thick Cloud, Small Dust Particle Models –
+As the primary diﬀerence between these models is the
+typical/modal particle size, we here introduce a new set
+of atmosphere models with the same A-type, thick cloud
+assumption but with modal particle sizes slightly larger
+than those characteristic of dust in the AMES-DUSTY
+models but signiﬁcantly smaller than previous Burrows
+models. We nominally adopt 4 µm as our new modal
+particle size, comparable in wavelength to the peak ﬂux
+density of β Pic b in Fν units. Thus, we denote these
+models as “A4”, thick-cloud, small dust particle models.
+Figure 10 illustrates the eﬀect of dust on the planet
+spectrum for modal particle sizes of 3, 5, 30 and 50 µm
+and a temperature and surface gravity consistent with
+that expected to reﬂect β Pic b based on planet cool-
+ing models ( Tef f = 1600 K, log(g)=3.8-4, r ∼ 1.5 RJ )
+(Burrows et al. 1997; Baraﬀe et al. 2003; Lagrange et al.
+2010; Spiegel and Burrows 2012; Bonnefoy et al. 2013).
+As particle sizes decrease, the water absorption troughs
+at 1.8 µm and 2.5 µm diminish. Likewise ﬁlled in
+is the deep absorption trough at ∼ 3.3 µm and 4.5
+µm that is usually diagnostic of carbon chemistry (e.g.
+Hubeny and Burrows 2007; Galicher et al. 2011). Over-
+all, the spectrum ﬂattens and becomes redder (shorter
+wavelength emission originates at higher altitudes), with
+weaker emission and a steeper slope at J to Ks. This
+reddening explains the diﬀerence in best-ﬁt eﬀective tem-
+perature between the AMES-DUSTY model and the 60
+µ m dust models.
+4.2.2. Model Fitting Procedure
+We follow the steps outlined in Currie et al. (2011a),
+where we perform two runs: one ﬁxing the planet radius
+to the Burrows et al. (1997) hot-start predictions for a
+given Tef f and log(g) and another where we consider a
+range of planet radii (as in the previous section). For the
+ﬁxed-radii modeling, the 68% and 95% conﬁdence limits
+now lie at χ 2 = 7.01 and 12.6, respectively, whereas they
+are at 5.87 and 11.06 for the varying-radii ﬁts as before.
+Similar to the Burrows A/E60 model runs, we consider
+a range of temperatures between 1400 K and 1900 K. To
+explore whether or not the ﬁts are sensitive to surface
+gravity, we consider models with log(g) = 3.6, 3.8, 4,
+and log(g) = 4.25. For the age of β Pic (formally, 8 to 20
+Myr), this surface gravity range fully explores the masses
+(in the hot-start formalism) allowed given the radial-
+velocity dynamical mass limits (Lagrange et al. 2012a).
+To further explore the eﬀect that carbon chemistry
+may have on our planet spectra, we take the best-ﬁtting
+model from the above exercise, signiﬁcantly enhance the
+methane abundances over solar and re-run a small grid
+of temperatures based on that, to determine if depar-
+tures from solar abundances may yield a wider range of
+acceptable atmosphere parameters. Because variations
+in molecular abundances aﬀect the depths of molecular
+absorption bands, we expect that such variations may
+improve our ﬁt.
+4.2.3. Results
+Figures 11 and 12 and Table 8 present our results for
+ﬁtting the β Pic b data with the A4, thick cloud/small
+dust models. Quantitatively, these models better repro-
+duce the β Pic b SED. Fixing the planet radius to val-
+ues assumed in the Burrows et al. (1997) planet cooling
+model, we ﬁnd one atmosphere model – log(g) = 3.8, Tef f
+= 1600 K – consistent with the data to within the 68%
+conﬁdence interval. A wide range of models are consis-
+tent with the data at the 95% conﬁdence limit, covering
+± 0.2 dex in surface gravity and ± 100 K in temperature.
+
+<<<PAGE 9>>>
+9
+We can slightly improve upon these ﬁts if we allow
+the planet radius to freely vary. In this case, the best-
+ﬁtting models yield a slightly higher surface gravity of
+log(g) = 4–4.25 but the same temperature of 1600 K.
+But in contrast to the ﬁxed-radius case above, a wide
+range of models are consistent with the data at the 68%
+conﬁdence limit. In particular, all surface gravities con-
+sidered in our model grid are consistent with the data
+provided that the temperature is 1600 K and the radius
+is rescaled accordingly: log(g) = 3.6–4.25, Tef f = 1600
+K. Another set of models with the full range of surface
+gravities and 250 K spread in temperature (1500–1750
+K) are marginally consistent with the data.
+The methane-enhanced models are shown in Figure 13
+for log(g)=4 and Tef f = 1575–1650 K. The 1575 K and
+1600 K models (Figure 13) likewise produce good ﬁts
+to the data ( χ 2 = 5.13–5.3), where the 1650 K model
+barely misses the 68% cutoﬀ. Thus, while best-ﬁtting
+solar abundance models appear narrowly peaked at Tef f
+= 1600 K, the range in temperature enclosing the 68%
+conﬁdence interval is larger when non-solar abundances
+are considered, at least extending from 1575 K to almost
+1650 K. Changes in molecular abundances, as expected,
+allow us to very slightly improve the SED ﬁt. However,
+thick clouds and small dust grains are likely still needed
+to match the emission from β Pic b, since given molecules
+(i.e. CH4) by themselves do not change ﬂuxes compara-
+bly at 1–3 µ m and 3–5 µ m.
+In summary, adopting the Burrows et al. (1997) hot-
+start models to set our planet radii and the A4 thick
+cloud/small dust atmosphere models, we derive log(g) =
+3.8 and Tef f = 1600 K for β Pic b. Allowing the radius
+to vary and considering non-solar carbon abundances we
+derive log(g) = 3.6–4.25 and Tef f = 1575–1650 K, mean-
+ing that the planet temperature is well constrained but
+the surface gravity is not. However, in Section 5 we nar-
+row the range of surface gravities to log(g) = 3.8 ± 0.2,
+as higher surface gravities imply planet masses ruled out
+by dynamical estimates.
+4.2.4. Varying Grain Sizes and Fits Over Other Model
+Parameter Space
+The models considered in the previous subsections as-
+sume thick clouds, dust grains with a modal size of 4
+µm , and (in most cases) solar abundances. Although we
+achieve statistically signiﬁcant ﬁts to the β Pic b pho-
+tometry with these models, our exploration of model pa-
+rameter space is still limited. While an exhaustive pa-
+rameter space search is beyond the scope of this paper,
+here we argue that models either thick clouds or small
+dust grains are unlikely to produce good-ﬁtting models.
+Thus, small grains and thick clouds are likely important
+components of β Pic b’s atmosphere required in order to
+ﬁt the planet’s spectrum.
+To consider the robustness of our results concerning
+the modal grain size, we also ran some model ﬁts for
+modal particle sizes of 3 µm , 5 µm , 10 µm , and 30 µm .
+The models with 3 and 5 µm modal sizes yielded ﬁts
+slightly worse than those with modal sizes of 4 µm . For
+example, models with modal sizes of < a > = 3 and 5
+µm , Tef f = 1600 K, log(g) = 3.8 and a freely-varying
+planet radius yield χ 2 6.31 and 6.28, respectively. These
+values lie slightly outside the 68% conﬁdence interval,
+although they are still smaller than those from the best-
+ﬁt DUSTY models. In contrast, models with < a > =
+10 µm and 30 µm ﬁt the data signiﬁcantly worse ( χ 2 =
+10.0 and 19.6, respectively).
+Similarly, our investigations show that small dust
+grains do not obviate the need to assume thick, A-type
+clouds in our atmosphere models. For example, adopting
+the AE-type cloud prescription, modal particle sizes of
+5 µm , a temperature of Tef f = 1600 K, and a surface
+gravity of log(g) = 3.8–4, our model ﬁts are substanti-
+ailly worse than the A4-type models and even the AMES-
+DUSTY models and are easily ruled out ( χ 2 ∼ 15–40).
+The AE-type cloud prescription fails to reproduce the β
+Pic b spectrum because by conﬁning clouds to a thinner
+layer the τ = 1 surface varies too much in and out of
+molecular absorption features such as CH4 and CO. In
+disagreement with the β Pic b SED, the AE model spec-
+tra thus have suppressed emission at ≈ 3 µm and 5 µm
+and an overall shape looking less like a blackbody.
+In contrast, non-solar abundances may slightly widen
+the range of parameter space (in radius, temperature,
+gravity, etc.) yielding good ﬁts. The methane-rich model
+from the previous section adopting < a > = 5 µm instead
+of 4 µm , log(g) = 3.8, and Tef f = 1600 K still yields a ﬁt
+in agreement with the data to within the 68% conﬁdence
+limit ( χ 2 = 5.59). Thus, within our atmosphere model-
+ing approach we need 1) grains several microns in size,
+comparable to the typical sizes of grains in debris disks,
+and 2) thick clouds to yield ﬁts consistent with the data
+to within the 68% conﬁdence limit. These results are
+not strongly sensitive to chemical abundances although
+varying the range of abundances may slightly widen the
+corresponding range of other parameter space (in tem-
+perature, gravity, etc.) yielding good-ﬁtting models.
+5. PLANET RADII, LUMINOSITIES, MASSES, AND
+EVOLUTION
+From the set of models that reproduce the β Pic b
+SED to the 68% conﬁdence interval, we derive a range
+of planet radii, luminosities and inferred masses. The
+planet radii for each model run are given in Table 8. In-
+terestingly, all of our 1- σ solutions fall on or about R
+∼ 1.65 RJ with very little dispersion ( ± ∼ 0.05 dex).
+If we consider the range of radii for a given atmosphere
+model consistent with the data to within the 68% (or
+95%) conﬁdence interval regardless of whether the given
+radius is the best-ﬁt one, then the range in accept-
+able radii marginally broadens: r = 1.65 ± 0.06. Note
+that these radii are larger than those inferred for HR
+8799 bcde based either on its luminosity and hot-start
+cooling tracks (Marois et al. 2008, 2010a) or from at-
+mosphere modeling, where in Currie et al. (2011a) and
+Madhusudhan et al. (2011) our best-ﬁt models typically
+had R ∼ 1.3 RJ . The range in inferred planet luminosi-
+ties is even narrower, The values inferred from our best-
+ﬁt models center on log( L/L⊙)= -3.80 with negligible
+intrinsic dispersion ( ± 0.01 dex). The uncertainty in β
+Pic’s distance aﬀects both our radius and luminosity de-
+terminations. Treating the distance uncertainty ( ± 1 pc)
+as a separate, additive source of error, β Pic b’s range in
+radii is 1.65 ± 0.06 RJ and its luminosity is log( L/L⊙)=
+-3.80 ± 0.02.
+From our best-ﬁt surface gravities and inferred radii,
+we can derive the mass of the planets inferred from
+our modeling. Adopting the hot-start formalism with-
+
+<<<PAGE 10>>>
+10
+out rescaling the radius, our modeling implies a best-
+ﬁt planet mass of ∼ 7 MJ ; the range covering the 95%
+conﬁdence limit of 5–9 MJ . If we allow the radius to
+freely vary, we derive a range of 4 MJ to 18.7 MJ ,
+where the spread in mass reﬂects primarily the spread
+in surface gravity from best-ﬁtting models (log(g) = 3.6–
+4.25). However, R V data limits β Pic b’s mass to be
+less than 15 MJ if its semimajor axis is less than 10
+AU , which appears to be the case (Lagrange et al. 2012a;
+Chauvin et al. 2012; Bonnefoy et al. 2013). Thus, limit-
+ing the atmosphere models to those whose implied masses
+do not in violate the R V upper limits (ones with log(g) =
+3.6–4), our best-estimated (68% conﬁdence limit) planet
+masses are ∼ 7+4
+−3 MJ.
+Planets cool and contract as a function of time, and
+we can compare our inferred luminosities and radii to
+planet cooling models. Figure 14 compares the inferred
+planet luminosity to the hot-start planet evolution mod-
+els from Baraﬀe et al. (2003). For context, we also show
+the luminosities of other 5–100 Myr old companions with
+masses that (may) lie below 15 MJ : GSC 06214 B,
+1RXJ 1609 B, HR 8799 bcde, AB Pic B, and κ And b.
+From our revised luminosity estimate, the Baraﬀe et al.
+(2003) hot-start models imply a mass range of ∼ 8–12
+MJ if the planet’s age is the same as the star’s inferred
+age (12 +8
+−4 Myr; Zuckerman et al. 2001). If we use the
+Burrows et al. (1997) hot-start models, we obtain nearly
+identical results of 9–13 MJ . These masses are slightly
+higher than most of the implied masses from our atmo-
+sphere modeling but still broadly consistent with them
+and with the dynamical mass upper limits of 15 MJ from
+Lagrange et al. (2012a). Note also that the luminosities
+and planet radii are completely inconsistent with pre-
+dictions from low-entropy, cold-start models for planet
+evolution.
+Still, the righthand panel of Figure 14 highlights one
+possible complication with our results, namely that our
+best-estimated planet radii are near the upper end of
+the predicted range for 5–10 MJ companions in the hot-
+start formalism. For the hot-start models presented
+in Burrows et al. (1997) and Baraﬀe et al. (2003), 5–
+10 MJ companions are predicted to have radii of ∼
+1.5–1.6 RJ . For the hot-start models presented in
+Spiegel and Burrows (2012), the predicted range for 5–10
+MJ planets covers ≈ 1.4–1.5 MJ 13.
+To reduce the planet radius of ∼ 1.65 RJ by ∼ 10%
+while yielding the same luminosity requires raising the
+eﬀective temperature from ≈ 1600 K to ∼ 1700 K. This
+is a small change and atmospheric modeling of β Pic b
+and similar substellar objects is still in its early stages.
+Thus, it is quite plausible that future modeling eﬀorts,
+leveraging on additional observations of β Pic b and those
+of other planets with comparable ages and luminosities,
+will ﬁnd quantitatively better ﬁtting solutions that im-
+ply smaller planet radii and higher temperatures. We
+consider this to be the most likely explanation.
+13 This mismatch does not mean that the AMES-DUSTY mod-
+els, whose ﬁts to the data imply planet radii of ≈ 1.3 RJ and lie
+just outside the 68% conﬁdence limit, are preferable. The be st-
+ﬁt AMES-DUSTY radii lie below the radii predicted for 5–10 MJ
+objects at β Pic b’s age and are only consistent for ‘warm-start’
+models that imply lower luminosities and colder temperatur es than
+otherwise inferred from the AMES-DUSTY ﬁts.
+Alternatively, we can bring the atmosphere modeling-
+inferred radius into more comfortable agreement with
+hot-start evolutionary models if β Pic b is ≈ 7 Myr old
+or less. For a system age of ≈ 12 Myr, this is consistent
+with it forming late in the evolution of the protoplan-
+etary disk that initially surrounded the primary. Even
+adopting the lower limit on β Pic’s age (8 Myr), β Pic
+b may still need to be younger than the star. While
+most signatures of protoplanetary disks around 1–2 M⊙
+stars disappear within 3–5 Myr, some ∼ 10–20% of such
+stars retain their disks through 5 Myr (Currie et al. 2009;
+Currie and Sicilia-Aguilar 2011; Fedele et al. 2010). Sev-
+eral 1–2 M⊙ members of Sco-Cen and h and χ Persei ap-
+parently have even retained their disks for more than 10
+Myr (Pecaut et al. 2012; Bitner et al. 2010; Currie et al.
+2007), comparable to or greater than the age of β Pic.
+Models for even rapid planet formation by core accre-
+tion predict that several Myrs elapse before the cores
+are massive enough to undergo runaway gas accretion
+at β Pic-like separations (Kenyon and Bromley 2009;
+Bromley and Kenyon 2011).
+In Figure 14 the open circles depict a case where β
+Pic b formed after 5 Myr, eﬀectively making the planet
+5 Myr younger than the star, where the implied masses
+and radii overlap better with our atmospheric modeling-
+inferred values. The overlap is even better for some hot-
+start models such as COND, which predict larger planet
+radii at ≈ 5–10 Myr than depicted here. Note that a
+young β Pic b as depicted in Figure 14 with an implied
+mass mass of M ≥ 5 MJ is still consistent with a scenario
+where the planet produces the warped secondary disk
+(c.f. Dawson et al. 2011).
+6. DISCUSSION
+6.1. Summary of Results
+This paper presents and analyzes new/archival
+VLT/NaCo and Gemini/NICI 1–5 µm photometry for
+β Pictoris b, These data allow a detailed comparison be-
+tween β Pic b’s SED and that of ﬁeld brown dwarfs and
+other low-mass substellar objects such as directly imaged
+planets/candidates around HR 8799 and κ And. Using
+a range of planet atmosphere models, we then constrain
+β Pic b’s temperature, surface gravity and cloud proper-
+ties. Our study yields the following primary results.
+• 1. - The near-IR ( J HKs) colors of β Pic b appear
+fairly consistent with the ﬁeld L/T dwarf sequence.
+Compared to other young, low-mass substellar ob-
+jects, β Pic b’s near-IR colors bear the most resem-
+blance to late M to early T dwarfs such as Luh-
+man 16B and κ And b. From its near-IR colors
+and color-magnitude positions, β Pic b’s near-IR
+properties most directly resemble those of a L2–L5
+dwarf.
+• 2. - β Pic b’s mid-IR properties identify a signiﬁ-
+cant departure from the ﬁeld L/T dwarf sequence.
+The planet is slightly overluminous at L′ and signif-
+icantly overluminous at M ′, with deviations from
+the ﬁeld L dwarf sequence matched only by GSC
+06214B and κ And b. The mid-IR portion of β Pic
+b’s SED appears more like that of a late L dwarf
+or low surface gravity mid L dwarf. The broad-
+band J HKsL′ photometry for β Pic b also closely
+
+<<<PAGE 11>>>
+11
+resembles that of κ And b. However, it is unclear
+whether any object matches β Pic b’s SED at all
+wavelengths for which we have measurements. Its
+3.1 µm brightness and 3.8–5 µm spectral shape are
+particularly diﬃcult to match.
+• 3. – Compared to limiting-case atmosphere mod-
+els E60 (large dust conﬁned to very thin clouds),
+AE60/A60 (large dust conﬁned to moderately-
+thick/thick clouds) and DUSTY (copious small
+dust everywhere in the atmosphere), β Pic b ap-
+pears to have evidence for thick clouds consistent
+with a high Tef f and low surface gravity. We fail to
+ﬁnd any E60/AE60/A60 model providing statisti-
+cally signiﬁcant ﬁts over a surface gravity range of
+log(g) = 4–4.5 and any Tef f. The DUSTY models
+come much closer to yielding statistically signiﬁ-
+cant ﬁts but mismatch the planet ﬂux at J, Ks,
+[3.1], and M ′. From these ﬁducial comparisons, we
+infer that β Pic b’s atmosphere shows evidence for
+clouds much thicker than those assumed in the E60
+models but is slightly less dusty than the DUSTY
+models imply.
+• 4. – Using thick cloud models with particle sizes
+slightly larger than those found in the interstellar
+medium ( < a > = 4 µm ), we can match β Pic b’s
+SED in both the near and mid IR. Assuming planet
+radii appropriate for the Burrows et al. (1997) ‘hot-
+start’ models, we derive log(g) = 3.80 and Tef f =
+1600 K for β Pic b. Allowing the radius to freely
+vary, leaves the surface gravity essentially uncon-
+strained, where models consistent with the data at
+the 68% conﬁdence limit include log(g) = 3.6–4.25
+and Tef f = 1600 K. Considering departures from
+solar abundances and eliminating models that im-
+ply masses ruled out by dynamical estimates, the
+acceptably ﬁtting range of atmosphere parameters
+cover log(g) = 3.6–4 and Tef f = 1575–1650 K.
+• 5. – Using our best-ﬁt atmosphere models and
+eliminating models inconsistent with β Pic b’s dy-
+namical mass upper limit, within the hot-start for-
+malism we derive a mass of 7 MJ for a ﬁxed ra-
+dius and 7 +4
+−3 MJ for a scaled radius. Our best-ﬁt
+planet radius is ∼ 1.65 ± 0.06 RJ and luminosity
+of log(L/L ⊙) = -3.80 ± 0.02.
+• 6. – While our derived luminosity and radius for
+β Pic b rules out cold start models, the radius is
+near the upper end of predicted radii for hot start-
+formed planets with β Pic’s age. As the planet only
+needs to be ∼ 100 K hotter to easily eliminate this
+discrepancy, it likely identiﬁes a limitation of the
+atmosphere models. Alternatively, if β Pic b has a
+signiﬁcantly younger age than the star’s age con-
+sistent with it forming late in the protoplanetary
+disk stage our derived radius is comfortably within
+the range predicted by hot start models.
+6.2. Comparisons to Other Recent β Pictoris b Studies
+6.2.1. Currie et al. 2011b
+In our ﬁrst-look analysis of the atmosphere of β Pic-
+toris b (Currie et al. 2011b), we compared its Ks, L′,
+and [4.05] photometry to an array of atmosphere mod-
+els, from atmospheres completely lacking clouds to those
+with the Model A-type thick clouds that extend to
+the visible surface of the atmosphere. In that pa-
+per, we found that the AE thick cloud models from
+Madhusudhan et al. (2011) yielded the smallest χ 2 value.
+The ﬁts degraded at about the same level for the Model A
+thick cloud and Model E “normal” L dwarf atmosphere
+prescriptions, while the cloudless case fared the worst.
+Currie et al. (2011b) conclude that while the AE thick
+cloud model quantitatively produced the best ﬁt, the ex-
+isting data were too poor to say whether the clouds in β
+Pictoris b were any diﬀerent in physical extent, in mean
+dust particle size, etc. from those for ﬁeld L dwarfs with
+the same range of temperatures.
+Our present study greatly improves upon the analyses
+in Currie et al. (2011b). First, our photometry covers
+seven passbands, not three, at 1.25–4.8 µm , not 2.18–4.05
+µm . This expanded coverage allows far ﬁrmer constraints
+on β Pic b’s atmospheric properties. In particular, our
+new photometry strongly favors the Model A thick-cloud
+prescription over AE, largely due to the relatively low
+planet ﬂux densities at 1.25–1.65 µm and the relatively
+high ﬂux densities at 3.1 µm and M ′/4.8 µm , trends that
+the Model A cases consistently reproduce better. While
+all models considered in Currie et al. (2011b) assumed a
+modal particle size of 60 µm for dust entrained in clouds,
+our ﬁts improve if we use smaller sizes. The combined
+eﬀect of thicker clouds and smaller particle sizes favor
+atmosphere models with a slightly higher surface gravity
+and temperature than the best-ﬁt model in Currie et al.
+(2011b). Our new data more clearly demonstrate the fail-
+ure of the E models successful in ﬁtting most of the ﬁeld
+L dwarf sequence and thus better distinguish β Pic b’s
+atmosphere from that of a typical cloudy ﬁeld L dwarf.
+6.2.2. Bonnefoy et al. (2013)
+Bonnefoy et al. (2013) presented new photometry for
+β Pictoris b in the J, H, and M ′ ﬁlters from data taken
+in 2011 and 2012. The J and H detections are ﬁrsts
+and greatly expand the wavelength coverage for β Pic
+b’s SED. Their M ′ detection is ﬁrst well-calibrated detec-
+tion, building upon and following the detection presented
+in Currie et al. (2011b), which lacked a contemporane-
+ous ﬂux-calibration data to provide precise photometry.
+They then combined these measurements with their pre-
+viously published Ks and L′ photometry and [4.05] from
+Quanz et al. (2010).
+In general, our study clariﬁes and modiﬁes, instead of
+contradicting, the picture of β Pictoris b constructed in
+Bonnefoy et al. (2013). On the same datasets, the SNR
+of our detections is slightly higher but our photometry
+agrees within theirs derived from their CADI, RADI, and
+LOCI reductions within their adopted photometric un-
+certainties ( ∼ 0.2–0.3 mag). We derive smaller photo-
+metric uncertainties, owing to a more uniform through-
+put as a function of azimuthal angle, probably due to our
+pixel masking technique and SVD cutoﬀ in A-LOCI (see
+also Marois et al. 2010b). We concur that the planet’s
+mid-IR colors are unusually red and highlight a poten-
+tially strong, new disagreement with ﬁeld L dwarfs at 3.1
+µm .
+We agree with Bonnefoy et al.’s general result that
+the best-ﬁtting atmosphere models are those interme-
+
+<<<PAGE 12>>>
+12
+diate between the AMES-DUSTY models (submicron-
+sized dust everywhere) and the COND or BT-Settl mod-
+els (no dust/clouds or very thin clouds). Quantitatively,
+the χ 2 values we derive are much larger than the best-
+ﬁtting models in Bonnefoy et al. because our photomet-
+ric uncertainties are signiﬁcantly smaller (e.g. 7 vs. 3 for
+AMES-DUSTY). Our analyses point to thick clouds and
+particle sizes small compared to the range typically used
+in the Burrows et al. (2006) models but larger than the
+ISM-like grains in the AMES-DUSTY models. The tem-
+peratures, surface gravities, and luminosities they derive
+are generally consistent with our best-ﬁt values.
+While they derive a lower limit to the initial entropy
+of 9.3 kB/baryon, we do not provide a detailed simi-
+lar analysis since the inferred entropy range depends on
+the planet radius which, considering our studies together,
+is very model dependent. Similarly, it depends on the
+planet mass (for which there still is some range) and the
+planet’s age (which is very poorly constrained). Still, we
+agree that cold start models are ruled out for β Pic b as
+they fail to reproduce the inferred luminosity and radii
+of the planet determined from both our studies.
+6.3. Future Work to Constrain β Pic b’s Properties
+Deriving β Pic b’s mass and other properties is diﬃ-
+cult since they are based on highly uncertain parameters
+such as the planet’s age and its entropy at formation.
+However, dynamical mass limits can be derived from
+continued radial-velocity measurements (Lagrange et al.
+2012a). As these limits depend on β Pic b’s orbital pa-
+rameters, future planet astrometry may be particularly
+important in constraining β Pic b’s mass. If β Pic b
+is responsible for the warp observed in the secondary
+debris disk (Golimowski et al. 2006), planet-disk inter-
+action modeling can likewise yield a dynamical mass es-
+timate (Lagrange et al. 2009a; Dawson et al. 2011) pro-
+vided the planet’s orbit is known.
+Finally, while our models nominally assume solar abun-
+dances, we showed that changing the methane abundance
+might yield marginally better ﬁts to the data. Near-
+infrared spectroscopic observations of β Pic b as can be
+done soon with GP I and SP HERE may clarify its at-
+mospheric chemistry. Future observations with GMT-
+NIRS on the Giant Magellan Telescope should be capa-
+ble of resolving molecular lines in β Pic b’s atmosphere
+(Jaﬀe et al. 2006), providing a more detailed look at its
+chemistry, perhaps even constraining its carbon to oxy-
+gen ratio and formation history (e.g Oberg et al. 2011;
+Konopacky et al. 2013).
+We thank Christian Thalmann, France Allard, and
+the anonymous referee for helpful comments and discus-
+sions and Michael Cushing for providing IRTF/SPeX and
+Subaru/IRCS spectra of ﬁeld L dwarfs. We are grate-
+ful to the telescope staﬀs at ESO Paranal Observatory
+and Gemini-South Cerro Pachon Observatory for sup-
+port for our observations, all of which were obtained with
+“delegated visitor mode” or “eavesdropping mode”. Fi-
+nally, we thank Christian Marois for very detailed dis-
+cussions on image processing techniques and extensive
+helpful suggestions that improved this manuscript. T.
+C. acknowledges support from a McLean Postdoctoral
+Fellowship. R. D. acknowledges NSF-GRFP grant DGE-
+1144152.
+REFERENCES
+Allard, F., et al., 2001, ApJ, 556, 357
+Amara, A., Quanz, S., 2012, MNRAS, 427, 948
+Baraﬀe, I., et al., 2003, A&A, 402, 701
+Bailey, V., Hinz, P., Currie, T., et al., 2013, ApJ, 767, 31
+Bejar, V. J., et al., 2008, ApJ, 673, L185
+Beuzit, J.-L., et al., 2008, SPIE, 7014, 41
+Biller, B., et al., 2010, ApJ, 720, 82L
+Bitner, M., et al., 2010, 714, 1542
+Boccaletti, A., et al., 2013, A&A, 551, L14
+Bonnefoy, M., et al., 2010, A&A, 512, 52
+Bonnefoy, M., et al., 2011, A&A, 528, 15L
+Bonnefoy, M., et al., 2013a, A&A, 555, 107
+Bowler, B., et al., 2010, ApJ, 733, 850
+Bowler, B., et al., 2011, ApJ, 743, 148
+Bromley, B., Kenyon, S. J., 2011, ApJ, 731, 101
+Burgasser, A., et al., 2013, ApJ submitted, arXiv:1303.728 3
+Burrows, A., et al., 1997, ApJ, 491, 856
+Burrows, A., et al., 2006, ApJ, 640, 1063
+Carson, J., et al., 2013, ApJ, 763, L32
+Chauvin, G., et al., 2004, A&A, 425, 29L
+Chauvin, G., et al., 2005, A&A, 438, L29
+Chauvin, G., et al., 2012, A&A, 542, 41
+Cohen, M., et al., 1995, AJ, 110, 275
+Cohen, M, et al., 2003, AJ, 126, 1090
+Currie, T., et al., 2007, 669, L33
+Currie, T., Lada, C. J, et al., 2009, ApJ, 698, 1
+Currie, T., Bailey, V., et al., 2010, ApJ, 721, L177
+Currie, T., Burrows, A., et al., 2011, ApJ, 729, 128
+Currie, T., Thalmann, C., et al., 2011, ApJ, 736, L33
+Currie, T., Sicilia-Aguilar, A., 2011, ApJ, 732, 24
+Currie, T., et al., 2012a, ApJ, 760, L32
+Currie, T., et al., 2012b, ApJ, 755, L34
+Currie, T., et al., 2012c, ApJ, 757, 28
+Cushing, M., et al., 2005, ApJ, 623, 1115
+Cushing, M., et al., 2008, ApJ, 678, 1372
+Dawson, R., et al., 2011, ApJ, 743, L17
+Deirmendjian, D., 1964, Appl. Opt., 3, 87
+Delorme, P., et al., 2013, A&A, 553, L5
+Fabrycky, D., Murray-Clay, R., 2010, ApJ, 710, 1408
+Fedele, D., et al., 2010, A&A, 510, 72
+Fortney, J., et al., 2008, ApJ, 683, 1104
+Galicher, R., et al., 2011, ApJ, 739, L41
+Galicher, R., Marois, C., et al., 2013, in prep.
+Girard, J, et al., 2012, in Society of Photo-Optical
+Instrumentation Engineers (SPIE) Conference Series, Vol. 8447,
+Society of Photo-Optical Instrumentation Engineers (SPIE )
+Conference Series
+Golimowski, D., et al., 2006, AJ, 131, 3109
+Hauschildt, P., Baron, E., 1999, JCAM, 109, 41
+Hubeny, I., Burrows, A., 2007, ApJ, 669, 1248
+Ireland, M., et al., 2011, ApJ, 726, 113
+Jaﬀe, D., et al., 2006, SPIE, 6269, 166
+Kenyon, S., Bromley, B., 2009, ApJ, 690, L140
+Konopacky, Q., et al., 2013, Science, 339, 1398
+Kratter, K., et al., 2010, ApJ, 710, 1375
+Kraus, A., Ireland, M., 2012, ApJ, 745, 1
+Lafreni´ ere, D., et al., 2007a, ApJ, 670, 1367
+Lafreni´ ere, D., et al., 2007b, ApJ, 660, 770
+Lafreni´ ere, D., et al., 2008, ApJ, 689, L153
+Lafreni´ ere, D., et al., 2010, ApJ, 719, 497
+Lagrange, A.-M., et al., 2009, A&A, 493, L21
+Lagrange, A.-M., et al., 2010, Science, 329, 57
+Lagrange, A.-M., et al., 2012a, A&A, 542, L18
+Lagrange, A.-M., et al., 2012b, A&A, 542, L40
+Leggett, S., et al., 2010, ApJ, 710, 1627
+Lowrance, P., et al., 1999, ApJ, 512, L69
+Lowrance, P., et al., 2000, ApJ, 541, 390
+Luhman, K. L., et al., 2007, ApJ, 654, 570
+
+<<<PAGE 13>>>
+13
+TABLE 1
+Observing Log
+UT Date Telescope/Instrument Mode Pixel Scale Filter tint Nimages ∆PA
+(mas pixel −1) (s) (degrees)
+2011-12-16 VLT/NaCo Direct 13.22 J 50 48 26
+2012-01-11 VLT/NaCo Direct 13.22 H 40 92 34.6
+2012-12-15 VLT/NaCo Direct 27.1 M ′ 20 176 70.2
+2012-12-16 VLT/NaCo Direct 27.1 L′ 30 112 67.7
+2012-12-16 VLT/NaCo Direct 27.1 [4.05] 30 64 57.4
+2012-12-23 Gemini/NICI Direct 17.97 [3.09] 38 60 30.2
+2012-12-26 Gemini/NICI Direct 17.97 [3.09] 38 60 31.7
+2013-01-09 Gemini/NICI 0 .′′22 mask 17.97/17.94 H/Ks 11.4 117 41.1
+TABLE 2
+β Pictoris b Detections and Photometry
+UT Date Telescope/Instrument Filter W avelength ( µm ) SNR Apparent Magnitude Absolute Magnitude
+2011-12-16 VLT/NaCo J 1.25 9.2 14.11 ± 0.21 12.68 ± 0.21
+2012-01-01 VLT/NaCo H 1.65 30 13.32 ± 0.14 11.89 ± 0.14
+2013-01-09 Gemini/NICI H 1.65 6.4 13.25 ± 0.18 11.82 ± 0.18
+2013-01-09 Gemini/NICI K s 2.16 10 12.47 ± 0.13 11.04 ± 0.13
+2012-12-23 Gemini/NICI [3.09] 3.09 4.6 11.71 ± 0.27 10.28 ± 0.27
+2012-12-26 Gemini/NICI [3.09] 3.09 11 – –
+2012-12-16 VLT/NaCo L ′ 3.8 40 11.24 ± 0.08 9.81 ± 0.08
+2012-12-16 VLT/NaCo [4.05] 4.05 20 11.04 ± 0.08 9.61 ± 0.08
+2012-12-15 VLT/NaCo M ′ 4.78 22 10.96 ± 0.13 9.54 ± 0.13
+TABLE 3
+Sample Photometric NaCo and NICI Error Budgets
+Telescope/Instrument Filter Apparent Magnitude σ det σ atten σ f luxcal
+Gemini/NICI Ks 12.47 ± 0.13 0.11 0.06 0.03
+Gemini/NICI [3.09] 11.71 ± 0.27 0.24 0.11 0.08
+VLT/NaCo L′ 11.24 ± 0.08 0.03 0.07 0.03
+VLT/NaCo M ′ 10.96 ± 0.13 0.05 0.11 0.06
+Note. — The photometric uncertainty from the intrinsic SNR ( σ det) scales as
+1.0857/SNR.
+Luhman, K. L., 2013, ApJ, 767, L1
+Macintosh, B., et al., 2008, SPIE, 7015, 31
+Madhusudhan, N., Burrows, A., Currie, T., 2011, ApJ, 737, 34
+Marois, C., et al., 2006, ApJ, 641, 556
+Marois, C., et al., 2008, Science, 322, 1348
+Marois, C., et al., 2010a, Nature, 468, 1080
+Marois, C., et al., 2010b, SPIE, 7736, 52
+Martinache, F., Guyon, O., 2009, SPIE, 7440, 20
+Oberg, K., et al., 2011, ApJ, 743, L16
+Pascucci, I., et al., 2006, ApJ, 651, 1177
+Pecaut, M., et al., 2012, ApJ, 746, 154
+Quanz, S., et al., 2010, ApJ, 722, L49
+Raﬁkov, R., 2011, ApJ, 727, 86
+Rameau, J., et al., 2013, A&A, 553, 60
+Rayner, J., et al., 2009, ApJS, 185, 289
+Rieke, G. H., et al., 2008, AJ, 135, 2245
+Rodigas, T. J., et al., 2012, ApJ, 752, 57
+Rousset, G., et al., 2003, SPIE 4839, 140
+Skemer, A., et al., 2011, ApJ, 732, 107
+Skemer, A., et al., 2012, ApJ, 753, 14
+Soummer, R., Pueyo, L., Larkin, J., 2012, ApJ, 755, L28
+Spiegel, D., Burrows, A., 2012, ApJ, 745, 174
+Sudol, J., Haghighighpour, N., 2012, ApJ, 755, 38
+Thalmann, C., et al., 2009, ApJ, 707, L123
+Tokunaga, A., Vacca, W. D., 2005, PASP, 117, 421
+Vigan, A., et al., 2012, A&A, 544, 9
+W ahhaj, Z., et al., 2011, ApJ, 729, 139
+Whitney, B., et al., 2003, ApJ, 598, 1079
+Zuckerman, B., et al., 2001, ApJ, 562, L87
+
+<<<PAGE 14>>>
+14
+TABLE 4
+Young Directly Imaged Planets and Very Low-Mass Brown Dw arfs Us ed for Comparison
+Companion D (pc) Assoc. Age ST(Primary) ST(Companion) Sep. Mass References
+Planets/Planet Candidates
+HR 8799 b 39.4 ± 1 Columba 30 A5 ?? 67.5–70.8 4–5 1,2,3,4,5
+HR 8799 c 39.4 ± 1 Columba 30 A5 L/T? 42.1–44.4 ∼ 7 1,2,3,4,5
+HR 8799 d 39.4 ± 1 Columba 30 A5 L/T? 26.4–28.1 ∼ 7 1,2,3,4,5
+HR 8799 e 39.4 ± 1 Columba 30 A5 L/T? ∼ 15 ∼ 7 2,4,6
+κ And b 51.6 ± 0.5 Columba 30 B9IV L2–L8? 55 ± 2 11.8-14.8 7
+Low Mass
+Brown Dwarfs
+1RXJ 1609 B 145 ± 14 US 5–10 K7 L4 ± 2 330 6–12 8,9
+GSC 06214 B 145 ± 14 US 5–10 K7 L0 ± 1 320 ± 30 14 ± 2 10,11
+USco CTIO 108 B 145 ± 14 US 5–10 M7 M9.5 670 ± 64 6-16 12
+HIP 78530 B 156.7 ± 13.0 US 5–10 B9V M8 ± 1 710 ± 60 22 ± 4 11,13
+2M 1207 B 52.4 ± 1.1 TW A ∼ 8 M8 ?? 40.8 ± 9 8 ± 2 14
+2M 1207 A 52.5 ± 1.1 TW A ∼ 8 M8 M8 40.8 ± 9 24 ± 6 14
+TW A 5B 44.4 ± 4 TW A ∼ 8 M2Ve M8–M8.5 ∼ 98 ∼ 20 15
+HR 7329 B 47.7 ± 1.5 β Pic 12 A0 M7.5 200 ± 7 26 ± 4 16
+PZ Tel B 51.5 ± 2.6 β Pic 12 K0 M7 ± 2 17.9 ± 0.9 36 ± 6 17
+2M0103AB B 47.2 ± 3.1 Tuc-Hor? 30 M5/M6 L? 84 12–14 18
+AB Pic B 45.5 ± 1.8 Carina 30 K1Ve L0 ± 1 248 ± 10 13–14 19, 20
+Luhman 16 B 2.02 ± 0.15 Argus? 40? L7.5 T0.5 3.12 ± 0.25 40–65 21,22
+Luhman 16 A 2.02 ± 0.15 Argus? 40? L7.5 L7.5 3.12 ± 0.25 40–65 21,22
+CD-35 2722 B 21.3 ± 1.4 AB Dor ∼ 100 M1Ve L4 ± 1 67.4 ± 4 31 ± 8 23
+Note. — References: 1) Marois et al. (2008), 2) Currie et al. (2011 a), 3) Galicher et al. (2011), 4) Skemer et al. (2012), 5)
+Currie et al. (2012b), 6) Marois et al. (2010a), 7) Carson et a l. (2013), 8) Lafreni´ ere et al. (2008), 9) Lafreni` ere et al . (2010),
+10) Ireland et al. (2011), 11) Bailey et al. (2013), 12) Bejar et al. (2008), 13) Lafreni` ere et al. (2010), 14) Chauvin et a l. (2004),
+15) Lowrance et al. (1999), 16) Lowrance et al. (2000), 17) Bi ller et al. (2010), 18) Delorme et al. (2013), 19) Chauvin et a l.
+(2005), 20) Bonnefoy et al. (2010), 21) Luhman et al. (2013), 22) Burgasser et al. (2013), 23) Wahhaj et al. (2011)
+TABLE 5
+Photometry for Young Directly Imaged Planets and Very Low-Mas s Brown Dw arfs
+Companion J H K s [3.09] L′ M ′ χ 2
+βP icb C.L.
+Planets/Candidates
+HR 8799 b 16.52 ± 0.14 15.08 ± 0.17 14.05 ± 0.08 – 12.68 ± 0.12 13.07 ± 0.30 52.8 ∼ 1
+HR 8799 c 14.65 ± 0.17 14.18 ± 0.17 13.13 ± 0.08 – 11.83 ± 0.07 12.05 ± 0.14 6.098 0.893
+HR 8799 d 15.26 ± 0.43 14.23 ± 0.22 13.11 ± 0.08 – 11.50 ± 0.12 11.67 ± 0.35 8.351 0.961
+HR 8799 e – 13.88 ± 0.20 12.89 ± 0.26 – 11.61 ± 0.12 > 10.09 – –
+κ And b 12.7 ± 0.30 11.7 ± 0.20 11.0 ± 0.4 – 9.54 ± 0.09 – 0.946 0.186
+Low-Mass
+Brown Dwarfs
+1RXJ 1609 B 12.09 ± 0.12 11.06 ± 0.07 10.38 ± 0.05 9.84 ± 0.21 8.99 ± 0.30 – 1.369 0.287
+GSC 06214 B 10.43 ± 0.04 9.74 ± 0.04 9.14 ± 0.05 8.60 ± 0.08 7.94 ± 0.07 7.94 ± 0.30 7.001 0.864
+USco CTIO 108 B 10.72 ± 0.09 9.94 ± 0.08 9.30 ± 0.11 – – – – –
+HIP 78530 B 9.25 ± 0.05 8.58 ± 0.04 8.36 ± 0.04 – 7.99 ± 0.06 – 88.086 ∼ 1
+2M 1207 B 16.40 ± 0.2 14.49 ± 0.21 13.31 ± 0.11 – 11.68 ± 0.14 – 20.601 ∼ 1
+2M 1207 A 9.35 ± 0.03 8.74 ± 0.03 8.30 ± 0.03 – 7.73 ± 0.10 – 48.044 ∼ 1
+TW A 5B 9.1 ± 0.2 8.65 ± 0.06 7.91 ± 0.2 – – –
+HR 7329 B 8.64 ± 0.19 8.33 ± 0.1 8.18 ± 0.1 – 7.69 ± 0.1 – 59.455 ∼ 1
+PZ Tel B 8.70 ± 0.18 8.31 ± 0.15 7.86 ± 0.19 – – – – –
+2M0103AB B 12.1 ± 0.3 10.9 ± 0.2 10.3 ± 0.2 – 9.3 ± 0.1 – 2.666 0.736
+AB Pic B 12.80 ± 0.10 11.31 ± 0.10 10.76 ± 0.08 – 9.9 ± 0.1 – 11.231 0.996
+Luhman 16 B 14.69 ± 0.04 13.86 ± 0.04 13.20 ± 0.09 – – – –
+Luhman 16 A 15.00 ± 0.04 13.84 ± 0.04 12.91 ± 0.04 – – – –
+CD-35 2722 B 11.99 ± 0.18 11.14 ± 0.19 10.37 ± 0.16 – – – –
+Note. — We only quantitatively compare the photometry between β Pic b and those objects with full JHK sL′
+photometry.
+
+<<<PAGE 15>>>
+15
+TABLE 6
+Adopted Flux Density
+Zero-Points
+Filter λ o (µm ) F ν,o (Jy)
+J 1.25 1594
+H 1.65 1024
+Ks 2.15 666.20
+[3. 09] 3.09 356
+L′ 3.78 248
+[4. 05] 4.05 207
+M′ 4.78 154
+TABLE 7
+β Pictoris b Atmosphere Modeling Grid
+Model Range References
+Tef f log(g) Rp (RJ )
+Limiting Cases
+E60 1000-1800 4–4.5 0.9–2 1
+AE60 1000-1700 4–4.5 0.9–2 2
+A60 1000-1700 4–4.5 0.9–2 1,3
+AMES-DUSTY 1000-2000 3.5–4.5 0.9–2 4
+New Models
+A4 1400-1900 3.6–4.25 0.9–2 a 5
+Note. — a) In our modeling, we perform two runs for the
+A4 models: one where we ﬁx the radius to values adopted
+in the Burrows et al. (1997) hot-start models and one where
+we allow the radius to freely vary between 0.9 RJ and 2 RJ .
+References: 1) Burrows et al. (2006), 2) Madhusudhan et al.
+(2011), 3) Currie et al. (2011a), 4) Allard et al. (2001), and 5)
+this work.
+TABLE 8
+Model Fitting Results
+Model χ 2
+min log(g), T ef f, R(R J ) (for χ 2
+min) log(g), T ef f, R(R J ) (68%) log(g), T ef f, R(R J ) (95%)
+E60 53.80 4.0, 1400 K, 1.79 – –
+AE60 37.70 4.5, 1400 K, 1.96 – –
+A60 19.99 4.5, 1400 K, 2.05 – –
+AMES-DUSTY 7.14 3.5, 1700 K, 1.35 – 3.5–4, 1700 K, 1.32–1.35
+A4 (ﬁxed radius) 5.85 3.8, 1600 K, 1.65 3.8, 1600 K, 1.65 3.6, 1 500–1550 K, 1.79–1.80
+3.8, 1550–1625 K, 1.65
+4.0, 1650–1700 K, 1.54
+A4 (scale) 5.82 4–4.25, 1600 K, 1.65 3.6–4.25, 1600 K, 1.64–1 .66 3.6–4.25, 1500–1750 K, 1.44–1.82
+A4 (1% CH4, scale) 5.13 4, 1575 K, 1.71 4, 1575–1650 K, 1.59–1.71 4, 1575 –1650 K, 1.59–1.71.
+Note. — The χ 2 values quoted here do not refer to χ 2 per degree of freedom. The columns for A4 (fixed radius) do no t have a range in radius in some columns
+because only one model (with a fixed radius) identifies the χ 2 minimum
+
+<<<PAGE 16>>>
+16
+Fig. 1.— Processed Gemini-NICI images obtained at H band (top-left), Ks band (top-right), and the H20 ﬁlter centered on ∼ 3.1 µm
+(bottom panels: 23 Dec 2012 data on bottom-left, 26 Dec 2012 d ata on the bottom right). For clarity, we mask the region inte rior to ∼
+0.′′4 and convolve the image with a gaussian equal to the image FWH M. The planet β Pic b is in the lower-right at a position angle of ∼
+210o and a separation of ∼ 0.′′46. The color scale is set such that over the planet’s FWHM the pixel color is white.
+Fig. 2.— Processed VLT/NaCo J (left) and H (right) band images presented in the same manner as Figure 1. Owing to very good
+speckle suppression, the H-band data’s eﬀective inner working angle beyond which we ar e sensitive to β Pic b-brightness companions is
+signiﬁcantly smaller than for the J band data and the preceding NICI images ( rIW A = 0 .′′2).
+
+<<<PAGE 17>>>
+17
+Fig. 3.— Processed VLT/NaCo L′ (left), [4.05] (middle), and M ′ (right) images presented as in Figures 1 and 2.
+
+<<<PAGE 18>>>
+18
+Fig. 4.— Classical ADI reduction of our L′ data showing a clear detection of the β Pic debris disk. The green dot denotes the position
+of β Pic b in the disk.
+
+<<<PAGE 19>>>
+19
+-0.5 0.0 0.5 1.0 1.5
+H-Ks
+-0.5
+0.0
+0.5
+1.0
+1.5
+2.0
+J-H
+β Pic b
+Planets/Low-Mass Brown Dwarfs
+M Dwarfs
+L0-L4 Dwarfs
+L5-L9 Dwarfs
+T Dwarfs
+-1 0 1 2 3
+J-Ks
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0Ks-L
+-1.0 -0.5 0.0 0.5 1.0 1.5 2.0
+H-Ks
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+3.5Ks-L
+0.0 0.5 1.0 1.5 2.0 2.5
+K-M
+-0.5
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+J-K
+Fig. 5.— Near-to-mid infrared color-color diagrams comparing β Pic b’s colors (blue diamonds) to those of M dwarfs (small dar k circles),
+early L-type brown dwarfs (grey circles), late L dwarfs (ast erisks), and T dwarfs (light grey dots) from Leggett et al. (2 010). W e also
+overplot the positions of young, substellar objects/other directly-imaged planets (turquoise squares).
+
+<<<PAGE 20>>>
+20
+-1.0 -0.5 0.0 0.5 1.0 1.5 2.0
+J-H
+18
+16
+14
+12
+10
+8
+ MJ
+-0.5 0.0 0.5 1.0 1.5
+H-Ks
+16
+14
+12
+10
+8
+ MH
+0.5 1.0 1.5 2.0 2.5 3.0
+H-L
+16
+14
+12
+10
+8
+ MH
+0.0 0.5 1.0 1.5 2.0 2.5
+K-M
+15
+14
+13
+12
+11
+10
+9
+ MK
+Fig. 6.— Color-magnitude diagrams comparing β Pic b to ﬁeld M, L, and T dwarfs and young, substellar objects. Symbols are the same
+as in Figure 5.
+Fig. 7.— Photometric data for β Pic b compared to L dwarf standard spectra between L2 and L8 as well as a low surface gravity L4
+dwarf from Cushing et al. (2005, 2008). W e scale β Pic b’s ﬂux density at Ks band to the band-integrated ﬂux density of the standards at
+2.15 µm . With the possible exception of the low surface gravity L4 dw arf, none of these standards provide a good match to measurme nts
+for β Pic b. W e identify the passbands along the bottom of the plot ( left-hand panel).
+
+<<<PAGE 21>>>
+21
+Fig. 8.— Comparisons between the β Pic b SED and the closest-matching substellar objects with J HKsL′ photometry. Quantitatively,
+1RXJ 1609 B and κ And b provide the closest matches, although it is as-yet uncl ear whether any known substellar object fully reproduces
+β Pic b’s SED at all measured wavelengths.
+
+<<<PAGE 22>>>
+22
+Fig. 9.— The χ 2 distributions (top-left) and best-ﬁtting models (top-rig ht, middle panels) for our limiting cases: the E60, thin clou d/large
+dust models the AE60, moderately-thick cloud/large dust mo dels (second row), and the A60, thick cloud/large dust model s. (Bottom
+panels) The χ 2 distributions and best-ﬁt AMES-DUSTY models which assume I SM-sized dust grains. The horizontal lines in the lefthand
+panels display the 68% and 95% conﬁdence limits. The pink bar s roughly denote the model-predicted ﬂux densities at the ﬁl ters’ central
+wavelength positions. W e identify the passbands along the b ottom of the plot (top-right panel).
+
+<<<PAGE 23>>>
+23
+Fig. 10.— The eﬀect of atmospheric dust particle sizes on the shape of a massive planet SED. Here, the < a > = 50, 30, and 5 µm models
+depict log(g) = 4, Tef f = 1600 K models while the < a > = 3 µm model assumes log(g) = 3.8 and is scaled to match the luminosi ty of
+the < a > = 5 µm model. For small particle sizes, surface gravity signature s are weak and this parameter’s eﬀect is primarily to change
+the ﬂux scaling.
+Fig. 11.— The χ 2 distribution (left) and best-ﬁtting model (right) for the t hick cloud, small dust A4 models, showing that we can achieve
+statistically signiﬁcant ﬁts to the data provided that the c louds are thick and the atmospheric dust particles are signi ﬁcantly smaller than
+those we have previously assumed in matching L dwarf spectra (c.f. Burrows et al. 2006). This model ﬁtting ties the planet radius to
+predictions for hot-start models from Burrows et al. (1997) . The horizontal dashed lines identify the 95% conﬁdence lim it (top) and 68%
+conﬁdence limit (bottom).
+Fig. 12.— Same as Figure 11 except treating the planet radius as a free p arameter. Here we show the log(g) = 4, Tef f = 1600 K, though
+the synthetic spectrum’s appearance and its agreement with the data at neighboring gridpoints in surface gravity is nea rly identical.
+
+<<<PAGE 24>>>
+24
+Fig. 13.— SED ﬁts adopting the nominally good-ﬁtting atmosphere para meters depicted in Figure 12 but enhancing the atmosphere of
+methane.
+Fig. 14.— (left) Luminosity evolution for hot-start models from Bara ﬀe et al. (2003), comparing β Pic b’s luminosity as derived in this
+work to that for the directly-imaged planets HR 8799 bcde, th e planet/low-mass brown dwarf κ And b, and other very low-mass brown
+dwarf companions. The solid circle denotes β Pic b’s nominal positions, whereas the open circle identiﬁe s its eﬀective position on this plot
+if it formed after 5 Myr. (Right) Evolution of the radius for p lanets with masses of 1–10 MJ for the “hot-start” and “cold-start” planet
+cooling models from Spiegel and Burrows (2012). The radius e rror bars deﬁne the range of planet radii from models consist ent with the
+data to within the 68% conﬁdence limit.

@@ -1,0 +1,679 @@
+<<<PAGE 1>>>
+Astronomy & Astrophysics manuscript no. bpic-Jband-gpi_astroph c©ESO 2018
+November 5, 2018
+Letter to the Editor
+Physical and orbital properties of β Pictoris b
+M. Bonnefoy 1, G.-D. Marleau 2, R. Galicher 3, H. Beust 1, A.-M. Lagrange 1, J.-L. Baudino 3, G. Chauvin 1, S.
+Borgniet1, N. Meunier 1, J. Rameau 1, A. Boccaletti 3, A. Cumming 4, C. Helling 5, D. Homeier 6, F. Allard 6, P.
+Delorme1
+1 Université Grenoble Alpes, IPAG, F-38000 Grenoble, France. CNRS, IPAG, F-38000 Grenoble, France
+2 Max Planck Institute for Astronomy, Königstuhl 17, D-69117 Heidelberg, Germany
+3 LESIA, CNRS, Observatoire de Paris, Univ. Paris Diderot, UPMC, 5 place Jules Janssen, 92190 Meudon, France
+4 Department of Physics, McGill University, 3600 rue University, Montréal, Québec H3A 2T8, Canada
+5 SUPA, School of Physics and Astronomy, University of St Andrews, St Andrews, KY16 9SS, UK
+6 CRAL, UMR 5574, CNRS, Université de Lyon, École Normale Supérieure de Lyon, 46 Allée d’Italie, F-69364 Lyon
+Cedex 07, France
+Received 22/04/2014; accepted 13/07/2014
+ABSTRACT
+The intermediate-mass starβ Pictoris is known to be surrounded by a structured edge-on debris disk within which a
+gas giant planet was discovered orbiting at 8-10 AU. The physical properties ofβ Pic b were previously inferred from
+broad- and narrow-band 0.9-4.8µm photometry. We used commissioning data of theGemini Planet Imager (GPI) to
+obtain new astrometry and a low-resolution (R∼35-39) J-band (1.12-1.35µm) spectrum of the planet. We ﬁnd that the
+planet has passed the quadrature. We constrain its semi-major axis to≤10 AU (90% prob.) with a peak at8.9+0.4
+−0.6
+AU. The joint ﬁt of the planet astrometry and the most recent radial velocity measurements of the star yields a
+planet dynamical mass lower than 20MJup (≥96% prob.). The extracted spectrum ofβ Pic b is similar to those of
+young L1+1
+−1.5 dwarfs. We used the spectral type estimate to revise the planet luminosity tolog(L/L⊙) =−3.90± 0.07.
+The 0.9-4.8µm photometry and spectrum are reproduced forTeﬀ = 1650± 150 K and a log g≤ 4.7 dex by 12 grids of
+PHOENIX-based and LESIA atmospheric models. For the most recent system age estimate (21±4 Myr), the bolometric
+luminosity and the constraints on the dynamical mass ofβ Pic b are only reproduced by warm- and hot-start tracks
+with initial entropies Si > 10.5 kB/baryon. These initial conditions may result from an ineﬃcient accretion shock
+and/or a planetesimal density at formation higher than in the classical core-accretion model. Considering a younger
+age for the system or a conservative formation time forβ Pic b does not change these conclusions.
+Key words. Techniques: photometric, astrometric – Stars: planetary systems – Stars: individual (β Pic)
+1. Introduction
+A candidate giant planet was identiﬁed in 2003 high-
+resolution imaging data at a projected separation of 9 AU
+in the disk of the intermediate-mass starβ Pictoris (La-
+grange et al. 2009). Follow-up images of the system with
+various instruments (Lagrange et al. 2010; Boccaletti et al.
+2013; Males et al. 2014) from 0.98µm to 4.8µm enabled
+us to conﬁrm thatβ Pic b is bound to the star and has a
+hot (Teﬀ∼ 1700 K) and dusty atmosphere (Bonnefoy et al.
+2013; Currie et al. 2013; Males et al. 2014, and references
+therein). The monitoring of the planet’s orbital motion re-
+strained the semi-major axis (s.m.a.) estimates to 8-10 AU
+(Chauvin et al. 2012; Absil et al. 2013). Combined with
+radial velocity (RV) measurements (Lagrange et al. 2012,
+2013), the s.m.a.≤ 10 AU (80% prob.) set an upper limit of
+15.5 MJup on the mass ofβ Pic b for the case of a circular
+orbit.
+The dynamical mass constraints, theTeﬀ and luminosity
+of the planet, and the system age provide a so far unique
+test of evolutionary models predictions. “Hot-start" mod-
+els predictβ Pic b to be a 8 to 12.6MJup planet. "Cold-
+start" models assume that the gravitational potential en-
+ergy of the infalling gas at formation is fully radiated away
+at a supercritical accretion shock. These tracks cannot re-
+produce the measured photometry of β Pic b for planet
+masses below 15.5 MJup. “Warm-start" models (Spiegel &
+Burrows 2012; Marleau & Cumming 2014, hereafter SB12
+and MC14) explore the sensitivity of the mass prediction
+to the initial conditions, parametrized by the choice of an
+initial entropy (Si). Bonnefoy et al. (2013) and Marleau &
+Cumming (2014), demonstrated that the properties of β
+Pic b can only be reproduced forSi≥ 9.3 kB/baryon, i.e.
+initial conditions intermediate between cold and hot-start
+cases. But these predictions relied 1) on a system age of
+12+8
+−4 Myr (Zuckerman et al. 2001) and 2) on the hypothe-
+sis of a non-eccentric orbit for the planet. Since then, Binks
+& Jeﬀries (2014) reported a lithium depletion age of21± 4
+Myr for theβ Pictoris moving group.
+In this letter, we present new astrometry and the ﬁrst
+J-band spectrum of β Pic b extracted from commission-
+ing data of the Gemini Planet Imager (Macintosh et al.
+2014) instrument (Section 2). We use these data in Section
+3 and up-to-date radial-velocity measurements on the star
+Article number, page 1 of 7
+arXiv:1407.4001v1  [astro-ph.EP]  15 Jul 2014
+
+<<<PAGE 2>>>
+A&A proofs: manuscript no. bpic-Jband-gpi_astroph
+to reﬁne the constraints on the orbital elements, on the
+dynamical mass (Section 3), the physical properties, and
+ultimately, the formation conditions of the planet (Section
+4).
+2. Observations and data reduction
+The source was observed with GPI on Dec. 10, 2013.
+The observations combined integral ﬁeld spectroscopy with
+apodized Lyot coronagraphy (diameter=184 mas) and an-
+gular diﬀerential imaging (ADI, Marois et al. 2006b). The
+data set is composed of 19 spectral cubes consisting of 37
+spectral channels each. They cover the J band (1.12-1.35
+µm) at a low resolving power (R=35-39). Data were ob-
+tained under good conditions (⟨τ0⟩ = 14.5 ms, DIMM see-
+ing=0.7"), low average airmass (1.08), and covered a ﬁeld
+rotation of 19.8◦.
+We used the spectral cubes provided by the GPI
+pipeline1. To further process the data, we ﬁrst registered
+each slice of the cubes using the barycenter of the four
+satellite spots (attenuated replica of the central star PSF
+induced by a grid placed in the pupil plane, Marois et al.
+2006a). We minimized the speckle noise in each slice using
+the IPAG and LESIA ADI pipelines (whithout spectral dif-
+ferential imaging to minimize biases on the extracted pho-
+tometry). The IPAG pipeline used the cADI, sADI, and
+LOCI methods (see Chauvin et al. 2012, and references
+therein). The LESIA pipeline relied on the TLOCI algo-
+rithm (Marois et al. 2014).
+To estimate the planet photometry and astrometry in
+each spectral channel, we assessed biases induced by our al-
+gorithms by injecting fake point-sources into the data cubes
+builtfromtheaverageofthefourunsaturatedspotsoverthe
+spectral and time sequence (Galicher et al. 2014) before ap-
+plying ADI speckle-suppression techniques (Bonnefoy et al.
+2011). We used the GPI spot-to-central-star ﬂux-ratio that
+was calibrated in laboratory (9.36 mag at J band) to ob-
+tain the planet-to-star contrast in each spectral channel.
+We multiplied these contrasts by a template spectrum ofβ
+Pic A to retrieve the planet spectrum. The template was
+built by taking the mean of A5V and A7V star spectra from
+the Pickles (1998) library (see Males et al. 2014). We ﬁnd a
+synthetic photometry ofJ2M ASS = 14.1± 0.3 mag for the
+planet consistent with the value reported in Bonnefoy et al.
+(2013). The photometric error is given by the quadratic
+sum of the uncertainty on the spot-to-star contrast (0.15
+mag; courtesy of the GPI consortium), on the planet ﬂux
+measurement (0.06 mag) and the variation of the spot ﬂux
+over the full sequence (0.1 mag). The uncertainty on the
+planet ﬂux measurement and the variation of the spot ﬂux
+were estimated as in Galicher et al. (2014). The astrometry
+is reported in Table 1. The associated error is the quadratic
+sum of uncertainties on the centroiding accuracy of individ-
+ual slices (0.3 pixel), the plate scale (0.02 pixel), the planet
+template ﬁt (0.1 pixel at J), and the North position angle
+(1 deg; see the GPI instrument page1).
+3. Orbit and dynamical mass ofβ Pic b
+We combined the GPI relative astrometry ofβ Pic b (Tab
+1) with previous NaCo measurements (Chauvin et al. 2012;
+1 http://www.gemini.edu/sciops/instruments/gpi/public-data
+T able 1. Astrometry forβ Pic b
+Platescale True North Separation PA
+(mas/pixel) (deg) (mas) ( ◦)
+14.3± 0.3 0 .0± 1.0 430 ± 10 211 .6± 1.3
+Bonnefoy et al. 2013; Absil et al. 2013) to reﬁne the or-
+bital solutions of the object based solely on the astrometry.
+We used the Markov-chain Monte Carlo (MCMC) Bayesian
+analysis technique described in Chauvin et al. (2012) to de-
+rive the probablilistic distribution of orbital solutions. The
+new GPI astrometric measurements conﬁrm thatβ Pic b
+has now passed the quadrature. The semi-major axis distri-
+bution is now greatly improved and exhibits a clear peak at
+8.9+0.4
+−0.6 AU (Fig. 1). The probability distributions of other
+orbital parameters remain consistent with the previous es-
+timations of Chauvin et al. (2012) and Absil et al. (2013).
+The probability thatβ Pic b actually transits along the line
+of sight is2%. If this is the case, the next transiting event
+is expected for mid-2017. These conclusions are consistent
+with the analysis inferred from GPI H band (1.65µm) data
+of the system obtained on Nov. 18, 2013 (Macintosh et al.
+2014).
+0 10 20 30 40
+Planet mass (M Jup
+)
+0.000
+0.005
+0.010
+0.015
+0.020
+0.025
+0.030
+0.035
+Normalized posterior
+Linear K prior
+Log K prior
+8 10 12 14
+Semi-major axis (AU)
+0.00
+0.01
+0.02
+0.03
+0.04
+0.05
+0.06
+Normalized posterior
+All data
+Without GPI
+Fig. 1. Left: MCMC distribution for the semi-major axis ofβ
+Pic b, with (black curve) and without (green curve) the new GPI
+data. Right: Dynamical mass distribution ofβ Pic b inferred
+from the MCMC ﬁt of the combined planet astrometry and RV
+measurements of the star. The two priors considered here give
+two diﬀerent distributions (see Appendix A).
+We tried to constrain the mass ofβ Pic b using both
+the planet astrometry and an up-to-date compilation of
+RV measurements (Borgniet et al., in prep) of the system
+gathered since 2003 with the high-precision spectrometer
+HARPS. In contrast to the upper limits on the mass de-
+rived in Lagrange et al. (2012), these dynamical mass esti-
+mates do not rely on the hypothesis of a circular orbit any
+more. To do this, we modiﬁed our existing MCMC code
+(Chauvin et al. 2012) to account for both the astrometric
+and RV data sets in theχ2 computation. This introduces
+two additional parameters in the MCMC simulations: the
+amplitude K of the RV curve, and an oﬀset velocity. The
+mass of the planet can be derived from theK value and
+from the other determined orbital parameters for any or-
+bital solution. Because of the large uncertainty on the RV
+data, the orbit is still mainly constrained by the astrometric
+data. Conversely, the mass is constrained by the RV data.
+We assumed a stellar mass of1.75± 0.05M⊙. The error on
+the stellar mass appeared to have only marginal inﬂuence
+on the planet dynamical mass. The posterior distribution
+of the mass is, however, extremely sensitive to the assumed
+Article number, page 2 of 7
+
+<<<PAGE 3>>>
+Bonnefoy et al.: Physical and orbital properties ofβ Pictoris b
+Fig. 2. Normalized J-band spectrum ofβ Pic b (gray squares)
+compared with best-ﬁtting spectra (see description in Appendix
+B) of M9.5-L1 objects from samples 1 (pink squares), 2 (blue
+squares), 3 (green squares), and 4 (red squares).
+errors on the RV data and on the prior assumed on the
+amplitude K (see Appendix A for details). Figure 1 shows
+two histograms of posterior mass distribution, each of them
+corresponding to the use of a diﬀerent prior onK (linear
+and logarithmic). In both cases, up to 96% of the solutions
+are below 20MJup.
+4. Physical properties and initial conditions
+The J-band spectrum of β Pic b (Fig. 2) contains all
+the feature characteristics of late-M and early-L dwarfs:
+a marked water-band absorption longward of 1.33µm, a
+rising pseudo-continuum from 1.1 to 1.33µm slightly af-
+fected from 1.16 to 1.22µm by FeH absorptions. We com-
+pared it to four samples of empirical spectra of MLT dwarfs
+and young planetary mass objects (Appendix B) using a
+χ2 (Fig. 2). In sample 1 (composed of objects of vari-
+ous ages) the spectrum of the candidate AB Dor member
+(age∼50-150 Myr; J. Faherty, priv. com.) L1 dwarf 2MASSI
+J0117474-340325 (Burgasser et al. 2008) provides the best
+ﬁt. Comparisons with the remaining samples conﬁrm that
+β Pic b is an L1+1
+−1.5 dwarf, as previously inferred from the
+spectralenergydistribution(SED)analysis(Bonnefoyetal.
+2013; Currie et al. 2013; Males et al. 2014).
+We used the bolometric correction of young M9.5-L0
+dwarfs (BCK = 3.40± 0.02) from Todorov et al. (2010)2
+and the mean and dispersion on the K s-band photom-
+etry reported in Males et al. (2014) to ﬁnd a revised
+log(L/L⊙) =−3.90± 0.07 for β Pic b. We compared the
+normalized spectrum ofβ Pic b with predictions from the
+PHOENIX-based (BT-SETTL10, BT-SETTL13, DRIFT-
+PHOENIX, described in Witte et al. 2011; Bonnefoy et al.
+2013; Manjavacas et al. 2014) and ﬁve grids of LESIA atmo-
+spheric models (see Appendix C and Baudino et al. 2014)
+2 The BCK corresponds to the mean of those measured for
+KPNO-Tau 4 and 2MASS J01415823-4633574, two objects
+whose J-band spectra reproduce those ofβ Pic b well.
+T able 2.Best-ﬁtting atmospheric parameters. Solutions leading
+to semi-empirical masses ( MS.E.) below 2 MJup and above 20
+MJup are lister in italics (considering uncertainties of±100 K in
+Teﬀ,±0.1 dex in log g for the LESIA grids,±0.5 dex otherwise).
+Model Teﬀ log g χ2
+red MS.E.
+(K) (cm.s−2) (MJup)
+Settl10 1600 3.5 0.49 3 +7
+−2
+Settl13-M/H=-0.5 1500 4.5 0.38 34 +86
+−24
+Settl13-M/H=0.0 1600 5.5 0.24 259+643
+−184
+Settl13-M/H=+0.5 1600 5.0 0.31 82+204
+−58
+DP-M/H=-0.5 1600 5.5 0.20 259+643
+−184
+DP-M/H=0.0 1600 4.5 0.17 26 +65
+−19
+DP-M/H=+0.5 1700 4.5 0.12 20 +50
+−15
+LESIA - I 2100 3.6 2.19 1.1+0.3
+−0.2
+LESIA - II 1500 5.5 1.56 335+138
+−94
+LESIA - III 1400 5.2 0.33 221+98
+−65
+LESIA - IV 1500 5.3 0.25 211+88
+−59
+LESIA - V 1500 5.4 0.33 266+110
+−75
+to derive updatedTeﬀ and log g estimates (Table 2). A sim-
+ilar analysis derived for the up-to-date SED is reported in
+Appendix D. The SED and spectra ofβ Pic b constrain
+the Teﬀ to 1650± 150 K. The ﬁts are less sensitive to log
+g and to the metallicity. Although log g values higher than
+4.7 dex cannot be directly excluded from the spectral ﬁt-
+ting, these values and the radii derived fromTeﬀ and the
+luminosity estimates yield masses (see Tables 2 and D.1)
+greater than the dynamical mass constraints (Section 3).
+Theχ2 ﬁt of the J-band spectrum is mostly sensitive to the
+overal spectral slope and less sensitive to the simultaneous
+ﬁtting of the water-band absorption longward of 1.3µm.
+Therefore, visual inspection yields similar, but diﬀerent so-
+lutions for the DRIFT-PHOENIX (DP) and LESIA models
+(Figure 3). TheTeﬀ value is consistent with those reported
+in Bonnefoy et al. (2013), Currie et al. (2013), and Males
+et al. (2014) using the SED only and/or diﬀerent atmo-
+spheric models. TheTeﬀ is also coherent with those derived
+for young objects at similar spectral types (Bonnefoy et al.
+2014; Manjavacas et al. 2014). The dilution factors needed
+to adjust the model SED expressed in surface ﬂuxes to the
+apparent ﬂuxes of the planet correspond to a planetary ra-
+dius of 1.5± 0.2 RJup (see Bonnefoy et al. 2013). This
+radius is consistent with those reported in Bonnefoy et al.
+(2013), Currie et al. (2013), and with the one derived from
+the Teﬀ and luminosity estimates (1.4+0.2
+−0.1 RJup).
+1.15 1.20 1.25 1.30 1.35
+λ [μm]
+0.4
+0.6
+0.8
+1.0
+1.2
+1.4Normalized flux
+BT-SETTL13, 1600/5.5/0.0
+DRIFT-PHOENIX - 1700/5.0/+0.5
+LESIA - III - 1600/5.5/0.0
+Fig. 3. Best-ﬁtting synthetic spectra from the BT-SETTL13,
+DRIFT-PHOENIX, and LESIA grids found from a visual check-
+ing. The parameters Teﬀ/log g/[M/H] are reported for each
+model.
+Article number, page 3 of 7
+
+<<<PAGE 4>>>
+A&A proofs: manuscript no. bpic-Jband-gpi_astroph
+TheTeﬀ and luminosity ofβ Pic b match those of “hot-
+start” evolutionary models (Chabrier et al. 2000; Baraﬀe
+et al. 2003) at an age of21±4 Myr forM = 11.5± 0.8 MJup
+and M = 11.2± 0.3 MJup, respectively. This agrees with the
+mass constraints of Section 3.
+To derive quantitative constraints on the initial entropy
+Si ofβ Pic b, we used the method of MC14 and performed
+an MCMC in mass andSi using their evolutionary mod-
+els up to masses of 17MJup. The models have gray atmo-
+spheres, include deuterium burning (Marleau & Cumming,
+in prep.), and span inSi the extreme outcomes of any for-
+mation process. Fig. 4 shows the allowedM andSi combi-
+nations that match the luminosity and age taking Gaussian
+errorbars into account.
+      
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+6 8 10 12 14 16
+Mass [MJup]
+      dN/dM
+      
+8
+9
+10
+11
+12
+13
+14Initial entropy [kB/baryon]
+dN/dSi
+90 %
+95 %
+15 ME
+65 M
+E
+127 M
+E
+hot starts
+Flat mass prior
+RV−based prior
+Long formation
+Priors
+Fig. 4. Joint probability contours (68.3, 95, and 99%) on the
+mass and post-formation entropy ofβ Pic b fromlog(L/L⊙) =
+−3.90± 0.07 and an age of21± 4 Myr using a ﬂat prior onSi
+and a prior ﬂat in mass (dashed black curves) or given by the
+radial-velocity and astrometry constraints for a linearK prior
+(solid dark-blue curves). Using the logarithmic-K prior of Fig. 1
+gives nearly identical results. The long-dashed orange line shows
+the combinations matchinglog(L/L⊙) =−3.90 at 12 Myr, i.e.
+allowing for an extreme 9 Myr formation delay. The open circles
+indicatethecold-startpost-formationentropiesfordiﬀerentﬁnal
+core masses (labeled) or for hot starts (Mordasini 2013, App. B
+of MC14). The bottom panel displays the mass priors (dotted
+lines) and the marginalized posterior distributions (black and
+blue lines), whereas the side panel shows the marginalizedSi
+posterior and the non-ﬂat mass prior’s 90- and 95-% lower limits
+(up toSi∼ 14).
+5. Discussion
+If the system is truly 21± 4 Myr old, Fig. 4 shows that
+β Pic b cannot have formed according to the classic (Mar-
+ley et al. 2007) parameters of core accretion, which include
+a supercritical accretion shock (coldest starts) and an ini-
+tial planetesimal density leading to a 15-M⊕ core. An on
+average ineﬃcient shock and/or a higher planetesimal den-
+sity (Mordasini 2013) must be invoked to lead to warmer
+starts. For a completely eﬃcient accretion shock, the pre-
+dicted core would need to be& 65 M⊕. These conclusions
+are nearly unchanged even assuming an extreme duration
+for the planet formation phase of 9 Myr (Fig. 4).
+Moreover, we ﬁnd a lower bound3 on the post-formation
+entropy of Si,min = 10.5 kB baryon−1 at the 95-% level,
+which is≈ 2 kBbaryon−1 warmer than the supercritical
+15-M⊕ prediction. Finally, for masses within the 68.3-%
+contour, the MC14 cooling curves predictβ Pic b to not be
+aﬀected by deuterium ﬂashes (Bodenheimer et al. 2013),
+where the luminosity andTeﬀ of massive objects increase,
+possibly at very late times (MC14; Marleau & Cumming, in
+prep.). However, because of diﬀerences in boundary condi-
+tions and nuclear rate details, and given the high precision
+of the luminosity measurement, using other cooling tracks
+can somewhat aﬀect the mass constraints and the impor-
+tance of deuterium burning in the cooling history ofβ Pic b.
+References
+Absil, O., Milli, J., Mawet, D., et al. 2013, A&A, 559, L12
+Allers, K. N. & Liu, M. C. 2013, ApJ, 772, 79
+Baraﬀe, I., Chabrier, G., & Barman, T. et al. 2003, A&A, 402, 701
+Baudino, J.-L., Bézard, B., & et al. 2014, in IAUS 299
+Binks, A. S. & Jeﬀries, R. D. 2014, MNRAS, 438, L11
+Boccaletti, A., Lagrange, A.-M., & et al. 2013, A&A, 551, L14
+Bodenheimer, P., D’Angelo, G., & et al. 2013, ApJ, 770, 120
+Bonnefoy, M., Boccaletti, A., & et al. 2013, A&A, 555, A107
+Bonnefoy, M., Chauvin, G., Rojo, P., & et al. 2010, A&A, 512, A52
+Bonnefoy, M., Chauvin, G., & et al. 2014, A&A, 562, A127
+Bonnefoy, M., Lagrange, A.-M., & et al. 2011, A&A, 528, L15
+Burgasser, A. J., Liu, M. C., & et al. 2008, ApJ, 681, 579
+Chabrier, G., Baraﬀe, I., & Allard, F. 2000, ApJ, 542, 464
+Chauvin, G., Lagrange, A.-M., Beust, H., et al. 2012, A&A, 542, A41
+Currie, T., Burrows, A., Madhusudhan, N., et al. 2013, ApJ, 776, 15
+Gagné, J., Faherty, J. K., Cruz, K., et al. 2014, ArXiv e-prints
+Galicher, R., Rameau, J., Bonnefoy, M., et al. 2014, ArXiv e-prints
+Lafrenière, D., Jayawardhana, R., & et al. 2010, ApJ, 719, 497
+Lagrange, A.-M., Bonnefoy, M., & et al. 2010, Science, 329, 57
+Lagrange, A.-M., De Bondt, K., & et al. 2012, A&A, 542, A18
+Lagrange, A.-M., Gratadour, D., & et al. 2009, A&A, 493, L21
+Lagrange, A.-M., Meunier, N., & et al. 2013, A&A, 559, A83
+Liu, M. C., Magnier, E. A., Deacon, N. R., et al. 2013, ApJ, 777, L20
+Lodders, K. 2010, in Principles and Perspectives in Cosmochemistry,
+ed. A. Goswami & B. E. Reddy, 379
+Lodieu, N., Hambly, N. C., & et al. 2008, MNRAS, 383, 1385
+Macintosh, B., Graham, J. R., & et al. 2014, ArXiv e-prints
+Males, J. R., Close, L. M., Morzinski, K. M., et al. 2014, ApJ, 786, 32
+Manjavacas, E., Bonnefoy, M., & et al. 2014, A&A, 564, A55
+Marleau, G.-D. & Cumming, A. 2014, MNRAS, 437, 1378
+Marley, M. S., Fortney, J. J., & et al. 2007, ApJ, 655, 541
+Marois, C., Correia, C., & et al. 2014, in IAUS, Vol. 299, IAUS, 48–49
+Marois, C., Lafrenière, D., & et al. 2006a, ApJ, 647, 612
+Marois, C., Lafrenière, D., & et al. 2006b, ApJ, 641, 556
+Mordasini, C. 2013, A&A, 558, A113
+Patience, J., King, R. R., & et al. 2010, A&A, 517, A76
+Pickles, A. J. 1998, PASP, 110, 863
+Quanz, S. P., Meyer, M. R., & et al. 2010, ApJ, 722, L49
+Rice, E. L., Barman, T., & et al. 2010, ApJS, 186, 63
+Schneider, A. C., Cushing, M. C., & et al. 2014, AJ, 147, 34
+Spiegel, D. S. & Burrows, A. 2012, ApJ, 745, 174
+Todorov, K., Luhman, K. L., & McLeod, K. K. 2010, ApJ, 714, L84
+Wahhaj, Z., Liu, M. C., Biller, B. A., et al. 2011, ApJ, 729, 139
+Witte, S., Helling, C., & et al. 2011, A&A, 529, A44
+Zuckerman, B., Song, I., & et al. 2001, ApJ, 562, L87
+Acknowledgements. We thank the consortium who built the GPI in-
+strument. We especially wish to thank C. Marois, D. Mouillet, C.
+Mordasini, J. Faherty and A. Triaud for fruitfull discussions. We are
+grateful to J. Gagné, D. Lafrenière, M. Liu, A. Schneider, K. Allers,
+J. Patience, E. Rice, N. Lodieu and E. Manjavacas for providing their
+spectra of young objects. We aknowledge P. Hauschildt and S. Witte
+for their work on the DRIFT-PHOENIX models. This research has
+beneﬁtted from the SpeX Prism Spectral Libraries, maintained by A.
+Burgasser.MB,GC,AML,JR,HB,FA,andDHacknowledgeﬁnancial
+support from the French National Research Agency (ANR) through
+project grant ANR10-BLANC0504-01, ANR-07-BLAN-0221, ANR-
+2010-JCJC-0504-01andANR-2010-JCJC-0501-01.ChHandDHhigh-
+lights EU ﬁnancial support under FP7 by starting grand. JLB PhD is
+funded by the LabEx Exploration Spatiale des Environnements Plané-
+taires (ESEP) # 2011-LABX-030.
+3 An upper limit is given by the fact that the radius starts to
+divergewhen S increasesabove≃ 16.5.Varyingtheupperbound
+of the cumulative integral barely varies the quoted values.
+Article number, page 4 of 7
+
+<<<PAGE 5>>>
+A&A–bpic-Jband-gpi_astroph,Online Material p 5
+Appendix A: Details on the orbital ﬁt
+Appendix A.1: Errors on the radial velocities
+The RV of β Pictoris A measured within the same day
+are extremely variable because of the activity of the
+star. During the HARPS monitoring of the star, β Pic
+A was either observed multiple times during a night to
+evaluate and average the stellar activity, or at a single
+time (Borgniet et al. in prep.). We averaged the data over
+one day to estimate a daily RV mean. To estimate the
+error on the RV corresponding to a night that properly
+account for the stellar noise, we assumed that the intrinsic
+RV variability is sinusoidal: A× sin(ω× t + φ) + C(t),
+with A the amplitude of the variability, ω the angular
+frequency, t the time, φ the phase, and C an oﬀset
+velocity. Radial velocity measurements performed over
+one single day can be regarded as successive values of a
+random variable following this law with random t. The
+resulting random RV has the following probability function:
+p(RV )×d(RV ) = (1/π)× 1√
+A2− (RV−C)2×d(RV ). (A.1)
+The variance of this law isA2/2. Taking the arithmetic
+mean ofn independent measurements over one night gives
+an estimate of the oﬀset velocityC with A/
+√
+2n as error.
+We now need to estimateA. We assume thatC varies with
+time, but A does not. For a given day with the highest
+number of measurements N, the statistical varianceSN of
+these data is calculated. An accurate, unbiased estimator
+of A2 is 2× (N/(N− 1))× SN, so that for any other
+day with n measurements the error can be estimated to
+be
+√
+s2 +A2×N/(N− 1)/n, wheres is the mean of the
+given HARPS RV measurment errors of the day. This way,
+errors are reduced for a day with many measurements and
+kept large for days with one or two measurements.
+Appendix A.2: Choices of the priors
+Priors on the orbital parameters are identical to those used
+in Chauvin et al. (2012) when only the system astrometry is
+accounted for in the orbital ﬁt. Changes to them appear to
+have little inﬂuence on the posterior distributions of orbital
+parameters. In contrast, this is not the case for the mass
+determination because of the weak constraint provided by
+the radial velocity data. The most straightforward prior we
+can assume for the amplitude of the RV curve ofβ Pic
+A K is linear, but a logarithmic prior (linear inlnK) is
+also worth considering becauseK is proportional toP−1/3
+(whereP is the orbital period), and a logarithmic prior for
+P was already assumed. Figure 1 shows the posterior mass
+determination for both priors. Because of the activity of
+the star, the data are compatible with planet masses down
+to virtually 0. But a lower cutoﬀ at 2MJup was assumed
+to remain compatible with the observed luminosity of the
+planet. The linear prior nevertheless appears to favor larger
+masses than the logarithmic prior. Then the major diﬀer-
+ence resides in the shape of the posterior distribution. The
+linear prior exhibits a clear peak around 6MJup. This dif-
+ference illustrates the diﬃculty in deriving a relevant ﬁt of
+the mass ofβ Pic b. Obviously, the RV data are too noisy
+to allow a clear determination, but i) a conservative upper
+limit is conﬁrmed, and ii) the peak around 6MJup needs to
+be conﬁrmed with future data.
+Appendix B: Samples of comparison spectra
+For the purpose of the empirical analysis, we used four sam-
+ples of spectra of ultracool MLT dwarfs found in the litera-
+ture. The SpecXPrism library4 represents sample 1. Sample
+2 is composed of spectra of M and L dwarfs with features
+indicative of low surface gravity (Allers & Liu 2013; Man-
+javacas et al. 2014; Liu et al. 2013; Schneider et al. 2014).
+The third sample is made of spectra of members of 1-150
+Myr old young moving groups and clusters (Lodieu et al.
+2008; Rice et al. 2010; Bonnefoy et al. 2014; Gagné et al.
+2014). The fourth sample is composed of spectra of young
+MLT companions (Patience et al. 2010; Lafrenière et al.
+2010; Wahhaj et al. 2011; Bonnefoy et al. 2010, 2014).
+Appendix C: Description of the LESIA model grids
+Baudino et al. (2014) developed a radiative-convective equi-
+librium model for young giant exoplanets in the context
+of direct imaging. The input parameters are the planet
+surface gravity (log g), eﬀective temperature (Teﬀ), and
+elemental composition. Under the additional assumption
+of thermochemical equilibrium, the model predicts the
+equilibrium-temperature proﬁle and mixing-ratio proﬁles of
+the most important gases. Opacity sources include the H2-
+He collision-induced absorption and molecular lines from
+H2O, CO, CH4, NH3, VO, TiO, Na, and K. Line opacity is
+modeled using k-correlated coeﬃcients pre-calculated over
+a ﬁxed pressure-temperature grid. Absorption by iron and
+silicate cloud particles is added above the expected conden-
+sation levels with a ﬁxed scale height and a given optical
+depth at some reference wavelength. To studyβ Pic b, we
+built ﬁve grids of models withTeﬀ between 700 and 2100 K
+(100 K increments), log g between 2.1 and 5.5 dex (0.1 dex
+increments), and solar system abundances (Lodders 2010).
+One model grid was created without clouds (hereafter set
+I). We added three grids with cloud particles located be-
+tween condensation level and a 100 times lower pressure,
+with a particle radius of 30µm (τ=0.1, 1, 3; hereafter set
+II, III, IV), a scale height equal to the gas scale height, and
+optical depths (τcloud) of 1τ and 0.15τ at 1.2µm for Fe and
+Mg2SiO4, respectively (assuming the same column density
+for both clouds). We used an additional grid (hereafter set
+V) with a particle radius of 3µm andτcloud of 1 and 0.018.
+The grid properties are summarized in Table C.1.
+T able C.1. Properties of the LESIA atmospheric model grids
+Model τF e τM g2SiO4 Particule radius
+(1.2 µm) (1.2 µm) ( µm)
+I 0 0 0
+II 0.1 0.015 30
+III 1 0.15 30
+IV 3 0.45 30
+V 1 0.018 3
+4 http://pono.ucsd.edu/∼adam/browndwarfs/spexprism
+
+<<<PAGE 6>>>
+A&A–bpic-Jband-gpi_astroph,Online Material p 6
+Appendix D: Fit of the spectral energy distribution
+The planet SED was built from theYs and CH4S,1% band
+photometry reported reported in Males et al. (2014),J,H,
+L′ and M′ band photometry Bonnefoy et al. (2013),Ks-
+band photometry from Currie et al. (2013), and NB4.04
+band magnitude from Quanz et al. (2010). The SED and
+spectral-ﬁtting procedures are described in Bonnefoy et al.
+(2013) and Bonnefoy et al. (2014), respectively.
+1 2 3 4 5
+λ (μm)
+0
+2
+4
+6
+8
+10
+12
+14Flux density (10-15 W.m-2μm-1) BT-SETTL13 - M/H=+0.5
+DRIFT-PHOENIX - M/H=-0.5
+LESIA - III
+Ys
+J
+CH4S,1%
+H
+Ks
+L'
+NB_4.05
+M'
+Fig. D.1. Comparison ofβ Pic b SED to best-ﬁtting synthetic
+spectra (solid line) and ﬂuxes (horizontal lines) from the BT-
+SETTL, DRIFT-PHOENIX, and LESIA atmospheric models
+grids.
+
+<<<PAGE 7>>>
+A&A–bpic-Jband-gpi_astroph,Online Material p 7
+T able D.1.Same as Figure 2, but for the spectral energy distribution ﬁt ofβ Pic b. The semi-empirical radiusRS.E. derived from
+Teﬀ and the bolometric luminosity can be compared with the radius inferred from the synthetic spectral ﬁtting (R).
+Model Teﬀ log g R χ2
+red MS.E. RS.E.
+(K) (cm.s−2) ( RJup) ( MJup) ( RJup)
+Settl 10 1600 4.0 1.57 0.82 8 +21
+−6 1.4± 0.1
+Settl 13-M/H=-0.5 1800 3.5 1.24 1.34 2 +4
+−2 1.1± 0.1
+Settl 13-M/H=0.0 1800 4.0 1.26 1.42 5 +13
+−4 1.1± 0.1
+Settl 13-M/H=+0.5 1700 5.0 1.61 0.64 64+157
+−46 1.3± 0.1
+DP-M/H=-0.5 1700 4.0 1.43 0.38 6 +16
+−5 1.3± 0.1
+DP-M/H=0.0 1800 4.5 1.27 0.52 16 +39
+−12 1.1± 0.1
+DP-M/H=+0.5 1800 4.5 1.34 0.66 16 +39
+−12 1.1± 0.1
+LESIA - I 1600 2.1 1.58 2.38 0.1± 0.1 1 .4± 0.1
+LESIA - II 1400 5.5 1.95 0.66 441+195
+−129 1.9± 0.1
+LESIA - III 1500 3.8 1.76 0.50 7 +3
+−2 1.6± 0.1
+LESIA - IV 1500 3.2 1.78 0.60 1.7 +0.7
+−0.5 1.6± 0.1
+LESIA - V 1600 4.1 1.56 0.72 10 +4
+−3 1.4± 0.1
