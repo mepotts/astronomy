@@ -240,7 +240,80 @@ astrophysical jitter required.
 > sources.
 
 > **Closed:** Lazzoni's sources are now archived (Langlois 2021b, Bohn 2020, Currie 2013,
-> Bonnefoy 2014). Adding **Langlois et al. 2021b**
+> Bonnefoy 2014, Viswanath 2023).
+
+## 7. It is neither axis: the binding quantity is scattered host flux
+
+HIP 81208 B's separation is now sourced — Viswanath et al. 2023 gives **320.9 ± 1.0 and
+328.7 ± 1.0 mas** over two epochs, and its K2 contrast **Δmag = 6.64 → 457×**. That was the
+counterexample flagged in §6, and it holds: HIP 81208 B extracts **cleanly at 124 m/s from
+0.325″**, while β Pic b floods at 0.51″.
+
+So separation alone does not order the outcomes either. With all six systems sourced:
+
+| axis, ascending | sequence | orders the outcomes? |
+|---|---|---|
+| contrast | C C **F** C **F** C | no |
+| separation | **F** C **F** C C C | no |
+
+**There is a physical reason to expect neither to work.** What floods the slit is not the
+magnitude ratio between host and companion — it is the host's light *scattered to the
+companion's position*. That scales as contrast × PSF(θ), and for a seeing- or AO-limited
+halo the wing falls roughly as θ⁻² to θ⁻³. The natural quantity is therefore
+
+    S = contrast / θⁿ
+
+which is, to a constant, **the ratio of scattered host flux to companion flux at the slit**.
+
+`scripts/m29_wallaxis.py` tests it. The exponent is **not fitted** — it is scanned across
+the physically plausible range and the whole range reported:
+
+| n | highest CLEAN | lowest FAILS | gap | separates |
+|---:|---:|---:|---:|---|
+| 1.0 | 6047 | 2706 | — | no |
+| **2.0** | **4327** | **15202** | **3.5×** | **yes** |
+| 3.0 | 13313 | 29808 | 2.2× | yes |
+| 4.0 | 40962 | 58446 | 1.4× | yes |
+
+**S separates the two classes for n = 1.5–4.0, most cleanly at n = 2** — squarely inside
+the θ⁻²–θ⁻³ falloff a halo actually has. Ordered by S at n = 2:
+
+| S | outcome | system |
+|---:|---|---|
+| 12 | clean | CD-35 2722 B |
+| 107 | clean | η Tel B |
+| 3 557 | clean, 34 m/s | YSES 1 b |
+| 4 327 | clean, 124 m/s | HIP 81208 B |
+| 15 202 | **fails** | β Pic b |
+| 15 917 | **fails** | PDS 70 b |
+
+### How much to claim
+
+Not much yet, and the caveats are in the script rather than only here.
+
+- **Six points and two classes.** Many statistics separate such a set by chance. What
+  makes this more than curve-fitting is that the exponent was chosen by physics and then
+  scanned, not tuned to the answer — and that the two single-axis alternatives both fail
+  outright.
+- **PDS 70 b may fail for a different reason.** At 0.17″ the companion sits inside the AO
+  core; the host is not a halo there, it is the spectrum. Dropping it does not change the
+  separation.
+- **η Tel B's contrast is disputed** (Lazzoni Kp 13.2 vs SIMBAD H 11.93). It is a clean
+  case at wide separation, so it is not load-bearing; dropping it also does not change the
+  separation.
+- Dropping both still leaves clean at 12 and 3557 against fails at 15 202.
+
+### What this means for the papers
+
+The "contrast wall" is not merely mis-located, it is **the wrong variable**, and so is
+separation. `docs/paper/contrast-wall-note.md` needs rebuilding a third time around
+S = contrast/θ², and it becomes a better paper for it: a one-parameter, physically
+motivated feasibility criterion that a proposer can evaluate for any target from two
+catalogue numbers, in place of a threshold this project could never locate.
+
+It is also **falsifiable and cheap to test**: any archival companion with a measured
+separation and contrast predicts its own extraction quality before a single frame is
+reduced. That is the experiment the next campaign should run. Adding **Langlois et al. 2021b**
 > (η Tel B, AB Pic b) and **Bohn et al. 2020** (YSES 1 b) to `papers/` would settle the
 > companion magnitudes for four of the load-bearing systems.
 >

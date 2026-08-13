@@ -1,0 +1,1646 @@
+<<<PAGE 1>>>
+Astronomy & Astrophysics manuscript no. main ©ESO 2023
+May 31, 2023
+BEAST detection of a brown dwarf and a low-mass stellar
+companion around the young bright B star HIP 81208 ⋆
+Gayathri Viswanath1, Markus Janson1, Raffaele Gratton2, Vito Squicciarini3, 2, Laetitia Rodet4, Simon C.
+Ringqvist1, Eric E. Mamajek5, 6, Sabine Reffert7, Gaël Chauvin8, Philippe Delorme9, Arthur Vigan10, Mickaël
+Bonnefoy9, Natalia Engler11, Silvano Desidera2, Thomas Henning12, Janis Hagelberg13, Maud Langlois14, and
+Michael Meyer15
+1 Institutionen för astronomi, Stockholms Universitet, Stockholm, Sweden
+e-mail: gayathri.viswanath@astro.su.se
+2 INAF - Osservatorio Astronomico di Padova, Padova, Italy
+3 LESIA, Observatoire de Paris, Université PSL, CNRS, Sorbonne Université, Université de Paris, 5 place Jules
+Janssen, 92195 Meudon, France
+4 Cornell Center for Astrophysics and Planetary Science, Department of Astronomy, Cornell University, Ithaca, NY,
+USA
+5 Jet Propulsion Laboratory, California Institute of Technology, Pasadena, CA, USA
+6 Department of Physics and Astronomy, University of Rochester, Rochester, NY, USA
+7 Landessternwarte, Zentrum für Astronomie der Universität Heidelberg, Heidelberg, Germany
+8 Laboratoire J.-L. Lagrange, Université Cote d’Azur, CNRS, Observatoire de la Cote d’Azur, 06304 Nice, France
+9 Univ. Grenoble Alpes, IPAG, Grenoble, France
+10 Aix Marseille Université, CNRS, LAM, Marseille, France
+11 ETH Zurich, Zurich, Switzerland
+12 Max Planck Institut für Astronomie, Heidelberg, Germany
+13 Observatoire de Geneve, University of Geneva, Ch. de Pegasi 51, 1290 Versoix, Switzerland
+14 CRAL, CNRS, Université Lyon, Saint Genis Laval, France
+15 Department of Astronomy, University of Michigan, Ann Arbor, MI, USA
+Received —; accepted —
+ABSTRACT
+Recent observations from B-star Exoplanet Abundance Study (BEAST) have illustrated the existence of sub-stellar
+companions around very massive stars. In this paper, we present the detection of two lower mass companions to a
+relatively nearby (148.7+1.5
+−1.3 pc), young (17+3
+−4 Myr), bright (V=6.632 ± 0.006 mag), 2.58 ± 0.06 M⊙ B9V star HIP 81208
+residing in the Sco-Cen association, using the Spectro-Polarimetric High-contrast Exoplanet REsearch (SPHERE)
+instrument at the Very Large Telescope (VLT) in Chile. Analysis of the photometry obtained gives mass estimates of
+67+6
+−7 MJ for the inner companion and0.135+0.010
+−0.013 M⊙ for the outer companion, indicating the former to be most likely
+a brown dwarf and the latter to be a low-mass star. The system is compact but unusual, as the orbital planes of the
+two companions are likely close to orthogonal. The preliminary orbital solutions we derived for the system indicate that
+the star and the two companions are likely in a Kozai resonance, rendering the system dynamically very interesting for
+future studies.
+Key words. Brown dwarfs – Stars: early-type – Planets and satellites: detection
+1. Introduction
+Most known exoplanets are detected through the transit
+and radial velocity techniques, due to their exquisite sen-
+sitivity to planets in small orbits around their host stars
+(e.g. Mayor & Queloz 1995; Winn et al. 2011). However,
+both techniques are much less sensitive to planets in wide
+orbits (several au or larger), and therefore this class of plan-
+ets has been much less explored. In recent years, a grow-
+ing population of wide planets have been discovered with
+direct imaging (e.g. Macintosh et al. 2015; Chauvin et al.
+2017; Keppler et al. 2018; Bohn et al. 2020) to an increasing
+⋆ Based on observations from the European Southern Obser-
+vatory, Chile (Programme 1101.C-0258).
+extent in synergy with astrometry (e.g. Brandt et al. 2021;
+Lacour et al. 2021; Hinkley et al. 2022; Franson et al. 2023).
+These techniques are also sensitive to brown dwarf compan-
+ions (e.g. Janson et al. 2012; Crepp et al. 2016; Currie et al.
+2020); while such companions are rare, their high masses
+and brightnesses make them suitable for detailed charac-
+terisation and forming important links for understanding
+atmospheric conditions down to progressively smaller sub-
+stellar masses and temperatures.
+Direct imaging surveys (e.g. Uyama et al. 2017; Nielsen
+et al. 2019; Launhardt et al. 2020; Vigan et al. 2021) have
+studied wide planet and brown dwarf companion demo-
+graphics in a range of stellar system types, including bina-
+ries (e.g. Bonavita et al. 2016; Asensio-Torres et al. 2018),
+Article number, page 1 of 18
+arXiv:2305.19122v1  [astro-ph.EP]  30 May 2023
+
+<<<PAGE 2>>>
+A&A proofs: manuscript no. main
+debris disk systems (e.g. Janson et al. 2013; Meshkat et
+al. 2017) and stars of different masses (e.g. Bowler et al.
+2012; Delorme et al. 2012; Wagner et al. 2022). Studying
+substellar companion demographics as function of stellar
+mass can yield insights into the planet and brown dwarf
+formation processes, and in this context, the most mas-
+sive stars in the Solar neighbourhood – B stars – repre-
+sent an important part of the puzzle. To probe this regime
+deeply for the first time, we have initiated the B-star Exo-
+planet Abundance Study (BEAST, see Janson et al. 2021a),
+which is a high-contrast imaging survey using the Spectro-
+Polarimetric High-contrast Exoplanet REsearch (SPHERE;
+Beuzit et al. 2019) Extreme Adaptive Optics instrument at
+the Very Large Telescope (VLT) in Chile, to study 85 B
+stars in the nearby young Sco-Cen region (de Zeeuw et al.
+1999). Currently ongoing, BEAST has already discovered
+several new planets and low-mass substellar companions
+(Janson et al. 2019, 2021b; Squicciarini et al. 2022).
+Here, we report on the discovery of two low-mass com-
+panions, both in a dynamically unusual orbital configura-
+tion around the B9 star HIP 81208. The paper is struc-
+tured as follows: in Section 2, we give the details of the
+observation of the target and subsequent data reduction.
+In Section 3, we describe the target star and derive some of
+its basic parameters. Section 4 describes the main results
+from this work, including characterisation of the candidate
+properties, a detailed analysis of the spectrum of the inner
+companion candidate, and analysis of the orbits of the two
+companion candidates, as well as a discussion on the dy-
+namical stability of the system. The main conclusions from
+this study are outlined in Section 5.
+2. Observations and data reduction
+The target system, HIP 81208, has been observed twice
+with the SPHERE instrument at the Very Large Telecsope
+(VLT), both in the context of BEAST. The first observa-
+tion was acquired on 6 Aug 2019 (MJD 58701.02), and a
+second-epoch follow-up observation was acquired on 5 Apr
+2022 (MJD 59674.35). Both observations used the standard
+settings for BEAST (Janson et al. 2021a), in the IRDIFS-
+EXT mode (Zurlo et al. 2014) that allows for simultaneous
+low-resolution Y J H-band spectroscopy using the Integral
+Field Spectrograph (IFS; Beuzit et al. 2019) and dual-band
+imaging in the K band with the K12 filter-pair (Vigan et
+al. 2010) using the Infra-Red Dual-band Imager and Spec-
+trograph (IRDIS; Beuzit et al. 2019).
+The main observational sequence was executed in
+pupil-stabilised mode, which facilitates Angular Differen-
+tial Imaging (ADI, see Marois et al. 2006) reductions, and
+utilised the N-ALC-YJH-S coronagraph to enhance the in-
+strumental contrast close to the parent star. This long coro-
+nagraphic sequence was enveloped by two short pairs of
+images: A short unsaturated (non-coronagraphic) exposure
+of the star was acquired before and after the sequence for
+spectrophotometriccalibrationpurposes,andashortcoron-
+agraphic exposure was taken with the so-called waffle mode
+(Cantalloube et al. 2019) turned on, which generates satel-
+lite images of the primary star for astrometric calibration
+purposes. An empty sky frame was also included in the ob-
+servational procedure for the purpose of sky subtraction.
+The long coronagraphic sequence consisted of 16 frames,
+with 3 sub-integrations of 64 seconds each. Hence, the total
+integration time on-target was 3072 seconds in both epochs.
+The total field rotations during the observations were 51.9
+deg in the 2019 epoch and 57.5 deg in the 2022 epoch.
+Data reduction was performed according to the regular
+BEAST procedure (Janson et al. 2021a), with the SPHERE
+Data Center1 (Delorme et al. 2017) software based on the
+SPHERE pipeline (Pavlov et al. 2008) for all basic calibra-
+tion steps including dark and sky subtraction, flat fielding,
+and spectral extraction. For pixel scale, true North orienta-
+tion and pupil offset, we used the long-term values given in
+Maire et al. (2021) which are based on a five year analysis
+of the astrometric stability of SPHERE relying on obser-
+vations of star clusters taken at regular intervals. Accord-
+ingly, for both epochs, the pixel scale adopted for IRDIS
+was12.258 ±0.004mas/pixelfor K1bandand12.253 ±0.003
+mas/pixel in theK2 band, while the pixel scale for IFS was
+7.46 ± 0.02 mas/pixel. The true North orientation used was
+-1.77±0.04 deg and the pupil offset was 136±0.03 deg. For
+ADI reduction purposes, we used SpeCal (Galicher et al.
+2018) for IRDIS in Template Locally Optimised Combina-
+tion of Images (TLOCI; Marois et al. 2014) mode, and a
+pipeline for IFS based on Karhunen-Loève Image Projec-
+tion (KLIP, see e.g. Soummer et al. 2012).
+3. Stellar properties
+HIP 81208 (alias HD 149274, TYC 7357-207-1, TIC
+280474618, Gaia DR3 6020514769906985728, 2MASS
+J16351384-3543287) is a young bright (V=6.632 ± 0.006
+mag) B9V star (Houk 1982) residing in the Upper Cen-
+taurus Lupus (UCL) sub-region of the Sco-Cen stellar as-
+sociation (Hoogerwerf 2000), at a distance of148.7+1.5
+−1.3 pc
+from Earth. Some basic measurements of the star obtained
+from the literature are listed in Table 1.
+The current literature gives no indication of a binary
+companion to HIP 81208. A potentially interesting Gaia
+star in the vicinity of HIP 81208 is discussed in Section 4.6.
+The proper motion anomaly (PMa) between the long-term
+Hipparcos-Gaia DR3 and short-term Gaia DR3 proper mo-
+tion vectors is very low (PMaRA = 0.063±0.056 masyr−1,
+PMaDE = 0.090±0.041 masyr−1; see Kervella et al. 2022),
+ruling out the existence of any (> 0.05 M⊙) binary com-
+panion to the star within 3–30 au. There is also no hint of
+a faint or unresolved astrometric binary companion within
+2–20 au of the star, in Gaia DR2, as inferred from the low
+value of renormalized unit weight error (RUWE),ρ = 0.898
+(Belokurov et al. 2020). Additionally, Stock (2021) anal-
+ysed the 26 XSHOOTER (Vernet et al. 2011) spectra avail-
+able in the ESO archive and derived radial velocities with
+a precision of around 2 kms−1. The radial velocities cover
+a period of slightly less than 8 years from 2010 to 2017
+and have an rms of about 5 kms−1. The analysis revealed
+no indications of periodic variations, except for a slightly
+significant period of one year which also shows up in the
+window function. From this, we conclude that there are no
+indications of spectroscopic companions to HIP 81208 in
+the XSHOOTER radial velocities.
+In the following subsections, we constrain the main pa-
+rameters of the target, a summary of which is also listed in
+Table 2.
+1 https://sphere.osug.fr/spip.php?article45
+Article number, page 2 of 18
+
+<<<PAGE 3>>>
+G. Viswanath et al.: Detection of HIP 81208 B and C
+Stellar Parameter V alue Reference
+ICRS coordinates (Ep=2016.0) α = 248.80761058629 ◦, δ = −35.72476117010 ◦ Gaia Collaboration et al. (2022)
+Distance [pc] 148.7+1.5
+−1.3 Gaia Collaboration et al. (2022)
+Parallax [mas] 6.842 ± 0.048 Gaia Collaboration et al. (2022)
+[M/H ] [dex] −0.217 +0.217
+−0.184 Anders et al. (2022)
+µα∗ [masyr −1] −9.701 ± 0.052 Gaia Collaboration et al. (2022)
+µδ [masyr −1] −25.913 ± 0.039 Gaia Collaboration et al. (2022)
+V [mag] 6.632 ± 0.006 Slawson et al. (1992)
+B−V [mag] −0.049 ± 0.007 ESA (1997)
+U−B [mag] −0.208 ± 0.009 Slawson et al. (1992)
+G [mag] 6.6297 ± 0.0028 Gaia Collaboration et al. (2022)
+J [mag] 6.731 ± 0.026 Cutri et al. (2003)
+H [mag] 6.773 ± 0.051 Cutri et al. (2003)
+Ks [mag] 6.768 ± 0.029 Cutri et al. (2003)
+Table 1: Basic stellar parameters for HIP 81208 from the literature
+Fig. 1: Spectral energy distribution of HIP 81208 obtained with 78 existing photometry points retrieved from the VO
+SED Analyzer (VOSA). Also shown is the best-fit stellar model (Kurucz ODFNEW /NOVER, alpha: 0.0 (2003); Castelli
+& Kurucz 2003) for aTeff=10750 K.
+3.1. Extinction and reddening
+GaiaDR3 lists a monochromatic extinction estimate of
+A0 = 0 .0229+0.0035
+−0.0034 mag for the target atλ0 = 541 .4 nm
+(see Creevey et al. 2022, for the definition ofA0). AV, the
+extinction in the Johnson V band centred at∼548 nm, is
+dependent on the spectrum of the emitting source in the V
+band and hence is intrinsically different fromA0, which is
+a property of the interstellar medium alone and is affected
+only by the amount of absorption there-in. However, this
+dependence of AV on the source spectrum is often negligi-
+Article number, page 3 of 18
+
+<<<PAGE 4>>>
+A&A proofs: manuscript no. main
+ble, especially for small extinctions (A0 < 2 mag), at which
+A0 and AV follownearlyanidentityrelation(seeFig11.4(a)
+in the Gaia DR3 online documentation2). Hence, in this
+case, A0 can be taken as a rough approximation ofAV for
+our target. The STILISM reddening maps3 from Lallement
+et al. (2018) at the position and distance of HIP 81208
+gives a reddening estimate E(B−V)=0.011 ± 0.021 mag,
+which can be translated to anAV value of 0.034 ± 0.064
+mag using the relation AV=3.07×E(B−V) (McCall 2004,
+appropriate for lightly reddened A0 V stars). Examination
+of the reddening values for stars within±4◦ of the position
+of HIP 81208 in the Reis et al. (2011) catalog shows that
+stars in its vicinity are essentially negligibly reddened until
+a distance of∼160 pc, and the stars in the distance range
+170–180 pc haveAV=0.1–0.2 mag. In particular, four stars
+(HD 147493, HD147387, HD147149, HD147597) in the im-
+mediate vicinity of HIP 81208, with distances 146–150 pc,
+have negligible reddening values of E(B−V)=0.000 ± 0.008,
+−0.008 ± 0.011, 0.003 ± 0.012 and 0.009 ± 0.011 mag re-
+spectively, with an inferredAV=0.00 ± 0.03, −0.03 ± 0.05,
+0.01 ± 0.05 and 0.04 ± 0.05 mag respectively. Given the
+similar distance and similar position of these stars in the
+sky as our target, one can expect them to have comparable
+reddening and extinction as HIP 81208.
+An independent estimate of this B star’s reddening
+and extinction can be obtained from UBV photometry us-
+ing the Q-method to calculate the reddening-free Q in-
+dex (e.g. Johnson & Morgan 1953, see Appendix C.3 of
+Pecaut & Mamajek (2013)). Adopting the U −B colour
+from Slawson et al. (1992) and the B−V colour from ESA
+(1997), and the updated calibration of the Q-index to the
+dereddened (B−V)0 and (U−B)0 colours from Pecaut &
+Mamajek (2013), we estimate the intrinsic colours to be
+(B−V)0=−0.075 ± 0.003 mag and (U−B)0=−0.228 ± 0.013
+mag, with reddening E(B−V)=0.026 ± 0.009 mag and ex-
+tinction AV=0.085 ± 0.030 mag. Additionally, a fit of the
+Pecaut & Mamajek (2013) MS colour grid to the UB-
+VJHKs photometry for HIP 81208, allowing the E(B−V)
+to vary, finds that the reducedχ2 < 1 fits result in esti-
+mates of Teff=10970 ± 350K, E(B−V)=0.020 ± 0.013 mag
+and AV=0.064 ± 0.041 mag for the target.
+Both the reddening estimates derived above – using the
+Q-method and the spectral energy distribution (SED) fit-
+ting – rely heavily on the UBV photometry for a single star,
+i.e. HIP 81208, and hence are not independent. However,
+both these estimates (E(B−V)≤0.02±0.02 mag) are essen-
+tially consistent with the STILISM reddening map from
+Lallementetal.(2018)(E(B −V)=0.011±0.021mag),which
+has the benefit of having already been published, and in
+addition is also a reddening estimate averaged over a num-
+ber of stars of varying distances and positions in the vicin-
+ity of HIP 81208. The latter estimate is thus more robust
+than the other estimates of reddening derived/quoted in
+this Section, although the consistency between them adds
+to its confidence. We thus adopt the STILISM value of red-
+dening and the inferred interstellar extinction thereafter,
+AV=0.034±0.064 mag, for the target in this paper.
+2 https://gea.esac.esa.int/archive/documentation/GDR3/
+Data_analysis/chap_cu8par/sec_cu8par_data/ssec_cu8par_
+data_xp.html#Ch11.F4
+3 https://stilism.obspm.fr/
+3.2. Spectral energy distribution and effective temperature
+We used the Virtual Observatory SED analyzer (VOSA4)
+version 7.5toqueryfor thephotometryof HIP81208andfit
+syntheticstellarspectratothedata.Theobservedspectrum
+for 78 photometric data points is shown in Fig. 1. We re-
+moved several discrepant or redundant photometry points,
+namely the synthetic Gaia DR3 data (for e.g,U, B, V, R, I)
+as they were dependent on other available Gaia DR3 pho-
+tometry, and APASS Sloan photometry. Gaia DR3 photom-
+etry from binnedBp and Rp spectra account for 66 of the
+data points, along with the Gaia DR3GBP /G/GRP points,
+and photometry from Tycho (BT, VT), APASS (B, V),
+2MASS( J, H, Ks),WISE( W 1, W2, W3, W4).FortheSED
+fitting, we assumed a prior range ofAV= 0.034±0.064 mag.
+Using Kurucz 2003 [a/Fe]=0.0 models (Castelli & Kurucz
+2003), the best overall fit that fits all 78 data points had
+the following parameters: AV=−0.03 mag, Teff=10750 ±
+125 K, log(g)=4, [M/H]=−1, Fbol=(8.43 ± 0.03) × 10−8
+erg cm−2 s−1, Lbol=58.27 ± 1.304 L⊙ (log(L/L⊙)=1.765 ±
+0.01). The existing photometry as well as the obtained SED
+fit does not show any infrared excess up to∼ 10 µm (see
+lower panel of Fig. 1), which indicates the possible absence
+of any disk around HIP 81208. The SED fitting clearly fa-
+vored models with negligible or zero reddening. The pa-
+rameters all seem reasonable, except for the low metallicity,
+which was also found by the Gaia DR3 GSP Phot Aeneas
+fit to the Bp/Rp spectra ([M/H]=−1.27+0.39
+−0.21). Such a low
+metallicity is unexpected as the metallicity of Sco-Cen is es-
+sentially solar, however the B9V star may be suffering from
+some abundance anomaly or other effect (e.g., fast rotation)
+which may be biasing the SED fitting.
+We had already obtained aTeff=10970 K from the SED
+fit of MS colour grid to the UBVJHKs photometry in Sec-
+tion 3.1. From the inferred colours from the Q-method de-
+scribed before, the latest version of the Pecaut & Mamajek
+(2013) table5 suggest that these values of intrinsic colours
+correspond to aTeff of 11130±110 K (and indeed very typ-
+ical for B9V dwarfs).
+Furthermore, the star’s spectral type itself (B9V) sug-
+gests a Teff of approximately 10700 K, based on values for
+B9V standard stars by Pecaut & Mamajek (2013).
+An additional independent Teff estimate can be de-
+rived from the Hβ photometry from Slawson et al. (1992)
+(β=2.842±0.005 mag). Using the ATLAS9 model grid from
+Castelli & Kurucz (2003) for assumed atmospheric pa-
+rameters log(g)=4.0, [M/H]=0, and vturb = 2 km s−1, the
+Slawson Hβ value corresponds to a Teff=10654 K (note
+that adopting vturb=0 kms −1 has negligible effect, yield-
+ing Teff=10679 K).
+Hence, we derived severalTeff estimates ranging from
+10654 K to 11130 K. These five estimates are not quite fully
+independent as three of the estimates are connected to the
+Pecaut & Mamajek (2013) dwarf color/Teff sequences, but
+they are consistent with an approximateTeff of 10840±220
+K (rms). This value is within 2.5σ of the Gaia DR3 GSP-
+phot Aeneas estimate of11396+57
+−76 K.
+4 http://svo2.cab.inta-csic.es/theory/vosa/
+5 https://www.pas.rochester.edu/~emamajek/EEM_dwarf_
+UBVIJHK_colors_Teff.txt
+Article number, page 4 of 18
+
+<<<PAGE 5>>>
+G. Viswanath et al.: Detection of HIP 81208 B and C
+3.3. Luminosity and Radius
+We calculated a new bolometric luminosity for our target
+from the AV and Teff obtained in Section 3.1 and Section
+3.2 and V mag from Table 1. We converted V to mbol using
+a bolometric correction of BCv = −0.447 mag, obtained
+from interpolating the PM2013 table (refer footnote5) for
+a Teff=10840 K. The resulting apparent bolometric magni-
+tude is mbol=6.154 ± 0.064 mag. At a distance of 148.7 pc,
+this corresponds to the absolute magnitude Mbol=0.292 ±
+0.080 mag. This translates to an equivalent luminosity of
+Lbol=60.69 ± 4.46 L⊙ (log(L/L⊙)=1.783 ± 0.032). This is
+consistent with previous Lbol values for HIP 81208 in the
+literature (e.g., Anderson & Francis 2012).
+Using the above derived value forLbol and the Teff es-
+timate from Section 3.2 (10840 ± 220 K), we can arrive at
+an estimate for the radius of the target using the Stefan-
+Boltzmann law, asR∗ =
+p
+Lbol/4πσT 4
+ef f= 2.213 ± 0.121 R⊙.
+3.4. Stellar age
+The stellar age was constrained using the method of
+isochronal dating of co-moving stars (CMS) introduced in
+the previous BEAST publications Janson et al. (2021a)
+and Squicciarini et al. (2022). We adopted the long-term
+proper motion for HIP 81208 reconstructed by Kervella et
+al. (2022), for this purpose. The sample of co-moving stars
+wasconstructedbyqueryingtheGaiaDR3cataloguewithin
+a search radius of 5 deg around the location of our target,
+for sources possessing similar 2D-projected space motion.
+A clump of 86 such sources was identified in the velocity
+space (vα, vδ) through the following cuts on velocity and
+parallax (ϖ):
+
+
+
+−7.5 km s−1 < vα < −5.8 km s−1
+−19.5 km s−1 < vδ < −15.5 km s−1
+6.0 mas < ϖ <7.3 mas
+(1)
+Based on their photometry from Gaia DR3 (G, GBP, GRP)
+and 2MASS (J, H, Ks) bands, we subsequently derived the
+isochronal ages and masses for all the stars in the group us-
+ing the madys tool (Squicciarini & Bonavita 2022). Three
+independent evolutionary models, all assuming solar metal-
+licities, were employed to ensure the robustness of the re-
+sults: BHAC15 (Baraffe et al. 2015), PARSEC (Marigo et
+al. 2017) and MIST (Choi et al. 2016). The sample was
+then divided into 5 mass bins:M/M⊙≤0.4, 0.4<M/M⊙≤0.6,
+0.6<M/M⊙≤0.8, 0.8<M/M⊙≤1.4, M/M⊙>1.4. We restricted
+our age analysis to the most reliable bin of stellar mass
+(0.8M⊙ < M≤ 1.4M⊙) containing 9 out of the 86 stars in
+the sample. The small number of stars in this bin is a con-
+sequence of the shape of the initial mass function (IMF) (53
+of the fitted stars were M-type stars, i.e. M<0.6M⊙) and
+the fact that not all the stars could be successfully fitted
+due to factors like non-optimal quality of photometric data
+or unresolved binarity. Using the chosen mass bin, we were
+able to derive a well-defined group age estimatet = 17 +3
+−4
+Myr, which is consistent with previous age estimates for
+UCL like Mamajek et al. (2002, 17±1 Myr), Pecaut et al.
+(2012, 16±1 Myr).
+3.5. Stellar mass and log(g)
+To estimate the stellar mass, we used the Parsec tracks
+(Bressan et al. 2012) version 1.2S (Chen et al. 2015)
+with AV=0.034 mag and metallicity [M/H] = 0 and age
+= 17 Myr. We interpolated for Teff=10840±220 K and
+log(L/L⊙)=1.7831±0.0319 to get an estimate for the mass
+of the star, M∗ = 2.58±0.06 M⊙ and its surface grav-
+ity log(g) = 4.201±0.011. Uncertainties forM∗ and log(g)
+were derived using the upper and lower limits forTeff(±220
+K) and log(L/L⊙) (±0.0319). To get the upper limit on the
+mass and surface gravity, we interpolated the Parsec tracks
+for M∗ and log(g) corresponding to Teff= 11060 K and
+log(L/L⊙) = 1.815. Similarly, to get the lower limits, we
+interpolated usingTeff= 10620 K and log(L/L⊙) = 1.7512.
+The average of the uncertainties derived from the respec-
+tive upper and lower limits ofM∗ and log(g) obtained thus
+are quoted as the uncertainty for these parameters in this
+Section. The values forM∗ and log(g) derived here are also
+consistent with the literature (see e.g., Anders et al. 2022).
+4. Results and discussion
+Post-processing of the IFS image using ADI reveals a can-
+didate companion, HIP 81208B, at a projected separation
+of 0.325 ± 0.001′′ (48.33 ± 0.48 au; averaged over the two
+epochs) North of the primary star. The candidate is almost
+equally bright in both the epochs (∆J = 7.6 ± 0.1 mag), as
+can be seen in Fig. 2a and 2b which display the median of
+the reduced images over the entire IFSY J H-band in the
+2019 and 2022 epochs respectively. The candidate is also de-
+tectedinthereduceddatafromIRDIS K1(∆K1 = 6.9±0.1
+mag) andK2 (∆K2 = 6.6 ± 0.1 mag) bands in both epochs
+(refer Fig. 3a and 3b). In addition, a second candidate com-
+panion, HIP 81208C, is also revealed in the IRDIS images
+at a projected separation of1.492 ± 0.001′′ (221.86 ± 2.09
+au, averaged over the two epochs) from the central star.
+This candidate is not within the field of view (FoV) of the
+IFS (1.73′′ × 1.73′′).
+Table 3 lists the obtained photometry and astrometry
+for HIP 81208 B and C from the observations in both the
+epochs. To put both the candidates in the same astrometric
+reference frame, the astrometry was calculated based only
+on the IRDIS data. The astrometry in the individual IRDIS
+bands is obtained by inserting a negative point spread func-
+tion (PSF) in the approximate position of the planet, and
+minimising the root mean square (rms) of the residuals in
+an area of∼ 1λ/D around this position in the reduced data,
+by appropriate changes in both the exact position where the
+PSFwasinsertedandthemultiplicativefactorneededtore-
+produce its intensity. The final astrometry values listed for
+the companion are the weighted mean of its values fromK1
+and K2 bands. The contrast magnitudes for the compan-
+ions were obtained using a similar procedure, but keeping
+the position of the companion fixed at the value obtained
+from the astrometric analysis. For IFS photometry, all the
+individual 39 channels were considered separately (see Sec-
+tion 4.3 for more details) and the contrast magnitudes inY,
+J, H bands were obtained by taking the weighted mean of
+the respective values over the spectral channels with wave-
+length between 1—1.1 µm, 1.16—1.33 µm and 1.5—1.64
+µm respectively. Fig. 4 shows the position of the two can-
+didate companions in theK1 − K2, K1 colour magnitude
+Article number, page 5 of 18
+
+<<<PAGE 6>>>
+A&A proofs: manuscript no. main
+Stellar Parameter Estimated V alue
+E(B-V) [mag] 0 . 011 ± 0 . 021
+Av [mag] 0 . 034 ± 0 . 064
+T eff [K] 10840 ± 220
+Age [Myr] 17
++3
+− 4
+L bol [ L ⊙ ] 60 . 69 ± 4 . 46
+R ∗ [ R ⊙ ] 2 . 213 ± 0 . 121
+M ∗ [ M ⊙ ] 2 . 58 ± 0 . 06
+log( g ) [cm/s 2] 4 . 201 ± 0 . 011
+Table 2: A summary of all the stellar parameters estimated for HIP 81208 in this work.
+(a)
+ (b)
+Fig. 2: SPHERE IFSY J Hband image of HIP 81208 from (a) 2019 epoch and (b) 2022 epoch, reduced using a KLIP-
+based pipeline. The image here is the median taken over the entire wavelength band and shows a bright companion,
+HIP 81208 B, detected at0.325 ± 0.001′′ North of the primary star (averaged over the two epochs). The pixel scale is
+7.46 ± 0.02 mas/pixel in both epochs.
+diagram, along with other known sub-stellar companions,
+young/dusty objects and some field stars.
+4.1. Confirming the physically bound nature of the candidates
+To confirm if the directly imaged candidates are physical
+companions to the primary, we study their proper motion
+(see, e.g., Janson et al. 2021a). A physical companion to
+the star will have a similar proper motion to it, but dif-
+ferent from those of other background sources in the FoV.
+Aside from the primary star and the two companion candi-
+dates HIP 81208 B and C, we identify 6 other sources de-
+tected within the IRDIS (K1, K2) FoV, that are common
+to the data in both epochs. 5 additional sources are also
+seen, but only in one epoch, and are therefore neglected
+in the following analysis. We study the astrometric mo-
+tion of all the above objects relative to the star, between
+the two epochs (given in Table A.1 in the Appendix, along
+with the obtained photometry), as shown in Fig. 5. Given
+the magnitude of the two candidates B and C, if they are
+not physically bound to the target star, they would need
+to be background stars and would in that case, possess a
+low proper motion tending towards zero, i.e. a null proper
+motion. Then their astrometric positions would shift be-
+tween the two epochs as a reflection of the proper motion
+of the star. This astrometric motion can be predicted and is
+shownastheblackdottedcurveinthefigure,startingatthe
+position expected for a source co-moving with HIP 81208
+(unfilled star) and ending at the position expected from
+the astrometric shift of a pure background source with null
+proper motion in the second epoch (black filled star). Also
+plotted in the figure are the relative astrometric shift of the
+Article number, page 6 of 18
+
+<<<PAGE 7>>>
+G. Viswanath et al.: Detection of HIP 81208 B and C
+(a)
+ (b)
+Fig. 3: SPHERE IRDISK band image of HIP 81208 from the (a) 2019 and (b) 2022 epoch observations, reduced using
+SpeCal in TLOCI mode. Each image here is the median taken overK1 and K2 band images of the respective epoch.
+Images show the companion HIP 81208 B, as well as a second companion HIP 81208 C, detected at0.325 ± 0.001′′ North
+and 1.492 ± 0.001′′ South East of the primary star respectively (averaged over the two epochs). The pixel scale was
+12.258 ± 0.004 mas/pixel for K1 band and 12.253 ± 0.003 mas/pixel for K2 band.
+First epoch Second epoch
+HIP 81208B HIP 81208C HIP 81208B HIP 81208C
+Separation [mas] 320.9 ± 1.0 1493 .4 ± 1.2 328.7 ± 1.0 1490 .0 ± 1.8
+Position angle [deg] 356.55 ± 1.72 116 .26 ± 0.08 0.43 ± 0.13 115 .96 ± 0.08
+∆Y [mag] 8.13 ± 0.16 — 8.10 ± 0.16 —
+∆J [mag] 7.60 ± 0.12 — 7.57 ± 0.12 —
+∆H [mag] 7.19 ± 0.12 — 7.19 ± 0.13 —
+∆K1 [mag] 6.88 ± 0.05 5 .83 ± 0.05 6.85 ± 0.12 5 .77 ± 0.12
+∆K2 [mag] 6.64 ± 0.07 5 .59 ± 0.07 6.59 ± 0.12 5 .51 ± 0.12
+MJ [mag] 8.44 ± 0.14 — 8.41 ± 0.17 —
+MH [mag] 8.07 ± 0.15 — 8.07 ± 0.15 —
+MK1 [mag] 7.76 ± 0.09 6 .71 ± 0.09 7.73 ± 0.14 6 .65 ± 0.14
+MK2 [mag] 7.52 ± 0.10 6 .47 ± 0.10 7.47 ± 0.14 6 .38 ± 0.14
+Table 3: Astrometry of HIP 81208 B and C as obtained from IFS and IRDIS data in the first (2019) and second (2022)
+epochs, along with the obtained contrast magnitudes in theY, J, H, K1 and K2 photometric bands. The conversion of
+contrasts to absolute magnitudes listed in the table forJ, H, K1, K2 bands have been mediated by photometric data
+for the primary listed in Table 1.
+6 additional sources detected in the IRDIS data in both the
+epochs (blue crosses, labelled as“prob. bkg objects") along
+with the associated error bars. These shifts are large with
+respect to the predicted motion of a comoving source; the
+offsets from the position expected for a completely static
+source are due to their own proper motion, which could
+manifest a reflection of the galactic rotation curve. It can
+be seen that the motion of the two companion candidates
+B (green cross) and C (yellow cross) are clearly different
+from those of these 6 sources, and much closer to that of
+a comoving source. The mean astrometric shift of the 6
+additional sources in the IRDIS data is −12.7 ± 1.5 mas
+(rms: 5.1 mas) alongαcos(δ) and−14.7 ± 1.3 mas (rms: 4.4
+mas) alongδ, plotted as the thicker blue cross; on the other
+hand the astrometric shift alongαcos(δ), δ of HIP 81208 B
+and C are (7.6 ± 9.6, −62.7 ± 1.4) mas and (−12.9 ± 2.2,
+−62.5 ± 2.2) mas respectively. This correspondingly places
+a confident 10.4 σ and 9.8 σ distinction between the as-
+Article number, page 7 of 18
+
+<<<PAGE 8>>>
+A&A proofs: manuscript no. main
+Fig. 4: K1 − K2, K1 colour magnitude diagram, with the
+candidates HIP 81208B and HIP 81208C shown along with
+other known sub-stellar companions, young/dusty objects
+and field stars.
+trometric motion of B and C from the mean astrometric
+motion of the cloud of background objects detected in the
+IRDIS field, strongly indicating that these candidates are
+physically bound to the primary star.
+To quantify this indication, we compute the probability
+that the two companion candidates, if drawn from such a
+sample of background sources could possess an astromet-
+ric shift which would mimic that of a physically bound
+companion of the primary. In order to compute such a
+false alarm probability (FAP), we queried the Gaia EDR3
+catalogue (Gaia Collaboration 2020) for field stars near
+HIP 81208, with a search radius of 5 arcmin. The re-
+sulting sample contains 4014 Gaia sources; the 50th per-
+centile of their proper motion distribution (with the 16th
+and 84th percentiles shown as the lower and upper un-
+certainty limits) are < µα∗ >= −3.12+3.11
+−2.71 masyr −1and
+< µδ >= −3.67+2.57
+−2.85 masyr −1. These are shown as the
+grey dots in Fig. 6, labelled as "Gaia sources". In the same
+figure, we also show the 6 background sources from IRDIS
+data as blue crosses, with their proper motion computed
+as the ratio between the corresponding astrometric shifts
+with respect to the position expected for a static source
+and the time baseline between the two epochs. The mean
+proper motion of these 6 sources, along with the associ-
+ated uncertainty, is< µα∗ >= −4.77 ± 0.58 masyr −1 and
+< µδ >= −5.50 ± 0.50 masyr −1 (shown as the thicker
+blue cross in the figure), which is well within∼ 1σ of that
+of the Gaia sample. Similarly, the derivedµα∗, µδ of HIP
+81208 B and C are (2.87±3.62, −23.53±0.54) masyr−1and
+(−4.85 ± 0.84, −23.46 ± 0.75) masyr−1, respectively. To es-
+timate the FAP, we define an "interesting region" of proper
+motion in the figure, similar to Squicciarini et al. (2022),
+within which a background star might be disguised as a
+30
+20
+10
+010203040
+x [mas]
+10
+0
+10
+20
+30
+40
+50
+60
+70
+80
+y [mas]
+comoving source
+static source
+B
+C
+prob. bkg objects
+Fig. 5: Relative astrometric shifts between the two epochs
+along α∗ (x axis) andδ (y axis) for all the sources detected
+in the IRDIS FoV. The black dotted curve shows the ex-
+pected motion of a pure background source with null proper
+motion when compared to a source co-moving with the tar-
+get (the grey shaded region encompasses the uncertainty
+associated with this motion). The mean astrometric shift
+of the probable background objects (blue crosses) detected
+in the data are shown as a thick blue cross, and that of HIP
+81208 B and C are shown as a solid green triangle and a
+solid yellow square respectively.
+physically bound source. This region employs the following
+boundaries:
+−25 masyr −1 < µα∗ < 5 masyr −1,
+µδ < −20 masyr −1 (2)
+The number of Gaia stars that fall into this region is 12
+out of 4014 stars, resulting in a corresponding fraction of
+"interesting objects" being∼ 3×10−3. Given that there are
+8 source detections in the entire IRDIS FoV, this gives an
+FAP of ∼2%. The probability of having at least two such
+sources is as low as2×10−4. The obtained low value of FAP
+is sufficient enough to add further robustness to the claim
+that HIP 81208 B and C are physically bound companions
+to the primary.
+It is also evident from Table A.1 that both the com-
+panions B and C are much brighter than all other sources
+detected in the IRDIS FoV. An average over theK1, K2
+Article number, page 8 of 18
+
+<<<PAGE 9>>>
+G. Viswanath et al.: Detection of HIP 81208 B and C
+30
+ 20
+ 10
+ 0 10 20
+*  [mas yr 1]
+30
+20
+10
+0
+10
+20
+ [mas yr 1]
+HIP 81208
+B
+C
+Gaia sources
+interesting region
+prob. bkg objects
+Fig. 6: The proper motion inαcos(δ), δ for the sample of
+Gaia EDR3 sources within 5 arcmin from the primary, and
+for the 6 background sources in the IRDIS data. Also shown
+are the median proper motion of the 6 probable background
+objects as well as the proper motion derived for HIP 81208
+B and C using the same symbols as in Fig. 5. The inter-
+esting region of proper motion defined by Equation 2 is
+over-plotted in the figure as a yellow-shaded region enclosed
+within black dashed contours.
+bands over the two epochs would yieldK = 13 .51 ± 0.06
+mag for B andK = 12.44 ± 0.06 mag for C. An alternative
+way to determine if HIP 81208 B and C are background ob-
+jects would then be to compute the probability that back-
+ground objects as bright as these can be detected at such
+small separations from the star. Since the two companions
+are quite bright, we may use the 2MASS catalogue (Skrut-
+skie et al. 2006), which is complete for uncrowded regions
+at this magnitude level, to estimate the surface density of
+background objects as bright as B and C. Searching within
+a radius of 2 arcmin from HIP 81208, we found 26 and 15
+2MASS sources brighter than B and C respectively. Given
+the projected separation of the two companions from the
+star, this corresponds to very low probabilities of1.9×10−4
+and 2.3 × 10−3 that B and C, respectively, are background
+objects by chance projected very close to HIP 81208.
+Anunderlyingpossibilitythatisyettobeinvestigatedis
+that the two companions, even though co-moving as estab-
+lished above, could be UCL members that are not bound to
+the target. Considering the derived masses of B and C, we
+first evaluate the probability that B is a free-floating UCL
+substellar object that was by chance close to the target. For
+this,wefollowasimilaranalysisbySquicciarinietal.(2022)
+and integrate the normalised IMF of the UCL association
+from 5 MJ 6 to 75 MJ to obtain the fraction of objects in
+UCL belonging to this mass range. To obtain the expected
+number of UCL objects between 5—75 MJ, we multiply
+this fraction by the number of UCL sources (∼4021)7. We
+further divide this value by the area of UCL sub-region
+as given in Squicciarini et al. (2022) to estimate the cor-
+responding projected density of these objects. Multiplying
+the projected density with the IRDIS FoV (11′′×11′′) gives
+us the number of free-floating substellar objects expected in
+the IRDIS FoV. Using a binomial distribution, we can then
+get the FAP of having seen atleast one such object across
+the 47 targets that have been observed atleast twice in the
+BEAST survey as∼ 5 × 10−4. Similarly, we also computed
+the probability that C is a stellar mass UCL member that is
+not bound to HIP 81208, by repeating the above calculation
+but considering every possible companion mass from 5MJ
+to the most massive UCL star∼15 M⊙. The correspond-
+ing value for FAP is ∼ 2.4 × 10−3. This probability can
+be regarded as an upper limit since this analysis considers
+all the stars in UCL, but the actual number of interloping
+stars we should estimate in the IRDIS FoV should not have
+those stars considered, for whichGaia has resolved the true
+position. So we can safely say that the probability of see-
+ing by chance, due to projection effects, at least one UCL
+member of any stellar mass > 5 MJ across all the stars
+that have been observed twice in BEAST survey until now
+is < 0.2 − 0.3%.
+4.2. Characterisation of Candidate Properties
+Photometric mass estimates were derived for both the can-
+didates with the help of madys, based on the average of
+their respective contrast measurements over the two epochs
+(referTable3).Inparticular,theestimateforHIP81208Cis
+based on IRDIS (K1, K2) bands while that for HIP 81208B
+is based on both IRDIS and synthetic IFS magnitudesJIF S
+at 1.246 µm (band width=0.174µm) andHIF Sat 1.570 µm
+(band width=0.132 µm), which were obtained by collaps-
+ing the spectral channels 12-21 (1.159-1.333µm) and 30-38
+(1.504-1.636 µm), respectively. The derivation of calibrated
+apparentmagnitudesfromcontrasts ismediatedby suitable
+photometric data for the primary, taken from the literature:
+2MASS J, H and Ks for IFS JIF S, HIF Sand the doublet
+(K1, K2), respectively (refer Table 1). Given the spectral
+classification of the primary as a B9V star, the errors intro-
+duced by these approximations are well within photometric
+uncertainties.
+madys operates by seeking the best match between the
+vector of input photometry for the object and a selected
+track/isochrone grid via χ2 minimisation. Evaluation of
+random uncertainties associated to apparent photometry,
+parallax, extinction, and age is naturally taken into account
+in this process in a Monte Carlo fashion. In order to eval-
+uate the impact of theoretical uncertainties on the results,
+we repeated the mass estimation of each companion twice,
+employingadifferentsuiteofstellar/substellarevolutionary
+model each time; namely the Ames-Cond models (Allard et
+6 The lower limit 5MJ corresponds roughly to the sensitivity
+of BEAST survey, given the performances of SPHERE and the
+age and distance of Sco-Cen.
+7 Rescaled, considering the limiting magnitude of Gaia, from
+the actual list of members in (Damiani et al. 2019) which was
+complete only above 15MJ.
+Article number, page 9 of 18
+
+<<<PAGE 10>>>
+A&A proofs: manuscript no. main
+al. 2001) and the BHAC15 models. For each candidate, the
+individual estimates from both repetitions were consistent
+with one another, and were averaged to get the final mass
+estimate:
+MB = 67+6
+−7 MJ = 0.064+0.006
+−0.007M⊙, (3)
+MC = 141+10
+−14 MJ = 0.135+0.010
+−0.013 M⊙ (4)
+The corresponding Teff returned by the method as a re-
+sult of the above interpolation scheme were also averaged to
+get <Teff> = 2895+45
+−40 K for B and <Teff> = 3165+40
+−60 K for
+C. As indicated from Table 6 of Pecaut & Mamajek (2013),
+listing intrinsic colours, adoptedTeff and bolometric cor-
+rections of 5-30 Myr stars, these values roughly correspond
+to a spectral type of M5 for B and M4 for C. A comparison
+of the Teff estimate for B can be made using its observed
+spectrum over the IFS and IRDIS bands (see Section 4.3),
+giving some level of confidence on the derivedTeff and spec-
+tral type. However, no such comparison can be made for C
+since it lacks an observed spectrum in the IFS, so the de-
+rived Teff and spectral type for C here should be subjected
+to careful interpretation.
+Grieves et al. (2021) briefly summarises the stellar-
+substellar mass boundary predictions in the literature.
+Although the hydrogen-burning mass limit is generally
+adopted as 80 MJ, the boundary predictions range from
+73.3–98.5 MJ depending on the choice of models and metal-
+licities (see Dieterich et al. 2018). An even lower mass limit
+of ∼70 MJ was predicted by Dupuy & Liu (2017) based on
+the astrometric masses of 31 ultracool binaries with com-
+ponent spectral types M7–T5. Comparing the above de-
+rived mass estimates for the companions with the stellar-
+substellar boundary predictions will place HIP 81208C in
+the stellar regime and HIP 81208B most likely in the
+brown dwarf regime. However, further observations and
+more stringent mass constraints are required to definitely
+confirm whether HIP 81208B is a brown dwarf or a very
+low mass star.
+4.3. Analysis of HIP 81208B spectrum
+To determine contrast values for HIP 81208B from the
+KLIP-reduced IFS data, a negative PSF was injected at
+the position of the candidate. Monochromatic reductions
+were then performed based on principal component analy-
+sis (PCA) with modes 2–6 in such a way that the standard
+deviation is minimised within a region of∼ 1λ/D centred
+on the candidate’s position. The values obtained for each
+wavelength with the different PCA modes were averaged to
+get the final contrast for that wavelength. The uncertainty
+in the contrast for each wavelength was calculated as the
+rms scatter of the values obtained by repeating the above
+same procedure, with the negative PSF inserted, not at the
+companionposition,butatfivedifferentpositionsintheim-
+age at the same separation from the star as the companion
+B, and separated by 60, 120, 240 and 300 degrees in po-
+sition angle. The minimisation of standard deviation only
+concerns the intensity of the negative PSF that is inserted
+and hence can be performed even without an actual com-
+panion present at the location of insertion. The intensity
+value derived this way can be either positive or negative,
+Fig. 7: The contrast spectrum for HIP 81208B obtained
+from reduced IFS data in theY J Hband and IRDIS data
+in K1, K2 bands, along with the associated uncertainties.
+The red solid squares represent the contrast obtained from
+the 2022 observations and the green solid circles represent
+the contrast obtained from 2019 observations.
+depending on the local noise realisation. The contrast val-
+ues and uncertainties thus obtained for the candidate from
+the IFS data in both the epochs are plotted along with the
+obtained contrasts using SpeCal from the IRDISK1 and
+K2 bands, against the respective wavelengths in Fig. 7.
+To calculate the flux of the companion B corresponding
+to the contrast values at each wavelength, we interpolated
+the best-fit theoretical spectrum for the star from Section
+3.2 (see Fig. 1), scaled to the observed flux levels, at the
+respective wavelengths. The uncertainties in flux are ob-
+tained by summing quadratically the uncertainties in con-
+trasts and the photon noise at the location of B estimated
+within an area of ∼ 1λ/D around it. Further, to deter-
+mine the spectral type of the candidate, we fit theoretical
+stellar models AMES-Cond 2000 (Allard et al. 2001) and
+BT-Settl (Allard et al. 2012) to the obtained flux spectrum
+of the candidate. To determine the right choice for surface
+gravity, we interpolated the AMES-Cond isochrone corre-
+sponding to the estimated age of the target in this work
+(0.02 Gyr) for the estimated mass of HIP 81208 B in Sec-
+tion 4.2 (0.064 M⊙); the corresponding log(g) given by the
+isochrone is 4.42. The closest available choice of surface
+gravity among the models is log(g)=4.5. As an additional
+check, we also interpolated the AMES-Cond evolutionary
+track corresponding to a mass of 0.06 M⊙; at a log(g)=4.5
+the age pointed by the evolutionary track is 0.026 Gyr,
+which is compatible with our age estimate for the target.
+For these reasons, we chose a log(g) value of 4.5 for the
+theoretical models in this analysis. The resulting theoreti-
+cal flux at the surface of the star was scaled to the observed
+flux level by a factor ofR2/D2, where R is the radius of
+the candidate for the specific temperature of the model as
+determined from the corresponding model isochrones and
+evolutionary tracks corresponding to an age of 0.02 Gyr,
+and D is the distance to HIP 81208 from Earth. Fig. 8
+Article number, page 10 of 18
+
+<<<PAGE 11>>>
+G. Viswanath et al.: Detection of HIP 81208 B and C
+Fig. 8: χ2
+red computed between the observed spectrum and
+the AMES-Cond and BT-Settl models for different effective
+temperatures, for both 2019 and 2022 epochs. The log(g)
+adopted for both models is 4.5. For both epochs, the models
+reach aχ2
+red ∼ 1 at Tef f=2900 K. The closest spectral type
+is M5.
+shows the reduced χ2 (χ2
+red) values between the observed
+spectrumandthetwotheoreticalmodelsatspecificeffective
+temperatures. For both 2019 and 2022 epoch observations,
+χ2
+red value for both models approaches the ideal value 1
+at the effective temperature of 2900 K, the closest spectral
+type to which is M5 (Tef f=2880 K) (see Table 6 of Pecaut
+& Mamajek 2013). Fig. 9 shows the observed spectrum for
+HIP 81208B in both the epochs, alongside theoretical mod-
+els corresponding to the leastχ2
+red (2900 K), as well as for
+Teff=(2800 K, 3000 K). The obtainedTeff here for B from
+its spectrum, as well as the corresponding spectral type,
+is consistent with the results frommadys in Section 4.2,
+rendering these values reliable. We thus conclude that HIP
+81208B is likely of spectral type M5.
+4.4. Constraining the orbital parameters
+Given the astrometric information of the two companions
+obtained in two different epochs, it is possible to derive
+constraints on their orbital parameters. We do this using
+the python packageorbitize! (Blunt et al. 2020), which is
+designed to fit the orbits of directly imaged planets.Or-
+bitize! offers two choices of algorithm for fitting orbits: Or-
+bits for the Impatient (OFTI, see Blunt et al. 2017) and
+Markov Chain Monte Carlo (MCMC, see Ford 2005; Vous-
+den et al. 2016). The disadvantage with using MCMC for
+orbital fitting for long-period orbits is that for cases with
+less constraints from observations on the orbital parame-
+ters, MCMC take a very long time to converge. Since the
+relative displacement between the two epochs for B and C
+were only 7.8 mas and 3.4 mas respectively, we had very
+low orbital coverage for the companions from our obser-
+vations, and thus, MCMC would not be an ideal choice.
+So our choice of algorithm was OFTI, which is a Bayesian
+Monte Carlo rejection-sampling method that is ideal for
+cases where the observations cover only a small fraction of
+Fig. 9: Observed spectrum for HIP 81208B in 2019 (green
+solidcircles)and2022(redsolidsquares)epochs,alongwith
+theassociateduncertaintiesinflux.AlsoplottedareAMES-
+Cond 2000 log( g)=4.5 theoretical model for Teff=2800,
+2900 and 3000 K as well as BT-Settl log(g)=4.5 theoretical
+model forTeff=2900 K. The best fit models to the observed
+spectrum in both epochs correspond to aTeff=2900 K.
+long-period orbits. OFTI takes the separation and position
+angle of the companion in the different observation epochs,
+the parallax and the total mass of the system (star and
+companion), along with uncertainties, as input and uses
+built-in8 prior probability distribution functions (PDFs) to
+computeposteriorPDFsoforbitalparameters.Thiscompu-
+tation is based on the orbits the algorithm accepts from the
+generated ones, using the technique of rejection-sampling.
+We ranorbitize! until a total of106 orbits were accepted by
+the algorithm for both B and C. The corner plots in Fig.
+10a and 10b show the resulting posterior distribution for
+semi-major axis (a), inclination (i) and eccentricity (e) of
+these orbits (the plots are truncated to include only 98% of
+the generated orbits for better visibility). The 2-D contour
+plots in the figures illustrate 1σ, 2σ and 3σ confidence lev-
+els on these values. The median orbital parameters for B
+and C as derived from these posteriors, along with the up-
+per (84%) and lower (16%) quantile intervals (∼ ±1σ), are
+also shown in the figures, as well as listed in Table 4. The
+orbital periods implied for B and C from their semi-major
+axis obtained above and their derived masses in Section 4.2
+are also listed in the table.
+From the corner plots, it is very unlikely that B has
+a very high eccentricity orbit (>0.7); higher inclinations
+(>75◦) than the predicted quantile limit would favour a
+much wider orbit, both of which seem of very low prob-
+ability as per the posteriors. Similarly, for C as well, the
+probability falls rapidly for higher eccentricities and higher
+values of orbital distance seem very unlikely. It is notewor-
+thy from these results that the orbital inclination of C is
+very different from that of B, with the relative inclination
+between the two companions∼ 80◦ (refer Fig. 11 for the
+8 See https://orbitize.readthedocs.io/en/latest/
+tutorials/Modifying_Priors.html for the complete list
+of default priors inOrbitize! and the different prior choices.
+Article number, page 11 of 18
+
+<<<PAGE 12>>>
+A&A proofs: manuscript no. main
+/uni00000044/uni00000003/uni0000003e/uni00000044/uni00000058/uni00000040/uni00000003/uni00000020/uni00000003/uni00000018/uni00000016/uni00000011/uni0000001c/uni0000001b/uni0000000e/uni00000016/uni00000015/uni00000011/uni00000015/uni00000015
+/uni00000014/uni00000018/uni00000011/uni00000013/uni00000013
+/uni00000013/uni00000011/uni00000015
+/uni00000013/uni00000011/uni00000017
+/uni00000013/uni00000011/uni00000019
+/uni00000013/uni00000011/uni0000001b
+/uni00000048
+/uni00000048/uni00000003/uni00000020/uni00000003/uni00000013/uni00000011/uni00000016/uni00000016/uni0000000e/uni00000013/uni00000011/uni00000015/uni00000019
+/uni00000013/uni00000011/uni00000015/uni00000015
+/uni00000018/uni00000013/uni00000014/uni00000013/uni00000013/uni00000014/uni00000018/uni00000013/uni00000015/uni00000013/uni00000013/uni00000015/uni00000018/uni00000013
+/uni00000044/uni00000003/uni0000003e/uni00000044/uni00000058/uni00000040
+/uni00000014/uni00000018
+/uni00000016/uni00000013
+/uni00000017/uni00000018
+/uni00000019/uni00000013
+/uni0000001a/uni00000018
+/uni0000004c/uni00000003/uni0000003e/uni00000083/uni00000040
+/uni00000013/uni00000011/uni00000015/uni00000013/uni00000011/uni00000017/uni00000013/uni00000011/uni00000019/uni00000013/uni00000011/uni0000001b
+/uni00000048
+/uni00000014/uni00000018/uni00000016/uni00000013/uni00000017/uni00000018/uni00000019/uni00000013/uni0000001a/uni00000018
+/uni0000004c/uni00000003/uni0000003e/uni00000083/uni00000040
+/uni0000004c/uni00000003/uni0000003e/uni00000083/uni00000040/uni00000003/uni00000020/uni00000003/uni00000017/uni00000019/uni00000011/uni00000019/uni00000014/uni0000000e/uni00000014/uni00000018/uni00000011/uni0000001a/uni00000014
+/uni00000014/uni0000001c/uni00000011/uni00000017/uni0000001a
+(a) HIP 81208 B
+/uni00000044/uni00000003/uni0000003e/uni00000044/uni00000058/uni00000040/uni00000003/uni00000020/uni00000003/uni00000015/uni00000016/uni00000017/uni00000011/uni00000015/uni0000001a/uni0000000e/uni00000014/uni00000019/uni0000001b/uni00000011/uni00000019/uni00000018
+/uni00000019/uni0000001b/uni00000011/uni0000001c/uni00000019
+/uni00000013/uni00000011/uni00000015
+/uni00000013/uni00000011/uni00000017
+/uni00000013/uni00000011/uni00000019
+/uni00000013/uni00000011/uni0000001b
+/uni00000048
+/uni00000048/uni00000003/uni00000020/uni00000003/uni00000013/uni00000011/uni00000016/uni0000001b/uni0000000e/uni00000013/uni00000011/uni00000015/uni0000001c
+/uni00000013/uni00000011/uni00000015/uni00000019
+/uni00000016/uni00000013/uni00000013/uni00000019/uni00000013/uni00000013/uni0000001c/uni00000013/uni00000013/uni00000014/uni00000015/uni00000013/uni00000013
+/uni00000044/uni00000003/uni0000003e/uni00000044/uni00000058/uni00000040
+/uni00000014/uni00000013/uni00000018
+/uni00000014/uni00000015/uni00000013
+/uni00000014/uni00000016/uni00000018
+/uni00000014/uni00000018/uni00000013
+/uni00000014/uni00000019/uni00000018
+/uni0000004c/uni00000003/uni0000003e/uni00000083/uni00000040
+/uni00000013/uni00000011/uni00000015/uni00000013/uni00000011/uni00000017/uni00000013/uni00000011/uni00000019/uni00000013/uni00000011/uni0000001b
+/uni00000048
+/uni00000014/uni00000013/uni00000018/uni00000014/uni00000015/uni00000013/uni00000014/uni00000016/uni00000018/uni00000014/uni00000018/uni00000013/uni00000014/uni00000019/uni00000018
+/uni0000004c/uni00000003/uni0000003e/uni00000083/uni00000040
+/uni0000004c/uni00000003/uni0000003e/uni00000083/uni00000040/uni00000003/uni00000020/uni00000003/uni00000014/uni00000015/uni0000001b/uni00000011/uni00000014/uni00000019/uni0000000e/uni00000014/uni0000001c/uni00000011/uni00000017/uni0000001a
+/uni00000014/uni00000018/uni00000011/uni00000016/uni00000019
+ (b) HIP 81208 C
+Fig. 10: Corner plots for the accepted orbits from OFTI for the companion B (a) and C (b). The median values along with
+upper (84%) and lower (16%) quantile intervals (∼ ±1σ) are shown as dashed vertical lines on the posterior distributions
+of the respective orbital parameters. The 2-D contour plots show the 1σ, 2σ and 3σ confidence limits to these values.
+distribution of relative inclinations between the orbits of B
+and C obtained from the algorithm). Thus, the two orbital
+planes look roughly orthogonal, making B and C appear to
+orbit in an opposite sense with respect to each other.
+30 60 90 120 150 180
+Relative inclination (deg)
+0.000
+0.002
+0.004
+0.006
+0.008
+0.010
+0.012
+0.014Probability distribution
+Kozai regime
+Fig. 11: Distribution of the relative inclinations between B
+and C’s orbits from the sample of solutions obtained by the
+OFTI algorithm. The light red area corresponds to systems
+in the ZLK configuration, or Kozai regime.
+Fig. 12 and 13 show 20 random orbits drawn from the
+posterior distributions from the OFTI run for B and C re-
+spectively. The left panels show the orbital motion of the
+respective companions in RA and DEC over an entire pe-
+riod of these orbits and the right panels show the projected
+separation ρ (mas) and position angle PA (deg) predicted
+from these orbits over time. Also shown in the plots are the
+observed ρ and PA of the companions in the two epochs
+along with error bars.
+4.5. Dynamical stability of the orbits
+We can refine the current orbital constraints (depicted in
+Fig. 10) by ensuring that the configuration is stable for a
+timescale comparable to the age of the system (∼ 107 yr).
+Indeed, it is unlikely that we observe this system right be-
+fore the ejection of one of its components. The stability of a
+triple system with non-negligible mass ratios requires a well
+separated hierarchical structure, with sufficient distance be-
+tween the orbits. Moreover, if the eccentricities and/or rel-
+ative inclination are high, then additional secular pertur-
+bations can destabilise orbits that were initially well sepa-
+rated. To evaluate the additional constraints ensuing from
+dynamical stability, we randomly pick 1000 couples of so-
+lutions to the orbital fits, and runN-body simulations of
+their future 107 years of evolution. We use the IAS15 inte-
+grator in the Rebound package (Rein & Spiegel 2015). We
+adopt the following values for the masses:M∗ = 2.58 M⊙,
+MB = 0 .064 M⊙, and MC = 0 .135 M⊙. The maximum
+value of the eccentricity reached by either orbit is displayed
+on Fig. 14 as a function of the semi-major axes, eccentric-
+ities and relative inclination. If this value is more than 1,
+it denotes instability (corresponding orbits are indicated as
+black solid circles in the figure). The results suggest that a
+large fraction of the orbital solutions (nearly half of them)
+are actually unstable. In particular, for the companion C,
+Article number, page 12 of 18
+
+<<<PAGE 13>>>
+G. Viswanath et al.: Detection of HIP 81208 B and C
+/uni0000001a/uni00000018/uni00000013
+/uni00000018/uni00000013/uni00000013
+/uni00000015/uni00000018/uni00000013
+/uni00000013/uni00000015/uni00000018/uni00000013/uni00000018/uni00000013/uni00000013/uni0000001a/uni00000018/uni00000013
+/uni00000035/uni00000024/uni00000003/uni0000003e/uni00000050/uni00000044/uni00000056/uni00000040
+/uni00000018/uni00000013/uni00000013
+/uni00000015/uni00000018/uni00000013
+/uni00000013
+/uni00000015/uni00000018/uni00000013
+/uni00000018/uni00000013/uni00000013
+/uni00000027/uni00000048/uni00000046/uni00000003/uni0000003e/uni00000050/uni00000044/uni00000056/uni00000040
+/uni00000015/uni00000013/uni00000014/uni0000001c/uni00000011/uni00000018/uni0000001c
+/uni00000015/uni00000013/uni00000015/uni00000015/uni00000011/uni00000015/uni00000019
+/uni00000015/uni00000013/uni00000015/uni00000013/uni00000015/uni00000013/uni00000015/uni00000014/uni00000015/uni00000013/uni00000015/uni00000015/uni00000015/uni00000013/uni00000015/uni00000016/uni00000015/uni00000013/uni00000015/uni00000017/uni00000015/uni00000013/uni00000015/uni00000018/uni00000016/uni00000014/uni00000013
+/uni00000016/uni00000015/uni00000013
+/uni00000016/uni00000016/uni00000013
+/uni00000016/uni00000017/uni00000013
+/uni00000016/uni00000018/uni00000013/uni00000003/uni0000003e/uni00000050/uni00000044/uni00000056/uni00000040
+/uni00000015/uni00000013/uni00000015/uni00000013/uni00000015/uni00000013/uni00000015/uni00000014/uni00000015/uni00000013/uni00000015/uni00000015/uni00000015/uni00000013/uni00000015/uni00000016/uni00000015/uni00000013/uni00000015/uni00000017/uni00000015/uni00000013/uni00000015/uni00000018
+/uni00000028/uni00000053/uni00000052/uni00000046/uni0000004b
+/uni00000016/uni00000018/uni00000013
+/uni00000016/uni00000018/uni00000018
+/uni00000016/uni00000019/uni00000013
+/uni00000016/uni00000019/uni00000018
+/uni00000016/uni0000001a/uni00000013/uni00000033/uni00000024/uni00000003/uni0000003e/uni00000083/uni00000040
+/uni00000015/uni00000013/uni00000015/uni00000013
+/uni00000015/uni00000013/uni00000017/uni00000013
+/uni00000015/uni00000013/uni00000019/uni00000013
+/uni00000015/uni00000013/uni0000001b/uni00000013
+/uni00000015/uni00000014/uni00000013/uni00000013
+/uni00000015/uni00000014/uni00000015/uni00000013
+/uni00000015/uni00000014/uni00000017/uni00000013
+/uni00000015/uni00000014/uni00000019/uni00000013
+/uni00000015/uni00000014/uni0000001b/uni00000013
+/uni00000028/uni00000053/uni00000052/uni00000046/uni0000004b/uni00000003/uni0000003e/uni0000005c/uni00000048/uni00000044/uni00000055/uni00000040
+Fig. 12: On the left: The motion of HIP 81208 B in RA and DEC over an entire orbital period for 20 random orbits drawn
+from the posterior distributions from the OFTI run. The adjacent color bar shows the epochs along the orbital positions.
+The yellow solid circles represent the predicted position of the companion in these orbits in the two observation epochs.
+The blue star represents the central primary star HIP 81208. On the right: The projected separationρ and position angle
+PA (deg) of B over time, as predicted from these 20 orbits. The two purple dots on both figures represent the measured
+values of the respective parameters at the two observation epochs.
+/uni00000015/uni00000013/uni00000013/uni00000013
+/uni00000013/uni00000015/uni00000013/uni00000013/uni00000013
+/uni00000035/uni00000024/uni00000003/uni0000003e/uni00000050/uni00000044/uni00000056/uni00000040
+/uni00000015/uni00000013/uni00000013/uni00000013
+/uni00000013
+/uni00000015/uni00000013/uni00000013/uni00000013
+/uni00000027/uni00000048/uni00000046/uni00000003/uni0000003e/uni00000050/uni00000044/uni00000056/uni00000040
+/uni00000015/uni00000013/uni00000015/uni00000013/uni00000015/uni00000013/uni00000015/uni00000014/uni00000015/uni00000013/uni00000015/uni00000015/uni00000015/uni00000013/uni00000015/uni00000016/uni00000015/uni00000013/uni00000015/uni00000017/uni00000015/uni00000013/uni00000015/uni00000018/uni00000014/uni00000017/uni0000001b/uni00000013
+/uni00000014/uni00000017/uni0000001b/uni00000018
+/uni00000014/uni00000017/uni0000001c/uni00000013
+/uni00000014/uni00000017/uni0000001c/uni00000018
+/uni00000014/uni00000018/uni00000013/uni00000013
+/uni00000014/uni00000018/uni00000013/uni00000018/uni00000003/uni0000003e/uni00000050/uni00000044/uni00000056/uni00000040
+/uni00000015/uni00000013/uni00000015/uni00000013/uni00000015/uni00000013/uni00000015/uni00000014/uni00000015/uni00000013/uni00000015/uni00000015/uni00000015/uni00000013/uni00000015/uni00000016/uni00000015/uni00000013/uni00000015/uni00000017/uni00000015/uni00000013/uni00000015/uni00000018
+/uni00000028/uni00000053/uni00000052/uni00000046/uni0000004b
+/uni00000014/uni00000014/uni00000018/uni00000011/uni00000013
+/uni00000014/uni00000014/uni00000018/uni00000011/uni00000018
+/uni00000014/uni00000014/uni00000019/uni00000011/uni00000013
+/uni00000014/uni00000014/uni00000019/uni00000011/uni00000018
+/uni00000014/uni00000014/uni0000001a/uni00000011/uni00000013/uni00000033/uni00000024/uni00000003/uni0000003e/uni00000083/uni00000040
+/uni00000015/uni00000015/uni00000013/uni00000013
+/uni00000015/uni00000017/uni00000013/uni00000013
+/uni00000015/uni00000019/uni00000013/uni00000013
+/uni00000015/uni0000001b/uni00000013/uni00000013
+/uni00000016/uni00000013/uni00000013/uni00000013
+/uni00000028/uni00000053/uni00000052/uni00000046/uni0000004b/uni00000003/uni0000003e/uni0000005c/uni00000048/uni00000044/uni00000055/uni00000040
+Fig. 13: On the left: The motion of HIP 81208 C in RA and DEC over an entire orbital period for 20 random orbits
+drawn from the posterior distributions from the OFTI run. The change in the position of the companion over the two
+epochs is very small to be visible as separate data points as in the previous figure, and are thus represented by a single
+yellow solid circle. On the right: The projected separationρ and position angle PA (deg) of C over time, as predicted
+from these 20 orbits. The symbols and color bar hold the same meaning as in the previous figure.
+the lower right panel of Fig. 14 shows that instability devel-
+ops starting fromec ≃ 0.5, whatever the relative inclination
+(the chaos becomes too strong for the system to be locked
+in a Kozai regime). From the middle top panel of the fig-
+ure, we also see that only wide separations (ac > 500 au)
+could help maintain the stability forec > 0.5, however such
+separations are outside the interval of confidence for C (see
+Table 4). Hence, we can say that large eccentricities (> 0.5)
+are disfavored for C.
+In the simulations, we notice that a significant propor-
+tion of solutions reach high eccentricities without becom-
+ing unstable. This is characteristic of the Von Zeipel-Lidov-
+Article number, page 13 of 18
+
+<<<PAGE 14>>>
+A&A proofs: manuscript no. main
+HIP 81208B HIP 81208C
+K 1 − K 2 (mag) 0.250 ± 0.057 0.252 ± 0.064
+Teff (K) from madys 2895 +45
+−40 3165 +40
+−60
+Teff (K) from spectral fit 2900 —
+Spectral type M5 tentatively M4
+Mass, M (M⊙) 0.064 +0.006
+−0.007 0.135 +0.010
+−0.013
+Orbital semi-major axis, a (au) 53.98+32 .22
+−15.00 234.27+168 .65
+−68.96
+Implied orbital period, P (years) 244.12 ± 160.19 2178.11 ± 1657.05
+Orbital inclination, i (◦) 46.61+15 .71
+−19.47 128.16+19 .47
+−15.36
+Orbital eccentricity, e 0.33+0.26
+−0.22 0.38+0.29
+−0.26
+Table 4: Properties of companions HIP 81208B and C determined in this work using astrometric and photometric
+information from BEAST observations in the two epochs.
+Kozai (ZLK Von Ziepel 1910; Lidov 1962; Kozai 1962) res-
+onance, which occurs when the relative inclination is more
+than ≃ 40 degrees and less than≃ 130 degrees. Looking at
+the whole set of solutions, the likelihood that this system
+is in a configuration of ZLK resonance is around 65% (see
+Fig. 11). The period of Kozai eccentricity oscillations for a
+triple system can be estimated approximately as (Takeda
+& Rasio 2005; Ford et al. 2000):
+PKoz ≃ P1
+ m0 + m1
+m2
+ a2
+a3
+3  
+1 − e2
+2
+3/2
+, (5)
+where P, a, e are the orbital period, semi-major axis and
+eccentricity respectively and the indices 0, 1, 2 are, in this
+case, representative of the primary star HIP 81208, the
+brown dwarf companion B and the stellar companion C
+respectively. For the system HIP 81208, using the derived
+mass and orbital parameters in Sections 4.2, 4.4, the Kozai
+oscillation period is≃0.3 Myr, which is much shorter com-
+pared to 17 Myr, the age of the system. So the system has
+enough time to have undergone atleast a few cycles of Kozai
+oscillations. Such systems are rare and precious, for ZLK
+resonances are at the core of many astrophysical problems
+such as hot Jupiters (see Wu & Murray 2003) or black hole
+mergers (see Liu & Lai 2019). More generally, the relative
+inclination between the different orbits of a given system is
+far from being well constrained, and could bring important
+clues to the formation processes. In this regard, HIP 81208
+probes an uncharted regime, between the planetary (Dupuy
+et al. 2022) and stellar masses (Tokovinin 2017), where it is
+unclear whether coplanarity or random inclinations should
+be favored.
+4.6. A potential ‘D’ component
+In addition to the two companions reported in this
+study, the star Gaia DR3 6020420074469092608 (2MASS
+J16360769-3543514, WISEA J163607.70-354351) at a sep-
+aration of 656.28′′ (0.1823◦) and position angle of 92.046◦
+is potentially noteworthy. The star is a faint (G=14.975 ±
+0.003mag;GaiaCollaboration2020),X-rayemittingsource
+detected by the Rosat All-Sky Survey (1eRASS J163607.7-
+354351, 2RXS J163607.8-354352; see Boller et al. 2016). Its
+parallax, 6.6742 ± 0.0297 mas (Gaia Collaboration 2020),
+differs from that of HIP 81208 only by ∼ 3σ and the
+proper motion ( µα∗ = −9.622 ± 0.035 masyr −1, µδ =
+−24.695±0.029masyr −1; Gaia Collaboration 2020) only by
+∼ 1.12masyr −1(856±56ms−1).Giventhetotalmassofthe
+HIP 81208 triple system to beMtot = 2.779 M⊙, the tidal
+radius of HIP 81208 is then 1.35 pc×(Mtot/M⊙)1/3=1.898
+pc (Mamajek et al. 2013; Jiang & Tremaine 2010). At a
+distance of 148.7 pc, this translates to a projected tidal ra-
+dius of (180/π)×(1.898 pc/148.7 pc)=0.7313◦, or 2632.75′′.
+Since the star is within 656.28′′of HIP 81208, it is possi-
+ble that it could be within the tidal influence of our target.
+Thisfact,alongwiththesimilarparallaxandpropermotion
+to HIP 81208, suggest a possibility that this star could be
+a potential ‘D’ companion in this currently-triple system.
+However, we cannot reliably assess this possibility at the
+moment since not much is known about this star. Future
+observations of Gaia DR3 6020420074469092608 with in-
+struments like GRAVITY (GRAVITY Collaboration et al.
+2017) could help provide more information on its projected
+2D motion in the sky. In addition, radial velocity informa-
+tion from future spectroscopic observations can also help
+determine its 3D motion. If the star shares the same 3D
+motion in the sky as HIP 81208, this could be a strong
+indication that this star is bound to our target.
+5. Conclusions
+In this work, we describe our observations of the B9V star
+HIP 81208 using the SPHERE instrument at VLT as part
+of the BEAST survey, in two different epochs, obtaining
+both IFS Y J Hspectroscopy as well as IRDIS K1, K2
+imaging data for the target. We report the discovery of
+two lower mass companions to the star; an inner compan-
+ion HIP 81208B at0.325 ± 0.001′′and an outer companion
+HIP81208Cat 1.492±0.001′′projectedseparation.Usingits
+spectrumoverthe Y J H−K1−K2wavelengthrange,wede-
+termine that HIP 81208B is of spectral type M5. Analysing
+the obtained photometry, we estimate the masses of HIP
+81208B and C to be67+6
+−7 MJ and 0.135+0.010
+−0.013 M⊙ respec-
+tively, indicating B to be most likely a brown dwarf and
+C to be a low-mass star. Both companions are confirmed
+Article number, page 14 of 18
+
+<<<PAGE 15>>>
+G. Viswanath et al.: Detection of HIP 81208 B and C
+100 200 300
+ab (au)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0eb
+0 1000 2000 3000
+ac (au)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0ec
+0.0 0.5 1.0
+eb
+50
+75
+100
+125
+150
+175irel
+0.2
+0.4
+0.6
+0.8
+1.0
+emax
+100 200 300
+ab (au)
+0
+500
+1000
+1500
+2000
+2500
+3000ac (au)
+0.0 0.5 1.0
+eb
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0ec
+0.0 0.5 1.0
+ec
+50
+75
+100
+125
+150
+175irel
+0.2
+0.4
+0.6
+0.8
+1.0
+emax
+Fig. 14: Maximum eccentricity reached by either orbit within107 years of evolution depending on the initial orbital
+elements. Black solid circles depict unstable cases (emax > 1, 44% of the cases). These results were obtained by running
+N-body simulations starting from 1000 solutions of the orbital fit. Configurations where orbits are crossing or almost
+crossing are always unstable. Orbits with relative inclination between40 and 130 degrees are locked in a Kozai resonance,
+and may experience high eccentricity variations without compromising the system’s stability.
+to be physically bound to the primary by means of proper
+motion analysis of the background stars in the data.
+Using astrometric information over the two epochs,
+we were able to constrain the orbits of B and C to the
+most probable semi-major axis values of53.98+32.22
+−15.00 au and
+234.27+168.65
+−68.96 au respectively. The relative inclination be-
+tween the two orbits is high, making them appear to orbit
+in an opposite sense to each other. Table 4 summarises all
+main parameters we derived for the two companions in this
+work. The orbital solutions we derived for the companions
+indicate that this system is likely to be in a Kozai reso-
+nance, in which orbits with high relative inclinations can
+remain stable despite reaching high values of eccentricities.
+This makes HIP 81208 a system to be subjected to careful
+further study, to understand more about orbital dynamics
+in systems where the companions are in between planetary
+and stellar mass regimes.
+Our observations have, thus, presented strong evidence
+that HIP 81208 is a triple system, with two low-mass com-
+panions in a very interesting configuration around the star.
+If the nearby star Gaia DR3 6020420074469092608 turns
+out to be physically bound to HIP 81208, the system may
+even be quadruple. Further observations are thus useful for
+HIP 81208, both to investigate the possibility of perhaps
+a ‘D’ component in the now known triple system, and to
+understand more about the orbital dynamics in the sys-
+tem. The orbital parameters derived in this study for HIP
+81208 B and C are not tightly constrained as can be seen
+from their large±1σ errors, since they are based on a small
+time baseline. Future BEAST or GRAVITY epochs will aid
+in providing longer time baseline astrometry for both the
+companions, which could help establish more stringent con-
+straints on the orbital parameters for this very interesting
+system.
+Acknowledgements. M.J. gratefully acknowledges funding from the
+Knut and Alice Wallenberg Foundation. AV and PD acknowl-
+edges funding from the European Research Council (ERC) un-
+der the European Union’s Horizon 2020 research and innova-
+tion programme (grant agreement No. 757561, COBREX; grant
+agreement n ° 885593). This publication makes use of CDS and
+NASA/ADS services, as well as VOSA, developed under the Span-
+ish Virtual Observatory (https://svo.cab.inta-csic.es) project funded
+by MCIN/AEI/10.13039/501100011033/ through grant PID2020-
+112949GB-I00. VOSA has been partially updated by using funding
+from the European Union’s Horizon 2020 Research and Innovation
+Programme, under Grant Agreement no. 776403 (EXOPLANETS-A).
+This work has also made use of the SPHERE Data Centre, jointly op-
+erated by OSUG/IPAG (Grenoble), PYTHEAS/LAM/CeSAM (Mar-
+seille), OCA/Lagrange (Nice), Observatoire de Paris/LESIA (Paris),
+and Observatoire de Lyon (OSUL/CRAL). This research has made
+use of the SIMBAD database and VizieR catalogue access tool, op-
+Article number, page 15 of 18
+
+<<<PAGE 16>>>
+A&A proofs: manuscript no. main
+erated at CDS, Strasbourg, France. This work has made use of
+data from the European Space Agency (ESA) missionGaia (https:
+//www.cosmos.esa.int/gaia), processed by the Gaia Data Process-
+ing and Analysis Consortium (DPAC,https://www.cosmos.esa.int/
+web/gaia/dpac/consortium). Funding for the DPAC has been pro-
+vided by national institutions, in particular the institutions partic-
+ipating in the Gaia Multilateral Agreement.This work is supported
+by the French National Research Agency in the framework of the
+Investissements d’Avenir program (ANR-15-IDEX-02), through the
+funding of the "Origin of Life" project of the Univ. Grenoble-Alpes.
+This work is also supported by the PRIN-INAF 2019 "Planetary sys-
+tems at young ages (PLATEA)". Part of this research was carried out
+at the Jet Propulsion Laboratory, California Institute of Technology,
+under a contract with the National Aeronautics and Space Adminis-
+tration (80NM0018D0004).
+References
+Anders, F., Khalatyan, A., Queiroz, A. B. A., et al. 2022, A&A, 658,
+A91. doi:10.1051/0004-6361/202142369
+Anderson, E. & Francis, C. 2012, Astronomy Letters, 38, 331.
+doi:10.1134/S1063773712050015
+Allard, F., Hauschildt, P. H., Alexander, D. R., et al. 2001, ApJ, 556,
+357. doi:10.1086/321547
+Allard, F., Homeier, D., & Freytag, B. 2012, Philosophical Trans-
+actions of the Royal Society of London Series A, 370, 2765.
+doi:10.1098/rsta.2011.0269
+Asensio-Torres, R., Janson, M., Bonavita, M., et al. 2018, A&A, 619,
+A43
+Baraffe, I., Homeier, D., Allard, F., et al. 2015, A&A, 577, A42.
+doi:10.1051/0004-6361/201425481
+Belokurov, V., Penoyre, Z., Oh, S., et al. 2020, MNRAS, 496, 1922.
+doi:10.1093/mnras/staa1522
+Beuzit, J.-L., Vigan, A., Mouillet, D., et al. 2019, A&A, 631, A155
+Blunt, S., Nielsen, E. L., De Rosa, R. J., et al. 2017, AJ, 153, 229.
+doi:10.3847/1538-3881/aa6930
+Blunt, S., Wang, J. J., Angelo, I., et al. 2020, AJ, 159, 89.
+doi:10.3847/1538-3881/ab6663
+Bochanski, J. J., Faherty, J. K., Gagné, J., et al. 2018, AJ, 155, 149.
+doi:10.3847/1538-3881/aaaebe
+Bohn, A. J., Kenworthy, M. A., Ginski, C., et al. 2020, ApJL, 898,
+L16
+Boller, T., Freyberg, M. J., Trümper, J., et al. 2016, A&A, 588, A103.
+doi:10.1051/0004-6361/201525648
+Bonavita, M., Desidera, S., Thalmann, C., et al. 2016, A&A, 593, A38
+Bowler, B. P., Liu, M. C., Shkolnik, E. L., et al. 2012, ApJ, 753, 142
+Brandt, G. M., Brandt, T. D., Dupuy, T. J., et al. 2021, ApJL, 915,
+L16
+Brandt, T. D. 2021, ApJS, 254, 42. doi:10.3847/1538-4365/abf93c
+Bressan, A., Marigo, P., Girardi, L., et al. 2012, MNRAS, 427, 127.
+doi:10.1111/j.1365-2966.2012.21948.x
+Cantalloube, F., Dohlen, K., Milli, J., et al. 2019, The Messenger, 176,
+25. doi:10.18727/0722-6691/5138
+Castelli, F. & Kurucz, R. L. 2003, Modelling of Stellar Atmospheres,
+210, A20
+Chauvin, G., Desidera, S., Lagrange, A.-M., et al. 2017, A&A, 605,
+L9
+Chen, Y., Bressan, A., Girardi, L., et al. 2015, MNRAS, 452, 1068.
+doi:10.1093/mnras/stv1281
+Choi, J., Dotter, A., Conroy, C., et al. 2016, ApJ, 823, 102.
+doi:10.3847/0004-637X/823/2/102
+Creevey, O. L., Sordo, R., Pailler, F., et al. 2022, arXiv:2206.05864.
+doi:10.48550/arXiv.2206.05864
+Crepp, J. R., Gonzales, E. J., Bechter, E. B., et al. 2016, ApJ, 831,
+136
+Cutri, R. M., Skrutskie, M. F., van Dyk, S., et al. 2003, VizieR Online
+Data Catalog, II/246
+Currie, T., Brandt, T. D., Kuzuhara, M., et al. 2020, ApJL, 904, L25
+Damiani, F., Prisinzano, L., Pillitteri, I., et al. 2019, A&A, 623, A112.
+doi:10.1051/0004-6361/201833994
+Delorme, P., Lagrange, A. M., Chauvin, G., et al. 2012, A&A, 539,
+A72
+Delorme, P., Meunier, N., Albert, D. et al. 2017, in SF2A-2017: Pro-
+ceedings of the Annual meeting of the French Society of Astron-
+omy and Astrophysics, ed. C. Reylè, P. Di Matteo, F. Herpin, E.
+Lagadec, A. Lancon, Z. Meliani, & F. Royer, 347-361
+Dieterich, S. B., Weinberger, A. J., Boss, A. P., et al. 2018, ApJ, 865,
+28. doi:10.3847/1538-4357/aadadc
+Dupuy, T. J. & Liu, M. C. 2017, ApJS, 231, 15. doi:10.3847/1538-
+4365/aa5e4c
+Dupuy, T., Kraus, A., Kratter, et al. 2022, MNRAS, 512, 648-660
+ESA 1997, ESA Special Publication, 1200
+Ford, E. B., Kozinsky, B., & Rasio, F. A. 2000, ApJ, 535, 385.
+doi:10.1086/308815
+Ford, E. B. 2005, AJ, 129, 1706. doi:10.1086/427962
+Franson, K., Bowler, B. P., Bonavita, M., et al. 2023, AJ, 165, 39.
+doi:10.3847/1538-3881/aca408
+Gaia Collaboration 2020, VizieR Online Data Catalog, I/350
+Gaia Collaboration, Vallenari, A., Brown, A. G. A., et al. 2022,
+arXiv:2208.00211
+Galicher, R., Boccaletti, A., Mesa, D. et al. 2018, A&A, 615, 92
+Gaskell, C. M. 1990, BAAS
+GRAVITY Collaboration, Abuter, R., Accardo, M., et al. 2017, A&A,
+602, A94. doi:10.1051/0004-6361/201730838
+Grieves, N., Bouchy, F., Lendl, M., et al. 2021, A&A, 652, A127.
+doi:10.1051/0004-6361/202141145
+Hinkley, S., Lacour, S., Marleau, G.-D., et al. 2022, arXiv:2208.04867.
+doi:10.48550/arXiv.2208.0486
+Hoogerwerf, R. 2000, MNRAS, 313, 43. doi:10.1046/j.1365-
+8711.2000.03192.x
+Houk, N. 1982, Michigan Catalogue of Two-dimensional Spectral
+Types for the HD stars. Volume_3. Declinations -40_ƒ0 to -26_ƒ0.,
+by Houk, N.. Ann Arbor, MI(USA): Department of Astronomy,
+University of Michigan, 12 + 390 p.
+Janson, M., Jayawardhana, R., Girard, J. H., et al. 2012, ApJL, 758,
+L2
+Janson, M., Brandt, T. D., Moro-Martín, A., et al. 2013, ApJ, 773,
+73
+Janson, M., Asensio-Torres, R., André, D., et al. 2019, A&A, 626, A99
+Janson, M., Squicciarini, V., Delorme, P., et al. 2021, A&A, 646, A164
+Janson, M., Gratton, R., Rodet, L., et al. 2021, Nature, 600, 231
+Jiang, Y.-F. & Tremaine, S. 2010, MNRAS, 401, 977.
+doi:10.1111/j.1365-2966.2009.15744.x
+Johnson, H. L. & Morgan, W. W. 1953, ApJ, 117, 313.
+doi:10.1086/145697
+Kervella, P., Arenou, F., Mignard, F., et al. 2019, A&A, 623, A72.
+doi:10.1051/0004-6361/201834371
+Kervella, P., Arenou, F., & Thévenin, F. 2022, A&A, 657, A7.
+doi:10.1051/0004-6361/202142146
+Keppler, M., Benisty, M., Müller, A., et al. 2018, A&A, 617, A44
+Kozai, Y. 1962, AJ, 67, 591
+Lacour, S., Wang, J. J., Rodet, L., et al. 2021, A&A, 654, L2
+Lallement, R., Capitanio, L., Ruiz-Dern, L., et al. 2018, A&A, 616,
+A132. doi:10.1051/0004-6361/201832832
+Launhardt, R., Henning, T., Quirrenbach, A., et al. 2020, A&A, 635,
+A162. doi:10.1051/0004-6361/201937000
+Leike, R. H., Glatzle, M., & Enßlin, T. A. 2020, A&A, 639, A138.
+doi:10.1051/0004-6361/202038169
+Lidov, M. L. 1962, Planetary and Space Science, 9.10, 719
+Liu, B. & Lai, D. 2019, MNRAS, 483, 4060.
+doi:10.1093/mnras/sty3432
+Macintosh, B., Graham, J. R., Barman, T., et al. 2015, Science, 350,
+64
+Maire, A.-L., Langlois, M., Delorme, P., et al. 2021, Journal of
+Astronomical Telescopes, Instruments, and Systems, 7, 035004.
+doi:10.1117/1.JATIS.7.3.035004
+Mamajek, E. E., Meyer, M. R., & Liebert, J. 2002, AJ, 124, 1670.
+doi:10.1086/341952
+Mamajek, E. E., Bartlett, J. L., Seifahrt, A., et al. 2013, AJ, 146, 154.
+doi:10.1088/0004-6256/146/6/154
+Marigo, P., Girardi, L., Bressan, A., et al. 2017, ApJ, 835, 77.
+doi:10.3847/1538-4357/835/1/77
+Marois, C., Lafrenière, D., Doyon, R., et al. 2006, ApJ, 641, 556
+Marois, C., Correia, C., Véran, J.-P., et al. 2014, Exploring
+the Formation and Evolution of Planetary Systems, 299, 48.
+doi:10.1017/S1743921313007813
+Mayor, M. & Queloz, D. 1995, Nature, 378, 355
+McCall, M. L. 2004, AJ, 128, 2144. doi:10.1086/424933
+Meshkat, T., Mawet, D., Bryan, M. L., et al. 2017, AJ, 154, 245
+Nielsen, E. L., De Rosa, R. J., Macintosh, B., et al. 2019, AJ, 158, 13
+Pavlov, A., Möller-Nilsson, O., Feldt, M., et al. 2008, Proc. SPIE,
+7019, 701939
+Pecaut, M. J., Mamajek, E. E., & Bubar, E. J. 2012, ApJ, 746, 154.
+doi:10.1088/0004-637X/746/2/154
+Article number, page 16 of 18
+
+<<<PAGE 17>>>
+G. Viswanath et al.: Detection of HIP 81208 B and C
+Pecaut, M. J. & Mamajek, E. E. 2013, ApJS, 208, 9. doi:10.1088/0067-
+0049/208/1/9
+Rein, H., & Spiegel, D. 2015, MNRAS, 446, 1424-1437
+Reis, W., Corradi, W., de Avillez, M. A., et al. 2011, ApJ, 734, 8.
+doi:10.1088/0004-637X/734/1/8
+Skrutskie, M. F., Cutri, R. M., Stiening, R., et al. 2006, AJ, 131, 1163.
+doi:10.1086/498708
+Slawson, R. W., Hill, R. J., & Landstreet, J. D. 1992, ApJS, 82, 117.
+doi:10.1086/191711
+Soummer, R., Pueyo, L., & Larkin, J. 2012, ApJL, 755, L28
+Squicciarini, V., Gratton, R., Janson, M. et al. 2022, A&A, accepted,
+arXiv:2205.02279
+Squicciarini, V. & Bonavita, M. 2022, arXiv:2206.02446
+Stock, Lukas, 2021, ’Spektroskopische Doppelsterne im BEAST B-
+Stern-Sample’, Master Thesis, Ruprecht-Karls-Universität Heidel-
+berg, Germany
+Takeda, G. & Rasio, F. A. 2005, ApJ, 627, 1001. doi:10.1086/430467
+Tokovinin, A. 2017, ApJ, 844, 103
+Uyama, T., Hashimoto, J., Kuzuhara, M., et al. 2017, AJ, 153, 106.
+doi:10.3847/1538-3881/153/3/106
+Vernet, J., Dekker, H., D’Odorico, S., et al. 2011, A&A, 536, A105.
+doi:10.1051/0004-6361/201117752
+Vigan, A., Moutou, C., Langlois, M., et al. 2010, MNRAS, 407, 71.
+doi:10.1111/j.1365-2966.2010.16916.x
+Vousden, W. D., Farr, W. M., & Mandel, I. 2016, MNRAS, 455, 1919.
+doi:10.1093/mnras/stv2422
+Vigan, A., Fontanive, C., Meyer, M., et al. 2021, A&A, 651, A72
+Von Ziepel, H. 1910, Astronomische Nachrichten, 183, 345
+Wagner, K., Apai, D., Kasper, M., et al. 2022, AJ, 163, 80
+Winn, J. N., Matthews, J. M., Dawson, R. I., et al. 2011, ApJL, 737,
+L18
+Wu, Y. & Murray, N. 2003, ApJ, 589, 605. doi:10.1086/374598
+Zari, E., Hashemi, H., Brown, A. G. A., et al. 2018, A&A, 620, A172.
+doi:10.1051/0004-6361/201834150
+de Zeeuw, P. T., Hoogerwerf, R., de Bruijne, J. H. J., et al. 1999, AJ,
+117, 354
+Zurlo, A., Vigan, A., Mesa, D., et al. 2014, A&A, 572, A85.
+doi:10.1051/0004-6361/201424204
+Article number, page 17 of 18
+
+<<<PAGE 18>>>
+A&A proofs: manuscript no. main
+Appendix A: Properties of IRDIS sources
+Table A.1: Astrometric and photometric properties of all
+the sources detected in the IRDIS FoV in both epochs.
+First epoch Second epoch
+Comoving companions
+ID d(mas) PA (◦) ∆ K1 (mag) ∆K2 (mag) d(mas) PA (◦) ∆ K1(mag) ∆K2(mag)
+0 320.9 ± 1.0 356 .55± 1.72 6 .88 ± 0.05 6 .64± 0.07 328.7 ± 1.0 0 .43 ± 0.13 6 .85 ± 0.12 6 .59± 0.12
+1 1493.4 ± 1.2 116 .26± 0.08 5 .83 ± 0.05 5 .59 ± 0.07 1490.0 ± 1.8 115 .96± 0.08 5 .77 ± 0.12 5 .51± 0.12
+Background sources
+2 — — — — 2505± 13 91 .15± 0.24 14 .23± 0.24 14 .13 ± 0.75
+3 3291± 4 245 .01± 0.08 12 .86± 0.07 12 .64 ± 0.21 3261± 6 245 .93± 0.09 12 .85± 0.13 12 .74 ± 0.17
+4 4515± 5 116 .10± 0.08 12 .91± 0.07 12 .62 ± 0.17 4492± 8 115 .44± 0.08 12 .90± 0.13 12 .75 ± 0.21
+5 4723± 8 254 .76± 0.09 13 .40± 0.10 13 .52 ± 0.21 4718± 10 255 .38± 0.10 13 .43± 0.15 13 .36 ± 0.45
+6 4822± 14 276 .86± 0.13 14 .27± 0.10 — — — — —
+7 4982± 19 120 .11± 0.20 14 .37± 0.18 — — — — —
+8 5460± 12 295 .13± 0.11 14 .01± 0.13 — 5494± 15 295 .70± 0.14 14 .23± 0.20 14 .15 ± 0.71
+9 5807± 18 267 .26± 0.14 14 .33± 0.26 14 .67 ± 0.41 — — — —
+10 6382± 11 328 .85± 0.15 13 .06± 0.14 13 .71 ± 0.47 6434± 14 329 .08± 0.16 13 .22± 0.20 —
+11 6436± 5 313 .78± 0.08 11 .07± 0.10 10 .91 ± 0.10 6467± 10 314 .13± 0.09 11 .31± 0.17 11 .15 ± 0.15
+12 — — — — 6645± 9 179 .59± 5.34 10 .48± 0.16 10 .45 ± 0.16
+Article number, page 18 of 18
