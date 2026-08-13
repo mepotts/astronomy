@@ -32,6 +32,16 @@
 > negative — the ESO sweep is exhaustive. Idea #5: no new claims to reproduce;
 > Hoy et al. remains alone in the genre.
 
+> ## ⭐ TOP OF QUEUE (M29): HD 4747 B — the one observation that tests the feasibility criterion
+>
+> S = contrast/θ² orders every extraction outcome this project has measured, but nothing
+> has ever been observed in the interval where the two classes divide (4327 < S < 15 202).
+> **HD 4747 B sits at S = 5974** and has **19 public H-band nodding frames, W_0.2 slit,
+> across 3 nights (2022-11-07, 2022-12-23, 2023-11-20)** — the same configuration as CD-35
+> and η Tel B, so the existing chain applies unchanged. Companion at 0.59″ against
+> 0.86–1.31″ seeing. Clean, flooded or marginal, it is the first observation inside the
+> interval and it decides the criterion. See `M29-RESULTS.md` §9.
+>
 > ## The roster, adjudicated (M14–M24; detail per milestone doc)
 >
 > Every target with public data has a verdict. All claims injection-gated; all

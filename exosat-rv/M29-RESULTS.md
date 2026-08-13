@@ -412,3 +412,47 @@ whatever variable is used, this campaign never sampled the transition.
 DH Tau B (S = 41), GSC 6214-210 B (S = 37), 1RXS J160929.1-210524 b (S = 318) — all
 predicted CLEAN. They are weak tests for the same reason, but they are on the record
 before the fact, which is the only way this stops being curve-fitting.
+
+## 9. The decisive test exists, and it is public: HD 4747 B
+
+§8 concluded that S is untested because nothing has been observed with
+4327 < S < 15 202. Searching all 31 companions parsed from Lazzoni Table 1 for that
+interval — which took one query once the table was finally parsed — returns **four
+systems, three of them new**:
+
+| system | S | sep | contrast | archive |
+|---|---:|---:|---:|---|
+| **HD 4747 B** | **5 974** | 0.590″ | 2 080× | **27 public CRIRES+ frames, 3 nights** |
+| κ And b | 8 859 | 0.876″ | 6 792× | none — dec +44°, unobservable from Paranal |
+| PDS 70 c | 10 130 | 0.213″ | 460× | same frames as PDS 70 b; inside the AO core |
+| β Pic b | 15 154 | 0.511″ | 3 954× | the threshold-setter, not a test |
+
+**HD 4747 B is the experiment.** Verified against the ESO archive:
+
+- **19 H-band nodding frames**, `W_0.2` slit, `CRIRES_spec_obs_AutoNodOnSlit` — the same
+  grating and slit as CD-35 2722 B and η Tel B, so the existing order maps and the whole
+  `m2x_run_target.sh` chain apply unchanged.
+- **Three nights**: 2022-11-07 (4), 2022-12-23 (8), 2023-11-20 (15, programme 112.25FU.001),
+  spanning about a year. Plus 8 pre-upgrade CRIRES frames from 2012, a different instrument.
+- **All public** — released 2023-11-07, 2023-12-23 and 2024-11-20.
+- Seeing on those nights ran 0.86–1.31″, against a companion at 0.59″: the companion sits
+  **inside the seeing disk**, which is precisely the regime the criterion is about.
+
+**Why this single reduction is worth more than the rest of the wall paper.** S is currently
+built on six points, thresholded by one of them, with no held-out failure. HD 4747 B sits
+at 5974 — in the middle of the interval no one has sampled — and its outcome is a genuine
+two-sided test:
+
+- **If it extracts cleanly**, the clean ceiling moves from 4327 to ≥ 5974 and the untested
+  interval narrows by a third.
+- **If it floods**, the failure floor drops from 15 202 to ≤ 5974, the interval narrows to
+  4327–5974, and — more importantly — **S survives its first real opportunity to fail.**
+- **If it is marginal**, that locates the transition rather than bracketing it, which is
+  the one thing four milestones of "contrast wall" work never achieved.
+
+Either way it is the first observation ever made inside the interval, and it costs one
+download and one pass of an existing pipeline.
+
+**Status: not yet reduced.** Disk headroom is ~7 GB, and 19 frames plus calibrations and a
+reduction fit. This is the top of the queue — ahead of the wall paper's submission, which
+should wait for it, and ahead of everything in `NEXT-DIRECTIONS.md`.
