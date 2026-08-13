@@ -113,3 +113,48 @@ astrophysical jitter required.
 | YSES 1 b series | "4 nights / 290 d once unblocked" | **2 nights at 34 m/s**; `yses1a`/`yses1b` were duplicates |
 | shell toolchain | assumed working | was **entirely CRLF-broken**; fixed |
 | jitter floor | proposed as the top new idea | closed negative, with an observing-strategy result |
+
+## 6. The contrast wall's x-axis: derived at last, and it does not match
+
+`scripts/m29_contrast.py` computes what nothing in this repository ever did:
+contrast = 10^(0.4 (m_comp - m_host)), companion K from `data/m7-survey.json`, host
+magnitudes queried live from SIMBAD.
+
+| companion | sep (") | K_comp | host K | dmag | **derived contrast** | wall said |
+|---|---:|---:|---:|---:|---:|---|
+| CD-35 2722 B | 2.8 | 12.01 | 7.05 | 4.96 | **97x** | clean, ">= 2000x" |
+| AB Pic b | — | 15.10 | 6.98 | 8.12 | **1768x** | clean |
+| eta Tel B | 4.2 | 13.20 | 5.01 | 8.19 | **1888x** | clean |
+| PDS 70 b/c | 0.17 / 0.24 | 15.20 | 8.54 | 6.66 | **460x** | "the star IS the spectrum" |
+| beta Pic b | 0.55 | 14.90 | 3.48 | 11.42 | **36983x** | flooded, "~5000x" |
+
+**The quoted figures are wrong by one to two orders of magnitude.** CD-35 2722 B, grouped
+under "clean at >= 2000x", is a 97x target — twenty times easier than advertised. beta Pic
+b, the flooded case quoted at ~5000x, is **37000x** — seven times harder. Both rest on
+well-measured 2MASS magnitudes on bright hosts, so these are not marginal corrections.
+
+**What the wall actually says, restated honestly:**
+
+- **clean is measured up to ~1900x** (eta Tel B at 4.2", AB Pic b) — and at 97x (CD-35);
+- **flooded is measured at ~37000x** (beta Pic b at 0.55");
+- **the transition is bracketed by a factor of ~20 and contains no measured point.**
+
+That is a weaker claim than the ledger's, and a better-defined one. The wall exists; its
+location is known only to within a decade and a half, and the campaign never sampled the
+gap. Separately, PDS 70 at **460x** — an easy contrast — is unusable at 0.17", which shows
+separation limits the method independently of contrast. A wall stated in contrast alone
+was always going to mislead, and HIP 81208 B (clean at 0.3" from a B9 host) is the
+matching counterexample from the other side.
+
+**Caveats, all material:**
+- Several campaigns observed in **H1567, not K**; a K-band ratio approximates the contrast
+  that applied at the slit, since the companion's H-K colour differs from its host's.
+- Only six systems resolve. HIP 65426 b, HD 1160 B, AF Lep b, YSES 1 b, HIP 81208 B and
+  HD 19467 B are absent from M7's magnitude table or unresolved at SIMBAD.
+- **51 Eri b is excluded**: its K = 21.0 is flagged by M7 itself as "no measured K —
+  upper limit only, unrankable". Using it would have produced a spurious 3.8-million-x
+  point, which is exactly how the "gone at ~30000x" figure could have been defended.
+
+**Consequence:** `docs/paper/contrast-wall-note.md` is drafted against the old numbers and
+must be revised before it goes anywhere. Its own pre-submission list already flagged that
+the ratios had no derivation; the derivation now exists and disagrees.
