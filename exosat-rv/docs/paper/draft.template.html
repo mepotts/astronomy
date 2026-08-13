@@ -164,12 +164,19 @@
     detection blind: a period search with no reference to the published values finds
     P&nbsp;≈&nbsp;169–171&nbsp;d as the top peak (ΔBIC&nbsp;+40), and the detection survives a
     barycentric-correction nuisance term (ΔBIC&nbsp;+25 to +28) despite the strong
-    phase–BERV degeneracy of the epoch sampling. Our per-epoch precision reaches
-    70–90&nbsp;m&nbsp;s<sup>−1</sup> against the published 57.7, and our semi-amplitude runs
-    20–40% high — a hint, entangled with the same degeneracy, that we do not claim. The
+    phase–BERV degeneracy of the epoch sampling. Three further tests place it: a
+    permutation null on the true cadence gives a false-alarm probability of
+    5×10<sup>−4</sup>; all seventeen leave-one-out subsets return the same period; and the
+    signal is absent from every other companion series reduced identically here, including
+    η&nbsp;Tel&nbsp;B on the same instrument setting over a longer baseline — so the period
+    is a property of the object, not of the observing calendar. Our per-epoch precision
+    reaches 70–90&nbsp;m&nbsp;s<sup>−1</sup> against the published 57.7, and our
+    semi-amplitude runs high by +19 to +34% (regression slope) or +39 to +54% (direct fit)
+    — a hint, entangled with the same degeneracy, that we do not claim. The
     second companion does not reproduce: on the published <em>Nature</em> RV table itself,
-    nested-sampling model comparison disfavours the two-companion model by
-    ΔlnZ&nbsp;=&nbsp;−0.8 to −6.6 across every prior family tried, against the claimed +2.6.
+    nested-sampling model comparison disfavours the two-companion model in every prior
+    family tried, and the run-to-run reproducibility of such evidence integrals is itself
+    several times larger than the uncertainty samplers report internally.
     Applying the validated pipeline to η&nbsp;Tel&nbsp;B — a brown dwarf with no previous RV
     measurements — yields a null with injection-calibrated 90% limits of
     m&nbsp;sin&nbsp;i&nbsp;≳&nbsp;0.5–1.2&nbsp;M<sub>Jup</sub> for companions with
@@ -298,10 +305,14 @@
   </p>
   {{FIG3}}
   <p>
-  Two quantitative disagreements persist. Our semi-amplitude runs high: fitting at the
-  published period gives K&nbsp;=&nbsp;380–470&nbsp;m&nbsp;s<sup>−1</sup> against the
-  published 306, a 20–40% overshoot (slope of our RVs on theirs:
-  1.19–1.24&nbsp;±&nbsp;0.10). The same phase–BERV degeneracy that once hid the signal
+  Two quantitative disagreements persist. Our semi-amplitude runs high, and by how much
+  depends on the estimator. Regressing our RVs on theirs gives a slope of
+  1.19–1.34&nbsp;±&nbsp;0.10 across the six order combines (+19 to +34%); fitting K
+  directly at the published period gives K&nbsp;=&nbsp;426–472&nbsp;m&nbsp;s<sup>−1</sup>
+  against the published 306, i.e. +39 to +54%. The two disagree in the expected
+  direction and for the expected reason: the reference series carries its own errors, so
+  the regression slope is attenuated by errors-in-variables while the direct fit is not.
+  We quote both and claim neither. The same phase–BERV degeneracy that once hid the signal
   also prevents a clean amplitude measurement from these epochs — controlling for BERV
   absorbs real signal (slope&nbsp;→&nbsp;1.16&nbsp;±&nbsp;0.12) — so we record the
   overshoot as a hint only. It is at least consistent in direction with a measured
@@ -320,14 +331,70 @@
     </tr></thead>
     <tbody>
       <tr><td class="k">period (d)</td><td class="num">171.11 / 171.45</td><td class="num">169–171 (blind top peak)</td></tr>
-      <tr><td class="k">K (m s⁻¹)</td><td class="num">306 ± 18</td><td class="num">380–470 (20–40% high; hint only)</td></tr>
+      <tr><td class="k">K (m s⁻¹)</td><td class="num">306 ± 18</td><td class="num">426–472 direct; slope 1.19–1.34 (hint only)</td></tr>
       <tr><td class="k">m sin i (M<sub>Jup</sub>)</td><td class="num">0.918</td><td class="num">consistent family; amplitude caveat</td></tr>
       <tr><td class="k">per-epoch precision (m s⁻¹)</td><td class="num">57.7</td><td class="num">70–90</td></tr>
       <tr><td class="k">epochs</td><td class="num">23 (5–6 still embargoed)</td><td class="num">17 public archival nights</td></tr>
-      <tr class="last"><td class="k">detection robust to BERV term</td><td class="num">not reported</td><td class="num">yes: ΔBIC +25 to +28, rank 1</td></tr>
+      <tr><td class="k">detection robust to BERV term</td><td class="num">not reported</td><td class="num">yes: ΔBIC +25 to +28, rank 1</td></tr>
+      <tr class="last"><td class="k">permutation false-alarm probability</td><td class="num">not reported</td><td class="num">5×10<sup>−4</sup> (2.5×10<sup>−3</sup> with BERV)</td></tr>
     </tbody>
   </table>
   </div>
+
+  <h3>4.1 Three tests the detection had not been given</h3>
+  <p>
+  A ΔBIC quoted as the maximum over 4000 trial periods is not a significance: the BIC
+  penalty charges for parameters, not for the size of the search. We therefore calibrate
+  it against the sampling itself. Holding the epoch times, the BERV column and the value
+  distribution fixed, and shuffling the residuals of the base model — signal-free by
+  construction, with the true window function preserved — 2000 realisations give a
+  false-alarm probability of <b>5×10<sup>−4</sup></b> for the plain search and
+  2.5×10<sup>−3</sup> to 5.5×10<sup>−3</sup> once the BERV covariate is included, in every
+  combine. The same null delivers a number worth carrying elsewhere in this field: a
+  signal-free series with this cadence reaches ΔBIC&nbsp;≈&nbsp;19 as its best peak 5% of
+  the time, so peaks in the teens are not evidence — a bar we apply to our own η&nbsp;Tel&nbsp;B
+  residual structure in §6.
+  </p>
+  <p>
+  Second, no single night carries the result. Dropping each epoch in turn, all 17
+  leave-one-out subsets return the peak within 6% of 171&nbsp;d, at ΔBIC&nbsp;+38.5 to
+  +45.7 without the BERV term and +23.9 to +29.8 with it. The largest single-epoch effect
+  is to <em>raise</em> the significance.
+  </p>
+  <p>
+  Third — and this is the test that speaks to the phase–BERV degeneracy most directly — the
+  period is not a property of the observing cadence. If ~171&nbsp;d arose from the seasonal
+  structure that CRIRES+ companion programmes share, it should recur in other targets
+  reduced identically. It does not. Pushing every companion series in this project through
+  the same recipe (Table&nbsp;2a), <span class="us">η&nbsp;Tel&nbsp;B</span> — the same
+  H1567 setting, the same eleven orders, the same pipeline, overlapping seasons and a
+  <em>longer</em> baseline — carries ΔBIC&nbsp;=&nbsp;−3.1 at 171&nbsp;d, and β&nbsp;Pic&nbsp;b
+  returns −1.8 and −1.7 on two independent reductions. The signal is a property of
+  CD-35&nbsp;2722&nbsp;B, not of the calendar.
+  </p>
+
+  <div class="tablewrap">
+  <table>
+    <caption><b>Table 2a.</b> The common-mode test: ΔBIC near 171 d for every series in this project with at least six epochs, identical recipe (median order combine, per-night binning, internal spread screen, BERV covariate included). <i>p</i> is the permutation false-alarm probability.</caption>
+    <thead><tr>
+      <th>series</th><th class="num">n</th><th class="num">span (d)</th><th class="num">ΔBIC near 171 d</th><th class="num">p</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="k">CD-35 2722 B, per-nodding</td><td class="num">17</td><td class="num">466</td><td class="num good">+27.9</td><td class="num">0.0005</td></tr>
+      <tr><td class="k">CD-35 2722 B, combined route</td><td class="num">17</td><td class="num">466</td><td class="num good">+23.8</td><td class="num">0.0005</td></tr>
+      <tr><td class="k">η Tel B</td><td class="num">17</td><td class="num">815</td><td class="num">−3.1</td><td class="num">0.61</td></tr>
+      <tr><td class="k">β Pic b (template v2)</td><td class="num">11</td><td class="num">813</td><td class="num">−1.8</td><td class="num">0.54</td></tr>
+      <tr><td class="k">β Pic b (v3, orders masked)</td><td class="num">11</td><td class="num">813</td><td class="num">−1.7</td><td class="num">0.55</td></tr>
+      <tr class="last"><td class="k">HD 1160 B <i>(41 d baseline — see note)</i></td><td class="num">8</td><td class="num">41</td><td class="num">+9.3</td><td class="num">0.045</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>
+  The HD&nbsp;1160&nbsp;B entry is listed for completeness and is not a counterexample: its
+  baseline is 41&nbsp;days, so a 171&nbsp;d period is an extrapolation four times beyond
+  the data, and the power appears only when the BERV column is added. It supports no claim
+  here or anywhere else in this work.
+  </p>
 
   <h2><span class="no">5</span>The second companion does not survive its own table</h2>
   <p>
@@ -436,7 +503,7 @@
   reliable guides. Reproductions of this class of measurement should assume the same.
   </p>
   <p>
-  The open items are dated. The 20–40% amplitude question and the second-companion
+  The open items are dated. The amplitude excess and the second-companion
   discrepancy both become decidable when the embargoed 2026 epochs release (Dec 2026 –
   May 2027), which break the phase–BERV degeneracy; and the η&nbsp;Tel&nbsp;B limit can
   be extended by the 2009 pre-upgrade CRIRES epochs (a 16-year baseline) and by the
@@ -451,11 +518,11 @@
   Sections 4–7 argue the case in our own order. This section reorganises the same
   analysis into <span class="them">H26</span>'s: for each figure in the published
   paper, the corresponding figure made here, on the same axes and the same statistic
-  wherever the data allow. Eight of their nine figures have a counterpart
-  (Table&nbsp;5); the exception is their Fig.&nbsp;3, the slit-viewer PSF fits and
-  stellar-contamination contrast curve, which needs the acquisition imaging this
-  project has never reduced — we take their ~15% worst-night contamination estimate
-  as given.
+  wherever the data allow. All nine of their figures now have a counterpart
+  (Table&nbsp;5). The last to be answered was their Fig.&nbsp;3, the slit-viewer PSF fits
+  and stellar-contamination contrast curve, which we cannot reproduce in kind because the
+  acquisition imaging has never been reduced here — but the same quantity is available
+  from the science frames themselves (§8.4).
   </p>
   <p>
   Two conventions throughout. Where a panel can be built from
@@ -481,7 +548,7 @@
     <tbody>
       <tr><td class="k">Fig. 1</td><td>periodogram of the RVs and of the model residuals</td><td class="k">Fig. 5</td><td><span class="mark yes">reproduces</span> — same peak, same significance</td></tr>
       <tr><td class="k">Fig. 2</td><td>RVs with the one- and two-satellite models</td><td class="k">Fig. 6</td><td><span class="mark yes">reproduces</span> — amplitude runs high</td></tr>
-      <tr><td class="k">Fig. 3</td><td>slit-viewer PSF fits, stellar contamination</td><td class="k">—</td><td><span class="mark none">not attempted</span> — no SV imaging reduced</td></tr>
+      <tr><td class="k">Fig. 3</td><td>slit-viewer PSF fits, stellar contamination</td><td class="k">§8.4</td><td><span class="mark part">answered differently</span> — bounded from the slit function</td></tr>
       <tr><td class="k">Fig. 4</td><td>per-nodding versus combined-spectrum extraction</td><td class="k">Fig. 7</td><td><span class="mark part">direction confirmed</span>, size combine-dependent</td></tr>
       <tr><td class="k">Fig. 5</td><td>period posteriors for the second signal</td><td class="k">Fig. 8</td><td><span class="mark part">peaks reproduce</span>, evidence does not</td></tr>
       <tr><td class="k">Fig. 6</td><td>the high-evidence two-satellite models</td><td class="k">Fig. 9</td><td><span class="mark part">same four models</span>, all lose to one</td></tr>
@@ -569,6 +636,35 @@
   {{FIG9}}
   {{FIG11}}
   {{FIG12}}
+
+  <h3>8.4 Stellar contamination without the slit viewer (their Fig. 3)</h3>
+  <p>
+  <span class="them">H26</span>'s Fig.&nbsp;3 fits the primary's PSF in the slit-viewer
+  frames and converts it to a contamination fraction at the companion's position, worst
+  night ~15%. We have never reduced the acquisition imaging, but the nodding products
+  carry the same information along a different axis. The extracted swath spans the full
+  slit — the trace-wave order height is 179.8&nbsp;px at 0.056″/px, i.e.
+  <b>10.07″</b>, sampled by a 512-point slit function at 0.0197″ per point — and the
+  slit position angle is pinned at <b>POSANG&nbsp;=&nbsp;153.1°</b> on all eighteen
+  nights with a 6″ nod throw. The primary, 3.17″ away, therefore falls a fixed
+  <b>161 points</b> from the companion trace, on one side or the other, in every frame of
+  the campaign.
+  </p>
+  <p>
+  Measured there, <b>no primary peak is detected on any night</b>. The slit-function
+  height at the primary's offset, relative to the companion's peak, has a median of
+  <b>0.0006</b> against a local profile noise of 0.0072 — 0.1σ. Per-night 3σ upper
+  bounds run from 1% to 11%, median 2.5%: consistent with
+  <span class="them">H26</span>'s estimate and, on most nights, tighter than it. The
+  geometry predicts exactly this, since a primary 3.17″ off-axis along a slit only
+  0.2″ wide contributes no core flux. Two caveats belong with the number. The profile
+  median is removed before measurement, so this bounds a <em>resolved</em> second trace
+  and not a smooth halo pedestal — it complements the slit-viewer method rather than
+  replacing it. And the one epoch our internal screen rejects, BJD&nbsp;2460604.81,
+  carries the largest ratio of the eighteen (0.019) — but only at 2.0σ, and on the
+  campaign's best seeing (image-analysis FWHM 0.60″). Contamination does not explain
+  why that night is bad; we record it as unexplained.
+  </p>
 
   <h2><span class="no"> </span>AI contribution and responsibility statement</h2>
   <p class="refs" style="font-size:14.5px">
