@@ -1,0 +1,2014 @@
+<<<PAGE 1>>>
+Astronomy & Astrophysics manuscript no. paperF100IIﬁnalb ©ESO 2021
+March 9, 2021
+The SPHERE infrared survey for exoplanets (SHINE)
+II. Observations, Data reduction and analysis, Detection performances and
+early-results
+M. Langlois1, 2, R. Gratton3, A.-M. Lagrange4, 5, P. Delorme4, A. Boccaletti5, M. Bonnefoy4, A.-L. Maire7, 6, D. Mesa3,
+G. Chauvin4, 20, S. Desidera3, A. Vigan2, A. Cheetham8, J. Hagelberg8, M. Feldt6, M. Meyer9, 10, P. Rubini, H. Le
+Coroller2, F. Cantalloube6, B. Biller6, 12, 13, M. Bonavita11, T. Bhowmik5, W. Brandner6, S. Daemgen10, V . D’Orazi3, O.
+Flasseur1, C. Fontanive13,3, R. Galicher5, J. Girard4, P. Janin-Potiron5, M. Janson28,6, M. Keppler6, T. Kopytova6,30,29,
+E. Lagadec14, J. Lannier4, C. Lazzoni27, R. Ligi14, N. Meunier4, A. Perreti8, C. Perrot5,24,25, L. Rodet4, C. Romero4,16,
+D. Rouan5, M. Samland28,6, G. Salter2, E. Sissa3, T. Schmidt5, A. Zurlo17, 18, 2, D. Mouillet4, L. Denis26, E. Thiébaut1,
+J. Milli4, Z. Wahhaj16, J.-L. Beuzit2, C. Dominik19, Th. Henning6, F. Ménard4, A. Müller6, H.M. Schmid10, M.
+Turatto3, S. Udry8, L. Abe14, J. Antichi3, F. Allard1 A. Baruﬀolo3, P. Baudoz5, J. Baudrand5, A. Bazzon10,
+P. Blanchard2, M. Carbillet14, M. Carle2, E. Cascone3, J. Charton4, R. Claudi3, A. Costille2, V . De Caprio23,
+A. Delboulbé4, K. Dohlen2, D. Fantinel3, P. Feautrier4, T. Fusco21, 2, P. Gigan5, E. Giro3, D. Gisler10, L. Gluck4,
+C. Gry2, N. Hubin15, E. Hugot2, M. Jaquet2, M. Kasper15, 4, D. Le Mignant2, M. Llored2, F. Madec2, Y . Magnard4,
+P. Martinez14, D. Maurel4, S. Messina31, O. Möller-Nilsson21, L. Mugnier21, T. Moulin4, A. Origné2, A. Pavlov6,
+D. Perret5, C. Petit21, J. Pragt4, P. Puget4, P. Rabou4, J. Ramos4, F. Rigal4, S. Rochat4, R. Roelfsema22, G. Rousset5,
+A. Roux4, B. Salasnich3, J.-F. Sauvage21, 2, A. Sevin5, C. Soenke15, E. Stadler4, M. Suarez15, L. Weber8, and F. Wildi8
+E. Rickman8
+(Aﬃliations can be found after the references)
+Received ???; accepted ???
+ABSTRACT
+Context. Over the past decades, direct imaging has conﬁrmed the existence of substellar companions (exoplanets or brown dwarfs) on wide orbits
+(>10 au) from their host stars. To understand their formation and evolution mechanisms, we have initiated in 2015 the SPHERE infrared survey
+for exoplanets (SHINE), a systematic direct imaging survey of young, nearby stars to explore their demographics.
+Aims. We aim to detect and characterize the population of giant planets and brown dwarfs beyond the snow line around young, nearby stars.
+Combined with the survey completeness, our observations oﬀer the opportunity to constrain the statistical properties (occurrence, mass and orbital
+distributions, dependency on the stellar mass) of these young giant planets.
+Methods. In this study, we present the observing and data analysis strategy, the ranking process of the detected candidates, and the survey perfor-
+mances for a subsample of 150 stars, which are representative of the full SHINE sample. The observations were conducted in an homogeneous
+way from February 2015 to February 2017 with the dedicated ground-based VLT/SPHERE instrument equipped with the IFS integral ﬁeld spectro-
+graph and the IRDIS dual-band imager covering a spectral range between 0.9 and 2.3µm. We used coronographic, angular and spectral diﬀerential
+imaging techniques to reach the best detection performances for this study down to the planetary mass regime.
+Results. We have processed in a uniform manner more than 300 SHINE observations and datasets to assess the survey typical sensitivity as a
+function of the host star, and of the observing conditions. The median detection performance reaches 5 σ-contrasts of 13 mag at 200 mas and
+14.2 mag at 800 mas with the IFS (YJ and YJH bands), and of 11.8 mag at 200 mas, 13.1 mag at 800 mas and 15.8 mag at 3 as with IRDIS in H
+band, delivering one of the deepest sensitivity surveys so far for young nearby stars. A total of sixteen substellar companions were imaged in this
+ﬁrst part of SHINE: seven brown dwarf companions, and ten planetary-mass companions. They include the two new discoveries HIP 65426 b and
+HIP 64892 B, but not the planets around PDS70 not originally select in the SHINE core sample. A total of 1483 candidates were detected, mainly
+in the large ﬁeld-of-view of IRDIS. Color-magnitude diagrams, low-resolution spectrum when available with IFS, and follow-up observations,
+enabled to identify the nature (background contaminant or comoving companion) of about 86 % of them. The remaining cases are often connected
+to crowded ﬁeld missing follow-up observations. Finally, although SHINE was not designed for disk searches, twelve circumstellar disks were
+imaged including three new detections around the HIP 73145, HIP 86598 and HD 106906 systems.
+Conclusions. Nowadays, direct imaging brings a unique opportunity to probe the outer part of exoplanetary systems beyond 10 au to explore
+planetary architectures as highlighted by the discoveries of one new exoplanet, one new brown dwarf companion, and three new debris disks
+during this early phase of SHINE. It also o ﬀers the opportunity to explore and revisit the physical and orbital properties of these young giant
+planets and brown dwarf companions (relative position, photometry and low-resolution spectrum in near-infrared, predicted masses, contrast to
+search for additional companions). Finally, these results highlight the importance to ﬁnalize the SHINE systematic observation of about 500 young,
+nearby stars, for a full exploration of their outer part to explore the demographics of young giant planets beyond 10 au, and to nail down the most
+interesting systems for the next generation of high-contrast imagers on very large and extremely large telescopes.
+Key words. instrumentation: adaptive optics – instrumentation: high angular resolution – planets and satellites: detection – Techniques: high
+angular resolution – Infrared: planetary systems – (Stars): planetary systems –
+Article number, page 1 of 30
+arXiv:2103.03976v1  [astro-ph.EP]  5 Mar 2021
+
+<<<PAGE 2>>>
+A&A proofs: manuscript no. paperF100IIﬁnalb
+Article number, page 2 of 30
+
+<<<PAGE 3>>>
+M. Langlois et al.: The SPHERE infrared survey for exoplanets (SHINE). II.
+1. Introduction and context
+The discovery of the ﬁrst brown dwarf companion Gl 229 B ben-
+eﬁted from the combined technological innovation of infrared
+detectors and high contrast techniques (Nakajima et al. 1995).
+Following this discovery, the ﬁrst generation of dedicated planet
+imagers on 10-m class telescopes (NaCo at VLT, NIRC2 at Keck,
+NICI at Gemini) conducted systematic surveys of young and
+nearby stars. They led the ﬁrst direct detections of planetary
+mass companions in the early 2000’s. These companions were
+detected at distances larger than several hundreds astronomical
+units (au) and/or with a mass ratio not much smaller than a tenth
+with respect to their host primaries (except for brown dwarf pri-
+maries), giving hints of formation via gravo-turbulent fragmen-
+tation (Hennebelle & Chabrier 2011) or gravitational disk insta-
+bility (Boss 1997). Thanks to the improvement of direct imag-
+ing observation and data analysis techniques with ground-based
+adaptive optics systems (AO) or space telescopes, a few plan-
+etary mass objects and low-mass brown dwarfs have been de-
+tected since the ﬁrst detection by Chauvin et al. (2004). More-
+over, these developments, enabled the discoveries of giant plan-
+ets within 100 au around young, nearby, and dusty early type
+stars like HR8799 b,c,d,e (Marois et al. 2008, 2010),β Pictoris b
+(Lagrange et al. 2009), and more recently HD 95086 b (Rameau
+et al. 2013a), and GJ 504 b (Kuzuhara et al. 2013a).
+Direct imaging is the only viable technique to probe for plan-
+ets at large separations with single epoch observations, but de-
+tecting them requires to overcome the di ﬃculties caused by the
+angular proximity and the high contrast involved. With improved
+instruments and data reduction techniques, we are currently ini-
+tiating the characterization of the giant planet population at wide
+orbits, between typically 10-100 au. More than a decade of direct
+imaging surveys targeting several hundred young, nearby stars
+have lead to the discovery of approximately a dozen sub-stellar
+companions excluding the companions to brown dwarfs located
+in the star vicinity (within 100 au). Despite the relatively small
+number of discoveries compared with other techniques, such as
+radial velocity and transit, each new imaged giant planet has pro-
+vided unique clues on the formation, evolution and physics of
+young massive Jupiters.
+Early surveys performed using the ﬁrst generation of planet
+imagers enabled to conduct systematic surveys relatively mod-
+est in size sampling each less than hundreds of young nearby
+stars (Chauvin et al. 2018). Various strategies were followed
+for the target selection of these surveys: i / complete census
+of given associations (Chauvin et al. 2003; Masciadri et al.
+2005; Kasper et al. 2007; Chauvin et al. 2010), ii / selection
+of young, intermediate-mass stars (Janson et al. 2011; Rameau
+et al. 2013b; Nielsen et al. 2013), iii/ or very low-mass stars (De-
+lorme et al. 2012; Chauvin et al. 2012; Bowler et al. 2015; Lan-
+nier et al. 2016), iv / application of ﬁgures of merit considering
+detection rate with toy models of planet population (Biller et al.
+2013). Numerous direct imaging surveys to detect giant planet
+companions have reported null-detections (Masciadri et al. 2005;
+Kasper et al. 2007; Chauvin et al. 2010; Biller et al. 2007;
+Lafrenière et al. 2007; Ehrenreich et al. 2010; Chauvin et al.
+2010; Janson et al. 2011; Delorme et al. 2012), but this allowed
+to set upper limits to the occurrence of giant planets.
+Ongoing surveys target several hundreds stars, with the
+largest surveys to date due to be completed in the next years.
+SpHere INfrared survey for Exoplanets (SHINE, Chauvin et al.
+2017b), Gemini GPIES (Macintosh et al. 2015) and SCExAO
+(Jovanovic et al. 2016) now combine dedicated extreme adaptive
+optics systems with coronagraphic and both angular and spectral
+diﬀerential image processing. With enhanced detection perfor-
+mances, the objective is to signiﬁcantly increase the number of
+imaged planets to characterize, but also to provide better statisti-
+cal constraints on the occurrence and the characteristics of exo-
+planets at wide orbits (>10 au). This should give us a more global
+picture of planetary systems architecture at all orbits to improve
+our understanding of planetary formation and evolution mecha-
+nisms. Early-results already conﬁrm the gain in terms of detec-
+tion performances compared with the ﬁrst generation of planet
+imagers (Nielsen et al. 2019; Vigan et al. 2020).
+The near-infrared wavelengths (H and K-bands) have been
+used intensively. They are a good compromise between low-
+background noise, high angular resolution and good Strehl cor-
+rection. However, thermal imaging at L or M-bands has been
+very competitive in terms of detection performances as the
+planet-star contrast and the Strehl correction are more favorable
+in those wavelengths despite an increased thermal background
+and larger inner working angle. For instance, SPHERE could be
+in some cases less sensitive than NaCo for the detection of giant
+planets around young, nearby M dwarfs at typical separations
+larger than 500-1000 mas.
+Both SHINE and GPIES surveys have recently discovered
+three new exoplanets (Macintosh et al. 2015; Chauvin et al.
+2017b; Keppler et al. 2018), and a few additional higher mass
+brown dwarfs (Konopacky et al. 2016; Cheetham et al. 2018).
+Smaller surveys using SPHERE and GPI also discovered several
+substellar companions (Milli et al. 2017a; Wagner et al. 2020;
+Bohn et al. 2020). They oﬀer unprecedented detection, astromet-
+ric and spectrophotometric capabilities which allow us to charac-
+terize fainter and closer giant planets, such as the recent discov-
+ery of 51 Eri b (2 MJup at 14 au, T5-type, of age 20 Myr; Mac-
+intosh et al. 2015; Samland et al. 2017), HIP 65426 b, a young,
+warm, and dusty L5-L7 massive jovian planet located at about
+92 au from its host star (Chauvin et al. 2017b), and the young
+solar analogue PDS 70 now known to actually host two plan-
+ets PDS 70 b discovered during the SHINE campaign (Keppler
+et al. 2018; Müller et al. 2018) and PDS 70 c by MUSE (Haf-
+fert et al. 2018). Such surveys also provide key spectral and or-
+bital characterisation data for known exoplanets (e.g. De Rosa
+et al. 2016; Samland et al. 2017; Chauvin et al. 2018; Wang
+et al. 2018; Cheetham et al. 2019; Lagrange et al. 2019; Maire
+et al. 2019). Despite these new discoveries, SHINE and GPIES
+have yielded signiﬁcantly fewer exoplanet detections than pre-
+dicted using extrapolations of radial velocity planet populations
+to larger semi-major axes (e.g. Cumming et al. 2008). This re-
+sults in setting strong statistical constraints on the distribution of
+giant exoplanets at separations >10 au from their stars, as well
+as sub-stellar companions to young stars (Nielsen et al. 2019;
+Vigan et al. 2020). As these systems are young (<100 Myr), and
+thus closer to their epoch of formation than for instance radial
+velocity planets (typically 1–10 Gyr), statistical analysis of large
+direct-imaging surveys can provide hints into the potential for-
+mation mechanism responsible for producing giant exoplanets
+orbiting at wide orbits.
+This paper is part of a series of three papers describing
+early results obtained from analysis of a subset of the SHINE
+data. This paper describes the observations, data quality, analy-
+sis methods, and presents results in terms of detections and upper
+limits for this subset of SHINE data. Two associated papers de-
+scribe the general characteristics of the survey sample (Desidera
+et al. submitted) and the statistical analysis and a discussion of
+the implication for formation scenarios (Vigan et al. 2020).
+Following this introduction, we present in section 2 the ob-
+servations that were performed to underpin this work. In Sect. 3,
+Article number, page 3 of 30
+
+<<<PAGE 4>>>
+A&A proofs: manuscript no. paperF100IIﬁnalb
+we describe the reduction and calibration of the data sets. Sec-
+tion 4 is dedicated to the main results of the survey, including
+the detection limits of the survey. Finally, we summarize, in Sect
+5, the characterization of newly discovered and known substellar
+companions along with a description of the circumstellar disks
+detected within the survey data. The conclusions and prospects
+are drawn in section 7. The relative astrometry and photometry
+of companion candidates from the sample is listed in Annex A.
+2. The SHINE survey
+The SpHere INfrared survey for Exoplanets (SHINE: Chauvin
+et al. 2017a) has been designed for 200 telescope nights, allo-
+cated in visitor mode, using the SPHERE consortium guaran-
+teed time. SHINE has been designed by the SPHERE consor-
+tium to: (i) identify and characterized new planetary and brown
+dwarf companions; (ii) study the architecture of planetary sys-
+tems (multiplicity and dynamical interactions); (iii) investigate
+the link between the presence of planets and disks (in synergy
+with the GTO program aimed at disk characterization); (iv) de-
+termine the frequency of giant planets beyond 10 au; (v) investi-
+gate the impact of stellar mass (and even age if possible) on the
+frequency and characteristics of planetary companions over the
+range 0.5 to 3.0 M⊙.
+The SHINE survey started in February 2015 and will be com-
+pleted in mid-2021, with observations of 500 targets out of a
+larger sample of 800 nearby young stars aiming at searching for
+new sub-stellar companions. The sample is oversized with re-
+spect to the available telescope time by a factor of approximately
+two, on the basis of the adopted observing strategy, which re-
+lies on observations surrounding meridian passage in order to
+achieve the maximum ﬁeld-of-view (FoV) rotation for optimal
+angular diﬀerential imaging. This requires some ﬂexibility in the
+target list in order to optimize the scheduling.
+The general design of the survey, the sample selection and
+the simulations performed for building it, the parameters of the
+individual targets used in this early statistical analysis, and the
+general properties of the sample used in this series of papers are
+described in detail in Desidera et al. (submitted). We describe
+in this paper early results obtained from the analysis of about a
+third of the large SHINE survey sample, considering only those
+targets whose ﬁrst observations were done before Feb 2017.Sev-
+eral second epochs observations were also performed between
+2016 and 2019 to discriminate companions from background
+stars on the selected sample described in this paper. This selected
+sample dataset including 150 targets, is already large enough for
+reviewing the survey eﬃciency, to discuss the incidence of mas-
+sive planets at a separation> 10 au, and to have new indications
+about the formation scenarios for giant planets.
+2.1. Observations setup
+All the observations were performed with the Spectro-
+Polarimeter High-contrast Exoplanet REsearch (SPHERE;
+Beuzit et al. 2019) combining its SAXO extreme adaptive optics
+system (Fusco et al. 2006; Sauvage et al. 2016; Fusco et al. 2014)
+and its apodized pupil Lyot coronagraphs (Boccaletti et al. 2008;
+Carbillet et al. 2011; Guerri et al. 2011). Observations were ac-
+quired in either IRDIFS or IRDIFS-EXT mode, i.e. with both
+NIR sub-systems, IFS (Claudi et al. 2008) and IRDIS (Dohlen
+et al. 2008), observing in parallel (Zurlo et al. 2014; Mesa et al.
+2015). The IFS covers a 1.7 ′′×1.7′′ FoV and IRDIS covers a
+more or less circular, unvignetted FoV of diameter ∼9′′. The
+APLC_YJHs and APLC_Ks coronagraphic conﬁgurations were
+used for the IRDIFS and IRDIFS-EXT observations respectively,
+and in IRDIS all ﬁrst epoch observations were performed with
+the DB-H23 and DB-K12 dual-band ﬁlter pairs (Vigan et al.
+2010). Due to the presence of known companions and/or the de-
+tection of (new) candidate companions, some targets were ob-
+served multiple times for astrometric monitoring. In addition
+to the initial selected ﬁlters, follow-up observations were per-
+formed in diﬀerent conﬁgurations with IRDIS, for example with
+the broad-band BB-H and dual-band DB-J23 ﬁlters, as listed in
+the ﬁlter column of Table 1. This resulted in a varying number
+of observations for each target.
+2.2. Observations Optimized planning: SPOT
+Given the large number of targets, each associated with a prior-
+ity and an urgency (how soon the observation has to be made),
+and the various observing constrains, including those connected
+to Angular Diﬀerential Imaging (ADI: Marois et al. 2006) obser-
+vations, we built a dedicated tool, SPOT, to deliver an optimised
+scheduling of the observations, both on long and short terms.
+SPOT is based on simulated annealing. It is described in in de-
+tails in Lagrange et al. (2016).
+In brief, SPOT uses as inputs the calendar of allocated ob-
+serving nights, the list of targets available for e.g. the whole
+semester, together with their associated instrumental set up (that
+is associated with speciﬁc overheads) and any speciﬁc schedul-
+ing constrains (needed for second epoch observations), the tar-
+gets coordinates and magnitude, the minimal coronagraphic ex-
+position duration, the maximum air mass, the maximum propor-
+tion (in time) of the observation that is allowed either before
+or after the meridian crossing, the minimum exposure time, the
+amount of FoV rotation during the observation. It must be noted
+that the amount of FoV rotation depends on the target coordi-
+nates and on the actual time and duration of observations. As it
+also drives the exposure time, we also set a maximum exposition
+time, to avoid extending too much the duration of the exposure.
+Classical, additional scheduling constraints are applied on
+all targets: minimal angular distance to the Moon, avoidance of
+zenith observations. Poor atmospheric conditions may also be
+taken into account through pointing restrictions that usually de-
+pend on the wind direction and speed and through magnitude re-
+strictions in case of non photometric conditions. Finally, SPOT
+also takes into account the various overheads and the need for
+astrometric and spectro-photometric calibrations. The astromet-
+ric calibrations were to be observed as much as possible in the
+ﬁrst night of each run, and the spectro-photometric in the fol-
+lowing night. After optimisation SPOT returns a schedule, and
+produces the Observing Blocks (OBs) that can be automatically
+transferred to P2 (the ESO observing preparation tool).
+In practice, we generally request the coronagraphic data to be
+obtained while the target is crossing the meridian at least 15 min
+before and after the meridian passage, and with at least 30 de-
+grees of FoV rotation, unless it required more than 7200 s. The
+minimum exposure time was set to 3600 s. The scheduling of
+the targets was always optimal; the eﬃciency of the night could
+be as high as 100% when typically 2-3 time more targets were
+available than actually those scheduled. Yet, when not enough
+targets were available as inputs, short (typically 30 min) holes
+could be present in the schedules during the nights. These holes
+were used to observe ﬁllers requiring short exposure times (bi-
+naries, stars with RV trends, astrometric and spectrophotometric
+standards). By comparing with other surveys executed in service
+such as BEAST (Janson et al., in preparation), we conclude that
+use of SPOT allowed an increase of more than 30% in the ﬁeld
+Article number, page 4 of 30
+
+<<<PAGE 5>>>
+M. Langlois et al.: The SPHERE infrared survey for exoplanets (SHINE). II.
+rotation angles for identical observing time with respect to the
+service scheduling routinely used at ESO.
+2.3. Observing conditions and Data quality
+The SPHERE Instruments are fed by an extreme adaptive optics
+(AO) system called SAXO. It delivers a very high Strehl ratio,
+which reaches above 90% in H-band for very good observing
+conditions by correcting both perturbations induced by the at-
+mospheric turbulence and from the internal aberrations of the
+instrument itself. A comprehensive description of the SAXO de-
+sign can be found in Fusco et al. (2016) and Beuzit et al. (2019).
+We derived here the overall statistical AO telemetry data from
+SAXO and from the ESO MASS-DIMM measurements for the
+survey observations and relate these parameters to the Strehl ra-
+tio, raw contrast and processed contrast in order to evaluate the
+performance constraints from these observations. The telemetry
+data points are spread over 130 di ﬀerent nights and cover more
+than 200 di ﬀerent observations. The AO telemetry data (avail-
+able for a large number of our survey observations) includes es-
+timates from the real-time computer (called SPARTA) several
+quantities of interest that could be related to the ﬁnal perfor-
+mances (hereafter SPARTA data) such as: the Strehl ratio and
+additional atmospheric parameters including the seeing and the
+coherence time. The Strehl is deﬁned at 1.6µm, while the seeing
+and coherence time are deﬁned at 500 nm.
+These quantities are also connected here with the brightness
+of the target (V and H magnitudes), retrieved from the Simbad
+database, and used as a proxy in V-Band for the number of pho-
+tons received by the WFS 1. The distribution in magnitude for
+the sample considered here (for targets with telemetry measure-
+ments) is shown in Fig. 1 (Bottom Right). It illustrates the fact
+that our target selection as described in Desidera et al. (submit-
+ted) was based on setting a magnitude limit (V<12.5) in order to
+guarantee good AO performances. Our sample selection criteria
+also favors red targets leading to the faintest H-band observa-
+tions to be below 8 magnitude.
+The overall good AO performance for the selected range of
+target brightness is conﬁrmed by the Strehl measurements shown
+in Fig. 1 (bottom left). This Figure shows the distribution of the
+Strehl ratio as a function of the star magnitude in V-band where
+the median Strehl is greater than 70% averaging around 80% in
+moderate seeing conditions. This Figure also shows a decrease
+in the Strehl beyond magnitude 7. The blue data points, repre-
+senting coherence time smaller than 3 ms, highlight the impact
+of short coherence time on the performances with Strehl ratio
+below 80%. It is suggested in Milli et al. (2017b) that the Strehl
+or its estimation could be a ﬀected by the small number of pho-
+tons reaching the WFS (for 7.5 - 9 magnitude guide stars) while
+the AO loop is operating at full speed, wich could explain the
+strehl decrease around magnitude 8. For fainter stars, a slower
+AO loop frequency of 600 Hz is used in order to still collect a
+suﬃcient number of photons per AO cycle for high-order wave-
+front determination and correction.
+This hypothesis is supported further by the greater decrease
+in Strehl for the low coherence time data points which explain
+most of the performance inﬂection around V =8 magnitude. The
+1 For stars with a magnitude R< 10 (value read from the SPHERE ac-
+quisition template), the WFS arm uses a red ﬁlter called LP_780 block-
+ing wavelengths below 780nm. As a result the central wavelength of the
+WFS arm is shifted to redder wavelengths, approximately 850 nm, and
+the nearest broadband ﬁlter is the I ﬁlter ( λc = 806nm, ∆λ = 149nm).
+However, not all stars have a measurement of their I magnitude in Sim-
+bad, we therefore used the V mag which is most commonly available.
+large scatter in the Strehl distributions indicates that the seeing
+is also, as expected, a parameter inﬂuencing the Strehl among
+others such asτ0 and the star magnitude. Despite this large scat-
+ter the (Top Left) plot from the same Figure shows a linear de-
+crease trend of the Strehl with the seeing. This decrease is on av-
+erage 1.8% Strehl for an increase in seeing of 0.1” which is sim-
+ilar to the Strehl behavior versus seeing obtained by Milli et al.
+(2017b) when correction is applied according to the SPARTA
+versus DIMM measurements dependency. While the SPARTA
+seeing provides an estimate which is closer to the image quality
+in the science frames, it has been shown that the SPARTA see-
+ing estimations are smaller than the ESO DIMM measurements,
+a fact that may be accounted for the turbulence outer scale. The
+overall impact of the performance limitation from the seeing on
+our survey is clearly important as illustrated by the large number
+of observations occurring for seeing greater than 0.8” (Fig. 1 -
+Top-Left).
+The Top-Right part of Fig. 1 shows the distribution of the
+Strehl as a function of the coherence time for our full sample.
+There is a steep rise in Strehl ratio with the coherence time (for
+τ0 < 3 ms) followed by plateau for larger coherence times (for
+τ0 < 5 ms). This shows that for low coherence times, the AO per-
+formances are limited by the temporal bandwidth error as men-
+tioned in Cantalloube et al. (2020) which also derives a 3 ms
+threshold from the system point of view. This is in agreement
+with the laboratory and ﬁrst on-sky measurements described in
+details in Petit et al. (2012). The overall impact of this perfor-
+mance limitation on our survey is likely important as illustrated
+by the large number of observations occurring when τ0 < 4 ms
+(i.e 70% of the observations). Further analysis of the impact of
+this eﬀect should include the seeing contribution in the Strehl
+error budget to disentangle the seeing and coherence time corre-
+lations.
+Summarizing, we have shown in this section that the AO per-
+formances are clearly related to the observing conditions for our
+sample. We will further describe the impact of these observa-
+tional parameters on the high contrast performances in section
+4.
+3. Data Reduction and Analysis
+Large surveys such as SHINE (especially because of the large
+IRDIS FoV) unveiled a large number of point sources (mainly
+background sources) from which true sub-stellar mass compan-
+ions need to be distinguished. For this reason, both astrome-
+try and photometry of the detected points sources need to be
+precisely and homogeneously calibrated and extracted to test
+their companionship and charactezerize their nature. We detail
+in the following sub-sections the SHINE strategy: i / to cali-
+brate both IRDIS and IFS on various important aspects (dis-
+torsion, plate scale, True North, parallactic angle determination,
+central start position) in sub-section 3.1, ii / to pre-process the
+scientiﬁc observations and apply basic reduction steps (cosmet-
+ics, ﬂat, frame registration and recentering, cross-talk and wave-
+length calibration) as described in sub-section 3.2, iii / to apply
+advanced ADI/ASDI algorithms summarized in sub-section 3.3,
+and ultimately extract the companion relative astrometry and
+photometry as detailed in sub-section. The ﬁnal error budget
+for both astrometry and photometry is described in this last sub-
+section.
+Article number, page 5 of 30
+
+<<<PAGE 6>>>
+A&A proofs: manuscript no. paperF100IIﬁnalb
+Fig. 1: Observing conditions and AO performances in IRDIFS observing mode: (Top-Left) Strehl ratio as a function of the seeing
+measured by SPARTA. (Top-Right) Strehl Ratio as function of the atmospheric coherence time estimated by SPARTA. A linear ﬁt
+is overlaid in red on the Top ﬁgures. (Bottom-Left) Strehl ratio as function of the star V magnitude. The blue data points represent
+the data taken with coherence time smaller than 3 ms.(Bottom-Right) Histogram illustrating the repartition of the observations
+(including multiple observations of the same target) as function of the star magnitude in V (dark blue) and H-bands (light blue). The
+apparent large number of observations of R =3.5 stars is an artiﬁcial e ﬀect due to the large number of observations targeting Beta
+Pictoris.
+3.1. SPHERE Calibration
+3.1.1. Astrometry
+We present in this section the astrometric calibration of the
+SHINE survey which depends on several factors described in
+detail in the following paragraphs: i/ platescale, True North and
+distorsion correction, ii/ angular oﬀset (between ﬁeld and pupil-
+tracking and parallactic angle correction), iii / star-centering.
+This section also presents as a conclusion, iv / a sanity check of
+the calibration startegy based on Gaia-DR2 results.
+Platescale, T rue North and distorsion An extensive descrip-
+tion of astrometry with SPHERE can be found in Maire et al.
+(2016b) and Beuzit et al. (2019). For what concerns in partic-
+ular the SHINE survey, the astrometric calibration consisted in
+the correction for the instrument anamorphism (0.60±0.02% be-
+tween the horizontal and vertical directions of the detector, i.e. 6
+mas at 1 arcsec), correction for constant o ﬀset angles (between
+the IFS and IRDIS ﬁelds of view, between pupil-tracking mode
+and ﬁeld-tracking mode), and determination of the values for the
+pixel scale and the correction to the true north. We ﬁnd small but
+non negligible variations of the last quantities with time requir-
+ing dedicated calibration for each observing runs. Appropriate
+values were estimated for each run using several reference ﬁelds
+of view in clusters with a large number of stars and having accu-
+rate (sub-mas) astrometry from Hubble Space Telescope (HST)
+or ground-based diﬀraction limited observations: 47 Tuc (Bellini
+et al. 2014; Soto et al. 2017; Bellini et al. 2017); NGC 6380
+(Bellini et al. 2011; Soto et al. 2017) and Noyola (private com-
+munication); NGC 3603 (Harayama et al. 2008; Khorrami et al.
+2016; Rochau et al. 2010); and Trapezium B1-B4 (Close et al.
+2012, 2013) (see Figure 2).
+IRDIS was used for all astrometric calibrations, because its
+ﬁeld of view allows observation of a large number of stars, in
+most cases between 50 and 100. Only seven stars were available
+for the Trapezium B1-B4 ﬁeld, leading to a less accurate cali-
+bration of the ﬁeld orientation (by 1%) and on the plate scale
+(by 0.1%), and was used only when the other calibration ﬁelds
+were not accessible from February 2015 to March 2016. Due to
+the less good accuracy of the catalog positions for NGC 6380
+and the smaller number of calibrating objects, we used this ﬁeld
+only twice in May-June 2015 and once in June 2017. Using sev-
+eral calibrators enable to perform calibrations throughout the
+year and to do cross-calibration. Because the coronagraph has
+a small eﬀect on the pixel scale, the astrometric ﬁelds were ob-
+served with a coronagraphic plate (including an o ﬀset for the
+Trapezium B1-B4 ﬁeld observation, to shift the B1 star out of
+the coronagraphic mask).
+The pixel scale is slightly di ﬀerent for the H2, H3, K1, and
+K2 ﬁlters, with mean values of 12.255, 12.250, 12.267, and
+12.263 mas/pixel, respectively. For IFS, we used a constant value
+Article number, page 6 of 30
+
+<<<PAGE 7>>>
+M. Langlois et al.: The SPHERE infrared survey for exoplanets (SHINE). II.
+Fig. 2: IRDIS H2 images of the ﬁelds used for the astrometric calibration. Upper left panel: 47 Tuc; upper right panel: NGC 3603;
+lower left panel: NGC 6380; lower right panel: Orion B1B4. A logarithmic intensity scale is used to show also faint stars.
+of the pixel scale of 7.46±0.02 mas/pixel. Variations in this case
+have less impact on the results due to the small ﬁeld of view.
+The typical measurement accuracy of the pixel scale is ±0.012
+mas/pixel using our two best ﬁelds 47 Tuc and NGC 3603, while
+the true north correction (weighted value -1.77 degree) typically
+has an error of ±0.07 degree. For IFS, an additional o ﬀset of
+100.48 degree in the clockwise direction is applied to account for
+the orientation of the instrument FOV . This leads to uncertainties
+in the position of 3–4 mas at the edge of the IRDIS ﬁeld of view
+and less than 1 mas for IFS. For comparison, typical accuracy
+of GPI using their best calibrations are ±0.021 mas/pixel in the
+pixel scale and ±0.12 degree in the true north correction (De
+Rosa et al. 2019). The better calibration accuracy obtained for
+SPHERE is due to the wider ﬁeld of view of IRDIS that allows
+the use of stellar cluster ﬁelds as calibrators with more accurate
+catalog positions.
+Field/Pupil tracking and parallactic angle calibration While
+the SHINE science observations are taken in pupil-tracking
+mode for ADI purposes, the astrometric ﬁelds were observed in
+ﬁeld-tracking mode. The o ﬀset between the pupil-tracking and
+ﬁeld-tracking modes was measured at the beginning of the sur-
+vey to be equal to -135.99 ±0.11 degree. The parallactic angle
+is computed from the data FITS header: timestamp, RA/DEC of
+the derotator (INS4.DROT2.RA/DEC) which are more accurate
+than the "RA" and "DEC" keywords (J2000 coordinates of the
+target). In case these parameters are used it is possible to cor-
+rect for the precession of coordinates between 2000 and the date
+of observation. In order to derive the precise parallactic angle
+of each DIT from the timestamp we also included a paramet-
+ric model of the overheads. We observe a systematic error in
+the parallactic angle estimation due to backlash in the derotator
+mechanism of∼0.05◦, as demonstrated in Beuzit et al. (2019).
+In pupil-stabilized mode, this leads to a ∼0.4 pixel diﬀerence in
+the position of an object located at the edge of the IRDIS FoV
+on either side of the meridian.
+Article number, page 7 of 30
+
+<<<PAGE 8>>>
+A&A proofs: manuscript no. paperF100IIﬁnalb
+Star centering The astrometry we consider in this paper is rel-
+ative to the star. Since the star point spread function peak is
+hidden by the coronagraphic mask and to avoid concerns due
+to the non uniform intensity distribution of the coronagraphic
+leakage, its position was determined using a special calibration
+(STAR-CENTER) where four faint replicas of the star image are
+created by giving a bi-dimensional sinusoidal proﬁle to the de-
+formable mirror (see Beuzit et al. 2019; Makidon et al. 2005).
+The STAR-CENTER calibration was repeated before and after
+each science observation, and results center estimations were av-
+eraged. While this calibration greatly reduces uncertainties in the
+exact position of the star and the center of the ﬁeld rotation, ex-
+perience shows that small drifts of a few mas of the star center
+during long sequences of∼1–2h can occur. For this reason in or-
+der to increase the star centering accuracy, we generally used, for
+the second epochs, when doing (candidate) companions follow
+up, the STAR-CENTER setup solely for the science exposure.
+We performed speciﬁc measurements to estimate the accu-
+racy of the central star position when the STAR-CENTER setup
+is not used for the science exposure (i.e most cases presented
+in this paper). To do so we measured the position of the central
+diﬀraction peak on the IFS datacubes collapsed in wavelengths,
+and making the mean over all Detector Integration Time (DIT);
+as mentioned above, errors are likely independent of the errors
+in the STAR-CENTER procedure. We found that the mean posi-
+tion of the center is o ﬀset with respect to the nominal position
+along the Left-Right direction in the pupil reference frame by a
+small but signiﬁcant amount 0.52± 0.10 mas for Y-H observa-
+tions, while there is no oﬀset for the Y-J mode (0.03± 0.05 mas)
+or along the Top-Bottom direction in the pupil reference frame in
+both modes. The root mean square (rms) scatter of the residuals
+after a 3-σ clipping are 1.35 mas (1.23 mas) in RA and 1.24 mas
+(1.43 mas) in declination, for the Y-H (Y-J) mode. Most outliers
+are found in data sets that were not validated and a few of them
+are binaries. There are 5% of the validated observations that have
+much larger dispersion of the position of the peak than usual;
+these anomalous cases make∼10% of the observations acquired
+before February 2016, while the fraction reduces to ∼2% after
+that epoch. This is likely due to improvements in the AO cali-
+bration, that resulted in less distorted di ﬀraction peaks. A few
+of these residual cases may be unresolved binaries. We conclude
+that a reasonable estimate for the accuracy of the absolute central
+star position is±1.5 mas for both IFS and IRDIS.
+Cross-check with Gaia DR2 An external check of the accu-
+racy of our astrometry is provided by wide companions in the
+Gaia Data Release 2 catalogue (Gaia Collaboration et al. 2018).
+The number of sources in the IRDIS ﬁeld of view with a con-
+trast adequate to be detected with Gaia is limited because stars
+with known bright companions were not included in our sam-
+ple to avoid problems for the AO and heavy saturation of the
+detector. By comparison with the SPHERE results, we ﬁnd that
+Gaia DR2 limiting contrast (in the visual G-band) corresponds
+to contrasts in the near infrared of ∆H=2.5 mag for separation
+sep< 2.5 arcsec and 6 mag for sep > 4 arcsec 2. For this com-
+parison, we considered 34 IRDIS close companion candidates
+(some of them not included in the sample described in this pa-
+per) with ∆H2<6 mag; out of which twelve are in Gaia DR2.
+We did not considered one of the Gaia DR2 data because it has
+very large error bars. In addition we removed some SHINE ob-
+jects because they are saturated, or located at the edge of the
+2 Since the companions are typically much redder than the central star,
+the contrast in the visual band is a few magnitudes deeper.
+IRDIS FOV (sep>6.5 arcsec), both leading to inaccurate astrom-
+etry. Gaia measurements are most likely unreliable for very high
+contrasts. This is the case of HD1160C, for which the Gaia con-
+trast is 8.24 mag. Binary periods for these stars are so long that
+they should not a ﬀect the result. However, a couple of the ob-
+jects are not binaries but rather background stars (HIP82430 and
+PDS 70). We took into account the relative proper motion be-
+tween the SHINE observation and the Gaia epoch (2015.5). At
+the end we have seven good comparative measurements.The sep-
+aration measured by SHINE is slightly larger than that measured
+by Gaia DR2. The mean o ﬀset is−2.8± 1.5 mas, with a root
+mean square (rms) of 3.9 mas. The position angle measured by
+SHINE is similar to that measured by Gaia DR2: the mean o ﬀ-
+set is 0.06± 0.04 degree, with an rms = 0.11 degree. The rms
+agrees well with the expected uncertainties in these quantities in
+the SPHERE data.
+We conclude that the minimum accuracy of the astrometric
+calibration of SHINE data is ±2 mas at separations < 1 arcsec,
+and±3 mas at larger separations. These values are similar to
+the scatter typically observed for GPI astrometric calibrators (De
+Rosa et al. 2019). In practice, the astrometric accuracy on the
+position of faint substellar companions detected in the SHINE
+data is limited by the measurement uncertainties from the image
+post-processing (Sect. 3.3) and by the companion magnitude.
+3.1.2. Photometry
+We describe below the strategy to derive the relative photom-
+etry of the SHINE candidates considering the unsaturated and
+coronographic observations of a scientiﬁc target, and two tests
+done by using IFS to validate our strategy for both IRDIS and
+IFS which have very similar photometric biases.
+Strategy In the SHINE survey, photometry of candidate com-
+panions and limiting magnitudes for non detections are relative
+in contrast to the central star. Since the star is behind the coro-
+nagraphic mask, simultaneous photometry is not possible. We
+thus include a ﬂux calibration ( STAR-FLUX) for both IRDIS and
+IFS that is acquired just before and after the science exposure
+by oﬀsetting the Diﬀerential Tip-Tilt Stage (DTTS) by about 0.5
+arcsec with respect the coronagraphic mask using the SPHERE
+tip/tilt mirror (Beuzit et al. 2019). When performing this calibra-
+tion, suitable neutral density ﬁlters are inserted to avoid detector
+saturation. The transmissions of these neutral density ﬁlters were
+carefully calibrated from 0.9 to 2.3 microns (see Beuzit et al.
+2019 and ESO website 3) and are taken into account for the con-
+trast estimation. This procedure works very well in stable condi-
+tions, but it may be aﬀected by variations of the Strehl ratio from
+evolving observing conditions. Higher photometric accuracy can
+be achieved by using the wa ﬄe pattern continuously (for com-
+panion candidates follow up) during the observing sequence to
+monitor the Strehl variations.
+Cross-check with catalogues and binary companions A ﬁrst
+test of the photometric calibration accuracy is provided by com-
+paring the peak counts of the di ﬀraction image of the ﬂux cal-
+ibration (corrected for the integration time and for the neutral
+density ﬁlter transmission) to the apparent magnitude of the stars
+from the 2MASS catalogue (Skrutskie et al. 2006), corrected for
+atmospheric extinction. This procedure neglects stellar variabil-
+3 https://www.eso.org/sci/facilities/paranal/
+instruments/sphere/inst/filters.html
+Article number, page 8 of 30
+
+<<<PAGE 9>>>
+M. Langlois et al.: The SPHERE infrared survey for exoplanets (SHINE). II.
+Fig. 3: Spectra of the white dwarfs used as spectrophotometric standards compared with predictions from model atmospheres (solid
+lines). Diﬀerent symbols are results obtained from di ﬀerent epochs. We normalized the observed spectra at the median ﬂux in a
+narrow range around 1.25 micron.
+ity and the impact of variability on the Strehl ratio. Using J-band
+IFS data, we obtain an rms of residuals of 0.15 mag for observa-
+tion in the Y-H mode, and 0.19 mag for those in the Y-J mode.
+This has been computed after eliminating the expected variations
+due the Strehl ratio and after clipping outliers deviating greater
+than 2.5 standard deviation from the mean with an iterative pro-
+cedure (about 12% of the data). A similar value is obtained by
+considering the rms scatter of the estimate of the coronagraph
+central transmission - measured as the ratio between the maxi-
+mum counts of the di ﬀraction peak in the coronagraphic image
+and in the ﬂux calibration (corrected for the length of the integra-
+tion and neutral density ﬁlter transmission). The average corona-
+graphic transmission measured in this way are 0.00168±0.00005
+for the Y-H mode, and 0.00208± 0.00001 for the Y-J mode, re-
+spectively, for a median SHINE observation.
+A second test of the photometric calibration accuracy is pro-
+vided by the photometry of three standard systems (HD2133,
+HD114174, and REJ1925-563) composed of a main sequence
+star and a white dwarf with separations in the range 0.2-0.7 arc-
+sec, we have observed during the survey. These systems were ob-
+served several times, with typically at least one observation per
+run. For schedule optimization, these observations were acquired
+in ADI with the star quite far from meridian and in poorer ob-
+serving conditions, than typical survey targets: we consider here
+only those observations that were obtained in fair to good atmo-
+spheric conditions. Photometry of the faint companions was ob-
+tained by inserting a negative scaled point spread function at the
+position of the companion in the raw datacube, i.e before com-
+bining the various DITs. We then measured the rms residuals
+of the diﬀerential image obtained through monochromatic prin-
+cipal component analysis (PCA: Soummer et al. 2012) around
+the companion. The procedure then minimizes these residuals
+by simultaneously adjusting the contrast and the position. The
+values we consider are the mean of the results obtained using
+2 to 6 PCA modes. The average contrasts in the J-band ob-
+tained with this procedure using the main sequence star and
+the white dwarfs are 7.68, 10.04, and 6.10 mag for HD2133,
+HD114174, and REJ1925-563, respectively. The rms value for
+the contrasts in the J-band/H-band are 0.11/0.05, 0.18/0.08, and
+0.05/0.07 mag for HD2133 (8 observations), HD114174 (14 ob-
+servations) and REJ1925-563 (6 observations). The photometric
+errors as expected increase with magnitude and as a consequence
+are smaller in H-band than in J-band. This may be also attributed
+to a higher impact of the variation of the SR and of the speckle
+noise for fainter targets and shorter wavelengths. A comparison
+of the spectra determined by our method with atmospheric mod-
+els is given in Figure 3.
+We conclude from these measurements that a reasonable
+photometric errors estimate for both the limiting contrast and
+for companions characterisation (not including the ADI post
+processing error contribution), is around ±0.2 mag. It is domi-
+nated by the STAR-FLUX variation which is also the case for
+the survey data photometric error which is on average equal to
+±0.25 mag.
+3.2. SPHERE Data Center preprocessing
+3.2.1. IRDIS-only steps
+The SHINE survey was reduced by the SPHERE Data Cen-
+tre (hereafter SPHERE-DC) 4. For IRDIS data, the ﬁrst reduc-
+tions steps (dark/background, ﬂat, and bad pixel correction) rely
+on the SPHERE Data Reduction and Handling (hereafter DRH)
+pipeline Pavlov et al. (2008) provided by ESO. We used the on
+sky background because there is a signiﬁcant diﬀerence between
+day-time background calibrations and the on sky background
+recorded in the science frames. This is the case mostly in K-
+band with a systematic, spatially variable, oﬀset (typically of the
+order of 100 ADU for 64s exposure time) which is due to the sky
+background contribution itself. A similar eﬀect is also visible in
+H-band, on a smaller level (typically of only few ADU).
+Since most of the SHINE observations use the pupil-tracking
+observing mode, a very accurate determination of the star center
+is needed in order to successfully use both the angular di ﬀer-
+ential imaging and spectral di ﬀerential imaging methods. Also
+since IRDIS is used in dual-band imaging, the star center in both
+IRDIS channels is used to combine them. By default, we use
+the DRH sph-ird-star-center routine to determine the star
+center position, using the wa ﬄe images acquired for this pur-
+pose just before and after the science observations. This very
+fast routine provides an accurate centering in many cases, but
+could fail for weak waﬄe spots, especially in the K-band where
+these spots can be hidden beneath a much stronger thermal back-
+ground noise but also when the deformable mirror oﬀsets to cre-
+ate this pattern are set too low. We therefore designed an auto-
+mated way to check the quality of the DRH centering by com-
+paring the two center positions derived out of the four wa ﬄes.
+When the distance between these two possible center positions
+was found to be greater than 0.9 pixel, we used a SPHERE-DC
+made IDL routine that is more robust to identify weak wa ﬄe
+4 http://sphere.osug.fr/spip.php?rubrique16&lang=en
+Article number, page 9 of 30
+
+<<<PAGE 10>>>
+A&A proofs: manuscript no. paperF100IIﬁnalb
+spots. This routine is able to detect weaker wa ﬄes by locat-
+ing them within small circular apertures located at the expected
+(wavelength-dependent) position and by using in combination a
+high-pass spatial ﬁltering, sky-background subtraction and me-
+dian stacks of all wa ﬄe images available in order to increase
+their SNR.
+A small fraction of the SHINE datasets use continuous waﬄe
+mode observations, meaning that the wa ﬄe spots are activated
+during the entire observation, for better astrometric monitoring
+(with some localized loss in the limiting contrast because of the
+secondary spots). In this speciﬁc cases, we perform individual
+re-centering of each frame in the sequence using the SPHERE-
+DC dedicated star-centering routine described above. This im-
+proves the quality by correcting any drift or jitter of the targeted
+star behind the coronagraph, and as a result improves the quality
+of the astrometric measurements by removing these sources of
+error.
+3.2.2. IFS-steps
+For IFS data we use the Data Reduction and Handling (DRH
+Pavlov et al. 2008) pipeline but complement it with additional
+steps implemented at the SPHERE Data Center (Mesa et al.
+2015; Delorme et al. 2017a) to improve the wavelength cali-
+bration, apply a correction for cross-talk, and improve the han-
+dling of bad pixels. The improvements of the wavelength cali-
+bration are obtained by using a cubic ﬁt whose coe ﬃcients are
+estimated from the wavelength shifts of the spots generated by
+the STAR-CENTER calibration - that are known to scale linearly
+with wavelength. The cross-talk correction is performed using
+an iterative procedure that corrects for the spectrograph PSF, us-
+ing coeﬃcients derived using appropriate tests performed in the
+laboratory during the instrument assembly. Bad-pixels are cor-
+rected using a dedicated sky observation acquired at the end of
+each science exposure. This procedure yields more accurate re-
+sults than the one based on the ﬂat ﬁeld calibration within the
+DRH.
+3.2.3. Final steps common to IRDIS and IFS
+After these pre-reduction steps, both IRDIS and IFS datasets are
+corrected for the instrument anamorphism and the astrometric
+solution (pixel scale and True north) estimated from the calibra-
+tion described in Sec. 3.1.1 is applied to the dataset. The out-
+put data is composed of a pre-reduced master cube combining
+all frames obtained during a given observation sequence, that is
+used as input for all Angular Di ﬀerential Imaging (ADI Marois
+et al. 2006) algorithms. We also associate to this master cube
+a vector of de-rotation angles for each frames, using the accu-
+rate timing and overheads for each frame, to produce a frame-to-
+frame determination of the parallactic angle.
+3.3. ADI and ASDI postprocessing
+For both IRDIS and IFS, we obtain a good-quality re-centered
+images gathered in a single master cube associated with their
+parallactic angle values. Subsequent steps follow to estimate and
+subtract the stellar halo from each images, followed by derota-
+tion and stacking of the residuals. The most critical step is the es-
+timation of the stellar halo that drives the level of the noise resid-
+uals. We applied di ﬀerent Angular Di ﬀerential Imaging (ADI)
+algorithms to optimize the detection performances and to iden-
+tify associated biases. We rely mainly on the SpeCal (Galicher
+et al. (2018) software which o ﬀers various ADI options. We
+selected for the homogeneous reduction TLOCI (Marois et al.
+2014; Galicher et al. 2018) and Principal Component Analysis
+(PCA: Soummer et al. 2012) for IRDIS and PCA Angular and
+Spectral Diﬀerential Imaging (ASDI: Mesa et al. 2015) for IFS.
+In the TLOCI approach (Lafrenière et al. 2007), the PSF-
+reference is estimated for each frame and each location. Linear
+combinations of all data are computed to minimize the residuals
+into an optimization zone, which is much bigger than the sub-
+traction zone to avoid the self-removal of point-like sources.The
+SpeCal version of the TLOCI algorithm is derived from the one
+described in Galicher et al. (2018) assuming a ﬂat planet spec-
+trum in contrast. Adjustable parameters are used to select the
+frames and to describe the regions of interest. In SpeCal, the
+gap between this region and the region of interest is set to 0.5
+Full Width Half-Maximum (FWHM). Hence, the optimizing re-
+gion is far enough from the region of interest so that the ﬂux of a
+source in the latter does not signiﬁcantly bias the linear combina-
+tion. Finally, an additional parameter sets the radial width of the
+optimizing region. We considered here a radial width of the sub-
+traction zone of 1 FWHM in radius; a radial-to-azimuthal width
+ratio of 1.5; a standard surface of the optimization zone was N=
+20 PSF FWHM and 10% is used for the minimum residual ﬂux
+ratio due to self subtraction compared to the ﬂux of a putative
+candidate.
+For historical reasons, two PCA algorithms are implemented
+in SpeCal. The ﬁrst version can be applied on IRDIS or IFS
+data using ADI or ASDI. This algorithm follows the equation
+of Soummer et al. (2012). In the ADI case, which is the option
+selected to reduce IRDIS data in this paper, the principal com-
+ponents are calculated for each spectral channel independently.
+Each frame is then projected onto a limited number of modes. In
+the ASDI case, the algorithm is the same but it works simulta-
+neously on the spatial and spectral frames. The second version
+of PCA used to reduce IFS data in this paper, is very similar to
+the ﬁrst version we have described but it was applied only on
+IFS data using the ASDI option (Mesa et al. 2015). In addition,
+it is worth mentioning that both PCA algorithms we use have
+no frame selection to minimize the self-subtraction of point-like
+sources when deriving the principal components.
+For PCA and TLOCI algorithms that bias the photometry of
+oﬀ -axis point sources, SpeCal estimates the throughput at each
+position in the ﬁeld by generating a datacube of fake planets for
+which the ratio of the ﬂux in the resulting image to the ﬂux of the
+fake planet is calculated to obtain the centro-symmetrical 1D-
+throughput as a function of the angular separation which is then
+applied to the images. For PCA, Specal estimates the through-
+put by inserting fake planets injections which are only 10 times
+brighter than the local stellar residuals level after PCA. This
+makes it possible to be close to the level of interest while be-
+ing suﬃciently above the residual to minimize the bias in the
+throughput estimation. For TLOCI, the throughput is calculated
+from an analytical formula (see section 2.10.2 of Galicher et al.
+(2018). The contrast curves, we derived in the following, for
+each spectral channel are based on the azimuthal standard de-
+viation calculated in annuli of 0.5 FWHM width. Finally, the
+5σ detection limits are derived by taking into account the ﬂux
+loss from ADI self-subtractions, the transmission of the coro-
+nagraph at short separations (close to the inner working angle
+(IW A: 0.1”) and the transmission of the neutral-density ﬁlter if
+used when registering the PSF. These detection limits are thus
+normalized by the unsaturated PSF ﬂux. Both 1D and 2D con-
+trast maps are estimated following these steps for each star for
+each reduction technique.
+Article number, page 10 of 30
+
+<<<PAGE 11>>>
+M. Langlois et al.: The SPHERE infrared survey for exoplanets (SHINE). II.
+All target stars were processed for each instrument in a ho-
+mogeneous way using at least TLOCI or PCA with similar sets
+of parameters. We considered 50, 100 and 150 PCA modes for
+IFS and 5 for IRDIS. We inspected by eye at least three residual
+maps for each star and for both IFS and IRDIS to look for candi-
+date companions (CC). We also included small number statistic
+correction. In addition to the standard SpeCal reductions, we also
+used, on several cases, ANDROMEDA (Cantalloube et al. 2015)
+and PACO (Flasseur et al. 2018, 2020b) algorithms to search for
+points sources. Given their statistical robustness to derive detec-
+tion limits and to better identify false detections these algorithms
+will become the main algorithms for the ﬁnal analysis of the
+SHINE survey.
+3.4. Astrometric and Photometric extraction for point sources
+PCA and TLOCI algorithms are known to distort the images of
+any oﬀ-axis point-like source. To retrieve accurately the relative
+photometry and astrometry of the detected candidate compan-
+ions (CC) with their uncertainties, SpeCal ﬁts a model of an oﬀ-
+axis point source image to the detected point source and adjusts
+its position and ﬂux to locally minimize the ﬂux. After build-
+ing a model of the point source using the technique described in
+(Galicher & Marois 2011), the ﬂux and the position of this syn-
+thetic image are adjusted within a disk of diameter 3 FWHM so
+that it includes the positive and the negative parts of the point
+source image. To optimize the computation time, instead of cal-
+culating the synthetic image each time we test a new planet po-
+sition, we shift the synthetic planet image to its rough position.
+Once the optimization is completed, we measure the excursion
+of each parameters that increases the minimum residual level by
+a factor of 1.15. These excursions correspond to the 1σ accuracy
+due to the ﬁtting errors in the SpeCal outputs. The spectrum ex-
+traction from IFS data is performed similarly by processing the
+wavelength channels separately. For the channels with no detec-
+tion above 1σ we provide an estimation of the upper limit only.
+In conclusion, we summarize the astrometric and photomet-
+ric error budget given by Specal considering both calibrations
+and ADI/ASDI extraction errors.
+For astometry, this budget includes:
+1. calibration with uncertainties of the detector distorsion, plate
+scale and True North,
+2. determination of the correction for constant o ﬀset angles
+(between the IFS and IRDIS ﬁelds of view, between pupil-
+tracking and ﬁeld-tracking modes);
+3. calculation of the parallactic angle variation (correction of
+precession and timestamp),
+4. central star position,
+5. determination of the companion /candidate relative position
+with Specal (Galicher et al. 2018).
+For photometry, it includes:
+1. Contrast estimation with proper calibration of neutral den-
+sity, exposure time, and associated error related to the vari-
+ation between Start /End STAR-FLUX calibrations but not
+including the strehl variation during the observing sequence
+(psf),
+2. Temporal variations of the stellar coronographic ﬂux be-
+tween 30-50 pixels during the observing sequence (Seq),
+3. Companion ﬂux determination considering ASDI signature,
+taking into account ﬂux cancellation from the algorithm
+used, and coronograph attenuation correction as described
+in (Galicher et al. 2018). .
+4. High contrast Performances
+4.1. Contrast curves
+We derived the 5-σ IRDIS and IFS contrast curves of each ob-
+servation for all the targets in the sample as presented on Figures
+4 and 5. These detection limits are derived based on the noise
+in the speckle-subtracted image, compensated for the through-
+put of the algorithm (calibrated with fake planet injections), the
+transmission of the coronagraph (calibrated from measurements
+in SPHERE), and the small sample statistics (Mawet et al. 2014).
+More details are provided in Galicher et al. (2018). Two types of
+contrast are discussed in detail in this section: the raw contrast,
+computed on the median coronagraphic image of each observa-
+tion and the contrast after post-processing described above. As
+illustrated on Fig B.1 and B.4, the raw coronagraphic contrast at
+various separations shows a strong dependency with the Strehl
+and seeing both estimated by the average of the SPARTA values
+during the coronagraphic sequence. The two smaller separations
+(from 100 to 700 mas) are within the AO control radius located
+at 840 mas separation radius in the H-band.
+This dependency remains clearly visible on post-processed
+data especially at 500 mas, despite other factors also coming into
+considerations such as the ﬁeld rotation and the stability of the
+conditions (see Fig B.2). At small separation, these scatter plots
+shows that one can easily gain one magnitude in raw contrast
+by increasing the Strehl by 10% or the decreasing the seeing by
+30%. As a consequence it is clear that conducting the survey in
+visitor mode which does not o ﬀer the best seeing condition had
+some impact on the survey ultimate contrast performances. Out-
+side the AO correction radius, at separation greater than 900 mas,
+there is still a smaller dependency of the contrast with the seeing
+due to the residual light scattering outside the AO control ra-
+dius and the lower height of the diﬀraction peak. As part of this
+study, the dependency of the post-ADI contrast on parameters
+tracing the quality and stability of the conditions were also in-
+vestigated as illustrated on Fig B.1, B.4 and B.2. We considered
+the dispersion in the seeing, coherence time, Strehl, during the
+duration of the pupil-stabilised sequence. No signiﬁcant correla-
+tion could be drawn from this sample. It is worth noticing that at
+small separation (100 mas) the processed contrast is lower than
+the raw contrast because of the very small angular rotation, the
+small throughput of the algorithm (from self subtraction) and the
+stronger coronagraphic residuals.
+The gain from raw contrast to post-processed contrast is
+clearly visible on Fig 6 which shows a typical improvement
+greater than 5 magnitudes at short separations for both IRDIS
+and IFS. It is worth noticing that the contrast gain in the IFS
+ﬁeld of view is consistent for all separations and reach at least 7
+magnitude. For the shorter separation located at the edge of the
+coronagraph (100 mas) there is marginal improvement for IFS
+from ASDI and no improvement for IRDIS in contrast due to
+the very small angular rotation, the small throughput of the algo-
+rithm and the stronger coronagraphic residuals for both instru-
+ments. At larger separation than the AO cutoﬀ, the improvement
+from the post-processing range from 2 to 4 magnitudes.
+We also plot on Fig B.3 the processed contrast as function
+of the star magnitude for both IFS and IRDIS at various separa-
+tions. From these ﬁgures it is clear that there seem to be small
+correlation between these parameters when the post-processing
+if performed using TLOCI. On the contrary the PCA method for
+both IRDIS and IFS seems to be a ﬀected by the magnitude of
+the star at least for the largest separations which is likely related
+to the noise from the instruments background.
+Article number, page 11 of 30
+
+<<<PAGE 12>>>
+A&A proofs: manuscript no. paperF100IIﬁnalb
+Fig. 4: Contrast curves at 5σ obtained for the full sample for irdifs-ext (Left) and irdifs (right) modes observations. The solid line
+gives the median value of the contrast. The dash line gives the mean value of the contrast. Red color is for IRDIS data reduced in
+PCA ADI, Blue color is for IRDIS data reduced in TLOCI ADI, and green color is for IFS with PCA ASDI reduction
+We also highlight that one clear cause of contrast degradation
+in the post-ADI contrast is the presence of a smooth halo within
+the AO-corrected region which results from either bad seeing or
+from high-altitude wind related to the jet stream as discussed in
+(Cantalloube et al. 2018) leading to a non symmetrical halo in
+the direction of the wind (called the wind driven halo, WDH).
+This halo is rotating in the pupil-stabilised data set because it is
+ﬁxed on the sky as described in (Cantalloube et al. 2020). In post-
+ADI frames, it therefore appears as a brighter elongation along
+the wind direction, with negative counterparts at 90 degrees. The
+impact of this e ﬀect does not appear to be very strong on the
+azimuthal averaged contrasts we have plotted but is noticeable
+on the 2D contrast maps. Increasing the temporal bandwidth of
+SAXO is the foreseen solution to help mitigate this e ﬀect. This
+is considered as one option in a forthcoming upgrade of the in-
+strument, SPHERE+ (Boccaletti et al. 2020).
+4.2. Mass detection limits
+The contrast curves are converted into mass limits using mass-
+luminosity relationships. Whereas for old (& 1 Gyr) systems this
+relationship is essentially unique for gas giants at large sepa-
+ration (Burrows et al. 1997; Bara ﬀe et al. 2003), at young ages
+the value of the post-formation luminosity still remains uncertain
+(Marley et al. 2007; Spiegel & Burrows 2012; Marleau & Cum-
+ming 2014). We present here a mass conversion of the contrast
+curves for a few speciﬁc targets using the canonical predictions
+of the COND-2003 evolutionary models (Bara ﬀe et al. 2003).
+The impact of using other mass-luminosity relationships on the
+sensitivity of the SHINE survey are explored in more details in
+Vigan et al. (2020). For IRDIS contrast curves, we convert the
+contrast curves using the evolutionary models computed in the
+appropriate dual-band ﬁlter, while for the IFS contrast curves we
+use the predictions in the J-band ﬁlter for YJ data and in the H-
+band ﬁlter for YJH data. As demonstrated in Vigan et al. (2015),
+this approach for the IFS detection limits provides an accurate
+estimation of the detection limit.
+For a selection of companions presented in 5.1, we show
+the detection of planet-like limits achieved by the survey in Fig.
+10. Several targets appear to be relatively easy (HR 8799 bcd,
+HIP 65426 and HIP 64892) for this survey, allowing for exquisite
+characterisation. Other targets appear to be much more challeng-
+ing mainly because they are at separations closer than 20 AU.
+The detection limits for these typical objects reach few Jupiter
+masses at such small separation while it can reach around 1
+Jupiter mass at separations greater than 50 AU.
+5. Exoplanet, Candidate Companion Detections
+5.1. Brown dwarfs and exoplanets
+A total of sixteen substellar companions were imaged in
+the course of this part of the SHINE survey, including
+seven brown dwarf companions (PZ Tel B, η Tel B, CD -
+35 2722 B, HIP 78530 B, HIP 107412 B, GSC 8047-0232 B and
+HIP 64892 B), and ten planetary-mass companions (51 Eri b, β
+Pictoris b, HD 95086 b, HR8799 bcde, GJ 504 b, AB Pic b and
+HIP 65426 b). Two new companions have been discovered in
+this sample: the exoplanet HIP 65426 b (Chauvin et al. 2017b)
+and the brown dwarf companion to HIP 64892 B (Cheetham
+et al. 2018). PDS 70 was not originally part of the SHINE sam-
+Article number, page 12 of 30
+
+<<<PAGE 13>>>
+M. Langlois et al.: The SPHERE infrared survey for exoplanets (SHINE). II.
+Fig. 5: Contrast curves at 5 σ obtained for a small subsample of targets dedicated to follow up for IRDIS mode observations. The
+solid line gives the median value of the contrast. The dash line gives the mean value of the contrast. Red color is for IRDIS data
+reduced in PCA ADI, Blue color is for IRDIS data reduced in TLOCI ADI
+Fig. 6: IRDIS and IFS processed contrast computed using respectively TLOCI and PCA-ASDI as function of raw contrast at various
+separations in irdifs mode. Blue is for 100 mas separation, orange for 200 mas separation and pink for 400 mas separations, black
+for 500 mas separation, , brown for 700 mas separation, red for 1000 mas separation , green for 2000 mas separation and yellow for
+4000 mas separations. The black and brown line represent respectively a gain of 1 and 6.25 assuming 39 spectral channels. In fact
+So there are 15 independent spectral IFS channels leading to a maximum gain of 3.9 when neglecting the possible combination of
+the two IRDIS channels.
+ple and was speciﬁcally targeted to explore the properties of
+the transition disk that led to the discovery of the ﬁrst planet
+PDS 70 b in this system (Keppler et al. 2018; Müller et al. 2018),
+and the conﬁrmation of the second planet PDS 70 c (Mesa et al.
+2019). The other substellar companions, known from previous
+direct imaging campaigns, were originally blindly selected based
+on their host star properties, but then carefully characterized to
+study their orbital, spectral and physical properties in connec-
+tion sometimes with their environment (the presence of addi-
+tional planets or disk structures in the system). The SNR maps
+for a selection of candidates are shown in Fig. 7 for IFS data
+and Fig. 8 for IRDIS data. The extracted spectro-photometric
+data are reported in Fig. 11. The measured position, contrast,
+semi-major axis, predicted mass for each companion are listed
+in Table 1. The detection limits for a few of these systems are
+shown on Fig. 10 as illustration of the SPHERE performances.
+The Sco-Cen members HIP 71724 and HIP 73990 with stellar
+to substellar-mass companion previously discovered in sparse-
+aperture masking by Hinkley et al. (2015) were observed, but the
+close companions were not resolved given their probable small
+separations at the epoch of our observations.
+In addition to the discovery and characterization papers
+on HIP 65426 b and HIP 64892 B summarized below, in-depths
+studies of various of these companions based on from the SHINE
+sample have been published in these early years of the sur-
+vey: PZ Tel B (Maire et al. 2016a), HIP 107412 B (Milli et al.
+2017a; Delorme et al. 2017b) for the brown dwarf companion,
+and HR 8799 b,c,d,e (Zurlo et al. 2016; Bonnefoy et al. 2016),
+51 Eri b (Samland et al. 2017; Maire et al. 2019), HD 95086 b
+Article number, page 13 of 30
+
+<<<PAGE 14>>>
+A&A proofs: manuscript no. paperF100IIﬁnalb
+Fig. 7: SNR maps for the sample data where at least a substellar close companion was detected with IFS. In each panel, the green
+cross mark the star position
+(Chauvin et al. 2018), β Pictoris b (Lagrange et al. 2019),
+GJ 504 b(Bonnefoy et al. 2018) for the imaged exoplanets.
+5.1.1. HIP 65426 b
+HIP 65426 b was the ﬁrst planet discovered with SPHERE
+as part of the SHINE Survey (Chauvin et al. (2017b)). This
+warm, dusty giant planet is orbiting at a relatively large pro-
+jected angular distance of of 830 mas (92 au projected) from
+its intermediate-mass primary (Fig. 7 and 8). Multi-epoch ob-
+servations conﬁrm that it shares common proper motion with
+HIP 65426, a young A2 member of the 17 Myr old Lower
+Centaurus-Crux association. Spectro-photometric measurements
+extracted with IFS and IRDIS, as shown in Fig. 11, between 0.95
+and 2.2 µm indicate a warm, dusty atmosphere characteristics
+of young low-surface gravity L5-L7 dwarfs. Hot-start evolution-
+ary models predict a luminosity consistent with a 6 − 12 MJup,
+Teﬀ = 1300− 1600 K and R =1.5 RJup for the planet. These re-
+sults were later conﬁrmed by Cheetham et al. (2019) combining
+SPHERE and NaCo observations.
+Given its physical and spectral properties, HIP 65426 b rep-
+resents a particularly interesting case to study the presence of
+clouds as a function of particle size, composition, and location
+in the atmosphere, to search for signatures of non-equilibrium
+chemistry, and ﬁnally to test models of planet formation and evo-
+lution (Cheetham et al. 2018). The planet location would not fa-
+vor a formation by core accretion unless HIP 65426 b formed
+signiﬁcantly closer to the star followed by a planet-planet scat-
+tering event. Dedicated simulations by Marleau et al. (2019)
+showed that core formation at small separations from the star fol-
+lowed by outward scattering and runaway accretion at a few hun-
+dred astronomical units succeeds in reproducing the mass and
+separation of HIP 65426 b. In such a scenario, the planet is pre-
+dicted to have a high eccentricity (≥ 0.5) and to be accompanied
+by one or several roughly Jovian-mass planets at smaller semi-
+major axes, which also could have a high eccentricity. SHINE
+detection limits setting relatively good constraints at close sepa-
+ration (2 MJup beyond 20 au) as shown in Fig. 10 do not exclude
+the presence of unseen inner massive planets in that system that
+could have scattered out HIP 65426 b.
+5.1.2. HIP 64892 B
+A bright, brown dwarf companion was also discovered around
+the star HIP 64892, a B9.5V member of the Lower Centaurus-
+Crux association. The measured angular separation of the com-
+panion (about 1.27") corresponds to a projected distance of
+159 au. We observed this target with IRDIS dual-band Imaging
+and in long-slit spectroscopy to estimate its spectral energy dis-
+tribution and astrometry. More details can be found in the discov-
+ery paper by Cheetham et al. (2018). Luminosity and spectrum
+are consistent with a young (16 Myr), low-surface gravity brown
+Article number, page 14 of 30
+
+<<<PAGE 15>>>
+M. Langlois et al.: The SPHERE infrared survey for exoplanets (SHINE). II.
+Fig. 8: SNR maps for the sample data where at least a substellar close companion were detected with IRDIS. In each panel, the
+white cross marks the star position
+-3 -2 -1 0
+J3-J2
+22
+20
+18
+16
+14
+12
+10
+8
+MJ3
+M0-M5
+M6-M9
+L0-L5
+L6-L9
+T0-T5
+T6-T9.5
+GSC0621-0021B
+Hip 64892B
+GJ 504b
+HIP 43620B
+GU Psc B
+GJ 758b
+1RXS1609b
+CD-352722B
+HN Peg B
+UScoCTIO 108B
+ζ  Del B
+2M1207b
+VHS 1256ABb
+young/dusty dwarfs
+WISE1647+56
+Y0-Y2
+Interstellar (R=3.1)
+0.5 µ m forsterite
+-3 -2 -1 0
+J3-J2
+22
+20
+18
+16
+14
+12
+10
+8
+MJ3
+-4 -2 0 2
+H2-H3
+20
+15
+10MH2
+M0-M5
+M6-M9
+L0-L5
+L6-L9
+T0-T5
+T6-T9.5
+young/dusty dwarfs
+WISE1647+56
+HR8799b
+HR8799c
+HR8799d
+HR8799e
+1RXS1609b
+2M1207b
+GU Psc B
+HN Peg B
+β  Pic b
+UScoCTIO 108B
+HIP 64892B
+HIP 78530B
+GSC0621-0021B
+PDS70 b
+VHS 1256ABb
+ζ  Del B
+HIP 43620B
+51 Eri b
+HD 106906 b
+GJ 758b
+GJ 504b
+Hip 65426b
+Contaminant
+Companion
+Ambiguous
+Y0-Y2
+-4 -2 0 2
+H2-H3
+20
+15
+10MH2
+Interstellar (R=3.1)
+0.5 µ m forsterite
+-3 -2 -1 0 1
+K1-K2
+18
+16
+14
+12
+10
+8
+6
+MK1
+M0-M5
+M6-M9
+L0-L5
+L6-L9
+T0-T5
+T6-T9.5
+young/dusty dwarfs
+WISE1647+56
+WISE0754+79
+1RXS1609b
+HD 206893B2M1207b
+HN Peg B
+UScoCTIO 108B
+HD 106906 b
+PDS70 b
+PDS70 c
+ζ  Del B
+GSC0621-0021B
+HIP 78530B
+Hip 64892B
+GJ 504b
+Hip 65426b
+VHS 1256ABb
+HR8799b
+HR8799c
+HR8799d
+HR8799e
+Interstellar (R=3.1)
+0.5 µ m forsterite
+>T8
+-3 -2 -1 0 1
+K1-K2
+18
+16
+14
+12
+10
+8
+6
+MK1
+Fig. 9: Photometry of the candidates (spots) observed in the sample of 159 stars and reported in color-magnitude diagrams assuming
+a common distance with the host-star. The grey zone represents the excluded background-like point sources.
+dwarf with a spectral type of M9. From comparison with the BT-
+Settl atmospheric models its eﬀective temperature was estimated
+to Teﬀ = 2600 K, and comparison of the companion photome-
+try to the COND evolutionary models yields a mass between 29
+and 37 MJup. Despite this, HIP 64892 is one of the highest mass
+stars around which a substellar companion has been detected,
+due to the challenges associated with observing such stars and
+the tendency for large surveys to focus on solar-like or low-mass
+stars. HIP 64892 is a rare example of high or intermediate mass
+stars with extreme mass ratio ( q = 0.01) companions at large
+separations and will be useful for testing models relating to the
+formation and evolution of such low-mass objects.
+Article number, page 15 of 30
+
+<<<PAGE 16>>>
+A&A proofs: manuscript no. paperF100IIﬁnalb
+Table 1: Exoplanets and brown dwarf companions observed during the SHINE campaign
+Name SpT host M⋆ a Mass Observation Contrast separation P.A. Ref.
+(M⊙) (au) ( MJup) dates a (H2) (mas) (deg)
+SHINE discoveries
+HIP 64892 B B9 2.09 147–171 29–37 2016-04-01 7 .24± 0.08 1270 .5± 2.3 311 .68± 0.15 (1)
+HIP 65426 b A2 1.96 80–210 7–9 2016-05-30 10 .73± 0.09 830 .4± 4.9 150 .28± 0.22 (2)
+Previously known companions
+η Tel B A0 2.00 125–432 20–50 2015-05-05 6 .99± 0.22 4214 .5± 22 167 .25± 0.08 (8)
+CD -35 2722 B M1 0.56 74–216 23–39 2015-29-11 5 .89± 0.18 2987 .5± 3.51 241 .9± 0.06 (9)
+HIP 78530 B B9 1.99 ∼620 19–26 2015-05-04 8 .05± XX 4537.5± 3.0 139 .98± 0.04 (18)
+β Pic b A3 1.61 8.5–9.2 9–16 2018-12-15 9 .86± 0.1 177 .4± 4.51 29 .07± 0.6 (3,10)
+HR 8799 b A5 1.42 62–72 5.3–6.3 2014-07-13 13 .19± 0.16 1721 .8± 6.0 65 .76± 0.19 (4,11)
+HR 8799 c A5 1.42 39–45 6.5–7.8 2014-07-13 11 .99± 0.16 947 .7± 4.0 326 .58± 0.24 (4,11)
+HR 8799 d A5 1.42 24–27 6.5–7.8 2014-07-13 12 .00± 0.17 658 .0± 5.0 216 .35± 0.52 (4,11)
+HR 8799 e A5 1.42 14–17 6.5–7.8 2014-07-13 11 .93± 0.17 386 .1± 9.0 268 .81±1.3 (4,19)
+HD 95086 b A8 1.55 28–64 2–9 2015-03-02 12 .37± 0.16 622 .0± 4.0 148 .8± 0.4 (5,12)
+51 Eri b F0 1.45 10–16 6–14 2016-12-12 13 .96± 0.51 444 .8± 10.6 159 .4± 2.6 (6,20,13)
+HIP 107412 B F5 1.32 6.2–7.1 15–30 2016-09-16 9 .67± 0.09 265 .0± 2.0 62 .25± 0.11 (22,14)
+PZ Tel B G9 1.07 19–30 38–54 2014-07-15 5 .07± 0.61 478 .48± 2.10 59 .58± 0.48 (7,15,21)
+AB Pic b K1 0.97 ∼250 13–30 2015-02-06 8 .04± 0.98 5392 .1± 13.1 175 .26± 0.15 (16)
+GSC 8047-0232 B K2 0.89 190–880 15–35 2015-09-25 7 .67± 0.15 3207 .7± 2.7 358 .82± 1.03 (17)
+GJ 504 b G0 1.15 40-50 4-6 2015-05-06 14 .56± 0.15 1463 .7± 3.8 323 .1± 0.1 (23, 24)
+Notes. (a) We only list one selected epoch for each target
+References. SHINE papers: (1) Cheetham et al. (2018); (2) Chauvin et al. (2017b); (3) Lagrange et al. (2019); (4) Zurlo et al. (2016); (5) Chauvin
+et al. (2018); (6) Samland et al. (2017); (7) Maire et al. (2016a); (20) Maire et al. (2019); (24) Bonnefoy et al. (2018), Discovery papers: (8)
+Lowrance et al. (2000); (9) Wahhaj et al. (2011); (10) Lagrange et al. (2009); (11) Marois et al. (2008); (12) Rameau et al. (2013a); (13) Macintosh
+et al. (2015); (14) Milli et al. (2017a); (15) Biller et al. (2010); (16) Chauvin et al. (2005b); (17) Chauvin et al. (2005a); (18) Lafrenière et al.
+(2011); (19) Marois et al. (2010); (21) Mugrauer et al. (2010); (22) Delorme et al. (2017b); (23) Kuzuhara et al. (2013b)
+5.2. Colours and spectra of detected substellar companions
+Fig. 11 shows the spectra of the brown dwarf and exoplanet com-
+panions detected within the IFS ﬁeld of view: 51 Eri b, β Pic b,
+HD 95086 b, HIP 65426 b, HR 8799 d and e, HIP 107412 B and
+PZ Tel B. Most of these spectra are very red and can be classiﬁed
+as of L- or early T-type. The only middle T-type object detected
+in the IFS ﬁeld of view is 51 Eri b (Samland et al. 2017), while
+PZ Tel B is an M-type object (Maire et al. 2016a). These very
+red colors were quite unexpected for such faint objects, and indi-
+cate that young substellar objects have a spectrum quite diﬀerent
+from those of older ones of the same luminosity, which can be
+interpreted as an indication for the presence of dust in their at-
+mosphere (Chauvin et al. 2004; Bonnefoy et al. 2014). From the
+point of view of planet detection - the focus of this paper - the
+implication is that young substellar companions may be below
+detection limit in the Y and J-band and even faint in the H-band,
+while they may be detected quite easily in the K-band (extension
+of the datacubes to short wavelengths is however useful to model
+and better subtract speckles). An extreme case of this behaviour
+is represented by HD 95086 b (Chauvin et al. 2018). This has
+a signiﬁcant impact on the detection limits of our survey and
+points toward the need of model atmospheres that include dust
+to properly derive masses from the observed magnitudes.
+5.3. Ranking and identiﬁcation of SHINE candidates
+We identiﬁed 1483 unique candidates in the IRDIS images (all
+epochs), 1176 of which were re-detected at several epochs or us-
+ing archival data and 307 of which were only detected at a single
+epoch. Most of the candidates have been observed with the H23
+ﬁlters (> 95%). Sixty-nine candidates have K1-K2 photometry
+extracted from the IRDIFS_EXT observations. They were identi-
+ﬁed in follow-up observations of known systems (HD 95086,
+HIP107412, HIP 65426, HIP 64892, CD-35 2722) or for the
+most part in ﬁrst epoch observations of stars belonging to the
+Sco-Cen association for which the detection of late-L dusty com-
+panions with red near-infrared colors is favored at K-band (e.g.,
+HD95086b; Chauvin et al. 2018).
+We used color-magnitude diagrams (CMDs) to identify the
+most promising candidates and perform an e ﬃcient follow-up
+campaign. The candidate absolute magnitudes were computed
+assuming they are bound and at the same distance as the ob-
+served star. Most contaminants are expected to be M- and K-type
+stars (e.g., Parravano et al. 2011). Their characteristic colors as
+well as the range of contrasts probed by the observations cre-
+ates a locus which can fall in a distinctive color-luminosity space
+from the sequence of substellar objects in the CMDs. The dia-
+grams are described in details in Bonnefoy et al. (2018) and are
+enriched with the recent photometry and distances of reference
+objects measured by Müller et al. (2018), Mesa et al. (2019), and
+Dupuy et al. (2020).
+The large number of candidates identiﬁed in the H23 obser-
+vations allows for building a well deﬁned locus of contaminants
+in the corresponding CMD (see Figure 9). The locus shows an
+elongation along a vector which may be related to the distribu-
+tion of spectral type of the contaminants combined to interstellar
+extinction (the fainter the object with respect to the host star,
+the higher the optical extinction and color reddening). The locus
+intersects the sequence of substellar objects at the L /T transi-
+tion and therefore can not discriminate contaminants from bound
+companions falling in that luminosity range. We could however
+deﬁne an exclusion zone (grey shaded region) where substellar
+companions are not expected to produce such colors and abso-
+Article number, page 16 of 30
+
+<<<PAGE 17>>>
+M. Langlois et al.: The SPHERE infrared survey for exoplanets (SHINE). II.
+lute magnitudes. The zone is deﬁned to avoid missing i / young
+mid- and late- T-type planets such as 51 Eri b (Macintosh et al.
+2015) which can have reddened colors with respect to mature
+ﬁeld T-dwarfs and ii / young planets at the L /T transition such
+as HR8799 which can appear under-luminous with respect to
+older objects in the same temperature range. This criterion was
+used to identify 44% of the candidates with H23 photometry
+as likely contaminants for which a re-observation was not war-
+ranted. Consequently, we decided to prioritize the observations
+of candidates falling right on the sequence of late-M to mid-L
+dwarfs and for which the locus spans a narrow range of bluer
+colors in the same luminosity range. This allowed for identify-
+ing HIP 64892B and HIP 65426b as promising candidates before
+they could be conﬁrmed as co-moving objects. We could also
+identify blindly known companions (e.g., HIP 78530B, η Tel B,
+PZ Tel B, AB Pic b, CD-35 2722B, HIP 73990B) as promising
+candidates.
+Most of the remaining ambiguous candidates were observed
+at a second epoch to determine whether they are co-moving com-
+panions. Two crowded ﬁelds were observed with the J23 ﬁlter
+set. As shown in Bonnefoy et al. (2018), the locus of contam-
+inants falls at a distinct location from the substellar objects in
+these CMDs and allowed to classify most of these candidates
+as contaminants. The locus in the K1K2 diagrams is more dis-
+persed and the error bars on the photometry tend to be wider
+owing to the higher thermal background at these wavelengths.
+Therefore, detections in K1K2 requires follow-up observations
+to clarify the nature of the detections.
+The ﬁnal status of the candidates is given in Table A.1.
+The companions with a conﬁrmed common-proper motion are
+ﬂagged as ’C’. The contaminants either discriminated using
+the CMD or the comon-proper motion test are ﬂagged as
+’B’.Ambiguous cases are ﬂagged as ’A’. We report in addition
+several not clear detections (’NC’) in that table which corre-
+spond to the identiﬁcation of candidates with unreliable astrom-
+etry and/or photometry and for which our standard classiﬁcation
+scheme could not be applied.
+6. Disks detected in SHINE
+While not speciﬁcally optimized for this purpose, our obser-
+vations allowed detection of circumstellar disks, thanks to the
+exquisite sensitivity and large FoV of IRDIS, twelve of SHINE
+targets, out of which three were new detections. By construction
+of our survey, they are debris disk - in fact, we did not consider
+stars with gas-rich disks to reduce the concern related to the im-
+pact of disks in planet detection. Table 2 collects the main data
+for the disks we detected; a gallery of their appearance from the
+IFS data is presented in Figure 12. Detailed analysis of each one
+of these disks is subject of speciﬁc studies, most of them already
+published (see Table 2).
+Not surprisingly, stars with detected debris disks are typ-
+ically young; the median age is 24 Myr (data from Paper I)
+and there is only one target with an age older than 50 Myr
+(HIP682=HD377). This result is similar to that obtained by the
+survey by (Esposito et al. 2020). We notice that most of the de-
+tected disks are seen at high inclinationi, with a median value of
+i = 82 degree. The only disk that has a low inclination in our sur-
+vey (TW A 7) was detected only in polarimetry (Olofsson et al.
+2018). The strong dependence on inclination is because of the
+combination of a deeper optical depth (debris disks being opti-
+cally thin), of higher eﬃciency of forward scattering, and of the
+use of angular diﬀerential imaging to reach deeper contrast (see
+Milli et al. 2012; Sissa et al. 2018). This selection eﬀect would be
+less severe using polarimetric observations, as often done when
+studying disks (see the case of TW A 7; see also Esposito et al.
+2020). The strong selection bias towards edge-on disks implies
+that debris disks at the typical age of our targets should be much
+more common than indicated by eleven detections over a sample
+of 150 stars. If we indeed consider only the 52 stars with age
+<30 Myr in our sample, we detected disk around 8 of them. In
+ﬁve cases the inclination is i > 80 degrees, an occurrence that
+has 17% of the probability to happen. This suggests that debris
+disks similar to the ones we detected surround a large fraction of
+young stars (see Sissa et al. 2018 for a similar argument about
+the M-stars in our survey or Meshkat et al. 2017).
+Debris disks have a limited impact on detection limits of
+point sources. Low inclination debris disks have negligible ef-
+fects because they are optically thin and well below detection
+limit. For what concerns high inclination disks, the eﬀect is more
+relevant (see Milli et al. 2012 for a discussion). They typically
+cover a small fraction of the sky area; however, planet orbit is
+possibly coplanar with the disk, so that the sky region covered
+by the disk is where most likely the planets are. As discussed by
+Milli et al. (2012), the ﬂux loss depends on the technique used,
+and may be large for some of them. On the other hand, in addi-
+tion to ﬂux losses, Milli et al. (2012) showed that disk features
+may lead to false positive point sources detections. Furthermore,
+the multi-wavelength approach allowed by simultaneously us-
+ing both IFS and IRDIS provides more diagnostics for an appro-
+priate classiﬁcation of detected features and more particullarly
+point sources. The good sensitivity of ASDI-PCA to structures
+within disks is clearly shown by the case of AU Mic, where this
+technique allows to detect very faint point-like sources with con-
+trasts of∼ 14.5 mag at SNR> 10 along the edge-on disk (Boc-
+caletti et al. 2018). The SNR of these detections agree with the
+expectation based on our estimate of the contrast limit at this
+separation based on the whole images. Note that these structures
+are however not planets: the spectrum is ﬂat, inconsistent with
+that of young planets, and the objects are by far too bright to
+be reﬂecting planets. We carefully considered a similar possibil-
+ity for all our targets, and we are conﬁdent that there is no false
+positive among our detections.
+Concerning the detection of the disk structure themselves,
+the standard ADI methods used in this paper lead to several
+known causes of artifacts altering both the morphology and the
+photometry of the disks. In particular they su ﬀer from positive
+/ negative replicas and from the self-subtraction phenomenon
+which can only be alleviated by using a physical model of in-
+strumental eﬀects as recently proposed by (Pairet et al. 2020;
+Flasseur et al. submitted) but which are beyond the scope of this
+paper.
+7. Conclusions and prospects
+We process in a uniform manner more than 300 datasets from
+the SPHERE/SHINE Survey obtained at the VLT/ESO in visitor
+mode and assess SHINE survey typical sensitivity as a function
+of the host star and observing conditions. From these ﬁrst 150
+stars observed out of the planned 400-star survey, we reach typi-
+cal contrasts of 106 at 1” separation and reach up to 107 contrast
+at 2” separation for the best observations. SPHERE /SHINE de-
+livers one of the few largest and deepest direct imaging surveys
+for exoplanets conducted to date. Compared to GPIES, SHINE
+has been operating in priority visitor mode, the observing con-
+ditions for SHINE in regular visitor mode are highly variable
+and on average not as good leading to a wider spreading of the
+contrast performances.
+Article number, page 17 of 30
+
+<<<PAGE 18>>>
+A&A proofs: manuscript no. paperF100IIﬁnalb
+Table 2: Debris disk detected from the SHINE survey (F150 sample)
+Star SpT MG Age i References
+mag Myr Degree
+New SHINE detections
+HIP 73145 A2IV 7.87 17 72.6 Feldt et al. (2017)
+HIP 86598 / HD 160305 F8 /G0V 8.18 24 82.0 Perrot, Clément et al. (2019)
+HIP 59960 / HD 106906 F5V 7.68 13 5 Lagrange et al. (2016)
+Previously known disks
+β Pic b A6V 3.72 24 >89 Lagrange et al. (2019)
+AU Mic M1V 7.84 24 >89 Boccaletti et al. (2018)
+HIP 682/ HD 377 G2V 7.44 150 Langlois et al. in prep
+HIP 11360 / HD 15115 F4IV 6.68 45 85.8 Engler et al. (2019)
+HIP 36948 / HD 61005 G8V 8.00 50 84.5 Olofsson et al. (2016)
+TW A 7 M2V 10.62 10 13 Olofsson et al. (2018)
+TW A 11/ HR4796 A0V 5.77 10 76.4 Milli et al. (2017c)
+HIP 64995 / HD 115600 F2IV /V 8.14 16 80 Gibbs et al. (2019)
+NZ Lup G2 7.78 16 86 Boccaletti et al. (2019)
+Sixteen substellar companions around twelve host stars have
+been detected within the ﬁrst half of the SHINE survey, eight
+brown dwarfs and eight planetary-mass companions. The paper
+summarizes the measured position, contrast, and derived mass
+for each companion as well as it produces astro-photometric data
+for all the candidates detections. The two new discoveries in the
+ﬁrst half of the SHINE survey are the planetary mass companion
+to HIP 65426 b (Chauvin et al. 2017b) and the brown dwarf com-
+panion to HIP 64892 B (Cheetham et al. 2018). All other substel-
+lar companions characterized during SHINE were discovered in
+previous direct imaging campaigns.
+The SHINE survey is due to be completed in 2021, but will
+certainly extend over a few more years to become complete in
+terms of follow-up for all candidates within at least a 300 au
+and possibly even farther away. The ﬁnal sample will include
+over 500 stars, which will make SHINE the largest high contrast
+imaging survey to date, covering from B to M stars in the solar
+neighborhood. The reanalysis of the complete SHINE data with
+advanced processing techniques (Cantalloube et al. 2015; Ruﬃo
+et al. 2017; Flasseur et al. 2018, 2020b,a; Berdeu et al. 2020)
+will be performed in order to provide improved detection limits
+and reach the full power of this survey using the full sample.
+There are a limited number of bright, young, nearby stars
+available to high-contrast direct imagers like SPHERE and GPI.
+As a result, at the current achievable contrasts we cannot expect
+a signiﬁcant number of new detections of imaged giant planets
+following the completion of both GPIES and SPHERE /SHINE
+(Desidera et al. (submitted)) campaigns. An improvement in per-
+formance from instrument upgrades (Boccaletti et al. (2020),
+Chilcote et al. (2018) ), however, could unlock mass /separation
+phase space around these target stars that are currently inacces-
+sible, which are in addition likely to host more planets Wagner
+et al. (2019). Additional planets discovered with upgraded GPI
+and SPHERE would allow us to test the robustness of the trends
+with stellar mass and planetary mass uncovered in this paper.
+The Gaia mission will identify astrometric signatures of planets
+that may be conﬁrmed with direct imaging, which can also boost
+the number of companions in this separation range. Finally, cross
+checks with results from other indirect techniques, e.g. transits
+or high precision radial velocity, will allow a much better picture
+of the architecture of planetary systems.
+Acknowledgements. SPHERE is an instrument designed and built by a con-
+sortium consisting of IPAG (Grenoble, France), MPIA (Heidelberg, Ger-
+many), LAM (Marseille, France), LESIA (Paris, France), Laboratoire La-
+grange (Nice, France), INAF - Osservatorio di Padova (Italy), Observatoire de
+Genève (Switzerland), ETH Zürich (Switzerland), NOV A (Netherlands), ON-
+ERA (France) and ASTRON (Netherlands) in collaboration with ESO. SPHERE
+was funded by ESO, with additional contributions from CNRS (France),
+MPIA (Germany), INAF (Italy), FINES (Switzerland) and NOV A (Netherlands).
+SPHERE also received funding from the European Commission Sixth and Sev-
+enth Framework Programmes as part of the Optical Infrared Coordination Net-
+work for Astronomy (OPTICON) under grant number RII3-Ct-2004-001566 for
+FP6 (2004-2008), grant number 226604 for FP7 (2009-2012) and grant num-
+ber 312430 for FP7 (2013-2016). This work has made use of the SPHERE Data
+Centre, jointly operated by OSUG/IPAG (Grenoble), PYTHEAS/LAM/CeSAM
+(Marseille), OCA /Lagrange (Nice), Observatoire de Paris /LESIA (Paris), and
+Observatoire de Lyon (OSUL/CRAL).This work is supported by the French Na-
+tional Research Agency in the framework of the Investissements d’Avenir pro-
+gram (ANR-15-IDEX-02), through the funding of the "Origin of Life" project
+of the Univ. Grenoble-Alpes. This work is jointly supported by the French Na-
+tional Programms (PNP and PNPS) and by the Action Spéciﬁque Haute Réso-
+lution Angulaire (ASHRA) of CNRS/INSU co-funded by CNES. We also thank
+the anonymous referee for her /his careful reading of the manuscript as well as
+her/his insightful comments and suggestions. A V acknowledges funding from the
+European Research Council (ERC) under the European Union’s Horizon 2020
+research and innovation programme (grant agreement No. 757561). A-M La-
+grange acknowledges funding from French National Research Agency (GIPSE
+project). C. P. acknowledge ﬁnancial support from Fondecyt (grant 3190691)
+and ﬁnancial support from the ICM (Iniciativa Cientíﬁca Milenio) via the Núcleo
+Milenio de Formación Planetaria grant, from the Universidad de Valparaíso. T.H.
+acknowledges support from the European Research Council under the Horizon
+2020 Framework Program via the ERC Advanced Grant Origins 83 24 28.
+References
+Baraﬀe, I., Chabrier, G., Barman, T. S., Allard, F., & Hauschildt, P. H. 2003,
+A&A, 402, 701
+Bellini, A., Anderson, J., & Bedin, L. R. 2011, PASP, 123, 622
+Bellini, A., Anderson, J., van der Marel, R. P., et al. 2014, ApJ, 797, 115
+Bellini, A., Bianchini, P., Varri, A. L., et al. 2017, ApJ, 844, 167
+Berdeu, A., Soulez, F., Denis, L., Langlois, M., & Thiébaut, É. 2020, A&A, 635,
+A90
+Beuzit, J. L., Vigan, A., Mouillet, D., et al. 2019, A&A, 631, A155
+Biller, B. A., Close, L. M., Masciadri, E., et al. 2007, ApJS, 173, 143
+Biller, B. A., Liu, M. C., Wahhaj, Z., et al. 2010, ApJ, 720, L82
+Biller, B. A., Liu, M. C., Wahhaj, Z., et al. 2013, ApJ, 777, 160
+Boccaletti, A., Carbillet, M., Fusco, T., et al. 2008, in Society of Photo-Optical
+Instrumentation Engineers (SPIE) Conference Series, V ol. 7015, Adaptive
+Optics Systems, 70156E
+Boccaletti, A., Chauvin, G., Mouillet, D., et al. 2020, arXiv e-prints,
+arXiv:2003.05714
+Boccaletti, A., Sezestre, E., Lagrange, A. M., et al. 2018, A&A, 614, A52
+Boccaletti, A., Thébault, P., Pawellek, N., et al. 2019, A&A, 625, A21
+Bohn, A. J., Kenworthy, M. A., Ginski, C., et al. 2020, ApJ, 898, L16
+Bonnefoy, M., Chauvin, G., Lagrange, A. M., et al. 2014, A&A, 562, A127
+Bonnefoy, M., Perraut, K., Lagrange, A. M., et al. 2018, A&A, 618, A63
+Article number, page 18 of 30
+
+<<<PAGE 19>>>
+M. Langlois et al.: The SPHERE infrared survey for exoplanets (SHINE). II.
+Bonnefoy, M., Zurlo, A., Baudino, J. L., et al. 2016, A&A, 587, A58
+Boss, A. P. 1997, in Lunar and Planetary Science Conference, Lunar and Plane-
+tary Science Conference, 137
+Bowler, B. P., Liu, M. C., Shkolnik, E. L., & Tamura, M. 2015, ApJS, 216, 7
+Burrows, A., Marley, M., Hubbard, W. B., et al. 1997, ApJ, 491, 856
+Cantalloube, F., Farley, O. J. D., Milli, J., et al. 2020, A&A, 638, A98
+Cantalloube, F., Mouillet, D., Mugnier, L. M., et al. 2015, A&A, 582, A89
+Cantalloube, F., Por, E. H., Dohlen, K., et al. 2018, A&A, 620, L10
+Carbillet, M., Bendjoya, P., Abe, L., et al. 2011, Experimental Astronomy, 30,
+39
+Chauvin, G., Desidera, S., Lagrange, A. M., et al. 2017a, in SF2A-2017: Pro-
+ceedings of the Annual meeting of the French Society of Astronomy and As-
+trophysics, ed. C. Reylé, P. Di Matteo, F. Herpin, E. Lagadec, A. Lançon,
+Z. Meliani, & F. Royer, Di
+Chauvin, G., Desidera, S., Lagrange, A. M., et al. 2017b, A&A, 605, L9
+Chauvin, G., Faherty, J., Boccaletti, A., et al. 2012, A&A, 548, A33
+Chauvin, G., Gratton, R., Bonnefoy, M., et al. 2018, A&A, 617, A76
+Chauvin, G., Lagrange, A. M., Bonavita, M., et al. 2010, A&A, 509, A52
+Chauvin, G., Lagrange, A. M., Dumas, C., et al. 2004, A&A, 425, L29
+Chauvin, G., Lagrange, A. M., Lacombe, F., et al. 2005a, A&A, 430, 1027
+Chauvin, G., Lagrange, A. M., Zuckerman, B., et al. 2005b, A&A, 438, L29
+Chauvin, G., Thomson, M., Dumas, C., et al. 2003, A&A, 404, 157
+Cheetham, A., Bonnefoy, M., Desidera, S., et al. 2018, A&A, 615, A160
+Cheetham, A. C., Samland, M., Brems, S. S., et al. 2019, A&A, 622, A80
+Chilcote, J. K., Bailey, V . P., De Rosa, R., et al. 2018, in Society of Photo-Optical
+Instrumentation Engineers (SPIE) Conference Series, V ol. 10702, Proc. SPIE,
+1070244
+Claudi, R. U., Turatto, M., Gratton, R. G., et al. 2008, in Ground-based and
+Airborne Instrumentation for Astronomy II, V ol. 7014, 70143E
+Close, L. M., Males, J. R., Morzinski, K., et al. 2013, ApJ, 774, 94
+Close, L. M., Puglisi, A., Males, J. R., et al. 2012, ApJ, 749, 180
+Cumming, A., Butler, R. P., Marcy, G. W., et al. 2008, PASP, 120, 531
+De Rosa, R. J., Nguyen, M. M., Chilcote, J., et al. 2019, JATIS, subm.,
+arXiv:1910.08659
+De Rosa, R. J., Rameau, J., Patience, J., et al. 2016, ApJ, 824, 121
+Delorme, P., Lagrange, A. M., Chauvin, G., et al. 2012, A&A, 539, A72
+Delorme, P., Meunier, N., Albert, D., et al. 2017a, in SF2A-2017: Proceedings
+of the Annual meeting of the French Society of Astronomy and Astrophysics,
+Di
+Delorme, P., Schmidt, T., Bonnefoy, M., et al. 2017b, A&A, 608, A79
+Desidera, S., Chauvin, G., Bonavita, M., & SHINE consortium. submitted, A&A
+Dohlen, K., Langlois, M., Saisse, M., et al. 2008, in Ground-based and Airborne
+Instrumentation for Astronomy II, V ol. 7014, 70143L
+Dupuy, T. J., Liu, M. C., Magnier, E. A., et al. 2020, Research Notes of the
+American Astronomical Society, 4, 54
+Ehrenreich, D., Lagrange, A. M., Montagnier, G., et al. 2010, A&A, 523, A73
+Engler, N., Boccaletti, A., Schmid, H. M., et al. 2019, A&A, 622, A192
+Esposito, T. M., Kalas, P., Fitzgerald, M. P., et al. 2020, arXiv e-prints,
+arXiv:2004.13722
+Feldt, M., Olofsson, J., Boccaletti, A., et al. 2017, A&A, 601, A7
+Flasseur, O., Denis, L., Thiébaut, É., & Langlois, M. 2018, A&A, 618, A138
+Flasseur, O., Denis, L., Thiébaut, É., & Langlois, M. 2020a, A&A, 637, A9
+Flasseur, O., Denis, L., Thiébaut, É., & Langlois, M. 2020b, A&A, 634, A2
+Flasseur, O., Denis, L., Thiébaut, E., & Langlois, M. submitted, A&A
+Fusco, T., Rousset, G., Sauvage, J. F., et al. 2006, Optics Express, 14, 7515
+Fusco, T., Sauvage, J.-F., Mouillet, D., et al. 2016, in Proc. SPIE, V ol. 9909,
+Adaptive Optics Systems V , 99090U
+Fusco, T., Sauvage, J.-F., Petit, C., et al. 2014, in Proc. SPIE, V ol. 9148, Adaptive
+Optics Systems IV , 1
+Gaia Collaboration, Brown, A. G. A., Vallenari, A., et al. 2018, A&A, 616, A1
+Galicher, R., Boccaletti, A., Mesa, D., et al. 2018, A&A, 615, A92
+Galicher, R. & Marois, C. 2011, in Second International Conference
+on Adaptive Optics for Extremely Large Telescopes. Online at <A
+href=“http://ao4elt2.lesia.obspm.fr”>http://ao4elt2.lesia.obspm.fr</A, P25
+Gibbs, A., Wagner, K., Apai, D., et al. 2019, AJ, 157, 39
+Guerri, G., Daban, J.-B., Robbe-Dubois, S., et al. 2011, Experimental Astron-
+omy, 30, 59
+Haﬀert, S. Y ., Por, E. H., Keller, C. U., et al. 2018, arXiv e-prints,
+arXiv:1803.10693
+Harayama, Y ., Eisenhauer, F., & Martins, F. 2008, ApJ, 675, 1319
+Hennebelle, P. & Chabrier, G. 2011, ApJ, 743, L29
+Hinkley, S., Bowler, B. P., Vigan, A., et al. 2015, ApJ, 805, L10
+Janson, M., Bonavita, M., Klahr, H., et al. 2011, ApJ, 736, 89
+Jovanovic, N., Guyon, O., Lozi, J., et al. 2016, in Society of Photo-Optical In-
+strumentation Engineers (SPIE) Conference Series, V ol. 9909, Proc. SPIE,
+99090W
+Kasper, M., Apai, D., Janson, M., & Brandner, W. 2007, A&A, 472, 321
+Keppler, M., Benisty, M., Müller, A., et al. 2018, A&A, 617, A44
+Khorrami, Z., Lanz, T., Vakili, F., et al. 2016, A&A, 588, L7
+Konopacky, Q. M., Rameau, J., Duchêne, G., et al. 2016, ApJ, 829, L4
+Kuzuhara, M., Tamura, M., Kudo, T., et al. 2013a, ApJ, 774, 11
+Kuzuhara, M., Tamura, M., Kudo, T., et al. 2013b, ApJ, 774, 11
+Lafrenière, D., Doyon, R., Marois, C., et al. 2007, ApJ, 670, 1367
+Lafrenière, D., Jayawardhana, R., Janson, M., et al. 2011, ApJ, 730, 42
+Lagrange, A. M., Boccaletti, A., Langlois, M., et al. 2019, A&A, 621, L8
+Lagrange, A. M., Gratadour, D., Chauvin, G., et al. 2009, A&A, 493, L21
+Lagrange, A.-M., Rubini, P., Brauner-Vettier, N., et al. 2016, in Proc. SPIE, V ol.
+9910, Observatory Operations: Strategies, Processes, and Systems VI, 991033
+Lannier, J., Delorme, P., Lagrange, A. M., et al. 2016, A&A, 596, A83
+Lowrance, P. J., Schneider, G., Kirkpatrick, J. D., et al. 2000, ApJ, 541, 390
+Macintosh, B., Graham, J. R., Barman, T., et al. 2015, Science, 350, 64
+Maire, A. L., Bonnefoy, M., Ginski, C., et al. 2016a, A&A, 587, A56
+Maire, A.-L., Langlois, M., Dohlen, K., et al. 2016b, in Ground-based and Air-
+borne Instrumentation for Astronomy VI, V ol. 9908, 990834
+Maire, A. L., Rodet, L., Cantalloube, F., et al. 2019, A&A, 624, A118
+Makidon, R. B., Sivaramakrishnan, A., Perrin, M. D., et al. 2005, PASP, 117, 831
+Marleau, G.-D., Coleman, G. A. L., Leleu, A., & Mordasini, C. 2019, A&A, 624,
+A20
+Marleau, G.-D. & Cumming, A. 2014, MNRAS, 437, 1378
+Marley, M. S., Fortney, J. J., Hubickyj, O., Bodenheimer, P., & Lissauer, J. J.
+2007, ApJ, 655, 541
+Marois, C., Correia, C., Véran, J.-P., & Currie, T. 2014, in IAU Symposium,
+V ol. 299, Exploring the Formation and Evolution of Planetary Systems, ed.
+M. Booth, B. C. Matthews, & J. R. Graham, 48–49
+Marois, C., Lafrenière, D., Doyon, R., Macintosh, B., & Nadeau, D. 2006, ApJ,
+641, 556
+Marois, C., Macintosh, B., Barman, T., et al. 2008, Science, 322, 1348
+Marois, C., Zuckerman, B., Konopacky, Q. M., Macintosh, B., & Barman, T.
+2010, Nature, 468, 1080
+Masciadri, E., Mundt, R., Henning, T., Alvarez, C., & Barrado y Navascués, D.
+2005, ApJ, 625, 1004
+Mawet, D., Milli, J., Wahhaj, Z., et al. 2014, ApJ, 792, 97
+Mesa, D., Gratton, R., Zurlo, A., et al. 2015, A&A, 576, A121
+Mesa, D., Keppler, M., Cantalloube, F., et al. 2019, A&A, 632, A25
+Meshkat, T., Mawet, D., Bryan, M. L., et al. 2017, AJ, 154, 245
+Milli, J., Hibon, P., Christiaens, V ., et al. 2017a, A&A, 597, L2
+Milli, J., Mouillet, D., Fusco, T., et al. 2017b, arXiv e-prints, arXiv:1710.05417
+Milli, J., Mouillet, D., Lagrange, A. M., et al. 2012, A&A, 545, A111
+Milli, J., Vigan, A., Mouillet, D., et al. 2017c, A&A, 599, A108
+Mugrauer, M., V ogt, N., Neuhäuser, R., & Schmidt, T. O. B. 2010, A&A, 523,
+L1
+Müller, A., Keppler, M., Henning, T., et al. 2018, A&A, 617, L2
+Nakajima, T., Oppenheimer, B. R., Kulkarni, S. R., et al. 1995, Nature, 378, 463
+Nielsen, E. L., De Rosa, R. J., Macintosh, B., et al. 2019, AJ, 158, 13
+Nielsen, E. L., Liu, M. C., Wahhaj, Z., et al. 2013, ApJ, 776, 4
+Olofsson, J., Samland, M., Avenhaus, H., et al. 2016, A&A, 591, A108
+Olofsson, J., van Holstein, R. G., Boccaletti, A., et al. 2018, arXiv e-prints,
+arXiv:1804.01929
+Pairet, B., Cantalloube, F., & Jacques, L. 2020, arXiv e-prints, arXiv:2008.05170
+Parravano, A., McKee, C. F., & Hollenbach, D. J. 2011, ApJ, 726, 27
+Pavlov, A., Möller-Nilsson, O., Feldt, M., et al. 2008, in Society of Photo-Optical
+Instrumentation Engineers (SPIE) Conference Series, V ol. 7019, Proc. SPIE,
+701939
+Perrot, Clément, Thebault, Philippe, Lagrange, Anne-Marie, et al. 2019, A&A,
+626, A95
+Petit, C., Sauvage, J.-F., Sevin, A., et al. 2012, in Proc. SPIE, V ol. 8447, Adaptive
+Optics Systems III, 84471Z
+Rameau, J., Chauvin, G., Lagrange, A. M., et al. 2013a, ApJ, 772, L15
+Rameau, J., Chauvin, G., Lagrange, A. M., et al. 2013b, A&A, 553, A60
+Rochau, B., Brandner, W., Stolte, A., et al. 2010, ApJ, 716, L90
+Ruﬃo, J.-B., Macintosh, B., Wang, J. J., et al. 2017, ApJ, 842, 14
+Samland, M., Mollière, P., Bonnefoy, M., et al. 2017, A&A, 603, A57
+Sauvage, J.-F., Fusco, T., Petit, C., et al. 2016, Journal of Astronomical Tele-
+scopes, Instruments, and Systems, 2, 025003
+Sissa, E., Olofsson, J., Vigan, A., et al. 2018, A&A, 613, L6
+Skrutskie, M. F., Cutri, R. M., Stiening, R., et al. 2006, AJ, 131, 1163
+Soto, M., Bellini, A., Anderson, J., et al. 2017, AJ, 153, 19
+Soummer, R., Pueyo, L., & Larkin, J. 2012, ApJ, 755, L28
+Spiegel, D. S. & Burrows, A. 2012, ApJ, 745, 174
+Vigan, A., Fontanive, C., Meyer, M., et al. 2020, arXiv e-prints,
+arXiv:2007.06573
+Vigan, A., Gry, C., Salter, G., et al. 2015, MNRAS, 454, 129
+Vigan, A., Moutou, C., Langlois, M., et al. 2010, MNRAS, 407, 71
+Wagner, K., Apai, D., Kasper, M., et al. 2020, arXiv e-prints, arXiv:2009.08537
+Wagner, K., Apai, D., & Kratter, K. M. 2019, ApJ, 877, 46
+Wahhaj, Z., Liu, M. C., Biller, B. A., et al. 2011, ApJ, 729, 139
+Wang, J., Mawet, D., Fortney, J. J., et al. 2018, AJ, 156, 272
+Zurlo, A., Vigan, A., Galicher, R., et al. 2016, A&A, 587, A57
+Zurlo, A., Vigan, A., Mesa, D., et al. 2014, A&A, 572, A85
+Article number, page 19 of 30
+
+<<<PAGE 20>>>
+A&A proofs: manuscript no. paperF100IIﬁnalb
+1 CRAL, UMR 5574, CNRS, Université de Lyon, ENS, 9 avenue
+Charles André, 69561 Saint Genis Laval Cedex, France
+e-mail: maud.langlois@univ-lyon1.fr
+2 Aix Marseille Univ, CNRS, CNES, LAM, Marseille, France
+3 INAF - Osservatorio Astronomico di Padova, Vicolo della Osserva-
+torio 5, 35122, Padova, Italy
+4 Univ. Grenoble Alpes, CNRS, IPAG, F-38000 Grenoble, France
+5 LESIA, Observatoire de Paris, Université PSL, CNRS, Sorbonne
+Université, Univ. Paris Diderot, Sorbonne Paris Cité, 5 place Jules
+Janssen, 92195 Meudon, France
+6 Max Planck Institute for Astronomy, Königstuhl 17, D-69117 Hei-
+delberg, Germany
+7 STAR Institute, Université de Liège, Allée du Six Août 19c, B-4000
+Liège, Belgium
+8 Geneva Observatory, University of Geneva, Chemin des Mailettes
+51, 1290 Versoix, Switzerland
+9 Department of Astronomy, University of Michigan, Ann Arbor, MI
+48109, USA
+10 Institute for Particle Physics and Astrophysics, ETH Zurich,
+Wolfgang-Pauli-Strasse 27, 8093 Zurich, Switzerland
+11 Institute for Astronomy, University of Edinburgh, EH9 3HJ, Edin-
+burgh, UK
+12 Scottish Universities Physics Alliance (SUPA), Institute for Astron-
+omy, University of Edinburgh, Blackford Hill, Edinburgh EH9 3HJ,
+UK
+13 Center for Space and Habitability, University of Bern, 3012 Bern,
+Switzerland
+14 Université Côte d’Azur, OCA, CNRS, Lagrange, France
+15 European Southern Observatory, Karl-Schwarzschild-Str. 2, 85748
+Garching, Germany
+16 European Southern Observatory, Alonso de Cordova 3107, Casilla
+19001 Vitacura, Santiago 19, Chile
+17 Núcleo de Astronomía, Facultad de Ingeniería y Ciencias, Universi-
+dad Diego Portales, Av. Ejercito 441, Santiago, Chile
+18 Escuela de Ingeniería Industrial, Facultad de Ingeniería y Ciencias,
+Universidad Diego Portales, Av. Ejercito 441, Santiago, Chile
+19 Anton Pannekoek Institute for Astronomy, Science Park 9, NL-1098
+XH Amsterdam, The Netherlands
+20 Unidad Mixta Internacional Franco-Chilena de Astronomía,
+CNRS/INSU UMI 3386 and Departamento de Astronomía, Univer-
+sidad de Chile, Casilla 36-D, Santiago, Chile
+21 DOTA, ONERA (Oﬃce National dEtudes et de Recherches Arospa-
+tiales), Université Paris Saclay, F-92322 Chatillon, France
+22 NOV A Optical Infrared Instrumentation Group, Oude
+Hoogeveensedijk 4, 7991 PD Dwingeloo, The Netherlands
+23 INAF - Osservatorio Astronomico di Capodimonte, Salita
+Moiariello 16, 80131 Napoli, Italy
+24 Instituto de Física y Astronomía, Facultad de Ciencias, Universidad
+de Valparaíso, Av. Gran Bretaña 1111, Valparaíso, Chile
+25 Núcleo Milenio Formación Planetaria - NPF, Universidad de Val-
+paraíso, Av. Gran Bretaña 1111, Valparaíso, Chile
+26 Univ Lyon, UJM-Saint-Etienne, CNRS, Institut d Optique Graduate
+School, Laboratoire Hubert Curien UMR 5516, F-42023, SAINT-
+ETIENNE, France
+27 Dipartimento di Fisica a Astronomia "G. Galilei", Universita’ di
+Padova, Via Marzolo, 8, 35121 Padova, Italy
+28 Department of Astronomy, Stockholm University, AlbaNova Uni-
+versity Center, SE-10691 Stockholm, Sweden
+29 Division of Medical Image Computing, German Cancer Research
+Center (DKFZ), 69120 Heidelberg, Germany
+30 Ural Federal University, Yekaterinburg, 620002, Russia
+31 INAF- Catania Astrophysical Observatory, via S. Soﬁa 78, I-95123
+Catania, Italy
+Article number, page 20 of 30
+
+<<<PAGE 21>>>
+M. Langlois et al.: The SPHERE infrared survey for exoplanets (SHINE). II.
+Fig. 10: SPHERE IRDIS and IFS mass detection limits. The IFS H data are represented in blue, the IFS YJ data are represented in
+violet, while the IRDIS H23 and IRDIS K12 data are represented respectively in green and red. The limits have been converted into
+mass using the COND-2003 evolutionary models (Baraﬀe et al. 2003).
+Article number, page 21 of 30
+
+<<<PAGE 22>>>
+A&A proofs: manuscript no. paperF100IIﬁnalb
+Fig. 11: Black symbols: SPHERE contrast spectra of substellar companions detected within the sample of stars considered in this
+paper. Upper row: left: 51 Eri b; center: β Pic b; right: HD 95086 b; Middle row: left: HIP 65426 b; center: HR 8799 d; right:
+HR 8799 e. Lower row: left: HIP 107412 B; center: PZ Tel B. Results shown are obtained by making a median of results at diﬀerent
+epochs with good quality results. Spectra obtained with the YJ and YH mode were kept separate. The error bar is either the result
+of the scatter of results at di ﬀerent epochs, or if only one was available in that epoch, the error bar obtained by considering other
+positions at the same separation from the star. The spectra shown are obtained using ASDI PCA, and corrected for the attenuation
+factor using fake planets at similar separation. This method is reasonable when the contrast is very large, so that the planet cannot be
+seen well at individual wavelengths. Red symbols: contrast values obtained from IRDIS data.Note that there is some oﬀset between
+IFS and IRDIS contrasts. This is at least in part due to the non optimal extraction of IFS spectra shown in this Figure. More accurate
+spectral extractions may be found in the papers about the individual targets.
+Article number, page 22 of 30
+
+<<<PAGE 23>>>
+M. Langlois et al.: The SPHERE infrared survey for exoplanets (SHINE). II.
+Fig. 12: Gallery of images of debris disks in the F100 sample detected with IFS. Some of detection is very marginal (e.g. HIP86598)
+. The disk is not detectable for TW A7 and HIP682 (it was however detected with SPHERE using other approaches). Whenever
+possible, we combined several images to have a cleaner detection. This is the reason the planet is not visible in the beta Pic image.
+Generally, we used ASDI PCA with 25 modes, that is a quite conservative method, and smoothed the images to have a better view.
+In each panel, the green cross mark the star position
+Article number, page 23 of 30
+
+<<<PAGE 24>>>
+A&A proofs: manuscript no. paperF100IIﬁnalb
+Fig. 13: Gallery of images of debris disks in the F100 sample detected with IRDIS obatained using PCA with 5 modes in H2. Some
+of detections are marginal they are however better detected with other signal extraction approaches.
+Article number, page 24 of 30
+
+<<<PAGE 25>>>
+M. Langlois et al.: The SPHERE infrared survey for exoplanets (SHINE). II.
+Appendix A: Detection Astrophotometric Table
+Article number, page 25 of 30
+
+<<<PAGE 26>>>
+A&A proofs: manuscript no. paperF100IIﬁnalb
+Table A.1: Detected point sources parameters (see electronic version for the full table)
+Main_ID date ﬁlt ncc id sep(mas) sep pa(deg) pa dm0 dm0 dm1 dm1 absm0 absm0 absm1 absm1 snr0 snr1 proba color status
+error error error error error error
+HIP53524 05/05/15 K12 11 0.0 618.58 9.46 148.66 1.07 12.37 0.16 11.91 0.27 14.48 0.16 14.01 0.27 9.17 4.28 1.48 0.466 C
+HIP53524 05/05/15 K12 11 1.0 2212.95 17.41 35.14 0.41 13.02 0.12 13.13 0.21 15.13 0.13 15.24 0.21 17.28 5.81 22.24 -0.111 B
+HIP53524 05/05/15 K12 11 2.0 2331.48 39.49 305.16 0.8 0 1.09 13.64 0.34 2.11 1.09 15.75 0.34 0 3.37 29.74 -13.641 B
+HIP53524 05/05/15 K12 11 3.0 4064.85 21.13 140.74 0.1 11.87 0.11 11.79 0.11 13.98 0.11 13.89 0.12 40.09 17.63 39.61 0.086 B
+HIP53524 05/05/15 K12 11 4.0 4432.96 22.47 320.19 0.07 6.35 0.11 6.26 0.1 8.45 0.11 8.37 0.1 88.62 105.39 1.42 0.084 B
+HIP53524 05/05/15 K12 11 5.0 4669.81 23.82 246.71 0.07 11.21 0.11 11.06 0.1 13.31 0.11 13.17 0.11 43.92 29.37 37.46 0.143 B
+HIP53524 05/05/15 K12 11 6.0 5024.38 28.76 244.75 0.13 13.17 0.12 13.16 0.32 15.27 0.12 15.27 0.32 18.23 3.62 74.52 0.005 B
+HIP53524 05/05/15 K12 11 7.0 5204.32 27.25 238.69 0.09 13.62 0.13 0 1.09 15.73 0.13 2.11 1.09 16.12 0 81.89 13.619 B
+HIP53524 05/05/15 K12 11 8.0 5585.85 28.78 322.51 0.09 12.02 0.11 11.97 0.15 14.12 0.11 14.08 0.15 31.09 9.21 63.66 0.048 B
+HIP53524 05/05/15 K12 11 9.0 5817.68 29.73 324 0.08 11.63 0.11 11.51 0.11 13.73 0.11 13.62 0.11 35.02 18.32 59.45 0.114 B
+HIP53524 05/05/15 K12 11 10.0 6192.48 31.54 105.04 0.07 11.29 0.11 11.24 0.11 13.39 0.11 13.34 0.11 33.59 22.64 57.65 0.047 B
+HIP53524 28/03/18 K12 11 0.0 631.9 5.65 145.52 0.63 12.27 0.08 11.83 0.14 14.37 0.08 13.93 0.14 19.91 8.82 1.46 0.439 C
+HIP53524 28/03/18 K12 11 1.0 2248.47 8.96 38.04 0.26 13.12 0.09 13.03 0.24 15.23 0.1 15.14 0.24 14 4.76 23.68 0.095 B
+HIP53524 28/03/18 K12 11 2.0 4120.91 24.28 175.67 3.28 14.16 0.13 14.2 0.39 16.27 0.13 16.31 0.39 8.91 2.83 73.05 -0.039 B
+HIP53524 28/03/18 K12 11 3.0 4157.41 6.8 140.03 0.09 12.07 0.06 11.94 0.09 14.17 0.07 14.05 0.09 30.94 14.86 43.89 0.126 B
+HIP53524 28/03/18 K12 11 4.0 4345.53 6.01 320.9 0.07 6.25 0.06 6.18 0.06 8.35 0.06 8.28 0.06 38.34 52.26 1.23 0.071 B
+HIP53524 28/03/18 K12 11 5.0 4608.14 245.48 0 1.09 0 1.09 2.11 1.09 2.11 1.09 0 0 0.01 0 B
+HIP53524 28/03/18 K12 11 6.0 4953.55 12.75 243.92 0.11 13.15 0.07 13.3 0.29 15.25 0.08 15.41 0.29 20.6 3.84 73.16 -0.157 B
+HIP53524 28/03/18 K12 11 7.0 5135.98 15.49 237.8 0.14 13.5 0.09 13.77 0.56 15.61 0.1 15.87 0.56 13.91 1.96 79.82 -0.266 B
+HIP53524 28/03/18 K12 11 8.0 5501.79 8.1 323.15 0.08 11.89 0.06 11.84 0.08 14 0.07 13.95 0.08 31.18 22 60.31 0.054 B
+HIP53524 28/03/18 K12 11 9.0 5774.7 325.03 0 1.09 0 1.09 2.11 1.09 2.11 1.09 0 0 0.02 0 B
+HIP53524 28/03/18 K12 11 10.0 6292.78 9.14 105.18 0.07 11.48 0.08 11.42 0.08 13.58 0.08 13.53 0.08 18.98 20.73 62.31 0.053 B
+HIP53524 18/05/19 K12 9 0.0 628.43 4.76 144.11 0.53 12.21 0.14 11.72 0.13 14.32 0.14 13.83 0.13 27.33 17.6 1.4 0.492 C
+HIP53524 18/05/19 K12 9 1.0 2268.61 9.16 39.36 0.26 13.08 0.14 13.29 0.23 15.19 0.14 15.4 0.23 22.04 5.25 23.72 -0.21 B
+HIP53524 18/05/19 K12 9 2.0 4201.34 3.81 139.74 0.08 11.97 0.14 11.82 0.12 14.08 0.14 13.92 0.12 51.51 26.64 43.16 0.155 B
+HIP53524 18/05/19 K12 9 3.0 4305.8 2.67 321.2 0.07 6.36 0.14 6.28 0.11 8.47 0.14 8.38 0.11 51.96 80.05 1.36 0.088 B
+HIP53524 18/05/19 K12 9 4.0 4562.91 3.67 245.38 0.07 11.28 0.14 11.14 0.12 13.39 0.14 13.25 0.12 40.38 33.68 37.36 0.143 B
+HIP53524 18/05/19 K12 9 5.0 4922.52 10.86 243.49 0.12 13.24 0.15 13.27 0.2 15.34 0.15 15.38 0.21 19.19 6.33 74.05 -0.036 B
+HIP53524 18/05/19 K12 9 6.0 5462.93 4.69 323.43 0.08 12.01 0.14 11.96 0.12 14.12 0.14 14.07 0.12 34.68 21.48 61.93 0.052 B
+HIP53524 18/05/19 K12 9 7.0 5697.63 4.18 324.9 0.08 11.61 0.14 11.53 0.12 13.71 0.14 13.63 0.12 35.06 28.29 57.6 0.08 B
+HIP53524 18/05/19 K12 9 8.0 6339.33 4.79 105.24 0.07 11.43 0.14 11.35 0.12 13.53 0.15 13.45 0.12 20.34 24.84 61.93 0.082 B
+Article number, page 26 of 30
+
+<<<PAGE 27>>>
+M. Langlois et al.: The SPHERE infrared survey for exoplanets (SHINE). II.
+Appendix B: Contrast PLots
+Article number, page 27 of 30
+
+<<<PAGE 28>>>
+A&A proofs: manuscript no. paperF100IIﬁnalb
+IRDIS RAW CONTRASTS IRDIS PROCESSED CONTRASTS
+Fig. B.1: IRDIS raw (Left) and processed (Right) contrasts in H2 band at various separations computed using TLOCI estimated as
+function of the observing conditions in irdifs mode. Blue is for 100 mas separation, black for 500 mas separation, red for 1000 mas
+separation, green for 2000 mas separation and yellow for 4000 mas separations. The seeing is expressed in arcseconds and theτ0 in
+milliseconds.
+Article number, page 28 of 30
+
+<<<PAGE 29>>>
+M. Langlois et al.: The SPHERE infrared survey for exoplanets (SHINE). II.
+//
+Fig. B.2: 5sigma IRDIS processed contrasts at various separations computed using TLOCI estimated as function of the observing
+conditions (airmass and rotation angle) in irdifs mode. Blue is for 100 mas separation, black for 500 mas separation, red for 1000
+mas separation , green for 2000 mas separation and yellow for 4000 mas separations.
+Fig. B.3: IRDIFS Contrasts estimated at various separations as function of the sample stars V and H magnitude. Both IRDIS and
+IFS contrasts are shown separatly. IRDIS contrasts using PCA reduction and TLOCI (Left and middle ﬁgures). The color code for
+IRDIS s as follow. Blue is for 100 mas separation, black for 500 mas separation, red for 1000 mas separation , green for 2000 mas
+separation and yellow for 4000 mas separations.IFS contrasts using PCA-ASDI reduction are shown on the right side ﬁgure. The
+color code for IFS is as follow. Blue is for 100 mas separation, orange is for 200 mas separation, pink is for 400 mas separation,
+black for 500 mas separation, brown is for 700 mas separations.
+Article number, page 29 of 30
+
+<<<PAGE 30>>>
+A&A proofs: manuscript no. paperF100IIﬁnalb
+IFS RAW CONTRASTS IFS PROCESSED CONTRASTS
+Fig. B.4: IFS raw (Left) and processed (Right) contrasts in YJ bands at various separations computed using PCA ASDI estimated
+as function of the observing conditions in irdifs mode. Blue is for 100 mas separation, orange for 200 mas separation and pink for
+400 mas separations, black for 500 mas separation, , brown for 700 mas separation.
+Article number, page 30 of 30

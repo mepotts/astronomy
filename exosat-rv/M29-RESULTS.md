@@ -147,7 +147,51 @@ astrophysical jitter required.
 > at 99–100% injection transmission, the CD-35 slit-function bound, and the separation
 > axis being independent are all measured here and use no contrast figure at all.
 >
-> **To close it:** Lazzoni's own sources are not archived. Adding **Langlois et al. 2021b**
+> ### ⚠⚠ SECOND CORRECTION — the retraction above was itself too broad
+>
+> `langlois2021b_shine2` and `bohn2020_tyc8998` are now archived in `papers/`, and Bohn
+> settles the central question. Its Table 2 for TYC 8998-760-1 (= YSES 1) gives, per
+> filter, the **host magnitude** and the **contrast**: `K1 | 8.31 | 10.03 ± 0.04`. The
+> middle column falls from 12.25 (J3) to 9.57 (K2) to 8.02 (L') while the host column
+> stays near 8.3 — the signature of a contrast for a red companion, not an apparent
+> magnitude. So Bohn gives YSES 1 b an apparent K1 of **8.31 + 10.03 = 18.34**.
+>
+> **`m7-survey.json` carries `k_mag = 18.2` for that object.** The two agree to
+> **0.14 mag**, from wholly independent routes.
+>
+> **Therefore Lazzoni's `Kp` column IS companion apparent magnitude, and it is
+> corroborated.** The derivation method in §6 was correct, and the doubt cast on it above
+> was over-broad. What remains genuinely unresolved is narrower:
+>
+> - **β Pic b**: `Kp = 14.9` against a K commonly published nearer 12.5. A 2.4 mag gap no
+>   archived source settles. Its contrast is either ~37 000× or ~4000×.
+> - **η Tel B**: `Kp = 13.2` against SIMBAD's `H = 11.93`. Note this is the weaker of the
+>   two claims — SIMBAD photometry for companions a few arcsec from bright stars is often
+>   contaminated or mis-associated, and Lazzoni's column has just been independently
+>   validated elsewhere. Both need their discovery-paper photometry.
+>
+> ### The contrast axis, as it now stands
+>
+> | system | sep | contrast | sourcing | extraction |
+> |---|---|---:|---|---|
+> | CD-35 2722 B | 2.8″ | 97× | Lazzoni column, host K verified | clean |
+> | PDS 70 | 0.17″ | 460× | same | star dominates |
+> | **YSES 1 b** | **1.7″** | **~10 000×** | **Bohn 2020 directly — best-sourced point here** | **clean, 34 m/s** |
+> | β Pic b | 0.51″ | 4000× or 37 000× | disputed | flooded |
+>
+> **YSES 1 b is the most valuable new point**, and it partly fills the gap §6 called
+> unsampled: extraction is *clean* at ~10 000×, on the campaign's best per-epoch
+> precision. The unsampled interval narrows from roughly 1900–37 000× (a factor of 20) to
+> **10 000–37 000× — a factor of under four**, and collapses further if β Pic b's lower
+> value is the right one.
+>
+> **Two flip-flops on this axis are enough. The stable statement is:** the derivation
+> method is sound and the column is the right quantity; one point is independently
+> confirmed; two remain disputed pending discovery-paper photometry; and no claim about
+> where the wall sits should be made in print until β Pic b is settled, because it is the
+> sole anchor of the flooded end.
+>
+> **Still to close:** Lazzoni's own sources are not archived. Adding **Langlois et al. 2021b**
 > (η Tel B, AB Pic b) and **Bohn et al. 2020** (YSES 1 b) to `papers/` would settle the
 > companion magnitudes for four of the load-bearing systems.
 >

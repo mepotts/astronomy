@@ -1,0 +1,900 @@
+<<<PAGE 1>>>
+DRAFT VERSION JULY 23, 2020
+Typeset using LATEX twocolumn style in AASTeX63
+Two Directly Imaged, Wide-orbit Giant Planets around the Y oung, Solar Analog TYC 8998-760-1∗
+ALEXANDER J. B OHN
+ ,1 MATTHEW A. K ENWORTHY
+ ,1 CHRISTIAN GINSKI ,2, 1 STEVEN RIEDER
+ ,3 ERIC E. M AMAJEK
+ ,4, 5
+TIFFANY MESHKAT
+ ,6 MARK J. P ECAUT
+ ,7 MADDALENA REGGIANI
+ ,8 JOZUA DE BOER ,1 CHRISTOPH U. K ELLER
+ ,1
+FRANS SNIK
+ ,1 AND JOHN SOUTHWORTH
+ 9
+1Leiden Observatory, Leiden University, PO Box 9513, 2300 RA Leiden, The Netherlands
+2Anton Pannekoek Institute for Astronomy, University of Amsterdam, Science Park 904, 1098XH Amsterdam, The Netherlands
+3University of Exeter , Physics Department, Stocker Road, Exeter , EX4 4QL, UK
+4Jet Propulsion Laboratory, California Institute of Technology, 4800 Oak Grove Drive, M/S 321-100, Pasadena CA 91109, USA
+5Department of Physics & Astronomy, University of Rochester , Rochester NY 14627, USA
+6IPAC, California Institute of Technology, M/C 100-22, 1200 East California Boulevard, Pasadena CA 91125, USA
+7Rockhurst University, Department of Physics, 1100 Rockhurst Road, Kansas City MO 64110, USA
+8Institute of Astronomy, KU Leuven, Celestijnenlaan 200D, B-3001 Leuven, Belgium
+9Astrophysics Group, Keele University, Staffordshire ST5 5BG, UK
+(Received 2020 April 23; Revised 2020 July 1; Accepted 2020 July 3)
+Submitted to ApJL
+ABSTRACT
+Even though tens of directly imaged companions have been discovered in the past decades, the number of
+directly conﬁrmed multiplanet systems is still small. Dynamical analysis of these systems imposes important
+constraints on formation mechanisms of these wide-orbit companions. As part of the Young Suns Exoplanet
+Survey (YSES) we report the detection of a second planetary-mass companion around the 17 Myr-old, solar-
+type star TYC 8998-760-1 that is located in the Lower Centaurus Crux subgroup of the Scorpius–Centaurus
+association. The companion has a projected physical separation of 320 au and several individual photometric
+measurements from 1.1 to 3.8 microns constrain a companion mass of6± 1MJup, which is equivalent to a mass
+ratio ofq = 0.57 ± 0.10% with respect to the primary. With the previously detected 14 ± 3MJup companion
+that is orbiting the primary at 160 au, TYC 8998-760-1 is the ﬁrst directly imaged multiplanet system that is
+detected around a young, solar analog. We show that circular orbits are stable, but that mildly eccentric orbits for
+either/both components (e >0.1) are chaotic on Gyr timescales, implying in-situ formation or a very speciﬁc
+ejection by an unseen third companion. Due to the wide separations of the companions TYC 8998-760-1 is an
+excellent system for spectroscopic and photometric follow-up with space-based observatories such as the James
+Webb Space Telescope.
+Keywords: planets and satellites: detection — planets and satellites: formation — astrometry — stars: solar-
+type — stars: pre-main-sequence — stars: individual: TYC 8998-760-1
+1. INTRODUCTION
+Driven by the installation of extreme adaptive-optics (AO)
+assisted imagers such as the Gemini Planet Imager (GPI;
+Macintosh et al. 2014) and the Spectro-Polarimetric High-
+Corresponding author: Alexander J. Bohn
+bohn@strw.leidenuniv.nl
+∗ Based on observations collected at the European Organisation for Astro-
+nomical Research in the Southern Hemisphere under ESO programs 099.C-
+0698(A), 0101.C-0341(A), 2103.C-5012(B), and 0104.C-0265(A).
+contrast Exoplanet REsearch (SPHERE; Beuzit et al. 2019)
+instrument, the number of directly imaged extrasolar plan-
+ets has been increasing continuously over the past years.
+Even though several substellar companions have been identi-
+ﬁed and characterized with these instruments (e.g. Macintosh
+et al. 2015; Galicher et al. 2014; Chauvin et al. 2017a; Kep-
+pler et al. 2018; M ¨uller et al. 2018; Janson et al. 2019; Mesa
+et al. 2019), only two systems have been detected so far that
+show unambiguous evidence for the presence of more than
+one directly imaged companion: one of these multiplanet
+systems is HR 8799 – an approximately 30 Myr-old star of
+arXiv:2007.10991v1  [astro-ph.EP]  21 Jul 2020
+
+<<<PAGE 2>>>
+2 B OHN ET AL .
+spectral class A5 that is harboring four giant planets at orbits
+with semi-major axes ranging from 15 au to 70 au (Marois
+et al. 2008, 2010; Wang et al. 2018). The other one is PDS 70,
+which is a K7-type star at an age of approximately 5.4 Myr
+that is hosting at least two accreting protoplanets inside the
+gap of a transitional disk that is surrounding this pre-main-
+sequence star (Keppler et al. 2018; M¨uller et al. 2018; Haffert
+et al. 2019). These multiplanet systems are intriguing labo-
+ratories to study dynamical interactions and scattering events
+between several planetary-mass companions, which is is cru-
+cial for understanding the formation and dynamical evolution
+of planetary systems (e.g. Morbidelli 2018).
+To obtain a statistically signiﬁcant census of wide-orbit
+companions to solar-type stars we launched the Young Suns
+Exoplanet Survey (YSES; Bohn et al. 2020) targeting a ho-
+mogeneous sample of 70 solar-mass pre-main-sequence stars
+in the Lower Centaurus Crux subgroup of the Scorpius–
+Centaurus association (Sco–Cen; de Zeeuw et al. 1999;
+Pecaut & Mamajek 2016). Within the scope of this survey,
+we already detected a self-shadowed transition disk around
+Wray 15-788 (Bohn et al. 2019) as part of a stellar binary
+with the debris disk host HD 98363 (Chen et al. 2012; Mo ´or
+et al. 2017; Hom et al. 2020). Most recent was the announce-
+ment of a 14 ± 3MJup companion that is orbiting the so-
+lar analog TYC 8998-760-1 (2MASSJ132512116456207) at
+a projected separation of 160 au (Bohn et al. 2020). The
+primary is a 16.7 ± 1.4 Myr-old K3IV star with a mass of
+1.00±0.02M⊙, located at a distance of94.6±0.3 pc (Bailer-
+Jones et al. 2018; Gaia Collaboration et al. 2018). We refer
+to Table 1 of Bohn et al. (2020) for further information on the
+host star.
+In this article we present new data on this system and report
+the detection of a second, farther separated, yet lower-mass
+companion to this young solar analog. Sect. 2 outlines the
+observations that we acquired on TYC 8998-760-1 and how
+the data were reduced. In Sect. 3 we present the results of this
+analysis and study the properties of this gas giant companion.
+Our conclusions and further prospects on characterization of
+this intriguing multiplanet system are presented in Sect. 4.
+2. OBSERV ATIONS AND DATA REDUCTION
+On the night of 2020 February 16 we acquired data on
+TYC 8998-760-1 with SPHERE/IRDIS (Dohlen et al. 2008)
+which was operated in dual-polarization imaging mode (DPI;
+de Boer et al. 2020; van Holstein et al. 2020) with the in-
+strument derotator switched off (PI: A. Bohn). SPHERE
+is mounted at the Very Large Telescope (VLT) of the Eu-
+ropean Southern Observatory (ESO) and it is supported by
+the SAXO extreme AO system (Fusco et al. 2006) to provide
+Strehl ratios better than 90 % inH band. Within the scope of
+this work we only used the total intensity frames of the DPI
+dataset that are created by adding the left and right sides of
+the IRDIS detector. Furthermore, we used parts of the ob-
+servations presented in Bohn et al. (2020) that were collected
+with NACO (Lenzen et al. 2003; Rousset et al. 2003) and
+SPHERE/IRDIS in classical and dual-band imaging modes
+(Vigan et al. 2010). A detailed description of all observa-
+tions, applied ﬁlters, and weather conditions is presented in
+Appendix A.
+The data reduction was performed as described in Bohn
+et al. (2020) using a custom processing pipeline based on ver-
+sion 0.8.1 of PynPoint (Stolker et al. 2019) that includes dark
+and ﬂat calibration, bad pixel cleaning, and subtraction of the
+sky and instrument background. A more detailed description
+is presented in Appendix B.
+3. RESULTS AND ANALYSIS
+We report the detection of a second, very red companion to
+TYC 8998-760-1 which we will refer to as TYC 8998-760-
+1 c henceforth. A compilation of both conﬁrmed compan-
+ions around this young, solar analog in several SPHERE and
+NACO bandpasses is presented in Fig. 1. TYC 8998-760-1 c
+was detected with a signal-to-noise ratio greater than 5 from
+Y 3 toL′ band and we did not detect any signiﬁcant ﬂux at the
+expected position in theY 2 andM′ ﬁlters. A detailed analy-
+sis of the detection signiﬁcance for the individual bandpasses
+and nights is presented in Appendix C.
+3.1. Astrometric analysis
+The main conﬁrmation of the companionship was per-
+formed by common proper motion analysis. Because both
+companions are well separated from the PSF halo of the pri-
+mary and no PSF subtraction was performed, we extracted
+the astrometry in the ﬁnal images with a two-dimensional
+Gaussian ﬁt. In the H band data collected on the night of
+2017 July 5, we detected TYC 8998-760-1 c at a separation
+of 3.′′369 ± 0.′′033 and a position angle of 221.◦1 ± 0.◦6 with
+respect to the primary 1. From the K1 band data – which
+provides the highest signal-to-noise ratio of the companion
+on the night of 2019 March 23 – we derived a separation of
+3.′′377±0.′′005 and position angle of221.◦2±0.◦1 east of north.
+For theH band data from 2020 February 16, a separation of
+3.′′380 ± 0.′′006 and a position angle of 221.◦3 ± 0.◦1 were
+measured. These measurements imply a projected physical
+separation of approximately 320 au at the distance of the sys-
+tem.
+This proper motion analysis is visualized in Fig. 2. The
+primary has a parallax of 10.54 ± 0.03 mas and proper mo-
+tions ofµα = −40.90 ± 0.04 mas yr−1 andµδ = −17.79 ±
+1 The uncertainties of these measurements are much larger than the usual
+astrometric precision of SPHERE. This is attributed to the nonoptimal AO
+performance caused by poor atmospheric conditions with an average seeing
+of 1.′′22 and a coherence time of 2.9 ms, resulting in a smeared PSF and
+limited astrometric accuracy (see Appendix C).
+
+<<<PAGE 3>>>
+A D IRECTLY IMAGED MULTIPLANET SYSTEM AROUND TYC 8998-760-1 3
+!"#[%&'()']
+!+)'[%&'()']
+NE
+b
+c
+Figure 1. Two planetary-mass companions around TYC 8998-760-1. We present the reduced data for several SPHERE and NACO ﬁlters. The
+white arrows indicate the positions of the conﬁrmed, planetary-mass companions TYC 8998-760-1 b and c as labeled in the bottom left panel.
+All other objects in the ﬁeld of view are background contaminants conﬁrmed by proper motion analysis. To highlight off-axis point sources an
+unsharp mask is applied to the SPHERE data and we smoothed pixel-to-pixel variations in the NACO data with a Gaussian kernel. All images
+are displayed with an arbitrary logarithmic color scale. The primary is in the upper left of each panel setting the origin of the coordinate system
+that represents the differential offsets in R.A. and decl. In the lower left of each panel, we present the noncoronagraphic ﬂux PSF as a reference
+for the corresponding ﬁlter. In all frames, north points up and east is to the left.
+0.04 mas yr−1 based on Gaia DR2 (Gaia Collaboration et al.
+2018). In the top panel we present the additional astro-
+metric measurement of the conﬁrmed comoving compan-
+ion TYC 8998-760-1 b which was detected at a separation
+of 1.′′708 ± 0.′′003 and a position angle of 212.◦1 ± 0.◦1
+on the night of 2020 February 16. The bottom panel dis-
+plays the relative astrometric offsets that we measured for
+background contaminants within the SPHERE/IRDIS ﬁeld
+of view. Whereas TYC 8998-760-1 b shows no relative mo-
+tion with respect to the primary within the measurement un-
+certainties, the background data points clearly follow the ex-
+pected trajectory of a static object at inﬁnity as indicated by
+the blue dashed line. Minor deviations from this trajectory in-
+dicate intrinsic nonzero proper motions of these background
+objects, the measured motions, however, clearly disfavor any
+bound orbits for these contaminants. As presented in the mid-
+dle panel of Fig. 2, the relative proper motion of TYC 8998-
+760-1 c is highly inconsistent with the expected movement of
+a static background object. Analogously to TYC 8998-760-
+1 b (top panel) its relative motion with respect to the primary
+is close to zero within the provided uncertainties and the mea-
+surements from 2017 July 5 and 2019 March 23 are signiﬁ-
+cantly distinct from the cloud of background objects for the
+corresponding reference epochs. This is in good agreement
+with the inﬁnitesimal amount of orbital motion expected for
+an object at a projected physical separation of 320 au.
+3.2. Photometric analysis
+To corroborate the companion status and to further charac-
+terize TYC 8998-760-1 c, we analyzed its spectral energy
+distribution (SED) that we constructed from the SPHERE
+and NACO detections ranging from Y 3 to L′ band. The
+Y 2 andM′ data imposed additional upper limits to the SED.
+As described in Bohn et al. (2020) we extracted the com-
+panion ﬂux in the SPHERE ﬁlters by aperture photometry,
+
+<<<PAGE 4>>>
+4 B OHN ET AL .
+2019-03-23 if background
+2017-07-05 if backgroundTYC 8998-760-1 b
+TYC 8998-760-1 c
+Background objects
+2019-03-23 if background
+2017-07-05 if background
+Figure 2. Multiepoch proper motion assessments of TYC 8998-
+760-1 b, c, and conﬁrmed background objects. The colored markers
+represent the extracted relative astrometry of objects in the SPHERE
+ﬁeld of view. The blue, dashed line represents the trajectory of a
+static background object and the white circles indicate the expected
+position of such an object, evaluated at the epochs indicated in the
+top and middle panels. Whereas the origin of the coordinate system
+is located at the position of the star for the comoving companions
+(top and middle panel), we present the relative offsets to reference
+epoch 2020 February 26 for conﬁrmed background objects (bottom
+panel). The ﬁeld of view sizes of the plots and the relative positions
+of the background trajectories are identical for all three panels, so
+that individual measurements of companions and background ob-
+jects can be compared amongst each other.
+Table 1. Photometry of TYC 8998-760-1 c and Its Host.
+Filter Magnitude star ∆Mag Flux companion
+(mag) (mag) ( erg s−1 cm−2µm−1)
+Y2 9.47 > 13.22 < 0.49× 10−14
+Y3 9.36 13.01± 0.31 (0 .56± 0.16)× 10−14
+J2 9.13 12.68± 0.22 (0 .69± 0.14)× 10−14
+J3 8.92 12.25± 0.15 (0 .95± 0.13)× 10−14
+H2 8.46 11.32± 0.08 (1 .57± 0.11)× 10−14
+H 8.44 11.25± 0.23 (1 .62± 0.34)× 10−14
+H3 8.36 10.96± 0.06 (2 .04± 0.12)× 10−14
+K1 8.31 10.03± 0.04 (2 .21± 0.09)× 10−14
+K2 8.28 9.57± 0.09 (2 .67± 0.51)× 10−14
+L’ 8.27 8.02± 0.21 (1 .58± 0.30)× 10−14
+M’ 8.36 > 4.45 < 15.83× 10−14
+NOTE— We present 5σ upper limits of the companion ﬂux in the
+Y 2 andM′ bands. The broadbandH data is reported for the night
+of 2020 February 16, which is superior to the data collected on
+2017 July 5 due to the longer integration time and better weather
+conditions.
+choosing an aperture size equivalent to the PSF FWHM of
+the corresponding ﬁlter. The magnitude contrast with re-
+spect to the primary is evaluated using the noncoronagraphic
+ﬂux images that were acquired alongside the observations.
+As we performed a PCA-based PSF subtraction for the re-
+duction of the NACO L′ data, we extracted the magnitude
+of the companion by injection of negative artiﬁcial compan-
+ions that were generated from the unsaturated stellar PSF in
+each individual frame. This analysis was performed with the
+SimplexMinimizationModule of PynPoint that is it-
+eratively minimizing the absolute value norm within a circu-
+lar aperture around the estimated position of the companion
+(Wertz et al. 2017) using a simplex-based Nelder–Mead opti-
+mization algorithm (Nelder & Mead 1965). The upper limits
+for Y 3 and M′ bands were calculated as the 5 σ detection
+limits at the position of the companion. The extracted ﬂux
+values are presented in Table 1 and visualized in Fig. 3.
+To assess the planetary parameters of TYC 8998-760-1 c
+we ﬁtted the photometric data points with a grid of BT-Settl
+models (Allard et al. 2012) that we evaluated in the corre-
+sponding bandpasses. We restricted this analysis to models
+with effective temperatures from 500 K to 2000 K and surface
+gravities ranging from 3.5 dex to 5.5 dex with grid spacings
+of 100 K and 0.5 dex, respectively. In accordance with Sco–
+Cen membership, only models with solar metallicity were
+considered for this analysis. Furthermore, we assumed a
+negligible extinction in agreement with SED modeling of the
+primary as described in Bohn et al. (2020). To facilitate
+
+<<<PAGE 5>>>
+A D IRECTLY IMAGED MULTIPLANET SYSTEM AROUND TYC 8998-760-1 5
+1.0 2.0 3.0 4.0 5.0
+10 15
+ 10 15
+10 14
+ 10 14
+10 13
+ 10 13
+F( ) [erg/s/cm2/ m]
+BT-Settl: Teff = 1240 K, log(g) = 3.5 dex, R = 1.1 RJup, [Fe/H] = 0
+1.0 2.0 3.0 4.0 5.0
+ [ m]
+2
+ 2
+0 0
+2 2
+Residuals [ ]
+Figure 3. SED of TYC 8998-760-1. The red squares indicate the
+photometric measurements we extracted from SPHERE and NACO
+data and the brown triangles are5σ upper limits for bandpasses with
+a nondetection of the companion. The blue line represents the me-
+dian of the posterior distributions from our MCMC ﬁtting routine
+and the gray squares indicate the evaluation of this model in the
+SPHERE and NACO bandpasses. We show 100 randomly drawn
+models from our MCMC posterior distribution (gray curves) and in
+the bottom panel the residuals of the posterior-median model and
+the measured photometry are plotted.
+model evaluation at intermediate temperatures and surface
+gravities we linearly interpolated the original data grid.
+The planetary properties were inferred by a Bayesian
+parameter study using the afﬁne-invariant Markov chain
+Monte Carlo (MCMC) ensemble sampler implemented in the
+emcee python module (Foreman-Mackey et al. 2013). The
+ﬁtted parameters were the companion’s effective temperature
+Teﬀ, surface gravity log (g), and radius R. Due to the neg-
+ligible uncertainties in system parallax, we set the distance
+to a ﬁxed value of 94.6 pc. The planet luminosity for any
+realization of Teﬀ, log (g), and R was inferred from the in-
+tegrated ﬂux of the corresponding BT-Settl model, consider-
+ing the previously ﬁxed system distance. Our MCMC im-
+plementation used uniform priors for each of the input pa-
+rameters, samplingTeﬀ and log (g) over the full range of in-
+terpolated BT-Settl models and allowing for planet radii be-
+tween 0.5RJup and 5RJup. We used a Gaussian likelihood
+function for the measured photometry of the companion and
+additionally required that the likelihood decreases to zero in
+case the ﬂux inY orM′ bands exceeds the corresponding5σ
+limits. We set up an MCMC sampler with 100 walkers and
+10,000 steps each for the SED ﬁt of the companion. Based
+on the derived autocorrelation times of approximately 100
+iterations, we discarded the ﬁrst 500 steps of the chains as
+burn-in phase and continued using only every twentieth step
+of the remaining data, which resulted in 47,500 individual
+posterior samples.
+The SED of TYC 8998-760-1 c and resulting mod-
+els from our MCMC ﬁtting procedure are presented in
+Fig. 3. From this analysis we derived estimates of Teﬀ =
+TYC 8998-760-1 b
+HIP 64892 BHIP 79098 (AB)b
+β Pic b1 RXS 1609 bPDS 70 bAB Pic BHIP 65426 b
+HR 8799 eHR 8799 dHR 8799 cHR 8799 b51 EribTYC 8998-760-1 c
+Figure 4. Color–magnitude diagram for TYC 8998-760-1 b and c.
+The two objects of interest are highlighted by the red stars. The col-
+ored, ﬁlled circles indicate the evolutionary sequence of ﬁeld dwarfs
+of spectral class M to T and the white circles represent conﬁrmed
+directly imaged companions.
+1240+160
+−170 K, log (g) = 3 .51+0.02
+−0.01 dex, Rp = 1.1+0.6
+−0.3RJup,
+and log (L/L⊙) = −4.65+0.05
+−0.08 as the 95 % conﬁdence inter-
+vals around the median of the posterior distributions 2. The
+uncertainties derived for the surface gravity appear under-
+estimated, as photometric measurements alone cannot pre-
+cisely constrain this parameter. We thus adopted the spacing
+of the original model grid of 0.5 dex as the reported uncer-
+tainty in the planet’s surface gravity henceforth. Future mea-
+surements at higher spectral resolution are required though
+to place tighter constraints to this parameter.
+To convert the derived properties to a planetary mass, we
+evaluated effective temperature and luminosity individually
+with BT-Settl isochrones at the system age of16.7 ± 1.4 Myr.
+This yielded masses of 7.0+2.1
+−1.9MJup and 5.5+0.6
+−0.7MJup for
+both parameters, respectively. The planet luminosity is usu-
+ally less model dependent than the derived effective temper-
+ature (e.g., Bonnefoy et al. 2016), which is apparent in the
+uncertainties of both mass estimates. We thus adopted a ﬁ-
+nal mass estimate of 6 ± 1MJup for TYC 8998-760-1 c as
+the weighted average of both measurements. This is equiva-
+lent to a mass ratio ofq = 0.57 ± 0.10 % with respect to the
+primary. Fitting theY toK band data with several empirical
+spectra of substellar objects from Chiu et al. (2006) showed
+best compatibility with a spectral type of L7.5.
+We further evaluated the colors of both companions with
+respect to ﬁeld brown dwarfs and known directly imaged
+companions. This analysis is presented within the color-
+2 The full posterior distributions of this analysis and the correlations between
+the ﬁtted parameters are presented in Appendix D.
+
+<<<PAGE 6>>>
+6 B OHN ET AL .
+magnitude diagram in Fig 4. To compile the sample of ﬁeld
+M, L, and T dwarfs we used data provided by the NIRSPEC
+Brown Dwarf Spectroscopic Survey (McLean et al. 2003,
+2007), the IRTF Spectral library (Rayner et al. 2009; Cush-
+ing et al. 2005), the L and T dwarf data archive Knapp et al.
+(2004); Golimowski et al. (2004); Chiu et al. (2006), and
+the SpeX Prism Libraries (Burgasser et al. 2010; Gelino &
+Burgasser 2010; Burgasser 2007; Siegler et al. 2007; Reid
+et al. 2006; Kirkpatrick et al. 2006; Cruz et al. 2004; Bur-
+gasser & McElwain 2006; McElwain & Burgasser 2006;
+Sheppard & Cushing 2009; Looper et al. 2007; Burgasser
+et al. 2008; Looper et al. 2010; Muench et al. 2007; Dhital
+et al. 2011; Kirkpatrick et al. 2010; Burgasser et al. 2004),
+using distances from Gaia DR2 (Gaia Collaboration et al.
+2018; Bailer-Jones et al. 2018), the Brown Dwarf Kinemat-
+ics Project (Faherty et al. 2009), and the Pan-STARRS1 3 π
+Survey (Best et al. 2018). The photometry of the directly im-
+aged companions were adopted from Chauvin et al. (2005);
+Lafreni`ere et al. (2008); Bonnefoy et al. (2011); Currie et al.
+(2013); Zurlo et al. (2016); Samland et al. (2017); Chauvin
+et al. (2017b); Keppler et al. (2018); M ¨uller et al. (2018);
+Cheetham et al. (2019); Janson et al. (2019). TYC 8998-760-
+1 b and c are both considerably redder than the evolutionary
+sequence of ﬁeld brown dwarfs, which is another strong in-
+dicator of their youth and low surface gravity. TYC 8998-
+760-1 c is located close to the L/T transition but substantially
+redder than ﬁeld dwarf equivalents of similar spectral type.
+Indeed, it is the reddest object among the directly imaged,
+substellar companions that are presented in Fig. 4.
+3.3. Dynamical stability
+We model the system using Rebound and the WHFast
+integrator (Rein & Liu 2012; Rein & Tamayo 2015). We as-
+sume semi-major axes of planets b and c to be160 and 320 au
+respectively, and we place both planets at apastron. For vari-
+ous values of the eccentricity of the planets we then calculate
+the chaos indicator as the mean exponential growth factor of
+nearby orbits (MEGNO; Cincotta et al. 2003; Rein & Tamayo
+2016) for the system, integrating it for its current lifetime and
+up to 1 Gyr to check its long-term stability. We ﬁnd that for
+orbits with low eccentricity (e ⪅ 0.1) for both planets, the
+system is stable on gigayear timescales. For larger eccentric-
+ities, the system is chaotic and likely to experience dynamical
+interaction between the planets, implying that either the plan-
+ets formed in-situ or that they were ejected from the system
+by an unseen third companion.
+4. CONCLUSIONS
+We report the detection of TYC 8998-760-1 c: a second,
+planetary-mass companion to the solar-type Sco–Cen mem-
+ber TYC 8998-760-1, making this the ﬁrst directly imaged
+system around a star of approximately 1M⊙. From the as-
+trometry of the object, we derived a projected physical sep-
+aration of 320 au. SED analysis of broadband photometric
+data sampled fromY toL′ band constrains an effective tem-
+perature of Teﬀ = 1240 +160
+−170 K, a surface gravity log (g) =
+3.5 ± 0.5 dex, a planet radius ofRp = 1.1+0.6
+−0.3RJup, a lumi-
+nosity of log (L/L⊙) = −4.65+0.05
+−0.08, and a spectral type of
+L7.5. Evaluation of BT-Settl isochrones at the system age of
+16.7 ± 1.4 Myr yielded a planet mass of6 ± 1MJup, which is
+consistent with a mass ratio ofq = 0.57±0.10 % with regard
+to the primary. This is in very good agreement with the color-
+magnitude analysis of the system that ranks TYC 8998-760-
+1 c as an object that is close to the L/T transition, yet much
+redder than ﬁeld objects of the same spectral type. Com-
+parison to other well-characterized, substellar companions
+shows that TYC 8998-760-1 c is indeed the reddest among
+these objects. Using dynamical modeling of the system, we
+ﬁnd that the system is stable on gigayear timescales only for
+near-circular orbits, with eccentric orbits becoming chaotic
+on timescales comparable to the system’s lifetime.
+TYC 8998-760-1 is a prime system to further study the
+dynamical and chemical properties of two coeval, gravita-
+tionally bound, gas giant planets. Continuous astrometric
+monitoring will constrain the orbital solutions for both com-
+panions and thus enable testing of potential formation sce-
+narios. Due to the wide separations of both companions,
+contaminating ﬂux from the primary is negligible, so spec-
+tral characterization at high resolution is easily accessible
+to determine rotational periods and molecular abundances in
+the planetary atmospheres (e.g. Snellen et al. 2014). Mul-
+tiwavelength photometric variability monitoring with space-
+based observatories such as the Hubble space telescope (e.g.
+Zhou et al. 2016; Biller et al. 2018) and the James Webb
+Space Telescope (JWST) will facilitate studies of the verti-
+cal cloud structures in these Jovian companions. Even mid-
+infrared spectroscopy with JWST/MIRI will be feasible to
+provide benchmark spectra for theoretical atmosphere mod-
+els of young, substellar companions at wavelengths longer
+than 5 microns.
+
+<<<PAGE 7>>>
+A D IRECTLY IMAGED MULTIPLANET SYSTEM AROUND TYC 8998-760-1 7
+ACKNOWLEDGMENTS
+We thank the anonymous referee for the valuable feedback
+that helped improve the quality of the manuscript. The
+research of A.J.B. and F.S. leading to these results has re-
+ceived funding from the European Research Council under
+ERC Starting Grant agreement 678194 (FALCONER). S.R.
+acknowledges funding from the STFC Consolidated Grant
+ST/R000395/1. Part of this research was carried out at the Jet
+Propulsion Laboratory, California Institute of Technology,
+under a contract with the National Aeronautics and Space
+Administration. M.R. acknowledges support from the Fonds
+Wetenschappelijk Onderzoek (FWO, Research Foundation
+Flanders) under project ID G0B3818N. This research has
+made use of the SIMBAD database, operated at CDS, Stras-
+bourg, France (Wenger et al. 2000). This publication makes
+use of VOSA, developed under the Spanish Virtual Obser-
+vatory project supported by the Spanish MINECO through
+grant AyA2017-84089. VOSA has been partially updated by
+using funding from the European Union’s Horizon 2020 Re-
+search and Innovation Programme, under Grant Agreement
+No. 776403 (EXOPLANETS-A).
+To achieve the scientiﬁc results presented in this article we
+made use of the Python programming language3, especially
+the SciPy (Virtanen et al. 2020), NumPy (Oliphant 2006),
+Matplotlib (Hunter 2007), emcee (Foreman-Mackey et al.
+2013), scikit-image (Van der Walt et al. 2014), scikit-learn
+(Pedregosa et al. 2012), photutils (Bradley et al. 2016), and
+astropy (Astropy Collaboration et al. 2013, 2018) packages.
+We performed simulations using Rebound (Rein & Liu
+2012) and AMUSE (Pelupessy et al. 2013).
+Facilities: ESO/VLT/SPHERE ESO/VLT/NACO
+Software: SciPy (Virtanen et al. 2020), NumPy
+(Oliphant 2006), Matplotlib (Hunter 2007), emcee (Foreman-
+Mackey et al. 2013), scikit-image (Van der Walt et al. 2014),
+scikit-learn (Pedregosa et al. 2012), photutils (Bradley et al.
+2016), astropy (Astropy Collaboration et al. 2013, 2018),
+Rebound (Rein & Liu 2012) and AMUSE (Pelupessy et al.
+2013)
+APPENDIX
+A. OBSERV ATIONAL SETUP AND CONDITIONS
+The setup that was used for each observation and the
+weather conditions during data collection are presented in
+Table 2.
+B. DATA REDUCTION
+B.1. SPHERE data
+As both companions are located outside the stellar PSF
+halo, we did not perform any advanced post-processing for
+the SPHERE data: all frames were centered and derotated
+accounting for the parallactic rotation of the ﬁeld. We used
+the standard astrometric calibration for SPHERE/IRDIS with
+a true north offset of −1.◦75 ± 0.◦08 and plate scales varying
+from 12.250 ± 0.010 mas per pixel to 12.283 ± 0.010 mas
+per pixel for the applied ﬁlters as described in Maire et al.
+(2016).
+B.2. NACO data
+As the NACO observations were optimized for the char-
+acterization of TYC 8998-760-1 b, we had to reject large
+fractions of the original datasets as described in Table 2, be-
+cause TYC 8998-760-1 c was located outside the detector
+window for these frames. After additional frame selection
+to reject frames with bad AO correction, approximately 30 %
+and 15 % of the full data was remaining for L′ andM′ data,
+respectively. As the amount of parallactic rotation in the
+3 Python Software Foundation, https://www.python.org/
+data was sufﬁcient, we performed a PSF subtraction based on
+principal component analysis (PCA; Amara & Quanz 2012;
+Soummer et al. 2012). For bothL′ andM′ data, we ﬁtted and
+subtracted one principal component from the images. This
+was optimizing the signal-to-noise ratio of TYC 8998-760-
+1 c for theL′ data and it provided the best upper limit for the
+M′ data at the position of the companion.
+C. SIGNAL-TO-NOISE ASSESSMENT
+To assess the signiﬁcance of the detection of TYC 8998-
+760-1 c for each individual epoch and ﬁlter, we measured
+the signal-to-noise ratio of the companion in the processed
+images. We evaluated the signal ﬂux in a circular aperture
+placed at the previously determined position of the compan-
+ion for the corresponding ﬁlter (see Sect. 3.1). For band-
+passes in which the companion is not detected (i.e. Y 2 band
+on the night of 2019 March 23 and M′ band on the night of
+2019 June 3), we used the astrometric position of theK1 data
+from 2019 March 23 instead. The aperture radius was chosen
+as the FWHM of the unsaturated ﬂux PSF of the correspond-
+ing ﬁlter as reported in Table 2. To measure the noise, we
+distributed circular apertures of the same size radially around
+the star at the same radial separation as the companion. We
+calculated the integrated ﬂux within each of the background
+apertures and subtracted the average of these measurements
+from the integrated signal ﬂux in the science aperture. The
+noise was computed as the standard deviation of the inte-
+grated ﬂuxes from the background apertures, following the
+description of Mawet et al. (2014). The resulting signal-to-
+noise ratios are presented in Fig 5. Besides nondetections in
+
+<<<PAGE 8>>>
+8 B OHN ET AL .
+Table 2. High-contrast observations of TYC 8998-760-1.
+Observation date Instrument Mode Filter FWHM NEXP ×NDIT×DIT ∆π ⟨ω⟩ ⟨ X⟩ ⟨τ0⟩
+(yyyy-mm-dd) (mas) (1 ×1×s) ( ◦) ( ′′) (ms)
+2017-07-05 SPHERE CI H 52.3 4 ×1×32 0.50 1.22 1.52 2.90
+2019-03-23 SPHERE DBI Y 23 37.2 / 37.9 4 ×3×64 3.84 0.41 1.38 9.30
+2019-03-23 SPHERE DBI J23 40.1 / 41.8 4 ×3×64 3.72 0.40 1.41 10.75
+2019-03-23 SPHERE DBI H23 47.5 / 49.5 4 ×3×64 3.60 0.43 1.44 10.83
+2019-03-23 SPHERE DBI K12 60.2 / 63.6 4 ×3×64 3.45 0.53 1.49 8.75
+2019-05-18 NACO CI L′ 125.0 30 ×600×0.2 22.99 0.88 1.32 2.32
+2019-06-03 NACO CI M′ 131.6 112 ×900×0.045 50.15 0.78 1.33 3.69
+2020-02-16 SPHERE DPI H 50.5 16 ×4×32 13.05 0.67 1.32 9.15
+NOTE— The applied mode is either classical imaging (CI) with a broadband ﬁlter, dual-band imaging (DBI) with
+two intermediate band ﬁlters simultaneously, or dual-polarization imaging (DPI). FWHM denotes the full width
+at half maximum that we measure from the average of the noncoronagraphic ﬂux images that are collected for
+each ﬁlter. For NACO data these are equivalent to the science exposures of the star. NEXP describes the number
+of exposures, NDIT is the number of subintegrations per exposure and DIT is the detector integration time of an
+individual subintegration. ∆π denotes the amount of parallactic rotation during the observation and⟨ω⟩,⟨X⟩, and
+⟨τ0⟩ represent the average seeing, airmass, and coherence time, respectively.
+theY 2 and theM′ data, we measure the ﬂux of TYC 8998-
+760-1 c with a signal-to-noise ratio greater than 5.
+D. POSTERIOR DISTRIBUTIONS OF SED FIT
+We present the full parameter space of posterior samples
+from our SED ﬁt of TYC 8998-760-1 c in Fig. 6. Due to the
+linear interpolation of the model grid prior to the MCMC ﬁt-
+ting routine, each parameter is sampled continuously within
+the predeﬁned intervals. The upper three panels of the cor-
+ner plot show the correlations between the three input pa-
+rameters Teﬀ, log (g), and R. Furthermore, we present the
+corresponding planet luminosities that are derived from these
+input parameters and the system distance in the bottom panel
+of the ﬁgure. The posterior distributions show two fami-
+lies of solutions with effective temperatures of approximately
+1225 K and 1375 K and associated planet radii of 1.2RJup
+and 0.8RJup, respectively. Even though the latter family
+of solutions is slightly disfavored due to the corresponding
+planet radius of 0.8RJup – which is smaller than theoretical
+predictions and empirical constraints for an object of this age
+and mass (e.g., Chabrier et al. 2009; Mordasini et al. 2012)
+– we report the 95 % conﬁdence intervals around the me-
+dians of the distributions as a conservative estimate of the
+planetary properties. This estimate can certainly be reﬁned
+by future studies at higher spectral resolution.
+E. DYNAMICAL MODELING
+In Figures 7 and 8, we show the MEGNO values for sys-
+tems after simulating them for 17 Myr and 1 Gyr, respec-
+tively (see subsection 3.3). A MEGNO value > 2 indicates
+a chaotic system, for which we cannot accurately predict the
+orbits on these timescales.
+REFERENCES
+Allard, F., Homeier, D., & Freytag, B. 2012, Philosophical
+Transactions of the Royal Society of London Series A, 370,
+2765, doi: 10.1098/rsta.2011.0269
+Amara, A., & Quanz, S. P. 2012, MNRAS, 427, 948,
+doi: 10.1111/j.1365-2966.2012.21918.x
+Astropy Collaboration, Robitaille, T. P., Tollerud, E. J., et al. 2013,
+A&A, 558, A33, doi: 10.1051/0004-6361/201322068
+Astropy Collaboration, Price-Whelan, A. M., Sip˝ocz, B. M., et al.
+2018, AJ, 156, 123, doi: 10.3847/1538-3881/aabc4f
+Bailer-Jones, C. A. L., Rybizki, J., Fouesneau, M., Mantelet, G., &
+Andrae, R. 2018, AJ, 156, 58, doi: 10.3847/1538-3881/aacb21
+Best, W. M. J., Magnier, E. A., Liu, M. C., et al. 2018, ApJS, 234,
+1, doi: 10.3847/1538-4365/aa9982
+Beuzit, J. L., Vigan, A., Mouillet, D., et al. 2019, A&A, 631, A155,
+doi: 10.1051/0004-6361/201935251
+Biller, B. A., V os, J., Buenzli, E., et al. 2018, AJ, 155, 95,
+doi: 10.3847/1538-3881/aaa5a6
+Bohn, A. J., Kenworthy, M. A., Ginski, C., et al. 2019, A&A, 624,
+A87, doi: 10.1051/0004-6361/201834523
+—. 2020, MNRAS, 492, 431, doi: 10.1093/mnras/stz3462
+Bonnefoy, M., Lagrange, A. M., Boccaletti, A., et al. 2011, A&A,
+528, L15, doi: 10.1051/0004-6361/201016224
+
+<<<PAGE 9>>>
+A D IRECTLY IMAGED MULTIPLANET SYSTEM AROUND TYC 8998-760-1 9
+Figure 5. Signal-to-noise ratio assessment of TYC 8998-760-1 c. We show a cutout of the ﬁnal images for all ﬁlters and epochs. The
+signal-to-noise ratios of the companion were measured with aperture photometry and the resulting values are presented in the lower left of each
+panel. Each image is presented on an individual linear color scale that is normalized with respect to the maximum and minimum ﬂux value
+within the image cutout.
+Bonnefoy, M., Zurlo, A., Baudino, J. L., et al. 2016, A&A, 587,
+A58, doi: 10.1051/0004-6361/201526906
+Bradley, L., Sipocz, B., Robitaille, T., et al. 2016, Photutils:
+Photometry tools. http://ascl.net/1609.011
+Burgasser, A. J. 2007, ApJ, 659, 655, doi: 10.1086/511027
+Burgasser, A. J., Cruz, K. L., Cushing, M., et al. 2010, ApJ, 710,
+1142, doi: 10.1088/0004-637X/710/2/1142
+Burgasser, A. J., Liu, M. C., Ireland, M. J., Cruz, K. L., & Dupuy,
+T. J. 2008, ApJ, 681, 579, doi: 10.1086/588379
+Burgasser, A. J., & McElwain, M. W. 2006, AJ, 131, 1007,
+doi: 10.1086/499042
+Burgasser, A. J., McElwain, M. W., Kirkpatrick, J. D., et al. 2004,
+AJ, 127, 2856, doi: 10.1086/383549
+Chabrier, G., Baraffe, I., Leconte, J., Gallardo, J., & Barman, T.
+2009, in American Institute of Physics Conference Series, V ol.
+1094, 15th Cambridge Workshop on Cool Stars, Stellar Systems,
+and the Sun, ed. E. Stempels, 102–111, doi: 10.1063/1.3099078
+Chauvin, G., Lagrange, A. M., Zuckerman, B., et al. 2005,
+Astronomy and Astrophysics, 438, L29,
+doi: 10.1051/0004-6361:200500111
+Chauvin, G., Desidera, S., Lagrange, A. M., et al. 2017a, in
+SF2A-2017: Proceedings of the Annual meeting of the French
+Society of Astronomy and Astrophysics, Di
+Chauvin, G., Desidera, S., Lagrange, A. M., et al. 2017b,
+Astronomy and Astrophysics, 605, L9,
+doi: 10.1051/0004-6361/201731152
+Cheetham, A. C., Samland, M., Brems, S. S., et al. 2019, A&A,
+622, A80, doi: 10.1051/0004-6361/201834112
+
+<<<PAGE 10>>>
+10 B OHN ET AL .
+Teff [K] = 1240+160
+170
+3.50
+3.52
+3.54
+3.56
+log(g) [dex]
+log(g) [dex] = 3.51+0.02
+0.01
+0.8
+1.2
+1.6
+2.0
+2.4
+R [RJup]
+R [RJup] = 1.1+0.6
+0.3
+1000 1100 1200 1300 1400
+Teff [K]
+4.80
+4.72
+4.64
+4.56
+log(
+L
+L ) [dex]
+3.50 3.52 3.54 3.56
+log(g) [dex]
+0.8 1.2 1.6 2.0 2.4
+R [RJup]
+4.80
+ 4.72
+ 4.64
+ 4.56
+log(
+L
+L ) [dex]
+log(
+L
+L ) [dex] = 4.65+0.05
+0.08
+Figure 6. Posterior distributions of the MCMC ﬁtting procedure to the photometric SED of TYC 8998-760-1 c. The input parameters of
+the ﬁt were effective temperature Teﬀ, surface gravity log (g), and object radius R. We further show the resulting planet luminosities that can
+be derived from the three input parameters and the system distance. The dashed blue lines in the marginalized distributions present the 2.5 %,
+50 %, and 97.5 % quantiles and the title of the corresponding diagram indicates the 95 % conﬁdence interval around the median, derived from
+these quantities.
+
+<<<PAGE 11>>>
+A DIRECTLY IMAGED MULTIPLANET SYSTEM AROUND TYC 8998-760-1 11
+Figure 7. MEGNO value for the system after 17 Myr, for different
+eccentricities of planets b andc. A value > 2 indicates a chaotic
+system.
+Figure 8. As Fig. 7, but on a 1 Gyr timescale. We have not plotted
+orbits withe> 0.15, as they are all chaotic on this timescale.
+Chen, C. H., Pecaut, M., Mamajek, E. E., Su, K. Y . L., & Bitner,
+M. 2012, ApJ, 756, 133, doi: 10.1088/0004-637X/756/2/133
+Chiu, K., Fan, X., Leggett, S. K., et al. 2006, AJ, 131, 2722,
+doi: 10.1086/501431
+Cincotta, P. M., Giordano, C. M., & Sim´o, C. 2003, Physica D
+Nonlinear Phenomena, 182, 151,
+doi: 10.1016/S0167-2789(03)00103-9
+Cruz, K. L., Burgasser, A. J., Reid, I. N., & Liebert, J. 2004, ApJL,
+604, L61, doi: 10.1086/383415
+Currie, T., Burrows, A., Madhusudhan, N., et al. 2013, ApJ, 776,
+15, doi: 10.1088/0004-637X/776/1/15
+Cushing, M. C., Rayner, J. T., & Vacca, W. D. 2005, ApJ, 623,
+1115, doi: 10.1086/428040
+de Boer, J., Langlois, M., van Holstein, R. G., et al. 2020, A&A,
+633, A63, doi: 10.1051/0004-6361/201834989
+de Zeeuw, P. T., Hoogerwerf, R., de Bruijne, J. H. J., Brown,
+A. G. A., & Blaauw, A. 1999, AJ, 117, 354,
+doi: 10.1086/300682
+Dhital, S., Burgasser, A. J., Looper, D. L., & Stassun, K. G. 2011,
+AJ, 141, 7, doi: 10.1088/0004-6256/141/1/7
+Dohlen, K., Langlois, M., Saisse, M., et al. 2008, in Proc. SPIE,
+V ol. 7014, Ground-based and Airborne Instrumentation for
+Astronomy II, 70143L, doi: 10.1117/12.789786
+Faherty, J. K., Burgasser, A. J., Cruz, K. L., et al. 2009, AJ, 137, 1,
+doi: 10.1088/0004-6256/137/1/1
+Foreman-Mackey, D., Hogg, D. W., Lang, D., & Goodman, J.
+2013, PASP, 125, 306, doi: 10.1086/670067
+Fusco, T., Rousset, G., Sauvage, J.-F., et al. 2006, Optics Express,
+14, 7515, doi: 10.1364/OE.14.007515
+Gaia Collaboration, Brown, A. G. A., Vallenari, A., et al. 2018,
+A&A, 616, A1, doi: 10.1051/0004-6361/201833051
+Galicher, R., Rameau, J., Bonnefoy, M., et al. 2014, A&A, 565,
+L4, doi: 10.1051/0004-6361/201423839
+Gelino, C. R., & Burgasser, A. J. 2010, AJ, 140, 110,
+doi: 10.1088/0004-6256/140/1/110
+Golimowski, D. A., Leggett, S. K., Marley, M. S., et al. 2004, AJ,
+127, 3516, doi: 10.1086/420709
+Haffert, S. Y ., Bohn, A. J., de Boer, J., et al. 2019, Nature
+Astronomy, 3, 749, doi: 10.1038/s41550-019-0780-5
+Hom, J., Patience, J., Esposito, T. M., et al. 2020, AJ, 159, 31,
+doi: 10.3847/1538-3881/ab5af2
+Hunter, J. D. 2007, Computing in Science and Engineering, 9, 90,
+doi: 10.1109/MCSE.2007.55
+Janson, M., Asensio-Torres, R., Andr´e, D., et al. 2019, A&A, 626,
+A99, doi: 10.1051/0004-6361/201935687
+Keppler, M., Benisty, M., M¨uller, A., et al. 2018, A&A, 617, A44,
+doi: 10.1051/0004-6361/201832957
+Kirkpatrick, J. D., Barman, T. S., Burgasser, A. J., et al. 2006, ApJ,
+639, 1120, doi: 10.1086/499622
+Kirkpatrick, J. D., Looper, D. L., Burgasser, A. J., et al. 2010,
+ApJS, 190, 100, doi: 10.1088/0067-0049/190/1/100
+Knapp, G. R., Leggett, S. K., Fan, X., et al. 2004, AJ, 127, 3553,
+doi: 10.1086/420707
+Lafreni`ere, D., Jayawardhana, R., & van Kerkwijk, M. H. 2008,
+The Astrophysical Journal, 689, L153, doi: 10.1086/595870
+Lenzen, R., Hartung, M., Brandner, W., et al. 2003, in Society of
+Photo-Optical Instrumentation Engineers (SPIE) Conference
+Series, V ol. 4841, Instrument Design and Performance for
+Optical/Infrared Ground-based Telescopes, ed. M. Iye &
+A. F. M. Moorwood, 944–952, doi: 10.1117/12.460044
+Looper, D. L., Bochanski, J. J., Burgasser, A. J., et al. 2010, AJ,
+140, 1486, doi: 10.1088/0004-6256/140/5/1486
+Looper, D. L., Burgasser, A. J., Kirkpatrick, J. D., & Swift, B. J.
+2007, ApJL, 669, L97, doi: 10.1086/523812
+
+<<<PAGE 12>>>
+12 B OHN ET AL .
+Macintosh, B., Graham, J. R., Ingraham, P., et al. 2014,
+Proceedings of the National Academy of Science, 111, 12661,
+doi: 10.1073/pnas.1304215111
+Macintosh, B., Graham, J. R., Barman, T., et al. 2015, Science,
+350, 64, doi: 10.1126/science.aac5891
+Maire, A.-L., Langlois, M., Dohlen, K., et al. 2016, in Society of
+Photo-Optical Instrumentation Engineers (SPIE) Conference
+Series, V ol. 9908, Proc. SPIE, 990834, doi: 10.1117/12.2233013
+Marois, C., Macintosh, B., Barman, T., et al. 2008, Science, 322,
+1348, doi: 10.1126/science.1166585
+Marois, C., Zuckerman, B., Konopacky, Q. M., Macintosh, B., &
+Barman, T. 2010, Nature, 468, 1080, doi: 10.1038/nature09684
+Mawet, D., Milli, J., Wahhaj, Z., et al. 2014, ApJ, 792, 97,
+doi: 10.1088/0004-637X/792/2/97
+McElwain, M. W., & Burgasser, A. J. 2006, AJ, 132, 2074,
+doi: 10.1086/508199
+McLean, I. S., McGovern, M. R., Burgasser, A. J., et al. 2003, ApJ,
+596, 561, doi: 10.1086/377636
+McLean, I. S., Prato, L., McGovern, M. R., et al. 2007, ApJ, 658,
+1217, doi: 10.1086/511740
+Mesa, D., Keppler, M., Cantalloube, F., et al. 2019, A&A, 632,
+A25, doi: 10.1051/0004-6361/201936764
+Mo´or, A., Cur´e, M., K´osp´al, ´A., et al. 2017, ApJ, 849, 123,
+doi: 10.3847/1538-4357/aa8e4e
+Morbidelli, A. 2018, Dynamical Evolution of Planetary Systems,
+145, doi: 10.1007/978-3-319-55333-7 145
+Mordasini, C., Alibert, Y ., Georgy, C., et al. 2012, A&A, 547,
+A112, doi: 10.1051/0004-6361/201118464
+Muench, A. A., Lada, C. J., Luhman, K. L., Muzerolle, J., &
+Young, E. 2007, AJ, 134, 411, doi: 10.1086/518560
+M¨uller, A., Keppler, M., Henning, T., et al. 2018, A&A, 617, L2,
+doi: 10.1051/0004-6361/201833584
+Nelder, J. A., & Mead, R. 1965, The computer journal, 7, 308
+Oliphant, T. E. 2006, A guide to NumPy, V ol. 1 (Trelgol Publishing
+USA)
+Pecaut, M. J., & Mamajek, E. E. 2016, MNRAS, 461, 794,
+doi: 10.1093/mnras/stw1300
+Pedregosa, F., Varoquaux, G., Gramfort, A., et al. 2012, arXiv
+e-prints, arXiv:1201.0490. https://arxiv.org/abs/1201.0490
+Pelupessy, F. I., van Elteren, A., de Vries, N., et al. 2013, A&A,
+557, A84, doi: 10.1051/0004-6361/201321252
+Rayner, J. T., Cushing, M. C., & Vacca, W. D. 2009, ApJS, 185,
+289, doi: 10.1088/0067-0049/185/2/289
+Reid, I. N., Lewitus, E., Burgasser, A. J., & Cruz, K. L. 2006, ApJ,
+639, 1114, doi: 10.1086/499484
+Rein, H., & Liu, S. F. 2012, A&A, 537, A128,
+doi: 10.1051/0004-6361/201118085
+Rein, H., & Tamayo, D. 2015, MNRAS, 452, 376,
+doi: 10.1093/mnras/stv1257
+—. 2016, MNRAS, 459, 2275, doi: 10.1093/mnras/stw644
+Rousset, G., Lacombe, F., Puget, P., et al. 2003, in Society of
+Photo-Optical Instrumentation Engineers (SPIE) Conference
+Series, V ol. 4839, Adaptive Optical System Technologies II, ed.
+P. L. Wizinowich & D. Bonaccini, 140–149,
+doi: 10.1117/12.459332
+Samland, M., Molli`ere, P., Bonnefoy, M., et al. 2017, A&A, 603,
+A57, doi: 10.1051/0004-6361/201629767
+Sheppard, S. S., & Cushing, M. C. 2009, AJ, 137, 304,
+doi: 10.1088/0004-6256/137/1/304
+Siegler, N., Close, L. M., Burgasser, A. J., et al. 2007, AJ, 133,
+2320, doi: 10.1086/513273
+Snellen, I. A. G., Brandl, B. R., de Kok, R. J., et al. 2014, Nature,
+509, 63, doi: 10.1038/nature13253
+Soummer, R., Pueyo, L., & Larkin, J. 2012, ApJ, 755, L28,
+doi: 10.1088/2041-8205/755/2/L28
+Stolker, T., Bonse, M. J., Quanz, S. P., et al. 2019, A&A, 621, A59,
+doi: 10.1051/0004-6361/201834136
+Van der Walt, S., Sch¨onberger, J. L., Nunez-Iglesias, J., et al. 2014,
+PeerJ, 2, e453
+van Holstein, R. G., Girard, J. H., de Boer, J., et al. 2020, A&A,
+633, A64, doi: 10.1051/0004-6361/201834996
+Vigan, A., Moutou, C., Langlois, M., et al. 2010, MNRAS, 407,
+71, doi: 10.1111/j.1365-2966.2010.16916.x
+Virtanen, P., Gommers, R., Oliphant, T. E., et al. 2020, Nature
+Methods, 17, 261, doi: 10.1038/s41592-019-0686-2
+Wang, J. J., Graham, J. R., Dawson, R., et al. 2018, AJ, 156, 192,
+doi: 10.3847/1538-3881/aae150
+Wenger, M., Ochsenbein, F., Egret, D., et al. 2000, A&AS, 143, 9,
+doi: 10.1051/aas:2000332
+Wertz, O., Absil, O., G´omez Gonz´alez, C. A., et al. 2017, A&A,
+598, A83, doi: 10.1051/0004-6361/201628730
+Zhou, Y ., Apai, D., Schneider, G. H., Marley, M. S., & Showman,
+A. P. 2016, ApJ, 818, 176, doi: 10.3847/0004-637X/818/2/176
+Zurlo, A., Vigan, A., Galicher, R., et al. 2016, A&A, 587, A57,
+doi: 10.1051/0004-6361/201526835
