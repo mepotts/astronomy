@@ -413,7 +413,54 @@ DH Tau B (S = 41), GSC 6214-210 B (S = 37), 1RXS J160929.1-210524 b (S = 318) �
 predicted CLEAN. They are weak tests for the same reason, but they are on the record
 before the fact, which is the only way this stops being curve-fitting.
 
-## 9. The decisive test exists, and it is public: HD 4747 B
+## 9. The decisive test does NOT exist: HD 4747 B is unresolvable in the archival data
+
+> **⚠ This section originally claimed HD 4747 B was the experiment that decides S. It is
+> not. Reducing the data settled it, and the original text is kept below for the record.**
+
+**What the reduction showed.** The H-band night reduced cleanly — 24 of 24 spectral columns
+non-empty, median flux 65 000, using the new per-setting SOF split (the night is four
+settings × 2 frames: H1582, H1559, K2192, K2148). But the extraction is of **HD 4747 A**,
+not B:
+
+- `OBJECT` and `OBS TARG NAME` are both **`HD  4747`** — the host.
+- `POSANG = 0.0`, so the slit runs N–S. HD 4747 B lies at PA ≈ 180°, so the geometry *is*
+  right — the companion is along the slit, exactly as CD-35's 153.1° aligned on its own
+  binary axis. That part was not the problem.
+- **The slit function at 0.59″ from the peak sits at 0.75 of the primary's peak height**
+  (median over 38 order-sides; 90th pct 0.77). That is not a companion trace. It is the
+  primary's own PSF wing. Seeing on the night ran 0.86–1.31″, so a companion at 0.59″ is
+  well inside the host's seeing disk.
+
+**HD 4747 B cannot be separated from its host in this data, so it does not test S.** The
+interval 4327 < S < 15 202 remains entirely unobserved.
+
+**What this does establish, and it is not nothing.** There is a geometric floor sitting
+underneath the whole S discussion that no flux ratio can describe: **if the companion is
+not spatially resolved from its host, there is no companion spectrum to extract at any
+contrast.** HD 4747 B at 0.59″ under ~1″ seeing is the first direct measurement of that
+floor in this project — a slit-function profile showing the two objects blended rather
+than an inference from a failed extraction.
+
+**Why this does not simply reduce to "separation wins".** HIP 81208 B is *clean* at 0.325″,
+closer than both HD 4747 B (0.59″, unresolvable) and β Pic b (0.51″, flooded). Whatever
+separates those cases is not raw separation, and is not seeing alone either — AO
+performance depends on the guide star, and HIP 81208 is a bright B9. Establishing that
+would need the AO-corrected PSF core per observation, which is a real piece of work and is
+not attempted here.
+
+**Consequence for the wall paper.** Its §5.4 must now say the untested interval has been
+*searched* as well as identified: of the four systems in it, κ And b is unobservable from
+Paranal, PDS 70 c shares frames with PDS 70 b inside the AO core, β Pic b sets the
+threshold, and **HD 4747 B's archival data cannot resolve the companion**. There is no
+archival test available. The criterion must be published as a hypothesis with
+pre-registered predictions, or wait for new observations.
+
+---
+
+*The original §9, written before the reduction and wrong in its conclusion:*
+
+### The decisive test exists, and it is public: HD 4747 B
 
 §8 concluded that S is untested because nothing has been observed with
 4327 < S < 15 202. Searching all 31 companions parsed from Lazzoni Table 1 for that

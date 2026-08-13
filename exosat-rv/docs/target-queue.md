@@ -32,7 +32,7 @@
 > negative — the ESO sweep is exhaustive. Idea #5: no new claims to reproduce;
 > Hoy et al. remains alone in the genre.
 
-> ## ⭐ TOP OF QUEUE (M29): HD 4747 B — the one observation that tests the feasibility criterion
+> ## ✗ CLOSED (M29): HD 4747 B — reduced, and the companion is unresolvable
 >
 > S = contrast/θ² orders every extraction outcome this project has measured, but nothing
 > has ever been observed in the interval where the two classes divide (4327 < S < 15 202).
@@ -40,7 +40,12 @@
 > across 3 nights (2022-11-07, 2022-12-23, 2023-11-20)** — the same configuration as CD-35
 > and η Tel B, so the existing chain applies unchanged. Companion at 0.59″ against
 > 0.86–1.31″ seeing. Clean, flooded or marginal, it is the first observation inside the
-> interval and it decides the criterion. See `M29-RESULTS.md` §9.
+> **Reduced 2026-08-13 and the answer is no.** The night reduces cleanly (24/24 columns)
+> but the extraction is of **HD 4747 A**: the slit function at 0.59″ sits at **0.75 of
+> the primary peak** — the host's own PSF wing, not a companion trace — under
+> 0.86–1.31″ seeing. The companion is not spatially separable, so it does not test S.
+> **No archival test of the interval exists**: κ And b is unobservable from Paranal,
+> PDS 70 c is inside the AO core, β Pic b sets the threshold. See `M29-RESULTS.md` §9.
 >
 > ## The roster, adjudicated (M14–M24; detail per milestone doc)
 >
