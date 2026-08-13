@@ -112,12 +112,15 @@ injection-recovery gates, scoring only against published values, the
 correction log). This repository's audit trail is the evidence that the
 discipline existed. Template statement:
 
-The canonical, paper-ready version — two sections modeled on the WASP-4b
-Agents4Science precedent but adapted to this project's actual division of labor
-— now lives in the exosat-rv manuscript template
-([`exosat-rv/docs/paper/draft.template.html`](exosat-rv/docs/paper/draft.template.html),
-"AI agent setup" and "Roles and responsible AI statement") and is reused,
-adjusted per project, for every paper from this repository. The honest
+The disclosure is split into two artifacts so the manuscript stays lean: a
+condensed **"AI contribution and responsibility statement"** in the paper itself
+([`exosat-rv/docs/paper/draft.template.html`](exosat-rv/docs/paper/draft.template.html)),
+and the full stage-by-stage **[AI-CHECKLIST.md](AI-CHECKLIST.md)** it links to —
+involvement levels 0–4 per research stage with evidence pointers into the
+repository, modeled on the Agents4Science 2025 mandatory checklists. No
+mainstream venue requires the checklist (2026) — statements suffice — but
+providing it voluntarily makes the disclosure checkable rather than asserted.
+Future papers copy and re-grade the checklist table per paper. The honest
 adaptation: where the WASP-4b paper's human co-author was a domain expert
 auditing the AI's analysis, here verification is primarily *mechanical*
 (injection gates, amplitude-matched positive controls, published-values-only

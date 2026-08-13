@@ -570,48 +570,26 @@
   {{FIG11}}
   {{FIG12}}
 
-  <h2><span class="no"> </span>AI agent setup</h2>
+  <h2><span class="no"> </span>AI contribution and responsibility statement</h2>
   <p class="refs" style="font-size:14.5px">
-  The research in this paper — archive census, data reduction, pipeline development,
-  validation design, statistical analysis, figure generation, and the first draft and
-  revisions of this manuscript — was carried out by Claude agents (Anthropic) running
-  in Claude Code on a consumer laptop, directed and reviewed by the human author; the
-  model version active at each stage is recorded in the companion repository's commit
-  trail. The agents worked under a standing verification contract enforced in the
-  pipeline itself: every adopted change was scored against the published RV series
-  only, never an internal metric; adoption additionally required signal-injection
-  recovery with the shift applied to the template, never the observation; positive
-  controls were re-run before any null was reported; and the blind period search
-  carried a barycentric (BERV) nuisance covariate. Dead ends, retractions, and
-  corrections were recorded in milestone documents as work proceeded and remain in
-  the public record.
-  </p>
-
-  <h2><span class="no"> </span>Roles and responsible AI statement</h2>
-  <p class="refs" style="font-size:14.5px">
-  This work uses only public archival observations (programme IDs under Data &amp;
-  code availability) and involves no human or animal subjects. The division of labor
-  was as follows. <b>The AI system led</b>: literature search; the archive census and
-  data acquisition; reduction and pipeline engineering; hypothesis generation within
-  the human-set questions; experiment design and execution; the statistical analysis;
-  figure generation; and the drafting of this manuscript and the project's milestone
-  documentation. <b>The human author</b>: set the research questions and scope at
-  every stage; challenged the agent's claims adversarially (one such challenge
-  produced the correction of an overclaimed "first" now logged in the record); made
-  every judgment call with external consequences, including publication-priority
-  decisions on data from other teams' active programmes and all correspondence; and
-  reviewed, and takes sole responsibility for, every claim published here. Distinct
-  from settings in which a domain-expert co-author audits the AI's analysis line by
-  line, verification here is primarily mechanical — the injection gates,
-  amplitude-matched positive controls, and published-values-only scoring described
-  above — backed by a public audit trail (repository history and milestone
-  documents) from which any reader can re-derive what was tried, what failed, and
-  why. The principal risk of this arrangement is over-reliance on agent-generated
-  analysis and plausible-but-wrong methodological choices; it is mitigated by the
-  gates above, and by reporting the known residual confounds (the RV–BERV
-  correlation of the published series; the 20–40% amplitude excess) in the text
-  rather than resolving them by assumption. No submission, correspondence, or other
-  outward act is automated: a human performs every such action.
+  The research in this paper — literature search, archive census, data reduction,
+  pipeline development, statistical analysis, figures, and the drafting of this
+  manuscript — was led by AI agents (Claude, Anthropic, running in Claude Code),
+  directed and reviewed by the human author, who set the research questions,
+  challenged the agents' claims (one such challenge is logged as a correction in the
+  record), made every decision with external consequences, and takes sole
+  responsibility for all content. Verification is primarily mechanical rather than
+  expert-audited: every adopted pipeline change was scored against the published RV
+  series only and required signal-injection recovery (template shifted, never the
+  observation), positive controls preceded any null, and the blind search carried a
+  BERV nuisance covariate; dead ends and retractions remain in the public record.
+  Known residual confounds (the RV–BERV correlation of the published series; the
+  20–40% amplitude excess) are reported in the text rather than resolved by
+  assumption. No submission or correspondence is automated. This work uses only
+  public archival observations and involves no human or animal subjects. A
+  stage-by-stage AI-involvement checklist with evidence pointers, including per-stage
+  model versions via the commit trail, is maintained at
+  <a href="https://github.com/mepotts/astronomy/blob/main/AI-CHECKLIST.md">github.com/mepotts/astronomy/AI-CHECKLIST.md</a>.
   </p>
 
   <h2><span class="no"> </span>Data & code availability</h2>
