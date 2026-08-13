@@ -1,5 +1,24 @@
 # HANDOFF — exosat-rv
 
+> ## ⚠ M29 (2026-08-13) — READ BEFORE TRUSTING ANY NUMBER IN THIS REPO
+>
+> A day spent checking old work against its actual sources found **14 wrong citations
+> across 60+ sites** and **34 conflicting object properties**, and **not one was found by
+> producing a new result**. Before using any externally-sourced number here, check
+> [`docs/REFERENCE-AUDIT.md`](docs/REFERENCE-AUDIT.md) and
+> [`docs/PROPERTY-AUDIT.md`](docs/PROPERTY-AUDIT.md). The traps are
+> [`LESSONS.md`](LESSONS.md) §5b.
+>
+> Three things that will bite immediately:
+> - **All 39 shell scripts were CRLF and unrunnable under WSL** (a "completed" reduction
+>   reported exit 0 and did nothing). Fixed by `.gitattributes`. Diagnose with
+>   `file script.sh` **from inside WSL** — git-bash will tell you they are LF and be wrong.
+> - **The "contrast wall" is superseded.** Its 2000×/5000×/30 000× figures were never
+>   derived, and the axis itself was wrong. Outcomes are ordered by **S = contrast/θ²**
+>   (M29 §§6–8) — and that is consistent with the data, not yet tested by it.
+> - **YSES 1 b is a 2-night series.** The 2022 night reduces once the frame count is even,
+>   then fails a pre-committed order screen. The "4-night/290-d prize" never existed.
+>
 > ## ⚠ START AT [`LESSONS.md`](LESSONS.md) — the consolidated trap catalog + map of all conclusions
 > Then [`docs/target-queue.md`](docs/target-queue.md) for the roster and the
 > **HiRISE revelation (M27 pending)**: the entire "staring" tier is fiber-fed
