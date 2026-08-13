@@ -532,6 +532,31 @@ affiliated with or endorsed by the authors of any work discussed.
 
 ## What to verify before submission
 
+> **M29 resolution pass (2026-08-13).** Items 1, 2, 5, 8 and 12 have been checked
+> against the milestone documents and the source PDFs. Results below, in place.
+> **Item 2 turned out to be a real defect and has been corrected in the manuscript.**
+>
+> - **1 — RESOLVED, no change needed.** M14 §4 (`331→347`) and §6 (`331→429`) both start
+>   from the same M13 baseline of 331; they are *not* sequential. The non-sequential
+>   phrasing here is correct.
+> - **2 — DEFECT, FIXED.** The "~40% external improvement" compared **different order
+>   combines**: 147 m/s is the M13_G *median*-combine baseline, 85 m/s is the final
+>   *mean*-combine result. The like-for-like pair in M14 §6 is **133 → 85 m/s = 36%**.
+>   The manuscript now states 36% and names the combine; this note should too.
+> - **5 — RESOLVED.** Both counts are right for their own treatment: M15 works from
+>   **18 nights** with **n = 19** in the blind search (two nights carry double visits),
+>   while M28 §1 reports **n = 17** after per-night binning plus the internal spread
+>   screen. Quote the treatment alongside the count.
+> - **8 — FIXED.** The HTML draft now reads Köhler, **J.**, confirmed twice: the viper
+>   paper's own text, and the Hoy et al. author list (Jana Köhler).
+> - **12 — FIXED.** The draft cited a title matching *neither* version. It now carries
+>   the published title, the preprint title, and the note that both changed.
+>
+> Items 3, 4, 6, 7 stand as written — they are caveats to travel with the numbers, not
+> ambiguities to resolve. Items 9, 10, 11 are covered by the repository-wide reference
+> audit in `docs/REFERENCE-AUDIT.md`.
+
+
 Items the author should check personally. Everything else in this note traces to a numbered
 milestone document in the repository.
 
