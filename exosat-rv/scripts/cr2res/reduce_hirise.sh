@@ -14,9 +14,13 @@
 #
 #   reduce_hirise.sh <nightname>
 # expects raw in $RAW_BASE/<night>, writes $RED_BASE/<night>
-set -u
 N=$1
+# cr2env.sh appends to LD_LIBRARY_PATH, which is unset in a fresh WSL shell -- so it must
+# be sourced BEFORE `set -u`, or seeded first. reduce_one.sh gets away with it by not
+# setting -u at all; this script wants -u, so seed the variable.
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:-}"
 source /mnt/c/Users/matth/projects/astronomy/exosat-rv/scripts/cr2res/cr2env.sh
+set -u
 RAW=${RAW_BASE:-$HOME/cr2res/raw_m26}/$N
 W=${RED_BASE:-$HOME/cr2res/red_m26}/$N
 CLS=/mnt/c/Users/matth/projects/astronomy/exosat-rv/scripts/cr2res/classify.py
@@ -57,9 +61,15 @@ FTW=$(ls "$W"/cr2res_cal_flat_*tw*.fits 2>/dev/null | head -1)
 FMAS=$(ls "$W"/cr2res_cal_flat_*master*.fits 2>/dev/null | head -1)
 
 # ---- 3. wavelength solution --------------------------------------------------
+# the emission-lines catalog is a STATIC calibration shipped with cr2res, chosen by
+# setting; without it cal_wave exits 255 with "The emission lines catalog is needed".
+SETTING=$(awk -F'	' 'NR==1{print $3}' tags.tsv)
+LINES=$(ls $HOME/cr2res/calib/*/cal/lines_*_${SETTING}.fits 2>/dev/null | head -1)
+echo "emission lines catalog: ${LINES:-NONE FOUND for $SETTING}"
 { for f in $(pick WAVE_UNE); do echo "$f WAVE_UNE"; done
   for f in $(pick WAVE_FPET); do echo "$f WAVE_FPET"; done
   [ -n "$FTW" ] && echo "$FTW CAL_FLAT_TW"
+  [ -n "$LINES" ] && echo "$LINES EMISSION_LINES"
   for f in $(pick EMISSION_LINES); do echo "$f EMISSION_LINES"; done
   [ -n "$BPM" ] && echo "$BPM CAL_DARK_BPM"; } > wave.sof
 run cr2res_cal_wave wave.sof wave || echo "   (continuing with flat TW)"
@@ -79,16 +89,21 @@ for f in $(pick OBS_STARING_OTHER) $(pick OBS_NODDING_OTHER); do
     [ -n "$BPM" ]  && echo "$BPM CAL_DARK_BPM"
     [ -n "$FMAS" ] && echo "$FMAS CAL_FLAT_MASTER"; } > ext/$b.calib.sof
   esorex --output-dir="$W/ext" cr2res_util_calib ext/$b.calib.sof > ext/$b.calib.log 2>&1
-  CAL=$(ls -t "$W"/ext/cr2res_util_calib_calibrated_collapsed.fits 2>/dev/null | head -1)
-  [ -z "$CAL" ] && { echo "  $b: util_calib produced nothing"; continue; }
-  mv -f "$CAL" "ext/${b}_cal.fits"
+  # util_calib names its product after the INPUT frame, not a fixed product name.
+  CAL=$(ls -t "$W"/ext/${b}*calibrated*.fits 2>/dev/null | head -1)
+  [ -z "$CAL" ] && { echo "  $b: util_calib produced nothing"; tail -3 ext/$b.calib.log; continue; }
+  [ "$CAL" != "$W/ext/${b}_cal.fits" ] && mv -f "$CAL" "ext/${b}_cal.fits"
   { echo "$W/ext/${b}_cal.fits UTIL_CALIB"
     [ -n "$WTW" ] && echo "$WTW UTIL_WAVE_TW"; } > ext/$b.ext.sof
   esorex --output-dir="$W/ext" cr2res_util_extract \
       --height=$EXT_HEIGHT --method=$EXT_METHOD --smooth_slit=1.0 \
       ext/$b.ext.sof > ext/$b.ext.log 2>&1
-  E=$(ls -t "$W"/ext/cr2res_util_extract_extr1D.fits 2>/dev/null | head -1)
-  if [ -n "$E" ]; then mv -f "$E" "ext/${b}_extr1D.fits"; next=$((next+1)); fi
+  E=$(ls -t "$W"/ext/*extr1D*.fits 2>/dev/null | grep -v "_extr1D.fits$" | head -1)
+  [ -z "$E" ] && E=$(ls -t "$W"/ext/${b}*extr*.fits 2>/dev/null | head -1)
+  if [ -n "$E" ] && [ "$E" != "$W/ext/${b}_extr1D.fits" ]; then
+    mv -f "$E" "ext/${b}_extr1D.fits"; next=$((next+1))
+  elif [ -f "$W/ext/${b}_extr1D.fits" ]; then next=$((next+1))
+  else echo "  $b: no extraction"; tail -3 ext/$b.ext.log; fi
 done
 echo "=== $N: $nsci science frames, $next extracted ==="
 ls "$W"/ext/*_extr1D.fits 2>/dev/null | wc -l

@@ -1029,15 +1029,18 @@ a manual `curl` of the *first failing URL* returned HTTP 200 and 30 MB every tim
 misdiagnosed it twice as archive throttling and wrote a LESSONS entry saying so.
 
 It was not throttling. `cal_min.txt` was written by Windows Python with `open(p,'w')`, so
-every URL carried a trailing ``:
+every URL carried a trailing `
+`:
 
 ```
-0000100   7   :   5   1   .   9   9   2    
+0000100   7   :   5   1   .   9   9   2  
+  
 
 ```
 
 `curl` fetches fine — the CR is dropped from the request — but the loop's success check was
-built from the same string, so it looked for `CRIRE.2025-02-01T09:47:51.992.fits` and never
+built from the same string, so it looked for `CRIRE.2025-02-01T09:47:51.992
+.fits` and never
 matched. **Every successful download was scored as a failure**, retried three or four times,
 and reported as `STILL FAILED`. The exit code was 0 throughout.
 
@@ -1060,3 +1063,58 @@ bash needs `newline="
 "` set explicitly, or should be generated inside WSL. And when a
 command works by hand but fails in a loop, suspect the *string*, not the network — `od -c`
 the input before theorising.
+## 19. M27 OPEN: the first correctly-reduced HiRISE data in this project
+
+`scripts/cr2res/reduce_hirise.sh` runs end to end on the 2025-02-02 β Pic b night.
+**39 of 39 science frames extracted**, each with 21 non-empty spectral orders carrying
+`_SPEC`, `_ERR` and `_WL` columns spanning **1499–1744 nm** — the H1567 range, with a real
+wavelength solution from `cal_wave` (`tw_fpet`), not the flat fallback.
+
+| | exposure | median flux | median err | **S/N per pixel** | flux/second |
+|---|---:|---:|---:|---:|---:|
+| host (30 s frames) | 30 s | 3250 | 53.8 | **62.0** | 108.3 |
+| planet (1200 s frames) | 1200 s | 21.6 | 30.9 | **0.7** | 0.018 |
+
+### The result validates itself against photometry
+
+Host-to-planet flux ratio per second: **6027**. The independently derived K-band contrast
+from Currie+2013 is **3954**. The two agree to a factor of 1.5, **in the direction physics
+requires** — β Pic b is a red companion, so its H-band contrast must exceed its K-band
+contrast. Nothing in the reduction knows about either number.
+
+That is a meaningful check on a path nobody had run before: had the extraction been sitting
+on a detector artefact, an inter-order region, or the wrong trace, there is no reason its
+flux ratio would land within 50% of an independently measured photometric contrast.
+
+### What this does not yet show
+
+**Per-pixel S/N on the planet is 0.7 in a single frame** — the median flux is below its own
+error bar. No individual pixel is a detection, and this is not yet a spectrum of β Pic b in
+any usable sense. What it is: 21 orders × 2048 pixels × 9 deep frames of correctly
+calibrated, correctly traced, wavelength-solved data, which is the input a cross-correlation
+needs. Whether a velocity comes out of it is the next question and is not answered here.
+
+The honest summary is that **the reduction path is established and the data is real; the
+measurement has not been attempted.**
+
+### Four bugs, all mine
+
+The run took four attempts and every failure was in my code, not the data:
+
+1. `set -u` placed before sourcing `cr2env.sh`, which appends to an unset `LD_LIBRARY_PATH`
+   — the script died at line 5 having done nothing, reporting exit 0.
+2. `util_calib`'s product looked for under a fixed name; it is named after the *input frame*.
+   It had been working all along.
+3. `util_extract` the same.
+4. `cal_wave` needs a **static** emission-lines catalog that no archive query returns. It
+   ships with cr2res as `lines_u_redman_H1567.fits`; the script now selects it by
+   `INS WLEN ID`, so it generalises to any setting.
+
+The data behaved exactly as its headers said it would throughout.
+
+### What is now unblocked
+
+Seven more public β Pic HiRISE nights (2023-11 to 2024-12), and **1739 HiRISE science frames
+across ~45 targets** — a corpus this project had written off as mis-reduced staring data.
+All at H1567 for β Pic, so the existing order map, template ladder and injection gate apply
+downstream without modification.
