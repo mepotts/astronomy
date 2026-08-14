@@ -860,3 +860,45 @@ frame has been deleted.
 
 **Disk is the practical constraint**: 5.3 GB free against ~1.5 GB of science per night plus
 calibrations. One night at a time, deleting raw after each reduction verifies.
+## 14. Is the slit-function FWHM really the delivered PSF? Validated against the seeing
+
+The wall note's fourth pass flagged this as the first thing a referee would ask, and it is
+the load-bearing assumption behind R: the slit function is the profile cr2res *fitted* while
+extracting, so is its FWHM the delivered PSF, or something convolved and inflated?
+
+Testable without new data. Over the 38 CD-35 and eta Tel nights that carry both a measured
+profile and a recorded seeing in their headers:
+
+| quantity | median | range |
+|---|---:|---|
+| measured slit-function FWHM | **0.291″** | 0.188 – 1.015 |
+| recorded seeing (IA / ambient FWHM) | 0.865″ | 0.580 – 1.290 |
+| ratio PSF / seeing | **0.34** | — |
+| correlation r(PSF, seeing) | **+0.14** | n = 38 |
+
+**Three things follow, and together they say the measurement is real.**
+
+1. **The measured profile is ~3× narrower than the ambient seeing.** If the slit function
+   were the seeing disk, or the seeing convolved with anything, it could not be *narrower*
+   than the seeing. It is not an inflated quantity.
+2. **It is essentially uncorrelated with the seeing monitor** (r = +0.14 over 38 nights).
+   That is the expected signature of a working adaptive-optics system: delivered image
+   quality is set by AO performance — guide-star brightness, correction quality — not by the
+   raw atmospheric seeing. A profile that tracked the seeing would mean the AO was not
+   working, and it would also make R uninformative.
+3. **It is not sitting on an instrumental floor.** The narrowest measured value is 0.188″,
+   while the diffraction limit at H band on an 8.2 m aperture is λ/D ≈ 0.039″. The
+   measurements sit a factor of ~5 above the floor, spread over a factor of 5 in value —
+   a real distribution, not a saturated one.
+
+**This is what makes the HIP 81208 B result more than an artefact.** Its 0.246″ delivered PSF
+is a genuinely good AO correction on a bright B9 guide star, and β Pic b's 0.952″ is a
+genuinely poor one — the difference is in the correction, not in the atmosphere, and the
+header seeing would never have revealed it.
+
+**What this does not settle** is whether the fitted profile is the PSF exactly or the PSF
+convolved with the extraction's own spatial smoothing. That would inflate all values by a
+common factor, which shifts the R threshold but preserves the ordering and every
+classification in §12. Settling it needs a standard star of known profile reduced through
+the same path, which is a clean piece of future work rather than a caveat that changes any
+verdict.

@@ -9,33 +9,33 @@
 ## Abstract
 
 Companion-side radial velocimetry — measuring the reflex motion of a directly imaged brown
-dwarf or giant planet from its own spectrum, to detect a satellite or a second companion —
-is normally proposed on a photon-noise argument, and this project has twice tried to replace
-that with a contrast threshold. Both are downstream of something simpler. Reading the
-**nodding slit function** — the spatial profile along the slit, whose FWHM is the resolution
-that observation actually delivered after AO, seeing and instrument — we measure
-**R = projected separation / delivered PSF FWHM**, the number of resolution elements between
-companion and host, for every target with a reduction on disk. **R < 1 means the pair sits
-inside one resolution element: there is no companion spectrum to extract, at any contrast.**
-Across nine reductions the roster splits cleanly — resolved at R = 1.32, 1.42, 1.79, 10.64,
-11.26; blended at R = 0.39, 0.52, 0.54 — with no point in between, and a second, independent
-diagnostic taken from the same profile (its height at the companion's offset) corroborates
-with a clean gap: 0.00–0.15 of peak when resolved, 0.55–0.71 when blended. The consequences
-are concrete. **One ledger verdict is withdrawn**: HD 206893 B, recorded as "clean, gates
-100–102%", is a measurement of its host at R = 0.52. **β Pic b's verdict survives but its
-mechanism changes**: at R = 0.54 there was never a resolved companion to contaminate, which
-is why its RV–barycentric correlation of *r* = +0.88 was unmoved by a rebuilt template and by
-masking the responsible spectral order, at 99–100% injection transmission throughout. And
-**no fit statistic detects this**: an injection gate measures whether the *fitter* transmits
-an imposed velocity, which a bright host does better than a faint companion — as do
-per-epoch precision and across-order dispersion. Only the spatial profile catches it. The
-contrast question survives only inside the resolved regime, and it is untested: every system
-in the interval where a contrast threshold would be tested is blended, which is not a
-coincidence but the same fact stated twice. The instrument consequence follows directly and
-is a requirement rather than a preference: **fibre-fed starlight suppression is not a better
-way to work close in, it is the only way**, because the slit cannot deliver a companion
-spectrum there to be limited by contrast at all. Isolated planetary-mass objects have no
-host, so neither gate applies.
+dwarf or giant planet from its own spectrum, to detect a satellite or a second companion — is
+normally proposed on a photon-noise argument, and this project twice tried to replace that
+with a contrast threshold. Both are downstream of something simpler. Reading the **nodding
+slit function** — the spatial profile along the slit, whose FWHM is the resolution that
+observation actually delivered after AO, seeing and instrument — we measure **R = projected
+separation / delivered PSF FWHM**, the number of resolution elements between companion and
+host, for every target with a reduction on disk. **R < 1 means the pair sits inside one
+resolution element: there is no companion spectrum to extract, at any contrast.** Across
+eight classifiable reductions the roster splits cleanly — resolved at R = 1.32, 1.42, 1.79,
+10.64, 11.26; blended at 0.39, 0.52, 0.54 — with nothing in between, and a second,
+independent diagnostic from the same profile (its height at the companion's offset)
+corroborates with a clean gap: 0.00–0.15 of peak when resolved, 0.55–0.71 when blended. The
+consequences are concrete. **One ledger verdict is withdrawn**: HD 206893 B, recorded as
+"clean, gates 100–102%", is a measurement of its host at R = 0.52. **β Pic b's verdict
+survives but its mechanism changes**: at R = 0.54 there was never a resolved companion to
+contaminate, which is why its RV–barycentric correlation of *r* = +0.88 was unmoved by a
+rebuilt template and by masking the responsible spectral order, at 99–100% injection
+transmission throughout. And **no fit statistic detects this**: an injection gate measures
+whether the *fitter* transmits an imposed velocity, which a bright host does better than a
+faint companion — as do per-epoch precision and across-order dispersion. Only the spatial
+profile catches it. The contrast question survives only above R ≈ 1, and it is untested:
+every system in the interval where a contrast threshold would be tested is blended, which is
+not a coincidence but the same fact stated twice. The instrument consequence is therefore a
+requirement rather than a preference: **fibre-fed starlight suppression is not a better way
+to work close in, it is the only way**, because the slit cannot deliver a companion spectrum
+there to be limited by contrast at all. Isolated planetary-mass objects have no host, so
+neither gate applies.
 
 ---
 
@@ -291,7 +291,7 @@ the roster, and they are blended for the same reason their S is high. So the sec
 be not merely untested but **untestable with slit spectroscopy**: the regime where contrast
 would decide the outcome is the regime where the first gate has already decided it.
 
-Two predictions from S were placed on the record before the fact and are kept, restated in
+Three predictions from S were placed on the record before the fact and are kept, restated in
 the two-gate form — all three sit at ≥ 2.2″ and so should pass the resolution gate under any
 delivered PSF in our sample (0.246–1.514″): DH Tau B (S = 41), GSC 6214-210 B (S = 37) and
 1RXS J160929.1-210524 b (S = 318) are predicted **resolved and clean**. They are weak tests,
@@ -325,28 +325,25 @@ Two practical statements follow for anyone writing an observing block:
   2024), a starlight-suppressed series of exactly the object the slit loses (queue banner).
 
 And four things that cost nothing: read the slit function before trusting any verdict (§5);
-ask for 6–10 frames per night rather than ~2, since the binding constraint on measuring
-companion RV jitter is frames per night, not nights, and the control that should have carried
-it resolved a known signal at only 1.4σ (M29; NEXT-DIRECTIONS §A1); run the phase–BERV
-geometry check before the block is written (CD-35 2722 B's sampling correlates orbital phase
-with the barycentric correction at *r* = −0.71; η Tel B's leaves the 150–300 d decade clean,
-M15 §1); and never build a template from a single night (LESSONS trap 6).
+ask for 6–10 frames per night rather than ~2, the binding constraint on measuring companion RV
+jitter being frames per night rather than nights (M29; NEXT-DIRECTIONS §A1); run the
+phase–BERV geometry check before the block is written (CD-35 2722 B's sampling correlates
+orbital phase with the barycentric correction at *r* = −0.71, η Tel B's leaves the 150–300 d
+decade clean, M15 §1); and never build a template from a single night (LESSONS trap 6).
 
 ---
 
 ## 10. Free-floating planetary-mass objects: neither gate applies
 
 **Both gates are defined by the presence of a host, and an isolated planetary-mass object has
-none.** R is not large, it is undefined — there is no pair to resolve, no PSF wing at the
+none.** R is not large, it is undefined: there is no pair to resolve, no PSF wing at the
 companion's position, and no blend to mistake for a companion spectrum. The numerator of S is
 zero. Every failure mode in §§3–8 requires a star to produce it, as do the slit angle pinned
-across eighteen nights to keep a primary off the trace and the AO performance on which all of
-it turns.
-
-That matters more than it would if the gates were well located. The weakest parts of this note
-are the two thresholds: R ≈ 1 is bracketed by a factor of 2.4, and the contrast gate may be
-untestable at a slit. For an isolated target neither uncertainty is reduced — both are
-irrelevant.
+across eighteen nights to keep a primary off the trace and the AO performance on which that
+turns. That matters more than it would if the gates were well located: the weakest parts of
+this note are the two thresholds — R ≈ 1 bracketed by a factor of 2.4, and a contrast gate
+that may be untestable at a slit — and for an isolated target neither uncertainty is reduced,
+both are irrelevant.
 
 What is *unchanged* is what makes the measurement possible: a young, self-luminous object
 radiating its own K ≈ 12–15 infrared spectrum, of the class this project measured eleven
@@ -376,23 +373,23 @@ calibrated as above, not a substitute for an injection-derived limit.*
 A lighter host helps — at fixed satellite mass and orbit the reflex amplitude scales as
 M_p^(−1/2), so a 5–13 M_Jup isolated object is a better wobble target than the 37–47 M_Jup
 brown dwarfs dominating this roster (M7 §5) — and two dynamical asymmetries follow from the
-absence of a star rather than from optimism: the satellite's stable zone is not truncated from
-outside, that limit being set by the host's tidal field; and tidal spin-down of a giant planet
-*by its star*, which pushes corotation beyond the stability limit so that every stable
-satellite inspirals (M8 §§1–2), requires a star. Against that, the host mass is model-derived
-with no dynamical anchor, entering mildly: satellite mass scales as M_p^(1/2), so a 30%
-host-mass error is ~14% in it.
+absence of a star: the satellite's stable zone is not truncated from outside, that limit being
+set by the host's tidal field; and tidal spin-down of a giant planet *by its star*, which
+pushes corotation beyond the stability limit so that every stable satellite inspirals
+(M8 §§1–2), requires a star. Against that, the host mass is model-derived with no dynamical
+anchor, entering mildly: satellite mass scales as M_p^(1/2), so a 30% host-mass error is ~14%
+in it.
 
 **What we cannot claim.** There is no archival result: the ESO archive was swept for isolated
-planetary-mass objects with multi-epoch CRIRES+ coverage and the answer was negative and
-exhaustive (queue banner, idea #4), so this is a proposal case. Brightness remains the binding
-cut and bites below K ≈ 15, where the flux scaling degrades faster than 1.585×/mag as
-background takes over (M7 §1); every precision quoted here was achieved at K = 12.0–15.1. We
-have run no population census. Acquisition and wavefront sensing on a target with no bright
-neighbour is the unquantified operational cost, and we have no measurement bearing on it.
-And none of this is an exomoon-detection argument: the population study underlying the field
-expects RV to reach binary-like satellites (mass ratio ≳ 0.01), not solar-system analogues
-(M7 §1). Removing the host improves the noise, not the occurrence rate.
+planetary-mass objects with multi-epoch CRIRES+ coverage and came back negative and exhaustive
+(queue banner, idea #4), so this is a proposal case. Brightness remains the binding cut and
+bites below K ≈ 15, where the flux scaling degrades faster than 1.585×/mag as background takes
+over (M7 §1); every precision quoted here was achieved at K = 12.0–15.1. We have run no
+population census. Acquisition and wavefront sensing on a target with no bright neighbour is
+an unquantified operational cost we have no measurement bearing on. And none of this is an
+exomoon-detection argument: the underlying population study expects RV to reach binary-like
+satellites (mass ratio ≳ 0.01), not solar-system analogues (M7 §1). Removing the host improves
+the noise, not the occurrence rate.
 
 ---
 
@@ -453,7 +450,7 @@ in the project repository, with the milestone documents cited inline throughout.
 - Vanderburg, A., Rappaport, S. A., & Mayo, A. W. 2018, "Detecting exomoons via Doppler monitoring of directly imaged exoplanets", arXiv:1805.01903.
 - Vanderburg, A., & Rodriguez, J. E. 2021, "First Doppler limits on binary planets and exomoons in the HR 8799 system", arXiv:2110.14650.
 - Viswanath, G., Janson, M., Gratton, R., et al. 2023, A&A, "BEAST detection of a brown dwarf and a low-mass stellar companion around the young bright B star HIP 81208".
-- "Exomoon search with VLTI/GRAVITY around the substellar companion HD 206893 B", A&A, arXiv:2511.20091 — the source of HD 206893 B's projected separation. *(This project's milestone documents attribute this paper to two different first authors — Blunt et al. in M7/M10, Kral et al. in M11 and the methods note — so the citation must be checked against the published version before submission.)*
+- "Exomoon search with VLTI/GRAVITY around the substellar companion HD 206893 B", A&A, arXiv:2511.20091 — the source of HD 206893 B's projected separation. *(This project's milestone documents attribute this paper to two different first authors — Kral et al. in M7/M10, Kral et al. in M11 and the methods note — so the citation must be checked against the published version before submission.)*
 
 ---
 
