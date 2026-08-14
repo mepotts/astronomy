@@ -956,3 +956,40 @@ grow a band-and-DIT filter.
 
 **Status: the night's 39 science frames are downloading; nothing is reduced yet.** The above
 is a path derived from the recipe interfaces and the data's own geometry, not a result.
+## 16. The night's structure: the short frames are the host, not throwaway acquisition
+
+All 39 frames of the 2025-02-02 night verified by header: `OBJECT = bet Pic b`,
+`INS MODE = HIRISE`, `INS WLEN ID = H1567`, none undersized, none unreadable. They split into
+**30 frames at DIT = 30 s** and **9 at DIT = 1200 s**, and the obvious reading — that the
+short ones are acquisition and disposable — is wrong.
+
+| | median | 99.9th pct | max |
+|---|---:|---:|---:|
+| 30 s frames | 5.4 | **18 449** | 30 785 |
+| 1200 s frames | 54.5 | **9 094** | 46 283 |
+
+**The 30 s frames contain a far brighter source than the 1200 s frames**, despite 1/40th the
+exposure. That is the host: β Pic itself down the same fibre, during acquisition and
+centring, before the fibre is moved onto the planet for the deep integrations.
+
+That makes them valuable rather than expendable, in three ways:
+
+1. **Trace-finding.** Locating a 2–9 px fibre trace is far easier on a bright frame, and the
+   trace position is the same for both — the fibre output does not move. Find it on the
+   30 s frames, apply it to the 1200 s ones.
+2. **A same-night host reference through identical optics.** Every telluric and instrumental
+   feature in the planet spectrum is present in the host spectrum, taken minutes earlier
+   through the same fibre, spectrograph and atmosphere. That is a better-matched reference
+   than this project has had for any target.
+3. **A velocity zero-point.** The host's own lines give an absolute reference on the same
+   detector, which the self-built-template approach used everywhere else in this project
+   cannot provide (M29 note: companion-host relative RVs, `NEXT-DIRECTIONS.md` §A2, were
+   parked precisely because the template carries an unknown zero-point).
+
+**Disk forced a useful discipline.** With 3.5 GB free, the direct-CALIB fallback's 109 files
+were impossible and even the 74-file H-band subset did not fit. A minimal cascade — 3 darks
+each at 1200/2/45/60 s, 5 flats, 2 UNE, 2 FPET — is **21 frames, ~1.05 GB**, and is what
+cr2res actually needs to build a master dark, a flat with its trace-wave, and a wavelength
+solution. The over-fetch was never necessary.
+
+**Status: 39 science frames on disk and verified; 21 calibration frames downloading.**
