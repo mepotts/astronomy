@@ -15,7 +15,7 @@ UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 
 | Front | Avenue | Folder | State | Next human gate |
 |---|---|---|---|---|
-| exosat-rv M30: new public CRIRES+ epochs | [#1](DISCOVERY/run3-prospectus.md) | [`exosat-rv/`](exosat-rv/) | agent launched — ledger reconciliation + TAP verification + phase–BERV pre-checks; download only if verified | approve any reduction campaign (M31); HIP 65426 priority call still Matthew's (M20 §5) |
+| exosat-rv M30: new public CRIRES+ epochs | [#1](DISCOVERY/run3-prospectus.md) | [`exosat-rv/`](exosat-rv/) | **M30 done** — the sweep's three blocks were all already ledgered; counts/dates corrected in place in run3-prospectus. Genuinely new: **3 public HiRISE nights of HIP 65426 staged** (27/27 frames, 1.3 GB, zero fetch failures); β Pic thermal-IR pair reclassified; **CD-35 out-of-sample protocol fixed** — joint fit mandatory (R²(BERV\|171 d) 0.92 alone → 0.05–0.06 joint). Concurrent session opened M27 (first HiRISE extraction on-sky-validated, 9.8σ) | approve M31 (HiRISE extraction of the staged nights); HIP 65426 priority call still Matthew's (M20 §5); **disk at 7.2 GB free — cleanup call** |
 | eROSITA DR2 first sweep | [#5](DISCOVERY/run3-prospectus.md) | [`erosita-dr2/`](erosita-dr2/) | **M1 done** — 632,668 clean DR1↔DR2 pairs via consortium cross-walk (DR2 has no per-eRASS fluxes; catalogue-only); known transients recovered end-to-end (QX Nor ×475, SWIFT J1626.5−5156, V1708 Sco B); **candidates: 3eRASS J094452.8−711152 (×57 rise, no Gaia/SIMBAD), a TDE-like fader on a G=20.6 galaxy, 7 optical-faint vanished sources**; 140-row candidate CSV in `out/`. Next: M2 vetting | review `erosita-dr2/out/m1_candidates.csv` before any follow-up claims |
 | Gaia DR4 day-one prep | [#4](DISCOVERY/run3-prospectus.md) | [`gaia-dr4/`](gaia-dr4/) | **M1 done** — pre-release claims all confirmed; `gaiasupdate` 0.1.2 runs on Windows (12/12 fits); **BH3 orbit reproduced** (P 11.45 vs 11.6 yr, M2 34.7 vs 32.7 M☉); 3 day-one ADQL queries DR3-validated; BH1/BH2 fixtures pulled. Landmines: DR4 epoch astrometry is **DataLink-only**, and **source_ids are not stable DR3→DR4**. Next: M2 AMRF triage | create Gaia Archive + NOIRLab Data Lab accounts (needs Matthew's email) |
 
@@ -29,6 +29,16 @@ UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 
 ## Log
 
+- **2026-08-14 (evening)** — All three fronts reported and committed. **gaia-dr4 M1 ✓**: every
+  pre-release claim confirmed; BH3 orbit reproduced with ESA's own package; DataLink-only epoch
+  astrometry + unstable source_ids now on the map. **erosita-dr2 M1 ✓**: 632,668 clean DR1↔DR2
+  pairs; known transients recovered end-to-end; unidentified candidates delivered (headliner:
+  3eRASS J094452.8−711152, ×57 rise, no counterpart). **exosat-rv M30 ✓** with the day's biggest
+  lesson: run-3 avenue #1's dataset claims were all already ledgered and its counts wrong —
+  corrected in place; the verify-first gate cost hours instead of wasted campaigns. A concurrent
+  session opened M27 mid-M30 (first validated HiRISE extraction); both threads merged their ledger
+  edits additively. Open human gates: M31 approval, m1_candidates review, two accounts, disk
+  cleanup (7.2 GB free).
 - **2026-08-14** — Run-3 sweep folded in ([`DISCOVERY/run3-prospectus.md`](DISCOVERY/run3-prospectus.md)).
   Fronts #1/#5/#4 selected to start (Matthew's call). Folders `erosita-dr2/` and `gaia-dr4/`
   created; three agents launched in parallel. exosat-rv agent instructed to reconcile the

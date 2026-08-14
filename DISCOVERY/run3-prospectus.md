@@ -62,12 +62,12 @@ August–November is for building and validating against pre-release data; Decem
 |---|---|---|
 | rolling now | Rubin alerts via 7 brokers (world-public since 2026-02-24); Rubin solar-system astrometry → MPC immediately (X05); [SPHEREx QR2](https://irsa.ipac.caltech.edu/Missions/spherex.html) weekly; ESO 1-yr expirations monthly; MWA 18-mo / MeerKAT 12-mo / FAST 12-mo embargo exits; Einstein Probe survey data exiting its first proprietary year | open |
 | already out 2026 | [eROSITA-DE DR2](https://erosita.mpe.mpg.de/dr2/) (Jul 31, ~2M sources) · [LoTSS DR3](https://lofar-surveys.org/dr3.html) (Feb) · [GWTC-5.0](https://www.ligo.caltech.edu/news/ligo20260526) (May, 390 events) · IceTracks-DR2 (May) · CHIME/FRB Catalog 2 (4,539 bursts) · ZTF DR24 · MPTA 4.5-yr · [Gaia DR4 pre-release samples + official fitting package](https://www.cosmos.esa.int/web/gaia/dr4) (~Jun) · final Legacy Surveys map (Aug) | open |
-| **2026-10-01** | β Pic CRIRES+ K-band 360-exposure series exits ESO proprietary **[measured]** (per-file release date) | open |
+| **2026-09-25 → 10-01** | β Pic CRIRES+ campaign exits ESO proprietary rolling (M30-corrected: 6 nights / 1,158 frames, not 360; setting label is a filter hint — header-probe on release day) | open |
 | **2026-11** | [Euclid DR1-Foundation](https://www.cosmos.esa.int/web/euclid/dr1-timeline) — ~1,900 deg² images/catalogs/spectra, world-public | open |
 | **2026-12-02** | [**Gaia DR4**](https://www.cosmos.esa.int/web/gaia/release) — epoch astrometry/photometry/spectra for ~2B sources, expanded NSS catalog, first Gaia exoplanet list, 436k SSOs | open |
 | 2026-12 | **ZTF primary operations end** (DR25 follows 2027-01-20) — last chance to tune live-alert filters before the niche migrates to Rubin/LS4 streams | closing |
 | 2026-12→2027-03 | JWST Cycle-4 exoplanet programs exit exclusive access en masse via MAST | open |
-| 2027 | IPTA DR3 (116 pulsars, no firm date) · LVK O4c catalog+strain · DESI DR2 spectra (TBA) · Euclid DR1 complete (~mid-2027) · β Pic CRIRES+ L/M 1,266-exposure campaign (Apr 7) **[measured]** | open |
+| 2027 | IPTA DR3 (116 pulsars, no firm date) · LVK O4c catalog+strain · DESI DR2 spectra (TBA) · Euclid DR1 complete (~mid-2027) · further β Pic CRIRES+ nights release Dec 2026 – Apr 2027 (M30-corrected: the sweep's "1,266-exposure L/M campaign" was a mangled grouping) · CD-35 2722 embargoed campaign releases 2026-12-19 → 2027-05-02 (joint-fit protocol mandatory) | open |
 | late 2027 | LVK O5 begins · (PLATO launched Mar 2027, first LCs ~2028) | open |
 | ~2028-06 | Rubin DR1 (full year 1 — the 6-month DR1 was [cancelled](https://community.lsst.org/t/rubin-observatory-plans-for-early-science-v7-0-released/11252/4)) · eROSITA-DE DR3 (H2 2028) · SPHEREx legacy catalogs | rights-gated / late |
 
@@ -82,19 +82,26 @@ Tier 3 is new domains worth a scoped pilot.
 ### Tier 1 — validated pipelines, fresh data
 
 **1. New public CRIRES+ epochs on the exosat-rv roster** · *extends exosat-rv · competition: no known
-outside pipeline · live now + Oct 1*
-Live ESO TAP queries **[measured]** found time-series that exited proprietary *after* the roster
-closed: a **300-exposure block on CD-35 2722** (Oct 2024, public since 2025-10-19 — logged "K,LM",
-verify per-file settings; if K-band, an out-of-sample epoch test for the 171-d satellite signal), **90
-exposures on HIP 65426 B** (public 2026-05-04, extends the M20 limit), and the dated **β Pic K-band
-drop on Oct 1**. Also now public: LkCa 15 (170 exp), UX Tau A (136), HD 1160 (101), WASP-39 K-band
-transit series (173), TWA 5 (400, L/M). Unclaimed niche: an
-[archive paper of reduced CRIRES+ L/M spectra](https://arxiv.org/abs/2604.24466) appeared April 2026 —
-the **K/H-band equivalent has no such paper** and we own the only validated outside pipeline. NIRPS
-twist **[verified]**: public NIRPS RV products are deliberately scrambled ±100 m/s for 2 years, but
-**raw frames follow the normal 1-year rule** — a moat that only blocks people without their own
-extraction pipeline. *First step:* rerun the M20 recipe on the HIP 65426 B block; pull CD-35 2722 and
-check settings against H1567/K2166.
+outside pipeline · embargo calendar: Sep 25–Oct 1, then Dec 19 → May 2*
+⚠️ **Corrected in place by M30 ground-truthing (2026-08-14, same day —
+[`exosat-rv/M30-RESULTS.md`](../exosat-rv/M30-RESULTS.md)).** The sweep's three headline blocks were
+all already in the project ledger, and none of its counts or "public since" dates survived per-night
+verification: the "90-exposure HIP 65426" block is M22's already-consumed K2192 series (134 frames);
+the "300-exposure CD-35 2722" block is the known, shelved M4368 thermal-IR deep pair (not K-band, and
+not the queued cd35d1 fix either); the "360-exposure β Pic Oct 1" series is the M23 §6
+embargo-calendar campaign — really 6 nights / 1,158 frames releasing rolling **2026-09-25 → 10-01**,
+whose "K2166" label is only a filter hint (header-probe on release day). **What M30's own
+verification found genuinely new:** 3 public **HiRISE** nights of HIP 65426 (27 frames, H1567,
+staged to disk), a β Pic thermal-IR deep pair reclassified, and the decisive protocol fact for the
+embargoed CD-35 campaign (releases 2026-12-19 → 2027-05-02): standalone it is BERV-entangled at
+R²(BERV | 171 d) = 0.92 — **the out-of-sample test must be a joint fit with the existing series**,
+where it is decisive (0.05–0.06). Still standing from the original avenue: the K/H-band
+archive-paper niche (the [L/M slice](https://arxiv.org/abs/2604.24466) is claimed, K/H is not), the
+NIRPS raw-frame moat **[verified]** (public NIRPS RV products scrambled ±100 m/s for 2 years; raw
+frames follow the 1-year rule), and the embargo calendar as dated compute triggers. Meta-lesson, now
+house law: **an archive sweep that doesn't read the ledger can't tell "public" from "new" —
+reconcile before celebrating.** *First step (M31, gated on Matthew):* extract the staged HIP 65426
+HiRISE nights through the validated util_ path; pre-register the CD-35 joint-fit protocol.
 
 **2. Independent analyses of public PTA data — MPTA first, IPTA DR3 next** · *extends the pta
 pipeline · competition: thin outside collaborations · live now → 2027*
@@ -321,3 +328,10 @@ instructed to verify against primary sources rather than memory and to flag anyt
 public. Two inter-agent conflicts were resolved by depth of sourcing (Rubin DR1 date) or left
 explicitly open (ExoFOP CTOI). Complements the 2026-07-28 8-agent `DISCOVERY/` fan-out and the
 `IDEAS/` run-2 brief; supersedes neither.
+
+**Postscript (2026-08-14, later the same day).** M30 ground-truthed avenue #1 against the exosat-rv
+ledger and corrected all three of its dataset claims in place (see the ⚠️ block above). Avenues #4
+and #5 survived their first execution intact — every Gaia DR4 pre-release claim confirmed, the
+eROSITA DR2 inventory confirmed with one premise fix (no per-eRASS fluxes; the DR1 cross-walk is the
+route). Net: this document's own "verify before building" rule is not decoration; it is the reason
+the day cost verification time instead of wasted campaigns.
