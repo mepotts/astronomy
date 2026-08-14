@@ -611,3 +611,104 @@ unlocated.
 `docs/paper/contrast-wall-note.md` should lead with R and demote S to the
 within-resolved-regime question. The paper's title is already "the wall is not a contrast
 wall"; this says what it is instead, with a threshold that was not tuned.
+
+## 11. Both candidate variables are dead: HD 206893 B kills S and R together
+
+§10 flagged that HD 206893 B's separation was wrong *in kind* — a semi-major axis where
+every other row uses a projected separation — and predicted that fixing it "would lower R
+rather than raise it". Kral+2026's GRAVITY astrometry table gives the projected separation
+directly, ΔRA and ΔDec per epoch:
+
+| GRAVITY MJD | projected sep |
+|---|---:|
+| 59453.093 | 206.8 mas |
+| **59534.021 — the CRIRES epoch** | **205.2 mas (interpolated, 12% between)** |
+| 60127.218 | 193.1 mas |
+
+**R = 0.205 / 0.393 = 0.52**, against β Pic b **FLOODED at R = 0.54**. A clean case now sits
+*below* a flooded one. **R does not order the outcomes.** The prediction that the correct
+input would make it worse was right.
+
+**And the same point kills S.** SIMBAD carries both magnitudes: host H = 5.687,
+companion H = 16.79, so Δmag = 11.10 and contrast = **27 618×** in H.
+
+    S = 27 618 / 0.205² = 655 912
+
+against thresholds of CLEAN < 4327 and FAILS > 15 202, with β Pic b flooding at 15 154.
+**HD 206893 B is clean at 43× the S of the flooded case.** Even the conservative variant —
+converting to a K-band contrast with an L-dwarf colour of H−K ≈ 1.2, giving ~9970× — leaves
+S = 236 835, still **16× above** the failure threshold. This is not a marginal miss.
+
+### Where that leaves the feasibility question
+
+Four framings, each replacing the last, all now tested against the same data:
+
+| variable | status |
+|---|---|
+| contrast alone | fails — clean at 97× and 10 280×, floods at 3950× |
+| separation alone | fails — clean at 0.325″, floods at 0.51″ |
+| S = contrast/θ² | **falsified** — HD 206893 B clean at 43× the flooded case |
+| R = sep/PSF | **falsified** — HD 206893 B clean at R below the flooded case |
+
+**No single-parameter combination of contrast and separation orders these outcomes.** That
+is a clean negative result, it is well sourced, and it is more defensible than any of the
+four positive claims I attempted today.
+
+### The caveat that could rescue everything, and why it should be checked first
+
+**HD 206893 B's verdict is by some distance the weakest in the table.** M26 records "clean
+data both settings, gates 100–102%, epochs banked" — a single night per setting with
+passing injection gates, not an injection-calibrated null over a series like η Tel B, nor a
+detection like CD-35. If that night is clean because the *host* was extracted rather than
+the companion — the HD 4747 B failure mode, which was only caught by reading the slit
+function — then this data point is not a companion measurement at all and both refutations
+collapse.
+
+At 0.205″ separation with a 0.393″ delivered PSF, R = 0.52 means **the pair is blended**,
+exactly as HD 4747 B was at R = 0.39. That is strong prior reason to suspect the same
+thing. Checking it costs one slit-function scan of the kind §9 ran on HD 4747 B, and it
+should happen before any of §11 is written up.
+
+### ✓ THE CHECK WAS RUN IMMEDIATELY, AND IT VOIDS THE REFUTATION
+
+HD 206893 B's slit function at 0.205″ sits at **0.598 of the peak height** (median over 31
+order-sides) — essentially the HD 4747 B signature of 0.75, and nothing like the ≪0.1 a
+resolved faint companion would give. **The pair is blended, and the extraction is of the
+host.**
+
+So HD 206893 B is not a companion measurement, cannot refute S or R, and §11's two
+refutations are withdrawn. **S and R return to "untested", not "falsified".**
+
+### The structural result underneath all of this
+
+Three systems have now been checked for blending by reading the slit function rather than
+trusting the extraction:
+
+| system | sep | delivered PSF | R | profile at the companion | state |
+|---|---:|---:|---:|---:|---|
+| HD 4747 B | 0.590″ | 1.514″ | 0.39 | 0.75 of peak | blended |
+| HD 206893 B | 0.205″ | 0.393″ | 0.52 | 0.60 of peak | blended |
+| β Pic b | 0.511″ | 0.952″ | 0.54 | — (km/s, r(BERV)=+0.88) | flooded |
+
+versus the clean cases, all at R ≥ 1.32.
+
+**Every system in the regime where the criterion would be tested is blended — and that is
+not a coincidence, it is the same fact stated twice.** Being close enough to have an
+interesting S or R is exactly what makes a companion unresolvable from its host. The
+untested interval is not merely unobserved; with slit spectroscopy it may be
+*unobservable*, because below R ≈ 1 there is no companion spectrum to extract at any
+contrast.
+
+**This is the strongest conclusion available from the day's work, and it is a negative
+one.** It also converts the project's existing instrument recommendation from a preference
+into a requirement: fiber-fed starlight suppression (HiRISE, KPIC) is not a way to do this
+*better* in the close regime — it is the only way to do it *at all*, because the slit
+cannot deliver a companion spectrum there to be limited by contrast in the first place.
+
+**Two verdicts in the ledger need re-examining on this basis.** HD 206893 B is recorded in
+M26 as "clean data both settings, gates 100–102%" and 2M0103AB b as "within-night pair
+agrees at ~53 m/s, gates 100±0%". Passing injection gates does not distinguish a companion
+spectrum from a host spectrum — the gate measures whether the *fitter* transmits velocity,
+and it transmits just as well on a bright host. Any verdict from a blended pair is a
+statement about the host. That check is one slit-function scan per target and it should be
+run across the roster.
