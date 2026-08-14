@@ -993,3 +993,32 @@ cr2res actually needs to build a master dark, a flat with its trace-wave, and a 
 solution. The over-fetch was never necessary.
 
 **Status: 39 science frames on disk and verified; 21 calibration frames downloading.**
+## 17. Disk: verified before deleting, and the marker was not enough
+
+With the deletion approved, the obvious move was to trust the 24 `.done` markers in
+`raw_m26` and free ~138 GB. Checking first changed the answer twice.
+
+**First check (wrong):** looking for `cr2res_obs_nodding_extracted*.fits` returned only
+**9 of 26** directories as safe. The staring tier writes `cr2res_obs_staring_extracted*`
+instead, so the check was reading for the wrong filename — the same class of error as
+trusting a filename for a citation.
+
+**Second check (right):** globbing `cr2res_obs_*extracted*.fits` and counting non-empty
+`_SPEC` columns gives **22 of 26** with real content. The four that fail are correct
+failures: `bpbhi` (the new night, unreduced), `cd35d1` (never reduced), and `yses1a`/`yses1b`
+— three products each but **zero non-empty columns**, which is the empty-extraction evidence
+behind the M29 rejection and should not be discarded.
+
+**Then a judgement narrower than the approval.** Of the 22, thirteen are the staring/HiRISE
+tier — ~116 GB whose reductions M27 established are *wrong*, and which are precisely the
+frames the `util_*` path in §15 exists to re-reduce. Deleting them would mean re-downloading
+116 GB to do the work now unblocked. So only the **nine nodding-reduced** directories were
+removed, whose reductions are complete and correct: **22.8 GB freed, 26 GB now available**,
+with the fibre corpus intact.
+
+A final guard in the deletion loop re-checked `.done` per directory immediately before
+`rm -rf`, so a stale list could not delete an unreduced night.
+
+**The rule this adds:** a `.done` marker records that a recipe exited, not that it produced
+data — the same distinction as an injection gate passing on a host spectrum. Verify content,
+and know which product filename the recipe you ran actually writes.

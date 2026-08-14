@@ -47,7 +47,11 @@ not either.
    serial run also gets throttled: after 39 consecutive fetches a 21-file batch returned
    **21/21 failures** while the same URL succeeded on a manual retry seconds later, and the
    batch still exited 0 (M29). Wrap each fetch in a 3-try loop with a short sleep between
-   files, and judge by `ls *.fits`, never by the exit status. Skip-existing must be size-validated (`find -size +1M`); judge a night by files on disk, never by attempt logs.
+   files, and judge by `ls *.fits`, never by the exit status. The throttle window can
+   outlast a retry loop -- a 3-try loop with 5 s sleeps failed all 21 files, then the
+   identical command succeeded minutes later. Probe one URL by hand before concluding
+   anything is wrong with the URLs or the resolver, and skip files already on disk so a
+   rerun is cheap. Skip-existing must be size-validated (`find -size +1M`); judge a night by files on disk, never by attempt logs.
 7. Targets hide under **host-star and programme names** — only a coordinate census with reverse sky-clustering finds them (that's how YSES 1 b's record series and beta Pic b's K campaign were found).
 8. The archive's "staring" datasets are **HiRISE** (fiber-fed SPHERE→CRIRES+). See trap 1.10.
 
