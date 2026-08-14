@@ -6,8 +6,10 @@ eROSITA-DE **DR2** (released **2026-07-31**, eRASS1–3 stacked, ~2M sources, no
 deepest public all-sky X-ray catalog and is essentially unmined. This project mines it by
 cross-match: the joins are the discovery instrument.
 
-**Why now.** Every DR1×Gaia selection can be redone at DR2 depth; DR2's multi-epoch (eRASS1 vs
-eRASS:3) fluxes open an X-ray variability axis DR1 never had; and on **2026-12-02** Gaia DR4's
+**Why now.** Every DR1×Gaia selection can be redone at DR2 depth; DR1→DR2 flux comparison via the
+consortium's `UID_DR1` cross-walk opens an X-ray variability axis (M1 correction: DR2 is
+catalogue-only with *stacked* eRASS:3 values — no per-eRASS epoch columns; the original premise
+here was wrong); and on **2026-12-02** Gaia DR4's
 non-single-star orbits arrive — X-ray-detected astrometric binaries (dormant compact objects) is a
 hunt nobody can start before that date. Building the ingest now means running the join that morning.
 
