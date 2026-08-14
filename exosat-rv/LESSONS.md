@@ -73,6 +73,14 @@ not either.
 
 - Long shell chains go in **committed script files** — inline one-liners died silently twice and cost whole runs.
 - **`cr2res_obs_nodding` needs an EVEN frame count** — see §4. An aborted template leaves an odd number and the recipe writes 11 empty products at exit 0.
+- **Line endings break DATA files too, not only scripts.** A URL list written by Windows
+  Python (`open(p,'w')`) carries `` on every line. `curl` still fetches -- the CR is
+  dropped from the request -- but any shell check built from the same string looks for
+  `NAME.fits` and never matches, so every success scores as a failure and the loop
+  retries forever. This was misdiagnosed twice as archive throttling before `od -c` on
+  the list settled it (M29). **Write LF explicitly (`newline="
+"`), or generate the
+  list inside WSL.** The lists written WSL-side in the same session were clean.
 - **Line endings will break every script in this repo.** Git is configured `core.autocrlf=true`, so it rewrites `*.sh` to CRLF on checkout; WSL's bash then fails with `$'
 ': command not found`, a bogus `No such file or directory` on the sourced env file, and a syntax error — while the *task* still reports exit 0. All 39 shell scripts were in this state (found M29, after a "completed" reduction had done nothing). Fixed by `.gitattributes` pinning `*.sh`/`*.py`/`*.sof` to `eol=lf`. Diagnose with `file script.sh` **from inside WSL** — a `grep $'
 '` from git-bash reports LF and will mislead you.

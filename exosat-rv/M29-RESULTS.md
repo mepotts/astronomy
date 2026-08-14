@@ -1022,3 +1022,41 @@ A final guard in the deletion loop re-checked `.done` per directory immediately 
 **The rule this adds:** a `.done` marker records that a recipe exited, not that it produced
 data — the same distinction as an injection gate passing on a host spectrum. Verify content,
 and know which product filename the recipe you ran actually writes.
+## 18. The same CRLF bug, a third time, wearing a different disguise
+
+The calibration download for the HiRISE night failed 21 of 21, then 20 of 21 on retry, while
+a manual `curl` of the *first failing URL* returned HTTP 200 and 30 MB every time. I
+misdiagnosed it twice as archive throttling and wrote a LESSONS entry saying so.
+
+It was not throttling. `cal_min.txt` was written by Windows Python with `open(p,'w')`, so
+every URL carried a trailing ``:
+
+```
+0000100   7   :   5   1   .   9   9   2    
+
+```
+
+`curl` fetches fine — the CR is dropped from the request — but the loop's success check was
+built from the same string, so it looked for `CRIRE.2025-02-01T09:47:51.992.fits` and never
+matched. **Every successful download was scored as a failure**, retried three or four times,
+and reported as `STILL FAILED`. The exit code was 0 throughout.
+
+The tell was that the *science* download from `sci.txt` had worked perfectly with the identical
+command. That file was written inside WSL and is LF; `cal_min.txt` came from the Windows side
+and is CRLF. `file` on the two lists shows it in one line.
+
+**This is the third appearance of the same bug in one session**, each in a different place:
+
+1. Git checking out `*.sh` as CRLF, making every shell script unrunnable under WSL;
+2. My own Python edits re-introducing CRLF into `reduce_one.sh` hours after fixing it;
+3. A **data file** — a URL list — where it corrupts a string comparison rather than a script.
+
+The first two broke loudly at parse time. This one broke silently and produced a plausible
+false diagnosis, which is worse: I wrote and committed a LESSONS entry about archive
+throttling that was wrong about the cause. That entry now carries the correction.
+
+**The durable rule:** on this machine, anything written by Windows Python and consumed by
+bash needs `newline="
+"` set explicitly, or should be generated inside WSL. And when a
+command works by hand but fails in a loop, suspect the *string*, not the network — `od -c`
+the input before theorising.
