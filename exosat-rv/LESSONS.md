@@ -50,6 +50,11 @@ not either.
 ## 4. cr2res reduction traps
 
 - Mixed-setting nights crash `obs_nodding` ("Expect only one DROT POSANG") — split SOFs per setting (queued: cd35d1).
+- **HiRISE/fibre data needs the `util_*` recipes, not `obs_*`.** `cr2res_util_trace`'s
+  `smooth_y` defaults to **401 px**, sized for a ~180 px slit order; a fibre trace is
+  **2-9 px** and is smoothed away before detection. Use `util_calib` -> `util_trace`
+  (small `smooth_y`, `min_cluster`) -> `util_extract` (`--height` a few px, `--method SUM`).
+  The `obs_*` recipes are slit-geometry wrappers; the utilities underneath are general (M29 §15).
 - A recipe can "succeed" in 0.656 s and write **empty extractions** (YSES 1 2022) — staging must verify *table contents*, not file existence.
 - **`cr2res_obs_nodding` requires an EVEN number of science frames.** That *is* the YSES 1 2022 cause, found M29: an 8-exposure template aborted after 7 (the archive holds 7 too — nothing was lost in download), leaving 3 A and 4 B. The log says `Require an even number of raw frames` / `Invalid Inputs` / `Failed to reduce detector 1,2,3` — and the recipe then writes **all 11 products anyway, empty, and exits 0**. Drop one frame to make the count even. Check `ESO TPL EXPNO` vs `ESO TPL NEXP` at staging: an aborted sequence is common and silent.
 - Some frames arrive with UTC/LST stripped — patch placeholder keywords at staging (AF Lep).

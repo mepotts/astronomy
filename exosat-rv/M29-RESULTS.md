@@ -902,3 +902,57 @@ common factor, which shifts the R threshold but preserves the ordering and every
 classification in §12. Settling it needs a standard star of known profile reduced through
 the same path, which is a clean piece of future work rather than a caveat that changes any
 verdict.
+## 15. The HiRISE extraction path exists in cr2res already — it is a parameter problem
+
+§13 left one open question: whether `cr2res_obs_staring` could be coerced onto a 2–9 px
+fibre trace, or whether a purpose-built narrow-trace extraction was needed. **Neither.**
+cr2res ships the low-level utilities to do it properly, and the reason the slit recipes
+mangle HiRISE data is visible in their defaults.
+
+### The utilities that bypass the observation recipes
+
+`esorex --recipes` lists, besides the `obs_*` recipes this project has used exclusively:
+
+| utility | role |
+|---|---|
+| `cr2res_util_calib` | apply dark / flat / BPM to a raw frame |
+| `cr2res_util_trace` | find the traces on a calibrated frame |
+| `cr2res_util_extract` | **optimal extraction along a given trace** |
+
+That is the whole chain, without `obs_nodding`'s requirement for A/B pairs or
+`obs_staring`'s slit-geometry assumptions. The observation recipes are convenience wrappers;
+the pieces underneath are general.
+
+### Why the slit path destroys a fibre trace — from the defaults
+
+**`cr2res_util_trace --smooth_y` defaults to 401.** That is the spatial smoothing kernel used
+before trace detection, and it is sized for a slit order ~180 px tall. A HiRISE fibre trace
+is **2–9 px**. Smoothing a 5-pixel feature with a 401-pixel kernel erases it before detection
+can run — which is a sufficient explanation for the M27 banner's "mis-reduced through the
+slit recipe", and it is a *parameter* mismatch, not a missing capability.
+
+`cr2res_util_extract` is tunable in the matching way:
+
+- `--height` (default −1, auto) — settable to a few pixels
+- `--smooth_slit` (default 2.0) — slit-scale smoothing along a profile that is 5 px wide
+- `--method` — `SUM` is appropriate for a narrow trace; the curvature-aware methods assume a
+  resolved slit profile
+- `--slit_frac`, `--trace_nb` — select a sub-region or a single trace
+
+**So the M27 reduction path is: `cal_dark` → `cal_flat` → `cal_wave` (all slit-independent
+and unchanged) → `util_calib` → `util_trace` with `smooth_y` and `min_cluster` reduced to
+fibre scale → `util_extract` with a small `--height` and `SUM`.** Then the existing H1567
+chain — order map, template ladder, injection gate — applies unchanged, because the setting
+is the one this project already characterised.
+
+### The calibration set is also mostly irrelevant
+
+The direct-CALIB fallback returns **109** files for the 2025-02-02 night because it cannot
+filter by what the cascade needs. Restricting to H-band frames at the DITs actually
+required — DARK at 1200 s (matching the science), 2/45/60 s (for flat, UNE, FPET), FLAT at
+2 s, and the two WAVE types — gives **74**. The remainder are J, K and Y band frames and
+metrology lamps. On a disk with 5 GB free that difference matters, and the fallback should
+grow a band-and-DIT filter.
+
+**Status: the night's 39 science frames are downloading; nothing is reduced yet.** The above
+is a path derived from the recipe interfaces and the data's own geometry, not a result.
