@@ -9,6 +9,21 @@ Researched **2026-07-28** by an 8-agent fan-out. Every URL below was live-fetche
 numbers are marked **[measured]**. Anything that could not be confirmed says **unverified** rather
 than guessing. Facts here have a shelf life — re-verify before acting on a dated claim.
 
+> **Run 3 addendum (2026-08-14).** A third sweep mapped the *publishable-science* axis (papers, not
+> designations) — see [**run3-prospectus.md**](run3-prospectus.md) for the ranked avenues, the Q4 2026
+> release calendar (eROSITA-DE DR2 out 07-31; Euclid DR1-Foundation Nov; **Gaia DR4 Dec 2**), the
+> cross-match matrix, and the agent-leverage lens. Facts below that moved since 2026-07-28:
+> **(a)** Rubin's 6-month DR1 was cancelled — DR1 is now the full year-1 release, ~June 2028; alerts +
+> MPC astrometry stay the only public windows. **(b)** Rubin does *not* flood the ITF with orphans
+> (2-detection tracklets withheld by design); the opportunity is attribution against its bulk
+> designation batches. **(c)** **ZTF primary ops end Dec 2026** — the TNS/DCAP-style niche in §2
+> compresses on a hard date; migrate filters to Rubin brokers / LS4. **(d)** LS4 shows signs of life
+> (survey paper published, public >5σ alerts claimed) — re-verify before building; the table below is
+> stale on it. **(e)** SARC now runs a formal verification process for archival submitters (Dec 2025
+> newsletter). **(f)** SOHO's "at least until September 2026" funding line is now due — weight the
+> CCOR-1/PUNCH hedge in §3. **(g)** The ExoFOP cTOI pause recorded below conflicts with process pages
+> found live in run 3 — check before relying either way.
+
 ---
 
 ## The eight, ranked by whether they produce an OFFICIAL discovery record
