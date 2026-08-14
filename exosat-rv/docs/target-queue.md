@@ -110,6 +110,22 @@
 > | HR 8799 b–e | 2 K2148 nights (new setting) | shelf until worth a new order map |
 > | GQ Lup b | Y1029 | out of scope (no Y telluric reference) |
 >
+> ## M30 verification pass (2026-08-14 — outside sweep reconciled; header-verified)
+>
+> An external archive sweep (`DISCOVERY/run3-prospectus.md` #1) claimed three "new"
+> public blocks; per-night verification (`data/m30-verify.json`, probes, `M30-RESULTS.md`)
+> found **none of them new** — but banked these additions:
+>
+> | item | verified (2026-08-14) | disposition |
+> |---|---|---|
+> | **HIP 65426 HiRISE** | 3 public nights 2025-01-31/02-01/02-02, 27 frames, **H1567 HIRISE** (header probe), prog 114.2712 | **new to ledger** — joins the M27 fibre corpus; science staged `raw_m30/h65hi1-3`, minimal-calib URL lists banked `logs_m30/` |
+> | beta Pic 2024-09-19/22 deep pair | 2×150 frames public, prog 113.26UN, header **M4368 on `bet Pic b`** | thermal-IR — shelved with the L/M class (was unclassified in prose) |
+> | beta Pic late-2025 series | **6 nights / 1158 frames**, prog 115.2820, releases **rolling 2026-09-25 → 2026-10-01**; filter hints `KX1E-2,LM` on 4/6 nights | ⚠ the calendar's "K2166" label is a hint, not a verification — header probe at release before committing compute |
+> | CD-35 116.2AP9 embargoed campaign | **10 nights**, releases **2026-12-19 → 2027-05-02** (8 H-hint + 2 K-hint) | pre-check (`data/m30-precheck.json`): standalone **R²(BERV\|171.454 d)=0.92 — never fit alone**; joint with existing series **R²=0.05 — decisive**. Pre-register the joint fit |
+> | HIP 65426 slit series | the sweep's "90 exposures" = M22's five K2192 nights, 134 frames, releases rolled 2025-03-11 → 2026-05-07 | already consumed (M20 §4); nothing new |
+> | CD-35 Oct 2024 "300 exposures" | = the 114.27LL deep pair (150+150) | already shelved (M4368, above); monitoring pairs 2024-10→2025-01 are the reproduction's own epochs (M0) |
+> | M27 status | a concurrent session completed the **bpbhi extraction (39/39 frames)**, ~17 GB products | M31: validate table contents (LESSONS §4), then the H1567 chain; do not re-run |
+>
 > **What reopens the queue (all dated or decisions):**
 > - Embargoes: GSC product; PDS 70's 2025 K nights; eta Tel's K epochs; beta Pic b's
 >   late-2025 K2166 nights; **CD-35's decisive epochs Dec 2026 – May 2027** (settles

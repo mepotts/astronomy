@@ -1,5 +1,25 @@
 # HANDOFF — exosat-rv
 
+> ## M30 (2026-08-14) — the outside sweep's "new public epochs": none were new
+>
+> `DISCOVERY/run3-prospectus.md` avenue #1 claimed three newly-public CRIRES+ blocks.
+> Verified per-night against TAP + raw headers ([`M30-RESULTS.md`](M30-RESULTS.md)):
+> **(a)** HIP 65426's "90 exposures" are M22's own five-night K2192 series (134 frames,
+> consumed); **(b)** CD-35's "300 exposures Oct 2024" are the M4368 thermal-IR deep pair,
+> shelved since M26; **(c)** the beta Pic series is still embargoed (truth: 6 nights /
+> 1158 frames rolling 2026-09-25 → 10-01; its "K2166" ledger label is only a filter hint —
+> header probe at release). What M30 *did* find: **three public HiRISE H1567 nights of
+> HIP 65426** (27 frames, new to the ledger; science staged as `raw_m30/h65hi*`, calib
+> lists banked), the public 2024-09 beta Pic deep pair header-classified **M4368 on
+> `bet Pic b`** (shelved class), and the CD-35 embargoed-campaign pre-check: **standalone
+> R² = 0.92 at 171.454 d (never fit the new epochs alone), joint with the existing series
+> R² = 0.05 — the Dec 2026 releases decide the satellite jointly or not at all.**
+> Meanwhile a concurrent session completed **and on-sky-validated** the first HiRISE
+> extraction (bpbhi 39/39; host-telluric CCF 9.8σ at 0 km/s, M29 §19+) — M27 has begun
+> in that thread; M31 here should extract the staged HIP 65426 nights through that
+> path, not duplicate the beta Pic work. No reductions were run in M30; staging stayed
+> science-only (27/27 frames, 1.3 GB, size-validated) because the data volume hit 100%.
+
 > ## ⚠ M29 (2026-08-13) — READ BEFORE TRUSTING ANY NUMBER IN THIS REPO
 >
 > A day spent checking old work against its actual sources found **14 wrong citations
