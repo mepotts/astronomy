@@ -17,7 +17,7 @@ UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 |---|---|---|---|---|
 | exosat-rv M30: new public CRIRES+ epochs | [#1](DISCOVERY/run3-prospectus.md) | [`exosat-rv/`](exosat-rv/) | agent launched — ledger reconciliation + TAP verification + phase–BERV pre-checks; download only if verified | approve any reduction campaign (M31); HIP 65426 priority call still Matthew's (M20 §5) |
 | eROSITA DR2 first sweep | [#5](DISCOVERY/run3-prospectus.md) | [`erosita-dr2/`](erosita-dr2/) | agent launched — access + catalog inventory, DR1↔DR2 variability slice, Gaia cross-match of top variables | review candidate table before any follow-up claims |
-| Gaia DR4 day-one prep | [#4](DISCOVERY/run3-prospectus.md) | [`gaia-dr4/`](gaia-dr4/) | agent launched — verify pre-release sample + official package, run demo fit, draft day-one ADQL | create Gaia Archive + NOIRLab Data Lab accounts (needs Matthew's email) |
+| Gaia DR4 day-one prep | [#4](DISCOVERY/run3-prospectus.md) | [`gaia-dr4/`](gaia-dr4/) | **M1 done** — pre-release claims all confirmed; `gaiasupdate` 0.1.2 runs on Windows (12/12 fits); **BH3 orbit reproduced** (P 11.45 vs 11.6 yr, M2 34.7 vs 32.7 M☉); 3 day-one ADQL queries DR3-validated; BH1/BH2 fixtures pulled. Landmines: DR4 epoch astrometry is **DataLink-only**, and **source_ids are not stable DR3→DR4**. Next: M2 AMRF triage | create Gaia Archive + NOIRLab Data Lab accounts (needs Matthew's email) |
 
 ## Queued fronts (not started)
 
