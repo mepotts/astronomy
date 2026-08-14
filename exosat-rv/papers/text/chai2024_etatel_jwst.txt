@@ -1,0 +1,1624 @@
+<<<PAGE 1>>>
+DRAFT VERSION AUGUST 29, 2024
+Typeset using LATEX twocolumn style in AASTeX631
+A JWST MIRI MRS View of the η Tel Debris Disk and its Brown Dwarf Companion
+YIWEI CHAI
+ ,1 CHRISTINE H. C HEN
+ ,2, 1 KADIN WORTHEN
+ ,1 ALEXIS LI
+ ,1 ANTRANIK A. S EFILIAN
+ ,3, 4
+WILLIAM BALMER
+ ,1 DEAN C. H INES
+ ,2 DAVID R. L AW
+ ,2 B. A. S ARGENT
+ ,2, 1 MARK WYATT,5 CICERO X. L U
+ ,6
+MARSHALL D. P ERRIN
+ ,2 ISABEL REBOLLIDO
+ ,7 EMILY RICKMAN
+ ,8 AND G. C. S LOAN
+ 2, 9
+1William H. Miller III Department of Physics and Astronomy, Johns Hopkins University, 3400 N. Charles Street, Baltimore, MD 21218, USA
+2Space Telescope Science Institute, 3700 San Martin Drive, Baltimore, MD 21218, USA
+3Astrophysikalisches Institut und Universit¨atssternwarte, Friedrich-Schiller-Universit¨at Jena, Schillerg¨aßchen 2–3, D-07745 Jena, Germany
+4Center for Advanced Mathematical Sciences, American University of Beirut, P .O. Box 11-0236, Riad El-Solh, Beirut 11097 2020, Lebanon
+5Institute of Astronomy, University of Cambridge, Madingley Road, Cambridge CB3 0HA, UK
+6Gemini Observatory/NSF’s NOIRLab, 670N. A’ohoku Place, Hilo, HI 96720, USA
+7Centro de Astrobiolog´ıa (CAB), INTA-CSIC, Camino Bajo del Castillo s/n - Villafranca del Castillo, 28692 Villanueva de la Ca˜nada, Madrid, Spain
+8European Space Agency (ESA), ESA Office, Space Telescope Science Institute, 3700 San Martin Drive, Baltimore, MD 21218, USA
+9Department of Physics and Astronomy, University of North Carolina at Chapel Hill, Chapel Hill, NC 27599-3255, USA
+ABSTRACT
+We report JWST MIRI MRS observations of the β Pic moving group member, η Tel A, along with its brown
+dwarf binary companion, η Tel B. Following PSF subtraction, we recover the spatially resolved flux from the
+debris disk around η Tel A, along with the position of the companion exterior to the disk. We present a new 5–26
+µm epoch of spectroscopy for the disk, in which we discover a 20 µm silicate feature, and the first ever 11–21
+µm spectrum of η Tel B, which indicates a bare photosphere. We derive a new epoch of relative astrometry
+for the companion, extending the baseline of measurements to 25 years, and find that it is currently located
+near the apocentre of an eccentric, long-period orbit. The companion’s orbit is close enough to the disk that
+it should significantly perturb the planetesimals within it, resulting in a detectable mid-IR pericenter glow and
+near-alignment with the companion. Contrary to expectations, however, we find that the disk appears to be
+axisymmetric and potentially misaligned with the companion in the MIRI MRS data. We posit that this may
+be due to the presence of an additional, yet-undetected ∼0.7–30 MJ planet orbiting interior to the disk with a
+semimajor axis of ∼3–19 au.
+Keywords: debris disks — circumstellar matter — brown dwarfs
+1. INTRODUCTION
+Observations of planetary systems with multiple compo-
+nents offer a valuable opportunity to understand the interplay
+and mutual influence of objects within the system throughout
+its evolutionary timeline. Young systems with circumstellar
+disks (e.g. debris disks) in particular offer an exciting view
+into the sculpting of disk morphologies due to dynamical in-
+teractions in the system. Understanding these dynamically-
+induced disk structures can also aid in inferring the presence
+of yet-undetected planets within systems that have circum-
+stellar disks (Wyatt et al. 1999; Hughes et al. 2018; Wyatt
+2020).
+To date, however, there are only a few observed exam-
+ples of young debris disk systems with wide-separation bi-
+Corresponding author: Yiwei Chai
+mchai3@jhu.edu
+nary companions (e.g. HD 106906 (Bailey et al. 2014; Rodet
+et al. 2017)). η Telescopii (henceforth η Tel), as a relatively
+young ( ∼23 Myr; Mamajek & Bell (2014)) debris disk–
+hosting triple system, therefore offers an interesting target
+for observational study.
+The η Tel system is located 49.5 pc away (Gaia Collabora-
+tion et al. 2023) within theβ Pictoris moving group, and con-
+sists of (1) η Tel A, an A0V-type primary (Houk & Cowley
+1975), (2) η Tel B, a M7/8-type brown dwarf companion at a
+separation of 4” (Lowrance et al. 2000), and (3) HD 181327,
+a F6-type co-moving star at a separation of 7’. The primary
+is host to an edge-on, North-South aligned debris disk ex-
+tending to at least 24 au in the mid-IR (Smith et al. 2009).
+Interestingly, HD 181327 is also host to a well-studied debris
+disk, albeit one that is face-on (Schneider et al. 2006; Marino
+et al. 2016; Milli et al. 2023).
+The debris disk aroundη Tel A was first identified based on
+IRAS measurements indicating an excess in emission at 12,
+25, and 60 µm (Backman & Paresce 1993), for which a dust
+arXiv:2408.11692v2  [astro-ph.EP]  27 Aug 2024
+
+<<<PAGE 2>>>
+2
+optical depth was calculated to beτ = LIR /L∗ ≈ 3.5×10−4
+(Lowrance et al. 2000). A 2004 Spitzer IRS observation re-
+vealed a largely featureless spectrum from 5–35µm, with the
+exception of a possible 10 µm silicate feature suggesting the
+presence of large grains (Chen et al. 2006). Additionally, the
+excess emission was found to be best fit by two different tem-
+peratures of dust: a ‘warm’ 370 K component, and a ‘cool’
+116 K component. However, from the spectrum alone, it
+was not possible to resolve degeneracies regarding the spatial
+structure of the dust (e.g. two dust populations at different
+locations versus two populations with different grain sizes
+at the same location). 18.3 µm ground-based imaging with
+T-ReCs on Gemini South spatially resolved the outer compo-
+nent of the disk (Smith et al. 2009). Modelling of the T-ReCs
+disk images was consistent with a two-component disk struc-
+ture comprising of an unresolved inner ’warm’ component
+inwards of ∼4 au (as also inferred by Chen et al. (2006)),
+and a resolved ‘cool’ component in the shape of a narrow
+ring centred at 24 au.
+High resolution optical spectroscopy of the η Tel disk us-
+ing FEROS detected Ca II K absorption lines at ∼-23 km
+s−1 that were attributed to circumstellar gas (Rebollido et al.
+2018). Far- and near-UV spectroscopy with HST STIS like-
+wise detected absorption features at -23 km s −1 for multiple
+atomic lines, as well as features at -18 km s −1 (Youngblood
+et al. 2021). The -23 km s −1 and -18 km s −1 components
+were respectively attributed to circumstellar and to interstel-
+lar gas. In particular, the blueshifting of the -23 km s −1 ab-
+sorption features with respect to the star’s reference frame
+was interpreted to indicate gas outflow in a radiatively driven
+disk wind. However, subsequent work (Iglesias et al. 2023)
+tested the posited circumstellar origin of the gas by compar-
+ing the η Tel absorption features to those of HD 181327, HD
+180575, and ρ Tel, three stars with a similar line of sight. The
+absorption features at ∼-23 km s −1 were found in the Ca II
+K lines of the three other stars, strongly implying that the η
+Tel absorption lines attributed to circumstellar gas are instead
+more likely due to an interstellar cloud traversingη Tel’s line
+of sight.
+The brown dwarf companion, η Tel B (a.k.a. HR 7329 B),
+was first discovered with HST NICMOS coronography at a
+separation of 4” from the primary (Lowrance et al. 2000).
+HST STIS spectroscopy indicated a spectral type of M7-8
+(Lowrence et al. 2000), which was confirmed with H-band
+spectroscopy from VLT ISAAC (Guenther et al. 2001). Al-
+though initial attempts to show common proper motion from
+measurements of the companion’s separation and position
+angle (PA) were inconclusive (Guenther et al. 2001), addi-
+tional imaging observations from HST NICMOS and VLT
+NACO across a baseline of 11 years between 1998 and 2009
+were used to confirm η Tel B’s status as a comoving com-
+panion (Neuh ¨auser et al. 2011), possibly detecting a small
+linear change in separation (2.91 ± 2.41 mas yr−1) and find-
+ing no change in PA. It was suggested that this indicates the
+companion is currently located near apocentre of an inclined
+and/or eccentric orbit. Magnitude estimates for η Tel B were
+also used to derive a mass of 20-50 MJ from evolutionary
+tracks (Neuh ¨auser et al. 2011). No additional companions
+up to 9” separation from the primary were detected in the
+1998 HST NICMOS and 2004–2008 VLT NACO H-band
+images. Later coronagraphic imaging with SPHERE/IRDIS
+from 2015–2017 likewise did not detect any satellites around
+the companion itself, placing an upper limit on potential
+satellites from 3 MJ at 10 au to 1.6 MJ at 33 au (Nogueira
+et al. 2024).
+Additionally, several attempts have been made to charac-
+terise the orbit of η Tel B from its astrometric measurements.
+An analytical approach assuming a face-on, circular orbit
+gave a companion semi-major axis of a = 220 214
+−84 au, and
+a period of ∼2000 years (Neuh ¨auser et al. 2011); this was
+refined given the existence (and thus stability) of the edge-
+on debris disk around η Tel A, which allows for a potential
+constraint to be placed on the eccentricity of the companion’s
+orbit. Assuming that η Tel B’s apocentre distance is indeed
+rmax ∼ 200 au, and that it has sculpted the outer edge of the
+debris disk around η Tel A to be rdisk ∼ 24 au, e = 0 .47.
+This gives a semi-major axis a = 136 au and an orbital pe-
+riod of P ∼ 1000 years (Neuh¨auser et al. 2011). Blunt et al.
+(2017) used the same 11 year baseline of astrometric mea-
+surements from Neuh¨auser et al. (2011) to perform an orbital
+fit using the OFTI (Orbits for the Impatient) algorithm, ob-
+taining median orbital parameters of a = 192 +240
+−67 au, P =
+1490+3350
+−710 yr, e = 0 .77+0.19
+−0.43, and i = 86 +10
+−19 deg, with un-
+certainties at a 68% (1-σ) confidence interval. Most recently,
+the orbit-fitting package orvara (Brandt 2021) was used to
+derive the companion’s orbital parameters from 2015–2017
+SPHERE/IRDIS observations combined with previous astro-
+metric measurements over a baseline of 19 years (Nogueira
+et al. 2024). This fit reported an inclination of i = 82 +3
+−4
+degrees, a semi-major axis of a = 218 +180
+−41 au, and an ec-
+centricity of e = 0.34 ± 0.26. While the orbital inclination
+has been fairly consistent across the literature, derivations of
+the companion’s semi-major axis and eccentricity remain rel-
+atively poorly constrained. To date, the large uncertainties on
+these two parameters illustrate the challenge of characteris-
+ing the orbit of long-period companions, for which astromet-
+ric observations may only cover a small fraction of the total
+orbital period.
+In this paper, we present a new observation of theη Tel sys-
+tem with JWST MIRI MRS. Section 2 details the observation
+and processing of the data. Section 3 presents a new epoch
+of mid-IR spectroscopy for η Tel A and the discovery of a 20
+µm silicate feature, dust modelling for the MRS spectrum,
+and our analysis of the spatially resolved disk. In Section 4,
+we present the first 11-21 µm spectrum for the brown dwarf
+companion, η Tel B, finding that the object does not possess
+a mid-IR excess. In Section 5, we discuss (1) our new epoch
+of astrometry for η Tel B from MIRI MRS, which extends
+the baseline of measurements to 25 years and (2) our new
+orbital derivation for the companion. In Section 6, we con-
+sider how dynamical interactions with η Tel B are expected
+to impact the radial extent and symmetry of η Tel A disk;
+we suggest that a yet-undetected planetary mass may explain
+
+<<<PAGE 3>>>
+3
+the disagreement between our observations and the expected
+effects from the companion. We summarise our results and
+state our conclusions in Section 7.
+2. OBSERV ATIONS AND DATA PROCESSING
+2.1. Data Acquisition
+The JWST data presented in this article are obtained from
+the Mikulski Archive for Space Telescopes (MAST) at the
+Space Telescope Science Institute. The specific observations
+analysed can be accessed via doi: 10.17909/0js8-gs60.
+As part of GTO Program 1294 (PI: Chen), we use the
+Mid-Infrared Instrument (MIRI) Medium Resolution Spec-
+trograph (MRS) (Wells et al. 2015; Argyriou et al. 2023) to
+observe η Tel A (A0V , K=5.01) (Houk & Cowley 1975; Cutri
+et al. 2003) on May 13, 2023. The MIRI MRS is comprised
+of four IFU channels, with a wavelength-dependent FOV that
+increases in size per channel; i.e. the FOV is 3.2 ×3.7” for
+Channel 1, 4.0 ×4.8” for Channel 2, 5.2 ×6.2” for Channel
+3, and 6.6 ×7.7” for Channel 4. Each channel is further di-
+vided into three gratings, which cover the short (A), medium
+(B), and long (C) wavelength ranges of the channel. The
+total wavelength coverage of the instrument is from 4.9–28
+µm. Since our observation uses all four IFU channels, we
+also observe η Tel B in Channels 3 and 4 due to their larger
+FOVs.
+To avoid saturation by the primary, we use the FASTR1
+readout pattern. For the MRSSHORT detector (comprised of
+Channels 1 and 2), we use 5 groups per integration with 17
+total integrations. For the MRSLONG detector (comprised
+of Channels 3 and 4), we use 17 groups per integration with
+6 total integrations. From the JWST Exposure Time Calcu-
+lator (ETC, Pontopiddan et al. 2016), we expect the SNR
+for η Tel A using such an observing set-up to be ∼650 at
+5.35 µm (ETC Workbook 171617). As the MRS is Nyquist-
+sampled only at the central wavelengths of the detector, we
+employ a 4-point point-source dither pattern for each expo-
+sure to achieve Nyquist sampling across the detector (Law
+et al. 2023); this also mitigates effects from bad pixels and
+cosmic rays. The resulting total exposure time is 1121.116 s
+for channels 1 and 2, and 1187.717 s for channels 3 and 4.
+At the time of observation, the position angle of the aperture
+used was 283◦.
+The recommended observing sequence (following
+Worthen et al. (2024)) for high-contrast imaging with MIRI
+MRS is to take a background observation, immediately fol-
+lowed by a science observation, and then a calibration star
+observation. Such an observing sequence enables back-
+ground and classical reference PSF subtraction, which are
+necessary to eliminate background noise and to recover the
+spatially resolved disk and the brown dwarf companion.
+It is known that the MIRI MRS receives significant back-
+ground emission across its wavelength range, with contribu-
+tions from zodiacal light and the Milky Way dominating at
+λ < 12.5µm, and contributions from thermal self-emission
+of the telescope itself dominating at λ > 12.5µm (Rigby
+et al. 2023). The behaviour of the thermal background shows
+a time-dependency that is currently not well-modelled; thus,
+it is preferable to take background and reference observa-
+tions close in time to the science observation to perform
+background subtraction.
+Unfortunately, due to constraints as a GTO program with
+a fixed amount of telescope time, we took only the science
+observation for η Tel. Since no dedicated background obser-
+vation was taken, we search MAST for a publicly available
+background observed as close in time as possible to ourη Tel
+observation. We elect to use the SMP-LMC-058 background
+observation from Program 1532, taken three days before our
+data on May 10, 2023. The SMP-LMC-058 background con-
+sists of a single exposure with 45 groups per 1 integration for
+each channel, giving a total exposure time of 124.88 s per
+channel. This is a much larger number of groups per inte-
+gration than our η Tel observation, which has 5 groups for
+Channels 1 and 2, and 17 groups for Channels 3 and 4.
+Likewise, no dedicated PSF reference observation was
+taken for η Tel. To optimise PSF subtraction, it is important
+to use a reference source that is similar in spectral type and
+brightness to the science target, so that the PSF is measured
+with a similar SNR. A PSF reference observation of N Car
+(A0II, K=4.218) (Houk & Cowley 1975; Cutri et al. 2003)
+was already taken for this program several months earlier, to
+enable PSF subtraction for observations of β Pic (Worthen
+et al. 2024). The N Car observation consists of 4 exposures
+in a 4-point point-source dither pattern, each with 5 groups
+per integration for MRSSHORT and 15 groups per integra-
+tion for MRSLONG. The total exposure time for N Car is
+1853.73 s for Channels 1 and 2, and 1764.93 s for Channels
+3 and 4. Since N Car is similar in spectral type and magni-
+tude to η Tel A (an A0V star with K=5.01), we elect to use
+the observation of N Car as a reference for PSF subtraction.
+For N Car’s background, we use the dedicated β Pic back-
+ground observation taken as part of the same observing se-
+quence in order to maintain contemporaneity. This back-
+ground observation consists of two exposures in a 2-point
+dither pattern optimised for extended sources, with the same
+number of groups per integration as for N Car. This gives
+a total exposure time of 263.63 s for each of the four chan-
+nels. Both of these observations were taken on January 11,
+2023. A more detailed description of this observing sequence
+is provided in Worthen et al. (2024).
+Target acquisition is performed for both η Tel A and N
+Car using the stars themselves, so that the target is well cen-
+tred within the FOV . This is done to minimise the difference
+between the two pointings, since effects like fringing can be
+corrected with varying degrees of effectiveness depending on
+the offset (Argyriou et al. 2023).
+2.2. Data Reduction
+We reduce the raw data using version 1.14.0 of
+the JWST Spectroscopic Pipeline, with CRDS context
+jwst 1223.pmap. We use the same pipeline set-up for
+the η Tel science, N Car reference, and both background
+observations. The pipeline comprises of three key stages:
+Detector1, Spec2, and Spec3. The Detector1 stage
+applies detector-level corrections to the raw data for each in-
+
+<<<PAGE 4>>>
+4
+dividual exposure by fitting accumulating counts (‘ramps’)
+into count-rates (’slopes’). Since the background estimates
+are different based on the number of groups per integration,
+with the threshold being at around 20 groups/integration,
+it is necessary to ensure at this stage that the number of
+groups/integration being included is the same between our
+science and science-background observations (D. Law, pri-
+vate communication). The SMP-LMC-058 background has
+45 groups/integration, which is much higher than both the
+5 groups/integration for Channels 1 and 2, and the 15
+groups/integration for Channels 3 and 4, of our η Tel science
+observation. As such, we customise the saturation.py
+script from the pipeline so that only the first 5 groups for the
+MRSSHORT detector (Channels 1 and 2), and the first 15
+for MRSLONG (Channels 3 and 4), are used when running
+Detector1 on the raw SMP-LMC-058 background data.
+We also set the jump detection threshold step from 3- σ to
+100-σ to prevent the introduction of artefacts into the cali-
+brated data, which occurs due to an over-flagging of jumps
+in the raw data when using the default pipeline settings.
+At the Spec2 stage, specific instrument calibrations
+are applied to the individual exposure outputs from
+Detector1, in order to calibrate the data into physical as-
+trometric and brightness units. Additionally, for the back-
+ground observations, a 1D spectrum is extracted for each ex-
+posure. We do not make any changes to the default pipeline
+settings for this stage.
+The Spec3 stage takes the corrected exposures from
+Spec2 and combines the 4 dither positions per exposure into
+a single 3D spectral cube, consisting of one wavelength axis
+and two spatial axes. We build cubes separately for each of
+the 12 MIRI MRS sub-bands to avoid averaging different
+measurements from each of the three wavelength gratings
+across the four IFU channels. Master background subtrac-
+tion from the background spectra extracted in Spec2 is also
+applied at this stage. In the cube build step, we set the
+coordinate system to ‘ifualign’ in order to avoid interpo-
+lation of the cubes from the instrument to sky frames, as well
+as to facilitate subsequent PSF subtraction using the science
+and reference cubes. We build our spectral cubes using the
+drizzle algorithm (Law et al. 2023), retaining the default
+pipeline pixel sizes for each channel (i.e. 0.13” for Channel
+1, 0.17” for Channel 2, 0.20” for Channel 3, and 0.35” for
+Channel 4).
+2.3. PSF Subtraction
+The resolved disk and the companion are both ∼10−4
+times of magnitude fainter than the primary star (Smith et al.
+2009; Lowrance et al. 2000). Thus, to recover the spatial ex-
+tent of the debris disk around η Tel A, as well as improve
+the S/N at which the brown dwarf companion is detected, we
+perform classical reference PSF subtraction on the calibrated
+data cubes output by the pipeline. To do this, we calculate
+the centroids for both η Tel A and N Car by fitting a 2D
+Gaussian to each wavelength slice in the cubes. Averaging
+over the centroids for all slices in the cube gives us the final
+centroid positions for each cube. We then interpolate the N
+Figure 1. An example slice from the calibrated sub-band 3A data
+cube output by Stage 3 of the JWST pipeline, shown with a log-
+arithmic scaling. Note that the six-point PSF dominates most of
+the FOV . Blacked-out NaN values within the FOV indicate areas of
+slight over-subtraction due to pipeline background subtraction.
+Figure 2. The same wavelength slice shown in Figure 1 after
+PSF subtraction using N Car, in which the PSF has been scaled
+to the peak flux of the η Tel slice. The image is log-scaled, so
+the blacked-out values within the FOV indicate regions of slight
+over-subtraction. Astronomical objects are labelled: (a) the spa-
+tially resolved component of theη Tel A debris disk, (b)η Tel B, (c)
+background galaxy 2CX0 J192251.5-542530, and (d) an unknown
+feature (see Section 3.3).
+Car cubes to the nearest value so that the location of the N
+Car centroid in each slice aligns with that of the η Tel cen-
+troid. After scaling the flux of the N Car slices to an η Tel
+A photosphere model from Mittal et al. (2015), we finally
+perform a slice-by-slice subtraction of the N Car cube from
+the η Tel cube. We scale the PSF to the η Tel photosphere
+to obtain the total flux contribution of the disk; however, in
+using this scaling, we do not see the double-lobed structure
+reported in Smith et al. (2009). We then apply a second PSF
+
+<<<PAGE 5>>>
+5
+0.1 0.5 1 2 3 4 5 10 20 30 50 100 160
+Wavelength ( m)
+100
+101
+102
+103
+104
+105
+Flux Density (mJy)
+Photosphere model
+Companion atmosphere model
+Spitzer IRS (2004)
+Spitzer MIPS (2004)
+JWST MIRI MRS (2023)
+Figure 3. MIRI MRS spectrum of η Tel A, overplotted onto aTeff = 9700 K, log(g) = 4.0 photosphere model (Mittal et al. 2015). TheSpitzer
+IRS spectrum (Chen et al. 2014) is shown in orange, along with MIPS photometry (Rebull et al. 2008). We include our atmosphere model forη
+Tel B (see Section 5.1) to show that flux contribution from the companion does not significantly impact the spectrum of the disk even with the
+larger Spitzer aperture.
+scaling, following the method used by Smith et al. (2009), in
+which we scale the flux of the N Car slices to the peak flux
+of the observed η Tel slices, before subtracting N Car from
+η Tel. With this scaling, we are able to recover the spatially
+resolved flux component of the debris disk, and identify the
+two lobed structure expected from a compact, edge-on disk.
+Figures 1 and 2 show an example slice of the calibrated
+MIRI MRS η Tel data before and after the peak-flux scaled
+PSF subtraction, with the latter indicating the location of all
+astronomical objects within the FOV . In both scaling meth-
+ods, the brown dwarf companion can be seen in the top-
+left corner of the IFU-aligned cubes across sub-bands 3A to
+4A ( ∼11–21 µm). Additionally, using the second scaling
+method, we detect the presence of background galaxy 2CX0
+J192251.5-542530 within the FOV in sub-bands 1A to 3C,
+and a second, previously undetected, extended source that is
+likely a background galaxy in sub-bands 1A to 3A.
+The calibrated, PSF-subtracted spectral cubes are the final
+data products which we use for our following analysis.
+3. THE η TEL A DEBRIS DISK
+3.1. A New Epoch of Mid-Infrared Spectroscopy
+We extract the η Tel A spectrum over 5–29 µm
+by performing point-source aperture photometry with the
+spec3.extract 1d() function of the jwst pipeline.
+We set our aperture radius to be 2.0 × FWHM. As the
+pipeline-produced spectrum shows slight vertical offsets be-
+tween the MRS sub-bands, particularly at longer wavelengths
+(i.e. Channels 3 and 4), we also perform absolute flux cali-
+bration by applying a Relative Spectral Response Function
+(RSRF), as described by:
+RSRF = reference model spectrum
+reference extracted spectrum (1)
+For the RSRF, we use N Car to calibrate our observations.
+We use an N Car photosphere model from Worthen et al.
+(2024) as the model spectrum, and extract a spectrum from
+the MRS observations of N Car across Channels 1–4 using
+the same aperture size as for our η Tel A extraction. We
+truncate the calibrated spectrum at 25.63 µm, beyond which
+noise significantly worsens the SNR.
+Our calibrated 5–26 µm MIRI MRS spectrum for η Tel A
+is shown in Figure 3. We find that the MIRI MRS spectrum
+is consistent with the updated reduction of the 2004 Spitzer
+IRS spectrum (Chen et al. 2014), indicating that the disk has
+not noticeably evolved over time.
+7.5 10.0 12.5 15.0 17.5 20.0 22.5 25.0 27.5
+Wavelength ( m)
+0.00
+0.05
+0.10
+0.15
+0.20
+0.25
+0.30
+0.35
+0.40Flux density (Jy)
+Combined blackbody
+319 K blackbody
+127 K blackbody
+MRS
+Figure 4. Photosphere subtracted spectrum of η Tel A, clearly
+showing the 10 µm feature weakly detected by Spitzer IRS, as well
+as a broad 20 µm detected for the first time in this disk. The best-fit
+model for total contribution from the continuum is shown in black;
+the continuum is best fit by two blackbody components correspond-
+ing to a warm dust population with Tw = 319 ± 59 K and a cool
+population with Tc = 127 ± 25 K. This two-component structure
+is consistent with previous modelling of the disk (Chen et al. 2006;
+Smith et al. 2009).
+
+<<<PAGE 6>>>
+6
+7.5 10.0 12.5 15.0 17.5 20.0 22.5 25.0 27.5
+Wavelength ( m)
+0.00
+0.02
+0.04
+0.06
+0.08
+0.10
+0.12
+0.14Flux density (Jy)
+Model
+Large warm amorphous olivine
+Large cool amorphous olivine
+Large cool amorphous pyroxene
+Small amorphous olivine
+Small amorphous pyroxene
+Warm silica
+Cool silica
+MRS
+Figure 5. Photosphere + continuum subtracted spectrum of the η Tel A disk, binned by a factor of 10. There is a firm detection of the 10 and
+20 µm dust component features. Modelling indicates the presence of large amorphous olivine and pyroxene grains, as well as some silica, in
+the disk. The model’s difficulty with fitting the tail end of the broad 20 µm feature may be due to the presence of additional components that
+we do not account for; more detailed modelling outside the scope of this work may help to identify these components.
+Although the lower angular resolution of the IRS means
+that the flux of the brown dwarf companion is included in its
+aperture, we do not consider the IRS spectrum of η Tel A
+to be significantly impacted by flux from η Tel B since the
+primary is at minimum ∼103 brighter than the companion
+over the IRS wavelength range, as indicated by comparison
+with our atmosphere model for the brown dwarf (see Section
+4.1 for modelling details).
+Following photosphere subtraction from the MIRI MRS
+spectrum, we clearly recover the 10 µm silicate feature sug-
+gested by Chen et al. (2006), and identify a broad 20µm fea-
+ture for the first time in this disk. Broad spectral features at
+10 and 20 µm have been observed in many debris disks and
+T Tauri stars, with the 20 µm feature being fairly common
+in cases where a 10 µm feature is present (e.g. Chen et al.
+(2006), Sargent et al. (2009)). These two features are indica-
+tive of the presence of amorphous silicates, which are known
+to show broad spectral bands at 10 µm due to Si-O stretch-
+ing and 20 µm due to O-Si-O vibrations (Henning 2010). In-
+deed, previous modelling of the Spitzer IRS data predicted a
+20 µm dust component contribution to the overall spectrum
+for a composition of large amorphous olivine grains (Chen
+et al. 2006), although no such feature was evident in the IRS
+data, likely due to its lower SNR.
+3.2. Dust Modelling
+To better understand the disk’s spectral features, we per-
+form detailed modelling of the new MIRI MRS spectrum
+over 7.5–26.9 µm using code originally developed by Sar-
+gent et al. (2009) to model silicate and silica features in the
+Spitzer IRS spectra of T Tauri stars. We truncate the MRS
+spectrum shortwards of 7.5 µm, as the fitting code attempts
+to reproduce wiggles in the spectrum at shorter wavelengths
+created by the incomplete correction of stellar absorption fea-
+tures. We also truncate the spectrum longwards of 26.9 µm
+as the spectrum becomes substantially noisier at longer wave-
+lengths.
+The dusty disk around η Tel is believed to contain dust
+grains that radiate as a featureless continuum (Chen et al.
+2006). We assume a simplified case of two ‘bands’ of dust
+populations, and set uniform priors on the temperatures of
+the cold and warm dust populations to Tc = 80–200 K and
+Tw = 201–800 K respectively. These temperature ranges are
+divided into 7 steps (i.e. 17 K and 86K increments), which
+are explored over to determine the best fit. We obtain a best-
+fit warm black body dust temperature of Tw = 319 ± 59 K
+and a cool black body dust temperature of Tc = 127 ± 25
+K; here, the uncertainties do not represent the 1-σ confidence
+level, but rather the temperature fitting precision given the
+prior range on dust grain temperatures and the number of
+temperature bins used for the fit. Figure 4 shows the warm
+and cool black body components overlaid onto our photo-
+sphere subtracted MRS spectrum to show the contribution of
+the black body continuum to the overall spectrum. We find
+that the best-fit warm and cool dust temperatures are broadly
+consistent with those found for the 2004 Spitzer IRS spec-
+trum (Tw = 370 K, Tc = 115 K; Chen et al. (2006)).
+To more clearly view the spectral features, we then sub-
+tract the continuum. Previous modelling of the Spitzer IRS η
+Tel spectrum suggested that the 10 µm emission was due to
+the presence of amorphous silicates in the disk’s warm dust
+population (Chen et al. 2006). Modelling also suggested that
+the same warm amorphous silicates could give rise to emis-
+sion at 20 µm, although such a feature was not detected in
+the Spitzer IRS data.
+We model the 10 and 20µm spectral features and find that
+large warm amorphous olivine is the primary contributor to
+the 10 µm feature, consistent with the literature. The broad
+20 µm feature, however, appears to be best fit by primar-
+ily a combination of large warm and cool amorphous olivine,
+large cool amorphous pyroxene, with some contribution from
+warm and cool silica at longer wavelengths. Our best-fit
+model for the 10 and 20µm spectral features is shown in Fig-
+ure 5. The χ2
+red for the entire spectral fit is 3.8. We note that
+
+<<<PAGE 7>>>
+7
+the 20 µm feature appears shifted to a slightly longer wave-
+length compared to the model. This, along with the presence
+of some small peaky structures in the 10µm feature, suggests
+that there may be additional dust components contributing to
+the data that we have not presently accounted for in our mod-
+elling. More detailed modelling, which is outside the scope
+of this work, may help to resolve this mismatch between the
+model and the data.
+3.3. The Spatial Distribution of Dust in the Disk
+Following PSF subtraction of the science images, we are
+able to obtain information about the spatial distribution of
+dust in the disk from 8.67–27.89 µm (MRS sub-bands 2B to
+4C). By scaling the PSF to the photosphere of the star before
+subtraction, we can recover the total flux contribution from
+the dust in the disk. In these images, unresolved excess flux
+dominates. As a result, we perform a different scaling of the
+PSF to the peak flux of the science images before subtraction,
+as in Smith et al. (2009), to highlight the spatially extended
+emission. Figure 6 and 7 show the collapsed cube images of
+the disk resulting from these two PSF scalings. We sum up
+all the wavelength slices in each cube in order to obtain the
+highest possible SNR.
+We assess which features in the cubes are due to real disk
+morphology, and which are due to artefacts. At short wave-
+lengths, we find inconsistent structures close to the loca-
+tion of the star in both scalings; these are likely due to PSF
+residuals. The ellipsoidal feature in the upper left corner of
+the Channel 1 & 2 sub-bands is background galaxy 2CX0
+J192251.5-542530. We note the 3- σ detection of two small
+unknown features: one to the immediate right of the primary
+across across sub-bands 1A–2A, and one in the lower right
+corner of 1A–1C and 3A. The detection of these features
+across several sub-bands makes them unlikely to be due to
+warm pixels. However, interpreting their spectra has proved
+challenging due to their low S/N and significant discontinu-
+ities between sub-bands; as such, the sources of the two fea-
+tures remain inconclusive.
+Emission from the disk itself starts to pick up from∼9 µm
+(sub-band 2B) onwards. We observe an apparent increase in
+radial extent of the disk with wavelength, which has two po-
+tential explanations. If real, this could be due to the increased
+sensitivity at longer wavelengths to cooler dust populations
+farther out from the star. This may indicate that the η Tel
+disk possesses a more continuous structure, contrary to the 2-
+component structure suggested by Smith et al. (2009), which
+consists of a narrow ring of material at a fixed distance of
+∼24 au from the star, along with an unresolved flux compo-
+nent at inwards of ∼4 au. Alternatively, the apparent radial
+increase could be an artefact introduced by the increase in
+pixel and PSF size with wavelength ‘smearing’ the flux from
+the dust, thus causing it to appear farther out from the star at
+longer wavelengths.
+As resolving this degeneracy will require modelling that is
+beyond the scope of this work, we focus our considerations
+on the case for the disk with a 2-component structure, as held
+in the literature (Chen et al. 2006; Smith et al. 2009).
+In the second scaling, we also note an apparent increase in
+size of an inner cavity between the lobes with wavelength.
+Since this apparent increase is not observed in both scalings,
+we conclude it is likely an artefact introduced by the PSF
+subtraction, due to the increasing pixel and PSF size with
+wavelength.
+4. DOES η TEL B HA VE AN INFRARED EXCESS?
+Since η Tel B is young, and both η Tel A and HD 181327
+are known to host debris disks, it is natural to wonder ifη Tel
+B likewise possesses a debris disk. Motivated by this ques-
+tion, we seek to determine if the companion possesses an in-
+frared excess at longer wavelengths indicative of the presence
+of warmed circumstellar dust.
+4.1. η Tel B Atmosphere Modelling
+To understand the extracted spectrum of η Tel B from the
+MIRI MRS data, we must first understand the companion’s
+expected atmosphere. We model the atmosphere of η Tel
+B with the species package (Stolker et al. 2020) by fit-
+ting existing spectra and photometry for the brown dwarf
+companion to a BT-SETTL (CIFIST) model grid (Allard
+et al. 2011). Our model fit uses spectroscopic measurements
+from HST/STIS (Lowrance et al. 2000) and VLT/SINFONI
+(Bonnefoy et al. 2014), as well as photometric measure-
+ments from HST/NICMOS H band (Lowrance et al. 2000)
+and Gaia G band (Gaia Collaboration et al. 2023). Ad-
+ditionally, we use photometry derived from the observed
+magnitude difference of η Tel A and B in the follow-
+ing instrument filters: HST/NICMOS F110W (Neuh ¨auser
+et al. 2011), Paranal/ISAAC K band (Guenther et al. 2001),
+Paranal/NACO H, K, and Lp bands (Neuh¨auser et al. 2011),
+and VLT/VISIR PAH (Geißler et al. 2008).
+We vary parameters for Teff,B, log(g), radius, and paral-
+lax, setting uniform priors for the first three (Table 4.1), and
+Gaussian priors on the parallax and the companion’s mass.
+We assume that the parallax is the same as that for the pri-
+mary, given as 20.6028±0.09 mas in Gaia EDR3 (Gaia Col-
+laboration et al. 2023). We set a companion mass prior of
+MB = 35±15 MJup, following Neuh¨auser et al. (2011).
+The data is weighted such that each dataset, spectroscopic
+and photometric, is equal. This prevents each point in the
+spectroscopic datasets from being weighted equally to each
+photometric point. We use the nested sampling algorithm
+UltraNest (Buchner 2021) to sample 300 live points from
+the prior. Table 4.1 summarises the priors used in our model
+fitting, and the best-fit parameters for η Tel B. The result-
+ing atmospheric model, calculated at the native resolution of
+MIRI MRS (R ∼ 2700) is shown in Figure 8 at R = 1000.
+We note that our derived companion mass of MB =
+29+16
+−13MJ is lower than the MB = 47 +5
+−6MJ value ob-
+tained by Lazzoni et al. (2020) using AMES-COND models
+(Baraffe et al. 2003), although it is consistent when consid-
+ering both sets of error bars. This discrepancy in mass may
+be due to the fact that we do not account for the age of the
+system in our atmospheric modelling.
+
+<<<PAGE 8>>>
+8
+Figure 6. PSF-subtracted, collapsed-cube images of η Tel, in which the PSF was scaled to the photosphere of the star to reveal the total flux
+contribution from the disk. Images are linearly scaled from 0–104 MJy/sr and zoomed in on the disk. The contour lines indicate regions at
+3-, 5-, 20-, 50- σ detection thresholds for each sub-band image. The location of the primary is marked with a blue star, and the white arrow
+indicates the direction of the brown dwarf companion. The wavelength labels give the central wavelengths of each sub-band to which each
+image has been collapsed. Note that the radial extent of the disk appears to increase with wavelength.
+
+<<<PAGE 9>>>
+9
+Figure 7. Similar to Figure 6, except the PSF has been scaled to the peak flux of the science image before being subtracted in order to reveal the
+spatially resolved dust component. The images are displayed with a linear scaling from 0–1.15 × 103 MJy/sr. We observe that the disk appears
+largely axisymmetric across all wavelengths, and that there appears to be a slight offset in PA between the disk and the position ofη Tel B. We
+also note the apparent increase in radial extent and inner cavity size of the disk with wavelength. The latter only appears in this scaling and is
+likely an artefact introduced by PSF subtraction.
+
+<<<PAGE 10>>>
+10
+20
+10 ν
+ν Flux density (mJy)
+Wavelength (µm)
+Figure 8. (Top panel) Transmission profiles for each photometric filter, indicating flux density throughput versus bandwidth on a normalised
+scale, where 1 is full flux transmitted and 0 is no flux transmitted. (Centre panel) The full 0.85–21 µm SED of η Tel B, showing existing spectra
+and photometry along with the new MIRI MRS 11–20µm spectrum. Black line shows the best-fit atmosphere model for the companion, which
+was calculated by fitting the spectroscopic and photometric data to a BT-SETTL (CIFIST) model grid using species (Stolker et al. 2020).
+Teff, log g, and R values are consistent with expectations for a M7/8-type brown dwarf (see Table 4.1). ( Bottom panel) Residual flux density
+for each data point from the literature compared to the best-fit model in σ. All residuals are within ±5-σ, indicating that the model is a good fit
+to the data.
+Figure 9. MIRI MRS collapsed sub-band images of η Tel B from 3A to 4C using a logarithmic scaling. We obtain a 3–10- σ detection of
+the brown dwarf across 3A to 3C, and a 3- σ detection in 4A. In sub-bands 4B and 4C, increased background noise renders the companion
+irrecoverable; for this reason, we omit these two sub-bands in our spectral extraction of the brown dwarf. The black circle indicates the size of
+the extraction aperture.
+4.2. η Tel B Spectrum
+The detection of warm circumstellar dust around brown
+dwarfs is dependent on the mass and temperature of the dust,
+with submillimetre and millimetre observations being most
+suited to identifying the presence of traditional 100 au sized
+debris disks (Apai 2013). However, if η Tel B does possess a
+compact debris disk, we may also be able to detect it via an
+infrared excess across the MRS wavelength range.
+To extract an MRS spectrum of η Tel B, we perform
+aperture photometry at each wavelength slice of the cubes
+for sub-bands 3A, 3B, 3C, and 4A. We omit sub-bands 4B
+and 4C, as the increase in background noise and lower in-
+
+<<<PAGE 11>>>
+11
+Table 1. Priors and Best-fit Parameters for η Tel B
+Model Parameter Prior Range Best-Fit
+Teff,B [K] (2500, 3000) 2830 +20
+−30
+log(g) (3.5, 5.0) 4.3 +0.1
+−0.2
+RB [RJ] (0.5, 5.0) 2.28 ±0.03
+π [mas] 20.6028 ± 0.09 N/A
+MB [MJ] 35 ± 15 29 +16
+−13
+logLB/L⊙ N/A −2.48±0.01
+χ2
+red 5.49
+Note: prior ranges in parentheses indicate uniform distributions, and prior
+ranges for parallax π and companion mass MB are Gaussian distributions.
+strument throughput renders the companion irrecoverable at
+these longer wavelengths (Figure 9). Since η Tel B is a faint
+source located at the edge of the MRS FOV , the pipeline
+does not do a satisfactory job of extracting the spectrum.
+As such, we manually employ a tapered-column extraction
+technique for the η Tel B unresolved point source. This in-
+volves increasing the aperture size over wavelength to ac-
+count for the diffraction limit being proportional to wave-
+length (θ = 1 .22 λ
+d ). Due to the relative faintness of η Tel
+B, it is difficult to empirically obtain its FWHM. As such,
+we use the FWHM calculated for the reference star N Car,
+since the FWHM of the instrument should behave similarly
+irrespective of observing target.
+Additionally, if the aperture is too large, it could include
+additional noise into our extraction. Thus we restrict the ra-
+dius of our aperture to be 0.87 × FWHM in channel 3 and
+0.30 × FWHM in channel 4 (or ∼1” on-sky for both chan-
+nels) multiplied by a factor of λ/λ0, in order to reduce flux
+contribution from the background and to improve the SNR
+of the extraction. We again perform absolute flux calibra-
+tion and align discontinuities between subbands in the spec-
+tra by applying an N Car RSRF; in this case, however, we
+extract our N Car spectrum across sub-bands 3A to 4A us-
+ing the same aperture sizes and tapered-column method as
+for our η Tel B extraction. As the calibrated spectrum re-
+mains fairly noisy, particularly for 4A, we bin the spectra for
+sub-bands 3A–3C by a factor of 10, and collapse 4A into a
+single photometric point. We present the final η Tel B spec-
+trum in Figure 10, overplotted onto our atmosphere model
+(see Section 4.1). To calculate the error-bars, we perform an
+injection-recovery test of N Car; this involves scaling N Car
+to the model flux of η Tel B and injecting it into the η Tel
+Stage 3 cubes on the opposite side of the primary to η Tel
+B, before applying PSF subtraction and extracting its spectra
+using the exact same methods detailed above. Taking the av-
+erage residuals between the injected and recovered spectrum
+for each sub-band gives us the error-bars for that sub-band.
+Our spectrum shows a good fit to the atmosphere model.
+This indicates thatη Tel B does not possess an infrared excess
+between 11–24 µm. We note that this does not necessarily
+rule out the presence of circumstellar dust around η Tel B;
+the companion’s low luminosity may mean that there is very
+Figure 10. MIRI MRS spectrum of η Tel B, compared to the atmo-
+sphere model from Section 4.1. The extracted spectrum is consistent
+with the model, showing no infrared excess.
+little dust at 100–260 K temperatures, which would make any
+excess in the 11–24µm range simply too faint to be identified
+by MIRI MRS. However, from our current observations, we
+conclude that we do not identify the presence of a debris disk
+around η Tel B.
+5. THE ORBIT OF η TEL B
+5.1. A New Epoch of Astrometry
+The high angular resolution of MIRI MRS allows us to
+obtain positional accuracy for η Tel A and B to 10 and 23
+mas for Channels 3 and 4 respectively (Patapis et al. 2024).
+This enables us to derive a new epoch of relative astrome-
+try, extending the baseline of astrometric measurements by 6
+years since the most recent measurement with VLT SPHERE
+(Nogueira et al. 2024), and by 25 years since the first mea-
+surement with HST NICMOS (Lowrance et al. 2000).
+To do this, we fit a 2D Gaussian to the collapsed image
+of each sub-band cube from 3A–4A in order to first iden-
+tify the pixel coordinates of the η Tel A and B centroids; we
+exclude the cubes for sub-bands 4B and 4C due to higher
+noise levels increasing the uncertainty in the precise loca-
+tion of the η Tel B centroid. Transforming the pixel coor-
+dinates to right ascension (RA) and declination (Dec) val-
+ues using the World Coordinate System (WCS) then allows
+us to calculate the separation and position angle of η Tel B
+with respect to the primary star. To obtain the final angu-
+lar separation and positional angle, we average over the re-
+sults from sub-bands 3A–4A, estimating the uncertainties as
+the standard deviation between the measurements. We cal-
+culate a final separation of 4199 ±15 mas ( ∼200 au) and a
+position angle of 167.49 ±0.18◦. As both the primary and
+companion are observed in Gaia DR3 (Gaia Collaboration
+et al. 2023), we also use it calculate the Gaia relative astrom-
+etry: ρ = 4197.3 ± 3.7 mas and θ = 167.44 ± 0.09◦. Our
+new astrometric measurements are shown in Figure 11, right
+panel), alongside all previous relative astrometry reported in
+the literature (Lowrance et al. 2000; Guenther et al. 2001;
+
+<<<PAGE 12>>>
+12
+Figure 11. Projected orbits of η Tel B from orbital derivation. ( Centre) On-sky depiction of a sample of 100 potential orbits. The blue star
+marks the location of the primary and the maroon point marks the current location of the companion from MRS astrometry. ( Left) Close-up of
+relative astrometry points clustered in the centre image. Orange points indicate literature values. ( Right) Separation and position angle versus
+epoch for the companion with respect to the primary. Due to the long-period nature of the orbit, it is likely that any significant change in
+separation/PA will not be observable for another few decades.
+Geißler et al. 2008; Neuh ¨auser et al. 2011; Rameau et al.
+2013; Nogueira et al. 2024) and our calculated relative as-
+trometry from Gaia.
+We observe no significant change in separation or proper
+motion. The new MIRI MRS measurements for both sepa-
+ration and position angle are consistent with η Tel B being
+a common proper motion companion to η Tel A located at
+or near the apocentre of a long-period orbit. This confirms
+previous analysis (Neuh¨auser et al. 2011).
+5.2. Orbit Fitting
+To better characterise the orbital properties of η Tel B, and
+to understand any potential companion-disk interactions, it
+is necessary to first understand the orbit of η Tel B. We per-
+form an orbital fit for the brown dwarf companion with the
+Python package orbitize! (Blunt et al. 2020), using rela-
+tive astrometry and stellar absolute astrometry from the DR3
+Hipparcos-Gaia Catalogue of Accelerations (HGCA; Brandt
+(2021)). Additionally, although HARPS radial velocity (RV)
+data exists for η Tel A (Trifonov et al. 2020), the primary
+shows a high rms RV scatter of 12.805 ± 0.007 km s−1 due
+to its A0V spectral type, youth, and fast rotation. This makes
+it difficult to obtain meaningful constraints from the RV data.
+As such, we omit RV data from our orbital fit for the com-
+panion.
+We run a parallel-tempered Markov-Chain Monte Carlo
+(MCMC; Foreman-Mackey et al. (2013); V ousden et al.
+(2016) algorithm with 10 temperatures, 500 walkers and 106
+steps, burning the first 100 steps and thinning every 1000
+steps; we select these MCMC parameters to maintain consis-
+tency with those used by Nogueira et al. (2024). We set nor-
+mal priors on the stellar mass (2.09±0.03M⊙, Desidera et al.
+(2021), and parallax of the system ( π = 20 .6028 ± 0.0988
+mas; Gaia Collaboration et al. (2023)), as well as a uni-
+form prior on the companion mass (0.019–0.048 M⊙, i.e.
+20–50 MJ, Neuh ¨auser et al. (2011)). Uninformative pri-
+ors are adopted for all other orbital elements; we use the
+orbitize! defaults given in Table 2. We calculate poste-
+riors for 9 parameters: semi-major axis aB, eccentricity eB,
+inclination iB, argument of pericentre ωB, longitude of as-
+cending node ΩB, and epoch of pericentre τB. Table 2 gives
+the full list of our derived orbital parameters to1-σ uncertain-
+ties. We also do not specify initial positions for the MCMC
+chains, instead using the orbitize! default, which ran-
+domly determines the initial position of the walkers such that
+they are uniformly distributed across the prior phase space.
+To test for convergence, we check trace plots and posterior
+histograms for each parameter.
+We obtain best-fit median values of semi-major axis aB =
+142+18
+−11 au, eccentricity eB = 0 .50+0.1
+−0.1, and inclination
+iB = 79 +5
+−6 degrees. This gives an apocentre distance of
+rmax,B = 213 au, a pericentre distance of rmin,B = 71 au,
+and an orbital period tB∼1100 years. A lack of significant
+change in orbital motion across twenty-five years of observa-
+tions is therefore reasonable, as we have only observed∼2%
+of the companion’s total orbit. Figure 11 shows a sample of
+100 potential orbits, as well as the corresponding projected
+change in separation and position angle for each of these 100
+orbits. Due to the long-period nature ofη Tel B’s orbit, it will
+be difficult to observe any significant changes within the next
+decade; placing more robust constraints on the companion’s
+orbital parameters may not be possible until several decades
+from now.
+We note that, while our values for a, e, and i are in agree-
+ment with the orbital parameters inferred by Neuh¨auser et al.
+(2011), our values for a and e differ considerably from those
+derived by Nogueira et al. (2024) using orvara (Brandt
+2021). To investigate the potential reasons for this discrep-
+ancy, we perform several additional orbitize! fits using
+(1) their Gaussian prior on the companion mass of 47 ±15
+MJ, (2) only their relative astrometry data, and (3) their ini-
+tial distribution values. Corner plots for these additional fits
+are shown in the Appendix A. We find that the original de-
+rived parameters for a and e remain robust to the change
+
+<<<PAGE 13>>>
+13
+in companion mass prior and the additional Gaia and MIRI
+MRS relative astrometry points. The fit using the Nogueira
+et al. (2024) initial distribution values returns a bimodal pos-
+terior distribution for a and, to a lesser extent, e. The tallers
+peaks (a ∼ 149 au and e = 0.5) are consistent with our pos-
+teriors but the shorter peaks ( a ∼ 230 au and e ∼ 0.3) are
+consistent with their results. This suggests that the choice of
+initial position may have some affect on the posteriors. In
+particular, instead of using a uniform distribution to set the
+initial position of the walkers for each parameter, Nogueira
+et al. (2024) use a log-normal distribution for the semi-major
+axis and a normal distribution for all other orbital values. In
+difficult cases, such as determining a and e for long-period
+orbits, this may preferentially concentrate exploration of val-
+ues to those near the chosen initial values.
+However, the fact that orbitize! does not exactly re-
+produce the posteriors from Nogueira et al. (2024) despite
+using the same initial distributions, and also consistently has
+smaller uncertainties than orvara, suggests that some more
+fundamental difference between the two fitting packages may
+also be contributing to the different fit outcomes. For exam-
+ple, orvara parametrises eB as eB sin ΩB and eB cos ΩB,
+whereas orbitize! does not). Further investigation may
+provide more illuminating information, but as a deep-dive
+into the workings of both fitting packages is outside the scope
+of this work, we leave it to future work.
+We also note that, since observations ofη Tel B to date only
+cover a small fraction of its total orbital period, its astromet-
+ric acceleration between Hipparcos and Gaia in the HGCA
+has a low significance of 1.96- σ for two degrees of freedom
+(Brandt 2021). As such, while fitting for the stellar absolute
+astrometry is able to constrain the direction of orbital motion,
+it is unlikely to provide strong constraints on the dynamical
+mass of the companion. This is reflected in our median com-
+panion mass posterior of M = 42 ± 14MJ, which appears to
+be largely prior-driven.
+In our following analysis, we assume the best-fit orbital
+parameters described in Table 2; however, we acknowledge
+that these parameters may be in part due to the fitting package
+used, and as such also reproduce the analysis using the best-
+fit parameters from Nogueira et al. (2024).
+6. DISCUSSION
+An isolated, nearly edge-on debris disk comprised of plan-
+etesimals on circular orbits will feature a symmetric, double-
+lobed structure. However, dynamical interactions due to the
+presence of a massive second body in the system can sculpt
+the structure of the disk, leading to asymmetries (Wyatt et al.
+1999).
+In the case of the η Tel AB system, we find that the ec-
+centricity of the companion’s orbit (eB = 0.50) corresponds
+to a pericentre distance of ∼71 au from the primary star
+(see Table 4.1). Given the outer disk’s radial extent between
+rin ∼22 and rout ∼26 au (Smith et al. 2009), we expect
+that the companion passes close enough at its pericentre to
+gravitationally perturb the material within disk over secular
+timescales.
+Table 2. Median orbitize! Posteriors for η Tel B
+Parameter Value Prior
+aB [au] 142+18
+−11 log uniform
+eB 0.5 ± 0.1 uniform
+iB [◦] 79+5
+−6 sine
+ωB [◦] 169+23
+−21 uniform
+ΩB [◦] 169+3
+−2 uniform
+τB 0.5 ± 0.1 uniform
+rmin,B [au] 71+9
+−6 -
+rmax,B [au] 213+27
+−17 -
+tB [yr] 1100+230
+−132 -
+MB [MJ] 35+7
+−8 uniform
+MA [M⊙] 2.09 ± 0.03 Gaussian
+π [mas] 20.61 ± 0.07 Gaussian
+For low eccentricity orbits, we can expect secular preces-
+sion to act on a timescale given by (Wyatt (2005), see Eqs. 7
+and 8 therein),
+tsec = 6.15α−2.5 ¯α2
+b(1)
+3/2(αB)
+0.651tB
+µ (2)
+For higher eccentricities, the above expression should still
+give a reasonable estimate. In the case of η Tel A and B, the
+ratio of perturber to disk semi-major axes is α = ad/aB ≈
+24/142 ≈ 0.17, with ¯α = α since aB > ad. The Laplace
+coefficient is b(1)
+3/2(αB) ≈ 3α ≈ 0.56, and the perturber’s
+orbital period in years is tB ≈ 1100 yrs (see Table 2). We
+set the ratio of perturber to star masses as µ ≡ MB/M∗ =
+35MJ /2.09M⊙ ≈ 0.02, using the companion mass derived
+in Section 5.2.
+This gives tsec ≈ 1 Myr. Performing the same calculation
+using the companion orbital parameters derived by Nogueira
+et al. (2024) provides a similar result oftsec ≈ 2 Myr. Placed
+into context with the β Pic moving group age of ∼23 Myr,
+we should expect that the observed properties of the η Tel
+A disk are consistent with the stable end-product of secular
+interactions with η Tel B, regardless of which fit parameters
+are used.
+We next discuss the predicted disk properties due to dy-
+namical interaction with η Tel B, and compare these predic-
+tions to the observed MRS data. For our analysis, we con-
+sider both our best-fit orbital parameters as well as those de-
+rived by Nogueira et al. (2024).
+6.1. Radial Extent of the Disk
+In the case of material orbiting a primary star, with a sec-
+ondary binary companion acting as a perturber on the mate-
+rial, there should be a critical semi-major axis at which the or-
+bit of the material is stable against gravitational perturbations
+from the companion. Holman & Wiegert (1999) empirically
+derive an expression for this critical semi-major axis, ac, as
+a function of the primary-secondary mass ratio, µ, and the
+
+<<<PAGE 14>>>
+14
+semi-major axis, aB, and eccentricity, eB, of the secondary
+perturber’s orbit:
+ac = [(0.464 ± 0.006)
++ (−0.38 ± 0.01)µ + (−0.631 ± 0.034)eB
++ (0.586 ± 0.061)µeB + (0.15 ± 0.041)e2
+B
++ (−0.198 ± 0.074)µe2
+B]aB (3)
+For η Tel A and B where µ ∼ 0.02, we obtain a critial
+semi-major axis of ac = 26.2 au. This is comparable to the
+inferred radial extent of the disk ( rout = 26 au, Smith et al.
+(2009)), suggesting that the observed structure of the disk is
+consistent with truncation due to the orbit of the brown dwarf
+companion.
+For the Nogueira et al. (2024) values of aB = 218 au and
+eB = 0 .34, we obtain ac = 57 au. This is greater than the
+outer radial extent of the disk reported in the literature. How-
+ever, we note that, if the apparent increase in radial extent of
+the disk seen in the MIRI MRS data is real and not an artefact
+of PSF subtraction (see subsection 3.3, Figure 6 and 7), then
+at greatest extent the disk does not seem to exceed past ∼60
+au. This could be consistent with truncation by an η Tel B
+with a larger semi-major axis of ∼220 au.
+6.2. Symmetry of the Disk
+Although an axisymmetric, double-lobed structure is ex-
+pected for an isolated debris disk, secular perturbations due
+to the gravitational influence of a second, eccentric body in
+the system can force the orbit of dust within the disk to be-
+come likewise eccentric. This shifts the symmetry of the
+disk away from the star, resulting in an observable ‘pericen-
+tre glow’ as dust at the forced pericentre of the disk is heated
+by increased proximity to the stellar host (Wyatt et al. 1999).
+Since a particle’s forced eccentricity ef depends only on
+the eccentricity of the perturber’s orbit along with the ratio
+of its semimajor axis to that of the perturber (Wyatt et al.
+(1999), Eq. 39), we estimate the forced eccentricity due to η
+Tel B as follows:
+ef ≃ 5
+4
+ad
+aB
+× eB = 5
+4
+24 au
+143 au × 0.50 ≈ 0.1 (4)
+Here, the perturber semi-major axis, aB, and orbital ec-
+centricity, eB, come from our derived orbital parameters for
+η Tel B. We again take the mean planetesimal belt distance
+from the star, ad, to be 24 au (Smith et al. 2009). This gives
+us planetesimal belt apocentre and pericentre distances of
+26.5 au and 21.5 au respectively. We then calculate the grain
+temperature of the dust at both these distances using the fol-
+lowing (Chen & Jura 2001):
+Tgr = 0.707T∗
+s
+R∗
+Dgr
+(5)
+where Dgr is the distance of the grains from the star, T∗ =
+9700 K, and R∗ = 1 .7R⊙ (Chen et al. 2014). This gives
+a grain temperature of 118 K at the disk’s apocentre, and
+132 K at the disk’s pericentre. Taking the ratio of blackbody
+flux densities across λc for each MRS sub-band, we estimate
+an expected brightness asymmetry of 96% at 18 µm, which
+we then divide by a factor of 1 + ef to account for particle
+bunching at apocentre (Pan et al. 2016). This gives us a fi-
+nal expected brightness asymmetry of 77% at 18 µm, with
+the pericentre lobe being brighter. It is worth noting that this
+may be an overestimation of the brightness asymmetry due
+to the assumption that the dust is a blackbody; in reality, the
+temperature of the dust may be hotter. However, given the
+cool dust component temperature of 127 K from dust mod-
+elling (see Section 3.2), this would not be a large correction.
+Likewise, a higherTeff for the primary would give rise to hot-
+ter grain temperatures and a smaller brightness asymmetry.
+Repeating the above calculations using the best-fit orbital
+parameters from Nogueira et al. (2024) produces a forced ec-
+centricity of ef = 0.04, which should produce a 18 µm peri-
+centre brightness asymmetry of ∼30%.
+Both scalings of the PSF-subtracted MRS data cubes, how-
+ever, appear largely axisymmetric (Figure 6 and 7), which
+is inconsistent with expectations of an observable brightness
+asymmetry. Figure 12 compares an 18 µm slice of the MIRI
+MRS data (after peak-scaled PSF subtraction) to a model of
+the disk with ef = 0.1. Subtracting the MIRI MRS data from
+the model image reveals residuals that indicate the model is
+brighter in the pericentre lobe than the data; i.e. the data
+is less asymmetric than expected from consideration of the
+system’s dynamics. To perform a more rigorous check for
+potentially fainter asymmetries, we apply angular differen-
+tial imaging (ADI) to each collapsed sub-band image of the
+disk. This is done by rotating the image 180◦ and subtracting
+it from the unrotated image. We also perform the same ADI
+on the N Car data in order to check whether any potential
+structures are due to instrument effects. Although we find
+some asymmetric structure, it is inconsistent across wave-
+lengths and, more critically, appears in both sets of observa-
+tions. This indicates that these structures are likely caused by
+the instrument rather than any real physical asymmetry in the
+η Tel disk. Thus, we find that the η Tel A disk is essentially
+axisymmetric, contrary to our expectation of an observable
+disk asymmetry due to gravitational perturbation by η Tel B.
+6.3. Mutual Inclination of the Disk and Companion
+Secular precession induced by the orbit of η Tel B should
+cause the orbital planes of the disk and the companion to be-
+come aligned; i.e., for a 23 Myr system, we should expect to
+observe an aligned mutual inclination between the disk and
+the companion, even if the two were initially misaligned.
+The mutual inclination of the disk and η Tel B can be cal-
+culated using,
+cos im = cos id cos iB + sin id sin iB cos (ΩB − Ωd) (6)
+where the i terms are inclinations relative to the sky plane
+and the Ω terms are the longitudes of ascending node. For
+
+<<<PAGE 15>>>
+15
+Figure 12. (Left) 18 µm slice of MIRI MRS data, following peak-scaled PSF subtraction. Both lobes appear similar in brightness ( Centre)
+Model of disk with ef = 0.1 that has been convolved with the MIRI MRS PSF at 18 µm, then PSF-subtracted. The pericentre lobe appears
+slightly brighter. (Right) Residuals after subtracting the MIRI MRS data slice from the model image, showing remnant structure in the pericentre
+lobe.
+disk and companion parameters of id = 90 ± 20 deg and
+Ωd = 172 ± 1 deg (Smith et al. 2009), and iB = 79 +5
+−6 deg
+and ΩB = 169 +3
+−2 deg (see Table 2, Section 5.2), we obtain
+a mutual inclination of im ∼11+15
+−14 deg. Thus, we find that
+the disk and the companion may potentially be misaligned,
+contrary to expectation. However, further modelling, partic-
+ularly of the disk’s parameters, is needed to improve uncer-
+tainties before we can determine whether or not the disk is
+truly misaligned with the companion’s orbit.
+6.4. An Additional Interior Planet?
+The absence of compelling evidence for asymmetry in the
+debris disk, and its potential misalignment with the compan-
+ion, presents an intriguing puzzle that deserves explanation.
+Motivated by the work of Farhat et al. (2023) concerning the
+HD 106906 debris disk, which is perturbed by both an exte-
+rior companion and an inner stellar binary, we propose that
+our observations could be explained by the presence of ad-
+ditional perturbing masses in the η Tel system. In principle,
+these masses may include either single or multiple planets in-
+terior to the disk, and/or the self-gravitational effects of the
+disk itself, if massive enough. The reasoning behind this is
+that the presence of such additional masses could counteract
+the gravitational effects of η Tel B on the debris disk, ex-
+plaining the identified discrepancies (Section 6.2, 6.3).
+We consider what may be the simplest scenario: an addi-
+tional, single, yet-undetected planet on a circular orbit com-
+pletely interior to, and coplanar with, the debris disk (as-
+sumed to be massless). It is then possible to constrain the
+mass mpl and semimajor axis apl of such a planet using the
+so-called “Laplace radius” (Tremaine et al. 2009; Farhat et al.
+2023). The Laplace radius, denoted by rL, describes the lo-
+cation where the gravitational perturbations experienced by
+a planetesimal due to both the inner and outer companions
+are equal and cancel out. Thus, for a given system, plan-
+etesimal dynamics interior (exterior) to rL will be dominated
+by the inner (outer) companion, with planetesimals lying in
+the dominant companion’s orbital plane. The Laplace radius,
+in the limit of mpl << M∗, can be written as follows (see
+equation (1) in Farhat et al. (2023)):
+r5
+L = a3
+Ba2
+pl
+mpl
+MB
+(1 − e2
+B)
+3
+2 (7)
+Since the observed disk structure seems to be inconsistent
+with that expected based on secular perturbations due toη Tel
+B alone (Sections 6.2 and 6.3), in Equation 7 we set the min-
+imum Laplace radius to be the disk’s outermost radius (i.e.,
+rL ≥ rout ≈ 26 au, Smith et al. (2009)), and solve formpl as
+a function of apl. The results are shown in Figure 13; a planet
+whose parameters lie above the light pink line (i.e. values of
+mpl and apl for which rL ≥ rout) could maintain the disk’s
+axisymmetry and its misalignment with the outer companion.
+We note that using the Nogueira et al. (2024) orbital parame-
+ters to solve for mpl as a function of apl (shown in dark pink
+in Figure 13, where again we have set rL = rout = 26 au)
+results in a larger possible parameter space for an undetected
+interior planet.
+We further constrain the possible parameter space as fol-
+lows. First, we use MIRI MRS 3- and 5- σ contrast curves to
+determine instrument detection limits for potential compan-
+ions. This allows us to rule out the region of the parameter
+space as shown using the grey lines in Figure 13. For com-
+parison, we also calculate the expected contrast for a β Pic
+b-like planet around η Tel using the following equation:
+f1 = ( d2
+d1
+)2 × f2 (8)
+We use the β Pic b atmosphere model from Worthen et al.
+(2024) to obtain its flux f2 at λc = 5.3, 6.2 and 7.1 µm (the
+central wavelengths of sub-bands 1A–1C respectively). The
+distances of η Tel and β Pic are d1 = 47.7 and d2 = 19.44
+pc respectively. We then divide f2 by the stellar flux at each
+wavelength to obtain the final contrasts, finding that MIRI
+MRS should be able to detect a β Pic b-like planet of mpl ∼
+12MJ at ≥18 au (within 5-σ, and at ≥ 12 au within 3-σ).
+Second, assuming that the inner edge of the disk is carved
+by the overlap of first-order mean motion resonances due to
+
+<<<PAGE 16>>>
+16
+the planet (e.g. Pearce et al. (2024) and references therein),
+the planet’s semimajor axis cannot exceed ap = ad − ∆ap.
+Here, ∆ap is the half-width of the chaotic zone around the
+planetary orbit given by the following expression (Wisdom
+1980):
+∆ap ≈ 1.3( mp
+M∗ + mp
+)2/7ap (9)
+This is shown in Figure 13 using a purple curve.
+Given these bounds, we are able to rule out certain areas
+of the planet’s possible mass and semimajor axis, as sum-
+marised in Figure 13. The central white region therein rep-
+resents the allowed parameter space for an undetected planet
+interior to the disk. Looking at Figure 13 it is evident that a
+planet of mass ∼0.7–30 MJ and semimajor axis ∼3–19 au
+may be responsible for the observed disk structure (alterna-
+tively, 0.15–40 MJ between 1.5–20 au if using companion
+orbital parameters from Nogueira et al. (2024)). That be-
+ing said, however, we stress that our aim here is not to offer
+a quantitative prediction but rather to highlight that the ob-
+served disk structure is a plausible consequence of the pres-
+ence of an additional planet.
+Figure 13. Mass–semi-major axis constraints for a potentially un-
+detected perturbing planet within the disk. The blank white region
+in the centre indicates the possible parameter space for an unde-
+tected, inner planetary perturber on a circular orbit within the disk
+plane. The pink lines correspond to the minimum Laplace radius
+(rout of the disk, see Equation 7) and sets the minimum possible
+mass for the planet at a given semimajor axis apl. The purple line
+shows the upper bound on ap set by the MMR overlap argument
+(Equation 9). The grey lines exclude planets within MIRI MRS 3-
+and 5-σ detection limits. Note also that the region outside the disk,
+marked in black, is unstable due to perturbations fromη Tel B (Sec-
+tion 6.1).
+This is because several additional factors may influence
+our predictions, which we discuss below. First, the Laplace
+radius of Equation (7) does not account for potential interac-
+tions between the inner and outer perturbers, and is instead
+derived assuming apl << aB. Second, in our calculations,
+we do not account for non-gravitational forces. This is fairly
+reasonable for mm-sized or larger grains; however, the MIRI
+MRS data traces µm-sized grains which are subject to non-
+gravitational forces such as radiation pressure and gas drag.
+Given the system’s relatively young age, it is possible for the
+disk to contain significant amount of gas (see, however, Igle-
+sias et al. (2023)) which can affect the dust dynamics, such
+as through migration and the damping of orbital eccentric-
+ities/inclinations (Takeuchi & Artymowicz 2001). If this is
+the case, then a less massive planet than that identified in
+Figure 13 would instead be required to produce the same ob-
+served structure. Third, we assume that the debris disk is
+massless, neglecting its (self-)gravitational effects. However,
+if the disk is massive enough, it may suppress planetesimal
+eccentricities forced by the eccentric companion (Sefilian
+2024), affecting our inferences. In the extreme case, the disk
+self-gravity alone, without an additional interior planet, can
+potentially explain the observed disk structure (Batygin et al.
+2011; Sefilian 2024). Regardless, the disk self-gravity, even
+if not dominant, may well affect our planetary inferences by
+forcing an inward shift in the Laplace radius (see Farhat et al.
+(2023); Sefilian et al. (2021)). Finally, it is important to ac-
+knowledge that the inferred parameter space is contingent
+upon accurate knowledge of the outer companion’s orbital
+parameters. Any updates or improvements to these orbital
+parameters may necessitate revisions to Figure 13.
+7. CONCLUSIONS
+As part of GTO Program 1294, we present MIRI MRS ob-
+servations of the η Telescopii system. Our main findings are:
+• We detect an infrared excess in the spectrum of η Tel
+A, indicating the presence of thermal emission from
+circumstellar dust. We recover the 10 µm silicate fea-
+ture and discover a new broad 20 µm silicate feature.
+Dust modelling suggests the continuum is best-fit by
+two different grain populations at 319 K and 127 K,
+with the 10 and 20 µm silicate features arising due to
+the presence of large amorphous grains.
+• We detect the brown-dwarf companion η Tel B at a
+separation of 4” in MRS sub-bands 3A to 4A. We cal-
+culate a new epoch of astrometry for η Tel B, with
+ρ =4199±15 mas and PA = 167.36±0.19◦. Our mea-
+surements extend the baseline of astrometric measure-
+ments to 25 years. We detect no significant change in
+orbital motion.
+• We derive the orbit of η Tel B using relative astrome-
+try and obtain the orbital parameters aB = 142+18
+−11 au,
+eB = 0.50 ± 0.1, and iB = 79+5
+−6 degrees. This gives
+an orbital period of tB ∼ 1100 years. We find that,
+for our apocentre distance of 214 au, the companion’s
+current location at 209 au validates previous literature
+suggesting the companion is located at or near apocen-
+tre of a long-period orbit.
+
+<<<PAGE 17>>>
+17
+• We present the first 11–21 µm spectrum of η Tel B.
+We do not detect an infrared-excess for the object. We
+perform atmospheric grid model fitting to obtain the
+following parameters for η Tel B: Teff,B = 2830+20
+−30 K,
+log(g) = 4.3+0.1
+−0.2, R = 2.28 ± 0.03RJ, logLB/L⊙ =
+−2.48 ± 0.01, MB = 42 ± 14MJ.
+• Using PSF subtraction, we spatially resolve the debris
+disk around η Tel A from 9.4–26.05 µm. We find that
+the disk has an axisymmetric double-lobed structure
+across the MRS wavelength range. This is inconsistent
+with the expected 77% brightness asymmetry at 18µm
+due to secular perturbations from η Tel B, assuming
+our median orbital parameters for the companion.
+• The disk’s axisymmetric structure and potential mis-
+alignment with the companion may be due to the pres-
+ence of another mass in the system that is large enough
+to dominate over secular precessional effects induced
+by η Tel B. For the case of a single, yet-undetected
+planet, we constrain its mass to be between ∼0.7–30
+MJ with a semi-major axis within the ∼3–19 au range
+(Figure 13).
+We thank the anonymous referee for their helpful and
+insightful comments. YC and CC acknowledge that this
+work is based [in part] on observations made with the
+NASA/ESA/CSA James Webb Space Telescope. The data
+were obtained from the Mikulski Archive for Space Tele-
+scopes at the Space Telescope Science Institute, which is op-
+erated by the Association of Universities for Research in As-
+tronomy, Inc., under NASA contract NAS 5-03127 for JWST.
+These observations are associated with program #1294. Sup-
+port for program #1294 was provided by NASA through
+a grant from the Space Telescope Science Institute, which
+is operated by the Association of Universities for Research
+in Astronomy, Inc., under NASA contract NAS 5-03127.
+A.A.S. is supported by the Alexander von Humboldt Foun-
+dation through a Humboldt Research Fellowship for postdoc-
+toral researchers.
+Software: This research has made use of the follow-
+ing software projects: Astropy (Astropy Collaboration et al.
+2013; The Astropy Collaboration et al. 2018; Astropy Col-
+laboration et al. 2022), Matplotlib (Hunter 2007), NumPy
+and SciPy (Oliphant 2007), JWST DataPipeline (Bushouse et
+al. 2023), MultiNest (Feroz et al. 2009), orbitize! (Blunt et al.
+2020), PyMultiNest (Buchner et al. 2014), species (Stolker
+et al. 2020), and the NASA Astrophysics Data System.
+REFERENCES
+Allard, F., Homeier, D., & Freytag, B. 2011, in Astronomical
+Society of the Pacific Conference Series, V ol. 448, 16th
+Cambridge Workshop on Cool Stars, Stellar Systems, and the
+Sun, ed. C. Johns-Krull, M. K. Browning, & A. A. West, 91,
+doi: 10.48550/arXiv.1011.5405
+Apai, D. 2013, Astronomische Nachrichten, 334, 57,
+doi: 10.1002/asna.201211780
+Argyriou, I., Glasse, A., Law, D. R., et al. 2023, arXiv e-prints,
+arXiv:2303.13469, doi: 10.48550/arXiv.2303.13469
+Astropy Collaboration, Robitaille, T. P., Tollerud, E. J., et al. 2013,
+A&A, 558, A33, doi: 10.1051/0004-6361/201322068
+Astropy Collaboration, Price-Whelan, A. M., Lim, P. L., et al.
+2022, ApJ, 935, 167, doi: 10.3847/1538-4357/ac7c74
+Backman, D. E., & Paresce, F. 1993, in Protostars and Planets III,
+ed. E. H. Levy & J. I. Lunine, 1253
+Bailey, V ., Meshkat, T., Reiter, M., et al. 2014, ApJL, 780, L4,
+doi: 10.1088/2041-8205/780/1/L4
+Baraffe, I., Chabrier, G., Allard, F., & Hauschildt, P. 2003, in
+Brown Dwarfs, ed. E. Mart´ın, V ol. 211, 41
+Batygin, K., Morbidelli, A., & Tsiganis, K. 2011, A&A, 533, A7,
+doi: 10.1051/0004-6361/201117193
+Blunt, S., Nielsen, E. L., De Rosa, R. J., et al. 2017, AJ, 153, 229,
+doi: 10.3847/1538-3881/aa6930
+Blunt, S., Wang, J. J., Angelo, I., et al. 2020, AJ, 159, 89,
+doi: 10.3847/1538-3881/ab6663
+Bonnefoy, M., Chauvin, G., Lagrange, A. M., et al. 2014, A&A,
+562, A127, doi: 10.1051/0004-6361/201118270
+Brandt, T. D. 2021, ApJS, 254, 42, doi: 10.3847/1538-4365/abf93c
+Buchner, J. 2021, The Journal of Open Source Software, 6, 3001,
+doi: 10.21105/joss.03001
+Buchner, J., Georgakakis, A., Nandra, K., et al. 2014, A&A, 564,
+A125, doi: 10.1051/0004-6361/201322971
+Chen, C. H., & Jura, M. 2001, ApJL, 560, L171,
+doi: 10.1086/324057
+Chen, C. H., Mittal, T., Kuchner, M., et al. 2014, ApJS, 211, 25,
+doi: 10.1088/0067-0049/211/2/25
+Chen, C. H., Sargent, B. A., Bohac, C., et al. 2006, ApJS, 166, 351,
+doi: 10.1086/505751
+Cutri, R. M., Skrutskie, M. F., van Dyk, S., et al. 2003, VizieR
+Online Data Catalog, II/246
+Desidera, S., Chauvin, G., Bonavita, M., et al. 2021, A&A, 651,
+A70, doi: 10.1051/0004-6361/202038806
+Farhat, M. A., Sefilian, A. A., & Touma, J. R. 2023, MNRAS, 521,
+2067, doi: 10.1093/mnras/stad316
+Feroz, F., Hobson, M. P., & Bridges, M. 2009, MNRAS, 398,
+1601, doi: 10.1111/j.1365-2966.2009.14548.x
+Foreman-Mackey, D., Hogg, D. W., Lang, D., & Goodman, J.
+2013, PASP, 125, 306, doi: 10.1086/670067
+Gaia Collaboration, Vallenari, A., Brown, A. G. A., et al. 2023,
+A&A, 674, A1, doi: 10.1051/0004-6361/202243940
+
+<<<PAGE 18>>>
+18
+Geißler, K., Chauvin, G., & Sterzik, M. F. 2008, A&A, 480, 193,
+doi: 10.1051/0004-6361:20078229
+Guenther, E. W., Neuh¨auser, R., Hu´elamo, N., Brandner, W., &
+Alves, J. 2001, A&A, 365, 514,
+doi: 10.1051/0004-6361:20000051
+Henning, T. 2010, ARA&A, 48, 21,
+doi: 10.1146/annurev-astro-081309-130815
+Holman, M. J., & Wiegert, P. A. 1999, AJ, 117, 621,
+doi: 10.1086/300695
+Houk, N., & Cowley, A. P. 1975, University of Michigan
+Catalogue of two-dimensional spectral types for the HD stars.
+V olume I. Declinations -90 to -53 ƒ0.
+Hughes, A. M., Duchˆene, G., & Matthews, B. C. 2018, ARA&A,
+56, 541, doi: 10.1146/annurev-astro-081817-052035
+Hunter, J. D. 2007, Computing In Science & Engineering, 9, 90,
+doi: 10.1109/MCSE.2007.55
+Iglesias, D. P., Pani´c, O., & Rebollido, I. 2023, MNRAS, 526,
+2500, doi: 10.1093/mnras/stad2836
+Law, D. R., E. Morrison, J., Argyriou, I., et al. 2023, AJ, 166, 45,
+doi: 10.3847/1538-3881/acdddc
+Lazzoni, C., Zurlo, A., Desidera, S., et al. 2020, A&A, 641, A131,
+doi: 10.1051/0004-6361/201937290
+Lowrance, P. J., Schneider, G., Kirkpatrick, J. D., et al. 2000, ApJ,
+541, 390, doi: 10.1086/309437
+Mamajek, E. E., & Bell, C. P. M. 2014, MNRAS, 445, 2169,
+doi: 10.1093/mnras/stu1894
+Marino, S., Matr`a, L., Stark, C., et al. 2016, MNRAS, 460, 2933,
+doi: 10.1093/mnras/stw1216
+Milli, J., Choquet, E., Tazaki, R., et al. 2023, arXiv e-prints,
+arXiv:2312.02000, doi: 10.48550/arXiv.2312.02000
+Mittal, T., Chen, C. H., Jang-Condell, H., et al. 2015, ApJ, 798, 87,
+doi: 10.1088/0004-637X/798/2/87
+Neuh¨auser, R., Ginski, C., Schmidt, T. O. B., & Mugrauer, M.
+2011, MNRAS, 416, 1430,
+doi: 10.1111/j.1365-2966.2011.19139.x
+Nogueira, P. H., Lazzoni, C., Zurlo, A., et al. 2024, Astrometric
+and photometric characterization of η Tel B combining two
+decades of observations. https://arxiv.org/abs/2405.04723
+Oliphant, T. E. 2007, Computing in Science & Engineering, 9
+Pan, M., Nesvold, E. R., & Kuchner, M. J. 2016, ApJ, 832, 81,
+doi: 10.3847/0004-637X/832/1/81
+Patapis, P., Argyriou, I., Law, D. R., et al. 2024, A&A, 682, A53,
+doi: 10.1051/0004-6361/202347339
+Pearce, T. D., Krivov, A. V ., Sefilian, A. A., et al. 2024, MNRAS,
+527, 3876, doi: 10.1093/mnras/stad3462
+Rameau, J., Chauvin, G., Lagrange, A. M., et al. 2013, A&A, 553,
+A60, doi: 10.1051/0004-6361/201220984
+Rebollido, I., Eiroa, C., Montesinos, B., et al. 2018, A&A, 614,
+A3, doi: 10.1051/0004-6361/201732329
+Rebull, L. M., Stapelfeldt, K. R., Werner, M. W., et al. 2008, ApJ,
+681, 1484, doi: 10.1086/588182
+Rigby, J. R., Lightsey, P. A., Garc´ıa Mar´ın, M., et al. 2023, PASP,
+135, 048002, doi: 10.1088/1538-3873/acbcf4
+Rodet, L., Beust, H., Bonnefoy, M., et al. 2017, A&A, 602, A12,
+doi: 10.1051/0004-6361/201630269
+Sargent, B. A., Forrest, W. J., Tayrien, C., et al. 2009, ApJ, 690,
+1193, doi: 10.1088/0004-637X/690/2/1193
+Schneider, G., Silverstone, M. D., Hines, D. C., et al. 2006, ApJ,
+650, 414, doi: 10.1086/506507
+Sefilian, A. A. 2024, ApJ, 966, 140,
+doi: 10.3847/1538-4357/ad32d1
+Sefilian, A. A., Rafikov, R. R., & Wyatt, M. C. 2021, ApJ, 910, 13,
+doi: 10.3847/1538-4357/abda46
+Smith, R., Churcher, L. J., Wyatt, M. C., Moerchen, M. M., &
+Telesco, C. M. 2009, A&A, 493, 299,
+doi: 10.1051/0004-6361:200810706
+Stolker, T., Quanz, S. P., Todorov, K. O., et al. 2020, A&A, 635,
+A182, doi: 10.1051/0004-6361/201937159
+Takeuchi, T., & Artymowicz, P. 2001, ApJ, 557, 990,
+doi: 10.1086/322252
+The Astropy Collaboration, Price-Whelan, A. M., Sip˝ocz, B. M.,
+et al. 2018, AJ, 156, 123, doi: 10.3847/1538-3881/aabc4f
+Tremaine, S., Touma, J., & Namouni, F. 2009, AJ, 137, 3706,
+doi: 10.1088/0004-6256/137/3/3706
+Trifonov, T., Tal-Or, L., Zechmeister, M., et al. 2020, A&A, 636,
+A74, doi: 10.1051/0004-6361/201936686
+V ousden, W. D., Farr, W. M., & Mandel, I. 2016, MNRAS, 455,
+1919, doi: 10.1093/mnras/stv2422
+Wells, M., Pel, J. W., Glasse, A., et al. 2015, PASP, 127, 646,
+doi: 10.1086/682281
+Wisdom, J. 1980, AJ, 85, 1122, doi: 10.1086/112778
+Worthen, K., Chen, C. H., Law, D. R., et al. 2024, ApJ, 964, 168,
+doi: 10.3847/1538-4357/ad2354
+Wyatt, M. 2020, in The Trans-Neptunian Solar System, ed.
+D. Prialnik, M. A. Barucci, & L. Young, 351–376,
+doi: 10.1016/B978-0-12-816490-7.00016-3
+Wyatt, M. C. 2005, A&A, 440, 937,
+doi: 10.1051/0004-6361:20053391
+Wyatt, M. C., Dermott, S. F., Telesco, C. M., et al. 1999, ApJ, 527,
+918, doi: 10.1086/308093
+Youngblood, A., Roberge, A., MacGregor, M. A., et al. 2021, AJ,
+162, 235, doi: 10.3847/1538-3881/ac21d1
+
+<<<PAGE 19>>>
+19
+APPENDIX
+A. CORNER PLOTS
+Figure 14. Corner plot for best-fit properties of η Tel B derived from a BT-SETTL (CIFIST) model grid fit using species (Stolker et al.
+2020)
+
+<<<PAGE 20>>>
+20
+Figure 15. Corner plot for derivation of η Tel B orbital parameters using orbitize! (Blunt et al. 2020), as discussed in Section 5.2.
+B. ADDITIONAL ORBITIZE! FITS FOR η TEL B
+
+<<<PAGE 21>>>
+21
+Table 3. Summary of Median orbitize! Posteriors for Different Diagnostic Fits
+Model Parameter Section 5.2 Fit N24 Companion Mass Prior N24 Relative Astrometry Only N24 MCMC Initial Positions Relaxed Primary Mass Prior
+aB [au] 142 +18
+−11 141+15
+−9 140+13
+−8 149+79
+−13 142+14
+−9
+eB 0.5±0.1 0.5 ±0.1 0.5 ±0.1 0.5 +0.1
+−0.2 0.5±0.1
+iB [◦] 79 +5
+−6 80+5
+−7 80+5
+−6 79+6
+−7 80±5
+ωB [◦] 169 +23
+−21 170+19
+−20 171±19 34 +34
+−11 170+16
+−21
+ΩB [◦] 169 +3
+−2 169+3
+−2 169+3
+−2 344+2
+−172 169+3
+−2
+τB 0.5±0.1 0.5 ±0.1 0.5 ±0.1 0.6 +0.01
+−0.4 0.5±0.1
+MB [MJ] 35 +7
+−8 48+6
+−7 35±0.4 46 +12
+−21 35±0.6
+Note: uncertainties indicate 68% ranges. Priors for all parameters are the same as described in Table 2, except for the use of a Gaussian companion mass prior in
+the N24 Companion Mass Prior and N24 MCMC Initial Positions fits. Initial walker position distributions are all uniform (as described in Section 4.1), except
+for the N24 MCMC Initial Positions fit, which uses a lognormal distribution for a and a normal distribution for all other parameters.
+
+<<<PAGE 22>>>
+22
+Figure 16. Corner plot for orbitize! (Blunt et al. 2020) derivation of η Tel B orbital parameters using Nogueira et al. (2024) companion
+mass Gaussian prior of M = 47 ± 0.15MJ.
+
+<<<PAGE 23>>>
+23
+Figure 17. Corner plot for orbitize! (Blunt et al. 2020) derivation of η Tel B orbital parameters using only relative astormetry included in
+Nogueira et al. (2024) orvara fit.
+
+<<<PAGE 24>>>
+24
+Figure 18. Corner plot for orbitize! (Blunt et al. 2020) derivation of η Tel B orbital parameters using Nogueira et al. (2024) initial
+distribution positions and priors.
+
+<<<PAGE 25>>>
+25
+Figure 19. Corner plot for orbitize! (Blunt et al. 2020) derivation of η Tel B orbital parameters a relaxed primary mass prior of M =
+2.2 ± 0.1 (Chen et al. 2014).

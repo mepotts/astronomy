@@ -74,9 +74,11 @@ not either.
 - Long shell chains go in **committed script files** — inline one-liners died silently twice and cost whole runs.
 - **`cr2res_obs_nodding` needs an EVEN frame count** — see §4. An aborted template leaves an odd number and the recipe writes 11 empty products at exit 0.
 - **Line endings break DATA files too, not only scripts.** A URL list written by Windows
-  Python (`open(p,'w')`) carries `` on every line. `curl` still fetches -- the CR is
+  Python (`open(p,'w')`) carries `
+` on every line. `curl` still fetches -- the CR is
   dropped from the request -- but any shell check built from the same string looks for
-  `NAME.fits` and never matches, so every success scores as a failure and the loop
+  `NAME
+.fits` and never matches, so every success scores as a failure and the loop
   retries forever. This was misdiagnosed twice as archive throttling before `od -c` on
   the list settled it (M29). **Write LF explicitly (`newline="
 "`), or generate the
@@ -129,6 +131,24 @@ never a resolved companion to contaminate.
 Corollary for the instrument case: below R of about 1 no contrast is good enough, because
 there is no companion spectrum at all. Fibre-fed suppression is a requirement in that
 regime, not an improvement.
+
+### 5d. Check whether a milestone number is taken before writing to it (M32)
+
+M32's results were first written to `M30-RESULTS.md` without checking. M30 existed — the
+archive-sweep reconciliation, committed the same day — and the write replaced it. Recovered
+from `HEAD` intact, but only because `git status` was read before committing.
+
+Milestone numbers are **allocated across more than one thread and are not sequential in
+time**: M29 was still gaining sections while M30 was committed and M31 was open with
+uncommitted scripts and no results document. "The highest number I remember" is not the next
+free number.
+
+**Before claiming a number:** `ls M*-RESULTS.md` and `git log --oneline -15`.
+**Before committing:** read the status letters. **`M` on a file you believe you just created
+means something already lived there.** `A` is a new file; `M` is an overwrite.
+
+The general form: the `Write` tool does not distinguish creating from replacing, so the check
+has to happen before the write, not after.
 
 ## 6. Human-gated actions (never automate)
 

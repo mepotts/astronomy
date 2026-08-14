@@ -457,6 +457,20 @@ in the project repository, with the milestone documents cited inline throughout.
 ## What to verify before submission
 
 Items for the author; everything else traces to a numbered milestone document or to a paper
+
+0. **⚠ THE CONTRAST AXIS'S SOURCE COLUMN IS UNRELIABLE — read this before the rest (M32).**
+   The §8 held-out test reads Lazzoni et al. 2022 Table 1's companion-magnitude column for all
+   31 companions. That column has now been checked against primary sources three times and is
+   wrong twice: YSES 1 b to 0.14 mag (Bohn+2020) ✅, **η Tel B by 1.6 mag** (Neuhäuser+2011
+   K_s = 11.6 vs Lazzoni 13.2) ❌, **β Pic b by 2.4 mag** (Currie+2013) ❌. That is a factor
+   4–9 in contrast, against a transition interval only a factor 3.5 wide (S = 4327–15202).
+   η Tel B's own S moves 107 → ~25; **no verdict in §4 flips, and the resolution gate of §1–§7
+   is untouched** because it uses measured separations and measured PSFs, not this column.
+   But §8's test cannot discriminate at the scale of the effect it is testing for. Either
+   re-derive contrasts from primary-source photometry per system, or state plainly that the
+   contrast gate is unquantified and let the note stand on the resolution gate alone. **The
+   second option is honest and costs the note little** — §1–§7 is the part that is measured.
+
 archived in `papers/`.
 
 1. **The withdrawn verdict, HD 206893 B (§4).** It is another team's target and the withdrawal

@@ -235,10 +235,10 @@ ceiling.
 | host mass | **2.18 M_⊙** | `m7-survey.json` | Lazzoni T1 | ⚠️ single-source |
 | host spectral type | **A0V** | `M5:81`, `contrast-wall-note` | SIMBAD `* eta Tel` **A0V** | ✅ VERIFIED |
 | companion spectral type | **M7.5V** | `M5:81`, `m5-targets.json` | SIMBAD `* eta Tel B` **M7.5V** | ✅ VERIFIED |
-| companion K | **13.2** | `m7-survey.json`, `M7:133`, `queue:122`, `M15:10,70`, `M29:127`, `contrast-wall-note:120` | Lazzoni T1 only; **SIMBAD H = 11.93 contradicts it** | ⛔ **CONFLICTING** |
+| companion K | ~~13.2~~ -> **K_s = 11.6 +/- 0.1** | `m7-survey.json`, `M7:133`, `queue:122`, `M15:10,70`, `M29:127`, `contrast-wall-note:120` | **RESOLVED M32 against 13.2**: Neuhaeuser et al. 2011, MNRAS 416, 1430 measures J 12.06+/-0.19, H 11.75+/-0.10, **K_s 11.6+/-0.1**, L 11.1+/-0.2; SIMBAD's H agrees | ⛔ **LAZZONI Kp WRONG BY 1.6 mag** (factor 4.4 in flux). Contrast 1888x -> ~433x, S 107 -> ~25. No verdict flips. **All six listed sites still carry 13.2** |
 | age | **24 Myr** (β Pic group) | `m7-survey.json`, `queue:122`, `M15` | Lazzoni T1 age column | ⚠️ single-source |
-| parallax | 21.11 mas (47.4 pc) | Lazzoni T1 (not stored in repo) | SIMBAD **20.603 mas (48.5 pc)** | ⚠️ CONFLICTING (2.4%) |
-| separation | 4.2″ | see §1 | Lazzoni 4.210″ | ✅ VERIFIED |
+| parallax | ~~21.11 mas~~ -> **20.6028 +/- 0.09 mas** (48.54 pc) | Lazzoni T1 (not stored in repo) | **RESOLVED M32**: Chai+2024 quotes **Gaia EDR3 20.6028 +/- 0.09 mas**; SIMBAD's 20.603 agrees exactly | ⛔ **LAZZONI'S 21.11 IS WRONG** by 2.5% -> distance 47.4 pc should be 48.5 pc |
+| separation | 4.2″ | see §1 | Lazzoni 4.210″; **Chai+2024 JWST rho = 4199 +/- 15 mas** confirms to 0.3%; orig 4.210″ | ✅ VERIFIED |
 
 ---
 
