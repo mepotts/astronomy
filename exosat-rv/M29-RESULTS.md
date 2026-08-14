@@ -523,7 +523,7 @@ the number of resolution elements between companion and host.
 | HD 4747 B | 0.590 | 1.514 | 15 | **0.39** | unresolved |
 | β Pic b | 0.511 | 0.952 | 114 | **0.54** | flooded |
 | HIP 81208 B | 0.325 | **0.246** | 32 | **1.32** | clean, 124 m/s |
-| YSES 1 b | 1.700 | 1.197 | 24 | **1.42** | clean, 34 m/s |
+| YSES 1 b | 1.698 | 1.197 | 24 | **1.42** | clean, 34 m/s |
 | CD-35 2722 B | 2.800 | 0.263 | 283 | **10.64** | clean, 70–90 m/s |
 | η Tel B | 4.210 | 0.374 | 367 | **11.26** | clean, 116–130 m/s |
 
@@ -724,12 +724,12 @@ extraction is of the host.**
 |---|---:|---:|---:|---:|---:|---|---|
 | CD-35 2722 B | 2.800 | 0.263 | 283 | 10.64 | 0.00 | resolved | CONFIRMED, 70-90 m/s |
 | eta Tel B | 4.210 | 0.374 | 367 | 11.26 | 0.00 | resolved | NULL, injection-gated |
-| YSES 1 b | 1.700 | 1.197 | 24 | 1.42 | 0.12 | resolved | clean, 34 m/s |
+| YSES 1 b | 1.698 | 1.197 | 24 | 1.42 | 0.12 | resolved | clean, 34 m/s |
 | HIP 81208 B | 0.325 | 0.246 | 32 | 1.32 | 0.15 | resolved | clean, 124 m/s |
 | beta Pic b | 0.511 | 0.952 | 114 | **0.54** | **0.55** | **blended** | contamination-limited |
 | HD 206893 B | 0.205 | 0.393 | 11 | **0.52** | **0.63** | **blended** | *clean, gates 100-102%* |
 | HD 4747 B | 0.590 | 1.514 | 15 | **0.39** | **0.71** | **blended** | reduced M29 as a test |
-| 2M0103AB b | unsourced | 0.986 | 10 | - | - | unknown | clean, gates 100+-0% |
+| 2M0103AB b | 1.764 | 0.986 | 10 | 1.79 | 0.02 | resolved | clean, gates 100+-0% |
 | CD-35 deep pair | unsourced | 0.278 | 14 | - | - | unknown | shelved, thermal-IR |
 
 **The two measurements agree with a clean gap.** R comes from the profile's width, the wing
@@ -757,10 +757,20 @@ template rebuild could have rescued it.
 YSES 1 b and HIP 81208 B, at R from 1.32 to 11.26. Every claim the project rests on
 survives: the detection, the eta Tel limit, and the two best-precision series.
 
-**Two cannot be classified** because their separations are unsourced, and were not guessed.
-2M0103AB b carries a "clean, gates 100+-0%" verdict against a 0.986 arcsec delivered PSF, so
-it is blended unless its separation exceeds about 1 arcsec. That verdict is *at risk*
-pending one number.
+**The two unsourced separations were then sourced, and both verdicts survive.**
+
+- **2M0103AB b** — SIMBAD carries both components: SCR J0103-5515 (the AB binary) and
+  SCR J0103-5515C (the companion). Their coordinates give **1.764 arcsec** at PA 338.7 deg,
+  so **R = 1.79**, resolved. The wing corroborates independently at **0.02** — the profile
+  at the companion's offset is 2% of the peak, which is what a genuinely separated pair
+  looks like. The at-risk verdict clears.
+- **YSES 1 b** — Bohn+2020 gives a projected physical separation of 160 au for the inner
+  companion; SIMBAD's parallax of 10.6124 mas puts the system at 94.23 pc, so **1.698
+  arcsec**. The queue's 1.7 was right; it simply had no provenance. R is unchanged at 1.42.
+
+**Every live verdict in the roster now rests on a sourced separation.** The only
+unclassified entry is the CD-35 deep pair, which is shelved thermal-IR and carries no
+verdict to protect.
 
 ### The generalisable point
 

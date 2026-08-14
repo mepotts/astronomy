@@ -42,8 +42,10 @@ ROSTER = [
      "M0-RESULTS (2.8\" at 22.36 pc)", "CONFIRMED: blind detection, 70-90 m/s"),
     ("eta Tel B", "/home/matth/cr2res/red_etatel/*", 4.210,
      "Lazzoni T1: 4210 mas", "NULL: msini >= 0.5-1.2 MJup, injection-gated"),
-    ("YSES 1 b", "/home/matth/cr2res/red_m26/yses1[cd]", 1.700,
-     "queue (UNSOURCED)", "CLEAN: 34 m/s, gates 101+-2%"),
+    # Bohn+2020: projected physical separation 160 au for the inner companion;
+    # SIMBAD parallax 10.6124 mas -> 94.23 pc -> 1.698". (The queue's 1.7" was right.)
+    ("YSES 1 b", "/home/matth/cr2res/red_m26/yses1[cd]", 1.698,
+     "Bohn+2020 160 au / SIMBAD plx 10.6124 mas", "CLEAN: 34 m/s, gates 101+-2%"),
     ("HIP 81208 B", "/home/matth/cr2res/red_m26/h81208k*", 0.325,
      "Viswanath+2023: 320.9/328.7 mas", "CLEAN: 124 m/s, gates 99+-1%"),
     ("beta Pic b", "/home/matth/cr2res/red_bpb/*", 0.511,
@@ -52,8 +54,11 @@ ROSTER = [
      "Kral+2026 GRAVITY astrometry at the CRIRES epoch", "CLEAN: gates 100-102%, banked"),
     ("HD 4747 B", "/home/matth/cr2res/red_m26/hd4747h", 0.590,
      "Lazzoni T1 / discovery", "n/a - reduced M29 as a test"),
-    ("2M0103AB b", "/home/matth/cr2res/red_m26/m0103a", None,
-     "UNSOURCED", "CLEAN: within-night ~53 m/s, gates 100+-0%"),
+    # SIMBAD basic: SCR J0103-5515 (AB, SB*) at 15.898563 -55.2656231 and
+    # SCR J0103-5515C (the companion, LM*) at 15.898250 -55.2651667
+    # -> dRA -0.642", dDec +1.643" -> 1.764" at PA 338.7 deg
+    ("2M0103AB b", "/home/matth/cr2res/red_m26/m0103a", 1.764,
+     "SIMBAD component coordinates", "CLEAN: within-night ~53 m/s, gates 100+-0%"),
     ("CD-35 deep pair", "/home/matth/cr2res/red_m26/cd35d2", None,
      "UNSOURCED", "shelved: M4368 thermal-IR"),
 ]
