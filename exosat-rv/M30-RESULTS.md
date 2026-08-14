@@ -92,6 +92,11 @@ Value: HIP 65426 b is the **exomoon-regime limit target** (M20 §4), and these a
 starlight-suppressed fibre observations of that system — the instrument class the
 blending sweep (M29 §12) concluded is *required* below R ≈ 1.
 
+**Priority note (M20 §5 applies here too):** programme 114.2712 is another team's
+recent observation (2025, released 2026). As with the M22 slit series, publishing
+results from it ahead of its owners is a community-norms question that belongs to
+Matthew, not to this pipeline.
+
 ## 4. Phase–BERV pre-checks (`data/m30-precheck.json`)
 
 The m15_inventory step-[3] geometry (R² of BERV regressed on cos/sin at each trial
