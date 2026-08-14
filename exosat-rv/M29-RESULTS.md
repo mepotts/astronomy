@@ -1161,3 +1161,60 @@ about the planet.
 At S/N ≈ 2 per pixel co-added, across 21 orders × 2048 pixels, the photon budget for a
 cross-correlation is not obviously hopeless. Whether it is sufficient is the next real
 question, and it is not answered here.
+## 21. The fibre path is gated: 97–100% transmission, 2.0 m/s repeatability
+
+Nothing in this project counts until injection recovery has measured the pipeline's velocity
+transmission. That rule had never been applied to the fibre path, and the slit-path gates say
+nothing about it. `scripts/injection/m29_hirise_gate.py` closes that, two ways.
+
+**Arm 1 — transmission.** Impose a known shift on a real extracted spectrum and recover it by
+cross-correlation. This tests the wavelength solution and the correlation machinery end to
+end:
+
+| injected | recovered | recovery |
+|---:|---:|---:|
+| −5.00 km/s | −4.998 | 100.0% |
+| −1.00 | −0.968 | 96.8% |
+| +1.00 | +0.968 | 96.8% |
+| +5.00 | +4.998 | 100.0% |
+| +15.00 | +15.015 | 100.1% |
+
+The 3% shortfall at ±1 km/s is the 0.25 km/s velocity grid, not a loss in the path.
+
+**Arm 2 — repeatability, which is the honest arm.** Each of the 30 host frames
+cross-correlated against their co-add. They span about an hour, over which BERV moves well
+under 100 m/s, so the scatter is instrumental plus photon noise:
+
+| | value |
+|---|---:|
+| rms over all 30 frames | 66.9 m/s |
+| robust scatter (1.48 × MAD) | 2.8 m/s |
+| **rms after a robust 5σ clip (22 of 30)** | **2.0 m/s** |
+
+The gap between 66.9 and 2.0 is eight frames, and they are not scattered — they occupy a
+contiguous ~3-minute window at the end of the sequence (MJD 60708.1565–60708.1584), the worst
+at +294 m/s. That is exactly when the fibre is repositioned from the host onto the planet for
+the deep integrations. **Transitional frames, not instability**, and they identify themselves
+by their timestamps.
+
+### What this means
+
+**The fibre path delivers ~2 m/s frame-to-frame RV repeatability on a bright target.** The
+slit path on this project's best targets delivers 70–130 m/s. That is a factor of 35–65, and
+it is unsurprising in kind — fibre feeds are the standard for precision radial velocity
+precisely because they stabilise the illumination the slit cannot.
+
+**A rough forecast for the companion.** Scaling by photon noise from the co-added host
+(S/N ≈ 128) to the co-added planet (S/N ≈ 2) gives 2.0 × 64 ≈ **130 m/s** for a β Pic b
+velocity from this single night. That is comparable to what the slit path achieves on far
+easier targets — in a regime where the slit cannot deliver a companion spectrum at all
+(β Pic b sits at R = 0.54, §12).
+
+Two caveats belong with that number. Photon scaling assumes comparable line content, and a
+cool companion's H-band spectrum differs from an A-star host's, so the forecast could move in
+either direction. And it is a forecast: **no companion velocity has been measured**, and the
+telluric removal that must precede one has not been done.
+
+**But the gate is passed.** Any velocity this path produces now arrives with its transmission
+measured beforehand, which is the discipline the rest of this project has always required and
+this path had never received.
