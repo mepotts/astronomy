@@ -1,5 +1,23 @@
 # HANDOFF — exosat-rv
 
+> ## M31 (2026-08-14) — the fibre chain transfers: HIP 65426's three HiRISE nights extracted, and the planet is below the background
+>
+> All **27/27 staged frames** of the three public HiRISE nights reduce through the
+> M29-validated util_ path with **zero parameter changes** ([`M31-RESULTS.md`](M31-RESULTS.md)):
+> 21 non-empty orders per frame, FPET wavelength solutions, ranges matching the bpbhi
+> reference to <1 nm. On-sky proof reproduced on a second target: **h65hi2's deep frames
+> share tellurics with its host at 11.8σ at exactly 0 km/s** (benchmark 9.8σ); h65hi1/h65hi3
+> verified by contents with weaker telluric CCFs (~5σ/2.9σ), controls 9.6–23.3σ. Two new
+> HiRISE-night facts: a third frame class exists (**trailing sky/offset frames share the
+> host's DIT** — class by measured rate, not DIT), and raw-percentile probes cannot see a
+> faint host trace that extracts at S/N 10. The sourced photometry closes a door:
+> **ΔH2 = 11.14 (Chauvin+2017 Table F.1, fetched) puts HIP 65426 b 40–130× below the fibre
+> background in every deep frame — CCF ceiling 2–3σ; this corpus is a telluric/sky
+> reference + methods asset, not a companion dataset.** The exomoon lever stays the K2192
+> slit series + Matthew's priority call. Disk: managed on the data volume (floor 4.0 GB,
+> end 5.4 GB free); 90 calib raw deleted post-verification (logged); science raw + masters
+> kept for re-extraction; no other thread's data touched. Fetches 90/90, zero failures.
+
 > ## M30 (2026-08-14) — the outside sweep's "new public epochs": none were new
 >
 > `DISCOVERY/run3-prospectus.md` avenue #1 claimed three newly-public CRIRES+ blocks.

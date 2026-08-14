@@ -1,0 +1,526 @@
+{
+ "h65hi1": {
+  "night": "h65hi1",
+  "n_science": 9,
+  "n_extracted": 9,
+  "max_dit": 1200.0,
+  "deep": {
+   "n": 5,
+   "med_flux": 9.208,
+   "med_err": 27.67,
+   "med_snr": 0.283,
+   "flux_per_s": 0.007673333333333333
+  },
+  "host_bright": {
+   "n": 2,
+   "frames": [
+    "CRIRE.2025-01-31T07:00:29.542",
+    "CRIRE.2025-01-31T07:04:12.306"
+   ],
+   "med_flux": 337.216,
+   "med_snr": 10.374,
+   "flux_per_s": 1.686081904312167
+  },
+  "short_faint": {
+   "n": 2,
+   "frames": [
+    "CRIRE.2025-01-31T08:55:14.073",
+    "CRIRE.2025-01-31T08:58:37.430"
+   ],
+   "med_flux": 2.016,
+   "med_snr": 0.095
+  },
+  "wl_range_nm": [
+   1468.7,
+   1780.6
+  ],
+  "gates_failed": [],
+  "frames": [
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1780.6,
+    "med_flux": 335.4138013746042,
+    "med_err": 31.141555711142527,
+    "med_snr": 9.955055655827227,
+    "frame": "CRIRE.2025-01-31T07:00:29.542",
+    "dit": 200.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1780.6,
+    "med_flux": 339.01896035026266,
+    "med_err": 28.995190893883084,
+    "med_snr": 10.792157591341413,
+    "frame": "CRIRE.2025-01-31T07:04:12.306",
+    "dit": 200.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1780.6,
+    "med_flux": 3.4709882186387944,
+    "med_err": 27.66952459840578,
+    "med_snr": 0.13155631544345175,
+    "frame": "CRIRE.2025-01-31T07:12:42.538",
+    "dit": 1200.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1780.6,
+    "med_flux": 9.207914162625578,
+    "med_err": 31.43541514235602,
+    "med_snr": 0.28333083402020515,
+    "frame": "CRIRE.2025-01-31T07:32:46.024",
+    "dit": 1200.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1780.6,
+    "med_flux": 10.927410846484205,
+    "med_err": 28.458364513455983,
+    "med_snr": 0.3803507315217452,
+    "frame": "CRIRE.2025-01-31T07:52:49.521",
+    "dit": 1200.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1780.6,
+    "med_flux": 13.216739698151486,
+    "med_err": 26.04350186047209,
+    "med_snr": 0.4736491368646434,
+    "frame": "CRIRE.2025-01-31T08:12:52.845",
+    "dit": 1200.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1780.6,
+    "med_flux": 4.841234724146025,
+    "med_err": 25.178097602908625,
+    "med_snr": 0.19112440003944525,
+    "frame": "CRIRE.2025-01-31T08:32:56.081",
+    "dit": 1200.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1780.6,
+    "med_flux": 2.6283644634392407,
+    "med_err": 21.25614592299062,
+    "med_snr": 0.12247405340306738,
+    "frame": "CRIRE.2025-01-31T08:55:14.073",
+    "dit": 200.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1780.6,
+    "med_flux": 1.4037756177322223,
+    "med_err": 21.839134599662593,
+    "med_snr": 0.06818472035816744,
+    "frame": "CRIRE.2025-01-31T08:58:37.430",
+    "dit": 200.0
+   }
+  ],
+  "host_over_deep_per_s": 219.7
+ },
+ "h65hi2": {
+  "night": "h65hi2",
+  "n_science": 8,
+  "n_extracted": 8,
+  "max_dit": 1200.0,
+  "deep": {
+   "n": 5,
+   "med_flux": 11.293,
+   "med_err": 26.802,
+   "med_snr": 0.422,
+   "flux_per_s": 0.009410833333333334
+  },
+  "host_bright": {
+   "n": 2,
+   "frames": [
+    "CRIRE.2025-02-01T06:36:49.452",
+    "CRIRE.2025-02-01T06:46:53.003"
+   ],
+   "med_flux": 2818.079,
+   "med_snr": 54.618,
+   "flux_per_s": 4.6967985414040925
+  },
+  "short_faint": {
+   "n": 1,
+   "frames": [
+    "CRIRE.2025-02-01T08:55:04.086"
+   ],
+   "med_flux": 2.275,
+   "med_snr": 0.105
+  },
+  "wl_range_nm": [
+   1468.7,
+   1781.4
+  ],
+  "gates_failed": [],
+  "frames": [
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1781.4,
+    "med_flux": 2814.5293245501207,
+    "med_err": 51.425883655626244,
+    "med_snr": 54.60374074392877,
+    "frame": "CRIRE.2025-02-01T06:36:49.452",
+    "dit": 600.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1781.4,
+    "med_flux": 2821.6289251347903,
+    "med_err": 51.39944209163207,
+    "med_snr": 54.63233021253844,
+    "frame": "CRIRE.2025-02-01T06:46:53.003",
+    "dit": 600.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1781.4,
+    "med_flux": 12.540758259922018,
+    "med_err": 28.874855793452845,
+    "med_snr": 0.4344705529705935,
+    "frame": "CRIRE.2025-02-01T07:02:14.798",
+    "dit": 1200.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1781.4,
+    "med_flux": 8.32700496201093,
+    "med_err": 25.09362615470589,
+    "med_snr": 0.3299027858213289,
+    "frame": "CRIRE.2025-02-01T07:22:18.326",
+    "dit": 1200.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1781.4,
+    "med_flux": 13.912473037483135,
+    "med_err": 26.801617517029626,
+    "med_snr": 0.5169568342627029,
+    "frame": "CRIRE.2025-02-01T07:49:17.226",
+    "dit": 1200.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1781.4,
+    "med_flux": 11.293030378678624,
+    "med_err": 26.142542965214275,
+    "med_snr": 0.4222674846878489,
+    "frame": "CRIRE.2025-02-01T08:09:20.681",
+    "dit": 1200.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1781.4,
+    "med_flux": 8.838354559159454,
+    "med_err": 29.459629795709034,
+    "med_snr": 0.28608700247265817,
+    "frame": "CRIRE.2025-02-01T08:34:07.740",
+    "dit": 1200.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1781.4,
+    "med_flux": 2.2753313561364217,
+    "med_err": 21.65579781016406,
+    "med_snr": 0.10486624012532453,
+    "frame": "CRIRE.2025-02-01T08:55:04.086",
+    "dit": 600.0
+   }
+  ],
+  "host_over_deep_per_s": 499.1
+ },
+ "h65hi3": {
+  "night": "h65hi3",
+  "n_science": 10,
+  "n_extracted": 10,
+  "max_dit": 1200.0,
+  "deep": {
+   "n": 6,
+   "med_flux": 7.816,
+   "med_err": 26.041,
+   "med_snr": 0.3,
+   "flux_per_s": 0.006513333333333333
+  },
+  "host_bright": {
+   "n": 2,
+   "frames": [
+    "CRIRE.2025-02-02T05:47:03.924",
+    "CRIRE.2025-02-02T05:57:07.380"
+   ],
+   "med_flux": 2065.948,
+   "med_snr": 44.434,
+   "flux_per_s": 3.4432458833487987
+  },
+  "short_faint": {
+   "n": 2,
+   "frames": [
+    "CRIRE.2025-02-02T08:52:54.173",
+    "CRIRE.2025-02-02T09:02:56.878"
+   ],
+   "med_flux": 1.971,
+   "med_snr": 0.079
+  },
+  "wl_range_nm": [
+   1468.7,
+   1782.0
+  ],
+  "gates_failed": [],
+  "frames": [
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1782.0,
+    "med_flux": 1934.794488339996,
+    "med_err": 46.93529955710312,
+    "med_snr": 42.114301170513166,
+    "frame": "CRIRE.2025-02-02T05:47:03.924",
+    "dit": 600.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1782.0,
+    "med_flux": 2197.100571678562,
+    "med_err": 48.53650750589185,
+    "med_snr": 46.754568122749774,
+    "frame": "CRIRE.2025-02-02T05:57:07.380",
+    "dit": 600.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1782.0,
+    "med_flux": 12.225501825740396,
+    "med_err": 27.27394739500157,
+    "med_snr": 0.45673846030974985,
+    "frame": "CRIRE.2025-02-02T06:12:44.062",
+    "dit": 1200.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1782.0,
+    "med_flux": 10.522501023343448,
+    "med_err": 25.559705817830263,
+    "med_snr": 0.42441900361892215,
+    "frame": "CRIRE.2025-02-02T06:37:58.770",
+    "dit": 1200.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1782.0,
+    "med_flux": 7.281065086583631,
+    "med_err": 25.85550531249655,
+    "med_snr": 0.2559394102646111,
+    "frame": "CRIRE.2025-02-02T07:04:17.357",
+    "dit": 1200.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1782.0,
+    "med_flux": 6.108050374815928,
+    "med_err": 28.233842974467656,
+    "med_snr": 0.19241892899893748,
+    "frame": "CRIRE.2025-02-02T07:30:00.475",
+    "dit": 1200.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1782.0,
+    "med_flux": 7.663397710033202,
+    "med_err": 24.903950184570633,
+    "med_snr": 0.32173426816780887,
+    "frame": "CRIRE.2025-02-02T07:54:51.613",
+    "dit": 1200.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1782.0,
+    "med_flux": 7.969583517815634,
+    "med_err": 26.227164240937924,
+    "med_snr": 0.27884150767162164,
+    "frame": "CRIRE.2025-02-02T08:21:20.317",
+    "dit": 1200.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1782.0,
+    "med_flux": 3.9711990548582565,
+    "med_err": 24.903474591212746,
+    "med_snr": 0.15973893427549618,
+    "frame": "CRIRE.2025-02-02T08:52:54.173",
+    "dit": 600.0
+   },
+   {
+    "orders": 21,
+    "per_det": {
+     "CHIP1.INT1": 7,
+     "CHIP2.INT1": 7,
+     "CHIP3.INT1": 7
+    },
+    "wl_min": 1468.7,
+    "wl_max": 1782.0,
+    "med_flux": -0.0296097908705526,
+    "med_err": 23.239465320321365,
+    "med_snr": -0.0012731643677090505,
+    "frame": "CRIRE.2025-02-02T09:02:56.878",
+    "dit": 600.0
+   }
+  ],
+  "host_over_deep_per_s": 528.6
+ }
+}

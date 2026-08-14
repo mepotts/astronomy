@@ -1,0 +1,968 @@
+<<<PAGE 1>>>
+Astronomy & Astrophysics manuscript no. hip65426˙shine˙EngEditedmmc c⃝ ESO 2021
+July 27, 2021
+Discovery of a warm, dusty giant planet around HIP 65426 ⋆
+G. Chauvin1,2, S. Desidera3, A.-M. Lagrange1, A. Vigan4, R. Gratton3, M. Langlois4,5, M. Bonnefoy1, J.-L. Beuzit1, M.
+Feldt6, D. Mouillet1, M. Meyer7,8, A. Cheetham9, B. Biller6,10, A. Boccaletti11, V . D’Orazi3, R. Galicher11, J.
+Hagelberg1, A.-L. Maire6, D. Mesa3, J. Olofsson6,12, M. Samland6, T.O.B. Schmidt11, E. Sissa3, M. Bonavita3,10, B.
+Charnay11, M. Cudel1, S. Daemgen7, P. Delorme1, P. Janin-Potiron13, M. Janson6,14, M. Keppler6, H. Le Coroller4, R.
+Ligi4, G.D. Marleau6,15, S. Messina3,16, P. Molli`ere6, C. Mordasini6,15, A. M¨uller6, S. Peretti9, C. Perrot11, L. Rodet1,
+D. Rouan11, A. Zurlo3,17, C. Dominik18, T. Henning6, F. Menard1, H.-M. Schmid7, M. Turatto3, S. Udry9, F. Vakili13,
+L. Abe13, J. Antichi19, A. Baruﬀolo3, P. Baudoz11, J. Baudrand11, P. Blanchard4, A. Bazzon7, T. Buey11, M. Carbillet13,
+M. Carle4, J. Charton1, E. Cascone20, R. Claudi3, A. Costille4, A. Deboulbe1, V . De Caprio20, K. Dohlen4, D.
+Fantinel3, P. Feautrier1, T. Fusco21, P. Gigan11, E. Giro3, D. Gisler7, L. Gluck1, N. Hubin22, E. Hugot4, M. Jaquet4, M.
+Kasper22, F. Madec4, Y . Magnard,1, P. Martinez13, D. Maurel1, D. Le Mignant4, O. M¨oller-Nilsson6, M. Llored4, T.
+Moulin1, A. Orign´e4, A. Pavlov6, D. Perret11, C. Petit21, J. Pragt23, P. Puget1, P. Rabou1, J. Ramos6, R. Rigal18, S.
+Rochat1, R. Roelfsema23, G. Rousset11, A. Roux1, B. Salasnich3, J.-F. Sauvage21, A. Sevin11, C. Soenke22, E. Stadler1,
+M. Suarez19, L. Weber9, F. Wildi9, S. Antoniucci24, J.-C. Augereau1, J.-L. Baudino11,25, W. Brandner6, N. Engler7, J.
+Girard1,26, C. Gry4, Q. Kral11,27, T. Kopytova6,28,29, E. Lagadec13, J. Milli1,26, C. Moutou4,30, J. Schlieder6,31, J.
+Szul´agyi7, C. Thalmann7, Z. Wahhaj4,26
+(Aﬃliations can be found after the references)
+Received May 10th, 2017
+ABSTRACT
+Aims. The SHINE program is a high-contrast near-infrared survey of 600 young, nearby stars aimed at searching for and characterizing new
+planetary systems using VLT/SPHERE’s unprecedented high-contrast and high-angular-resolution imaging capabilities. It is also intended to place
+statistical constraints on the rate, mass and orbital distributions of the giant planet population at large orbits as a function of the stellar host mass
+and age to test planet-formation theories.
+Methods. We used the IRDIS dual-band imager and the IFS integral ﬁeld spectrograph of SPHERE to acquire high-contrast coronagraphic diﬀer-
+ential near-infrared images and spectra of the young A2 star HIP 65426. It is a member of the∼ 17 Myr old Lower Centaurus-Crux association.
+Results. At a separation of 830 mas (92 au projected) from the star, we detect a faint red companion. Multi-epoch observations conﬁrm that
+it shares common proper motion with HIP 65426. Spectro-photometric measurements extracted with IFS and IRDIS between 0.95 and 2.2 µm
+indicate a warm, dusty atmosphere characteristic of young low-surface-gravity L5-L7 dwarfs. Hot-start evolutionary models predict a luminosity
+consistent with a 6− 12 MJup, Teﬀ = 1300− 1600 K and R = 1.5± 0.1 RJup giant planet. Finally, the comparison with Exo-REM and PHOENIX
+BT-Settl synthetic atmosphere models gives consistent eﬀective temperatures but with slightly higher surface gravity solutions oflog(g) = 4.0−5.0
+with smaller radii (1.0− 1.3 RJup).
+Conclusions. Given its physical and spectral properties, HIP 65426 b occupies a rather unique placement in terms of age, mass, and spectral-type
+among the currently known imaged planets. It represents a particularly interesting case to study the presence of clouds as a function of particle
+size, composition, and location in the atmosphere, to search for signatures of non-equilibrium chemistry, and ﬁnally to test the theory of planet
+formation and evolution.
+Key words. Techniques: Imaging and spectroscopy - Star: HIP65426 - Planets and Satellites: detection, fundamental parameters, atmospheres
+1. Introduction
+More than a decade of direct imaging surveys targeting sev-
+eral hundred young, nearby stars have revealed that the occur-
+rence of giant planets at wide orbits ( ≥ 20− 40 au) is rela-
+tively low (e.g. Bowler 2016). Despite the relatively small num-
+ber of discoveries compared with other techniques, such as ra-
+dial velocity and transit, each new imaged giant planet has
+provided unique clues on the formation, evolution and physics
+of young Jupiters. The latest generation of planet imagers,
+SPHERE (Beuzit et al. 2008), GPI (Macintosh et al. 2014) and
+⋆ Based on observations collected at La Silla and Paranal
+Observatory, ESO (Chile) Program ID: 097.C-0865 and 098.C-0209
+(SPHERE).
+SCExAO (Jovanovic et al. 2016), now combine innovative ex-
+treme adaptive optics systems with coronagraphic and di ﬀeren-
+tial imaging techniques. They oﬀer unprecedented detection, as-
+trometric and spectrophotometric capabilities which allow us to
+discover and characterize fainter and closer giant planets, such
+as the recent discovery of 51 Eri b (2 MJup at 14 au, T5-type, of
+age 20 Myr; Macintosh et al. 2015; Samland et al. 2017). The
+SHINE (SpHere INfrared survey for Exoplanets) survey is cur-
+rently surveying 600 young, nearby stars as part of the SPHERE
+Guaranteed Time Observations. In this survey, we observed
+the close environment of the young, star HIP 65426. The deep
+coronographic near-infrared observations revealed the presence
+of a young, warm, and dusty L5-L7 massive jovian planet, here-
+after HIP 65426 b, located at about 92 au (projected distance).
+1
+arXiv:1707.01413v2  [astro-ph.EP]  11 Dec 2017
+
+<<<PAGE 2>>>
+SPHERE consortium: Discovery of a warm, dusty giant planet around HIP 65426
+We describe below the observing set-up and data reduction, the
+physical properties of HIP 65426 b, and ﬁnally discuss this new
+discovery in comparison to other imaged planetary systems and
+current planet formation and evolution theories.
+2. Host star properties
+HIP 65426 is an A2-type ( H = 6.853± 0.049 mag, Cutri et al.
+2003; d = 111.4± 3.8 pc, Gaia Collaboration et al. 2016) mem-
+ber of the Lower Centaurus-Crux (hereafter LCC) association
+(de Zeeuw et al. 1999; Rizzuto et al. 2011). A detailed sum-
+mary of the main stellar properties as found in the literature is
+given in Appendix A. To reﬁne them, the star was observed with
+HARPS (Mayor et al. 2003) on January 16th, 17th and 18th,
+20171. We measured the stellar absolute radial and projected
+rotational velocities using a custom cross-correlation function
+procedure speciﬁcally tailored for fast-rotating early-type stars.
+Values of Vrad = 5.2± 1.3 km.s−1 and v sin i = 299± 9 km.s−1
+were found (Appendix B). A marginally signiﬁcant radial ve-
+locity diﬀerence was found between the three epochs. This is
+probably due to stellar pulsations as suggested by the period-
+icity ( P ∼ 0.135 days) found from the Hipparcos photomet-
+ric time series. HIP 65426 is one of the fastest rotators known
+with similar spectral type (Zorec & Royer 2012) and is there-
+fore likely viewed along mid- to high-inclinations with respect to
+the rotation axis. Given its spectral type, the observed colors of
+HIP 65426 suggest a small value of reddening consistent with es-
+timates reported in Chen et al. (2012). Assuming a metallicity for
+the LCC that is close to solar (Viana Almeida et al. 2009), theo-
+retical isochrones predict an age of 14±4 Myr for LCC members
+in the vicinity of HIP 65426 (we refer to Appendix A for details).
+SPHERE and HARPS observations do not show evidence of bi-
+narity (Appendix C). Finally, according to Chen et al. (2012), no
+IR excess is reported for this star. Our own SED analysis con-
+ﬁrms this ﬁnding with only a tentative marginal excess at WISE
+W4 (Appendix D).
+3. Observations and data reduction
+HIP 65426 was observed on May 30th, 2016 under unstable con-
+ditions (strong wind) with SPHERE. The observations were then
+repeated on June 26th, 2016. The data were acquired in IRDIFS
+pupil-tracking mode with the 185 mas diameter apodized-Lyot
+coronograph (Carbillet et al. 2011; Guerri et al. 2011), using
+IRDIS (Dohlen et al. 2008) in dual-band imaging mode (Vigan
+et al. 2010) with the H2H3 ﬁlters (λH2 = 1.593± 0.055 µm;
+λH3 = 1.667± 0.056µm), and the IFS integral ﬁeld spectrograph
+(Claudi et al. 2008) simultaneously in Y− J (0.95− 1.35µm,
+Rλ = 54) mode. The registration of the star position behind
+the coronagraph and the point spread function were taken at
+the beginning and the end of the sequence. In the deep corona-
+graphic images, four faint candidates were detected within 7′′ of
+HIP 65426. The companion candidate located at about 830 mas
+and position angle of 150 ◦ (hereafter cc-0) revealed promis-
+ing photometric properties and had a peculiar position in the
+color-magnitude diagrams used to rank the SHINE candidates.
+The source was then re-observed on February 7th, 2017, with
+the same IRDIFS mode to test that this close candidate is co-
+moving with HIP 65426. On February 9th, 2017, the IRDIFS-
+EXT mode was used with IRDIS in the K1K2 ﬁlters (λK1 =
+2.1025±0.1020µm;λK2 = 2.2550±0.1090µm) and IFS inY−H
+(0.97− 1.66µm, Rλ = 30) to further constrain its physical and
+1 HARPS Program ID 098.C-0739(A)
+spectral properties. The details of the observing settings and con-
+ditions at all epochs are described in Table E.1 of Appendix E. To
+calibrate the IRDIS and IFS datasets, an astrometric ﬁeld 47 Tuc
+was observed. The platescale and True North correction solution
+at each epoch are reported in Table E.1. They are derived from
+the long-term analysis of the SHINE astrometric calibration de-
+scribed by Maire et al. (2016).
+All IRDIS and IFS datasets were reduced at the SPHERE
+Data Center 2 (DC) using the SPHERE Data Reduction and
+Handling (DRH) automated pipeline (Pavlov et al. 2008). Basic
+corrections for bad pixels, dark current, ﬂat ﬁeld were applied.
+For IFS, the SPHERE-DC complemented the DRH pipeline with
+additional steps that improve the wavelength calibration and
+the cross-talk and bad pixel correction (Mesa et al. 2015). The
+products were then used as input to the SHINE Specal pipeline
+which applies anamorphism correction and ﬂux normalization,
+followed by di ﬀerent angular and spectral di ﬀerential imaging
+algorithms (Galicher et al. 2017, in prep). For the February 7th,
+2017 and February 9th, 2017 datasets, we took advantage of the
+waﬄe-spot registration to apply a frame-to-frame recentering.
+The TLOCI (Marois et al. 2014) and PCA (Soummer et al. 2012;
+Amara & Quanz 2012) algorithms were speciﬁcally used on an-
+gular diﬀerential imaging data (i.e., without applying any com-
+bined spectral di ﬀerential processing) given the relatively high
+S/N (10− 30 in the individual IFS channels,≥ 50 with IRDIS)
+detection of cc-0. Its position and spectrophotometry were ex-
+tracted using injected fake planets and planetary signature tem-
+plates to take into account any biases related to the data pro-
+cessing. Both algorithms gave consistent results. The resulting
+extracted TLOCI images from IFS and IRDIS for the February
+7th, 2017 epoch are shown in Fig. 1.
+Fig. 1. Left: IFS Y J-band TLOCI image of HIP 65426 A and b
+from February 7th 2017. The planet is well detected at a sep-
+aration of 830 ± 3 mas and position angle of 150 .0± 0.3 deg
+from HIP 65426. Right: IRDIS H2H3 combined TLOCI image
+of HIP 65426 A and b for the same night. In both images, North
+is up and East is left.
+4. Results
+4.1. Companionship conﬁrmation
+To test the physical association of cc-0, multi-epoch measure-
+ments showing a shared motion (if non-negligible) with the stel-
+lar host is a ﬁrst robust diagnostic before resolving orbital mo-
+tion. We therefore used the IRDIS observations of June 26th,
+2 http://sphere.osug.fr
+2
+
+<<<PAGE 3>>>
+SPHERE consortium: Discovery of a warm, dusty giant planet around HIP 65426
+430 420 410 400
+∆α  (mas)
+−730
+−720
+−710
+−700∆δ (mas)
+7/2/2017 (IF BKG)
+9/2/2017 (IF BKG)
+26/6/2016
+7/2/2017
+9/2/2017
+Fig. 2. IRDIS multi-epoch measurements of the position of
+HIP 65426 b relative to HIP 65426 inblue from June 26th, 2016
+and February 7th, 2017 in H2 and February 9th, 2017 in K1.
+Predictions of the relative position of a stationary background
+contaminant for the same observing epochs are shown in pink
+and in black for the continuous evolutive predictions in time.
+2016, and February 7th and 9th, 2017. We did not consider the
+ﬁrst observation of the May 30th 2016 epoch which was ac-
+quired under unstable conditions. The astrometric uncertainties
+are derived at each epoch by quadratically summing errors from
+the stellar position calibrated with the wa ﬄe-spots, the candi-
+date extracted position with Specal and the uncertainties related
+to the initial pupil-oﬀset rotation, the platescale and True North
+correction, the anamorphism and the IRDIS dithering. The pho-
+tometric results obtained with both IRDIS and IFS are given in
+Table F.1 of Appendix F considering the SPHERE ﬁlter trans-
+missions3. The astrometric results obtained with IRDIS are re-
+ported in Table F.1 and in Fig. 2. Consistent astrometric results
+were found with IFS. They both unambiguously conﬁrm that
+cc-0 is not a stationary background contaminant but is comov-
+ing with HIP 65426 and is therefore likely a planet (hereafter
+HIP 65426 b). One additional close candidate (cc-1) located at
+2495 mas provides a robust control of our astrometric analysis
+and is conﬁrmed as a stationary background contaminant. The
+nature of the two other candidates (cc-2 and cc-3) at larger sep-
+arations remains to be clariﬁed (considering the astrometric er-
+ror bars), but their position in the color-magnitude diagram indi-
+cates that they are very likely background objects (see Fig. F.1 of
+Appendix F). The relative astrometry and photometry for these
+additional candidates are reported in Table F.2 of Appendix F for
+June 26th, 2016. No signiﬁcant orbital motion for HIP 65426 b is
+measured in the present data. This is consistent with the expected
+long orbital period ( P∼ 600 yr for a circular orbit with semi-
+major axis equal to the projected separation). Finally, the proba-
+bility of having at least one background contaminant of similar
+brightness or brighter within the separation of HIP 65426 b and
+with proper motion less than 5 σ deviant from the HIP 65426
+proper motion is less than 1% given the galactic coordinates of
+HIP 65426 and the predicted space and velocity distribution of
+3 https://www.eso.org/sci/facilities/paranal/instruments/sphere/inst/ﬁlters.html
+ﬁeld stars from theGalaxia galactic population model of Sharma
+et al. (2011).
+4.2. Spectral typing analysis
+The TLOCI extracted spectro-photometric measurements of
+HIP 65426 b between 0.95 and 2.26 µm (converted to physical
+ﬂuxes using the VOSA 4 tool) are reported in Fig. 3. We com-
+pared them to a large variety of reference low-resolution spectra
+of late-M and L dwarfs compiled from the literature (Burgasser
+2014; Best et al. 2015; Mace et al. 2013; Allers & Liu 2013) as
+well as spectra of young imaged exoplanets and brown dwarfs
+close to the L /T transition (Patience et al. 2010; Zurlo et al.
+2016; De Rosa et al. 2014; Artigau et al. 2015; Gauza et al.
+2015). We considered the G goodness-of-ﬁt indicator deﬁned
+in Cushing et al. (2008) which accounts for the ﬁlter and spec-
+tral channel widths to compare each of the template spectra
+to the spectrophotometric datapoints of HIP 65426 b. The best
+empirical ﬁts are obtained for the young L5 and L7 dwarfs
+2MASS J035523.37+113343.7 and PSO J057.2893+15.2433 re-
+cently identiﬁed as candidate members of the young, moving
+groups AB Doradus (50−150 Myr) andβ Pictoris (20−30 Myr),
+respectively, (Faherty et al. 2013; Liu et al. 2013; Best et al.
+2015) and the dusty L6 dwarf 2MASS J21481628 +4003593
+(Looper et al. 2008). Fig. 3 shows how well they reproduce the
+near-infrared slope of the spectrum of HIP 65426 b between 0.95
+and 2.26µm as well as the water absorption at 1 .33µm. This
+comparison conﬁrms a low-surface-gravity atmosphere of spec-
+tral type L6±1 for HIP 65426 b consistent with a young massive
+planet at the age of the LCC.
+4.3. Physical properties
+Using a bolometric correction derived from the ones found
+by (Filippazzo et al. 2015) for the dusty L5 to L7.5 dwarfs
+2MASS J21481628+4003593, 2MASS J035523.37 +113343.7,
+PSO J318.533822.8603, and WISEP J004701.06+680352.1, we
+derive a bolometric luminosity of −4.06 ± 0.10 dex for
+HIP 65426 b. Considering an age of 14± 4 Myr and a distance of
+111.4±3.8 pc, it converts into the following predicted masses, ef-
+fective temperatures and radii by the Lyon’s group hot-start mod-
+els: M = 7+2
+−1 MJup, Teﬀ = 1500+100
+−200 K and R = 1.5± 0.1 RJup for
+the COND03 models (Baraﬀe et al. 2003) and M = 10± 2 MJup,
+Teﬀ = 1500+100
+−200 K and R = 1.5± 0.1 RJup for the DUSTY mod-
+els (Chabrier et al. 2000). Consistent results are found with the
+models of Mordasini (2013) for the hot-start solutions and higher
+masses for the warm-start solutions (M = 12 MJup, Teﬀ = 1260 K
+and R = 1.3 RJup). To further explore the physical properties
+of HIP 65426 b, we compared our data to the synthetic grids of
+three atmospheric models previously used in the characteriza-
+tion of the planets around HR 8799 (Bonnefoy et al. 2016). They
+are the Exo-REM models (Baudino et al. 2015), the 2014 ver-
+sion of the PHOENIX BT-Settl atmospheric models described
+in Allard (2014) and Bara ﬀe et al. (2015) and the thick AE
+cloud parametric models of Madhusudhan et al. (2011). The
+best ﬁts for each grid are reported in Fig. 3. The Exo-REM and
+PHOENIX BT-Settl models favor an e ﬀective temperature of
+Teﬀ = 1600+100
+−200 K, slightly higher than the one derived by the
+semi-empirical scale of (Filippazzo et al. 2015) for young L6±1
+(Teﬀ = 1200− 1400 K), but consistent with the evolutionary
+model predictions. They however favor high-surface-gravity so-
+lutions of log(g) = 4.0−5.0 with smaller radii (1.0−1.3 RJup). On
+4 http://svo2.cab.inta-csic.es/theory/vosa/
+3
+
+<<<PAGE 4>>>
+SPHERE consortium: Discovery of a warm, dusty giant planet around HIP 65426
+1.0 1.2 1.4 1.6 1.8 2.0 2.2
+Wavelength [µm]
+2
+4
+6Normalized flux (+constant)
+PSO057+15 (L7, BPMG)
+2M0355+11 (L5, ABDor)
+2M2148+40 (L6, Dusty)
+BT−SETTL(Teff=1650K, logg=4.5, M/H=0, R=1RJup)
+Exo−REM (Teff=1600K, logg=5.0, fSED=1.5, R=1.3RJup)
+AE models/60µm (Teff=1200K, log g=3.5, M/H=0, R=1.8RJup)
+H2H3 K1 K2IFS−YJ
+Fig. 3. Near-infrared spectrum of HIP 65426 b extracted with
+TLOCI compared with (i) the best-ﬁt empirical spectra in pink,
+and (ii) the best-ﬁt model atmosphere from the Exo-REM,
+PHOENIX BT-Settl-2014 and thick AE cloud atmospheric mod-
+els in blue.
+the contrary, the thick AE cloud parametric models that predict
+solutions with Teﬀ = 1200± 100 K and log(g) = 3.5 reproduce
+the spectral morphology but predict luminosities which are too
+low, thus leading to radii above the evolutionary model predic-
+tions (∼ 1.8 RJup).
+The inferred chemical and physical properties of
+HIP 65426 b place this new planet in a very interesting se-
+quence of young brown dwarfs and exoplanets discovered in
+the 5 − 20 Myr-old Scorpius-Centaurus association (hereafter
+Sco-Cen). It is lighter and cooler than the late-M brown dwarf
+companions discovered by Aller et al. (2013) and Hinkley
+et al. (2015) and the massive planetary mass companions
+GSC 06214-00210 b (14− 17 MJup at 320 au; M9 at 5 Myr;
+Lachapelle et al. 2015; Ireland et al. 2011), UScoCTIO 108 b
+(6− 16 MJup at 670 au; M9.5 at 5 Myr; Bonnefoy et al. 2014;
+B´ejar et al. 2008), HD 106906 b (11 MJup at 650 au; L2 .5 at
+13 Myr; Bailey et al. 2014) and 1RXS J160929.1-210524 b
+(7− 12 MJup at 330 au; L2− 4 at 5 Myr; Lachapelle et al. 2015;
+Manjavacas et al. 2014; Lafreni `ere et al. 2008). On the other
+hand, HIP 65426 b is probably more massive and hotter than
+the planet HD 95086 b (4− 5 MJup at 56 au, L8-type, 17 Myr;
+Rameau et al. 2013). This spectral and physical sequence is
+particularly interesting to study the main phase of transitions
+occurring in the atmosphere of brown dwarfs and exoplanets and
+inﬂuencing their spectra and luminosity, such as the formation
+of clouds and their properties as a function of particle size,
+composition, and location in the atmosphere or the role of
+non-equilibrium chemistry processes. Further characterization
+in the thermal-infrared domain with JWST or ground-based
+instrument like NaCo will allow us to explore in more detail
+the young planetary atmosphere of HIP 65426 b. Dedicated
+Coronograph transm. limit
+0 20 40 60 80 100
+Projected physical distance (au)
+      
+ 
+ 
+ 
+ 
+ 
+ 
+0
+5
+10
+15
+20
+ 
+Mass (MJup)
+HIP65426b
+LT Transition dwarfs − IFS
+β Pic b − IFS
+51 Eri b − IFS
+Flat spectrum − IFS
+K1−IRDIS
+     
+0 200 400 600 800
+Angular separation (mas)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+14
+12
+10
+8
+6
+5σ Contrast  (mag)
+Coronograph transm. limit
+LT Transition dwarfs − IFS
+β Pic b − IFS
+51 Eri b − IFS
+Flat spectrum − IFS
+K1−IRDIS
+Fig. 4. Top: SPHERE IFS and IRDIS 5 σ detection limits as a
+function of the angular separation taken from February 7th and
+9th, 2017. Bottom: SPHERE IFS and IRDIS 5 σ detection lim-
+its converted in terms of masses using DUSTY model predic-
+tions as a function of the projected physical separation. For IFS,
+diﬀerent spectral energy distributions were considered for the
+injected planets to explore the impact of the ﬂux loss cancella-
+tion and diﬀerent planet properties in the ﬁnal detection limits.
+Contrast curves were cut at 0.15′′ because of the low transmis-
+sion of the coronagraph. The location and the predicted mass by
+the DUSTY models of HIP 65426 b are reported.
+photometric variability monitoring would also be opportune
+as HIP 65426 b shares a similar spectral type and young age
+with the two highest-amplitude (7-10%) variable L-type dwarfs
+known (PSO J318.5-22, L7 member ofβ Pic, Biller et al. 2015;
+Liu et al. 2013) and WISE 0047, L6.5 member of AB Dor,
+Lew et al. 2016; Gizis et al. 2012) and, as radial velocity
+measurements suggest, we may be observing the system close
+to edge-on.
+5. Discussion
+HIP 65426 b is today the ﬁrst planet5 discovered with SPHERE.
+The planet is orbiting at a relatively large projected physical
+distance of about 92 au from the intermediate-mass primary
+HIP 65426. Contrary to most of the young, intermediate-mass
+stars hosting an imaged planet, no evidence of a debris disk, a
+remnant planetesimal belt, has been found for HIP 65426. The
+analysis of the optical to mid-infrared photometry shows that,
+if the star is still hosting a debris disk, it would be located at
+distances larger than 100 au (i.e. farther out than the planet lo-
+cation) and with an upper limit to the micron-sized dust mass
+of 3.2× 10−4 M⊕ (see Appendix D). No signs of multiplicity
+5 With a mass ratio to its host ofq = 0.004, we consider HIP 65426 b
+as a planet as suggested by the local minimum observed for the
+mass-ratio distribution of low-mass companions orbiting Sun-like stars
+(Sahlmann et al. 2011; Reggiani et al. 2016).
+4
+
+<<<PAGE 5>>>
+SPHERE consortium: Discovery of a warm, dusty giant planet around HIP 65426
+have been observed so far for HIP 65426, which could have ex-
+plained a rapid dispersal of the primordial protoplanetary disk,
+but this should still be investigated. Another intriguing aspect of
+the system is that HIP 65426 is an extremely fast rotator as evi-
+denced by our HARPS observations. No similar cases are known
+among the Sco-Cen and young, nearby intermediate-mass as-
+sociation members, nor among the intermediate-mass primaries
+hosting young imaged giant planets (see Appendix B). Although
+fast stellar rotation is consistent with the picture of a rapid disk
+dispersal disabling disk-braking, planetary formation must have
+time to occur to explain the formation of HIP 65426 b. The planet
+location would not favor a formation by core accretion unless
+HIP 65426 b formed signiﬁcantly closer to the star followed by
+a planet-planet scattering event. An increase of angular momen-
+tum by engulﬁng an inner massive scatterer could explain the
+fast rotation of HIP 65426, but this remains to be tested by ded-
+icated simulations. From our observations, we cannot exclude
+the presence of unseen inner massive planets in that system that
+could have scattered out HIP 65426 b. However, our current de-
+tection limits set relatively good constraints on their possible
+masses (≤ 5 MJup beyond 20 au), as shown in Fig. 4. As a conse-
+quence of a scattering event, the orbit of HIP 65426 b would also
+be rather eccentric which could be probed with further astromet-
+ric monitoring. If formed in-situ at its current location, formation
+by disk instability would be a better alternative, which would be
+consistent with the metallicity of the host star not enhanced with
+respect to the solar value. Finally, the formation of an extreme
+mass-ratio binary by gravo-turbulent fragmentation (Hennebelle
+& Chabrier 2011) cannot be excluded.
+Acknowledgements. We acknowledge ﬁnancial support from the Programme
+National de Plantologie (PNP) and the Programme National de Physique
+Stellaire (PNPS) of CNRS-INSU. This work has also been supported by a
+grant from the French Labex OSUG@2020 (Investissements davenir ANR10
+LABX56). The project is supported by CNRS, by the Agence Nationale
+de la Recherche (ANR-14-CE33-0018). This work has made use of the
+the SPHERE Data Centre, jointly operated by OSUG /IPAG (Grenoble),
+PYTHEAS/LAM/CESAM (Marseille), OCA /Lagrange (Nice) and Observtoire
+de Paris/LESIA (Paris). We thank P. Delorme and E. Lagadec (SPHERE Data
+Centre) for their e ﬃcient help during the data reduction process. SPHERE is
+an instrument designed and built by a consortium consisting of IPAG (Grenoble,
+France), MPIA (Heidelberg, Germany), LAM (Marseille, France), LESIA (Paris,
+France), Laboratoire Lagrange (Nice, France), INAFOsservatorio di Padova
+(Italy), Observatoire de Genve (Switzerland), ETH Zurich (Switzerland), NOV A
+(Netherlands), ONERA (France) and ASTRON (Netherlands) in collabora-
+tion with ESO. SPHERE was funded by ESO, with additional contributions
+from CNRS (France), MPIA (Germany), INAF (Italy), FINES (Switzerland)
+and NOV A (Netherlands). SPHERE also received funding from the European
+Commission Sixth and Seventh Framework Programmes as part of the Optical
+Infrared Coordination Network for Astronomy (OPTICON) under grant num-
+ber RII3-Ct-2004-001566 for FP6 (20042008), grant number 226604 for FP7
+(20092012) and grant number 312430 for FP7 (20132016). M. B. thanks A.
+Best, K. Allers, G. Mace, E. Artigau, B. Gauza, R. D. Rosa, M.-E. Naud,
+F.-R. Lachapelle, J. Patience, J. Gizis, A. Burgasser, M. Liu, A. Schneider,
+K. Aller, B. Bowler, S. Hinkley, and K. Kellogg for providing their spectra
+of young, brown dwarf companions. This publication makes use of VOSA,
+developed under the Spanish Virtual Observatory project supported from the
+Spanish MICINN through grant AyA2011-24052. This research has beneﬁt-
+ted from the SpeX Prism Spectral Libraries, maintained by A. Burgasser at
+http://pono.ucsd.edu/∼adam/browndwarfs/spexprism. This research has made
+use of the Washington Double Star Catalog maintained at the U.S. Naval
+Observatory. This work has made use of data from the European Space Agency
+(ESA) mission Gaia (https://www.cosmos.esa.int/gaia), processed by
+the Gaia Data Processing and Analysis Consortium (DPAC, https://www.
+cosmos.esa.int/web/gaia/dpac/consortium). Part of this work has been
+carried out within the frame of the National Centre for Competence in Research
+PlanetS supported by the Swiss National Science Foundation (SNSF). MRM,
+HMS, and SD are pleased to acknowledge this ﬁnancial support of the SNSF.
+References
+Allard, F. 2014, in IAU Symposium, V ol. 299, Exploring the Formation and
+Evolution of Planetary Systems, ed. M. Booth, B. C. Matthews, & J. R.
+Graham, 271–272
+Aller, K. M., Kraus, A. L., Liu, M. C., et al. 2013, ApJ, 773, 63
+Allers, K. N. & Liu, M. C. 2013, ApJ, 772, 79
+Amara, A. & Quanz, S. P. 2012, MNRAS, 427, 948
+Artigau, ´E., Gagn´e, J., Faherty, J., et al. 2015, ApJ, 806, 254
+Bailey, V ., Meshkat, T., Reiter, M., et al. 2014,ApJ, 780, L4
+Baraﬀe, I., Chabrier, G., Barman, T. S., Allard, F., & Hauschildt, P. H. 2003,
+A&A, 402, 701
+Baraﬀe, I., Homeier, D., Allard, F., & Chabrier, G. 2015, A&A, 577, A42
+Baudino, J.-L., B´ezard, B., Boccaletti, A., et al. 2015, A&A, 582, A83
+Bayo, A., Rodrigo, C., Barrado Y Navascu´es, D., et al. 2008, A&A, 492, 277
+B´ejar, V . J. S., Zapatero Osorio, M. R., P´erez-Garrido, A., et al. 2008, ApJ, 673,
+L185
+Best, W. M. J., Liu, M. C., Magnier, E. A., et al. 2015, ApJ, 814, 118
+Beuzit, J.-L., Feldt, M., Dohlen, K., et al. 2008, in Proc. SPIE , V ol. 7014,
+Ground-based and Airborne Instrumentation for Astronomy II, 701418
+Biller, B. A., V os, J., Bonavita, M., et al. 2015,ApJ, 813, L23
+Bonnefoy, M., Chauvin, G., Lagrange, A.-M., et al. 2014, A&A, 562, A127
+Bonnefoy, M., Zurlo, A., Baudino, J. L., et al. 2016, A&A, 587, A58
+Bowler, B. P. 2016,PASP, 128, 102001
+Bressan, A., Marigo, P., Girardi, L., et al. 2012, MNRAS, 427, 127
+Burgasser, A. J. 2014, in Astronomical Society of India Conference Series,
+V ol. 11, Astronomical Society of India Conference Series
+Burns, J. A., Lamy, P. L., & Soter, S. 1979, Icarus, 40, 1
+Carbillet, M., Bendjoya, P., Abe, L., et al. 2011, Experimental Astronomy, 30,
+39
+Chabrier, G., Baraﬀe, I., Allard, F., & Hauschildt, P. 2000,ApJ, 542, 464
+Chen, C. H., Pecaut, M., Mamajek, E. E., Su, K. Y . L., & Bitner, M. 2012,ApJ,
+756, 133
+Claudi, R. U., Turatto, M., Gratton, R. G., et al. 2008, in Proc. SPIE, V ol. 7014,
+Ground-based and Airborne Instrumentation for Astronomy II, 70143E
+Cutri, R. M., Skrutskie, M. F., van Dyk, S., et al. 2003, 2MASS All Sky Catalog
+of point sources.
+David, T. J. & Hillenbrand, L. A. 2015, ApJ, 804, 146
+De Rosa, R. J., Patience, J., Ward-Duong, K., et al. 2014, MNRAS, 445, 3694
+de Zeeuw, P. T., Hoogerwerf, R., de Bruijne, J. H. J., Brown, A. G. A., & Blaauw,
+A. 1999, AJ, 117, 354
+Dohlen, K., Langlois, M., Saisse, M., et al. 2008, in Proc. SPIE, V ol. 7014,
+Ground-based and Airborne Instrumentation for Astronomy II, 70143L
+Draine, B. T. 2003, ApJ, 598, 1026
+Faherty, J. K., Rice, E. L., Cruz, K. L., Mamajek, E. E., & N ´u˜nez, A. 2013, AJ,
+145, 2
+Fang, Q., Herczeg, G. J., & Rizzuto, A. 2017, ArXiv e-prints
+Filippazzo, J. C., Rice, E. L., Faherty, J., et al. 2015, ApJ, 810, 158
+Gaia Collaboration, Brown, A. G. A., Vallenari, A., et al. 2016,A&A, 595, A2
+Gauza, B., B´ejar, V . J. S., P´erez-Garrido, A., et al. 2015, ApJ, 804, 96
+Gizis, J. E., Faherty, J. K., Liu, M. C., et al. 2012, AJ, 144, 94
+Guerri, G., Daban, J.-B., Robbe-Dubois, S., et al. 2011, Experimental
+Astronomy, 30, 59
+Hennebelle, P. & Chabrier, G. 2011, ApJ, 743, L29
+Hinkley, S., Bowler, B. P., Vigan, A., et al. 2015,ApJ, 805, L10
+Ireland, M. J., Kraus, A., Martinache, F., Law, N., & Hillenbrand, L. A. 2011,
+ApJ, 726, 113
+Jovanovic, N., Guyon, O., Lozi, J., et al. 2016, in Proc. SPIE , V ol. 9909,
+Adaptive Optics Systems V , 99090W
+Lachapelle, F.-R., Lafreni`ere, D., Gagn´e, J., et al. 2015, ApJ, 802, 61
+Lafreni`ere, D., Jayawardhana, R., & van Kerkwijk, M. H. 2008, ApJ, 689, L153
+Lew, B. W. P., Apai, D., Zhou, Y ., et al. 2016,ApJ, 829, L32
+Liu, M. C., Magnier, E. A., Deacon, N. R., et al. 2013, ApJ, 777, L20
+Looper, D. L., Kirkpatrick, J. D., Cutri, R. M., et al. 2008, ApJ, 686, 528
+Mace, G. N., Kirkpatrick, J. D., Cushing, M. C., et al. 2013, ApJS, 205, 6
+Macintosh, B., Graham, J. R., Barman, T., et al. 2015, Science, 350, 64
+Macintosh, B., Graham, J. R., Ingraham, P., et al. 2014, Proceedings of the
+National Academy of Science, 111, 12661
+Maire, A.-L., Langlois, M., Dohlen, K., et al. 2016, in Proc. SPIE , V ol.
+9908, Society of Photo-Optical Instrumentation Engineers (SPIE) Conference
+Series, 990834
+Manjavacas, E., Bonnefoy, M., Schlieder, J. E., et al. 2014, A&A, 564, A55
+Marois, C., Correia, C., V ´eran, J.-P., & Currie, T. 2014, in IAU Symposium,
+V ol. 299, Exploring the Formation and Evolution of Planetary Systems, ed.
+M. Booth, B. C. Matthews, & J. R. Graham, 48–49
+Mason, B. D., Wycoﬀ, G. L., Hartkopf, W. I., Douglass, G. G., & Worley, C. E.
+2001, AJ, 122, 3466
+Mayor, M., Pepe, F., Queloz, D., et al. 2003, The Messenger, 114, 20
+5
+
+<<<PAGE 6>>>
+SPHERE consortium: Discovery of a warm, dusty giant planet around HIP 65426
+Mordasini, C. 2013, A&A, 558, A113
+Olofsson, J., Samland, M., Avenhaus, H., et al. 2016, A&A, 591, A108
+Patience, J., King, R. R., de Rosa, R. J., & Marois, C. 2010, A&A, 517, A76
+Pavlov, A., M¨oller-Nilsson, O., Feldt, M., et al. 2008, in Proc. SPIE, V ol. 7019,
+Advanced Software and Control for Astronomy II, 701939
+Pecaut, M. J. & Mamajek, E. E. 2013, ApJS, 208, 9
+Pecaut, M. J. & Mamajek, E. E. 2016, MNRAS, 461, 794
+Perryman, M. A. C., Lindegren, L., Kovalevsky, J., et al. 1997,A&A, 323, L49
+Rameau, J., Chauvin, G., Lagrange, A.-M., et al. 2013, ApJ, 772, L15
+Reggiani, M., Meyer, M. R., Chauvin, G., et al. 2016, A&A, 586, A147
+Rizzuto, A. C., Ireland, M. J., & Robertson, J. G. 2011, MNRAS, 416, 3108
+Sahlmann, J., S´egransan, D., Queloz, D., & Udry, S. 2011, in IAU Symposium,
+V ol. 276, The Astrophysics of Planetary Systems: Formation, Structure, and
+Dynamical Evolution, ed. A. Sozzetti, M. G. Lattanzi, & A. P. Boss, 117–120
+Sharma, S., Bland-Hawthorn, J., Johnston, K. V ., & Binney, J. 2011,ApJ, 730, 3
+Soummer, R., Pueyo, L., & Larkin, J. 2012, ApJ, 755, L28
+Viana Almeida, P., Santos, N. C., Melo, C., et al. 2009,A&A, 501, 965
+Vigan, A., Moutou, C., Langlois, M., et al. 2010, MNRAS, 407, 71
+Zorec, J. & Royer, F. 2012, A&A, 537, A120
+Zurlo, A., Vigan, A., Galicher, R., et al. 2016, A&A, 587, A57
+Appendix A: Isochronal ages of HIP 65426 and
+neighboring stars
+Adopting the values from Table A.1, the placement in abso-
+lute magnitude in V-band versus eﬀective temperature diagram
+and comparison with theoretical models by Bressan et al. (2012)
+yields an age of 9-10 Myr when adopting the Gaia DR1 parallax
+(Fig. A.1). This is slightly younger than the commonly adopted
+age for LCC (17 Myr). However, recent results highlight the ex-
+istence of signiﬁcant age di ﬀerences at various locations within
+the Sco-Cen sub-groups (Fang et al. 2017; Pecaut & Mamajek
+2016).
+Table A.1. Stellar parameters of HIP 65426.
+Parameter Value References
+V (mag) 7.01 Hipparcosa
+B− V (mag) 0.093 Hipparcosa
+V− I (mag) 0.11 Hipparcosa
+J (mag) 6.826 ±0.019 2MASSb
+H (mag) 6.853 ±0.049 2MASSb
+K (mag) 6.771 ±0.018 2MASSb
+Parallax (mas) 8.98 ±0.30 Gaia DR1c
+µα (mas.yr−1) -33.923 ±0.030 Gaia DR1c
+µδ (mas.yr−1) -18.955 ±0.031 Gaia DR1c
+RV (km.s−1) -5.2 ±1.3 this paper
+SpT A2V
+Teﬀ (K) 8840 ±200 SpT +Pecaut calib.
+E(B-V) 0.01 ±0.01 this paper
+v sin i (km.s−1) 299 ±9 this paper
+Age (Myr) 14 +4
+−4 this paper
+Mstar(M⊙) 1.96 ±0.04 this paper
+Rstar(R⊙) 1.77 ±0.05 this paper
+References: (a) Perryman et al. 1997, (b) Cutri et al. 2003, (c) Gaia Collaboration et al.
+2016.
+To further reﬁne the age estimate, we considered additional
+stars physically close to HIP 65426 and with similar kinematic
+parameters. We selected from Gaia DR1 stars within 5 ◦ of
+HIP 65426, with parallax within 1 mas, and proper motion within
+6 mas.yr−1. This search returned a total of 15 objects. Eight of
+these were previously known as LCC members. The seven stars
+without RV determination from the literature were observed with
+10000 9000 8000 7000 6000 5000 4000
+Teff (K)
+7
+6
+5
+4
+3
+2
+1MV (mag)
+5
+12
+20
+30
+70
+HIP 65426
+Fig. A.1. Absolute magnitude in V-band versus eﬀective temper-
+ature diagram for HIP 65426 and stars within 5 ◦ with similar
+distance and kinematics. Blue circles: HIP 65426 and two stars
+with space velocity diﬀerence smaller than 3 km.s−1. Red circles:
+Stars with space velocity di ﬀerence with respect to HIP 65426
+between 3 and 10 km.s−1. Empty circles: stars with space veloc-
+ity diﬀerence larger than 10 km.s−1. The 5, 12, 20, 30, 70 Myr
+solar-metallicity isochrones by Bressan et al. (2012) are over-
+plotted and labeled individually.
+FEROS spectrograph at 2.2 m telescope at La Silla as part of
+MPIA observing time 6. Full results of these observations will
+be presented in a future publication. All the selected stars are
+probable members of the Sco-Cen group, as resulting from RV ,
+signatures of fast rotation and activity or lithium from data avail-
+able in the literature or from our FEROS spectra. The maximum
+space velocity di ﬀerence with respect to HIP 65426 amounts
+to 12.9 km.s−1. Two stars, namely HIP 64044 and TYC 8653-
+1060-1, have kinematic values very close to those of HIP 65426
+(space velocity di ﬀerence of 2.1 and 0.9 km.s −1, respectively).
+However, being at a projected separation larger than 2.9 ◦ they
+do not form a bound system with HIP 65426. Fig. A.1 shows
+the absolute magnitude in V-band versus e ﬀective temperature
+diagram for HIP 65426 and stars within 5 ◦ with similar dis-
+tance and kinematics and comparison with theoretical models.
+Eﬀective temperatures and reddening have been derived from
+spectral types using the calibration of Pecaut & Mamajek (2013).
+The result of this comparison shows that the typical age of LCC
+stars in the surroundings of HIP 65426 is of the order of 12-16
+Myr. This is fully consistent with the Sco-Cen age map by Pecaut
+& Mamajek (2016), that yields an age of 14 Myr at the posi-
+tion of HIP 65426 using a complementary approach (much larger
+number of stars extending to fainter magnitude but relying on
+kinematic parallaxes, while we used the Gaia trigonometric val-
+ues). The nominal color-magnitude diagram age of HIP 65426
+is younger (9-10 Myr). This is most likely due to the alteration
+induced by its very fast rotational velocity (David & Hillenbrand
+2015). Therefore, an age of 14±4 Myr is adopted for this star.
+Appendix B: Stellar rotation
+We derived radial and rotational velocity of HIP 65426 from
+HARPS spectra acquired during the nights of January 16, 17,
+6 Program ID 098.A-9007(A)
+6
+
+<<<PAGE 7>>>
+SPHERE consortium: Discovery of a warm, dusty giant planet around HIP 65426
+3.7 3.8 3.9 4.0 4.1 4.2
+logTeff (K)
+0
+100
+200
+300
+400vsini
+All
+Sco−Cen
+Sco−Cen bin
+β Pic
+HIP65426
+All
+Sco−Cen
+Sco−Cen bin
+β Pic
+HIP65426
+Fig. B.1. Run of the v sin i values as a function of the e ﬀec-
+tive temperature for normal stars in the catalog by Zorec et al.
+(2012: open gray circles). The red ﬁlled circle is HIP 65426.
+Superimposed are single (pink circles) and binary (green circles)
+stars in the Sco-Cen association. Stars in theβ Pic group are also
+shown (blue ﬁlled circles).
+and 18, 2017. The spectra have a resolution of 115000 and cover
+the spectral range from 380 to 690 nm. We obtained sequences
+of two, seven, and ﬁve exposures of 5 min each during the three
+nights. The spectra were reduced using the HARPS pipeline that
+provides unidimensional spectra sampled in uniform wavelength
+steps. We summed the spectra for each night to provide higher
+S/N dataset minimizing the short-term variations due to pulsa-
+tions.
+To test the methodology, we also applied the same procedure
+to a number of additional A2V stars with archived HARPS spec-
+tra. The results make use of a standard cross-correlation function
+method that exploits a binary mask. We considered two sets of
+lines: (i) Six strong lines (Ca II K and ﬁve H lines from H β to
+H9, excluding Hϵ); we used the rotationally broadened core of
+the lines and (ii) 35 atomic lines. The average radial velocity
+found (5.2± 1.3 km.s−1) is close to the literature value (3.1± 1.2
+km.s−1). There is a small diﬀerence between the radial velocities
+in the di ﬀerent dates (r.m.s.∼ 1.3 km.s−1). However, we think
+that this result neither supports nor contradicts the hypothesis
+that HIP 65426 is a binary. We derived a very high projected ro-
+tational velocity of v sin i = 299± 9 km.s−1. This value is at the
+upper limit of the distribution of rotational velocities for A2V
+stars. The extracted values of RV and v sin i are consistent with
+literature values within the error bars.
+If we examine the catalog by Zorec & Royer (2012), there is
+no A2V star with v sin i > 280 km.s−1 among 119 entries. If we
+extend the sample by one spectral subclass (A1V-A3V), there is
+only one A1V star with a v sin i > 280 km.s−1 (a close binary)
+over 368 entries. HIP 65426 is therefore an exceptionally fast
+rotator. Fig. B.1 compares the v sin i value for HIP 65426 with
+values obtained for normal stars (i.e., bonaﬁde single stars) in
+the Zorec et al. (2012) catalog. For comparison, we also plotted
+single and binary stars in the Sco-Cen association and stars in
+the β Pic group that have similar ages. In these last cases, we
+also considered v sin i values from Glebocki et al. (2005) and
+Chen (2011) catalogs, after correcting them on the same scale
+as that of the Zorec et al. catalog. The eﬀective temperatures for
+these stars were obtained from the B-V colours, after calibrating
+with those from the Zorec et al. (2012) catalog. The peculiar na-
+ture of HIP 65426 is quite obvious from this ﬁgure. Also, note
+that the rotational velocities for single late-B and early-A stars
+in the Sco-Cen association and in the β Pic group match well
+typical values for the normal stars in the Zorec et al. (2012) cata-
+log (while binaries typically rotate slower, as also found for ﬁeld
+stars). This suggests that stars with masses similar or greater than
+HIP 65426 have already reached the zero age main sequence in
+these associations. HIP 65426 is exceptional with respect to both
+the Sco-Cen association and the ﬁeld star population.
+Appendix C: Binarity
+HIP 65426 is listed as a close visual binary (separation 0.15-
+0.3 arcsec, ∆∼ 0.1 mag) in the Washington Double Star Catalog
+(Mason et al. 2001). We retrieved the individual measurements
+(kindly provided by Dr. B. Mason), that consist in seven entries
+between 1926 to 1933 followed by a series of non-detections.
+There are no indications of close companions in the SPHERE
+images, including the non-coronagraphic sequence used for pho-
+tometric calibrations, allowing us to rule out the presence of
+equal-luminosity companions down to a projected separation of
+40 mas. Furthermore, the HARPS spectra do not show indica-
+tions of multiple components. Finally, an equal-luminosity bi-
+nary would imply an unphysical position on color-magnitude di-
+agram below main sequence. We thus consider it plausible that
+the previously claimed detection is spurious and consider that
+we do not ﬁnd any sign of binarity for HIP 65426.
+Appendix D: Upper limits on the dust mass
+Chen et al. (2012) reported a non-detection of any mid-IR excess
+around HIP 65426. They reported a Spitzer/MIPS upper limit at
+70µm of 11.4 mJy. Given that the star is young, and that this up-
+per limit does not reach the photospheric ﬂux (∼ 1.5 mJy), we try
+to estimate the upper limit for the dust mass around HIP 65426.
+We gather the optical to mid-IR photometry of the star using
+VOSA7 (Bayo et al. 2008). For the given stellar luminosity and
+mass (17.3 L⊙ and 1.95 M⊙, respectively) we estimate the size
+of dust grains that would still be on bound orbits around the
+star. We use optical constant of astro-silicates ((Draine 2003)),
+and we compute the radiation pressure to gravitational forces β
+ratio as in Burns et al. (1979). We ﬁnd that for this composi-
+tion, grains larger than sblow∼ 3.1µm should remain on bound
+orbits around the star. To estimate the possible conﬁgurations
+for a debris disk to remain compatible with the mid- and far-
+IR observations, we compute a series of disk models (similar
+to (Olofsson et al. 2016)). We consider a grain size distribu-
+tion of the form d n(s) ∝ s−3.5ds, between smin = sblow and
+smax = 1 mm. We sample 100 ri values for the radial distance
+between 10 and 200 au. For each ri, we consider a disk model
+between 0.9× ri ≤ ri ≤ 1.1× ri. We then slowly increase the
+mass of the disk until the thermal emission (plus the stellar con-
+tribution) is larger than either the WISE/W4 22µm point or the
+Spitzer/MIPS 70µm point. With this exercise we can therefore
+delimit a region in the r-Mdust plane where debris disks could
+exist and remain undetected with the current observations (see
+Fig. D.1). Overall, with our assumptions on the radial extent of
+the debris disk, we ﬁnd that it would have to be less massive that
+10−3 M⊕ at about 100 au from the star.
+7
+
+<<<PAGE 8>>>
+SPHERE consortium: Discovery of a warm, dusty giant planet around HIP 65426
+Table E.1. Obs Log of VLT/SPHERE observations
+UT Date Instr. Filter DIT a Na
+exp ∆πa ωa Strehla Airm. True North correction Platescale
+(s) ( ◦) (”) @1.6 µm ( ◦) (mas /pixel)
+30-05-2016 IFS YJ 64 60 34.2 0.62 0.60 1.12 −102.20± 0.12 7 .46± 0.02
+30-05-2016 IRDIS H2 /H3 64 60 −1.72± 0.06 12 .255/12.251b± 0.009
+26-06-2016 IFS YJ 64 75 42.2 0.53 0.66 1.13 −102.25± 0.12 7 .46± 0.02
+26-06-2016 IRDIS H2 /H3 64 75 −1.77± 0.05 12 .255/12.251b± 0.009
+07-02-2017 IFS YJ 64 80 44.2 0.38 0.84 1.13 −102.19± 0.12 7 .46± 0.02
+07-02-2017 IRDIS H2 /H3 64 80 −1.71± 0.05 12 .255/12.251b± 0.009
+09-02-2017 IFS YJH 64 80 49.1 0.45 0.76 1.14 −102.19± 0.12 7 .46± 0.02
+09-02-2017 IRDIS K1 /K2 64 80 −1.71± 0.05 12 .267/12.263b± 0.009
+(a) DIT refers to the integration time, N exp to the total number of frames in the ﬁnal mastercube, ∆π to the parallactic angle range during the sequence. The seeing (ω) and the Strehl
+ratio conditions were calculated by the SPHERE extreme-adaptive optics system. (b) The two values of platescale correpond to the platescale estimated for both dual-band ﬁlters
+indicated in the Filter column.
+101 102
+r [au]
+10 5
+10 4
+10 3
+10 2
+Mdust [M ]
+Fig. D.1. The blue-shaded area shows the region in the r-Mdust
+plane, in which a debris disk could be present and remain com-
+patible with the mid- and far-IR observations.
+Appendix E: Observing Log
+Appendix F: Astrometric and photometric detailed
+results
+1 Univ. Grenoble Alpes, CNRS, IPAG, F-38000 Grenoble, France.
+2 Unidad Mixta Internacional Franco-Chilena de Astronom ´ıa,
+CNRS/INSU UMI 3386 and Departamento de Astronom´ıa, Universidad
+de Chile, Casilla 36-D, Santiago, Chile
+3 INAF - Osservatorio Astronomico di Padova, Vicolo dell Osservatorio
+5, 35122, Padova, Italy
+4 Aix Marseille Universit´e, CNRS, LAM (Laboratoire d’Astrophysique
+de Marseille) UMR 7326, 13388 Marseille, France
+5 CRAL, UMR 5574, CNRS, Universit de Lyon, Ecole Normale
+Suprieure de Lyon, 46 Alle d’Italie, F-69364 Lyon Cedex 07, France
+6 Max Planck Institute for Astronomy, K ¨onigstuhl 17, D-69117
+Heidelberg, Germany
+7 Institute for Astronomy, ETH Zurich, Wolfgang-Pauli-Strasse 27,
+8093 Zurich, Switzerland
+8 The University of Michigan, Ann Arbor, MI 48109, USA
+9 Geneva Observatory, University of Geneva, Chemin des Mailettes 51,
+1290 Versoix, Switzerland
+7 http://svo2.cab.inta-csic.es/theory/vosa/
+Table F .1. IRDIS relative astrometric measurements of
+HIP 65426 b to HIP 65426 and IRDIS and IFS relative photo-
+metric contrast and absolute magnitudes for HIP 65426 b. The
+composite JIFS -band is estimated between 1.20 and 1.32µm.
+UT Date Filter Separation (mas) P.A. (deg)
+30/05/2016 H2 830.4± 4.9 150 .28± 0.22
+26/06/2016 H2 830.1± 3.2 150 .14± 0.17
+07/02/2017 H2 827.6± 1.5 150 .11± 0.15
+09/02/2017 K1 828.8± 1.5 150 .05± 0.16
+∆ (mag) Mabs (mag)
+07/02/2017 J2MAS S 12.67± 0.40 14 .26± 0.42
+JIFS 12.18± 0.08 13 .78± 0.11
+07/02/2017 H2 11.14± 0.05 12 .76± 0.11
+07/02/2017 H3 10.78± 0.06 12 .39± 0.12
+09/02/2017 K1 10.01± 0.31 11 .55± 0.33
+09/02/2017 K2 9.69± 0.31 11 .22± 0.33
+Table F .2.IRDIS H2 relative astrometric and photometric mea-
+surements of June 26th, 2016 for the additional companion can-
+didates in the ﬁeld.
+Cand. Separation (mas) P.A. (deg) ∆ (mag)
+cc-1 2494 .7± 12.2 117 .42± 0.28 15 .6± 0.2
+cc-2 3973 .1± 14.4 307 .91± 0.23 16 .2± 0.5
+cc-3 6752 .6± 11.3 304 .28± 0.15 14 .1± 0.2
+10 SUPA, Institute for Astronomy, The University of Edinburgh, Royal
+Observatory, Blackford Hill, Edinburgh, EH9 3HJ, UK
+11 LESIA, Observatoire de Paris, PSL Research University, CNRS,
+Sorbonne Universits, UPMC Univ. Paris 06, Univ. Paris Diderot,
+Sorbonne Paris Cit, 5 place Jules Janssen, 92195 Meudon, France
+12 Instituto de F´ısica y Astronom´ıa, Facultad de Ciencias, Universidad
+de Valpara´ıso, Av. Gran Breta˜na 1111, Valpara´ıso, Chile
+13 Universite Cote dAzur, OCA, CNRS, Lagrange, France
+14 Department of Astronomy, Stockholm University, AlbaNova
+University Center, 106 91 Stockholm, Sweden
+15 Physikalisches Institut, University of Bern, Sidlerstrasse 5, 3012
+Bern, Switzerland
+16 INAF-Catania Astrophysical Observatory, via S.Soﬁa, 78 I-95123
+Catania, Italy
+17 Ncleo de Astronoma, Facultad de Ingeniera, Universidad Diego
+Portales, Av. Ejercito 441, Santiago, Chile
+18 Anton Pannekoek Institute for Astronomy, Science Park 904,
+8
+
+<<<PAGE 9>>>
+SPHERE consortium: Discovery of a warm, dusty giant planet around HIP 65426
+-4 -2 0 2
+H2-H3
+20
+15
+10MH2
+M0-M5
+M6-M9
+L0-L5
+L6-L9
+T0-T5
+T6-T8
+young/dusty dwarfs
+PZ Tel B
+1RXS1609b
+2M1207b
+HD 106906 b
+UScoCTIO 108B
+HIP 78530B
+GSC0621-0021B
+2M1610-1913B
+HIP 65426b
+cc1
+cc2
+cc3
+>T8
+-4 -2 0 2
+H2-H3
+20
+15
+10MH2
+Fig. F .1. Color-magnitude diagram considering the
+SPHERE/IRDIS H2 and H3 photometry. HIP 65426 is indicated
+with error bars in red and the other companion candidates are
+shown in blue.
+NL-1098 XH Amsterdam, The Netherlands
+19 INAF - Osservatorio Astroﬁsico di Arcetri, Largo E. Fermi 5,
+I-50125 Firenze, Italy
+20 INAF - Osservatorio Astronomico di Capodimonte, Salita Moiariello
+16, 80131 Napoli, Italy
+21 ONERA (Oﬃce National dEtudes et de Recherches Arospatiales),
+B.P.72, F-92322 Chatillon, France
+22 European Southern Observatory (ESO), Karl-Schwarzschild-Str. 2,
+85748 Garching, Germany
+23 NOV A Optical Infrared Instrumentation Group, Oude
+Hoogeveensedijk 4, 7991 PD Dwingeloo, The Netherlands
+24 INAF-Osservatorio Astronomico di Roma, Via di Frascati 33,
+I-00040 Monte Porzio Catone, Italy
+25 Department of Astrophysics, Denys Wilkinson Building, Keble
+Road, Oxford, OX1 3RH, UK
+26 European Southern Observatory (ESO), Alonso de Crdova 3107,
+Vitacura, Casilla 19001, Santiago, Chile
+27 Institute of Astronomy, University of Cambridge, Madingley Road,
+Cambridge CB3 0HA, UK
+28 School of Earth & Space Exploration, Arizona State University,
+Tempe AZ 85287, USA
+29 Ural Federal University, Yekaterinburg 620002, Russia
+30 CNRS, CFHT, 65-1238 Mamalahoa Hwy, Kamuela HI 96743, USA
+31 Exoplanets and Stellar Astrophysics Laboratory, NASA Goddard
+Space Flight Center, 8800 Greenbelt Rd., Greenbelt, MD 20771, USA
+e-mail: gael.chauvin@univ-grenoble-alpes.fr
+9

@@ -125,6 +125,17 @@
 > | HIP 65426 slit series | the sweep's "90 exposures" = M22's five K2192 nights, 134 frames, releases rolled 2025-03-11 → 2026-05-07 | already consumed (M20 §4); nothing new |
 > | CD-35 Oct 2024 "300 exposures" | = the 114.27LL deep pair (150+150) | already shelved (M4368, above); monitoring pairs 2024-10→2025-01 are the reproduction's own epochs (M0) |
 > | M27 status | a concurrent session completed the **bpbhi extraction (39/39 frames)**, ~17 GB products | M31: validate table contents (LESSONS §4), then the H1567 chain; do not re-run |
+
+> ## M31 extraction pass (2026-08-14 — the staged HIP 65426 HiRISE nights, reduced)
+>
+> | item | verified (M31-RESULTS.md, data/m31-verify.json) | disposition |
+> |---|---|---|
+> | h65hi1 2025-01-31 | **9/9 extracted**, 21 orders, wl 1468.7–1780.6 nm; host pair S/N 10.4/px; deep×5 at background; deep template was 5-of-6 (aborted, harmless on util_ path) | verified by contents; deep-position telluric CCF marginal (~5σ at 0 km/s); controls 14.7σ/16.4σ |
+> | h65hi2 2025-02-01 | **8/8 extracted**; host pair S/N 54.6/px (4.70 c/s); deep×5 | **ON-SKY PROVEN: host-vs-deep 11.8σ at exactly 0 km/s** (bpbhi benchmark 9.8σ) — the util_ chain transfers with zero parameter changes |
+> | h65hi3 2025-02-02 | **10/10 extracted**; host pair S/N 44/px; deep×6; one pure-sky frame (0.0 flux) | verified by contents; telluric CCF weak (2.9σ at exactly 0); controls 10.6σ/18.0σ |
+> | HIP 65426 b reachability | ΔH2 = 11.14±0.05 (**Chauvin+2017 Table F.1**, `papers/text/chauvin2017_hip65426b.txt`) × measured host rates → planet **40–130× below the fibre background** per deep frame; CCF ceiling 2–3σ | **not a companion dataset** — host/sky telluric-reference corpus + methods validation; exomoon lever stays the K2192 slit series (M20 §4) + priority call |
+> | HiRISE night anatomy | trailing faint short-DIT frames are sky/offset (share the host's DIT class); raw-percentile probes miss faint-but-real host traces | class frames by **measured flux per second**, never DIT (`m31_ccf.py`, `m31_verify.py`) |
+> | products | `~/cr2res/red_m31/h65hi{1,2,3}` (1.78 GB: extr1D + slitFu + masters); science raw kept, 90 calib raw deleted post-verification (logged) | M32 re-extraction needs no re-fetch |
 >
 > **What reopens the queue (all dated or decisions):**
 > - Embargoes: GSC product; PDS 70's 2025 K nights; eta Tel's K epochs; beta Pic b's
