@@ -1118,3 +1118,46 @@ Seven more public β Pic HiRISE nights (2023-11 to 2024-12), and **1739 HiRISE s
 across ~45 targets** — a corpus this project had written off as mis-reduced staring data.
 All at H1567 for β Pic, so the existing order map, template ladder and injection gate apply
 downstream without modification.
+## 20. The planet trace is on sky: a 9.8σ telluric cross-correlation
+
+§19 established that the extraction runs and that its flux ratio matches the known
+photometric contrast. That is suggestive but indirect. The direct question is whether the
+planet trace carries *real spectral structure* or is noise at a detector position — and the
+night's own data answers it, because the 30 s frames are the host down the same fibre minutes
+earlier (§16), through the same atmosphere and the same instrument.
+
+Both classes were inverse-variance co-added on each order's own grid, continuum-normalised,
+and cross-correlated (`scripts/injection/m29_hirise_ccf.py`):
+
+| | frames | co-added S/N per pixel |
+|---|---:|---:|
+| host (30 s) | 30 | 128.5 |
+| planet (1200 s) | 9 | **1.98** |
+
+**CCF peak at v = +0.0 km/s, height 0.140, against an off-peak baseline of −0.026 ± 0.017 —
+a 9.8σ peak, over 21 orders.**
+
+**What this proves:** the planet trace shares telluric absorption with the host, at rest in
+the observer frame. Noise at a detector position cannot do that. Neither can an inter-order
+region, a bad-pixel cluster, or a mis-traced artefact. **The extraction is landing on sky and
+the reduction path is correct** — which was the open question from M27 and is now closed.
+
+**What this is emphatically not:** a detection of β Pic b. A peak at exactly zero velocity is
+the signature of *tellurics*, which every real on-sky spectrum carries. The companion's own
+lines sit at its systemic plus orbital velocity, tens of km/s away, and would be swamped here
+by the atmosphere. This test was designed to interrogate the extraction, and it says nothing
+about the planet.
+
+**What a companion measurement would now need**, in order:
+
+1. Telluric removal — the correlation is currently dominated by exactly what must be divided
+   out. The host spectrum at S/N 128 is an unusually well-matched telluric reference: same
+   fibre, same night, same airmass to within minutes.
+2. Cross-correlation against a planetary-atmosphere template rather than the host, looking
+   for a peak displaced from zero by the expected velocity.
+3. The injection gate, on this path rather than the slit path — the transmission of the
+   `util_*` chain has never been measured.
+
+At S/N ≈ 2 per pixel co-added, across 21 orders × 2048 pixels, the photon budget for a
+cross-correlation is not obviously hopeless. Whether it is sufficient is the next real
+question, and it is not answered here.
