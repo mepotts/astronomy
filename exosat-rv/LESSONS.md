@@ -87,6 +87,28 @@ its text in one command. Four of the day's errors would not have survived it, an
 papers whose absence blocked the contrast question (Bohn 2020, Currie 2013) took minutes
 to add once anyone looked.
 
+## 5c. The verdict may be about the wrong object (M29)
+
+**Check that the spectrum belongs to the companion before believing anything about it.** A
+pair closer than one resolution element cannot be separated, so the extraction is of the
+host - and every other check in this project passes anyway:
+
+- the **injection gate** tests whether the *fitter* transmits an imposed velocity, and a
+  bright host transmits it better than a faint companion;
+- **RV precision** improves on a host;
+- **across-order dispersion** improves on a host.
+
+Measured from the nodding slit function at the cost of one file read: `R = separation /
+PSF_FWHM`, plus the profile height at the companion's offset. Resolved cases in this project
+sit at R >= 1.32 with wing <= 0.15, blended at R <= 0.54 with wing >= 0.55
+(`m29_blend.py`). **HD 206893 B's "clean, gates 100-102%" verdict was withdrawn on this
+basis.** Beta Pic b's contamination result survives but its mechanism changes: there was
+never a resolved companion to contaminate.
+
+Corollary for the instrument case: below R of about 1 no contrast is good enough, because
+there is no companion spectrum at all. Fibre-fed suppression is a requirement in that
+regime, not an improvement.
+
 ## 6. Human-gated actions (never automate)
 
 - The author email (`docs/author-query-draft.md`) is **sent by Matthew only**.

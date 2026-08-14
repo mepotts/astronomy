@@ -712,3 +712,60 @@ spectrum from a host spectrum — the gate measures whether the *fitter* transmi
 and it transmits just as well on a bright host. Any verdict from a blended pair is a
 statement about the host. That check is one slit-function scan per target and it should be
 run across the roster.
+## 12. The roster blending sweep - one verdict withdrawn, two unclassifiable
+
+`scripts/m29_blend.py` applies section 11's test to every target with a reduction on disk.
+Both quantities come from the same slit function and share no arithmetic: the delivered PSF
+(its FWHM) and the profile height at the companion's offset ("wing"). Classification was
+fixed before running: **R < 1 means the pair is inside one resolution element, so the
+extraction is of the host.**
+
+| target | sep (arcsec) | PSF | orders | **R** | wing | class | ledger verdict |
+|---|---:|---:|---:|---:|---:|---|---|
+| CD-35 2722 B | 2.800 | 0.263 | 283 | 10.64 | 0.00 | resolved | CONFIRMED, 70-90 m/s |
+| eta Tel B | 4.210 | 0.374 | 367 | 11.26 | 0.00 | resolved | NULL, injection-gated |
+| YSES 1 b | 1.700 | 1.197 | 24 | 1.42 | 0.12 | resolved | clean, 34 m/s |
+| HIP 81208 B | 0.325 | 0.246 | 32 | 1.32 | 0.15 | resolved | clean, 124 m/s |
+| beta Pic b | 0.511 | 0.952 | 114 | **0.54** | **0.55** | **blended** | contamination-limited |
+| HD 206893 B | 0.205 | 0.393 | 11 | **0.52** | **0.63** | **blended** | *clean, gates 100-102%* |
+| HD 4747 B | 0.590 | 1.514 | 15 | **0.39** | **0.71** | **blended** | reduced M29 as a test |
+| 2M0103AB b | unsourced | 0.986 | 10 | - | - | unknown | clean, gates 100+-0% |
+| CD-35 deep pair | unsourced | 0.278 | 14 | - | - | unknown | shelved, thermal-IR |
+
+**The two measurements agree with a clean gap.** R comes from the profile's width, the wing
+from its height somewhere else; they share no arithmetic. Resolved cases have wing <= 0.15,
+blended cases >= 0.55, and the ordering by wing is the ordering by R.
+
+### What the sweep changes
+
+**One verdict withdrawn. HD 206893 B is not a companion measurement.** M26 records it as
+"clean data both settings, gates 100-102%, epochs banked". At R = 0.52 the pair is
+unresolved and the extraction is of the host; the queue row now says so. The gates are not
+evidence against this - a gate measures whether the *fitter* transmits an imposed velocity,
+and it does that just as well on a bright star as on a faint companion. **This is the second
+time a passing gate has accompanied a meaningless measurement** (the first was PDS 70's
+nine-night template, M23 section 4), and the two failures differ: there the template had
+lost its stellar lever, here the target is the wrong object.
+
+**Beta Pic b's verdict was right and its mechanism was wrong.** "Contamination-limited" is
+correct, but the cause is not starlight leaking into a resolved companion's spectrum - at
+R = 0.54 there is no resolved companion. That explains what the three-pass template ladder
+found empirically, an r(BERV) of +0.88 unchanged through v1, v2 and v3: no order mask or
+template rebuild could have rescued it.
+
+**Four verdicts confirmed as genuine companion measurements** - CD-35 2722 B, eta Tel B,
+YSES 1 b and HIP 81208 B, at R from 1.32 to 11.26. Every claim the project rests on
+survives: the detection, the eta Tel limit, and the two best-precision series.
+
+**Two cannot be classified** because their separations are unsourced, and were not guessed.
+2M0103AB b carries a "clean, gates 100+-0%" verdict against a 0.986 arcsec delivered PSF, so
+it is blended unless its separation exceeds about 1 arcsec. That verdict is *at risk*
+pending one number.
+
+### The generalisable point
+
+**A blending check belongs in the pipeline, before the injection gate, not after the
+verdict.** It costs one slit-function read, needs no extra data, and it tests the one thing
+every other check assumes: that the spectrum belongs to the object named in the verdict.
+The gate cannot do it, RV precision cannot do it, and across-order dispersion cannot do it -
+a host spectrum is *better* by all three.
