@@ -571,6 +571,41 @@ contrast threshold. There isn't one to locate until R > 1.
 - R was formed *after* seeing the outcomes. It is a better-motivated hypothesis than S,
   not a validated criterion. The honest test remains a target predicted before reduction.
 
+### ⚠ HELD-OUT TEST: R ≈ 1 IS FALSIFIED
+
+Two reductions on disk carried M26 verdicts that were **not** used to form R. Testing
+against them was the obvious next step and it damages the claim.
+
+**HD 206893 B** — semi-major axis 9 au (Kral+2026) at parallax 24.5252 mas → 40.77 pc,
+so 0.221″; measured PSF **0.393″** over 11 order-profiles; **R = 0.56**; verdict **CLEAN**.
+
+That is *below* the R ≈ 1 threshold, and it lands between two failures (HD 4747 B at 0.39,
+β Pic b at 0.54). The script still reports "separates: True", but only because 0.56 exceeds
+0.54 — a margin of 0.02 in R, which is not a separation, it is a coincidence.
+
+**So the part of §10 that made R better than S is gone.** The advantage claimed was that
+R ≈ 1 is predicted by optics rather than read off the data. A clean case at R = 0.56
+refutes that threshold. What survives is only that R happens to order these seven points,
+with a 4% margin — the same "consistent with, untested by" status §8 assigned to S, and on
+a narrower margin.
+
+**Two caveats that cut both ways, stated because neither rescues the claim by itself:**
+
+- **The separation input is wrong in kind.** I used a *semi-major axis* where every other
+  row uses a *projected separation*. For an eccentric or inclined orbit those differ, and
+  the projected separation at the observed epoch could be well below 0.221″ — which would
+  lower R further, not raise it. Getting this right needs the astrometry at that epoch, not
+  the orbit.
+- **HD 206893 B's verdict is the weakest in the table.** It is "clean epochs banked" from a
+  single K night — not an injection-gated null over a series like η Tel B, nor a detection
+  like CD-35. A single clean-looking night is a much softer claim than the others.
+
+**Honest status: R is a better-motivated hypothesis than S and is not established either.**
+Both order the measured outcomes; neither has survived a test that could have refuted it,
+and R has now nearly failed one. The two-gate physical picture (resolution first, then
+contrast) remains the most coherent reading, but the *threshold* in either variable is
+unlocated.
+
 ### Consequence
 
 `docs/paper/contrast-wall-note.md` should lead with R and demote S to the

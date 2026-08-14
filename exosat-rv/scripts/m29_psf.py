@@ -45,6 +45,11 @@ TARGETS = [
     ("HIP 81208 B",   "/home/matth/cr2res/red_m26/h81208k*",      0.325, "CLEAN"),
     ("YSES 1 b",      "/home/matth/cr2res/red_m26/yses1[cd]",     1.70, "CLEAN"),
     ("PDS 70",        "/home/matth/cr2res/red_m26/pds70h*",       0.173, "FAILS"),
+    # --- HELD OUT: verdicts reached in M26, not used to form R ---
+    # HD 206893 B: a = 9 au (Kral+2026) at parallax 24.5252 mas = 40.77 pc -> 0.221"
+    ("HD 206893 B",   "/home/matth/cr2res/red_m26/hd206893k",     0.221, "CLEAN"),
+    # 2M0103AB b: separation UNSOURCED in this repo; PSF reported, R withheld
+    ("2M0103AB b",    "/home/matth/cr2res/red_m26/m0103a",        None,  "CLEAN"),
 ]
 
 
@@ -124,12 +129,15 @@ def main():
             except Exception:
                 continue
         if not widths:
-            print(f"{name:<15s} {sep:>7.3f} {'--':>12s} {0:>5d} {'--':>12s}  {out}")
+            print(f"{name:<15s} {sep if sep else 0:>7.3f} {'--':>12s} {0:>5d} {'--':>12s}  {out}")
             continue
         psf = float(np.median(widths))
-        R = sep / psf
-        rows.append((name, sep, psf, R, out))
-        print(f"{name:<15s} {sep:>7.3f} {psf:>12.3f} {len(widths):>5d} {R:>12.2f}  {out}")
+        R = (sep / psf) if sep else None
+        if R is not None:
+            rows.append((name, sep, psf, R, out))
+        sp = f"{sep:>7.3f}" if sep else f"{'unsrc':>7s}"
+        rr = f"{R:>12.2f}" if R is not None else f"{'--':>12s}"
+        print(f"{name:<15s} {sp} {psf:>12.3f} {len(widths):>5d} {rr}  {out}")
 
     ok = [r for r in rows if r[4] in ("CLEAN", "FLOODED", "FAILS", "UNRESOLVED")]
     if len(ok) >= 3:
