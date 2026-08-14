@@ -21,8 +21,7 @@
 >   HIP 65426 b, PDS 70-K, beta Pic b K-contamination, YSES 1, CT Cha, AB Pic),
 >   and HD 19467/HD 206893's clean epochs (fiber data that happened to reduce well).
 >
-> **M27 (next):** learn the proper HiRISE reduction path, re-reduce the fiber
-> tier, and run beta Pic b's six fiber nights — the starlight-suppressed flagship
+> **M27 (SCOPED M29 §13, not started):** **EIGHT** public beta Pic HiRISE nights, not six — 294 frames over ~440 d, all **H1567**, so the project's eleven-order map and viper config apply unchanged. The 2025-02-02 night has `OBJECT = bet Pic b`. Confirmed why the slit recipe mangled them: `DPR TECH = SPECTRUM`, `SEQ NODPOS = None`, `TPL ID = HIRISE_spec_obs` — no nodding at all, and `classify.py` routes them to the *slit* staring recipe. Fibre traces are 2–9 px wide against ~180 px for a slit order. Open question is the extraction only; calibration cascade and the H1567 chain should work unchanged. The archive holds **1739 HiRISE science frames** across ~45 targets — the starlight-suppressed flagship
 > series this project thought it couldn't have.
 >
 > **KOA/KPIC census (idea #2, probed):** HR 8799 holds ~25 NIRSPEC nights

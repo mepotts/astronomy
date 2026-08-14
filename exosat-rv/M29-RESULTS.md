@@ -779,3 +779,84 @@ verdict.** It costs one slit-function read, needs no extra data, and it tests th
 every other check assumes: that the spectrum belongs to the object named in the verdict.
 The gate cannot do it, RV precision cannot do it, and across-order dispersion cannot do it -
 a host spectrum is *better* by all three.
+
+## 13. M27 scoped: what the beta Pic b HiRISE data actually is
+
+The blending sweep made M27 the most important open item — if fibre-fed suppression is a
+*requirement* below R ≈ 1 rather than an improvement, then beta Pic b's public HiRISE nights
+are the direct test of whether it delivers. This scopes that work from the archive and one
+probe frame. **No reduction was attempted or completed.**
+
+### The inventory is larger than the ledger says
+
+Querying `ins_mode='HIRISE'` directly gives **eight public beta Pic nights, not six**:
+
+| night | frames | OBJECT |
+|---|---:|---|
+| 2023-11-20 | 35 | BETA PIC |
+| 2024-10-24 | 27 | BET PIC |
+| 2024-10-25 | 28 | BET PIC |
+| 2024-11-22 | 28 | BET PIC |
+| 2024-11-23 | 28 | BET PIC |
+| 2024-11-29 | 53 | BET PIC |
+| 2024-12-04 | 56 | BET PIC |
+| **2025-02-02** | **39** | **BET PIC B** |
+
+**294 frames over ~440 days, all public, all H-band.** The 2025-02-02 night is the only one
+whose OBJECT names the companion, and its headers confirm it: `OBJECT = bet Pic b`.
+
+The archive holds **1739 HiRISE science frames** in total across ~45 targets — a corpus this
+project has never touched, and which the M27 banner correctly identified as mislabelled
+"staring" data.
+
+### The single most useful fact
+
+**`INS WLEN ID = H1567`** — the same instrument setting as CD-35 2722 B and eta Tel B. The
+project's eleven-order telluric-selected map, its FTS template and its viper configuration
+all apply without re-derivation. That removes the largest piece of work a new setting would
+have required (compare HD 4747's H1582/H1559, which would have needed a fresh order set).
+
+### Why the slit recipe mangled it
+
+Confirmed from the headers of a deep science frame (DIT 1200 s):
+
+- `DPR TECH = SPECTRUM` — **not** `SPECTRUM,NODDING,OTHER`
+- `SEQ NODPOS = None` — there is no nodding pattern at all
+- `TPL ID = HIRISE_spec_obs` — a dedicated template, not the AutoNodOnSlit used everywhere
+  else in this project
+
+`cr2res_obs_nodding` requires A/B pairs and fits a slit function across the full ~180 px
+order height. Neither applies. `classify.py` tags any science frame without NODDING in
+`DPR TECH` as `OBS_STARING_OTHER`, which routes it to `cr2res_obs_staring` — a *slit*
+staring recipe. That is the mis-reduction the M27 banner recorded, now diagnosed rather
+than inferred.
+
+### What a probe frame did and did not show
+
+A median-collapsed spatial profile of one raw frame shows structures **2-9 px wide**, against
+~180 px for a slit order. At 0.056″/px that is ~0.3″, consistent with a fibre's
+diffraction-limited PSF — and it is the geometric reason the R diagnostic from §12 cannot
+transfer to HiRISE data: the fibre performs the spatial selection before the detector, so
+there is no companion/host profile to measure.
+
+**A trace-extraction test on that frame failed, and the failure is not informative.** Only a
+global median was subtracted — no dark, no flat, no bad-pixel mask — so the 2D structure at
+those rows is scattered hot pixels rather than a spectrum. Judging a faint companion from an
+uncalibrated single frame is not a fair test and nothing is concluded from it. The probe
+frame has been deleted.
+
+### What M27 actually requires
+
+1. Fetch one night with its calibrations (the direct-CALIB fallback will be needed —
+   calSelector returns nothing for HiRISE, LESSONS §3.3).
+2. Run the calibration cascade (dark, flat, wave) — these are slit-independent and should
+   work unchanged.
+3. Extract the fibre traces. This is the open question: whether `cr2res_obs_staring` can be
+   coerced onto a 2-9 px trace, or whether a purpose-built narrow-trace extraction is
+   needed. The traces are clean and well separated, so a simple optimal extraction is
+   tractable if the recipe resists.
+4. Then the existing H1567 chain — order map, template ladder, injection gate — applies
+   unchanged.
+
+**Disk is the practical constraint**: 5.3 GB free against ~1.5 GB of science per night plus
+calibrations. One night at a time, deleting raw after each reduction verifies.
