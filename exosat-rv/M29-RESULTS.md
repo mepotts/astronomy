@@ -503,3 +503,76 @@ download and one pass of an existing pipeline.
 **Status: not yet reduced.** Disk headroom is ~7 GB, and 19 frames plus calibrations and a
 reduction fit. This is the top of the queue — ahead of the wall paper's submission, which
 should wait for it, and ahead of everything in `NEXT-DIRECTIONS.md`.
+
+## 10. The variable is resolution, not contrast — and the threshold is not fitted
+
+§9 left the open question: HIP 81208 B is CLEAN at 0.325″, closer than β Pic b (0.51″,
+flooded) and HD 4747 B (0.59″, unresolvable). No function of contrast and separation
+explains that ordering, and I said it would need the AO-corrected PSF per observation.
+
+**That is measurable from data already on disk.** The nodding slit function *is* the
+spatial profile along the slit; its FWHM is the delivered PSF for that observation, after
+AO, seeing and instrument. `scripts/m29_psf.py` measures it per order per night and forms
+
+    R = separation / PSF_FWHM
+
+the number of resolution elements between companion and host.
+
+| target | sep (″) | delivered PSF (″) | orders | **R** | outcome |
+|---|---:|---:|---:|---:|---|
+| HD 4747 B | 0.590 | 1.514 | 15 | **0.39** | unresolved |
+| β Pic b | 0.511 | 0.952 | 114 | **0.54** | flooded |
+| HIP 81208 B | 0.325 | **0.246** | 32 | **1.32** | clean, 124 m/s |
+| YSES 1 b | 1.700 | 1.197 | 24 | **1.42** | clean, 34 m/s |
+| CD-35 2722 B | 2.800 | 0.263 | 283 | **10.64** | clean, 70–90 m/s |
+| η Tel B | 4.210 | 0.374 | 367 | **11.26** | clean, 116–130 m/s |
+
+**R orders every outcome, and it separates at R ≈ 1.** Lowest clean is 1.32; highest
+non-clean is 0.54.
+
+**HIP 81208 B was never an anomaly.** It is clean at 0.325″ because its AO delivered a
+**0.246″** PSF — a bright B9 guide star — while β Pic b's nights delivered **0.952″**,
+nearly four times worse. Once the delivered resolution is measured rather than assumed,
+the ordering is trivial.
+
+### Why this is a better result than S = contrast/θ²
+
+**The threshold is not a free parameter.** S needed an exponent (chosen from physics, then
+scanned) and a threshold read off the data, which is why §8 concluded it was consistent
+with the outcomes but untested by them. R ≈ 1 is where two point sources merge. Nothing
+was fitted; the number was predicted by optics before the measurement.
+
+**It uses no external catalogue.** Every input is measured from the project's own reduced
+frames. The contrast axis needed Lazzoni's magnitudes, which cost two reversals and are
+still disputed for η Tel B.
+
+**It explains the failures mechanistically rather than ranking them.** At R < 1 there is
+no companion spectrum to extract at any contrast — the objects are one source. At R ≈ 0.5
+the pair is partially blended and host light dominates the extraction, which is exactly
+β Pic b's pervasive, mask-proof r(BERV) = +0.88.
+
+The coherent picture is therefore **two gates in series, not one axis**: R decides whether
+a companion spectrum exists at all, and only within the resolved regime does contrast
+govern how much host light contaminates it. That subsumes the contrast wall rather than
+contradicting it — and it explains why four milestones of work could never locate a
+contrast threshold. There isn't one to locate until R > 1.
+
+### What this does not establish
+
+- **Six points again**, and four are clean. R separates them, but so would other monotone
+  functions; the argument for R is that its threshold was not chosen from the data.
+- **PDS 70 returns no measurement** — its H-band nights were never reduced (blocked on the
+  order-mapping quirk), so the one case that plausibly fails by a *different* mechanism is
+  absent from the table.
+- **The slit function is fitted for the brightest trace** — the companion when it is
+  observed alone, the host when the pair is blended. The width is the delivered resolution
+  either way, which is what R needs, but the two cases are not identical measurements.
+- **Order counts vary 15–367.** HD 4747 B's PSF rests on 15 order-profiles from one night.
+- R was formed *after* seeing the outcomes. It is a better-motivated hypothesis than S,
+  not a validated criterion. The honest test remains a target predicted before reduction.
+
+### Consequence
+
+`docs/paper/contrast-wall-note.md` should lead with R and demote S to the
+within-resolved-regime question. The paper's title is already "the wall is not a contrast
+wall"; this says what it is instead, with a threshold that was not tuned.
