@@ -43,7 +43,11 @@ not either.
 3. calSelector returns **zero** calibs for HiRISE/staring frames — fall back to a direct `dbo.raw` CALIB query by night+setting (`m19_urls_from_raw.py`).
 4. Old files are `.Z` (LZW) — Python needs `uncompresspy`.
 5. Datalink host flakes — go straight to `dataportal.eso.org` URLs.
-6. **Serial downloads only.** Parallel lanes lost 37 files mid-batch. Skip-existing must be size-validated (`find -size +1M`); judge a night by files on disk, never by attempt logs.
+6. **Serial downloads only, and pace them.** Parallel lanes lost 37 files mid-batch. A long
+   serial run also gets throttled: after 39 consecutive fetches a 21-file batch returned
+   **21/21 failures** while the same URL succeeded on a manual retry seconds later, and the
+   batch still exited 0 (M29). Wrap each fetch in a 3-try loop with a short sleep between
+   files, and judge by `ls *.fits`, never by the exit status. Skip-existing must be size-validated (`find -size +1M`); judge a night by files on disk, never by attempt logs.
 7. Targets hide under **host-star and programme names** — only a coordinate census with reverse sky-clustering finds them (that's how YSES 1 b's record series and beta Pic b's K campaign were found).
 8. The archive's "staring" datasets are **HiRISE** (fiber-fed SPHERE→CRIRES+). See trap 1.10.
 
