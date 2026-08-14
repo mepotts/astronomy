@@ -3,6 +3,24 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-08-14 (M2 COMPLETE)** — [`M2-vetting.md`](M2-vetting.md) landed: per-candidate verdicts
+  for all **381 touched sources** (140 M1 candidates + full 261 vanished census) in
+  [`out/m2_verdicts.csv`](out/m2_verdicts.csv): **104 IDENTIFIED / 123 PLAUSIBLE-CLASS /
+  153 ARTIFACT / 1 GENUINELY-UNEXPLAINED**. The survivor is **3eRASS J094452.8-711152** — ×57
+  hard-detected riser, NWAY p_any≈0 in GDR3+CW2020, no archival X-ray (2RXS/XMMSL3/CSC2.1/
+  2SXPS/5XMM/ART-XC all empty), TNS+SIMBAD+literature empty — **flagged for Matthew, nothing
+  reported by us**. Vanished-list forensics (paper §3.2.5 + DR2 UL server, 25-steady-pair
+  calibrated): **148 artifacts / 6 indeterminate / 107 plausible real faders (+35/−12 threshold
+  band)**; M1's top-20-by-DET_LIKE vanished list was artifact-selected (14/20). Headline M1 rows
+  resolved: SRGt J071522.1-191609, SRGt J123822.3-253206, eRASSt J142140-295321 (published TDE),
+  eRASSt J234402.9-352640, eRASSt J045650.3-203750, MAXI J0903-531, EP240309a, SMC X-1 split;
+  TDE-like fader J060622.5-624814 downgraded to host-unconfirmed (LS10 cp g=23.5 at 7″,
+  p_any=0.002); new-bright J155100.8-453347 = M-dwarf-superflare candidate (91 pc, hard-detected,
+  NWAY ambiguous). Consortium file defect found+worked around: eRASSc3_Main_GDR3 ships
+  `GDR3_source_id` twice. Data +2.77 GB (6 NWAY counterpart cats + Hard cat). 8 scripts, 7 out/
+  CSVs; no accounts, no submissions, no commits/pushes (orchestrator's job). Recommended M3 in
+  doc §5 (J0944 decision package for Matthew; LMC fader × OGLE mini-study; classifier rebase
+  unblocked).
 - **2026-08-14 (M1 COMPLETE)** — [`M1-first-sweep.md`](M1-first-sweep.md) landed; all three
   workstreams ran. **W1**: DR2 = catalogue-only, stacked-values-only (NO per-eRASS columns — the
   README premise is corrected in M1 §1), Main v1.3 = 1,975,540 rows, no TAP anywhere yet
