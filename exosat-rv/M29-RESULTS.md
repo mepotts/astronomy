@@ -1218,3 +1218,50 @@ telluric removal that must precede one has not been done.
 **But the gate is passed.** Any velocity this path produces now arrives with its transmission
 measured beforehand, which is the discipline the rest of this project has always required and
 this path had never received.
+## 22. Telluric removal works: the 8.8σ peak collapses to 1.7σ
+
+§20's cross-correlation peak was made of exactly what a companion measurement must first
+divide out. The night supplies its own reference — the host went down the same fibre minutes
+earlier, through the same atmosphere and instrument — so dividing planet by host should
+remove both, and the test is falsifiable in the right direction: **if the division works, the
+0 km/s peak must collapse.**
+
+Using 20 host frames (the 10 fibre-transition frames from §21 dropped by timestamp) against
+the 9 deep frames, over 21 common orders:
+
+| | peak | height | significance |
+|---|---:|---:|---:|
+| planet, tellurics present | +1.0 km/s | +0.120 | **8.8σ** |
+| planet ÷ host, tellurics removed | −80.0 km/s | +0.029 | **1.7σ** |
+
+**80% of the correlation is removed.** The shared atmosphere is gone, which is the pass
+condition, and it confirms the host is the well-matched telluric reference §16 argued it
+would be.
+
+**The residual is correctly unconvincing.** 1.7σ over a 301-point velocity grid is noise
+before any look-elsewhere correction. It also sits at **−80 km/s**, while β Pic's systemic
+velocity is ~+20 km/s and β Pic b's orbital motion adds only a few — a real companion signal
+would appear near +20, not at −80. Two independent reasons to call it nothing, and neither
+required a template.
+
+### The pipeline is now complete except for one ingredient
+
+| stage | status | evidence |
+|---|---|---|
+| extraction runs | ✅ | 39/39 frames, 21 orders, wavelength-solved (§19) |
+| extraction is on sky | ✅ | 9.8σ telluric correlation with the host (§20) |
+| flux scale is physical | ✅ | host/planet ratio 6027 vs 3954 derived contrast (§19) |
+| velocity transmission | ✅ | 97–100% over ±1 to ±15 km/s (§21) |
+| repeatability | ✅ | 2.0 m/s frame-to-frame on the host (§21) |
+| telluric removal | ✅ | 8.8σ → 1.7σ (this section) |
+| **companion detection** | ❌ | **needs a planetary-atmosphere template** |
+
+Every step that can be validated against the data itself has been. What remains is not a
+validation but an *input*: a model H-band spectrum of a ~1700 K giant planet — CO and H₂O
+opacity — to correlate against. This project has never needed one, because self-built
+templates sufficed for the slit path where the companion dominates its own spectrum. Here it
+does not, so an external template is unavoidable.
+
+**That is the whole of what stands between this and a β Pic b velocity**, and the forecast
+from §21 says such a velocity would carry ~130 m/s precision from this single night, in a
+regime the slit cannot reach at all.
