@@ -135,7 +135,62 @@ Only Chai et al. 2024 was archived here (in this milestone). **Reading these is 
 highest-value next literature task**, both for the paper's introduction and because two of
 them place limits on objects in this project's own roster.
 
-## 7. A process note: a milestone number was nearly overwritten
+## 7. The empirical-template route: tried, and vetoed by its own control
+
+M29 §22 left the fibre pipeline blocked on one missing **input** — a template. The idea was to
+skip the model atmosphere entirely: two directly imaged companions are already extracted here
+at high S/N in the *same* H1567 setting, so **CD-35 2722 B (L0–1) and η Tel B (M7.5) can serve
+as empirical templates**, carrying a real line list at the real instrument resolution with no
+model systematics. `scripts/injection/m32_empirical_ccf.py`.
+
+One prediction was fixed before running, and it is the one that matters. **β Pic A is A6V.**
+In H band an A star has essentially no molecular structure, so correlating the *host* against
+a cool-dwarf template must give nothing. If the host correlates, anything the target does is
+instrumental, and the experiment is void.
+
+**The control failed, at every masking level, with both templates.**
+
+| telluric mask | kept | CD-35 template: control | η Tel template: control |
+|---|---:|---:|---:|
+| > 0.75 | 69% | 3.5σ at +23.7 km/s | 3.9σ at +51.7 km/s |
+| > 0.90 | 54% | 4.4σ at +23.7 | 4.6σ at +53.7 |
+| > 0.95 | 49% | 4.6σ at +24.7 | 4.8σ at +53.7 |
+| > 0.98 | 46% | 4.7σ at +23.7 | 4.9σ at +53.7 |
+| > 0.90, Brackett cut | 49% | **3.1σ** at +23.7 | **4.1σ** at +55.7 |
+| > 0.98, Brackett cut | 42% | **3.4σ** at +24.7 | **4.4σ** at +53.7 |
+
+**The pattern identifies what it is not.** Telluric correlation weakens as the mask tightens
+and sits at 0 km/s in the observatory frame. This one **strengthens** as the mask tightens and
+sits at a **stable, template-specific, non-zero velocity** — +23.7 and +53.7 km/s, unchanged
+to ~1 km/s across every level. Masking the Brackett series removes roughly a quarter of it for
+the L0–1 template and less for the M7.5, so **hydrogen contributes but does not explain it**,
+and the peak does not move when hydrogen is removed.
+
+**The likely dominant term is structural to the method.** The target is planet *divided by*
+host, which imprints the host's own spectrum into it inverted. At ~0.7 S/N per pixel for the
+planet, host structure dominates the ratio — so any template sharing structure with the host
+correlates with target and control alike. **Removing the tellurics and correlating against a
+stellar template are not independent operations**, and M29 §22's success at the first is what
+creates the problem at the second.
+
+**No β Pic b velocity is claimed.** The target column ran 1.8–3.2σ with peaks wandering from
+−182 to +92 km/s and no stability across mask levels or templates — noise, and it would have
+been noise whatever the control did.
+
+### What this is worth
+
+It is a genuine negative methodological result, and the control is the whole of it. **An
+empirical companion template is not a drop-in replacement for a model atmosphere**, because an
+A-star host and a cool-dwarf template share enough structure — hydrogen plus whatever survives
+the ratio — to manufacture a 3–5σ correlation out of nothing. A cross-correlation analysis
+without a host control would have reported the 3.2σ η Tel peak as marginal evidence.
+
+Two routes remain open and neither is blocked by this: a **model atmosphere** template, which
+is what §22 said was needed and still is; and **more nights**, since the whole problem is that
+the planet is 0.7 S/N per pixel against a host that dominates the ratio. Seven more public
+β Pic HiRISE nights exist.
+
+## 8. A process note: a milestone number was nearly overwritten
 
 This work was first written to `M30-RESULTS.md` without checking whether that file existed. It
 did — M30 is the archive-sweep reconciliation, committed the same day — and the write replaced
@@ -148,7 +203,7 @@ Check `ls M*-RESULTS.md` and `git log --oneline -15` before claiming a number, a
 `git status` letters before committing: `M` on a file you believe you created is the signal
 that something already lived there.
 
-## 8. State of the note
+## 9. State of the note
 
 Prepared, ~1,050 words, one table, within RNAAS limits. Four of the seven blockers listed in
 the first draft are resolved. What remains is Matthew's: whether to publish it standalone at
