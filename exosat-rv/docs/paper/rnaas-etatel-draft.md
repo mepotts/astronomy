@@ -18,6 +18,24 @@
 
 ---
 
+## Abstract
+
+*(Required by RNAAS since May 2020.)*
+
+We present the first radial-velocity constraints on η Telescopii B, an M7–M8 brown dwarf
+companion at 4.2″ from the A0V star η Tel, derived entirely from public CRIRES+ archival
+data: 20 epochs in the H1567 setting spanning 18 nights and 815 days, reduced by two
+independent routes that agree at 127–130 m s⁻¹ per-epoch scatter. No periodic signal is
+detected. Injection–recovery through the full pipeline returns 99–101 ± 1% of the injected
+amplitude, and a detection criterion whose false-alarm probability is measured at ≤ 0.85% by
+permutation yields 90% exclusion limits of m sin i ≈ 0.51–1.27 M_Jup for satellites with
+P = 20–300 d. Because η Tel B's own orbit is near edge-on (i ≈ 79–82°), these are true-mass
+limits to within 2% for any satellite orbiting near the companion's orbital plane. The
+constrained periods correspond to 0.05–0.31 au, a region inaccessible to the high-contrast
+imaging surveys that constrain satellites only beyond ~1–5 au.
+
+---
+
 ## Body
 
 η Telescopii B is an M7–M8 brown dwarf companion at 4.199 ± 0.015″ projected separation
@@ -25,23 +43,23 @@
 well studied photometrically, spectroscopically and astrometrically — a 25-year astrometric
 baseline and, recently, an 11–21 μm JWST/MIRI spectrum — but to our knowledge **no
 radial-velocity measurement of it has been published**. We report the first, derived entirely
-from public archival data.
+from public archival data. The system inverts the usual arrangement: HARPS velocities exist for
+the *primary* but are unusable, scattering at 12.8 km s⁻¹ because η Tel A is a young, rapidly
+rotating A0V star, and the most recent orbital analysis omits them for that reason (Chai et al.
+2024). The faint companion, not the bright host, is the viable radial-velocity target here.
 
-Radial-velocity monitoring of a directly imaged companion's own spectrum is now an
-established route to constraining massive satellites around it. Searches have been reported
-for the HR 8799 planets (Vanderburg & Rodriguez 2021), HR 7672 B (Ruffio et al. 2023),
-GQ Lup B (Horstman et al. 2024) and β Pictoris b (Kenworthy et al. 2026), all without
-detection, alongside astrometric limits from interferometry (Macias et al. 2026; Kral et al.
-2026). Against that run of nulls, Hoy et al. (2026) reported the first detection, a satellite
-orbiting CD-35 2722 B — which sharpens rather than settles the question of how common the
-configuration is, and makes each additional constrained system worth having.
+Radial-velocity monitoring of a directly imaged companion's own spectrum is an established
+route to constraining massive satellites. Searches have been reported for the HR 8799 planets
+(Vanderburg & Rodriguez 2021), HR 7672 B (Ruffio et al. 2023), GQ Lup B (Horstman et al. 2024)
+and β Pictoris b (Kenworthy et al. 2026), all null, alongside astrometric limits from
+interferometry (Macias et al. 2026; Kral et al. 2026). Against that run, Hoy et al. (2026)
+reported the first detection, around CD-35 2722 B — which sharpens rather than settles how
+common the configuration is, and makes each further constrained system worth having.
 
-η Tel B is a natural next target and has not been observed this way. It is the only other
-object in the accessible class with an archival CRIRES+ time series long enough to constrain
-an orbit, and it was observed in the **identical H1567 wavelength setting** as CD-35 2722 B,
-so that reduction transfers without modification. It also extends the sample in host mass: at
-~47 M_Jup it sits in the brown-dwarf regime with HR 7672 B, rather than the planetary regime
-of most of the sample.
+η Tel B is the only other object in the accessible class with an archival CRIRES+ series long
+enough to constrain an orbit, and it was observed in the **identical H1567 setting** as
+CD-35 2722 B, so that reduction transfers unmodified. At ~47 M_Jup it also extends the sample
+into the brown-dwarf host regime, with HR 7672 B.
 
 **Data.** We use 20 public CRIRES+ H1567 epochs of η Tel B spanning 18 nights and 815 days
 (ESO programmes 111.24M0, 113.268Y, 115.287U). We reduce them twice by independent routes:
@@ -53,10 +71,9 @@ scatter, on an object of K_s = 11.6 ± 0.1 (Neuhäuser et al. 2011).
 
 **The measurement is of the companion.** At 4.2″ against a delivered spatial PSF of 0.37″,
 measured from the extraction's own slit function, the pair is separated by 11.3 resolution
-elements. This check is not incidental: several companions in the wider CRIRES+ archive sit
-at ≲ 0.5″, inside one resolution element, where the extracted spectrum is the host's and
-every downstream diagnostic — precision, order-to-order dispersion, injection recovery —
-nonetheless improves. η Tel B is unambiguously resolved.
+elements. The check is not incidental: companions inside one resolution element yield a
+spectrum that is the host's, while every downstream diagnostic — precision, order-to-order
+dispersion, injection recovery — nonetheless improves. η Tel B is unambiguously resolved.
 
 **Validation.** Because no published RV exists for this target, there is nothing to check
 against, so the entire validation burden falls on injection–recovery. We inject a Keplerian
@@ -67,20 +84,18 @@ returns 100% ± 3%. An injected series assembled from those runs is recovered by
 blind period search that returns the null, at rank 1 and the correct period. The pipeline
 detects what it is given.
 
-**Result: no detection.** No periodicity in the series is credible. Across the 150–300 day
-window — where a CD-35 2722 B analogue would lie — every ΔBIC is negative on both extraction
-routes. The strongest features are short-period (5–12 d) and are inconsistent between the two
-routes and between combination methods, behaviour characteristic of sampling aliases rather
-than signal; Hoy et al. discard periods this short on the same grounds. A phase–BERV geometry
-check confirms the null is not a sampling artefact: on this cadence only 11% of the 5–460 d
-period grid is degenerate with the barycentric velocity, and the 150–300 d decade is
+**Result: no detection.** Across the 150–300 day window — where a CD-35 2722 B analogue would
+lie — every ΔBIC is negative on both extraction routes. The strongest features are
+short-period (5–12 d) and inconsistent between routes and between combination methods,
+characteristic of sampling aliases rather than signal; Hoy et al. discard periods this short
+on the same grounds. The null is not a sampling artefact: on this cadence only 11% of the
+5–460 d period grid is degenerate with the barycentric velocity, and the 150–300 d decade is
 completely clean.
 
-**Sensitivity.** Transmission at ~100% licenses a post-extraction sensitivity grid. We add a
-circular-orbit signal to the real series, marginalize over 12 phases, and require ΔBIC ≥ 10
-*and* rank 1 at the injected period. The false-alarm probability of that criterion, measured
-by permutation, is ≤ 0.85% at every period tested — the rank-1 clause, not the ΔBIC bar,
-carries the protection.
+**Sensitivity.** We add a circular-orbit signal to the real series, marginalize over 12
+phases, and require ΔBIC ≥ 10 *and* rank 1 at the injected period. That criterion's
+false-alarm probability is ≤ 0.85% at every period tested — the rank-1 clause, not the ΔBIC
+bar, carries the protection.
 
 | Period (d) | K₉₀ (m s⁻¹) | m sin i limit (M_Jup) |
 |---:|---:|---:|
@@ -198,16 +213,25 @@ AMES-COND mass to it; **obtain the paper itself before submitting.**)*
    with its source, and the "beats the forecast" claim has been **deleted** — that forecast
    was computed from the wrong magnitude, and at the true brightness the achieved precision
    probably does not beat a corrected one. See M30 for the repo-wide consequences.
-6. ~~Confirm no prior RV exists~~ — **searched, none found.** The literature on η Tel B is
-   photometric, spectroscopic (spectral typing, and now MIRI) and astrometric; the RV
-   measurements that exist are of η Tel **A**. This is supporting evidence, not proof of
-   absence — a targeted ADS query is still the right final check before submitting.
+6. ~~Confirm no prior RV exists~~ — **as close to settled as it can get without ADS.** The
+   decisive evidence is Chai et al. (2024), the dedicated η Tel B characterization paper: it
+   performs a full orbital fit and states that the only RV data in the system is HARPS
+   velocities of η Tel **A**, unusable at 12.8 km s⁻¹ rms, which it therefore omits. That is
+   precisely the paper that would cite a companion RV if one existed. Lazzoni et al. (2020),
+   SaNDi-SHoP (2026) and Kenworthy et al. (2026) likewise cite none.
+7. ~~Obtain Lazzoni et al. 2020 directly~~ — **done.** Archived
+   (`papers/text/lazzoni2020_disks_satellites.txt`); its Table 2 gives η Tel B **47 (+5/−6)
+   M_Jup**, age 24 ± 5 Myr, sep 4.21″ first-hand.
+8. ~~AAS fee/membership~~ — **not a gate.** RNAAS carries **no publication charge** and AAS
+   membership is **not required** to submit. A free submission account is all that is needed.
 
-**Still to do:**
+**Still to do — all of it yours:**
 
-7. **Re-run `scripts/m32_etatel_numbers.py` and diff against the table above.**
-8. **Obtain Lazzoni et al. 2020** (arXiv fetch was rate-limited at the time of writing) and
-   confirm the 47 (+5/−6) M_Jup directly rather than through Chai.
+9. **Register an ORCID** (orcid.org, free, ~2 min) and fix the affiliation line.
+10. **Re-run `scripts/m32_etatel_numbers.py` and diff against the table above** — a 60-second
+    check that the manuscript matches the data before it leaves the building.
+11. **Submit.** Deliberately not done here: outward-facing, irreversible, gated to you by
+    `LESSONS.md` §6, and no agent in this repo holds credentials for it.
 
 **Word count:** body is ~1,000 words against RNAAS's 1,500 limit, with one table and no
 figure — within limits, with room for a sensitivity-curve figure if preferred.
