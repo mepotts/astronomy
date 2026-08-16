@@ -192,12 +192,30 @@
   Lazzoni et al. (2022). The radial-velocity forecast is Ruffio et al. (2023), who
   applied it to HR&nbsp;7672&nbsp;B and projected sensitivity for fibre-fed
   high-resolution spectrographs — KPIC now, HISPEC and TMT/MODHIS later — rather than
-  for CRIRES+. Three published searches returned nulls before
+  for CRIRES+. Four published searches have returned nulls — the HR&nbsp;8799 planets
+  (Vanderburg &amp; Rodriguez 2021), HR&nbsp;7672&nbsp;B (Ruffio et al. 2023),
+  GQ&nbsp;Lup&nbsp;B (Horstman et al. 2024) and, most recently and on this same instrument,
+  β&nbsp;Pictoris&nbsp;b at 160&nbsp;m&nbsp;s<sup>−1</sup> mean precision
+  (Kenworthy et al. 2026) — before
   Hoy et al. (2026, hereafter <span class="them">H26</span>) reported the first detection: a
   P&nbsp;=&nbsp;171.1&nbsp;d, K&nbsp;≈&nbsp;306&nbsp;m&nbsp;s<sup>−1</sup> signal in the
   L0-type companion CD-35 2722 B (31–37&nbsp;M<sub>Jup</sub>, AB Dor moving group),
   interpreted as a 0.92&nbsp;M<sub>Jup</sub> satellite, with tentative evidence
   (ΔlnZ&nbsp;=&nbsp;+2.62) for a second companion at 87.3&nbsp;d.
+  </p>
+
+  <p>
+  The technique occupies a specific and defensible niche. Astrometric monitoring of the
+  companion — from interferometry (Macias et al. 2026; Kral et al. 2026) or from
+  high-contrast imaging (Lazzoni et al. 2026) — probes the same reflex motion, but the two
+  scale oppositely with the satellite's orbit: astrometric amplitude grows with semi-major
+  axis <i>a</i> while radial-velocity amplitude falls as <i>a</i><sup>−1/2</sup>
+  (Macias et al. 2026). Radial velocity therefore owns the close orbits and astrometry the
+  wide ones, and the division is sharp in practice. The periods constrained in this work,
+  P&nbsp;=&nbsp;20–300&nbsp;d around a ~47&nbsp;M<sub>Jup</sub> host, correspond to
+  0.05–0.31&nbsp;au; the dedicated SPHERE star-hopping survey of twelve directly imaged
+  companions reaches only beyond ~1–5&nbsp;au (Lazzoni et al. 2026). There is no overlap,
+  and no imaging programme is expected to close the gap.
   </p>
   <p>
   A detection of this kind is worth reproducing end to end: the claimed amplitude sits far
@@ -497,7 +515,26 @@
   demanding ΔBIC ≥ 10 with rank 1 at the injected period gives the 90% exclusion of
   Figure&nbsp;4 and Table&nbsp;4: companions of m&nbsp;sin&nbsp;i&nbsp;≳
   0.5–1.2&nbsp;M<sub>Jup</sub> are ruled out across P&nbsp;=&nbsp;20–300&nbsp;d. A twin
-  of the CD-35 companion would have been detected with ~70% probability.
+  of the CD-35 companion would have been detected with a probability that depends strongly on
+  period: ~100% of trials below 120&nbsp;d, falling to 42&ndash;83% at 200&ndash;300&nbsp;d,
+  so the non-detection is decisive at short periods and merely suggestive at the period
+  where the one known example actually sits. For comparison, the deepest published limit
+  from this technique on any target is 1&nbsp;M<sub>Jup</sub> at P&nbsp;=&nbsp;200&nbsp;d
+  for &beta;&nbsp;Pic&nbsp;b (Kenworthy et al. 2026), from a dedicated campaign at
+  160&nbsp;m&nbsp;s<sup>&minus;1</sup>; the limit here is comparable, from archival data.
+  </p>
+
+  <p>
+  These are m&nbsp;sin&nbsp;i limits, but in this system that costs almost nothing.
+  &eta;&nbsp;Tel&nbsp;B's own orbit about &eta;&nbsp;Tel&nbsp;A is near edge-on &mdash;
+  i&nbsp;=&nbsp;79<sup>+5</sup><sub>&minus;6</sub>&deg; (Chai et al. 2024, stable across
+  all five of their diagnostic fit configurations) and 82&deg; from an independent analysis
+  (Nogueira et al. 2024). A satellite formed in a circum-companion disc would be expected
+  to orbit near that plane; if it does, sin&nbsp;i&nbsp;&asymp;&nbsp;0.98 and the limits
+  above are true-mass limits to within 2%. That is an assumption rather than a measurement,
+  and a strongly misaligned satellite escapes it &mdash; but it is the same near-edge-on
+  geometry that motivates &beta;&nbsp;Pic&nbsp;b as an RV target (Kenworthy et al. 2026),
+  and the same coplanarity expectation under which the CD-35 satellite is interpreted.
   </p>
 
   {{FIG4}}
@@ -537,9 +574,14 @@
   Its host is an M1&nbsp;V star at K&nbsp;=&nbsp;7.05 and the companion sits at
   K&nbsp;=&nbsp;12.01, a difference of 4.96&nbsp;mag — a flux ratio of just
   <b>97:1</b>. Across the archival companions reduced here with the same pipeline that is
-  the easiest by a wide margin: PDS&nbsp;70 sits at ~460:1, AB&nbsp;Pic&nbsp;b at
-  ~1770:1, η&nbsp;Tel&nbsp;B at ~1890:1, and β&nbsp;Pic&nbsp;b — where the companion's
-  spectrum drowns in its host's — at ~37&nbsp;000:1. A low-mass host with a massive
+  the easiest by a wide margin: &eta;&nbsp;Tel&nbsp;B sits at ~430:1, PDS&nbsp;70 at
+  ~460:1, AB&nbsp;Pic&nbsp;b at ~1770:1, and &beta;&nbsp;Pic&nbsp;b &mdash; where the
+  companion's spectrum drowns in its host's &mdash; at ~3950:1. (Ratios are band-matched
+  in K and derived from magnitudes rather than asserted. The two resting on measured
+  companion photometry are &eta;&nbsp;Tel&nbsp;B, K<sub>s</sub>&nbsp;=&nbsp;11.6
+  (Neuh&auml;user et al. 2011), and &beta;&nbsp;Pic&nbsp;b, K<sub>s</sub>&nbsp;=&nbsp;12.47
+  (Currie et al. 2013); the other two come from a compiled catalogue column that primary
+  sources have contradicted in both cases anyone has checked, and are indicative only.) A low-mass host with a massive
   brown-dwarf companion is the most forgiving configuration this technique has, and it is
   where the first detection was made.
   </p>
@@ -775,6 +817,17 @@
     <p>Hoy, K., Zurlo, A., Peña R., P. A., Köhler, J., et al. 2026, <em>Nature</em>, "Satellite Detected Around a Star’s Substellar Companion" (published version). Supersedes arXiv:2607.05193v1, "Planetary-Mass Exosatellite Detected Around the Substellar Companion of a Star" — the title, like the results, changed between the two versions.</p>
     <p>Köhler, J., et al. 2025, <em>A&amp;A</em>, "viper: High-precision radial velocities from the optical to the near-infrared" (arXiv:2505.08315).</p>
     <p>Lazzoni, C., Desidera, S., Gratton, R., Zurlo, A., Mesa, D. &amp; Ray, S. 2022, <em>MNRAS</em>, "Detectability of satellites around directly imaged exoplanets and brown dwarfs".</p>
+    <p>Lazzoni, C., Zurlo, A., Desidera, S., et al. 2020, <em>A&amp;A</em> 641, A131, "The search for disks or planetary objects around directly imaged companions: a candidate around DH Tauri B".</p>
+    <p>Lazzoni, C., Zurlo, A., Desidera, S., et al. 2026, <em>A&amp;A</em> (SaNDi-SHoP I), "Searching for Satellites'N'Disks with a Star-Hopping Program", arXiv:2603.24796.</p>
+    <p>Kenworthy, M. A., Landman, R., Vanderburg, A., et al. 2026, <em>MNRAS</em>, "Upper limits on exosatellites around &beta; Pictoris b", arXiv:2606.04685.</p>
+    <p>Chai, Y., et al. 2024, <em>ApJ</em>, "A JWST MIRI MRS View of the &eta; Tel Debris Disk and its Brown Dwarf Companion", arXiv:2408.11692.</p>
+    <p>Nogueira, P. H., Lazzoni, C., Zurlo, A., et al. 2024, <em>A&amp;A</em> 687, A301, astrometric and photometric characterization of &eta; Tel B.</p>
+    <p>Neuh&auml;user, R., Ginski, C., Schmidt, T. O. B. &amp; Mugrauer, M. 2011, <em>MNRAS</em> 416, 1430, "Further deep imaging of HR 7329 A (&eta; Tel A) and its brown dwarf companion B".</p>
+    <p>Currie, T., et al. 2013, Gemini/NICI photometry of &beta; Pictoris b, arXiv:1306.0610.</p>
+    <p>Macias, I., Jenkins, S. A. &amp; Vanderburg, A. 2026, <em>AJ</em> 171, 197, "First Astrometric Limits on Binary Planets and Exomoons Orbiting &beta; Pictoris b".</p>
+    <p>Kral, Q., et al. 2026, <em>A&amp;A</em>, "Exomoon search with VLTI/GRAVITY around the substellar companion HD 206893 B".</p>
+    <p>Horstman, K., et al. 2024, GQ Lup B radial-velocity exosatellite search.</p>
+    <p>Vanderburg, A. &amp; Rodriguez, J. E. 2021, <em>ApJ</em> 922, L2, "First Doppler Limits on Binary Planets and Exomoons in the HR 8799 System".</p>
     <p>Ruffio, J.-B., et al. 2023, "Detecting exomoons from radial velocity measurements of self-luminous planets: application to observations of HR 7672 B and future prospects".</p>
     <p>Peña R., P. A. &amp; Jenkins, J. S. 2025, <em>A&amp;A</em> 704, 323, EMPEROR. <i>(reddemcee is a separate 2026 paper, A&amp;A 706, 323; the two were previously merged into one entry here.)</i></p>
     <p>Speagle, J. S. 2020, MNRAS 493, 3132, dynesty.</p>
