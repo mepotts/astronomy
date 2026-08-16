@@ -169,7 +169,7 @@ ESO programmes 111.24M0, 113.268Y and 115.287U.
 - Kral, Q. et al. 2026, *A&A*, exomoon search around HD 206893 B with VLTI/GRAVITY
 - Lazzoni, C., Zurlo, A., Desidera, S. et al. 2026, *A&A* (SaNDi-SHoP I), arXiv:2603.24796
 - Macias, I., Jenkins, S. A. & Vanderburg, A. 2026, *AJ*, **171**, 197
-- Hoy, E. et al. 2026, *Nature*, "Satellite Detected Around a Star's Substellar Companion",
+- Hoy, K. et al. 2026, *Nature*, "Satellite Detected Around a Star's Substellar Companion",
   doi:10.1038/s41586-026-10751-w
 - Köhler, J. et al. 2025, *A&A*, **698**, A44 (viper), doi:10.1051/0004-6361/202553919
 - Lazzoni, C. et al. 2020, *A&A*, **641**, A131
