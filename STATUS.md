@@ -11,7 +11,16 @@ before building — sweep-reported facts are treated as claims until re-checked 
 repo's own tooling. Every externally-sourced number carries its source or the mark
 UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 
-## Active fronts — 2026-08-14
+## Active fronts — wave 3 (launched 2026-08-16)
+
+| Front | Folder | Wave-3 scope |
+|---|---|---|
+| itf-linker **M8** | [`itf-linker/`](itf-linker/) | perturbed-ephemeris backend (opens the pre-2023 ITF beyond two-body's 4-yr wall), bulk-MPCORB orbit route, full ~30k-object scale run with decoy control, SkyBoT in the verdict chain, batch-landing watcher design. PD152/MQ241 verdicts untouched — held for Matthew |
+| gaia-dr4 **M3** | [`gaia-dr4/`](gaia-dr4/) | corr_vec correlation-aware Pr(III) via nsstools, dust-map M₁ tier for the 270 low-\|b\| FP reservoir, December-2 dress rehearsal + runbook, and the **eROSITA DR2 × class-III join runnable today** (X-ray-detected astrometric binaries, or a calibrated null) |
+| erosita-dr2 **M4** | [`erosita-dr2/`](erosita-dr2/) | LMC-fader × OGLE OCVS/XROM mini-study (does the Be-disk story explain the X-ray fades?), + the classifier-rebase M0 kill-checks against DR2 reality (go/no-go/pivot memo for the IDEAS build). J0944 fenced — held for Matthew |
+| pta-mpta **M1** (new front, avenue #2) | [`pta-mpta/`](pta-mpta/) | MPTA 4.5-yr access verification, PINT/tempo2/enterprise stack build in WSL, pre-registered reproduction slice vs published numbers, runtime economics → pick W3 (CW search vs noise criticism vs free-spectrum) |
+
+## Completed fronts — waves 1–2 (2026-08-14 → 16)
 
 | Front | Avenue | Folder | State | Next human gate |
 |---|---|---|---|---|
@@ -27,9 +36,16 @@ UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 | Front | Avenue | Where it will live | Blocker / trigger |
 |---|---|---|---|
 | exosat-rv next milestone | #1 | `exosat-rv/` | **deliberately idle from this session** — concurrent thread owns the folder (M27/M32 active; milestone numbers must not collide); next dated triggers: β Pic header probe 2026-09-25, CD-35 joint-fit campaign from 2026-12-19 |
-| NEOCP high-e watcher (4I race) | #3 | `itf-linker/` or sibling | after the attribution slice lands |
-| MPTA independent CW search | #2 | new `pta-mpta/` | next wave |
-| Dyson-candidate re-vet / SPHEREx | #7, #8 | new folders | next wave |
+| NEOCP high-e watcher (4I race) | #3 | `itf-linker/` or sibling | M8's watcher design lands first |
+| Dyson-candidate re-vet / SPHEREx | #7, #8 | new folders | wave 4 |
+
+## Open human gates (Matthew)
+
+1. **2025 PD152** — submit the MPC identification? (`itf-linker/M7-RESULTS.md` §8 has the shape; needs your MPC account.) Plus the MQ241 borderline ruling.
+2. **J0944** — send the drafted Swift ToO? (`erosita-dr2/J0944-decision-package.md`; needs a Swift ToO account.)
+3. **eta Tel B RNAAS** — submit or fold into the method paper? (concurrent thread's M32; author/affiliation/ORCID.)
+4. **Accounts before Dec 2** — Gaia Archive + NOIRLab Data Lab (both free).
+5. Optional — email MPE about the `eRASSc3_Main_GDR3` duplicated-column defect.
 
 ## Log
 
