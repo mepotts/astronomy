@@ -1,0 +1,1588 @@
+<<<PAGE 1>>>
+Astronomy & Astrophysics manuscript no. language_editing_binarity c⃝ESO 2020
+July 21, 2020
+The search for disks or planetary objects around directly imaged
+companions: A candidate around DH Tau B. ⋆
+C. Lazzoni1, 2, A. Zurlo3, 4, 5, S. Desidera1, D. Mesa1, C. Fontanive6, 1, M. Bonavita1, 7, S. Ertel8, 9, K. Rice7, A. Vigan5,
+A. Boccaletti10, M. Bonnefoy11, G. Chauvin12, 11, P. Delorme11, R. Gratton1, M. Houllé5, A.L. Maire13, 14, M.
+Meyer15, 16, E. Rickman17, E. A. Spalding9, 18, R. Asensio-Torres13, M. Langlois19, 5, A. Müller13, J-L. Baudino10, 20,
+J.-L. Beuzit11, 5, B. Biller13, 7, W. Brandner13, E. Buenzli16, F. Cantalloube13, A. Cheetham13, 17, M. Cudel11, M.
+Feldt13, R. Galicher10, M. Janson13, 21, J. Hagelberg17, T. Henning13, M. Kasper11, 22, M. Keppler13, A.-M. Lagrange11,
+J. Lannier11, H. LeCoroller5, D. Mouillet11, S. Peretti17, C. Perrot10, G. Salter5, M. Samland13, T. Schmidt10, E. Sissa1,
+and F. Wildi17
+(Aﬃliations can be found after the references)
+July 21, 2020
+ABSTRACT
+Context. In recent decades, thousands of substellar companions have been discovered with both indirect and direct methods of detection. While
+the majority of the sample is populated by objects discovered using radial velocity and transit techniques, an increasing number have been directly
+imaged. These planets and brown dwarfs are extraordinary sources of information that help in rounding out our understanding of planetary systems.
+Aims. In this paper, we focus our attention on substellar companions detected with the latter technique, with the primary goal of investigating their
+close surroundings and looking for additional companions and satellites, as well as disks and rings. Any such discovery would shed light on many
+unresolved questions, particularly with regard to their possible formation mechanisms.
+Methods. To reveal bound features of directly imaged companions, whether for point-like or extended sources, we need to suppress the contribution
+from the source itself. Therefore, we developed a method based on the negative fake companion (NEGFC) technique that ﬁrst estimates the position
+in the ﬁeld of view (FoV) and the ﬂux of the imaged companion with high precision, then subtracts a rescaled model point spread function (PSF)
+from the imaged companion, using either an image of the central star or another PSF in the FoV . Next it performs techniques, such as angular
+diﬀerential imaging (ADI), to further remove quasi-static patterns of the star (i.e., speckle contaminants) that a ﬀect the residuals of close-in
+companions.
+Results. After testing our tools on simulated companions and disks and on systems that were chosen ad hoc, we applied the method to the sample of
+substellar objects observed with SPHERE during the SHINE GTO survey. Among the 27 planets and brown dwarfs we analyzed, most objects did
+not show remarkable features, which was as expected, with the possible exception of a point source close to DH Tau B. This candidate companion
+was detected in four di ﬀerent SPHERE observations, with an estimated mass of ∼ 1 MJup, and a mass ratio with respect to the brown dwarf of
+1/10. This binary system, if conﬁrmed, would be the ﬁrst of its kind, opening up interesting questions for the formation mechanism, evolution,
+and frequency of such pairs. In order to address the latter, the residuals and contrasts reached for 25 companions in the sample of substellar objects
+observed with SPHERE were derived. If the DH Tau Bb companion is real, the binary fraction obtained is∼ 7%, which is in good agreement with
+the results obtained for ﬁeld brown dwarfs.
+Conclusions. While there may currently be many limitations aﬀecting the exploration of bound features to directly imaged exoplanets and brown
+dwarfs, next-generation instruments from the ground and space (i.e., JWST, ELT, and LUVOIR) will be able to image fainter objects and, thus,
+drive the application of this technique in upcoming searches for exo-moons and circumplanetary disks.
+Key words. Instrumentation: adaptive optics; Techniques: image processing; Planets and satellites: detection, formation; (Stars:) brown dwarfs;
+(Stars:) individual: DH Tau
+1. Introduction
+To improve our knowledge and comprehension of how planets
+form and evolve in their environments, their close neighbor-
+hoods must be investigated. In our own Solar System, planets
+are often surrounded by satellites and disk-like features, such as
+dusty rings (Alibert et al. 2005). Moreover, these elements seem
+to increase in number and extensions with the mass of the central
+planet. Although there has been a tentative detection of a Saturn-
+like moon around Kepler-1625 b Teachey & Kipping (2018) and
+a report of a disk or ring-like system candidate orbiting the pre-
+⋆ Based on observations collected at Paranal Observatory, ESO
+(Chile) Program ID: 095.C-0298, 096.C-0241, 097.C-0865, 198.C-
+0209, and 0104.C-0327(A) and on observations collected at LBT Ob-
+servatory.
+main-sequence star 1SW ASP J140747.93-394542.6 from a com-
+plex photometric dimming event (Mamajek et al. 2012), there
+has been no exomoon, or exoring, conﬁrmed yet. Another case
+that is still under debate is that of Fomalhaut b (Lawler et al.
+2015), in which the spectral energy distribution was interpreted
+as the presence of a cloud of dust and planetesimals around a
+low-mass planet, indicating the presence of an extended source,
+even if more recent studies have suggested that Fomalhaut b is
+not a planet but the result of a collision between two large plan-
+etesimals (Gaspar & Rieke 2020).
+With the current instrumentation and telescopes, the hunt for
+features comparable to those observed in the Solar System is
+considerably challenging for any detection technique. However,
+we would expect the mass of a disk surrounding a substellar ob-
+Article number, page 1 of 19
+arXiv:2007.10097v1  [astro-ph.EP]  20 Jul 2020
+
+<<<PAGE 2>>>
+A&A proofs: manuscript no. language_editing_binarity
+ject to scale with the mass of the companion itself (Magni &
+Coradini 2004); satellites and ring systems should also follow
+such trends (Ward & Canup 2010). Thus, the ideal targets for
+investigation for bound features would be massive companions
+spanning the regime from a few Jupiter masses to brown dwarfs.
+The detectability is further improved for young systems in which
+planets are still in the thermal emission regime and circumplan-
+etary disks are more likely to be present. Direct imaging instru-
+ments such as GPI (Macintosh et al. 2014) and SPHERE (Beuzit
+et al. 2019) might be used at the extremity of their potential in
+the search for features around directly imaged planets and brown
+dwarfs.
+Additional advantages arise when considering giant planets
+and brown dwarfs at wide separations. Indeed, the gravitational
+inﬂuence of a substellar object, as measured by the radius of
+the Hill Sphere, increases with the mass and the separation from
+the host star. Then, not only can we expect to ﬁnd bound fea-
+tures (disks, rings, satellites, etc.) placed at larger distances with
+respect to such massive and wide companions but also the prob-
+ability of interaction and pair formation of planets and brown
+dwarfs is enhanced. For example, the Hill radius of a Jupiter-
+mass planet at 1 au around a Sun-like star is roughly 0.07 au,
+whereas, the same planet at 50 au has an Hill radius of more
+than 3 au. A 50 M Jup brown dwarf at the same separations has
+an Hill radius of 0.25 au and 12.57 au, respectively. Since typi-
+cal separations of objects detected with the direct imaging tech-
+nique are in tens of au, we may ﬁnd further companions inside
+their Hill sphere up to few au and this would allow us to disen-
+tangle the point spread functions (PSFs) of the two objects with
+8-meter class telescopes equipped with xAO. Therefore, even if
+the terrestrial regime is almost inaccessible for this generation
+of instruments, we can still constrain upper limits for the mass
+of the satellites, look for binary planets, and investigate the pres-
+ence of extended structures such as disks and rings.
+Pairs of brown dwarfs in wide orbits around stars have been
+discovered in several studies, such asϵ Indi B (King et al. 2010),
+GJ 569 B (Femenía et al. 2011), GJ 417 B (Kirkpatrick et al.
+2001), HD130948 B (Potter et al. 2002) and AB Dor Ca/Cb (via
+interferometry, Climent et al. 2019). This kind of conﬁguration
+might extend to massive giant planets and brown dwarfs close
+to deuterium burning limits. Isolated brown dwarfs or brown
+dwarf-giant planet pairs have been already reported as well (e.g.,
+Ophiucus 1622 2405 and 2MASS J1207334393254, Luhman
+et al. 2007; Chauvin et al. 2004).
+On the disk side, there are a number of conﬁrmed cases of
+substellar companions down to planetary masses showing sig-
+niﬁcant Hα or Paschen β emission. These are considered ro-
+bust evidence of on-going accretion, as in the case of PDS 70
+b (Wagner et al. 2018; Christiaens et al. 2019) and c (Ha ﬀert
+et al. 2019), GQ Lup B (Seifahrt et al. 2007), DH Tau B (Bon-
+nefoy et al. 2014), SR 12 C (Santamaría-Miranda et al. 2018),
+and USCO1610 B (Petrus et al. 2020), although in certain other
+cases the observed emission is most likely due to chromospheric
+activity (Musso Barcucci et al. 2019; Petrus et al. 2020). Some
+of these candidate circumplanetary disks were also conﬁrmed in
+the submillimeter with ALMA, (PDS70 c, Isella et al. 2019),
+while others, such as those surrounding GQ Lup B (MacGregor
+et al. 2017) and DH Tau B (Long et al. 2019; Wol ﬀ et al. 2017;
+Pérez et al. 2019), escaped detection at this wavelength.
+Disk or ring-like features may form at later phases, as a result
+of collisions that could happen either within a satellite system or
+between a planet or satellites and an incoming body (Wyatt &
+Jackson 2016). The latter case may happen more frequently for
+stars surrounded by debris disks that scatter large bodies inwards
+and outwards, increasing the chances of collisions with planets
+or satellites (Hyodo et al. 2017).
+In this paper, we present routines based on the fake negative
+companion technique to suppress the contribution of directly im-
+aged sources and investigate the residuals. These tools were sys-
+tematically applied to every suitable substellar object, detected
+during the SHINE /SPHERE survey (Chauvin et al. 2017a) to
+unveil possible extended structures and to constrain their multi-
+plicity. Since typical contrasts obtained with SPHERE are on the
+order of 10−5− 10−6, for the youngest systems, the instrument
+can probe down to a few Jupiter masses. Thus, as mentioned be-
+fore, with the current instrumentation, we are not sensitive to So-
+lar System-like rocky satellites but only to gas giant companions
+and to bright and massive accretion disks. In this framework, we
+present the ﬁrst indication of a Jupiter-like candidate that orbits
+a low-mass brown dwarfs bound to DH Tau.
+In this paper, we present a description of the method in Sect.
+2 . In Sect. 3, we investigate the entire SPHERE sample and in
+Sect. 4, we present the DH Tau Bb candidate companion. In Sect.
+5, we show the detection limits and the statistics obtained for the
+sample of substellar objects observed with SPHERE. In Sect. 6,
+we present our conclusions. Finally, in App. A we present results
+obtained by applying our tools to synthetic data and to systems
+chosen ad hoc . In App. B, we describe the method used for the
+reconstruction of the PSF of the star behind the coronagraph and
+in App. C, we describe the reduction of the LMIRCam /LBTI
+data for DH Tau B.
+2. Methods
+2.1. The NEGFC technique
+In order to unveil the neighborhood of known companions de-
+tected with direct imaging techniques, we need to carefully
+subtract the contribution of the companion itself. We applied
+the procedure known as the negative fake companion technique
+(NEGFC, Lagrange et al. 2010; Marois et al. 2010) which, in
+short, consists of forward modeling a detected source by inject-
+ing a negative model of the instrument PSF into the raw data and
+minimizing the residuals in the ﬁnal image after post-processing
+by adjusting the PSF position and ﬂux.
+As model PSF, we used, in general, the oﬀ-axis image of the
+central star, which resemble the shape of the PSF of the com-
+panion of interest. The frame containing the model should have
+dimensions that are su ﬃcient to include several times the full
+width half maximum (FWHM) of the PSF. This is needed in
+order to reduce artifacts in the close vicinity of the companion
+when subtracting the model. In SPHERE observations, for ex-
+ample, the PSF template for IRDIS (see Section 3) is an image
+of 64× 64 pixels (roughly 16 times the FWHM in the H-band
+and 12 times in the K-band) of the central star, which is provided
+by the SPHERE Data Center (Delorme et al. 2017a). Moreover,
+all our tools rely on the angular di ﬀerential imaging technique
+(ADI, Marois et al. 2006a) but they could also be used, in prin-
+ciple, with diﬀerent post-processing techniques (for example, a
+median of the frames).
+We thus implemented the NEGFC in Python, starting from
+the already released VIP code (Gomez Gonzalez et al. 2017)
+and optimizing some of its functions to look for both bound ex-
+tended features and point-like sources around directly imaged
+companions. For the faintest objects and companions located in
+the innermost regions dominated by speckle contaminants, we
+assumed priors for the (r,θ, F) of the planet, subtracted a model
+of the latter in each raw frame, and calculated the χ2 on a cir-
+Article number, page 2 of 19
+
+<<<PAGE 3>>>
+Lazzoni et al.: Disks or satellites around DI companions
+cular aperture centered on the companion in the post processed
+image obtained with speciﬁc techniques, such as classical ADI
+(cADI, Marois et al. 2006a) and the principal component analy-
+sis (PCA, Soummer et al. 2012; Amara & Quanz 2012). The χ2
+is deﬁned as a sum over the N positive values divided by N− 3,
+if the function of merit is sum, or as the standard deviation over
+the values diﬀerent from zero, if the function of merit is stddev.
+The (r,θ, F) parameters are then optimized to minimize the χ2.
+Here, we call this procedure the single_fullcube routine.
+2.2. Evolutions of NEGFC
+Since the single_fullcube routine is not able to take into account
+the frame-by-frame variations of the ﬂux due to changing at-
+mospheric conditions, we propose a ﬁrst evolution of NEGFC
+for companions visible in each raw frame ( S/N ≳ 30). The sin-
+gle_framebyframe routine determines (r,θ, F) for each frame of
+the unprocessed dataset. Thesingle_fullcube routine is then used
+to suppress the contribution of the faintest or closest companion,
+whereas the single_framebyframe tool is applied at the brightest
+or farthest point sources that are detectable in each raw frame
+and that are clearly distinguishable from speckle contaminants.
+For ground-based observations, the shape of PSFs over time
+is not constant. Indeed, if parameters such as seeing or wind
+speed change signiﬁcantly during the observation, the PSF of
+the companion might be quite di ﬀerent from the ﬁrst to the last
+frame of the cube. Also, in order to reach deeper contrasts, the
+coronagraphic observations are very often the best choice for ex-
+oplanets search. With this kind of setting, the star is hidden be-
+hind the coronagraph and cannot be used as a model. Thus, we
+need an image of the oﬀ-axis PSF of the star that might nonethe-
+less diﬀer signiﬁcantly from the PSF of the companion since the
+two are not taken simultaneously. When subtracting two PSFs
+with diﬀerent shapes induced by surrounding conditions, spuri-
+ous structures may emerge in the residuals. For coronagraphic
+observations, then, the process of estimating the position and
+ﬂux of directly imaged companions and the retrieval of features
+in their residuals works more e ﬃciently for datasets taken in
+good and stable weather conditions.
+When, instead, the observations are taken without the coro-
+nagraph, we can use the the star itself as a model PSF for
+each of the frames in the cube. This second evolution of the
+NEGFC, which uses more than one model PSF, is called themul-
+tiple_framebyframe routine here. This tool helps to avoid even-
+tual artifacts that may emerge from changes in the conditions
+during the observation. Indeed, the model PSF and the PSF of
+the companion are taken at the same time and, thus, they have
+the same shape if their separation is not too large (otherwise,
+anisoplanatism eﬀects may elongate the PSF and decrease the
+Strehl ratio). On the other hand, with these kind of settings, the
+processed images reach poor contrasts compared to a corona-
+graphic sequence so that in order to distinguish structures around
+the companion, or even the companion itself, we need to concen-
+trate on brighter planets or brown dwarfs.
+One further possibility to use the multiple_framebyframe
+routine concerns datasets where there are more companions or
+known background stars in the FoV of the instrument. To be
+useful as models, such objects should be located in regions of
+low speckle contaminant noise and with a similar radial sepa-
+ration as the one of the companion under investigation. In any
+case, the companion used to generate the model PSFs should be
+very bright with a signal to noise ratio (S /N) on the order of 50
+or greater. If this is the case, the peak is expected to be well
+above the background and detectable in each raw frame. There-
+fore, suitable point sources in the FoV to be converted into model
+PSFs are quite rare. We show in Section 3.3 an example of the
+gain in detection limits and improvement of the residuals for the
+HD 1160 system. This was the only case with a point-like source
+in the FoV that was bright enough to apply this routine.
+It is worth mentioning the four replicas of the PSF of the cen-
+tral star that are often used to measure the accurate position of
+the star behind the coronagraph. These satellite spots would be,
+in principle, perfect candidates of model PSFs present in each
+frame of the cube (Marois et al. 2006b; Langlois et al. 2013),
+especially for monochromatic observations for which there are
+no radial elongations. Unfortunately, they are placed very close
+to the outer working angle of the adaptive optics (AO), where
+speckles dominate the background. Indeed, based on the pre-
+liminary test run on real data, the results demonstrate that the
+subtraction of the companion using satellite spots with the mul-
+tiple_framebyframe is worse than the one obtained with the
+single-PSF routines.
+The output of each routine consists of: 1) an image of
+the companion obtained from a post processed image (median,
+cADI, or PCA +ADI) of the original cube; 2) an image of the
+model obtained from the post-processing of an empty cube
+where the model PSF is added in each frame at the position and
+with the ﬂux obtained for the companion; 3) an image of the
+residuals around the companion, obtained by processing (either
+with a median, cADI, or PCA +ADI) the scientiﬁc cube from
+which the companion was subtracted.
+An additional output of each routine is the contrast curve
+centered on the planet or the brown dwarf. The detection lim-
+its are obtained by re-centering the post-processed frame from
+which the companion was subtracted at the position of the com-
+panion itself and calculating the standard deviation in concentric
+annuli with a width of one FWHM each, starting from a separa-
+tion of 1/2 FWHM from the center. The limits for the detection
+are set at the 5σ level and they include the small sample statis-
+tics following the discussion presented in Mawet et al. (2014)
+and the algorithm throughput eﬀects (Jensen-Clem et al. 2018).
+2.3. T ests on synthetic and real companions.
+As a ﬁrst step, we tested our routines on synthetic companions.
+A more detailed discussion is presented in Appendix A.1. The
+most evident result is the gain in contrast close to the PSF of the
+injected companion once the latter is subtracted. Furthermore,
+we simulated a disk surrounding the synthetic companion with
+diﬀerent inclinations and ﬁxed contrast and separation. The in-
+clination of the system is, indeed, a fundamental parameter for
+the detection of extended features, together with the luminosity
+and the separation from the companion (see Appendix A.2). As
+a result, we found that disk-like sources would also, in principle,
+be detectable using the method presented in this paper.
+We also tested our tools on real companions choosing two
+ad hoc datasets. The ﬁrst system we analyzed was the crowded
+FoV of HIP 87836, with many suitable PSFs that show signs of
+binarity (see Appendix A.3). The second system was, instead,
+chosen to prove the eﬃciency of the method to detect extended
+features. We analyzed the HST observation of the additional stel-
+lar companion that was recently discovered in orbit around GQ
+Lup at wide separations. GQ Lup C (Alcalá et al. 2020) showed
+evidence of the presence of a disk based on the infrared ex-
+cess in its spectral energy distribution. We then applied the sin-
+gle_framebyframe routine to resolve the disk in reﬂected light.
+In each of the nine frames (one for each wavelength), we sub-
+tracted a model obtained by a nearby star from the PSF of the
+Article number, page 3 of 19
+
+<<<PAGE 4>>>
+A&A proofs: manuscript no. language_editing_binarity
+companion. The disk around GQ Lup C was easily detected with
+an estimated width of 88 mas and an inclination of 44◦ (Lazzoni
+et al. 2020).
+3. SPHERE data
+3.1. The SPHERE instrument
+The components of SPHERE include an extreme adaptive optics
+system, SAXO (Fusco et al. 2006; Petit et al. 2014), using 41
+x 41 actuators, pupil stabilization, and di ﬀerential tip-tilt con-
+trol. The instrument has several coronagraphic devices for stel-
+lar diﬀraction suppression, including apodized pupil Lyot coro-
+nagraphs (Carbillet et al. 2011) and achromatic four-quadrant
+phase masks (Boccaletti et al. 2008).
+Among the science subsystems available, we used only the
+Infra-Red Dual-band Imager and Spectrograph (IRDIS, Dohlen
+et al. 2008) observations, since IRDIS has a wider ﬁeld of view
+and most of our targets are placed at few arcseconds. The stars in
+our sample were observed in IRDIFS mode, with IRDIS in dual-
+band imaging mode (DBI; Vigan et al. 2010), using the narrow-
+band H2H3 ﬁlters ( λ = 1.593, 1.667µm), or in IRDIFS_EXT
+mode, using the K1K2 ﬁlters (λ = 2.110, 2.251µm) of the instru-
+ment. For one of the observations of HR 2562, the broad band H
+ﬁlter (λ = 1.625µm) was used.
+The IRDIS data were pre-reduced at the SPHERE data cen-
+ter (Delorme et al. 2017a), hosted by OSUG /IPAG in Grenoble,
+using the SPHERE Data Reduction Handling (DRH) pipeline
+(Pavlov et al. 2008) and the dedicated Specal data reduction soft-
+ware (Galicher et al. 2018)
+3.2. The SPHERE sample
+The methods and routines described and tested in the previous
+Section and in the Appendix have as their primary objective the
+discovery of (sub)planetary satellites and disks around compan-
+ions detected with the direct imaging technique. For this rea-
+son, we analyzed residuals around substellar companions de-
+tected with SPHERE /VLT during the SpHere INfrared survey
+for Exoplanets (SHINE, Desidera et. al, in prep.) guaranteed
+time of observation (GTO) for 27 young systems hosting one or
+more companions, with masses spanning from Jupiter to brown
+dwarfs range. Among the sample we discarded TW A 5 B and
+HD 284149 B because the central stars are close visual binaries
+(Macintosh et al. 2001; Bonavita et al. 2017), thus the model
+PSF obtained from the latter is not suitable for our purposes,
+along with ROXs42 B and GSC 6214-210 B due to their poor or
+short datasets.
+In Table 1, we provide some brief information on the obser-
+vations of the 23 systems in the sample and in Table 2, we list
+the characteristics of the 27 objects in the analysis. Several of
+the datasets have already been published in papers by the SHINE
+team (references in Table 1) and others will be presented in detail
+in forthcoming papers that are currently in preparation. The ages
+were retrieved either from the literature or from those adopted
+in SPHERE’s statistical paper (Langlois et al., in prep: Desidera
+et al., in prep.; for a preliminary report see Meyer 2019) for the
+objects observed in the ﬁrst half of the survey.
+3.3. Results
+Among the objects analyzed in the sample, we distinguish two
+main categories regarding the residuals we obtained: 15 objects
+(51 Eri b,β Pic b,GQ Lup B, HD1160 B, HD4747 B, HD95086
+b, HIP65426 b, HIP107412 B, HR2562 B, HR3549 B, PDS 70
+b, PZ Tel B, HR8799 c, d, and e) are located in the innermost
+part of the system (within 1′′), in regions where speckle contam-
+inants are very bright and mostly dominate the residuals once
+the companion is subtracted. We show in Figure 1 an example of
+this kind of system, HIP107412 B, with the brown dwarf placed
+at 0.27”. The residuals are clearly dominated by bright speckles
+that cover any fainter feature around the companion.
+Fig. 1. cADI image of HIP107412, the model, and the residuals
+The other 12 companions are instead orbiting far from the
+central star and the speckle noise is considerably lower. We make
+further distinctions between three faint companions (GJ504 B,
+HD19467 B, and HR8799 b), for which the subtraction proves
+eﬀective (see Figure 2), and nine bright companions (DH Tau
+B, CT Cha B, Eta Tel B, HIP78530 B, HIP64892 B, AB Pic B,
+TYC 8047- 232-1 B, TYC 7084-794-1 B, and HD 1160 C), for
+which spurious features may appear in the residuals. Indeed, it
+may happen that speckles generated around low contrast com-
+panion are bright enough to be above the background. Since we
+are performing post processing techniques with the cube cen-
+tered on the star, speckles around oﬀ-axis PSFs are not cancelled
+and may contaminate the residuals. This kind of issue does not
+emerge closer to the star because the stellar speckle contami-
+nants dominate there. A second and more frequent bias emerges
+due to the variation of the PSF during the observation or elon-
+gation of the PSF placed close to the edge of the FoV (astigma-
+tism). Thus, we performed further checks, such as testing diﬀer-
+ent model PSF and diﬀerent apertures.
+Fig. 2. cADI image of HR8799 b, the model, and the residuals
+As an example of the analysis performed to further inves-
+tigate the nature of the residuals, we show in Figure 3 the re-
+sults for HD1160 C and HD1160 B. In the residuals of HD1160
+C (last panel of the ﬁrst row of Figure 3), a number of struc-
+tures are present, such as the bright spot in the north of the im-
+age (light-blue circle) and the halo close to the center (red el-
+lipse). In order to obtain the second row of Figure 3, we used the
+multiple_framebyframe routine on HD1160 B using as multiple
+model PSF HD1160 C. The halo is still present in the residuals,
+as a negative excess in this case, whereas the bright spot is can-
+celed. The latter is indeed associated to an eﬀect that is, in turn,
+due to low wind conditions during the observations (Milli et al.
+2018), while the presence of the disk-like feature is due to an
+elongation of the PSF of the C companion, which is as expected
+given its large separation from the host star. In Figure 4, we also
+show the contrast curves (see Section 2.2) obtained for HD1160
+B when applying the multiple_framebyframe routine using the
+other companion in the FoV with respect to the results obtained
+Article number, page 4 of 19
+
+<<<PAGE 5>>>
+Lazzoni et al.: Disks or satellites around DI companions
+with the single_framebyframe routine and single_fullcube with
+the star used as model PSF. The contrasts achieved here are cal-
+culated both with respect to the star (left y-axis) and to HD 1160
+B (right y-axis).
+A ﬁrst gain is obtained when considering the sin-
+gle_framebyframe with respect to the single_fullcube due
+to variable weather conditions during the observation. The
+further gain in contrast with the multiple_framebyframe routine
+is evident between 0 .05′′ and 0.1′′, where the bright spot in
+Figure 3 is suppressed, whereas the subtraction is slightly worse
+closer to the central peak due to the diﬀerence in shapes between
+the two PSFs.
+Fig. 3. Upper panel: cADI image of HD1160 C, the model and the resid-
+uals; Bottom panel: cADI image of HD1160 B, using HD1160 C as
+model and the processed image of the subtraction of the two.
+Fig. 4. Contrast curve around HD1160 B using one single model PSF
+with the single_fullcube (blue curve) and single_framebyframe (orange
+curve) routines, and multiple model PSFs using HD1160 C in place of
+the star for the multiple_framebyframe routine (green curve). Contrasts
+are calculated with respect to the central star on the left y-axis and with
+respect to HD 1160 B on the right one.
+We show in Figure 5 another example of extended structure
+obtained around, TYC 7084-794-1 B. These results are partic-
+ularly misleading because they appear in two di ﬀerent observa-
+tions, and both in H and K, as a disk-like shape as shown in
+Figure 5. However, the extended features are produced by a ro-
+tational smearing. This happens any time the exposure time for
+singular frames is too long with respect to the rotation of the ob-
+jects in the FoV . Usually, this eﬀect is very small and negligible,
+with the exception of a few systems that have to be treated indi-
+vidually. TYC 7084-794-1 is an example of these since it is very
+close to the zenith at meridian passage from Paranal and with a
+detector integration time (DITs) of only 64s, the brown dwarf,
+placed at a separation of 2.99′′, changes its position by roughly
+ﬁve pixels. For this reason, the PSF of the object is elongated
+with respect to the PSF of the star. One possible way to over-
+come this kind of e ﬀect might be to elongate the model PSF in
+the same way as the PSF of the object or to use a reference PSF
+in the FoV at similar separation, if any. We show in Figure 6
+the sensitively improved subtraction obtained after considering
+a PSF model elongated in the same direction of the BD.
+Fig. 5. cADI image of TYC 7084-794-1 B, the model and the residuals
+for the ﬁrst (upper panel, H band) and the second (bottom panel, K
+band) epochs.
+Fig. 6. cADI image of TYC 7084-794-1 B, with the model taking into
+account the smearing of the PSF of the companion and the residuals for
+the ﬁrst (upper panel, H band) and the second (bottom panel, K band)
+epochs.
+Based on the analysis performed on a few test companions,
+it emerged that structures in the residuals must be treated very
+carefully in order to discriminate between those that are artifacts
+and those that are real. Starting from the end of 2017, one of the
+greatest source of artifacts in the residuals, the low wind e ﬀect,
+is almost completely ﬁxed, with a number of a ﬀected nights at
+the level of∼ 3% (Milli et al. 2018).
+Useful information about the observational parameters are
+contained in the SPARTA ﬁles that are produced together with
+the scientiﬁc data by the SPHERE Data Center. These ﬁles
+provide information on how the wind velocity and the seeing
+varied during the observation for each frame. Moreover, non
+coronagraphics images of the star collected with the di ﬀerential
+tip-tilt sensor (DTTS, see Appendix B) in the H band can be
+used to test the quality of the PSF during the time sequence
+Article number, page 5 of 19
+
+<<<PAGE 6>>>
+A&A proofs: manuscript no. language_editing_binarity
+(see Appendix B for a detailed description). Thanks to this
+supplementary information, we can determine, with higher
+conﬁdence, the nature of the residuals that we obtain.
+4. DH Tau B
+Among the targets we analyzed, the most convincing case is rep-
+resented by a candidate companion close to DH Tau B.
+4.1. The DH T au system
+DH Tau is a young (age ∼ 1.4 Myr, see Table 2) low-mass star
+in the Taurus star-forming region. DH Tau is still in the accret-
+ing phase and forms a wide binary (15" projected separation)
+with a similar star, DI Tau. A low-mass brown dwarf or massive
+planet (DH Tau B) was discovered by Itoh et al. (2005). Its mass
+is estimated to be close to the deuterium burning limit. DH Tau
+B was shown to be accreting from prominent Hα and Paschenβ
+emission (Zhou et al. 2014; Bonnefoy et al. 2014). ALMA ob-
+servations by Long et al. (2019) resolved a faint and compact
+disk around the central star, while no disk around DH Tau B was
+detected (Wu et al. 2017; Pérez et al. 2019).
+4.2. Observations
+The DH Tau system was observed across multiple epochs with
+SPHERE, on the dates 2015-10-26, 2015-12-19, and 2018-12-
+16 within the guaranteed time of the SPHERE Consortium in
+IRDIFS mode (H2H3 ﬁlters) and on the date 2020-01-05 after
+the acceptance of an open time proposal (0104.C-0327(A)) in
+IRDIFS_EXT mode (K1K2 ﬁlters). The SPHERE data were re-
+duced as described in Section 3. We also analyzed the SPHERE
+diﬀerential tip-tilt sensor (DTTS) images, which show a recon-
+struction of the PSF of the star behind the coronagraph (see Ap-
+pendix B). With this supplementary information, we can evaluate
+whether the PSF was a ﬀected by consistent variations in atmo-
+spheric conditions and, thus, if potential structures detected in
+the residuals are more likely to be real features or spurious arti-
+facts.
+The system was also observed with LBTI using the LMIR-
+Cam instrument in L’ band (λ = 3.6µm) on the date 2019-09-19.
+More details about LBTI/LMIRCam and the data reduction per-
+formed are given in Appendix C.
+4.3. The candidate companion
+The detections were initially retrieved from the ﬁrst two
+SPHERE datasets listed in Table 1. The results are shown in the
+top two rows of Figure 7.
+To conﬁrm the detection, DH Tau was re-observed with
+SPHERE with the H2H3 and K1K2 ﬁlter pairs. With regard to
+the H-band observation, the candidate was detected in the resid-
+ual at a similar separation and position angle with respect to the
+previous observations (third row of Figure 7). In the K-band, in-
+stead, the candidate is resolved only in K1 (fourth raw of Figure
+7), whereas in K2, a marginal excess is detected in the residuals
+even if it is not signiﬁcantly above the background.
+To characterize the candidate, which we call DH Tau Bb,
+we discarded the ﬁrst epoch due to poor observational condi-
+tions and a strong low-wind eﬀect. In Figure B.1, we show, as an
+example, the DTTS images of the PSF of the central star at dif-
+ferent times during the ﬁrst and second observations taken with
+Fig. 7. From the top, epoch 1 (2015-10-26), epoch 2 (2015-12-19),
+epoch 3 (2018-12-16) in H2-band, and epoch 4 (2020-01-05) in K1-
+band for DH Tau B as observed with SPHERE /VLT, and the observa-
+tion (2019-09-19) in the L’-band obtained with LMIRCam /LBTI. The
+candidate companion is visible in the right panels of the SPHERE ob-
+servations. There is no detection for the LBT data.
+SPHERE (see Appendix B). In the ﬁrst epoch, there are constant
+variations to the shape of the PSF almost throughout the entire
+observation. During the other observations (and, similarly, dur-
+ing the third and fourth datasets), there are no signiﬁcant di ﬀer-
+ences between the PSFs, thus strengthening the detection of the
+candidate companion.
+The error bars on the position and contrast of DH Tau Bb
+were evaluated empirically removing a model of the secondary
+companion from the raw data, and injecting fake secondary
+companions at similar contrast and angular separation from the
+brown dwarf. We then retrieved the contrast and position of the
+injected fake companions with the tools described in Section 2,
+and evaluated the mean error on the retrieval.
+As mentioned above, a disk was detected around the central
+star with ALMA observations (Long et al. 2019). Since the disk
+was very faint in the ALMA observations and was not detected in
+scattered light using our own SPHERE observations, we do not
+expect it to impact the PSF subtraction. The parameters retrieved
+for DH Tau Bb are listed in Table 3.
+We did notice a drift in the separation of the PSF of the can-
+didate from the H2 to the K1-band. This might indicate that the
+candidate is not real since it changes its position roughly pro-
+portionally to λ/D. On the other hand, the change in position
+might be explained by a combination of other factors. First of
+all, the PSF in the K-band is much broader than in the H-band
+so that it is more di ﬃcult to disentangle the two objects. More-
+over, we notice that the position of the candidate is coincident
+Article number, page 6 of 19
+
+<<<PAGE 7>>>
+Lazzoni et al.: Disks or satellites around DI companions
+with the position of the ﬁrst Airy ring of the central companion.
+Thus, the superimposition of the ﬂux of DH Tau Bb with the ﬂux
+coming from the Airy ring of the brown dwarf, which is not well-
+subtracted, might cause a shift in the peak of the candidate PSF.
+Additionally, the background at increasing wavelengths is more
+noisy so that the signal to noise ratio is worse in the K-band than
+in the H-band.
+The position angle of the candidate is even more di ﬃcult to
+determine with high precision since, at the separation of the can-
+didate, the uncertainty of one pixel corresponds to ∼ 10◦. We
+obtained diﬀerent values for each epoch and wavelength, with
+a maximum variation of ∼ 15◦ between the second and third
+epochs. This might be partially due to the orbital motion of DH
+Tau Bb around the brown dwarf. In fact, assuming a face-on sys-
+tem and a circular, coplanar orbit for the candidate around the
+brown dwarf, we would obtain a period of ∼ 320yrs for a ra-
+dial separation of∼ 0.08′′. In the four-year baseline, the candi-
+date companion should then change its position angle by ∼ 4◦,
+or more if the orbit is not circular and the DH Tau Bb is close
+to periastron passage. Thus, taking into account the orbital mo-
+tion, the unknown inclination of the system and the error bars
+for each position angle, the values obtained are reasonably con-
+sistent. Moreover, the time baseline between the epochs allows
+us to rule out the (a priori extremely unlikely) possibility of a
+background object projected by chance very close to DH Tau B,
+considering the proper motion of the central star (µα: 7.07±0.11
+;µδ: -20.70±0.08 from Gaia DR2). This would imply a shift of
+about 21 mas toward west and 61 mas toward North of a sta-
+tionary background source with respect to DH Tau B between
+epochs 2 and 3.
+The last parameter retrieved was the contrast. Adopting the
+age of 1.4 Myrs, we then calculated the mass of the candidate
+using the BT-SETTL models. The values obtained for the mass
+of DH Tau Bb, ∼ 1 M Jup, are consistent at each epoch and in
+each ﬁlter at which the candidate was detected (H2, H3 and K1).
+The colors H2-H3 and H2-K1 of the candidate point towards an
+early T-type, as shown in Figure 8, where we compare them with
+those for a collection of other low-mass objects. (Bonnefoy et al.
+2018).
+In order to conﬁrm the detection and better constrain the
+spectral characteristics of DH Tau Bb, we observed the system in
+L’-band with the LMIRCam/LBTI instrument (see Appendix C).
+The candidate was not detected in the residuals, as shown in the
+last panel of Figure 7. Therefore, we determined only an upper
+limit to the contrast of the object in L’,∼ 9.2 , which corresponds
+to an upper limit in mass of 2.6 MJup. This is consistent with the
+mass of DH Tau Bb as obtained in H and K band with SPHERE.
+The non-detection in L’-band strengthens the hypothesis that the
+companion, if real, is an early T-type object rather than a late L
+spectral-type that would have been more common considering
+the young age of the system. Indeed, from the color-magnitude
+diagram, an L-type companion is expected to be brighter in the
+L’-band, with a gain in∆mag∼ 1−2 with respect to the H-band.
+The corresponding contrast would have been∼ 3− 6× 10−4 that
+is (marginally) detectable in the observations taken with LMIR-
+CAM/LBTI.
+The DH Tau system has been observed with many di ﬀer-
+ent instruments since its discovery (Itoh et al. 2005). Therefore,
+we analyzed archive data taken with the WFC3 /Hubble Space
+Telescope (HST) and with the NIRC2/Keck Telescope. For both
+observations, we did not detect any signs of binarity (the results
+are omitted from this paper). Indeed, we did not expect to ﬁnd
+prominent features either in reﬂected light or in the poor-quality
+L’ dataset available.
+4.4. Discussion
+The observations described in this paper suggest the presence of
+a planetary-mass companion (1 M Jup) at 10 au around DH Tau
+B. We consider the object as candidate rather than a conﬁrmed
+companion because of the small wavelength-dependence of the
+separation and the instability of the PSF a ﬀecting some of the
+observations. On the other hand, the roughly consistent position
+and ﬂux of the candidate in four diﬀerent datasets spanning sev-
+eral years argues against an instrumental artifact and it is unique
+among the targets considered in our study.
+This would be the ﬁrst case of a planetary-mass companion
+around a brown dwarf bound to a star. If the candidate is con-
+ﬁrmed, the DH Tau system will become the ﬁrst laboratory to
+test formation mechanisms for binary planet and brown dwarf
+systems. While a detailed study of the possible formation sce-
+narios is not warranted at this stage, we brieﬂy discuss some
+possibilities below.
+We may conﬁdently exclude the formation of DH Tau Bb
+by core accretion in a disk surrounding the brown dwarf due to
+the large masses involved and the wide separation. In order to
+generate a secondary gas giant, the circumplanetary disk would
+have to be unrealistically massive with respect to the mass of DH
+Tau B.
+Some disk instability models showed outcomes similar to
+those observed here (Stamatellos & Whitworth 2009) but with
+very low probability. However, more recent models of disk insta-
+bility (Forgan et al. 2018) fail to reproduce the architecture ob-
+served for the DH Tau system. Considering the low mass of the
+central star (0.37M⊙), this mechanism does not appear as a plau-
+sible explanation. Another mechanism that could explain the ex-
+istence of this system conﬁguration is presented in Ochiai et al.
+(2014), where the authors assess that the formation of planet-
+planet pairs should be a quite e ﬃcient mechanism, with a 10%
+success rate for planets that undergo orbital crossing. Therefore,
+it might be possible that DH Tau B and DH Tau Bb formed in-
+dependently in the circumstellar disk of DH Tau and then go
+through orbital crossing and close encounters, forming a binary
+system. However, the dynamical simulations by Ochiai et al.
+(2014) predict that pairs of planets formed in this way shrink to a
+very close separation through tidal dissipation. The wide separa-
+tion observed might be explained in this framework if we man-
+age to catch the high eccentric phase soon after the encounter.
+The latter scenario considers the system to have formed as a
+low-mass triple system through cloud fragmentation. The mass
+ratio of 0.027 between DH Tau B and DH Tau and their wide
+separation is consistent with this mechanism. On the other hand,
+companions to brown dwarfs are typically found to have mass
+ratios close to unity, both for isolated brown dwarfs in the ﬁeld
+(Fontanive et al. 2018) and for the few cases of bound brown
+dwarfs (see Section 1). The 0.1 mass ratio between DH Tau Bb
+and DH Tau B would, then, appear quite unusual. A 1 M Jup ob-
+ject is also expected to be small for cloud fragmentation, being
+close or below the minimum mass for this process that is quoted
+in the literature (Boyd & Whitworth 2005; Whitworth & Sta-
+matellos 2006; Zuckerman & Song 2009).
+The orbital crossing and cloud fragmentation scenarios, even
+with the mentioned caveats, seem to be the most likely to ex-
+plain this peculiar system. Once the candidate is deﬁnitively con-
+ﬁrmed, dedicated simulations will be needed to investigate these
+two formation channels in more depth.
+An alternative interpretation is that the feature detected in
+the residuals is a portion of a disk surrounding the brown dwarf.
+Indeed, accretion through a disc would be consistent with the
+Article number, page 7 of 19
+
+<<<PAGE 8>>>
+A&A proofs: manuscript no. language_editing_binarity
+Fig. 8. Color-magnitude diagrams for the IRDIS/SPHERE photometry for the candidate DH Tau Bb compared to a collection of objects from the
+literature (Bonnefoy et al. 2018).
+signiﬁcant Paschenβ emission for DH Tau B. This could explain
+the shift with the wavelength since our analysis is sensitive to
+grains of di ﬀerent sizes. Moreover, an extended source would
+imply large uncertainties in the position angle. However, the disk
+was not detected in ALMA observations and it was estimated to
+be very compact around the brown dwarf (Wu et al. 2017; Pérez
+et al. 2019). This would be inconsistent with our estimate of a
+separation of∼ 10 au.
+5. Statistics of binarity of bound companions
+5.1. Detection limits
+For each companion presented in Table 2, we took the ﬂux that
+was derived from the observations listed in Table 1 and con-
+verted it into mass accordingly with regard to the age adopted
+for the system (for systems with multiple observations available,
+we used the ones marked with an asterix in Table 1). We used the
+BT SETTL models (Allard et al. 2003) in most cases with the
+only exceptions of 51 Eri b, HD95086 b, and GJ 504 b for which
+the ages and contrasts fell out of the boundaries and the AMES
+COND (Baraﬀe et al. 2003) model was applied instead. We then
+calculated the detection limits around 25 out of 27 companions
+(we excluded HD1160 C because it falls in the stellar mass range
+and PDS 70 b because its Hill radius falls inside one FWHM)
+in order to investigate the contrast reached in their close neigh-
+borhoods. The detection limits are obtained from a cADI image
+of the cube where each companion was already subtracted, as
+described in Section 2.2. The contrasts are then converted into
+masses using the mean ages of the systems listed in Table 2 and
+the BT-SETTL models for the most of the sample, with the ex-
+ception of 51 Eri b, AB Pic B, η Tel B, GJ 504b, HD 95086
+b, HIP 65426 b, TYC 7084-794-1 B, and TYC 8047-232-1 B
+for which AMES-COND models were used instead since con-
+trasts fell out of the range adopted by BT-SETTL conversions.
+The Hill radii are then calculated adopting the mean value of the
+masses in Table 2 and the detection limits are interrupted at those
+separations.
+We show in Figure 9 the detection limits for the close-in (up-
+per panels) and wide (bottom panels) companions. Since HD
+1160 B is the only close-in companion with a large Hill ra-
+dius compared to the other planets and brown dwarfs placed
+within 1”, we moved it from the ﬁrst to the second group so that
+shorter contrast curves are better visualized. From these curves,
+it emerges how our detection possibilities are limited in the in-
+ner part of the system due to the contamination of the star and
+smaller Hill radii whereas, far from the center, the region of in-
+ﬂuence around directly imaged companions is background lim-
+ited and much wider.
+5.2. Statistical results
+We constrain the binary frequency of bound companions using
+the statistical code described in Fontanive et al. (2018). This
+Markov Chain Monte Carlo (MCMC) sampling tool was built
+using the emcee (Foreman-Mackey et al. 2013) python algo-
+rithm, enabling the derivation of statistical constraints on stellar
+or substellar populations (occurrence rates, distributions of com-
+panions in the parameter space) based on observed surveys (e.g.,
+Fontanive et al. 2018, 2019).
+Binary companions bound to stars have not been studied in
+depth to date, neither observationally nor theoretically. As a re-
+sult, the shapes of the companion distributions in mass and sepa-
+ration for such binary systems currently lack any empirical con-
+straints or theoretical predictions. We thus need to rely on as-
+sumptions for the underlying population distributions in order
+to constrain the binary frequency of these bound companions.
+Given the relatively low masses of our probed planets and brown
+dwarfs in comparison to isolated, old brown dwarfs in the ﬁeld,
+we adopt the mass ratio and separation distributions derived in
+Fontanive et al. (2018) for late-type T5−Y0 objects in the Solar
+neighbourhood. This includes a lognormal distribution in sep-
+Article number, page 8 of 19
+
+<<<PAGE 9>>>
+Lazzoni et al.: Disks or satellites around DI companions
+Fig. 9. Detection limits for companions placed within 1” separation from the host star (upper panels) and beyond 1” (lower panels, HD 1160 B
+was moved to the second group for a better visualization of the results). Figures on the left show contrasts with respect to the central star as a
+function of separation (in arcsec); on the right, we show detection limits expressed in mass as a function of separation (in au).
+aration with a peak at 2.9 au and a logarithmic width of 0.21,
+and a power law distribution with index 6.1 in mass ratio (see
+Fontanive et al. 2018 for details).
+From the calculated detection limits around each target and
+assuming that those same distributions hold for our surveyed
+systems, we constrain the binary rate of bound substellar com-
+panions between separations of 0.5−100 au and mass ratios of
+q = 0.05− 1. Figure 10 shows the obtained posterior distribu-
+tions from the MCMC analyses performed for respective cases
+of 0 and 1 detection. As expected, the scenario with no detected
+companion only provides an upper limit on the binary frequency,
+of f < 8.1% (< 21.2%) at the 1- σ (2-σ) level. In the case
+where our reported candidate DH Tau Bb is real, we derive a
+binary fraction of f = 7.3+8.9
+−5.6% on those mass ratio and sepa-
+ration ranges, which is in good agreement with the results for
+ﬁeld brown dwarfs from Fontanive et al. (2018) on a comparable
+region of the parameter space.
+We emphasize that the obtained frequencies assume a ﬁxed
+distribution of companions in the separation-mass ratio space
+and that these results only hold under those assumptions. While
+it would be very interesting to explore other possible underly-
+ing shapes of companion distributions that may di ﬀer from the
+ﬁeld brown dwarfs, the existing data do not currently allow for
+such an analysis. It is worth noting, however, that the one detec-
+tion present in our observed sample (if conﬁrmed) has a fairly
+wide separation (∼10 au) and a very low mass ratio ( q < 0.1)
+compared to the peaks of the adopted ﬁeld distributions (∼3 au,
+q∼ 1). Late-type ﬁeld binaries indeed rarely have separations
+larger than around 10 au, and typically show strong preferences
+for near-equal-mass systems. The disparity between the model
+and observed populations is further highlighted by the fact that
+low q values like that of the DH Tau B system are only reached
+around few targets in the SPHERE sample. This suggests that
+the true binary companion distributions for bound planets and
+brown dwarfs are likely to be somewhat di ﬀerent than for the
+ﬁeld population, although deeper observations of larger sample
+sizes will be required to conﬁrm this and to further explore for-
+mation theories for bound and isolated systems.
+6. Conclusions
+In this paper, we present tools based on the NEGFC technique to
+suppress the ﬂux of known faint planets and brown dwarfs in or-
+der to detect potential companions or disks around them. The dif-
+ferent routines are optimized in order to determine, with the best
+possible precision, the position and the ﬂux of the companion, to
+subtract it, and to look into the residuals for additional faint fea-
+tures bound to it. We distinguished among two kinds of routine:
+the single_fullcube and the single_framebyframe routines, which
+use a single model PSF, and the multiple_framebyframe routine,
+Article number, page 9 of 19
+
+<<<PAGE 10>>>
+A&A proofs: manuscript no. language_editing_binarity
+Fig. 10. Posterior distributions obtained for the frequency of bound bi-
+nary companions from the MCMC analysis, in cases of 0 (blue) and 1
+(red) detection in our survey. Frequencies were derived over separation
+ranges of 0.5−100 au and mass ratios of q = 0.05− 1. The red dashed
+line shows the peak of the posterior density in the 1-detection scenario,
+at 7.3%, while only an upper limit was obtained in the 0-detection case.
+The shaded areas correspond to the 68% conﬁdence intervals.
+which uses more PSFs as models to subtract the companion. The
+single-model PSF tools are usually used for coronagraphic ob-
+servations, whereas if a suitable PSF is visible in each raw frame
+the multiple-PSFs routine can be applied (both in coronagraphic
+and non-coronagraphic datasets). The latter tool is very helpful
+to suppress spurious features that may appear in the residuals
+due to the variation of the PSF during the observation. However,
+PSFs that are bright enough and at a good-enough separation to
+be used as models are rarely found in the FoV of substellar com-
+panions. In non-coronagraphic observations, instead, the central
+star can be used as a model for each frame but such settings are
+not common for planets hunting due to the poor contrast that can
+be achieved.
+These tools were ﬁrst tested on synthetic point sources and
+disks and on selected on-sky test cubes. We then applied it to the
+substellar companions imaged by SPHERE within the SHINE
+survey. This is the ﬁrst methodical study that aims to look for
+circumplanetary disks and satellites or, more speciﬁcally, for the
+kind of instrument that we have, that is, pairs of bound planets.
+Among the objects in the sample, we identiﬁed a candidate com-
+panion around DH Tau B, with a projected separation of∼ 10 au
+from the brown dwarf and with mass a of∼ 1 MJup. The DH Tau
+system was observed with SPHERE (H2-H3 and K1-K2 bands)
+in four di ﬀerent epochs and with LMIRCam /LBTI (L’ band).
+The candidate was detected in each of the H-band datasets and
+in the K1-band. The K2 and L’-band observations did not lead to
+a detection but they were used to obtain only the upper limits on
+the mass of the candidate, which is consistent with the previous
+results. The color-magnitude diagrams point towards an early T-
+type object.
+We derived the contrast curves for each of the 25 suitable
+substellar companions observed with SPHERE and we com-
+pared the statistics of the multiplicity of our bound companions
+to the one published in Fontanive et al. (2018) for isolated ob-
+jects. If the companion around DH Tau B is real, the frequency
+of binary substellar companion is ∼ 7.3%, which is consistent
+with the result obtained for ﬁeld brown dwarfs.
+The techniques presented in this paper will serve as a useful
+tool for the hunt of companions and extended sources around
+directly imaged companions in the future. Indeed, in the long-
+term, we plan to adapt the tools described here to prepare for the
+next-generation telescopes, such as JWST and ELT.
+MIRI@JWST will provide high-contrast imaging and IFS
+imaging from 5.6 to 28.8 µm. The greatest advantage of this
+telescope is the stability of the PSF over time. For MIRI, the ex-
+pected contrast goes from 10−4 to 10−6 at separations> 2 arcsec
+(Danielski et al. 2018). Even if the contrast were lower than what
+is achievable with SPHERE, it will be more e ﬃcient for colder
+and smaller objects due to the longer wavelength coverage.
+A dedicated high-contrast imager on an ELT (e.g., Kasper
+et al. 2011) is expected to reach contrasts of 10 −8 at 30 mas to
+10−9 at larger separations. These contrasts will allow for the de-
+tection of Earth-like planets. With this instrument, which will
+also provide a very stable PSF over time, exomoons and exor-
+ings will be much more e ﬃciently detected. These detections
+will increase the probability of ﬁnding habitable zones even at
+far distances from the host star, much the same way as the moons
+of our Solar System are best candidates for the research of life
+forms.
+Acknowledgements. SPHERE is an instrument designed and built by a con-
+sortium consisting of IPAG (Grenoble, France), MPIA (Heidelberg, Germany),
+LAM (Marseille, France), LESIA (Paris, France), Laboratoire Lagrange (Nice,
+France), INAF–Osservatorio di Padova (Italy), Observatoire de Geneve (Switzer-
+land), ETH Zurich (Switzerland), NOV A (Netherlands), ONERA (France) and
+ASTRON (Netherlands) in collaboration with ESO. SPHERE was funded by
+ESO, with additional contributions from CNRS (France), MPIA (Germany),
+INAF (Italy), FINES (Switzerland) and NOV A (Netherlands). SPHERE also re-
+ceived funding from the European Commission Sixth and Seventh Framework
+Programmes as part of the Optical Infrared Coordination Network for Astronomy
+(OPTICON) under grant number RII3-Ct-2004-001566 for FP6 (2004–2008),
+grant number 226604 for FP7 (2009–2012) and grant number 312430 for FP7
+(2013–2016). This work has made use of the SPHERE Data Centre, jointly
+operated by OSUG /IPAG (Grenoble), PYTHEAS /LAM/CESAM (Marseille),
+OCA/Lagrange (Nice) and Observatoire de Paris /LESIA (Paris). We thank P.
+Delorme and E. Lagadec (SPHERE Data Centre) for their e ﬃcient help during
+the data reduction process. This work is based on observations collected at LBT
+Observatory. The LBT is an international collaboration among institutions in the
+United States, Italy and Germany. LBT Corporation partners are: The Univer-
+sity of Arizona on behalf of the Arizona university system; Istituto Nazionale
+di Astroﬁsica, Italy; LBT Beteiligungsgesellschaft, Germany, representing the
+Max-Planck Society, the Astrophysical Institute Potsdam, and Heidelberg Uni-
+versity; The Ohio State University, and The Research Corporation, on behalf of
+The University of Notre Dame, University of Minnesota and University of Vir-
+ginia. We acknowledge ﬁnancial support from the “Progetti Premiali” funding
+scheme of the Italian Ministry of Education, University, and Research. A.Z. ac-
+knowledges support from the FONDECYT Iniciación en investigación project
+number 11190837. We acknowledge ﬁnancial support from the Programme Na-
+tional de Planetologie (PNP) and the Programme National de Physique Stellaire
+(PNPS) of CNRS-INSU. This work has also been supported by a grant from the
+French Labex OSUG2020 (Investissements d’avenir – ANR10 LABX56). The
+project is supported by CNRS, by the Agence Nationale de la Recherche. This
+work has been supported by the project PRIN-INAF 2016 The Cradle of Life -
+GENESIS-SKA (General Conditions in Early Planetary Systems for the rise of
+life with SKA). We also acknowledge the use of the Large Binocular Telescope
+Interferometer (LBTI) and the support from the LBTI team. T.H. acknowledges
+support from the European Research Council under the Horizon 2020 Frame-
+work Program via the ERC Advanced Grant Origins 83 24 28. We also want to
+thank the referee for the useful comments.
+References
+Alcalá, J. M., Majidi, F. Z., Desidera, S., et al. 2020, A&A, 635, L1
+Alibert, Y ., Mousis, O., & Benz, W. 2005, A&A, 439, 1205
+Allard, F., Guillot, T., Ludwig, H.-G., et al. 2003, in IAU Symposium, V ol. 211,
+Brown Dwarfs, ed. E. Martín, 325
+Amara, A. & Quanz, S. P. 2012, MNRAS, 427, 948
+Article number, page 10 of 19
+
+<<<PAGE 11>>>
+Lazzoni et al.: Disks or satellites around DI companions
+Baraﬀe, I., Chabrier, G., Barman, T. S., Allard, F., & Hauschildt, P. H. 2003,
+A&A, 402, 701
+Baudoz, P., Dorn, R. J., Lizon, J.-L., et al. 2010, Society of Photo-Optical Instru-
+mentation Engineers (SPIE) Conference Series, V ol. 7735, The di ﬀerential
+tip-tilt sensor of SPHERE, 77355B
+Beuzit, J. L., Vigan, A., Mouillet, D., et al. 2019, A&A, 631, A155
+Boccaletti, A., Abe, L., Baudrand, J., et al. 2008, in Proc. SPIE, V ol. 7015, Adap-
+tive Optics Systems, 70151B
+Bonavita, M., D’Orazi, V ., Mesa, D., et al. 2017, A&A, 608, A106
+Bonnefoy, M., Chauvin, G., Lagrange, A. M., et al. 2014, A&A, 562, A127
+Bonnefoy, M., Perraut, K., Lagrange, A. M., et al. 2018, A&A, 618, A63
+Boyd, D. F. A. & Whitworth, A. P. 2005, A&A, 430, 1059
+Carbillet, M., Bendjoya, P., Abe, L., et al. 2011, Experimental Astronomy, 30,
+39
+Chauvin, G., Desidera, S., Lagrange, A. M., et al. 2017a, in SF2A-2017: Pro-
+ceedings of the Annual meeting of the French Society of Astronomy and As-
+trophysics, Di
+Chauvin, G., Desidera, S., Lagrange, A. M., et al. 2017b, A&A, 605, L9
+Chauvin, G., Lagrange, A. M., Dumas, C., et al. 2004, A&A, 425, L29
+Cheetham, A., Bonnefoy, M., Desidera, S., et al. 2018, A&A, 615, A160
+Cheetham, A. C., Samland, M., Brems, S. S., et al. 2019, A&A, 622, A80
+Christiaens, V ., Cantalloube, F., Casassus, S., et al. 2019, ApJ, 877, L33
+Climent, J. B., Berger, J. P., Guirado, J. C., et al. 2019, arXiv e-prints,
+arXiv:1911.04736
+Danielski, C., Baudino, J.-L., Lagage, P.-O., et al. 2018, AJ, 156, 276
+Delorme, P., Meunier, N., Albert, D., et al. 2017a, in SF2A-2017: Proceedings
+of the Annual meeting of the French Society of Astronomy and Astrophysics,
+Di
+Delorme, P., Schmidt, T., Bonnefoy, M., et al. 2017b, A&A, 608, A79
+Dohlen, K., Langlois, M., Saisse, M., et al. 2008, in Proc. SPIE, V ol. 7014,
+Ground-based and Airborne Instrumentation for Astronomy II, 70143L
+Donati, J. F., Gregory, S. G., Alencar, S. H. P., et al. 2012, MNRAS, 425, 2948
+Ertel, S., Defrère, D., Hinz, P., et al. 2018, AJ, 155, 194
+Ertel, S., Defrère, D., Hinz, P. M., et al. 2020, arXiv e-prints, arXiv:2003.03499
+Feiden, G. A. 2016, A&A, 593, A99
+Femenía, B., Rebolo, R., Pérez-Prieto, J. A., et al. 2011, MNRAS, 413, 1524
+Fontanive, C., Biller, B., Bonavita, M., & Allers, K. 2018, MNRAS, 479, 2702
+Fontanive, C., Rice, K., Bonavita, M., et al. 2019, MNRAS, 485, 4967
+Foreman-Mackey, D., Hogg, D. W., Lang, D., & Goodman, J. 2013, PASP, 125,
+306
+Forgan, D. H., Hall, C., Meru, F., & Rice, W. K. M. 2018, MNRAS, 474, 5036
+Fusco, T., Rousset, G., Sauvage, J.-F., et al. 2006, Optics Express, 14, 7515
+Gaia Collaboration, Brown, A. G. A., Vallenari, A., et al. 2018, A&A, 616, A1
+Gaia Collaboration, Prusti, T., de Bruijne, J. H. J., et al. 2016, A&A, 595, A1
+Galicher, R., Boccaletti, A., Mesa, D., et al. 2018, A&A, 615, A92
+Gaspar, A. & Rieke, G. 2020, Proceedings of the National Academy of Science,
+117, 9712
+Gomez Gonzalez, C. A., Wertz, O., Absil, O., et al. 2017, AJ, 154, 7
+Haﬀert, S. Y ., Bohn, A. J., de Boer, J., et al. 2019, Nature Astronomy, 3, 749
+Hinz, P. M., Defrère, D., Skemer, A., et al. 2016, Society of Photo-Optical In-
+strumentation Engineers (SPIE) Conference Series, V ol. 9907, Overview of
+LBTI: a multipurpose facility for high spatial resolution observations, 990704
+Hyodo, R., Charnoz, S., Ohtsuki, K., & Genda, H. 2017, Icarus, 282, 195
+Isella, A., Benisty, M., Teague, R., et al. 2019, ApJ, 879, L25
+Itoh, Y ., Hayashi, M., Tamura, M., et al. 2005, ApJ, 620, 984
+Jensen-Clem, R., Mawet, D., Gomez Gonzalez, C. A., et al. 2018, AJ, 155, 19
+Kasper, M., Gratton, R., Verinaud, C., et al. 2011, in Second International Con-
+ference on Adaptive Optics for Extremely Large Telescopes. Online at <A
+href=“http://ao4elt2.lesia.obspm.fr”>http://ao4elt2.lesia.obspm.fr</A, 12
+Keppler, M., Benisty, M., Müller, A., et al. 2018, A&A, 617, A44
+King, R. R., McCaughrean, M. J., Homeier, D., et al. 2010, A&A, 510, A99
+Kirkpatrick, J. D., Dahn, C. C., Monet, D. G., et al. 2001, AJ, 121, 3235
+Lagrange, A. M., Boccaletti, A., Langlois, M., et al. 2019, A&A, 621, L8
+Lagrange, A. M., Bonnefoy, M., Chauvin, G., et al. 2010, Science, 329, 57
+Langlois, M., Vigan, A., Moutou, C., et al. 2013, in Proceedings of the Third
+AO4ELT Conference, ed. S. Esposito & L. Fini, 63
+Lawler, S. M., Greenstreet, S., & Gladman, B. 2015, ApJ, 802, L20
+Lazzoni, C., Gratton, R., Alcalá, J. M., et al. 2020, A&A, 635, L11
+Long, F., Herczeg, G. J., Harsono, D., et al. 2019, ApJ, 882, 49
+Luhman, K. L., Allers, K. N., Jaﬀe, D. T., et al. 2007, ApJ, 659, 1629
+MacGregor, M. A., Wilner, D. J., Czekala, I., et al. 2017, ApJ, 835, 17
+Macintosh, B., Graham, J. R., Ingraham, P., et al. 2014, Proceedings of the Na-
+tional Academy of Science, 111, 12661
+Macintosh, B., Max, C., Zuckerman, B., et al. 2001, in Astronomical Society of
+the Paciﬁc Conference Series, V ol. 244, Young Stars Near Earth: Progress and
+Prospects, ed. R. Jayawardhana & T. Greene, 309
+Magni, G. & Coradini, A. 2004, Planet. Space Sci., 52, 343
+Maire, A.-L., Langlois, M., Dohlen, K., et al. 2016, in Society of Photo-Optical
+Instrumentation Engineers (SPIE) Conference Series, V ol. 9908, Proc. SPIE,
+990834
+Maire, A. L., Rodet, L., Cantalloube, F., et al. 2019, A&A, 624, A118
+Maire, A. L., Rodet, L., Lazzoni, C., et al. 2018, A&A, 615, A177
+Mamajek, E. E., Quillen, A. C., Pecaut, M. J., et al. 2012, AJ, 143, 72
+Marois, C., Lafrenière, D., Doyon, R., Macintosh, B., & Nadeau, D. 2006a, ApJ,
+641, 556
+Marois, C., Lafrenière, D., Macintosh, B., & Doyon, R. 2006b, ApJ, 647, 612
+Marois, C., Macintosh, B., & Véran, J.-P. 2010, in Society of Photo-Optical In-
+strumentation Engineers (SPIE) Conference Series, V ol. 7736, Proc. SPIE,
+77361J
+Mawet, D., Milli, J., Wahhaj, Z., et al. 2014, ApJ, 792, 97
+Mesa, D., Baudino, J. L., Charnay, B., et al. 2018, A&A, 612, A92
+Mesa, D., Vigan, A., D’Orazi, V ., et al. 2016, A&A, 593, A119
+Meyer, M. 2019, in AAS/Division for Extreme Solar Systems Abstracts, V ol. 51,
+AAS/Division for Extreme Solar Systems Abstracts, 101.01
+Milli, J., Kasper, M., Bourget, P., et al. 2018, in Society of Photo-Optical In-
+strumentation Engineers (SPIE) Conference Series, V ol. 10703, Proc. SPIE,
+107032A
+Müller, A., Keppler, M., Henning, T., et al. 2018, A&A, 617, L2
+Musso Barcucci, A., Cugno, G., Launhardt, R., et al. 2019, A&A, 631, A84
+Nielsen, E. L., Liu, M. C., Wahhaj, Z., et al. 2012, ApJ, 750, 53
+Ochiai, H., Nagasawa, M., & Ida, S. 2014, ApJ, 790, 92
+Pavlov, A., Möller-Nilsson, O., Feldt, M., et al. 2008, in Proc. SPIE, V ol. 7019,
+Advanced Software and Control for Astronomy II, 701939
+Peretti, S., Ségransan, D., Lavie, B., et al. 2019, A&A, 631, A107
+Pérez, S., Marino, S., Casassus, S., et al. 2019, MNRAS, 488, 1005
+Petit, C., Sauvage, J., Fusco, T., et al. 2014, in SPIE Astronomical Telescopes +
+Instrumentation, MONTREAL, Canada
+Petrus, S., Bonnefoy, M., Chauvin, G., et al. 2020, A&A, 633, A124
+Potter, D., Martín, E. L., Cushing, M. C., et al. 2002, ApJ, 567, L133
+Santamaría-Miranda, A., Cáceres, C., Schreiber, M. R., et al. 2018, MNRAS,
+475, 2994
+Sauvage, J.-F., Fusco, T., Guesalaga, A., et al. 2015, in Adaptive Optics for Ex-
+tremely Large Telescopes IV (AO4ELT4), E9
+Seifahrt, A., Neuhäuser, R., & Hauschildt, P. H. 2007, A&A, 463, 309
+Soummer, R., Pueyo, L., & Larkin, J. 2012, ApJ, 755, L28
+Spalding, E. & Stone, J. 2019, Dewarp, Astrophysics Source Code Library
+Stamatellos, D. & Whitworth, A. P. 2009, MNRAS, 392, 413
+Stone, J. M., Skemer, A. J., Hinz, P. M., et al. 2018, AJ, 156, 286
+Teachey, A. & Kipping, D. M. 2018, Science Advances, 4, eaav1784
+Vigan, A., Moutou, C., Langlois, M., et al. 2010, MNRAS, 407, 71
+Wagner, K., Follete, K. B., Close, L. M., et al. 2018, ApJ, 863, L8
+Ward, W. R. & Canup, R. M. 2010, AJ, 140, 1168
+Whitworth, A. P. & Stamatellos, D. 2006, A&A, 458, 817
+Wolﬀ, S. G., Ménard, F., Caceres, C., et al. 2017, AJ, 154, 26
+Wu, Y .-L., Close, L. M., Eisner, J. A., & Sheehan, P. D. 2017, AJ, 154, 234
+Wyatt, M. C. & Jackson, A. P. 2016, Space Sci. Rev., 205, 231
+Zhou, Y ., Herczeg, G. J., Kraus, A. L., Metchev, S., & Cruz, K. L. 2014, ApJ,
+783, L17
+Zuckerman, B. & Song, I. 2009, A&A, 493, 1149
+Article number, page 11 of 19
+
+<<<PAGE 12>>>
+A&A proofs: manuscript no. language_editing_binarity
+1 INAF – Osservatorio Astronomico di Padova, Vicolo
+dell’Osservatorio 5, I-35122, Padova, Italy
+2 Dipartimento di Fisica a Astronomia "G. Galilei", Universita’ di
+Padova, Via Marzolo, 8, 35121 Padova, Italy
+3 Núcleo de Astronomía, Facultad de Ingeniería y Ciencias, Universi-
+dad Diego Portales, Av. Ejercito 441, Santiago, Chile
+4 Escuela de Ingeniería Industrial, Facultad de Ingeniería y Ciencias,
+Universidad Diego Portales, Av. Ejercito 441, Santiago, Chile
+5 Aix Marseille Univ, CNRS, LAM, Laboratoire d’Astrophysique de
+Marseille, Marseille, France
+6 Center for Space and Habitability, University of Bern, 3012 Bern,
+Switzerland
+7 Institute for Astronomy, The University of Edinburgh, Royal Obser-
+vatory, Blackford Hill, Edinburgh, EH9 3HJ, U.K.
+8 Large Binocular Telescope Observatory, 933 North Cherry Avenue,
+Tucson, AZ 85721, USA
+9 Steward Observatory, Department of Astronomy, University of Ari-
+zona, 993 N. Cherry Ave, Tucson, AZ, 85721, USA
+10 LESIA, Observatoire de Paris, PSL Research University, CNRS,
+Sorbonne Universités, UPMC Univ. Paris 06, Univ. Paris Diderot,
+Sorbonne Paris Cité
+11 Université Grenoble Alpes, IPAG, 38000 Grenoble, France
+12 Department of Astronomy, University of Chile, Casilla 36-D, Santi-
+ago, Chile
+13 Max-Planck Institute for Astronomy, Königstuhl 17, 69117 Heidel-
+berg, Germany
+14 STAR Institute, Université de Liège, Allée du Six Août 19c, 4000,
+Liège, Belgium
+15 Department of Astronomy, University of Michigan, 1085 S. Univer-
+sity, Ann Arbor, MI 48109
+16 Institute for Astronomy, ETH Zurich, Wolfgang-Pauli Strasse 27,
+8093 Zurich, Switzerland
+17 Observatoire Astronomique de l’Université de Genève, Chemin des
+Maillettes 51, 1290 Sauverny, Switzerland
+18 Center for Astronomical Adaptive Optics, University of Arizona,
+Tucson, AZ 85721
+19 CRAL, UMR 5574, CNRS, Université Lyon 1, 9 avenue Charles
+André, 69561 Saint Genis Laval Cedex, France
+20 Department of Physics, University of Oxford, Oxford OX1 3PU, UK
+21 Department of Astronomy, Stockholm University, AlbaNova Uni-
+versity Center, 106 91 Stockholm, Sweden
+22 European Southern Observatory, Karl Schwarzschild St, 2, 85748
+Garching, Germany
+Article number, page 12 of 19
+
+<<<PAGE 13>>>
+Lazzoni et al.: Disks or satellites around DI companions
+Table 1. Observing log. The asterisks indicate the datasets used to derive the ﬂux of the companions and the contrast curves when multiple
+observations were available for a single system.
+Name Obs Date Observing Mode Tot rotation angle Seeing Reference
+51 Eri 2017-09-27 IRDIFS_EXT 46 .4◦ 0.49′′ a
+AB Pic 2015-02-06 IRDIFS 28 .3◦ 1.10′′ b
+β Pic 2015-02-05 IRDIFS 76 .6◦ 0.77′′ c
+CT Cha 2017-03-19 IRDIFS 25 .0◦ 0.77′′ d
+DH Tau 2015-10-26 IRDIFS 20 .0◦ 1.27′′
+*2015-12-19 IRDIFS 24 .5◦ 0.63′′
+2018-12-16 IRDIFS 33 .7◦ 0.48′′
+2019-09-19 LMIRCam 37 .0◦ 0.65′′
+2020-01-05 IRDIFS_EXT 17 .4◦ 0.55′′
+η Tel 2015-05-04 IRDIFS 41 .5◦ 1.11′′ b
+GJ 504 *2015-06-03 IRDIFS 28 .9◦ 1.46′′ e
+2016-03-29 IRDIFS 27 .5◦ 0.98′′ e
+GQ Lup 2015-05-04 IRDIFS 25 .1◦ 1.05′′
+*2016-06-26 IRDIFS 90 .9◦ 0.61′′
+HD1160 2015-07-01 IRDIFS 30 .8◦ 0.53′′
+HD4747 2016-12-11 IRDIFS_EXT 7 .1◦ 2.11′′ f
+HD19467 2017-11-03 IRDIFS_EXT 63 .3◦ 0.52′′ g
+HD95086 2018-01-05 IRDIFS_EXT 41 .0◦ 0.30′′
+HIP64892 2016-04-01 IRDIFS 44 .7◦ 0.83′′ h
+*2017-02-08 IRDIFS_EXT 54 .8◦ 0.80′′ h
+HIP65426 2016-06-26 IRDIFS 42 .2◦ 0.73′′ i
+*2017-02-06 IRDIFS 44 .3◦ 0.60′′ i
+2018-05-12 IRDIFS_EXT 31 .6◦ 0.81′′ j
+HIP78530 2015-05-04 IRDIFS 36 .3◦ 0.66′′ b
+HIP107412 2016-09-16 IRDIFS_EXT 75 .9◦ 0.68′′ k
+HR2562 *2017-02-06 BROAD BAND H 34 .9◦ 0.54′′ l
+2017-09-28 IRDIFS_EXT 27 .6◦ 0.78′′ m
+HR3549 2015-12-19 IRDIFS 32 .5◦ 0.91′′ n
+HR8799 2015-07-04 IRDIFS_EXT 19 .1◦ 1.05” o
+PDS 70 2018-02-04 IRDIFS_EXT 95 .7◦ 0.41′′ p
+PZ Tel *2015-05-06 IRDIFS 11 .4◦ 1.24′′ b
+2015-05-31 IRDIFS 9 .3◦ 1.30′′ b
+TYC 7084-794-1 2015-11-29 IRDIFS 38 .9◦ 1.01′′ b
+*2016-01-19 IRDIFS_EXT 70 .6◦ 1.17′′ b
+TYC 8047- 232-1 *2015-09-25 IRDIFS 81 .5◦ 0.99′′ b
+2016-01-17 IRDIFS 14 .3◦ 1.58′′ b
+HIP87836 2018-05-09 IRDIFS 50 .4◦
+Notes. References: a Maire et al. (2019); b Langlois et al. in prep; c Lagrange et al. (2019); d Schmidt et al. in
+prep; e Bonnefoy et al. (2018); f Peretti et al. (2019); g Maire et al. in prep; h Cheetham et al. (2018); i Chauvin
+et al. (2017b); j Cheetham et al. (2019); k Delorme et al. (2017b); l Mesa et al. (2018); m (Maire et al. 2018); n
+Mesa et al. (2016); o Zurlo et al. in prep; p Müller et al. (2018)
+Article number, page 13 of 19
+
+<<<PAGE 14>>>
+A&A proofs: manuscript no. language_editing_binarity
+Table 2. Projected distance and contrast values were obtained from the observations presented in the previous Table (Maire et al. 2016) (for
+systems with multiple observations, parameters were derived from datasets with asterisks); masses were obtained using BT SETTL models and
+for 51 Eri b and HD 95086 b, the AMES COND models; distances were taken from the GAIA catalogue (Gaia Collaboration et al. 2016, 2018);
+references for the ages are listed in the notes.
+Name Separation Contrast Age Mass Distance Hill Radius Age References
+(Myrs) ( M jup) (pc) (au)
+51 Eri b 0 .45′′ 5.8× 10−6 24± 5 3 .4+0.4
+−1.4 29.8 1.2 a
+AB Pic B 5 .40′′ 6.4× 10−4 45+5
+−10 14.0+0.3
+−0.4 50.1 40.8 b
+β Pic b 0 .33′′ 1.0× 10−4 24± 5 11 .8+0.7
+−0.6 19.7 1.1 a
+CT Cha B 2 .68′′ 1.7× 10−3 1.41+0.38
+−0.30 15+2
+−1 191.8 78.5 c
+DH Tau B 2 .35′′ 4.1× 10−3 1.4± 0.1 10 .6+0.4
+−0.3 135.3 66.4 c
+η Tel B 4 .21′′ 1.5× 10−3 24± 5 47 +5
+−6 47.4 34.4 a
+GJ504 B 2 .49′′ 1.3× 10−6 4000± 1800 25 +5
+−7 17.5 7.6 d
+GQ Lup B 0 .70′′ 3.1× 10−3 2-5 27 .6+0.8
+−2.6 151.8 24.7 e
+HD1160 B 0 .78′′ 8.9× 10−4 50+50
+−40 58+23
+−38 125.9 42.8 f
+HD1160 C 5 .15′′ 4.4× 10−3 50+50
+−40 175+68
+−100 125.9 409.9 f
+HD4747 B 0 .59′′ 6.5× 10−4 2300± 1400 72 +3
+−16 18.8 1.0 g
+HD19467 B 1 .63′′ 2.4× 10−5 8000+2000
+−1000 70.3+0.9
+−3.7 32.0 14.9 h
+HD95086 b 0 .62′′ 9.1× 10−6 26+24
+−14 4+2
+−2 86.4 3.9 i
+HIP64892B 1 .27′′ 1.3× 10−3 16+15
+−7 41+23
+−17 125.2 28.2 j
+HIP65426 b 0 .83′′ 3.4× 10−5 14± 4 7 .1+0.4
+−0.3 109.2 12.1 k
+HIP78530 B 4 .18′′ 7.1× 10−4 11+12
+−4 20+18
+−1 137.3 113.1 l
+HIP107412 B 0 .27′′ 1.2× 10−4 50-700 31 +11
+−21 40.8 2.2 m
+HR2562 B 0 .64′′ 2.3× 10−5 200-750 26 +7
+−2 34.0 4.3 n
+HR3549 B 0 .85′′ 2.1× 10−4 100-150 48 +3
+−5 95.4 15.2 o
+HR8799 b 1 .72′′ 2.8× 10−5 42+8
+−7 6.77+0.74
+−0.03 41.3 7.1 p
+HR8799 c 0 .95′′ 6.9× 10−5 42+8
+−7 9.3+0.3
+−0.1 41.3 4.9 p
+HR8799 d 0 .66′′ 7.2× 10−5 42+8
+−7 9+0.2
+−0.2 41.3 2.6 p
+HR8799 e 0 .39′′ 7.6× 10−5 42+8
+−7 9.6+0.2
+−0.2 41.3 1.8 p
+PDS 70 b 0 .19′′ 5.5× 10−4 5.4± 1.0 5 .6+0.6
+−0.4 113.4 2.9 q
+PZ Tel B 0 .50′′ 3.0× 10−3 24± 5 30 +6
+−10 47.1 1.4 a
+TYC 7084-794-1 B 2 .99′′ 4.0× 10−3 140± 40 32 +5
+−4 22.4 19.8 r
+TYC 8047-232-1 B 3 .21′′ 8.0× 10−4 42+8
+−7 13.8+0.4
+−0.3 86.3 47.0 p
+Notes. a β Pic Moving Group; b Carina Moving Group; c Feiden (2016); d Bonnefoy et al. (2018); e Donati et al. (2012); f Nielsen
+et al. (2012); g Peretti et al. (2019); h Maire et al. in prep.; i Desidera et al. in prep.; j Cheetham et al. (2018); k Chauvin et al. (2017b);
+l Upper ScoCen Moving Group; m Delorme et al. (2017b); n Mesa et al. (2018); o Mesa et al. (2016); p Columba Moving Group; q
+Keppler et al. (2018); r AB Doradus Moving Group.
+Table 3. Parameters for the candidate DH Tau Bb
+Instrument Epoch Band Contrast Mass Separation Pos Angle
+(M jup) (”) ( ◦)
+SPHERE 2015-12-19 H2 10.82 ± 0.18 0.99 ±0.02 0.077 ± 0.004 4.5 ± 3.5
+2015-12-19 H3 10.78 ± 0.17 1.03 ±0.02 0.082 ± 0.005 4.3 ±5.2
+2018-12-16 H2 10.85 ± 0.11 0.98 ±0.01 0.078 ± 0.007 -10.5 ± 3.4
+2018-12-16 H3 11.00 ± 0.14 1.00 ±0.01 0.086 ± 0.005 -7.9 ± 4.2
+2020-01-05 K1 11.37 ± 0.21 1.01 ±0.03 0.100 ± 0.003 -4.2 ±2.4
+2020-01-05 K2 ≥10.4 ≤1.64
+LBT 2019-09-19 L’ >9.2 <2.6
+Article number, page 14 of 19
+
+<<<PAGE 15>>>
+Lazzoni et al.: Disks or satellites around DI companions
+Appendix A: Data analysis
+Appendix A.1: Synthetic companions
+In order to understand how much we can gain from the sub-
+traction of the companion in term of detection limits and which
+kind of point sources we may expect to detect, we simulated a
+companion (C1) in the FoV of TYC 8047-232-1, observed with
+SPHERE in date 2015-09-25 (see Table 1). This C1 was injected
+at a separation of r = 3.9′′ and with contrast of 10−3 with respect
+to the central star.
+To obtain more realistic residuals, we used two di ﬀerent
+PSFs, one for the injection of the fake companion and one
+as a model. At this stage, the di ﬀerences between the sin-
+gle_framebyframe and single_fullcube routine are not apprecia-
+ble since the injected PSF does not vary. The detection lim-
+its around C1 are calculated on a cADI image obtained be-
+fore and after the subtraction of the companion using sin-
+gle_framebyframe routines and following the procedure de-
+scribed in Section 2.
+Residuals and contrast curves centered on C1 are shown in
+Figure A.1. The gain in contrast when we get very close to the
+PSF of the companion appears once the latter is subtracted. This
+region is also the most interesting to investigate when looking
+for bound features since, in most cases, it is inside the Hill radii
+of substellar companions.
+Fig. A.1. Upper panel: cADI images of, from the left, the companion,
+the model PSF, and residuals. Bottom panel: Contrast curves centered
+on the position of the companion as obtained in the post-processed
+frame with (blue curve) and without (orange curve) the companion.
+Contrasts are calculated with respect to the star (left y-axis) and with
+respect to the companion (right y-axis).
+In order to simulate two bound substellar objects, we injected
+very close to C1 a second fake companion (C2) with increasing
+separations and with contrasts corresponding to the values at de-
+tection limits as shown on the contrast curves in Figure A.1. The
+residuals for three di ﬀerent positions are shown in Figure A.2.
+In the upper row, the second companion is placed at ∼ 0.05′′
+from the main peak with a contrast of 5 × 10−5, in the mid row
+at∼ 0.075′′ and with contrast of 4 × 10−5 and in the bottom
+panel at∼ 0.1′′ with contrast of 2 × 10−5. From these prelim-
+inary tests, it emerges that our procedure is, in principle, quite
+eﬃcient in unveiling additional companions placed very close to
+the PSF of directly imaged planets and brown dwarfs. However,
+artifacts that are present in the residuals, especially at few λ/D,
+may hide or simulate the presence of faint objects. In the upper
+raw, for example, the fake companion is detected in the residuals
+even if it could be interpreted as an additional artifact attributed
+to the PSF subtraction. For such a scenario, more datasets would
+be needed. Once, instead we move farther from the central peak,
+the PSF of the secondary is more evidently disentangled by the
+surrounding residuals.
+Fig. A.2. Injection of a second fake companion at the detection limits
+placed at 0.05′′ (upper panel), 0.075′′ (mid panel), and 0 .1′′ (bottom
+panel) from the peak of the primary.
+Appendix A.2: Synthetic disks
+Since the method described in this paper is optimized to sub-
+tract the best point-like model to a given PSF, any conspicuous
+deviation from such a proﬁle should be visible in the residuals
+whenever it is above the background noise. For this reason, we
+should be able not only to detect point-like sources but also ex-
+tended ones. In order to understand which kind of residuals we
+should expect from extended sources, we inject a circular an-
+nulus around the mock planet C1 (see previous Section) with
+diﬀerent inclinations.
+Therefore, each raw frame was initially de-rotated into its
+real position, a one pixel-width annulus with uniform con-
+trast was inclined and injected around the companion. For the
+forward-modelling process, the planet +annulus were then con-
+volved with the PSF of the instrument. Finally, the frame was
+rotated again in the original conﬁguration. We must stress that
+such models are only qualitative and not representative of the
+physical processes involved (see discussion below). However,
+more accurate simulations of disks around substellar compan-
+ions are beyond the purposes of this paper.
+We then applied thesingle_framebyframe routine to the cube
+with C1 and the synthetic disk. We show in Figure A.3 the re-
+sults obtained. The circular annulus was injected at a separation
+of∼ 35mas, with an integrated ﬂux ratio with respect to the
+Article number, page 15 of 19
+
+<<<PAGE 16>>>
+A&A proofs: manuscript no. language_editing_binarity
+Fig. A.3. Example of a companion with a synthetic disk with inclina-
+tion, from top to bottom, of 0◦, 45◦, 85◦
+companion of Fdisk/F pl = 1/10. Moreover, we simulated an in-
+clination of the disk moving from a face-on system (upper row),
+through 45◦ of inclination (mid row), to an nearly edge-on con-
+ﬁguration (85◦, bottom row). From Figure A.3 it emerges how
+much the inclination inﬂuences the detectability of extended fea-
+tures even in an ideal case like this.
+Other factors should be taken into account with regard to the
+detectability of extended features. Apart from the inclinations
+that, as shown before, form a critical aspect, also the brightness
+of the disk and its extension are crucial parameters. In particu-
+lar, disks around sub-stellar companions are less massive than
+circumstellar ones. However, their brightness may not be pro-
+portional to the quantity of dust grains since they are illuminated
+both from the inside, by the companion, and from the outside,
+by the star. Even if disks around planets and brown dwarfs may
+have higher contrast than expected, we still may not be able to
+detect them due to the small Hill radii involved. Such compact
+disks are not resolved and may only be detected by their emis-
+sion lines.
+Appendix A.3: HIP 87836 data
+We also tested the routines described in Section 2 on an ad hoc
+dataset, HIP 87836. This system is particularly suitable for our
+purposes since it is placed almost on the galactic plane (Galactic
+coordinates 001.9927977373370 -01.6464052166128); thus the
+FoV of the instrument is very crowded with PSFs, as shown in
+Figure A.4. Due to the projection on the sky plane, a few of
+these stars are detected very close to each other so that they may
+resemble multiple bound systems, similar to the ones that we are
+investigating.
+The dataset we analyzed comes from observations taken with
+SPHERE/VLT in May 2018 with the coronagraph on (see Sec-
+tion 3 for the description of the observations and their pre-
+processing). To test the e ﬃciency of our routines in detecting
+further companions to directly imaged sources, we chose two ap-
+parent multiple systems with di ﬀerent ﬂux ratios and distances
+between the primary and the secondary that are highlighted by
+blue circles in Figure A.4.
+Fig. A.4. cADI image of HIP 87836. Encircled in blue, the two stars
+used for the analysis are described in Appendix A.3
+The ﬁrst point source (P1) is placed at rP1 = 4.11′′ and
+θP1 = 209.1◦ and it is very bright, exhibiting a contrast with
+respect to the central star F1 = 2.5× 10−4. A second fainter ob-
+ject is placed nearby P1. Our aim is to visualize it in the residuals
+and, subsequently, to determine its precise position and ﬂux. In
+order to do that, we ran the single_framebyframe routine to op-
+timize the position and contrast of P1 and, then, to subtract it to
+obtain the ﬁnal image shown in the upper panel of Figure A.5. As
+expected, the secondary is clearly visible in the upper right cor-
+ner of the residuals. Moreover, another companion, very close to
+the primary and not visible by eye in the original image, was un-
+veiled after the subtraction. In order to determine contrasts and
+positions for the secondary (S1) and the tertiary (T1) we applied
+twice our routines to subtract each object, in turn. Since S1 and
+T1 are too faint to optimize ( r,θ, F) in each of the unprocessed
+frames of the scientiﬁc cube, we used the single_fullcube rou-
+tine. Results of the two subtractions are shown in the second
+and third rows of Figure A.5, respectively. The contrast with re-
+spect to the primary are very similar, F2/F1 = 1.7× 10−2 and
+F3/F1 = 1.8× 10−2, and the spots are placed at rS 1 = 0.13′′,
+θS 1 = 305.8◦ , and rT1 = 0.09′′,θT1 = 72.8◦ with respect to P1.
+The second point source (P2) is placed at rP2 = 4.07′′ and
+θP2 = 267.1◦ and is much fainter than P1, with a contrast of
+F1 = 1.4× 10−5. The secondary (S2) is not clearly distinguish-
+able from the primary. Thus, this system is a perfect test bench
+for our routines with regard to fainter objects with close com-
+panions. We ran the single_framebyframe routine to optimize
+(r,θ, F) for P2 and to subsequently subtract it, as shown in the
+upper row of Figure A.6. In the image of the residuals, S2 is
+clearly visible and, similarly to what we have done for S1 and
+T1, we ran the single_fullcube routine to determine position and
+ﬂux for this object. Results of the second subtraction are shown
+in the bottom panel of Figure A.6. The contrast obtained with re-
+spect to the primary is F2/F1 = 2.1× 10−1 and the spot is placed
+at rS 2 = 0.07′′,θS 2 = 99.3◦ with respect to P2. Together with the
+images of the two point sources, we show in Figure A.6 the con-
+trast curves centered on the position of P2 before (blue curve)
+Article number, page 16 of 19
+
+<<<PAGE 17>>>
+Lazzoni et al.: Disks or satellites around DI companions
+Fig. A.5. Images of the object P1 around HIP 87836, model and resid-
+uals of, from the top, the primary P1, the secondary S1, and the tertiary
+T1.
+and after (orange curve) subtracting P2. Such values were ob-
+tained subtracting S2 from each raw frame and, then, using the
+same procedure described in Section 2. The red dot in the plot
+represents the position and contrast obtained for S2.
+Unfortunately, we were not able to ﬁnd any background star
+that could be used as a model for each frame. Indeed, the only
+two bright point sources are placed at the very edge of the FoV
+so that anisoplanatism aﬀects such PSFs. We tested both objects
+as model PSFs for the multiple_framebyframe routine but the
+residuals are higher than the ones obtained with the PSF of the
+star.
+Appendix B: DTTS data
+The diﬀerential tip-tilt sensor of SPHERE is a second-stage tip-
+tilt sensor located just before the near-infrared coronagraphic
+wheel (Beuzit et al. 2019). At this location, a grey beam splitter
+separates a few percent of the light, which is sent to a technical
+camera sensing precisely the position of the focal spot at a rate
+of 1 Hz. This enables the compensation of any slow movement
+between the coronagraph focus and the visible wave-front sen-
+sor due to thermal movements, residual di ﬀerential dispersion,
+etc. The di ﬀerential tip-tilt loop of the AO system ensures the
+ﬁnal and accurate centering of the star on the coronagraph. Its
+precision has been assessed in the integration phase and on-sky
+to be< 0.5 mas, (Baudoz et al. 2010) which means 1/80th of the
+diﬀraction width in H-band, for bright stars. For stars as faint in
+the H-band as DH Tau, the accuracy is probably reduced.
+During the observations, the DTTS images are regularly
+recorded as part of the AO system telemetry. The system records
+a 32×32-pixel, 1-sec average image every 30 seconds. This se-
+ries of images enables monitoring di ﬀerent information: ﬂux
+variation, residual jitter of the PSF, inﬂuence of the low-wind
+eﬀect on the PSF (Sauvage et al. 2015; Milli et al. 2018). It is,
+however, important to note that for faint stars, only the tip of the
+PSF will be visible in the DTTS images due to the faintness of
+the star combined with the small fraction of the ﬂux that is taken
+for the tip-tilt sensing. Therefore, mild low-wind eﬀect may not
+necessarily be detected using the DTTS images.
+Fig. A.6. Contrast curve (upper ﬁgure) with and without the P2 point
+source (S2 was removed before calculating the contrasts and is repre-
+sented by the red dot) and images of the object P2 (lower ﬁgures) around
+HIP 87836, model and residuals of, from the top, the primary P2, and
+the secondary S2.
+We show in Figure B.1 the DTTS images retrieved for DH
+Tau for the four epochs obtained with SPHERE. While in the
+ﬁrst epoch large PSF variations and signiﬁcant low-wind e ﬀect
+can be seen, in the second epoch, the PSF as resulting from the
+DTTS images is remarkably stable along the full sequence of
+observations.
+Appendix C: LBT data reduction
+The observations at the LBT were taken on the 2019-09-19 with
+the L- and M-band InfraRed Camera (LMIRCam) behind the
+cryogrenically cooled beam combiner of the Large Binocular
+Telescope Interferometer (LBTI, Hinz et al. 2016). The LBTI’s
+primary purpose is to perform nulling interferometry (Ertel et al.
+2018, 2020), but the instrument also provides the possibility to
+obtain among other modes sensitive, high-contrast adaptive op-
+tics imaging observations using one of the LBT apertures or both
+independently (e.g., Stone et al. 2018). Here, we used the latter
+mode.
+The observations were taken without a coronagraph so that
+we could apply the multiple_framebyframe routines using the
+PSFs of the star as model. For this purpose, short (0.3 s, unsatu-
+rated frames) and long (0.9 s, saturated frames) exposure times
+were alternated during the 2h40min time of the observation, with
+a stable seeing of∼ 0.65′′ and a FoV rotation angle of∼ 37◦. A
+total of 6620 frames were acquired, with 40 unsaturated frames
+every 400 saturated ones. The images of the star from the two
+apertures of the LBT were placed next to each other on the de-
+Article number, page 17 of 19
+
+<<<PAGE 18>>>
+A&A proofs: manuscript no. language_editing_binarity
+Fig. B.1. Reconstruction of the PSF of the central star during the observations for the ﬁrst (left) and second (right) epochs.
+tector at a distance suﬃcient not to inﬂuence the discovery space
+around the DH Tau system as seen by the left and right mirrors.
+Nodding in the down-up direction on the detector (NOD-A and
+NOD-B position, respectively) was done to subtract the variable
+sky and telescope background and detector artifacts. During each
+sequence of 40 unsaturated or 400 saturated frames, the star was
+placed in the NOD-A position for the ﬁrst half of the frames
+and in the NOD-B position for the second half. Due to the pres-
+ence of clouds and internal errors, a total of 460 frames were
+discarded before starting the reduction.
+These frames are 2048× 2048 pixels, joining the images of
+the star, either in NOD-A or NOD-B position, gathered from
+the right and left mirrors. Each frame was actually composed of
+two images, the ﬁrst of which with a minimum integration time
+of 27ms, so that it could be used as a quasi-instantaneous bias.
+Thus, as a ﬁrst step of the data reduction, we subtracted the two
+frames to remove bias drifts at frequencies higher than the nod-
+ding frequency. Then, we subtracted to each frame in one NOD
+position the mean of the closest sequence taken in the opposite
+NOD. For example, considering the sequence of frames from 1
+to 400, we subtracted to each frame in NOD-A (from 1 to 200)
+the mean of the frames in NOD-B (from 201 to 400). This pro-
+cedure removes all the remaining bias, the majority of detector
+artifacts, and the sky- and telescope background.
+The LMIRCam observations are strongly aﬀected by distor-
+tion eﬀects, depending on the position of the star in the FoV . We
+then applied a distortion correction provided by the LBTI team
+(Spalding & Stone 2019) and available on the LBTO webpage1.
+We divided the frames into four datasets, one for each mirror
+(left or right) and NOD position, recentering the images on the
+position of the star and, subsequently, cropping them to a FoV of
+7.5′′×7.5′′ (701×701). In order to detect the brown dwarf in each
+frame where the central star was saturated, we stacked together
+each 20 consecutive images and gathered them into two separate
+cubes: the scientiﬁc one composed of long exposure time frames
+and the one with unsaturated frames to be used as model PSFs.
+We thus obtained four scientiﬁc cubes, each with 140 frames,
+and four model PSFs cubes, each with 14 frames.
+To further improve the contrast, we also removed the bad
+pixels with a sigma-clipping and the "striping" that occurs in
+LMIRCam images due to the vertical detector channels. Fiinally,
+1 https://sites.google.com/a/lbto.org/lbti/data-retrieval-
+reduction/distortion-correction-and-astrometric-solution
+Article number, page 18 of 19
+
+<<<PAGE 19>>>
+Lazzoni et al.: Disks or satellites around DI companions
+we applied the PSF subtraction using themultiple_framebyframe
+routine, considering one model PSF every ten frames of the sci-
+entiﬁc cube.
+Unfortunately, the NOD-B images for both apertures were
+obtained with the target close to the edge of LMIRCam’s FoV
+and we have discovered that uncorrected image distortion ap-
+pears to aﬀect the image quality in this case. Thus, these frames
+could not be used in our analysis. The NOD-A cubes were, in-
+stead, good-quality observations and we used them both individ-
+ually and jointly to determine the parameters presented in the
+text.
+Article number, page 19 of 19

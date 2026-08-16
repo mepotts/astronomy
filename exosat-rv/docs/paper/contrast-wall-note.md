@@ -281,13 +281,33 @@ catalogue magnitude that primary-source photometry has since overturned by 1.6 m
 (Neuhäuser et al. 2011: K_s = 11.6, not 13.2), moving its S from 107 to 24. The class
 separation is unchanged — the correction only pushes a clean case further from the boundary.
 
-**The same correction exposes where this is weakest.** The failure side rests on two points
-4% apart: β Pic b at S = 15 202, whose contrast *is* primary-sourced (Currie et al. 2013), and
-PDS 70 b at S = 15 917, whose contrast comes from the same catalogue column that has now been
-checked against primary sources three times and found wrong twice — by 1.6 mag for η Tel B and
-2.4 mag for β Pic b, a factor 4–9 in contrast against a boundary interval only a factor 3.5
-wide. One verified point does not define a boundary, and PDS 70 b may in any case fail by a
-different mechanism (§8, below).
+**The same correction exposed where this was weakest, and a better source has since closed
+it.** The failure side rested on two points 4% apart — β Pic b at S = 15 202, primary-sourced
+(Currie et al. 2013), and PDS 70 b at S = 15 917, from the same suspect catalogue column and
+therefore effectively unverified. One verified point does not define a boundary.
+
+Lazzoni et al. (2020) resolves this. Its Table 2 carries contrasts **measured from SPHERE
+observations** for 27 companions, with matching separations at the same epoch — one
+instrument, one band, one paper, which is the primary-source photometry this axis needed. Three
+of our six systems appear in it, and re-running the class test on that column alone
+(`scripts/m32_wall_measured.py`), with no mixing of bands and the exponent carried over
+unchanged:
+
+| system | sep (″) | measured contrast | S | verdict |
+|---|---:|---:|---:|---|
+| η Tel B | 4.21 | 667× | **38** | clean |
+| PDS 70 b | 0.19 | 1818× | **50 365** | fails |
+| β Pic b | 0.33 | 10 000× | **91 827** | fails |
+
+**The ordering survives, and the margin widens from a factor 3.5 to a factor 1339.** Both
+failure cases sit three orders of magnitude above the clean one. Crucially, PDS 70 b — the
+point that previously defined the boundary, on an unverified magnitude — is *further* into the
+failing regime when measured, so the boundary was drawn too tight rather than too loose.
+
+This is three points, and three points in two classes separate by chance easily; no threshold
+should be read off them, and it cannot replace the six-system test because CD-35 2722 B,
+HIP 81208 B and YSES 1 b are absent from that table. It is a check, and the check passed.
+PDS 70 b may still fail by a different mechanism regardless of photometry (§8).
 
 We report that, and claim nothing from it, for a reason that is itself the result. Applied to
 31 catalogued companions with thresholds fixed in advance, S predicted correctly for the only
@@ -486,11 +506,19 @@ Items for the author; everything else traces to a numbered milestone document or
    (primary-sourced) and PDS 70 b (same suspect column, unverified, and possibly failing by a
    different mechanism). *One verified point does not define a boundary.*
 
-   **Recommendation, unchanged in substance:** §1–§7 rest on measured separations and measured
-   PSFs and are untouched by any of this; §8 should be presented as a stated-and-unclaimed
-   observation with the provenance problem named, which is now how it reads. Getting a primary
-   K for PDS 70 b is the single cheapest thing that would strengthen it. The resolution gate is
-   the note's result; the contrast gate is its open question.
+   **RESOLVED, and better than expected.** Lazzoni et al. **2020** (A&A 641, A131 — the
+   satellite-search paper that is also η Tel B's mass source, and which was unread here until
+   M32) carries *measured* SPHERE contrasts for 27 companions in its Table 2, one instrument
+   and one band. Re-running the class test on that column alone (`scripts/m32_wall_measured.py`)
+   reproduces the ordering with the margin widening from a factor 3.5 to **1339**, and moves
+   PDS 70 b — the point that defined the boundary from an unverified magnitude — *further*
+   into the failing regime. Both results are now in §8.
+
+   **What remains:** the check covers only 3 of the 6 roster systems (CD-35 2722 B,
+   HIP 81208 B and YSES 1 b are absent from that table), so the K-band test is not replaced,
+   only corroborated. §1–§7 were never affected — they rest on measured separations and
+   measured PSFs. **The resolution gate is the note's result; the contrast gate is now a
+   supported open question rather than an unsupported one.**
 
 1. **The withdrawn verdict, HD 206893 B (§4).** It is another team's target and the withdrawal
    is of *our* reading of public data, not of anything they published — but the wording should
