@@ -270,6 +270,22 @@ Publish the triage layer: a versioned, DOI'd dataset of *"linkable structure in 
 ITF"* plus the pipeline. **RNAAS** fits exactly (≤1,500 words, one figure or table, $0,
 ~72 h, ADS-indexed, "Independent Researcher" accepted).
 
+### M7 — attribution against the Rubin bulk batches ✅ **COMPLETE** (2026-08-16)
+
+**Out of numeric order deliberately** — M6 stays reserved for publication. Run-3
+avenue #3: Rubin's HelioLinc3D bulk designation batches (2026-02-05: ~20k candidates /
+~246k obs, verified against the MPC's February newsletter; 2026-04-02: 11k+ objects)
+create thousands of fresh orbits that old ITF tracklets can be attributed to — the
+ITF-to-DES direction the pipeline never had (49,986 such linkages accepted MPC-wide in
+2025). Built as a thin validated slice over the existing geometry/fit/gate machinery:
+current MPC orbits from the public get-orb API, a two-body coarse gate whose radius and
+4-year lookback bound are **measured against Horizons** rather than assumed, an
+amplitude-matched phase-shifted decoy control priced against the same tracklets, and
+Find_Orb joint fits (published astrometry + verbatim ITF lines) as the arbiter.
+⚠️ The MPC's own Rubin pipeline already sweeps the ITF at designation time (their
+February newsletter documents it), so the residual pool is small by construction.
+Detail and the verdict taxonomy in `M7-RESULTS.md`; nothing submitted.
+
 ---
 
 ## 4. Open questions for Matthew

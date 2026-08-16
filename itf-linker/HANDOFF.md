@@ -5,10 +5,14 @@ knowledge in this repository is not the code — it is the list of things that w
 measured, and found to be wrong. That list is spread across eight documents and would
 otherwise have to be rediscovered.
 
-**One-line status:** M0–M5 complete, the MPC's Isolated Tracklet File searched at ~100%
-coverage on both slices, **zero discoveries**, 411 tests green. The durable outputs are a
-validated linking pipeline, a daily archive that independently confirmed 21 of its own
-groupings, and a replicated methodological result drafted for publication.
+**One-line status:** M0–M5 + M7 complete, the MPC's Isolated Tracklet File searched at
+~100% coverage on both slices, **zero discoveries**, 447 tests green. The durable outputs
+are a validated linking pipeline, a daily archive that independently confirmed 21 of its
+own groupings, a replicated methodological result drafted for publication — and, since
+M7, an **attribution** capability (ITF tracklet → known orbit) with a measured validity
+window and a decoy control, which produced **one unsubmitted precovery candidate**
+(2025 PD152 ← two 2022 Pan-STARRS tracklets, every gate passing; Matthew's call —
+`M7-RESULTS.md` §8).
 
 ---
 
@@ -24,9 +28,10 @@ groupings, and a replicated methodological result drafted for publication.
 | 6 | `M3-RESULTS.md` | HelioLinC linking. The longest and most useful document |
 | 7 | `M4-RESULTS.md` | Widened grid, NEOs and TNOs, and a negative result |
 | 8 | `M5-RESULTS.md` | The older 80% of the file, fitted completely |
-| 9 | `SNAPSHOT-VALIDATION.md` | The one check independent of the whole pipeline |
-| 10 | `docs/archive-operations.md` | How the daily archive runs and how it has failed |
-| 11 | `docs/rnaas-subset-guard.md` + `rnaas-notes.md` | The publishable finding, and its 14 known weaknesses |
+| 9 | `M7-RESULTS.md` | **Attribution** (tracklet → known orbit) against Rubin's bulk-batch orbits: the measured two-body window, the decoy control, and why the MPC got there first |
+| 10 | `SNAPSHOT-VALIDATION.md` | The one check independent of the whole pipeline |
+| 11 | `docs/archive-operations.md` | How the daily archive runs and how it has failed |
+| 12 | `docs/rnaas-subset-guard.md` + `rnaas-notes.md` | The publishable finding, and its 14 known weaknesses |
 
 `git log` is worth reading; commit messages carry the reasoning, not just the change.
 
@@ -66,6 +71,9 @@ before re-deriving anything or asserting a claim from an older document.**
 | **Find_Orb below ~0.05″ declared sigma** | Destabilises: at 0.01″ a main-belt object fits to a = 3.33 AU against truth 1.458, **with a plausible-looking uncertainty** | `M1-RESULTS.md` |
 | **`(rms or 9e9)`** | An RMS of exactly 0.0 is falsy; one record miscounted. **Fixed 2026-08-07** in both counter sites | `fit/pipeline.py`, `link/run.py`, `docs/rnaas-notes.md` |
 | **Enumerated gitignore** | Listed report filenames one by one, missed M4's differently-named `m4-new.json` (108 MB), push rejected by GitHub | Now pattern `/m[0-9]*.json` |
+| **`fo` residual records name the station `obscode`, not `obs_code`** | The wrong key matches nothing, so per-tracklet residual checks silently report every tracklet as *unused* — inverting the subset-guard question in M7's joint fits | Verified against a live `total.json` before trusting it; `scripts/m7_attribution.py` |
+| **`_relabel` truncates to the 7-character trkSub field** | An 8-character fit tag (`m7att000`) silently labels the obs file `m7att00`; two tags in one run could collide into one object | 7-character tags; noted in `M7-RESULTS.md` §10 |
+| **`get-obs` OBS80 for a merged object interleaves multiple packed designations** | Fed to `fo` unrelabelled, the "baseline" fit is per-designation *fragments*, not the object (2025 MH98 = three designations) | Relabel under one tag before any fit; `M7-RESULTS.md` §10 |
 
 ### Environment and harness traps
 
@@ -73,6 +81,8 @@ before re-deriving anything or asserting a claim from an older document.**
 - **Four `fo` harness traps** — `$HOME` inside single quotes, a relative `--workdir`, sharing `fo`'s own outputs between concurrent workers, dangling symlinks in incremental config dirs. All failed *silently*. `M1-RESULTS.md` §6.4b.
 - **`git reset --hard` on a shared working tree destroyed an agent's uncommitted work.** Use `git branch -f <branch> <target>` to move a ref without touching the tree.
 - **The MPC blocks datacenter IP ranges.** Actions runners cannot reach it; a residential connection resolves in 0.03 s. Do **not** route around this. `docs/archive-operations.md` §2.
+- **JPL Horizons `TLIST` replies come back in chronological order regardless of the order requested.** M7's calibration paired its 1-year prediction with the 15-year truth row and measured a 65° "propagation error" on every target before this was caught (by predicting at the orbit epoch itself). Sort the request. `scripts/m7_calibration.py`.
+- **`mpc_orb` (get-orb API) states are heliocentric *ecliptic* at an MJD/TDT epoch.** The linker is ICRS-equatorial end to end; unrotated they are up to 23.4° wrong. `attrib/core.py::parse_mpc_orb` asserts the declared frame per document and refuses others.
 
 ## 3. Standing constraints
 
@@ -106,6 +116,11 @@ before re-deriving anything or asserting a claim from an older document.**
 - The **archive misses days when the machine is off.** An always-on host on a residential
   connection would close that; see `docs/archive-operations.md` §1.
 - The **MPC reachability email is drafted and unsent** — `docs/archive-operations.md` §5.
+- **Attribution's lookback is bounded at 4 years by measurement, not preference.**
+  M7 measured two-body propagation of a current MPC orbit against Horizons at
+  degree-scale error by 5–15 years — the pre-2023 ITF (where M4/M5 located the
+  cross-survey pool) is unreachable until a perturbed ephemeris backend exists
+  (`fo` can emit one from the same astrometry it fits). `M7-RESULTS.md` §5, §11.
 - ~~**The guard's false-rejection rate is measured nowhere.**~~ **Measured 2026-08-07: zero
   of 26.** Against the links the snapshot archive shows somebody else independently made,
   the guard never rejected one on its own — every confirmed link it flagged was already

@@ -14,12 +14,16 @@ this project does runs on a laptop. See [`SPEC.md`](SPEC.md) for the thesis and 
 prior-art assessment, [`DATA-SOURCES.md`](DATA-SOURCES.md) for endpoints and formats, and
 [`BUILD-PLAN.md`](BUILD-PLAN.md) for the milestone plan.
 
-**Current state: M5 (the pre-2023 slice fitted to completion) complete.** Milestone
-findings: [`M0-RESULTS.md`](M0-RESULTS.md) (kill-check) · [`M1-RESULTS.md`](M1-RESULTS.md)
+**Current state: M5 (the pre-2023 slice fitted to completion) and M7 (attribution
+against the Rubin bulk-batch orbits) complete.** Milestone findings:
+[`M0-RESULTS.md`](M0-RESULTS.md) (kill-check) · [`M1-RESULTS.md`](M1-RESULTS.md)
 (orbit fitting) · [`M2-RESULTS.md`](M2-RESULTS.md) (catalogue vetting) ·
 [`M3-RESULTS.md`](M3-RESULTS.md) (linking) · [`M4-RESULTS.md`](M4-RESULTS.md) (NEO to TNO
 distances, and the pre-2023 slice) · [`M5-RESULTS.md`](M5-RESULTS.md) (that slice fitted
-from 1.08% to 100%, and the cross-survey pool exhausted).
+from 1.08% to 100%, and the cross-survey pool exhausted) ·
+[`M7-RESULTS.md`](M7-RESULTS.md) (the ITF-to-designated direction: known Rubin orbits
+propagated *into* the ITF under a measured two-body window and a decoy control, yielding
+one unsubmitted precovery candidate).
 
 M1 built Find_Orb under WSL, verified it against JPL Horizons, and fitted the ITF
 designations that already span 3+ nights. M2 built the MPChecker / SkyBoT / SBIDENT /
