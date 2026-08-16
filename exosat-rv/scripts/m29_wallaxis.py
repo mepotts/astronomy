@@ -29,8 +29,12 @@ import numpy as np
 
 # (name, separation ", contrast, outcome, per-epoch precision, source)
 SYSTEMS = [
+    # WARNING (M32): this contrast still rests on Lazzoni T1's companion-magnitude column,
+    # which is now wrong in 2 of 3 cases checked against primary sources (eta Tel B by 1.6
+    # mag, beta Pic b by 2.4). It is UNVERIFIED, not verified, and is the lowest-S FAILS
+    # point -- i.e. it helps set the boundary this script is testing.
     ("PDS 70 b",      0.17,   460, "FAILS",
-     "star dominates", "Lazzoni T1 (host K 8.542 verified); sep 173.5 mas Lazzoni T1"),
+     "star dominates", "Lazzoni T1 Kp UNVERIFIED (host K 8.542 verified); sep 173.5 mas"),
     ("HIP 81208 B",   0.325,  457, "CLEAN",
      "124 m/s",        "Viswanath+2023: sep 320.9/328.7 mas, K2 dmag 6.64"),
     ("beta Pic b",    0.51,  3954, "FAILS",
@@ -39,8 +43,9 @@ SYSTEMS = [
      "34 m/s",         "Bohn+2020 K1 dmag 10.03; sep 1.7\" (queue)"),
     ("CD-35 2722 B",  2.80,    97, "CLEAN",
      "70-90 m/s",      "Lazzoni T1 Kp 12.01, host K 7.05; sep 2.8\" M0-RESULTS"),
-    ("eta Tel B",     4.21,  1888, "CLEAN",
-     "116-130 m/s",    "Lazzoni T1 Kp 13.2 (DISPUTED vs SIMBAD H); sep 4210 mas Lazzoni T1"),
+    ("eta Tel B",     4.21,   433, "CLEAN",
+     "116-130 m/s",    "M32: Neuhauser+2011 K_s 11.6+/-0.1; host K 5.01; sep 4199+/-15 mas "
+                       "Chai+2024. Lazzoni's Kp 13.2 was wrong by 1.6 mag -> 1888x"),
 ]
 
 

@@ -1,6 +1,25 @@
 {
  "targets": [
   {
+   "name": "beta Pic b",
+   "age_myr": 16.0,
+   "k_mag": 12.47,
+   "separation_au": 8.9,
+   "m_star_msun": 1.64,
+   "m_host_mjup": 12.8,
+   "threshold_ms": 116.5745619224863,
+   "stability_au": 0.5905731948645407,
+   "roche_au": 0.002045196566685365,
+   "probe_sma_au": 0.2362292779458163,
+   "probe_period_d": 379.4098815284203,
+   "min_sat_mearth": 70.01217151016631,
+   "min_sat_mass_ratio": 0.017209625644158927,
+   "cpd_expectation_mearth": 1.4554829069369408,
+   "activity_floor_ms": 200.0,
+   "in_lazzoni_sample": true,
+   "verdict": "sub-Jovian reachable"
+  },
+  {
    "name": "CD-35 2722 B",
    "age_myr": 100.0,
    "k_mag": 12.01,
@@ -17,25 +36,6 @@
    "cpd_expectation_mearth": 7.153107323074603,
    "activity_floor_ms": 200.0,
    "in_lazzoni_sample": false,
-   "verdict": "sub-Jovian reachable"
-  },
-  {
-   "name": "beta Pic b",
-   "age_myr": 16.0,
-   "k_mag": 14.9,
-   "separation_au": 8.9,
-   "m_star_msun": 1.64,
-   "m_host_mjup": 12.8,
-   "threshold_ms": 356.94704590516255,
-   "stability_au": 0.5905731948645407,
-   "roche_au": 0.002045196566685365,
-   "probe_sma_au": 0.2362292779458163,
-   "probe_period_d": 379.4098815284203,
-   "min_sat_mearth": 214.37470907740942,
-   "min_sat_mass_ratio": 0.05269524442992,
-   "cpd_expectation_mearth": 1.4554829069369408,
-   "activity_floor_ms": 200.0,
-   "in_lazzoni_sample": true,
    "verdict": "sub-Jovian reachable"
   },
   {
@@ -110,6 +110,25 @@
    "min_sat_mearth": 460.8722756785435,
    "min_sat_mass_ratio": 0.020715259991412403,
    "cpd_expectation_mearth": 18.61397880392905,
+   "activity_floor_ms": 200.0,
+   "in_lazzoni_sample": true,
+   "verdict": "binary-like only (1-10 M_Jup)"
+  },
+  {
+   "name": "eta Tel B",
+   "age_myr": 24.0,
+   "k_mag": 11.6,
+   "separation_au": 199.4,
+   "m_star_msun": 2.18,
+   "m_host_mjup": 47.0,
+   "threshold_ms": 78.09150488134736,
+   "stability_au": 18.56524248747807,
+   "roche_au": 0.003155229965095611,
+   "probe_sma_au": 7.426096994991228,
+   "probe_period_d": 34898.361407362325,
+   "min_sat_mearth": 503.8844308426432,
+   "min_sat_mass_ratio": 0.03373190951419484,
+   "cpd_expectation_mearth": 10.240919254580435,
    "activity_floor_ms": 200.0,
    "in_lazzoni_sample": true,
    "verdict": "binary-like only (1-10 M_Jup)"
@@ -227,25 +246,6 @@
    "activity_floor_ms": 200.0,
    "in_lazzoni_sample": true,
    "verdict": "below D-burning cliff and faint -- out of reach"
-  },
-  {
-   "name": "eta Tel B",
-   "age_myr": 24.0,
-   "k_mag": 13.2,
-   "separation_au": 199.4,
-   "m_star_msun": 2.18,
-   "m_host_mjup": 47.0,
-   "threshold_ms": 163.15627900116837,
-   "stability_au": 18.56524248747807,
-   "roche_au": 0.003155229965095611,
-   "probe_sma_au": 7.426096994991228,
-   "probe_period_d": 34898.361407362325,
-   "min_sat_mearth": 1052.7637917571244,
-   "min_sat_mass_ratio": 0.07047594803432583,
-   "cpd_expectation_mearth": 10.240919254580435,
-   "activity_floor_ms": 200.0,
-   "in_lazzoni_sample": true,
-   "verdict": "binary-like only (1-10 M_Jup)"
   },
   {
    "name": "HIP74865 B",
@@ -454,8 +454,7 @@
    "cpd_expectation_mearth": 0.21709304298201504,
    "activity_floor_ms": 200.0,
    "in_lazzoni_sample": true,
-   "verdict": "no measured K -- upper limit only, unrankable",
-   "k_mag_note": "CONFLICT (M29 property audit): this 21.0 is flagged by M7's own verdict as 'no measured K -- upper limit only, unrankable', but SIMBAD carries K = 18.67. Neither is used for a contrast until the discovery paper (De Rosa+2020b) is archived. The 21.0 was used in print to build a 3.8e6x exclusion argument; that is withdrawn."
+   "verdict": "no measured K -- upper limit only, unrankable"
   },
   {
    "name": "HR2562 B",

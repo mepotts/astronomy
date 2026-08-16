@@ -164,7 +164,7 @@ genuinely satellite-mass (sub-Jovian) science vs binary-mass limits.
 
 | target | class | K | nights (public) | baseline | reachable |
 |---|---|---:|---:|---:|---|
-| **eta Tel B** | ~47 M_Jup BD, β Pic group, 24 Myr | 13.2 | 26 (22) | 815 d | companions ≳3.3 M_Jup — binary-mass limit or detection; first RVs of the object either way |
+| **eta Tel B** | ~47 M_Jup BD, β Pic group, 24 Myr | 11.6 | 26 (22) | 815 d | companions ≳3.3 M_Jup — binary-mass limit or detection; first RVs of the object either way |
 
 **This is M15.** Check the epoch sampling's phase–BERV geometry before anything else
 (M13 §4b design rule).

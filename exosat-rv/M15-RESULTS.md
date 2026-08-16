@@ -8,7 +8,8 @@
 transfer to a target with no published RVs, and what does it find there? eta Tel B —
 the only orbit-capable CRIRES+ archive in the class (docs/target-queue.md) — is the
 test: ~47 M_Jup brown dwarf companion to the A star eta Tel, β Pic moving group,
-K = 13.2, **no RV measurement of any kind in the literature**.
+K = 13.2 [**CORRECTED M32: K_s = 11.6 ± 0.1**, Neuhäuser et al. 2011; Lazzoni's
+13.2 is wrong by 1.6 mag], **no RV measurement of any kind in the literature**.
 
 **Answer:** the recipe transfers cleanly (the target even shares CD-35's exact
 H1567 setting), the pipeline passes every injection gate at ~100% with 4× better
@@ -68,7 +69,17 @@ verified token-by-token against viper's positional parser):
 | E15_R2 (iter-2 template) | 129 m/s | 378 m/s | +0.03 |
 
 127–129 m/s per epoch on a K = 13.2 object — better than the 163 m/s the M7 survey
-forecast, because the M7.5 spectrum is far richer in H-band lines than CD-35 B's
+forecast
+
+> **⚠ CORRECTED IN M32 — THIS COMPARISON INVERTS.** The magnitude was wrong: K_s
+> is **11.6**, not 13.2 (Neuhäuser et al. 2011). At the true brightness the M7
+> forecast is **78 m/s**, not 163, so the achieved 127–129 m/s is **1.6x WORSE than
+> forecast, not better**. The null, the injection gates and the published limit are
+> unaffected — none of them uses the magnitude — but the "beats the forecast" claim
+> is withdrawn and is absent from the RNAAS draft. `survey.py` and
+> `data/m7-survey.json` are corrected.
+
+, because the M7.5 spectrum is far richer in H-band lines than CD-35 B's
 L0-1. **No RV–BERV correlation** (CD-35 sat at −0.5). The internal 3×-spread screen
 (M14 §6) drops exactly one epoch: the second 2025-07-02 visit, at ~3000 m/s
 across-order spread against a 331–378 median.

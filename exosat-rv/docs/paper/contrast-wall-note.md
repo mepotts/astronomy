@@ -274,7 +274,20 @@ still matter, and the natural quantity is the scattered host flux relative to th
 S = contrast / θⁿ, with a seeing- or AO-limited halo wing falling as θ⁻² to θ⁻³. The exponent
 was fixed by that argument and then scanned rather than fitted (`scripts/m29_wallaxis.py`); S
 separates this project's outcomes for *n* = 1.5–4.0, most cleanly at *n* = 2, with clean cases
-at S = 12, 107, 3557, 4327 against non-clean cases at 15 202 and 15 917.
+at S = 12, 24, 3557, 4327 against non-clean cases at 15 202 and 15 917.
+
+**One robustness check has since been run, and it passed.** η Tel B's contrast rested on a
+catalogue magnitude that primary-source photometry has since overturned by 1.6 mag
+(Neuhäuser et al. 2011: K_s = 11.6, not 13.2), moving its S from 107 to 24. The class
+separation is unchanged — the correction only pushes a clean case further from the boundary.
+
+**The same correction exposes where this is weakest.** The failure side rests on two points
+4% apart: β Pic b at S = 15 202, whose contrast *is* primary-sourced (Currie et al. 2013), and
+PDS 70 b at S = 15 917, whose contrast comes from the same catalogue column that has now been
+checked against primary sources three times and found wrong twice — by 1.6 mag for η Tel B and
+2.4 mag for β Pic b, a factor 4–9 in contrast against a boundary interval only a factor 3.5
+wide. One verified point does not define a boundary, and PDS 70 b may in any case fail by a
+different mechanism (§8, below).
 
 We report that, and claim nothing from it, for a reason that is itself the result. Applied to
 31 catalogued companions with thresholds fixed in advance, S predicted correctly for the only
@@ -458,20 +471,26 @@ in the project repository, with the milestone documents cited inline throughout.
 
 Items for the author; everything else traces to a numbered milestone document or to a paper
 
-0. **⚠ THE CONTRAST AXIS'S SOURCE COLUMN IS UNRELIABLE — read this before the rest (M32).**
-   The §8 held-out test reads Lazzoni et al. 2022 Table 1's companion-magnitude column for all
-   31 companions. That column has now been checked against primary sources three times and is
-   wrong twice: YSES 1 b to 0.14 mag (Bohn+2020) ✅, **η Tel B by 1.6 mag** (Neuhäuser+2011
-   K_s = 11.6 vs Lazzoni 13.2) ❌, **β Pic b by 2.4 mag** (Currie+2013) ❌. That is a factor
-   4–9 in contrast, against a transition interval only a factor 3.5 wide (S = 4327–15202).
-   η Tel B's own S moves 107 → ~25; **no verdict in §4 flips, and the resolution gate of §1–§7
-   is untouched** because it uses measured separations and measured PSFs, not this column.
-   But §8's test cannot discriminate at the scale of the effect it is testing for. Either
-   re-derive contrasts from primary-source photometry per system, or state plainly that the
-   contrast gate is unquantified and let the note stand on the resolution gate alone. **The
-   second option is honest and costs the note little** — §1–§7 is the part that is measured.
+0. **⚠ THE CONTRAST AXIS'S SOURCE COLUMN IS UNRELIABLE (M32) — but the result survived the
+   one correction available.** §8's numbers, and the 31-companion held-out test, read Lazzoni
+   et al. 2022 Table 1's companion-magnitude column. Checked against primary sources three
+   times, it is wrong twice: YSES 1 b to 0.14 mag (Bohn+2020) ✅, **η Tel B by 1.6 mag**
+   (Neuhäuser+2011 K_s = 11.6) ❌, **β Pic b by 2.4 mag** (Currie+2013) ❌ — a factor 4–9 in
+   contrast against a boundary interval only a factor 3.5 wide.
 
-archived in `papers/`.
+   **Applying the η Tel B correction did not break §8:** S moves 107 → 24, and the class
+   separation for *n* = 1.5–4.0 is unchanged, because the correction only pushes a clean case
+   further from the boundary. That is a real robustness check and it is now stated in §8.
+
+   **What it does expose is the failure side.** It rests on two points 4% apart — β Pic b
+   (primary-sourced) and PDS 70 b (same suspect column, unverified, and possibly failing by a
+   different mechanism). *One verified point does not define a boundary.*
+
+   **Recommendation, unchanged in substance:** §1–§7 rest on measured separations and measured
+   PSFs and are untouched by any of this; §8 should be presented as a stated-and-unclaimed
+   observation with the provenance problem named, which is now how it reads. Getting a primary
+   K for PDS 70 b is the single cheapest thing that would strengthen it. The resolution gate is
+   the note's result; the contrast gate is its open question.
 
 1. **The withdrawn verdict, HD 206893 B (§4).** It is another team's target and the withdrawal
    is of *our* reading of public data, not of anything they published — but the wording should
