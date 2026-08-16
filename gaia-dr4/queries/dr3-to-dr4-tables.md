@@ -14,14 +14,22 @@ Shared artifact with [`../../IDEAS/gaia-dr4-diff-auditor.md`](../../IDEAS/gaia-d
 |---|---|
 | `gaiadr4.` as the TAP schema prefix (by analogy with `gaiadr3.`) | **UNSOURCED** — the draft data model gives table names only, no schema prefix; check on day one |
 
-## Identity: source_id is NOT stable DR3 → DR4
+## Identity: source_id MAY change DR3 → DR4 (resolve anyway; the M1 "proof" was wrong)
 
-DR4 has a new source list. Proof from the pre-release sample itself: Gaia BH3 is
-`4318465066420528896` in DR3 (Panuzzo et al. 2024, [A&A 686, L2](https://doi.org/10.1051/0004-6361/202449763))
-but `4318465066420528000` in `GAIA_DR4_PRERELEASE_EPOCH_ASTROMETRY_RAW.xml` (int64, verified)
-and in ESA's own BH3 notebook `name_dict`. **Never key a DR4 query on a DR3 source_id.**
-Crosswalk table: `dr4.dr3_neighbourhood` (draft data model §7.3):
-`source_id` (DR4), `dr3_source_id`, `angular_distance` [mas], `magnitude_difference`, `probable_match`.
+**CORRECTED 2026-08-16 (M2).** M1 recorded "Gaia BH3 is `4318465066420528896` in DR3
+(Panuzzo et al. 2024) but `4318465066420528000` in the pre-release file" — that is false.
+Panuzzo et al. 2024 ([A&A 686, L2](https://doi.org/10.1051/0004-6361/202449763)) prints
+`Gaia DR3 4318465066420528000` (verified in the arXiv:2404.10486 LaTeX source, line 174);
+`...000` is live in `gaiadr3.gaia_source` and SIMBAD; `...896` does not exist in DR3.
+In fact **all 12 pre-release sources carry their DR3 source_ids unchanged** (verified by
+TAP id + cone-search match, 2026-08-16).
+
+What survives: DR4 rebuilds the source list, so ids CAN change, and ESA ships the
+crosswalk `dr3_neighbourhood` (draft data model §7.3: `source_id` (DR4), `dr3_source_id`,
+`angular_distance` [mas], `magnitude_difference`, `probable_match`) precisely because of
+that. **Resolving stored DR3 ids through the crosswalk on day one remains the practice**
+(cheap insurance) — but no observed renumbering exists yet, and no code should *depend*
+on ids changing either.
 
 ## Tables the queries touch
 

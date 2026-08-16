@@ -52,6 +52,12 @@ Outputs: `out/bh3_orbit_fit.txt`, `out/bh3_orbit_fit.png` (residuals + periodogr
    (Panuzzo et al. 2024) but `4318465066420528000` in the pre-release file (int64, verified in
    the VOTable and in ESA's notebook). Crosswalk = `dr3_neighbourhood` (§7.3). Every stored
    DR3 id (exosat-rv hosts, fixtures) must be resolved before use.
+   **⚠ CORRECTED 2026-08-16 (M2, see [`M2-amrf-triage.md`](M2-amrf-triage.md) §7):** the
+   BH3 example is false — Panuzzo et al. 2024 prints `Gaia DR3 4318465066420528000`
+   (arXiv:2404.10486 source), `...000` is the live DR3 id, `...896` exists nowhere in DR3,
+   and all 12 pre-release sources carry their DR3 ids **unchanged**. The `dr3_neighbourhood`
+   crosswalk and the resolve-before-use practice stay (DR4's source list is rebuilt, so ids
+   *may* change), but as insurance, not as a reaction to any observed renumbering.
 3. **DR4 `nss_two_body_orbit` publishes Campbell elements + `mass_function` directly**, and a
    new **`nss_masses`** table carries m1/m2 posteriors, `fluxratio`, and
    `exoplanet_candidate_hrd_proba` / `lowmass_candidate_hrd_proba` (§10.3) — the AMRF triage
