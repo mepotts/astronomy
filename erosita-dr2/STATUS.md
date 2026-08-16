@@ -3,6 +3,37 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-08-16 (M4 COMPLETE)** — [`M4-lmc-ogle-and-rebase.md`](M4-lmc-ogle-and-rebase.md)
+  landed; J0944 untouched (Matthew's gate). **Part A (LMC-fader × OGLE mini-study, the M3
+  design executed)**: the 25 LMC-box fade-candidates match **nothing** — 0/25 in OCVS
+  (217,725 variables, OGLE-IV 7 classes + OGLE-III lpv/dpv/rcb), 0/25 in XROM (97 monitored
+  XRBs), 0/25 in the 53-object eRASS1_HMXB_LMC VAC, 0/25 Sabogal Be candidates
+  (footprint-void, nearest 2°) vs 0.19 chance matches expected (16-position shifted control);
+  positions are inside OGLE territory (nearest variable 0.4–4.8′). Gaia DR3 Be-donor test
+  (donors must be G ≤ 17, per the VAC's G 12.68–17.00): **24/25 have no Be-donor-capable star**
+  → the Be/XRB reading is dead for the population (M2 §2.5's LMC lines withdrawn); demographics
+  = 9 AGN-colored + 4 AGN-leaning + 3 foreground active stars + 8 ambiguous + 1 blue-star
+  ambiguity (J055216.6-681015: G=16.85 BP−RP=−0.21 plx 0±0.07 photometric OBe profile, but
+  μδ ~1 mas/yr ≈ 230 km/s off LMC systemic → halo hot star equally likely; spectroscopy would
+  decide; nothing reported). **Scoping law (measured)**: OCVS collection light curves are
+  frozen at release epochs (RRLYR end 2016-04) and the live XROM series shows OGLE-IV dark
+  2020-03-13 → 2022-08-16 (886 d, CAL 83) — the entire eRASS2/3 fade window is optically
+  unobservable in public OGLE data; future eRASS-window optical designs must use ASAS-SN, not
+  OGLE. **Part B (classifier-rebase M0 vs DR2 reality)**: (1) VAC inventory — DR2 today =
+  Main/Hard + 6 eRASSc3 counterpart cats (classification now BAKED IN: class_gal_exgal, STAREX,
+  class_jetted, SIMBAD, Gaia DSC) + 2 CV lists; **no** DR2 coronal/cluster/blazar/ULX/HMXB/
+  variability successors; DR1 verdicts inheritable via UID_DR1 for 37.6% of rows; DR2 still
+  bulk-FITS-only (HEASARC/VizieR/ESASky all DR1-only, checked). (2) Reconciliation experiment
+  (n=100 primary + n=2000, seed 20260816): **49%/53.9% NOT trivially classified by one catalog**
+  (p_any ≥ 0.5; 54–57% at 0.8; 40.2% even at DET_LIKE ≥ 20) — 2–2.5× above the ~20% kill bar;
+  gap = 28% outside LS10 footprint + 21% low-confidence, NOT catalog disagreement (0.5%
+  diff-object, 4.3% DSC conflict). (3) Prior-art re-sweep: nobody has shipped a dossier layer
+  or even ingested DR2 anywhere. **Memo: PIVOT** — from "unify 15 VACs" (dead: consortium
+  consolidated) to "the only queryable access + translation layer over DR2" (+UID_DR1
+  inheritance + out-of-footprint fallback); BUILD decision stays with Matthew/IDEAS. 2 scripts,
+  4 out/ CSVs (m4_lmc_ogle_{matches,control,lightcurves}, m4_reconciliation); data/ogle/ cache
+  +~30 MB; no accounts, no submissions, no commits (orchestrator's job). Recommended M5 in doc
+  §3 (J0944 gate; rebase M1 thin slice if pivot accepted; W4 on schedule 2026-12-02).
 - **2026-08-16 (M3 COMPLETE)** — [`M3-state-bounds.md`](M3-state-bounds.md) +
   [`J0944-decision-package.md`](J0944-decision-package.md) landed (ANALYSIS scope: nothing
   submitted anywhere; ToO text is DRAFT for Matthew). **J0944 package**: amplitude case now
