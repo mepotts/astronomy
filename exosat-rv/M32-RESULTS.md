@@ -231,7 +231,58 @@ is what §22 said was needed and still is; and **more nights**, since the whole 
 the planet is 0.7 S/N per pixel against a host that dominates the ratio. Seven more public
 β Pic HiRISE nights exist.
 
-## 8. A process note: a milestone number was nearly overwritten
+## 8. The three follow-ups, executed
+
+**(a) The magnitude propagation — and one claim inverts.** K = 13.2 was still live in
+`survey.py`, `data/m7-survey.json`, `docs/target-queue.md` and M15. It is not cosmetic: the
+survey's detection threshold is *computed* from the magnitude via
+`3 x 31.44 x 10^(0.2(K-12.01))`. At 13.2 that forecasts **163 m/s**; at the measured
+K_s = 11.6 it forecasts **78 m/s**.
+
+**M15's claim that the achieved 127-129 m/s "beat the 163 m/s forecast" therefore inverts —
+it is 1.6x WORSE than a correct forecast.** Withdrawn and annotated in place in M15 rather
+than deleted. Nothing else moves: the null, the injection gates and the published limit never
+used the magnitude, and **no verdict in the 38-target survey changes class** (pass/marginal/
+fail stays 0/3/35). beta Pic b's 14.9 was corrected to 12.47 in the same pass. The remaining
+magnitudes are left alone — guessing at unsourced values is what caused this.
+
+**(b) The two missing references, both archived.** Vanderburg & Rodriguez 2021 (ApJL 922, L2,
+*"First Doppler Limits on Binary Planets and Exomoons in the HR 8799 System"*) — the first work
+of this kind, and its limits (2 M_Jup at P < 5 d) are much shallower than this project's, which
+is useful context. And **Lazzoni et al. 2020**, which closes the last open blocker: it states
+eta Tel B's mass as **47 (+5/-6) M_Jup** first-hand, confirming §2's second-hand attribution.
+
+**(c) The wall note — the fix beat the recommendation.** §3 recommended the note stand on the
+resolution gate alone. Two things changed that.
+
+First, applying the eta Tel B correction *did not break §8*: S moves 107 -> 24 and the class
+separation for n = 1.5-4.0 is unchanged, because the correction only pushes a clean case
+further from the boundary. A robustness check that passed.
+
+Second — the find — **Lazzoni et al. 2020 Table 2 carries contrasts measured directly from
+SPHERE observations** for 27 companions, one instrument, one band, one paper. That is exactly
+the primary-source photometry item 0 demanded, sitting inside a reference the repo already
+depended on. Re-running the class test on that column alone (`scripts/m32_wall_measured.py`),
+with no band mixing:
+
+| system | sep | measured contrast | S | verdict |
+|---|---:|---:|---:|---|
+| eta Tel B | 4.21" | 667x | **38** | clean |
+| PDS 70 b | 0.19" | 1818x | **50 365** | fails |
+| beta Pic b | 0.33" | 10 000x | **91 827** | fails |
+
+**The ordering survives and the margin widens from a factor 3.5 to a factor 1339.** The
+decisive detail is *which* point moved: PDS 70 b previously defined the failure boundary at
+S = 15 917 on an unverified magnitude, and measured it sits far deeper into the failing
+regime — **the boundary was drawn too tight, not too loose.**
+
+Three points separate by chance easily and no threshold should be read off them; it also
+cannot replace the six-system test, since CD-35 2722 B, HIP 81208 B and YSES 1 b are absent
+from that table. It is a check on an independent, better-sourced measurement of the same
+quantity, and it passed. Item 0 is marked resolved. **The resolution gate remains the note's
+result; the contrast gate has moved from an unsupported open question to a supported one.**
+
+## 9. A process note: a milestone number was nearly overwritten
 
 This work was first written to `M30-RESULTS.md` without checking whether that file existed. It
 did — M30 is the archive-sweep reconciliation, committed the same day — and the write replaced
@@ -244,7 +295,7 @@ Check `ls M*-RESULTS.md` and `git log --oneline -15` before claiming a number, a
 `git status` letters before committing: `M` on a file you believe you created is the signal
 that something already lived there.
 
-## 9. State of the note
+## 10. State of the note
 
 Prepared, ~1,050 words, one table, within RNAAS limits. Four of the seven blockers listed in
 the first draft are resolved. What remains is Matthew's: whether to publish it standalone at
