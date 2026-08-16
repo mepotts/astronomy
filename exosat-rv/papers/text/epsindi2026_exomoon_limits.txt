@@ -1,0 +1,1124 @@
+<<<PAGE 1>>>
+Draft version April 28, 2026
+Typeset using LATEXtwocolumnstyle in AASTeX7.0.1
+Direct Imaging Constraints on Binary Planets and Exomoons around Epsilon Indi A b
+Matson C. Garza
+ ,1 Mary Anne Limbach
+ ,2 Rachel Bowens-Rubin
+ ,2, 3 Matthew De Furio
+ ,4
+Elisabeth C. Matthews
+ ,5 Kyle Franson
+ ,6 Sarah C. Millholland
+ ,1 Logan A. Pearce
+ ,2 and
+Andrew V anderburg
+ 7
+1Department of Physics, Massachusetts Institute of Technology, Cambridge, MA 02139, USA
+2Department of Astronomy, University of Michigan, Ann Arbor, MI 48109, USA
+3Eureka Scientific Inc., 2542 Delmar Avenue, Suite 100, Oakland, CA 94602, USA
+4Department of Astronomy, The University of Texas at Austin, Austin, TX 78712, USA
+5Max Planck Institute for Astronomy, Heidelberg, Germany
+6Department of Astronomy and Astrophysics, The University of California, Santa Cruz, Santa Cruz, CA 95064, USA ∗
+7Center for Astrophysics, Harvard & Smithsonian, 60 Garden Street, Cambridge, MA 02138, USA
+ABSTRACT
+Epsilon Indi A b is a directly imaged∼6M Jup exoplanet orbiting a nearby (3.6 pc) K-dwarf at∼30 AU.
+We analyze archival JWST/MIRI 15µm coronagraphic imaging of this planet to search for directly im-
+aged satellites orbiting Eps Ind A b. Within the planet’s Hill sphere (radiusR H ≈2.3 AU or 1.3λ/D),
+we compare single- and double-PSF models using Bayesian evidence. We find that a double-PSF (bi-
+nary planet) fit is preferred. This apparent preference can most plausibly be explained by systematics,
+although follow-up observations would be required to fully rule out a binary planet interpretation. We
+construct a contrast curve of the exoplanet after removing this feature, demonstrating sensitivity to
+companions as faint as 0.03×the F1550C flux of Eps Ind A b (equivalent to T = 130 K, 1.3M Jup) at
+large separations (>2 AU). We also demonstrate sensitivity to brighter companions 0.2×the F1550C
+flux of Eps Ind A b (equivalent to T = 180 K, 2.5M Jup) down to separations of 0.52 AU (1.3 pixels;
+0.29λ/D; 144 mas). This study demonstrates that JWST/MIRI can directly detect exomoons or binary
+planets inside the Hill sphere of directly imaged exoplanets orbiting neighboring stars.
+Keywords:Direct imaging (387) — Natural satellites (extrasolar) (483) — Extrasolar gaseous giant
+planets (509)
+1.INTRODUCTION
+Over the past decade, interest in the search for bi-
+nary planet systems and exomoons has grown steadily,
+yielding a few intriguing candidates but no confirmed
+detections (A. Teachey & D. M. Kipping 2018; R. Heller
+et al. 2019; L. Kreidberg et al. 2019; A. Teachey et al.
+2020; D. Kipping et al. 2022; R. Heller & M. Hippke
+2024). Multiple indirect techniques have been proposed
+for the identification of planetary companions. One di-
+rection focuses on the effects of such moons on the tran-
+sit signals of short-period planets. These include transit
+timing variations (TTVs; A. Simon et al. 2007), transit
+duration variations (TDVs; D. M. Kipping 2009), and
+spectral exo-Io signatures around hot Jupiters (A. V.
+Email: matgarza@mit.edu
+∗ NHFP Sagan Fellow
+Oza et al. 2019). Such efforts have demonstrated that
+the exomoon occurrence rate is low around short pe-
+riod planets down to the scale of Galilean analogs (A.
+Teachey et al. 2018). This is in agreement with theo-
+retical models, which predict the occurrence rate to be
+much larger for wider-orbit planets (M. Cilibrasi et al.
+2018; C. Inderbitzi et al. 2020).
+When searching for exomoons orbiting these wide-
+orbit exoplanets/free floating planets, additional meth-
+ods of detection are available. A joint microlensing sur-
+vey with Roman and Euclid would be capable of detect-
+ing exomoons around free floating planets (E. Bachelet
+et al. 2022). When an exoplanet has been directly im-
+aged, exomoons can be found by adapting the tradi-
+tional star-planet detection methods to the planet-moon
+systems such as Doppler spectroscopy (A. Vanderburg
+& J. E. Rodriguez 2021; J.-B. Ruffio et al. 2023; K.
+Horstman et al. 2024), astrometry (T. O. Winterhalder
+arXiv:2604.23448v1  [astro-ph.EP]  25 Apr 2026
+
+<<<PAGE 2>>>
+2
+et al. 2025), and the transit method (M. A. Limbach
+et al. 2024).
+In principle, giant exomoons can also be directly im-
+aged like their host planets. This approach was applied
+by C. Lazzoni et al. (2020) to VLT/SPHERE observa-
+tions of 27 brown dwarfs and planets, yielding one candi-
+date secondary companion in the DH Tauri system at a
+separation of 10 AU. A significant difficulty with direct
+imaging as an exomoon detection method is that the
+small angular separations of exomoons often run into
+the diffraction limit. However, in some cases, this limit
+can be overcome. Infrared direct imaging has proved
+successful in detecting close brown dwarf binaries be-
+low the diffraction limit using empirically derived PSF
+models (M. De Furio et al. 2019, 2022; P. Calissendorff
+et al. 2023; M. De Furio et al. 2025), providing a po-
+tential path forward to directly imaging exomoons or
+binary planets at closer separations to directly imaged
+exoplanets.
+Epsilon Indi A b is the nearest confirmed exoplanet
+directly imaged to date (E. C. Matthews et al. 2024,
+2026; A. Sanghi et al. 2026). This nearly solar-aged
+(∼3.5 Gyr) super-Jupiter (∼6–8M J) is relatively well-
+isolated from its star at a wide periastron (∼17 AU),
+providing ample dynamically stable space that can be
+probed for a binary planet or exomoon companion; at
+this system distance, 1 AU corresponds to a full 0.27′′ of
+projected separation. In combination with its brightness
+(magnitude 11.20 in F1550C), these factors make it our
+best opportunity to probe an exocircumplanetary space
+via direct imaging. This paper explores the potential
+of JWST/MIRI to accomplish this. Using the F1550C
+data of E. C. Matthews et al. (2024), we first search for
+companions of Eps Ind A b by adapting double-PSF fit-
+ting methods M. De Furio et al. (2023, 2025) to MIRI
+coronagraphic imaging. We then perform injection re-
+covery in order to build contrast curves. This allows us
+to put the first constraints on the parameter space of po-
+tential binary planets and exomoons in the Eps Ind A b
+system.
+Our understanding of Epsilon Indi as a system has
+grown significantly over the past decades. The host
+star, Epsilon Indi A, is a 0.782±0.023M ⊙ K-dwarf
+(M. S. Lundkvist et al. 2024) at a nearby distance of
+3.6384±0.0013 pc. In the early 2000s, a distant T-dwarf
+binary was discovered (R. D. Scholz et al. 2003; K. Volk
+et al. 2003; M. J. McCaughrean et al. 2004). The first
+indications of Eps Ind A b appeared in 2002 as a ra-
+dial velocity trend (M. Endl et al. 2002). In subsequent
+years, additional radial velocity and astrometry observa-
+tions bolstered the case for its presence (M. Zechmeister
+et al. 2013; P. Kervella et al. 2019, 2021; F. Feng et al.
+T able 1.Literature parameters for Eps Ind A b.
+Parameter Value Reference
+Mass (dynamical) 6.31 +0.60
+−0.56 MJup M
+Mass (photometric)∼8.6 M Jup M
+Semi-major axis 28.4 +10
+−7.2 AU M
+Eccentricity 0.40 +0.15
+−0.18 M
+Inclination 103.7±2.3 ◦ M
+Temperature∼275 K M
+Age 3.5 +0.8
+−1.0 Gyr C
+App. mag. (F1065C) 13.16 M
+App. mag. (F1550C) 11.20 M
+Separation 4.114±0.010 ′′ M
+Position angle 37.39±0.43 ◦ M
+Note—Separation and position angle are measured
+relative to the host star Eps Ind A based on data
+taken on 2023-07-03. References: M = E. C.
+Matthews et al. (2024), C = M. Chen et al. (2022).
+2019, 2023; F. Philipot et al. 2023), yet direct imaging of
+the planet remained elusive (K. Geißler et al. 2007; M.
+Janson et al. 2009; G. Viswanath et al. 2021; P. Pathak
+et al. 2021). This changed when E. C. Matthews et al.
+(2024) (GO 2243) successfully used JWST/MIRI coro-
+nagraphy to obtain a positive detection in 2023. The
+properties of Eps Ind A b are summarized in Table 1.
+2.OBSER V ATIONS
+For this study, we use JWST/MIRI coronagraphy
+imaging of Eps Ind A b from JWST GO 2243, em-
+ploying the data products reduced by E. C. Matthews
+et al. (2024); the details of the reduction process are de-
+scribed therein. These observations were taken using the
+F1550C mid-infrared filter, which uses a four-quadrant
+phase mask (4QPM; D. Rouan et al. 2000, 2007) to sup-
+press starlight. This filter was chosen for our analysis
+because the lower-mass, cooler objects we are searching
+for would have very high contrast with their host plan-
+ets in shorter-wavelength bands like F1065C. Eps Ind A
+received 1 dither for a total time of 3922 s, while the ref-
+erence star DI Tuc received 5 dithers for a total time of
+13622 s. All observations were taken sequentially with
+the F ASTR1 readout pattern on 3 July 2023 (follow-
+ing standard background observations to remove JWST
+“glow stick” stray-light artifacts). More observational
+details are given in Extended Data Table 1 of E. C.
+Matthews et al. (2024); all GO 2243 data may be ob-
+tained from the MAST archive at 10.17909/70tb-g166.
+
+<<<PAGE 3>>>
+3
+Importantly, these data have already had residual PSF
+starlight from Eps Ind A subtracted using Karhunen-
+Loeve Image Processing (KLIP; R. Soummer et al. 2012)
+with the nearby reference star DI Tucanae. For our pur-
+poses, we chose to use the data with 15 KL modes in PSF
+subtraction to optimally minimize the presence of resid-
+uals. Despite this processing, some artifacts originating
+from the 4QPM phase boundaries persist in a diagonal
+line rotated approximately 18 degrees counterclockwise
+from the vertical. These artifacts are near, but not co-
+incident with, the exoplanet.
+3.METHODS
+3.1.Determination of search radius
+Our goal is to conduct a direct imaging search for
+exomoons/binary planets around Eps Ind A b and to
+put constraints on their parameter space. We restrict
+our analysis to the dynamically stable region in which a
+companion could form and remain gravitationally bound
+to the planet. Such companions must orbit within a
+fraction of the planet’s Hill sphere (D. Nesvorn´ y et al.
+2003), which we adopt as the outer boundary of our
+search region.
+We estimate the Hill radius of the planet, given by
+rH =a(1−e)
+ m
+3(M+m)
+1/3
+(1)
+wherea,e,m, andMare the planet semi-major axis,
+planet eccentricity, planet mass, and stellar mass, re-
+spectively. Using the planetary parameters from Table
+1 and a stellar mass of 0.782M ⊙ (M. S. Lundkvist et al.
+2024), we findr H to be 2.3 AU, which at a distance of
+3.64 pc corresponds to 640 mas (5.8 pixels).
+This value approaches theλ/Ddiffraction limit of
+F1550C, which is 492 mas (4.49 pixels). However, re-
+cent work has demonstrated that companions are de-
+tectable within a fraction of the diffraction limit of
+MIRI using double-PSF fitting (M. De Furio et al. 2019,
+2025) and Kernel Phase Interferometry (C. Adelman
+et al. 2025) around sources of similar mid-IR brightness
+(brown dwarfs, free-floating planets and white dwarfs)
+to Eps Ind A b. We therefore adopt the double-PSF
+fitting technique to search for binary planets around
+Eps Ind A b.
+3.2.Fitting routine
+3.2.1.Construction of a PSF model and likelihood statistic
+The first step of companion detection is to obtain or
+generate a reference PSF for reference differential imag-
+ing (RDI; B. A. Smith & R. J. Terrile 1984; D. Lafreni` ere
+et al. 2009) of the planet. Fortunately, a suitable sec-
+ondary reference star was present in the observations
+of the reference star, DI Tucanae: this star was iden-
+tified by E. C. Matthews et al. (2024) as Gaia DR3
+6411654761473726464 (hereafter referred to as RS-2).
+For the purposes of this paper, we used only this single
+dither as our PSF model; during fitting, we performed
+subpixel alignment using the bicubic interpolation rou-
+tine ofscipy.ndimage.shift. Both the target image
+and reference image were cropped to 31×31 pixels, cen-
+tered on Eps Ind A b and RS-2 respectively.
+In order to put constraints on any undetected bodies
+orbiting Eps Ind A b, we perform single- and double-
+PSF fitting using thePyMultiNestpackage (J. Buch-
+ner et al. 2014a) for nested sampling to compute the
+Bayesian evidence for both single- and double-PSF mod-
+els. In order to run nested sampling, we need to spec-
+ify a likelihood function for our test region. Correlated
+noise is present in both our target and reference images;
+importantly, non-Gaussian spatially correlated noise is
+induced near the 4QPM phase boundary. For simplic-
+ity, in our analysis we assume non-spatially correlated
+Gaussian noise with a uniform standard deviationσin
+our test region. This approximation is sufficient for our
+purposes; as described in Section 3.3.1, we do not rely
+on Bayesian evidence in our injection recovery success
+criteria.
+PyMultiNestrequires a likelihood statistic in order
+to perform fitting. Under the above approximation, the
+likelihood statistic for dataDgiven modelMis
+L(D|M) =
+NY
+i
+1√
+2πσ 2 exp
+ −r2
+i
+2σ2
+
+(2)
+wherer i represents the residual for a pixeliin our test
+region andNrepresents the total number of such pixels.
+It can be shown that this is directly related to theχ 2
+statistic via
+ln (L(D|M)) = ln
+
+(2πσ 2)−N/2
+
+− 1
+2 χ2 (3)
+(That is, maximizing this likelihood statistic is equiva-
+lent to minimizing theχ 2 statistic.)
+We must still provide a value for the standard de-
+viationσ. To estimate this, we used non-statistical
+methods to subtract the reference image from the tar-
+get image and directly take the standard deviation of
+the resulting residuals. We accomplished this by ex-
+ploiting the following fact: a misaligned reference leads
+to an asymmetry due to oversubtraction on one side and
+undersubtraction on the other. Choosing our reference
+scaling so that the average pixel value in our test region
+is zero, this asymmetry can be quantified to leading or-
+der by introducing a photometric dipole moment⃗ p:
+⃗ p=
+NX
+i
+ri ⃗ xi (4)
+
+<<<PAGE 4>>>
+4
+10
+ 5
+ 0 5 10
+10
+5
+0
+5
+10
+DEC [arcsec]
+F1550C
+10
+ 5
+ 0 5 10
+10
+5
+0
+5
+10
+F1550C (non-stat. subtr.)
+1
+ 0 1
+RA [arcsec]
+1
+0
+1
+DEC [arcsec]
+1
+ 0 1
+RA [arcsec]
+1
+0
+1
+2
+ 1
+ 0 1 2 3 4
+[MJy/sr]
+Figure 1.North-aligned Stage 3 F1550C data of Eps Ind A before and after a non-statistical single-PSF subtraction. The
+second row panels are centered on the location of Eps Ind A b and represent the 31×31 pixel cropped regions; the dashed
+box indicates the 15×15 pixel region used in fitting. The prominent negative source in the lower left quadrant is Gaia DR3
+6411654761473726464, a visual companion to DI Tucanae and our reference star for planetary PSF subtraction.
+
+<<<PAGE 5>>>
+5
+wherer i represents the residual for a pixeliin our test
+region and⃗ xi represents the coordinates of this pixel.
+To align the reference image, we then used Newton’s
+method to find the zeros of this function (i.e., to elimi-
+nate the leading-order residual asymmetry) with respect
+to x- and y-shifts of the reference image. This process
+produced the residuals shown in the right panel of Fig-
+ure 1.
+3.2.2.Model parameters
+Our three single-source PSF model parameters were:
+•x- The x-coordinate of the source relative to the
+center of the test region.
+•y- The y-coordinate of the source relative to the
+center of the test region.
+•norm- The brightness of the source relative to the
+reference PSF.
+Our double-source PSF model includes three additional
+parameters to specify the properties of the secondary
+source:
+•sep- The separation of the secondary from the
+primary.
+•PA- The position angle of the secondary relative
+to the primary.
+•contrast- The flux ratio between the secondary
+(satellite) and primary (planet; Eps Ind A b)
+sources.
+3.2.3.Prior distributions
+In both models, our priors forx,ywere uniform from
+-5 to 5 pixels in F1550C; these were chosen to roughly
+encompass the Airy disk within which the primary must
+be found; fornorm, our prior distribution was uniform
+from 0.5 to 1.0, as direct inspection of the data suggested
+RS-2 to be slightly brighter than Eps Ind A b. (Indeed,
+our best fit value fornormturned out to be about 0.65).
+In the binary model, our prior distribution for sec-
+ondary separationsepwas uniform in log-space from
+0.1 to 6.5 pixels to encompass the Hill sphere. As no
+exomoons have been detected as of writing, this prior
+was chosen to reflect our lack of knowledge of exomoon
+system architectures and to treat different scales of sep-
+aration on equal footing. A log-uniform prior also ap-
+proximates the semimajor axis distribution for small,
+closely-orbiting planets (E. A. Petigura et al. 2013). We
+found that a linearly uniform separation prior gave con-
+sistent results. Our prior distribution forPAwas uniform
+from 0 to 2π, while our prior distribution forcontrast
+was flat in log-space from 10 −2 to 10 0 to treat all con-
+trast scales on equal footing.
+3.3.Injection recovery
+3.3.1.Success criteria
+Having completed our search for binary planets
+around Eps Ind A b (results are in Section 4), we next
+determined the parameter space in which such com-
+panions could have been detected. We used an injec-
+tion–recovery test that employs the same signal extrac-
+tion and double-PSF fitting techniques as in our initial
+search.
+For injection recovery, our target image is reused as
+our injection PSF. We consider the recovery of an indi-
+vidual injection (fixed contrast, separation, and position
+angle) as successful if the fitted location of the primary
+and the relative location of the secondary are within
+one pixel of their true values. Additionally, any fits that
+find a contrast greater than one are considered failures
+(this would imply that the fitting code misidentified the
+primary and secondary). With these criteria, we find
+that at the sensitivity limit, 68% and 95% of fits return
+a contrast within 0.24 and 0.62 magnitudes of the in-
+jected companion, respectively. This demonstrates that
+we successfully recover the flux of the injected compan-
+ion to within∼0.5 mag, in addition to its position.
+We considered 20 equally-spaced separations from 0
+to 6.50 pixels (not including 0). At each separation,
+we then considered eight equally-spaced angles ranging
+from 0 to 315 degrees with respect to the x-axis of the
+data. In order for a given contrast-separation combina-
+tion to be considered detectable, it must be successfully
+recovered for a predetermined fraction of these angles.
+(E.g., for a 75% success threshold, a given contrast-
+separation combination must be recovered at six out of
+the eight injection angles considered.) For each sepa-
+ration, there exists a maximum detectable contrast; to
+compute this, we first injected a companion at a contrast
+of 0.5, performing a binary search with 0 and 1.1 as the
+upper and lower bounds until the maximum detectable
+contrast was determined to a precision of 10 −3. If the
+search returned a final maximum contrast value above
+1 at a given separation, it was considered a failure (this
+case suggests that no companion would be detectable).
+The false positive rate for a single injection at a speci-
+fied contrast, separation, and angle can be estimated as
+the probability a random point within our prior space
+satisfies the primary success criterion (i.e., that the fit-
+ted location of the secondary is within one pixel of the
+injected location). Our false positive estimation is de-
+pendent only on the location of the secondary; concep-
+tually, given that the code always returns some fit, we
+check how often a fitted companion location acciden-
+tally lines up with that of an injected companion. We
+simulated this numerically by drawing samples from our
+
+<<<PAGE 6>>>
+6
+Single-PSF Fit (RS-2)
+ Single-PSF Res. (RS-2)
+ Single-PSF Res. (syn.)
+Double-PSF Fit (RS-2)
+ Double-PSF Res. (RS-2)
+ Double-PSF Res. (syn.)
+1.00
+ 0.75
+ 0.50
+ 0.25
+ 0.00 0.25 0.50 0.75 1.00
+[MJy/sr]
+Figure 2.Fits and residuals of stage 3 F1550C data subtracted using the results ofPyMultiNestsingle- and double-PSF
+fitting. Each panel indicates the 31×31 pixel cropped regions, while the dashed box indicates the 15×15 pixel test region used
+in fitting. The residuals are significantly reduced when a double-PSF fit is applied. In the left two panels, the injected data
+are shown, with a black cross and brown circle indicating the fitted locations of the primary and secondary, respectively (using
+RS-2 as a PSF model). The residuals of these fits are shown in the middle panels. The right panels show the residuals of fits
+using a syntheticStPSFmodel; these residuals are visibly larger than those of the reference star model.
+
+<<<PAGE 7>>>
+7
+prior; for a single angle, we found that this probability
+ranges from 6% to 0.15% over a separation range of 1.6
+to 6.5 pixels, respectively. As discussed in Section 4.2,
+this is the range over which we were able to successfully
+perform injection recovery at all 8 angles. Requiring
+success at all angles means that the overall false positive
+probability for a given separation should be no greater
+than 0.06 8 ≈ O(10−8)%, which is satisfactory for our
+purposes.
+Importantly, this false positive rate estimation applies
+only to our injection recovery, where an injected location
+is known and we are checking whether the code consis-
+tently identifies it within one pixel. An actual candidate
+detection would likely have a much higher false-positive
+rate because vetting such a candidate requires statisti-
+cal analysis, which was not included in this estimation.
+The code always returns a fit regardless of whether it is
+significant. Furthermore, the ability of bright artifacts
+to masquerade as significant signals would likely also
+increase the false-positive rate for candidate detections.
+3.3.2.Conversion to physical parameter space
+Once we have the minimum recoverable contrast at
+each separation, we compute the relative photometry of
+the minimum detectable companion by comparison with
+the measured flux of Eps Ind A b. Since this quantity is
+the direct sum of the fluxes of our hypothetical primary
+and secondary, the secondary flux can be expressed as a
+function of the total flux and the contrast:
+Fs = c
+1 +c Ftot (5)
+whereF s is the hypothetical secondary’s flux andF tot
+is Eps Ind A b’s measured flux. If a signal of contrast
+c0 is subtracted off beforehand, this formula becomes
+Fs = c
+(1 +c 0)(1 +c) Ftot (6)
+We then convert the flux to temperature space using the
+assumption that the source is a 1 R J blackbody, and
+then to mass space using the planetary evolution tables
+for temperature-mass conversion of J. J. Fortney et al.
+(2007). Recently, R. Bowens-Rubin et al. (2025a) found
+that cold (100-400 K) giant planets’ spectral energy dis-
+tributions are well approximated by blackbodies at mid-
+IR wavelengths. Indeed, applying this flux-temperature-
+mass conversion method to Eps Ind A b itself yields
+a reasonable mass estimate of 6.32 M J, which consis-
+tent with the dynamical mass of 6.31 +0.60
+−0.56 MJ (E. C.
+Matthews et al. 2024).
+4.RESULTS
+4.1.A Search for Binary Planets around Eps Ind A b
+Using this setup we conduct a search for companions
+to the directly imaged planet Eps Ind A b using our
+single- and double-PSF fitting algorithm. The residuals
+from the results of our two fits are shown in Figure 2;
+also shown in this figure are the residuals obtained by
+using aStPSFsynthetic PSF model instead of a refer-
+ence star. These residuals visually appear more chaotic
+than those of the reference star, which comparison of the
+single-PSF residual standard deviations confirms (ap-
+prox. 0.40 and 0.31 MJy/str for the synthetic and ref-
+erence star PSF models, respectively). As a result, we
+conclude that our use of RS-2, rather than a synthetic
+PSF, is preferred.
+Having made this choice, we find that the double-
+PSF fit notably reduces the residuals in the image. The
+light-dark-light (undersubtraction, oversubtraction, un-
+dersubtraction) “hamburger” pattern visible after the
+single-PSF subtraction is what one would expect if a
+companion were present, although this particular pat-
+tern is very faint. Figure 3 shows an example of the
+same PSF fitting performed on a fake companion in-
+jected 3 pixels below the primary at a contrast of 0.2;
+note the alignment of the hamburger pattern with the
+position angle of the injected companion (180 ◦ for this
+injection).
+Following M. De Furio et al. (2023), we considered the
+binary model to be statistically favored when the natural
+logarithm of the evidence ratioK=Z binary/Zsingle is
+greater than 5 (R. Trotta 2008). In this case, the binary
+model was favored with ln(K) = 24.5. The double-PSF
+fitting algorithm converged to a separation of 1.43±0.32
+pixels (0.158±0.035 ′′) and a position angle of 285.1±4.1
+degrees at a contrast of 0.23±0.13. The results of the
+fit are shown in the corner plot in Figure 4.
+However, despite the Bayesian evidence in favor of the
+double-PSF (binary planet) model fit to Eps Ind A b,
+we have ample reason to be skeptical that this source
+represents a true companion rather than noise or a sys-
+tematic artifact.
+First, the reducedχ 2 values for the single- and double-
+PSF fits are 0.713 (222 d.o.f.) and 0.516 (219 d.o.f.), re-
+spectively. The fact that these are less than one is con-
+sistent with our crude estimate of the error per pixel,
+but could also indicate overfitting. Following O. Ab-
+sil et al. (2011) and A. Gallenne et al. (2015), we esti-
+mate the significance of the double-PSF’s lower reduced
+χ2 to be 3.6σ. This alternative analysis does indicate
+marginal significance, but shows a much weaker prefer-
+ence than the Bayesian evidence would suggest. Addi-
+
+<<<PAGE 8>>>
+8
+F1550C (single-PSF fit)
+ F1550C (single-PSF resid.)
+F1550C (double-PSF fit)
+ F1550 (double-PSF resid.)
+1.00
+ 0.75
+ 0.50
+ 0.25
+ 0.00 0.25 0.50 0.75 1.00
+[MJy/sr]
+Figure 3.Fits and residuals of stage 3 F1550C data with the detected signal removed and a fake companion injected 3 pixels
+below the primary at a contrast of 0.2 (similar brightness to the signal). The residuals were obtained via subtraction using
+the results ofPyMultiNestsingle- and double-PSF fitting. The black cross and brown circle indicate the fitted locations of
+the primary and secondary, respectively. Each panel indicates the 31×31 pixel cropped region, while the dashed box indicates
+the 15×15 pixel test region used in fitting. Note the clear “hamburger” residual pattern of under- and over-subtraction that
+occurs with a single-PSF fit (top-right panel); this pattern is aligned with the line connecting the primary and secondary. These
+residuals are drastically reduced when a double-PSF fit is applied.
+
+<<<PAGE 9>>>
+9
+tionally, our Bayesian evidence assumes random, uncor-
+related noise, whereas the residuals are dominated by
+correlated speckle noise. As a result, our assumption of
+uniform, uncorrelated noise across our small test region
+is likely significantly overestimating the ln(K) = 24.5
+evidence ratio.
+Second, we have only a single reference PSF (RS-2),
+which was observed on a different region of the detec-
+tor. JWST/MIRI coronagraphic PSFs are known to
+vary across the field (M. D. Perrin et al. 2012), and
+the apparent signal may simply result from structural
+differences between the target and reference PSFs (e.g.,
+brighter-fatter effect), producing a residual that mimics
+a companion.
+We conclude that systematics provide a far simpler
+and more plausible explanation for the detected com-
+panion signal and are therefore the most likely cause.
+However, if this residual pattern were a binary planet,
+it would be aT∼190K, 2.8M J source located at a
+projected separation of 0.58 AU from the primary (the
+Hill radius is around 2.5 AU). As shown in Figure 4, if
+this is the case, there is a significant degeneracy between
+possible combinations of separation and contrast since
+we are below the diffraction limit. We stress that due
+to the amount of potential confounding factors, we do
+not consider this a robust candidate companion at this
+time.
+4.2.Results from Injection Recovery Testing
+We successfully produced three contrast curves for
+the F1550C filter. One (“No subtraction”) was built
+without removing the weak secondary signal discussed
+in Section 4.1, while the other two (“Secondary sub-
+tracted” at 100% and 75% success thresholds) were built
+after subtracting it from the original target image as if it
+were a point source. These are shown in Figure 5. The
+former curve is cut off at a minimum separation of 2.5
+pixels, as it approaches within 1 pixel of the detected
+signal and begins to interfere with recovery of injected
+signals. The latter two begin to run into problems as
+1 pixel of separation is approached, reaching minimum
+separations of 1.625 and 1.3 pixels, respectively. This
+occurs because the fitting code often mistakes the com-
+panion for the primary at sufficiently low separations
+and contrasts. This situation is not helped by decreas-
+ing the contrast, and so these curves hit a sudden end
+using our methodology. The fact that our detected sig-
+nal is so close to these cutoffs is further reason to treat its
+significance with healthy skepticism. Rigorous Bayesian
+evidence-based success conditions would likely be able
+to statistically determine binarity at even lower separa-
+tions.
+For reference purposes, the traditional diffraction limit
+(gray dashed line) and Hill radius (red dashed line) are
+also shown. The binary planet mass-separation space
+above the lines would have been detectable with this
+observation.
+These contrast curves look qualitatively similar to
+those obtained for detections around stars: as the sep-
+aration increases, the maximum contrast is set by the
+background noise limit. At close separations, PSF sub-
+traction residuals limit the minimum detectable com-
+panion. For stars, the PSF subtraction effects often
+manifest as speckles which masquerade as planets. Here,
+however, PSF subtraction effects enter differently: the
+primary cause of the decrease in maximum contrast at
+low separations is a growing indistinguishability between
+the predictions of single-PSF and double-PSF models.
+The residuals of a binary system after the subtraction
+of a fitted single-PSF model become increasingly sup-
+pressed with decreasing separation.
+We find that we successfully recover 100% of injec-
+tions if they are more than about 1.6 pixels apart, or
+0.65 AU (at a maximum contrast of 0.25). At further
+separations, we find ourselves background-limited at a
+maximum contrast of around 0.03, which approximately
+corresponds to a 130 K object (1.3M J).
+5.DISCUSSION
+5.1.The weak detection
+In Section 4.1, we conclude that systematics provide
+the simplest and most plausible explanation for the de-
+tected companion signal and are therefore the most
+likely cause. Additional mid-infrared data could con-
+firm or reject this explanation; for instance, an astro-
+physical origin for the signal would produce an anoma-
+lous mid-infrared excess detectable in upcoming Cycle
+4 spectroscopy observations (O. Berne et al. 2025; J.
+Xuan et al. 2025). However, if this candidate were con-
+firmed as a true companion, along with others such as
+the candidate detected orbiting HD 206893 B (Q. Kral
+et al. 2026), this would imply that binary gas giant plan-
+ets may be more common than previously expected.
+Follow-up imaging of Eps Ind A b using MIRI direct
+imaging would be advantageous over coronagraphy to
+determine whether this signal is caused by a systematic
+because of increased PSF stability, increased uniformity
+across the detector, and greater background sensitivity
+to cold companions. Importantly, the primary advan-
+tage of MIRI imaging in this context is not necessarily
+improved sensitivity to lower-mass or tighter-separation
+companions, but rather the ability to robustly charac-
+terize instrumental systematics through well-calibrated
+PSF behavior. Future MIRI imaging observations could
+
+<<<PAGE 10>>>
+10
+x = 0.52+0.08
+0.08
+0.55
+0.50
+0.45
+0.40
+0.35
+y [pix.]
+y = 0.47+0.03
+0.03
+1.6
+2.4
+3.2
+4.0
+sep [pix.]
+sep = 1.43+0.41
+0.21
+100
+150
+200
+250
+PA [deg.]
+PA = 285.11+4.12
+3.74
+0.15
+0.30
+0.45
+contrast
+contrast = 0.23+0.15
+0.11
+0.60
+ 0.45
+ 0.30
+ 0.15
+x [pix.]
+0.54
+0.60
+0.66
+0.72
+norm
+0.55
+ 0.50
+ 0.45
+ 0.40
+ 0.35
+y [pix.]
+1.6 2.4 3.2 4.0
+sep [pix.]
+100 150 200 250
+PA [deg.]
+0.15 0.30 0.45
+contrast
+0.54 0.60 0.66 0.72
+norm
+norm = 0.64+0.06
+0.07
+Figure 4.Corner plot forPyMultiNestdouble PSF fitting of the Eps Ind A b MIRI data showing the best-fit binary planet
+parameters relative to the known exoplanet.
+use archival data to empirically estimate a false-positive
+rate, since there is substantially more archival MIRI
+imaging data in the relevant bands than coronagraphic
+data. The extensive archival MIRI imaging dataset en-
+ables empirical assessment of PSF stability and resid-
+ual structure, which is currently not possible for coro-
+nagraphic observations. This improved understanding
+is essential for distinguishing true astrophysical signals
+from systematic artifacts.
+Future observations could also collect multiple obser-
+vations of a reference star at different locations on the
+MIRI detector in order to build an even more robust
+effective point spread function (ePSF) (J. Anderson &
+I. R. King 2000; J. Anderson 2016), eliminating spa-
+tial PSF variation and interpolation artifacts as major
+sources of error. Our lack of an ePSF means that the
+noise is correlated in both our target and reference im-
+ages, leading to potentially increased correlations in the
+residuals. Furthermore, Eps Ind A b was imaged very
+close to a 4QPM phase boundary, which makes model-
+ing these correlations difficult due to interference from
+this boundary.
+5.2.Prospects for future exomoon/binary planet
+searches with direct imaging
+Direct imaging of exomoons is often dismissed as a
+viable detection method because the angular resolu-
+tion required to probe orbital separations where moons
+are expected to be abundant implies the need for ex-
+tremely large telescope apertures. For example, Cal-
+
+<<<PAGE 11>>>
+11
+0 100 200 300 400 500 600 700
+Separation [mas]
+0 1 2 3 4 5 6
+Separation [pixels]
+10 2
+10 1
+Contrast (with planet)No subtraction
+"Secondary" subtracted (100% success)
+"Secondary" subtracted (75% success)
+Signal
+Diffraction limit
+Hill radius
+1.4
+1.6
+1.8
+2.0
+2.2
+2.4
+2.6
+2.8
+Mass [MJ]
+0 100 200 300 400 500 600 700
+Separation [mas]
+0.0 0.5 1.0 1.5 2.0 2.5
+Separation [AU]
+130
+140
+150
+160
+170
+180
+190T emperature [K]
+Figure 5.Contrast sensitivity limits to exomoons/binary planets around Eps Ind A b for F1550C data. Once the signal
+described in Section 4.1 is removed, our injection recovery testing demonstrates that we are capable of detecting binary planets
+as small as 1.3 M J (T = 130 K) at the outer edge of the Hill sphere and 2.5 M J (T = 180 K) at 0.52 au. The companion signal
+detected in Section 4.1 is marked by the red×.
+listo, the outermost Galilean moon, orbits at a separa-
+tion of 0.013 AU. Even at UV/visible wavelengths (e.g.,
+λ= 0.4µm), resolving such a separation at a distance of
+a few parsecs would require a∼20 m telescope to achieve
+formal resolution (1λ/D), perhaps achievable with the
+upcoming generation of ELTs (M. Kasper et al. 2021),
+but only with exquisite AO correction.
+However, as we have demonstrated here, it is possible
+to detect moons within the diffraction limit thanks to
+the extreme stability of space-based observatories and
+the use of double-PSF detection techniques. This work
+lays the foundations for future exomoon searches using
+JWST/MIRI images of directly imaged companions in
+nearby systems, such as the exoplanet discoveries that
+may come from the GO 6122 (R. Bowens-Rubin et al.
+2024), GO 9056 (K. Franson et al. 2025), and SUR-
+VEY 8185 (R. Bowens-Rubin et al. 2025b) programs.
+This result also suggests that such separations could
+be probed with smaller telescope apertures, such as the
+proposed Habitable Worlds Observatory (HWO; Na-
+tional Academies of Sciences, Engineering, and Medicine
+2021). Moreover, previous studies have shown that the
+contrast ratios between giant planets and terrestrial-
+sized moons can be comparable to those achieved in this
+work (E. Agol et al. 2015). Together, these results in-
+dicate that direct imaging of exomoons may represent
+a viable path forward for their detection despite their
+small separations.
+6.CONCLUSIONS
+In this work, we demonstrate the capability of JWST
+to directly image binary planets/exomoons of nearby di-
+rectly imaged exoplanets.
+•Using an injection–recovery test, we determine
+that our observations were sensitive to compan-
+ions as small as 1.3 M J (T = 130 K) at the outer
+edge of the Hill sphere, and 2.5 MJ (T = 180 K) at
+0.52 AU (0.3λ/D).
+•Based on our contrast curve limits, we confidently
+rule out the presence of a similar-mass (>2.2
+MJ), large-separation (>0.8 AU) companion to
+Eps Ind A b, barring a line-of-sight alignment at
+the time of observation.
+•Based on the detection limits achieved in this
+study, we conclude that mid-IR direct imaging
+with JWST/MIRI may represent a viable path for-
+ward for detecting and confirming binary planets
+and exomoons around the nearest directly imaged
+exoplanets.
+•We detect a weak signal at an approximate separa-
+tion of 0.16 ′′ and position angle of 285 ◦. We con-
+clude that the signal is most likely due to system-
+atics and not a companion. Future mid-infrared
+spectroscopy and/or imaging of this planet would
+be able to confirm or rule out if the residual pat-
+tern noted is instrumental or astrophysical in na-
+ture.
+
+<<<PAGE 12>>>
+12
+ACKNOWLEDGMENTS
+We thank the anonymous referee for their construc-
+tive comments, which improved the quality of this
+manuscript. This research made use of data hosted
+by the Mikulski Archive for Space Telescopes (https://
+mast.stsci.edu/). MCG received support from the MIT
+Undergraduate Research Opportunities Program. MDF
+is supported by an NSF Astronomy and Astrophysics
+Postdoctoral Fellowship under award AST-2303911.
+AUTHOR CONTRIBUTIONS
+MCG was responsible for executing this project and
+writing/submitting this manuscript. MAL and RBR
+ideated the initial project concept, served in advisory
+roles, and assisted MCG in preparing the manuscript.
+RBR also provided code to convert giant planet tem-
+peratures to masses. MDF, an expert in double-PSF
+fitting, provided helpful advice and comments towards
+this end. ECM, the original imager of Eps Ind A b,
+brought expertise on the system and helpful advice. KF
+provided helpful advice and comments. SCM served in
+an advisory role and helped procure funding. LAP and
+A V also provided helpful advice and comments.
+Facilities:JWST (MIRI)
+Software:astropy ( Astropy Collaboration et al.
+2013, 2018, 2022), corner (D. Foreman-Mackey 2016),
+Matplotlib (J. D. Hunter 2007), MultiNest (F. Feroz
+et al. 2009) NumPy (C. R. Harris et al. 2020), PyMulti-
+Nest (J. Buchner et al. 2014b), SciPy (P. Virtanen et al.
+2020), StPSF (M. Perrin et al. 2025; M. D. Perrin et al.
+2012, 2014) VIP (C. A. Gomez Gonzalez et al. 2017; V.
+Christiaens et al. 2023)
+REFERENCES
+Absil, O., Le Bouquin, J.-B., Berger, J.-P., et al. 2011,
+A&A, 535, A68, doi: 10.1051/0004-6361/201117719
+Adelman, C., Sallum, S., De Furio, M., & Eisner, J. 2025,
+arXiv e-prints, arXiv:2510.13064,
+doi: 10.48550/arXiv.2510.13064
+Agol, E., Jansen, T., Lacy, B., Robinson, T. D., &
+Meadows, V. 2015, ApJ, 812, 5,
+doi: 10.1088/0004-637X/812/1/5
+Anderson, J. 2016, Empirical Models for the WFC3/IR
+PSF,, Instrument Science Report WFC3 2016-12, 42
+pages
+Anderson, J., & King, I. R. 2000, PASP, 112, 1360,
+doi: 10.1086/316632
+Astropy Collaboration, Robitaille, T. P., Tollerud, E. J.,
+et al. 2013, A&A, 558, A33,
+doi: 10.1051/0004-6361/201322068
+Astropy Collaboration, Price-Whelan, A. M., Sip˝ ocz, B. M.,
+et al. 2018, AJ, 156, 123, doi: 10.3847/1538-3881/aabc4f
+Astropy Collaboration, Price-Whelan, A. M., Lim, P. L.,
+et al. 2022, ApJ, 935, 167, doi: 10.3847/1538-4357/ac7c74
+Bachelet, E., Specht, D., Penny, M., et al. 2022, A&A, 664,
+A136, doi: 10.1051/0004-6361/202140351
+Berne, O., Amiot, P., Canin, A., & Schroetter, I. 2025, The
+first spectrum of a temperate super-Jupiter planet,,
+JWST Proposal. Cycle 4, ID. #8438
+Bowens-Rubin, R., Limbach, M. A., Carter, A., et al. 2024,
+Cool kids on the block: The direct detection of cold ice
+giants and gas giants orbiting young low-mass neighbors,,
+JWST Proposal. Cycle 3, ID. #6122
+Bowens-Rubin, R., Mang, J., Limbach, M. A., et al. 2025a,
+ApJL, 986, L26, doi: 10.3847/2041-8213/addbde
+Bowens-Rubin, R., Limbach, M. A., Vanderburg, A., et al.
+2025b, The HOTH Survey: Hot On The Hunt for frigid
+exoplanets in the solar neighborhood,, JWST Proposal.
+Cycle 4, ID. #8581
+Buchner, J., Georgakakis, A., Nandra, K., et al. 2014a,
+A&A, 564, A125, doi: 10.1051/0004-6361/201322971
+Buchner, J., Georgakakis, A., Nandra, K., et al. 2014b,
+A&A, 564, A125, doi: 10.1051/0004-6361/201322971
+Calissendorff, P., De Furio, M., Meyer, M., et al. 2023,
+ApJL, 947, L30, doi: 10.3847/2041-8213/acc86d
+Chen, M., Li, Y., Brandt, T. D., et al. 2022, AJ, 163, 288,
+doi: 10.3847/1538-3881/ac66d2
+Christiaens, V., Gonzalez, C., Farkas, R., et al. 2023, The
+Journal of Open Source Software, 8, 4774,
+doi: 10.21105/joss.04774
+Cilibrasi, M., Szul´ agyi, J., Mayer, L., et al. 2018, MNRAS,
+480, 4355, doi: 10.1093/mnras/sty2163
+De Furio, M., Meyer, M. R., Reiter, M., et al. 2022, ApJ,
+925, 112, doi: 10.3847/1538-4357/ac36d4
+De Furio, M., Reiter, M., Meyer, M. R., et al. 2019, ApJ,
+886, 95, doi: 10.3847/1538-4357/ab4ae3
+De Furio, M., Lew, B., Beichman, C., et al. 2023, ApJ, 948,
+92, doi: 10.3847/1538-4357/acbf1e
+De Furio, M., Faherty, J. K., Bardalez Gagliuffi, D. C.,
+et al. 2025, ApJL, 990, L63,
+doi: 10.3847/2041-8213/adfee1
+Endl, M., K¨ urster, M., Els, S., et al. 2002, A&A, 392, 671,
+doi: 10.1051/0004-6361:20020937
+
+<<<PAGE 13>>>
+13
+Feng, F., Anglada-Escud´ e, G., Tuomi, M., et al. 2019,
+MNRAS, 490, 5002, doi: 10.1093/mnras/stz2912
+Feng, F., Butler, R. P., Vogt, S. S., Holden, B., & Rui, Y.
+2023, MNRAS, 525, 607, doi: 10.1093/mnras/stad2297
+Feroz, F., Hobson, M. P., & Bridges, M. 2009, MNRAS,
+398, 1601, doi: 10.1111/j.1365-2966.2009.14548.x
+Foreman-Mackey, D. 2016, The Journal of Open Source
+Software, 1, 24, doi: 10.21105/joss.00024
+Fortney, J. J., Marley, M. S., & Barnes, J. W. 2007, ApJ,
+659, 1661, doi: 10.1086/512120
+Franson, K., Balmer, W., Bendahan-West, R., et al. 2025,
+Imaging the Coldest Planets Around the Nearest
+Accelerating Stars,, JWST Proposal. Cycle 4, ID. #9056
+Gallenne, A., M´ erand, A., Kervella, P., et al. 2015, A&A,
+579, A68, doi: 10.1051/0004-6361/201525917
+Geißler, K., Kellner, S., Brandner, W., et al. 2007, A&A,
+461, 665, doi: 10.1051/0004-6361:20065843
+Gomez Gonzalez, C. A., Wertz, O., Absil, O., et al. 2017,
+AJ, 154, 7, doi: 10.3847/1538-3881/aa73d7
+Harris, C. R., Millman, K. J., van der Walt, S. J., et al.
+2020, Nature, 585, 357, doi: 10.1038/s41586-020-2649-2
+Heller, R., & Hippke, M. 2024, Nature Astronomy, 8, 193,
+doi: 10.1038/s41550-023-02148-w
+Heller, R., Rodenbeck, K., & Bruno, G. 2019, A&A, 624,
+A95, doi: 10.1051/0004-6361/201834913
+Horstman, K., Ruffio, J.-B., Batygin, K., et al. 2024, AJ,
+168, 175, doi: 10.3847/1538-3881/ad73d8
+Hunter, J. D. 2007, Computing in Science & Engineering, 9,
+90, doi: 10.1109/MCSE.2007.55
+Inderbitzi, C., Szul´ agyi, J., Cilibrasi, M., & Mayer, L. 2020,
+MNRAS, 499, 1023, doi: 10.1093/mnras/staa2796
+Janson, M., Apai, D., Zechmeister, M., et al. 2009,
+MNRAS, 399, 377, doi: 10.1111/j.1365-2966.2009.15285.x
+Kasper, M., Cerpa Urra, N., Pathak, P., et al. 2021, The
+Messenger, 182, 38, doi: 10.18727/0722-6691/5221
+Kervella, P., Arenou, F., Mignard, F., & Th´ evenin, F. 2019,
+A&A, 623, A72, doi: 10.1051/0004-6361/201834371
+Kervella, P., Arenou, F., & Thevenin, F. 2021, VizieR
+Online Data Catalog: Stellar and substellar companions
+from Gaia EDR3 (Kervella+, 2022),, VizieR On-line
+Data Catalog: J/A+A/657/A7. Originally published in:
+2022A&A...657A...7K doi: 10.26093/cds/vizier.36570007
+Kipping, D., Bryson, S., Burke, C., et al. 2022, Nature
+Astronomy, 6, 367, doi: 10.1038/s41550-021-01539-1
+Kipping, D. M. 2009, MNRAS, 392, 181,
+doi: 10.1111/j.1365-2966.2008.13999.x
+Kral, Q., Wang, J., Kammerer, J., et al. 2026, A&A, 705,
+A217, doi: 10.1051/0004-6361/202557127
+Kreidberg, L., Luger, R., & Bedell, M. 2019, ApJL, 877,
+L15, doi: 10.3847/2041-8213/ab20c8
+Lafreni` ere, D., Marois, C., Doyon, R., & Barman, T. 2009,
+ApJL, 694, L148, doi: 10.1088/0004-637X/694/2/L148
+Lazzoni, C., Zurlo, A., Desidera, S., et al. 2020, A&A, 641,
+A131, doi: 10.1051/0004-6361/201937290
+Limbach, M. A., Vos, J. M., Vanderburg, A., & Dai, F.
+2024, AJ, 168, 54, doi: 10.3847/1538-3881/ad4ed5
+Lundkvist, M. S., Kjeldsen, H., Bedding, T. R., et al. 2024,
+ApJ, 964, 110, doi: 10.3847/1538-4357/ad25f2
+Matthews, E. C., Carter, A. L., Pathak, P., et al. 2024,
+Nature, 633, 789, doi: 10.1038/s41586-024-07837-8
+Matthews, E. C., Mang, J., Carter, A. L., et al. 2026, arXiv
+e-prints, arXiv:2603.08780,
+doi: 10.48550/arXiv.2603.08780
+McCaughrean, M. J., Close, L. M., Scholz, R.-D., et al.
+2004, A&A, 413, 1029, doi: 10.1051/0004-6361:20034292
+National Academies of Sciences, Engineering, and
+Medicine. 2021, Pathways to Discovery in Astronomy
+and Astrophysics for the 2020s, doi: 10.17226/26141
+Nesvorn´ y, D., Alvarellos, J. L. A., Dones, L., & Levison,
+H. F. 2003, AJ, 126, 398, doi: 10.1086/375461
+Oza, A. V., Johnson, R. E., Lellouch, E., et al. 2019, ApJ,
+885, 168, doi: 10.3847/1538-4357/ab40cc
+Pathak, P., Petit dit de la Roche, D. J. M., Kasper, M.,
+et al. 2021, A&A, 652, A121,
+doi: 10.1051/0004-6361/202140529
+Perrin, M., Long, J., Osborne, S., et al. 2025, STPSF, 2.1.0
+https://github.com/spacetelescope/stpsf
+Perrin, M. D., Sivaramakrishnan, A., Lajoie, C.-P., et al.
+2014, in Society of Photo-Optical Instrumentation
+Engineers (SPIE) Conference Series, Vol. 9143, Space
+Telescopes and Instrumentation 2014: Optical, Infrared,
+and Millimeter Wave, ed. J. M. Oschmann, Jr.,
+M. Clampin, G. G. Fazio, & H. A. MacEwen, 91433X,
+doi: 10.1117/12.2056689
+Perrin, M. D., Soummer, R., Elliott, E. M., Lallo, M. D., &
+Sivaramakrishnan, A. 2012, in Space telescopes and
+instrumentation 2012: optical, infrared, and millimeter
+wave, Vol. 8442, SPIE, 1193–1203
+Perrin, M. D., Soummer, R., Elliott, E. M., Lallo, M. D., &
+Sivaramakrishnan, A. 2012, in Society of Photo-Optical
+Instrumentation Engineers (SPIE) Conference Series,
+Vol. 8442, Space Telescopes and Instrumentation 2012:
+Optical, Infrared, and Millimeter Wave, ed. M. C.
+Clampin, G. G. Fazio, H. A. MacEwen, & J. M.
+Oschmann, Jr., 84423D, doi: 10.1117/12.925230
+Petigura, E. A., Howard, A. W., & Marcy, G. W. 2013,
+Proceedings of the National Academy of Science, 110,
+19273, doi: 10.1073/pnas.1319909110
+
+<<<PAGE 14>>>
+14
+Philipot, F., Lagrange, A.-M., Rubini, P., Kiefer, F., &
+Chomez, A. 2023, A&A, 670, A65,
+doi: 10.1051/0004-6361/202245396
+Rouan, D., Pelat, D., Ygouf, M., et al. 2007, in Society of
+Photo-Optical Instrumentation Engineers (SPIE)
+Conference Series, Vol. 6693, Techniques and
+Instrumentation for Detection of Exoplanets III, ed.
+D. R. Coulter, 669316, doi: 10.1117/12.725855
+Rouan, D., Riaud, P., Boccaletti, A., Cl´ enet, Y., &
+Labeyrie, A. 2000, PASP, 112, 1479, doi: 10.1086/317707
+Ruffio, J.-B., Horstman, K., Mawet, D., et al. 2023, AJ,
+165, 113, doi: 10.3847/1538-3881/acb34a
+Sanghi, A., Thompson, W., Mang, J., et al. 2026, arXiv
+e-prints, arXiv:2603.08787,
+doi: 10.48550/arXiv.2603.08787
+Scholz, R. D., McCaughrean, M. J., Lodieu, N., &
+Kuhlbrodt, B. 2003, A&A, 398, L29,
+doi: 10.1051/0004-6361:20021847
+Simon, A., Szatm´ ary, K., & Szab´ o, G. M. 2007, A&A, 470,
+727, doi: 10.1051/0004-6361:20066560
+Smith, B. A., & Terrile, R. J. 1984, Science, 226, 1421,
+doi: 10.1126/science.226.4681.1421
+Soummer, R., Pueyo, L., & Larkin, J. 2012, ApJL, 755,
+L28, doi: 10.1088/2041-8205/755/2/L28
+Teachey, A., Kipping, D., Burke, C. J., Angus, R., &
+Howard, A. W. 2020, AJ, 159, 142,
+doi: 10.3847/1538-3881/ab7001
+Teachey, A., & Kipping, D. M. 2018, Science Advances, 4,
+eaav1784, doi: 10.1126/sciadv.aav1784
+Teachey, A., Kipping, D. M., & Schmitt, A. R. 2018, AJ,
+155, 36, doi: 10.3847/1538-3881/aa93f2
+Trotta, R. 2008, Contemporary Physics, 49, 71,
+doi: 10.1080/00107510802066753
+Vanderburg, A., & Rodriguez, J. E. 2021, ApJL, 922, L2,
+doi: 10.3847/2041-8213/ac33b4
+Virtanen, P., Gommers, R., Oliphant, T. E., et al. 2020,
+Nature Methods, 17, 261, doi: 10.1038/s41592-019-0686-2
+Viswanath, G., Janson, M., Dahlqvist, C.-H., et al. 2021,
+A&A, 651, A89, doi: 10.1051/0004-6361/202140730
+Volk, K., Blum, R., Walker, G., & Puxley, P. 2003, IAUC,
+8188, 2
+Winterhalder, T. O., M´ erand, A., Kammerer, J., et al.
+2025, arXiv e-prints, arXiv:2509.15304,
+doi: 10.48550/arXiv.2509.15304
+Xuan, J., Ruffio, J.-B., Sanghi, A., et al. 2025, Combining
+isotopic and elemental abundances to unveil the
+formation and accretion history of a cold Jupiter,, JWST
+Proposal. Cycle 4, ID. #8714
+Zechmeister, M., K¨ urster, M., Endl, M., et al. 2013, A&A,
+552, A78, doi: 10.1051/0004-6361/201116551

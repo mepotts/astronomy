@@ -27,12 +27,21 @@ baseline and, recently, an 11–21 μm JWST/MIRI spectrum — but to our knowled
 radial-velocity measurement of it has been published**. We report the first, derived entirely
 from public archival data.
 
-The motivation is specific. Hoy et al. (2026) reported a satellite orbiting the substellar
-companion CD-35 2722 B, measured from that companion's own spectrum with CRIRES+ — the first
-such detection, and one that raises the obvious question of how common the configuration is.
-η Tel B is the only other object in the accessible class with an archival CRIRES+ time series
-long enough to constrain an orbit, and it was observed in the **identical H1567 wavelength
-setting**, so the same extraction recipe applies without modification.
+Radial-velocity monitoring of a directly imaged companion's own spectrum is now an
+established route to constraining massive satellites around it. Searches have been reported
+for the HR 8799 planets (Vanderburg & Rodriguez 2021), HR 7672 B (Ruffio et al. 2023),
+GQ Lup B (Horstman et al. 2024) and β Pictoris b (Kenworthy et al. 2026), all without
+detection, alongside astrometric limits from interferometry (Macias et al. 2026; Kral et al.
+2026). Against that run of nulls, Hoy et al. (2026) reported the first detection, a satellite
+orbiting CD-35 2722 B — which sharpens rather than settles the question of how common the
+configuration is, and makes each additional constrained system worth having.
+
+η Tel B is a natural next target and has not been observed this way. It is the only other
+object in the accessible class with an archival CRIRES+ time series long enough to constrain
+an orbit, and it was observed in the **identical H1567 wavelength setting** as CD-35 2722 B,
+so that reduction transfers without modification. It also extends the sample in host mass: at
+~47 M_Jup it sits in the brown-dwarf regime with HR 7672 B, rather than the planetary regime
+of most of the sample.
 
 **Data.** We use 20 public CRIRES+ H1567 epochs of η Tel B spanning 18 nights and 815 days
 (ESO programmes 111.24M0, 113.268Y, 115.287U). We reduce them twice by independent routes:
@@ -86,7 +95,17 @@ the measured detection grid — the smallest injected amplitude reaching 90% —
 or fitted.*
 
 **These are the first radial-velocity constraints of any kind on η Tel B**, and they exclude
-sub-Jupiter to Jupiter-mass companions across most of the 20–300 day range.
+sub-Jupiter to Jupiter-mass companions across most of the 20–300 day range. They sit
+comfortably alongside the published sample: Kenworthy et al. (2026) reach 1 M_Jup at
+P = 200 d on β Pic b from a dedicated campaign at 160 m s⁻¹ mean precision, against
+1.11 M_Jup at the same period here from archival data at 127–130 m s⁻¹.
+
+These limits also probe a region no imaging survey reaches. For a 47 M_Jup host, P = 20–300 d
+corresponds to **0.05–0.31 au**, whereas the dedicated SPHERE star-hopping survey of twelve
+directly imaged companions constrains satellites only beyond ~1–5 au (Lazzoni et al. 2026).
+The two techniques do not overlap, and the reason is generic: astrometric amplitude scales as
+the satellite's semi-major axis while radial-velocity amplitude scales as a^(−1/2), so
+imaging and astrometry own the wide orbits and RV owns the close ones (Macias et al. 2026).
 
 The limits are on m sin i, but in this system that costs almost nothing. η Tel B's own orbit
 about η Tel A is near edge-on — i = 79 (+5/−6)° (Chai et al. 2024, stable across five
@@ -94,8 +113,9 @@ independent fit configurations) and 82 (+3/−4)° from a separate analysis (Nog
 2024). A satellite formed in a circum-companion disc would be expected to orbit near that
 plane, and if it does, sin i ≈ 0.98 and **the tabulated limits are true-mass limits to within
 2%**. This is an assumption, not a measurement, and a strongly misaligned satellite would
-evade the constraint — but it is the same coplanarity expectation under which the CD-35 2722 B
-satellite is interpreted.
+evade the constraint — but it is the same near-edge-on geometry that motivates β Pic b as an
+RV target (Kenworthy et al. 2026), and the same coplanarity expectation under which the
+CD-35 2722 B satellite is interpreted.
 
 A twin of the CD-35 2722 B satellite (m sin i = 0.918 M_Jup) would produce K ≈ 540 m s⁻¹ at 20 d falling to
 ≈ 217 m s⁻¹ at 300 d, and would have been detected in ~100% of trials at short periods but
@@ -128,12 +148,20 @@ ESO programmes 111.24M0, 113.268Y and 115.287U.
 - Chai, Y. et al. 2024, *ApJ*, "A JWST MIRI MRS View of the η Tel Debris Disk and its Brown
   Dwarf Companion", arXiv:2408.11692
 - Dorn, R. J. et al. 2023, *A&A*, **671**, A24 (CRIRES+)
+- Horstman, K. et al. 2024, GQ Lup B RV exosatellite search
+- Kenworthy, M. A. et al. 2026, *MNRAS*, "Upper limits on exosatellites around β Pictoris b",
+  arXiv:2606.04685
+- Kral, Q. et al. 2026, *A&A*, exomoon search around HD 206893 B with VLTI/GRAVITY
+- Lazzoni, C., Zurlo, A., Desidera, S. et al. 2026, *A&A* (SaNDi-SHoP I), arXiv:2603.24796
+- Macias, I., Jenkins, S. A. & Vanderburg, A. 2026, *AJ*, **171**, 197
 - Hoy, E. et al. 2026, *Nature*, "Satellite Detected Around a Star's Substellar Companion",
   doi:10.1038/s41586-026-10751-w
 - Köhler, J. et al. 2025, *A&A*, **698**, A44 (viper), doi:10.1051/0004-6361/202553919
 - Lazzoni, C. et al. 2020, *A&A*, **641**, A131
 - Neuhäuser, R., Ginski, C., Schmidt, T. O. B., & Mugrauer, M. 2011, *MNRAS*, **416**, 1430
 - Nogueira, P. H., Lazzoni, C., Zurlo, A. et al. 2024, *A&A*, **687**, A301
+- Ruffio, J.-B. et al. 2023, *AJ*, **165**, 113
+- Vanderburg, A. & Rodriguez, J. E. 2021, *ApJ*, **922**, L2
 
 *(Verification status per `docs/REFERENCE-AUDIT.md`. Hoy, Köhler and Chai are checked against
 full copies archived in `papers/`. Dorn is corroborated via Hoy et al.'s reference [11];

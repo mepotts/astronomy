@@ -1,0 +1,591 @@
+<<<PAGE 1>>>
+MNRAS000, ?–? (2026) Preprint 4 June 2026 Compiled using MNRAS L ATEX style file v3.2
+Upper limits on exosatellites around𝛽Pictoris b
+Matthew A. Kenworthy,1★ Rico Landman,1 Andrew Vanderburg,2,3 Joseph E. Rodriguez,4
+Jayne L. Birkby,5 Isabella Macias,6,7 Darío González Picos,1 Sydney A. Jenkins,4 Elina Kleisioti,1,8
+Tomas Stolker,1 Ioannis Koutalios1
+1Leiden Observatory, Leiden University, Postbus 9513, 2300 RA Leiden, The Netherlands
+2Center for Astrophysics | Harvard & Smithsonian, 60 Garden Street, Cambridge, MA 02138, USA
+3Department of Physics and Kavli Institute for Astrophysics and Space Research, Massachusetts Institute of Technology, Cambridge, MA 02139, USA
+4Center for Data Intensive and Time Domain Astronomy, Department of Physics and Astronomy, Michigan State University, East Lansing, MI 48824, USA
+5Astrophysics, University of Oxford, Denys Wilkinson Building, Keble Road, Oxford, OX1 3RH, UK
+6Department of Earth, Atmospheric, and Planetary Sciences, Massachusetts Institute of Technology, 77 Massachusetts Avenue, Cambridge, MA 02139, USA
+7Department of Astronomy, University of Florida, Bryant Space Science Center, Stadium Road, Gainesville, FL 32611, USA
+8Faculty of Aerospace Engineering, Delft University of Technology, 2629 HS, Delft, The Netherlands
+Accepted 2026 May 29. Received 2026 May 16; in original form 2026 February 13
+ABSTRACT
+𝛽Pictoris b is one of the closest known directly-imaged gas giant exoplanets with an orbit that is almost edge-on to our line of
+sight, making it an ideal target for radial velocity monitoring to search for massive exomoons. We measure the radial velocity of
+𝛽Pictoris b over several epochs between October 2024 and March 2025 by using the cross-correlation of a template spectrum
+with absorption lines in the planet’s atmosphere, giving a mean precision of 160 m s−1. The resultant set of radial velocities
+is analysed with a periodogram to search for candidate RV signals indicating a massive exomoon. Although we do not detect
+an exomoon signal in our data, our detection limits for a single moon are 80 Earth masses at𝑃=1day and 1 Jupiter at
+𝑃=200days, comparable to RV exomoon searches around other substellar companions. The RV limit is comparable with the
+astrometric exomoon limit at a period of 7 days and a mass of 150𝑀⊕, where for longer periods the astrometric searches have
+lower mass limits. With an additional observing season, CRIRES+ can detect a planet/moon mass ratio of10−3 (4𝑀⊕) with a
+period of up to one day, and can detect a Neptune-mass moon at hundreds of Jupiter radii.
+Key words:techniques: radial velocities — stars: planetary systems — stars: individual: Beta Pictoris
+1 INTRODUCTION
+Moons are seen around all of the gas giant planets in our Solar
+system, and their final configuration reflects both the composition
+of the planet and its formation process (e.g. Deienno et al. 2011).
+Such satellites, therefore, must exist around other gas giant planets
+in the Galaxy - but while there have been some tantalizing candi-
+dates detected, none have been confirmed to date. Exomoons may
+increasethenumberofHabitableZonesinaplanetarysystem-their
+temperature may be raised by the flux of energy from their parent
+planet (Heller & Barnes 2013) or by tidal heating. Since our current
+knowledge of moons comes entirely from solar system satellites, an
+exomoon discovery could similarly boost our understanding of the
+diversity that we see in exoplanetary systems (e.g. Batalha 2014).
+Tounderstandtherangeofpossibleexomoonproperties,itisuseful
+to consider the three primary formation pathways: accretion from a
+circumplanetary disk (Kane et al. 2013), gravitational capture of
+interplanetary objects (e.g. suggested for Triton by Neptune; Agnor
+& Hamilton 2006), and collisions between objects. Moons forming
+from a circumplanetary disk (CPD) are expected to be relatively
+smallcomparedtotheirhostplanet(masseslessthan10 −5 thatofthe
+★ E-mail: kenworthy@strw.leidenuniv.nl
+planet;Canup&Ward2002).Whilethisformationpathwayishighly
+efficientinthesolarsystem,moonslikeTritonlikelystartedoffasan
+interplanetaryplanetesimalandwascapturedbyNeptunesometime
+later (Agnor & Hamilton 2006), resulting in Triton’s anomalously
+large mass ratio with respect to Neptune (2×10−4).
+Several methods have been used to search for exomoons, with
+several candidates proposed; for an overview see the Review in
+Teachey (2024). Gravitational microlensing by a foreground source
+with proper motion causes achromatic magnification in the resul-
+tant light curve of a distant background source. This led to Bennett
+et al. (2014) showing the microlensing event MOA-2011-BLG-262
+was consistent with a free-floating planet/moon system closer to the
+Solar system than the background source, although a more distant
+stellar mass primary/brown dwarf system could produce the same
+observations. Model degeneracies also led to Hwang et al. (2018)
+identifying the multi-object microlensing event OGLE-2015-BLG-
+1459Lasduetooneobjectlensingthreebackgroundsourcesandnot
+a foreground star/planet/moon lensing system.
+Directly imaging the thermal emission from tidally heated exo-
+moons (THEMs) is a possibility for very close exoplanet systems
+(Peters & Turner 2013) such as the exoplanet Epsilon Eridani b
+(Kleisioti et al. 2023). Tidally locked THEMs can also be detected
+on high inclination orbits around their parent planet; any bright spot
+©2026 The Authors
+arXiv:2606.04685v1  [astro-ph.EP]  3 Jun 2026
+
+<<<PAGE 2>>>
+2M. A. Kenworthy et al.
+of thermal emission caused by volcanic activity will result in photo-
+metricmodulationofthelightcurve(Kleisiotietal.2024).Volcanic
+exomoons can also produce an exosphere that is detected as spectral
+absorption lines of neutral Sodium and Potassium seen before, dur-
+ingandafterthetransitsofhotJupiters,asseenforWASP-49b(Oza
+et al. 2019).
+Exomoonsmaytransittheirparentexoplanet,andsearchesaround
+free floating (Limbach et al. 2021, 2024; Wilson et al. 2025) and
+bound (Kipping et al. 2025a; Pass et al. 2026) self-luminous exo-
+planetsshowplausibleeclipses,althoughthevariabilityoftheplanets
+themselves can confound this signal.
+SearchingforexomoonsassmallasGanymedeispossiblethrough
+the impact an exomoon has on the transit of its parent planet across
+the stellar disk. This can be seen in both transit timing variations
+andtransitdurationvariations(Kipping2009a,b),andwerethemain
+methodsbehindtheHuntforExomoonswithKepler(HEK; Kipping
+et al. 2012, 2013, 2022), but to date no compelling candidates have
+been found around gas giants with orbital periods less than 50 days
+(Kipping et al. 2015). Since it is expected that the planets forming
+in the 5–20 au regime have attendant moons, it is suspected that the
+process of their migration caused the moons to be scattered away
+from the system (Dobos et al. 2021). The question of whether wider
+orbit planets host such satellites arises: two exomoon candidates
+have been identified through timing variation and possible detection
+of their transits, Kepler 1708 b-i and Kepler 1625 b-i (Teachey &
+Kipping2018;Kippingetal.2022;Teacheyetal.2018;Kippingetal.
+2025b),aroundlonger-periodgasgiantexoplanets.Thesedetections
+are contested: other teams have carried out an analysis on the data
+and do not find the exomoon signal (Kreidberg et al. 2019; Heller &
+Hippke 2024).
+Directly imaged exoplanets offer a greater potential for satellite
+detection due to their typically much larger separations from the
+host star, which increases the planet’s Hill sphere radius (Dobos
+et al. 2021), and the absence of significant inward planet migra-
+tion keeps any attendant moons after their formation. Astrometric
+searches can detect exomoons at larger semimajor distances, and an
+initial search around the substellar companion HD 206893 B with
+VLTI/GRAVITY+ has resulted in a tantalising signal (Kral et al.
+2026).
+Radial velocity (RV) searches have looked at exoplanets in the
+HR8799system(Vanderburg&Rodriguez2021),HR7672B(Ruffio
+etal.2023)andGQLupB(Horstmanetal.2024)withnodetections.
+The closest known self-luminous gas giant exoplanet is∼11MJup
+𝛽Pictoris b (Lagrange et al. 2009; Lacour et al. 2021), located
+19 parsecs away around a young (23 Myr; Bell et al. 2015) A-
+type star and embedded in an edge-on circumstellar disk. The orbit
+of𝛽Pictoris b is highly inclined, with its orbit seen almost close
+to edge-on (Lacour et al. 2021). Building on this geometry, Poon
+et al. (2024) propose that the planet has a large obliquity, given the
+measuredprojectedrotationalvelocity(𝑣sin𝑖=20kms −1;Landman
+et al. 2024), and suggest that a Neptune-mass exomoon at 40 to 70
+planetary radii could be the cause. RV measurements measure the
+mass function𝑀sin𝑖and for exomoons we have no measurements
+foranyorbitalinclinations.MoonsintheSolarSystemaregenerally
+coplanar with the equator of their parent planet, while𝛽Pictoris b
+has a relatively high inclination as measured from the rotational
+broadening of absorption lines within its atmosphere (Snellen et al.
+2014),soitisnotanunreasonableassumptiontoassumeanymoons
+aroundtheplanetwillalsohaveahighinclinationasseenfromEarth.
+In2016,theplanet’sHillspheretransitedthestartowithin20%of
+theHillsphereradius,andaphotometricmonitoringprogramestab-
+lishedthattherewasnosignificantcircumplanetarydust(Kenworthy
+et al. 2021), concluding that any material had already condensed
+into satellites around the planet and may well have high inclinations
+amenable for detection with RV methods.
+Wepresentupperlimitsonoursearchforexomoonsaround𝛽Pic-
+toris b using CRIRES+ combined with astrometric limits derived
+from archival astrometric data (Macias et al. 2026). In Sect. 2 we
+detail the observations with the VLT, followed by a periodogram
+analysis with injection and recovery to determine sensitivity limits.
+We discuss these results in Sect. 3 along with our conclusions in
+Sect. 4.
+2 OBSERV ATIONS AND ANALYSIS
+𝛽Pictoris b was observed as a service mode program with vari-
+ous epochs between UT 17 Oct 2024 and UT 09 Mar 2025 using
+VLT/CRIRES+.Weusedthe0.2”slitandtheK2166wavelengthset-
+ting.Theslitwasorientedontheplanetlocationata45degreeangle
+withrespecttothelineconnectingthestarandtheplanet.Thisallows
+us to avoid overexposure from the bright star, while still allowing us
+to use the starlight for calibration purposes. Each observation con-
+sisted of 24 integrations of 120 seconds in an AAABBBBBBAAA
+nodding scheme. We chose this approach to minimize the overhead
+time from the nodding cycles, while still allowing for background
+subtraction, which is done using the average of the 3 closest expo-
+sures in the other nodding position. We analyze the exposures from
+the A and B frames separately, as they can have slightly different
+wavelength solutions.
+Wereducedthespectrawithtwoseparatepipelines.Inthefirstone,
+the initial data reduction, such as background subtraction, flat field-
+ing,andafirstwavelengthsolution,wasdonewithpycrires(Stolker&
+Landman2023),whichmakesuseoftheofficialCRIRES+pipeline 1.
+WefollowthereductionandanalysisstepsdetailedinLandmanetal.
+(2024)todetecttheplanetandobtainanestimateofitsradialvelocity,
+andgiveashortsummaryhere:First,werefinethewavelengthsolu-
+tion using the telluric lines imprinted on the spectra of the host star.
+The stellar contamination at the location of the planet is estimated
+usinglow-passfilteringandaPrincipalComponentAnalysis(PCA).
+We use 10 PCA components to model the stellar and telluric contri-
+bution. We then jointly fit the stellar contribution and planet signal
+usingthelikelihoodframeworkdevelopedinRuffioetal.(2021)and
+adapted to CRIRES+ in Landman et al. (2024). In this case, we fix
+alltheparametersoftheplanet,e.g.theatmosphericparametersand
+rotational velocity, to the values obtained in Landman et al. (2024).
+This likelihood was calculated for a grid of radial velocity values,
+which was finally converted to a maximum likelihood estimate and
+an associated uncertainty. The mean precision was 320 m s−1.
+A second, separate and fully independent reduction and analysis
+were carried out to validate the RV measurements. In this workflow,
+the data were processed using the Python packageexcalibuhr
+(Zhang et al. 2024). The reduction steps closely follow those of
+pycrires; however, we implemented a revised extraction scheme
+that combines all spatial pixels containing a significant planetary
+signal. A section of one of the reduced spectra is shown in Fig. 1.
+Atmospheric retrievals were then performed using forward models
+generated withpetitRADTRANS(Mollière et al. 2019) and explored
+vianestedsamplingwithultranest(Buchner2021).Thisapproach
+allows us to constrain the planet’s atmospheric properties, radial ve-
+locity, and rotational broadening. We adopted state-of-the-art line
+1 https://www.eso.org/sci/software/pipelines/crires/
+crires-pipe-recipes.html
+MNRAS000, ?–? (2026)
+
+<<<PAGE 3>>>
+𝛽Pictoris b exosatellite limits3
+2230 2240 2250 2260 2270
+0.5
+1.0Flux [normalized]
+Model Data
+2330 2340 2350 2360
+Wavelength [nm]
+Figure 1.A section of the spectrum of𝛽Pictoris b from CRIRES+, showing one night of data and the fitted model. The template spectra of water and carbon
+monoxide are shown above, indicating their relative contributions. /github
+lists for water (H2O; Polyansky et al. 2018) and carbon monoxide
+(CO; Rothmanetal.2010;Lietal.2015).Theatmosphericcomposi-
+tion is parameterised using constant-with-altitude abundances, with
+free parameters for each relevant molecular species, as described in
+de Regt et al. (2024). The temperature structure is modelled using
+a parametrised profile in which temperature gradients at reference
+atmospheric layers are retrieved, following the implementation of
+GonzálezPicosetal.(2024).Thecompleteresultsandinterpretation
+of the atmospheric retrievals, together with details of the improved
+spectral extraction scheme, will be provided in a forthcoming paper
+(Gonzalez Picos et al., submitted). The contribution of starlight at
+the planet’s location is incorporated directly into the forward model,
+following the approach demonstrated for GQ Lup B by González
+Picos et al. (2025), adapted from Ruffio et al. (2023) and Landman
+etal.(2024).Weadopttheseradialvelocitiesforsubsequentanalysis
+due to their greater precision.
+In Fig. 2, we show the detection of the planet’s rotation and the
+identification of water (H2O) and carbon monoxide (CO), which
+are the dominant opacity sources over the wavelength range of the
+observations (𝜆=2060–2472 nm). The planetary spectrum and the
+best-fit model are shown in Fig. 1. For subsequent analysis we adopt
+these physical parameters of𝛽Pictoris b: from Lacour et al. (2021)
+we take the mass of𝛽Pictoris b to be11.9±3.0 MJup, with orbital
+parameters𝑎=9.93±0.03au,𝑒=0.103±0.003and𝑖=89.00±0.01
+deg.FortheradiusweadopttheExo-REMposteriorfromRavetetal.
+(2025) of1.73±0.01 R Jup. We calculate the Roche limit both for
+solid and fluid bodies using the mass/radius relationship from Chen
+& Kipping (2017), although we note that young objects may have a
+larger radius and therefore lower density.
+Analysis of the RV measurements was done using theRVsearch
+Python package (Rosenthal et al. 2021). The algorithm fits both a
+“no-moon” model and “one moon” model for a given set of trial
+periods from 1 to 500 days in a circular orbit, and the difference
+between these two Bayesian information criterion (BIC) models,
+ΔBIC, is calculated. It then estimates aΔBIC detection threshold
+that corresponds to a false alarm probability of 0.1%, following the
+methodology outlined in Howard & Fulton (2016) where further
+details can be found. The results are shown in Fig. 4. Even though
+the shortest time between two observations is around two days, we
+are sensitive to shorter orbital periods due to the irregularly spaced
+sampling of our measurements. The largestΔBIC has a value of 12
+for an orbital period of 2.3 days, below the false alarm probability
+threshold of 46. A set of injection and recovery tests for various
+trialperiodsandmassesforasingleexomoononacircularorbitwas
+performed,withtheresultantrecoverylimitsshowninFig.A1.Fig.5
+Table 1.Radial velocity measurements of𝛽Pictoris b.
+MJD RV instrument RVcorr RVhelio
+(km s−1) (km s −1) (km s −1)
+60600.3626.00 +0.11
+−0.10 +6.78 32.78
+60604.3525.81 +0.07
+−0.07 +6.46 32.27
+60683.1035.17 +0.09
+−0.08 -3.39 31.78
+60686.2336.11 +0.11
+−0.13 -4.00 32.11
+60702.2038.46 +0.13
+−0.16 -5.84 32.66
+60733.0739.13 +0.08
+−0.08 -7.92 31.20
+60735.1239.83 +0.13
+−0.13 -8.06 31.77
+60739.0840.13 +0.15
+−0.15 -8.12 32.01
+60743.0840.51 +0.14
+−0.16 -8.20 32.31
+60755.0639.97 +0.08
+−0.11 -8.16 31.81
+60760.0139.41 +0.10
+−0.09 -7.99 31.42
+shows the upper limits for a single exomoon orbiting𝛽Pictoris b in
+a circular orbit, as a function of semi-major axis and moon to planet
+mass function ratio.
+3 DISCUSSION
+The mass ratio of moons to planets is around10−4 for the gas giants
+(Canup & Ward 2006), but theoretical studies suggest that more
+massive planets have more massive moons with a scaling law of
+𝑀𝑚𝑜𝑜𝑛∝𝑀 3/2
+𝑃 withratiosapproaching10 −3 (seeEq.43in Batygin
+& Morbidelli 2020). From the RV analysis, no compelling periodic
+signal is seen in the data presented in the previous section. The
+smallest mass ratio reached is2×10−2 (60𝑀⊕) at the fluid Roche
+limit, just below a Saturn mass exomoon with an orbital period of
+0.9days,graduallyincreasingtoamassratioofjustunder0.1at250
+days. The sensitivity is comparable to previous RV searches around
+other substellar and planetary companions. A study on the HR 8799
+b,c,d exoplanets with Keck OSIRIS radial velocities ruled out most
+companions with𝑚sin𝑖 >2M Jup for orbital periods shorter than
+5 days (Vanderburg & Rodriguez 2021) whereas we reach down to
+just over a Saturn mass for𝛽Pictoris b, whilst a limit of10−2 (100
+𝑀⊕) was reached for orbital periods of 1 day around the substellar
+companion GQ Lup B (Horstman et al. 2024).
+MNRAS000, ?–? (2026)
+
+<<<PAGE 4>>>
+4M. A. Kenworthy et al.
+200
+ 100
+ 0 100 200
+Velocity [km/s]
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0CCF [normalized]
+a CCF
+vsin i = 19
+ACF
+vsin i = 0
+200
+ 100
+ 0 100 200
+Velocity [km/s]
+0
+20
+40
+60CCF [signal-to-noise ratio]
+b H2O + CO
+H2O
+CO
+Figure 2.CrosscorrelationoftheCRIRES+spectrumoftheplanet,(a)indi-
+cating the rotational broadening of the planet and at the retrieved𝑣sin𝑖≈19
+km s−1 and the auto-correlation function (ACF) of the unbroadened model
+spectrum.(b)therelativedetectionstrengthsoftheplanetinwaterandcarbon
+monoxide./github
+An additional observing campaign, consisting of 25 CRIRES+
+observationssampledrandomlyovera50dayperiod,wassimulated
+and added to the current RV dataset, and the resultant sensitivity
+curve is shown in Fig. 5 with the injection recovery limits shown
+in Fig. A2. Given the previous performance of CRIRES+, we can
+reach a mass ratio of10−3 for an orbital period of 1 day, and we
+canpotentiallydetectNeptunemassexomoonsouttoperiodsof200
+days.
+Macias et al. (2026) analyzed archival astrometric data on𝛽Pic-
+toris b and determined upper limits on exomoons. These limits are
+shown as the pale green line in Fig. 5. Astrometric detection limits
+complement the radial velocity methods, and we can now rule out
+150𝑀⊕ exomoons for edge-on circular orbits around𝛽Pictoris b for
+allprogradestableorbits(estimatedas0.44oftheHillsphereradius
+using Eq. 5 from Domingos et al. 2006). Indeed, even though there
+is a peak in the periodogram at around 52 days (but still below the
+FAP limit), the astrometric limits are far more constraining at this
+period and show no signal.
+0 20 40 60 80 100 120 140 160
+Time [BJD - 2460600]
+31.0
+31.5
+32.0
+32.5
+33.0
+Radial Velocity [km/s]
+Figure 3.Radialvelocitymeasurementsof𝛽PictorisbfromCRIRES+with
+the González Picos et al. (2024) formulation.
+Figure 4.Results of the blind search for exosatellites in the RV time series
+listed in Table 2 usingRVsearch. It shows the difference in the Bayesian
+information criterion (ΔBIC) between a model including a satellite and a
+model without a satellite. We also show the threshold for the 0.001 false
+alarm probability (FAP).
+4 CONCLUSIONS
+These reported measurements represent the most sensitive limits to
+exomoons at short orbital periods to date for𝛽Pictoris b, and the
+complementarity of astrometric limits give coverage throughout the
+Hill sphere of the planet. Extending the monitoring of𝛽Pictoris b
+with CRIRES+ will increase the sensitivity to moons with mass
+ratiosgreaterthanabout5×10 −3 i.e.moonsthatformed/arrivedvia
+gravitationalcapturepathwaysoroneswhichinducetheobliquityin
+𝛽Pictoris b (Poon et al. 2024) - see Fig. 5. Together with the first
+astrometric limits of𝛽Pictoris b from Macias et al. (2026) we can
+rule out any exomoons three times more massive than Saturn in the
+Hill sphere.
+Thediscoveryofmassivegasgiantexoplanetsatlargeseparations
+from their parent stars, such as HD106096 b (Bailey et al. 2014),
+YSES-1 b and c (Bohn et al. 2020) and WISPIT 1 b and c (van
+Capelleveen et al. 2025) enable direct spectroscopic monitoring of
+the planets to look for exosatellites. One highly promising candidate
+isYSES1bwhichhostsbothacircumplanetarydiskseeninthermal
+emission (Hoch et al. 2025) and whose orbit is almost edge on to
+our line of sight (Roberts et al. 2025). If the geometry is particu-
+larly favourable and the moon transits the disk of the exoplanet, the
+MNRAS000, ?–? (2026)
+
+<<<PAGE 5>>>
+𝛽Pictoris b exosatellite limits5
+100 101 102 103
+Semi-major axis [RJup]
+10 4
+10 3
+10 2
+10 1
+100
+Mmoon/M Pic bsin i
+Earth
+Saturn
+Neptune
+Jupiter
+Poon+ (2024)
+Roche limit
+rigid fluid
+CRIRES+ limit
+25 additional epochs with CRIRES+
+Astrometric limit
+Stable prograde orbits in Hill sphere
+10 1
+ 100 101 102 103
+Period [d]
+100
+101
+102
+103
+Mmoon/M sin i
+Figure 5.The upper limits on exosatellites around𝛽Pictoris b. The blue line represents the radial velocity limits for 50% retrieval of injected edge-on circular
+orbits. The red line is the outermost stable prograde orbit for an exosatellite around𝛽Pictoris b. The pale green line corresponds to astrometric limits from
+Macias et al. (2026). The Roche limits for rigid and fluid exosatellite bodies are shown in gray on the left. The predicted mass and location for an exomoon
+whichcouldgiveBetaPicbahighobliquityisindicatedinpurple(Poonetal.2024).Thepredictedsensitivityforanadditional25observationswithCRIRES+
+is shown in purple. /github
+Rossiter-McLaughlin effect can produce a very pronounced RV sig-
+nal due to the rapid rotation of these young exoplanets (Ruffio et al.
+2023). If exomoons do transit𝛽Pictoris b and other wide projected
+separationplanetssuchasYSES1b,thenwemaybehighlyfortunate
+and have our first RV-detected exomoons within the next few years.
+ACKNOWLEDGEMENTS
+We thank our referee for their careful reading of our manuscript
+andsuggestionswhichimprovedit.JLBacknowledgesfundingfrom
+the European Research Council (ERC) under the European Union’s
+Horizon 2020 research and innovation program under grant agree-
+ment No 805445, and the support of the Leverhulme Trust via
+the Philip Leverhulme Physics Prize. Based on observations col-
+lectedattheEuropeanSouthernObservatoryunderESOprogramme
+114.27DX.001. This research has usedthe SIMBAD database, oper-
+ated at CDS, Strasbourg, France (Wenger et al. 2000). This work
+has used data from the European Space Agency (ESA) mission
+Gaia(https://www.cosmos.esa.int/gaia), processed by the
+GaiaData Processing and Analysis Consortium (DPAC,https:
+//www.cosmos.esa.int/web/gaia/dpac/consortium). Fund-
+ingfortheDPAChasbeenprovidedbynationalinstitutions,inpartic-
+ulartheinstitutionsparticipatingintheGaiaMultilateralAgreement.
+Toachievethescientificresultspresentedinthisarticle,wemadeuse
+of thePythonprogramming language 2, especially theSciPy(Virta-
+nen et al. 2020),NumPy(Oliphant 2007),Matplotlib(Hunter 2007),
+2 Python Software Foundation,https://www.python.org/
+emcee(Foreman-Mackey et al. 2013),astropy(Astropy Collabora-
+tion et al. 2013; Price-Whelan et al. 2018) packages.
+DATA A V AILABILITY
+This paper is compiled using the showyourwork! framework, which
+includes all original data files, computer scripts to generate the fig-
+ures, and associated compilation framework. This is available at
+https://github.com/mkenworthy/BetaPicbExomoons
+REFERENCES
+Agnor C. B., Hamilton D. P., 2006, Nature, 441, 192
+Astropy Collaboration et al., 2013, A&A, 558, A33
+Bailey V., et al., 2014, ApJ, 780, L4
+Batalha N. M., 2014, Proceedings of the National Academy of Science, 111,
+12647
+Batygin K., Morbidelli A., 2020, ApJ, 894, 143
+Bell C. P. M., Mamajek E. E., Naylor T., 2015, MNRAS, 454, 593
+Bennett D. P., et al., 2014, ApJ, 785, 155
+Bohn A. J., et al., 2020, ApJ, 898, L16
+Buchner J., 2021, The Journal of Open Source Software, 6, 3001
+Canup R. M., Ward W. R., 2002, AJ, 124, 3404
+Canup R. M., Ward W. R., 2006, Nature, 441, 834
+Chen J., Kipping D., 2017, ApJ, 834, 17
+Deienno R., Yokoyama T., Nogueira E. C., Callegari N., Santos M. T., 2011,
+A&A, 536, A57
+DobosV.,CharnozS., PálA.,Roque-BernardA.,SzabóG. M.,2021,PASP,
+133, 094401
+Domingos R. C., Winter O. C., Yokoyama T., 2006, MNRAS, 373, 1227
+MNRAS000, ?–? (2026)
+
+<<<PAGE 6>>>
+6M. A. Kenworthy et al.
+Foreman-Mackey D., Hogg D. W., Lang D., Goodman J., 2013, PASP, 125,
+306
+González Picos D., et al., 2024, A&A, 689, A212
+González Picos D., Snellen I. A. G., de Regt S., Landman R., Zhang Y.,
+Gandhi S., Sánchez-López A., 2025, A&A, 693, A298
+Heller R., Barnes R., 2013, Astrobiology, 13, 18
+Heller R., Hippke M., 2024, Nature Astronomy, 8, 193
+Hoch K. K. W., et al., 2025, Nature, 643, 938
+Horstman K., et al., 2024, AJ, 168, 175
+Howard A. W., Fulton B. J., 2016, PASP, 128, 114401
+Hunter J. D., 2007, Computing in science & engineering, 9, 90
+Hwang K.-H., et al., 2018, AJ, 155, 259
+Kane S. R., Hinkel N. R., Raymond S. N., 2013, AJ, 146, 122
+Kenworthy M. A., et al., 2021, A&A, 648, A15
+Kipping D. M., 2009a, MNRAS, 392, 181
+Kipping D. M., 2009b, MNRAS, 396, 1797
+Kipping D. M., Bakos G. Á., Buchhave L., Nesvorný D., Schmitt A., 2012,
+ApJ, 750, 115
+Kipping D. M., Hartman J., Buchhave L. A., Schmitt A. R., Bakos G. Á.,
+Nesvorný D., 2013, ApJ, 770, 101
+Kipping D. M., Schmitt A. R., Huang X., Torres G., Nesvorný D., Buchhave
+L. A., Hartman J., Bakos G. Á., 2015, ApJ, 813, 14
+Kipping D., et al., 2022, Nature Astronomy, 6, 367
+KippingD.,CasseseB.,ChangeatQ.,YahalomiD.,TeacheyA.,EdwardsB.,
+2025a, arXiv e-prints, p. arXiv:2511.15317
+Kipping D., et al., 2025b, Nature Astronomy, 9, 795
+Kleisioti E., Dirkx D., Rovira-Navarro M., Kenworthy M. A., 2023, A&A,
+675, A57
+Kleisioti E., Dirkx D., Tan X., Kenworthy M. A., 2024, A&A, 687, A125
+Kral Q., et al., 2026, A&A, 705, A217
+Kreidberg L., Luger R., Bedell M., 2019, ApJ, 877, L15
+Lacour S., et al., 2021, A&A, 654, L2
+Lagrange A., et al., 2009, A&A, 506, 927
+Landman R., et al., 2024, A&A, 682, A48
+Li G., Gordon I. E., Rothman L. S., Tan Y., Hu S.-M., Kassi S., Campargue
+A., Medvedev E. S., 2015, ApJS, 216, 15
+Limbach M. A., Vos J. M., Winn J. N., Heller R., Mason J. C., Schneider
+A. C., Dai F., 2021, ApJ, 918, L25
+Limbach M. A., Vos J. M., Vanderburg A., Dai F., 2024, AJ, 168, 54
+Macias I., Jenkins S. A., Vanderburg A., 2026, AJ, 171, 197
+Mollière P., Wardenier J. P., van Boekel R., Henning T., Molaverdikhani K.,
+Snellen I. A. G., 2019, A&A, 627, A67
+Oliphant T. E., 2007, Computing in Science Engineering, 9, 10
+Oza A. V., et al., 2019, ApJ, 885, 168
+PassE.K.,CharbonneauD.,VanderburgA.,BeanJ.L.,2026,arXive-prints,
+p. arXiv:2604.05235
+Peters M. A., Turner E. L., 2013, ApJ, 769, 98
+PolyanskyO.L.,KyuberisA.A.,ZobovN.F.,TennysonJ.,YurchenkoS.N.,
+Lodi L., 2018, MNRAS, 480, 2597
+PoonM.,ReinH.,PhamD.,2024,TheOpenJournalofAstrophysics,7,109
+Price-Whelan A. M., et al., 2018, AJ, 156, 123
+Ravet M., et al., 2025, A&A, 704, A325
+Roberts J., et al., 2025, AJ, 170, 273
+Rosenthal L. J., et al., 2021, ApJS, 255, 8
+Rothman L. S., et al., 2010, J. Quant. Spectrosc. Radiative Transfer, 111,
+2139
+Ruffio J.-B., et al., 2021, AJ, 162, 290
+Ruffio J.-B., et al., 2023, AJ, 165, 113
+SnellenI.A.G.,BrandlB.R.,deKokR.J.,BrogiM.,BirkbyJ.,SchwarzH.,
+2014, Nature, 509, 63
+Stolker T., Landman R., 2023, pycrires: Data reduction pipeline for
+VLT/CRIRES+,AstrophysicsSourceCodeLibrary,recordascl:2307.040
+(ascl:2307.040)
+Teachey A., 2024, arXiv e-prints, p. arXiv:2401.13293
+Teachey A., Kipping D. M., 2018, Science Advances, 4, eaav1784
+Teachey A., Kipping D. M., Schmitt A. R., 2018, AJ, 155, 36
+Vanderburg A., Rodriguez J. E., 2021, ApJ, 922, L2
+Virtanen P., et al., 2020, Nature Methods, 17, 261
+101 102
+Semi-major axis [R jup]
+10□5
+10□4
+10□3
+10□2
+10□1
+100
+Mmoon/Mp sin i
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Detection probability
+Figure A1.Exosatellitedetectionlimitsderivedusinginjectionandrecovery
+tests for𝛽Pictoris b.
+101 102
+Semi-major axis [R jup]
+10□4
+10□3
+10□2
+10□1
+100
+Mmoon/Mp sin i
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Detection probability
+Figure A2.Exosatellite detection limits with 25 additional epochs of
+CRIRES+observationswithprecisionof250ms −1 inthe2025/26observing
+season.
+Wenger M., et al., 2000, A&AS, 143, 9
+Wilson M. J., et al., 2025, AJ, 170, 357
+Zhang Y., et al., 2024, AJ, 168, 246
+de Regt S., et al., 2024, A&A, 688, A116
+van Capelleveen R. F., et al., 2025, A&A, 704, A221
+APPENDIX A: INJECTION RECOVERY TESTS
+This paper has been typeset from a TEX/LATEX file prepared by the author.
+MNRAS000, ?–? (2026)

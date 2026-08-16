@@ -1,0 +1,1301 @@
+<<<PAGE 1>>>
+Draft version February 5, 2026
+Typeset using LATEXtwocolumnstyle in AASTeX63
+First Astrometric Limits on Binary Planets and Exomoons orbitingβPictoris b
+Isabella Macias,1, 2 Sydney A. Jenkins,3 and Andrew V anderburg4, 3
+1Department of Earth, Atmospheric, and Planetary Sciences, Massachusetts Institute of Technology, 77 Massachusetts Avenue,
+Cambridge, MA 02139, USA
+2Department of Astronomy, University of Florida, Bryant Space Science Center, Stadium Road, Gainesville, FL 32611, USA
+3Department of Physics and Kavli Institute for Astrophysics and Space Research, Massachusetts Institute of Technology, 77
+Massachusetts Avenue, Cambridge, MA 02139, USA∗
+4Center for Astrophysics|Harvard & Smithsonian, 60 Garden Street, Cambridge, MA 02138, USA
+Submitted to AJ
+ABSTRACT
+The search for exomoons, or moons in other star systems, has attracted significant interest in recent
+years, driven both by advancements in detection sensitivity and by the expanding population of known
+exoplanets. TheβPictoris system is a particularly favorable target, as its proximity and directly
+imaged planets allow for precise astrometric monitoring. We present astrometric constraints on the
+presence of binary planets and exomoons in theβPictoris system using archival observations from
+the GRA VITY interferometer and SPHERE instruments. We calculate these limits by modeling the
+motion of the two orbiting planets and introducing an additional perturbation to the model that
+simulates the astrometric motion caused by an exomoon orbiting the planetβPictoris b. We find
+that for short orbital periods (≈50 days), a lunar companion is only allowed if its mass remains below
+≈180M ⊕ (0.6M Jup) at 3σconfidence. At intermediate periods near 300 days, we exclude moons
+more massive than≈65M ⊕ (0.2M Jup) at 3σconfidence. At longer orbital periods, we place the
+tightest constraints, ruling out any potential exomoon above≈50M ⊕ (0.15M Jup) at 700 days and
+≈30M ⊕ (0.1M Jup) at 1,100 days (both at 3σconfidence). These results place the first astrometric
+constraints on moons and binary planets in the Beta Pictoris system and demonstrate the sensitivity
+of interferometric observations for exomoon studies.
+Keywords:planetary systems, planets and satellites: detection, exomoons
+1.INTRODUCTION
+As thousands of exoplanets have been discovered in
+the past 30 years, interest in whether moons orbit these
+worlds has grown. Despite the prevalence of moons
+in the Solar System (over 400 known 1) and the de-
+tection of a few candidates outside the Solar System
+(e.g. Teachey & Kipping 2018; Lazzoni et al. 2020; Kip-
+ping et al. 2022), no extrasolar moons, or exomoons,
+have been confirmed. Nevertheless, given the well-
+established moon formation pathways benchmarked in
+the Solar System, theoretical studies suggest that ex-
+omoons should exist. One dominant mechanism in the
+Solar System is co-formation with the planets in circum-
+Corresponding author: Isabella Macias
+maciasi@mit.edu
+∗ NSF Graduate Research Fellow
+1 https://ssd.jpl.nasa.gov/sats/discovery.html
+planetary disks, where moons form alongside their host
+planets in a gas-rich disk, similar to the Galilean moons
+of Jupiter (Canup & Ward 2006). Another formation
+pathway is capture events, where a passing object be-
+comes gravitationally bound to a planet. This process
+has been proposed as a key mechanism for the formation
+of moons on eccentric, inclined, and often retrograde or-
+bits in our Solar System (Hamers & Portegies Zwart
+2018), including Triton (Agnor & Hamilton 2006). Fur-
+thermore, debris generated from massive impacts, such
+as the hypothesized origin of the Earth-Moon system,
+could also lead to exomoon formation (Barr & Bruck
+Syal 2017).
+The hunt for exomoons is especially important for un-
+derstanding the formation and evolution of planetary
+systems. Just as the Moon plays a key role in Earth’s
+orbital stability and tides, exomoons are expected to
+gravitationally influence their host planets, potentially
+affecting their rotational dynamics and long-term cli-
+mate stability (Laskar et al. 1993; Poon et al. 2024). The
+arXiv:2512.00160v2  [astro-ph.EP]  3 Feb 2026
+
+<<<PAGE 2>>>
+2Macias et al.
+successful detection of an exomoon would also provide
+valuable constraints on lunar habitability and planetary
+migration theories, as the survival, orbital architecture,
+and tidal evolution of moons depend sensitively on how
+and when their host planets migrate (Barnes & O’Brien
+2002; Sucerquia et al. 2019, 2020; Mart ´ ınez-Rodr ´ ıguez
+et al. 2019).
+Despite the importance of discovering exomoons, their
+detection remains extremely challenging. The signals
+from moons are often too subtle and faint to detect di-
+rectly as a result of the limited resolution and sensi-
+tivity of current telescopes. Indirect methods, such as
+analyzing light curve variations during planetary tran-
+sits, offer alternative ways to detect exomoons (Kipping
+et al. 2015; Teachey & Kipping 2018; Kipping 2021).
+Researchers search for signals such as transit timing
+variations (TTVs, Kipping 2009, 2020a,b), transit du-
+ration variations (TDVs, Kipping et al. 2009), and tran-
+sit radius variations (TR Vs, Rodenbeck et al. 2020).
+From these methods, a handful of exomoon candidates
+have been proposed, including Kepler-1625b-i, a poten-
+tial Neptune-sized moon orbiting a super-Jovian planet
+(Teachey & Kipping 2018), and Kepler-1708b-i, a po-
+tential 2.6 Earth-radii moon orbiting a Jupiter-sized
+planet at a distance of 12 planetary radii (Kipping et al.
+2022). However, none of these candidates have been con-
+firmed, and the detections are controversial (e.g. Kreid-
+berg et al. 2019; Heller & Hippke 2024). We note that
+similar methods can also be used to detect binary plan-
+ets (Chakraborty & Kipping 2022), but none have been
+identified.
+With no confirmed exomoons, research has instead fo-
+cused on placing increasingly strong limits on their pos-
+sible presence. For instance, a considerable amount of
+work has gone into placing upper bounds on the masses
+and radii of exomoons based on transit observations
+(e.g. Kipping et al. 2013, 2014, 2015; Kipping 2020a,b).
+More recently, other detection methods have been used
+to place constraints, including radial velocity (R V) ob-
+servations of directly imaged planets (Vanderburg et al.
+2018; Vanderburg & Rodriguez 2021; Ruffio et al. 2023;
+Horstman et al. 2024). These findings demonstrate that,
+although the confident detection of exomoons is still
+elusive, current methods can place constraints on their
+masses and orbits.
+Several studies have suggested that astrometry can be
+used to identify and constrain lunar companions within
+a system (Cabrera & Schneider 2007; Agol et al. 2015;
+van Woerkom & Kleisioti 2024). This is a particu-
+larly exciting method given the recent advancements in
+measuring precise astrometry of exoplanets using long-
+baseline interferometry. Recently, Lacour et al. (2021)
+showcased the high-precision astrometric capabilities of
+the GRA VITY instrument (GRA VITY Collaboration
+et al. 2017) on the Very Large Telescope Interferome-
+ter (VLTI), which can make astrometric measurements
+with precision of tens of microarcseconds. Building on
+these capabilities, Winterhalder et al. (2025) demon-
+strated through simulations and VLTI/GRA VITY ob-
+servations that moons as small as∼0.14M Jup could al-
+ready be inferred around the nearby (d=26.9 pc) AF Lep
+b system, with future facilities expected to reach Earth-
+like moons in habitable zones. Complementary work by
+Wagner et al. (2025) presented a simulation framework
+for detecting exomoons around imaged giant planets,
+showing that Earth-mass moons in the habitable zone
+ofαCentauri A could be detected with future space- or
+ground-based facilities. Most recently, Kral et al. (2025)
+placed constraints on moons orbiting the brown dwarf
+HD 206893 B with GRA VITY astrometry and detected
+a tentative candidate. Together, these studies highlight
+how astrometry is emerging as a promising pathway to-
+ward the first confirmed detections of exomoons.
+One of the most promising targets for astrometric
+studies is the Beta (β) Pictoris system, a young and
+nearby planetary system that has been extensively stud-
+ied since the discovery of its circumstellar debris disk in
+the 1980s (Smith & Terrile 1984). This system hosts two
+directly imaged giant planets,βPic b and c, making it
+ideal for testing astrometric detection techniques.βPic
+b, located at a semi-major axis of ∼= 9.8 AU, was dis-
+covered through direct imaging, whileβPic c, at ∼= 2.7
+AU, was discovered through R V measurements . La-
+grange et al. (2020) combined astrometry and R V data
+to constrain the orbits and masses of both planets, find-
+ing thatβPic b has a mass of 10–11M Jup andβPic c
+has a well-constrained mass of 7.8±0.4M Jup.
+In this work, we use archival data from Lagrange et al.
+(2020) and Lacour et al. (2020a) to place constraints on
+the presence of exomoons and binary planets in theβ
+Pictoris system using high-precision astrometric mea-
+surements from the GRA VITY instrument. While we
+find no evidence supporting the existence of an exo-
+moon, our analysis establishes strong constraints on the
+mass and orbital period of any potential companions,
+providing a framework for applying astrometric tech-
+niques to future exomoon searches. Our paper is orga-
+nized as follows: Section 2 outlines the instrumentation
+and data. Section 3 describes our analysis methods, in-
+cluding the development and application of our model.
+Section 4 presents our results, focusing on the derived
+mass and orbital constraints. Section 5 then discusses
+the implications of our findings, comparing astrometry
+with complementary techniques and addressing the po-
+tential for future studies. We conclude in Section 6.
+2.OBSER V ATIONS
+In this work, we used existing archival direct imag-
+ing and interferometric observations ofβPictoris b and
+c.βPictoris has been observed for over a decade by
+numerous instruments, and the precision of astrometric
+measurements has increased over time. We focused on
+data taken with the GRA VITY interferometer (GRA V-
+ITY Collaboration et al. 2017) and the SPHERE high-
+
+<<<PAGE 3>>>
+Beta Pic Exomoon Limits3
+contrast imager (Beuzit et al. 2019), provided in Table
+1. Following , we excluded earlier, less-precise data from
+the NACO (NAOS-CONICA) instrument (Lenzen et al.
+2003; Rousset et al. 2003). Together, these datasets pro-
+vide a high-precision foundation for our orbital analysis.
+2.1.SPHERE
+Observations ofβPictoris b were acquired with the
+Spectro-Polarimetric High-contrast Exoplanet Research
+(SPHERE) instrument (Beuzit et al. 2019). SPHERE
+is equipped with the Infra-Red Dual-band Imager and
+Spectrograph (IRDIS, Dohlen et al. 2008) and the In-
+tegral Field Spectrograph (IFS, Claudi et al. 2008), en-
+abling simultaneous high-contrast imaging. We make
+use of 34 SPHERE astrometric measurements from three
+different programs.
+23 SPHERE measurements were obtained between
+December 2014 and September 2018 as part of the
+SHINE Guaranteed Time Observations survey and are
+reported in Lagrange et al. (2019). These observa-
+tions provided the pre-conjunction orbital coverage of
+the planet and used the IRDIFS mode, with IRDIS op-
+erating in the H2 (central wavelength = 1.59µm; width
+= 0.055µm) and H3 (central wavelength = 1.67µm;
+width = 0.056µm) narrow bands, except in December
+2014 when the K1 (central wavelength = 2.1025µm;
+width = 0.102µm) and K2 (central wavelength = 2.255
+µm; width = 0.109µm) filters were used. An additional
+5 measurements were obtained after conjunction as part
+of the SHINE follow-up program and are reported in La-
+grange et al. (2020). These observations were taken in
+October 2018 and December 2018 using the IRDIFS con-
+figuration (IRDIS H2/H3 + IFS in YJ mode, 0.95–1.35
+µm,R≈54), and March 2019 using the IRDIS K1/K2
+filters with the IFS in YH mode (0.95–1.65µm,R≈33).
+For the March 2019 epoch, only IFS yielded a usable
+measurement due to IRDIS saturation. The final 6
+observations of the system were obtained under a PI
+program led by Lagrange et al. (2020), all using the
+H2/H3 + YJ setup as in the SHINE observations. These
+measurements were taken in November 2019, December
+2019, and February 2020.
+All SPHERE observations followed established reduc-
+tion techniques outlined in Chauvin et al. (2017) and
+Delorme et al. (2017). Specifically, the speckle calibra-
+tion tool (SpeCal) developed for the SPHERE instru-
+ment by Galicher et al. (2018) was used in the reduction
+process to retrieve the position and brightness informa-
+tion of the identified point sources.
+2.2.GRA VITY
+The most important observations for our analy-
+sis (with the greatest ability to constrain exomoons)
+were taken with the GRA VITY instrument (GRA V-
+ITY Collaboration et al. 2017) on the Very Large Tele-
+scope Interferometer (VLTI) at ESO’s Paranal Obser-
+vatory in Chile. GRA VITY collects K-band spectro-
+interferometric data and can achieve precise astrometric
+measurements with uncertainties ranging from 20−150
+µas for directly imaged planets.
+We use GRA VITY K band observations ofβPictoris
+b and c . The observations collected by Lagrange et al.
+(2020) took place on six nights between September 22,
+2018, and February 9, 2020. Three of the observations
+were obtained in the medium-resolution (R = 500) mode
+of the GRA VITY spectrometer, and two were obtained
+in the high-resolution mode (R = 4000). On January
+7th, both modes were used. Following Lacour et al.
+(2021), we exclude two of the GRA VITY observations of
+Lagrange et al. (2020) (MJDs 58738.267 and 58855.198)
+from our analysis due to poor coherence time and lim-
+ited exposures. We also include in our analysis addi-
+tional observations collected by Lacour et al. (2020a)
+as part of the ExoGRA VITY program (Lacour et al.
+2020b) on the night of January 6, 2021 forβPictoris c
+and the nights of January 7 and August 27, 2021, forβ
+Pictoris b. The astrometric calibration from both La-
+grange et al. (2020) and Lacour et al. (2021) underwent
+processing using version 1.5.0 of the ESO GRA VITY
+pipeline (Lapeyrere et al. 2014).
+3.ANALYSIS
+3.1.Brightness Ratio
+We first investigated whether we must account for
+light emitted by any moon in our astrometric analy-
+sis. When we measure the astrometric wobble for two
+unresolved luminous sources, the motion of the “pho-
+tocenter,” the center of flux of the two sources, will be
+smaller than the motion of either source. If a moon con-
+tributes significant flux compared to its host planet and
+we did not account for that in our analysis, we would
+infer an incorrect mass measurement or upper limit for
+that moon.
+To evaluate the importance of this effect, we used the
+predicted K-band brightness of gas giant planets from
+ATMO evolutionary models (Phillips et al. 2020). For
+the moons, we took the K-band brightness of 23 Myr old
+gas giant planets with masses ranging from 0.5M Jup to
+10M Jup. We then compared these values to the pre-
+dicted K-band brightness of a 10M Jup planet at that
+age, analogous toβPic b. The resulting brightness ra-
+tios are shown in Figure 1 as a function of the moon
+mass. Even for a 2 M Jup moon, we predict a bright-
+ness ratio<5%. This corresponds to a moon-planet
+mass ratio of∼20%, larger than any found within our
+own solar system. We therefore predict that any moons
+aroundβPic b will contribute negligible brightness, and
+that the photocenter’s motion will track the position of
+the planet. We proceed under the assumption that any
+exomoon is effectively dark, minimizing its impact on
+the measured astrometric motion.
+3.2.Two Planet Model and Likelihood Function
+
+<<<PAGE 4>>>
+4Macias et al.
+T able 1.Astrometric Measurements of Beta Pic b and c
+Planet Name Epoch (MJD) RA (mas) RA Err (mas) DEC (mas) DEC Err (mas) Instrument Correlation
+Beta Pic b 56999.23 -188.44 4.4 -294.74 3.99 SPHERE 0
+Beta Pic b 57058.09 -178.94 2.85 -279.85 2.81 SPHERE 0
+Beta Pic b 57058.09 -180.52 1.17 -282.71 1.17 SPHERE 0
+Beta Pic b 57296.34 -143.09 3.14 -219.89 2.98 SPHERE 0
+Beta Pic b 57296.34 -144.9 1 -217.92 1 SPHERE 0
+Beta Pic b 57356.25 -132.93 4.23 -202.45 3.98 SPHERE 0
+Beta Pic b 57356.25 -134.32 1.52 -202.08 1.52 SPHERE 0
+Beta Pic b 57382.18 -128.07 1.75 -196.38 1.75 SPHERE 0
+Beta Pic b 57382.18 -130.96 3.35 -195.71 3.31 SPHERE 0
+Beta Pic b 57407.12 -124.33 2.66 -190.28 2.56 SPHERE 0
+Beta Pic b 57407.12 -125.1 1.73 -187.57 1.73 SPHERE 0
+Beta Pic b 57474.02 -112.57 1.48 -168.41 1.48 SPHERE 0
+Beta Pic b 57474.02 -113.69 2.62 -168.9 2.55 SPHERE 0
+Beta Pic b 57494 -110.39 3.79 -164.8 3.57 SPHERE 0
+Beta Pic b 57494 -106.79 1.7 -161.71 1.7 SPHERE 0
+Beta Pic b 57647.38 -83.45 2.11 -116.3 2.11 SPHERE 0
+Beta Pic b 57647.38 -79.507 3.81 -116.28 3.76 SPHERE 0
+Beta Pic b 57675.35 -77.605 3.56 -108.2 3.51 SPHERE 0
+Beta Pic b 57675.36 -76.58 2.54 -111.22 2.54 SPHERE 0
+Beta Pic b 57710.25 -63.92 4.73 -83.45 4.73 SPHERE 0
+Beta Pic b 57710.27 -77.255 10.7 -105.18 10.29 SPHERE 0
+Beta Pic b 58378.2 69.87 5.08 123.143 5 SPHERE 0
+Beta Pic b 58378.35 68.54 2.92 127.13 2.92 SPHERE 0
+Beta Pic b 58383.378 68.47 0.05 126.38 0.07 GRA VITY -0.86
+Beta Pic b 58409.31 74.61 1.64 135.05 1.64 SPHERE 0
+Beta Pic b 58409.38 77 3.57 138.44 4.04 SPHERE 0
+Beta Pic b 58467.19 85.57 1.22 152.36 1.22 SPHERE 0
+Beta Pic b 58467.2 85.93 4.12 154.926 3.75 SPHERE 0
+Beta Pic b 58552.99 105.93 1.59 183.03 1.59 SPHERE 0
+Beta Pic b 58790.3 142.55 2.16 248.71 2.27 SPHERE 0
+Beta Pic b 58790.3 143.83 1.07 246.24 1.07 SPHERE 0
+Beta Pic b 58796.17 145.514 0.108 248.589 0.045 GRA VITY -0.85
+Beta Pic b 58798.356 145.65 0.03 249.21 0.09 GRA VITY -0.44
+Beta Pic b 58839.19 153.56 2.42 258.71 2.57 SPHERE 0
+Beta Pic b 58839.2 151.25 1.17 259.87 1.17 SPHERE 0
+Beta Pic b 58855.065 155.41 0.15 264.33 0.29 GRA VITY -0.71
+Beta Pic b 58887.07 159.91 0.94 270.94 0.94 SPHERE 0
+Beta Pic b 58887.07 161 1.83 272.59 1.92 SPHERE 0
+Beta Pic b 58889.139 160.96 0.06 273.41 0.13 GRA VITY -0.56
+Beta Pic b 59221.238 211.59 0.02 352.62 0.05 GRA VITY -0.1
+Beta Pic b 59453.395 240.63 0.09 397.89 0.04 GRA VITY -0.91
+Beta Pic c 58889.14 -67.36 0.17 -112.59 0.24 GRA VITY -0.8
+Beta Pic c 58891.065 -67.67 0.11 -113.2 0.19 GRA VITY -0.54
+Beta Pic c 58916.043 -71.88 0.07 -119.6 0.14 GRA VITY -0.52
+Beta Pic c 59220.163 -52 0.2 -80.86 0.34 GRA VITY -0.26
+To fit the SPHERE and GRA VITY data, we con-
+structed a model capable of accurately predicting the
+positions ofβPic b and c over time. To create this
+initial two-planet model, we adapted code from the
+Orbitize!Python package to simultaneously calculate
+the right ascension (RA) and declination (DEC) offsets
+of both planets with respect to the star. The model also
+accounts for the astrometric perturbation onβPic b
+caused by its inner companion,βPic c, following the .
+We constructed a log likelihood function to compare
+the archival data (see Section 2) with this model. Max-
+imizing the log likelihood (lnL) determines the best-
+fit orbital parameters forβPic b and c, and exploring
+the parameter space constrains the plausible parameter
+space for any orbiting exomoon. to adjust the GRA V-
+ITY uncertainties such that:
+σRA,b,gravity =jσ RA,b,gravity,reported
+σRA,c,gravity =jσ RA,c,gravity,reported
+σDEC,b,gravity =jσ DEC,b,gravity,reported
+σDEC,c,gravity =jσ DEC,c,gravity,reported
+(1)
+wherejis the multiplicative jitter factor, andσrep-
+resents uncertainties in either RA, or DEC for either
+planet b (βPic b) or planet c (βPic c).
+The log likelihood consists of three components: the
+contributions from observations ofβPic b and c (lnL b
+and lnL c), and Gaussian priors on various parameters,
+
+<<<PAGE 5>>>
+Beta Pic Exomoon Limits5
+T able 2.Fit parameters and priors for both the “Two Planet” model and the “Two Planet & Moon” model
+Parameter Two Planet Model Two Planet & Moon Model
+m∗ (M⊙)U(1.19,1.97)U(1.19,1.97)
+Parallax (mas)U(48.76,54.10)× N(51.44,0.12)U(48.76,54.10)× N(51.44,0.12)
+Error Scale FactorU(0,10)U(0,10)
+SPHERE Offset RA (mas)U(−3,3)U(−3,3)
+SPHERE Offset DEC (mas)U(−3,3)U(−3,3)
+Orbital Parameters for Beta Pic b
+mb (MJup)U(5,15)× N(10.02,0.29)U(5,15)× N(10.02,0.29)
+Semi-Major Axis (au)U(9.63,11.22)U(9.63,11.22)
+EccentricityU(0,0.296)U(0,0.296)
+cos(Inclination)U(0.0126,0.0236)U(0.0126,0.0236)
+Argument of Periastron (deg)U(181.0,283.7)U(181.0,283.7)
+Longitude of Ascending Node (deg)U(31.43,32.12)U(31.43,32.12)
+Epoch of Periastron PassageU(0.695,0.973)U(0.695,0.973)
+Orbital Parameters for Beta Pic c
+mc (MJup)U(5,15)× N(9.03,0.08)U(5,15)× N(9.03,0.08)
+Semi-Major Axis (au)U(1.66,3.03)U(1.66,3.03)
+EccentricityU(0,0.65)× N(0.231,0.012)U(0,0.65)× N(0.231,0.012)
+cos(Inclination)U(−0.0407,0.0843)U(−0.0407,0.0843)
+Argument of Periastron (deg)U(0,102.4)U(0,102.4)
+Longitude of Ascending Node (deg)U(29.55,33.39)U(29.55,33.39)
+Epoch of Periastron PassageU(0.417,0.916)U(0.417,0.916)
+Orbital Parameters for Beta Pic b Moon
+mmoon (MJup) –U(0,10)
+Period (days) –U(0,1500)
+cos(Inclination) –U(−1,1)
+Longitude of Ascending Node (deg) –U(0,360)
+Epoch of Periastron Passage –U(0,1)
+including the parallax and the masses and eccentricities
+of the planets. The final form of lnLis expressed as:
+lnL= (lnL b + lnL c) + (priors) (2)
+where lnL b and lnL c are defined as:
+lnL b =−0.5
+X
+i
+ 
+1
+1−ρ 2
+b,i
+! "
+(RAb,i −RA model,b,i)2
+σ2
+RA,b,i
++ (DECb,i −DEC model,b,i)2
+σ2
+DEC,b,i
+− 2ρb,i(RAb,i −RA model,b,i)(DECb,i −DEC model,b,i)
+σRA,b,iσDEC,b,i
++ 2 lnσRA,b,iσDEC,b,i + ln (1−ρ 2
+b,i)
+#
+(3)
+lnL c =−0.5
+X
+i
+ 
+1
+1−ρ 2
+c,i
+! "
+(RAc,i −RA model,c,i)2
+σ2
+RA,c,i
++ (DECc,i −DEC model,c,i)2
+σ2
+DEC,c,i
+− 2ρc,i(RAc,i −RA model,c,i)(DECc,i −DEC model,c,i)
+σRA,c,iσDEC,c,i
++ 2 lnσRA,c,i σDEC,c,i + ln (1−ρ 2
+c,i)
+#
+(4)
+In both Equations 3 and 4, the summations are taken
+over all observational astrometric epochsi. RA b and
+DECb in Equation 3 refer to the observed astromet-
+ric offsets in right ascension and declination forβPic
+b, while RA c and DEC c in Equation 4 refer to the
+same forβPic c. RA model, b , DEC model, b , RA model, c ,
+DECmodel, c correspond to the predicted positions ofβ
+Pic b and c.ρ b andρ c are the correlation coefficients
+for the astrometric measurements, andσ RA,b,σ RA,c,
+σDEC,b , andσ DEC,c are the uncertainties in right ascen-
+sion and declination for planet b and c . We note that
+theσparameters in these equations are scaled by the
+“jitter” term described in Equation 1. We are not aware
+of any derivation of the normalized likelihood function
+for data points with correlated uncertainties (allowing
+
+<<<PAGE 6>>>
+6Macias et al.
+Figure 1.Relationship between the K-band brightness ratio
+ofβPic b and a hypothetical moon as a function of the
+moon’s mass. At lower moon masses, the K-band brightness
+contribution of the hypothetical moon is minimal compared
+to its host planet, motivating our assumption that any moons
+in the system are dark compared to the host planet.
+us to fit for the best scaling factor for the correlated
+GRA VITY uncertainties), so we perform this calcula-
+tion ourselves and describe it in detail in Appendix A.
+We imposed informative Gaussian priors based on
+pulsation-corrected R V data from Lagrange (2019) on
+the masses ofβPic b (0.00956±2.8×10 −4 M⊙) and c
+(0.00862±7.6×10 −5 M⊙), as well as the eccentricity of
+βPic c (0.231±0.012). Additionally, we imposed the
+same Gaussian prior on the star’s trigonometric paral-
+lax as Lacour et al. (2021) (51.44±0.12 mas). For all
+other parameters, we used uniform priors with bound-
+aries chosen either based on physical constraints (e.g.,
+masses must be non-negative) or so that the posterior
+distributions for well-constrained parameters remain far
+from the boundaries. In total, our “Two Planet” model
+comprises a total of 19 free parameters. The full list of
+fitted parameters and priors we used is summarized in
+Table 2, and the best fit model is compared to observa-
+tions in Figure 2.
+3.3.Two Planet & Moon Model
+To model the astrometric signature of a hypotheti-
+cal dark exomoon orbitingβPic b, we extend the two-
+planet model described in Section 3.2 by adding a Kep-
+lerian companion on a bound orbit aroundβPic b. We
+used the same log likelihood functions as described in
+Equations 1 through 4, but include an additional astro-
+metric perturbation term representing the motion ofβ
+Pic b about the barycenter of theβPic b-moon system.
+To do this, we usedorbitizeto generate Keplerian po-
+sition offsets (∆RA, ∆DEC) for an exomoon orbitingβ
+Pic b, where its gravitational influence shifts the appar-
+ent position ofβPic b by:
+∆RACOM =− mmoon∆RAmoon
+mb +m moon
+∆DECCOM =− mmoon∆DECmoon
+mb +m moon
+(5)
+wherem moon andm b are the moon and planet masses,
+and ∆RA COM and ∆DEC COM represent the astromet-
+ric offsets of the planet relative to the planet-moon cen-
+ter of mass (COM). These offsets are proportional to
+the moon’s position offsets (∆RA moon,∆DEC moon) and
+scale by the ratio of the moon’s mass to the planet’s
+mass (mmoon/mb).
+Figure 2.The predicted separation of bothβPic b and
+c in our best-fit 2-planet model (solid grey curves), along
+with the actual observed separations. The dark purple points
+represent GRA VITY observations, while the lighter purple
+points represent SPHERE observations.
+We restricted our analysis to moons on circular orbits
+aroundβPic b and confined the moon’s orbital period
+to non-negative dynamically stable values based on the
+analysis of Domingos et al. (2006). In particular, the up-
+
+<<<PAGE 7>>>
+Beta Pic Exomoon Limits7
+per limit was derived based on the stability of prograde
+satellites, which must remain within:
+Rmax,p =R Hill ×0.4895 (1−1.0305e p −0.2738e m) (6)
+whereR max,p is the maximum prograde stable orbital
+radius,R Hill is the Hill sphere radius,e p is the planet’s
+orbital eccentricity, ande m is the exomoon’s orbital ec-
+centricity (assumed to be zero). ForβPic b, the pro-
+grade stability limit corresponds to an orbital radius of
+0.532 AU and an orbital period of 1451.64 days. Based
+on these calculations, we impose a uniform prior on the
+exomoon’s orbital period with a lower bound defined by
+the Roche limit and an upper limit of 1500 days (which
+we truncated to the stability limit in post-processing).
+Overall, the addition of a potential exomoon requires
+five extra free parameters (moon mass, orbital period,
+inclination, position angle, and a reference time for the
+orbit), bringing the total number of fitted parameters
+from 19 in the two-planet model to 24 in the two-planet
+& moon model (see Table 2).
+3.4.Fitting
+We fitted the data with our astrometric models in
+three steps to determine both best-fit parameters and
+uncertainties. First, we performed an exploratory
+MCMC analysis on our “Two Planet” model using
+the Python implementation of the differential evolution
+MCMC sampler (edmcmc, Vanderburg 2021). This anal-
+ysis successfully constrained the orbital parameters for
+the two-planet system, but was slow to achieve conver-
+gence due to the high-dimensional parameter space and
+the challenging covariances between different parame-
+ters.
+Second, we used the best-fit values and posterior dis-
+tributions for the orbital parameters to determine the
+prior ranges for a fit with pocoMC (Karamanis et al.
+2022a,b), a Python implementation of a Preconditioned
+Monte Carlo algorithm. PocoMC uses machine learning
+to learn approximations of the posterior distributions
+that can substantially increase the efficiency of exploring
+parameter space. The result is a dramatic increase in the
+convergence speed for complex models like ours, partic-
+ularly when incorporating the additional complexity of
+the exomoon parameters. We ran PocoMC on our “Two
+Planet” model usingn active = 600 active particles and
+required at leastn effective = 2000 effective particles per
+update step. Convergence was determined by monitor-
+ing the global effective sample size (ESS) and ensuring
+that it reaches a total ofn total = 480,500 independent
+samples, indicating that the parameter chains are well-
+mixed and representative of the posterior distribution.
+We also examined the corner plot for each parameter,
+confirming sufficient sampling in the two-planet model.
+The model aligns well with the observed data (as shown
+in Figure 2), and our two-planet posterior distributions
+closely match those reported by Lacour et al. (2021). A
+full list of the best-fit parameters is given in Table 3.
+Finally, we initialized a new PocoMC fit for our “Two
+Planet & Moon” model to establish upper limits for the
+mass of a putative moon orbitingβPic b. For this
+fit, we adopted the same configuration as in the “Two
+Planet” model, usingn active = 600 active particles and
+neffective = 2000 effective samples. The final run con-
+sisted of a total ofn total = 468,000 independent samples.
+The best-fit parameters for the “Two Planet & Moon”
+model are also given in Table 3.
+4.RESULTS
+4.1.Constraints on Exomoons AroundβPic b
+First, we inspected the results of our astrometric fits
+to assess whether there is any evidence for an exomoon
+orbitingβPic b. When we compare the residuals of
+our best-fit “Two Planet” model to the results of our
+“Two Planet & Moon” model, as shown in Figure 3, we
+find that there are no significant remaining signals in
+the residuals of our two-planet fit. We also find that
+the posterior probability distribution for the mass of a
+moon in the “Two Planet & Moon” model is consistent
+with 0, indicating no significant signal of a moon in our
+dataset. We therefore proceed to investigate the upper
+limits on the mass of any putative exomoons orbitingβ
+Pic b from our “Two Planet & Moon” fits.
+We show the two-dimensional posterior distribution
+of moon mass and orbital period, marginalized over all
+possible planetary and exomoon orbits, in Figure 4. In
+this figure, the color represents the posterior probabil-
+ity density, and we show corresponding 1σ, 2σ, and 3σ
+confidence limits as solid lines. We find that for short
+orbital periods (≈50 days), our analysis places an upper
+limit on exomoon masses of approximately≈180M ⊕
+(0.6M Jup) with 95% confidence. At intermediate pe-
+riods near 300 days, we rule out companions exceeding
+≈65M ⊕ (0.2M Jup). At longer orbital periods, we place
+the tightest constraints on the moon mass: we constrain
+the maximum allowed mass to≈50M ⊕ (0.15M Jup) at
+700 days and≈30M ⊕ (0.1M Jup) at 1,100 days. At the
+1σlevel, our constraints rule out exomoons more mas-
+sive than∼0.05M Jup (∼16M ⊕) across most of the
+orbital period range. At some orbital periods around
+∼300-500 days, we have lower sensitivity to exomoons,
+likely due to the relatively sparse observing cadence of
+the GRA VITY observations. Our 1σ, 2σ, and 3σupper
+limits on the masses of companions toβPic b are listed
+in Table 5.2.
+4.2.Orbital Parameters forβPic b and c
+Our fits also allow us to investigate the sensitivity of
+theβPic orbital parameters to different assumptions
+and noise models. The results of our fits are summarized
+in Table 3. In general, our orbital parameters forβPic b
+and c are consistent with the values reported by Lacour
+et al. (2021). We also find good agreement between
+
+<<<PAGE 8>>>
+8Macias et al.
+Figure 3.Right ascension and declination residuals for the GRA VITY observations ofβPictoris b and c with respect to our
+best-fit two-planet model. The top row presents the residuals forβPictoris b, while the bottom row displays the corresponding
+residuals forβPictoris c. The gray lines represent 1000 randomly selected posterior draws from our “Two Planet & Moon” fit.
+We see no correlated residuals to the “Two Planet” model indicative of an un-modeled signal, and we see no coherent pattern
+to the posterior draws for planet b, which includes hypothetical lunar perturbations. We note that the posterior samples ofβ
+Pic c show some evidence for bimodality due to the relatively sparse sampling of the planet’s orbit with GRA VITY.
+the orbital parameters determined by our “Two Planet”
+model and our “Two Planet & Moon” model, indicating
+that the presence of an unknown moon aroundβPic b
+would likely not bias our understanding of the planet’s
+orbit.
+5.DISCUSSION
+5.1.Constraints on Exomoons and Binary Planets in
+Context
+In this work, we derive the first astrometric limits on
+exomoons and binary planets aroundβPic b. The lim-
+its that we achieve are driven by the ultra-precise as-
+trometric measurements from the GRA VITY interfer-
+ometer, which achieves 1-2 orders of magnitude better
+precision than traditional adaptive optics imaging. Our
+limits are strongest at long orbital periods, as expected
+due to the amplitude of astrometric perturbations scal-
+ing linearly with the semimajor axis of the companion.
+At the longest-period stable moon orbits, we can rule
+out moons more massive than about 30 Earth masses,
+or about twice the mass of Neptune.
+The moons that we could detect in theβPic system
+are not like the moons in our own solar system. The
+Solar System’s most massive moon is Ganymede, which
+has a mass 50 times smaller than that of Earth, and
+1500 times smaller than the lowest mass moon we can
+rule out at 3σaroundβPic b. However, the moons and
+binary planets that we could detect in theβPic system
+have similar mass ratios to some of the Solar System
+moons. At long orbital periods, we could detect moons
+with masses of about 1%, which is smaller than both the
+Pluto/Charon and Earth/Moon mass ratios. It is worth
+
+<<<PAGE 9>>>
+Beta Pic Exomoon Limits9
+T able 3.Best-fit parameters and uncertainties for theβPictoris planets. We compare the “Two Planet” model, the “Two
+Planet & Moon” model, and for reference, published results from Lacour et al. (2021).
+Parameter Two Planet System Two Planet & Moon System Lacour et al. (2021)
+mb (MJup) 10.02 +0.29
+−0.29 10.02+0.29
+−0.29 10
+mc (MJup) 9.030 +0.080
+−0.079 9.030+0.079
+−0.079 9.15+1.08
+−1.06
+m∗ (M⊙) 1.701 +0.022
+−0.021 1.710+0.025
+−0.024 1.73+0.03
+−0.02
+Parallax (mas) 51.39 +0.11
+−0.12 51.40+0.12
+−0.11 51.44+0.12
+−0.12
+Error Scale Factor 1.31 +0.36
+−0.21 1.38+0.40
+−0.24 –
+SPHERE Offset RA (mas) -0.10 +0.33
+−0.33 -0.09+0.33
+−0.33 –
+SPHERE Offset DEC (mas) 0.06 +0.35
+−0.35 0.07+0.35
+−0.35 –
+Orbital Parameters for Beta Pic b
+Semi-Major Axis (au) 10.03 +0.11
+−0.10 10.02+0.11
+−0.10 9.95+0.03
+−0.02
+Eccentricity 0.1094 +0.0077
+−0.0077 0.1072+0.0086
+−0.0091 0.106+0.004
+−0.004
+Inclination (deg) 88.991 +0.014
+−0.014 88.995+0.016
+−0.015 88.99+0.01
+−0.01
+Argument of Periastron (deg) 212.5 +7.2
+−6.4 211.1+7.3
+−6.6 203.2+2.8
+−3.2
+Longitude of Ascending Node (deg) 31.773 +0.015
+−0.015 31.771+0.017
+−0.017 31.80+0
+−0.01
+Epoch of Periastron Passage 0.774 +0.018
+−0.017 0.769+0.019
+−0.018 0.730+0.009
+−0.010
+Orbital Parameters for Beta Pic c
+Semi-Major Axis (au) 2.688 +0.083
+−0.086 2.66+0.11
+−0.12 2.61+0.06
+−0.06
+Eccentricity 0.235 +0.012
+−0.012 0.234+0.012
+−0.012 0.32+0.03
+−0.02
+Inclination (deg) 88.94 +0.14
+−0.14 88.92+0.14
+−0.15 88.92+0.10
+−0.10
+Argument of Periastron (deg) 61 +8.5
+−11 57+12
+−89 60.8+4.2
+−3.7
+Longitude of Ascending Node (deg) 31.18 +0.068
+−0.057 31.21+0.44
+−0.074 31.07+0.05
+−0.04
+Epoch of Periastron Passage 0.825 +0.020
+−0.026 0.82+0.028
+−0.27 0.708+0.012
+−0.012
+noting that both the Earth/Moon and Pluto/Charon
+systems are believed to have formed via collision and
+capture of lunar material (Denton et al. 2025; Canup &
+Asphaug 2001); any moons we could detect might likely
+have formed similarly in their systems.
+5.2.Are we sensitive to moons or binary planets?
+Given that we are only sensitive 2 to Neptune-mass
+companions and larger, it is worth asking: are the ob-
+jects that we could detect moons, or should they instead
+be considered binary planets? The classification of a
+satellite as a moon or a binary planet remains an open
+question, particularly when considering systems beyond
+our solar system. A simple way to distinguish moons
+and binary planets would be to choose a mass ratio be-
+tween the two orbiting objects above which an orbiting
+body is a binary planet, and below which it is a moon.
+Such a strategy has been applied to the IAU definition of
+a planet (Lecavelier des Etangs & Lissauer 2022), which
+states that the mass ratio must be large enough that
+stable orbits can exist around the L4 and L5 Lagrange
+points:≈1/25, or more precisely 2/(25 +
+√
+621). If we
+were to, by extension, apply this definition to distinguish
+moons from binary planets, our analysis is sensitive to
+some exomoons aroundβPic b at orbital periods longer
+than about 100 days.
+However, there is no official IAU definition for a moon,
+so instead, other criteria have been utilized. According
+to one commonly cited definition from Stern & Levi-
+son (2002), a moon is a satellite with a mass and semi-
+2 .
+major axis small enough to keep the center of mass of
+the moon-planet system within the radius of the pri-
+mary planet. In contrast, a binary planet is defined as
+a system in which the companion is sufficiently massive
+for the center of mass to extend beyond the primary
+planet. By this definition, we are not sensitive to ex-
+omoons aroundβPic b. We show the Stern & Levi-
+son (2002) boundary between moons and binary planets
+in Figure 4 as a solid green line. This boundary falls
+slightly below our 1σcontour at all orbital periods and
+scales in a similar manner with orbital period to our sen-
+sitivity limits. This similar scaling is expected, since the
+Stern & Levison (2002) definition of a moon and the am-
+plitude of astrometric signals both depend on the center
+of mass motion of the planet.
+However, both of these definitions have drawbacks.
+For instance, although Charon formally meets the re-
+quirement for a binary planet from both of these two
+definitions, it is still commonly referred to as a moon
+of Pluto. Moreover, under the Stern & Levison (2002)
+definition, the same object at different orbital separa-
+tions may be either a moon or a binary planet. Given
+orbital evolution, this implies that an orbiting compan-
+ion may be both a moon and a binary planet at differ-
+ent times in the system’s history. For instance, while
+the Earth/Moon system currently meets the Stern &
+Levison (2002) criterion for a moon, after the Moon’s
+semimajor axis has increased by about 40% due to tidal
+evolution, it would by this definition formally become a
+binary planet. It is also plausible that because planet
+radii contract over time, a young planet/moon system
+may evolve into a binary system as the planet radius
+becomes small enough that it does not encompass the
+
+<<<PAGE 10>>>
+10Macias et al.
+Figure 4.Upper mass limits for a potential lunar companion toβPic b as a function of orbital period. The color is proportional
+to the density of MCMC posterior samples, and the solid curves indicate the 68%, 95%, and 99.7% confidence intervals. The
+upper panelcovers longer orbital periods (≲1450 days, within the dynamical stability limit), where companions more massive
+than∼0.5M Jup (∼60M ⊕) are excluded. The dashed line marks the Earth–Moon mass ratio scaled toβPic b, and the
+solid green curve shows the moon/binary planet boundary from Stern & Levison (2002), which marks the theoretical separation
+between large moons and binary planetary systems based on mass ratios and orbital stability criteria. Thelower panelzooms
+in on short orbital periods (≲50 days), where the constraints are weaker. The dashed line indicates the Pluto–Charon mass
+ratio, while the solid green curve again shows the Stern & Levison (2002) moon/binary planet boundary.
+
+<<<PAGE 11>>>
+Beta Pic Exomoon Limits11
+Orbital Period (d) 68% (M Jup) 95% (M Jup) 99.7% (M Jup)
+2.424749 1.306464 3.461267 5.558522
+7.2742474 0.853945 2.157875 3.674100
+12.123745 0.485129 1.122373 2.067631
+16.973244 0.336653 0.734944 1.370374
+21.822742 0.274056 0.590851 1.096990
+T able 4.Upper limits on the mass of exomoons and binary
+planets aroundβPic b as a function of orbital period. The
+full table is available in the online journal.
+system’s center of mass. Ultimately, a precise distinc-
+tion between moons and binary planets will likely have
+to wait until astronomers have a better understanding
+of the broader population beyond the solar system.
+5.3.Prospects for Improved Exomoon Searches in the
+Future
+As discussed in the preceding subsections, exomoon
+detection is still in its early stages, and we are not yet
+sensitive to Solar System-like moons aroundβPic b.
+It is therefore worth considering whether a pathway ex-
+ists to detecting smaller moons around directly imaged
+planets using astrometry or other techniques.
+There is already good potential for improvement to as-
+trometric moon detection with existing facilities by col-
+lecting additional data. For example, our dataset only
+includes 7 GRA VITY observations ofβPic b. Typi-
+cal datasets used to search for planets have consider-
+ably more observations; for instance, Sahlmann et al.
+(2013) reported a planet candidate with 25 astrometric
+observations, and often planet discoveries using the ra-
+dial velocity method have hundreds or thousands of ob-
+servations (e.g. Feng et al. 2017). If more observations
+with GRA VITY were collected with the same observ-
+ing strategy, we could plausibly expect the sensitivity
+to exomoons to improve by a factor of a few.
+Another opportunity for improving sensitivity with as-
+trometry will come from the planned GRA VITY+ up-
+grade to the GRA VITY interferometer. This upgrade
+will significantly enhance astrometric precision, making
+it possible to routinely achieve 10–30µas level uncer-
+tainties (Bourdarot et al. 2022). Compared to our exist-
+ing dataset, which has a median uncertainty of 70µas
+and a mean uncertainty of 100µas, this upgrade could
+give an order-of-magnitude improvement in sensitivity.
+Since we are currently sensitive to≈30M ⊕ moons, an
+order of magnitude improvement would give sensitivity
+to moons as low as a few Earth masses at long periods.
+It will also be possible to probe a larger parameter
+space by combining astrometric observations with other
+techniques, in particular radial velocities (e.g. Vander-
+burg et al. 2018; Lazzoni et al. 2022; Ruffio et al. 2023).
+Even though both radial velocities and astrometry probe
+the “wobble” of the planet due to the moon, the signal
+amplitude of an astrometric orbit scales proportionally
+to the moon’s semimajor axisa, while the amplitude of
+a radial velocity orbit scales witha −1/2. Therefore, ra-
+dial velocities are much more sensitive to short-period
+moons, while astrometry is more sensitive to long-period
+moons. Recently, Kenworthy et al.in prepreported
+the first constraints on exomoons aroundβPic b using
+radial velocity observations, achieving 350m s −1 preci-
+sion and demonstrating sensitivity to sub-Saturn mass
+moons at short orbital periods. Overall, combining these
+short-period radial velocity constraints with strong as-
+trometric constraints on long-period moons is a promis-
+ing path forward to searching for moons at all orbital
+separations around directly imaged planets. This will
+be especially important as the next generation of high-
+resolution spectrographs on 30m class telescopes could
+achieve radial velocity precisions of order 10-40 m s −1,
+sufficient sensitivity to detect moons with mass ratios as
+low as 10 −4 at short orbital periods (Ruffio et al. 2023).
+Both of these techniques could considerably improve
+as new telescopes are commissioned. Vanderburg et al.
+(2018) pointed out the opportunity to make extremely
+precise radial velocity observations of directly imaged
+planets with 30-meter class telescopes, where the im-
+proved angular resolution will dramatically improve the
+signal-to-noise ratio of planetary spectra. This could
+improve typical radial velocity precision from hundreds
+of meters per second to fewm s −1 precision like that
+achieved on stars today. On longer timescales, improv-
+ing the capabilities of optical long-baseline interferom-
+etry could also aid in exomoon detection. For exam-
+ple, adding a fifth Unit Telescope to the VLTI (with a
+longer baseline) could considerably improve the angu-
+lar resolution and astrometric precision of a successor
+to GRA VITY.
+6.CONCLUSIONS
+In this work, we used astrometric measurements from
+the GRA VITY interferometer and SPHERE imaging to
+place constraints on the presence of exomoons aroundβ
+Pic b. Our conclusions can be summarized as follows:
+•For short orbital periods (≈50 days), we exclude
+moons more massive than≈180M ⊕ (0.6M Jup)
+at the 3σlevel.
+•At intermediate periods near 300 days, we rule out
+companions exceeding≈65M ⊕ (0.2M Jup) at the
+3σlevel.
+•At long orbital periods, we constrain the maxi-
+mum allowed mass to≈50M ⊕ (0.15M Jup) at
+700 days and≈30M ⊕ (0.1M Jup) at 1,100 days
+(both at the 3σlevel).
+These are the first astrometric limits on the presence
+of exomoons and binary planets in theβPictoris sys-
+tem, and to our knowledge, along with Kral et al. (2025),
+one of the first astrometric constraints on companions
+around any directly imaged planet. We find that exist-
+ing observations are primarily sensitive to systems where
+the center of mass is outside of the planet itself, which
+is a commonly cited criterion for distinguishing binary
+
+<<<PAGE 12>>>
+12Macias et al.
+planets from moons, (Stern & Levison 2002). However,
+these observations are sufficient to achieve sensitivity to
+moon/planet mass ratios smaller than that of the Earth
+and its moon, and increasing the number of GRA VITY
+observations could plausibly extend sensitivity to com-
+panions that are unambiguously moons.
+The derived astrometric limits highlight the power
+of astrometry in constraining exomoon orbital param-
+eters, particularly when combined with interferomet-
+ric measurements. Looking forward, synergy with fu-
+ture GRA VITY+ data and complementary R V measure-
+ments could further tighten constraints and enable con-
+fident detections of exomoons.
+ACKNOWLEDGMENTS
+We extend our gratitude to Sarah Blunt for her as-
+sistance in adapting code from theOrbitize!Python
+package to place constraints on exomoons in the Beta
+Pictoris system, and to Ellen Price for helpful advice on
+optimizing PocoMC. We also thank Pope Leo XIV for
+blessing an early draft of this manuscript, after which
+the final major bugs in our analysis were quickly re-
+solved. This research was funded by MIT’s Summer
+Research Program, the MIT Dean of Science Fellowship
+(Isabella Macias), and the National Science Foundation
+Graduate Research Fellowship under Grant No. 1745302
+(Sydney Jenkins). Andrew Vanderburg is supported as a
+Sloan Research Fellow. A portion of the simulations was
+performed on the MIT-PSFC partition of the Engag-
+ing cluster at the MGHPCC facility (www.mghpcc.org),
+funded by DoE grant number DE-FG02-91-ER54109.
+This publication acknowledges the use of data products
+from the GRA VITY instrument from the Very Large
+Telescope Interferometer (VLTI) at ESO’s Paranal Ob-
+servatory, Chile. This research has made use of the As-
+trophysics Data System, funded by NASA under Coop-
+erative Agreement 80NSSC21M0056.
+DATA A V AILABILITY
+The percentile data used to generate Figure 4 are in-
+cluded in this paper’s supplementary material. An ex-
+cerpt of the table is shown in Table 5.2.
+Facility:VLTI, VLT:Melipal
+Software:matplotlib (Hunter 2007), pocoMC (Kara-
+manis et al. 2022a,b), numpy (Oliphant 2006), edmcmc
+(Vanderburg 2021)
+
+<<<PAGE 13>>>
+Beta Pic Exomoon Limits13
+APPENDIX
+A.SCALING F ACTOR AND NORMALIZATION
+This appendix details the derivation of the form of the normalization of a likelihood function that includes correlations
+between observations in the RA and DEC directions. Including the normalization term in the likelihood function we
+use in our astrometric fits allows us to adjust the scale of the correlated GRA VITY uncertainties within the fit.
+A.1.Likelihood function
+We define the likelihood contributionL i associated with observationito be:
+Li =N ie−χ2
+i /2 (A1)
+whereNis a normalization constant andχ 2
+i is an generalization of the traditionalχ 2 statistic to include correlated
+uncertainties. In particular, we defineχ 2
+i as:
+χ2
+i = 1
+(1−ρ 2
+i )
+ 
+(RAi −RA model,i)2
+σ2
+RA,i
++ (DECi −DEC model,i)2
+σ2
+DEC,i
+− 2ρi(RAi −RA model,i)(DECi −DEC model,i)
+σRA,iσDEC,i
+!
+(A2)
+As in Section 3.2, we defineρ i to be the correlation coefficient between astrometric measurements in the RA
+direction and the DEC direction for observationi. Again, RA i and DEC i refer to our astrometric measurements in
+those directions, while RA model,i and DECmodel,i refer to our model astrometric measurements in those directions.
+As usual, to calculate the likelihoodLof all observations together, we take the products of their individual likelihood
+contributions:
+L=
+Y
+i
+Li (A3)
+A.2.Derivation of the Normalization constantN
+Because likelihood contributions are probabilities, they must integrate to 1 over all possible values of RAi and DECi:
+Z ∞
+−∞
+Z ∞
+−∞
+Li dRA i dDEC i =
+Z ∞
+−∞
+Z ∞
+−∞
+Nie−χ2
+i /2dRA i dDEC i = 1 (A4)
+We ensure this condition holds by evaluating the integral expression and solving for the normalization constantN i.
+We start by defining several constants and new variables for simplicity. In particular, we define:
+fi ≡ 1
+1−ρ 2
+i
+,∆r i ≡RA i −RA model,i,∆d≡DEC i −DEC modeli (A5)
+These allow us to rewrite our expression forχ 2
+i more compactly as:
+χ2
+i =f i
+ 
+∆r2
+i
+σ2
+RA,i
++ ∆d2
+i
+σ2
+DEC,i
+− 2ρi∆ri∆di
+σRA,iσDEC,i
+!
+(A6)
+We then define three more constants:
+k1,i ≡ fi
+2σ2
+RA,i
+, k 2,i ≡ fi
+2σ2
+DEC,i
+, k 3,i ≡ ρifi
+σRA,iσDEC,i
+(A7)
+and substitute them into our expression for the likelihood contribution:
+Li =N ie−k1,i∆r2
+i e−k2,i∆d2
+i ek3,i∆ri∆di (A8)
+Returning to the normalization condition, we write:
+Z ∞
+−∞
+Z ∞
+−∞
+Ld∆r d∆d=
+Z ∞
+−∞
+Z ∞
+−∞
+Nie−k1,i∆r2
+i e−k2,i∆d2
+i ek3,i∆ri∆di d∆ri d∆di = 1 (A9)
+
+<<<PAGE 14>>>
+14Macias et al.
+By evaluating the multivariate Gaussian integral, we obtain the condition:
+2Niπq
+4k1,ik2,i −k 2
+3,i
+= 1 (A10)
+Solving forN i:
+Ni =
+q
+4k1,ik2,i −k 2
+3,i
+2π (A11)
+Substituting our original definitions forf i,k 1,i,k 2,i, andk 3,i, we obtain:
+Ni = 1
+2πσRA,i σDEC,i
+p
+1−ρ 2
+i
+(A12)
+Including the normalization in this form leads to the log likelihood function we use in our modeling (Equations 3
+and 4).
+
+<<<PAGE 15>>>
+Beta Pic Exomoon Limits15
+REFERENCES
+Agnor, C. B., & Hamilton, D. P. 2006, Nature, 441, 192,
+doi: 10.1038/nature04792
+Agol, E., Jansen, T., Lacy, B., Robinson, T. D., &
+Meadows, V. 2015, ApJ, 812, 5,
+doi: 10.1088/0004-637X/812/1/5
+Barnes, J. W., & O’Brien, D. P. 2002, ApJ, 575, 1087,
+doi: 10.1086/341477
+Barr, A. C., & Bruck Syal, M. 2017, MNRAS, 466, 4868,
+doi: 10.1093/mnras/stx078
+Beuzit, J. L., Vigan, A., Mouillet, D., et al. 2019, A&A,
+631, A155, doi: 10.1051/0004-6361/201935251
+Bourdarot, G., Widmann, F., Eisenhauer, F., et al. 2022, in
+Proc. SPIE, Vol. 12183, Optical and Infrared
+Interferometry and Imaging VIII, 121830S,
+doi: 10.1117/12.2628785
+Cabrera, J., & Schneider, J. 2007, A&A, 464, 1133,
+doi: 10.1051/0004-6361:20066111
+Canup, R. M., & Asphaug, E. 2001, Nature, 412, 708,
+doi: 10.1038/35089010
+Canup, R. M., & Ward, W. R. 2006, Nature, 441, 834,
+doi: 10.1038/nature04860
+Chakraborty, J., & Kipping, D. 2022, Monthly Notices of
+the Royal Astronomical Society, 519, 2690,
+doi: 10.1093/mnras/stac3604
+Chauvin, G., Desidera, S., Lagrange, A. M., et al. 2017,
+A&A, 605, L9, doi: 10.1051/0004-6361/201731152
+Claudi, R. U., Turatto, M., Gratton, R. G., et al. 2008, in
+Society of Photo-Optical Instrumentation Engineers
+(SPIE) Conference Series, Vol. 7014, Ground-based and
+Airborne Instrumentation for Astronomy II, ed. I. S.
+McLean & M. M. Casali, 70143E, doi: 10.1117/12.788366
+Delorme, P., Meunier, N., Albert, D., et al. 2017, in
+SF2A-2017: Proceedings of the Annual meeting of the
+French Society of Astronomy and Astrophysics, ed.
+C. Reyl´ e, P. Di Matteo, F. Herpin, E. Lagadec,
+A. Lan¸ con, Z. Meliani, & F. Royer, Di,
+doi: 10.48550/arXiv.1712.06948
+Denton, C. A., Asphaug, E., Emsenhuber, A., & Melikyan,
+R. 2025, Nature Geoscience, 18, 37,
+doi: 10.1038/s41561-024-01612-0
+Dohlen, K., Langlois, M., Saisse, M., et al. 2008, in Society
+of Photo-Optical Instrumentation Engineers (SPIE)
+Conference Series, Vol. 7014, Ground-based and Airborne
+Instrumentation for Astronomy II, ed. I. S. McLean &
+M. M. Casali, 70143L, doi: 10.1117/12.789786
+Domingos, R. C., Winter, O. C., & Yokoyama, T. 2006,
+MNRAS, 373, 1227,
+doi: 10.1111/j.1365-2966.2006.11104.x
+Feng, F., Tuomi, M., Jones, H. R. A., et al. 2017, AJ, 154,
+135, doi: 10.3847/1538-3881/aa83b4
+Galicher, R., Boccaletti, A., Mesa, D., et al. 2018, A&A,
+615, A92, doi: 10.1051/0004-6361/201832973
+GRA VITY Collaboration, Abuter, R., Accardo, M., et al.
+2017, A&A, 602, A94, doi: 10.1051/0004-6361/201730838
+Hamers, A. S., & Portegies Zwart, S. F. 2018, ApJL, 869,
+L27, doi: 10.3847/2041-8213/aaf3a7
+Heller, R., & Hippke, M. 2024, Nature Astronomy, 8, 193,
+doi: 10.1038/s41550-023-02148-w
+Horstman, K., Ruffio, J.-B., Batygin, K., et al. 2024, AJ,
+168, 175, doi: 10.3847/1538-3881/ad73d8
+Hunter, J. D. 2007, Computing in Science and Engineering,
+9, 90, doi: 10.1109/MCSE.2007.55
+Karamanis, M., Beutler, F., Peacock, J. A., Nabergoj, D.,
+& Seljak, U. 2022a, Monthly Notices of the Royal
+Astronomical Society, 516, 1644
+Karamanis, M., Nabergoj, D., Beutler, F., Peacock, J. A.,
+& Seljak, U. 2022b, arXiv preprint arXiv:2207.05660
+Kipping, D. 2020a, The Astrophysical Journal, 900, L44,
+doi: 10.3847/2041-8213/abafa9
+—. 2020b, Monthly Notices of the Royal Astronomical
+Society, 500, 1851–1857, doi: 10.1093/mnras/staa3398
+—. 2021, Monthly Notices of the Royal Astronomical
+Society, 507, 4120–4131, doi: 10.1093/mnras/stab2013
+Kipping, D., Bryson, S., Burke, C., et al. 2022, Nature
+Astronomy, 6, 367–380, doi: 10.1038/s41550-021-01539-1
+Kipping, D. M. 2009, MNRAS, 392, 181,
+doi: 10.1111/j.1365-2966.2008.13999.x
+Kipping, D. M., Fossey, S. J., & Campanella, G. 2009,
+Monthly Notices of the Royal Astronomical Society, 400,
+398, doi: 10.1111/j.1365-2966.2009.15472.x
+Kipping, D. M., Hartman, J., Buchhave, L. A., et al. 2013,
+The Astrophysical Journal, 770, 101,
+doi: 10.1088/0004-637x/770/2/101
+Kipping, D. M., Nesvorn´ y, D., Buchhave, L. A., et al. 2014,
+The Astrophysical Journal, 784, 28,
+doi: 10.1088/0004-637x/784/1/28
+Kipping, D. M., Schmitt, A. R., Huang, X., et al. 2015, The
+Astrophysical Journal, 813, 14,
+doi: 10.1088/0004-637x/813/1/14
+Kral, Q., Wang, J., Kammerer, J., et al. 2025, arXiv
+e-prints, arXiv:2511.20091.
+https://arxiv.org/abs/2511.20091
+Kreidberg, L., Luger, R., & Bedell, M. 2019, ApJL, 877,
+L15, doi: 10.3847/2041-8213/ab20c8
+Lacour, S., Wang, J. J., Nowak, M., et al. 2020a, 11446,
+114460O, doi: 10.1117/12.2561667
+
+<<<PAGE 16>>>
+16Macias et al.
+Lacour, S., Wang, J. J., Nowak, M., et al. 2020b, in Society
+of Photo-Optical Instrumentation Engineers (SPIE)
+Conference Series, Vol. 11446, Optical and Infrared
+Interferometry and Imaging VII, ed. P. G. Tuthill,
+A. M´ erand, & S. Sallum, 114460O,
+doi: 10.1117/12.2561667
+Lacour, S., Wang, J. J., Rodet, L., et al. 2021, A&A, 654,
+L2, doi: 10.1051/0004-6361/202141889
+Lagrange, A.-M. 2019, in AAS/Division for Extreme Solar
+Systems Abstracts, Vol. 51, AAS/Division for Extreme
+Solar Systems Abstracts, 100.04
+Lagrange, A.-M., Boccaletti, A., Langlois, M., et al. 2019,
+A&A, 621, L8, doi: 10.1051/0004-6361/201834302
+Lagrange, A. M., Rubini, P., Nowak, M., et al. 2020, A&A,
+642, A18, doi: 10.1051/0004-6361/202038823
+Lapeyrere, V., Kervella, P., Lacour, S., et al. 2014, in
+Optical and Infrared Interferometry IV, Vol. 9146, SPIE,
+735–743
+Laskar, J., Joutel, F., & Robutel, P. 1993, Nature, 361, 615,
+doi: 10.1038/361615a0
+Lazzoni, C., Desidera, S., Gratton, R., et al. 2022, MNRAS,
+516, 391, doi: 10.1093/mnras/stac2081
+Lazzoni, C., Zurlo, A., Desidera, S., et al. 2020, A&A, 641,
+A131, doi: 10.1051/0004-6361/201937290
+Lecavelier des Etangs, A., & Lissauer, J. J. 2022, NewAR,
+94, 101641, doi: 10.1016/j.newar.2022.101641
+Lenzen, R., Hartung, M., Brandner, W., et al. 2003, in
+Society of Photo-Optical Instrumentation Engineers
+(SPIE) Conference Series, Vol. 4841, Instrument Design
+and Performance for Optical/Infrared Ground-based
+Telescopes, ed. M. Iye & A. F. M. Moorwood, 944–952,
+doi: 10.1117/12.460044
+Mart ´ ınez-Rodr ´ ıguez, H., Caballero, J. A., Cifuentes, C.,
+Piro, A. L., & Barnes, R. 2019, ApJ, 887, 261,
+doi: 10.3847/1538-4357/ab5640
+Oliphant, T. E. 2006, A guide to NumPy, USA: Trelgol
+Publishing
+Phillips, M. W., Tremblin, P., Baraffe, I., et al. 2020, A&A,
+637, A38, doi: 10.1051/0004-6361/201937381
+Poon, M., Rein, H., & Pham, D. 2024, The Open Journal of
+Astrophysics, 7, doi: 10.33232/001c.127130
+Rodenbeck, K., Heller, R., & Gizon, L. 2020, A&A, 638,
+A43, doi: 10.1051/0004-6361/202037550
+Rousset, G., Lacombe, F., Puget, P., et al. 2003, in Society
+of Photo-Optical Instrumentation Engineers (SPIE)
+Conference Series, Vol. 4839, Adaptive Optical System
+Technologies II, ed. P. L. Wizinowich & D. Bonaccini,
+140–149, doi: 10.1117/12.459332
+Ruffio, J.-B., Horstman, K., Mawet, D., et al. 2023, AJ,
+165, 113, doi: 10.3847/1538-3881/acb34a
+Sahlmann, J., Lazorenko, P. F., S´ egransan, D., et al. 2013,
+A&A, 556, A133, doi: 10.1051/0004-6361/201321871
+Smith, B. A., & Terrile, R. J. 1984, Science, 226, 1421,
+doi: 10.1126/science.226.4681.1421
+Stern, S. A., & Levison, H. F. 2002, Highlights of
+Astronomy, 12, 205
+Sucerquia, M., Alvarado-Montes, J. A., Zuluaga, J. I.,
+Cuello, N., & Giuppone, C. 2019, MNRAS, 489, 2313,
+doi: 10.1093/mnras/stz2110
+Sucerquia, M., Ram ´ ırez, V., Alvarado-Montes, J. A., &
+Zuluaga, J. I. 2020, MNRAS, 492, 3499,
+doi: 10.1093/mnras/stz3548
+Teachey, A., & Kipping, D. M. 2018, Science Advances, 4,
+doi: 10.1126/sciadv.aav1784
+van Woerkom, Q. B., & Kleisioti, E. 2024, A&A, 684, A72,
+doi: 10.1051/0004-6361/202348604
+Vanderburg, A. 2021, avanderburg/edmcmc: v1.0.0, v1.0.0,
+Zenodo, doi: 10.5281/zenodo.5599854
+Vanderburg, A., Rappaport, S. A., & Mayo, A. W. 2018,
+AJ, 156, 184, doi: 10.3847/1538-3881/aae0fc
+Vanderburg, A., & Rodriguez, J. E. 2021, ApJL, 922, L2,
+doi: 10.3847/2041-8213/ac33b4
+Wagner, K., Douglas, E., Ertel, S., et al. 2025, Astrometric
+Methods for Detecting Exomoons Orbiting Imaged
+Exoplanets: Prospects for Detecting Moons Orbiting a
+Giant Planet inαCentauri A’s Habitable Zone.
+https://arxiv.org/abs/2509.13513
+Winterhalder, T. O., M´ erand, A., Kammerer, J., et al.
+2025, Astrometric exomoon detection by means of optical
+interferometry. https://arxiv.org/abs/2509.15304

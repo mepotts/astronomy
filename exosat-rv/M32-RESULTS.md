@@ -118,22 +118,63 @@ This is supporting evidence, not proof of absence. A targeted ADS query remains 
 pre-submission list, because a missed prior measurement is the one error in a note titled
 "First…" that cannot be walked back gracefully.
 
-## 6. The field is more active than the repo's reading list suggests
+## 6. ⚠ THE COMPETITIVE LANDSCAPE — the method is not ours, and one target is now taken
 
-Searching for prior η Tel B velocities surfaced several 2024–2026 papers directly in this
-project's competitive space, none of which appear anywhere in the repo:
+Checking whether a prior η Tel B RV existed turned into the most consequential hour of the
+milestone. **Companion-side RV exosatellite searching is an established, actively published
+technique**, and this repo's reading list had almost none of it.
 
-| paper | why it matters |
-|---|---|
-| **Lazzoni et al. 2020**, A&A 641, A131 — disks/planetary objects around directly imaged companions, candidate around DH Tau B | the satellite-search precedent, and the source of η Tel B's adopted mass |
-| **Nogueira et al. 2024**, A&A 687, A301 — η Tel B over two decades | the dedicated characterization paper for this note's target |
-| **SaNDi-SHoP I**, arXiv:2603.24796 — satellites and discs around DI companions by star-hopping | a 2026 systematic survey of the same question |
-| Astrometric limits on binary planets and exomoons around **β Pic b**, arXiv:2512.00160 | a competing constraint on a target this project has reduced |
-| Direct-imaging constraints on exomoons around **ε Indi A b**, arXiv:2604.23448 | same class of limit |
+| work | target | method | result |
+|---|---|---|---|
+| Vanderburg & Rodriguez 2021, ApJ 922, L2 | HR 8799 planets | companion RV | null |
+| Ruffio et al. 2023, AJ 165, 113 | HR 7672 B | companion RV | null |
+| Horstman et al. 2024 | GQ Lup B | companion RV | null |
+| **Kenworthy et al. 2026, MNRAS** (arXiv:2606.04685) | **β Pic b** | **CRIRES+ companion RV** | **null, 160 m/s** |
+| Hoy et al. 2026, Nature | CD-35 2722 B | CRIRES+ companion RV | **the detection** |
+| Macias, Jenkins & Vanderburg 2026, AJ 171, 197 | β Pic b | GRAVITY+SPHERE astrometry | null |
+| Kral et al. 2026 | HD 206893 B | VLTI/GRAVITY astrometry | tantalising signal |
+| Lazzoni et al. 2026 (SaNDi-SHoP I) | 12 companions | SPHERE star-hopping imaging | 3 candidates |
 
-Only Chai et al. 2024 was archived here (in this milestone). **Reading these is the
-highest-value next literature task**, both for the paper's introduction and because two of
-them place limits on objects in this project's own roster.
+**β Pic b is done.** Kenworthy et al. — Leiden, published MNRAS July 2026, accepted 29 May —
+measured β Pic b's RV over Oct 2024–Mar 2025 at **160 m/s mean precision** and set limits of
+80 M⊕ at P = 1 d and **1 M_Jup at P = 200 d**. Their data is the **0.2″ slit at K2166**, so
+this project's H1567 HiRISE night is not theirs — but the target now has a published limit
+from a dedicated campaign, and **a single 0.7-S/N-per-pixel fibre night cannot compete with
+it.** M29/M32's β Pic b thread should be deprioritised accordingly; §7's negative result is
+the right place to stop.
+
+### What this does and does not do to the η Tel B note
+
+**It does not preempt it.** No one has measured η Tel B. The note's claim is target-specific
+and stands. On the numbers it is competitive: **1.11 M_Jup at P = 200 d from archival data at
+127–130 m/s**, against Kenworthy's 1 M_Jup at the same period from a dedicated campaign at
+160 m/s. Better precision, comparable depth, no telescope time.
+
+**But the note's framing was wrong and has been fixed.** It read as though Hoy et al. were the
+only prior work — which, against a published MNRAS paper doing the same thing four months ago,
+is the kind of error a referee rejects on sight. The introduction now places η Tel B as an
+addition to a named sample rather than a novel application, and notes that at ~47 M_Jup it
+extends that sample into the brown-dwarf host regime alongside HR 7672 B.
+
+### The genuinely good news: RV owns a region imaging cannot reach
+
+For a 47 M_Jup host, **P = 20–300 d is 0.05–0.31 au**. The SPHERE star-hopping survey of
+twelve directly imaged companions constrains satellites only **beyond ~1–5 au** — a factor
+3–100 away, with no overlap. The reason is generic and is stated by the competing group
+themselves: astrometric amplitude scales as the satellite's semi-major axis, RV amplitude as
+a^(−1/2), so **imaging and astrometry own the wide orbits and RV owns the close ones**
+(Macias et al. 2026). This is now in the note, and it is the strongest argument the project
+has for why the RV route is worth pursuing at all.
+
+Kenworthy et al. also motivate β Pic b by its near-edge-on orbit — **the same argument §4
+independently derived for η Tel B**, which is reassuring rather than a problem.
+
+### Papers now archived (`papers/text/`)
+
+`kenworthy2026_bpb_exosatellites`, `sandishop2026_satellites`, `astrometric2025_bpb_exomoon`,
+`epsindi2026_exomoon_limits`, `chai2024_etatel_jwst`. Still missing and worth having:
+**Vanderburg & Rodriguez 2021** and **Lazzoni et al. 2020** (the latter is also η Tel B's mass
+source, per §2).
 
 ## 7. The empirical-template route: tried, and vetoed by its own control
 
