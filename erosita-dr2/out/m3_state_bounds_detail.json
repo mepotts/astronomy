@@ -1,0 +1,192 @@
+{
+ "3eRASS J094452.8-711152": {
+  "swiftmastr": [],
+  "xmmmaster": [],
+  "chanmaster": [],
+  "lsxps": {
+   "sources": [],
+   "ul": "NotObserved"
+  }
+ },
+ "3eRASS J155100.8-453347": {
+  "swiftmastr": [],
+  "xmmmaster": [],
+  "chanmaster": [],
+  "lsxps": {
+   "sources": [],
+   "ul": "NotObserved"
+  }
+ },
+ "3eRASS J060622.5-624814": {
+  "swiftmastr": [
+   {
+    "tid": 2,
+    "start_time": 56510.2554861111,
+    "xrt_exposure": 937.787,
+    "ra": 91.44192271,
+    "dec": -62.9155761,
+    "obsid": "00048363001",
+    "name": "1RXS_J060529.1-625442"
+   },
+   {
+    "tid": 2,
+    "start_time": 55161.7673611111,
+    "xrt_exposure": 1511.309,
+    "ra": 91.36404415,
+    "dec": -62.88415326,
+    "obsid": "00038723001",
+    "name": "J060529.1-625442"
+   },
+   {
+    "tid": 2,
+    "start_time": 56965.5638773148,
+    "xrt_exposure": 778.037,
+    "ra": 91.5640515,
+    "dec": -62.77353585,
+    "obsid": "00049104002",
+    "name": "1RXS_J060607.9-624808"
+   },
+   {
+    "tid": 2,
+    "start_time": 56688.75,
+    "xrt_exposure": 262.934,
+    "ra": 91.51016255,
+    "dec": -62.76018524,
+    "obsid": "00049104001",
+    "name": "1RXS_J060607.9-624808"
+   }
+  ],
+  "xmmmaster": [],
+  "chanmaster": [],
+  "lsxps": {
+   "sources": [],
+   "ul": [
+    {
+     "StartTime": 55161.7685680177,
+     "StopTime": 55161.8443658495,
+     "ObsID": "00038723001",
+     "SourceExposure": 1316.7654320988,
+     "ImageExposure": 1514.4092,
+     "Total_UpperLimit": 0.0123732481,
+     "Total_Counts": 5.0,
+     "Total_BGCounts": 1.4605276096,
+     "Total_CorrectionFactor": 1.3784140579
+    },
+    {
+     "StartTime": 55161.7706136065,
+     "StopTime": 60583.7729284213,
+     "ObsID": "10000032524",
+     "SourceExposure": 3080.5432098765,
+     "ImageExposure": 16124.74609375,
+     "Total_UpperLimit": 0.0068459003,
+     "Total_Counts": 9.0,
+     "Total_BGCounts": 3.5238518789,
+     "Total_CorrectionFactor": 6.2996293301
+    },
+    {
+     "StartTime": 56510.2584430746,
+     "StopTime": 56510.2692964334,
+     "ObsID": "00048363001",
+     "SourceExposure": 823.2573170732,
+     "ImageExposure": 937.7302,
+     "Total_UpperLimit": 0.0086100468,
+     "Total_Counts": 0.0,
+     "Total_BGCounts": 0.8218899982,
+     "Total_CorrectionFactor": 1.3649874736
+    },
+    {
+     "StartTime": 56688.7519731306,
+     "StopTime": 56688.7550201966,
+     "ObsID": "00049104001",
+     "SourceExposure": 165.20375,
+     "ImageExposure": 263.2665,
+     "Total_UpperLimit": 0.0465165751,
+     "Total_Counts": 0.0,
+     "Total_BGCounts": 0.1820989844,
+     "Total_CorrectionFactor": 2.0703729339
+    },
+    {
+     "StartTime": 56965.5658127301,
+     "StopTime": 56965.5748378493,
+     "ObsID": "00049104002",
+     "SourceExposure": 774.46875,
+     "ImageExposure": 779.7703,
+     "Total_UpperLimit": 0.0195037412,
+     "Total_Counts": 4.0,
+     "Total_BGCounts": 0.8496082671,
+     "Total_CorrectionFactor": 1.206635841
+    }
+   ]
+  }
+ },
+ "1eRASS J050338.2-304513": {
+  "swiftmastr": [
+   {
+    "tid": 3,
+    "start_time": 56507.3117939815,
+    "xrt_exposure": 248.207,
+    "ra": 75.94071843,
+    "dec": -30.76954033,
+    "obsid": "00048242001",
+    "name": "1RXS_J050335.5-304511"
+   },
+   {
+    "tid": 3,
+    "start_time": 56515.929849537,
+    "xrt_exposure": 676.964,
+    "ra": 75.90490035,
+    "dec": -30.76868823,
+    "obsid": "00048242002",
+    "name": "1RXS_J050335.5-304511"
+   },
+   {
+    "tid": 3,
+    "start_time": 53437.8541782407,
+    "xrt_exposure": 1726.613,
+    "ra": 76.15286942,
+    "dec": -30.71021674,
+    "obsid": "00030016001",
+    "name": "BAT_Extra_006"
+   },
+   {
+    "tid": 3,
+    "start_time": 55305.3868055556,
+    "xrt_exposure": 1619.705,
+    "ra": 75.849287,
+    "dec": -30.70976299,
+    "obsid": "00090641001",
+    "name": "J050335.5-304511"
+   }
+  ],
+  "xmmmaster": [],
+  "chanmaster": [],
+  "lsxps": {
+   "sources": [
+    {
+     "LSXPS_ID": 235091,
+     "IAUName": "LSXPS J050338.1-304509",
+     "Err90": 5.3870684314,
+     "_r": 3.4954082498,
+     "Rate_band0": 0.0204472819,
+     "Rate_band0_pos": 0.0034301387,
+     "Rate_band0_neg": -0.0030947563
+    }
+   ],
+   "ul": [
+    {
+     "SourceName": "LSXPS J050338.1-304509",
+     "Distance": "3.5"
+    }
+   ]
+  }
+ },
+ "1eRASS J051910.4-253443": {
+  "swiftmastr": [],
+  "xmmmaster": [],
+  "chanmaster": [],
+  "lsxps": {
+   "sources": [],
+   "ul": "NotObserved"
+  }
+ }
+}

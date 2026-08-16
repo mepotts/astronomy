@@ -3,6 +3,32 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-08-16 (M3 COMPLETE)** — [`M3-state-bounds.md`](M3-state-bounds.md) +
+  [`J0944-decision-package.md`](J0944-decision-package.md) landed (ANALYSIS scope: nothing
+  submitted anywhere; ToO text is DRAFT for Matthew). **J0944 package**: amplitude case now
+  three-tier (stacked ×47.5 / epoch ×74 / assumption-free floor ≥×20 vs the DR1 UL_B with
+  25-steady-pair calibration median 1.25); sub-band spectrum revises M2's "hard/absorbed" to
+  **absorbed-moderate peaking 1–2 keV** (HR_P1/P23=+0.87 — ~Galactic N_H 8.9×10²⁰; supersoft
+  classes excluded); counterpart absence quantified (no source <10″ to G≈21 / g≈21 / Ks≈18 /
+  W1≈17.7; LS10 doesn't cover; SUMSS+RACS radio and 4FGL empty; the lone 5.2″ CatWISE object is
+  NWAY-rejected and VHS-invisible); riser-side artifact audit excludes every catalog-testable
+  mode (split/merge, confusion, extended, optical loading, moving object, UL-presence 14.1,
+  pileup) — only a single-visit detector artifact remains untestable without event data; class
+  verdict: **Galactic VFXT/subluminous-LMXB or magnetic CV favored, Be/HMXB excluded, magnetar
+  disfavored at b=−13.6°, AGN/TDE needs hostless z≳0.3**; SkyMapper finder chart
+  `out/j0944_finder.png`; full Main/Hard/DR1 rows in the package appendix; DRAFT Swift-XRT 5 ks
+  ToO prepared — NOT SENT. **State bounds (shortlist 1–5)**: HEASARC TAP (swiftmastr 17′ /
+  xmmmaster 15′ / chanmaster 10′, LMC X-1 control validates) + live Swift LSXPS via swifttools
+  4.0.2 unauthenticated (py3.12 needs setuptools for distutils): **zero post-eRASS pointed
+  X-ray data on all five** — J0944+J1551+J0519 never observed pointed at all; J0606 (4 obs
+  2009–14, stack UL 0.0068 ct/s whose on-position exposure equals those 4 obs exactly) and
+  J0503 (LSXPS J050338.1-304509 = 0.020 ct/s from 2005–13 data only) have nothing since
+  2013/2014 → most recent X-ray knowledge of every shortlist object is the eRASS:3 stack
+  (≤2021-06). **OGLE feasibility**: OCVS/XROM light curves scriptable account-free (FTP + UPJS
+  SSA/TAP), but no public arbitrary-position OGLE-IV photometry (photdb = OGLE-II only) → LMC
+  mini-study feasible via OCVS/XROM matching, not executed (scope). 6 scripts, 5 new out/
+  files; no accounts, no submissions, no commits (orchestrator's job). Recommended M4 in
+  M3 doc §4 (Matthew's ToO gate; OGLE mini-study; classifier rebase; W4 on schedule).
 - **2026-08-14 (M2 COMPLETE)** — [`M2-vetting.md`](M2-vetting.md) landed: per-candidate verdicts
   for all **381 touched sources** (140 M1 candidates + full 261 vanished census) in
   [`out/m2_verdicts.csv`](out/m2_verdicts.csv): **104 IDENTIFIED / 123 PLAUSIBLE-CLASS /
