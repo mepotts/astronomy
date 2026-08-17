@@ -14,8 +14,9 @@ this project does runs on a laptop. See [`SPEC.md`](SPEC.md) for the thesis and 
 prior-art assessment, [`DATA-SOURCES.md`](DATA-SOURCES.md) for endpoints and formats, and
 [`BUILD-PLAN.md`](BUILD-PLAN.md) for the milestone plan.
 
-**Current state: M5 (the pre-2023 slice fitted to completion) and M7 (attribution
-against the Rubin bulk-batch orbits) complete.** Milestone findings:
+**Current state: M5 (the pre-2023 slice fitted to completion), M7 (attribution
+against the Rubin bulk-batch orbits) and M8 (the perturbed backend, at full batch
+scale) complete.** Milestone findings:
 [`M0-RESULTS.md`](M0-RESULTS.md) (kill-check) · [`M1-RESULTS.md`](M1-RESULTS.md)
 (orbit fitting) · [`M2-RESULTS.md`](M2-RESULTS.md) (catalogue vetting) ·
 [`M3-RESULTS.md`](M3-RESULTS.md) (linking) · [`M4-RESULTS.md`](M4-RESULTS.md) (NEO to TNO
@@ -23,7 +24,12 @@ distances, and the pre-2023 slice) · [`M5-RESULTS.md`](M5-RESULTS.md) (that sli
 from 1.08% to 100%, and the cross-survey pool exhausted) ·
 [`M7-RESULTS.md`](M7-RESULTS.md) (the ITF-to-designated direction: known Rubin orbits
 propagated *into* the ITF under a measured two-body window and a decoy control, yielding
-one unsubmitted precovery candidate).
+one unsubmitted precovery candidate) · [`M8-RESULTS.md`](M8-RESULTS.md) (a perturbed
+ephemeris backend measured against Horizons — two-body's degree-scale error at 5–15
+years becomes tens of arcseconds — opening the pre-2023 ITF to attribution at full
+Feb+April Rubin batch scale, with bulk MPCORB orbits, the decoy control at scale, a
+checkpointed fit queue, the SkyBoT check folded into the verdict chain, and a
+batch-landing watcher designed but deliberately not scheduled).
 
 M1 built Find_Orb under WSL, verified it against JPL Horizons, and fitted the ITF
 designations that already span 3+ nights. M2 built the MPChecker / SkyBoT / SBIDENT /
@@ -155,6 +161,17 @@ chunk — including another milestone's, via `--seed-workroot` — rather than r
 Windows it runs `fo` in a Linux-side scratch directory, which is worth ~9× under load
 because `/mnt/c` is reached over WSL's 9p bridge; `--no-scratch` restores the earlier
 file layout.
+
+**Attribution (M7/M8) runs as scripts rather than CLI subcommands** — the direction is
+inverted (known orbit → ITF tracklets) and the run shape is one-shot per batch:
+
+```bash
+python scripts/m8_calibration.py        # measure two-body AND perturbed error vs Horizons
+python scripts/m8_fetch_bulk.py         # MPCORB extended JSON + batch partitions + verify
+python scripts/m8_attribution.py        # the sweep + decoy + ranked, checkpointed fo fits
+python scripts/m8_verdicts.py           # verdict chain v2 -> m8-ledger.json (SkyBoT folded in)
+python scripts/watch_rubin_batches.py   # has a new Rubin bulk batch landed? (no scheduling)
+```
 
 The fitting commands need Find_Orb. It is **not** bundled: build it once with the steps in
 [`DATA-SOURCES.md` §4](DATA-SOURCES.md#4-find_orb-build-wsl--verified-2026-07-29), which

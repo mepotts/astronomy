@@ -15,7 +15,7 @@ UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 
 | Front | Folder | Wave-3 scope |
 |---|---|---|
-| itf-linker **M8** | [`itf-linker/`](itf-linker/) | perturbed-ephemeris backend (opens the pre-2023 ITF beyond two-body's 4-yr wall), bulk-MPCORB orbit route, full ~30k-object scale run with decoy control, SkyBoT in the verdict chain, batch-landing watcher design. PD152/MQ241 verdicts untouched — held for Matthew |
+| itf-linker **M8 ✓** | [`itf-linker/`](itf-linker/) | **482 PASS attributions across 450 distinct objects** (`m8-ledger.json`; 394 caveat-free, median joint RMS 0.082″, 90% beyond the old 4-yr wall, deepest −14.87 yr; **29 objects with 2+ independently-passing tracklets** — the PD152 corroboration pattern). Perturbed backend measured to 0.1–94″ at 15 yr (two-body was 491–7,545″); 44,192 batch objects matched 96.5% via bulk MPCORB; swept 22,636 orbits × 2.05M tracklets in 8.6 min. Decoy control at scale: sub-30″ head shows a **~560-candidate real excess**; fit queue covered only the top 0.75% and was still passing 43% at the cap — **the vein is not exhausted**. MQ241 re-derived to the digit; only 2 already-linked. Watcher built (not scheduled) and already flags **four unconsumed Rubin partitions** incl. Aug 10 (100 MB). 467 tests green | **Matthew: the submission question is now a batch process, not one object** — review protocol for the 394 caveat-free set (spot-check → tranche submissions?), plus PD152/MQ241 unchanged |
 | gaia-dr4 **M3 ✓** | [`gaia-dr4/`](gaia-dr4/) | corr_vec Pr(III) validated vs S23 (σ ratio 2.27×→1.03; Pr≥99.9 % core 147→293, 0 dissolve; Pr is a ranking tier, not a cut — negative result); dust tier moves 8 out / 6 in → **v2 list = 949** (config v2, v1 frozen); dress rehearsal green end-to-end + `DR4-DAY-RUNBOOK.md`; **eROSITA join: 30 coronal counterparts vs 1.4 chance, 0 accretors** (the X-ray-loudest match is the EB26-refuted alias spurious — X-ray = activity/spurious-risk tag, not compact evidence) |
 | erosita-dr2 **M4 ✓** | [`erosita-dr2/`](erosita-dr2/) | **Be-fade story does not hold: 0/25 LMC faders match any Be/variable roster** (vs 0.19 chance; 24/25 have no Be-donor-capable star) — two M2 Be/XRB readings withdrawn; demographics now 9+4 AGN-colored, 3 foreground active, 1 blue near-candidate (halo hot star equally likely, spectroscopy decides). **Measured scoping law: OGLE-IV was dark 2020-03→2022-08 — the entire fade window — future eRASS-window optical work uses ASAS-SN.** Rebase kill-checks: **PIVOT** — 49–54% of DR2 sources not trivially classified by one catalog (2.5× the kill bar) but the gap is *coverage*, not disagreement; nobody has ingested DR2 anywhere — a dossier layer would be DR2's only queryable interface. Build call stays with Matthew |
 | pta-mpta **M1 ✓** (new front, avenue #2) | [`pta-mpta/`](pta-mpta/) | **Access PASSED**: 4.5-yr release fully public at Data Central (DOI 10.57891/j0vh-5g31) — 83 par+tim (245,907 sub-banded ToAs) + 10,014 epoch archives + portraits; **no chains ship at all** (the 423 MB "anisotropy supplement" is 9 MP4s) → chain-level lanes MPTA-dead, likelihood lanes open. Stack built in WSL **without sudo** (enterprise --no-deps + loud-failure sksparse shim; WSL vdisk was 100% full → venv on /mnt/c). A1: PINT wRMS = tempo2's in-release TRES to +0.35%/+0.51%. Pre-registered slice: **J2241-5236 5/5 noise params agree** (CI edges to 0.01-0.03); J1909-3744 5/9 — whites + A_13/3 dead-on (-14.288 vs -14.28), chromatic DM↔SW block stuck in a local mode and **our own likelihood prefers the published solution by ΔlnL=+22** → sampling shortfall, not model error (host ran a game at 100% CPU; both chains land the pre-registered A3 feasibility verdict). Economics: fixed-white eval 1.4 ms (64×) → full-83 CURN ≈ 1.3 d/1M iters, no sksparse needed; all-83 noise pass ≈ 1 day at 16-way parallel. **M2 rec: converge J1909 → top-10 scale → factorised-likelihood CURN (-14.28±0.21); W3 = cross-PTA noise criticism first, CURN campaign second, CW/HD deferred to the sparse-stack upgrade** |
@@ -41,7 +41,11 @@ UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 
 ## Open human gates (Matthew)
 
-1. **2025 PD152** — submit the MPC identification? (`itf-linker/M7-RESULTS.md` §8 has the shape; needs your MPC account.) Plus the MQ241 borderline ruling.
+1. **The attribution ledger** — M8 turned one candidate into **482 PASS / 450 objects** (394
+   caveat-free). Decide the review protocol: spot-check a sample, then approve tranche
+   submissions via the identifications API (MPC processes 500–1,000/day), or review
+   per-object. PD152 remains the flagship exemplar; MQ241 borderline unchanged. Needs your
+   MPC account either way.
 2. **J0944** — send the drafted Swift ToO? (`erosita-dr2/J0944-decision-package.md`; needs a Swift ToO account.)
 3. **eta Tel B RNAAS** — submit or fold into the method paper? (concurrent thread's M32; author/affiliation/ORCID.)
 4. **Accounts before Dec 2** — Gaia Archive + NOIRLab Data Lab (both free).
@@ -49,6 +53,14 @@ UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 
 ## Log
 
+- **2026-08-17** — **Wave 3 complete, all four fronts ✓** (two agents survived a session-limit
+  kill via checkpoints). itf-linker M8: 482 gated attributions / 450 objects, the pre-2023 ITF
+  opened by the perturbed backend, four fresh Rubin partitions already flagged by the new
+  watcher — the submission gate is now a batch-review protocol. gaia-dr4 M3: DR4-day machine
+  rehearsed green in 40 min; X-ray-as-spurious-tag discovered. erosita-dr2 M4: Be-fade null
+  with a measured 886-day OGLE blind spot; classifier PIVOT recommendation. pta-mpta M1: from
+  zero to reproducing MPTA's published noise numbers; full-array CURN measured at ~1.3 days.
+  Next wave options queued in each M-doc; the human gates above are now the bottleneck.
 - **2026-08-16** — **Wave 2 complete, all three fronts ✓.** eROSITA M3: J0944 revised to a
   Galactic-transient candidate surviving its full artifact audit; zero post-eRASS pointed X-ray
   data exists on any shortlist object; draft Swift ToO ready. itf-linker M7: attribution built

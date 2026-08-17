@@ -177,6 +177,73 @@ def parse_mpc_orb(doc: Any, requested_desig: str = "") -> AttribOrbit | None:
     )
 
 
+def observables_from_states(
+    r_obj: np.ndarray,
+    v_obj: np.ndarray,
+    e_pos: np.ndarray,
+    e_vel: np.ndarray,
+    h_mag: float | np.ndarray | None,
+    g_slope: float | np.ndarray | None,
+) -> dict[str, np.ndarray]:
+    """Astrometric observables from already-light-time-corrected heliocentric states.
+
+    The one place the state -> (RA, Dec, rates, Delta, r, V) arithmetic lives: both the
+    two-body path (:func:`predict`) and the perturbed path
+    (:mod:`itf_linker.attrib.perturbed`) call this, so the two backends can only ever
+    disagree about *where the object is*, never about how a position becomes an
+    observable.
+    """
+    delta_vec = r_obj - e_pos
+    delta = np.linalg.norm(delta_vec, axis=1)
+    rho_hat = delta_vec / delta[:, None]
+    ra = np.degrees(np.arctan2(rho_hat[:, 1], rho_hat[:, 0])) % 360.0
+    dec = np.degrees(np.arcsin(np.clip(rho_hat[:, 2], -1.0, 1.0)))
+
+    # Sky-plane angular rate from the relative velocity, projected on the local
+    # (e_ra, e_dec) basis -- the same basis unit_vector_rates uses, run in reverse.
+    v_rel = v_obj - e_vel
+    v_tan = v_rel - np.einsum("ij,ij->i", v_rel, rho_hat)[:, None] * rho_hat
+    mu_vec = v_tan / delta[:, None]  # rad/day in the tangent plane
+    ra_r = np.radians(ra)
+    dec_r = np.radians(dec)
+    e_ra = np.stack([-np.sin(ra_r), np.cos(ra_r), np.zeros_like(ra_r)], axis=-1)
+    e_dec = np.stack(
+        [-np.sin(dec_r) * np.cos(ra_r), -np.sin(dec_r) * np.sin(ra_r), np.cos(dec_r)],
+        axis=-1,
+    )
+    rate_ra_cosdec = np.degrees(np.einsum("ij,ij->i", mu_vec, e_ra))
+    rate_dec = np.degrees(np.einsum("ij,ij->i", mu_vec, e_dec))
+
+    r_helio = np.linalg.norm(r_obj, axis=1)
+    v_pred = np.full(r_helio.shape[0], np.nan)
+    if h_mag is not None:
+        g = g_slope if g_slope is not None else 0.15
+        cos_alpha = np.clip(
+            np.einsum("ij,ij->i", r_obj, delta_vec) / (r_helio * delta), -1.0, 1.0
+        )
+        alpha = np.arccos(cos_alpha)
+        # Bowell H,G phase function (the MPC's own photometric model).
+        ta2 = np.tan(alpha / 2.0)
+        phi1 = np.exp(-3.33 * ta2**0.63)
+        phi2 = np.exp(-1.87 * ta2**1.22)
+        phase = np.where(
+            (1 - g) * phi1 + g * phi2 > 0,
+            -2.5 * np.log10(np.clip((1 - g) * phi1 + g * phi2, 1e-12, None)),
+            np.inf,
+        )
+        v_pred = h_mag + 5.0 * np.log10(r_helio * delta) + phase
+
+    return {
+        "ra_deg": ra,
+        "dec_deg": dec,
+        "rate_ra_cosdec_deg_day": rate_ra_cosdec,
+        "rate_dec_deg_day": rate_dec,
+        "delta_au": delta,
+        "r_au": r_helio,
+        "v_pred": v_pred,
+    }
+
+
 def predict(
     orbit: AttribOrbit,
     mjd_utc: np.ndarray,
@@ -215,54 +282,9 @@ def predict(
         delta = np.linalg.norm(delta_vec, axis=1)
         tau = delta / C_AU_PER_DAY
 
-    rho_hat = delta_vec / delta[:, None]
-    ra = np.degrees(np.arctan2(rho_hat[:, 1], rho_hat[:, 0])) % 360.0
-    dec = np.degrees(np.arcsin(np.clip(rho_hat[:, 2], -1.0, 1.0)))
-
-    # Sky-plane angular rate from the relative velocity, projected on the local
-    # (e_ra, e_dec) basis -- the same basis unit_vector_rates uses, run in reverse.
-    v_rel = v_obj - e_vel
-    v_tan = v_rel - np.einsum("ij,ij->i", v_rel, rho_hat)[:, None] * rho_hat
-    mu_vec = v_tan / delta[:, None]  # rad/day in the tangent plane
-    ra_r = np.radians(ra)
-    dec_r = np.radians(dec)
-    e_ra = np.stack([-np.sin(ra_r), np.cos(ra_r), np.zeros_like(ra_r)], axis=-1)
-    e_dec = np.stack(
-        [-np.sin(dec_r) * np.cos(ra_r), -np.sin(dec_r) * np.sin(ra_r), np.cos(dec_r)],
-        axis=-1,
-    )
-    rate_ra_cosdec = np.degrees(np.einsum("ij,ij->i", mu_vec, e_ra))
-    rate_dec = np.degrees(np.einsum("ij,ij->i", mu_vec, e_dec))
-
-    r_helio = np.linalg.norm(r_obj, axis=1)
-    v_pred = np.full(n, np.nan)
-    if orbit.h_mag is not None:
-        g = orbit.g_slope if orbit.g_slope is not None else 0.15
-        cos_alpha = np.clip(
-            np.einsum("ij,ij->i", r_obj, delta_vec) / (r_helio * delta), -1.0, 1.0
-        )
-        alpha = np.arccos(cos_alpha)
-        # Bowell H,G phase function (the MPC's own photometric model).
-        ta2 = np.tan(alpha / 2.0)
-        phi1 = np.exp(-3.33 * ta2**0.63)
-        phi2 = np.exp(-1.87 * ta2**1.22)
-        phase = np.where(
-            (1 - g) * phi1 + g * phi2 > 0,
-            -2.5 * np.log10(np.clip((1 - g) * phi1 + g * phi2, 1e-12, None)),
-            np.inf,
-        )
-        v_pred = orbit.h_mag + 5.0 * np.log10(r_helio * delta) + phase
-
-    return {
-        "ra_deg": ra,
-        "dec_deg": dec,
-        "rate_ra_cosdec_deg_day": rate_ra_cosdec,
-        "rate_dec_deg_day": rate_dec,
-        "delta_au": delta,
-        "r_au": r_helio,
-        "v_pred": v_pred,
-        "kepler_ok": ok,
-    }
+    out = observables_from_states(r_obj, v_obj, e_pos, e_vel, orbit.h_mag, orbit.g_slope)
+    out["kepler_ok"] = ok
+    return out
 
 
 def separation_deg(

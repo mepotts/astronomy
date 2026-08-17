@@ -5,14 +5,17 @@ knowledge in this repository is not the code — it is the list of things that w
 measured, and found to be wrong. That list is spread across eight documents and would
 otherwise have to be rediscovered.
 
-**One-line status:** M0–M5 + M7 complete, the MPC's Isolated Tracklet File searched at
-~100% coverage on both slices, **zero discoveries**, 447 tests green. The durable outputs
-are a validated linking pipeline, a daily archive that independently confirmed 21 of its
-own groupings, a replicated methodological result drafted for publication — and, since
-M7, an **attribution** capability (ITF tracklet → known orbit) with a measured validity
-window and a decoy control, which produced **one unsubmitted precovery candidate**
-(2025 PD152 ← two 2022 Pan-STARRS tracklets, every gate passing; Matthew's call —
-`M7-RESULTS.md` §8).
+**One-line status:** M0–M5 + M7–M8 complete, the MPC's Isolated Tracklet File searched at
+~100% coverage on both slices, **zero linking discoveries**, 467 tests green. The durable
+outputs are a validated linking pipeline, a daily archive that independently confirmed 21
+of its own groupings, a replicated methodological result drafted for publication — and an
+**attribution** capability (ITF tracklet → known orbit) that M8 took to production scale:
+a perturbed ephemeris backend measured against Horizons (degree-scale two-body error at
+5–15 y → tens of arcsec), the full Feb+April Rubin batches swept under a decoy control,
+and **candidate ledger v2: 482 unsubmitted precovery candidates across 450 objects,
+90% beyond the old 4-year window** (`M8-RESULTS.md` §7) — plus M7's held pair
+(2025 PD152 ← two 2022 Pan-STARRS tracklets; 2025 MQ241 borderline), all awaiting
+Matthew's per-batch review. Nothing has ever been submitted.
 
 ---
 
@@ -29,7 +32,8 @@ window and a decoy control, which produced **one unsubmitted precovery candidate
 | 7 | `M4-RESULTS.md` | Widened grid, NEOs and TNOs, and a negative result |
 | 8 | `M5-RESULTS.md` | The older 80% of the file, fitted completely |
 | 9 | `M7-RESULTS.md` | **Attribution** (tracklet → known orbit) against Rubin's bulk-batch orbits: the measured two-body window, the decoy control, and why the MPC got there first |
-| 10 | `SNAPSHOT-VALIDATION.md` | The one check independent of the whole pipeline |
+| 10 | `M8-RESULTS.md` | Attribution at **full batch scale**: the perturbed backend (measured ~100× tighter than two-body at 5–15 y), bulk MPCORB orbits, the decoy at scale, the checkpointed fit queue, ledger v2, and the batch watcher |
+| 11 | `SNAPSHOT-VALIDATION.md` | The one check independent of the whole pipeline |
 | 11 | `docs/archive-operations.md` | How the daily archive runs and how it has failed |
 | 12 | `docs/rnaas-subset-guard.md` + `rnaas-notes.md` | The publishable finding, and its 14 known weaknesses |
 
@@ -83,6 +87,11 @@ before re-deriving anything or asserting a claim from an older document.**
 - **The MPC blocks datacenter IP ranges.** Actions runners cannot reach it; a residential connection resolves in 0.03 s. Do **not** route around this. `docs/archive-operations.md` §2.
 - **JPL Horizons `TLIST` replies come back in chronological order regardless of the order requested.** M7's calibration paired its 1-year prediction with the 15-year truth row and measured a 65° "propagation error" on every target before this was caught (by predicting at the orbit epoch itself). Sort the request. `scripts/m7_calibration.py`.
 - **`mpc_orb` (get-orb API) states are heliocentric *ecliptic* at an MJD/TDT epoch.** The linker is ICRS-equatorial end to end; unrotated they are up to 23.4° wrong. `attrib/core.py::parse_mpc_orb` asserts the declared frame per document and refuses others.
+- **A streaming JSON parser that re-slices its buffer per object is O(chunk × objects)** — invisible to unit tests, hours-long on the real 1.56M-object MPCORB file. The index-based `raw_decode(buf, idx)` scan does the same file in 21 s. `attrib/bulk.py::iter_mpcorb_objects`, `M8-RESULTS.md` §9.
+- **get-orb and MPCORB can quote different standard epochs on the same day** (MJD 61000 vs 61200, 2026-08-16). A same-epoch state comparison between the two routes silently compares nothing; M8 bridges the gap with the measured perturbed integrator before comparing. `scripts/m8_fetch_bulk.py`.
+- **In the Asteroid Institute replica, the discovery asterisk is the `disc` column ('*')** — `designation_asterisk` is an all-null Boolean (2026-08-16). `disc` reproduces M7's Feb count (17,043) exactly.
+- **A per-night scalar `astropy` ephemeris call costs milliseconds of Time-object overhead** — across 5k nights × dozens of orbit chunks × two sweeps that is minutes of pure overhead. Precompute Earth's state for all night midpoints in one vectorised call. `scripts/m8_attribution.py::NightIndex`.
+- **The MPC newsletter index moved to Buttondown** (`buttondown.com/MPC_newsletter/archive/`; linked from the MPC front page). Every plausible `minorplanetcenter.net` index path 404s; the per-issue PDFs under `/media/newsletters/` still resolve. `scripts/watch_rubin_batches.py`.
 
 ## 3. Standing constraints
 
@@ -116,11 +125,13 @@ before re-deriving anything or asserting a claim from an older document.**
 - The **archive misses days when the machine is off.** An always-on host on a residential
   connection would close that; see `docs/archive-operations.md` §1.
 - The **MPC reachability email is drafted and unsent** — `docs/archive-operations.md` §5.
-- **Attribution's lookback is bounded at 4 years by measurement, not preference.**
-  M7 measured two-body propagation of a current MPC orbit against Horizons at
-  degree-scale error by 5–15 years — the pre-2023 ITF (where M4/M5 located the
-  cross-survey pool) is unreachable until a perturbed ephemeris backend exists
-  (`fo` can emit one from the same astrometry it fits). `M7-RESULTS.md` §5, §11.
+- ~~**Attribution's lookback is bounded at 4 years by measurement, not preference.**~~
+  **Closed by M8 (2026-08-17):** the perturbed backend (`attrib/perturbed.py` — Sun +
+  eight planets as point masses, vectorised RK4, dense Hermite output; a justified
+  integrator validated exactly the way the 4-year bound was measured) brings 15-year
+  prediction error from degree scale to ≤ ~94″ worst-case on the calibration set, and
+  the sweep runs at |Δt| ≤ 15 y. Beyond 15 years stays closed — unmeasured, not
+  impossible. `M8-RESULTS.md` §1–2.
 - ~~**The guard's false-rejection rate is measured nowhere.**~~ **Measured 2026-08-07: zero
   of 26.** Against the links the snapshot archive shows somebody else independently made,
   the guard never rejected one on its own — every confirmed link it flagged was already

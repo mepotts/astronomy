@@ -278,6 +278,39 @@ is a way to break a fit silently. Full table in `fit/verify.py`.
 
 ---
 
+## 4b. Attribution bulk sources (M7/M8) — **(verified 2026-08-16)**
+
+All read-only, anonymous, no credentials; every download carries a provenance sidecar.
+
+- **MPC orbits API** — `https://data.minorplanetcenter.net/api/get-orb`, GET with JSON
+  body `{"desig": …}` → `mpc_orb` document (CAR state **heliocentric ecliptic** at
+  MJD/TDT — `attrib/core.py` asserts the frame). ≥ 1.1 s spacing; M7's 400-orbit
+  subset and M8's fallback misses only.
+- **MPC observations API** — `https://data.minorplanetcenter.net/api/get-obs`, GET with
+  `{"desigs": […], "output_format": ["OBS80"]}` → published 80-column record (a merged
+  object's block interleaves multiple packed designations — relabel before fitting,
+  M7 trap 3). Cache `data/raw/rubin/obs80/`, shared by M7 and M8.
+- **MPCORB extended JSON** — `https://www.minorplanetcenter.net/Extended_Files/
+  mpcorb_extended.json.gz` (181 MB gz, ~1.56M orbits, refreshed daily). Keplerian
+  ecliptic-J2000 elements at one standard epoch (2461200.5 as of 2026-08-16 — **not**
+  necessarily the epoch get-orb quotes the same day), plus `Other_desigs` (the merge
+  map the bulk route needs) and `U` as a string (blank/'E' = no parameter). Streaming
+  parser: `attrib/bulk.py::iter_mpcorb_objects` (index-based `raw_decode` — the
+  buffer-slicing version was O(chunk × objects) and unusably slow at this scale).
+- **Asteroid Institute X05 replica** — public GCS bucket `asteroid-institute-public`
+  (found via `ls.st/ast` → `b612.ai/rubin-mpc-downloads/`). Daily partitions
+  `production/rubin/mpc/obs_sbn/daily/<YYYY-MM-DD>/parquet/…`, keyed by
+  `public_obs_sbn.created_at` (M7 trap 7 — never by obstime or designation
+  half-month); ~11 kB marker parquet on empty days, MB-scale on batch days. Listing:
+  `storage.googleapis.com/storage/v1/b/asteroid-institute-public/o?prefix=…` (paged);
+  media: `storage.googleapis.com/asteroid-institute-public/<name>`. Schema notes:
+  `mag` is a string (M7 trap 6); the discovery asterisk is **`disc`** — the
+  `designation_asterisk` Boolean is all-null (M8).
+- **MPC newsletter archive** — `https://buttondown.com/MPC_newsletter/archive/` (the
+  `minorplanetcenter.net/mpcops/newsletters` and `/media/newsletters/` index paths
+  404; per-issue PDFs under `/media/newsletters/` still resolve). Watched by
+  `scripts/watch_rubin_batches.py`.
+
 ## 5. Later-milestone sources (not yet verified)
 
 - **Solicited targets** — `.../mpcops/orbits/no-orbits-astrometry/`: `c51_desigs.txt`
