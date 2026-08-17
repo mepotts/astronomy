@@ -1,4 +1,4 @@
-<title>CD-35 2722 B reproduction & eta Tel B limits — draft</title>
+<title>CD-35 2722 B: reproduction and second-companion re-examination — draft</title>
 <style>
   /* ------------------------------------------------------------------------
      Journal typography, modelled on the AASTeX / A&A / MNRAS two-column page.
@@ -244,7 +244,7 @@
 <div class="sheet">
   <div class="draftbar">Draft · internal reproduction report · not submitted</div>
 
-  <h1>An independent reproduction of the radial&#8209;velocity companion of CD&#8209;35&nbsp;2722&nbsp;B from archival CRIRES+ data, and first radial&#8209;velocity limits on η&nbsp;Tel&nbsp;B</h1>
+  <h1>An independent reproduction of the CD&#8209;35&nbsp;2722&nbsp;B exosatellite from raw archival data, and a re&#8209;examination of the evidence for a second companion</h1>
   <p class="byline"><b>Matthew Potts</b> · independent analysis</p>
   <p class="dateline">11 August 2026 · figure-by-figure appendix added 12 August 2026 · reproduces Hoy et al. (2026), <em>Nature</em> · all data from the public ESO archive</p>
 
@@ -269,12 +269,11 @@
     — a hint, entangled with the same degeneracy, that we do not claim. The
     second companion does not reproduce: on the published <em>Nature</em> RV table itself,
     nested-sampling model comparison disfavours the two-companion model in every prior
-    family tried, and the run-to-run reproducibility of such evidence integrals is itself
-    several times larger than the uncertainty samplers report internally.
-    Applying the validated pipeline to η&nbsp;Tel&nbsp;B — a brown dwarf with no previous RV
-    measurements — yields a null with injection-calibrated 90% limits of
-    m&nbsp;sin&nbsp;i&nbsp;≳&nbsp;0.5–1.2&nbsp;M<sub>Jup</sub> for companions with
-    P&nbsp;=&nbsp;20–300&nbsp;d, the first such constraint on the object.
+    family tried. The discrepancy is not a matter of sampler settings: across 82 runs the
+    run-to-run scatter of such an evidence integral is 1.1&ndash;8.1&times; larger than the
+    uncertainty a single run reports internally, and raising the live-point count widens
+    that gap rather than closing it — so an evidence difference of the published size is
+    within the reproducibility of the method that produced it.
     </p>
   </div>
 
@@ -305,11 +304,12 @@
   scale oppositely with the satellite's orbit: astrometric amplitude grows with semi-major
   axis <i>a</i> while radial-velocity amplitude falls as <i>a</i><sup>−1/2</sup>
   (Macias et al. 2026). Radial velocity therefore owns the close orbits and astrometry the
-  wide ones, and the division is sharp in practice. The periods constrained in this work,
-  P&nbsp;=&nbsp;20–300&nbsp;d around a ~47&nbsp;M<sub>Jup</sub> host, correspond to
-  0.05–0.31&nbsp;au; the dedicated SPHERE star-hopping survey of twelve directly imaged
-  companions reaches only beyond ~1–5&nbsp;au (Lazzoni et al. 2026). There is no overlap,
-  and no imaging programme is expected to close the gap.
+  wide ones, and the division is sharp in practice. The satellite at issue here sits at
+  roughly 0.2&nbsp;au from its host, while the dedicated SPHERE star-hopping survey of
+  twelve directly imaged companions constrains satellites only beyond ~1–5&nbsp;au
+  (Lazzoni et al. 2026). There is no overlap, and no imaging programme is expected to
+  close the gap — which is why a radial-velocity detection in this regime is worth
+  testing carefully rather than taking on trust.
   </p>
   <p>
   A detection of this kind is worth reproducing end to end: the claimed amplitude sits far
@@ -319,12 +319,11 @@
   (i)&nbsp;a from-raw, independently configured reproduction of the
   <span class="them">H26</span> measurement (§2–4, Figs.&nbsp;1–3), (ii)&nbsp;a
   re-examination of the two-companion evidence on the published RV table
-  (§5, Table&nbsp;3), and (iii)&nbsp;the first application of the validated pipeline to a
-  new target, η&nbsp;Tel&nbsp;B (§6, Fig.&nbsp;4). Every stage is validated by
+  (§5, Table&nbsp;3). Every stage is validated by
   signal injection rather than by internal fit statistics; the distinction turns out to
-  matter (§7). §8 then rebuilds the whole comparison in
+  matter (§6). §7 then rebuilds the whole comparison in
   <span class="them">H26</span>'s own order — one figure of ours for each figure of
-  theirs (Figs.&nbsp;5–12, Table&nbsp;5) — for readers who want to check the
+  theirs (Figs.&nbsp;4–11, Table&nbsp;4) — for readers who want to check the
   reproduction panel by panel rather than argument by argument.
   </p>
 
@@ -337,8 +336,12 @@
   obs_nodding</code>), keeping the two nodding positions as separate spectra — the
   extraction <span class="them">H26</span> favour. Our from-raw reduction reproduces
   ESO's archived combined products to 42&nbsp;m&nbsp;s<sup>−1</sup> in the final RV.
-  For η&nbsp;Tel&nbsp;B (§6) the same cascade was run on all 20 public H1567 epochs
-  (2023 May – 2025 Aug; programmes 111.24M0, 113.268Y, 115.287U).
+  The same cascade was run on all 20 public H1567 epochs of η&nbsp;Tel&nbsp;B
+  (2023 May – 2025 Aug; programmes 111.24M0, 113.268Y, 115.287U), which serve here as
+  the common-mode control of §5 — the same instrument setting and a longer baseline,
+  so a period intrinsic to the observing calendar rather than to CD-35 2722 B would
+  appear in both. Those data also support a first radial-velocity limit on
+  η&nbsp;Tel&nbsp;B itself, reported separately.
   </p>
 
   <h2><span class="no">3</span>Radial-velocity extraction</h2>
@@ -468,7 +471,7 @@
   combine. The same null delivers a number worth carrying elsewhere in this field: a
   signal-free series with this cadence reaches ΔBIC&nbsp;≈&nbsp;19 as its best peak 5% of
   the time, so peaks in the teens are not evidence — a bar we apply to our own η&nbsp;Tel&nbsp;B
-  residual structure in §6.
+  control series in Table&nbsp;2a as strictly as to <span class="them">H26</span>.
   </p>
   <p>
   Second, no single night carries the result. Dropping each epoch in turn, all 17
@@ -583,84 +586,18 @@
   among them? We would publish that number gladly, whichever way it falls.
   </p>
 
-  <h2><span class="no">6</span>η Tel B: a first radial-velocity limit, below a Jupiter mass</h2>
+  <h2><span class="no">6</span>Discussion</h2>
   <p>
-  η&nbsp;Tel&nbsp;B (M7.5, ~47&nbsp;M<sub>Jup</sub>, β Pic moving group) shares CD-35
-  2722 B's instrument setting and has no RV measurements in the literature. Before any
-  extraction we checked the property that compromised the CD-35 sampling: over the 17
-  usable modern epochs, only 11% of the 5–460&nbsp;d period grid is BERV-degenerate,
-  and the 150–300&nbsp;d decade is fully clean — this target cannot hide an orbit
-  behind the barycentric correction. The transferred pipeline delivers
-  127–129&nbsp;m&nbsp;s<sup>−1</sup> per epoch (the M7.5 spectrum is far richer in
-  H-band lines than an early-L), r(RV,&nbsp;BERV)&nbsp;=&nbsp;+0.03, and injection
-  recovery of 99–101&nbsp;±&nbsp;1% with per-epoch injection residuals of only
-  12–26&nbsp;m&nbsp;s<sup>−1</sup>.
-  </p>
-  <p>
-  The blind search returns no credible signal on either extraction route
-  (Fig.&nbsp;3, right): the whole BERV-clean window is negative, and the only
-  structure — a weak comb below 20&nbsp;d whose leading period moves between routes
-  and combines, and which strengthens only when the BERV term is added — behaves as a
-  sampling alias, in the same period regime <span class="them">H26</span> themselves
-  discard as artifacts. The null is calibrated end to end: a real
-  K&nbsp;=&nbsp;300&nbsp;m&nbsp;s<sup>−1</sup>, P&nbsp;=&nbsp;200&nbsp;d Keplerian,
-  injected at the template level and pushed through the full pipeline, is recovered by
-  the same search at rank 1 (ΔBIC +15 to +19). Marginalizing injected phase and
-  demanding ΔBIC ≥ 10 with rank 1 at the injected period gives the 90% exclusion of
-  Figure&nbsp;4 and Table&nbsp;4: companions of m&nbsp;sin&nbsp;i&nbsp;≳
-  0.5–1.2&nbsp;M<sub>Jup</sub> are ruled out across P&nbsp;=&nbsp;20–300&nbsp;d. A twin
-  of the CD-35 companion would have been detected with a probability that depends strongly on
-  period: ~100% of trials below 120&nbsp;d, falling to 42&ndash;83% at 200&ndash;300&nbsp;d,
-  so the non-detection is decisive at short periods and merely suggestive at the period
-  where the one known example actually sits. For comparison, the deepest published limit
-  from this technique on any target is 1&nbsp;M<sub>Jup</sub> at P&nbsp;=&nbsp;200&nbsp;d
-  for &beta;&nbsp;Pic&nbsp;b (Kenworthy et al. 2026), from a dedicated campaign at
-  160&nbsp;m&nbsp;s<sup>&minus;1</sup>; the limit here is comparable, from archival data.
-  </p>
-
-  <p>
-  These are m&nbsp;sin&nbsp;i limits, but in this system that costs almost nothing.
-  &eta;&nbsp;Tel&nbsp;B's own orbit about &eta;&nbsp;Tel&nbsp;A is near edge-on &mdash;
-  i&nbsp;=&nbsp;79<sup>+5</sup><sub>&minus;6</sub>&deg; (Chai et al. 2024, stable across
-  all five of their diagnostic fit configurations) and 82&deg; from an independent analysis
-  (Nogueira et al. 2024). A satellite formed in a circum-companion disc would be expected
-  to orbit near that plane; if it does, sin&nbsp;i&nbsp;&asymp;&nbsp;0.98 and the limits
-  above are true-mass limits to within 2%. That is an assumption rather than a measurement,
-  and a strongly misaligned satellite escapes it &mdash; but it is the same near-edge-on
-  geometry that motivates &beta;&nbsp;Pic&nbsp;b as an RV target (Kenworthy et al. 2026),
-  and the same coplanarity expectation under which the CD-35 satellite is interpreted.
-  </p>
-
-  {{FIG4}}
-
-  <div class="tablewrap">
-  <table>
-    <caption><b>Table 4.</b> η Tel B 90% companion exclusion (phase-marginalized; detection = ΔBIC ≥ 10 and top-ranked peak at the injected period; M<sub>host</sub> = 47 M<sub>Jup</sub>). K<sub>90</sub> is the smallest injected semi-amplitude detected in ≥ 90% of phases.</caption>
-    <thead><tr>
-      <th class="num">period (d)</th><th class="num">K₉₀ (m s⁻¹)</th><th class="num">m sin i limit (M<sub>Jup</sub>)</th>
-    </tr></thead>
-    <tbody>
-      <tr><td class="num">20</td><td class="num">300</td><td class="num k">0.5</td></tr>
-      <tr><td class="num">60</td><td class="num">250</td><td class="num k">0.6</td></tr>
-      <tr><td class="num">120</td><td class="num">250</td><td class="num k">0.8</td></tr>
-      <tr><td class="num">200</td><td class="num">300</td><td class="num k">1.1</td></tr>
-      <tr class="last"><td class="num">300</td><td class="num">300</td><td class="num k">1.2</td></tr>
-    </tbody>
-  </table>
-  </div>
-
-  <h2><span class="no">7</span>Discussion</h2>
-  <p>
-  Three conclusions. <em>First</em>, the central claim of
+  Two conclusions. <em>First</em>, the central claim of
   <span class="them">H26</span> stands up to a from-raw, independently configured,
   injection-validated reproduction: CD-35 2722 B's RVs contain a coherent
   ~170-day signal that a blind search finds at high significance and that survives the
   BERV degeneracy of the sampling. <em>Second</em>, the second companion does not: on
   the paper's own revised table the evidence integral lands on the other side of zero
   in every prior family we tried, and the claimed +2.62 is itself within ~2.7σ of zero
-  by the paper's own quoted lnZ uncertainties. <em>Third</em>, the method transfers:
-  on its first new target it produced a sub-Jupiter companion limit from archival data
-  alone.
+  by the paper's own quoted lnZ uncertainties. The pipeline behind both is validated by
+  signal injection at every stage; its application to further targets is reported
+  separately.
   </p>
   <p>
   One piece of context belongs with all three, and it is easy to miss because the
@@ -683,8 +620,11 @@
   This takes nothing away from <span class="them">H26</span>: the signal is there, and it
   reproduces. But it bounds what may be inferred from it. Planetary-mass companions around
   brighter hosts sit two to three orders of magnitude further out in contrast, and this
-  work contains no measured point between ~1890:1, where extraction is clean, and
-  ~37&nbsp;000:1, where it fails — a factor of twenty nobody has sampled. That
+  work contains no measured point between ~430:1, where extraction is clean, and
+  ~3950:1, where it fails. Contrast alone does not order these outcomes —
+  PDS&nbsp;70&nbsp;b fails at ~460:1 while AB&nbsp;Pic&nbsp;b is clean at ~1770:1 —
+  and what separates them is whether the pair is resolved at the slit at all, which we
+  treat separately. That
   companion-side radial velocimetry can find a satellite is not yet evidence that it can
   do so where most directly imaged planets live.
   </p>
@@ -701,24 +641,24 @@
   <p>
   The open items are dated. The amplitude excess and the second-companion
   discrepancy both become decidable when the embargoed 2026 epochs release (Dec 2026 –
-  May 2027), which break the phase–BERV degeneracy; and the η&nbsp;Tel&nbsp;B limit can
-  be extended by the 2009 pre-upgrade CRIRES epochs (a 16-year baseline) and by the
-  K-band epochs still under embargo. The natural next targets, in order of readiness:
-  β&nbsp;Pic&nbsp;b (six archival nights; a first RV series of the planet, not yet an
-  orbit), and PDS&nbsp;70&nbsp;b, where ~200–300&nbsp;M<sub>⊕</sub> exomoon-regime
-  companions would be within reach of a dedicated campaign.
+  May 2027), which break the phase–BERV degeneracy. Beyond that, the question this paper
+  leaves open is not about CD-35 2722 B at all but about how many such systems carry
+  satellites: β&nbsp;Pic&nbsp;b has since been searched to 1&nbsp;M<sub>Jup</sub> at
+  P&nbsp;=&nbsp;200&nbsp;d without a detection (Kenworthy et al. 2026), while
+  PDS&nbsp;70&nbsp;b — where ~200–300&nbsp;M<sub>⊕</sub> exomoon-regime companions would
+  be within reach of a dedicated campaign — has not been searched at all.
   </p>
 
-  <h2><span class="no">8</span>Figure by figure against H26</h2>
+  <h2><span class="no">7</span>Figure by figure against H26</h2>
   <p>
   Sections 4–7 argue the case in our own order. This section reorganises the same
   analysis into <span class="them">H26</span>'s: for each figure in the published
   paper, the corresponding figure made here, on the same axes and the same statistic
   wherever the data allow. All nine of their figures now have a counterpart
-  (Table&nbsp;5). The last to be answered was their Fig.&nbsp;3, the slit-viewer PSF fits
+  (Table&nbsp;4). The last to be answered was their Fig.&nbsp;3, the slit-viewer PSF fits
   and stellar-contamination contrast curve, which we cannot reproduce in kind because the
   acquisition imaging has never been reduced here — but the same quantity is available
-  from the science frames themselves (§8.4).
+  from the science frames themselves (§7.4).
   </p>
   <p>
   Two conventions throughout. Where a panel can be built from
@@ -737,14 +677,14 @@
 
   <div class="tablewrap">
   <table>
-    <caption><b>Table 5.</b> Correspondence between the figures of <span class="them">H26</span> and this work, with the verdict each comparison returns.</caption>
+    <caption><b>Table 4.</b> Correspondence between the figures of <span class="them">H26</span> and this work, with the verdict each comparison returns.</caption>
     <thead><tr>
       <th>H26</th><th>what it shows</th><th>here</th><th>verdict</th>
     </tr></thead>
     <tbody>
       <tr><td class="k">Fig. 1</td><td>periodogram of the RVs and of the model residuals</td><td class="k">Fig. 5</td><td><span class="mark yes">reproduces</span> — same peak, same significance</td></tr>
       <tr><td class="k">Fig. 2</td><td>RVs with the one- and two-satellite models</td><td class="k">Fig. 6</td><td><span class="mark yes">reproduces</span> — amplitude runs high</td></tr>
-      <tr><td class="k">Fig. 3</td><td>slit-viewer PSF fits, stellar contamination</td><td class="k">§8.4</td><td><span class="mark part">answered differently</span> — bounded from the slit function</td></tr>
+      <tr><td class="k">Fig. 3</td><td>slit-viewer PSF fits, stellar contamination</td><td class="k">§7.4</td><td><span class="mark part">answered differently</span> — bounded from the slit function</td></tr>
       <tr><td class="k">Fig. 4</td><td>per-nodding versus combined-spectrum extraction</td><td class="k">Fig. 7</td><td><span class="mark part">direction confirmed</span>, size combine-dependent</td></tr>
       <tr><td class="k">Fig. 5</td><td>period posteriors for the second signal</td><td class="k">Fig. 8</td><td><span class="mark part">peaks reproduce</span>, evidence does not</td></tr>
       <tr><td class="k">Fig. 6</td><td>the high-evidence two-satellite models</td><td class="k">Fig. 9</td><td><span class="mark part">same four models</span>, all lose to one</td></tr>
@@ -914,8 +854,6 @@
     <p>Lazzoni, C., Zurlo, A., Desidera, S., et al. 2020, <em>A&amp;A</em> 641, A131, "The search for disks or planetary objects around directly imaged companions: a candidate around DH Tauri B".</p>
     <p>Lazzoni, C., Zurlo, A., Desidera, S., et al. 2026, <em>A&amp;A</em> (SaNDi-SHoP I), "Searching for Satellites'N'Disks with a Star-Hopping Program", arXiv:2603.24796.</p>
     <p>Kenworthy, M. A., Landman, R., Vanderburg, A., et al. 2026, <em>MNRAS</em>, "Upper limits on exosatellites around &beta; Pictoris b", arXiv:2606.04685.</p>
-    <p>Chai, Y., et al. 2024, <em>ApJ</em>, "A JWST MIRI MRS View of the &eta; Tel Debris Disk and its Brown Dwarf Companion", arXiv:2408.11692.</p>
-    <p>Nogueira, P. H., Lazzoni, C., Zurlo, A., et al. 2024, <em>A&amp;A</em> 687, A301, astrometric and photometric characterization of &eta; Tel B.</p>
     <p>Neuh&auml;user, R., Ginski, C., Schmidt, T. O. B. &amp; Mugrauer, M. 2011, <em>MNRAS</em> 416, 1430, "Further deep imaging of HR 7329 A (&eta; Tel A) and its brown dwarf companion B".</p>
     <p>Currie, T., et al. 2013, Gemini/NICI photometry of &beta; Pictoris b, arXiv:1306.0610.</p>
     <p>Macias, I., Jenkins, S. A. &amp; Vanderburg, A. 2026, <em>AJ</em> 171, 197, "First Astrometric Limits on Binary Planets and Exomoons Orbiting &beta; Pictoris b".</p>
@@ -930,7 +868,7 @@
 
   <div class="foot">
     Draft prepared 2026-08-11 from milestones M13–M15 of the exosat-rv reproduction
-    project; §8 added 2026-08-12. Figures 1–4 are generated by
+    project; §7 added 2026-08-12. Figures 1–3 are generated by
     <code>scripts/m16_figures.py</code> and Figures 5–12 by
     <code>scripts/m18_figures.py</code>, from the exported series in
     <code>data/export/</code> and the posterior samples written by
