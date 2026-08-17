@@ -1,156 +1,250 @@
 <title>CD-35 2722 B reproduction & eta Tel B limits — draft</title>
 <style>
+  /* ------------------------------------------------------------------------
+     Journal typography, modelled on the AASTeX / A&A / MNRAS two-column page.
+
+     Values taken from arXiv's own HTML rendering stack where they apply
+     (ar5iv 0.9.0: justified body, hyphens auto, 1.5 prose line-height, serif
+     text face against sans headings) and from print convention where arXiv's
+     web theme departs from it -- arXiv's current beta serves a sans-serif body
+     ("rival-sans"), which is arXiv house style, not what a paper looks like.
+
+     Layout: SINGLE column on screen, TWO columns in print. This is deliberate
+     and is what arXiv's own HTML does. CSS multi-column does not paginate on a
+     continuous page: with two columns the left one holds the entire first half
+     of the document, so a reader scrolls down forty screens and back up. A
+     journal PDF escapes this only because it paginates, and columns restart on
+     every page. Print does paginate, so the two-column rule lives in @media
+     print, where figures and tables carry column-span:all exactly as in a
+     journal.
+     ------------------------------------------------------------------------ */
   :root {
     --plane: #eceae5;
-    --sheet: #fcfcfb;
-    --ink: #141413;
-    --ink-2: #52514e;
-    --muted: #898781;
-    --hairline: #e1e0d9;
-    --rule: #c3c2b7;
-    --us: #2a78d6;
-    --them: #eb6834;
-    --draft: #b0473a;
+    --sheet: #ffffff;
+    --ink: #000000;
+    --ink-2: #333333;
+    --muted: #6b6b6b;
+    --hairline: #d8d8d8;
+    --rule: #000000;
+    --us: #1a5fb4;
+    --them: #b5450b;
+    --draft: #a02c2c;
+
+    --serif: "Times New Roman", Times, "Liberation Serif", "Nimbus Roman",
+             "Tinos", Georgia, serif;
+    --sans: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
+
+    --body-size: 15px;
+    --body-leading: 1.42;
+    --colgap: 26px;
   }
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) { --plane: #131312; }
+    :root:not([data-theme="light"]) { --plane: #1a1a19; }
   }
-  :root[data-theme="dark"] { --plane: #131312; }
+  :root[data-theme="dark"] { --plane: #1a1a19; }
 
   body {
     background: var(--plane);
     margin: 0;
-    padding: 40px 16px 72px;
-    font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+    padding: 36px 14px 64px;
+    font-family: var(--serif);
     color: var(--ink);
   }
+
+  /* The page. Proportioned like a letter-size journal page: ~7.1in of text
+     block, two columns, so a line runs to roughly 55 characters as in print. */
   .sheet {
-    max-width: 760px;
+    max-width: 820px;
     margin: 0 auto;
     background: var(--sheet);
     color: var(--ink);
-    padding: 64px 72px 72px;
-    box-shadow: 0 1px 3px rgba(0,0,0,.14), 0 12px 40px rgba(0,0,0,.10);
-    border-radius: 2px;
+    padding: 58px 62px 66px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.16), 0 10px 34px rgba(0,0,0,.09);
+    border-radius: 1px;
+
+    font-size: var(--body-size);
+    line-height: var(--body-leading);
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
   }
-  @media (max-width: 700px) { .sheet { padding: 40px 22px 48px; } }
+
+  /* --- the title block spans the full measure, as in a journal ------------ */
+  .draftbar, h1, .byline, .dateline, .abstract {
+    text-align: initial;
+    hyphens: none;
+  }
 
   .draftbar {
-    font-family: "Segoe UI", system-ui, sans-serif;
-    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
-    color: var(--draft); border: 1px solid currentColor; border-radius: 2px;
-    display: inline-block; padding: 3px 10px; margin-bottom: 28px;
+    font-family: var(--sans);
+    font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--draft); border: 1px solid currentColor;
+    display: inline-block; padding: 2px 8px; margin: 0 0 20px;
   }
   h1 {
-    font-size: 27px; line-height: 1.28; font-weight: 700; margin: 0 0 14px;
-    text-wrap: balance; letter-spacing: -0.005em;
+    font-family: var(--serif);
+    font-size: 25px; line-height: 1.22; font-weight: 700;
+    margin: 0 0 16px; text-align: center; text-wrap: balance;
   }
-  .byline { font-size: 14.5px; color: var(--ink-2); margin: 0 0 4px; }
-  .byline b { color: var(--ink); font-weight: 600; }
+  .byline {
+    text-align: center; font-size: 14.5px; margin: 0 0 4px; color: var(--ink);
+  }
+  .byline b { font-weight: 400; }
   .dateline {
-    font-family: "Segoe UI", system-ui, sans-serif;
-    font-size: 12px; color: var(--muted); margin: 0 0 30px;
+    text-align: center; font-size: 12px; color: var(--muted);
+    margin: 0 0 22px; font-style: italic;
   }
+
+  /* Abstract: full measure, indented both sides, smaller -- AASTeX house style */
   .abstract {
-    border-top: 2px solid var(--ink); border-bottom: 1px solid var(--hairline);
-    padding: 18px 0 20px; margin: 0 0 34px;
+    margin: 0 auto 26px; padding: 0;
+    max-width: 84%;
+    font-size: 13.5px; line-height: 1.45;
+    border-top: 0.5px solid var(--hairline);
+    border-bottom: 0.5px solid var(--hairline);
+    padding: 14px 0 12px;
   }
   .abstract .eyebrow {
-    font-family: "Segoe UI", system-ui, sans-serif;
-    font-size: 11px; letter-spacing: .16em; color: var(--ink-2);
-    text-transform: uppercase; margin-bottom: 10px;
+    display: block; text-align: center; font-family: var(--serif);
+    font-variant: small-caps; letter-spacing: .08em;
+    font-size: 12.5px; color: var(--ink); margin: 0 0 8px; font-weight: 700;
   }
-  .abstract p { font-size: 15.5px; line-height: 1.62; margin: 0; }
+  .abstract p { margin: 0 0 8px; text-align: justify; hyphens: auto; }
+  .abstract p:last-child { margin-bottom: 0; }
 
+  /* --- section heads: left, bold, numbered (A&A / MNRAS convention) ------- */
   h2 {
-    font-size: 19px; font-weight: 700; margin: 40px 0 12px;
-    letter-spacing: -0.004em; text-wrap: balance;
+    font-family: var(--serif);
+    font-size: 15.5px; font-weight: 700; line-height: 1.25;
+    margin: 20px 0 7px; text-align: left; hyphens: none;
+    break-after: avoid-column;
   }
-  h2 .no { color: var(--muted); font-weight: 400; margin-right: 10px; }
-  h3 { font-size: 15.5px; font-weight: 700; margin: 26px 0 8px; }
-  p { font-size: 16px; line-height: 1.66; margin: 0 0 14px; }
-  .us { color: var(--us); font-weight: 600; }
-  .them { color: var(--them); font-weight: 600; }
+  h2 .no { font-weight: 700; margin-right: .5em; }
+  h3 {
+    font-family: var(--serif);
+    font-size: 14.5px; font-weight: 400; font-style: italic;
+    margin: 15px 0 5px; text-align: left; hyphens: none;
+    break-after: avoid-column;
+  }
+
+  /* --- body text: journal paragraphs are indented, not spaced ------------- */
+  p { margin: 0 0 0; text-indent: 1.4em; orphans: 2; widows: 2; }
+  h1 + p, h2 + p, h3 + p, .abstract p, figcaption p, caption p,
+  .refs p, .foot p, td p, th p { text-indent: 0; }
+
+  .us { color: var(--us); }
+  .them { color: var(--them); }
   em { font-style: italic; }
-  sup { font-size: 11px; }
+  sup { font-size: .74em; line-height: 0; vertical-align: super; }
+  code {
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: .86em;
+  }
 
-  figure { margin: 28px 0 30px; }
-  figure img { width: 100%; height: auto; display: block; border: 1px solid var(--hairline); border-radius: 2px; }
+  /* --- floats span the full measure, as in print ------------------------- */
+  figure, .tablewrap, figure.pair {
+    margin: 18px 0 16px;
+    break-inside: avoid;
+  }
+  figure img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
   figcaption {
-    font-family: "Segoe UI", system-ui, sans-serif;
-    font-size: 12.5px; line-height: 1.55; color: var(--ink-2); margin-top: 10px;
+    font-size: 12px; line-height: 1.4; color: var(--ink-2);
+    margin-top: 7px; text-align: justify; hyphens: auto;
   }
-  figcaption b { color: var(--ink); }
+  figcaption b { font-weight: 700; color: var(--ink); }
 
-  /* Figure correspondence (§8): every figure in the appendix answers a numbered
-     figure in H26, so the pairing gets its own header strip above the image. */
-  .pairhead {
-    display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px;
-    font-family: "Segoe UI", system-ui, sans-serif;
-    font-size: 11px; letter-spacing: .07em; text-transform: uppercase;
-    padding-bottom: 8px; margin-bottom: 10px;
-    border-bottom: 1px solid var(--hairline);
+  .pairhead { font-family: var(--sans); font-size: 11px; margin-bottom: 6px; }
+  .chip {
+    display: inline-block; padding: 1px 6px; border: 1px solid currentColor;
+    border-radius: 2px; font-size: 10px; letter-spacing: .04em;
   }
-  .chip { border: 1px solid currentColor; border-radius: 2px; padding: 2px 7px; }
   .chip.them { color: var(--them); }
   .chip.us { color: var(--us); }
-  .pairhead .to { color: var(--muted); letter-spacing: 0; }
-  .verdict {
-    margin-left: auto; letter-spacing: .09em; font-weight: 600;
-    color: var(--muted);
-  }
-  .verdict.yes { color: #006300; }
-  .verdict.no { color: var(--draft); }
-  .verdict.part { color: #8a6d1f; }
-  figure.pair { margin: 34px 0 32px; }
+  .pairhead .to { color: var(--muted); margin: 0 6px; }
 
-  td .mark { font-weight: 600; }
-  td .mark.yes { color: #006300; }
-  td .mark.no { color: var(--draft); }
-  td .mark.part { color: #8a6d1f; }
-  td .mark.none { color: var(--muted); }
+  .verdict { font-family: var(--sans); font-size: 10.5px; font-weight: 700; }
+  .verdict.yes { color: #1a7f37; }
+  .verdict.no { color: #b5450b; }
+  .verdict.part { color: #9a6700; }
 
-  .tablewrap { overflow-x: auto; margin: 24px 0 28px; }
+  /* --- tables: journal rules, no vertical lines -------------------------- */
+  .tablewrap { overflow-x: auto; }
   table {
     border-collapse: collapse; width: 100%;
-    font-family: "Segoe UI", system-ui, sans-serif;
-    font-size: 13px; line-height: 1.5;
-    font-variant-numeric: tabular-nums;
+    font-size: 12.5px; line-height: 1.34;
+    font-family: var(--serif);
   }
   caption {
-    text-align: left; font-size: 12.5px; color: var(--ink-2);
-    padding-bottom: 8px; caption-side: top;
+    caption-side: top; text-align: justify; hyphens: auto;
+    font-size: 12px; line-height: 1.4; color: var(--ink-2);
+    margin-bottom: 7px;
   }
-  caption b { color: var(--ink); }
+  caption b { font-weight: 700; color: var(--ink); }
   th {
-    text-align: left; font-weight: 600; color: var(--ink);
-    border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule);
-    padding: 7px 14px 7px 0; white-space: nowrap;
+    font-weight: 700; text-align: left; padding: 5px 9px 5px 0;
+    border-top: 1.1px solid var(--rule);
+    border-bottom: 0.6px solid var(--rule);
+    vertical-align: bottom;
   }
-  td { padding: 6px 14px 6px 0; border-bottom: 1px solid var(--hairline); color: var(--ink-2); vertical-align: top; }
-  tr.last td, tbody tr:last-child td { border-bottom: 2px solid var(--ink); }
-  td.k, th.k { color: var(--ink); }
-  .num { text-align: right; }
-  th.num { text-align: right; }
-  .good { color: #006300; }
+  td {
+    padding: 4px 9px 4px 0; vertical-align: top;
+    border-bottom: 0.4px solid var(--hairline);
+    text-align: left; hyphens: none;
+  }
+  tr.last td, tbody tr:last-child td { border-bottom: 1.1px solid var(--rule); }
+  td.k, th.k { color: var(--muted); }
+  .num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .good { color: #1a7f37; }
 
-  .refs { font-size: 14px; line-height: 1.6; }
-  .refs p { margin: 0 0 8px; padding-left: 22px; text-indent: -22px; font-size: 14px; }
-  .foot {
-    margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--hairline);
-    font-family: "Segoe UI", system-ui, sans-serif;
-    font-size: 12px; color: var(--muted); line-height: 1.6;
+  td .mark { font-weight: 700; }
+  td .mark.yes { color: #1a7f37; }
+  td .mark.no { color: #b5450b; }
+  td .mark.part { color: #9a6700; }
+  td .mark.none { color: var(--muted); }
+
+  /* --- references: hanging indent, smaller ------------------------------- */
+  .refs { font-size: 12.5px; line-height: 1.38; }
+  .refs p {
+    margin: 0 0 5px; padding-left: 1.5em; text-indent: -1.5em;
+    text-align: left; hyphens: none;
   }
-  code {
-    font-family: Consolas, "Cascadia Mono", monospace; font-size: 13px;
-    background: #f2f1ed; padding: 1px 5px; border-radius: 3px; color: var(--ink-2);
+
+  .foot {
+    margin-top: 26px; padding-top: 12px;
+    border-top: 0.6px solid var(--hairline);
+    font-size: 11.5px; line-height: 1.42; color: var(--ink-2);
+    text-align: left; hyphens: none;
+  }
+
+  /* --- narrow screens: a single column is more use than a faithful one ---- */
+  @media (max-width: 820px) {
+    .sheet { padding: 40px 22px 48px; }
+    .abstract { max-width: 100%; }
+  }
+
+  /* --- print: this is the point of the whole exercise -------------------- */
+  @media print {
+    body { background: #fff; padding: 0; }
+    /* Print paginates, so two columns behave here as they do in a journal. */
+    .sheet {
+      max-width: none; box-shadow: none; padding: 0;
+      font-size: 9.6pt; line-height: 1.3;
+      column-count: 2; column-gap: 24px;
+    }
+    .draftbar, h1, .byline, .dateline, .abstract,
+    figure, .tablewrap, figure.pair, .foot { column-span: all; }
+    h1 { font-size: 17pt; }
+    .abstract { font-size: 9pt; }
+    figure, .tablewrap { break-inside: avoid; }
+    h2, h3 { break-after: avoid; }
+    .draftbar { display: none; }
   }
 </style>
 
 <div class="sheet">
   <div class="draftbar">Draft · internal reproduction report · not submitted</div>
 
-  <h1>An independent reproduction of the radial-velocity companion of CD-35 2722 B from archival CRIRES+ data, and first radial-velocity limits on η Tel B</h1>
+  <h1>An independent reproduction of the radial&#8209;velocity companion of CD&#8209;35&nbsp;2722&nbsp;B from archival CRIRES+ data, and first radial&#8209;velocity limits on η&nbsp;Tel&nbsp;B</h1>
   <p class="byline"><b>Matthew Potts</b> · independent analysis</p>
   <p class="dateline">11 August 2026 · figure-by-figure appendix added 12 August 2026 · reproduces Hoy et al. (2026), <em>Nature</em> · all data from the public ESO archive</p>
 
