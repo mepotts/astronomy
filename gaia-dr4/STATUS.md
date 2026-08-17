@@ -3,6 +3,36 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-08-16** — **M3 done** ([`M3-corrvec-rehearsal.md`](M3-corrvec-rehearsal.md)):
+  the two M2 seams are closed and December 2 is rehearsed. **(1) corr_vec**: `nsstools`
+  0.1.12 (PyPI, verified) rebuilds the full NSS covariance; validation vs S23's e_A goes
+  from 2.27× overestimate to **median ratio 1.027** (the residual fat tail is confined to
+  TI-degenerate solutions, marker = S23's own σ_TI² — the candidate list lives at median
+  0.95, i.e. in the validated regime); the 951's **Pr≥99.9 % core doubles 147 → 293**,
+  **0 dissolve** below 50 %, the retrieval bin yields 32 more at ≥ 99.9 % (headed by the
+  EB26 probable-NS at 0.9997), BH1/BH2 = 1.0000/1.0000 — and a clean negative: **Pr
+  thresholds don't improve the EB26 operating point** (precise wrong orbits have Pr ≈ 1;
+  the frozen screen stands, Pr is a ranking tier in config **v2**, v1 untouched).
+  **(2) dust tier**: Edenhofer23 3D (≤ 1.25 kpc, all-sky, healpy-free reader) + far-star
+  Edenhofer-floor/SFD bracketing (Bayestar rejected: unsourced Gaia-band chain; the 12
+  dust-ambiguous rows are counted instead); only 91 of the 270 flagged are even movable
+  (179 are binary_masses-tier) — **8 out / 6 in** at best estimate → **v2 list = 949**
+  (one knife-edge entrant honestly at Pr 0.495); top-3 unchanged (BH1 12.81, BH2 9.76,
+  then the EB26-refuted spurious at Pr 1.0000 — still the epoch-vet poster child).
+  **(3) rehearsal**: schema-pin → rename-patch (live-probed) → plan-B ranged pull re-run
+  in full (38.7 min, **byte-identical sha256 to the M2 production pull**; the raw ranges
+  over-count by exactly the histogram wobble + the bm fan-out and the guard chain
+  assembles 169,227 on the nose) → triage acceptance **PASS** (BH1+BH2, 65 s) →
+  epoch-vet **PASS** (3/3 keep, 9/9 demote) → bulletin; **40 min end-to-end**, timings in
+  `out/rehearsal_timings.csv`; the operational playbook is **`DR4-DAY-RUNBOOK.md`**.
+  **(4) eROSITA join** (471 of 949 in-footprint): **30 X-ray counterparts vs 1.38
+  chance** (8 shifted controls), 0 hard-band, all in the coronal f_X/f_opt locus
+  (−4.3…−1.2) — **no accretor found** down to a median L_X reach 3.8×10²⁹ erg/s; the
+  X-ray-loudest-relative match is the EB26-refuted 1-yr-alias spurious (p_any 0.9995):
+  on this sample X-ray = activity/spurious-risk tag, not compact-companion evidence.
+  New landmines: VOTable `SOURCE_ID` upper-casing; duplicate `GDR3_source_id` column in
+  eRASSc3; dustmaps' wrong ZGR23-curve DOI; sfdmap2's silent 0.86 rescale; healpy has no
+  Windows build. Human TODOs unchanged (accounts).
 - **2026-08-16** — **M2 done** ([`M2-amrf-triage.md`](M2-amrf-triage.md)): the AMRF triage
   exists, is validated, and its DR4 config is frozen (`queries/dr4-triage-config.json`).
   **Acceptance PASS on the first end-to-end run**: BH1 class III (𝒜 = 2.265, margin 3.38×,
