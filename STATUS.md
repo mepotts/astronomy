@@ -18,7 +18,7 @@ UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 | itf-linker **M10** | [`itf-linker/`](itf-linker/) | **Priority 1 serves Matthew's review: refresh live-vs-consumed across all ~733 ledger rows, re-measure the decay clock, and emit `out/review-queue.csv`** (live rows only, ranked by submission value, human-adjudicable columns + a 10-row spot-check). Then the 15–25 yr main-belt shell, M9's 60 new ambiguities, and the pointed-field screen for the TNO confound |
 | gaia-dr4 **M5** | [`gaia-dr4/`](gaia-dr4/) | M4's test done right — the activity axis with **no footprint penalty** (`activityindex_espcs`, photometric-variability proxies, astrometric-quality flags as three separate families vs all 76 EB26 verdicts, each with an exact power statement); southern dust closure (Vergely/Lallement); fold the day-one queue emit into the rehearsal script |
 | dyson-revet **M2** | [`dyson-revet/`](dyson-revet/) | retire D formally; **the candidate-I dossier** (the Matthew-gated deliverable: what is known, and what observation would settle it); the Ren+24 3600× unit-error note as an RNAAS-sized DRAFT (prior-art checked, scrupulously fair, not submitted); start W4 — the full 5M-star re-screen via ~24 async strips with JWST-calibrated centroid floors |
-| erosita-dr2 **write-up** | [`erosita-dr2/`](erosita-dr2/) | the fader census as a publishable draft: venue decision (RNAAS vs short paper), **every headline number re-derived from committed artifacts** into `writeup-audit.md`, adversarial prior-art sweep (scooped since 2026-07-31?), then the draft itself with a real limitations section. **J0944 fenced** — its paper waits on the ToO result |
+| erosita-dr2 **write-up ✓** | [`erosita-dr2/`](erosita-dr2/) | **Venue: one RNAAS note** (limits verified live: 1,500 words, one figure *or* table, non-peer-reviewed) — a short paper would need padding the census with per-object dossiers no follow-up supports. Draft is **1,376 words, one figure, DRAFT — NOT SUBMITTED** ([`draft-rnaas-vanished-census.md`](erosita-dr2/draft-rnaas-vanished-census.md)). **Headline: of the 261 bright eRASS1 sources absent from DR2, 57% still have flux at their position (catalogue artifacts) and 41% are real faders** — the release paper's §5.1 "unmatched ⇒ spurious" breaks at the bright end and breaks harder the brighter the source (100% artifacts above DET_LIKE 242). **Prior art: NOT SCOOPED** — nobody has ever published an eRASS1↔eRASS:3 variability/vanishing census and no DR2 variability VAC exists — **but Ramos-Ceja+2026 §5.1 already runs the same UID_DR1 cross-walk and publishes 21% / 3.5% / 0.15% unmatched while never mentioning variability**; the draft now opens on it as the thing being tested. **Audit: 107 numbers, 93 verified / 14 corrected / 1 UNSOURCED dropped** — the threshold band is **+17/−8, not M2's +35/−12**; M1's "12.6% spurious + 8.4% variability" is not in the paper; `fade_frac` never discriminated. **New measurement**: the fader threshold had only been calibrated on ≥20σ sources, so 60 steady controls matched in flux *and* DET_LIKE were queried — **disjoint from the faders (2.03–3.78 vs ≤1.49), 0/60 misclassified → <4.9% contamination**. **J0944 fenced and absent** (it is a riser). LMC null + OGLE scoping law drafted as an optional companion note |
 
 *pta-mpta M2 landed (see wave 4) — the front is idle and free for an M3 agent. erosita's classifier build stays queued behind Matthew's pivot decision.*
 
@@ -69,10 +69,17 @@ UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
    per-object. PD152 remains the flagship exemplar; MQ241 borderline unchanged. Needs your
    MPC account either way.
 2. **J0944** — send the drafted Swift ToO? (`erosita-dr2/J0944-decision-package.md`; needs a Swift ToO account.)
-3. **eta Tel B RNAAS** — submit or fold into the method paper? (concurrent thread's M32; author/affiliation/ORCID.)
-4. **Accounts before Dec 2** — Gaia Archive + NOIRLab Data Lab (both free).
-5. Optional — email MPE about the `eRASSc3_Main_GDR3` duplicated-column defect.
-6. Optional — report the **enterprise 3.5.0 bug** upstream (pta-mpta M2: varying-basis
+3. **eROSITA fader-census RNAAS** — submit or not? (`erosita-dr2/draft-rnaas-vanished-census.md`,
+   DRAFT — NOT SUBMITTED.) Needs: author/affiliation ("Independent Researcher" is accepted) +
+   ORCID; a **citable Zenodo DOI** for the census products, scoped to exclude the fenced J0944
+   material (same open item as itf-linker C5); and one manual ADS lookup to confirm the DR2
+   paper's journal reference (A&A 712, A171 comes from the consortium list only). The optional
+   companion note on the LMC null additionally needs the XROM team contacted — not done.
+   Full list in `erosita-dr2/M5-writeup.md` §6.
+4. **eta Tel B RNAAS** — submit or fold into the method paper? (concurrent thread's M32; author/affiliation/ORCID.)
+5. **Accounts before Dec 2** — Gaia Archive + NOIRLab Data Lab (both free).
+6. Optional — email MPE about the `eRASSc3_Main_GDR3` duplicated-column defect.
+7. Optional — report the **enterprise 3.5.0 bug** upstream (pta-mpta M2: varying-basis
    parameters zero the GP prior matrix, so sampling a chromatic index crashes deterministically;
    reproducer + fix are in `pta-mpta/M2-converge-scale.md`). Outward-facing, so it's your call.
 

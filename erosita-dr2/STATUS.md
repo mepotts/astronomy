@@ -3,6 +3,44 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-08-18 (M5-writeup COMPLETE)** — [`M5-writeup.md`](M5-writeup.md),
+  [`draft-rnaas-vanished-census.md`](draft-rnaas-vanished-census.md) and
+  [`writeup-audit.md`](writeup-audit.md) landed. Label is **M5-writeup**, not M5 — the
+  classifier thin-slice M5 stays queued behind Matthew's pivot acceptance. J0944 untouched and
+  **deliberately absent from the draft** (it is a riser; a fader census has no place for it).
+  **Venue: one RNAAS note**, not a short paper — one clean measurement, one decisive figure, no
+  confirmed individual object, and every candidate that could carry a longer paper is fenced or
+  unconfirmed; limits verified live at journals.aas.org ("1,500 words or fewer", "a single
+  figure or table (but not both)", abstract required, non-peer-reviewed). Draft = **1,338
+  words, one figure, no table**, DRAFT — NOT SUBMITTED, author/affiliation placeholders.
+  **Headline**: of the 261 bright (DET_LIKE_0 ≥ 30) eRASS1 sources absent from DR2, **57% still
+  have flux at their position (catalogue artifacts) and 41% sit on blank sky (real faders)** —
+  the release paper's §5.1 assumption that unmatched ⇒ spurious breaks at the bright end, and
+  breaks harder the brighter the source (71% artifacts above DET_LIKE 100, 100% above 242).
+  **Prior art: NOT SCOOPED** (arXiv complete 2026-07-28→08-17, ADS, DR2 pages: nobody has ever
+  published an eRASS1↔eRASS:3 variability/vanishing census, no DR2 variability VAC exists) —
+  **but Ramos-Ceja+2026 §5.1 already runs the same UID_DR1 cross-walk and publishes the
+  unmatched fractions (21% / 3.5% >DL10 / 0.15% >DL50) while never mentioning variability**;
+  uncited that would be fatal, so the draft now opens on it as the thing being tested.
+  **Audit: 107 quantities, 93 VERIFIED / 14 CORRECTED / 0 not-re-derivable**, plus 1 UNSOURCED
+  dropped. Load-bearing corrections: the threshold band is **+17/−8, not M2's +35/−12** (M2
+  counted rows in the presence interval; the tree tests split/halo *before* and the 40″ PSF
+  confuser *after*, so 18+4 never change class); M1's "12.6% spurious + 8.4% variability" is
+  **not in §5.1** (UNSOURCED, dropped); 1 of 25 UL calibrators is degenerate (UL_S=inf) and
+  M2's "median 1.13±0.07" is a mean; `fade_frac` never discriminated (fader 1.25 vs steady
+  1.13) — only `presence` does; t₃/t₁ = 2.84 not 2.9; XROM 49.8′ and LMC HMXB 12.9′ were
+  rounded *up* in M4; M1's eRASS:3 span is internally inconsistent (552 d ≠ 556 d) so the draft
+  quotes no span. **New measurement that closed a real gap**: the presence threshold had only
+  ever been calibrated on ≥20σ sources, so 60 steady controls **matched to the faders in flux
+  AND DET_LIKE** were queried — controls land at P = 2.03–3.78, faders at P ≤ 1.49, **disjoint,
+  0/60 misclassified → <4.9% contamination (95% one-sided), fewer than 6 of the 107**. The cut
+  is not tuned; the data put a gap there. 3 scripts, 4 out/ files (incl. the one-figure
+  `m5w_vanished_census.png`); one anonymous UL-server POST, cached. LMC null + OGLE scoping law
+  drafted as **companion note B** (needs XROM contact, not done; its gap dates must stay worded
+  as measured-by-us — 2022-08-16 is unsourced in the literature). No accounts, no submissions,
+  no commits (orchestrator's job). Matthew's gates in doc §6: submit-or-not + affiliation/ORCID,
+  a citable Zenodo DOI (same open item as itf-linker C5), confirm A&A 712, A171 against ADS,
+  and the unchanged J0944 ToO decision.
 - **2026-08-16 (M4 COMPLETE)** — [`M4-lmc-ogle-and-rebase.md`](M4-lmc-ogle-and-rebase.md)
   landed; J0944 untouched (Matthew's gate). **Part A (LMC-fader × OGLE mini-study, the M3
   design executed)**: the 25 LMC-box fade-candidates match **nothing** — 0/25 in OCVS
