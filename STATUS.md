@@ -11,7 +11,18 @@ before building — sweep-reported facts are treated as claims until re-checked 
 repo's own tooling. Every externally-sourced number carries its source or the mark
 UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 
-## Active fronts — wave 4 (launched 2026-08-17)
+## Active fronts — wave 5 (launched 2026-08-18)
+
+| Front | Folder | Wave-5 scope |
+|---|---|---|
+| itf-linker **M10** | [`itf-linker/`](itf-linker/) | **Priority 1 serves Matthew's review: refresh live-vs-consumed across all ~733 ledger rows, re-measure the decay clock, and emit `out/review-queue.csv`** (live rows only, ranked by submission value, human-adjudicable columns + a 10-row spot-check). Then the 15–25 yr main-belt shell, M9's 60 new ambiguities, and the pointed-field screen for the TNO confound |
+| gaia-dr4 **M5** | [`gaia-dr4/`](gaia-dr4/) | M4's test done right — the activity axis with **no footprint penalty** (`activityindex_espcs`, photometric-variability proxies, astrometric-quality flags as three separate families vs all 76 EB26 verdicts, each with an exact power statement); southern dust closure (Vergely/Lallement); fold the day-one queue emit into the rehearsal script |
+| dyson-revet **M2** | [`dyson-revet/`](dyson-revet/) | retire D formally; **the candidate-I dossier** (the Matthew-gated deliverable: what is known, and what observation would settle it); the Ren+24 3600× unit-error note as an RNAAS-sized DRAFT (prior-art checked, scrupulously fair, not submitted); start W4 — the full 5M-star re-screen via ~24 async strips with JWST-calibrated centroid floors |
+| erosita-dr2 **write-up** | [`erosita-dr2/`](erosita-dr2/) | the fader census as a publishable draft: venue decision (RNAAS vs short paper), **every headline number re-derived from committed artifacts** into `writeup-audit.md`, adversarial prior-art sweep (scooped since 2026-07-31?), then the draft itself with a real limitations section. **J0944 fenced** — its paper waits on the ToO result |
+
+*pta-mpta M2 still finishing its last factorised-likelihood run — no second agent sent into that folder. erosita's classifier build stays queued behind Matthew's pivot decision.*
+
+## Completed fronts — wave 4 (2026-08-17 → 18)
 
 | Front | Folder | Wave-4 scope |
 |---|---|---|
