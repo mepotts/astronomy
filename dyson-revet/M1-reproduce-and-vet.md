@@ -4,6 +4,27 @@
 Every externally-sourced number carries its source; anything unsourced is marked UNSOURCED. Nothing here has been
 reported externally.*
 
+> **Appended 2026-08-18 (M2) — this document is not revised, only annotated.**
+> Three items in it have been superseded or sharpened by [M2](M2-dossier-and-screen.md):
+>
+> 1. **Candidate D is formally retired** (M2 §1). The verdict in §3.2 below stands unchanged —
+>    CONTAMINATION-CONFIRMED by Hephaistos IV — and D is now closed as a work item everywhere in
+>    the project (README, STATUS, this cross-reference). D is not "the cleanest candidate", it is
+>    the demonstration that *archival cleanliness carries no information* about contamination.
+> 2. **§3.3's phrase "the centroid *directions* flip between AllWISE and unWISE" is imprecise for
+>    W3.** Measured position angles: W3 202° (AllWISE) vs 192° (unWISE) — same direction, 62%
+>    magnitude change; W4 345° vs 121° — a genuine 224° flip with a 5× magnitude change. Corrected
+>    in [`I-dossier.md`](I-dossier.md) §4.
+> 3. **§2.4/§5's W4 cost plan assumed ~24 anonymous ESA *async* strip jobs. Anonymous async does
+>    not work.** Every `run_async` job submitted on 2026-08-18 returned HTTP 500 at job creation,
+>    confirmed by raw POST (`scripts/_w4_diag.py`). M1 measured only the *sync* endpoint and
+>    extrapolated to a route it never exercised. The screen runs on sync with adaptive tiling
+>    instead; the re-measured cost is in M2 §4.
+>
+> Also new in M2 and relevant to §3.3: candidate I's W3 is a **non-detection (ph_qual 'U', S/N 1.3)
+> in the WISE All-Sky Release** of the same photons, and AllWISE reports **w3nm = 0** — the source
+> was never individually detected in W3 in any single exposure.
+
 ---
 
 ## 0. Executive summary
@@ -256,6 +277,12 @@ NIR-detected only. Deep optical catalogs alone would have missed C's contaminant
 
 **Verdict D: CONTAMINATION-CONFIRMED** (Zackrisson et al. 2026, JWST GO 7199) — was *not* recoverable
 from archival data alone; archival-only grading (Ren 26 and this work) correctly said "weak evidence".
+
+> **Retired 2026-08-18 (M2 §1).** D is closed. No further work is planned on it and no statement
+> anywhere in this project should describe D as clean, surviving, or a candidate. The measurements
+> above are kept because they are the *calibration* of the centroid method's blind spot — a real
+> 1.0″ contaminant that moved the AllWISE centroid by only 0.5–1.4″ — which is what fixes the
+> 1–2″ sensitivity floor now used to grade every other object, candidate I included.
 
 ### 3.3 Candidate I — the last one standing
 

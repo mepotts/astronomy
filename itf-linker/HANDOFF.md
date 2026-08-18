@@ -5,8 +5,8 @@ knowledge in this repository is not the code — it is the list of things that w
 measured, and found to be wrong. That list is spread across eight documents and would
 otherwise have to be rediscovered.
 
-**One-line status:** M0–M5 + M7–M9 complete, the MPC's Isolated Tracklet File searched at
-~100% coverage on both slices, **zero linking discoveries**, 467 tests green. The durable
+**One-line status:** M0–M5 + M7–M10 complete, the MPC's Isolated Tracklet File searched at
+~100% coverage on both slices, **zero linking discoveries**, 485 tests green. The durable
 outputs are a validated linking pipeline, a daily archive that independently confirmed 21
 of its own groupings, a replicated methodological result drafted for publication — and an
 **attribution** capability (ITF tracklet → known orbit) at production scale: a perturbed
@@ -16,10 +16,12 @@ and a candidate ledger now holding **733 live unsubmitted PASS rows across ~695 
 (M8's 482 + M9's 272, 90% beyond the old 4-year window), a 45-object combined-fit tier
 (40 passing, arc extensions to +5,107 d), 87 of 88 lost-object ambiguities resolved** —
 plus M7's held pair (2025 PD152; 2025 MQ241 borderline, joined by M9's 2026 AK20), all
-awaiting Matthew's per-batch review. **The MPC independently confirmed 30/30 of the M8
-candidates it consumed in the two days after M8 ran** (`M9-RESULTS.md` §5) — external
-ground truth for the chain, and a measured decay clock on the ledger's submission value.
-Nothing has ever been submitted.
+awaiting Matthew's per-batch review, now **ranked and ready to open at
+`out/review-queue.csv`** (M10). **Of the 33 ledger tracklets the MPC has consumed since
+08-16, 31 went to exactly the object the ledger named — 21/21 of the PASS rows — and the
+two that did not were both rows the strict gate had already refused** (`M10-RESULTS.md`
+§1): external ground truth for the chain, agreeing on everything it asserted and
+supplying the gate's first two measured true negatives. Nothing has ever been submitted.
 
 ---
 
@@ -38,7 +40,8 @@ Nothing has ever been submitted.
 | 9 | `M7-RESULTS.md` | **Attribution** (tracklet → known orbit) against Rubin's bulk-batch orbits: the measured two-body window, the decoy control, and why the MPC got there first |
 | 10 | `M8-RESULTS.md` | Attribution at **full batch scale**: the perturbed backend (measured ~100× tighter than two-body at 5–15 y), bulk MPCORB orbits, the decoy at scale, the checkpointed fit queue, ledger v2, and the batch watcher |
 | 11 | `M9-RESULTS.md` | The unconsumed partitions consumed, the queue extended under a pre-registered stopping rule, combined fits for the multi-tracklet tier, the 88 ambiguities adjudicated — and the MPC **independently confirming 30/30 consumed M8 candidates**, ground truth the chain never had before |
-| 11 | `SNAPSHOT-VALIDATION.md` | The one check independent of the whole pipeline |
+| 12 | `M10-RESULTS.md` | The ledger refreshed against a same-hour pull for review (`out/review-queue.csv`), the decay clock re-measured across three intervals and found concentrated in M8's queue head alone, M9's 60 ambiguities adjudicated, the 15–25 y main-belt shell, and the pointed-field screen validated and measured |
+| 13 | `SNAPSHOT-VALIDATION.md` | The one check independent of the whole pipeline |
 | 11 | `docs/archive-operations.md` | How the daily archive runs and how it has failed |
 | 12 | `docs/rnaas-subset-guard.md` + `rnaas-notes.md` | The publishable finding, and its 14 known weaknesses |
 
@@ -84,6 +87,8 @@ before re-deriving anything or asserting a claim from an older document.**
 | **`_relabel` truncates to the 7-character trkSub field** | An 8-character fit tag (`m7att000`) silently labels the obs file `m7att00`; two tags in one run could collide into one object | 7-character tags; noted in `M7-RESULTS.md` §10 |
 | **`get-obs` OBS80 for a merged object interleaves multiple packed designations** | Fed to `fo` unrelabelled, the "baseline" fit is per-designation *fragments*, not the object (2025 MH98 = three designations) | Relabel under one tag before any fit; `M7-RESULTS.md` §10 |
 | **M8's resume path dropped `real_matches` from the final report** | The 08-17 tranche-2 run silently destroyed the 119,607-row ranked queue; `--resume-sweep` would KeyError, and "rank 901" pointed at nothing | Fixed in `m8_attribution.py`; queue regenerated bit-compatibly from the reconstructed snapshot (M9 §0.1, §10). Pre-fix report preserved at `data/raw/rubin/m8-attribution-asof-20260817.json` |
+| **The MPC's object records update in the same cycle as the ITF removal** | Tempting to explain a "consumed but not in the object" row as republication lag. It is not: in the same six-hour window one candidate's object gained exactly the consumed tracklet's four rows while two others' records were byte-identical. A consumption that does not show up in the attributed object went **somewhere else**, and that is a measurable verdict, not a timing artefact | `M10-RESULTS.md` §1.1, `scripts/m10_refresh.py` |
+| **One candidate can be recorded twice across milestones** | 2025 MQ241 + `nf2088` is both an M7 held row and M8's BORDERLINE row. A reviewer working from either document alone double-counts it; a naive queue emits it twice | Deduplicate by `(object, tracklet key)`; `scripts/m10_review_queue.py` |
 | **Same-station sibling tracklets break JD-window residual attribution** | Pan-STARRS pairs can share the same *exposures* with near-duplicate astrometry 0.03–0.16″ apart; an obscode+JD-window match then counts the sibling's rows as yours (`obs_used > n_obs` on 7 of 29 combined fits) | Match per observation by epoch **and** observed RA/Dec (fo residual records carry both); `scripts/m9_combined.py`, `M9-RESULTS.md` §6 |
 
 ### Environment and harness traps
@@ -97,6 +102,25 @@ before re-deriving anything or asserting a claim from an older document.**
 - **A streaming JSON parser that re-slices its buffer per object is O(chunk × objects)** — invisible to unit tests, hours-long on the real 1.56M-object MPCORB file. The index-based `raw_decode(buf, idx)` scan does the same file in 21 s. `attrib/bulk.py::iter_mpcorb_objects`, `M8-RESULTS.md` §9.
 - **get-orb and MPCORB can quote different standard epochs on the same day** (MJD 61000 vs 61200, 2026-08-16). A same-epoch state comparison between the two routes silently compares nothing; M8 bridges the gap with the measured perturbed integrator before comparing. `scripts/m8_fetch_bulk.py`.
 - **In the Asteroid Institute replica, the discovery asterisk is the `disc` column ('*')** — `designation_asterisk` is an all-null Boolean (2026-08-16). `disc` reproduces M7's Feb count (17,043) exactly.
+- **A single-interval decay difference is a sample of one MPC batch sweep, not a rate.**
+  Consumption is bursty (0.80 → 2.01 → 0.00 %/day across M10's three intervals) and
+  strongly rank-dependent, so a pooled two-point number both overstates the deep queue's
+  perishability and understates the head's. Measure per-interval and per-population.
+  `scripts/m10_decay.py`, `M10-RESULTS.md` §2.
+- **A trkSub that IS the object's own packed designation sails through every gate.**
+  The all-sky distant head held rows like `/18K03H` sitting 2.6" from **2018 KH3**
+  (packed `K18K03H`) — the same seven characters with the century byte replaced. The
+  separation is tiny *because it is the object*, the joint fit is excellent for the same
+  reason, the duplicate rule does not fire (these are precisely the rows the MPC has not
+  linked), and SkyBoT finds the object and records it as **confirmation**. 7 of the top
+  200 were this. Measured across all 1,971 M8/M9/M10-shell ledger rows: **0** — the
+  review queue is clean of it. `scripts/m10_pointed.py::self_designation`.
+- **The decoy control cannot price a pointed field.** A half-period phase shift puts the
+  decoy orbit where nobody was looking, so it measures chance alignment against the
+  survey footprint — a different and easier question than "was this survey *tracking*
+  the object?". Screen candidates whose object has a published same-station row within
+  the same exposure. Validated 3/3 against M9's failures and measured against the live
+  ledger (0 of 735 flagged): `scripts/m10_pointed.py`, `M10-RESULTS.md` §6.
 - **A per-night scalar `astropy` ephemeris call costs milliseconds of Time-object overhead** — across 5k nights × dozens of orbit chunks × two sweeps that is minutes of pure overhead. Precompute Earth's state for all night midpoints in one vectorised call. `scripts/m8_attribution.py::NightIndex`.
 - **The MPC newsletter index moved to Buttondown** (`buttondown.com/MPC_newsletter/archive/`; linked from the MPC front page). Every plausible `minorplanetcenter.net` index path 404s; the per-issue PDFs under `/media/newsletters/` still resolve. `scripts/watch_rubin_batches.py`.
 - **The daily archive re-pulls the ITF under this repo**, so `data/raw/itf.txt.gz` and `data/parquet/itf_observations.parquet` are *the newest pull*, not the one the last milestone used — between M8 and M9 the MPC consumed 22,353 observations and the files moved. Pin the snapshot explicitly for any resumed or comparative work; the archive's content-addressed `obs_key` tables reconstruct an old snapshot exactly (`scripts/m9_reconstruct_snapshot.py`, `M9-RESULTS.md` §0.1).
@@ -134,11 +158,16 @@ before re-deriving anything or asserting a claim from an older document.**
 - The **archive misses days when the machine is off.** An always-on host on a residential
   connection would close that; see `docs/archive-operations.md` §1.
 - The **MPC reachability email is drafted and unsent** — `docs/archive-operations.md` §5.
-- **The candidate ledger decays at a measured rate.** The MPC's own designation-time
-  sweeps consumed 21 of M8's 482 PASS candidates within two days (2026-08-16 → 08-18),
-  every one into the object the ledger had named (`M9-RESULTS.md` §5). Confirmation of
-  the chain, and a clock on Matthew's review: unsubmitted candidates are being
-  independently harvested from the head of the same distribution.
+- **The candidate ledger decays at a measured rate, and the rate is not uniform.**
+  M9 measured one interval and reported 3.3%/2 days over M8's 900 fitted rows. M10
+  measured three intervals over the whole 1,900-row cumulative ledger and found the
+  decay is **entirely in M8's queue head**: M8 PASS rows 21/482 (half-life **32 d**,
+  95% CI 21–49) against M9 PASS rows **0 of 272** (half-life > 101 d), Fisher one-sided
+  **p = 7.1 × 10⁻⁵**; inside M8's own queue the top half decays 2.8× faster than the
+  bottom (`M10-RESULTS.md` §2). Consumption is also **bursty**, not a smooth hazard —
+  the PASS population's per-interval rate ran 0.80 → 2.01 → 0.00 %/day — so a
+  single-interval estimate samples one MPC batch sweep. Practical consequence for
+  review order: **the M8 rows are the perishable ones.**
 - ~~**Attribution's lookback is bounded at 4 years by measurement, not preference.**~~
   **Closed by M8 (2026-08-17):** the perturbed backend (`attrib/perturbed.py` — Sun +
   eight planets as point masses, vectorised RK4, dense Hermite output; a justified

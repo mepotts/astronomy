@@ -16,8 +16,15 @@ prior-art assessment, [`DATA-SOURCES.md`](DATA-SOURCES.md) for endpoints and for
 
 **Current state: M5 (the pre-2023 slice fitted to completion), M7 (attribution
 against the Rubin bulk-batch orbits), M8 (the perturbed backend, at full batch
-scale) and M9 (the unconsumed partitions, the queue extension, and the MPC's
-independent confirmation of 30/30 consumed candidates) complete.** Milestone findings:
+scale), M9 (the unconsumed partitions, the queue extension, and the MPC's
+independent confirmation of 30/30 consumed candidates) and M10 (the ledger
+refreshed for review, the decay clock re-measured with an uncertainty, and the
+15-25 y shell opened) complete.**
+
+> **Reviewing candidates? Open [`out/review-queue.csv`](out/review-queue.csv).**
+> 701 still-live rows, ranked by submission value, with an adjudicable column set and
+> a ten-row spot-check sample at the top. Regenerate it with
+> `python scripts/m10_review_queue.py`. Nothing in it has been submitted anywhere. Milestone findings:
 [`M0-RESULTS.md`](M0-RESULTS.md) (kill-check) · [`M1-RESULTS.md`](M1-RESULTS.md)
 (orbit fitting) · [`M2-RESULTS.md`](M2-RESULTS.md) (catalogue vetting) ·
 [`M3-RESULTS.md`](M3-RESULTS.md) (linking) · [`M4-RESULTS.md`](M4-RESULTS.md) (NEO to TNO
@@ -36,7 +43,16 @@ exactly-reconstructed snapshot, the fit queue extended under a pre-registered
 stopping rule, combined fits promoting 28 of 29 multi-tracklet objects, the 88
 lost-object ambiguities adjudicated, a 28-year TNO calibration with three scoping
 candidates — and the MPC consuming 30 of M8's fitted candidates within two days,
-**every one into the object the ledger had attributed it to**).
+**every one into the object the ledger had attributed it to**) ·
+[`M10-RESULTS.md`](M10-RESULTS.md) (the whole cumulative ledger refreshed against a
+pull taken that hour — 733 live PASS rows, 33 consumed, 21/21 PASSes still agreeing
+and the strict gate's **first two measured true negatives**; the decay clock
+re-measured across three intervals and found to be **entirely concentrated in M8's
+queue head**, half-life 32 d there against zero of 272 M9 PASS rows;
+`out/review-queue.csv`; M9's 60 ambiguities adjudicated 57-3; the 15-25 y main-belt
+shell swept on a gate *derived* from M9's measured envelope; and the pointed-field
+screen built, validated 3/3 against M9's failures, and measured against the live
+ledger).
 
 M1 built Find_Orb under WSL, verified it against JPL Horizons, and fitted the ITF
 designations that already span 3+ nights. M2 built the MPChecker / SkyBoT / SBIDENT /

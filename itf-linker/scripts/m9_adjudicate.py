@@ -60,6 +60,37 @@ M8_FIT_ROOT = ROOT / "data" / "m8-fits"
 FIT_ROOT = ROOT / "data" / "m9-fits"
 OUT = ROOT / "m9-adjudication.json"
 
+#: Where a consumed tracklet's verbatim fitted lines live, by fit-tag prefix. M9 only
+#: ever needed M8's directory (every M8 tag is ``m8a…``); M10 adjudicates M9 rows whose
+#: tags are ``m9a…`` (partition queue) or ``m8a…`` (the M8 queue extension), so the
+#: fallback resolves the root from the tag instead of assuming one.
+FIT_ROOTS_BY_PREFIX = {
+    "m7a": ROOT / "data" / "m7-fits",
+    "m8a": M8_FIT_ROOT,
+    "m9a": ROOT / "data" / "m9-fits",
+}
+
+
+def consumed_outcomes(path: Path) -> dict[tuple[str, str], str]:
+    """(orbit_desig, link_key) -> outcome, from an M9 or an M10 consumption report.
+
+    M9 wrote ``rows[].outcome`` (``CONSUMED_INTO_SAME_OBJECT`` / ...); M10's
+    ``m10-refresh.json`` writes ``consumed_rows[].agreement``
+    (``CONSUMED_AND_AGREED`` / ...). Both mean the same thing to this script -- the MPC
+    adjudicated the row before we could -- so it reads either and normalises.
+    """
+    doc = json.loads(path.read_text(encoding="utf-8"))
+    out: dict[tuple[str, str], str] = {}
+    for r in doc.get("rows") or []:
+        if "outcome" in r and "link_key" in r:
+            out[(r["orbit_desig"], r["link_key"])] = r["outcome"]
+    for r in doc.get("consumed_rows") or []:
+        agreed = r.get("agreement") == "CONSUMED_AND_AGREED"
+        out[(r["orbit_desig"], r["link_key"])] = (
+            "CONSUMED_INTO_SAME_OBJECT" if agreed else "CONSUMED_ELSEWHERE"
+        )
+    return out
+
 MAX_CLAIMANTS = 5
 DUP_EPOCH_S = 2.0
 DUP_POS_ARCSEC = 2.0
@@ -86,11 +117,36 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--extra-ledgers", nargs="*", default=[],
                     help="additional ledgers whose PASS-with-ambiguity rows join")
+    ap.add_argument("--ledgers", nargs="*", default=None,
+                    help="REPLACE the default source list (m8-ledger.json). M10 uses "
+                         "this to adjudicate only M9's new ambiguities without "
+                         "re-litigating M8's 88, which M9 already settled")
+    ap.add_argument("--consumed", type=Path, default=CONSUMED,
+                    help="consumption report (M9's m9-consumed-check.json or M10's "
+                         "m10-refresh.json); reality adjudicates before we do")
+    ap.add_argument("--fit-root", type=Path, default=FIT_ROOT,
+                    help="where this run's fo directories go")
+    ap.add_argument("--tag-prefix", default="m9",
+                    help="two characters; fit tags are <prefix>g#### (claimant joint) "
+                         "and <prefix>f#### (claimant baseline). Seven characters "
+                         "total -- the trkSub field truncates at 7 and two tags "
+                         "colliding there merge two objects into one (HANDOFF section 2)")
+    ap.add_argument("--itf-gz", type=Path, default=None,
+                    help="ITF 80-column source override, so tracklet lines come from "
+                         "the pull the ledger rows were fitted against rather than "
+                         "whatever the daily archive last wrote (HANDOFF section 2)")
+    ap.add_argument("--out", type=Path, default=OUT)
     args = ap.parse_args()
 
+    if len(args.tag_prefix) != 2:
+        ap.error("--tag-prefix must be exactly two characters (7-char trkSub field)")
+    fit_root = args.fit_root
+
     rows: list[dict[str, Any]] = []
-    sources = [("M8", LEDGER_M8)] + [(f"extra{i}", Path(p))
-                                     for i, p in enumerate(args.extra_ledgers)]
+    base = ([("M8", LEDGER_M8)] if args.ledgers is None
+            else [(Path(p).stem, Path(p)) for p in args.ledgers])
+    sources = base + [(f"extra{i}", Path(p))
+                      for i, p in enumerate(args.extra_ledgers)]
     for label, path in sources:
         doc = json.loads(path.read_text(encoding="utf-8"))
         for v in doc["verdicts"]:
@@ -100,10 +156,7 @@ def main() -> None:
                 rows.append({**v, "ledger": label})
     print(f"ambiguity rows: {len(rows)}", flush=True)
 
-    consumed_keys = {
-        (r["orbit_desig"], r["link_key"]): r["outcome"]
-        for r in json.loads(CONSUMED.read_text(encoding="utf-8"))["rows"]
-    }
+    consumed_keys = consumed_outcomes(args.consumed)
     dropped = pl.read_parquet(DROPPED)
     dset = set(zip(dropped["desig"].to_list(), dropped["obscode"].to_list(),
                    dropped["night"].to_list()))
@@ -124,7 +177,7 @@ def main() -> None:
         )
         .collect()
     )
-    index, _ = tracklet_line_index(trksubs, lon)
+    index, _ = tracklet_line_index(trksubs, lon, src=args.itf_gz)
 
     shell = default_shell()
     baseline_cache: dict[str, dict[str, Any]] = {}
@@ -158,9 +211,10 @@ def main() -> None:
         lines = index.get(key) or []
         if not lines and key in dset:
             # consumed elsewhere? tracklet gone but not into our object: pull the
-            # verbatim lines fo fitted in M8
+            # verbatim lines fo fitted, from whichever milestone's fit dir holds them
             tag8 = v.get("fit_tag") or ""
-            obs_txt = M8_FIT_ROOT / tag8 / "obs.txt"
+            root8 = FIT_ROOTS_BY_PREFIX.get(tag8[:3], M8_FIT_ROOT)
+            obs_txt = root8 / tag8 / "obs.txt"
             if obs_txt.exists():
                 lines = [
                     ln for ln in obs_txt.read_text(encoding="utf-8",
@@ -207,11 +261,11 @@ def main() -> None:
                 continue
 
             if name not in base_tags:
-                base_tags[name] = f"m9f{len(base_tags):04d}"
+                base_tags[name] = f"{args.tag_prefix}f{len(base_tags):04d}"
                 cfgb = prepare_config_dir(shell, base_tags[name])
                 runb = run_fo(
                     [_relabel(ln, base_tags[name]) for ln in pub_lines],
-                    FIT_ROOT / base_tags[name],
+                    fit_root / base_tags[name],
                     designations=[base_tags[name]],
                     shell=shell,
                     config_dir=cfgb,
@@ -227,7 +281,7 @@ def main() -> None:
                 }
             crec["claimant_baseline"] = baseline_cache[name]
 
-            tag = f"m9g{n_joint:04d}"
+            tag = f"{args.tag_prefix}g{n_joint:04d}"
             n_joint += 1
             joint = [_relabel(ln, tag) for ln in pub_lines] + [
                 _relabel(ln, tag) for ln in lines
@@ -235,7 +289,7 @@ def main() -> None:
             cfg = prepare_config_dir(shell, tag)
             run = run_fo(
                 joint,
-                FIT_ROOT / tag,
+                fit_root / tag,
                 designations=[tag],
                 shell=shell,
                 config_dir=cfg,
@@ -311,9 +365,9 @@ def main() -> None:
         "counts": counts,
         "results": results,
     }
-    OUT.write_text(json.dumps(doc, indent=2), encoding="utf-8")
+    args.out.write_text(json.dumps(doc, indent=2), encoding="utf-8")
     print(json.dumps(counts, indent=1), flush=True)
-    print(f"wrote {OUT}", flush=True)
+    print(f"wrote {args.out}", flush=True)
 
 
 if __name__ == "__main__":

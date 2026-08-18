@@ -78,6 +78,19 @@ USER_AGENT = (
 
 #: Lookback bound, days: the range scripts/m8_calibration.py measured. NOT a preference.
 MAX_LOOKBACK_DAYS = 15.0 * 365.25
+#: Lookback *floor*, days. Zero for M8/M9 -- they swept everything inside the bound.
+#: M10 sweeps the 15-25 y shell alone (``scripts/m10_shell.py``), because the 0-15 y
+#: shell is already in the ledger and re-sweeping it would re-propose the same rows.
+MIN_LOOKBACK_DAYS = 0.0
+#: Which key of the calibration document carries the envelope. M8's file has one
+#: envelope; M9's separates the main-belt and TNO regimes, which must never be mixed.
+CALIBRATION_KEY = "perturbed_envelope_arcsec"
+#: Fit-tag stems. Seven characters total once the counter is appended -- the trkSub
+#: field truncates at 7 and two tags colliding there merge two objects into one
+#: (HANDOFF section 2). Overridden by milestone wrappers so their fits never collide
+#: with an existing checkpoint directory.
+TAG_FIT = "m8a"
+TAG_BASE = "m8b"
 
 #: Gate pieces -- M7's formula, M8's measured envelope. Floor and U-runoff unchanged:
 #: they model the *orbit's* uncertainty and the geocentric approximation, which the
@@ -147,7 +160,7 @@ def envelope_fn() -> Any:
     doc = json.loads(CALIBRATION.read_text(encoding="utf-8"))
     grid = {
         float(k.rstrip("y")) * 365.25: float(v)
-        for k, v in doc["perturbed_envelope_arcsec"].items()
+        for k, v in doc[CALIBRATION_KEY].items()
     }
     xs = np.array(sorted(grid))
     ys = np.maximum.accumulate(np.array([grid[x] for x in xs]))
@@ -238,7 +251,7 @@ def sweep_chunk(
     all_idx = np.arange(n_orb)
     for night, t_night in zip(night_ids[usable], night_ts[usable]):
         dt = t_night + TT_MINUS_UTC_DAYS - epochs
-        in_window = np.abs(dt) <= MAX_LOOKBACK_DAYS
+        in_window = (np.abs(dt) <= MAX_LOOKBACK_DAYS) & (np.abs(dt) >= MIN_LOOKBACK_DAYS)
         if not np.any(in_window):
             continue
         idx = all_idx[in_window]
@@ -350,7 +363,10 @@ def sweep_chunk(
         rate_known = np.isfinite(tr_ra) & np.isfinite(tr_de)
         rate_ok = ~rate_known | (drate <= tol)
 
-        final = pos_ok & rate_ok
+        in_shell = (np.abs(dt_exact) <= MAX_LOOKBACK_DAYS) & (
+            np.abs(dt_exact) >= MIN_LOOKBACK_DAYS
+        )
+        final = pos_ok & rate_ok & in_shell
         keep_orb.append(oi[final])
         keep_row.append(ri[final])
         keep_data["dt_days"].append(dt_exact[final])
@@ -644,6 +660,9 @@ def main() -> None:
         "parameters": {
             "itf_parquet": str(config.ITF_PARQUET),
             "max_lookback_days": MAX_LOOKBACK_DAYS,
+            "min_lookback_days": MIN_LOOKBACK_DAYS,
+            "calibration": str(CALIBRATION),
+            "calibration_key": CALIBRATION_KEY,
             "gate_floor_arcsec": GATE_FLOOR_ARCSEC,
             "gate_envelope_safety": GATE_ENVELOPE_SAFETY,
             "max_u_param": MAX_U_PARAM,
@@ -772,8 +791,8 @@ def main() -> None:
             outcome: dict[str, Any] = {"status": "tracklet_lines_missing"}
         else:
             if m["orbit_desig"] not in base_tags:
-                base_tags[m["orbit_desig"]] = f"m8b{len(base_tags):04d}"
-            tag = f"m8a{i:04d}"  # 7 chars: the trkSub field width (M7 trap 5)
+                base_tags[m["orbit_desig"]] = f"{TAG_BASE}{len(base_tags):04d}"
+            tag = f"{TAG_FIT}{i:04d}"  # 7 chars: the trkSub field width (M7 trap 5)
             print(f"fit {tag} [{i + 1}/{min(len(queue), args.max_fits)}]: "
                   f"{m['orbit_desig']} + {m['trksub']}/{m['obscode']}/n{m['night']} "
                   f"sep {m['sep_arcsec']:.0f}\"/{m['gate_radius_arcsec']:.0f}\"",
