@@ -338,6 +338,18 @@ The recommendation this project has carried since M20 — fibre-fed starlight su
 close companions — changes character here, from a preference to a requirement derived from a
 measurement.
 
+**Nor is this a problem an algorithm can dissolve, which is worth stating because a reader
+will reasonably ask.** The state of the art for host contamination in companion long-slit
+spectroscopy is EXOSPECO (Thé et al. 2023), a regularised inverse method that models the
+chromatic PSF and the spatio-spectral dispersion laws jointly and separates the star's and the
+companion's contributions from SPHERE/IRDIS data. It is a genuine advance, and it is aimed at
+the *other* gate: its data model is built around "residual stellar light diffracted by the
+coronagraphic mask", which presupposes a coronagraph and, crucially, a companion that is
+already resolved from its host. Deconvolving a bright halo away from a faint but separable
+source is not the same operation as recovering two spectra from one resolution element, and
+nothing in that literature claims the latter. The two gates are attacked by different means:
+the contrast gate by better modelling, the resolution gate only by better optics.
+
 **A slit cannot deliver a companion spectrum below R ≈ 1 at any contrast.** The three blended
 systems were not limited by contrast, by exposure time, by template quality or by extraction
 choices; there was no second spectrum in the aperture. Extreme-AO fibre feeds (HiRISE at the
@@ -483,6 +495,8 @@ in the project repository, with the milestone documents cited inline throughout.
 - Vanderburg, A., Rappaport, S. A., & Mayo, A. W. 2018, "Detecting exomoons via Doppler monitoring of directly imaged exoplanets", arXiv:1805.01903.
 - Vanderburg, A., & Rodriguez, J. E. 2021, "First Doppler limits on binary planets and exomoons in the HR 8799 system", arXiv:2110.14650.
 - Viswanath, G., Janson, M., Gratton, R., et al. 2023, A&A, "BEAST detection of a brown dwarf and a low-mass stellar companion around the young bright B star HIP 81208".
+- Thé, S., Thiébaut, É., Denis, L., et al. 2023, A&A, "Characterization of stellar companions
+  from high-contrast long-slit spectroscopy data: the EXOSPECO algorithm", arXiv:2306.03467.
 - "Exomoon search with VLTI/GRAVITY around the substellar companion HD 206893 B", A&A, arXiv:2511.20091 — the source of HD 206893 B's projected separation. *(This project's milestone documents attribute this paper to two different first authors — Kral et al. in M7/M10, Kral et al. in M11 and the methods note — so the citation must be checked against the published version before submission.)*
 
 ---

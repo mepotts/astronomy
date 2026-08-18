@@ -1,0 +1,2288 @@
+<<<PAGE 1>>>
+Pre-print version, article under review
+(DOI: will be inserted by hand later)
+© ESO 2023
+Astronomy&Astrophysics
+Characterization of stellar companion
+from high-contrast long-slit spectroscopy data
+The EXtraction Of SPEctrum of COmpanion (E xospeco) algorithm
+Samuel Thé1, Éric Thiébaut1, Loïc Denis2, Thibault Wanner1, Rémi Thiébaut1, Maud Langlois1, and Ferréol Soulez1
+1 Université de Lyon, Université Lyon1, ENS de Lyon, CNRS, Centre de Recherche Astrophysique de Lyon UMR 5574, F-69230,
+Saint-Genis-Laval, France
+e-mail: surname.name@univ-lyon1.fr
+2 Université Jean Monnet Saint-Etienne, CNRS, Institut d Optique Graduate School, Laboratoire Hubert Curien UMR 5516, F-42023,
+SAINT-ETIENNE, France
+e-mail: surname.name@univ-st-etienne.fr
+June 5, 2023
+ABSTRACT
+Aims. High-contrast long-slit spectrographs can be used to characterize exoplanets. High-contrast long-slit spectroscopic data are
+however corrupted by stellar leakages which largely dominate other signals and make the process of extracting the companion spec-
+trum very challenging. This paper presents a complete method to calibrate the spectrograph and extract the signal of interest.
+Methods. The proposed method is based on a flexible direct model of the high-contrast long-slit spectroscopic data. This model
+explicitly accounts for the instrumental response and for the contributions of both the star and the companion. The contributions of
+these two components and the calibration parameters are jointly estimated by solving a regularized inverse problem. This problem
+having no closed-form solution, we propose an alternating minimization strategy to effectively find the solution.
+Results. We have tested our method on empirical long-slit spectroscopic data and by injecting synthetic companion signals in these
+data. The proposed initialization and the alternating strategy effectively avoid the self-subtraction bias, even for companions observed
+very close to the coronagraphic mask. Careful modeling and calibration of the angular and spectral dispersion laws of the instrument
+clearly reduce the contamination by the stellar leakages. In practice, the outputs of the method are mostly driven by a single hyper-
+parameter which tunes the level of regularization of the companion SED.
+Key words. Infrared: planetary systems – Methods: data analysis – Techniques: imaging spectroscopy – Instrumentation: spectro-
+graphs – Instrumentation: adaptive optics
+1. Introduction
+High-contrast extreme adaptive optics (AO) systems such as
+SPHERE (Spectro-Polarimetry High-contrast Exoplanet RE-
+search, Beuzit et al. 2019), GPI (Gemini Planet Imager, Macin-
+tosh et al. 2006, 2014), or SCExAO (Jovanovic et al. 2015) have
+been developed to directly observe the close environment of stars
+in the visible and the near infrared. The study of exoplanets and
+their formation is one of the main scientific objective of these
+instruments. One of the advantages of high-contrast extreme AO
+systems is that they can provide direct access to the light from
+the exoplanet which is crucial to perform spectral characteriza-
+tions. Substantial contamination by the light from the host star
+occurs, though: in the visible and the near infrared, in spite of the
+real-time correction by the AO system and of the masking of the
+host star by a coronagraph, the residual stellar light diffracted by
+the instrument is much brighter than that received from most ex-
+oplanets of interest. For this reason, dedicated post-processing
+methods have been developed to track evidences of exoplanet
+presence in data corrupted by strong stellar leakages. The num-
+ber of published detection algorithms, L oci (Lafreniere et al.
+2007), Tloci (Marois et al. 2013), K lip (Soummer et al. 2012),
+Moods (Smith et al. 2009), A ndromeda (Mugnier et al. 2009),
+PeX (Devaney & Thiébaut 2017), and Paco (Flasseur et al. 2018,
+2020b,a) to name a few, reflects the scientific interest but also
+the intrinsic di fficulty of trustfully detecting an exoplanet from
+sequences of high-contrast images. The most successful of these
+methods are the ones that take into account the statistics of the
+stellar leakages (notably their correlations) whether they con-
+sist in sequences of images (Smith et al. 2009; Flasseur et al.
+2018, 2020b), in sequences of multi-spectral images from Inte-
+gral field spectrographs (IFS) (Flasseur et al. 2020a), or even in
+multi-epoch sequences of images (Dallant et al. 2022).
+After its detection, the direct characterization of an exoplanet
+is possible with high-contrast extreme AO systems equipped
+with a spectrograph. Both SPHERE and GPI are equipped with
+low resolution IFS. In addition SPHERE/IRDIS is equipped with
+a medium (MRS) resolution long-slit spectrograph (LSS) in J, H,
+and K bands, the latter being also available at low (LRS) resolu-
+tion1 (Dohlen et al. 2008). With SPHERE/IRDIS/LSS, the spec-
+trum of a detected companion can then be measured by align-
+ing the slit of the spectrograph with the host star and the com-
+panion while the host star is occulted by an opaque mask com-
+bined with the slit. In an LSS image, the stellar leakages take the
+form of speckles spectrally dispersed along oblique lines gen-
+erally brighter than the companion spectrum (see Fig. 1 for an
+1 λ/∆λ = 35 for the LRS mode orλ/∆λ = 400 for the MRS mode
+Article number, page 1 of 19
+arXiv:2306.03467v1  [astro-ph.IM]  6 Jun 2023
+
+<<<PAGE 2>>>
+Pre-print version, article under review
+example). In order to get rid of these stellar leakages, Vigan
+et al. (2008, 2012) have developed aspectral deconvolution (SD)
+method following the work of Sparks & Ford (2002). The SD
+method consists in a filtering of the LSS image after a geomet-
+rical transform to align the speckles along a given direction. In
+practice, the SD method is quite sensitive to the alignment of
+the instrument, requires to fix defective pixels, and su ffers from
+a self-subtraction bias. The latter is due to an overestimation of
+the stellar leakages caused by the presence of the companion. To
+improve on the SD method and reduce the self-subtraction bias,
+Mesa, D. et al. (2016) have adapted the strategy implemented in
+Tloci (Marois et al. 2013) to the case of LSS data. In spite of
+these improvements, existing extraction methods su ffer from a
+number of defaults, most of them steming from the requirement
+to geometrically transform the LSS data to align the dispersed
+speckles. In particular, they provide, at best, a least squares esti-
+mation of the stellar leakages which is sub-optimal as the noise is
+not independent and identically distributed (i.i.d.) in the geomet-
+rically transformed images (Thiébaut et al. 2016). To overcome
+the drawbacks of existing methods, we propose to formulate the
+extraction of the spectrum of a companion as an inverse problem.
+The inverse problem corresponds to the joint estimation of the
+contributions of the star and of its companion from the LSS data.
+Not only does this approach require no transform of the LSS
+data (thus avoiding the introduction of correlations) but it also
+yields statistically optimal estimators. To cope both with pos-
+sible instrumental misalignment and the lack of a closed-form
+solution for the inverse problem, we implemented an alternat-
+ing optimization strategy with optional self-calibration stages to
+solve the problem.
+The outline of the paper is as follows. In Section 2, we
+present a model of the distribution of the light on the detector
+of a LSS instrument. This model is used to illustrate how, after a
+geometrical transform, stellar leakages can be partially removed
+by a truncated singular value decomposition (TSVD) before ex-
+tracting the companion signal. Such an approach is representa-
+tive of the performance that can be reached, at best, by standard
+methods. We then present in Section 3 our approach to jointly es-
+timate the stellar leakages and the contribution of the companion
+without transforming the data. For the processing of LSS data,
+knowing the spectro-angular coordinates of each detector pixel
+is mandatory and we describe in Section 4 a numerical method to
+estimate the spatio-spectral dispersion laws from given calibra-
+tion data. In Section 5, we validate the proposed method on both
+real data from SPHERE /IRDIS/MRS and on injections of syn-
+thetic companions in real data. We show the importance of the
+calibration (described in Appendix A) and compare our method
+with more standard approaches.
+2. State of the art processing
+In spite of the coronagraphic mask in high-contrast data, the
+stellar leakages, in the form of quasi-static dispersed speckles,
+largely dominate the signal of interest, i.e., the spectrum of the
+companion. These speckles, whose contribution cannot be pre-
+cisely determined by using other stars (i.e. by reference differen-
+tial imaging, Xie et al. 2022) or by rotating the slit to hide the
+planet (Vigan 2016) are a major source of nuisance for extract-
+ing the companion spectrum. This section introduces a modeling
+of the LSS data that is used in Section 3 to design our spectrum
+extraction method. This model is also useful to explain how pre-
+vious approaches perform the suppression of the stellar leakages
+(Vigan et al. 2008; Mesa, D. et al. 2016).
+λ
+ρ
+Fig. 1. Long-slit medium resolution spectroscopy data of HR 3549 taken
+by IRDIS, with horizontally the spectral axisλ and vertically the angu-
+lar separation axisρ. The blue arrows indicate the position of the com-
+panion.
+2.1. Image formation
+Figure 1 shows a single exposure captured by the LSS of
+SPHERE/IRDIS. The vector d∈ RN, with N the number of pix-
+els, can be modeled by:
+dn = m(ρn,λ n) +εn (1)
+with m(ρ,λ ) the distribution of light in the detector plane at an-
+gular coordinate ρ along the slit and wavelength λ, ρn and λn
+the angular and spectral coordinates at the n-th pixel, andεn the
+contribution of the noise. Our notations are summarized in Ta-
+ble 1. The light distribution in the detector plane is the sum of
+the contributions by the star and by the companion:
+m(ρ,λ ) = f⋆(λ) h⋆(ρ,λ ) + f⊕(λ) h⊕(ρ,λ ) (2)
+with f⋆ and f⊕ the spectral energy distributions (SEDs) of the
+star and of the companion as seen by the detector 2, h⋆ and h⊕
+the point spread functions (PSFs) for a source at the respective
+angular positions of the star and of the companion, the so-called
+on-axis and o ff-axis PSFs. The on-axis PSF, h⋆(ρ,λ ) explains
+the oblique bright lines due to stellar leakages in Fig. 1 while
+the stellar SED f⋆(λ) explains the variations of intensity along
+these lines. As can be seen in Fig. 1, the companion signal, that
+is f⊕(λ) h⊕(ρ,λ ), is barely distinguishable in the LSS data and it
+is mandatory to get rid of the stellar leakages f⋆(λ) h⋆(ρ,λ ).
+2.2. Low rank approximation of the stellar leakages
+Devaney & Thiébaut (2017) have shown that, except in the vicin-
+ity of the coronagraphic mask, the chromatic PSF can be written
+in the form of a series expansion. Applying their model to the
+star and taking into account that our data have one angular di-
+mension instead of two yields:
+h⋆(ρ,λ ) =
+X
+k≥1γ(λ)k h⋆,k
+ γ(λ) (ρ−ρ⋆) (3)
+with γ(λ) = λref/λ a chromatic magnification factor relative to
+some arbitrary reference wavelengthλref,ρ⋆ the angular position
+of the star along the slit to account for a possible pointing error
+of the instrument, and{h⋆,k}k=1,... a family of spatial PSF modes
+at the reference wavelength.
+Since the stellar leakages dominate the signal in the LSS im-
+age d, Eq. (3) suggests to apply specific image warping so as to
+form a 2-D image dwarp whose, say, first dimension varies along
+2 these SEDs are a ffected by the chromatic transmission of the atmo-
+sphere and of the instrument
+Article number, page 2 of 19
+
+<<<PAGE 3>>>
+Samuel Thé et al.: Characterization of stellar companion from high-contrast long-slit spectroscopy data
+Table 1. Notations. Lowercase letters are for continuous functions and
+scalars (e.g. f⋆), boldface lowercase letters forvectors (e.g. x), and bold-
+face uppercase letters for linear mappings, a.k.a. matrices, ( e.g. F⋆).
+Vectors with a hat ( e.g. ˆx) are estimators. The main unknowns of the
+problem are x, the sampled star SED, y, the sampled on-axis PSF, and
+z, the sampled companion SED.
+Notation Description
+subscript⋆ Parameters of the stellar model
+subscript⊕ Parameters of the companion model
+d∈ RN Science data
+m∈ RN Sampled model of d
+w∈ RN Diagonal of the precision matrix of d
+λ∈ RN Pixel-wise wavelengths
+ρ∈ RN Pixel-wise angular positions
+f⋆ Continuous star SED
+x∈ RNx Sampled star SED f⋆
+λgrd
+⋆ ∈ RNx Sampling wavelengths for x
+F⋆∈ RN×Nx Interpolation operator: x to pixel-wise f⋆
+h⋆ Continuous on-axis PSF
+y∈ RNy Sampled on-axis PSF h⋆ atλref
+ρgrd
+⋆ ∈ RNy Sampling angles for y
+ρ⋆ Angular position of the star
+ν⋆∈ Ω⋆ Calibration parameters of h⋆
+Ω⋆ Feasible set h⋆ parameters
+H⋆∈ RN×Ny Interpolation operator: y to pixel-wise h⋆
+atλref
+f⊕ Continuous companion SED
+z∈ RNz Sampled companion SED f⊕
+λgrd
+⊕ ∈ RNx Sampling wavelengths for z
+F⊕∈ RN×Nz Interpolation operator: z to pixel-wise f⊕
+h⊕ Continuous off-axis PSF
+h⊕∈ RN Sampled off-axis PSF h⊕ atλref
+ν⊕∈ Ω⊕ Calibration parameters of h⊕
+Ω⊕ Feasible set of h⊕ parameters
+ρ⊕∈ R Angular position of the companion
+µ = (µx,µ y,µ z) Hyper-parameters
+γ∈ RN Pixel-wise chromatic scaling factors
+ν = (ν⋆,ν⊕)∈ Ω Calibration parameters
+Ω = Ω⋆× Ω⊕ Feasible set of calibration parameters
+Λ Spectral dispersion law
+a Parameters of the spectral dispersion law
+ϱ Angular dispersion law
+s Parameters of the angular dispersion law
+∆ρ Width of the coronagraphic mask
+the wavelength while its second dimension varies along coordi-
+nate s =γ(λ) (ρ−ρ⋆) (see Fig. 2). According to Eqs. (1) and (3),
+the warped image is modeled and then approximated by:
+dwarp
+i, j = m
+
+ρ⋆ + swarp
+j /γ
+
+λwarp
+i
+
+,λ warp
+i
+
++εwarp
+i, j (4)
+≈
+X
+k≥1
+γ
+
+λwarp
+i
+k
+f⋆
+
+λwarp
+i
+
+h⋆,k
+
+swarp
+j
+
+(5)
+where εwarp in Eq. (4) denotes the contribution of the noise in
+the warped image while the≈ symbol in Eq. (5) is to account for
+the contributions of the potential companion and for the noise
+which have been neglected. In words, the stellar leakages appear
+to have a simple separable decomposition in the warped image.
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+λ
+s =γ(λ) (ρ−ρ⋆)
+Fig. 2. Warped HR 3549 image. This figure shows the bottom half of the
+data shown in Fig. 1, corresponding to the side where lies the compan-
+ion, warped so as to align the dispersed speckles of the stellar leakages.
+The warping is defined by the coordinates ρ and λ of the pixels given
+by the complex calibration model of the spectral and angular dispersion
+laws described in Appendix A. The companion signal can be seen as a
+faint curved track indicated by the blue arrows.
+The Singular Value Decomposition (SVD) of the warped im-
+age3 writes:
+dwarp =
+min(N1,N2)X
+k=1
+ukσk v⊤
+k (6)
+where N1 and N2 are the dimensions of the warped image,
+uk ∈ RN1 is the k-th left singular vector of the decomposition,
+σk≥ 0 is the k-th singular value, and vk∈ RN2 is the k-th right
+singular vector. Comparing Eq. (5) and Eq. (6), the SVD ofdwarp
+readily provides a decomposition similar to the contribution of
+the stellar leakages with, for each index k, the left singular vec-
+tor uk samplingγ(λ)k f⋆(λ) as a function of λ and the right sin-
+gular vector vk sampling h⋆,k(s) as a function of s (both up to
+a normalization factor that depends on k). The truncated sin-
+gular value decomposition (TSVD) of the warped image is ob-
+tained by limiting the sum in the right-hand side of Eq. (6) to the
+kmax ≤ min(N1, N2) first terms and, by Eckart–Young–Mirsky
+(Eckart & Young 1936; Mirsky 1960) theorem, it is the best pos-
+sible approximation of dwarp of rank kmax in the least squares
+sense. Hence, it may be assumed that, for a suitable choice of
+kmax, the TSVD of dwarp provides a good approximation of the
+stellar leakages without being too much affected by the compan-
+ion signal (if the companion is not too bright) and by the noise. A
+residual image that mostly depends on the companion can then
+be formed by subtracting the un-warped TSVD of the warped
+image dwarp from the LSS image d:
+r⊕ = d−U
+
+kmaxX
+k=1
+ukσk v⊤
+k
+ (7)
+whereU denotes the un-warping operation 4. As illustrated by
+Fig. 3, the signal of interest, the companion SED, is then easier to
+extract from the residual image r⊕. This can be done by standard
+aperture photometry tools.
+As pointed by Devaney & Thiébaut (2017), there are a num-
+ber of issues in using the TSVD to get rid of the stellar leak-
+ages in multi-wavelengths high-contrast data. First, to produce a
+3 considered as a simple matrix
+4 e.g., a simple separable 2-D interpolation
+Article number, page 3 of 19
+
+<<<PAGE 4>>>
+Pre-print version, article under review
+0.15
+0.10
+0.05
+0.00
+0.05
+0.10
+0.15
+Fig. 3. Bottom half of the residual image r⊕ for the HR 3549 data with
+stellar leakages estimated by the TSVD method as defined in Eq. 7 and
+with the warped image shown in Fig. 2. Compared to the original data
+shown in Fig. 1, the companion signal appears more distinctly (indi-
+cated by the 2 arrows).
+rectangular warped image (that can be interpreted as a matrix to
+perform the SVD), quite substantial regions of the original data
+d have to be discarded (near the coronagraphic mask and the
+edges of the formed image). This limits the range of admissi-
+ble angular positions for the companion and gets rid of data that
+might be valuable to improve the estimation of the stellar leak-
+ages. Second, the presence of a companion in the original data
+d yields a positive bias in the approximation of the stellar leak-
+ages by the TSVD. This results in a negative bias in the residual
+image and, hence, in the estimated companion SED. This arti-
+fact is known in the literature as "self-subtraction". Third, the
+least squares fit performed by the TSVD of dwarp is sub-optimal
+regarding the distribution of the noise in the warped image. In-
+deed, least squares are only optimal for independent identically
+distributed (i.i.d.) noise which is certainly not the case forεwarp
+i, j :
+at least, the shot noise in the image d has a non-uniform distri-
+bution and a side effect of the transform of d to yield the warped
+image dwarp is to introduce correlations. Moreover, defective pix-
+els, which are quite numerous for the kind of detectors used by
+NIR instruments such as LSS, must be corrected, usually by av-
+eraging their neighbors values, before warping the image. This
+correction can only introduce additional correlations.
+In spite of these drawbacks, proposed processing methods
+(Vigan et al. 2008; Mesa, D. et al. 2016) are similar to the TSVD
+approximation of warped LSS images (optimal linear combina-
+tion of a set of images). Some refinements have been proposed
+to limit the self-subtraction bias (Mesa, D. et al. 2016) but the
+other issues have been largely left unaddressed. In the remaining
+of this paper, we propose a new inverse problems approach to
+solve all aforementioned limitations.
+3. Inverse problems approach
+To avoid the issues resulting from warping the LSS image, we
+propose to solve an inverse problem which consists in jointly es-
+timating the parameters of the direct model of the data given in
+Eqs. (1) and (2) without transforming the data themselves. For
+an optimal information extraction, we model the likelihood of
+the data to consider the uneven quality of the data and, there-
+fore, account for defective pixels or missing data in a consistent
+way. Besides, our approach relies on a precise calibration of the
+spectro-spatial instrumental dispersion as seen by the detector.
+The proposed method includes auto-calibration stages to refine
+the calibration parameters and thus accounts for a possible mis-
+alignment of the science exposures.
+3.1. Assumed continuous model
+To simplify the on-axis PSF model in Eq. (3), we keep only the
+first and most significant of these modes and thus assume that:
+h⋆(ρ,λ ) =γ(λ) h⋆
+ γ(λ) (ρ−ρ⋆) (8)
+with h⋆(ρ) = h⋆,1(ρ) the first spatial mode of the on-axis PSF.
+As shown in Section 5, this simple model of the stellar leakages
+already gives excellent results. Likewise, the chromatic o ff-axis
+PSF h⊕ can also be written as:
+h⊕(ρ,λ )≈γ(λ) h⊕
+ γ(λ) (ρ−ρ⊕) (9)
+with h⊕(ρ) = h⊕(ρ,λ ref) the off-axis PSF at the reference wave-
+length λref and ρ⊕ the angular position of the companion along
+the slit. Note that theγ(λ) factor ensures that the on-axis and off-
+axis PSFs be normalized at all wavelengths provided the PSF at
+the reference wavelength be also normalized, i.e.
+R
+h(ρ,λ ) dρ =
+1 (∀λ). These approximations for the on-axis and o ff-axis PSFs
+yield the following simplified model that we consider in the rest
+of the paper:
+m(ρ,λ ) =γ(λ) f⋆(λ) h⋆
+ γ(λ) (ρ−ρ⋆)
++ f⊕(λ) h⊕
+ γ(λ) (ρ−ρ⊕). (10)
+3.2. Discretized distribution
+In order to fit the data, the modelm(ρ,λ ) in Eq. (10) has to be es-
+timated at each angular and spectral coordinates (ρn,λ n) of the N
+pixels of the detector. These pixel coordinates can be identified
+by fitting angular and spectral dispersion laws to calibration data,
+as explained in Appendix A. Because of these angular and spec-
+tral dispersion laws, continuous functions are needed to model
+the SEDs of the star and the companion ( f⋆ and f⊕) and their
+respective PSFs (h⋆ and h⊕) on the sensor pixel grid. We explain
+next how we parameterize these functions.
+Our models of the star SED f⋆(λ), of the on-axis PSF h⋆(ρ),
+and of the companion SED f⊕(λ) are given by the following lin-
+ear interpolations:
+f⋆(λ) =
+NxX
+j=1
+φ⋆
+
+λ−λgrd
+⋆, j
+
+f⋆
+
+λgrd
+⋆, j
+
+|   {z   }
+x j
+, (11a)
+h⋆(ρ) =
+NyX
+j=1
+ψ⋆
+
+ρ−ρgrd
+⋆, j
+
+h⋆
+
+ρgrd
+⋆, j
+
+|   {z   }
+y j
+, (11b)
+f⊕(λ) =
+NzX
+j=1
+φ⊕
+
+λ−λgrd
+⊕, j
+
+f⊕
+
+λgrd
+⊕, j
+
+|   {z   }
+z j
+, (11c)
+with φ⋆: R→ R, ψ⋆: R→ R, and φ⊕: R→ R chosen inter-
+polation functions, and where λgrd
+⋆ ∈ RNx is an evenly spaced
+grid of wavelengths to sample the star SED f⋆,ρgrd
+⋆ ∈ RNy is an
+evenly spaced grid of angles to sample the on-axis PSF h⋆, and
+λgrd
+⊕ ∈ RNz is an evenly spaced grid of wavelengths to sample
+the companion SED f⊕. At the coordinates (ρn,λ n) of any pixel
+Article number, page 4 of 19
+
+<<<PAGE 5>>>
+Samuel Thé et al.: Characterization of stellar companion from high-contrast long-slit spectroscopy data
+Fig. 4. Illustration of the direct model for high-contrast long-slit spectroscopy given in Eq.(10): the data are modeled as the sum of two components:
+a stellar component and a companion component. Extracting the SED of the companion also requires the estimation of the on-axis PSF and the
+SED of the host star. The labels “available via calibration” denote components that may be self-calibrated by Exospeco directly from the science
+data (see Section 3.5 for details).
+n∈ J1, NK of the detector, our linear interpolation yields:
+f⋆,n = f⋆(λn) =
+XNx
+j=1φ⋆
+
+λn−λgrd
+⋆, j
+
+|          {z          }
+F⋆,n, j
+x j = (F⋆ x)n, (12a)
+h⋆,n = h⋆
+ γn (ρn−ρ⋆) =
+XNy
+j=1ψ⋆
+
+γn
+
+ρn−ρ⋆−ρgrd
+⋆, j
+
+|                        {z                        }
+H⋆,n, j
+y j
+= (H⋆ y)n, (12b)
+f⊕,n = f⊕(λn) =
+XNz
+i=1φ⊕
+
+λn−λgrd
+⊕, j
+
+|          {z          }
+F⊕,n,i
+zi = (F⊕ z)n, (12c)
+withγn =γ(λn), and the matrices F⋆∈ RN×Nx, H⋆∈ RN×Ny, and
+F⊕∈ RN×Nz defined in Eqs. (12a)–(12c) represent interpolation
+operators5. These operators are applied to the vectors6 x∈ RNx,
+y∈ RNy, and z∈ RNz defined in Eqs. (11a)–(11c). They form the
+unknown parameters of our models of the star SED f⋆, of the
+on-axis PSF h⋆, and of the companion SED f⊕.
+The interpolation functions ( φ⋆, ψ⋆, and φ⊕) and the sam-
+pling lists (λgrd
+⋆ ,ρgrd
+⋆ , andλgrd
+⊕ ) may be chosen differently for each
+component of the model. If the spectral sampling lists and spec-
+tral interpolation functions are the same (as we chose for our ex-
+periments), then the two spectral interpolation operators F⊕ and
+F⋆ are the same. In our implementation of the method, we se-
+lected the Catmull & Rom (1974) cardinal cubic spline φ as the
+5 In practice, the interpolation operators are very sparse and only their
+non-zero entries need to be stored or computed on the fly.
+6 We use boldface lowercase letters to denotes vectors, that is quan-
+tities that depend on a single index, and boldface uppercase letters to
+denotes linear operators, that is quantities that depend on two indices.
+Article number, page 5 of 19
+
+<<<PAGE 6>>>
+Pre-print version, article under review
+interpolation function:φ⋆(λ) =φ(λ/∆λgrd
+⋆ ),ψ⋆(ρ) =φ(ρ/∆ρgrd
+⋆ ),
+and φ⊕(λ) = φ(λ/∆λgrd
+⊕ ) with ∆λgrd
+⋆ , ∆ρgrd
+⋆ , and ∆λgrd
+⊕ the sam-
+pling steps ofλgrd
+⋆ ,ρgrd
+⋆ , andλgrd
+⊕ .
+For the o ff-axis PSF h⊕(ρ) at the reference wavelength, we
+consider a simple parametric model. Since the principal lobe of
+the off-axis PSF represents most of the energy received from the
+companion, we assume a Gaussian approximation:
+h⊕(ρ) = 1√
+2πσ⊕
+exp
+
+− ρ2
+2σ2
+⊕
+
+. (13)
+Hence h⊕, the sampled off-axis PSF at the reference wavelength
+for the companion, depends on the angular position of the com-
+panion ρ⊕ and on σ⊕ the standard deviation of the PSF at the
+reference wavelength. Other parametric models of the o ff-axis
+PSF could be considered with a simple adaptation of the algo-
+rithm proposed in Section 3.4.
+Finally, we introduce the N-vectors m∈ RN, γ∈ RN and
+h⊕∈ RN defined by:
+mn = m(ρn,λ n), (14a)
+γn =γ(λn) =λref/λn, (14b)
+h⊕,n = h⊕
+ γn (ρn−ρ⊕), (14c)
+for n∈ J1, NK. The discretized model of the light distribution in
+Eq. (10) then writes:
+m(x, y, z,ν) =γ⊙ (H⋆(ν) y)⊙ (F⋆ x) +γ⊙ h⊕(ν)⊙ (F⊕ z) (15)
+with⊙ the Hadamard product (entry-wise multiplication) and
+ν = (ν⋆,ν⊕) the calibration parameters of the model which are
+the other unknown parameters than x, y, or z. With our Gaussian
+approximation of the o ff-axis PSF at the reference wavelength,
+the calibration parameters for the companion are ν⊕ = (ρ⊕,σ⊕).
+To account for a possible misalignment between the corona-
+graphic mask and the star, the calibration parameters for the star
+are justν⋆ = (ρ⋆), withρ⋆ the angular position of the star along
+the slit.
+The signal-processing problem then amounts to estimating
+the companion’s SED z as well as the other nuisance parame-
+ters of the model, x, y, and ν. A method to perform this task is
+proposed in the next section.
+3.3. Objective function and regularization
+After proper calibration of the detector, raw images are pre-
+processed to compensate for bias and gain non-uniformity and
+to identify defective pixels ( i.e. pixels with a non-linear re-
+sponse). This pre-processing produces the long-slit spectroscopy
+data d ∈ RN considered here and modeled by m(x, y, z,ν) in
+Eq. (15). Due to photon and detector noises as well as model-
+ing inaccuracies, some discrepancies are expected between the
+data d and our model m(x, y, z,ν). Due to the observed flux
+level, there are enough photons detected per pixel for the data
+d to approximately follow a Gaussian distribution of mean the
+model m(x, y, z,ν) and of precision matrix7 W. Since we directly
+consider the data without any pixel interpolation (i.e. no image
+warping to align the dispersed speckles and no attempt to fix de-
+fective pixels), no correlations are introduced in the data and the
+pixels can be considered as mutually independent. The precision
+7 the precision matrix is the inverse of the covariance matrix
+matrix is thus diagonal, W = diag(w) where w∈ RN collects the
+diagonal entries of W and is given by:
+wn =
+(0 if n-th pixel is invalid,
+1/Var(dn) otherwise. (16)
+where Var( dn) can be estimated by di fferent pre-processing
+methods (Mugnier et al. 2004; Berdeu et al. 2020). We consider
+as invalid all pixels for which the model is incorrect, this in-
+cludes defective pixels, pixels too much impacted by the corona-
+graphic mask, and pixels located outside of the field of view (see
+Fig. 6). We assume that the estimation of the variances and the
+identification of defective pixels are part of the pre-processing
+stage. The definition of the precision matrix in Eq. (16) amounts
+to assuming that the variance of invalid pixels is infinite. In other
+words, this expresses that the values of invalid pixels should not
+be considered at all. Given the large number of unknowns, the
+estimation of the stellar and companion components x, y, and
+z cannot be performed solely by fitting the data: regularity con-
+straints are necessary to prevent noise amplification and cope
+with missing data (Titterington 1985). We consider regularized
+estimators obtained by minimizing the following criterion:
+C(x, y, z,ν,µ) =∥d− m(x, y, z,ν)∥2
+W +Rx y z(x, y, z,µ), (17)
+where the first term is a statistical distance between the model
+and the data (the co-log-likelihood) while Rx y z(x, y, z,µ) is a
+regularization term parameterized by the vector µ of so-called
+hyper-parameters. In the above equation, ∥u∥2
+W = u⊤ W u de-
+notes the squared Mahalanobis (1936) norm. Our estimators ˆx,
+ˆy, ˆz, and ˆν of the parameters of interest are the ones that jointly
+minimize the criterion in Eq. (17):
+(ˆx(µ), ˆy(µ), ˆz(µ), ˆν(µ)) = arg min
+x≥0, y≥0,
+z≥0,ν∈Ω
+C(x, y, z,ν,µ). (18)
+These estimators depend on the hyper-parametersµ, as made ex-
+plicit by the notation. As the parameters x, y, and z represent
+nonnegative quantities, their estimators are improved by enforc-
+ing nonnegativity as indicated by the inequality constraints in
+Eq. (18) such as x≥ 0 which hold element-wise. The calibra-
+tion parameters ν = (ν⋆,ν⊕) are constrained to belong to a set
+Ω = Ω⋆×Ω⊕ where Ω⋆ and Ω⊕ are the respective feasible sets for
+the stellar and companion calibration parameters defined based
+on physical considerations.
+The SEDs and the on-axis PSF at the reference wavelength
+being mutually independent, the regularization function can be
+decomposed as:
+Rx y z(x, y, z,µ) =µxRx(x) +µyRy(y) +µzRz(z). (19)
+The complete set of hyper-parameters is then:
+µ = (µx,µ y,µ z) (20)
+where µx > 0, µy > 0, and µz > 0 tune the weights of the
+different regularization terms.
+There are many regularizations that are suitable for our prob-
+lem. Regularization terms should enforce some kind of continu-
+ity or smoothness of the sought uni-dimensional distributions.
+In the following and for the sake of simplicity, we consider sim-
+ple smoothness regularizations imposed by the quadratic penalty
+(Tikhonov & Arsenin 1977):
+R(u) =
+XNu−1
+j=1
+ u j+1− u j|    {z    }
+(D u) j
+2 =∥D u∥2
+2, (21)
+with Nu the size of u = x, y, or z, and D∈ R(Nu−1)×Nu a finite
+difference operator.
+Article number, page 6 of 19
+
+<<<PAGE 7>>>
+Samuel Thé et al.: Characterization of stellar companion from high-contrast long-slit spectroscopy data
+3.4. Alternating minimization strategy
+The joint minimization of the criterion defined in Eq. (17) re-
+quires to cope with a highly non-linear function whose condi-
+tioning may be very bad and depends on the scaling of the pa-
+rameters. We propose to solve the problem by an alternated mini-
+mization strategy, that is estimating each set of parameters given
+the others. Such a strategy consists in sequentially solving the
+following sub-problems:
+ˆx(y, r⋆,ν⋆,µ x) = arg min
+x≥0
+C(x, y, z,ν,µ)
+= arg min
+x≥0
+n
+∥A⋆ x− r⋆∥2
+W +µxRx(x)
+o
+, (22a)
+ˆy(x, r⋆,ν⋆,µ y) = arg min
+y≥0
+C(x, y, z,ν,µ)
+= arg min
+y≥0
+n
+∥B⋆ y− r⋆∥2
+W +µyRy(y)
+o
+, (22b)
+ˆν⋆(x, y, r⋆) = arg min
+ν⋆∈Ω⋆
+C(x, y, z,ν,µ)
+= arg min
+ν⋆∈Ω⋆
+∥m⋆(x, y,ν⋆)− r⋆∥2
+W, (22c)
+ˆz(r⊕,ν⊕,µ z) = arg min
+z≥0
+C(x, y, z,ν,µ)
+= arg min
+z≥0
+n
+∥A⊕ z− r⊕∥2
+W +µzRz(z)
+o
+, (22d)
+ˆν⊕(z, r⊕) = arg min
+ν⊕∈Ω⊕
+C(x, y, z,ν,µ)
+= arg min
+ν⊕∈Ω⊕
+∥m⊕(z,ν⊕)− r⊕∥2
+W, (22e)
+with:
+∀x, A⋆x =γ⊙  H⋆(ν) y⊙ (F⋆ x), (23a)
+∀y, B⋆ y =γ⊙  F⋆ x⊙ (H⋆(ν)y), (23b)
+∀z, A⊕ z =γ⊙  h⊕(ν)⊙ (F⊕ z), (23c)
+r⋆ = d− m⊕(z,ν⊕), (23d)
+r⊕ = d− m⋆(x, y,ν⋆), (23e)
+m⋆(x, y,ν⋆) =γ⊙ (H⋆(ν) y)⊙ (F⋆ x) = A⋆ x = B⋆ y, (23f)
+m⊕(z,ν⊕) =γ⊙ h⊕(ν)⊙ (F⊕ z) = A⊕ z. (23g)
+We enforce positivity constraints for the variables x, y, and z,
+while Ω⋆ and Ω⊕ respectively denote the feasible set of param-
+etersν⋆ andν⊕. Note that m⋆(x, y,ν⋆) and m⊕(z,ν⊕) defined in
+Eqs. (23f) and (23g) are the respective contributions of the star
+and companion.
+When the convex regularization defined in (21) is chosen
+and A⊤
+⋆W A⋆, B⊤
+⋆WB⋆, and A⊤
+⊕ W A⊕ are invertible, each of the
+Problems (22a), (22b), and (22d) is strictly convex and thus
+has a unique solution which can be found by using existing
+algorithms8. This is another advantage of the alternated strat-
+egy. Since the original minimization problem (18) is not jointly
+convex with respect to all unknowns, only a local minimum is
+reached by the alternating minimization scheme, though.
+We solve for the two stellar components x and y following
+the alternated method proposed by Thé et al. (2020) to exploit
+the scaling indetermination of this problem (see Appendix C for
+details). This method is implemented by Algorithm 1 and takes
+8 For example, in the unconstrained case and with quadratic regular-
+izations, the solution of one of these sub-problem has a closed-form
+expression. Otherwise, each of these sub-problems can be solved by op-
+timization algorithms such as quasi-Newton methods with bound con-
+straints (e.g., Thiébaut 2002).
+Algorithm 1: FitStar — fit stellar parameters.
+Input: r⋆∈ RN, W∈ RN×N, x[0]∈ RNx,ν[0]
+⋆ ,µx > 0,
+andα0 > 0.
+Output: ˆx, ˆy, and ˆν⋆ a local minimum ofC in x, y, and
+ν⋆.
+k = 0
+µy = 1
+while not converged do
+while true do
+▶ Update on-axis PSF
+y[k+1] = ˆy x[k], r⋆,ν[k]
+⋆ ,α−2
+k µy
+ ◁ Eq. (22b)
+αk+1/2 = ˆα x[k], y[k+1],µ x,µ y
+ ◁ Eq. (C.4)
+if k≥ 1 orαk+1/2≈αk then break
+αk =αk+1/2
+▶ Update star SED
+x[k+1] = ˆx y[k+1], r⋆,ν[k]
+⋆ ,α 2
+k+1/2µx
+ ◁ Eq. (22a)
+αk+1 = ˆα x[k+1], y[k+1],µ x,µ y
+ ◁ Eq. (C.4)
+▶ Auto-calibration (optional)
+ν[k+1]
+⋆ ← ˆν⋆
+ x[k+1], y[k+1], r⋆
+ ◁ Eq. (22c)
+k← k + 1
+ˆx←αk x[k]
+ˆy← y[k]/αk
+ˆν⋆←ν[k]
+⋆
+as inputs the residuals r⋆ = d− m⊕(z,ν⊕) ( i.e. the data with-
+out the contribution of the companion), the precision matrix W,
+initial calibration parameters ν[0]
+⋆ , the hyper-parameters µx > 0
+(hyper-parameterµy is set to the arbitrary value 1 in Algorithm
+1), initial estimates x[0] of the stellar SED, and initial estimate
+α0 > 0 of the scaling parameter. Algorithm 1 deserves some re-
+marks:
+1. The initial stellar SED x[0] must be such thatRx(x[0])> 0 to
+be able to apply formula (C.4) to compute the optimal scaling
+factor (i.e., a non-flat SED). The initial stellar SED can be
+provided by calibration data (see Appendix B); otherwise it
+can be computed from the science data d by the following
+weighted mean:
+∀ j∈ J1, NxK : x[0]
+⋆, j =
+P
+n∈X j wn dn
+P
+n∈X j wn
+(24)
+with wn = Wn,n the n-th diagonal term of the precision matrix
+and:
+X j =
+n
+n∈ J1, NK
+
+λgrd
+⋆, j−λn
+ = min
+j′∈J1,NxK
+λgrd
+⋆, j′−λn
+
+o
+(25)
+the set of pixels whose nearest wavelength in the model grid
+is the j-th one. Since Algorithm 1 scales the final compo-
+nents x[k] and y[k] by the corresponding optimal scaling fac-
+tor,α0 = 1 is a natural choice for the initial scaling factor
+in subsequent calls to Algorithm 1 (to refine the solution or
+after having improved the other parameters).
+2. The inner loop of Algorithm 1 avoids sensitivity to the initial
+scaling of the parameters (Thé et al. 2020).
+3. The convergence criterion of Algorithm 1 is left unspecified.
+In our implementation, we chose to stop the algorithm when
+the relative change, in norm, between two consecutive iter-
+ates is smaller than 10−3.
+Article number, page 7 of 19
+
+<<<PAGE 8>>>
+Pre-print version, article under review
+Algorithm 2: FitCompanion — fit companion parame-
+ters.
+Input: residuals r⊕∈ RN, precision matrix W, initial
+off-axis PSF parametersν[0]
+⊕ ,µz > 0.
+Output: ˆz and ˆν⊕, a local minimum ofC in z andν⊕
+given m⋆(x, y,ν⋆) the model of the stellar
+contribution.
+k = 0
+while not converged do
+▶ Update companion SED
+z[k+1] = ˆz r⊕,ν[k]
+⊕ ,µ z
+ ◁ Eq. (22d)
+▶ Update off-axis PSF (optional)
+ν[k+1]
+⊕ = ˆν⊕
+ z[k+1], r⊕
+ ◁ Eq. (22e)
+k← k + 1
+ˆz← z[k]
+ˆν⊕←ν[k]
+⊕
+4. Although they represent very di fferent physical quantities,
+the problem is quite symmetric in variables x and y. Thus
+a variant of Algorithm 1 can be easily implemented to start
+with an initial estimate y[0] of the stellar on-axis PSF at the
+reference wavelength instead of an initial estimate x[0] of the
+stellar SED. For the very first run, this variant of Algorithm 1
+is started with the weighted average of the on-axis PSF de-
+fined by:
+∀ j∈ J1, NyK : y[0]
+⋆, j =
+P
+n∈Y j wn dn
+P
+n∈Y j wn
+(26)
+with:
+Y j =
+n
+n∈ J1, NK
+
+ρgrd
+⋆, j−ρn
+ = min
+j′∈J1,NyK
+ρgrd
+⋆, j′−ρn
+
+o
+(27)
+the set of pixels whose nearest angular position in the model
+grid is the j-th one.
+5. When the SED z of the companion is not yet known, it is suf-
+ficient to call Algorithm 1 with the weights of the pixels the
+most impacted by the companion set to zero (we write the
+corresponding precision matrix W⋆) to estimate the compo-
+nents x and y of the stellar leakages without introducing a
+significant bias due to the contribution of the companion.
+Algorithm 2 (FitCompanion) implements an alternated strat-
+egy to estimate the parameters z and ν of the companion SED
+and its off-axis PSF at the reference wavelength. It takes as in-
+puts the residuals r⊕ = d− m⋆(x, y,ν⋆) ( i.e. the data without
+the contribution of the star) and their respective weights W, the
+hyper-parameter µz > 0 and an initial estimate ν[0]
+⊕ ∈ Ω⊕ of
+the parameters of the o ff-axis PSF at the reference wavelength.
+These latter parameters can be given by the calibration described
+in Appendix B. Algorithm 2 also deserves some remarks:
+1. The outputs of the algorithm only depend on the residual data
+r⊕ defined in Eq. (23e) that need to be computed only once
+(on entry of the algorithm and not at each iterations).
+2. Like for Algorithm 1, various stopping criteria may be im-
+plemented to break the loop.
+3. Like for Algorithm 1, we can use the VMLM-B algorithm
+(Thiébaut 2002) to solve Problem (22d) to estimate z under
+a non-negativity constraint.
+Algorithm 3: Exospeco algorithm
+Input: The data d and its precision matrix W, the
+masked precision matrix W⋆, initial estimates
+x[0],ν[0]
+⋆ , andν[0]
+⊕ , and hyper-parametersµx > 0
+andµz > 0.
+Output: ˆx, ˆy, ˆz, ˆν⋆, and ˆν⊕ a local minimum ofC.
+µy = 1
+z[0] = 0
+ˆα = 1
+k = 0
+while not converged do
+if k = 0 then
+▶ Hide companion
+W′ = W⋆ ◁ Eq. (28)
+else
+▶ Account for companion
+W′ = W
+▶ Update star leakage model
+r[k]
+⋆ = d− m⊕
+ z[k],ν[k]
+⊕
+ ◁ Eq. (23d) x[k+1], y[k+1],ν[k+1]
+⋆
+ =
+FitStar r[k]
+⋆ , W′, x[k],ν[k]
+⋆ ,µ x, ˆα
+▶ Update companion model
+r[k+1]
+⊕ = d− m⋆
+ x[k+1], y[k+1],ν[k+1]
+⋆
+ ◁ Eq. (23e) z[k+1],ν[k+1]
+⊕
+ = FitCompanion r[k+1]
+⊕ , W,ν[k]
+⊕ ,µ z
+
+k← k + 1
+(ˆx, ˆy, ˆz, ˆν⋆, ˆν⊕)←  x[k], y[k], z[k],ν[k]
+⋆ ,ν[k]
+⊕
+
+In both algorithms, there are optional self-calibration steps
+performed by solving Problem (22c) in Algorithm 1 (F itStar)
+and Problem (22e) in Algorithm 2 (F itCompanion) to estimate
+the parameters of the on-axis and o ff-axis PSFs. These mini-
+mizations can be carried out by a derivative-free minimization
+algorithm. When there is a single calibration parameter, we use
+Brent (2013) Fmin algorithm; if there are several parameters, we
+use one of Powell’s derivative-free methods Newuoa or Bobyqa
+(Powell 2006, 2009) depending on the constraints defined by Ω.
+3.5. The Exospeco algorithm
+FitStar (Algorithm 1) and F itCompanion (Algorithm 2) are the
+building blocks of the E xospeco method given in Algorithm 3
+for estimating all unknowns. Only a few additional remarks are
+worth being made:
+1. For the first estimation of the stellar leakage parameters, it
+is beneficial to define a masked version W⋆ of the precision
+matrix of the data to avoid a significant bias of the first es-
+timates due to the signal from the companion, which would
+slow down the convergence of Algorithm 3. The masked pre-
+cision matrix is simply given by:
+W⋆ = diag(w⋆), (28)
+where the weights w⋆ are those of the precision matrix W of
+the data except that they are set to zero for the pixels that are
+the most impacted by the companion:
+∀n∈ J1, NK : w⋆,n =
+(0 if γn|ρn−ρ⊕|≤ τ
+wn otherwise (29)
+withτ> 0 the angular half-width at the reference wavelength
+of the impacted region. In practiceτ is taken to be 2-3 times
+Article number, page 8 of 19
+
+<<<PAGE 9>>>
+Samuel Thé et al.: Characterization of stellar companion from high-contrast long-slit spectroscopy data
+σ[0]
+⊕ the initial angular standard deviation of the off-axis PSF
+at the reference wavelength.
+2. The model of the stellar leakage only depends on either µx
+orµy, the other being arbitrarily chosen. For this reason Al-
+gorithm 3 takes as inputs only 2 hyper-parametersµx andµz,
+the remaining hyper-parameter being set toµy = 1.
+3. After extracting the companion’s spectrum by E xospeco Al-
+gorithm 3, it is possible to express it as a contrast relative
+to the host star which can be multiplied by a reference spec-
+trum of the star to get rid of the atmospheric absorption (see
+Appendix B).
+4. The auto-calibration steps in F itStar (Algorithm 1) and Fit-
+Companion (Algorithm 2) are optional and consist in the res-
+olution of Problems (22c) and (22e). As these problems are
+non-convex, activating the auto-calibration at the beginning
+of the method can lead to a local minimum. To avoid such a
+behavior, it is possible to start the self-calibration of ν⋆ and
+ν⊕ only after a few iterations of Exospeco (Algorithm 3).
+5. Controlling the number of inner iterations to solve each sub-
+problem could be done by changing the value of the stopping
+parameter ϵ (cf. remark 3 in Section 3.4): the smaller ϵ the
+more inner iterations are needed and conversely. But this is
+expected to also impact the number of outer iterations. Ow-
+ing to the modest amount of time (2-3 min.) taken by our
+implementation of Exospeco to solve the entire problem, we
+did not investigate whether the algorithm can be e ffectively
+accelerated by changing ϵ and keep the value ϵ = 10−3 sug-
+gested before.
+4. Calibration
+The direct model in Eq. (15) assumes known the physical coor-
+dinates (ρn,λ n) of each pixel n of the detector. We describe in
+this section a consistent approach to derive the spectro-angular
+dispersion laws of the instrument from calibration data.
+4.1. Calibration data
+Calibration data takes the form of an image such as the one
+shown in Fig. 5 which is obtained by illuminating the spec-
+trograph slit with Nλ laser sources 9. This produces Nλ mono-
+chromatic lines on the detector, each being interrupted by the
+coronagraphic mask. The calibration image dcal is of size I× J
+and, for the calibration procedure, we denote by n∼ (i, j) the
+one to one mapping between the pixel number n and its indices
+i∈ J1, IK and j∈ J1, JK along the first and second dimensions of
+the detector.
+The calibration image shall have been pre-processed to com-
+pensate for bias and non-uniform response of the detector. Fur-
+thermore, we assume known a mask of valid pixels :
+wmsk,i, j =
+(1 if the pixel ( i, j) is valid,
+0 else . (30)
+We consider a pixel as beinginvalid if its value cannot follow the
+assumed direct model given in Eq. (15). Invalid pixels include
+pixels outside the field of view, pixels under the coronagraphic
+mask or close to this mask, and defective pixels whose level does
+not linearly depend on the illumination. Figure 6 shows the mask
+of valid pixels for the HR 3549 data: the field of view and the
+coronagraphic mask are outlined by the two green trapezes while
+the defective pixels are marked by green dots.
+9 Nλ = 6 at wavelengths 0 .9877 µm, 1 .1237 µm, 1 .3094 µm,
+1.5451 µm, 1.73 µm, and 2.015 µm for SPHERE/IRDIS
+4.2. Dispersion laws
+There are two dispersion laws to calibrate: Λ(i, j) for the wave-
+length andϱ(i, j) for the separation angle along the slit. To deter-
+mine the best approximation of these spectro-angular dispersion
+laws, we compared three models:
+– The standard model which assumes that the dispersion laws
+are uni-dimensional polynomials with spectral and angular
+directions aligned with the detector axes:
+Λsta(i, j) =
+XPλ
+p=0 ap jp, (31a)
+ϱsta(i, j) =
+XPρ
+p=0 sp ip, (31b)
+with Pλ and Pρ the degrees of the polynomials and
+{ap}p∈J0,PλK and{sp}p∈J0,PρK their coefficients. For Pρ = 1 and
+Pλ = 3− 5, the standard model reproduces what is done in
+the software by Vigan et al. (2008) usually used to process
+SPHERE/LSS data.
+– A model of medium complexity, also assuming 1D polynomi-
+als for the dispersion laws but accounting for misalignment
+anglesϕλ andϕρ≈ϕλ+90◦ respectively between the spectral
+and angular directions and the detector axes:
+Λmed(i, j) =
+XPλ
+p=0 ap (i sinϕλ + j cosϕλ)p, (32a)
+ϱmed(i, j) =
+XPρ
+p=0 sp (i sinϕρ + j cosϕρ)p. (32b)
+Note that taking ϕλ = 0◦ and ϕϱ = 90◦ yields the standard
+model.
+– A more complex model which assumes 2D polynomials for
+the dispersion laws and, depending on the degree of these
+polynomials, can account for more complex image distor-
+tions than a simple rotation:
+ΛExospeco(i, j) =
+XPλ
+p1=0
+XPλ−p1
+p2=0 ap1,p2 ip1 jp2, (33a)
+ϱExospeco(i, j) =
+XPρ
+p1=0
+XPρ−p1
+p2=0 sp1,p2 ip1 jp2. (33b)
+To summarize, the considered dispersion laws are polynomials
+of respective degree Pλ and Pρ. Their calibration amounts to fit-
+ting their coefficients a and s given the calibration image dcal as
+explained in the next sub-sections.
+4.3. Calibration of the spectral dispersion law Λ
+To calibrate the spectral dispersion law Λ, we extract from the
+calibration image dcal (see Fig. 5) Nλ lists of pixel coordinates
+following the path of each spectral line on the detector and esti-
+mate the coefficients a by a least squares fit:
+ˆa = arg min
+a
+NλX
+ℓ=1
+X
+(i, j)∈Cℓ(ϕλ)
+ λℓ− Λ(i, j)2 (34)
+whereCℓ(ϕλ) denotes the list of, possibly fractional, pixel co-
+ordinates (i, j) along the ℓ-th spectral line on the detector. Since
+Λ(i, j) linearly depends on the coefficients a, the solution ˆa of the
+above problem has a closed form expression (Lawson & Hanson
+1974) that is easy to compute.
+To extract the pathsCℓ(ϕλ) of the spectral lines, we first com-
+pute a transverse projection q⊥(ϕλ) of the calibration image dcal
+tuning the projection angleϕλ so as to maximize the peak values
+Article number, page 9 of 19
+
+<<<PAGE 10>>>
+Pre-print version, article under review
+~ angular position ρ
+total intensity
+1200 1000 800 600 400 200 0
+ j axis
+i axis
+1000
+800
+600
+400
+200
+0
+0 200 400 600 800 1000
+1000
+800
+600
+400
+200
+0
+1600
+1400
+1200
+1000
+800
+600
+400
+200
+0
+total intensity
+~ wavelength λ
+projection
+projection
+q⊥: transverse projection
+of spectral lines
+q//ℓ: profile ofℓ-th
+spectral line
+ idownℓ , jdownℓ
+
+ iup
+ℓ, jup
+ℓ
+
+Fig. 5. Calibration data for the SPHERE/IRDIS instrument and for the observations of HR 3549 on 2015/12/28. Central panel: calibration image.
+Left and top panels: projections of the calibration data along the 2nd spectral line (in green) and across all spectral lines (in red).
+0 200 400 600 800 1000
+0
+200
+400
+600
+800
+1000
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+Fig. 6. Valid pixel mask for the HR 3549 data observed on 2015-12-28
+in MRS mode.
+in of the resulting projection. This transverse projection is plot-
+ted in red in the top panel of Fig. 5 and corresponds toϕλ≈ 0◦ for
+the considered calibration data. Equations (A.1) in Appendix A.1
+formally define how we carefully compute the projection avoid-
+ing invalid pixels. We then use the procedure described in Ap-
+pendix A.2 to locate the position of theNλ most significant peaks
+in the transverse projection q⊥(ϕλ) which can be seen as a mean
+cross section of the spectral lines. Finally, we use the method de-
+scribed in Appendix A.3 to extract the coordinates of the points
+defining the Nλ pathsCℓ(ϕλ). These coordinates are given by the
+centers of gravity (again accounting for invalid pixels thanks to
+the mask) of the calibration data in small sliding rectangular win-
+dows along each spectral lines (see Appendix A.3 for details).
+4.4. Calibration of the angular dispersion law ϱ
+To calibrate the angular dispersion law ϱ, we extract from the
+calibration image dcal (see Fig. 5) the positions of the edges of
+the coronagraphic mask for each of the Nλ spectral lines and
+estimate the coefficients s of the polynomial and the width∆ρ of
+the mask by a least squares fit:
+( ˆϕρ, ˆ∆ρ, ˆs) = arg min
+ϕρ,∆ρ,s
+( NλX
+ℓ=1
+
+ϱ idown
+ℓ , jdown
+ℓ
+ + ∆ρ/2
+2
++
+NλX
+ℓ=1
+
+ϱ iup
+ℓ , jup
+ℓ
+− ∆ρ/2
+2
+)
+(35)
+where  idown
+ℓ , jdown
+ℓ
+ and  iup
+ℓ , jup
+ℓ
+ denote the coordinates of the
+edges of the coronagraphic mask respectively on the downhill
+and uphill sides along the profile of the ℓ-th spectral line. To
+solve this problem, we exploit that the criterion is quadratic in
+the unknowns s and ∆ρ which thus have a closed-form solution
+(Lawson & Hanson 1974) which depends on ϕρ. Replacing this
+closed-form solution in the criterion yields an uni-variate objec-
+tive function that only depends onϕρ and which we minimize by
+Brent (2013) Fmin method starting atϕρ =ϕλ + 90◦.
+Article number, page 10 of 19
+
+<<<PAGE 11>>>
+Samuel Thé et al.: Characterization of stellar companion from high-contrast long-slit spectroscopy data
+As explained in Appendix A.4, the coordinates of the edges
+of the coronagraphic mask for theℓ-th spectral line are obtained
+from the longitudinal profile q//ℓ(ϕλ) of the line which is the
+weighted projection, in a direction perpendicular to the transver-
+sal projection q⊥(ϕλ), of the calibration data in a window encom-
+passing the line. The longitudinal profile q//ℓ(ϕλ) for the second
+(ℓ = 2) line is plotted in green in the left panel of Fig. 5 and the
+corresponding window is outlined in green in the central panel
+of Fig. 5.
+4.5. Comparison of the calibration models
+To compare the calibration models considered in Section 4.2,
+we apply E xospeco (Algorithm 3) on a scientific dataset of the
+star HR 3549 observed in MRS mode of SPHERE /IRDIS on
+2015/12/28. Figure 7 shows the residuals r = d− m, that is the
+difference between the data and their model, computed for the
+different spectro-angular dispersion laws. This figure shows that
+the Root Mean Square (RMS) of the residuals are significantly
+reduced when using more flexible calibration models than the
+standard one. The improvement brought by the medium com-
+plexity model compared to the standard model proves that ac-
+counting for a slight angular misalignment between the spatial
+and spectral directions and the detector axes is important. Com-
+pared to the medium model, the complex model is able to account
+other image distortions than a simple rotation and thus achieves
+a better suppression of the stellar leakages. These results moti-
+vate the choice of the complex dispersion model in Exospeco to
+reduce the RMS level of the residual stellar leakages by a fac-
+tor of∼ 2 compared to the standard model and should therefore
+result in a better extraction of the companion contribution. Re-
+member that the simple standard calibration model is similar to
+what is usually done by others for these data.
+5. Validation and tuning of the method
+To fully validate the method, we propose in this section a study
+of the method on both real data and data where a synthetic com-
+panion was injected. This study allows us to both evaluate the
+modeling of the stellar leakages, and so its subtraction in the
+residuals, and the extraction of the companion, by comparing
+with a ground truth spectrum.
+5.1. Reduction of the self-subtraction
+One of the feature of E xospeco is that it jointly estimates the
+contributions of the star and of the companion whose parame-
+ters are iteratively refined until convergence. Figure 8 shows the
+residuals close to the companion (in the region outlined by the
+black rectangle in the bottom of Fig. 7) with the complex model
+of the spatial and spectral dispersion laws in two cases: after the
+first outer iteration of E xospeco and after convergence of the al-
+gorithm. In the first outer iteration of E xospeco, the model of
+the stellar leakages is estimated by masking the region most im-
+pacted by the companion, see Eq. (28), which is similar to what
+is done by conventional methods. In all other outer iterations of
+Exospeco, the contribution of the other component is taken into
+account when fitting a given component (star or companion). As
+shown by the bottom panel of Fig. 8, there is a noticeable bias
+in the estimated companion’s SED after the first outer iteration.
+This so-called self-subtraction bias is mostly avoided by the pro-
+posed alternating strategy.
+0 200 400 600 800
+0
+10
+20
+30
+40
+50
+60
+70
+80Standard calibration
+RMS = 4.675e-03
+0.15
+0.10
+0.05
+0.00
+0.05
+0.10
+0.15
+0 200 400 600 800
+0
+10
+20
+30
+40
+50
+60
+70
+80Medium calibration
+RMS = 3.068e-03
+0.15
+0.10
+0.05
+0.00
+0.05
+0.10
+0.15
+0 200 400 600 800
+0
+10
+20
+30
+40
+50
+60
+70
+80Complex calibration
+RMS = 2.619e-03
+0.15
+0.10
+0.05
+0.00
+0.05
+0.10
+0.15
+Fig. 7. Residuals between the HR 3549 scientific data and the model of
+the stellar leakages, assuming a standard (top figure), medium (center),
+and complex (bottom) calibration models. The RMS values of the resid-
+uals are given for each model. The iso-levels of ρ/λ which are approx-
+imately followed by the dispersed stellar speckles are plotted as green
+dashed lines. The position of the companion at the different wavelengths
+(i.e., atρ =ρ⊕) is plotted as an orange dashed line.
+5.2. T uning of the regularization parameters
+As described in Appendix C, the fact that the model of the star
+leakages is bi-linear makes it possible to tune the regularization
+Article number, page 11 of 19
+
+<<<PAGE 12>>>
+Pre-print version, article under review
+0 100 200 300 400 500 600 700 800
+0
+5
+10One iteration
+RMS = 1.166e-03
+0.1
+0.0
+0.1
+0 100 200 300 400 500 600 700 800
+0
+5
+10After convergenceRMS = 8.562e-04
+0.1
+0.0
+0.1
+800 1000 1200 1400 1600 1800 2000
+wavelength [nm]
+0.00
+0.05
+0.10
+0.15
+0.20
+0.25Companion SED [unitless]
+after convergence
+1 iteration
+Fig. 8. Residuals between the HR 3549 scientific data and the model of
+the stellar leakages near the companion (defined by the black rectangle
+in the bottom of Fig. 7) and for the complex model of the spatial and
+spectral dispersion laws after one iteration (top) and after convergence
+(middle) of E xpospec. The RMS of the residuals in this region are sig-
+nificantly reduced after convergence. The orange dashed line indicates
+the position of the companion at the different wavelengths. The SEDs of
+the companion (including atmospheric absorption) extracted from these
+residuals are plotted in the bottom-most panel.
+of this component by a single hyper-parameter, the other hyper-
+parameter being held fixed. Thanks to this, the solution found by
+Exospeco only depends on 2 hyper-parameters, one for the star,
+say,µx (while µy = 1 is imposed) and one for the companion,
+µz. In this section, we highlight the incidence on the companion
+SED extracted by Exospeco of these remaining hyper-parameters
+using the same scientific data set as in Section 4.5.
+Figure 9 shows the SEDs of the companion estimated by
+Exospeco for di fferent values of the star regularization hyper-
+parameters (µy = 1 andµx = 10−3, 10, and 105). For such a large
+range of values, the di fferences between the extracted compan-
+ion SEDs are smaller than 1%. The stellar regularization hyper-
+parameters have thus a limited impact on the resulting compan-
+ion SED. The tuning ofµx can thus reasonably be done by visual
+inspection.
+On the contrary, as Fig. 10 shows, the hyper-parameter µz
+has a strong impact on the resulting companion SED. This is
+expected asµz directly tunes the strength of the smoothness con-
+straint for the companion SED z. This hyper-parameter has thus
+to be carefully chosen to find the best compromise between a
+solution that is too smooth ( e.g. forµz = 107 in Fig. 10) or too
+noisy (e.g. forµz = 102 in Fig. 10). It is worth noticing that the
+correct value of µz strongly depends on the considered data, so
+µz = 105, which seems to be a good choice for the HR 3549 data
+(see Fig. 10), should not be considered as a universal value.
+Many methods have been proposed to automatically tune the
+hyper-parameter(s) of an inverse problem: the Generalized Cross
+Validation (CGV , Golub et al. 1979), Stein’s Unbiased Risk
+0.00
+0.05
+0.10
+0.15
+0.20
+0.25Companion SED [unitless]
+x = 10
+x = 10 3
+x = 105
+800 1000 1200 1400 1600 1800 2000
+wavelength [nm]
+0.0025
+0.0000
+0.0025
+Residuals
+Fig. 9. Top: Profiles of the companion SED z, for di fferent levels of
+the stellar hyper-parameter µx and with µy = 1 and µz = 105. Bottom:
+differences between the profile for µx = 10 and the profiles for µx =
+10−3 (dashed orange) andµx = 105 (dotted green)
+0.00
+0.05
+0.10
+0.15
+0.20
+0.25
+0.30Companion SED [unitless]
+z = 105
+z = 102
+z = 107
+800 1000 1200 1400 1600 1800 2000
+wavelength [nm]
+0.05
+0.00
+0.05
+Residuals
+Fig. 10. Top: Profiles of the companion SED z for different levels of
+the companion regularization ( µz = 102 in dashed orange, µz = 105
+in blue, and µz = 107 in dotted green). Bottom: di fferences between
+the profile for µz = 105 and the profiles for µz = 102 (dashed orange)
+and µz = 107 (dotted green). For all these results, the stellar hyper-
+parameters areµx = 10 andµy = 1.
+Estimate (SURE, Stein 1981), the hierachical Bayesian method
+(Molina 1994), or the L-curve (Hansen & O’Leary 1993) to men-
+tion a few that could be used with our extraction algorithm. Im-
+plementing and testing these methods for Exospeco is out of the
+scope of this paper. However, since the companion SED found
+by Exospeco does not strongly depend on the tuning of the stellar
+regularization, our method is mostly driven by a single hyper-
+parameter,µz, the level of the regularization for the companion
+SED. This greatly reduces the complexity of tuning the Exospeco
+algorithm.
+5.3. Extraction of simulated spectrum in real data
+To validate the E xospeco method, we injected the contribution
+of a synthetic companion in existing SPHERE/IRDIS MRS data
+d of the star HIP 65426 observed on 2019-05-20. Although
+HIP 65426 star hosts a planet (Chauvin et al. 2017; Carter et al.
+2022), the frame was selected for the derotation angles hiding the
+planet outside the slit. The off-axis PSF h⊕ of the synthetic com-
+panion follows the model in Eqs. (13) and (14c) with σ⊕ set to
+match the diffraction limit of the telescope at the reference wave-
+Article number, page 12 of 19
+
+<<<PAGE 13>>>
+Samuel Thé et al.: Characterization of stellar companion from high-contrast long-slit spectroscopy data
+0 200 400 600 800
+0
+25
+50
+75
+100
+125
+150
+175
+C
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+B
+0
+25
+50
+75
+100
+125
+150
+175
+A
+0
+25
+50
+75
+100
+125
+150
+175
+Fig. 11. Scientific data of HIP 65426 with a synthetic companion whose
+contrast isχ = 2 · 10−4 relative to the star and injected at angular sepa-
+rationsρ⊕−ρ⋆ = 273 mas (A), 890 mas (B), and 1353 mas (C) indicated
+by the arrows.
+lengthλref and with different angular positionsρ⊕ on the side of
+the coronagraphic mask where no companion was detected. The
+ground truth SED of the synthetic companion is zgt = χ xflux
+where χ > 0 is the mean contrast of the companion relative to
+the star (without a coronagraph) and xflux is the SED of the star
+HIP 65426 calibrated as explained in Appendix B. We use a con-
+stant contrast for all wavelengths (i.e., the SED of the star and
+of the companion are the same, up to the contrast χ). Figure 11
+shows examples of generated data with a synthetic companion
+whose contrast with respect to the star is χ = 2 · 10−4 and which
+is injected at different angular separationsρ⊕−ρ⋆.
+To assess the quality of the extracted companion’s SED ˆz,
+we compute the following relative error:
+q =
+PNz
+j=1
+zgt, j− ˆz j
+
+PNz
+j=1
+zgt, j
+
+. (36)
+In the following tests, the value of µz, the regularization level
+of the companion’s SED, has been tuned so as to minimize the
+relative error q. Figure 12 plots the relative error q for synthetic
+companions injected at angular separationsρ⊕−ρ⋆ ranging from
+200 mas to 1850 mas and with contrasts χ = 3 · 10−5, 2 · 10−4,
+and 2 · 10−3. Clearly, the quality of the recovered SEDs degrades
+as the companion gets closer to the mask. This is expected be-
+cause, when getting closer to the mask, not only are the stellar
+leakages brighter (hence causing more photon noise in the resid-
+uals) but the approximation by the assumed o ff-axis PSF model
+also worsens. For angular separations larger than∼ 600 mas and
+for all considered contrasts, the quality of the recovered SEDs
+200 400 600 800 1000 1200 1400 1600 1800
+angular separation [mas]
+10 2
+10 1
+100
+101
+q
+3.0e-5
+0.0002
+0.002
+mask
+A B C
+Fig. 12. Relative error q defined in Eq. (36) for synthetic companions
+injected in the scientific data of HIP 65426 (with the same spectra as the
+host star) as a function of the angular separationρ⊕−ρ⋆ and for contrasts
+χ = 3 · 10−5 (blue), 2 · 10−4 (orange), and 2 · 10−2 (green). The grayed
+area represents the region invalidated by the coronagraphic mask. The
+angular separations of the three cases presented in Fig. 11 are high-
+lighted by the dashed lines labeled A, B, and C.
+improves as the separation increases until a plateau is reached at
+ρ⊕−ρ⋆∼ 1400 mas where the dominant source of nuisance is
+the readout noise.
+Figure 13 shows examples of recovered companion SEDs ˆz
+at angular separationsρ⊕−ρ⋆ = 273 mas (A), 890 mas (B), and
+1353 mas (C) for the same contrasts χ as in Fig. 12. Figure 13
+confirms that the relative error q does reflect the ability of our
+method to reliably recover the companion SED. When q≤ 0.1
+(the green curves for angular separations B and C and the orange
+curve for angular separation C), all the features of the SED are
+correctly recovered. For q ∼ 0.2 (the green curve for case A,
+the orange curve for case B, and the blue curve for case C), the
+global shape of the SED is restored but with small spectral fea-
+tures smoothed out and some photometric biases. These cases
+prove that it is possible to extract a coarse but still exploitable
+SED for bright companions quite close to the mask, typically
+χ≥ 10−3 forρ⊕−ρ⋆∼ 250 mas, from a single MRS exposure.
+The angular separation must be larger for fainter companions;
+for example,ρ⊕−ρ⋆≥ 1200 mas forχ∼ 2 · 10−5. The photomet-
+ric biases in the most di fficult cases (the green curve in case A,
+the orange one in case B, and the blue one in case C) clearly indi-
+cates that the removal of the modeled stellar contribution leaves
+non-negligible residuals compared to the companion. A possi-
+ble improvement could be to use a more complex model of the
+on-axis PSF and consider more than one mode in the series ex-
+pansion of Eq. (3).
+To summarize the performances of the current version of Ex-
+ospeco for a single data frame of the HIP 65426 observations,
+Fig. 14 plots the minimal contrast needed to achieve a given rel-
+ative error q as a function of the angular separation. The figure
+shows that by tolerating a relative error as high asq = 0.3, a com-
+panion with a contrast up toχ∼ 2 · 10−5 can be characterized. In
+our conclusions, we explain how to extend E xospeco to jointly
+process several data frames in order to increase the sensitivity of
+the algorithm.
+Article number, page 13 of 19
+
+<<<PAGE 14>>>
+Pre-print version, article under review
+100
+SED [unitless]
+1000 1200 1400 1600 1800
+wavelength [nm]
+0.0
+0.2
+z z gt
+max(zgt)
+A
+10 2
+10 1
+100
+SED [unitless]
+1000 1200 1400 1600 1800
+wavelength [nm]
+0.2
+0.0
+z z gt
+max(zgt)
+B
+10 2
+10 1
+100
+SED [unitless]
+1000 1200 1400 1600 1800
+wavelength [nm]
+0.2
+0.0
+0.2
+z z gt
+max(zgt)
+C
+Fig. 13. Examples of recovered companion SEDs ˆz in the same condi-
+tions as in Fig. 11 and Fig. 12 for synthetic companions injected at an-
+gular separationsρ⊕−ρ⋆ = 273 mas (A), 890 mas (B), and 1353 mas (C)
+with contrasts χ = 3 · 10−5 (blue curves), 2 · 10−4 (orange curves), and
+2 · 10−2 (green curves). The ground truth SED zgt is plotted in dashed
+lines. The normalized residuals are plotted below each panel.
+200 400 600 800 1000 1200 1400 1600 1800
+angular separation [mas]
+10 5
+10 4
+10 3
+q = 10 1
+q = 2.10 1
+q = 3.10 1
+Fig. 14. Minimal contrastχ required to achieve a given relative error q
+as a function of the angular separation. The conditions are the same as
+in Fig. 11 and Fig. 12.
+1000 1200 1400 1600 1800
+Wavelength [nm]
+0.0
+0.1
+0.2
+0.3Companion SED [unitless]
+Exospeco
+TSVD
+Fig. 15. Comparison of the SEDs extracted from the HR 3549 data by
+Exospeco and by a standard TSVD method. See text for details.
+5.4. Comparison with TSVD extraction
+We compared E xospeco to a standard approach based on the
+TSVD method described in Section 2.2 to remove the stellar
+leakages. Figure 15 shows the companion SED extracted from
+the HR 3549 data by Exospeco and by the TSVD approach. For
+the latter method, the SED of the companion was extracted by lo-
+cal averaging in a 7 pixel height sliding window along the com-
+panion signal in the residual image given by Eq. 7 and shown in
+Fig. 3. In both cases, the same complex calibration model of the
+spectral and angular dispersion laws described in Appendix A
+has been used. In spite of this identical calibration, the two ex-
+tracted SEDs are notably different. Thanks to the optimal extrac-
+tion in the maximum likelihood sense and to the spectral regu-
+larization, the SED extracted by E xospeco is smoother and less
+noisy. At a coarser resolution, the two SEDs display quite dif-
+ferent spectral features. However, without a known ground truth,
+the two SEDs cannot be ranked. For this reason, we also com-
+pared the results given by the two methods on a synthetic injec-
+tion done as described in Section 5.3. Figure 16 clearly demon-
+strates that not only does E xospeco produce less noisy results,
+but that they also better reflect reality.
+6. Conclusion
+In this paper we presented a novel algorithm, E xospeco, to ex-
+tract the spectrum of a companion from high-contrast long-slit
+spectroscopic data. The most challenging part of such a process-
+Article number, page 14 of 19
+
+<<<PAGE 15>>>
+Samuel Thé et al.: Characterization of stellar companion from high-contrast long-slit spectroscopy data
+1000 1200 1400 1600 1800
+Wavelength [nm]
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5Companion SED [unitless]
+Exospeco
+TSVD
+Ground truth
+Fig. 16. Comparison of the SEDs extracted from semi-synthetic data
+by Exospeco and by a standard TSVD method. The angular separation
+and the contrast of the injected companion are respectively ρ⊕−ρ⋆ =
+785 mas andχ = 2×10−4. The green dashed curve represents the ground
+truth injected spectrum which is that of HIP 65426 multiplied byχ.
+ing is to disentangle the signal of interest from the stellar leak-
+ages which are much brighter. Compared to existing methods,
+our algorithm avoids any transform of the data, whether it is to
+align the speckles of the stellar leakages at all wavelengths or to
+fix defective pixels. E xospeco has also the advantage of jointly
+extracting the parameters describing the stellar leakages (the star
+spectrum and the on-axis PSF), the companion spectrum, the off-
+axis PSF, and, optionally, some calibration parameters. By using
+non-uniform statistical weights for the data pixels, our approach
+is optimal in the maximum likelihood sense, it takes into account
+all available measurements and consistently treats defective pix-
+els as missing data. The joint optimization problem having no
+closed-form solution, we proposed an alternating minimization
+strategy which has proven to be effective. In spite of the numer-
+ous parameters coming into play in the algorithm, the outputs
+of the method are, in practice, mostly driven by a single hyper-
+parameter that tunes the level of regularization of the companion
+SED.
+Although it is not directly part of the spectrum extraction al-
+gorithm, we have shown that careful calibration of the instru-
+ment is critical to get rid of the contamination by the stellar
+leakages. For that purpose, we described a refined calibration
+method of the spectral and spatial dispersion laws from avail-
+able calibration data. In particular, SPHERE /LSS data present
+a misalignment of the principal directions of dispersion with the
+detector axes as well as a geometrical shear. If not accounted for,
+we show that these distortions have a detrimental impact on the
+result of the processing, whether it is by Exospeco or by the cur-
+rent state-of-the-art method. A few remaining calibration param-
+eters that may depend on the observing conditions, such as the
+off-axis PSF size and the precise locations of the star and of the
+companion along the slit, can be optionally adjusted by a self-
+calibration procedure built into Exospeco. Thanks to this calibra-
+tion step, our method significantly reduces the self-subtracting
+bias by better disentangling the stellar leakages component from
+the companion component.
+A Julia (Bezanson et al. 2017) implementation of E x-
+ospeco is freely available at https://github.com/SJJThe/
+Exospeco, while an implementation of the calibration method
+described in Section 4 and Appendix A is at https://github.
+com/SJJThe/ExospecoCalibration.
+Based on tests carried on empirical long-slit spectroscopic
+data and on injections of a synthetic companion signal in these
+data, we demonstrated that the proposed approach e ffectively
+avoids the self-subtraction bias, even very close to the corona-
+graphic mask. We provided curves to predict the minimal con-
+trast required to achieve a given quality of extraction of the com-
+panion SED. Reliable extraction of a companion SED can be
+achieved from a single data frame at contrasts as low as a few
+10−5. The proposed method could boost the characterization of
+known (faint) exoplanets at a spectral resolution substantially
+higher than currently possible with SPHERE IFS ( R∼ 35− 50)
+and for contrasts much better than achievable with IRDIS MRS
+using state of the art methods. By capturing more efficiently the
+stellar contamination, the method we propose does not require
+independent and thus imperfect calibration of the speckles by
+rotating the slit to hide the planet signal. This will typically gain
+at least 50% telescope time while reaching, and even surpassing,
+the same contrast limit. This new method also paves the way
+to combining polarimetry and spectroscopic measurements with
+IRDIS LSS mode (R. Holstein private communication).
+Being based on an inverse problems framework, Exospeco is
+very flexible and can be adapted to various kinds of data (such as
+data sequences or data from other instruments). An example of
+such an extension of Exospeco is the joint processing of multiple
+frames that can be done as follows. Assuming T LSS exposures
+d1 to dT of the same object are collected during a night, they can
+be combined into a single criterion that extends Eq. (17):
+C(x, y1, y2,..., yT, z,ν,µ)
+=
+TX
+t=1
+dt− m(x, yt, z,ν)
+2
+Wt
++µxRx(xt)
++µy
+TX
+t=1
+Ry(yt) +µzRz(z), (37)
+where the statistical independence of noise between frames is
+considered (a natural assumption). This criterion can be mini-
+mized in x, y1, . . . , yT , z, and ν following the same alternating
+method as described in Section 3.4, only with more steps in or-
+der to estimate the on-axis PSF at each of the T frames. Such
+a joint processing has the potential to improve the estimation of
+companion SEDs and push further the achievable contrast limit.
+Finally, to better disentangle the stellar leakages from the
+companion spectrum, the model of the on-axis PSF could be
+improved by taking into account more spatial modes of the se-
+ries expansion in Eq. (3). Indeed, as demonstrated in Devaney &
+Thiébaut (2017), accounting for more such modes significantly
+improves the modeling of the stellar leakages, especially near the
+coronagraphic mask. Such an improvement would not call into
+question the founding principles of Exospeco, but would require
+to adapt the optimization strategy.
+Acknowledgements. This work was supported by the Action Spécifique Haute
+Résolution Angulaire (ASHRA) of CNRS/INSU co-funded by CNES. SPHERE
+is an instrument designed and built by a consortium consisting of IPAG (Greno-
+ble, France), MPIA (Heidelberg, Germany), LAM (Marseille, France), LESIA
+(Paris, France), Laboratoire Lagrange (Nice, France), INAF - Osservatorio di
+Padova (Italy), Observatoire de Genève (Switzerland), ETH Zürich (Switzer-
+land), NOV A (Netherlands), ONERA (France) and ASTRON (Netherlands) in
+collaboration with ESO. SPHERE was funded by ESO, with additional contri-
+butions from CNRS (France), MPIA (Germany), INAF (Italy), FINES (Switzer-
+land) and NOV A (Netherlands). SPHERE also received funding from the Eu-
+ropean Commission Sixth and Seventh Framework Programmes as part of the
+Optical Infrared Coordination Network for Astronomy (OPTICON) under grant
+number RII3-Ct-2004-001566 for FP6 (2004-2008), grant number 226604 for
+FP7 (2009-2012) and grant number 312430 for FP7 (2013-2016).
+References
+Berdeu, A., Soulez, F., Denis, L., Langlois, M., & Thiébaut, É. 2020, A&A, 635,
+A90
+Beuzit, J. L., Vigan, A., Mouillet, D., et al. 2019, A&A, 631, A155
+Article number, page 15 of 19
+
+<<<PAGE 16>>>
+Pre-print version, article under review
+Bezanson, J., Edelman, A., Karpinski, S., & Shah, V . B. 2017, SIAM Review,
+59, 65
+Brent, R. 2013, Algorithms for Minimization Without Derivatives, Dover Books
+on Mathematics (Dover Publications)
+Carter, A. L., Hinkley, S., Kammerer, J., et al. 2022, The JWST Early Release
+Science Program for Direct Observations of Exoplanetary Systems I: High
+Contrast Imaging of the Exoplanet HIP 65426 b from 2-16 µm
+Catmull, E. & Rom, R. 1974, in Computer Aided Geometric Design, ed. R. E.
+BARNHILL & R. F. RIESENFELD (Academic Press), 317–326
+Chauvin, G., Desidera, S., Lagrange, A.-M., et al. 2017, Astronomy & Astro-
+physics, 605, L9
+Dallant, J., Langlois, M., Thiébaut, É. M., & Flasseur, O. 2022, in Adaptive
+Optics Systems VIII, ed. D. Schmidt, L. Schreiber, & E. Vernet (SPIE)
+Devaney, N. & Thiébaut, É. 2017, Monthly Notices of the Royal Astronomical
+Society, 472, 3734
+Dohlen, K., Langlois, M., Saisse, M., et al. 2008, in Society of Photo-Optical In-
+strumentation Engineers (SPIE) Conference Series, V ol. 7014, Ground-based
+and Airborne Instrumentation for Astronomy II, ed. I. S. McLean & M. M.
+Casali, 70143L
+Eckart, C. & Young, G. 1936, Psychometrika, 1, 211
+Flasseur, O., Denis, L., Thiébaut, É., & Langlois, M. 2020a, Astronomy & As-
+trophysics, 637, A9
+Flasseur, O., Denis, L., Thiébaut, É., & Langlois, M. 2020b, Astronomy & As-
+trophysics, 634, A2
+Flasseur, O., Denis, L., Thiébaut, É., & Langlois, M. 2018, Astronomy & Astro-
+physics, 618, A138
+Golub, G. H., Heath, M., & Wahba, G. 1979, Technometrics, 21, 215
+Hansen, P. C. & O’Leary, D. P. 1993, SIAM J. Sci. Comput., 14, 1487
+Jovanovic, N., Martinache, F., Guyon, O., et al. 2015, Publications of the Astro-
+nomical Society of the Pacific, 127, 890
+Lafreniere, D., Marois, C., Doyon, R., Nadeau, D., & Artigau, E. 2007, The
+Astrophysical Journal, 660, 770
+Lawson, C. L. & Hanson, R. J. 1974, Solving Least Squares Problems (Prentice-
+Hall)
+Macintosh, B., Graham, J., Palmer, D., et al. 2006, in Advances in Adaptive
+Optics II, V ol. 6272, SPIE, 177–188
+Macintosh, B., Graham, J. R., Ingraham, P., et al. 2014, proceedings of the Na-
+tional Academy of Sciences, 111, 12661
+Mahalanobis, P. C. 1936, in Proceedings of the National Institute of Sciences of
+India, V ol. II, 49–55
+Marois, C., Correia, C., Véran, J.-P., & Currie, T. 2013, Proceedings of the Inter-
+national Astronomical Union, 8, 48
+Mesa, D., Vigan, A., D´Orazi, V ., et al. 2016, A&A, 593, A119
+Mirsky, L. 1960, Quarterly J. Math., 11, 50
+Molina, R. 1994, IEEE Transactions on Pattern Analysis and Machine Intelli-
+gence, 16, 1122
+Mugnier, L., Fusco, T., & Conan, J.-M. 2004, Journal of the Optical Society of
+America. A, Optics, image science, and vision, 21, 1841
+Mugnier, L. M., Cornia, A., Sauvage, J.-F., et al. 2009, J. Opt. Soc. Am. A, 26,
+1326
+Powell, M. 2009, Technical Report, Department of Applied Mathematics and
+Theoretical Physics
+Powell, M. J. D. 2006, in Nonconvex Optimization and Its Applications, ed.
+G. Di Pillo & M. Roma (Springer Science), 255–297
+Smith, I., Ferrari, A., & Carbillet, M. 2009, IEEE Trans. Signal Process., 57, 904
+Soummer, R., Pueyo, L., & Larkin, J. 2012, The Astrophysical Journal, 755, L28
+Sparks, W. B. & Ford, H. C. 2002, The Astrophysical Journal, 578, 543–564
+Stein, C. M. 1981, The Annals of Statistics, 9, 1135–1151
+Thé, S., Thiébaut, É., Denis, L., & Soulez, F. 2020, in 28th European Signal
+Processing Conference, EUSIPCO 2020, Amsterdam, Netherlands, January
+18-21, 2021 (IEEE), 2358–2362
+Thiébaut, É. 2002, in Astronomical Data Analysis II, ed. J.-L. Starck & F. D.
+Murtagh, V ol. 4847, SPIE, Bellingham, Washington, 174–183
+Thiébaut, É., Devaney, N., Langlois, M., & Hanley, K. 2016, in Adaptive Op-
+tics Systems V , ed. E. Marchetti, L. M. Close, & J.-P. Véran (SPIE-Intl Soc
+Optical Eng)
+Tikhonov, A. N. & Arsenin, V . I. 1977, Solutions of ill-posed problems/ Andrey
+N. Tikhonov and Vasiliy Y . Arsenin ; translation editor, Fritz John (Winston ;
+distributed solely by Halsted Press Washington : New York), xiii, 258 p. :
+Titterington, D. M. 1985, Astronomy & Astrophysics, 144, 381
+Vigan, A. 2016, SILSS: SPHERE /IRDIS Long-Slit Spectroscopy pipeline, As-
+trophysics Source Code Library, record ascl:1603.001
+Vigan, A., Bonnefoy, M., Chauvin, G., Moutou, C., & Montagnier, G. 2012,
+Astronomy & Astrophysics, 540, A131
+Vigan, A., Langlois, M., Moutou, C., & Dohlen, K. 2008, A&A, 489, 1345
+Xie, C., Choquet, E., Vigan, A., et al. 2022, Astronomy & Astrophysics, 666,
+A32
+Article number, page 16 of 19
+
+<<<PAGE 17>>>
+Samuel Thé et al.: Characterization of stellar companion from high-contrast long-slit spectroscopy data
+Appendix A: Calibration of the spectro-angular
+dispersion laws
+This appendix provides some details about the methods used for
+the calibration of the spectro-angular laws described in Section 4
+and some figures to support the results discussed in Section 4.5.
+The considered calibration data dcal is the image in the central
+panel of Fig. 5.
+Appendix A.1: T ransverse projection
+To locate the positions of the spectral lines, we compute a
+weighted transverse projection of the calibration image dcal:
+q⊥ k(ϕλ) =
+P
+i, jξ⊥ i, j,n(ϕλ) dcal,i, j
+P
+i, jξ⊥ i, j,n(ϕλ) , (A.1a)
+with weights given by:
+ξ⊥ i, j,k(ϕλ) = wmsk,i, jφproj
+ i sinϕλ + j cosϕλ− k (A.1b)
+and for a projection angle ϕλ chosen so as to maximize the
+peak values of the resulting projection (plotted in red in the top
+panel of Fig. 5 for ϕλ ≈ 0◦). In practice, we take φproj(t) =
+max(1−| t|, 0), the linear B-spline, as the interpolating function
+for the projection. Note that, thanks to the weighting by the mask
+of valid pixelswmsk defined in Eq. (30), invalid pixels have no in-
+cidence on the computed projection.
+Appendix A.2: Detection of the spectral peaks
+We use Algorithm 4 with tolerance parameter δ⊥ = 10 pixels
+to find the Nλ most significant peaks in the transverse projection
+q⊥(ϕλ)∈ RNq computed according to Eq. (A.1).
+Algorithm 4: Find the most significant peaks
+Input: Nλ, q⊥(ϕλ), andδ⊥.
+Output:P(ϕλ).
+P← ∅ ◁ start with an empty list
+z = q⊥(ϕλ) ◁ copy profile in workspace array
+forℓ = 1,..., Nλ do
+kℓ = arg maxk zk ◁ find position of largest value in z
+P←P∪ {kℓ} ◁ update list of positions
+for k∈ Jmax(1, kℓ−δ⊥), min(kℓ +δ⊥, Nq)K do
+zk←−∞ ◁ invalidate nearby pixels
+returnP
+Appendix A.3: Extraction of the paths of the spectral lines
+Given the projection angle ϕλ and the listP(ϕλ) of the Nλ most
+significant peaks in the transverse projection q⊥(ϕλ), we build
+theℓ-th spectral pathCℓ as a list of points along theℓ-th spectral
+line. The coordinates ipath
+ℓ,m, jpath
+ℓ,m
+ of the m-th such point are given
+by computing the center of gravity of the calibration data in a
+small rectangular windowWℓ,m(ϕλ) sliding along the considered
+spectral lines:
+ ipath
+ℓ,m, jpath
+ℓ,m
+ =
+P
+(i, j)∈Wℓ,m(ϕλ) wmsk,i, j× (i, j)
+P
+(i, j)∈Wℓ,m(ϕλ) wmsk,i, j
+(A.2)
+computed for all non-empty10 sliding windowWℓ,m of size∼ 1
+pixel along the spectral line and 2δ⊥ + 1 pixels in the perpendic-
+ular direction:
+Wℓ,m(ϕλ) =
+
+(i, j)∈ J1, IK× J1, JK such thati sinϕλ + j cosϕλ− kℓ
+≤δ⊥ + 1
+2
+and
+i cosϕλ− j sinϕλ− m
+≤ 1
+2
+ (A.3)
+where kℓ is theℓ-th index in the listP(ϕλ) of the Nλ most signif-
+icant peaks in the transverse projection q⊥(ϕλ). Again note that,
+thanks to the weighting by the mask of valid pixels, invalid pix-
+els have no incidence on the computed coordinates. In practice,
+we use the same value for the half-width of the sliding windows
+and for the minimal separation between peaks in the transverse
+projection, that is δ⊥ = 10 pixels for the considered calibration
+data.
+Appendix A.4: Detection of the edges of the spectral bands
+Given the projection angle ϕλ and the listP(ϕλ) of the Nλ most
+significant peaks in the transverse projection q⊥(ϕλ), we com-
+pute the longitudinal profile of each spectral line as a the follow-
+ing weighted projection:
+q//ℓ,k(ϕλ) =
+P
+(i, j)∈Dℓ(ϕλ)ξ//i, j,k(ϕλ) dcal,i, j
+P
+(i, j)∈Dℓ(ϕλ)ξ//i, j,k(ϕλ) (A.4a)
+with weights given by:
+ξ//i, j,k(ϕλ) = wmsk,i, jφproj(i cosϕλ− j sinϕλ− k), (A.4b)
+and where k is the index along the projection andDℓ(ϕλ) is a nar-
+row rectangular window (in green in the central panel of Fig. 5)
+to isolate the pixels of the calibration image dcal impacted by the
+considered spectral line:
+Dℓ(ϕλ) =
+( (i, j)∈ J1, IK× J1, JK such thati sinϕλ + j cosϕλ− kℓ
+≤δ⊥ + 1
+2
+)
+(A.5)
+with, as before,δ⊥≈ 10 pixels the half-width of the region.
+Detecting the edges of the central hole due to the corona-
+graphic mask in the resulting profile (plotted in green in the left
+panel of Fig. 5) can be done by a quite simple procedure. Each
+value at index k of the profile is compared with the next one up
+to a threshold valueτ. If q//ℓ,k ⩽τ ⩽ q//ℓ,k+1 and q//ℓ,k < q//ℓ,k+1,
+then an ascending edge is detected. If q//ℓ,k ⩾ τ ⩾ q//ℓ,k+1 and
+q//ℓ,k > q//ℓ,k+1, it is a descending edge. From the four edges
+detected in the ℓ-th spectral line (indicated by the crosses in the
+left panel of Fig. 5), the second and third ones correspond to the
+coronagraphic mask. Retrieving these edges inCℓ(ϕλ) yields the
+coordinates  idown
+ℓ , jdown
+ℓ
+ and  iup
+ℓ , jup
+ℓ
+ required in Section 4.4 for
+the calibration of the angular dispersion law.
+Appendix A.5: Results on the calibration data
+The results of the proposed calibration models are displayed in
+Fig. A.1, as blue lines for the spectral law and green lines for the
+spatial law. In practice, degrees Pλ = 5 and Pρ = 1 (limited by
+the small number of points forρ) were chosen. The three models
+described in Section 4.2 are tested, that is a standard model, one
+of a medium complexity and one more complex.
+As can be seen on the different zooms shown in Fig. A.2, 2D
+polynomials are needed to explain local distortions. Choosing
+this model, we plot on Fig. A.3 some iso-wavelength (blue) and
+10 in the sense that it contains at least one valid pixel
+Article number, page 17 of 19
+
+<<<PAGE 18>>>
+Pre-print version, article under review
+0 200 400 600 800 1000
+0
+200
+400
+600
+800
+1000Standard calibration
+0
+200
+400
+600
+800
+1000
+0 200 400 600 800 1000
+0
+200
+400
+600
+800
+1000Medium calibration
+0
+200
+400
+600
+800
+1000
+0 200 400 600 800 1000
+0
+200
+400
+600
+800
+1000Complex calibration
+0
+200
+400
+600
+800
+1000
+Fig. A.1. Iso-wavelength curves at the wavelengths of the calibration
+sources (blue lines) and iso-angular distance of the center of the coron-
+agraphic mask of (green lines) presented on top of the calibration data
+dcal. The upper panel presents the results for the simple model, the cen-
+tral panel shows the results for the medium model, while the bottom
+panel shows the results of using the complex model.
+iso-angular distance (green) curves, on a zoom in of the HR3549
+dataset. This figure highlights how well our proposed models
+for the dispersion laws are following the speckles, compared to
+the standard model. A strong shear e ffect due to the dispersive
+Standard calibration
+Medium calibration
+Complex calibration
+Fig. A.2. Magnified images of the two regions outlined by the yellow
+and purple rectangles for the three models described in Section 4.2. To
+best see the differences between models, the magnifications are different
+in the two dimensions.
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+Fig. A.3. Iso-wavelength and iso-angular distance superposed to the
+HR 3549 data observed on 2015-12-28 with IRDIS in MRS mode.
+elements is visible and taken into account by our model. For all
+these models, we took polynomials of degreesPλ = 5 and Pρ = 1
+for the spectral and spatial dispersion laws.
+Appendix B: Calibration of the contrast
+In order to express the SED of the companion in terms of con-
+trast with respect to the star, we use specific calibration datadflux
+(shown in Fig. B.1 top) for which the star is placed in the spec-
+trograph slit but shifted away from the coronagraphic mask and
+with a neutral density inserted in the optical path to avoid detec-
+tor saturation. Applying FitCompanion (Algorithm 2) to dflux and
+dividing the resulting SED by the spectral transmission of the
+neutral filter yields the SED of the star xflux (shown in Fig. B.1
+bottom). The so derived parameters of the o ff-axis PSF can be
+later used in FitCompanion (Algorithm 2) to extract the compan-
+ion SED.
+Article number, page 18 of 19
+
+<<<PAGE 19>>>
+Samuel Thé et al.: Characterization of stellar companion from high-contrast long-slit spectroscopy data
+0 200 400 600 800 1000
+0
+200
+400
+600
+800
+1000
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+800 1000 1200 1400 1600 1800 2000
+wavelength [nm]
+0
+500
+1000
+1500
+2000
+2500
+3000SED [ADU]
+Fig. B.1. Calibration of the SED of the star HIP 65426. Top: Cali-
+bration image dflux observed on 2019-05-20 with the MRS mode of
+SPHERE/IRDIS. Bottom: SED of the star extracted by F itStar (Al-
+gorithm 2) and corrected from the density filter.
+Appendix C: Exploiting the scaling indetermination
+The estimated components ˆx, ˆy, ˆz, and ˆν of the direct model
+defined in Eq. (15) depend on hyper-parameters which include
+the regularization weights µx, µy, and µz. In this Appendix, we
+show how to adapt the approach of Thé et al. (2020) to reduce the
+effective number of regularization parameters and also accelerate
+the minimization.
+We first note that the regularizations considered for the stel-
+lar components are homogeneous functions of degree 2, i.e. the
+following property holds:
+Ru(α u) =α2Ru(u), (C.1)
+whatever the component u = x or y considered andα≥ 0.
+The contribution of the star, the first right-hand side term in
+Eq. (15), is a bilinear function of the parameters x and y. As a
+consequence:
+m(α x, y/α, z,ν) = m(x, y, z,ν), (C.2)
+holds for any scaling factorα> 0.
+Combining the properties in Eqs. (C.1) and (C.2) with the
+definition of the objective function in Eq. (17) and that of the
+regularization in Eq. (19), it can be seen that for anyα> 0:
+C(α x, y/α, z,ν,µ x,µ y,µ z) =C(x, y, z,ν,α 2µx,α−2µy,µ z).
+(C.3)
+In other words, scaling the unknowns x and y without changing
+the model is equivalent to scaling their regularization weights.
+Exploiting this, it is possible to compute an optimal scaling fac-
+tor:
+ˆα(x, y,µ x,µ y) = arg min
+α>0
+C(α x, y/α, z,ν,µ x,µ y,µ z)
+= arg min
+α>0
+C(x, y, z,ν,α 2µx,α−2µy,µ z)
+= arg min
+α>0
+n
+α2µxRx(x) +α−2µyRy(y)
+o
+=
+ µyRy(y)
+µxRx(x)
+! 1
+4
+. (C.4)
+Plugging this expression in the definition of the criterion yields:
+C+(x, y, z,ν,µ x,µ y,µ z)
+= min
+α>0
+C(α x, y/α, z,ν,µ x,µ y,µ z)
+=∥d− m(x, y, z,ν)∥2
+W +µx,yRx,y(x, y) +µzRz(z) (C.5)
+where:
+Rx,y(x, y) =
+q
+Rx(x)Ry(y), (C.6)
+and:
+µx,y = 2√µxµy. (C.7)
+This shows that the regularizations of the stellar components x
+and y are entangled and that the e ffect of these regularizations
+on the shape of these components is e ffectively controlled by a
+single hyper-parameter, here µx,y. As shown by Eq. (C.4), the
+ratioµx/µy of the hyper-parameters controls the scaling, not the
+shape, of x and y, one of the two can be fixed. This saves us the
+hassle of adjusting both parameters at the same time.
+Article number, page 19 of 19
