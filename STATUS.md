@@ -11,7 +11,18 @@ before building — sweep-reported facts are treated as claims until re-checked 
 repo's own tooling. Every externally-sourced number carries its source or the mark
 UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 
-## Active fronts — wave 3 (launched 2026-08-16)
+## Active fronts — wave 4 (launched 2026-08-17)
+
+| Front | Folder | Wave-4 scope |
+|---|---|---|
+| itf-linker **M9** | [`itf-linker/`](itf-linker/) | sweep the four unconsumed Rubin partitions; extend the fit queue from rank 901 (pre-registered stopping rule); combined fits for the 29 multi-tracklet objects (strongest submission tier); adjudicate the 88 lost-object ambiguities; 25-yr calibration for the TNO niche |
+| gaia-dr4 **M4** | [`gaia-dr4/`](gaia-dr4/) | the X-ray activity-vs-spuriousness test across all 76 El-Badry verdicts (n=1 → measured discriminator or honest underpowered verdict); Bayestar coefficient pin for the 12 dust-ambiguous; retrieval-bin 32 queued into the day-one epoch-vet; runbook current |
+| pta-mpta **M2** | [`pta-mpta/`](pta-mpta/) | harness hardening (wall-clock bounds, checkpoints, low-priority) → converge J1909 (pre-registered: reach the mode our likelihood already prefers) → top-10 noise campaign vs published table → 10-pulsar factorised-likelihood CURN vs −14.28±0.21 |
+| dyson-revet **M1** (new front, avenue #7) | [`dyson-revet/`](dyson-revet/) | reproduce the Hephaistos II selection (acceptance: all 7 published candidates recovered); vet survivors D & I (centroid-offset, hot-DOG priors, SEDs) with a refuted candidate as control; SPHEREx QR2 coverage + first 102-band SEDs; honest cost plan for the full 5M-star re-screen |
+
+*eROSITA M5 (classifier thin slice) stays queued behind Matthew's pivot acceptance.*
+
+## Completed fronts — wave 3 (2026-08-16 → 17)
 
 | Front | Folder | Wave-3 scope |
 |---|---|---|
