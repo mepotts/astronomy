@@ -2,8 +2,10 @@
 
 *The operational sequence for release day, rehearsed end-to-end against DR3 on 2026-08-16
 (`scripts/rehearse_dr4_day.py`, timings in `out/rehearsal_timings.csv`; M3 doc §3).
-Config: `queries/dr4-triage-config.v2.json` (selection/screen frozen since M2; v2 adds the
-covariance probability method + dust tier). Everything below is anonymous-TAP-safe; if the
+Config: `queries/dr4-triage-config.v3.json` (selection/screen frozen since M2; v2 added the
+covariance probability method + dust tier; v3 (M4, 2026-08-18) adds the Bayestar19 far-star
+arbitration and the X-ray caution-tag policy — membership and all cuts unchanged).
+Everything below is anonymous-TAP-safe; if the
 Gaia Archive account exists by then (Matthew's TODO), the async branch gets a longer rope,
 nothing else changes.*
 
@@ -60,8 +62,8 @@ solution type and pull `Orbital` first (the triage's bread and butter).
 ## Phase 2 — triage + covariance probabilities (T+1–2 h, ~15 min compute)
 
 1. **AMRF triage** (`scripts/amrf_triage.py`, rehearsed full-scale: 65 s for 169k rows
-   incl. MC, plots and the gate — `out/rehearsal_timings.csv` stage D): config v2
-   parameters — P ∈ [10, 2200] d,
+   incl. MC, plots and the gate — `out/rehearsal_timings.csv` stage D): config v3
+   parameters (selection identical to v2/v1) — P ∈ [10, 2200] d,
    Halbwachs gates, σ_TI² ≤ 36, boundary ×1.15, screen sig > 10 + F2 mag-split; flags
    never cuts; **acceptance gate = BH1 + BH2 land class III** (their DR4 solutions exist
    by construction; if the gate fails, STOP — the config or the schema diff is wrong,
@@ -78,11 +80,23 @@ solution type and pull `Orbital` first (the triage's bread and butter).
 4. **Dust tier** (`scripts/dust_retriage.py`; local maps already on disk, ~3 min):
    Edenhofer ≤ 1.25 kpc; far stars bracketed Edenhofer-floor/SFD; movements logged;
    `binary_masses`→`nss_masses` tier is immune by construction.
+   **Far-star ambiguity (M4): Bayestar19 arbitrates where dec > −30** (local
+   `data/dustmaps/bayestar2019.h5`, healpy-free reader in
+   `scripts/m4_bayestar_dozen.py`, ~1 min load; sourced unit chain in config v3
+   `extinction_tier.bayestar19_chain`): best estimate = max(B19 at the star's distance,
+   Edenhofer floor); south of −30 stays bracketed and flagged
+   `flag_dust_unresolved_south`. DR3 dress: 9 of 13 ambiguous resolved-alive, 0 moved.
+   The Argonaut web API is DOWN (HTTP 500, 2026-08-18) — use the local file only.
 
 ## Phase 3 — the epoch-vet loop, the false-positive killer (T+2 h onward)
 
-For every candidate, in priority order (Pr(III|corr) desc, retrieval bin's Pr ≥ 0.999
-members interleaved — DR3's probable-NS at Pr 0.9997 is the archetype):
+**The queue format is built and rehearsed on DR3: `out/epoch_vet_day1_queue.csv`**
+(M4; regenerate from the day's outputs with the `scripts/m4_acceptance_and_queue.py`
+pattern): main list + retrieval bin's Pr ≥ 0.999 members in one ranking — Pr(III|corr)
+desc, M₂_min tiebreak — carrying every caution flag (1-yr alias, low-|b|, σ_TI² > 20,
+X-ray-active, EB26 verdict, dust-unresolved-south). DR3 shape: 981 rows = 949 + 32;
+ranks 1–2 are BH1/BH2 and rank 3 is the EB26-refuted spurious — the loop's first kill.
+For every candidate, in that order:
 1. `has_epoch_astrometry` flag via TAP (in `gaia_source` and `all_source_flags`);
 2. **DataLink fetch** (`retrieval_type='EPOCH_ASTROMETRY'`) — **not a TAP table** (M1
    finding #1); astroquery, batched politely, resumable;
@@ -92,8 +106,14 @@ members interleaved — DR3's probable-NS at Pr 0.9997 is the archetype):
    3/3 orbit sources kept, 9/9 quiet sources demoted.
 4. **eROSITA cross** (`scripts/erosita_xmatch.py` against the local DR2 catalogs,
    ~4 min): on DR3 this found 30/471 coronal counterparts and 0 accretors. **An X-ray
-   match is an activity/spurious-risk tag first** (the one EB26-refuted match was the
-   X-ray-loudest relative to its star), **a headline only if log f_X/f_opt ≳ 0.**
+   match is an activity/spurious-risk tag first, a headline only if log f_X/f_opt ≳ 0.**
+   M4 measured the tag against EB26 ground truth (`out/m4_eb26_discriminator_stats.txt`):
+   in-footprint detections 2/13 spurious vs **0/16 confirmed** (+ 0/7 other verdicts) —
+   direction consistent, but Fisher p = 0.19: **underpowered, NOT a validated
+   discriminator; never a cut** (as a cut it would drop 30 in-list rows, 0 of them
+   EB26-confirmed but 29 unverdicted incl. the top NS-range candidates). Policy: an
+   X-ray match routes the candidate to **epoch-vet-first**, and the bulletin carries
+   the flag; the M4 numbers are the DR3 baseline to compare the day's match rate against.
 
 ## Failure branches (rehearsed or measured)
 
@@ -117,15 +137,24 @@ members interleaved — DR3's probable-NS at Pr 0.9997 is the archetype):
   class-III list, Pr(III|corr), dust columns, flags, epoch-vet verdicts for whatever
   fraction DataLink has served;
 - BH1/BH2 acceptance statement + funnel counts (input → core → screen → class III);
+- **the day-one epoch-vet queue** (`epoch_vet_day1_queue.csv` format: main list +
+  retrieval-bin Pr ≥ 0.999, all caution flags) — the retrieval-bin members are IN the
+  first-24h queue, not the 72-h backlog (M4; DR3 analog: 32 rows, 4 of them at Pr 1.0000
+  with M₂_min 2.9–3.6 — never epoch-vetted, day-one fresh);
 - the eROSITA cross of the new list (in-footprint count, matches, chance control,
-  f_X/f_opt reads, the null-or-not statement).
+  f_X/f_opt reads, the null-or-not statement) **+ the comparison against the M4 DR3
+  baselines: 30/471 list match rate; EB26 direction 2/13 spurious vs 0/16 confirmed —
+  an X-ray match stays a caution tag (config v3 `xray_policy`), epoch-vet-first,
+  never a cut.**
 **Checked, not shipped**: any single-object claim before its epoch-vet verdict + the
-  M2/M3 caution list (1-yr alias, low-|b|, σ_TI² > 20, X-ray-active).
+  M2/M3 caution list (1-yr alias, low-|b|, σ_TI² > 20, X-ray-active,
+  dust-unresolved-south).
 
 **72 h**:
 - epoch-vet verdicts for the full priority queue; demotion statistics (the DR3-calibrated
   expectation: ~30 % of screen survivors are spurious — El-Badry operating point);
-- the retrieval-bin adjudication (DR3 analog: 239 rows, 32 at Pr ≥ 0.999);
+- the rest of the retrieval-bin adjudication (DR3 analog: 239 rows; the 32 at Pr ≥ 0.999
+  were already in the day-one queue);
 - HVS 6D rerun (W5) and the microlensing-input refresh (W4) start once the NSS thread is
   stable;
 - draft-1 of the first-weeks note on whatever survived both epoch vetting and the caution

@@ -3,6 +3,34 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-08-18** — **M4 done** ([`M4-xray-discriminator.md`](M4-xray-discriminator.md)):
+  **(1) the activity-vs-spuriousness test** — all 76 EB26 targets × eROSITA-DE DR2+DR1
+  with shifted controls (rules pre-registered): in-footprint detections **2/13 SPURIOUS
+  vs 0/16 CONFIRMED** (+0/7 other verdicts; chance 0.12), both real counterparts
+  (p_any ≥ 0.98), both coronal-soft, 0 hard-band, 0 accretors, 0 DR1-only faders —
+  direction consistent with M3's n=1 (which reproduces as the loudest), but Fisher
+  **p = 0.19: UNDERPOWERED** (only a spurious rate ≥ 0.40 was detectable at 80 % power
+  on the half-sky footprint; observed 0.154). **No X-ray flag enters the config**; the
+  hypothetical cut measured and rejected (drops 30 rows: 0 confirmed, 1 spurious, 29
+  unverdicted). Bonus: the 2nd X-ray spurious (6281…) is class III but already killed by
+  the frozen F2 screen — gate and tag agree. **(2) dust dozen** — the Bayestar19 chain
+  M3 refused to guess is now paper-exact (Green19 line 399 + table: 1 unit =
+  E(gP1−rP1) 0.901 = **1.000 × E(B−V)_SFD** by construction, SF11 Table 6 PS1 g−r;
+  → 2.742 → ZGR23 ratios; EB26's 2.66/1.33 chain run in parallel): of the **13** (not
+  12 — M3 count corrected, the 13th is a dust mover-in) ambiguous rows, **9 SURVIVE
+  under both chains** (B19 ≈ Edenhofer floor ≪ SFD: the SFD ceiling was mostly
+  background dust), 4 are south of the B19 footprint (stay bracketed + flagged),
+  **0 movements → the v2 list stands, no v3 CSV**. Argonaut web API is DEAD (HTTP 500
+  both formats) — local bayestar2019.h5 (0.73 GB, md5-pinned) + healpy-free reader.
+  **(3) acceptance re-run PASS** (BH1/BH2 Pr 1.0000, top-2; EB26 operating point
+  re-measured 39/42 + 7/23 identical) gating **config v3** (selection/membership
+  identical to v2; adds `bayestar19_chain` + `xray_policy` caution-tag). **(4) day-one
+  queue built**: `out/epoch_vet_day1_queue.csv` — 981 rows (949 v2 + retrieval bin's 32
+  at Pr ≥ 0.999, incl. 4 never-vetted Pr = 1.0000 objects at M₂_min 2.9–3.6), all
+  caution flags; runbook updated (v3 config, B19 arbitration step, queue pointer, M4
+  baselines in the 24-h bulletin). M3's "retrieval bin headed by the probable-NS"
+  corrected: it rides at rank 276; four bin members outrank it at Pr 1.0000. Human
+  TODOs unchanged (accounts).
 - **2026-08-16** — **M3 done** ([`M3-corrvec-rehearsal.md`](M3-corrvec-rehearsal.md)):
   the two M2 seams are closed and December 2 is rehearsed. **(1) corr_vec**: `nsstools`
   0.1.12 (PyPI, verified) rebuilds the full NSS covariance; validation vs S23's e_A goes
