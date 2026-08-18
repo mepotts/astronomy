@@ -17,9 +17,14 @@ carries the one-line summary.*
   class is the ~10× fainter red-galaxy population (S24's own 15000/sr ⇒ ~60 expected among 5M).
   **SPHEREx QR2 axis opened, account-free**: 373/287 planes at D/I, forced spectrophotometry
   validates to ~10% vs catalogs, both stars photospheric through 5 µm — but the 100–200 K excess
-  band is beyond SPHEREx; the discriminating axis stays ≥10 µm (JWST). CDS sed main host still
-  half-broken (truncated VOTables); CFA mirror works. Next (M2 proposal in doc §6): I dossier as
-  the deliverable, W4 via bulk downloads + centroid stage with the JWST-calibrated 1–2″ floor.
+  band is beyond SPHEREx; the discriminating axis stays ≥10 µm (JWST). Throughput measured on a
+  99.5 deg² field: funnel rates match the paper stage-for-stage (12,783 in-sample vs 12,060
+  expected; 6.1% W3W4-detection vs their 6.4%; 0 finalists vs 0.02 expected) — **W4 full screen
+  costs 2–4 days wall, zero money** (24 ESA async strips + chunked lookups + 3 h local grid).
+  CDS sed main host still half-broken (truncated VOTables); CFA mirror works; IRSA catwise_2020
+  cone queries took ~25 min of queueing but landed (10/10). Next (M2
+  proposal in doc §6): I dossier as the deliverable (Matthew-gated), W4 via async strips +
+  centroid stage with the JWST-calibrated 1–2″ floor.
 
 - **2026-08-17** — Folder created from run-3 avenue #7 (wave 4). First agent launched: W1
   (reproduce the Hephaistos II selection; acceptance = recover all 7 published candidates) +

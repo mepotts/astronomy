@@ -70,8 +70,17 @@ GVAR_CACHE = DATA / "photometry" / "gvar_reference.csv"
 
 
 # --- Pecaut & Mamajek template locus ---------------------------------------
+PM13_URL = ("https://www.pas.rochester.edu/~emamajek/"
+            "EEM_dwarf_UBVIJHK_colors_Teff.txt")
+
+
 def load_pm13() -> pd.DataFrame:
     path = DATA / "EEM_dwarf_UBVIJHK_colors_Teff.txt"
+    if not path.exists():  # data/ is gitignored; fetch on first use
+        import requests
+        r = requests.get(PM13_URL, timeout=120)
+        r.raise_for_status()
+        path.write_bytes(r.content)
     rows = []
     header = None
     for ln in path.read_text().splitlines():

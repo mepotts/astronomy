@@ -39,8 +39,8 @@ reported externally.*
    cover I (all six detectors). My forced aperture spectrophotometry reproduces catalog J/H/Ks/W1/W2
    fluxes to ~10% and shows **D photospheric through 5 µm** (agreeing with Hephaistos IV's SPHEREx+MIRI
    analysis) — and the same for I (Section 4). SPHEREx cannot see the 100–200 K excess itself (it ends
-   at 5 µm; the excess lives at ≥ 10 µm) and cannot resolve arcsecond blends (6″ PSF), but it pins the
-   stellar continuum independently of 2MASS/WISE and would catch any *hot* (≳ 600 K) companion component.
+   at 5 µm; the excess lives at ≥ 10 µm) and cannot resolve arcsecond blends (6.15″ pixels), but it pins
+   the stellar continuum independently of 2MASS/WISE and would catch any *hot* (≳ 600 K) component.
 
 ---
 
@@ -77,8 +77,10 @@ ordinary M-dwarf activity, not accretion (Heph III Sec 3.2).
 
 A second stale item: the prospectus says the screen is "Gaia DR3 × CatWISE2020 × 2MASS".
 **CatWISE2020 contains only W1/W2** — it cannot host a W3/W4-excess selection. Hephaistos II used
-**AllWISE** (their Sec 2.1), and so does my implementation. (CatWISE2020 W1/W2 for all ten candidates
-were pulled anyway — `data/photometry/candidates_catwise.csv` — for future proper-motion/W1W2 checks.)
+**AllWISE** (their Sec 2.1), and so does my implementation. (A CatWISE2020 W1/W2 side-pull for the ten
+candidates — useful later for PM-aware W1/W2 checks — did land after ~25 min of IRSA queueing:
+`data/photometry/candidates_catwise.csv`, one match per candidate. Nothing in W1 acceptance depends
+on it.)
 
 ## 2. W1 — the selection, reproduced (and its reproducibility boundary)
 
@@ -168,7 +170,38 @@ these stars per Gaia GSP-Phot, absorbed by template choice and the equal-weight 
 Field: RA [140°, 150°] × Dec [0°, 10°] = 99.5 deg² (contains candidate I; |b| ≈ 30–45°).
 `scripts/w1_throughput.py`, `out/w1_throughput.json`.
 
-<!-- THROUGHPUT_RESULTS -->
+| Stage | This field (99.5 deg²) | Paper full sky (Table 4) | Rate check |
+|---|---|---|---|
+| Gaia×2MASS×AllWISE sample, < 300 pc | 12,783 | ~5 × 10⁶ | 5e6/41253 × 99.49 = 12,060 expected → **+6%** ✓ |
+| … with AllWISE best-neighbour | 11,444 | — | — |
+| W3 **and** W4 detections | 783 | ~3.2 × 10⁵ | 6.1% vs their 6.4% ✓ |
+| cc_flags clean | 730 | (folded into above) | — |
+| RMSE ≤ 0.2 (fitted subset) | 10 of 207 fitted | 11,243 of ~3.2 × 10⁵ | 4.8% vs 3.5% (see note) |
+| + extra cuts (C5a–C5e) | 9 | 5732 → 5137 | — |
+| + SNR ≥ 3.5 (C6) | **0** | 368 | 368/41253 × 99.49 = 0.89 expected; P(0) = 0.41 ✓ |
+| final candidates | 0 | 7 | 0.017 expected per field |
+
+Note: my RMSE stage only fits stars inside the template locus validity (M_G 6–14.5, i.e. K/M dwarfs;
+207 of the 707 stars with full 10-band photometry) — the paper's 265 templates spanned M_G 0–13.6.
+For throughput accounting the unfitted 500 earlier-type stars would add ~15 s of grid time; for W4 the
+locus needs extending blueward (same query, wider M_G window, more W3W4-detected templates available).
+
+Timings, measured 2026-08-18 (ESA load-variable — T0 took 23 s at one point and 116 s at another):
+server queries 407 s total for the field (T0 count 116 s; T1 count 90 s; T2 star pull 44 s; chunked
+AllWISE/2MASS/Hα PK lookups 157 s), local cuts + RMSE grid 7 s (33 ms/star × 207).
+
+**Honest full-screen (W4) cost.** Naive per-field TAP scaling: 407 s × 415 fields ≈ **47 h** of serial
+anonymous queries — but today's session showed byte-identical queries varying 4–5× with server load and
+sync jobs timing out outright; the realistic per-field TAP figure is 2–6 days of babysat, retry-taxed
+querying. The right route is **~24 sky-strip async jobs** on the 3-table join (each ≈ 220k rows;
+~5.3 × 10⁶ rows / ~1–2 GB total — matching the paper's parent-sample size), then chunked PK lookups for
+the W3W4-detected ~330k (≈ 660 queries), then local: RMSE grid ≈ 3 h single-core (embarrassingly
+parallel), Gvar from in-sample binned medians (free), C5/C6 trivial. New vetting stages on survivors
+only: ~370 expected pre-visual survivors × 4 AllWISE cutouts ≈ 1500 IRSA IBE fetches ≈ 2–4 h, plus the
+chance-alignment budget fitted from the screen's own detected population. **Total: 2–4 days wall-clock,
+zero money, no accounts — dominated by archive-side queueing, not compute.** (For contrast: a bulk
+download of the AllWISE source table from IRSA's bulk distribution would remove the chunked-lookup
+stage at the cost of a very large download; not needed at this scale.)
 
 ## 3. W2 — vetting: control C, then D and I
 
@@ -315,7 +348,8 @@ IRSA spectrophotometry tool for the same QR2 data at D/E, so this axis has a pub
 
 **What SPHEREx can and cannot contribute to this vetting problem** (the honest scoping): the candidate
 excesses are 100–200 K blackbodies peaking at 15–30 µm with essentially zero flux below 5 µm — *outside
-SPHEREx's band*. And at 6″ PSF, SPHEREx blends star+contaminant exactly as WISE W1/W2 do. What it does
+SPHEREx's band*. And with 6.15″ pixels (measured from the cutout WCS; PSF of order a pixel), SPHEREx
+blends star+contaminant exactly as WISE W1/W2 do. What it does
 provide: (i) an independent 102-band check that the *photosphere* model used in every excess claim is
 right (it is, for D and I); (ii) sensitivity to *hot* components (≳ 600 K dust or a very red companion
 would bend the 3–5 µm continuum — none seen at either target); (iii) for the W4 re-screen, a
@@ -324,7 +358,19 @@ blend" discrimination the prospectus hoped for needs ≥ 10 µm resolution (JWST
 
 ## 5. Cost plan for W4 (the full ~5M-star re-screen)
 
-<!-- COST_PLAN -->
+Summarized from Section 2.4's measurements: **2–4 days wall-clock, zero money, no accounts.**
+Sequence: (1) ~24 ESA async strip jobs → the 5.3M-row parent sample with `allwise_oid` (~1–2 GB CSV,
+gitignored); (2) chunked PK lookups for the ~330k W3W4-detected rows (AllWISE mags/flags, 2MASS, Hα);
+(3) local coded cuts C1–C6 incl. the RMSE grid (~3 h single-core; template locus extended blueward
+first); (4) the *new* stages this project exists for, on the ~10²–10³ survivors: AllWISE+unWISE
+centroid offsets with the JWST-calibrated 1–2″ sensitivity floor stated per object, per-object
+chance-alignment priors fitted from the screen's own W3W4 population (not literature constants — see
+the Ren 24 unit error), Legacy-DR10/VHS/UKIDSS neighbor pulls, and SPHEREx photosphere anchoring where
+useful. Deliverable either way: a vetted extreme-IR-excess catalog with per-object contamination
+priors, or a calibrated null on the method's yield. Risks: ESA/IRSA queue variance (observed 4–5×
+today, incl. outright sync timeouts); the CNN/visual stages are *not* reproduced — their replacement
+(coded centroid + prior stages) is the point, but it means my funnel and the paper's diverge after C6
+by design.
 
 ## 6. Recommended M2
 
