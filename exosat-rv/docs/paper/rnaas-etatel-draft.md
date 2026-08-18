@@ -124,8 +124,7 @@ imaging and astrometry own the wide orbits and RV owns the close ones (Macias et
 
 The limits are on m sin i, but in this system that costs almost nothing. η Tel B's own orbit
 about η Tel A is near edge-on — i = 79 (+5/−6)° (Chai et al. 2024, stable across five
-independent fit configurations) and 82 (+3/−4)° from a separate analysis (Nogueira et al.
-2024). A satellite formed in a circum-companion disc would be expected to orbit near that
+independent fit configurations) and 81.9° from a separate analysis (Nogueira et al. 2024). A satellite formed in a circum-companion disc would be expected to orbit near that
 plane, and if it does, sin i ≈ 0.98 and **the tabulated limits are true-mass limits to within
 2%**. This is an assumption, not a measurement, and a strongly misaligned satellite would
 evade the constraint — but it is the same near-edge-on geometry that motivates β Pic b as an
@@ -174,7 +173,7 @@ ESO programmes 111.24M0, 113.268Y and 115.287U.
 - Köhler, J. et al. 2025, *A&A*, **698**, A44 (viper), doi:10.1051/0004-6361/202553919
 - Lazzoni, C. et al. 2020, *A&A*, **641**, A131
 - Neuhäuser, R., Ginski, C., Schmidt, T. O. B., & Mugrauer, M. 2011, *MNRAS*, **416**, 1430
-- Nogueira, P. H., Lazzoni, C., Zurlo, A. et al. 2024, *A&A*, **687**, A301
+- Nogueira, P. H., Lazzoni, C., Zurlo, A. et al. 2024, *A&A*, "Astrometric and photometric characterization of η Tel B combining two decades of observations", arXiv:2405.04723
 - Ruffio, J.-B. et al. 2023, *AJ*, **165**, 113
 - Vanderburg, A. & Rodriguez, J. E. 2021, *ApJ*, **922**, L2
 

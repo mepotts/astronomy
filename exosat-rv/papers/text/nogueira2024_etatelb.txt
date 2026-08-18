@@ -1,0 +1,1257 @@
+<<<PAGE 1>>>
+Astronomy & Astrophysics manuscript no. aa ©ESO 2024
+May 9, 2024
+Astrometric and photometric characterization of η Tel B combining
+two decades of observations*
+P. H. Nogueira1, 2 , C. Lazzoni3, 2 , A. Zurlo1, 2 , T. Bhowmik1, 2 , C. Donoso-Oliva4, 2 , S. Desidera5 , J. Milli6 ,
+S. Pérez7, 8, 2 , P. Delorme6 , A. Fernadez4, 2 , M. Langlois5 , S. Petrus1, 2, 7, 8 , G. Cabrera-Vives4, 2 , G. Chauvin9
+(Affiliations can be found after the references)
+May 9, 2024
+ABSTRACT
+Context.η Tel is an 18 Myr system composed of a 2.09 M⊙ A-type star with an M7-M8 brown dwarf companion,η Tel B. The two objects have a
+projected separation of 4′′.2 (∼208 au). This system has been targeted by high-contrast imaging campaigns for over 20 years, facilitating its orbital
+and photometric characterization. The companion, η Tel B, both bright and on a wide orbit, is an ideal candidate for a detailed examination of its
+position and the characterization of its atmosphere.
+Aims. To explore the orbital parameters of η Tel B, measure its contrast, and investigate its close surroundings, we analyzed three new
+SPHERE/IRDIS coronagraphic observations. Our objectives are to investigate the possibility of a circumplanetary disk or a close companion
+aroundη Tel B, and characterize its orbit by combining this new data set with archival data acquired in the past two decades.
+Methods. The IRDIS data are reduced with state-of-the-art algorithms to achieve a contrast with respect to the star of 1.0×10−5 at the location of
+the companion. Using the NEGative Fake Companion technique (NEGFC), we measure the astrometric positions and flux ofη Tel B for the three
+IRDIS epochs. Together with the measurements presented in the literature, the baseline of the astrometric follow-up is 19 years.
+Results. We calculate a contrast for the companion of 6.8 magnitudes in the H band. The separation and position angle measured are 4 ′′.218
+and 167.3 degrees, respectively. The astrometric positions of the companions are calculated with an uncertainty of 4 milliarcseconds (mas) in
+separation and 0.2 degrees in position angle. These are the smallest astrometrical uncertainties of η Tel B obtained so far. The orbital parameters
+are estimated using the Orvara code, including all available epochs. The orbital analysis is performed taking into account the Gaia-Hipparcos
+acceleration of the system. Suppressing its point spread function (PSF), we have produced contrast curves centered on the brown dwarf in order to
+constrain our detection capabilities for a disk or companions around it.
+Conclusions. After considering only orbits that could not disrupt the outer debris disk aroundη Tel A, our orbital analysis reveals a low eccentric
+orbit (e∼ 0.34) with an inclination of 81.9 degrees (nearly edge-on) and a semi-major axis of 218 au. Furthermore, we determine the mass ofη Tel
+B to be 48 MJup, consistent with previous calculations from the literature based on evolutionary models. Finally, we do not detect any significant
+residual pointing to the presence of a satellite or a disk around the brown dwarf. The retrieved detection limits allow us to discard massive objects
+aroundη Tel B with masses down to 1.6 MJup at a separation of 33 au.
+Key words. techniques: image processing – instrumentation: adaptive optics – techniques: high angular resolution – methods: data analysis –
+techniques: image processing – planets and satellites: detection
+1. Introduction
+Since the first discovery of a planet around a main-sequence star
+(Mayor & Queloz 1995), the techniques and instruments for dis-
+covering and characterizing substellar objects have advanced ex-
+ponentially. Today, more than 5500 exoplanets have been con-
+firmed*, and more than 19,000 candidates of ultracool dwarfs
+(spectral type later than M7) are known (dal Ponte et al. 2023).
+However, little is known about where, when, and how substellar
+objects form. Thus, investigating newborn substellar objects in a
+stellar system is essential to address this knowledge gap, since
+they are expected to retain signatures of their formation pathway
+through the system architecture (e.g., Mayer et al. 2004; Pearce
+& Wyatt 2014; Greaves et al. 2014; Davies 2019; Bowler et al.
+2020; Do Ó et al. 2023) and from their atmosphere (e.g., Marley
+et al. 2007; Öberg et al. 2011; Dupuy et al. 2014; Bara ffe et al.
+2015; Crepp et al. 2018; Zhang et al. 2023; Petrus et al. 2024).
+* This publication made use of data from the ESO programs 095.C-
+0298(A), 097.C-0394(A), 198.C-0209(H), 1100.C-0481(G)
+*Information extracted from the NASA Exoplanet archive database
+https://exoplanetarchive.ipac.caltech.edu/ (Akeson et al.
+2013).
+Particularly, the high-contrast imaging technique (hereafter
+called HCI) is a capable tool to discover and characterize young
+giant planets and brown dwarfs. HCI is sensitive to recently
+formed objects that conserve some formation heat. Indeed, sub-
+stellar objects have been discovered using HCI techniques in the
+past decade (e.g. 2MASSWJ 1207334-393254: Chauvin et al.
+2004;β Pic b: Lagrange et al. 2010; HD 95086 b: Rameau et al.
+2013a; PDS 70 b: Keppler et al. 2018; YSES 2b: Bohn et al.
+2021). More recently, with the release of the Gaia catalogs and
+an update on astrometric precision, HCI has also been used to
+follow up on stars that showed anomalous accelerations (di ffer-
+ence between their long-term HIPPARCOS-Gaia and short-term
+Gaia proper motion vectors), pointing towards the presence of
+companions in the system. One remarkable example is the dis-
+covery of AF Lep b through proper motion anomalies and HCI
+(Mesa et al. 2023; De Rosa et al. 2023; Franson et al. 2023).
+Near-infrared substellar companions observed by High-
+Contrast Imaging (HCI) may o ffer valuable multi-wavelength
+and multi-analysis data for the detection of circumplanetary
+disks (CPDs) or satellites in their surroundings. For instance,
+Pérez et al. (2019) analyzed ALMA band 6 observations fea-
+turing directly imaged companions, establishing upper limits
+Article number, page 1 of 13
+arXiv:2405.04723v1  [astro-ph.SR]  8 May 2024
+
+<<<PAGE 2>>>
+A&A proofs: manuscript no. aa
+on CPD detectabilities. Similarly, using SPHERE near-infrared
+(NIR) images, Lazzoni et al. (2020) sets upper limits for satellite
+detections around substellar companions. Notably, Lazzoni et al.
+(2020) also identifies a potential satellite candidate around DH
+Tau B, although confirmation is pending. Subsequently, Lazzoni
+et al. (2022) provides a more robust analysis regarding the de-
+tectability of satellites through all standard exoplanet discovery
+techniques. Additionally, Ruffio et al. (2023) proposes directing
+efforts towards detecting potential candidates through radial ve-
+locity monitoring, a method that can be implemented by mon-
+itoring the companions with high-resolution spectroscopy. An-
+other technique to look for satellites is spectroastrometry, which
+consists of the fine measurement of any deviation of the posi-
+tion of the center of light (Agol et al. 2015). If an integral field
+spectrograph targets an unresolved planet-satellite system, it is
+expected that the center of the light shifts position depending on
+the wavelength. The movement of the centroid of the PSF would
+reveal if a satellite is present.
+One system that comes to attention based on its age, being
+targetable from HCI and satellite analysis, and its astrometric
+follow-up is η Telescopii (hereafter called η Tel).η Tel is part
+of the β Pic moving group, with an estimated age of 18 Myr
+Miret-Roig et al. (2020) and a distance of 49.5 pc (Bailer-Jones
+et al. 2021). It is composed of an A0V , 2.09 M ⊙ primary star
+(η Tel A; Houk & Cowley 1975; Desidera et al. 2021a,b) and
+an M7-8, brown dwarf companion (η Tel B) at∼4′′.2 separation
+and position angle of ∼169◦ (Lowrance et al. 2000; Guenther
+et al. 2001, and references therein). η Tel A presents a likely
+warm debris belt at 4 au (unresolved, only inferred from the
+SED) and an edge-on cold debris belt at 24 au discovered via
+infrared excess (Backman & Paresce 1993; Mannings & Bar-
+low 1998). The outer debris disk was later resolved with T-
+ReCS (Thermal-Region Camera Spectrograph) on Gemini South
+(Smith et al. 2009). It also shows a radiatively driven debris disk
+wind, consistent with C/O solar ratio (Youngblood et al. 2021).
+η Tel B is a bright substellar companion with a contrast of 6.7
+magnitudes in VLT/NACO H band (Neuhäuser et al. 2011), or
+11.85 in apparent magnitude. Its astrometrical points and or-
+bital constraints were first compiled and analyzed in Neuhäuser
+et al. (2011), which used 11 years of imaging data (1998-2009).
+One more NACO observation was presented in Rameau et al.
+(2013b), which broadened the time baseline to 2011.
+In this paper, we present a characterization of the com-
+panion, including astrometrical and photometrical follow-up
+and orbital constraint analysis. We present three new epochs
+from the Spectro-Polarimetric High-contrast Exoplanet RE-
+search (SPHERE) instrument (Beuzit et al. 2019). With the ad-
+dition of the new SPHERE data and a baseline of observations
+from 1998 to 2017, we present the most recent and complete or-
+bital characterization of the system. Additionally, we performed
+an analysis of the surroundings of the companionη Tel B to con-
+strain the possible presence of features such as satellites or cir-
+cumplanetary disks.
+The manuscript is structured in the following order. The ob-
+servations and data reduction are described in Section 2. The
+photometric and astrometric measurements of the system of the
+new SPHERE observations are reported in Section 3.1. The or-
+bital fitting analysis, taking into account the new data and the lit-
+erature can be found in Section 3.3. The description of the study
+of the close vicinity of the substellar companion and the contrast
+curves aroundη Tel B are presented in Section 4.3. Final remarks
+and conclusions are presented in Section 5.
+2. Observations and data reduction
+2.1. Observations
+We present new SPHERE/IRDIS coronagraphic data of the sys-
+tem aroundη Tel A. SPHERE is a VLT (Very Large Telescope)
+planet-finder instrument located at Paranal, Chile - UT3. It is
+an instrument dedicated to performing HCI. SPHERE is com-
+posed of four main scientific parts: the Common Path and In-
+frastructure (CPI), which includes an extreme adaptive optics
+system (SAXO, Fusco et al. 2006; Petit et al. 2014) and corona-
+graph systems; the Infrared Dual-band Imager and Spectrograph
+(IRDIS, Dohlen et al. 2008) with a pixel scale of 12.25 mas and
+field of view (FOV) of 11×12.5 arcsec; the integral field spectro-
+graph (IFS, Claudi et al. 2008) with FOV of 1′′.73×1′′.73; and the
+Zurich Imaging Polarimeter (ZIMPOL, Schmid et al. 2018), the
+visible light imager and polarimeter of SPHERE. Both IRDIS
+and IFS belong to the NIR branch and can be used concomi-
+tantly if required during observations. Given the separation of η
+Tel B and its brightness in the near-infrared, IRDIS observations
+are the most suitable for the purpose of our paper.
+The observations were performed with IRDIS on three dif-
+ferent nights. Since the stellar companion is outside the field
+of view (FoV) of the integral field spectrograph (IFS) instru-
+ment, we do not report its data in this manuscript. The first
+observation (program 095.C-0298(A); PI Beuzit) was taken on
+2015-05-05, generally under average conditions, with variable
+seeing ranging between 1 and 2 arcsecs (this epoch had pho-
+tometric sky transparency). The second observation (program
+097.C-0394(A); PI Milli) was taken under good conditions on
+2016-06-15, and the seeing was mostly stable during the pe-
+riod of observation, varying between 1-1.4 arcsecs (this epoch
+had the sky transparency declared as thin). This program was
+taken as part of the SPHERE High-Angular Resolution Debris
+Disks Survey (SHARDDS; Dahlqvist et al. 2022), designed to
+image circumstellar disks around bright stars, closer than 100
+pc. The third night (program 198.C-0209(H); PI Beuzit) was on
+2017-06-15, with a slightly higher value of the seeing and poorer
+conditions (“thin” sky transparency). An apodized Lyot corona-
+graph (N_ALC_YJH_S; inner working angle ∼0′′.15) was used
+on all three nights. A dual-band filter H2H3 was set ( λ= 1.593
+and 1.667µm for H2 and H3, respectively; ∆λ=∼0.053µm for
+both filters) on the first and third nights, while on the second
+night, a broadband filter H ( λ= 1.625 µm; ∆λ= 0.29 µm) was
+used instead. A fourth IRDIS sequence was taken (2018-05-08;
+ID: 1100.C-0481(G); PI: Beuzit), but it was discarded from our
+analysis due to bad observing conditions. The observations and
+their specifications are summarized in Table 1.
+2.2. Data reduction
+The reduction of the three epochs was performed by the High
+Contrast Data Center pipeline† (hereafter called as HC DC; De-
+lorme et al. 2017), which utilizes the Data Reduction and Han-
+dling software (v0.15.0; Pavlov et al. 2008) and routines pre-
+sented in Galicher et al. (2018). The process includes standard
+pre-reduction steps such as background subtraction, flat-fielding,
+and bad pixel correction. The frames are recentered using the
+SPHERE waffle pattern, followed by corrections for the anamor-
+phism of the instrument and astrometric calibration (pixel scale
+and True north correction), as described in Maire et al. (2016).
+The final products comprise a master cube that contains all
+frames, the position angle (PA) values of each frame, and an off-
+†Formerly known as SPHERE Data Center or SPHERE DC.
+Article number, page 2 of 13
+
+<<<PAGE 3>>>
+P. H. Nogueira et al.: Characterization of the η Tel system
+Table 1: List of the SPHERE/IRDISη Telescopii observations used in this work.
+Date (UT) ESO ID - PI IRDIS filter DIT × NDIT ∆PA Seeing ["] Avg. coherence time [s]
+2015-05-05 095.C-0298(A)- Beuzit DB_H2H3 32 × 8 46.83 Mostly 0.9-1.5 a 0.0011
+2016-06-15 097.C-0394(A)- Milli BB_H 8 × 8 18.17 1-1.4 0.0024
+2017-06-15 198.C-0209(H)- Beuzit DB_H2H3 32 × 12 2.04 1.5-2 0.0023
+2018-05-08b 1100.C-0481(G)- Beuzit – – – – –
+aA subtle increase in seeing above 1.5 was registered between 08h40m-9h00m UTC at that night.
+bDiscarded from the analysis for bad observing conditions.
+axis PSF reference cube. The off-axis PSF is an unsaturated im-
+age of the central star taken before and after the coronagraphic
+sequence for flux calibration.
+We made use of the VIP code (V ortex Image Processing,
+Gomez Gonzalez et al. 2017; v.1.5.1) to reject the bad frames in
+each master cube, considering only frames with a Spearman cor-
+relation above 0.85 compared to the first frame taken under good
+conditions. After this step, we created post-processing images,
+employing the Angular Differential Imaging (ADI; Marois et al.
+2006) and principal component analysis (PCA; Soummer et al.
+2012; Amara & Quanz 2012) with varying numbers of princi-
+pal components. Since the PCA introduces deep over-subtraction
+due to the FoV rotation even for a few components, we favored
+the classical ADI images for our analysis. The results of this
+post-processing technique are presented in Fig. 1.
+6.0 4.0 2.0 0.0 -2.0 -4.0 -6.0
+RA ["]
+-6.0
+-4.0
+-2.0
+0.0
+2.0
+4.0
+6.0
+Dec ["]
+100 auADI 
+ 2015-05-05 (H2)
+Fig. 1: ADI-processed from IRDIS coronagraphic sequence
+(epoch: 2015-05-05; filter: H2) for the η Tel system. The red
+circle marks the position of η Tel B. The central star is masked
+under the coronagraph at the center of the image. North is up,
+East is left.
+3. Methodology and results
+3.1. Astrometry and photometry
+3.1.1. The NEGFC technique
+To precisely determine the position and flux of η Tel B, we em-
+ployed the NEGative Fake Companion Technique (NEGFC), as
+described in studies such as Lagrange et al. (2010) and Zurlo
+et al. (2014). This technique involves modeling the target source
+by introducing a negative model of the instrumental PSF into the
+pre-processed data. The procedure aims to minimize residuals in
+the final image, adjusting the flux and position of the model to
+align with the source’s properties (astrometry and photometry).
+We implemented the NEGFC using the VIP package.
+For this purpose, we adapted the single_framebyframe
+routine proposed by Lazzoni et al. (2020). This routine provides
+estimates of separation, position angle, and photometry for the
+companion in each frame from the coronagraphic sequence. η
+Tel B’s brightness (signal-to-noise ratio≥100) and relative dis-
+tance from the speckle-dominated region are su fficient for this
+approach to be applicable.
+As a model PSF, we utilized the off-axis image of the central
+star captured before and after the coronagraphic sequence. For
+each set of coordinates, a negative flux was introduced, and the
+set of positions and fluxes yielding the lowest residual (standard
+deviation) in each frame was selected. Consequently, for each
+night and filter, the routine’s results were represented by the me-
+dian values of the parameters measured across all frames.
+3.1.2. Measurement of the photometry
+The contrast of the brown dwarf was calculated as the median
+of the NEGFC technique values on each frame of the corono-
+graphic sequence. Flux contrast uncertainties were derived from
+the standard deviation of the fluxes measured by the NEGFC
+technique. Fig. 2 sets flux measurements per frame using BB_H
+filter, showing how the values can vary. The contrast in flux and
+magnitude with respect to the central star for each filter is shown
+in Table 2. The results are consistent with the measurements pre-
+sented in the literature for the companion.
+Table 2: IRDIS flux contrast in flux and magnitude with respect
+to the central star forη Tel B.
+Epoch Filter Contrast [e-3] ∆ magnitude
+2015-05-05 H2 1.52 ± 0.60 7.05 ± 0.45
+2015-05-05 H3 1.92 ± 0.12 6.79 ± 0.07
+2016-06-15 BB_H 2.00 ± 0.17 6.75 ± 0.09
+2017-06-15 H2 1.53 ± 0.78 7.04 ± 0.61
+2017-06-15 H3 1.92 ± 0.84 6.79 ± 0.51
+Article number, page 3 of 13
+
+<<<PAGE 4>>>
+A&A proofs: manuscript no. aa
+0 5 10 15 20 25 30 35 40
+Time (min)
+0.0014
+0.0016
+0.0018
+0.0020
+0.0022
+Contrast (mag)
+Fig. 2: Contrast flux variations for the companion with respect
+to the star (filter: BB_H).
+After using the NEGFC technique, the signal of the com-
+panion was removed in each frame of the datacubes, creating
+therefore empty datacubes. Following, a 5-sigma contrast curve
+with respect to and aroundη Tel A was produced using the ADI
+processed data. The achieved contrast for epoch 2016-06-15 is
+shown in Fig. 3.
+0 1 2 3 4 5 6
+Separation (arcsec)
+8
+10
+12
+14
+16
+18 Contrast (mag)
+5-sigma contrast (ADI)
+Fig. 3: Contrast curve with respect toη Tel A, using the datacube
+corresponding to the 2016-06-15 (BB_H) observation. The ver-
+tical blue line corresponds to the position of the companion.
+3.2. Measurement of the astrometric positions
+To robustly determine the separation and position angle at each
+epoch, we applied multiple methods while concurrently estimat-
+ing the disparities between these algorithms. Specifically, we
+employed:
+– the NEGFC method detailed in Section 3.1.1;
+– a 2D-Gaussian fitting encompassing the companion. We op-
+timized Gaussian statistics using two stochastic algorithms:
+Adam (Kingma & Ba 2014) and the Levenberg–Marquardt
+algorithm (Moré 2006);
+– the peak intensity pixel location within a FWHM of the com-
+panion.
+All the algorithms were applied to each frame of the corona-
+graphic (frame-by-frame) sequence as well as to their median-
+collapsed reduction. When using the frame-by-frame method,
+it is important to note that a sequence of positions is obtained
+and it is necessary to reduce them by using the median. Finally,
+the astrometric points for each night and filter were determined
+by calculating the median among the outputs of the algorithms.
+Similarly, the uncertainties of the astrometrical fitting were cal-
+culated as the standard deviation across all results obtained from
+the various methods. We justify applying di fferent methods as
+we observed that the final results of each method could di ffer
+by a maximum of 10 mas in separation and approximately 0.15
+degrees in position angle. Therefore, we opted for implement-
+ing a median instead of an average to filter out values that may
+otherwise skew the results.
+In addition to the uncertainties on the astrometric fitting of
+the companion, we have to consider other factors in the error
+budget, as previously stated by Wertz et al. (2017):
+– Instrumental calibration, where the most relevant errors
+come from the orientation of the True North, pupil o ffset,
+plate-scale, and anamorphism;
+– Determination of the position of the central star behind the
+coronagraph;
+– Systematic error due to residual speckles;
+– Statistical error due to planet position determination.
+Therefore, considering R as the final expression for radial
+separation in arcseconds and Θ as the final expression for po-
+sition angle in degrees, we applied the following approximated
+equations:
+R = PS (R∗± Rspec± rRAF± r) and (1)
+Θ = Θ∗± Θspec± ΘAFθ± ΘPO± ΘT N±θ , (2)
+where r is the radial distance and θ the position angle, R∗ and
+Θ∗ the radial and azimuthal values related to stellar centering;
+Rspec and Θspec the radial and azimuthal values related to speckle
+noise; RAF and ΘAF values related to the anamorphic factor ex-
+pressed in percentage; TN related to the true north, PS to plate
+scale (′′/pixel) and PO to the pupil offset. All distances are mea-
+sured in pixels and angles in degrees.
+Consequently, we can use the Equations 1 and 2 to propagate
+the errors:
+σ2
+R = PS 2[σ2
+Rspec +σ2
+R∗ + r2σ2
+RAF + (RAF + 1)2σ2
+r ] + R2
+PS 2σ2
+PS (3)
+and,
+σ2
+Θ =σ2
+Θspec +σ2
+Θ∗ +θ2σ2
+ΘAF +σ2
+PO +σ2
+T N + (ΘAF + 1)2σ2
+θ . (4)
+The instrumental calibration uncertainties are determined
+through astrometric calibrations outlined in Maire et al. (2016),
+Maire et al. (2021), and the last version of the SPHERE manual,
+18th release. Before July 2016, an issue with the synchroniza-
+tion between SPHERE and VLT internal clocks led to abnormal
+fluctuations in True North measurements. Consequently, for the
+initial twoη Tel observations, the True North uncertainties were
+extracted from Table 3 of Maire et al. (2016). For the third ob-
+servation, we adopted a fixed value of 0.04 ◦, representing the
+stabilized uncertainty following calibrations and corrections.
+The plate (pixel) scale uncertainties, were extracted from
+close-in-time coronagraphic observations, obtained with the
+SPHERE-SHINE GTO data, using the globular stellar cluster 47
+Article number, page 4 of 13
+
+<<<PAGE 5>>>
+P. H. Nogueira et al.: Characterization of the η Tel system
+Tuc as field reference (Table 7 of Maire et al. 2021). The pupil
+offset uncertainty, derived from commissioning and guaranteed
+time observations, is 0.11 degrees. Distortion is predominantly
+influenced by a 0.60%± 0.02% anamorphism between the hor-
+izontal and vertical axes of the detector. Since each frame has
+undergone correction by the HC DC, rescaling each image by
+1.006 along the axis, the uncertainty of 0.02% (for both RAF and
+ΘAF) was incorporated into the error budget analysis.
+The radial stellar centering uncertainty per dithering is 1.2
+mas, derived from observations of bright stars during commis-
+sioning runs (Zurlo et al. 2014, 2016). This value was then ad-
+justed by dividing it by the square root of the number of frames
+per observation. Subsequently, the latter was translated into an
+uncertainty on position angle by division by the separation r of
+the companion.
+Uncertainties arising from speckles may persist even af-
+ter ADI post-processing and have an impact on photo-
+metric and astrometric measurements (Guyon et al. 2012;
+Wertz et al. 2017). To address this, we employed the
+speckle_noise_uncertainty function from VIP, injecting
+multiple simulated companions into companion-free cubes at the
+same radial distance and flux as the actual companion. The po-
+sitions of these simulated companions were determined using
+Nelder-Mead optimization, and the values of separation and po-
+sition angle were measured. By comparing the o ffsets between
+the input values and the estimations by the code, a distribution of
+parameters was generated. A Gaussian function was then fitted
+to the distribution, and the uncertainties in R and Θ were esti-
+mated as the standard deviations of the fitting. In this instance, a
+total of 100 simulated companions, equally spaced azimuthally,
+were utilized. A similar methodology was employed by Maire
+et al. (2015); Wertz et al. (2017). In Fig. 4, three histograms il-
+lustrate the distribution of separation, position angle, and flux
+of the companion observed on 2015-05-05. The separation and
+position angle values for the epoch are shown in Table 3, and
+the detailed uncertainties used to calculate the error budget are
+compiled in Table 4.
+Table 3: List of astrometric positions of η Tel B obtained from
+the IRDIS observations. The error budget is listed in Table 4.
+Epoch Filter a Sep. (′′) PA ( ◦)
+2015-05-05 H3 4.215 ±0.004 167.326 ±0.197
+2016-06-15 BB_H 4.218 ±0.004 167.260 ±0.130
+2017-06-15 H2 4.218 ±0.004 167.346 ±0.142
+a
+The table only presents values related to the filters where the lowest
+uncertainties, retrieved from NEGFC, on each epoch, were achieved.
+3.3. Orbital fitting analysis
+The system aroundη Tel A was observed with the high-contrast
+imaging technique for the last two decades. The favorable con-
+trast of the brown dwarf companion and the wide separation be-
+tween the two objects make the system an ideal target for HCI.
+The astrometric follow-up of the brown dwarf companion counts
+18 epochs of observation spanning almost 20 yr. For the orbit
+analysis, we included all the astrometrical points presented in
+the literature, as well as the ones obtained from the new anal-
+ysis. The complete list is shown in Table 5 and their positions
+with respect to the central star are represented in Figure 5.
+We employed the Orvara code (Orbits from Radial Veloc-
+ity, Absolute, and/or Relative Astrometry; Brandt et al. 2021) to
+perform the orbital fitting of the system. Orvara accepts input
+information on the acceleration of the central star from the Hip-
+parcos vs Gaia early data-release 3 (EDR3; Bailer-Jones et al.
+2021) catalogs.
+The orbital elements and masses of both the host and the
+companion were computed by Orvara using a parallel tem-
+pered Markov Chain Monte Carlo (MCMC) ensemble sampler,
+ptemcee (V ousden et al. 2016), a variant of emcee (Foreman-
+Mackey et al. 2013). Parallel tempering enhances the explo-
+ration of complex parameter spaces by simultaneously running
+multiple chains at di fferent temperatures, allowing for more ef-
+ficient sampling and improved convergence compared to tradi-
+tional MCMC methods. In a simulation, di fferent temperatures
+refer to variations in the parameter that control the acceptance
+of proposed moves in the MCMC algorithm. Higher tempera-
+tures encourage more exploration by accepting moves that might
+increase energy or objective function values, allowing the al-
+gorithm to escape local optima and explore a broader solution
+space. On the other hand, lower temperatures favor exploitation,
+focusing on refining solutions and improving the chance of find-
+ing the global optimum. Adjusting temperatures during the sim-
+ulation influences the balance between exploration and exploita-
+tion, shaping the algorithm’s behavior throughout the MCMC
+process. The MCMC simulation utilized 10 temperatures, 500
+walkers, and 106 steps for each chain. The simulation outputs a
+point every 1000 steps.
+Priors for the MCMC include distributions of the masses of
+celestial objects, parallax, and proper motion of the system. Ad-
+ditionally, the initial orbital elements distribution for the com-
+panions (semi-major axis: a; eccentricity: e; argument of the
+pericenter: ω; inclination: i; longitude of the ascending node:
+Ω; and longitude at reference epoch: l) can also be incorpo-
+rated. We used as priors the common proper motion extracted
+from Kervella et al. (2021, 2022), the parallax from Gaia DR3
+(Bailer-Jones et al. 2021), the primary mass from Desidera et al.
+(2021a,b), and the companion (η Tel B) mass with loosened con-
+straints on its uncertainties from Lazzoni et al. (2020). Given
+the low orbital coverage from relative astrometric points, we
+just set a mean initial value inspired by the semi-major axis of
+(Neuhäuser et al. 2011), leaving other orbital elements to cover
+wider values in the parameter space, as set by standard values
+from ORV ARA. The specific priors and initial values set are de-
+tailed in Table 6. Further orbital constraints and results are ana-
+lyzed and presented in section 4.1.
+4. Discussion
+4.1. Orbital fitting constraints
+From the results of the MCMC simulation, we excluded the or-
+bits that may cause instability in the system. In order to prevent
+disruption of the debris disk by the close-by passage of η Tel B,
+and considering that the masses of the star and companion are
+well-constrained by the MCMC simulations, we can delimit the
+possible orbits for η Tel B by inspecting the brown dwarf-disk
+interaction. Before applying any constraint, we obtained as val-
+ues the mass of η Tel A ( m∗ = 2.09M⊙) and mass of η Tel B
+(mcomp = 48.10MJup) from the original ORV ARA simulation.
+In this context, it is useful to introduce the concept of chaotic
+zone, a region in the proximity of the orbit of a planet or brown
+dwarf which is devoid of dust grains, since its gravitational influ-
+ence sweeps out small dust particles. The chaotic zone depends
+on the ratio between the mass of the brown dwarf and the mass
+of the star, on the semi-major axis and eccentricity of the orbit.
+Article number, page 5 of 13
+
+<<<PAGE 6>>>
+A&A proofs: manuscript no. aa
+Fig. 4: Speckle noise estimation for η Tel B in the data set of 2015-05-05. The histograms illustrate the o ffsets between the true
+position and flux of a fake companion and its position and flux obtained from the NEGFC technique. The dashed lines correspond
+to the 1D Gaussian fit from which we determined the speckle noise.
+Table 4: Uncertainties used to calculate the error budget for the astrometry of the companion. The values correspond to errors
+associated with individual frames.
+Epoch σr
+(pixels)
+σRspec
+(pixels)
+σR∗
+(pixels)
+σRAF
+(%)
+σPS
+(mas/pixel)
+σθ
+(◦)
+σΘspec
+(◦)
+σΘ∗
+(◦)
+σΘAF
+(%)
+σPO
+(◦)
+σT N
+(◦)
+2015-05-05 0.297 0.003 0.098 0.02 0.01 0.068 0.0005 0.016 0.02 0.11 0.145
+2016-06-15 0.065 0.001 0.098 0.02 0.01 0.012 0.0001 0.016 0.02 0.11 0.060
+2017-06-15 0.245 0.010 0.098 0.02 0.01 0.072 0.0015 0.016 0.02 0.11 0.040
+The table only presents values related to the filters where the lowest uncertainties on each epoch were achieved: 2015-05-05 (H3); 2016-06-15
+(BB_H), and 2017-06-15 (H2), thus referring to the filters also listed on Table 3.
+Given the outer disk’s position, it is established that this zone
+cannot extend below 24 au. As η Tel B is positioned outside
+the disk, we employed the procedure outlined in Lazzoni et al.
+(2018) to compute the chaotic zone’s extension for each orbit
+during the pericenter passage. Specifically, we utilized equation
+10 for cases where the eccentricity is less than a critical value
+(ecrit), or equation 12 for cases where it exceeds ecrit. Here, ecrit
+is determined as 0.21µ3/7, equivalent to 0.022 (µ is the ratio be-
+tween the mass of the companion and the mass of the star). In
+the end, we discarded 326674 orbits from an original number of
+500000.
+Furthermore, another constraint arises when determining
+that the pericenter of the brown dwarf (BD) cannot reach the
+disk. Consequently, considering the semi-major axis of the com-
+panion established by the MCMC simulations, ( abd* = 178 au),
+we can use the following expression to discard highly eccentric
+orbits:
+abd(1− emax)> 24 au (5)
+where emax is the maximum eccentricity allowed for the BD.
+Consequently, we obtained a maximum eccentricity of 0.865
+and, therefore, we discarded an additional 139 orbits. Another
+constraint can be applied if we consider that theη Tel system has
+a wide comoving object, as mentioned previously in Neuhäuser
+*The value of the semi-major axis of 178 au was the one retrieved
+before the exclusion of orbits. The final value is 218 au, as presented in
+Table 7 and Fig. A.1.
+et al. (2011). HD 181327 is an F5.5 V star, also a bona-fide
+member of the β Pic moving group, at a separation of ∼7 ar-
+cmin (20066 au) (Holmberg et al. 2009; Neuhäuser et al. 2011;
+Bailer-Jones et al. 2021). The small proper motion difference in
+Gaia DR3, corresponding to a velocity difference on the plane of
+the sky of 370 m/s, is compatible with a bound object. The nom-
+inal RV difference derived in Bailer-Jones et al. 2021; Zúñiga-
+Fernández et al. 2021, is instead larger than the maximum ex-
+pected one for a bound object ( ∼400 m/s). However, it is well
+possible that the published RV errors are underestimated for a
+star with an extremely fast v sin i such asη Tel. There could also
+be contributions by additional objects, although both the Gaia
+RUWE (Gaia Renormalized Unit Weight Error) and the analysis
+of homogeneous RV time series do not indicate the presence of
+close companions (Lagrange et al. 2009; Grandjean et al. 2020).
+Therefore, we consider plausible, although not fully confirmed,
+that HD 181327 is bound to theη Tel system.
+To ensure that HD 181327’s presence in the system would
+not affect the long-term stability of η Tel B, we implemented
+equation 1 of (Holman & Wiegert 1999). Therefore, we could
+exclude orbits where the critical semi-major axis is greater than
+the periastron of the brown dwarf. To proceed, we used the mass
+of the perturber as 1.3 M⊙ (Desidera et al. 2021a,b). Considering
+the eccentricities of the binaries as 0, a perturber with a similar
+mass would only impose constraints with a separation less than
+13′′.25 (656 au) from η Tel A. Otherwise, for HD 181327 to act
+as a perturber at its separation from the η Tel system, the eccen-
+tricities between HD 181327 and η Tel should be greater than
+Article number, page 6 of 13
+
+<<<PAGE 7>>>
+P. H. Nogueira et al.: Characterization of the η Tel system
+1.0
+ 0.8
+ 0.6
+ 0.4
+ 0.2
+ 0.0
+ RA ('')
+4
+3
+2
+1
+0
+DEC ('')
+1.05
+ 1.00
+ 0.95
+ 0.90
+ 0.85
+ 0.80
+ 0.75
+4.20
+4.15
+4.10
+4.05
+4.00
+3.95
+ Tel B relative astrometric points - Literature
+ Tel B relative astrometric points - This work
+Fig. 5: Relative astrometry for η
+Tel B. The red star marks the
+position of η Tel A. The blue-
+filled circles represent astromet-
+ric points extracted from the
+literature. The green-filled dia-
+monds represent the astromet-
+ric points from this work. The
+astrometric point from epoch
+2000.378 was not included due
+to its high uncertainties.
+Table 5: Astrometric positions ofη Tel B from the literature and
+our analysis included in the Orvara analysis.
+Date (yr) Separation ( ′′) PA ( ◦) Ref.
+1998.492 4.170 ±0.033 166.95 ±0.36 N11
+2000.307 4.107 ±0.057 166.90 ±0.42 N11
+2000.378 4.310 ±0.270 165.80 ±6.70 G01
+2004.329 4.189 ±0.020 167.32 ±0.22 N11
+2004.329 4.200 ±0.017 166.85 ±0.22 N11
+2004.329 4.199 ±0.036 167.02 ±0.22 N11
+2004.329 4.195 ±0.017 166.97 ±0.22 N11
+2006.431 4.170 ±0.110 167.02 ±1.40 G08
+2007.753 4.212 ±0.033 167.42 ±0.35 N11
+2008.312 4.214 ±0.017 166.81 ±0.22 N11
+2008.599 4.195 ±0.017 166.87 ±0.29 N11
+2008.599 4.194 ±0.016 166.20 ±0.29 N11
+2009.351 4.239 ±0.104 168.50 ±1.30 N11
+2009.496 4.199 ±0.031 166.99 ±0.30 N11
+2011.576 4.170 ±0.009 167.43 ±0.70 R13
+2015.341 4.215 ±0.004 167.33 ±0.20 a
+2016.454 4.218 ±0.004 167.26 ±0.13 a
+2017.452 4.218 ±0.004 167.35 ±0.14 a
+N11: Neuhäuser et al. (2011); G01: Guenther et al. (2001);
+G08: Geißler et al. (2008); R13: Rameau et al. (2013b);
+a: This work.
+0.947. Therefore, we choose not to exclude any orbit using the
+external perturber criteria.
+Following, the results of the simulation after the cut-o ff are
+shown as the corner plot in Fig. A.1 and also summarized in Ta-
+ble 7. The values obtained depict a pericenter of 2 ′′.9 (144 au)
+Table 6: Priors and initial and distribution of parameters forη Tel
+system astrometrical fittinga.
+Priors η Tel A η Tel B
+Mass ( M⊙) 2.09±0.03 0.045 ±0.014
+Parallax (mas) 20.603±0.099 20.603 ±0.099
+RA p.m. (mas/yr) 25.689±0.006 25.689 ±0.006
+DEC p.m. (mas/yr) -82.807±0.006 -82.807 ±0.006
+Initial distributionb
+a (au) — 220 +300
+−220√e∗ sin(ω) — 0.4 ±0.3√e∗ cos(ω) — 0.4 ±0.3
+i (radians) — 1.57 ±1.57
+Ω (radians) — 3.2 ±2.2
+l (radians) — 0.8 ±0.5
+a Unphysical values such as negative values for masses or semi-major
+axis are automatically excluded from the code.
+b The initial distributions involve a lognormal distribution for the
+semi-major axis, while all other orbital values follow a normal
+distribution.
+and an apocenter of 5 ′′.9 (292 au). Despite two decades of ob-
+servations of η Tel B, the coverage only spans a fraction of the
+wide orbit of the companion, with a total ∆PA of approximately
+∼2◦. This accounts for less than 1% of the orbit, assuming a
+face-on and circular orbit. Consequently, constraining the semi-
+major axis and eccentricity proves challenging. Nevertheless, the
+MCMC effectively determines the inclination, yielding an orbit
+that is nearly edge-on and almost co-planar with the debris disk
+(Smith et al. 2009). Conversely, a variety of possible orbits can
+adequately fit the data, as illustrated in Fig. 6.
+Article number, page 7 of 13
+
+<<<PAGE 8>>>
+A&A proofs: manuscript no. aa
+Table 7: Best orbital-fitting parameters for η Tel B calculated
+from the Orvara orbital characterization.
+Mass (MJup) 48+15
+−15
+a (au) 218+180
+−41
+i (deg) 81.9+3.2
+−3.5
+Ω (deg) 174.6+175
+−7.1
+Mean longitude (deg) 184+164
+−74
+Parallax (mas) 20.60+0.10
+−0.10
+Period (yrs) 2201+3224
+−592
+ω (deg) 159+128
+−99
+e 0.34+0.26
+−0.23
+a (mas) 4486+3704
+−845
+Reference epoch T0 (JD) 2740996+488958
+−107450
+Mass ratio 0.0219+0.0069
+−0.0068
+5
+0510
+ (arcsec)
+15
+10
+5
+0
+5
+10
+15
+20
+ [arcsec]
+Eta T el B
+Astrometric Orbits
+20
+30
+40
+50
+60
+70
+80
+Mcomp(MJup)
+Fig. 6: 87 randomly selected possible orbits calculated by the Or-
+vara fitting, after excluding orbits based on constraints described
+in Section 4.1. The black star indicates the position of η Tel A.
+The best-fit orbit is shown in black.
+4.2. Possible formation scenarios
+The coplanarity between η Tel B and the debris disk, as de-
+scribed in this work, and the relative spin-alignment between
+the star and the debris disk (Hurt & MacGregor 2023), can offer
+insights into the formation scenario of the system. Stellar sys-
+tems form through various mechanisms, typically categorized
+into three main types: 1) fragmentation of a core or filament,
+2) fragmentation of a massive disk, or 3) capture and/or dynam-
+ical interactions (for a comprehensive review, including separa-
+tion and formation time scales, see O ffner et al. 2023). Given
+the separation of the star and the companion, scenarios involv-
+ing massive disk fragmentation or capture and /or ejection of η
+Tel B appear more plausible.
+Alternatively, core fragmentation, which occurs through di-
+rect/turbulent fragmentation (e.g., Boss & Bodenheimer 1979;
+Bate & Burkert 1997) or rotational fragmentation (e.g., Larson
+1972; Bonnell 1994; Bonnell & Bate 1994a,b; Burkert et al.
+1997), followed by inward migration, is also a conceivable for-
+mation scenario. Binaries formed through direct fragmentation,
+with well-separated cores, may exhibit uncorrelated angular mo-
+menta between the objects (O ffner et al. 2016; Bate 2018; Lee
+et al. 2019; Bate 2000). In contrast, stars and substellar objects
+formed through rotational fragmentation within the same plane
+tend to display preferentially spin-aligned and coplanar systems
+(Offner et al. 2016; Bate 2018). In such a case, a rotational frag-
+mentation followed by inward migration becomes more proba-
+ble.
+Moreover, the eccentricity of the system plays a crucial role
+in inferring the formation scenario. If we consider the orbital fit-
+ting results where highly eccentric orbits are permitted, the pre-
+ferred hypothesis for eccentricity enhancement would be recent
+dynamical interactions. If so, η Tel B did not reach near the de-
+bris disk of the star in the last few pericenter approximations.
+This scenario is highly improbable, given the short best-fitting
+orbital period in such cases (∼ 1623 years). It is more likely that
+η Tel B has a low eccentric orbit, and the assumptions for exclud-
+ing highly eccentric orbits may be the most suitable approach.
+Consequently, the system exhibits quasi-coplanarity and low ec-
+centricity of the companion. Therefore, we tentatively suggest
+that the preferred formation scenarios for η Tel involve either
+the fragmentation of a massive disk with slow or no inwards mi-
+gration or rotational fragmentation of a core with faster inwards
+migration. Long-term RV and astrometry monitoring of the star
+and the companion, along with multiwavelength observations of
+the system, could be useful to discard a capture or ejection sce-
+nario.
+4.3. The close surroundings of η Tel B
+In our Solar System, planets and small-sized bodies are often
+surrounded by satellites and dust rings or disk-like features (see
+e.g. Alibert et al. 2005). For instance, there are approximately
+200 natural satellites in the Solar System, most of which or-
+bit giant planets. This raises the possibility of similar objects
+existing around substellar companions, although such discover-
+ies have not yet been confirmed. Satellites or circumplanetary
+disks in these environments, if discovered, could provide valu-
+able insights into their formation mechanisms. These mecha-
+nisms may include gravitational instability (Boss 1997 and ref-
+erences therein), core-accretion (Pollack et al. 1996 and refer-
+ences therein), or capture and/or orbital crossing, which can lead
+to satellite companions with specific mass ratios and orbits. For
+instance, less massive exomoons are likely to form within a cir-
+cumplanetary disk (CPD), as observed with the Galilean moons
+(see, e.g., Canup & Ward 2002). Conversely, massive compan-
+ion+satellite candidate systems likely form via orbital cross-
+ing+capture (Ochiai et al. 2014; Lazzoni et al. 2024). Further-
+more, hydrodynamical simulations have shown that CPDs in the
+core-accretion scenario are eight times less massive and one or-
+der of magnitude hotter than those formed by gravitational insta-
+bility (Szulágyi et al. 2017). Consequently, the characterization
+of exosatellites can be used to distinguish between these forma-
+tion scenarios.
+To analyze whether a satellite candidate or a CPD is present
+around the companion, we proceeded as follows: to compen-
+sate for the self-subtraction e ffect induced by post-processing,
+we forward-modeled the companion per frame based on the ob-
+servations and the PSF model. With the pre-processed data, the
+radial distance, position angle, and flux were obtained from the
+NEGFC approach (refer to Section 3.1.1). The o ff-axis PSF ex-
+tracted before the sequence was positioned and flux-normalized
+with these parameters in an empty frame, creating what we refer
+to as “model”. Following, for each frame, the model was sub-
+tracted from the data, producing a residual image. we collapsed
+Article number, page 8 of 13
+
+<<<PAGE 9>>>
+P. H. Nogueira et al.: Characterization of the η Tel system
+2015-05-05 (H3)
+2016-06-15 (BB_H)
+2017-06-15 (H3)
+Fig. 7: Analysis of the close surroundings of η Tel B to look for satellites and/or CPDs. In each row, the first panel shows the ADI
+image zoomed on η Tel B, the second panel shows the model, and the last one the residuals from the subtraction of the two. The
+three IRDIS epochs are shown. The residuals are expressed in counts. All the panels were normalized to the peak of the central PSF.
+the model and residual cubes per night using ADI or PCA+ADI.
+We compare the ADI post-processed data with the collapsed
+model and residual cubes per night in Fig. 7). The quality of the
+residuals is strongly related to the number of frames and qual-
+ity of the night, showing a clearer result for the epoch 2016-06-
+15, where other epochs are more a ffected by systematics. Still,
+the residuals do not show any clear signal of a satellite or other
+nearby structure, imposing a threshold of detections at the con-
+trast obtained with the NEGFC technique.
+To generate contrast curves aroundη Tel B, we implemented
+a methodology similar to the one outlined in Lazzoni et al.
+(2020). The steps can be summarized as follows. Successive
+annuli, each centered on η Tel B and with a width equal to 1
+FWHM, were chosen up to the Hill radius of the brown dwarf.
+The contrast at each radial position is computed as five times the
+standard deviation inside the annulus divided by the peak of the
+star (η Tel A).
+For each annulus, we injected fake companions at various
+position angles, and their fluxes were determined after apply-
+ing the NEGFC and PCA post-processing techniques. The ratio
+between the retrieved and injected flux provides the throughput
+value. A mean throughput is then calculated for each annulus and
+multiplied by the contrast at each separation. As a final step, we
+adjusted the contrast for small sample statistics, following the
+discussion presented in Mawet et al. (2014). A schematic rep-
+resentation of the steps used to calculate the contrast curves is
+illustrated in Fig. 8.
+Finally, the contrasts were converted into mass constraints
+using the ATMO 2020 evolutionary models (Phillips et al. 2020).
+We utilized an estimated age for the system of 18 Myr (Miret-
+Roig et al. 2020) and a distance of 49.5 pc (Bailer-Jones et al.
+2021). The best contrast curves for each data set are depicted
+in Fig. 9. We can discard the detection of satellites around the
+brown dwarf with masses between 3 and 1.6 MJup in the range
+of distances [10, 33] au. Such massive objects, if present, would
+likely be the result of capture or trapping through tidal interac-
+tions (Lazzoni et al. 2024) or formation in situ via gravitational
+instability or direct collapsing. However, we cannot exclude the
+presence of closer-in and/or less massive objects which, for ex-
+ample, could have formed within a CPD via core accretion.
+Moreover, we can exclude the presence of an extended CPD
+from the shape and luminosity of the residuals around the com-
+panion.
+5. Conclusions
+In this paper, we present the most recent photometric and as-
+trometric characterization of η Tel B, a brown dwarf situated at
+an approximate separation of ∼4′′.2 from its host star. The ob-
+servations of this system were conducted using SPHERE/IRDIS
+Article number, page 9 of 13
+
+<<<PAGE 10>>>
+A&A proofs: manuscript no. aa
+● peak of η Tel A
+●   η Tel B
+●  Fake moon
+                    Annulus
+Fig. 8: Schematic representation of the placement of putative
+fake satellites around η Tel B to calculate the contrast curves.
+In this illustration, just one annulus is represented.
+0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7
+Separation w.r.t Companion ["]
+2
+4
+6
+8
+10
+12
+Mass (Mjup)
+2015-05-05: H2
+2016-06-15: BB_H
+2017-06-05: H2
+0 5 10 15 20 25 30 35
+Separation w.r.t Companion [au]
+Fig. 9: Contrast curves with respect to the star η Tel A, cen-
+tered on the companion as depicted in Fig. 8. The three contrast
+curves, corresponding to di fferent epochs, are showcased. The
+vertical dashed line indicates the Hill radius ofη Tel B under the
+assumption of an orbit with an eccentricity of e=0.34
+.
+H2H3 and BB_H filters, spanning three epochs across three con-
+secutive years (2015-2017).
+To robustly establish astrometry and photometry for the sub-
+stellar companion, we employed the NEGFC customized routine
+presented in (Lazzoni et al. 2020). This approach was applied to
+each frame of the scientific datacube, as opposed to solely in the
+post-processed ADI image, as is conventionally practiced. Pho-
+tometric results were derived by considering the median of each
+set of parameters per observation. Photometric errors were deter-
+mined based on the standard deviation of the fluxes obtained per
+night. Astrometrical results (separation of 4.218±0.004 arcsecs
+and position angle of 167.3±0.2 degrees) were made taking into
+account not only the NEGFC approach but also incorporated an
+analysis using 2D Gaussian fitting and position of the peak in-
+tensity of the companion. This analysis was made for both the
+frame-by-frame approach and the median-collapsed ADI image.
+The final values represent the median of each approach. In ad-
+dition, for the uncertainties, systematic and statistical uncertain-
+ties, akin to the methodology employed by Wertz et al. (2017),
+were employed. The separation reached depicts a 4-70 times im-
+provement in precision in comparison with previous NACO ob-
+servations described and observed by Neuhäuser et al. (2011),
+and∼2 times better precision than the L ′ NACO observations
+from Rameau et al. (2013b).
+Furthermore, we conducted a comprehensive orbital char-
+acterization by compiling previous astrometric data, the new
+SPHERE data, and the Hipparcos-Gaia acceleration catalog, re-
+sulting in an orbital coverage spanning approximately 19 years.
+The findings indicate a well-characterized companion mass of
+48±15 MJup, with the best-fitting orbit demonstrating near-edge-
+on orientation (i=81.9 degrees) and low eccentricity ( e = 0.34)
+when excluding orbits that can disrupt the debris disk around
+the star. However, it is essential to note that our observations did
+not encompass a significant portion of the entire orbit, leading to
+elevated uncertainties regarding the companion’s orbital shape,
+period, eccentricity, and semi-major axis. We also highlight that
+due to the low orbital coverage, the orbital fitting presented rep-
+resents a plausible family of orbits, and the orbital values listed
+in Table 7 must be taken as an example of a possible orbit. Fur-
+ther follow-ups will better constrain the orbit of the BD in the
+future. Also, based on the high vsini ofη Tel A, and the possible
+uncertainties on its measurements, we consider it plausible that
+HD 181327, at a separation of 20066 au, is bound to the system.
+A brief discussion about possible formation scenarios has
+been conducted. The coplanarity between η Tel B and its de-
+bris disk, along with the relative spin alignment between the star
+and the debris disk, provides valuable insights into the system’s
+formation. Stellar system formation scenarios were categorized
+into three main types: fragmentation of a core or filament, frag-
+mentation of a massive disk, or dynamical interactions. Based
+on the separation of the star and companion, the likelihood of
+massive disk fragmentation or capture or ejection of η Tel B
+was highlighted as more plausible. Alternatively, the system’s
+low eccentricity also allows for rotational fragmentation from a
+core scenario, if followed by fast inward migration. In summary,
+we tentatively propose the preferred formation involves either
+massive disk fragmentation with slow or no inward migration
+or rotational fragmentation of a core with faster inward migra-
+tion, whereas continuous monitoring and multi-wavelength ob-
+servations are crucial for refining these conclusions and further
+understanding the system’s dynamics.
+Lastly, a meticulous analysis of the companion’s surround-
+ings was undertaken by subtracting the companion’s signal using
+instrument-response models. No clear signal of a substructure or
+satellite was seen. We conclude the systematics heavily affected
+the residuals. From the contrast curves generated in the regions
+surrounding the companion, we can discard satellites down to
+3 and 1.6 MJup in the range of distances [10, 33] au, setting an
+upper limit on gravitational instability binary pairs or massive
+objects captured through tidal interactions at wider separations.
+Future observations of the system with the next generation
+of high-contrast imagers mounted on space telescopes, likewise,
+JWST (James Webb Space Telescope) will further constrain the
+orbital analysis of the brown dwarf companion and allow for
+deeper contrast around the central star and the companion. This
+advancement will enable deeper contrast observations around
+both the central star and its companion. In the specific case of
+RV monitoring for detecting objects at closer separations, in-
+Article number, page 10 of 13
+
+<<<PAGE 11>>>
+P. H. Nogueira et al.: Characterization of the η Tel system
+struments like CRIRES + (Cryogenic high-resolution InfraRed
+Echelle Spectrograph) or HiRISE (High Resolution Imaging Sci-
+ence Experiment), are suitable. Possible additional companions
+to the central star or the brown dwarf may be detected in the
+future.
+Acknowledgements. The authors thank the anonymous referee for the fruitful
+comments and suggestions. The authors acknowledge support from ANID –
+Millennium Science Initiative Program – Center Code NCN2021_080. P.H.N.
+acknowledges support from the ANID Doctorado Nacional grant 21221084
+from the government of Chile. T.B. acknowledges financial support from the
+FONDECYT postdoctorado project number 3230470. SD acknowledges support
+by the PRIN-INAF 2019 “Planetary systems at young ages (PLATEA)”. S.P. ac-
+knowledges support from FONDECYT Regular grant 1231663. This work has
+made use of the High Contrast Data Centre, jointly operated by OSUG /IPAG
+(Grenoble), PYTHEAS/LAM/CeSAM (Marseille), OCA /Lagrange (Nice), Ob-
+servatoire de Paris /LESIA (Paris), and Observatoire de Lyon /CRAL, and sup-
+ported by a grant from Labex OSUG@2020 (Investissements d’avenir – ANR10
+LABX56).
+References
+Agol, E., Jansen, T., Lacy, B., Robinson, T. D., & Meadows, V . 2015, ApJ, 812,
+5
+Akeson, R. L., Chen, X., Ciardi, D., et al. 2013, PASP, 125, 989
+Alibert, Y ., Mousis, O., & Benz, W. 2005, A&A, 439, 1205
+Amara, A. & Quanz, S. P. 2012, MNRAS, 427, 948
+Backman, D. E. & Paresce, F. 1993, in Protostars and Planets III, ed. E. H. Levy
+& J. I. Lunine, 1253
+Bailer-Jones, C. A. L., Rybizki, J., Fouesneau, M., Demleitner, M., & Andrae,
+R. 2021, AJ, 161, 147
+Baraffe, I., Homeier, D., Allard, F., & Chabrier, G. 2015, A&A, 577, A42
+Bate, M. R. 2000, MNRAS, 314, 33
+Bate, M. R. 2018, MNRAS, 475, 5618
+Bate, M. R. & Burkert, A. 1997, MNRAS, 288, 1060
+Beuzit, J. L., Vigan, A., Mouillet, D., et al. 2019, A&A, 631, A155
+Bohn, A. J., Ginski, C., Kenworthy, M. A., et al. 2021, A&A, 648, A73
+Bonnell, I. A. 1994, MNRAS, 269, 837
+Bonnell, I. A. & Bate, M. R. 1994a, MNRAS, 269, L45
+Bonnell, I. A. & Bate, M. R. 1994b, MNRAS, 271, 999
+Boss, A. P. 1997, Science, 276, 1836
+Boss, A. P. & Bodenheimer, P. 1979, ApJ, 234, 289
+Bowler, B. P., Blunt, S. C., & Nielsen, E. L. 2020, AJ, 159, 63
+Brandt, T. D., Dupuy, T. J., Li, Y ., et al. 2021, AJ, 162, 186
+Burkert, A., Bate, M. R., & Bodenheimer, P. 1997, MNRAS, 289, 497
+Canup, R. M. & Ward, W. R. 2002, AJ, 124, 3404
+Chauvin, G., Lagrange, A. M., Dumas, C., et al. 2004, A&A, 425, L29
+Claudi, R. U., Turatto, M., Gratton, R. G., et al. 2008, in Society of Photo-Optical
+Instrumentation Engineers (SPIE) Conference Series, V ol. 7014, Ground-
+based and Airborne Instrumentation for Astronomy II, ed. I. S. McLean &
+M. M. Casali, 70143E
+Crepp, J. R., Principe, D. A., Wolff, S., et al. 2018, ApJ, 853, 192
+Dahlqvist, C. H., Milli, J., Absil, O., et al. 2022, A&A, 666, A33
+dal Ponte, M., Santiago, B., Carnero Rosell, A., et al. 2023, MNRAS, 522, 1951
+Davies, C. L. 2019, MNRAS, 484, 1926
+De Rosa, R. J., Nielsen, E. L., Wahhaj, Z., et al. 2023, A&A, 672, A94
+Delorme, P., Meunier, N., Albert, D., et al. 2017, in SF2A-2017: Proceedings of
+the Annual meeting of the French Society of Astronomy and Astrophysics,
+ed. C. Reylé, P. Di Matteo, F. Herpin, E. Lagadec, A. Lançon, Z. Meliani, &
+F. Royer, Di
+Desidera, S., Chauvin, G., Bonavita, M., et al. 2021a, A&A, 651, A70
+Desidera, S., Chauvin, G., Bonavita, M., et al. 2021b, VizieR Online Data Cata-
+log, J/A+A/651/A70
+Do Ó, C. R., O’Neil, K. K., Konopacky, Q. M., et al. 2023, AJ, 166, 48
+Dohlen, K., Langlois, M., Saisse, M., et al. 2008, in Society of Photo-Optical In-
+strumentation Engineers (SPIE) Conference Series, V ol. 7014, Ground-based
+and Airborne Instrumentation for Astronomy II, ed. I. S. McLean & M. M.
+Casali, 70143L
+Dupuy, T. J., Liu, M. C., & Ireland, M. J. 2014, ApJ, 790, 133
+Foreman-Mackey, D., Hogg, D. W., Lang, D., & Goodman, J. 2013, PASP, 125,
+306
+Franson, K., Bowler, B. P., Zhou, Y ., et al. 2023, ApJ, 950, L19
+Fusco, T., Rousset, G., Sauvage, J. F., et al. 2006, Optics Express, 14, 7515
+Galicher, R., Boccaletti, A., Mesa, D., et al. 2018, A&A, 615, A92
+Geißler, K., Chauvin, G., & Sterzik, M. F. 2008, A&A, 480, 193
+Gomez Gonzalez, C. A., Wertz, O., Absil, O., et al. 2017, AJ, 154, 7
+Grandjean, A., Lagrange, A. M., Keppler, M., et al. 2020, A&A, 633, A44
+Greaves, J. S., Kennedy, G. M., Thureau, N., et al. 2014, MNRAS, 438, L31
+Guenther, E. W., Neuhäuser, R., Huélamo, N., Brandner, W., & Alves, J. 2001,
+A&A, 365, 514
+Guyon, O., Bendek, E. A., Eisner, J. A., et al. 2012, ApJS, 200, 11
+Holman, M. J. & Wiegert, P. A. 1999, AJ, 117, 621
+Holmberg, J., Nordström, B., & Andersen, J. 2009, A&A, 501, 941
+Houk, N. & Cowley, A. P. 1975, University of Michigan Catalogue of two-
+dimensional spectral types for the HD stars. V olume I. Declinations -90_ to
+-53_ƒ0.
+Hurt, S. A. & MacGregor, M. A. 2023, ApJ, 954, 10
+Keppler, M., Benisty, M., Müller, A., et al. 2018, A&A, 617, A44
+Kervella, P., Arenou, F., & Thevenin, F. 2021, VizieR Online Data Catalog,
+J/A+A/657/A7
+Kervella, P., Arenou, F., & Thévenin, F. 2022, A&A, 657, A7
+Kingma, D. P. & Ba, J. 2014, arXiv e-prints, arXiv:1412.6980
+Lagrange, A. M., Bonnefoy, M., Chauvin, G., et al. 2010, Science, 329, 57
+Lagrange, A. M., Desort, M., Galland, F., Udry, S., & Mayor, M. 2009, A&A,
+495, 335
+Larson, R. B. 1972, MNRAS, 156, 437
+Lazzoni, C., Desidera, S., Gratton, R., et al. 2022, MNRAS, 516, 391
+Lazzoni, C., Desidera, S., Marzari, F., et al. 2018, A&A, 611, A43
+Lazzoni, C., Rice, K., Zurlo, A., Hinkley, S., & Desidera, S. 2024, MNRAS, 527,
+3837
+Lazzoni, C., Zurlo, A., Desidera, S., et al. 2020, A&A, 641, A131
+Lee, A. T., Offner, S. S. R., Kratter, K. M., Smullen, R. A., & Li, P. S. 2019, ApJ,
+887, 232
+Lowrance, P. J., Schneider, G., Kirkpatrick, J. D., et al. 2000, ApJ, 541, 390
+Maire, A.-L., Langlois, M., Delorme, P., et al. 2021, Journal of Astronomical
+Telescopes, Instruments, and Systems, 7, 035004
+Maire, A.-L., Langlois, M., Dohlen, K., et al. 2016, in Society of Photo-Optical
+Instrumentation Engineers (SPIE) Conference Series, V ol. 9908, Ground-
+based and Airborne Instrumentation for Astronomy VI, ed. C. J. Evans,
+L. Simard, & H. Takami, 990834
+Maire, A. L., Skemer, A. J., Hinz, P. M., et al. 2015, A&A, 576, A133
+Mannings, V . & Barlow, M. J. 1998, ApJ, 497, 330
+Marley, M. S., Fortney, J., Seager, S., & Barman, T. 2007, in Protostars and
+Planets V , ed. B. Reipurth, D. Jewitt, & K. Keil, 733
+Marois, C., Lafrenière, D., Doyon, R., Macintosh, B., & Nadeau, D. 2006, ApJ,
+641, 556
+Mawet, D., Milli, J., Wahhaj, Z., et al. 2014, ApJ, 792, 97
+Mayer, L., Quinn, T., Wadsley, J., & Stadel, J. 2004, ApJ, 609, 1045
+Mayor, M. & Queloz, D. 1995, Nature, 378, 355
+Mesa, D., Gratton, R., Kervella, P., et al. 2023, A&A, 672, A93
+Miret-Roig, N., Galli, P. A. B., Brandner, W., et al. 2020, A&A, 642, A179
+Moré, J. J. 2006, in Numerical analysis: proceedings of the biennial Conference
+held at Dundee, June 28–July 1, 1977, Springer, 105–116
+Neuhäuser, R., Ginski, C., Schmidt, T. O. B., & Mugrauer, M. 2011, MNRAS,
+416, 1430
+Öberg, K. I., Murray-Clay, R., & Bergin, E. A. 2011, ApJ, 743, L16
+Ochiai, H., Nagasawa, M., & Ida, S. 2014, ApJ, 790, 92
+Offner, S. S. R., Dunham, M. M., Lee, K. I., Arce, H. G., & Fielding, D. B. 2016,
+ApJ, 827, L11
+Offner, S. S. R., Moe, M., Kratter, K. M., et al. 2023, in Astronomical Society
+of the Pacific Conference Series, V ol. 534, Protostars and Planets VII, ed.
+S. Inutsuka, Y . Aikawa, T. Muto, K. Tomida, & M. Tamura, 275
+Pavlov, A., Möller-Nilsson, O., Feldt, M., et al. 2008, in Society of Photo-Optical
+Instrumentation Engineers (SPIE) Conference Series, V ol. 7019, Advanced
+Software and Control for Astronomy II, ed. A. Bridger & N. M. Radziwill,
+701939
+Pearce, T. D. & Wyatt, M. C. 2014, MNRAS, 443, 2541
+Pérez, S., Marino, S., Casassus, S., et al. 2019, MNRAS, 488, 1005
+Petit, C., Sauvage, J. F., Fusco, T., et al. 2014, in Society of Photo-Optical Instru-
+mentation Engineers (SPIE) Conference Series, V ol. 9148, Adaptive Optics
+Systems IV , ed. E. Marchetti, L. M. Close, & J.-P. Vran, 91480O
+Petrus, S., Whiteford, N., Patapis, P., et al. 2024, ApJ, 966, L11
+Phillips, M. W., Tremblin, P., Baraffe, I., et al. 2020, A&A, 637, A38
+Pollack, J. B., Hubickyj, O., Bodenheimer, P., et al. 1996, Icarus, 124, 62
+Rameau, J., Chauvin, G., Lagrange, A. M., et al. 2013a, ApJ, 772, L15
+Rameau, J., Chauvin, G., Lagrange, A. M., et al. 2013b, A&A, 553, A60
+Ruffio, J.-B., Horstman, K., Mawet, D., et al. 2023, AJ, 165, 113
+Schmid, H. M., Bazzon, A., Roelfsema, R., et al. 2018, A&A, 619, A9
+Smith, R., Churcher, L. J., Wyatt, M. C., Moerchen, M. M., & Telesco, C. M.
+2009, A&A, 493, 299
+Soummer, R., Pueyo, L., & Larkin, J. 2012, ApJ, 755, L28
+Szulágyi, J., Mayer, L., & Quinn, T. 2017, MNRAS, 464, 3158
+V ousden, W. D., Farr, W. M., & Mandel, I. 2016, MNRAS, 455, 1919
+Wertz, O., Absil, O., Gómez González, C. A., et al. 2017, A&A, 598, A83
+Youngblood, A., Roberge, A., MacGregor, M. A., et al. 2021, AJ, 162, 235
+Zhang, Z., Mollière, P., Hawkins, K., et al. 2023, AJ, 166, 198
+Zúñiga-Fernández, S., Bayo, A., Elliott, P., et al. 2021, A&A, 645, A30
+Article number, page 11 of 13
+
+<<<PAGE 12>>>
+A&A proofs: manuscript no. aa
+Zurlo, A., Vigan, A., Galicher, R., et al. 2016, A&A, 587, A57
+Zurlo, A., Vigan, A., Mesa, D., et al. 2014, A&A, 572, A85
+1 Instituto de Estudios Astrofísicos, Facultad de Ingeniería y Ciencias,
+Universidad Diego Portales, Av. Ejército 441, Santiago, Chile
+2 Millennium Nucleus on Young Exoplanets and their Moons (YEMS),
+Chile
+e-mail: nogueirapedro404@gmail.com
+3 Department of Physics and Astronomy, University of Exeter, Stocker
+Road, Exeter, EX4 4QL, UK
+4 Department of Computer Science, Universidad de Concepción,
+Concepción 4070386, Chile
+5 INAF-Osservatorio Astronomico di Padova, Vicolo dell’Osservatorio
+5, Padova, Italy, 35122-I
+6 Univ. Grenoble Alpes, CNRS, IPAG, 38000, Grenoble, France
+7 Departamento de Física, Universidad de Santiago de Chile, Av. Victor
+Jara 3659, Santiago, Chile
+8 Center for Interdisciplinary Research in Astrophysics and Space
+Science (CIRAS), Universidad de Santiago de Chile
+9 Laboratoire Lagrange, UMR7293, Université Côte d’Azur, CNRS,
+Observatoire de la Côte d’Azur, Boulevard de l’Observatoire, 06304,
+Nice, France
+Article number, page 12 of 13
+
+<<<PAGE 13>>>
+P. H. Nogueira et al.: Characterization of the η Tel system
+Appendix A: Cornerplot of the orbital fitting
+Mpri (M ) = 2.089+0.030
+0.030
+25
+50
+75
+100
+Msec (MJup)
+Msec (MJup) = 48+15
+15
+500
+1000
+1500
+2000
+2500
+a (AU)
+a (AU) = 218+180
+41
+0.2
+0.4
+0.6
+0.8
+e
+e = 0.34+0.26
+0.23
+1.98 2.04 2.10 2.16 2.22
+Mpri (M )
+64
+72
+80
+88
+96
+i ( )
+25 50 75 100
+Msec (MJup)
+500 1000 1500 2000 2500
+a (AU)
+0.2 0.4 0.6 0.8
+e
+64 72 80 88 96
+i ( )
+i ( ) = 81.9+3.2
+3.5
+Fig. A.1: Corner plot showing the results of the orbital fitting performed by Orvara, after excluding orbits based on constraints. The
+best-fit values are also reported in Table 7.
+Article number, page 13 of 13

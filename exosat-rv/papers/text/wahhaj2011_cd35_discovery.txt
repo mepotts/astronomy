@@ -1,0 +1,1144 @@
+<<<PAGE 1>>>
+arXiv:1101.2893v2  [astro-ph.SR]  18 Jan 2011
+Accepted to ApJ: January 10, 2011
+The Gemini NICI Planet-Finding Campaign:
+Discovery of a Substellar L Dwarf Companion to the
+Nearby Young M Dwarf CD − 35 2722 1
+Zahed Wahhaj 1, Michael C. Liu 1, Beth A. Biller 1, Fraser Clarke 2, Eric L. Nielsen 3, Laird
+M. Close 3, Thomas L. Hayward 4, Eric E. Mamajek 5, Michael Cushing 6, Trent Dupuy 1,
+Matthias Tecza2, Niranjan Thatte 2, Mark Chun 1, Christ Ftaclas 1, Markus Hartung 4, I.
+Neill Reid 7, Evgenya L. Shkolnik 8, Silvia H. P. Alencar 9, Pawel Artymowicz 10, Alan Boss 8,
+Elisabethe de Gouveia Dal Pino 11, Jane Gregorio-Hetem 11, Shigeru Ida 12, Marc Kuchner 13,
+Douglas N. C. Lin 14 and Douglas W. Toomey 15
+1Based on observations obtained at the Gemini Observatory, which is operated by the Association of
+Universities for Research in Astronomy, Inc., under a cooperative agreement with the NSF on behalf of
+the Gemini partnership: the National Science Foundation (United S tates), the Science and Technology
+Facilities Council (United Kingdom), the National Research Council ( Canada), CONICYT (Chile), the
+Australian Research Council (Australia), Minist´ erio da Ciˆ encia e T ecnologia (Brazil) and Ministerio de
+Ciencia, Tecnolog ´ ıa e Innovaci´ on Productiva (Argentina).
+
+<<<PAGE 2>>>
+– 2 –
+ABSTRACT
+We present the discovery of a wide (67 AU) substellar companion to
+the nearby (21 pc) young solar-metallicity M1 dwarf CD − 35 2722, a mem-
+ber of the ≈ 100 Myr AB Doradus association. Two epochs of astrometry
+from the NICI Planet-Finding Campaign conﬁrm that CD − 35 2722 B is phys-
+ically associated with the primary star. Near-IR spectra indicate a s pectral
+type of L4 ± 1 with a moderately low surface gravity, making it one of the
+coolest young companions found to date. The absorption lines and n ear-
+IR continuum shape of CD − 35 2722 B agree especially well the dusty ﬁeld
+L4.5 dwarf 2MASS J22244381 − 0158521, while the near-IR colors and abso-
+lute magnitudes match those of the 5-Myr old L4 planetary-mass co mpan-
+ion, 1RXS J160929.1 − 210524 b. Overall, CD − 35 2722 B appears to be an
+intermediate-age benchmark for L-dwarfs, with a less peaked H-band contin-
+uum than the youngest objects and near-IR absorption lines comp arable to ﬁeld
+1Institute for Astronomy, University of Hawaii, 2680 Woodlawn Drive , Honolulu, HI 96822
+2Department of Astronomy, University of Oxford, DWB, Keble Road , Oxford OX1 3RH, U.K.
+3Steward Observatory, University of Arizona, 933 North Cherry A venue, Tucson, AZ 85721
+4Gemini Observatory, Southern Operations Center, c/o AURA, Ca silla 603, La Serena, Chile
+5University of Rochester, Department of Physics & Astronomy, Ro chester, NY 14627-0171, USA
+6Jet Propulsion Laboratory, MS 169-506, 4800 Oak Grove Drive, Pa sadena, CA 91109
+7Space Telescope Science Institute, 3700 San Martin Drive, Baltimor e, MD 21218
+8Department of Terrestrial Magnetism, Carnegie Institution of Wa shington, 5241 Broad Branch Road,
+NW, Washington, DC 20015
+9Departamento de Fisica - ICEx - Universidade Federal de Minas Gera is, Av. Antonio Carlos, 6627,
+30270-901, Belo Horizonte, MG, Brazil
+10University of Toronto at Scarborough, 1265 Military Trail, Toronto , Ontario M1C 1A4, Canada
+11Universidade de Sao Paulo, IAG/USP, Departamento de Astronomia , Rua do Matao, 1226, 05508-900,
+Sao Paulo, SP, Brazil
+12Tokyo Institute of Technology, 2-12-1 Ookayama, Meguro-ku, T okyo 152-8550
+13NASA Goddard Space Flight Center, Exoplanets and Stellar Astroph ysics Laboratory, Greenbelt, MD
+20771
+14Department of Astronomy and Astrophysics, University of Califor nia, Santa Cruz, CA, USA
+15Mauna Kea Infrared, LLC, 21 Pookela St., Hilo, HI 96720
+
+<<<PAGE 3>>>
+– 3 –
+objects. We ﬁt Ames-Dusty model atmospheres to the near-IR s pectra and ﬁnd
+Tef f =1700–1900 K and log( g) =4.5 ± 0.5. The spectra also show that the ra-
+dial velocities of components A and B agree to within ± 10 km/s, further con-
+ﬁrming their physical association. Using the age and bolometric lumino sity of
+CD− 35 2722 B, we derive a mass of 31 ± 8 MJ up from the Lyon/Dusty evolution-
+ary models. Altogether, young late-M to mid-L type companions app ear to be
+overluminous for their near-IR spectral type compared to ﬁeld ob jects, in contrast
+to the underluminosity of young late-L and early-T dwarfs.
+1. Introduction
+Currently, more than 440 extrasolar planets have been discovere d by radial velocity and
+transit techniques, orbiting at relatively small separations ( < 5 AU) from their parent stars
+(e.g. Butler et al. 2006; Marcy et al. 2008; Mayor et al. 2009). In co ntrast, direct-imaging
+surveys are sensitive to Jupiter-mass planets at separations of ≳ 10 AU around nearby stars
+(∼ 25 pc) when they are young ( ≲ 100 Myrs) (e.g. Biller et al. 2007; Lafreni` ere et al. 2007;
+Nielsen & Close 2010). So far, these searches have mostly yielded br own dwarf or planetary-
+mass objects at large separations (Chauvin et al. 2005a; Luhman e t al. 2006; Lafreni` ere et al.
+2008; Thalmann et al. 2009). Spectroscopic studies of the atmosp heres of the brighter
+companions are revealing their temperatures, gravities and masse s (Lavigne et al. 2009;
+Bonnefoy et al. 2010). However, even more exciting discoveries of planetary-mass objects
+at 5-120 AU separations are beginning to come forth (Marois et al. 2 008; Kalas et al. 2008;
+Lagrange et al. 2010). Since these companions have separations t hat allow us to isolate their
+photons from those of the primary, we can begin to characterize t he atmospheres of the
+companions discovered by direct imaging (Bowler et al. 2010).
+Since December 2008, we have been conducting the Gemini NICI Plan et-Finding Cam-
+paign to ﬁnd and characterize planets through direct imaging (Liu et al. 2010). The Cam-
+paign is a three-year program at the Gemini-South 8.1-m Telescope t o directly image and
+characterize gas-giant planets around 300 nearby stars. The NI CI instrument was speciﬁ-
+cally designed for this purpose (Ftaclas et al. 2003; Chun et al. 2008 ). It is equipped with an
+85-element curvature adaptive optics system, a Lyot coronagra ph, and a dual-camera system
+capable of simultaneous spectral diﬀerence imaging (Racine et al. 19 99, SDI) on and oﬀ the
+1.6 µm methane feature seen in cool ( <1400 K) substellar objects (e.g. Burrows et al. 1997;
+Baraﬀe et al. 2003). The two cameras are equipped with Aladdin II In Sb detectors and have
+18.43′′ x 18.43 ′′ ﬁeld of view and a plate scale of 18 mas/pixel (milli-arcseconds/pixel). NICI
+can also be used in a ﬁxed Cassegrain Rotator mode for Angular Diﬀer ential Imaging (ADI;
+
+<<<PAGE 4>>>
+– 4 –
+Liu 2004; Marois et al. 2005), where the telescope image rotator is t urned oﬀ, so that the
+sky rotates on the detector while the telescope and instrument PS F (point spread function)
+artifacts remain ﬁxed (See § 2.1.1).
+In an earlier paper we presented the discovery of PZ Tel B, one of f ew young substellar
+companions directly imaged at orbital separations similar to those of giant planets in our
+own solar system (Biller et al. 2010b). Here we present the discover y of CD − 35 2722 B, one
+of the coolest young ( ∼ 100 Myr) close-separation ( < 100 AU) brown dwarf companions to a
+star directly-imaged to date. Torres et al. (2008) identify CD − 35 2722 A as a member of the
+AB Doradus association, based on its common space motion and cons istent galactic location
+with the other association members. They derive a kinematic distanc e estimate of ∼ 24 pc
+(See § 3.1). The eponymous star of the AB Doradus association itself appe ars to be coeval
+with the Pleiades, which is thought be younger than 150 Myrs (Barra do y Navascu´ es et al.
+2004; Burke et al. 2004; Ortega et al. 2007), and other studies co nclude that AB Dor is
+approximately 50 Myr or older (Zuckerman et al. 2004; Close et al. 20 07). Thus, we adopt
+an age of 100 ± 50 Myr for CD − 35 2722 A based on its membership in the AB Dor group.
+2. Observations and Data Reduction
+2.1. Gemini South/NICI imaging
+2.1.1. Campaign Observing Modes and Data Reduction
+We use two observing sequences for each target in the NICI Campa ign to optimize our
+sensitivity to both methane-bearing and non-methane bearing com panions. Both sequences
+employ the ADI technique (Liu 2004; Marois et al. 2005). Exposure t imes per frame are
+kept around 1 minute so that the noise is background-limited, and th e total time spent on
+detector readouts is small. Observing hour angles are chosen such that the rotation rate of
+the sky is less than 1 degree per minute to avoid excessive smearing d uring an individual
+exposure. The total sky rotation over the observing sequence is also required to be greater
+than 15 degrees, to limit ﬂux loss by self-subtraction of companions at small separations
+(e.g. Biller et al. 2009).
+To search for close-in methane-bearing planets, we combine the An gular and Spectral
+Diﬀerence Imaging methods into a single uniﬁed sequence (“ASDI”). In this observing mode,
+a 50-50 beam splitter in NICI divides the incoming light between the oﬀ ( λ = 1.578 µm)
+and on-methane ( λ = 1.652 µm) moderate-bandwidth (∆ λ/λ=4%) ﬁlters which pass the
+light into the two imaging cameras, henceforth designated the “blue ” and “red” channels
+
+<<<PAGE 5>>>
+– 5 –
+respectively. The two cameras are read out simultaneously for eac h exposure. The red
+channel image is subtracted from the blue channel image to remove the nearly identical
+quasi-static speckles in the two channels. The resulting diﬀerence im age has drastically
+improved sensitivity to methane-bearing objects, which are expec ted to be much fainter in
+the red channel (methane-absorbed) than in the blue channel. In the ASDI mode, we take
+45 1-minute frames.
+At larger separations ( ≳ 1.5′′), our sensitivity is limited by throughput, not by speckle
+noise. Thus we also obtain an ADI sequence without the 50-50 beam s plitter, sending all the
+light to the blue channel, in order to achieve maximum sensitivity. In th is mode, we take 20
+1-minute frames using the standard H-band ﬁlter, which is roughly four times wider than
+the 4% methane on/oﬀ ﬁlters.
+The initial image processing steps in the NICI Campaign data reductio n pipeline were
+applied to all raw images. After bad pixel removal and ﬂat-ﬁelding, d istortion corrections
+were applied. To determine the distortion, we acquired images of a re ctangular pinhole
+grid placed upstream of the NICI AO system. Deviations of the image d pinhole (spot)
+centers from a rectangular grid were used to measure the optical distortion of the blue
+and red channels. First, we ﬁt a model rectangular grid of points to the spot centroids,
+allowing for rotation, change in grid spacing (diﬀerent in x and y direct ions) and translation.
+Next, we found the 2nd order transformation in the coordinates o f the observed spot centers
+that match the coordinates of the ﬁtted model grid. The RMS in the diﬀerence between
+the distortion-corrected spot centroids and the rectangular mo del grid centroids was 0.1
+pixels. Distortion-corrected images were then constructed by re placing the values at the
+original coordinates with interpolated values at the transformed c oordinates using cubic
+interpolation.
+In NICI data, the translucent focal plane mask causes arc-like fe atures to appear near
+the half transmission radius (r = 0.32 ′′) of the Gaussian-proﬁled mask, which are dissimilar
+between the blue and red channels. Thus, for the ASDI and ADI dat asets, we applied a ﬁlter
+to the images to remove arc-like PSF features centered on the prim ary star. For every pixel
+in the image, we computed the interpolated value at 100 points evenly spaced along an arc
+centered on the primary star and extending 30 pixels in azimuth arou nd the chosen pixel.
+The median of these 100 values was then subtracted from the pixel value. This ﬁltering
+process improves the quality of channel diﬀerencing during the ASD I and ADI reductions.
+An additional ﬁlter was applied to remove the stellar halo. Each individu al image was
+smoothed with a Gaussian of 8 pixel FWHM and subtracted from the o riginal (unsharp
+masking). Next, all the (unsharp masked) images were smoothed w ith a Gaussian of 2
+pixel FWHM. With this 2-step smoothing process, all spatial featur es that are signiﬁcantly
+
+<<<PAGE 6>>>
+– 6 –
+diﬀerent in size from the FWHM ∼ 3 pixel NICI PSF were removed from the images.
+2.1.2. ADI and ASDI Observations
+CD− 35 2722 was ﬁrst observed on UT January 16, 2009 in the standard campaign
+observing modes (ASDI and ADI). The NICI images revealed a bright companion candidate
+with separation ≈ 3′′. For astrometric follow-up, we observed the system again on UT
+January 10, 2010 in the ASDI mode. Since the companion has separa tion > 1′′ and does not
+have methane, we reduced the blue and red channel data sets sep arately using a simple ADI
+data reduction method and then added the reduced images togeth er. For each channel, all the
+images were registered using the primary star, which was detected at very high signal to noise
+through the partially transmissive focal plane mask. The images wer e median combined to
+build a PSF image. This image consisted only of quasi-static speckles, s ince any real objects
+in the dataset would appear at diﬀerent PAs in the individual images (s ince the rotator is
+oﬀ) and would be removed by the median process. Next, the PSF imag e was matched to
+and subtracted from each of the 45 individual frames, ﬁtting for t he optimal translation
+and intensity normalization to match the speckle patterns between 0.65′′ and 0.78 ′′ from the
+star. This ﬁtting region lies well outside the mask edge at 0.51 ′′. The ﬁnal reduced image
+was constructed by rotating the individual subtracted images to p lace North up, registering
+them using the previously computed positions of the primary star, a nd median combining
+the stack. The PAs recorded in the FITS header of each frame give the orientation at the
+beginning of the exposures, but we calculated and used the PAs at m id-exposure to align our
+images. Finally, the reduced blue and red channel images were added together. We show a
+cutout from the ﬁnal reduced image for the 2010 data in Figure 1.
+2.1.3. JHK S Rotator-On Photometric Observations
+Upon detection of the very bright candidate at a separation of ≈ 3′′, we obtained images
+in the JHK S ﬁlters on UT March 9, 2009 to measure its near infrared colors. The broad band
+ﬁlters in NICI are in the MKO (Mauna Kea Observatory) system (Simo ns & Tokunaga 2002;
+Tokunaga & Vacca 2005). The observations were obtained in the ro tator-on mode. Nine 15-
+second exposures were taken, imaging the star simultaneously in bo th channels, with the H
+ﬁlter in the blue channel and the KS ﬁlter in the red channel. Nine 15-second exposures
+with the J ﬁlter in the blue channel were taken immediately following these obser vations.
+For the reduction of the JHK S rotator-on data, we ﬂat-ﬁelded and registered the frames on
+the stellar centroid and median combined the stack of images. Cutou ts from the reduced
+
+<<<PAGE 7>>>
+– 7 –
+images of CD − 35 2722 in the J, H and KS-bands are shown in Figure 2. To determine
+the JHK band ﬂux ratios of the companion relative to the primary, we ﬁrst us ed simple
+aperture photometry (3 pixel radius) to measure the relative ﬂux es of the companion and
+the primary star, with the latter seen under the focal plane mask.
+To determine the transmission of NICI’s coronagraphic mask, we ima ged a pair of ﬁeld
+stars, 4.2 ′′ apart on UT October 31, 2010. The stars, 2MASS J06180157 − 1412573 ( H=9.46
+mag) and 2MASS J06180179 − 1412599 ( H=11.16 mag) were chosen so that they could be
+imaged at the same time without saturating either. Ten images were o btained in the H and
+K-bands, with the brighter star under the mask, followed by 10 image s with both stars oﬀ
+the mask. In the J-band, 4 images were taken in each conﬁguration. All images were ta ken
+with the Cassegrain rotator on, and thus there was no smearing du ring individual exposures.
+We then computed the ratio of the aperture (3 pixel radius) ﬂuxes of the two stars, in both
+the on and oﬀ-mask conﬁgurations. The oﬀ-mask ﬂux ratio divided b y the on-mask ﬂux ratio
+yields the mask attenuation. We determined that the central atte nuation of the 0.32 ′′ mask
+is 6.37 ± 0.06, 5.94 ± 0.02 and 5.70 ± 0.03 magnitudes in the J, H and KS-bands, respectively.
+The uncertainties are the RMS of the central attenuation measur ements for the individual
+images in each ﬁlter.
+These attenuation factors were applied to the raw ﬂux ratio to arr ive at the ﬁnal JHK S
+ﬂux ratios. We computed the uncertainty in the ﬂux ratios by includin g the dispersion in
+the ﬂux ratios over the data set and the uncertainties in the focal plane mask transmission.
+To convert the KS-band photometry of the companion to the K-band ﬁlter (a very small
+eﬀect), we applied the transformations from Stephens & Leggett (2004). Table 1 lists the
+ﬁnal NICI photometry of CD − 35 2722 B.
+2.2. IRTF/SpeX Imaging
+We also obtained images of CD − 35 2722 with the infrared guide camera of the facility
+spectrograph, SpeX, of the 3-m NASA Infrared Telescope Facility (IRTF) on UT February
+3, 2010 and UT September 24, 2010 in good seeing conditions. We obt ained images in the
+JHK bands, using 5 dither positions for each ﬁlter. The IRTF/SpeX image s were ﬂat-
+ﬁelded, sky-subtracted, registered and stacked. To measure t he ﬂux ratio of the primary and
+the companion we ﬁrst removed the background ﬂux near the comp anion that comes from
+the primary. This was achieved by applying the same ﬁlter used in § 2.1.1 to remove arc-
+like features in the NICI PSF, except that medians were taken over arcs of length 90 pixels,
+instead of 30. Then ﬂux ratios between the primary and the compan ion were computed using
+apertures of 6 pixel radii. To assess the error in our measurement s and any ﬂux loss from the
+
+<<<PAGE 8>>>
+– 8 –
+ﬁltering process, a hundred simulated companion images were creat ed by scaling down the
+primary to the ﬂux level of the secondary and shifting them to the s ame separation, placed
+with uniform aziumuthal spacing, but at >20◦ diﬀerence in PA ( >10 pixels away) compared
+to the actual companion. Photometry was done on the known posit ions of the simulated
+companions after the ﬁltering process was applied. The RMS in the me asurements was taken
+as the photometric error. We also computed the estimated ﬂux loss from the mean of the
+diﬀerences between the known and measured photometry of the 1 00 simulated companions.
+These loss fractions were ∼ 0.03 magnitudes, and we corrected for this loss in each band.
+Even though the two epochs of IRTF measurements agree to bett er than 0.02 magnitudes, to
+be conservative we adopt the errors from the simulations, and list t he mean of the photometry
+from the two epochs in Table 1.
+The primary star could be variable and thus use of the non-contemp oraneous 2MASS
+photometry to derive the magnitudes of CD − 35 2722 B from our ﬂux ratio measurements
+may not be appropriate. Thus we observed a standard star in JHK during our 2nd epoch
+IRTF observations on UT September 24, 2010. We measured JHK MKO magnitudes of
+7.85± 0.03, 7.31 ± 0.05 and 7.07 ± 0.01 mag for CD − 35 2722 A, which agree with the 2MASS-
+derived measurements to within 1 σ (see Table 1). Moreover, other available data do not
+strongly indicate variability. Optical monitoring of CD − 35 2722 A shows variability with an
+amplitude of ∆ V = 0.11–0.12 mag and a period of 1.7 days (Pojmanski 2003; Messina et al.
+2010). This is likely due to rotating spots on the surface of this youn g star, in which case
+the photometric amplitude should be smaller in the near-IR.
+2.3. Gemini North/NIFS Spectra
+Spectroscopic follow-up observations were obtained with NIFS (Mc Gregor et al. 2003)
+on the Gemini-North telescope. The target was observed with the J, H and K settings of
+NIFS, which cover 1.15–1.33 µm, 1.49–1.80 µm and 1.99–2.40 µm, respectively, at spectral
+resolutions of ∆ λ/λ = 5000–6000. Table 3 gives a log of the observations. The primary st ar
+was used as the AO natural guide star, providing signiﬁcant correc tion of the atmospheric
+turbulence. Due to the southern declination of the target (DEC ∼ -36◦), the observations
+were carried out at high airmasses of 1.8–2.0. The average FWHM obt ained was 0.15 ′′.
+The data were taken in a ’ABBA’ nodding sequence, with the object d ithered by 1.5 ′′
+between two positions in the ﬁeld of view. The data were reduced with the Gemini NIFS
+IRAF pipeline, following the standard procedures to produce a wave length and distortion-
+corrected data cube. The sky background was removed from A fr ames by subtracting the
+negative of the nearest B frame, and vice versa. Figure 3 shows CD − 35 2722 B in an A − B
+
+<<<PAGE 9>>>
+– 9 –
+NIFS image.
+Spectra of the object were then extracted from each cube with t he nfextract routine,
+using an aperture of 0.5 ′′. The wavelength solution for the 1-d spectra was checked against
+night sky lines (by re-running the reduction procedure without the sky subtraction), and
+re-interpolated where necessary. We found small drifts in the wav elength solution between
+nights on the order of ≈ 2 ˚
+A.
+Telluric standard stars of spectral type A0V were observed at sim ilar airmass to the
+science observations and were reduced in the same way. Stellar fea tures (hydrogen lines)
+were removed with the IDL package spextool (Cushing et al. 2004). The resulting telluric
+spectrum was then used to correct each individual science spectr um before combining them.
+The individual science spectra were scaled and combined using a 3-sig ma clipped mean,
+with the rms per wavelength bin used to estimate the noise in the resu lting combined spec-
+trum. The combined spectrum was then multiplied by the ﬁlter curves for the Gemini JHK
+ﬁlters, while the total ﬂux in each band was set to the JHK photometry measured by NICI.
+The calibrated JHK spectra are shown in Figure 4.
+3. Results
+3.1. Astrometric Conﬁrmation of CD − 35 2722 B
+Two objects were detected in the CD − 35 2722 ﬁeld at separations of 3.172 ± 0.005′′ and
+5.312± 0.011′′ from CD − 35 2722 A on UT January 16, 2009 and again at separations of
+3.137± 0.005′′ and 5.316 ± 0.011′′ on UT January 10, 2010. Since the coronagraphic mask is
+not completely opaque, we should be able to measure the position of b oth the primary star
+and the candidate to better than a tenth of a pixel, given the signal to noise of the detections
+and the accuracy of our centroiding algorithm. However, our astr ometry is limited by the
+uncertainty in our measurement of the image distortion. Compariso n of two epochs of dense
+star ﬁeld images shows the astrometric discrepancy between epoc hs was ∼ 0.3 pixel at 3 ′′
+and ∼ 0.6 pixel at 6 ′′ and we incorporate these errors in our astrometry in Table 2.
+To check whether these astrometric measurements are consiste nt with the motions of
+background objects, we need the proper motion and the distance to the primary. The
+proper motions for CD − 35 2722 A in RA and DEC are − 5.6± 0.9 and − 56.6± 0.9 mas/year,
+respectively (Zacharias et al. 2009).
+Using the CAPScam/duPont telescope at Las Campanas Observato ry (Boss et al. 2009),
+we obtained 3 epochs of parallax observations separated by 8 mont hs (April 2010, November
+
+<<<PAGE 10>>>
+– 10 –
+2010, December 2010). This yielded a trigonometric parallax of 47 ± 3 mas (21.3 ± 1.4 pc).
+Three is the minimum number of observations required to measure a p arallax. Thus it is
+diﬃcult to properly assess the uncertainty in our measurement. So we estimated the error
+using a Monte Carlo approach, assuming a conservative 1.5 mas prec ision on each epoch and
+ﬁtting the parallax and proper motion of 10,000 Monte Carlo realizatio ns of the data. Further
+observations are in progress and a deﬁnitive value will be published in A nglada-Escud´ e et
+al. 2010 (in preparation).
+The mean distance to the AB Doradus group nucleus has been reﬁne d in a new investi-
+gation of the moving groups within 100 pc of the Earth (see Mamajek 2010). The kinematic
+analysis therein employs the space motions of only the group member s with Hipparcos par-
+allaxes (van Leeuwen 2007) and the highest quality radial velocity me asurements to ﬁnd
+a distance of 20.6 ± 2.4 pc for 8 “nuclear” members. Comparing the AB Dor group space
+motions and the CD − 35 2722 A proper motion, we see that the star is very likely also a
+”nuclear” AB Doradus member and thus at the same distance. We no te that this distance
+estimate is in agreement with our parallax measurement. The predict ed radial velocity from
+the best-ﬁt space motions is 31.5 ± 1.4 km/s. This is completely consistent with the published
+measurement of 31.4 ± 0.4 km/s (Torres et al. 2006).
+In Figure 5, we compare the motions of the two objects in the CD − 35 2722 ﬁeld to the
+expected motion of a background object given the ﬁrst epoch ast rometry, the known proper
+motion and estimated distance to CD − 35 2722 A. The change in the PA of CD − 35 2722 B
+is signiﬁcantly diﬀerent (at the 3 σ level) from that expected of a background object. This
+indicates that CD − 35 2722 B is physically associated with the primary, although about
+1.6 AU/year of orbital motion is required to explain the relative motion with CD− 35 2722 A.
+In comparison, the second object in the ﬁeld at ≈ 5.3′′ separation moves as expected for a
+background object, thus conﬁrming the joint accuracy of the pr oper motion and parallax of
+CD− 35 2722 A and our NICI astrometric calibration. (See also Biller et al. 2 010.)
+Since the viewing angle and eccentricity of companion’s orbit are unkn own, we estimate
+its semi-major axis by applying a statistical correction from Dupuy & Liu (2010). Assum-
+ing a uniform distribution of orbital eccentricities from 0 to 1, we mult iply the projected
+physical separation by 1.1 +0. 9
+−0. 36 to estimate the true semi-major axis. Applying this factor
+to CD − 35 2722 B’s measured separation, we obtain an estimated orbital se mi-major axis of
+83+69
+−33 AU. We derived a mass of 0.4 M⊙ for CD− 35 2722 A using its age and absolute H mag
+with Siess et al. (2000) evolutionary models. Using this mass with Keple r’s Third Law we
+obtain a period of 1195 +1490
+−710 years for component B. The observed motion of the companion
+(1.6 AU over 1 year) is plausible for a bound object.
+
+<<<PAGE 11>>>
+– 11 –
+3.2. Near-IR Colors and Metallicity
+To measure colors of CD − 35 2722 A, we convert our relative ﬂux ratio measurements
+(§ 2.1.3 and § 2.2) into apparent magnitudes for CD − 35 2722 B using the 2MASS photom-
+etry. The JHK -band IRTF/SpeX data yielded more accurate ﬂux ratios than the N ICI
+observations, because the IRTF photometry did not incur the add itional uncertainty of the
+NICI focal plane mask transmission; thus, we use the IRTF-derive d results for the photom-
+etry of CD − 35 2722 B. However, the NICI images provide far better astromet ry than the
+IRTF data. Table 1 summarizes the resulting magnitudes for CD − 35 2722 B.
+Figure 6 compares the near-IR colors of CD − 35 2722 B with other stellar and substellar
+objects, including old (high-gravity) ﬁeld ultracool dwarfs and you ng (lower-gravity) objects
+found in the ﬁeld and as companions. The JHK colors of CD − 35 2722 B agree well with
+known late-M and L dwarfs.
+A metallicity measurement for the primary star is relevant to constr aining the forma-
+tion of CD − 35 2722 B. However, we see that CD − 35 2722 A has [Fe/H] = 0.04 ± 0.05 dex
+(Viana Almeida et al. 2009), which is close to the mean [Fe/H] of the sola r neighborhood,
+− 0.05 dex (Johnson & Apps 2009). As a consistency check, we make a n indirect estimate
+of the metallicity of CD − 35 2722 A using the photometric calibration of Johnson & Apps
+(2009). Following their method, we determined the [Fe/H] of CD − 35 2722 A from its
+height above the main-sequence isochrone in a plot of MK versus V − K. Since M1 dwarfs
+reach the main sequence by 100 Myr (Siess et al. 2000), the compar ison of CD − 35 2722 A
+with nearby main-sequence stars is appropriate. We derived an [Fe/ H] of 0.0 ± 0.16 dex for
+CD− 35 2722 A, consistent with the published value. An alternate calibrat ion of the metal-
+licity is found in Schlaufman & Laughlin (2010), who use a volume-limited a nd kinematically
+matched sample of F and G dwarfs from the Geneva-Copehnagen Su rvey to infer the mean
+metallicity of M dwarfs in the Solar Neighborhood and base their ﬁnal c alibration purely
+on high-resolution spectroscopy of FGK primaries with M dwarf comp anions. Using their
+method, we derived an [Fe/H] of -0.12 ± 0.16 dex for CD − 35 2722 A, again consistent with
+a solar metallicity.
+3.3. Spectral Analysis
+3.3.1. Spectral Typing
+To derive an empirical spectral type for CD − 35 2722 B, we compared our Gemini/NIFS
+spectra to ﬁeld L dwarfs from the IRTF Spectral Library (Cushing et al. 2005; Rayner et al.
+
+<<<PAGE 12>>>
+– 12 –
+2009) and young L dwarfs from recent studies (Figure 7). When co mparing to lower resolu-
+tion spectra (IRTF prism R=150, IRTF SpeX R=2000), we convolved our NIFS spectrum
+with a Gaussian of appropriate width. Since the ﬁeld dwarfs are old ob jects, we expect some
+mismatch with CD − 35 2722 B in surface gravity dependant spectral features.
+The best matched spectra we ﬁnd is from the L4.5 dwarf 2MASS J222 44381− 0158521,
+which is believed to have an unusually dusty atmosphere (see Stephe ns et al. 2009). We note
+that almost every absorption line feature is well-matched between t his dusty ﬁeld object and
+CD− 35 2722 B. However the NIR colors of CD − 35 2722 B are a little bluer than those of
+2MASS J22244381 − 0158521 ( H − K=0.77 vs 0.86 and J − H=0.86 vs 1.05; see Figure 6).
+The young ( ≈ 5 Myr) L4 planet 1RXS J160929.1 − 210524 b(Lafreni` ere et al. 2008, 2010)
+exhibits a narrower H-band shape than the CD − 35 2722 B spectra, but the JHK absolute
+magnitudes and J − H and H − K colors of the two objects agree completely within errors.
+The ﬁeld L3 and L5 dwarfs show clear diﬀerences in line strengths, co ntinuum shape
+and ﬂux level in the K-band. The CD − 35 2722 B spectrum also shows signs of youth in
+that the shape of its H-band spectra is more triangular than that of ﬁeld L dwarfs, as
+seen in young L-type dwarfs (Lucas et al. 2006; Kirkpatrick et al. 2 006; Allers et al. 2007)
+However, the H-band shape is also less peaked than the young L dwarfs 1RXS J1609 29.1-
+210524 b ( ∼ 5 Myr; Lafreni` ere et al. 2010) and G196-3 B ( ≈ 100 Myr; Rebolo et al. 1998,
+Shkolnik et al. 2009). Overall, CD − 35 2722 B does not seem to have especially low surface
+gravity, since the strength of its FeH lines and K I lines are comparab le to those of ﬁeld
+dwarfs.
+Since the L3 and L5 spectra already diﬀer signiﬁcantly from that of C D− 35 2722 B, we
+assign CD − 35 2722 B a spectral type of L4 ± 1. We also derive consistent spectral types of
+L2.5, L3.5, L3.5 and L4 using spectral indices from the literature: H 2O 1.53 µm (1.27 ± 0.05;
+Allers et al. 2007), H 2OA (0.56± 0.03; McLean et al. 2003), H 2OC (0.65± 0.03; McLean et al.
+2003), and CH 4 2.2µm (0.946 ± 0.005; Geballe et al. 2002), respectively.
+We also tried to ﬁnd the best matched spectra to CD − 35 2722 B from the > 400 M,
+L, and T dwarfs in the online archive of SpeX Prism data (e.g. Burgass er & McElwain
+2006), by scaling relative ﬂux levels to minimize χ 2
+ν. To match the low-resolution SpeX
+spectra, our NIFS spectra are ﬁrst Gaussian smoothed. At this lo wer resolution, most
+features of the spectra are no longer visible, and so ﬁts rely mainly o n the shape of the
+continuum. Nevertheless, we observe a clear minimum in the χ 2
+ν value for spectral types
+between L3 and L6. We veriﬁed the ﬁts by eye to check that the χ 2
+ν minima were sensible. The
+closest matches to our smoothed spectra, in order of increasing χ 2
+ν are 2MASS J20025073-
+0521524 (L6, Burgasser et al. 2008), SDSS J232804.58-103845.7 (L3.5, Chiu et al. 2006),
+2MASSW J0205034+125142 (L5, Reid et al. 2006) and 2MASS J21512 543 -2441000 (L3,
+
+<<<PAGE 13>>>
+– 13 –
+Burgasser et al. 2008).
+With a spectral type estimate for CD − 35 2722 B in hand, we compare its NIR luminosi-
+ties with those of ﬁeld MLT dwarfs, and other young MLT dwarfs with measured parallaxes
+(see Figure 9). CD − 35 2722 B is over-luminous by ∼ 1 mag compared to L4 ﬁeld dwarfs in
+the JHK-bands. As noted earlier, its NIR luminosities are indistinguish able from those of
+the 5 Myr old planet, 1RXS J160929.1 − 210524 b. The young L4 dwarfs 130948 B and C
+(age ∼ 790 Myr, Dupuy et al. 2009a) are also over-luminous by ∼ 0.5 mags. Young late-L
+and early-T companions are clearly under-luminous compared to eld o bjects, as previously
+noted by Metchev & Hillenbrand (2006) and Bowler et al. (2010), while the young late-M
+to mid-L companions are overluminous. The young L1 dwarf, AB Pic b ( age ∼ 30 Myr,
+Torres et al. 2008) seems under-luminous and thus unlike other you ng M7–L5 dwarfs.
+3.3.2. Model Atmosphere Fitting
+To constrain the atmospheric properties of CD − 35 2722 B, we compare our NIFS spec-
+trum to the Ames-Dusty synthetic spectra of Allard et al. (2001). For each model spectrum
+in the Dusty grid, the ﬂux of the model is adjusted to minimize the χ 2
+ν value of the ﬁt to the
+observed spectrum. The overall minimum χ 2
+ν value across all template spectra in the grid
+gives the best-ﬁt model (Figure 8). We ﬁnd the smallest χ 2
+ν values for Tef f = 1700–1900 K
+with log(g) = 4.5–6.0. Since, Ames-Dusty models are not able to repro duce very well the
+spectra of cooler objects near the L-T transition, the lower temp erature bound should not be
+taken as a very strong constraint. Nevertheless, using models fr om Saumon & Marley (2008),
+Cushing et al. (2008) are able to ﬁt the spectra of L4 and L5 dwarfs with their Teﬀ =1700 K,
+log(g)=4.5 models and L6 dwarfs with their Teﬀ =1400 K, log(g)=4.5 atmospheric models,
+achieving good-ﬁts past spectral type L8. This suggests that ou r lower bound of Teﬀ =1700 K
+is reasonable. Our temperature estimate is also consistent with the temperature we derive
+from the Lyon/Dusty evolutionary models in § 3.4.
+Since χ 2
+ν values depend more on the quality of matches between the shapes o f the
+continuum rather than matches between speciﬁc spectral featu res, we also judge the best-ﬁt
+models by eye. Examining the ﬁts, we note that while no single model is a perfect match to
+the CD− 35 2722 B spectra, the 1700K, log(g) = 4.5 model reproduces the o verall continuum
+shape from J to K rather well (Figure 8). At the same time, the shape and the depth o f
+the two sets of K I doublets at 1.17 and 1.25 µm and the FeH lines in the J-band are clearly
+better reproduced in the 1700 K model than in other models. Moreo ver, given the young
+age of the system, we expect it to have a low surface gravity. The lo wer gravity of the
+1700 K, log(g) = 4.5 model is also consistent with the value estimated f rom the Lyon/Dusty
+
+<<<PAGE 14>>>
+– 14 –
+evolutionary model using our bolometric luminosity and age estimates (§ 3.4). Since the
+quality of the J-band ﬁts are clearly much worse for the 1700 K, log( g)=4.0 and log(g)=5.0
+models, we estimate a log(g)=4.5 ± 0.5 for CD − 35 2722 B.
+We also computed χ 2
+ν from the ﬁts to L dwarf models with clouds presented in Burrows et a l.
+(2006). The shapes of the continua and the relative ﬂuxes in the JHK -bands are completely
+consistent between these models and the CD − 35 2722 B spectra. The strengths of the K I
+doublets in the J-band are also consistent. The χ 2
+ν results show a clear minima in the Teﬀ –
+log(g) space, and we estimate T ef f =1700± 100 K, and log(g)=4.5–5.0 from the Burrows
+models. The H-band peaks in the models are, however, clearly rounder with more ﬂ ux at
+the blue end compared to the CD − 35 2722 B spectra due to the absence of FeH features in
+the models. The models also show stronger water absorption at the red end of the H-band.
+Moreover, the models are deﬁcient in Fe and FeH features in the J-Band, and their CO
+features in the K-band are too strong. The cloud-free models from Burrows et al. ( 2006)
+have very diﬀerent continua shape from the CD − 35 2722 B spectra, and a reasonable match
+was not found.
+3.3.3. Radial Velocities
+Due to the dither pattern in the ﬁrst set of J-band observations, there was enough light
+in the NIFS data to extract a spectrum of CD − 35 2722 A. We used this spectrum to test
+whether CD − 35 2722 A and B share the same radial velocity. The spectral types of the
+two objects are suﬃciently diﬀerent that cross-correlation tech niques are not easily applied.
+Instead, we ﬁt Gaussians to four strong K I lines in the J band, taking the average of the
+centroids as our measure of radial velocity. We ﬁnd that the velocit ies of A and B agree
+to within the errors ( ± 10 km/s) further conﬁrming their physical association. The syste m
+velocity (25 ± 10 km/s) also agrees with the published value (31.4 ± 0.4 km/s, Torres et al.
+2006) and the predicted value in § 3.1 within our errors.
+3.4. Mass Estimates
+We ﬁrst determined the mass of CD − 35 2722 B using the Lyon/Dusty evolutionary
+models (Chabrier et al. 2000), based on the observed absolute mag nitudes and estimated
+age. To compute the mass and its associated uncertainty, we used a Monte Carlo technique,
+drawing the input values for MJ and age from random distributions. Values for MJ were cho-
+sen from a normal distribution corresponding to the photometry in Table 1. Age values were
+
+<<<PAGE 15>>>
+– 15 –
+chosen from a uniform distribution between 50 and 150 Myrs, as est imated for the AB Do-
+radus association (Zuckerman et al. 2004; Luhman et al. 2005; Clos e et al. 2007). Using the
+Lyon/Dusty evolutionary models in the MKO photometric system (I. Baraﬀe, private com-
+munication), we computed the mass of CD − 35 2722 B from 10,000 random trials, resulting
+in an adopted mass of 31 ± 7 MJ up from the median and standard deviation of the trials.
+Using the same approach with our MH and MKmeasurements, we estimate masses of 30 ± 7
+and 34 ± 9 MJ up,respectively. Thus, CD − 35 2722 B is probably a brown dwarf, if we follow
+the notional dividing line between planets and brown dwarfs set by th e deuterium-burning
+limit of 13.6 MJ up for solar metallicity.
+To assess the uncertainty contributed by each input parameter ( age, distance, and J
+mag) in our mass calculation, we also computed the mass of CD − 35 2722 B by assuming two
+of the inputs were error-free. The mass uncertainty arising from the assumed age dominates
+over that from the distance, which in turn dominates over that fro m the J-band photometry
+(Table 4). Of course, this does not account for the systematic er rors in the evolutionary
+models themselves, which are just now being rigorously tested (e.g. Stassun et al. 2007;
+Dupuy et al. 2009b).
+A somewhat more robust way to derive the mass of CD − 35 2722 B is to use its bolomet-
+ric luminosity and age as inputs to the Lyon/Dusty evolutionary mode ls, since bolometric
+luminosities are less subsceptible to uncertainties in the model atmos pheres than single band-
+pass ﬂuxes (Chabrier et al. 2000). Using the J-band bolometric corrections from Liu et al.
+(2010) for spectral types of L3–L5 ( § 3.3) and the input distribution of MJ described above,
+we calculated the corresponding distribution of bolometric luminositie s for CD − 35 2722 B.
+Then, using the luminosity and age distributions with the evolutionary models, we obtained
+a mass of 31 ± 8MJ up, again using the median and standard deviation of the trials (Figure 1 0).
+The Lbol-derived masses from the H and K-bands were also 31 ± 8MJ up, which is expected
+since most of the mass uncertainty arises from the uncertainty in a ge. We adopt this Lbol-
+derived mass as our best estimate in Table 1, though the mass estima tes from individual
+ﬁlters and from Lbol are completely consistent. Note that the same set of input data an d
+evolutionary models give an eﬀective temperature of 1980 ± 100 K and a surface gravity with
+log(g) = 4 . 54 ± 0. 13 dex, in reasonable agreement with the results from model atmos phere
+ﬁts to the near-IR spectra ( § 3.3).
+Using the same methods as for the Lyon/Dusty models, we compare the age and lumi-
+nosity of CD − 35 2722 B to the models of Burrows et al. (1997, 2001) to estimate t he mass,
+Teﬀ , and log(g) to be 36 ± 6MJ up, 2150 ± 90 K and 4.83 ± 0.13 dex, respectively.
+An alternative means using evolutionary models to estimate the mass comes from using
+the age and eﬀective temperature, with the latter estimated from model atmosphere ﬁtting
+
+<<<PAGE 16>>>
+– 16 –
+of the NIR spectra ( § 3.3). We adopt a similar Monte Carlo approach, assuming a uniform
+distribution in Teﬀ from 1700–1900 K, and derive a mass of 23 ± 5 MJ up. This is somewhat
+lower than the mass derived from {Lbol, age }. This discrepancy occurs because the model
+atmosphere-derived Teﬀ is ≈ 180 K cooler than the evolutionary model-derived Teﬀ above,
+leading to a lower mass. 2
+A third means to estimate the mass from the evolutionary models com es from the H-R
+diagram, namely using the bolometric luminosity and the estimated tem perature. This is
+the least useful method, as small uncertainties in Teﬀ translate into large mass uncertainties,
+given the tightness of the model tracks on the H-R diagram. Assum ing a normal distribution
+in luminosity and a uniform distribution in Teﬀ , we derive 11 ± 7 MJ up. Figure 10 illustrates
+the observed properties of CD − 35 2722 B relative to the model predictions for diﬀerent pairs
+of observable properties.
+The color-magnitude diagrams in Figure 11 compare the 50 and 150 My r isochrones
+from the Lyon/Dusty and Lyon/COND (Baraﬀe et al. 2003) evolutio nary models with the
+color and absolute magnitudes of CD − 35 2722 B. In both plots, the MJ vs J − H and the
+MK vs J − K diagram, the companion’s position is within 1 σ of that of 22, 31 and 39 MJ up
+Dusty model-simulated brown dwarfs at ages 50, 100 and 150 Myrs, respectively.
+4. Conclusions
+As part of the Gemini NICI Planet-Finding Campaign, we have discove red a substellar
+companion to the young M1V star CD − 35 2722 A, a member of the AB Doradus association.
+High quality astrometry over one year conﬁrms CD − 35 2722 B as a bound companion, with
+a projected separation of 3.17 ′′ (67± 4 AU) in January 2009. We estimate a companion mass
+of 31 ± 8 MJ up by using its bolometric magnitude and age and the Lyon/Dusty evolut ionary
+models. JHK photometry show that the system has L dwarf-like colors.
+The 1.1–2.4 µm spectra of CD − 35 2722 B reveal a low temperature and low surface
+gravity, as expected for the young age and low mass of the compan ion. The H-band contin-
+uum shows the triangular shape characteristic of young ultracool dwarfs, though intermediate
+in shape between the youngest known objects and old (ﬁeld) objec ts. Through direct com-
+parison with known objects, we derive a spectral type of L4 ± 1, making CD − 35 2722 B one
+2A somewhat similar eﬀect has been identiﬁed in the young ( ≈ 790 Myr) L4+L4 dwarf binary
+HD 130948BC, where the Teﬀ derived from evolutionary models using the age and luminosity are ≈ 150–
+300 K hotter than expected from atmospheric model ﬁtting for ob jects of similar spectral type. (A direct
+model ﬁt to the HD 130948BC spectrum is not available.) See § 5.8 of Dupuy et al. 2009a.
+
+<<<PAGE 17>>>
+– 17 –
+of the coolest young substellar companions identiﬁed to date. We ﬁt the spectra using the
+Ames-Dusty model atmospheres and derive Tef f =1700-1900 K and log( g) =4.5 ± 0.5 dex.
+These estimates are consistent with the Lyon/Dusty evolutionary model-derived tempera-
+ture of 1980 ± 100 K and log( g) =4.54 ± 0. 14 dex. As a member of a moving group with
+a good age estimate, CD − 35 2722 B serves as a valuable benchmark for calibrating age-
+dependent spectral eﬀects in L dwarfs. Comparison with other yo ung substellar companions
+shows that when using near-IR spectral types, the late-M to mid- L companions appear to
+be over-luminous compared to the ﬁeld objects, while the late-L and early-T companions
+appear to be under-luminous.
+The mass and separation of CD − 35 2722 B are comparable to other known young
+star+substellar companion systems. TW A 5b (20 MJ up, 98 AU; Lowrance 1999), GQ Lup B
+(17 MJ up, 100 AU; Neuhauser et al. 2005) and Gl 229 B (35 MJ up, 45 AU; Nakajima et al.
+1995) all have masses and separations within 50% of that of CD − 35 2722 B, and all have
+primaries of spectral type K7 or later. This similarity may be a hint tha t they share a com-
+mon formation mechanism. In-situ formation by core accretion is no t viable for such massive
+companions at such large separations, especially around an M star. Alternate theories do
+not provide easy pathways to the formation of substellar companio ns like CD − 35 2722 B;
+for instance, formation by fragmentation of a prestellar core (Ba te 2003) is diﬃcult for the
+mass ratio and separation of CD − 35 2722 AB. Formation via gravitational instability (Boss
+1997, Raﬁkov 2005, Boss 2006, Stamatellos & Whitworth 2008) req uire large massive disks
+(>0.2-0.35 M⊙) and thus also do not provide an obvious solution, given the low mass o f
+the primary star. However, Jeans mass fragmentation of the inte rstellar molecular cloud
+may be able to explain stellar-substellar systems, e.g., as discussed b y Zuckerman and Song
+(2009). Moreover, Boss (2001) found that dense molecular cloud cores with magnetic ﬁelds
+can collapse and fragment into multiple protostar systems with initial masses as low a Jupiter
+mass, i.e., even smaller than the companion to CD − 35 2722 A. This suggests that the CD-
+35 2722 system might well have formed by the classic binary star for mation mechanism of
+fragmentation of a collapsing dense molecular cloud core.
+This work was supported in part by NSF grants AST-0713881 and AS T-0709484. Our
+research has employed the 2MASS data products; NASA’s Astroph ysical Data System; the
+SIMBAD database operated at CDS, Strasbourg, France; the M, L, and T dwarf com-
+pendium housed at DwarfArchives.org and maintained by Chris Gelino, Davy Kirkpatrick,
+and Adam Burgasser; and the SpeX Prism Spectral Libraries mainta ined by Adam Burgasser
+at http://www.browndwarfs.org/spexprism. We would also like to tha nk Guillem Anglada
+and Alycia Weinberger for their parallax measurements of CD − 35 2722 A.
+Facilities: Gemini-South (NICI), IRTF (SpeX).
+
+<<<PAGE 18>>>
+– 18 –
+REFERENCES
+Allard, F., Hauschildt, P. H., Alexander, D. R., Tamanai, A., & Schweitze r, A. 2001, ApJ,
+556, 357
+Allers, K. N., Liu, M. C., Dupuy, T. J., & Cushing, M. C. 2010, ApJ, 715, 561
+Allers, K. N., et al. 2007, ApJ, 657, 511
+Baraﬀe, I., Chabrier, G., Allard, F., & Hauschildt, P. 2003, in IAU Symp osium, Vol. 211,
+Brown Dwarfs, ed. E. Mart ´ ın, 41
+Barrado y Navascu´ es, D., Stauﬀer, J. R., & Jayawardhana, R. 20 04, ApJ, 614, 386
+Biller, B., et al. 2009, in American Institute of Physics Conference Se ries, Vol. 1094, American
+Institute of Physics Conference Series, ed. E. Stempels, 425–42 8
+Biller, B. A., Liu, M. C., Wahhaj, Z., & the NICI Campaign Team. 2010a, A pJ
+Biller, B. A., et al. 2007, ApJS, 173, 143
+—. 2010b, ApJ, 720, L82
+Bonnefoy, M., Chauvin, G., Rojo, P., Allard, F., Lagrange, A., Homeier , D., Dumas, C., &
+Beuzit, J. 2010, ArXiv e-prints
+Boss, A. P. 2001, ApJ, 551, L167
+Boss, A. P., et al. 2009, PASP, 121, 1218
+Bowler, B. P., Liu, M. C., Dupuy, T. J., & Cushing, M. C. 2010, ApJ, 723 , 850
+Burgasser, A. J., Liu, M. C., Ireland, M. J., Cruz, K. L., & Dupuy, T. J . 2008, ApJ, 681,
+579
+Burgasser, A. J., & McElwain, M. W. 2006, AJ, 131, 1007
+Burke, C. J., Pinsonneault, M. H., & Sills, A. 2004, ApJ, 604, 272
+Burrows, A., Hubbard, W. B., Lunine, J. I., & Liebert, J. 2001, Revie ws of Modern Physics,
+73, 719
+Burrows, A., Sudarsky, D., & Hubeny, I. 2006, ApJ, 640, 1063
+Burrows, A., et al. 1997, ApJ, 491, 856
+
+<<<PAGE 19>>>
+– 19 –
+Butler, R. P., et al. 2006, ApJ, 646, 505
+Casagrande, L., Flynn, C., & Bessell, M. 2008, MNRAS, 389, 585
+Chabrier, G., Baraﬀe, I., Allard, F., & Hauschildt, P. 2000, ApJ, 542, L119
+Chauvin, G., et al. 2005a, A&A, 438, L29
+—. 2005b, A&A, 430, 1027
+Chiu, K., Fan, X., Leggett, S. K., Golimowski, D. A., Zheng, W., Geballe, T . R., Schneider,
+D. P., & Brinkmann, J. 2006, AJ, 131, 2722
+Chun, M., et al. 2008, in Society of Photo-Optical Instrumentation Engineers (SPIE) Con-
+ference Series, Vol. 7015, Society of Photo-Optical Instrument ation Engineers (SPIE)
+Conference Series
+Close, L. M., Thatte, N., Nielsen, E. L., Abuter, R., Clarke, F., & Tecza , M. 2007, ApJ, 665,
+736
+Cushing, M. C., Rayner, J. T., & Vacca, W. D. 2005, ApJ, 623, 1115
+Cushing, M. C., Vacca, W. D., & Rayner, J. T. 2004, PASP, 116, 362
+Cushing, M. C., et al. 2008, ApJ, 678, 1372
+Dupuy, T. J., & Liu, M. C. 2010, ApJ
+Dupuy, T. J., Liu, M. C., & Ireland, M. J. 2009a, ApJ, 692, 729
+—. 2009b, ArXiv e-prints
+Ftaclas, C., Mart ´ ın, E. L., & Toomey, D. 2003, in IAU Symposium, Vol.211, Brown Dwarfs,
+ed. E. Mart ´ ın, 521
+Gautier, III, T. N., et al. 2007, ApJ, 667, 527
+Geballe, T. R., et al. 2002, ApJ, 564, 466
+Golimowski, D. A., et al. 2004, AJ, 127, 3516
+Johnson, J. A., & Apps, K. 2009, ApJ, 699, 933
+Kalas, P., et al. 2008, Science, 322, 1345
+
+<<<PAGE 20>>>
+– 20 –
+Kirkpatrick, J. D., Barman, T. S., Burgasser, A. J., McGovern, M. R ., McLean, I. S., Tinney,
+C. G., & Lowrance, P. J. 2006, ApJ, 639, 1120
+Knapp, G. R., et al. 2004, AJ, 127, 3553
+Lafreni` ere, D., Jayawardhana, R., & van Kerkwijk, M. H. 2008, A pJ, 689, L153
+—. 2010, ApJ, 719, 497
+Lafreni` ere, D., et al. 2007, ApJ, 670, 1367
+Lagrange, A., et al. 2010, ArXiv e-prints
+Lavigne, J., Doyon, R., Lafreni` ere, D., Marois, C., & Barman, T. 20 09, ApJ, 704, 1098
+Leggett, S. K., et al. 2006, MNRAS, 373, 781
+—. 2010, ApJ, 710, 1627
+Liu, M. C. 2004, Science, 305, 1442
+Lodieu, N., Hambly, N. C., Jameson, R. F., & Hodgkin, S. T. 2008, MNRA S, 383, 1385
+Lowrance, P. J., et al. 1999, ApJ, 512, L69
+Lucas, P. W., Weights, D. J., Roche, P. F., & Riddick, F. C. 2006, MNRA S, 373, L60
+Luhman, K. L., Stauﬀer, J. R., & Mamajek, E. E. 2005, ApJ, 628, L6 9
+Luhman, K. L., et al. 2006, ApJ, 649, 894
+—. 2007, ApJ, 654, 570
+Mamajek, E. E. 2010, in Bulletin of the American Astronomical Societ y, Vol. 42, Bulletin of
+the American Astronomical Society, 473–+
+Marcy, G. W., et al. 2008, Physica Scripta Volume T, 130, 014001
+Marois, C., Doyon, R., Racine, R., Nadeau, D., Lafreniere, D., Vallee, P ., Riopel, M., &
+Macintosh, B. 2005, JRASC, 99, 130
+Marois, C., Macintosh, B., Barman, T., Zuckerman, B., Song, I., Patie nce, J., Lafreni` ere,
+D., & Doyon, R. 2008, Science, 322, 1348
+Mayor, M., et al. 2009, A&A, 493, 639
+
+<<<PAGE 21>>>
+– 21 –
+McGregor, P. J., et al. 2003, in Society of Photo-Optical Instrume ntation Engineers (SPIE)
+Conference Series, Vol. 4841, Society of Photo-Optical Instrum entation Engineers
+(SPIE) Conference Series, ed. M. Iye & A. F. M. Moorwood, 1581– 1591
+McLean, I. S., McGovern, M. R., Burgasser, A. J., Kirkpatrick, J. D ., Prato, L., & Kim,
+S. S. 2003, ApJ, 596, 561
+Messina, S., Desidera, S., Turatto, M., Lanzafame, A. C., & Guinan, E . F. 2010, ArXiv
+e-prints
+Metchev, S. A., & Hillenbrand, L. A. 2006, ApJ, 651, 1166
+Mohanty, S., Jayawardhana, R., Hu´ elamo, N., & Mamajek, E. 2007, ApJ, 657, 1064
+Nielsen, E. L., & Close, L. M. 2010, ApJ, 717, 878
+Ortega, V. G., Jilinski, E., de La Reza, R., & Bazzanella, B. 2007, MNRAS , 377, 441
+Pojmanski, G. 2003, Acta Astronomica, 53, 341
+Racine, R., Walker, G. A. H., Nadeau, D., Doyon, R., & Marois, C. 1999, PASP, 111, 587
+Rayner, J. T., Cushing, M. C., & Vacca, W. D. 2009, ApJS, 185, 289
+Rebolo, R., Zapatero Osorio, M. R., Madruga, S., Bejar, V. J. S., Arr ibas, S., & Licandro,
+J. 1998, Science, 282, 1309
+Saumon, D., & Marley, M. S. 2008, ApJ, 689, 1327
+Schlaufman, K. C., & Laughlin, G. 2010, A&A, 519, A105+
+Shkolnik, E., Liu, M. C., & Reid, I. N. 2009, ApJ, 699, 649
+Siess, L., Dufour, E., & Forestini, M. 2000, A&A, 358, 593
+Simons, D. A., & Tokunaga, A. 2002, PASP, 114, 169
+Stassun, K. G., Mathieu, R. D., & Valenti, J. A. 2007, ApJ, 664, 1154
+Stephens, D. C., & Leggett, S. K. 2004, PASP, 116, 9
+Stephens, D. C., et al. 2009, ApJ, 702, 154
+Thalmann, C., et al. 2009, ApJ, 707, L123
+Tokunaga, A. T., & Vacca, W. D. 2005, PASP, 117, 421
+
+<<<PAGE 22>>>
+– 22 –
+Torres, C. A. O., Quast, G. R., da Silva, L., de La Reza, R., Melo, C. H. F ., & Sterzik, M.
+2006, A&A, 460, 695
+Torres, C. A. O., Quast, G. R., Melo, C. H. F., & Sterzik, M. F. 2008, Y oung Nearby Loose
+Associations, ed. Reipurth, B., 757
+van Leeuwen, F. 2007, A&A, 474, 653
+Viana Almeida, P., Santos, N. C., Melo, C., Ammler-von Eiﬀ, M., Torres, C . A. O., Quast,
+G. R., Gameiro, J. F., & Sterzik, M. 2009, A&A, 501, 965
+Zacharias, N., et al. 2009, VizieR Online Data Catalog, 1315, 0
+Zuckerman, B., Song, I., & Bessell, M. S. 2004, ApJ, 613, L65
+This preprint was prepared with the AAS L ATEX macros v5.2.
+
+<<<PAGE 23>>>
+– 23 –
+CD−35 2722
+400 500 600 700pixels
+300
+400
+500
+600
+pixels
+1"
+background
+B
+Fig. 1.— A cutout from the reduced NICI image of CD-35 2722, repre senting a 45-minute
+ADI observing sequence (North is up, East is left). This image is the s um of the reduced
+images from the blue and red channels (CH 4 4% short and long ﬁlters). The stellar position
+is indicated by a ’star’ symbol. CD − 35 2722 B was detected 3.137 ′′ away from the primary
+at a PA of 243.10 ◦ on UT Jan 10, 2010. The background object, shown in the square, had
+5.316′′ separation and PA=276.32 ◦. The pixel intensities are shown in linear stretch from
+− 4σ to 4 σ, where σ is the pixel-to-pixel noise in background.
+
+<<<PAGE 24>>>
+– 24 –
+0 1 2 3
+−2
+−1
+0
+1
+arcseconds
+J
+0 1 2 3
+arcseconds
+ 
+ 
+ 
+ 
+H
+0 1 2 3
+ 
+ 
+ 
+ 
+Ks
+Fig. 2.— NICI images of CD-35 2722, obtained on UT March 9, 2009 in th e J, H and
+KS-band ﬁlters. North is up, East is left. The primary star, attenuat ed by the partially
+transmissive coronagraphic mask, is in the upper left area of the pa nels. CD − 35 2722 B is
+in the lower right area, roughly 3 ′′ away from the primary.
+
+<<<PAGE 25>>>
+– 25 –
+Fig. 3.— A NIFS A − B image of CD − 35 2722 B with a 3.2 ′′× 3.2′′ FOV. North is up, East
+is left. The primary, not shown in the image, lies above and to the left o f this region.
+1.2 1.4 1.6 1.8 2.0 2.2 2.4
+λ(µm)
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5Normalized Fλ
+1.2 1.4 1.6 1.8 2.0 2.2 2.4
+λ(µm)
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5Normalized Fλ
+CD−35 2722 B
+2MASS J22244381 
+    (DUSTY L4.5) 
+K I K I
+Fe
+FeH
+FeH
+H2O H2OFeH
+FeH
+FeH
+H2O
+COCOCO
+Fig. 4.— Normalized JHK -band NIFS spectra of CD − 35 2722 B(red), plotted along with
+the dusty L4.5 dwarf 2MASS J22244381 − 0158521 (blue) (Knapp et al. 2004). Molecular
+features and line identiﬁcations are from Cushing et al. (2005).
+
+<<<PAGE 26>>>
+– 26 –
+Fig. 5.— Comparisons of the observed motions of the two candidates (Left: CD − 35 2722 B;
+Right: background object) to the expected motion of a backgrou nd object given the ﬁrst
+epoch astrometry, the proper motion and the distance of CD − 35 2722 A. The very small ob-
+served change of the PA of CD − 35 2722 B (bottom left panel) diﬀers signiﬁcantly (3 σ) from
+that expected for a background object. The change in the positio n of the other candidate is
+consistent with a background object.
+
+<<<PAGE 27>>>
+– 27 –
+0.0 0.5 1.0 1.5
+(H−K)MKO
+0.0
+0.5
+1.0
+1.5
+2.0(J−H)MKO
+CD−35 2722 B
+Dwarfs
+Giants
+Super Giants
+Carbon Stars
+F
+G
+K
+M
+L
+S/C
+AB Pic b
+G 196−3 B
+2M 2224
+GSC 8047 B
+SDSS 2249 A
+SDSS 2249 B
+PZ Tel B
+2M 1207 A
+2M 1207 b
+HR 8799 b
+HR 8799 c
+HR 8799 d
+RXS 1609 b
+TWA 5B
+Fig. 6.— The infrared colors of CD − 35 2722 B (center red square) plotted along with the
+colors of ﬁeld objects and low mass companions. The JHK colors of CD − 35 2722 B are
+consistent with a late-type dwarf, but slightly bluer than that of 2M ASS J22244381− 0158521
+(dark blue triangle), the dusty L4.5 with very similar spectra. The co lors also agree com-
+pletely with those of 1RXS J160929.1 − 210524 b, which is plotted as a grey rectangle, almost
+covered by the symbol of CD − 35 2722 B. The colors of the ﬁeld objects are derived from
+synthesized photometry of published spectra (from Rayner et al. 2009). The L dwarf col-
+ors come from the compilation by Leggett et al. (2010) (based on da ta from Geballe et al.
+2002; Golimowski et al. 2004; Knapp et al. 2004; Chiu et al. 2006), wit h the plotted symbols
+representing the average color for each L subclass. Also plotted f or comparison are the NIR
+colors for known young late-M and L dwarfs (gray symbols; AB Pic b [ Chauvin et al. 2005a] ,
+G 196-3 B [Rebolo et al. 1998] , 2MASS J22244381 − 0158521 [Knapp et al. 2004], GSC 8047-
+0232 B [Chauvin et al. (2005b)], SDSS J053951.99 − 005902.0 AB [Allers et al. 2010], TW A
+5 B [Lowrance et al. 1999], 1RXS J160929.1 − 210524 b [Lafreni` ere et al. (2008)], 2MASS
+1207334− 393254 AB [Mohanty et al. 2007], PZ Tel B [Biller et al. 2010a], HR 8799 bc d
+[Marois et al. 2008]). Where necessary, color transformations fro m the 2MASS to the MKO
+system were made using the Stephens & Leggett (2004) prescript ions for L dwarfs.
+
+<<<PAGE 28>>>
+– 28 –
+Fig. 7.— Gemini NIFS spectra of CD −35 2722 B (black curves) compared to young (low gravity or dus ty) and ﬁeld L dwarfs. The J, H and K-band spectra
+are shown in the left, middle and right panels, respectively . The NIFS spectrum is smoothed to match the resolution of the comparison spectra, which have
+been scaled to ﬁt each band separately. The CD −35 2722 B spectrum is most similar to that of the dusty L4.5 2MA SS J22244381–0158521 and the low gravity
+L3 dwarf G196–3B, and begins to diﬀer signiﬁcantly from spec tra which are more than one subclass away from L4. Thus we assi gn a spectral type of L4 ±1
+to CD −35 2722 B. The top ﬁve comparison spectra (2MASS J15150083+4 847416, SDSS J053951.99-005902.0, 2MASS J15074769-16273 86, 2MASS J22244381-
+0158521, 2MASS J00361617+1821104) are from the IRTF spectr al library ( R = 2000; Cushing et al. 2005). The 1RXS J160929.1–210524 b spe ctra ( R = 850) are
+from Lafreni` ere et al. (2008), while the G196–3 B spectra ar e from Allers et al. (2010). Molecular features and line iden tiﬁcations are from Cushing et al. (2005).
+
+<<<PAGE 29>>>
+– 29 –
+Fig. 8.— Left: The χ 2
+ν from ﬁtting Ames-Dusty model atmospheres (Allard et al. 2001) to
+the NIFS spectra of CD − 35 2722 B as a function of model temperature and gravity. The
+best ﬁt models are the T ef f = 1700–1900 K models with log( g) = 4 . 5 − 6. 0 dex. However,
+none of the models match the continuum shape very well. The reduce d chi-squared values
+quickly deteriorate for T ef f ≤ 1600 K and T ef f ≥ 2000 K models. Right: The best ﬁt
+Ames-Dusty model spectra for diﬀerent eﬀective temperatures .
+
+<<<PAGE 30>>>
+– 30 –
+Near−IR Spectral Type
+M6 M8 L0 L2 L4 L6 L8 T0 T2 T4
+16
+14
+12
+10
+8
+M(JMKO)
+AB Pic b
+1207 A
+1207 B
+RXJ 1609 B
+130948 B
+130948 C
+HN Peg B
+203030 B
+8799 b
+CD−35 2722 B
+M6 M8 L0 L2 L4 L6 L8 T0 T2 T4
+ 
+ 
+ 
+ 
+ M(HMKO)
+AB Pic b
+1207 A
+1207 B
+RXJ 1609 B
+130948 B
+130948 C
+HN Peg B
+203030 B
+8799 b
+CD−35 2722 B
+M6 M8 L0 L2 L4 L6 L8 T0 T2 T4
+ 
+ 
+ 
+ 
+ M(KMKO)
+AB Pic b
+1207 A
+1207 B
+RXJ 1609 B
+130948 B
+130948 C
+HN Peg B
+203030 B
+8799 b
+CD−35 2722 B
+Field Dwarfs
+Upper Sco
+Fig. 9.— The absolute J, H and K MKO magnitudes and spectral type of CD− 35 2722 B
+compared to cool ﬁeld objects and other young MLT dwarfs with pa rallax measure-
+ments. In the NIR, CD − 35 2722 B is over-luminous compared to ﬁeld objects, but has the
+same JHK luminosities as the 5 Myr old Upper Sco planet, 1RXS J160929 .1− 210524 b.
+Earlier young dwarfs are generally also over-luminous, while later you ng dwarfs are
+under-luminous. The objects shown are the MLT dwarf compilation f rom Leggett et al.
+(2010) (gray symbols), Upper Sco L dwarfs from Lodieu et al. (200 8) (green symbols),
+2MASS 1207334 − 393254 AB (Mohanty et al. 2007), AB Pic b (Chauvin et al. 2005a),
+1RXS J160929.1 − 210524 b (Lafreni` ere et al. 2008), HD 130948 BC (Dupuy et al. 20 09a),
+HD 203030 B (Metchev & Hillenbrand 2006), HR 8799 b (Marois et al. 20 08; Bowler et al.
+2010) and HN Peg b (Luhman et al. 2007), all plotted using blue symbo ls.
+
+<<<PAGE 31>>>
+– 31 –
+ 15MJ
+ 25MJ
+ 39MJ
+ 63MJ
+  7MJ
+ 11MJ
+ 15MJ
+ 22MJ
+ 31MJ
+ 44MJ
+  6MJ
+ 10MJ
+ 16MJ
+ 26MJ
+ 41MJ
+ 66MJ
+Fig. 10.— Comparison of the properties of CD − 35 2722 B to those predicted by the Dusty
+model mass tracks. The mass estimate derived from the bolometric luminosity and age
+and from the Tef f (derived from model atmosphere ﬁts to the near-IR spectra) an d age are
+consistent with each other.
+
+<<<PAGE 32>>>
+– 32 –
+0.0 0.5 1.0 1.5 2.0
+(J − H)MKO
+14
+13
+12
+11
+10
+9
+MJ
+CD−35 2722 B
+Field L dwarfs
+Field M dwarfs
+DUSTY (50 Myr)
+DUSTY (150 Myr)
+DUSTY (1 Gyr)
+COND (50 Myr)
+COND (150 Myr)
+COND (1 Gyr)
+  13 MJup
+  22 MJup
+  26 MJup
+  31 MJup
+  39 MJup
+  50 MJup
+  75 MJup
+0.5 1.0 1.5 2.0 2.5
+(J − K)MKO
+12
+11
+10
+9
+8
+MK
+CD−35 2722 B
+Field L dwarfs
+Field M dwarfs
+DUSTY (50 Myr)
+DUSTY (150 Myr)
+DUSTY (1 Gyr)
+COND (50 Myr)
+COND (150 Myr)
+COND (1 Gyr)
+  14 MJup
+  22 MJup
+  26 MJup
+  31 MJup
+  39 MJup
+  50 MJup
+  75 MJup
+Fig. 11.— Comparison of the COND and Dusty model isochrones at 50 M yr, 150 Myr
+and 1 Gyr with the absolute magnitudes and NIR colors of CD − 35 2722 B shown by the
+red square. For comparison, we also plot the NIR magnitudes and co lors of ﬁeld M and
+L dwarfs, from a compilation by Sandy Leggett (Geballe et al. 2002; G olimowski et al. 2004;
+Knapp et al. 2004; Chiu et al. 2006). As is well known, the COND and Du sty models do
+not predict the ﬁeld brown dwarf sequence well at low temperature s.
+
+<<<PAGE 33>>>
+– 33 –
+Table 1. Properties of the CD-35 2722 AB system.
+Property CD − 35 2722 A CD − 35 2722 B
+Age (Myr) a 100± 50
+Distance (pc) b 21.3± 1.4
+Angular separation ( ′′)c 3.137± 0.005
+Physical separation (AU) c 67± 4
+Position angle ( ◦)c 243.10± 0.25
+∆ J, IRTF (mag) 5.77 ± 0.06
+∆ H, IRTF (mag) 5.50 ± 0.06
+∆ K, IRTF (mag) 4.98 ± 0.05
+∆ J, NICI (mag) 5.66 ± 0.12
+∆ H, NICI (mag) 5.48 ± 0.15
+∆ KS, NICI (mag) 4.96 ± 0.07
+∆ K, NICI (mag) d 4.94± 0.07
+JM KO (mag)e 7.86± 0.03 13.63 ± 0.11
+HM KO (mag)e 7.28± 0.03 12.78 ± 0.12
+KM KO (mag)e 7.03± 0.05 12.01 ± 0.07
+MJ (mag) 6.0 ± 0.14 11.99 ± 0.18
+MH (mag) 5.4 ± 0.14 11.14 ± 0.19
+MK (mag) 5.1 ± 0.14 10.37 ± 0.16
+(J − H)M KO (mag) 0.58 ± 0.03 0.86 ± 0.13
+(H − K)M KO (mag) 0.25 ± 0.02 0.77 ± 0.2
+Spectral Type M1Ve f L4± 1
+Mbol (mag) 8.11 ± 0.25 13.7 ± 0.3 g
+Mass 0.4 ± 0.05 M⊙h 31± 8 MJ upi
+Tef f (K) 3680 ± 100 j 1700–1900 k
+log(g) (dex) · · · 4.5± 0.5 l
+[Fe/H] 0.04 ± 0.05 dex m · · ·
+aAge estimate for the AB Doradus association
+(Zuckerman et al. 2004; Luhman et al. 2005; Close et al.
+2007).
+
+<<<PAGE 34>>>
+– 34 –
+bDistance from parallax measurement using CAPScam. See
+§ 3.1 for details.
+cEpoch January 10, 2010 UT.
+dTransformed from NICI ∆ KS magnitude, using the relation-
+ship in Stephens & Leggett (2004) and asumming a spectral type
+of L4.
+eMKO magnitudes derived from 2MASS magnitudes using
+color transformations in Leggett et al. (2006). All photometry
+and colors are given in the MKO system. Apparent and absolute
+magnitudes, colors, and mass estimates for CD − 35 2722 B are
+all derived from IRTF photometry.
+fSpectral Type from Torres et al. (2006).
+gBolometric magnitude of primary derived using bolometric
+magnitude equations for M dwarfs in Casagrande et al. (2008).
+Bolometric magnitude for companion derived from MJ , based on
+bolometric corrections in Liu et al. (2010).
+hMass estimate based on Siess et al. (2000) using MH and age.
+iMass estimate based on Lyon/Dusty model using Mbol and
+age.
+jTef f for an M1V from Gautier et al. (2007)
+kTef f from Ames-Dusty atmospheric model ﬁtting result.
+l Log(g) from ﬁtting Ames-Dusty model atmospheres to the
+Gemini/NIFS near-IR spectra.
+m[Fe/H] measured by Viana Almeida et al. (2009).
+
+<<<PAGE 35>>>
+– 35 –
+Table 2. Astrometry of objects near CD − 35 2722 A.
+Object UT Date (Y/M/D) Separation ( ′′) Position Angle ( ◦)
+CD− 35 2722 B 2009/01/06 3.172 ± 0.005 244.13 ± 0.25
+2010/01/10 3.137 ± 0.005 243.10 ± 0.25
+background object 2009/01/06 5.312 ± 0.011 275.48 ± 0.25
+2010/01/10 5.316 ± 0.011 276.32 ± 0.25
+Table 3. Spectroscopic observations obtained with Gemini-North/N IFS.
+UT Date (Y/M/D) Band No. of Exp. Exp. Time(s) Comments
+2010/03/07 J 12 300
+2010/03/18 H 9 300 Partial cloud
+K 4 120
+2010/03/19 J 9 300 Poor conditions, partial cloud
+Table 4. Comparison of the sources of uncertainty in CD − 35 2722 B’s estimated mass.
+Parameter Measurement Derived Mass Error
+Age 100 ± 50 Myr 7 MJ up
+Distance 21.3 ± 1.4 pc 0.6 MJ up
+Apparent J mag 13.63 ± 0.11 mags 0.3 MJ up
+All · · · 8 MJ up
+Note. — For each parameter, we set the uncertainty in
+all the other parameters to zero and calculated the error
+in CD − 35 2722 B’s mass using the Lyon/Dusty evolutionary
+models.

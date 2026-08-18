@@ -231,7 +231,7 @@ ceiling.
 
 | property | value | file(s) | source | status |
 |---|---|---|---|---|
-| companion mass | **47 M_Jup** | `m7-survey.json`, `M7:133`, `M15:10`, `queue:122` | Lazzoni T1 (→ Langlois et al. 2021b, **not archived**) | ⚠️ **single-source**; M15's headline msini limit scales as M_host^(2/3) |
+| companion mass | **47 M_Jup** | `m7-survey.json`, `M7:133`, `M15:10`, `queue:122` | **RESOLVED M32/M33.** NOT Langlois: `papers/text/langlois2021b_shine2.txt` IS archived and its Table gives eta Tel B as **20-50 M_Jup**, not 47. The 47 (+5/-6) is **Lazzoni et al. 2020, A&A 641, A131** (AMES-COND), confirmed first-hand in its Table 2 | ⚠️ **DISPUTED**: Chai+2024 JWST/MIRI atmospheric fit gives **29 (+16/-13)**. The 42+/-14 and 48+/-15 orbital posteriors are prior-driven from the 47 and not independent. Limit scales as M^(2/3); adopting 47 is the conservative choice |
 | host mass | **2.18 M_⊙** | `m7-survey.json` | Lazzoni T1 | ⚠️ single-source |
 | host spectral type | **A0V** | `M5:81`, `contrast-wall-note` | SIMBAD `* eta Tel` **A0V** | ✅ VERIFIED |
 | companion spectral type | **M7.5V** | `M5:81`, `m5-targets.json` | SIMBAD `* eta Tel B` **M7.5V** | ✅ VERIFIED |
@@ -353,9 +353,12 @@ reproducibility work, and all injection gates use no external object property.
 - **Any Lazzoni Table 1 value where SIMBAD is silent** (20 of 38 companions' K, and all 38 masses,
   ages and host masses). Lazzoni's own sources — Langlois et al. 2021b, Bohn et al. 2020, De Rosa
   et al. 2020b, Maire et al. 2020a/b, Mesa et al. 2020, Wang et al. 2021, Desidera et al. 2021,
-  Lagrange et al. 2019b, Chauvin et al. 2017, Sheehan et al. 2019, Stolker et al. 2021 — are
-  **none of them in `papers/`**. Archiving even two (Langlois 2021b and Bohn 2020) would settle
-  η Tel B, AB Pic b, HIP 78530 B and YSES 1 b, which is most of §8.
+  Lagrange et al. 2019b, Chauvin et al. 2017, Sheehan et al. 2019, Stolker et al. 2021.
+  **UPDATE (M33): three of these are now archived** — `langlois2021b_shine2.txt`,
+  `bohn2020_tyc8998.txt` and `chauvin2017_hip65426b.txt` — and Langlois settles η Tel B
+  against Lazzoni: its table gives **20–50 M_Jup**, not 47, and a separation of
+  **4214.5 ± 22 mas**, consistent with Chai's JWST 4199 ± 15 and Lazzoni's 4210. The
+  remaining unarchived sources still gate the other rows.
 - **Wahhaj et al. 2011** — CD-35 2722 B's photometry and its 31 ± 8 M_Jup mass.
 - **HIP 81208 B, AF Lep b, HD 206893 B, 2M0103AB b separations** — no in-repo paper, and SIMBAD
   coordinate pairs are not independently resolved for these systems.

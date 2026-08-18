@@ -51,7 +51,7 @@ Doppler monitoring of a directly imaged companion — using the companion's own 
 detect a satellite or a second companion orbiting it — was proposed by Vanderburg et al.
 (2018), applied to HR 8799 by Vanderburg & Rodriguez (2021) and to HR 7672 B by Ruffio et
 al. (2023), forecast in the CRIRES+ era by Lazzoni et al. (2022), and pursued by Horstman
-et al. (2024) on GQ Lup B and by Kral et al. (2025) with VLTI/GRAVITY on HD 206893 B. Hoy
+et al. (2024) on GQ Lup B and by Kral et al. (2026) with VLTI/GRAVITY on HD 206893 B. Hoy
 et al. (2026, hereafter H26) reported the first detection: a *P* ≈ 171 d,
 *K* ≈ 306 m s⁻¹ signal in CD-35 2722 B, interpreted as a ~0.92 M_Jup satellite, with
 tentative evidence for a second, smaller companion.
@@ -521,7 +521,7 @@ affiliated with or endorsed by the authors of any work discussed.
 - Hoy, K., Zurlo, A., Peña R., P. A., Köhler, J., et al. 2026, *Nature*, "Satellite detected around a star's substellar companion" (published version; supersedes arXiv:2607.05193v1).
 - Horstman, K., Ruffio, J.-B., Batygin, K., et al. 2024, "RV measurements of directly imaged brown dwarf GQ Lup B to search for exo-satellites", arXiv:2408.10299.
 - Köhler, J., Zechmeister, M., Hatzes, A., et al. 2025, A&A, "viper: High-precision radial velocities from the optical to the infrared", arXiv:2505.08315.
-- Kral, Q., Wang, J., Kammerer, J., et al. 2025, A&A, "Exomoon search with VLTI/GRAVITY around the substellar companion HD 206893 B", arXiv:2511.20091.
+- Kral, Q., Wang, J., Kammerer, J., et al. 2026, A&A, "Exomoon search with VLTI/GRAVITY around the substellar companion HD 206893 B", arXiv:2511.20091.
 - Lazzoni, C., Desidera, S., Gratton, R., Zurlo, A., Mesa, D., & Ray, S. 2022, MNRAS, "Detectability of satellites around directly imaged exoplanets and brown dwarfs", arXiv:2207.07569.
 - Ruffio, J.-B., Horstman, K., Mawet, D., et al. 2023, "Detecting exomoons from radial velocity measurements of self-luminous planets: application to observations of HR 7672 B and future prospects", arXiv:2301.04206.
 - Speagle, J. S. 2020, MNRAS 493, 3132, "dynesty: a dynamic nested sampling package for estimating Bayesian posteriors and evidences".
@@ -591,12 +591,14 @@ milestone document in the repository.
    paper text in `papers/text/kohler2025_viper.txt` gives **J. Köhler**, and the H26 author
    list includes Jana Köhler. This note uses J.; the HTML draft should be corrected.
 9. **Journal, volume and year** for Köhler et al. 2025, Lazzoni et al. 2022, Ruffio et al.
-    2023, Horstman et al. 2024, Kral et al. 2025, Vanderburg et al. 2018 and Vanderburg &
+    2023, Horstman et al. 2024, Kral et al. 2026, Vanderburg et al. 2018 and Vanderburg &
     Rodriguez 2021 are **not** given here because they are not confirmed anywhere in the
     repository. Fill from ADS before submission.
-10. **Kral et al. 2025** is stored in the repository under the filename
-    `kral2026_gravity_hd206893b.*`, which is misleading — S. Blunt is a co-author, Q. Kral
-    is first author on the text as archived. Verify the citation, not the filename.
+10. ~~**Kral et al. 2025** filename looks misleading~~ — **RESOLVED (M32).** The archived
+    copy is the **arXiv preprint** (ESO 2025, dated 26 November 2025); A&A **published it in
+    January 2026**. So the `kral2026_*` filename is correct and the year to cite is **2026**,
+    which is what the manuscript and the RNAAS note use. This note previously cited 2025,
+    disagreeing with them; all occurrences are now 2026.
 11. **Peña R. et al. 2025 (EMPEROR/reddemcee)** and **Wahhaj et al. 2011** appear in the HTML
     draft's reference list but are not cited here. Add only if used.
 12. **H26 title.** Taken from `papers/text/hoy2026_nature_published.txt`, which renders it as
