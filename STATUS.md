@@ -72,6 +72,9 @@ UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 3. **eta Tel B RNAAS** — submit or fold into the method paper? (concurrent thread's M32; author/affiliation/ORCID.)
 4. **Accounts before Dec 2** — Gaia Archive + NOIRLab Data Lab (both free).
 5. Optional — email MPE about the `eRASSc3_Main_GDR3` duplicated-column defect.
+6. Optional — report the **enterprise 3.5.0 bug** upstream (pta-mpta M2: varying-basis
+   parameters zero the GP prior matrix, so sampling a chromatic index crashes deterministically;
+   reproducer + fix are in `pta-mpta/M2-converge-scale.md`). Outward-facing, so it's your call.
 
 ## Log
 
