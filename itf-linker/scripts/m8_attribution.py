@@ -620,13 +620,29 @@ def main() -> None:
     ap.add_argument("--skip-fits", action="store_true")
     ap.add_argument("--resume-sweep", action="store_true",
                     help="reuse the coarse sweep in an existing m8-attribution.json")
+    ap.add_argument("--itf-parquet", type=Path, default=None,
+                    help="observation table override (M9: the daily archive re-pulls "
+                         "the ITF under this repo, so a resumed queue must point back "
+                         "at the snapshot it was built from -- see "
+                         "scripts/m9_reconstruct_snapshot.py)")
+    ap.add_argument("--max-new-fits", type=int, default=None,
+                    help="cap on fits actually run this invocation (checkpoint reuse "
+                         "does not count). Default: no cap beyond --max-fits")
+    ap.add_argument("--pass-floor-per-100", type=int, default=None,
+                    help="M9 pre-registered stopping rule: after every 100 new fits, "
+                         "stop when the trailing-100 strict+fully-used pass rate "
+                         "drops below this floor. Default: off (M8 behaviour)")
     args = ap.parse_args()
+
+    if args.itf_parquet is not None:
+        config.ITF_PARQUET = args.itf_parquet  # m7run.load_tracklets reads this module attr
 
     t_start = time.monotonic()
     report: dict[str, Any] = {
         "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "itf_provenance": json.loads(config.ITF_PROVENANCE.read_text(encoding="utf-8")),
         "parameters": {
+            "itf_parquet": str(config.ITF_PARQUET),
             "max_lookback_days": MAX_LOOKBACK_DAYS,
             "gate_floor_arcsec": GATE_FLOOR_ARCSEC,
             "gate_envelope_safety": GATE_ENVELOPE_SAFETY,
@@ -643,9 +659,15 @@ def main() -> None:
         prev = json.loads(OUT.read_text(encoding="utf-8"))
         real = prev["real_matches"]
         report.update({k: prev[k] for k in
-                       ("orbits", "tracklets_in_window", "coarse", "sweep_timing")
+                       ("orbits", "tracklets_in_window", "coarse", "sweep_timing",
+                        "nights_in_window")
                        if k in prev})
         report["control_matches_sample"] = prev.get("control_matches_sample", [])
+        # The resumed report must carry the queue forward: the 2026-08-17 tranche-2 run
+        # dropped ``real_matches`` from the final write because this line was missing,
+        # which silently destroyed the ranked queue a later --resume-sweep depends on
+        # (M9 rebuilt it from the reconstructed snapshot).
+        report["real_matches"] = real
         print(f"resumed sweep: {len(real)} real matches from {OUT.name}", flush=True)
     else:
         df, orbit_stats = load_orbit_table()
@@ -716,6 +738,8 @@ def main() -> None:
     baseline_cache: dict[str, Any] = {}
     base_tags: dict[str, str] = {}
     fits: list[dict[str, Any]] = []
+    new_outcomes: list[bool] = []  # strict+fully-used per NEW fit (stopping-rule input)
+    stop_reason = None
     fit_deadline = time.monotonic() + args.time_budget_min * 60.0
     n_run = n_reused = 0
     t_fit_phase = time.monotonic()
@@ -726,7 +750,21 @@ def main() -> None:
                          "fit_tag": state[fit_key].get("fit_tag"), "reused": True})
             n_reused += 1
             continue
+        if args.max_new_fits is not None and n_run >= args.max_new_fits:
+            stop_reason = f"hard_budget({args.max_new_fits})"
+            print(f"new-fit budget reached after {n_run} fits", flush=True)
+            break
+        if (args.pass_floor_per_100 is not None and n_run
+                and n_run % 100 == 0 and len(new_outcomes) >= 100):
+            rate = sum(new_outcomes[-100:])
+            print(f"[rule] trailing-100 pass rate: {rate}/100", flush=True)
+            if rate < args.pass_floor_per_100:
+                stop_reason = (
+                    f"trailing_100_pass_rate({rate})_below_floor({args.pass_floor_per_100})"
+                )
+                break
         if time.monotonic() > fit_deadline:
+            stop_reason = f"time_budget({args.time_budget_min}min)"
             print(f"time budget reached after {n_run} fits", flush=True)
             break
         lines = index.get((m["trksub"], m["obscode"], m["night"]))
@@ -749,6 +787,10 @@ def main() -> None:
         append_fit_state(rec)
         state[fit_key] = rec
         fits.append({**m, "fit": outcome, "fit_tag": rec["fit_tag"]})
+        new_outcomes.append(bool(
+            outcome.get("gate_strict", {}).get("passes")
+            and outcome.get("trk_obs_used", 0) == outcome.get("trk_obs_total", -1)
+        ))
         n_run += 1
         if n_run % 25 == 0:
             report["fits"] = fits
@@ -764,6 +806,11 @@ def main() -> None:
         "coverage_of_coarse": round(len(fits) / max(len(queue), 1), 4),
         "seconds": round(fit_phase_s, 1),
         "s_per_new_fit": round(fit_phase_s / n_run, 2) if n_run else None,
+        "stop_reason": stop_reason or "cap_or_queue_end",
+        "tranche_pass_rates_per_100": [
+            sum(new_outcomes[k:k + 100])
+            for k in range(0, len(new_outcomes), 100)
+        ],
     }
     passing = [
         f for f in fits

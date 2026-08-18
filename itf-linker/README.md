@@ -15,8 +15,9 @@ prior-art assessment, [`DATA-SOURCES.md`](DATA-SOURCES.md) for endpoints and for
 [`BUILD-PLAN.md`](BUILD-PLAN.md) for the milestone plan.
 
 **Current state: M5 (the pre-2023 slice fitted to completion), M7 (attribution
-against the Rubin bulk-batch orbits) and M8 (the perturbed backend, at full batch
-scale) complete.** Milestone findings:
+against the Rubin bulk-batch orbits), M8 (the perturbed backend, at full batch
+scale) and M9 (the unconsumed partitions, the queue extension, and the MPC's
+independent confirmation of 30/30 consumed candidates) complete.** Milestone findings:
 [`M0-RESULTS.md`](M0-RESULTS.md) (kill-check) · [`M1-RESULTS.md`](M1-RESULTS.md)
 (orbit fitting) · [`M2-RESULTS.md`](M2-RESULTS.md) (catalogue vetting) ·
 [`M3-RESULTS.md`](M3-RESULTS.md) (linking) · [`M4-RESULTS.md`](M4-RESULTS.md) (NEO to TNO
@@ -29,7 +30,13 @@ ephemeris backend measured against Horizons — two-body's degree-scale error at
 years becomes tens of arcseconds — opening the pre-2023 ITF to attribution at full
 Feb+April Rubin batch scale, with bulk MPCORB orbits, the decoy control at scale, a
 checkpointed fit queue, the SkyBoT check folded into the verdict chain, and a
-batch-landing watcher designed but deliberately not scheduled).
+batch-landing watcher designed but deliberately not scheduled) ·
+[`M9-RESULTS.md`](M9-RESULTS.md) (the watcher's flagged partitions consumed on an
+exactly-reconstructed snapshot, the fit queue extended under a pre-registered
+stopping rule, combined fits promoting 28 of 29 multi-tracklet objects, the 88
+lost-object ambiguities adjudicated, a 28-year TNO calibration with three scoping
+candidates — and the MPC consuming 30 of M8's fitted candidates within two days,
+**every one into the object the ledger had attributed it to**).
 
 M1 built Find_Orb under WSL, verified it against JPL Horizons, and fitted the ITF
 designations that already span 3+ nights. M2 built the MPChecker / SkyBoT / SBIDENT /

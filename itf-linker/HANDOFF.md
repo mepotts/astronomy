@@ -5,17 +5,21 @@ knowledge in this repository is not the code — it is the list of things that w
 measured, and found to be wrong. That list is spread across eight documents and would
 otherwise have to be rediscovered.
 
-**One-line status:** M0–M5 + M7–M8 complete, the MPC's Isolated Tracklet File searched at
+**One-line status:** M0–M5 + M7–M9 complete, the MPC's Isolated Tracklet File searched at
 ~100% coverage on both slices, **zero linking discoveries**, 467 tests green. The durable
 outputs are a validated linking pipeline, a daily archive that independently confirmed 21
 of its own groupings, a replicated methodological result drafted for publication — and an
-**attribution** capability (ITF tracklet → known orbit) that M8 took to production scale:
-a perturbed ephemeris backend measured against Horizons (degree-scale two-body error at
-5–15 y → tens of arcsec), the full Feb+April Rubin batches swept under a decoy control,
-and **candidate ledger v2: 482 unsubmitted precovery candidates across 450 objects,
-90% beyond the old 4-year window** (`M8-RESULTS.md` §7) — plus M7's held pair
-(2025 PD152 ← two 2022 Pan-STARRS tracklets; 2025 MQ241 borderline), all awaiting
-Matthew's per-batch review. Nothing has ever been submitted.
+**attribution** capability (ITF tracklet → known orbit) at production scale: a perturbed
+ephemeris backend measured against Horizons (and to 28 y on TNOs: ≤ 0.45″), the full
+Feb+April Rubin batches plus the June/July/August partitions swept under decoy controls,
+and a candidate ledger now holding **733 live unsubmitted PASS rows across ~695 objects
+(M8's 482 + M9's 272, 90% beyond the old 4-year window), a 45-object combined-fit tier
+(40 passing, arc extensions to +5,107 d), 87 of 88 lost-object ambiguities resolved** —
+plus M7's held pair (2025 PD152; 2025 MQ241 borderline, joined by M9's 2026 AK20), all
+awaiting Matthew's per-batch review. **The MPC independently confirmed 30/30 of the M8
+candidates it consumed in the two days after M8 ran** (`M9-RESULTS.md` §5) — external
+ground truth for the chain, and a measured decay clock on the ledger's submission value.
+Nothing has ever been submitted.
 
 ---
 
@@ -33,6 +37,7 @@ Matthew's per-batch review. Nothing has ever been submitted.
 | 8 | `M5-RESULTS.md` | The older 80% of the file, fitted completely |
 | 9 | `M7-RESULTS.md` | **Attribution** (tracklet → known orbit) against Rubin's bulk-batch orbits: the measured two-body window, the decoy control, and why the MPC got there first |
 | 10 | `M8-RESULTS.md` | Attribution at **full batch scale**: the perturbed backend (measured ~100× tighter than two-body at 5–15 y), bulk MPCORB orbits, the decoy at scale, the checkpointed fit queue, ledger v2, and the batch watcher |
+| 11 | `M9-RESULTS.md` | The unconsumed partitions consumed, the queue extended under a pre-registered stopping rule, combined fits for the multi-tracklet tier, the 88 ambiguities adjudicated — and the MPC **independently confirming 30/30 consumed M8 candidates**, ground truth the chain never had before |
 | 11 | `SNAPSHOT-VALIDATION.md` | The one check independent of the whole pipeline |
 | 11 | `docs/archive-operations.md` | How the daily archive runs and how it has failed |
 | 12 | `docs/rnaas-subset-guard.md` + `rnaas-notes.md` | The publishable finding, and its 14 known weaknesses |
@@ -78,6 +83,8 @@ before re-deriving anything or asserting a claim from an older document.**
 | **`fo` residual records name the station `obscode`, not `obs_code`** | The wrong key matches nothing, so per-tracklet residual checks silently report every tracklet as *unused* — inverting the subset-guard question in M7's joint fits | Verified against a live `total.json` before trusting it; `scripts/m7_attribution.py` |
 | **`_relabel` truncates to the 7-character trkSub field** | An 8-character fit tag (`m7att000`) silently labels the obs file `m7att00`; two tags in one run could collide into one object | 7-character tags; noted in `M7-RESULTS.md` §10 |
 | **`get-obs` OBS80 for a merged object interleaves multiple packed designations** | Fed to `fo` unrelabelled, the "baseline" fit is per-designation *fragments*, not the object (2025 MH98 = three designations) | Relabel under one tag before any fit; `M7-RESULTS.md` §10 |
+| **M8's resume path dropped `real_matches` from the final report** | The 08-17 tranche-2 run silently destroyed the 119,607-row ranked queue; `--resume-sweep` would KeyError, and "rank 901" pointed at nothing | Fixed in `m8_attribution.py`; queue regenerated bit-compatibly from the reconstructed snapshot (M9 §0.1, §10). Pre-fix report preserved at `data/raw/rubin/m8-attribution-asof-20260817.json` |
+| **Same-station sibling tracklets break JD-window residual attribution** | Pan-STARRS pairs can share the same *exposures* with near-duplicate astrometry 0.03–0.16″ apart; an obscode+JD-window match then counts the sibling's rows as yours (`obs_used > n_obs` on 7 of 29 combined fits) | Match per observation by epoch **and** observed RA/Dec (fo residual records carry both); `scripts/m9_combined.py`, `M9-RESULTS.md` §6 |
 
 ### Environment and harness traps
 
@@ -92,6 +99,8 @@ before re-deriving anything or asserting a claim from an older document.**
 - **In the Asteroid Institute replica, the discovery asterisk is the `disc` column ('*')** — `designation_asterisk` is an all-null Boolean (2026-08-16). `disc` reproduces M7's Feb count (17,043) exactly.
 - **A per-night scalar `astropy` ephemeris call costs milliseconds of Time-object overhead** — across 5k nights × dozens of orbit chunks × two sweeps that is minutes of pure overhead. Precompute Earth's state for all night midpoints in one vectorised call. `scripts/m8_attribution.py::NightIndex`.
 - **The MPC newsletter index moved to Buttondown** (`buttondown.com/MPC_newsletter/archive/`; linked from the MPC front page). Every plausible `minorplanetcenter.net` index path 404s; the per-issue PDFs under `/media/newsletters/` still resolve. `scripts/watch_rubin_batches.py`.
+- **The daily archive re-pulls the ITF under this repo**, so `data/raw/itf.txt.gz` and `data/parquet/itf_observations.parquet` are *the newest pull*, not the one the last milestone used — between M8 and M9 the MPC consumed 22,353 observations and the files moved. Pin the snapshot explicitly for any resumed or comparative work; the archive's content-addressed `obs_key` tables reconstruct an old snapshot exactly (`scripts/m9_reconstruct_snapshot.py`, `M9-RESULTS.md` §0.1).
+- **Rubin partition size says nothing about attribution content.** The 100 MB 2026-08-10 partition is 99.4% numbered-object rows; two 13 MB partitions carry zero unnumbered objects; a 3.2 MB one carries 412 new discoveries. Measure `permid`/`provid` before planning a sweep (`M9-RESULTS.md` §1).
 
 ## 3. Standing constraints
 
@@ -125,6 +134,11 @@ before re-deriving anything or asserting a claim from an older document.**
 - The **archive misses days when the machine is off.** An always-on host on a residential
   connection would close that; see `docs/archive-operations.md` §1.
 - The **MPC reachability email is drafted and unsent** — `docs/archive-operations.md` §5.
+- **The candidate ledger decays at a measured rate.** The MPC's own designation-time
+  sweeps consumed 21 of M8's 482 PASS candidates within two days (2026-08-16 → 08-18),
+  every one into the object the ledger had named (`M9-RESULTS.md` §5). Confirmation of
+  the chain, and a clock on Matthew's review: unsubmitted candidates are being
+  independently harvested from the head of the same distribution.
 - ~~**Attribution's lookback is bounded at 4 years by measurement, not preference.**~~
   **Closed by M8 (2026-08-17):** the perturbed backend (`attrib/perturbed.py` — Sun +
   eight planets as point masses, vectorised RK4, dense Hermite output; a justified

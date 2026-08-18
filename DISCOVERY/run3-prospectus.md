@@ -175,7 +175,11 @@ thread · competition: two small groups · SPHEREx adds a new axis*
 Hephaistos II's 7 candidates are dying one by one (radio imaging
 [killed G](https://arxiv.org/abs/2501.05152); a
 [Jul 2026 diagnostics paper](https://arxiv.org/abs/2607.03619) finds B & C contaminated, **D & I
-still clean** — and says vetting is incomplete). **Nobody has redone the full 5M-star screen** with
+still clean** — and says vetting is incomplete). ⚠️ *dyson-revet M1 correction (2026-08-18): D was
+killed by JWST on 2026-07-10 ([Hephaistos IV, arXiv:2607.09460](https://arxiv.org/abs/2607.09460)
+— a z≈0.9 galaxy 1″ away); **I is the last candidate standing (M1 verdict: INDETERMINATE)**, and
+Ren+24's hot-DOG surface density carries a 3600× unit error — the dominant contaminant class is
+faint red galaxies. See [`../dyson-revet/M1-reproduce-and-vet.md`](../dyson-revet/M1-reproduce-and-vet.md).* **Nobody has redone the full 5M-star screen** with
 blend forward-modeling and hot-DOG surface-density priors. That is the house method — kill the fake
 wins — and the deliverable is valuable either way: a quantified null on the method's yield, or a
 defensibly clean extreme-IR-excess catalog (debris disks, WD pollution — the
