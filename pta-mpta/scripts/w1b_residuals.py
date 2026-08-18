@@ -45,6 +45,19 @@ def main():
     if not par.exists():
         sys.exit(f"missing {par}")
 
+    # Release quirk (12/83 pars): "TRACK -2" asks tempo2 to use tim-file
+    # pulse numbers, but the released tims carry none -> PINT refuses to
+    # form residuals. Strip the directive (A1 then measures whether the
+    # PINT residuals still match the in-release TRES).
+    text = par.read_text()
+    if any(ln.split()[:1] == ["TRACK"] for ln in text.splitlines()):
+        TDBDIR.mkdir(exist_ok=True)
+        par = TDBDIR / f"{args.psr}.notrack.par"
+        par.write_text("\n".join(
+            ln for ln in text.splitlines()
+            if ln.split()[:1] != ["TRACK"]) + "\n")
+        print(f"stripped TRACK   : wrote {par.name}")
+
     tres_pub = float(par_value(par, "TRES")[0])          # us, tempo2's own fit
     chi2r_pub = float(par_value(par, "CHI2R")[0])
     ntoa_pub = int(par_value(par, "NTOA")[0])
@@ -55,8 +68,10 @@ def main():
     from pint.residuals import Residuals
 
     t0 = time.perf_counter()
+    # allow_T2: tempo2 generic T2 binaries (J0437-4715) are auto-mapped to
+    # the closest PINT model (DDK when KIN/KOM present); A1 gates fidelity.
     model, toas = get_model_and_toas(str(par), str(tim), allow_tcb=True,
-                                     planets=True)
+                                     allow_T2=True, planets=True)
     t_load = time.perf_counter() - t0
 
     res = Residuals(toas, model)

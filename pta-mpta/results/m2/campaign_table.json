@@ -1,0 +1,179 @@
+{
+  "generated_utc": "2026-08-18T20:01:16Z",
+  "n_gate_met": 10,
+  "n_full_agreement": 9,
+  "table": [
+    {
+      "psr": "J1713+0747",
+      "run": "J1713+0747_noise_c1",
+      "gate_met": true,
+      "raw_iters": 228000,
+      "stable": true,
+      "agree": "5/5",
+      "full_agreement": true,
+      "eval_ms": 15.57,
+      "elapsed_min": 7.3,
+      "exit": "gate_met",
+      "misses": []
+    },
+    {
+      "psr": "J2241-5236",
+      "run": "J2241-5236_noise_c1",
+      "gate_met": true,
+      "raw_iters": 167000,
+      "stable": true,
+      "agree": "5/5",
+      "full_agreement": true,
+      "eval_ms": 41.61,
+      "elapsed_min": 5.1,
+      "exit": "gate_met",
+      "misses": []
+    },
+    {
+      "psr": "J0437-4715",
+      "run": "J0437-4715_noise_c1",
+      "gate_met": true,
+      "raw_iters": 140000,
+      "stable": true,
+      "agree": "8/8",
+      "full_agreement": true,
+      "eval_ms": 78.28,
+      "elapsed_min": 61.2,
+      "exit": "gate_met",
+      "misses": []
+    },
+    {
+      "psr": "J1909-3744",
+      "run": "J1909-3744_noise_blind1",
+      "gate_met": true,
+      "raw_iters": 136000,
+      "stable": true,
+      "agree": "9/9",
+      "full_agreement": true,
+      "eval_ms": 88.98,
+      "elapsed_min": 106.2,
+      "exit": "gate_met",
+      "misses": []
+    },
+    {
+      "psr": "J1744-1134",
+      "run": "J1744-1134_noise_c1",
+      "gate_met": true,
+      "raw_iters": 151000,
+      "stable": true,
+      "agree": "7/7",
+      "full_agreement": true,
+      "eval_ms": 46.06,
+      "elapsed_min": 5.8,
+      "exit": "gate_met",
+      "misses": []
+    },
+    {
+      "psr": "J0125-2327",
+      "run": "J0125-2327_noise_c1",
+      "gate_met": true,
+      "raw_iters": 153000,
+      "stable": true,
+      "agree": "6/6",
+      "full_agreement": true,
+      "eval_ms": 49.6,
+      "elapsed_min": 6.9,
+      "exit": "gate_met",
+      "misses": []
+    },
+    {
+      "psr": "J1946-5403",
+      "run": "J1946-5403_noise_c1",
+      "gate_met": true,
+      "raw_iters": 218000,
+      "stable": true,
+      "agree": "2/2",
+      "full_agreement": true,
+      "eval_ms": 8.29,
+      "elapsed_min": 6.1,
+      "exit": "gate_met",
+      "misses": []
+    },
+    {
+      "psr": "J1600-3053",
+      "run": "J1600-3053_noise_c1",
+      "gate_met": true,
+      "raw_iters": 201000,
+      "stable": true,
+      "agree": "12/12",
+      "full_agreement": true,
+      "eval_ms": 51.88,
+      "elapsed_min": 75.4,
+      "exit": "gate_met",
+      "misses": []
+    },
+    {
+      "psr": "J1017-7156",
+      "run": "J1017-7156_noise_c1",
+      "gate_met": true,
+      "raw_iters": 182000,
+      "stable": true,
+      "agree": "14/16",
+      "full_agreement": false,
+      "eval_ms": 66.91,
+      "elapsed_min": 60.1,
+      "exit": "gate_met",
+      "misses": [
+        "J1017-7156_chrom_gp_gamma",
+        "J1017-7156_chrom_gp_log10_A"
+      ],
+      "diagnostic": {
+        "lnl_published": 41449.766861944954,
+        "lnl_chain_best": 41454.54959645039,
+        "delta": -4.782734505439294,
+        "reading": "our likelihood prefers our solution -> convention/model finding"
+      }
+    },
+    {
+      "psr": "J2129-5721",
+      "run": "J2129-5721_noise_c1",
+      "gate_met": true,
+      "raw_iters": 401000,
+      "stable": true,
+      "agree": "8/8",
+      "full_agreement": true,
+      "eval_ms": 34.42,
+      "elapsed_min": 32.2,
+      "exit": "gate_met",
+      "misses": []
+    }
+  ],
+  "j1909_chains": {
+    "J1909-3744_noise_blind1": {
+      "exit": "gate_met",
+      "gate": true,
+      "raw": 136000,
+      "stable": true,
+      "lnl_best": 97308.415683,
+      "frac_dm_mode": 1.0,
+      "agree": "9/9",
+      "x0_kind": "prior-draw"
+    },
+    "J1909-3744_noise_blind2": {
+      "exit": "gate_met",
+      "gate": true,
+      "raw": 135000,
+      "stable": true,
+      "lnl_best": 97308.249924,
+      "frac_dm_mode": 1.0,
+      "agree": "9/9",
+      "x0_kind": "prior-draw"
+    },
+    "J1909-3744_noise_informed": {
+      "exit": "gate_met",
+      "gate": true,
+      "raw": 139000,
+      "stable": true,
+      "lnl_best": 97308.201451,
+      "frac_dm_mode": 1.0,
+      "agree": "9/9",
+      "x0_kind": "published-MAP"
+    }
+  },
+  "published_source": "arXiv:2412.01148 Tables 'MPTA noise models' + 'MPTA determinstic models' (LaTeX source, retrieved 2026-08-16)"
+}

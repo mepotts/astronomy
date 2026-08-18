@@ -1,0 +1,200 @@
+{
+  "run_id": "J1713+0747_noise_c1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 9217,
+  "seed": 101,
+  "ndim": 5,
+  "x0_kind": "prior-draw",
+  "x0": [
+    3.614790393917123,
+    -14.005326891923021,
+    0.23952370974267503,
+    -16.79934840642428,
+    -6.573615091513437
+  ],
+  "started_utc": "2026-08-18T18:49:33Z",
+  "wall_budget_min": 480.0,
+  "gate_raw_postburn": 100000,
+  "nice": 19,
+  "omp_threads": "1",
+  "eval_ms": 15.57,
+  "first_eval_s": 0.06,
+  "meta": {
+    "psr": "J1713+0747",
+    "ntoa": 1273,
+    "tspan_days": 722.7870333029937,
+    "tmin_mjd": 58596.16406332804,
+    "tmax_mjd": 59318.95109663103,
+    "fl": false,
+    "kind": "noise",
+    "whites_fixed": null
+  },
+  "chunks": [
+    {
+      "iters": 39000,
+      "seconds": 440.3,
+      "it_per_s": 88.57,
+      "loadavg": 32.8,
+      "total_raw": 228000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 22801,
+    "post_burn_rows": 17101,
+    "raw_iters": 228000,
+    "raw_postburn": 171010,
+    "lnl_max": 15893.781671,
+    "acc_rate": 0.378685,
+    "stable": true,
+    "params": [
+      {
+        "param": "J1713+0747_chrom_gp_gamma",
+        "median": 1.0388782403782135,
+        "ci68": [
+          0.32812395057168287,
+          3.693598510973623
+        ],
+        "halfshift": 0.0005,
+        "tol": 0.3,
+        "stable": true
+      },
+      {
+        "param": "J1713+0747_chrom_gp_log10_A",
+        "median": -14.89243454966489,
+        "ci68": [
+          -16.748092861560114,
+          -14.46663476117237
+        ],
+        "halfshift": 0.0056,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1713+0747_efac",
+        "median": 1.0668853313063467,
+        "ci68": [
+          1.0451834866310625,
+          1.0885145499577205
+        ],
+        "halfshift": 0.0002,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1713+0747_gw13_log10_A",
+        "median": -15.684975976296194,
+        "ci68": [
+          -17.261027033133004,
+          -14.053208406319358
+        ],
+        "halfshift": 0.0402,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1713+0747_log10_ecorr",
+        "median": -6.876962711128871,
+        "ci68": [
+          -6.950072454824163,
+          -6.805936539645087
+        ],
+        "halfshift": 0.0019,
+        "tol": 0.1,
+        "stable": true
+      }
+    ]
+  },
+  "updated_utc": "2026-08-18T18:56:31Z",
+  "elapsed_min": 7.3,
+  "best_point": {
+    "J1713+0747_chrom_gp_gamma": 0.6041341095453394,
+    "J1713+0747_chrom_gp_log10_A": -14.687266586383318,
+    "J1713+0747_efac": 1.058211799080606,
+    "J1713+0747_gw13_log10_A": -17.08231935728964,
+    "J1713+0747_log10_ecorr": -6.893364915282369
+  },
+  "lnl_best": 15893.781671,
+  "a2": [
+    {
+      "param": "J1713+0747_chrom_gp_gamma",
+      "key": "chrom_gamma",
+      "median": 1.0388782403782135,
+      "ci68": [
+        0.32812395057168287,
+        3.693598510973623
+      ],
+      "published_map": 0.6,
+      "published_ci": [
+        0.33999999999999997,
+        4.26
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1713+0747_chrom_gp_log10_A",
+      "key": "chrom_log10_A",
+      "median": -14.89243454966489,
+      "ci68": [
+        -16.748092861560114,
+        -14.46663476117237
+      ],
+      "published_map": -14.69,
+      "published_ci": [
+        -18.05,
+        -14.51
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1713+0747_efac",
+      "key": "efac",
+      "median": 1.0668853313063467,
+      "ci68": [
+        1.0451834866310625,
+        1.0885145499577205
+      ],
+      "published_map": 1.07,
+      "published_ci": [
+        1.05,
+        1.09
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1713+0747_gw13_log10_A",
+      "key": "gw13_log10_A",
+      "median": -15.684975976296194,
+      "ci68": [
+        -17.261027033133004,
+        -14.053208406319358
+      ],
+      "published_map": -16.59,
+      "published_ci": [
+        -17.16,
+        -14.04
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1713+0747_log10_ecorr",
+      "key": "log10_ecorr",
+      "median": -6.876962711128871,
+      "ci68": [
+        -6.950072454824163,
+        -6.805936539645087
+      ],
+      "published_map": -6.86,
+      "published_ci": [
+        -6.95,
+        -6.8100000000000005
+      ],
+      "agree": true
+    }
+  ],
+  "n_agree": 5,
+  "n_compared": 5,
+  "verdict": "CONVERGED-AGREES 5/5"
+}

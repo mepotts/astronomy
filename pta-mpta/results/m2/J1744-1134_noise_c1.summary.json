@@ -1,0 +1,257 @@
+{
+  "run_id": "J1744-1134_noise_c1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 9223,
+  "seed": 105,
+  "ndim": 7,
+  "x0_kind": "prior-draw",
+  "x0": [
+    0.5103256270922727,
+    -15.665455952646994,
+    -5.703221274556764,
+    -9.471565823404578,
+    3.749480308152277,
+    -9.299414732747184,
+    8.905037360101066
+  ],
+  "started_utc": "2026-08-18T18:49:34Z",
+  "wall_budget_min": 480.0,
+  "gate_raw_postburn": 100000,
+  "nice": 19,
+  "omp_threads": "1",
+  "eval_ms": 46.06,
+  "first_eval_s": 0.09,
+  "meta": {
+    "psr": "J1744-1134",
+    "ntoa": 2957,
+    "tspan_days": 1558.727368706509,
+    "tmin_mjd": 58596.17708800987,
+    "tmax_mjd": 60154.90445671638,
+    "fl": false,
+    "kind": "noise",
+    "whites_fixed": null
+  },
+  "chunks": [
+    {
+      "iters": 13000,
+      "seconds": 348.0,
+      "it_per_s": 37.36,
+      "loadavg": 34.69,
+      "total_raw": 151000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 15101,
+    "post_burn_rows": 11326,
+    "raw_iters": 151000,
+    "raw_postburn": 113260,
+    "lnl_max": 36519.08901,
+    "acc_rate": 0.321734,
+    "stable": true,
+    "params": [
+      {
+        "param": "J1744-1134_efac",
+        "median": 1.0279014759773974,
+        "ci68": [
+          1.013302460328744,
+          1.0435513373600354
+        ],
+        "halfshift": 0.0006,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1744-1134_gw13_log10_A",
+        "median": -16.19325453585346,
+        "ci68": [
+          -17.45897611397996,
+          -14.938324240230775
+        ],
+        "halfshift": 0.0111,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1744-1134_log10_ecorr",
+        "median": -6.60350199764398,
+        "ci68": [
+          -6.644904401807768,
+          -6.559118742494316
+        ],
+        "halfshift": 0.0017,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1744-1134_log10_tnequad",
+        "median": -7.026657598869939,
+        "ci68": [
+          -7.07542451666681,
+          -6.981468785480894
+        ],
+        "halfshift": 0.0014,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1744-1134_sw_gp_gamma",
+        "median": 1.0447653606396006,
+        "ci68": [
+          0.42048141399857464,
+          1.781215755746997
+        ],
+        "halfshift": 0.0228,
+        "tol": 0.3,
+        "stable": true
+      },
+      {
+        "param": "J1744-1134_sw_gp_log10_A",
+        "median": -6.473652386818429,
+        "ci68": [
+          -6.683736613735642,
+          -6.280924603780336
+        ],
+        "halfshift": 0.0024,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "n_earth",
+        "median": 3.7735128411979106,
+        "ci68": [
+          2.6430196878426804,
+          4.857588194232385
+        ],
+        "halfshift": 0.0331,
+        "tol": 0.3,
+        "stable": true
+      }
+    ]
+  },
+  "updated_utc": "2026-08-18T18:55:05Z",
+  "elapsed_min": 5.8,
+  "best_point": {
+    "J1744-1134_efac": 1.0241935847679495,
+    "J1744-1134_gw13_log10_A": -17.425921886336518,
+    "J1744-1134_log10_ecorr": -6.601667065685374,
+    "J1744-1134_log10_tnequad": -7.019108598952196,
+    "J1744-1134_sw_gp_gamma": 0.8315437745382133,
+    "J1744-1134_sw_gp_log10_A": -6.499516968680154,
+    "n_earth": 3.9826746502114934
+  },
+  "lnl_best": 36519.08901,
+  "frac_n_earth_lt_15": 1.0,
+  "a2": [
+    {
+      "param": "J1744-1134_efac",
+      "key": "efac",
+      "median": 1.0279014759773974,
+      "ci68": [
+        1.013302460328744,
+        1.0435513373600354
+      ],
+      "published_map": 1.03,
+      "published_ci": [
+        1.02,
+        1.05
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1744-1134_gw13_log10_A",
+      "key": "gw13_log10_A",
+      "median": -16.19325453585346,
+      "ci68": [
+        -17.45897611397996,
+        -14.938324240230775
+      ],
+      "published_map": -16.18,
+      "published_ci": [
+        -17.419999999999998,
+        -15.0
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1744-1134_log10_ecorr",
+      "key": "log10_ecorr",
+      "median": -6.60350199764398,
+      "ci68": [
+        -6.644904401807768,
+        -6.559118742494316
+      ],
+      "published_map": -6.59,
+      "published_ci": [
+        -6.6499999999999995,
+        -6.56
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1744-1134_log10_tnequad",
+      "key": "log10_tnequad",
+      "median": -7.026657598869939,
+      "ci68": [
+        -7.07542451666681,
+        -6.981468785480894
+      ],
+      "published_map": -7.04,
+      "published_ci": [
+        -7.08,
+        -6.99
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1744-1134_sw_gp_gamma",
+      "key": "sw_gamma",
+      "median": 1.0447653606396006,
+      "ci68": [
+        0.42048141399857464,
+        1.781215755746997
+      ],
+      "published_map": 0.91,
+      "published_ci": [
+        0.09999999999999998,
+        1.57
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1744-1134_sw_gp_log10_A",
+      "key": "sw_log10_A",
+      "median": -6.473652386818429,
+      "ci68": [
+        -6.683736613735642,
+        -6.280924603780336
+      ],
+      "published_map": -6.43,
+      "published_ci": [
+        -6.8,
+        -6.279999999999999
+      ],
+      "agree": true
+    },
+    {
+      "param": "n_earth",
+      "key": "n_earth",
+      "median": 3.7735128411979106,
+      "ci68": [
+        2.6430196878426804,
+        4.857588194232385
+      ],
+      "published_map": 3.73,
+      "published_ci": [
+        2.63,
+        4.82
+      ],
+      "agree": true
+    }
+  ],
+  "n_agree": 7,
+  "n_compared": 7,
+  "verdict": "CONVERGED-AGREES 7/7"
+}
