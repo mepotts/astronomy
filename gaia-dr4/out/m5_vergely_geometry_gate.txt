@@ -1,0 +1,30 @@
+M5 Vergely+2022 reader -- pre-registered geometry gate (2026-08-18)
+========================================================================
+
+validation sightlines: 4000 drawn (seed 20261202) from dust_retriage rows with 200 <= d <= 1250 pc (inside BOTH map volumes); required >= 2000
+
+G1 -- axis convention vs Edenhofer 2023 (Spearman rho):
+  declared : rho = +0.9656  (n = 3404)
+  swap_xy  : rho = +0.4113  (n = 3404)
+  flip_x   : rho = +0.3840  (n = 3404)
+  flip_y   : rho = +0.3964  (n = 3404)
+  margin of declared over the best corruption: +0.5543 (required >= 0.2)
+
+G2 -- E_V22(025pc) / E_Edenhofer: median 1.010 (10-90%: 0.706-1.457); required in [0.5, 2.0]
+G3 -- E_V22(025pc) / E_V22(050pc): median 0.977; required in [0.8, 1.25]
+
+GEOMETRY GATE: PASS -- the reader may be used.
+
+CONTROL -- V22 vs Bayestar19 on the 9 rows B19 already arbitrated:
+  at the CENTRAL value, V22 reproduces B19's class-III verdict on 9 of 9 (both chains)
+  after the +-1 sigma robustness test (which M4's B19 pass did not apply): 8 of 9 stay clean
+  median E_V22 / E_B19 = 1.253 (range 0.857-1.544)
+
+SOUTH -- the 4 rows M4 could not reach: {'SURVIVES_v22': 4}
+  5541388898616068224  dec -36.6  d 2281 pc  E_eden 0.214  E_V22 0.304 +- 0.040  E_SFD 0.997  -> class 3/3  SURVIVES_v22
+  5547414810758429056  dec -33.5  d 2838 pc  E_eden 0.307  E_V22 0.381 +- 0.052  E_SFD 0.845  -> class 3/3  SURVIVES_v22
+  5858664081383081600  dec -65.7  d 2506 pc  E_eden 0.241  E_V22 0.316 +- 0.015  E_SFD 0.883  -> class 3/3  SURVIVES_v22
+  5984963087901124352  dec -46.4  d 1643 pc  E_eden 0.563  E_V22 0.523 +- 0.050  E_SFD 1.144  -> class 3/3  SURVIVES_v22
+
+summary over all 13: {'SURVIVES_v22': 12, 'UNRESOLVED_sigma_flips_verdict': 1}
+V22 below the Edenhofer floor (map tension, clamped): 2

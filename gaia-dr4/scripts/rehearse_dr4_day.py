@@ -24,6 +24,13 @@ Stages (each timed; failure branches noted in DR4-DAY-RUNBOOK.md):
   G. bulletin        day-one candidate bulletin CSV assembled from the
                      rehearsal triage + covariance probabilities (+ dust
                      tier columns when present).
+  H. day-one queue   (M5) the epoch-vet queue, emitted BY THE DRIVER through
+                     the shared builder scripts/m5_day1_queue.py -- main
+                     class-III bin + the retrieval bin's Pr >= 0.999, every
+                     caution flag, BH1/BH2 acceptance asserted inside the
+                     builder.  M4 produced this file from a separate
+                     one-off script; December 2 must not depend on anyone
+                     remembering to run it.
 
 Output: data/rehearsal/* + out/rehearsal_timings.csv
 Run   : .venv/Scripts/python.exe scripts/rehearse_dr4_day.py
@@ -62,6 +69,7 @@ DR4_ONLY_TOKENS = [
 DR4_ONLY_SOLUTION_TYPES = ["'OrbitalPoorlyConstrained', "]
 
 TIMINGS = []
+NOTES = {}          # stage -> free-text note carried into the timings CSV
 
 
 def stage(name):
@@ -73,28 +81,94 @@ def stage(name):
                 result = fn(*a, **k)
                 status = "OK"
             except Exception:
-                TIMINGS.append({"stage": name, "seconds": round(time.time()-t0, 1),
-                                "status": "FAIL"})
+                TIMINGS.append({"stage": name,
+                                "seconds": round(time.time()-t0, 1),
+                                "status": "FAIL",
+                                "note": NOTES.get(name, "")})
                 raise
             TIMINGS.append({"stage": name, "seconds": round(time.time()-t0, 1),
-                            "status": status})
+                            "status": status, "note": NOTES.get(name, "")})
             print(f"=== stage {name}: {time.time()-t0:.1f}s ===", flush=True)
             return result
         return wrapper
     return deco
 
 
-def sync_csv(q, timeout=300):
-    r = requests.post(ENDPOINT, data={"REQUEST": "doQuery", "LANG": "ADQL",
-                                      "FORMAT": "csv", "QUERY": q},
+RETRIES = 6
+BACKOFF_S = 5.0
+
+# M5, 2026-08-18: ESAC's sync endpoint spent the afternoon alternating
+# between 30-80 s replies, HTTP 500 and read-timeouts, and its
+# TAP_SCHEMA.columns path was effectively unusable.  Two official Gaia
+# partner-data-centre DR3 mirrors answered the same ADQL in under 2 s.
+#
+# WHERE FAILOVER IS AND IS NOT ALLOWED (this distinction is the point):
+#   stage A (TAP_SCHEMA introspection) MAY fail over -- it asks "does this
+#     column exist in gaiadr3", and a DR3 mirror answers that identically.
+#   stage B/C (the actual data path) MUST NOT -- the rehearsal parquet has
+#     to stay byte-identical to the M2/M3 production pull, and on
+#     2026-12-02 only ESAC will have DR4 at all.  Those stay ESAC-only and
+#     rely on the retry plus the pull's resumability.
+SCHEMA_ENDPOINTS = [
+    ("esac", ENDPOINT),
+    ("ari", "https://gaia.ari.uni-heidelberg.de/tap/sync"),
+]
+SCHEMA_TIMEOUT = 30     # a TAP_SCHEMA query that takes 30 s is a sick
+                        # endpoint, not a big query -- ARI answers in 0.6 s
+SERVED_BY = {}          # stage -> set of hostnames that answered
+
+
+def _sync(url, q, timeout):
+    r = requests.post(url, data={"REQUEST": "doQuery", "LANG": "ADQL",
+                                 "FORMAT": "csv", "QUERY": q},
                       timeout=timeout)
     r.raise_for_status()
     return pd.read_csv(io.StringIO(r.text))
 
 
+def sync_csv(q, timeout=300):
+    """Sync CSV against ESAC with bounded retry.  A retry cannot change the
+    result; it only stops one flaky response from killing the rehearsal."""
+    last = None
+    for attempt in range(RETRIES):
+        try:
+            return _sync(ENDPOINT, q, timeout)
+        except Exception as e:            # noqa: BLE001 - retry anything
+            last = e
+            if attempt == RETRIES - 1:
+                break
+            wait = BACKOFF_S * (attempt + 1)
+            print(f"  sync_csv {type(e).__name__} -- retry "
+                  f"{attempt+1}/{RETRIES-1} in {wait:.0f}s", flush=True)
+            time.sleep(wait)
+    raise RuntimeError(f"sync_csv failed after {RETRIES} attempts: "
+                       f"{type(last).__name__}: {last}")
+
+
+def sync_csv_schema(q, stage_name="A_schema_pin"):
+    """TAP_SCHEMA introspection with endpoint failover (see the comment
+    above for why this is allowed here and nowhere else).  Two attempts per
+    endpoint, short timeout -- a schema query that takes 90 s is a sick
+    endpoint, not a big query."""
+    last = None
+    for name, url in SCHEMA_ENDPOINTS:
+        for attempt in range(2):
+            try:
+                df = _sync(url, q, SCHEMA_TIMEOUT)
+                SERVED_BY.setdefault(stage_name, set()).add(name)
+                return df
+            except Exception as e:        # noqa: BLE001
+                last = e
+                print(f"  schema query on {name}: {type(e).__name__} "
+                      f"(attempt {attempt+1}/2)", flush=True)
+                time.sleep(BACKOFF_S)
+    raise RuntimeError(f"schema query failed on every endpoint: "
+                       f"{type(last).__name__}: {last}")
+
+
 @stage("A_schema_pin")
 def stage_a():
-    schemas = sync_csv("SELECT schema_name FROM TAP_SCHEMA.schemas")
+    schemas = sync_csv_schema("SELECT schema_name FROM TAP_SCHEMA.schemas")
     names = set(schemas["schema_name"].astype(str))
     assert "gaiadr3" in names, "gaiadr3 schema missing?!"
     print(f"schemas: {len(names)} (gaiadr3 present)")
@@ -111,13 +185,20 @@ def stage_a():
                                   "combination_method"],
     }
     for tab, cols in need.items():
-        live = sync_csv(f"SELECT column_name FROM TAP_SCHEMA.columns "
-                        f"WHERE table_name = '{tab}'")
+        live = sync_csv_schema(f"SELECT column_name FROM TAP_SCHEMA.columns "
+                               f"WHERE table_name = '{tab}'")
         live_cols = set(live["column_name"].astype(str).str.lower())
         missing = [c for c in cols if c not in live_cols]
         print(f"{tab}: {len(live_cols)} live columns; "
               f"missing of ours: {missing if missing else 'none'}")
         assert not missing, f"{tab} misses {missing}"
+    served = sorted(SERVED_BY.get("A_schema_pin", set()))
+    print(f"schema introspection served by: {', '.join(served)}")
+    if served != ["esac"]:
+        NOTES["A_schema_pin"] = (
+            f"ESAC's TAP_SCHEMA path was unusable; introspection failed "
+            f"over to {', '.join(served)} (allowed: DR3 schema only, never "
+            f"the data path)")
 
 
 @stage("B_rename_patch")
@@ -157,8 +238,23 @@ def stage_b():
 
 @stage("C_planB_ranged_pull")
 def stage_c():
+    import glob
     import pull_dr3_nss_orbits_ranged as ranged
     ranged.RANGE_DIR = os.path.join(REH, "range_chunks")
+    cached = len(glob.glob(os.path.join(ranged.RANGE_DIR, "range_*.parquet")))
+    if cached:
+        # The ranged puller is resumable by design: a range whose parquet is
+        # already on disk with the expected count is skipped.  On a re-run
+        # that means the wall clock measures cache validation + the live
+        # histogram + the live exact-COUNT guard, NOT a fresh 169k-row pull.
+        # Say so instead of quietly reporting a fast "pull".
+        NOTES["C_planB_ranged_pull"] = (
+            f"RESUMED from {cached} cached range chunks -- this timing is "
+            f"cache validation + live histogram + live exact-COUNT guard, "
+            f"not a fresh pull (fresh pull measured twice: M2 ~35 min, "
+            f"M3 38.7 min, byte-identical parquets)")
+        print(f"NOTE: {cached} range chunks already cached -- the pull will "
+              f"resume, not re-download (see NOTES)")
     ranged.OUT_PARQUET = os.path.join(REH, "dr4day_input.parquet")
     ranged.OUT_NOTE = os.path.join(REH, "dr4day_input.NOTE.md")
     ranged.main()
@@ -242,21 +338,128 @@ def stage_g():
     print(f"bulletin: {len(cand)} candidates -> {out}")
 
 
-def main():
+@stage("H_day1_queue")
+def stage_h():
+    """M5: the epoch-vet queue falls out of the driver, not out of a
+    separate script.  Built from the rehearsal's OWN triage output through
+    the shared builder (which asserts the BH1/BH2 acceptance itself)."""
+    from m5_day1_queue import build_queue, load_xray_keys, KEY, BASE_COLS
+
+    tri = pd.read_parquet(os.path.join(REH, "dr4day_triage.parquet"))
+    probs_p = os.path.join(BASE, "data", "dr3_corrvec_probs.parquet")
+    probs = pd.read_parquet(probs_p)[KEY + ["p_class3_corr"]]
+    tri = tri.merge(probs, on=KEY, how="left")
+
+    is3 = tri["class_det"] == 3
+    main_df = tri[is3 & tri["cuts_eb26"]].copy()
+    ret_df = tri[is3 & tri["cuts_core"] & tri["cut_gof"]
+                 & ~tri["cut_significance"]].copy()
+    for d in (main_df, ret_df):
+        d["m2_min"] = d["m2_min_dark"]
+    print(f"from the rehearsal triage: main bin {len(main_df)}, "
+          f"retrieval bin {len(ret_df)} "
+          f"({int((ret_df['p_class3_corr'] >= 0.999).sum())} at Pr>=0.999)")
+
+    eb = pd.read_csv(os.path.join(BASE, "fixtures",
+                                  "elbadry2026_astrometric_candidates.csv"))
+    ver_p = os.path.join(BASE, "out", "m5_vergely_dust_south.csv")
+    south, fragile = set(), set()
+    if os.path.exists(ver_p):
+        ver = pd.read_csv(ver_p)
+        south = set(ver.loc[ver["verdict"] == "UNRESOLVED_outside_box",
+                            "source_id"])
+        fragile = set(ver.loc[ver["verdict"]
+                              == "UNRESOLVED_sigma_flips_verdict",
+                              "source_id"])
+    # M5 caution flag: astrometric_gof_al below the 25th percentile of the
+    # day's OWN main bin (config v4 `astrometric_quality_flag`).  The column
+    # is already in the triage output, so this costs nothing extra -- the
+    # threshold is self-calibrating and moves with the release.
+    frames = []
+    if "astrometric_gof_al" in main_df.columns:
+        thr = float(np.nanpercentile(main_df["astrometric_gof_al"], 25))
+        quiet = pd.concat([main_df, ret_df])[["source_id",
+                                              "astrometric_gof_al"]]
+        quiet = quiet[quiet["astrometric_gof_al"] < thr]["source_id"]
+        frames.append(pd.DataFrame({"source_id": sorted(set(quiet)),
+                                    "flag_astrom_quiet": True}))
+        print(f"flag_astrom_quiet: astrometric_gof_al < {thr:.2f} "
+              f"(bottom quartile of the day's main bin)")
+    if fragile:
+        frames.append(pd.DataFrame({"source_id": sorted(fragile),
+                                    "flag_dust_sigma_fragile": True}))
+    extra = None
+    if frames:
+        extra = frames[0]
+        for f in frames[1:]:
+            extra = extra.merge(f, on="source_id", how="outer")
+
+    q = build_queue(
+        main_df, ret_df, eb,
+        xray_keys=load_xray_keys(os.path.join(BASE, "out",
+                                              "erosita_class3_xmatch.csv")),
+        south_unresolved=south, extra_flags=extra,
+        out_path=os.path.join(REH_OUT, "epoch_vet_day1_queue.csv"))
+    # the rehearsal runs the pre-dust triage, so its main bin is the 951,
+    # not the dust-corrected 949 -- state it rather than hide it
+    prod = os.path.join(BASE, "out", "epoch_vet_day1_queue.v2.csv")
+    if os.path.exists(prod):
+        p = pd.read_csv(prod)
+        print(f"vs the production (dust-corrected) queue: {len(q)} vs "
+              f"{len(p)} rows -- the rehearsal driver stops before the "
+              f"Phase-2 dust re-triage, so its main bin is the pre-dust "
+              f"class-III set")
+
+
+STAGES = [("A", stage_a), ("B", stage_b), ("C", stage_c), ("D", stage_d),
+          ("E", stage_e), ("F", stage_f), ("G", stage_g), ("H", stage_h)]
+STAGE_NAMES = {"A": "A_schema_pin", "B": "B_rename_patch",
+               "C": "C_planB_ranged_pull", "D": "D_triage_acceptance",
+               "E": "E_corrvec_note", "F": "F_epoch_vet", "G": "G_bulletin",
+               "H": "H_day1_queue"}
+
+
+def main(argv=None):
+    """--stages ABCDEFGH selects which stages run (default: all).
+
+    Stages A-C are the only network-bound ones.  When the archive is having
+    the kind of afternoon ESAC had on 2026-08-18, `--stages DEFGH` still
+    exercises everything downstream of the pull against the cached
+    rehearsal artifacts, and the skipped stages are written into
+    out/rehearsal_timings.csv as SKIPPED with the reason -- so a partial
+    rehearsal can never be mistaken for a green one.
+    """
+    argv = sys.argv[1:] if argv is None else argv
+    want = "ABCDEFGH"
+    reason = ""
+    if "--stages" in argv:
+        want = argv[argv.index("--stages") + 1].upper()
+    if "--reason" in argv:
+        reason = argv[argv.index("--reason") + 1]
     t0 = time.time()
     os.makedirs(REH, exist_ok=True)
-    stage_a()
-    stage_b()
-    stage_c()
-    stage_d()
-    stage_e()
-    stage_f()
-    stage_g()
+    for letter, fn in STAGES:
+        if letter in want:
+            fn()
+        else:
+            TIMINGS.append({"stage": STAGE_NAMES[letter], "seconds": 0.0,
+                            "status": "SKIPPED",
+                            "note": reason or "not requested"})
+            print(f"\n=== stage {STAGE_NAMES[letter]}: SKIPPED "
+                  f"({reason or 'not requested'}) ===")
     tdf = pd.DataFrame(TIMINGS)
+    tdf = tdf.set_index("stage").reindex(
+        [STAGE_NAMES[l] for l, _ in STAGES]
+        + [s for s in tdf["stage"] if s not in STAGE_NAMES.values()]
+    ).dropna(how="all").reset_index()
     tdf.to_csv(os.path.join(BASE, "out", "rehearsal_timings.csv"),
                index=False, lineterminator="\n")
     print("\n" + tdf.to_string(index=False))
-    print(f"\nREHEARSAL COMPLETE in {time.time()-t0:.0f}s")
+    n_skip = int((tdf["status"] == "SKIPPED").sum())
+    print(f"\nREHEARSAL {'COMPLETE' if not n_skip else 'PARTIAL'} in "
+          f"{time.time()-t0:.0f}s"
+          + (f" -- {n_skip} stage(s) SKIPPED, see the timings CSV"
+             if n_skip else ""))
     return 0
 
 

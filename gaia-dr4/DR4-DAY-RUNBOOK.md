@@ -2,9 +2,11 @@
 
 *The operational sequence for release day, rehearsed end-to-end against DR3 on 2026-08-16
 (`scripts/rehearse_dr4_day.py`, timings in `out/rehearsal_timings.csv`; M3 doc §3).
-Config: `queries/dr4-triage-config.v3.json` (selection/screen frozen since M2; v2 added the
-covariance probability method + dust tier; v3 (M4, 2026-08-18) adds the Bayestar19 far-star
-arbitration and the X-ray caution-tag policy — membership and all cuts unchanged).
+Config: `queries/dr4-triage-config.v4.json` (selection/screen frozen since M2; v2 added the
+covariance probability method + dust tier; v3 (M4) added the Bayestar19 far-star
+arbitration and the X-ray caution-tag policy; **v4 (M5, 2026-08-18)** adds the all-sky
+Vergely+2022 far-star arbitration, the measured activity policy — no activity flag — and
+one astrometric-quality caution flag. Membership and all cuts unchanged since M2: 949.)
 Everything below is anonymous-TAP-safe; if the
 Gaia Archive account exists by then (Matthew's TODO), the async branch gets a longer rope,
 nothing else changes.*
@@ -16,6 +18,38 @@ results. All commands below run from `gaia-dr4/` with `.venv\Scripts\python.exe`
 ---
 
 ## Phase 0 — the moment the archive answers (T+0, ~15 min)
+
+0. **Is the archive answering at all?** (M5, 2026-08-18 — learned the hard way.)
+   Fire a trivial indexed probe (`SELECT TOP 1 source_id FROM …gaia_source WHERE
+   source_id = <BH1>`) at each endpoint, 45 s timeout, and use the first that
+   answers **and honours `FORMAT=csv`**:
+
+   | endpoint | note |
+   |---|---|
+   | `https://gea.esac.esa.int/tap-server/tap/sync` | ESAC, primary — the only one that will carry DR4 on day one |
+   | `https://gaia.ari.uni-heidelberg.de/tap/sync` | ARI Heidelberg partner mirror; CSV, answered in 0.6–2 s all afternoon while ESAC was timing out |
+   | `https://gaia.aip.de/tap/sync` | AIP partner mirror; **ignores `FORMAT=csv` and returns VOTable** — parse accordingly or skip |
+
+   On 2026-08-18 ESAC alternated between 30–80 s replies, HTTP 500 and 90 s
+   read-timeouts *on one-row indexed queries*; the mirrors were unaffected.
+   **Mirror validation gate before trusting one**: re-pull a handful of columns
+   you already hold from ESAC (`ruwe`, `phot_g_mean_mag`, `ipd_frac_multi_peak`
+   for the EB26 76) and require an exact match — ARI reproduced ESAC to
+   0.000e+00 relative on 2026-08-18 (`scripts/m5_pull_activity_columns.py`).
+   **Caveat for December**: the mirrors host DR3 and will not have DR4 on
+   release day. They are a fallback for the *DR3-side* work (calibration
+   fixtures, cross-checks), not for the DR4 pull. Every sync helper now retries
+   6× with backoff (`scripts/pull_dr3_nss_orbits_ranged.py`,
+   `scripts/rehearse_dr4_day.py`) — a 94-request pull cannot survive a
+   no-retry policy on an archive in this state, and the M5 rehearsal needed
+   three attempts to get `TAP_SCHEMA.schemas` to answer at all.
+   **Where failover is allowed, and where it is not** (encoded in
+   `rehearse_dr4_day.py` as two different helpers): **schema introspection MAY
+   fail over** — "does column X exist in this release" is answered identically
+   by any host serving the same release — but **the data path MUST NOT**, because
+   the pull has to be reproducible against one archive and because on release day
+   only ESAC has DR4. If ESAC's data path is down, you wait; the resumable ranged
+   pull means waiting costs nothing already fetched.
 
 1. **Schema pin** (rehearsed: 6–8 s):
    `SELECT schema_name FROM TAP_SCHEMA.schemas` → confirm the real DR4 prefix
@@ -62,8 +96,8 @@ solution type and pull `Orbital` first (the triage's bread and butter).
 ## Phase 2 — triage + covariance probabilities (T+1–2 h, ~15 min compute)
 
 1. **AMRF triage** (`scripts/amrf_triage.py`, rehearsed full-scale: 65 s for 169k rows
-   incl. MC, plots and the gate — `out/rehearsal_timings.csv` stage D): config v3
-   parameters (selection identical to v2/v1) — P ∈ [10, 2200] d,
+   incl. MC, plots and the gate — `out/rehearsal_timings.csv` stage D): config v4
+   parameters (selection identical to v3/v2/v1) — P ∈ [10, 2200] d,
    Halbwachs gates, σ_TI² ≤ 36, boundary ×1.15, screen sig > 10 + F2 mag-split; flags
    never cuts; **acceptance gate = BH1 + BH2 land class III** (their DR4 solutions exist
    by construction; if the gate fails, STOP — the config or the schema diff is wrong,
@@ -80,21 +114,43 @@ solution type and pull `Orbital` first (the triage's bread and butter).
 4. **Dust tier** (`scripts/dust_retriage.py`; local maps already on disk, ~3 min):
    Edenhofer ≤ 1.25 kpc; far stars bracketed Edenhofer-floor/SFD; movements logged;
    `binary_masses`→`nss_masses` tier is immune by construction.
-   **Far-star ambiguity (M4): Bayestar19 arbitrates where dec > −30** (local
-   `data/dustmaps/bayestar2019.h5`, healpy-free reader in
-   `scripts/m4_bayestar_dozen.py`, ~1 min load; sourced unit chain in config v3
-   `extinction_tier.bayestar19_chain`): best estimate = max(B19 at the star's distance,
-   Edenhofer floor); south of −30 stays bracketed and flagged
-   `flag_dust_unresolved_south`. DR3 dress: 9 of 13 ambiguous resolved-alive, 0 moved.
-   The Argonaut web API is DOWN (HTTP 500, 2026-08-18) — use the local file only.
+   **Far-star ambiguity — arbitrate with a far 3D map, ALL SKY (M5):**
+   - `scripts/m5_vergely_south.py` — **Vergely+2022** (CDS J/A+A/664/A174, local
+     cubes in `data/dustmaps/vergely2022/`, ~20 s load) covers the whole sky inside
+     a 6×6×0.8 kpc box (25 pc) / 10×10×0.8 kpc (50 pc, with an error cube).
+     Unit chain in config v4 `extinction_tier.vergely2022_chain`: the cubes are
+     A₀(550 nm)/pc, one link to the house scale, `E = A0(550)/2.6798`.
+     **Run its pre-registered geometry gate first** — the declared axis convention
+     must beat the three corruptions against Edenhofer23 (DR3 dress: ρ 0.966 vs
+     0.38–0.41; median E_V22/E_Eden 1.010; 25 pc/50 pc cubes agree 0.977). It writes
+     `out/m5_vergely_geometry_gate.txt`; **if the gate fails, the reader is wrong and
+     nothing may be written.**
+   - `scripts/m4_bayestar_dozen.py` — **Bayestar19** where dec > −30 (local
+     `data/dustmaps/bayestar2019.h5`, ~1 min load; chain in v4
+     `extinction_tier.bayestar19_chain`). Keep running it: two independent far maps
+     agreeing is the whole evidence base. The Argonaut web API is DOWN (HTTP 500,
+     2026-08-18) — local file only.
+   - Policy either way: best estimate = max(map at the star's distance, Edenhofer
+     floor); a row whose class flips inside V22's own ±1 σ is flagged
+     `flag_dust_sigma_fragile`, not frozen. `flag_dust_unresolved_south` survives
+     only for sightlines outside *every* map box.
+   DR3 dress (M5): of 13 ambiguous rows, **12 resolved class-III alive on both
+   chains, 0 die, 1 σ-fragile, 0 left unresolved** — B19's 9 reproduced at the
+   central value 9/9, and the 4 southern rows M4 could not reach are now closed.
 
 ## Phase 3 — the epoch-vet loop, the false-positive killer (T+2 h onward)
 
-**The queue format is built and rehearsed on DR3: `out/epoch_vet_day1_queue.csv`**
-(M4; regenerate from the day's outputs with the `scripts/m4_acceptance_and_queue.py`
-pattern): main list + retrieval bin's Pr ≥ 0.999 members in one ranking — Pr(III|corr)
+**The queue is emitted BY THE REHEARSED DRIVER** (M5): `scripts/rehearse_dr4_day.py`
+**stage H** calls the shared builder `scripts/m5_day1_queue.py` on the day's own triage
+output and writes `epoch_vet_day1_queue.csv` next to the bulletin — nothing to
+remember, and the builder itself asserts the BH1/BH2 acceptance before it will write.
+The DR3 production copy (dust-corrected membership) is
+`out/epoch_vet_day1_queue.v2.csv` (M4's 981-row original stays frozen at
+`out/epoch_vet_day1_queue.csv`). Contents: main list + retrieval bin's
+Pr ≥ 0.999 members in one ranking — Pr(III|corr)
 desc, M₂_min tiebreak — carrying every caution flag (1-yr alias, low-|b|, σ_TI² > 20,
-X-ray-active, EB26 verdict, dust-unresolved-south). DR3 shape: 981 rows = 949 + 32;
+X-ray-active, EB26 verdict, dust-unresolved-south, dust-σ-fragile, **astrom-quiet**).
+DR3 shape: 981 rows = 949 + 32;
 ranks 1–2 are BH1/BH2 and rank 3 is the EB26-refuted spurious — the loop's first kill.
 For every candidate, in that order:
 1. `has_epoch_astrometry` flag via TAP (in `gaia_source` and `all_source_flags`);
@@ -114,11 +170,40 @@ For every candidate, in that order:
    EB26-confirmed but 29 unverdicted incl. the top NS-range candidates). Policy: an
    X-ray match routes the candidate to **epoch-vet-first**, and the bulletin carries
    the flag; the M4 numbers are the DR3 baseline to compare the day's match rate against.
+5. **Gaia's own indicators, one column pull, no telescope** (M5,
+   `scripts/m5_pull_activity_columns.py` → `scripts/m5_activity_discriminator.py`).
+   Three families measured against EB26 ground truth on **all 65** verdicted
+   targets (no footprint penalty at all):
+   - **chromospheric `activityindex_espcs`: NOT TESTABLE** — it exists for 7 of 76
+     EB26 targets (3 confirmed / 1 spurious) and 44 of 1,199 candidates. M4's
+     recommendation assumed this axis was all-sky; **it is not.** Pull it anyway
+     (it is free), report coverage, claim nothing.
+   - **photometric variability: measured underpowered null.** Magnitude-detrended
+     Belokurov+2017 eq.-2 amplitude ΔAmp_G gives AUC(spurious > confirmed) = 0.659
+     [0.507–0.805], p = 0.035 raw → **0.141 after Holm within the family**; the
+     smallest AUC this n can detect at 80 % power is 0.725. The *direction* agrees
+     with M4's X-ray direction (spurious are the more active side) — two independent
+     activity axes agreeing and neither significant.
+   - **astrometric quality DOES discriminate, and points the other way**:
+     `astrometric_gof_al` p = 0.0011 (Holm 0.0067), AUC 0.254; `ruwe` p = 0.0083
+     (Holm 0.041). **EB26-CONFIRMED hosts are the NOISIER single-star fits** — a real
+     massive dark companion makes a big photocentre orbit. Frozen as the single
+     caution flag `flag_astrom_quiet` (bottom quartile of `astrometric_gof_al` in
+     the day's own main bin) — **tiebreaker only.** Post-hoc caveat carried in
+     config v4: controlling for `significance`, G and distance, gof_al retains only
+     p = 0.048 and ruwe 0.094, so the flag largely restates the significance tier
+     v2 already ranks on. Never quote it as independent evidence.
+   **Re-run this test on day-one epoch-vet verdicts.** At the observed effect,
+   resolving the variability axis needs ≈ 2× today's sample (**84 confirmed +
+   46 spurious**) — the epoch-vet loop adjudicates that many in 72 h, which makes
+   the loop the sample factory the DR3 test lacked.
 
 ## Failure branches (rehearsed or measured)
 
 | symptom | branch |
 |---|---|
+| **ESAC sync answers slowly / 500s / read-times-out on trivial queries** | measured 2026-08-18. Every sync helper retries 6× with backoff; the ranged pull is **resumable** (a range whose parquet is on disk with the expected count is skipped) so a killed pull restarts where it stopped. For DR3-side work fail over to the ARI/AIP mirrors after the validation gate (Phase 0.0); for the DR4 pull itself there is no mirror — wait, retry, and keep the resumable pull running |
+| **`TAP_SCHEMA.columns` specifically hangs** (it was the worst-behaved path on 2026-08-18) | schema introspection is the one place failover is legitimate — `rehearse_dr4_day.py` uses `sync_csv_schema` (2 attempts × 90 s per endpoint, ESAC then ARI) and records in `out/rehearsal_timings.csv` when it fired. Never route the data path this way |
 | async job QUEUED > 30 min | plan-B ranged sync pull (Phase 1) — delivered 169k rows in ~35 min twice |
 | sync range hits 2,000-row cap | halve PACK for that range and re-pull; never accept a capped result |
 | assembled ≠ exact COUNT(*) | find the gap via per-range recount; the histogram is approximate near 2^53, the COUNT is law |
@@ -137,22 +222,37 @@ For every candidate, in that order:
   class-III list, Pr(III|corr), dust columns, flags, epoch-vet verdicts for whatever
   fraction DataLink has served;
 - BH1/BH2 acceptance statement + funnel counts (input → core → screen → class III);
-- **the day-one epoch-vet queue** (`epoch_vet_day1_queue.csv` format: main list +
-  retrieval-bin Pr ≥ 0.999, all caution flags) — the retrieval-bin members are IN the
-  first-24h queue, not the 72-h backlog (M4; DR3 analog: 32 rows, 4 of them at Pr 1.0000
-  with M₂_min 2.9–3.6 — never epoch-vetted, day-one fresh);
+- **the day-one epoch-vet queue** (`epoch_vet_day1_queue.csv`: main list +
+  retrieval-bin Pr ≥ 0.999, all caution flags) — **emitted by the driver itself**
+  (stage H, M5), so it exists the moment the rehearsed pipeline finishes; the
+  retrieval-bin members are IN the first-24h queue, not the 72-h backlog (M4; DR3
+  analog: 32 rows, 4 of them at Pr 1.0000 with M₂_min 2.9–3.6 — never epoch-vetted,
+  day-one fresh);
+- **the Gaia-indicator table for the day's list** (one `gaia_source` +
+  `astrophysical_parameters` + `vari_summary` column pull, minutes, no telescope) with
+  the M5 DR3 baselines to compare against: ESP-CS coverage (DR3: 7/76 of EB26 —
+  report the DR4 number, it is the single fact that decides whether the chromospheric
+  axis is ever testable), ΔAmp_G AUC 0.659 vs the 0.725 needed, `astrometric_gof_al`
+  AUC 0.254 with confirmed on the noisy side, and the `flag_astrom_quiet` count;
+- **the far-star dust arbitration, all-sky** (`m5_vergely_south.py` +
+  `m4_bayestar_dozen.py`, both maps, both unit chains, the geometry gate's own file):
+  the count of ambiguous rows resolved alive / dead / σ-fragile / still-unresolved,
+  and **whether any membership moved** (DR3: 12/0/1/0, moved 0);
 - the eROSITA cross of the new list (in-footprint count, matches, chance control,
   f_X/f_opt reads, the null-or-not statement) **+ the comparison against the M4 DR3
   baselines: 30/471 list match rate; EB26 direction 2/13 spurious vs 0/16 confirmed —
   an X-ray match stays a caution tag (config v3 `xray_policy`), epoch-vet-first,
   never a cut.**
 **Checked, not shipped**: any single-object claim before its epoch-vet verdict + the
-  M2/M3 caution list (1-yr alias, low-|b|, σ_TI² > 20, X-ray-active,
-  dust-unresolved-south).
+  M2/M3/M5 caution list (1-yr alias, low-|b|, σ_TI² > 20, X-ray-active,
+  dust-unresolved-south, dust-σ-fragile, astrom-quiet).
 
 **72 h**:
 - epoch-vet verdicts for the full priority queue; demotion statistics (the DR3-calibrated
   expectation: ~30 % of screen survivors are spurious — El-Badry operating point);
+- **the M5 discriminator test re-run on the day's own epoch-vet verdicts** — the loop
+  is the sample factory the DR3 test lacked. Ship the three family verdicts with
+  their power statements, whether or not anything reaches significance;
 - the rest of the retrieval-bin adjudication (DR3 analog: 239 rows; the 32 at Pr ≥ 0.999
   were already in the day-one queue);
 - HVS 6D rerun (W5) and the microlensing-input refresh (W4) start once the NSS thread is

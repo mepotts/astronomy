@@ -3,6 +3,52 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-08-18** — **M5 done** ([`M5-activity-axis.md`](M5-activity-axis.md)):
+  **(1) the activity axis with the footprint penalty removed — 65 of 65 verdicts
+  instead of M4's 29** (rules pre-registered in
+  `scripts/m5_activity_discriminator.py`; three families, Holm within each; negative
+  control `phot_g_n_obs` clean at p = 0.14). **A — chromospheric `activityindex_espcs`:
+  NOT TESTABLE, and that refutes M4's own premise** — it exists for **7 of 76** EB26
+  targets (3 confirmed / 1 spurious) and 44 of 1,199 candidates; the ESP-CS module ran
+  on 431 and published a value for ~10 % of them. **B — photometric variability
+  (Belokurov+2017 eq. 2 amplitude, magnitude-detrended): UNDERPOWERED NULL** — ΔAmp_G
+  AUC(spur>conf) 0.659 [0.507–0.805], p 0.035 → **Holm 0.141**, against a
+  smallest-detectable AUC of **0.725**; direction (spurious = more variable) **agrees
+  with M4's X-ray direction** — two activity axes, two consistent directions, neither
+  significant; it needs ≈ 2× the sample (**84 + 46**). **C — astrometric quality (not
+  activity): WORKS, and points the OTHER way** — `astrometric_gof_al` p 0.0011 (Holm
+  0.0067, AUC 0.254) and `ruwe` p 0.0083 (Holm 0.041): **EB26-CONFIRMED hosts are the
+  NOISIER single-star fits** (the measured version of `ruwe_cut = NONE` since v1). Passes
+  the pre-registered G-stratified guard; two measured post-hoc caveats carried in the
+  config — controlling for `significance`/G/d it retains only p 0.048, and on the 46
+  verdicted rows that survive the screen it flags 2 and catches **0 of 7** in-list
+  spurious. **One flag frozen, tiebreaker only: `flag_astrom_quiet`** (bottom quartile of
+  `astrometric_gof_al` in the day's own main bin). **(2) southern dust CLOSED** with
+  Vergely+2022 (CDS J/A+A/664/A174, anonymous FTP; A₀(550 nm) unit chain sourced to the
+  paper + FITS headers; **pre-registered geometry gate**: declared axes ρ 0.966 vs
+  0.38–0.41 for the three corruptions, E_V22/E_Eden 1.010, 25/50 pc cubes 0.977): **all 4
+  southern rows SURVIVE class III on both chains, V22 reproduces Bayestar19 9/9 at the
+  central value, 12 of 13 clean, 1 σ-fragile (rank 27, M₂_min 2.30 — flagged, not
+  frozen), 0 die → 0 movements, the v2 list (949) stands.** `flag_dust_unresolved_south`
+  4 → **0**. **(3) acceptance re-run PASS** (BH1/BH2 Pr 1.0000 top-2; EB26 operating
+  point 39/42 + 7/23 identical) gating **config v4** (selection/membership identical to
+  v2/v3; adds the all-sky extinction arbitration, the measured activity policy — *no*
+  activity flag — and the astrometric flag with both caveats inside the config).
+  **(4) queue folded into the driver**: shared builder `scripts/m5_day1_queue.py`,
+  rehearsal **stage H**, production copy `out/epoch_vet_day1_queue.v2.csv` (981 rows;
+  M4's file untouched); the builder asserts BH1/BH2 itself. **Rehearsal re-run
+  end-to-end and still green — all 8 stages OK in 1,150 s**, acceptance PASS, and the
+  plan-B pull came back **byte-identical for the third time** (sha256 b3b099a6…dddd5231,
+  169,227 rows) — stage C resumed from its 94 cached chunks, which the timings CSV now
+  says out loud in a new `note` column; the driver also takes `--stages` so a partial run
+  is recorded as SKIPPED-with-reason and cannot be mistaken for a green one.
+  **New landmine, and it is
+  the operational one: the ESAC TAP endpoint was effectively down for hours** (HTTP 500
+  and 90 s read-timeouts on one-row indexed queries) while the **ARI and AIP DR3 mirrors
+  answered in 0.6–2 s** — ARI reproduced ESAC to 0.000e+00 under a new mirror-validation
+  gate; every sync helper now retries 4× with backoff; the mirrors have DR3, **not DR4**,
+  so December's only defences are the retry and the resumable pull. Human TODOs
+  unchanged (accounts).
 - **2026-08-18** — **M4 done** ([`M4-xray-discriminator.md`](M4-xray-discriminator.md)):
   **(1) the activity-vs-spuriousness test** — all 76 EB26 targets × eROSITA-DE DR2+DR1
   with shifted controls (rules pre-registered): in-footprint detections **2/13 SPURIOUS

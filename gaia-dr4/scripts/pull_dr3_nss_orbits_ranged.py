@@ -43,12 +43,36 @@ TYPES = ("'Orbital','AstroSpectroSB1','OrbitalAlternative',"
          "'OrbitalTargetedSearchValidated'")
 
 
+RETRIES = 6          # M5 2026-08-18: ESAC answered 2 of 3 trivial queries
+BACKOFF_S = 5.0      # (HTTP 500s and 90 s read-timeouts) -- a 94-request
+                     # pull without retries cannot survive that.
+
+
 def sync_csv(q, timeout=300):
-    r = requests.post(ENDPOINT, data={
-        "REQUEST": "doQuery", "LANG": "ADQL", "FORMAT": "csv", "QUERY": q,
-    }, timeout=timeout)
-    r.raise_for_status()
-    return pd.read_csv(io.StringIO(r.text))
+    """Sync CSV with bounded retry.  A retry cannot change the result (the
+    query is deterministic and every range is count-checked); it only stops
+    one flaky response from killing a 94-request pull.  Added in M5 after
+    the ESAC endpoint spent an afternoon alternating between 30-80 s
+    responses, HTTP 500 and read-timeouts."""
+    last = None
+    for attempt in range(RETRIES):
+        try:
+            r = requests.post(ENDPOINT, data={
+                "REQUEST": "doQuery", "LANG": "ADQL", "FORMAT": "csv",
+                "QUERY": q,
+            }, timeout=timeout)
+            r.raise_for_status()
+            return pd.read_csv(io.StringIO(r.text))
+        except Exception as e:            # noqa: BLE001 - retry anything
+            last = e
+            if attempt == RETRIES - 1:
+                break
+            wait = BACKOFF_S * (attempt + 1)
+            print(f"  sync_csv {type(e).__name__} -- retry "
+                  f"{attempt+1}/{RETRIES-1} in {wait:.0f}s", flush=True)
+            time.sleep(wait)
+    raise RuntimeError(f"sync_csv failed after {RETRIES} attempts: "
+                       f"{type(last).__name__}: {last}")
 
 
 def bucket_histogram():
