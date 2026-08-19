@@ -542,10 +542,30 @@ Items for the author; everything else traces to a numbered milestone document or
    data (2024–25); M20 §5 and LESSONS §6 record that publishing its headline ahead of them is
    Matthew's decision. It is the measured reach anchor of §10; that argument survives on η Tel B
    and YSES 1 b alone, with weaker reach.
-3. **The delivered-PSF measurement.** A referee will ask whether the slit-function FWHM is the
-   PSF or the trace width convolved with the extraction; the distinction matters for the
-   absolute R values, though not for the ordering. Worth one paragraph of method, or one
-   sanity check against a standard-star observation.
+3. ~~**The delivered-PSF measurement.**~~ — **TESTED AND PASSED (M33,
+   `scripts/m33_psf_validation.py`).** The referee's question is whether the slit-function
+   FWHM is the sky's or the extraction's. ESO writes independent image-quality measurements
+   into every header — DIMM seeing from a separate telescope, and an image-analysis FWHM from
+   the guide probe — and neither passes through `cr2res`, so they are a clean external
+   reference. Across 60 nights:
+
+   - it varies by **69%** night to night, so it is not set by fixed extraction parameters;
+   - **within a target, guide star held fixed, it tracks the telescope's own image-analysis
+     FWHM at r = +0.51 (CD-35, n = 18) and +0.50 (β Pic, n = 11)**;
+   - it sits at **0.60×** the seeing-limited H-band prediction, as adaptive optics plus the
+     λ^(−1/5) gain require.
+
+   Pooling targets gives only r = +0.25, but that is the wrong test: the AO loop is closed and
+   guide-star magnitude spans 3.3–10.7, and AO exists to break the seeing-to-delivered
+   relation. **η Tel B shows no correlation at all (r = +0.02), and that is the informative
+   case rather than a counter-example** — its guide star is magnitude 5.2 against CD-35's 10.1,
+   and a bright guide star is exactly where AO delivers a near-diffraction-limited core whose
+   width stops following the seeing. Its R = 11.3 is nowhere near the threshold, so nothing in
+   its classification depends on this.
+
+   **What this does not establish, and the note should say so:** the systems nearest the
+   threshold cannot be validated individually — HIP 81208 B, YSES 1 b and 2M0103AB b have 3, 2
+   and 1 nights. Their PSFs rest on the method validated here, not on their own evidence.
 4. **HD 4747 B's PSF rests on 15 order-profiles from one night**, and HD 206893 B's on 11.
    Both are load-bearing for the blended class. More orders or a second night would firm them.
 5. **PDS 70's absence from §4.** Its H nights are unreduced (order-mapping quirk). Since it is
