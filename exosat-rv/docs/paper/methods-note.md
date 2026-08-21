@@ -52,7 +52,7 @@ detect a satellite or a second companion orbiting it — was proposed by Vanderb
 (2018), applied to HR 8799 by Vanderburg & Rodriguez (2021) and to HR 7672 B by Ruffio et
 al. (2023), forecast in the CRIRES+ era by Lazzoni et al. (2022), and pursued by Horstman
 et al. (2024) on GQ Lup B and by Kral et al. (2026) with VLTI/GRAVITY on HD 206893 B. Hoy
-et al. (2026, hereafter H26) reported the first detection: a *P* ≈ 171 d,
+et al. (2026, hereafter H26) reported a detection: a *P* ≈ 171 d,
 *K* ≈ 306 m s⁻¹ signal in CD-35 2722 B, interpreted as a ~0.92 M_Jup satellite, with
 tentative evidence for a second, smaller companion.
 

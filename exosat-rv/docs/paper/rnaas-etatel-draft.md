@@ -12,7 +12,7 @@
 
 ---
 
-**Title:** First Radial-Velocity Constraints on the Brown Dwarf Companion η Telescopii B
+**Title:** Radial-Velocity Limits on Satellites of the Brown Dwarf Companion η Telescopii B
 
 **Authors:** Matthew Potts (affiliation TBD; ORCID TBD)
 
@@ -22,7 +22,7 @@
 
 *(Required by RNAAS since May 2020.)*
 
-We present the first radial-velocity constraints on η Telescopii B, an M7–M8 brown dwarf
+We present radial-velocity constraints on η Telescopii B, an M7–M8 brown dwarf
 companion at 4.2″ from the A0V star η Tel, derived entirely from public CRIRES+ archival
 data: 20 epochs in the H1567 setting spanning 18 nights and 815 days, reduced by two
 independent routes that agree at 127–130 m s⁻¹ per-epoch scatter. No periodic signal is
@@ -42,7 +42,7 @@ imaging surveys that constrain satellites only beyond ~1–5 au.
 (Chai et al. 2024) from the A0V star η Tel, a member of the β Pictoris moving group. It is
 well studied photometrically, spectroscopically and astrometrically — a 25-year astrometric
 baseline and, recently, an 11–21 μm JWST/MIRI spectrum — but to our knowledge **no
-radial-velocity measurement of it has been published**. We report the first, derived entirely
+radial-velocity measurement of it has been published**. We report one, derived entirely
 from public archival data. The system inverts the usual arrangement: HARPS velocities exist for
 the *primary* but are unusable, scattering at 12.8 km s⁻¹ because η Tel A is a young, rapidly
 rotating A0V star, and the most recent orbital analysis omits them for that reason (Chai et al.
@@ -53,8 +53,8 @@ route to constraining massive satellites. Searches have been reported for the HR
 (Vanderburg & Rodriguez 2021), HR 7672 B (Ruffio et al. 2023), GQ Lup B (Horstman et al. 2024)
 and β Pictoris b (Kenworthy et al. 2026), all null, alongside astrometric limits from
 interferometry (Macias et al. 2026; Kral et al. 2026). Against that run, Hoy et al. (2026)
-reported the first detection, around CD-35 2722 B — which sharpens rather than settles how
-common the configuration is, and makes each further constrained system worth having.
+reported a detection around CD-35 2722 B — which sharpens rather than settles how common
+the configuration is, and makes each further constrained system worth having.
 
 η Tel B is the only other object in the accessible class with an archival CRIRES+ series long
 enough to constrain an orbit, and it was observed in the **identical H1567 setting** as
@@ -109,9 +109,10 @@ bar, carries the protection.
 the measured detection grid — the smallest injected amplitude reaching 90% — not interpolated
 or fitted.*
 
-**These are the first radial-velocity constraints of any kind on η Tel B**, and they exclude
-sub-Jupiter to Jupiter-mass companions across most of the 20–300 day range. They sit
-comfortably alongside the published sample: Kenworthy et al. (2026) reach 1 M_Jup at
+**These constraints exclude sub-Jupiter to Jupiter-mass companions across most of the
+20–300 day range.** We are not aware of previous radial-velocity measurements of this
+companion, but claim no priority: the value of a limit does not depend on being first. They
+sit comfortably alongside the published sample: Kenworthy et al. (2026) reach 1 M_Jup at
 P = 200 d on β Pic b from a dedicated campaign at 160 m s⁻¹ mean precision, against
 1.11 M_Jup at the same period here from archival data at 127–130 m s⁻¹.
 
