@@ -21,8 +21,11 @@ eight classifiable reductions the roster splits cleanly — resolved at R = 1.32
 10.64, 11.26; blended at 0.39, 0.52, 0.54 — with nothing in between, and a second,
 independent diagnostic from the same profile (its height at the companion's offset)
 corroborates with a clean gap: 0.00–0.15 of peak when resolved, 0.55–0.71 when blended. The
-consequences are concrete. **One ledger verdict is withdrawn**: HD 206893 B, recorded as
-"clean, gates 100–102%", is a measurement of its host at R = 0.52. **β Pic b's verdict
+consequences are concrete. **One of our own earlier readings is withdrawn**: we had recorded
+HD 206893 B as "clean, gates 100–102%", and at R = 0.52 that extraction is a measurement of
+its host. The withdrawal is of our reading of public archival data and of nothing that anyone
+has published about this system; the GRAVITY astrometry that supplies the separation, and on
+which the correction depends, is Kral et al.'s. **β Pic b's verdict
 survives but its mechanism changes**: at R = 0.54 there was never a resolved companion to
 contaminate, which is why its RV–barycentric correlation of *r* = +0.88 was unmoved by a
 rebuilt template and by masking the responsible spectral order, at 99–100% injection
@@ -395,16 +398,18 @@ radiating its own K ≈ 12–15 infrared spectrum, of the class this project mea
 times. The telluric wavelength reference, the template built from the target's own data and
 the injection test are all host-independent.
 
-**The reach, from measured numbers.** On HIP 65426 b, an ~8 M_Jup host, five archival epochs
-over 422 d at 131 m s⁻¹ excluded companions of ≳0.4 M_Jup (~115 M_⊕) at *P* ≤ 100 d, at
-injection transmission 98 ± 4% and 101 ± 3% (M20 §4). Nothing in that chain used the host
-star. The per-epoch precisions behind such a limit — all injection-gated, all on resolved
+**The reach, from measured numbers.** On η Tel B, a ~47 M_Jup host, 20 archival epochs over
+815 d at 127–130 m s⁻¹ exclude companions of 0.51–1.27 M_Jup across *P* = 20–300 d, at
+injection transmission 99–101 ± 1%. Nothing in that chain used the host star. We anchor on
+this target rather than on the deeper archival limit we also hold for HIP 65426 b, because
+those five nights belong to another group's active programme; that limit is not reported here.
+The per-epoch precisions behind such a limit — all injection-gated, all on resolved
 pairs — span **34–190 m s⁻¹** (§4), with 162 m s⁻¹ measured within a night on β Pic b (M17
 §§1–2), a number we now read as a statement about a blend rather than about a planet. Scaling
 to isolated hosts with the field's standard relation (Lazzoni et al. 2022 eq. 2, as
-implemented here), calibrated against the one injection-derived limit available — it returns
-0.36 M_Jup at *P* = 100 d for an 8 M_Jup host at 131 m s⁻¹, against the measured 0.35–0.45,
-while running optimistic by ~2× at 20 d and ~2–3× at 200–400 d:
+implemented here), calibrated against our own injection-derived limits — at 3σ per epoch it
+returns 0.65, 1.18 and 1.40 M_Jup at *P* = 20, 120 and 200 d for η Tel B, against the measured
+0.51, 0.77 and 1.11, i.e. **conservative by 1.3–1.5×** across the decade it is anchored on:
 
 | per-epoch σ | 5 M_Jup host | 10 M_Jup | 13 M_Jup |
 |---:|---:|---:|---:|
@@ -534,14 +539,17 @@ Items for the author; everything else traces to a numbered milestone document or
    measured PSFs. **The resolution gate is the note's result; the contrast gate is now a
    supported open question rather than an unsupported one.**
 
-1. **The withdrawn verdict, HD 206893 B (§4).** It is another team's target and the withdrawal
-   is of *our* reading of public data, not of anything they published — but the wording should
-   be checked so it cannot be read as a comment on their work. The GRAVITY astrometry that
-   supplies its separation is theirs.
-2. **Publication priority on HIP 65426 b.** Its five nights are another team's active-programme
-   data (2024–25); M20 §5 and LESSONS §6 record that publishing its headline ahead of them is
-   Matthew's decision. It is the measured reach anchor of §10; that argument survives on η Tel B
-   and YSES 1 b alone, with weaker reach.
+1. ~~**The withdrawn verdict, HD 206893 B (§4).**~~ — **REWORDED (M33).** §4 now says
+   explicitly that it is *our own earlier reading* that is withdrawn, that the withdrawal
+   concerns public archival data and not anything published about the system, and that the
+   GRAVITY astrometry the correction depends on is Kral et al.'s.
+2. ~~**Publication priority on HIP 65426 b.**~~ — **RESOLVED BY REMOVING THE DEPENDENCY (M33).**
+   Rather than decide whether to publish a headline from another group's active-programme
+   nights, the reach argument is now anchored on **η Tel B**, which this project owns outright
+   and is publishing separately. The relation reproduces its measured limits at
+   *P* = 20/120/200 d to within **1.3–1.5× and on the conservative side**, so the anchor is
+   better constrained than before — three periods instead of one — and the HIP 65426 b limit is
+   explicitly not reported. No permission is now required from anyone.
 3. ~~**The delivered-PSF measurement.**~~ — **TESTED AND PASSED (M33,
    `scripts/m33_psf_validation.py`).** The referee's question is whether the slit-function
    FWHM is the sky's or the extraction's. ESO writes independent image-quality measurements
@@ -566,11 +574,24 @@ Items for the author; everything else traces to a numbered milestone document or
    **What this does not establish, and the note should say so:** the systems nearest the
    threshold cannot be validated individually — HIP 81208 B, YSES 1 b and 2M0103AB b have 3, 2
    and 1 nights. Their PSFs rest on the method validated here, not on their own evidence.
-4. **HD 4747 B's PSF rests on 15 order-profiles from one night**, and HD 206893 B's on 11.
-   Both are load-bearing for the blended class. More orders or a second night would firm them.
-5. **PDS 70's absence from §4.** Its H nights are unreduced (order-mapping quirk). Since it is
-   the case most likely to fail by a different mechanism, its R would be worth having before
-   submission.
+4. ~~**HD 4747 B's PSF rests on 15 order-profiles from one night**, HD 206893 B's on 11.~~ —
+   **TESTED (M33, `scripts/m33_psf_robustness.py`).** Bootstrapping the median over the
+   available profiles and propagating into R gives 68% intervals of **R = 0.39–0.39**
+   (HD 4747 B), **0.52–0.57** (HD 206893 B) and **0.53–0.55** (β Pic b, 114 profiles over 12
+   nights). Every interval stays entirely below the boundary, so **the blended classification
+   does not depend on the thinness of the sample** — only the point estimate would have.
+5. **PDS 70's R is still unmeasured — but the recorded reason was wrong (M33).** These nights
+   are not unreduced. All three ran through the *staring* recipe and carry
+   `cr2res_obs_staring_slitfunc.fits`; every earlier sweep searched for the nodding filename
+   and so read three usable nights as zero. The staring profile still cannot be used: only one
+   of the three nights carries a trace-wave file, the profile is sampled ~906 points against
+   the nodding path's ~512 over the same order height, and the width it yields is **0.18× the
+   telescope's own image-analysis FWHM on that night, where every nodding target sits between
+   0.42× and 1.46×** — several times too narrow to be a delivered PSF. Taken at face value it
+   would place both PDS 70 companions *above* R = 1 and contradict this note's assumption that
+   the system fails by sitting inside the AO core, which is precisely why it is not taken at
+   face value. Closing this needs a nodding reduction or a standard star, not a re-read of
+   what is already on disk.
 6. **Bibliographic details.** Bohn 2020, Bonnefoy 2014, Viswanath 2023 and Langlois 2021 are
    cited from archived full texts; journal, volume and bibcode should come from ADS, and the
    GRAVITY citation resolved (see the reference-list note).
