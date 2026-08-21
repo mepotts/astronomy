@@ -586,6 +586,38 @@
   among them? We would publish that number gladly, whichever way it falls.
   </p>
 
+  <h3>5.2 The extraction was tuned on the published series; the detection is not</h3>
+  <p>
+  One limitation of this reproduction is structural and should be stated before it is
+  asked. The extraction configuration of Table&nbsp;1 was selected by minimising rms
+  against <span class="them">H26</span>'s published velocities. Everything downstream is
+  blind &mdash; the period search sees no published number, and its internal screen
+  independently rediscovers the one epoch their table omits &mdash; but the input to that
+  search was chosen with their answer in hand. The analysis is blind; the extraction is not.
+  </p>
+  <p>
+  We can bound what that buys. Twenty-one complete RV series exist from these same spectra
+  under different configurations, and scoring each for both rms against the published series
+  and &Delta;BIC near 171&nbsp;d separates the two questions. Across configurations spanning
+  a factor 2.1 in rms agreement, <b>five of the ten configurations that match the published
+  series worse than median still detect the period at &Delta;BIC&nbsp;&gt;&nbsp;10</b>, and
+  the correlation between the tuning metric and the detection is only &minus;0.31. Some
+  association is expected whether or not the signal is real, since a better extraction both
+  agrees better with any competent measurement of the same photons and recovers a real
+  signal more strongly; what would indicate circularity is the signal vanishing away from
+  the best-matching configurations, and it does not. In degraded configurations the period
+  weakens and loses rank before it disappears, which is the behaviour of a real but marginal
+  signal rather than a manufactured one.
+  </p>
+  <p>
+  This bounds selection <i>within</i> a configuration family that was itself explored with
+  the published series available; it does not bound the family's boundaries. The fully
+  independent version &mdash; choose a configuration by injection recovery alone, never
+  computing rms against the published series at any stage, then run the blind search &mdash;
+  requires re-reducing rather than re-scoring and has not been done. We flag it as the
+  cleanest available strengthening of this reproduction.
+  </p>
+
   <h2><span class="no">6</span>Discussion</h2>
   <p>
   Two conclusions. <em>First</em>, the central claim of
