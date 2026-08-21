@@ -321,6 +321,19 @@ of them is unavailable**: κ And b is unobservable from Paranal, PDS 70 c shares
 PDS 70 b inside the AO core, β Pic b sets the threshold it would be tested against, and
 HD 4747 B — the reduction that prompted this note — is blended.
 
+**One published result does sit in this space, and it changes what the gate means.** Thé et
+al. (2023) extract companion spectra from high-contrast long-slit data by modelling star and
+companion jointly as a regularized inverse problem, over separations of 200–1850 mas and
+contrasts from χ ≥ 10⁻³ at ~250 mas to χ ~ 2×10⁻⁵ beyond 1200 mas. Their floor of 200 mas is
+5 λ/D at H band, so this is a tool for the *resolved* regime and no counter-example to §1–§7.
+But it does mean the contrast gate is **algorithmic rather than physical**: S is defined for
+the naive extraction used here, and an inverse model that knows the instrument response
+recovers companions that naive extraction cannot. A contrast threshold measured with one
+extraction method does not transfer to another. Their instrument, spectral resolution and
+objective all differ from ours — low-resolution spectral characterization, not velocimetry —
+so the two do not compose directly, but any claim that contrast sets a hard wall has to
+answer this first.
+
 **That is not bad luck.** Being close enough to have an interesting S is what makes a
 companion unresolvable at a slit. The three blended systems have the three highest S values in
 the roster, and they are blended for the same reason their S is high. So the second gate may
@@ -494,6 +507,7 @@ in the project repository, with the milestone documents cited inline throughout.
 - Hoy, K., Zurlo, A., Peña R., P. A., Köhler, J., et al. 2026, *Nature*, "Satellite detected around a star's substellar companion" (published version; supersedes arXiv:2607.05193v1).
 - Horstman, K., Ruffio, J.-B., Batygin, K., et al. 2024, "RV measurements of directly imaged brown dwarf GQ Lup B to search for exo-satellites", arXiv:2408.10299.
 - Köhler, J., Zechmeister, M., Hatzes, A., et al. 2025, A&A, "viper: High-precision radial velocities from the optical to the infrared", arXiv:2505.08315.
+- Thé, S., Thiébaut, É., Denis, L., et al. 2023, A&A 678, A77, "Characterization of stellar companions from high-contrast long-slit spectroscopy data: the EXOSPECO algorithm", doi:10.1051/0004-6361/202245565
 - Langlois, M., Gratton, R., Lagrange, A.-M., et al. 2021, A&A, "The SPHERE infrared survey for exoplanets (SHINE). II.".
 - Lazzoni, C., Desidera, S., Gratton, R., Zurlo, A., Mesa, D., & Ray, S. 2022, MNRAS, "Detectability of satellites around directly imaged exoplanets and brown dwarfs", arXiv:2207.07569.
 - Ruffio, J.-B., Horstman, K., Mawet, D., et al. 2023, "Detecting exomoons from radial velocity measurements of self-luminous planets: application to observations of HR 7672 B and future prospects", arXiv:2301.04206.
@@ -615,6 +629,26 @@ Items for the author; everything else traces to a numbered milestone document or
    Two were first filled from memory; one was right and the other resolved silently to a
    different 2014 A&A paper by another author, and the tool reported it as exact because the
    lookup succeeded. **The printed title is what catches that, not the DOI mechanism.**
-7. **"To the best of our knowledge" hedges.** No novelty claim here has been checked against ADS
-   by a human; per M20 §5 all such statements remain provisional, including the §8 statement
-   that no observation exists inside the untested contrast interval.
+7. **Novelty claims — searched (M33), and one needed qualifying.** The claims were extracted
+   mechanically from every draft and the substantive ones checked against the literature. Most
+   are enumeration or idiom ("the first detection", meaning H26's). Two matter:
+
+   **The resolution gate survives.** Nothing found operates below one resolution element. The
+   closest published work is **Thé et al. (2023, A&A 678, A77)**, whose EXOSPECO algorithm
+   extracts companion spectra from high-contrast long-slit data by jointly modelling star and
+   companion as a regularized inverse problem — but its demonstrated envelope runs
+   **200–1850 mas**, and 200 mas is **5.0 λ/D** at H band on an 8 m telescope. It is a tool
+   for the resolved regime, not a counter-example to the blended one.
+
+   **The contrast claim needed qualifying, and now is.** §8 said no observation exists inside
+   the untested interval. Thé et al. publish a contrast–separation envelope over that range —
+   χ ≥ 10⁻³ at ~250 mas, falling to χ ~ 2×10⁻⁵ beyond 1200 mas — so the honest statement is
+   narrower: *this project* has no measured point there, and the field's published trade-off
+   comes from a different instrument, a different spectral resolution and a different
+   objective (spectral characterization, not velocimetry). More importantly it shows the
+   contrast limit is **algorithmic rather than physical**: an inverse model recovers
+   companions that the naive extraction assumed by S cannot. That is now said in §8.
+
+   Still not done: an ADS query by a human. Web and CrossRef searching is what found
+   Kenworthy et al. and Thé et al., both of which the repo had missed, so it is not nothing —
+   but it is not a systematic literature check either.
