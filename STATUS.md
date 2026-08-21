@@ -11,7 +11,13 @@ before building — sweep-reported facts are treated as claims until re-checked 
 repo's own tooling. Every externally-sourced number carries its source or the mark
 UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 
-## Active fronts — wave 5 (launched 2026-08-18)
+## Active front — 2026-08-21
+
+| Front | Folder | Scope |
+|---|---|---|
+| dyson-revet **M3** | [`dyson-revet/`](dyson-revet/) | **The W4 screen stalled, not finished**: it stopped 2026-08-19 03:56 at **93/192 tiles — 19,874 deg², 48.2% of sky, 220,632 W3W4 rows — with 99 tiles abandoned**, every one exhausting its retries on ESAC returning non-VOTable HTML (plus 114 outright 500s). **ESAC re-probed healthy 2026-08-21 (HTTP 200 in 1.5 s)**, so M3 resumes: `repair` the orphaned split, work the 99, then deliver the funnel at both grid floors vs the paper's rates with Poisson intervals, vet every survivor (centroid floor + the two axes M2 invented: WISE release-consistency and `w?nm` single-exposure counts), close the two standing method caveats, and check whether JWST GO 7199's candidate-A result has published. Tiles were issued in pseudo-random sky order, so the 48.2% already on disk is an **unbiased** half-sky sample even if the rest never completes |
+
+## Completed fronts — wave 5 (2026-08-18)
 
 | Front | Folder | Wave-5 scope |
 |---|---|---|
