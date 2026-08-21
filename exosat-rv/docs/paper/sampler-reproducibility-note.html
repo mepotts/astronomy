@@ -1,0 +1,450 @@
+<title>A Nested Sampler's Internal Uncertainty Is Not Its Reproducibility - draft</title>
+<style>
+  /* ------------------------------------------------------------------------
+     Journal typography, modelled on the AASTeX / A&A / MNRAS two-column page.
+
+     Values taken from arXiv's own HTML rendering stack where they apply
+     (ar5iv 0.9.0: justified body, hyphens auto, 1.5 prose line-height, serif
+     text face against sans headings) and from print convention where arXiv's
+     web theme departs from it -- arXiv's current beta serves a sans-serif body
+     ("rival-sans"), which is arXiv house style, not what a paper looks like.
+
+     Layout: SINGLE column on screen, TWO columns in print. This is deliberate
+     and is what arXiv's own HTML does. CSS multi-column does not paginate on a
+     continuous page: with two columns the left one holds the entire first half
+     of the document, so a reader scrolls down forty screens and back up. A
+     journal PDF escapes this only because it paginates, and columns restart on
+     every page. Print does paginate, so the two-column rule lives in @media
+     print, where figures and tables carry column-span:all exactly as in a
+     journal.
+     ------------------------------------------------------------------------ */
+  :root {
+    --plane: #eceae5;
+    --sheet: #ffffff;
+    --ink: #000000;
+    --ink-2: #333333;
+    --muted: #6b6b6b;
+    --hairline: #d8d8d8;
+    --rule: #000000;
+    --us: #1a5fb4;
+    --them: #b5450b;
+    --draft: #a02c2c;
+
+    --serif: "Times New Roman", Times, "Liberation Serif", "Nimbus Roman",
+             "Tinos", Georgia, serif;
+    --sans: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
+
+    --body-size: 15px;
+    --body-leading: 1.42;
+    --colgap: 26px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --plane: #1a1a19; }
+  }
+  :root[data-theme="dark"] { --plane: #1a1a19; }
+
+  body {
+    background: var(--plane);
+    margin: 0;
+    padding: 36px 14px 64px;
+    font-family: var(--serif);
+    color: var(--ink);
+  }
+
+  /* The page. Proportioned like a letter-size journal page: ~7.1in of text
+     block, two columns, so a line runs to roughly 55 characters as in print. */
+  .sheet {
+    max-width: 820px;
+    margin: 0 auto;
+    background: var(--sheet);
+    color: var(--ink);
+    padding: 58px 62px 66px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.16), 0 10px 34px rgba(0,0,0,.09);
+    border-radius: 1px;
+
+    font-size: var(--body-size);
+    line-height: var(--body-leading);
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+
+  /* --- the title block spans the full measure, as in a journal ------------ */
+  .draftbar, h1, .byline, .dateline, .abstract {
+    text-align: initial;
+    hyphens: none;
+  }
+
+  .draftbar {
+    font-family: var(--sans);
+    font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--draft); border: 1px solid currentColor;
+    display: inline-block; padding: 2px 8px; margin: 0 0 20px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: 25px; line-height: 1.22; font-weight: 700;
+    margin: 0 0 16px; text-align: center; text-wrap: balance;
+  }
+  .byline {
+    text-align: center; font-size: 14.5px; margin: 0 0 4px; color: var(--ink);
+  }
+  .byline b { font-weight: 400; }
+  .dateline {
+    text-align: center; font-size: 12px; color: var(--muted);
+    margin: 0 0 22px; font-style: italic;
+  }
+
+  /* Abstract: full measure, indented both sides, smaller -- AASTeX house style */
+  .abstract {
+    margin: 0 auto 26px; padding: 0;
+    max-width: 84%;
+    font-size: 13.5px; line-height: 1.45;
+    border-top: 0.5px solid var(--hairline);
+    border-bottom: 0.5px solid var(--hairline);
+    padding: 14px 0 12px;
+  }
+  .abstract .eyebrow {
+    display: block; text-align: center; font-family: var(--serif);
+    font-variant: small-caps; letter-spacing: .08em;
+    font-size: 12.5px; color: var(--ink); margin: 0 0 8px; font-weight: 700;
+  }
+  .abstract p { margin: 0 0 8px; text-align: justify; hyphens: auto; }
+  .abstract p:last-child { margin-bottom: 0; }
+
+  /* --- section heads: left, bold, numbered (A&A / MNRAS convention) ------- */
+  h2 {
+    font-family: var(--serif);
+    font-size: 15.5px; font-weight: 700; line-height: 1.25;
+    margin: 20px 0 7px; text-align: left; hyphens: none;
+    break-after: avoid-column;
+  }
+  h2 .no { font-weight: 700; margin-right: .5em; }
+  h3 {
+    font-family: var(--serif);
+    font-size: 14.5px; font-weight: 400; font-style: italic;
+    margin: 15px 0 5px; text-align: left; hyphens: none;
+    break-after: avoid-column;
+  }
+
+  /* --- body text: journal paragraphs are indented, not spaced ------------- */
+  p { margin: 0 0 0; text-indent: 1.4em; orphans: 2; widows: 2; }
+  h1 + p, h2 + p, h3 + p, .abstract p, figcaption p, caption p,
+  .refs p, .foot p, td p, th p { text-indent: 0; }
+
+  .us { color: var(--us); }
+  .them { color: var(--them); }
+  em { font-style: italic; }
+  sup { font-size: .74em; line-height: 0; vertical-align: super; }
+  code {
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: .86em;
+  }
+
+  /* --- floats span the full measure, as in print ------------------------- */
+  figure, .tablewrap, figure.pair {
+    margin: 18px 0 16px;
+    break-inside: avoid;
+  }
+  figure img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+  figcaption {
+    font-size: 12px; line-height: 1.4; color: var(--ink-2);
+    margin-top: 7px; text-align: justify; hyphens: auto;
+  }
+  figcaption b { font-weight: 700; color: var(--ink); }
+
+  .pairhead { font-family: var(--sans); font-size: 11px; margin-bottom: 6px; }
+  .chip {
+    display: inline-block; padding: 1px 6px; border: 1px solid currentColor;
+    border-radius: 2px; font-size: 10px; letter-spacing: .04em;
+  }
+  .chip.them { color: var(--them); }
+  .chip.us { color: var(--us); }
+  .pairhead .to { color: var(--muted); margin: 0 6px; }
+
+  .verdict { font-family: var(--sans); font-size: 10.5px; font-weight: 700; }
+  .verdict.yes { color: #1a7f37; }
+  .verdict.no { color: #b5450b; }
+  .verdict.part { color: #9a6700; }
+
+  /* --- tables: journal rules, no vertical lines -------------------------- */
+  .tablewrap { overflow-x: auto; }
+  table {
+    border-collapse: collapse; width: 100%;
+    font-size: 12.5px; line-height: 1.34;
+    font-family: var(--serif);
+  }
+  caption {
+    caption-side: top; text-align: justify; hyphens: auto;
+    font-size: 12px; line-height: 1.4; color: var(--ink-2);
+    margin-bottom: 7px;
+  }
+  caption b { font-weight: 700; color: var(--ink); }
+  th {
+    font-weight: 700; text-align: left; padding: 5px 9px 5px 0;
+    border-top: 1.1px solid var(--rule);
+    border-bottom: 0.6px solid var(--rule);
+    vertical-align: bottom;
+  }
+  td {
+    padding: 4px 9px 4px 0; vertical-align: top;
+    border-bottom: 0.4px solid var(--hairline);
+    text-align: left; hyphens: none;
+  }
+  tr.last td, tbody tr:last-child td { border-bottom: 1.1px solid var(--rule); }
+  td.k, th.k { color: var(--muted); }
+  .num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .good { color: #1a7f37; }
+
+  td .mark { font-weight: 700; }
+  td .mark.yes { color: #1a7f37; }
+  td .mark.no { color: #b5450b; }
+  td .mark.part { color: #9a6700; }
+  td .mark.none { color: var(--muted); }
+
+  /* --- references: hanging indent, smaller ------------------------------- */
+  .refs { font-size: 12.5px; line-height: 1.38; }
+  .refs p {
+    margin: 0 0 5px; padding-left: 1.5em; text-indent: -1.5em;
+    text-align: left; hyphens: none;
+  }
+
+  .foot {
+    margin-top: 26px; padding-top: 12px;
+    border-top: 0.6px solid var(--hairline);
+    font-size: 11.5px; line-height: 1.42; color: var(--ink-2);
+    text-align: left; hyphens: none;
+  }
+
+  /* --- narrow screens: a single column is more use than a faithful one ---- */
+  @media (max-width: 820px) {
+    .sheet { padding: 40px 22px 48px; }
+    .abstract { max-width: 100%; }
+  }
+
+  /* --- print: this is the point of the whole exercise -------------------- */
+  @media print {
+    body { background: #fff; padding: 0; }
+    /* Print paginates, so two columns behave here as they do in a journal. */
+    .sheet {
+      max-width: none; box-shadow: none; padding: 0;
+      font-size: 9.6pt; line-height: 1.3;
+      column-count: 2; column-gap: 24px;
+    }
+    .draftbar, h1, .byline, .dateline, .abstract,
+    figure, .tablewrap, figure.pair, .foot { column-span: all; }
+    h1 { font-size: 17pt; }
+    .abstract { font-size: 9pt; }
+    figure, .tablewrap { break-inside: avoid; }
+    h2, h3 { break-after: avoid; }
+    .draftbar { display: none; }
+  }
+
+  /* --- elements Markdown produces that the manuscript does not ------------- */
+  .sheet ul, .sheet ol { margin: 0 0 10px; padding-left: 1.6em; }
+  .sheet li { margin: 0 0 4px; text-indent: 0; }
+  .sheet li > p { text-indent: 0; margin: 0 0 4px; }
+  .sheet blockquote {
+    margin: 12px 0; padding: 8px 0 8px 14px;
+    border-left: 2px solid var(--hairline);
+    color: var(--ink-2); font-size: 14px;
+  }
+  .sheet blockquote p { text-indent: 0; }
+  .sheet hr { border: 0; border-top: 0.6px solid var(--hairline); margin: 22px 0; }
+  .sheet del { color: var(--muted); }
+  .sheet h1 + p, .sheet h2 + p, .sheet h3 + p { text-indent: 0; }
+  .sheet table { margin: 12px 0; }
+  .sheet code { background: rgba(0,0,0,.035); padding: 0 3px; border-radius: 2px; }
+  .sheet a { color: var(--us); text-decoration: none; border-bottom: 0.5px solid currentColor; }
+  .notebar {
+    font-family: var(--sans); font-size: 9.5px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--draft);
+    border: 1px solid currentColor; display: inline-block;
+    padding: 2px 8px; margin: 0 0 20px;
+  }
+</style>
+
+<div class="sheet">
+<div class="notebar">Working note - not submitted</div>
+<h1>A Nested Sampler's Internal Uncertainty Is Not Its Reproducibility</h1>
+<p><em>Matthew Potts · independent analysis · draft 2026-08-13</em></p>
+<p>Bayesian model comparisons are often decided by a log-evidence difference, ΔlnZ,
+quoted with the uncertainty a nested sampler reports internally — a number
+describing one integration's numerical precision, not its reproducibility. Running
+the same comparison 82 times — one likelihood, one real dataset, varying only the
+seed and, separately, the priors and live-point count — the empirical run-to-run
+scatter in ΔlnZ exceeds the sampler's quoted uncertainty by 1.1× to 8.1×.
+Quadrupling live points shrinks the internal number as expected but not the
+scatter, so the understatement grows to 4–5×.</p>
+<h2>Setup</h2>
+<p>We fit two competing Keplerian models (one companion versus two) to the 23-epoch
+CD-35 2722 B radial-velocity table published by Hoy et al. (2026, <em>Nature</em>), using
+<code>dynesty</code> (Speagle 2020): random-walk (<code>rwalk</code>) proposals, <code>dlogz = 0.01</code> stopping,
+ΔlnZ = ln Z(2-companion) − ln Z(1-companion) recorded per run. The likelihood is a
+Gaussian with jitter added in quadrature (s² = σ_RV² + σ_jit²), identical between
+models, with priors shared wherever a parameter is shared. Ten configurations vary
+two axes: period handling (fixed; free within bounding windows; or free with both
+models equally eccentric) and the jitter/amplitude prior (uniform; linear jitter;
+log-uniform amplitude). Seven configurations ran at nlive = 500 (ten seeds each);
+three were repeated at nlive = 2000 (four seeds each) as a convergence check — 82
+runs in total.</p>
+<h2>Result</h2>
+<p><strong>Table 1.</strong> ΔlnZ over 82 nested-sampling runs. &quot;Internal&quot; is the sampler's own
+quoted uncertainty (quadrature sum of both models' log-evidence errors);
+&quot;run-to-run σ&quot; is the empirical scatter across seeds; &quot;ratio&quot; divides the second by
+the first.</p>
+<table>
+<thead>
+<tr>
+<th>priors</th>
+<th>period handling</th>
+<th style="text-align:right">nlive</th>
+<th style="text-align:right">ΔlnZ (mean ± s.e.)</th>
+<th style="text-align:right">run-to-run σ</th>
+<th style="text-align:right">internal</th>
+<th style="text-align:right">ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>uniform</td>
+<td>fixed</td>
+<td style="text-align:right">500</td>
+<td style="text-align:right">−1.83 ± 0.08</td>
+<td style="text-align:right">0.25</td>
+<td style="text-align:right">0.24</td>
+<td style="text-align:right">1.1×</td>
+</tr>
+<tr>
+<td>uniform</td>
+<td>in windows</td>
+<td style="text-align:right">500</td>
+<td style="text-align:right">−4.60 ± 0.27</td>
+<td style="text-align:right">0.87</td>
+<td style="text-align:right">0.27</td>
+<td style="text-align:right">3.3×</td>
+</tr>
+<tr>
+<td>uniform</td>
+<td>both eccentric</td>
+<td style="text-align:right">500</td>
+<td style="text-align:right">−5.51 ± 0.69</td>
+<td style="text-align:right">2.18</td>
+<td style="text-align:right">0.27</td>
+<td style="text-align:right"><strong>8.1×</strong></td>
+</tr>
+<tr>
+<td>jitter U(0,300)</td>
+<td>in windows</td>
+<td style="text-align:right">500</td>
+<td style="text-align:right">−3.82 ± 0.20</td>
+<td style="text-align:right">0.62</td>
+<td style="text-align:right">0.27</td>
+<td style="text-align:right">2.3×</td>
+</tr>
+<tr>
+<td>jitter U(0,300)</td>
+<td>both eccentric</td>
+<td style="text-align:right">500</td>
+<td style="text-align:right">−3.37 ± 0.38</td>
+<td style="text-align:right">1.19</td>
+<td style="text-align:right">0.27</td>
+<td style="text-align:right">4.4×</td>
+</tr>
+<tr>
+<td>K log-uniform</td>
+<td>in windows</td>
+<td style="text-align:right">500</td>
+<td style="text-align:right">−3.77 ± 0.30</td>
+<td style="text-align:right">0.96</td>
+<td style="text-align:right">0.27</td>
+<td style="text-align:right">3.5×</td>
+</tr>
+<tr>
+<td>K log-uniform</td>
+<td>both eccentric</td>
+<td style="text-align:right">500</td>
+<td style="text-align:right">−1.42 ± 0.44</td>
+<td style="text-align:right">1.40</td>
+<td style="text-align:right">0.27</td>
+<td style="text-align:right">5.3×</td>
+</tr>
+<tr>
+<td>uniform</td>
+<td>fixed</td>
+<td style="text-align:right">2000</td>
+<td style="text-align:right">−1.50 ± 0.24</td>
+<td style="text-align:right">0.49</td>
+<td style="text-align:right">0.12</td>
+<td style="text-align:right">4.1×</td>
+</tr>
+<tr>
+<td>uniform</td>
+<td>in windows</td>
+<td style="text-align:right">2000</td>
+<td style="text-align:right">−4.46 ± 0.31</td>
+<td style="text-align:right">0.62</td>
+<td style="text-align:right">0.13</td>
+<td style="text-align:right">4.7×</td>
+</tr>
+<tr>
+<td>uniform</td>
+<td>both eccentric</td>
+<td style="text-align:right">2000</td>
+<td style="text-align:right">−3.49 ± 0.27</td>
+<td style="text-align:right">0.54</td>
+<td style="text-align:right">0.13</td>
+<td style="text-align:right">4.1×</td>
+</tr>
+</tbody>
+</table>
+<p>Every configuration's mean favours one companion, and 81 of 82 individual runs are
+negative; the single exception reaches +0.9 — not this note's point. The uncertainty
+columns are. At nlive = 500 the internal estimate sits at ±0.24–0.27 regardless of
+configuration, while the empirical scatter over ten seeds spans 0.25 to 2.18:
+understated by 1.1× to 8.1×. Quadrupling live points to 2000 shrinks the internal
+estimate to ±0.12–0.13, matching its N^−1/2 scaling — but the empirical scatter
+barely moves (0.49–0.62), so the understatement <em>grows</em>, to 4.1–4.7×.</p>
+<h2>Why more live points make it worse</h2>
+<p>This is consistent with the internal estimate measuring the wrong thing: one
+integration's numerical precision, not the variance between independent runs —
+which mode a random walk settles into, and how a degenerate posterior region gets
+explored. More live points tighten the first without touching the second, so the
+two move apart rather than together.</p>
+<h2>The motivating case</h2>
+<p>This test was prompted by Hoy et al.'s tentative second, shorter-period companion: a
+nested-sampling comparison at ΔlnZ = +2.622, with quoted log-evidence uncertainties
+of ±0.695 and ±0.691 — the same class of internal number examined here. The
+system's primary ~171 d companion signal itself reproduces independently from the
+raw archival frames in our companion paper (in prep.); this note is not a challenge
+to that detection. We did not test their sampler, or how its uncertainty was
+computed; the runs above use a different code on their own published table, testing
+only whether a comparable gap appears in a similar setting. The honest, conditional
+statement: <em>if</em> other nested samplers show a similar gap, <em>then</em> an uncertainty of
+that size may understate the comparison's reproducibility — worth checking before
+treating an evidence difference of order unity as decisive.</p>
+<h2>Recommendation</h2>
+<p>Where a model-comparison claim depends on an evidence difference, quote the scatter
+of ΔlnZ over several independent runs — different seeds, same setup — rather than
+the sampler's internal estimate. Ten runs is enough to see the effect here; three to
+five would likely catch it. The internal number remains a useful convergence
+diagnostic, not a substitute for an empirical one.</p>
+<h2>Scope</h2>
+<p>This is one likelihood, one dataset, and one sampler (<code>dynesty</code>, <code>rwalk</code>
+proposals). We have not tested other nested samplers, proposal methods, or
+datasets; the factor of 1.1–8.1× should not be assumed to transfer. What we think
+generalizes is narrower: an internal log-evidence uncertainty is a within-run
+number, and checking it against run-to-run scatter costs only a handful of extra
+sampler calls.</p>
+<p><strong>Suggested figure (not produced here).</strong> One panel per live-point count;
+configurations on the x-axis, ΔlnZ on the y-axis. Plot each seed's result as a
+point, the configuration mean as a marker, and two error bars — internal (thin) and
+empirical standard error (thick). The gap between them, and its persistence across
+panels, is the figure's entire content.</p>
+<hr />
+<p><em>Reproducibility: <code>scripts/nested_orbits.py</code> (dynesty 3.1.0) produced the four M28
+run files in <code>data/</code>; derivation in <code>M28-RESULTS.md</code> §7. AI-assisted (Claude,
+Anthropic); human-directed and reviewed.</em></p>
+<p><strong>Reference.</strong> Hoy, K., Zurlo, A., Peña R., P. A., Köhler, J., et al. 2026, <em>Nature</em>.</p>
+
+</div>

@@ -1,0 +1,503 @@
+<title>First Radial-Velocity Constraints on eta Telescopii B - draft</title>
+<style>
+  /* ------------------------------------------------------------------------
+     Journal typography, modelled on the AASTeX / A&A / MNRAS two-column page.
+
+     Values taken from arXiv's own HTML rendering stack where they apply
+     (ar5iv 0.9.0: justified body, hyphens auto, 1.5 prose line-height, serif
+     text face against sans headings) and from print convention where arXiv's
+     web theme departs from it -- arXiv's current beta serves a sans-serif body
+     ("rival-sans"), which is arXiv house style, not what a paper looks like.
+
+     Layout: SINGLE column on screen, TWO columns in print. This is deliberate
+     and is what arXiv's own HTML does. CSS multi-column does not paginate on a
+     continuous page: with two columns the left one holds the entire first half
+     of the document, so a reader scrolls down forty screens and back up. A
+     journal PDF escapes this only because it paginates, and columns restart on
+     every page. Print does paginate, so the two-column rule lives in @media
+     print, where figures and tables carry column-span:all exactly as in a
+     journal.
+     ------------------------------------------------------------------------ */
+  :root {
+    --plane: #eceae5;
+    --sheet: #ffffff;
+    --ink: #000000;
+    --ink-2: #333333;
+    --muted: #6b6b6b;
+    --hairline: #d8d8d8;
+    --rule: #000000;
+    --us: #1a5fb4;
+    --them: #b5450b;
+    --draft: #a02c2c;
+
+    --serif: "Times New Roman", Times, "Liberation Serif", "Nimbus Roman",
+             "Tinos", Georgia, serif;
+    --sans: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
+
+    --body-size: 15px;
+    --body-leading: 1.42;
+    --colgap: 26px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --plane: #1a1a19; }
+  }
+  :root[data-theme="dark"] { --plane: #1a1a19; }
+
+  body {
+    background: var(--plane);
+    margin: 0;
+    padding: 36px 14px 64px;
+    font-family: var(--serif);
+    color: var(--ink);
+  }
+
+  /* The page. Proportioned like a letter-size journal page: ~7.1in of text
+     block, two columns, so a line runs to roughly 55 characters as in print. */
+  .sheet {
+    max-width: 820px;
+    margin: 0 auto;
+    background: var(--sheet);
+    color: var(--ink);
+    padding: 58px 62px 66px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.16), 0 10px 34px rgba(0,0,0,.09);
+    border-radius: 1px;
+
+    font-size: var(--body-size);
+    line-height: var(--body-leading);
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+
+  /* --- the title block spans the full measure, as in a journal ------------ */
+  .draftbar, h1, .byline, .dateline, .abstract {
+    text-align: initial;
+    hyphens: none;
+  }
+
+  .draftbar {
+    font-family: var(--sans);
+    font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--draft); border: 1px solid currentColor;
+    display: inline-block; padding: 2px 8px; margin: 0 0 20px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: 25px; line-height: 1.22; font-weight: 700;
+    margin: 0 0 16px; text-align: center; text-wrap: balance;
+  }
+  .byline {
+    text-align: center; font-size: 14.5px; margin: 0 0 4px; color: var(--ink);
+  }
+  .byline b { font-weight: 400; }
+  .dateline {
+    text-align: center; font-size: 12px; color: var(--muted);
+    margin: 0 0 22px; font-style: italic;
+  }
+
+  /* Abstract: full measure, indented both sides, smaller -- AASTeX house style */
+  .abstract {
+    margin: 0 auto 26px; padding: 0;
+    max-width: 84%;
+    font-size: 13.5px; line-height: 1.45;
+    border-top: 0.5px solid var(--hairline);
+    border-bottom: 0.5px solid var(--hairline);
+    padding: 14px 0 12px;
+  }
+  .abstract .eyebrow {
+    display: block; text-align: center; font-family: var(--serif);
+    font-variant: small-caps; letter-spacing: .08em;
+    font-size: 12.5px; color: var(--ink); margin: 0 0 8px; font-weight: 700;
+  }
+  .abstract p { margin: 0 0 8px; text-align: justify; hyphens: auto; }
+  .abstract p:last-child { margin-bottom: 0; }
+
+  /* --- section heads: left, bold, numbered (A&A / MNRAS convention) ------- */
+  h2 {
+    font-family: var(--serif);
+    font-size: 15.5px; font-weight: 700; line-height: 1.25;
+    margin: 20px 0 7px; text-align: left; hyphens: none;
+    break-after: avoid-column;
+  }
+  h2 .no { font-weight: 700; margin-right: .5em; }
+  h3 {
+    font-family: var(--serif);
+    font-size: 14.5px; font-weight: 400; font-style: italic;
+    margin: 15px 0 5px; text-align: left; hyphens: none;
+    break-after: avoid-column;
+  }
+
+  /* --- body text: journal paragraphs are indented, not spaced ------------- */
+  p { margin: 0 0 0; text-indent: 1.4em; orphans: 2; widows: 2; }
+  h1 + p, h2 + p, h3 + p, .abstract p, figcaption p, caption p,
+  .refs p, .foot p, td p, th p { text-indent: 0; }
+
+  .us { color: var(--us); }
+  .them { color: var(--them); }
+  em { font-style: italic; }
+  sup { font-size: .74em; line-height: 0; vertical-align: super; }
+  code {
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: .86em;
+  }
+
+  /* --- floats span the full measure, as in print ------------------------- */
+  figure, .tablewrap, figure.pair {
+    margin: 18px 0 16px;
+    break-inside: avoid;
+  }
+  figure img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+  figcaption {
+    font-size: 12px; line-height: 1.4; color: var(--ink-2);
+    margin-top: 7px; text-align: justify; hyphens: auto;
+  }
+  figcaption b { font-weight: 700; color: var(--ink); }
+
+  .pairhead { font-family: var(--sans); font-size: 11px; margin-bottom: 6px; }
+  .chip {
+    display: inline-block; padding: 1px 6px; border: 1px solid currentColor;
+    border-radius: 2px; font-size: 10px; letter-spacing: .04em;
+  }
+  .chip.them { color: var(--them); }
+  .chip.us { color: var(--us); }
+  .pairhead .to { color: var(--muted); margin: 0 6px; }
+
+  .verdict { font-family: var(--sans); font-size: 10.5px; font-weight: 700; }
+  .verdict.yes { color: #1a7f37; }
+  .verdict.no { color: #b5450b; }
+  .verdict.part { color: #9a6700; }
+
+  /* --- tables: journal rules, no vertical lines -------------------------- */
+  .tablewrap { overflow-x: auto; }
+  table {
+    border-collapse: collapse; width: 100%;
+    font-size: 12.5px; line-height: 1.34;
+    font-family: var(--serif);
+  }
+  caption {
+    caption-side: top; text-align: justify; hyphens: auto;
+    font-size: 12px; line-height: 1.4; color: var(--ink-2);
+    margin-bottom: 7px;
+  }
+  caption b { font-weight: 700; color: var(--ink); }
+  th {
+    font-weight: 700; text-align: left; padding: 5px 9px 5px 0;
+    border-top: 1.1px solid var(--rule);
+    border-bottom: 0.6px solid var(--rule);
+    vertical-align: bottom;
+  }
+  td {
+    padding: 4px 9px 4px 0; vertical-align: top;
+    border-bottom: 0.4px solid var(--hairline);
+    text-align: left; hyphens: none;
+  }
+  tr.last td, tbody tr:last-child td { border-bottom: 1.1px solid var(--rule); }
+  td.k, th.k { color: var(--muted); }
+  .num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .good { color: #1a7f37; }
+
+  td .mark { font-weight: 700; }
+  td .mark.yes { color: #1a7f37; }
+  td .mark.no { color: #b5450b; }
+  td .mark.part { color: #9a6700; }
+  td .mark.none { color: var(--muted); }
+
+  /* --- references: hanging indent, smaller ------------------------------- */
+  .refs { font-size: 12.5px; line-height: 1.38; }
+  .refs p {
+    margin: 0 0 5px; padding-left: 1.5em; text-indent: -1.5em;
+    text-align: left; hyphens: none;
+  }
+
+  .foot {
+    margin-top: 26px; padding-top: 12px;
+    border-top: 0.6px solid var(--hairline);
+    font-size: 11.5px; line-height: 1.42; color: var(--ink-2);
+    text-align: left; hyphens: none;
+  }
+
+  /* --- narrow screens: a single column is more use than a faithful one ---- */
+  @media (max-width: 820px) {
+    .sheet { padding: 40px 22px 48px; }
+    .abstract { max-width: 100%; }
+  }
+
+  /* --- print: this is the point of the whole exercise -------------------- */
+  @media print {
+    body { background: #fff; padding: 0; }
+    /* Print paginates, so two columns behave here as they do in a journal. */
+    .sheet {
+      max-width: none; box-shadow: none; padding: 0;
+      font-size: 9.6pt; line-height: 1.3;
+      column-count: 2; column-gap: 24px;
+    }
+    .draftbar, h1, .byline, .dateline, .abstract,
+    figure, .tablewrap, figure.pair, .foot { column-span: all; }
+    h1 { font-size: 17pt; }
+    .abstract { font-size: 9pt; }
+    figure, .tablewrap { break-inside: avoid; }
+    h2, h3 { break-after: avoid; }
+    .draftbar { display: none; }
+  }
+
+  /* --- elements Markdown produces that the manuscript does not ------------- */
+  .sheet ul, .sheet ol { margin: 0 0 10px; padding-left: 1.6em; }
+  .sheet li { margin: 0 0 4px; text-indent: 0; }
+  .sheet li > p { text-indent: 0; margin: 0 0 4px; }
+  .sheet blockquote {
+    margin: 12px 0; padding: 8px 0 8px 14px;
+    border-left: 2px solid var(--hairline);
+    color: var(--ink-2); font-size: 14px;
+  }
+  .sheet blockquote p { text-indent: 0; }
+  .sheet hr { border: 0; border-top: 0.6px solid var(--hairline); margin: 22px 0; }
+  .sheet del { color: var(--muted); }
+  .sheet h1 + p, .sheet h2 + p, .sheet h3 + p { text-indent: 0; }
+  .sheet table { margin: 12px 0; }
+  .sheet code { background: rgba(0,0,0,.035); padding: 0 3px; border-radius: 2px; }
+  .sheet a { color: var(--us); text-decoration: none; border-bottom: 0.5px solid currentColor; }
+  .notebar {
+    font-family: var(--sans); font-size: 9.5px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--draft);
+    border: 1px solid currentColor; display: inline-block;
+    padding: 2px 8px; margin: 0 0 20px;
+  }
+</style>
+
+<div class="sheet">
+<div class="notebar">Research Note draft - NOT SUBMITTED</div>
+<h1>First Radial-Velocity Constraints on eta Telescopii B</h1>
+<blockquote>
+<p><strong>Status: prepared, not submitted.</strong> Submission is outward-facing and irreversible, this
+project's own rules (<code>LESSONS.md</code> §6) gate it to Matthew, and the agent that prepared this
+holds no journal credentials. Nothing here has been sent anywhere.</p>
+<p>Every number below is printed by <a href="../../scripts/m32_etatel_numbers.py"><code>scripts/m32_etatel_numbers.py</code></a>
+from <code>data/m15-limit.json</code> — none is hand-transcribed, because the repo's own audit found
+34 conflicting values that entered exactly that way. Re-run it before submitting and diff.</p>
+<p><strong>Blockers are listed at the bottom.</strong> Read those first.</p>
+</blockquote>
+<hr />
+<p><strong>Title:</strong> First Radial-Velocity Constraints on the Brown Dwarf Companion η Telescopii B</p>
+<p><strong>Authors:</strong> Matthew Potts (affiliation TBD; ORCID TBD)</p>
+<hr />
+<h2>Abstract</h2>
+<p><em>(Required by RNAAS since May 2020.)</em></p>
+<p>We present the first radial-velocity constraints on η Telescopii B, an M7–M8 brown dwarf
+companion at 4.2″ from the A0V star η Tel, derived entirely from public CRIRES+ archival
+data: 20 epochs in the H1567 setting spanning 18 nights and 815 days, reduced by two
+independent routes that agree at 127–130 m s⁻¹ per-epoch scatter. No periodic signal is
+detected. Injection–recovery through the full pipeline returns 99–101 ± 1% of the injected
+amplitude, and a detection criterion whose false-alarm probability is measured at ≤ 0.85% by
+permutation yields 90% exclusion limits of m sin i ≈ 0.51–1.27 M_Jup for satellites with
+P = 20–300 d. Because η Tel B's own orbit is near edge-on (i ≈ 79–82°), these are true-mass
+limits to within 2% for any satellite orbiting near the companion's orbital plane. The
+constrained periods correspond to 0.05–0.31 au, a region inaccessible to the high-contrast
+imaging surveys that constrain satellites only beyond ~1–5 au.</p>
+<hr />
+<h2>Body</h2>
+<p>η Telescopii B is an M7–M8 brown dwarf companion at 4.199 ± 0.015″ projected separation
+(Chai et al. 2024) from the A0V star η Tel, a member of the β Pictoris moving group. It is
+well studied photometrically, spectroscopically and astrometrically — a 25-year astrometric
+baseline and, recently, an 11–21 μm JWST/MIRI spectrum — but to our knowledge <strong>no
+radial-velocity measurement of it has been published</strong>. We report the first, derived entirely
+from public archival data. The system inverts the usual arrangement: HARPS velocities exist for
+the <em>primary</em> but are unusable, scattering at 12.8 km s⁻¹ because η Tel A is a young, rapidly
+rotating A0V star, and the most recent orbital analysis omits them for that reason (Chai et al.
+2024). The faint companion, not the bright host, is the viable radial-velocity target here.</p>
+<p>Radial-velocity monitoring of a directly imaged companion's own spectrum is an established
+route to constraining massive satellites. Searches have been reported for the HR 8799 planets
+(Vanderburg &amp; Rodriguez 2021), HR 7672 B (Ruffio et al. 2023), GQ Lup B (Horstman et al. 2024)
+and β Pictoris b (Kenworthy et al. 2026), all null, alongside astrometric limits from
+interferometry (Macias et al. 2026; Kral et al. 2026). Against that run, Hoy et al. (2026)
+reported the first detection, around CD-35 2722 B — which sharpens rather than settles how
+common the configuration is, and makes each further constrained system worth having.</p>
+<p>η Tel B is the only other object in the accessible class with an archival CRIRES+ series long
+enough to constrain an orbit, and it was observed in the <strong>identical H1567 setting</strong> as
+CD-35 2722 B, so that reduction transfers unmodified. At ~47 M_Jup it also extends the sample
+into the brown-dwarf host regime, with HR 7672 B.</p>
+<p><strong>Data.</strong> We use 20 public CRIRES+ H1567 epochs of η Tel B spanning 18 nights and 815 days
+(ESO programmes 111.24M0, 113.268Y, 115.287U). We reduce them twice by independent routes:
+from the archive's reduced products, and from raw frames through the full <code>cr2res</code> cascade
+with per-nodding extraction. Radial velocities come from <code>viper</code> (Köhler et al. 2025) in its
+cell-free configuration, using telluric lines as the wavelength reference, over an
+eleven-order set selected for telluric density. Both routes give <strong>127–130 m s⁻¹</strong> per-epoch
+scatter, on an object of K_s = 11.6 ± 0.1 (Neuhäuser et al. 2011).</p>
+<p><strong>The measurement is of the companion.</strong> At 4.2″ against a delivered spatial PSF of 0.37″,
+measured from the extraction's own slit function, the pair is separated by 11.3 resolution
+elements. The check is not incidental: companions inside one resolution element yield a
+spectrum that is the host's, while every downstream diagnostic — precision, order-to-order
+dispersion, injection recovery — nonetheless improves. η Tel B is unambiguously resolved.</p>
+<p><strong>Validation.</strong> Because no published RV exists for this target, there is nothing to check
+against, so the entire validation burden falls on injection–recovery. We inject a Keplerian
+by shifting the <em>template</em>, never the observation, and re-run the complete pipeline per
+epoch. Recovery is <strong>99–101% ± 1%</strong> of the injected amplitude with 12–23 m s⁻¹ residual
+scatter, and every individual order transmits at 95–108%; the per-nodding route independently
+returns 100% ± 3%. An injected series assembled from those runs is recovered by the same
+blind period search that returns the null, at rank 1 and the correct period. The pipeline
+detects what it is given.</p>
+<p><strong>Result: no detection.</strong> Across the 150–300 day window — where a CD-35 2722 B analogue would
+lie — every ΔBIC is negative on both extraction routes. The strongest features are
+short-period (5–12 d) and inconsistent between routes and between combination methods,
+characteristic of sampling aliases rather than signal; Hoy et al. discard periods this short
+on the same grounds. The null is not a sampling artefact: on this cadence only 11% of the
+5–460 d period grid is degenerate with the barycentric velocity, and the 150–300 d decade is
+completely clean.</p>
+<p><strong>Sensitivity.</strong> We add a circular-orbit signal to the real series, marginalize over 12
+phases, and require ΔBIC ≥ 10 <em>and</em> rank 1 at the injected period. That criterion's
+false-alarm probability is ≤ 0.85% at every period tested — the rank-1 clause, not the ΔBIC
+bar, carries the protection.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Period (d)</th>
+<th style="text-align:right">K₉₀ (m s⁻¹)</th>
+<th style="text-align:right">m sin i limit (M_Jup)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">20</td>
+<td style="text-align:right">300</td>
+<td style="text-align:right">0.51</td>
+</tr>
+<tr>
+<td style="text-align:right">60</td>
+<td style="text-align:right">250</td>
+<td style="text-align:right">0.61</td>
+</tr>
+<tr>
+<td style="text-align:right">120</td>
+<td style="text-align:right">250</td>
+<td style="text-align:right">0.77</td>
+</tr>
+<tr>
+<td style="text-align:right">200</td>
+<td style="text-align:right">300</td>
+<td style="text-align:right">1.11</td>
+</tr>
+<tr>
+<td style="text-align:right">300</td>
+<td style="text-align:right">300</td>
+<td style="text-align:right">1.27</td>
+</tr>
+</tbody>
+</table>
+<p><em>90% detection probability, companion mass 47 M_Jup (Lazzoni et al. 2020). K₉₀ is read off
+the measured detection grid — the smallest injected amplitude reaching 90% — not interpolated
+or fitted.</em></p>
+<p><strong>These are the first radial-velocity constraints of any kind on η Tel B</strong>, and they exclude
+sub-Jupiter to Jupiter-mass companions across most of the 20–300 day range. They sit
+comfortably alongside the published sample: Kenworthy et al. (2026) reach 1 M_Jup at
+P = 200 d on β Pic b from a dedicated campaign at 160 m s⁻¹ mean precision, against
+1.11 M_Jup at the same period here from archival data at 127–130 m s⁻¹.</p>
+<p>These limits also probe a region no imaging survey reaches. For a 47 M_Jup host, P = 20–300 d
+corresponds to <strong>0.05–0.31 au</strong>, whereas the dedicated SPHERE star-hopping survey of twelve
+directly imaged companions constrains satellites only beyond ~1–5 au (Lazzoni et al. 2026).
+The two techniques do not overlap, and the reason is generic: astrometric amplitude scales as
+the satellite's semi-major axis while radial-velocity amplitude scales as a^(−1/2), so
+imaging and astrometry own the wide orbits and RV owns the close ones (Macias et al. 2026).</p>
+<p>The limits are on m sin i, but in this system that costs almost nothing. η Tel B's own orbit
+about η Tel A is near edge-on — i = 79 (+5/−6)° (Chai et al. 2024, stable across five
+independent fit configurations) and 81.9° from a separate analysis (Nogueira et al. 2024). A satellite formed in a circum-companion disc would be expected to orbit near that
+plane, and if it does, sin i ≈ 0.98 and <strong>the tabulated limits are true-mass limits to within
+2%</strong>. This is an assumption, not a measurement, and a strongly misaligned satellite would
+evade the constraint — but it is the same near-edge-on geometry that motivates β Pic b as an
+RV target (Kenworthy et al. 2026), and the same coplanarity expectation under which the
+CD-35 2722 B satellite is interpreted.</p>
+<p>A twin of the CD-35 2722 B satellite (m sin i = 0.918 M_Jup) would produce K ≈ 540 m s⁻¹ at 20 d falling to
+≈ 217 m s⁻¹ at 300 d, and would have been detected in ~100% of trials at short periods but
+only 42–83% at 200–300 d. The non-detection is therefore decisive below ~120 d and merely
+suggestive at the period where the one known example actually sits.</p>
+<p><strong>Caveats.</strong> The 90% contour is grid-pointwise rather than a continuous exclusion curve, and
+assumes circular orbits. The mass of η Tel B is itself disputed, and m sin i scales as
+M^(2/3): evolutionary-model fits give 47 (+5/−6) M_Jup (Lazzoni et al. 2020) while the
+JWST/MIRI atmospheric fit gives 29 (+16/−13) M_Jup (Chai et al. 2024). The two dynamical
+posteriors that sit between them, 42 ± 14 and 48 ± 15, both use priors traceable to the
+former and are described by their own authors as prior-driven, so they are not independent
+evidence. We adopt 47 M_Jup, the conservative choice — the atmospheric mass would deepen
+every limit in the table by 27%. The exclusion remains sub-Jupiter to Jupiter-mass across the
+full range, so the disagreement changes the numbers but not the conclusion.</p>
+<p>Eight archival epochs from 2009 on the original CRIRES, and embargoed 2025–26 K-band epochs,
+remain unexploited and would extend the baseline substantially.</p>
+<p><em>Software:</em> <code>cr2res</code>, <code>viper</code> (Köhler et al. 2025), <code>astropy</code>, <code>numpy</code>, <code>scipy</code>. All
+reduction and analysis code, the injection harness, and the sensitivity grid are public at
+<a href="https://github.com/mepotts/astronomy">github.com/mepotts/astronomy</a> (<code>exosat-rv/</code>).
+This work is based on observations collected at the European Southern Observatory under
+ESO programmes 111.24M0, 113.268Y and 115.287U.</p>
+<hr />
+<h2>References</h2>
+<ul>
+<li>Chai, Y. et al. 2024, <em>ApJ</em>, &quot;A JWST MIRI MRS View of the η Tel Debris Disk and its Brown
+Dwarf Companion&quot;, arXiv:2408.11692</li>
+<li>Dorn, R. J. et al. 2023, <em>A&amp;A</em>, <strong>671</strong>, A24 (CRIRES+)</li>
+<li>Horstman, K. et al. 2024, GQ Lup B RV exosatellite search</li>
+<li>Kenworthy, M. A. et al. 2026, <em>MNRAS</em>, &quot;Upper limits on exosatellites around β Pictoris b&quot;,
+arXiv:2606.04685</li>
+<li>Kral, Q. et al. 2026, <em>A&amp;A</em>, exomoon search around HD 206893 B with VLTI/GRAVITY</li>
+<li>Lazzoni, C., Zurlo, A., Desidera, S. et al. 2026, <em>A&amp;A</em> (SaNDi-SHoP I), arXiv:2603.24796</li>
+<li>Macias, I., Jenkins, S. A. &amp; Vanderburg, A. 2026, <em>AJ</em>, <strong>171</strong>, 197</li>
+<li>Hoy, K. et al. 2026, <em>Nature</em>, &quot;Satellite Detected Around a Star's Substellar Companion&quot;,
+doi:10.1038/s41586-026-10751-w</li>
+<li>Köhler, J. et al. 2025, <em>A&amp;A</em>, <strong>698</strong>, A44 (viper), doi:10.1051/0004-6361/202553919</li>
+<li>Lazzoni, C. et al. 2020, <em>A&amp;A</em>, <strong>641</strong>, A131</li>
+<li>Neuhäuser, R., Ginski, C., Schmidt, T. O. B., &amp; Mugrauer, M. 2011, <em>MNRAS</em>, <strong>416</strong>, 1430</li>
+<li>Nogueira, P. H., Lazzoni, C., Zurlo, A. et al. 2024, <em>A&amp;A</em>, &quot;Astrometric and photometric characterization of η Tel B combining two decades of observations&quot;, arXiv:2405.04723</li>
+<li>Ruffio, J.-B. et al. 2023, <em>AJ</em>, <strong>165</strong>, 113</li>
+<li>Vanderburg, A. &amp; Rodriguez, J. E. 2021, <em>ApJ</em>, <strong>922</strong>, L2</li>
+</ul>
+<p><em>(Verification status per <code>docs/REFERENCE-AUDIT.md</code>. Hoy, Köhler and Chai are checked against
+full copies archived in <code>papers/</code>. Dorn is corroborated via Hoy et al.'s reference [11];
+Neuhäuser against the MNRAS record — both photometry and mass range quoted verbatim from it.
+Lazzoni et al. 2020 is cited via Chai et al. 2024 §5, which attributes the 47 (+5/−6) M_Jup
+AMES-COND mass to it; <strong>obtain the paper itself before submitting.</strong>)</em></p>
+<hr />
+<h2>BLOCKERS before this can be submitted</h2>
+<p><strong>Matthew's calls — nothing below can be resolved by an agent:</strong></p>
+<ol>
+<li><strong>Do you want to publish this at all?</strong> It is a null result with a limit. It is genuinely
+first-of-its-kind for this object, and it is also small. It may be worth more as a section
+of the full method paper (<code>docs/paper/draft.template.html</code>) than as a standalone note.
+Publishing separately does not preclude the paper, but does mean self-citing.</li>
+<li><strong>Author list, affiliation, ORCID.</strong> RNAAS accepts independent affiliations.</li>
+<li><strong>AAS account.</strong> RNAAS submission requires one; there is a fee-waiver path for
+non-members but it must be requested.</li>
+</ol>
+<p><strong>resolved in M32 — recorded here so the work is not repeated:</strong></p>
+<ol start="4">
+<li><s>The 47 M_Jup mass is single-source and unarchived</s> — <strong>run down.</strong> The repo attributed
+it to &quot;Lazzoni T1 → Langlois et al. 2021b&quot;; Chai et al. 2024 attributes it instead to
+<strong>Lazzoni et al. 2020, A&amp;A 641, A131</strong>, AMES-COND models, <strong>47 (+5/−6) M_Jup</strong>. Chai's own
+MIRI atmospheric fit gives <strong>29 (+16/−13)</strong>, and their orbital posterior 42 ± 14 is
+explicitly &quot;largely prior-driven&quot; and so not independent. The note now quotes the
+disagreement and its 27% effect rather than a bare number. <em>Residual task: obtain Lazzoni
+et al. 2020 itself — the attribution is currently second-hand through Chai.</em></li>
+<li><s>K = 13.2 conflicts with SIMBAD H = 11.93</s> — <strong>resolved against 13.2.</strong> Neuhäuser et al.
+2011 measures J = 12.06 ± 0.19, H = 11.75 ± 0.10, <strong>K_s = 11.6 ± 0.1</strong>, L = 11.1 ± 0.2.
+SIMBAD's H agrees; Lazzoni's Kp = 13.2 is wrong by 1.6 mag. The note now quotes K_s = 11.6
+with its source, and the &quot;beats the forecast&quot; claim has been <strong>deleted</strong> — that forecast
+was computed from the wrong magnitude, and at the true brightness the achieved precision
+probably does not beat a corrected one. See M30 for the repo-wide consequences.</li>
+<li><s>Confirm no prior RV exists</s> — <strong>as close to settled as it can get without ADS.</strong> The
+decisive evidence is Chai et al. (2024), the dedicated η Tel B characterization paper: it
+performs a full orbital fit and states that the only RV data in the system is HARPS
+velocities of η Tel <strong>A</strong>, unusable at 12.8 km s⁻¹ rms, which it therefore omits. That is
+precisely the paper that would cite a companion RV if one existed. Lazzoni et al. (2020),
+SaNDi-SHoP (2026) and Kenworthy et al. (2026) likewise cite none.</li>
+<li><s>Obtain Lazzoni et al. 2020 directly</s> — <strong>done.</strong> Archived
+(<code>papers/text/lazzoni2020_disks_satellites.txt</code>); its Table 2 gives η Tel B <strong>47 (+5/−6)
+M_Jup</strong>, age 24 ± 5 Myr, sep 4.21″ first-hand.</li>
+<li><s>AAS fee/membership</s> — <strong>not a gate.</strong> RNAAS carries <strong>no publication charge</strong> and AAS
+membership is <strong>not required</strong> to submit. A free submission account is all that is needed.</li>
+</ol>
+<p><strong>Still to do — all of it yours:</strong></p>
+<ol start="9">
+<li><strong>Register an ORCID</strong> (orcid.org, free, ~2 min) and fix the affiliation line.</li>
+<li><strong>Re-run <code>scripts/m32_etatel_numbers.py</code> and diff against the table above</strong> — a 60-second
+check that the manuscript matches the data before it leaves the building.</li>
+<li><strong>Submit.</strong> Deliberately not done here: outward-facing, irreversible, gated to you by
+<code>LESSONS.md</code> §6, and no agent in this repo holds credentials for it.</li>
+</ol>
+<p><strong>Word count:</strong> body is ~1,000 words against RNAAS's 1,500 limit, with one table and no
+figure — within limits, with room for a sensitivity-curve figure if preferred.</p>
+
+</div>

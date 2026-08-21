@@ -1,0 +1,1013 @@
+<title>First resolve, then worry about contrast - draft</title>
+<style>
+  /* ------------------------------------------------------------------------
+     Journal typography, modelled on the AASTeX / A&A / MNRAS two-column page.
+
+     Values taken from arXiv's own HTML rendering stack where they apply
+     (ar5iv 0.9.0: justified body, hyphens auto, 1.5 prose line-height, serif
+     text face against sans headings) and from print convention where arXiv's
+     web theme departs from it -- arXiv's current beta serves a sans-serif body
+     ("rival-sans"), which is arXiv house style, not what a paper looks like.
+
+     Layout: SINGLE column on screen, TWO columns in print. This is deliberate
+     and is what arXiv's own HTML does. CSS multi-column does not paginate on a
+     continuous page: with two columns the left one holds the entire first half
+     of the document, so a reader scrolls down forty screens and back up. A
+     journal PDF escapes this only because it paginates, and columns restart on
+     every page. Print does paginate, so the two-column rule lives in @media
+     print, where figures and tables carry column-span:all exactly as in a
+     journal.
+     ------------------------------------------------------------------------ */
+  :root {
+    --plane: #eceae5;
+    --sheet: #ffffff;
+    --ink: #000000;
+    --ink-2: #333333;
+    --muted: #6b6b6b;
+    --hairline: #d8d8d8;
+    --rule: #000000;
+    --us: #1a5fb4;
+    --them: #b5450b;
+    --draft: #a02c2c;
+
+    --serif: "Times New Roman", Times, "Liberation Serif", "Nimbus Roman",
+             "Tinos", Georgia, serif;
+    --sans: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
+
+    --body-size: 15px;
+    --body-leading: 1.42;
+    --colgap: 26px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --plane: #1a1a19; }
+  }
+  :root[data-theme="dark"] { --plane: #1a1a19; }
+
+  body {
+    background: var(--plane);
+    margin: 0;
+    padding: 36px 14px 64px;
+    font-family: var(--serif);
+    color: var(--ink);
+  }
+
+  /* The page. Proportioned like a letter-size journal page: ~7.1in of text
+     block, two columns, so a line runs to roughly 55 characters as in print. */
+  .sheet {
+    max-width: 820px;
+    margin: 0 auto;
+    background: var(--sheet);
+    color: var(--ink);
+    padding: 58px 62px 66px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.16), 0 10px 34px rgba(0,0,0,.09);
+    border-radius: 1px;
+
+    font-size: var(--body-size);
+    line-height: var(--body-leading);
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+
+  /* --- the title block spans the full measure, as in a journal ------------ */
+  .draftbar, h1, .byline, .dateline, .abstract {
+    text-align: initial;
+    hyphens: none;
+  }
+
+  .draftbar {
+    font-family: var(--sans);
+    font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--draft); border: 1px solid currentColor;
+    display: inline-block; padding: 2px 8px; margin: 0 0 20px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: 25px; line-height: 1.22; font-weight: 700;
+    margin: 0 0 16px; text-align: center; text-wrap: balance;
+  }
+  .byline {
+    text-align: center; font-size: 14.5px; margin: 0 0 4px; color: var(--ink);
+  }
+  .byline b { font-weight: 400; }
+  .dateline {
+    text-align: center; font-size: 12px; color: var(--muted);
+    margin: 0 0 22px; font-style: italic;
+  }
+
+  /* Abstract: full measure, indented both sides, smaller -- AASTeX house style */
+  .abstract {
+    margin: 0 auto 26px; padding: 0;
+    max-width: 84%;
+    font-size: 13.5px; line-height: 1.45;
+    border-top: 0.5px solid var(--hairline);
+    border-bottom: 0.5px solid var(--hairline);
+    padding: 14px 0 12px;
+  }
+  .abstract .eyebrow {
+    display: block; text-align: center; font-family: var(--serif);
+    font-variant: small-caps; letter-spacing: .08em;
+    font-size: 12.5px; color: var(--ink); margin: 0 0 8px; font-weight: 700;
+  }
+  .abstract p { margin: 0 0 8px; text-align: justify; hyphens: auto; }
+  .abstract p:last-child { margin-bottom: 0; }
+
+  /* --- section heads: left, bold, numbered (A&A / MNRAS convention) ------- */
+  h2 {
+    font-family: var(--serif);
+    font-size: 15.5px; font-weight: 700; line-height: 1.25;
+    margin: 20px 0 7px; text-align: left; hyphens: none;
+    break-after: avoid-column;
+  }
+  h2 .no { font-weight: 700; margin-right: .5em; }
+  h3 {
+    font-family: var(--serif);
+    font-size: 14.5px; font-weight: 400; font-style: italic;
+    margin: 15px 0 5px; text-align: left; hyphens: none;
+    break-after: avoid-column;
+  }
+
+  /* --- body text: journal paragraphs are indented, not spaced ------------- */
+  p { margin: 0 0 0; text-indent: 1.4em; orphans: 2; widows: 2; }
+  h1 + p, h2 + p, h3 + p, .abstract p, figcaption p, caption p,
+  .refs p, .foot p, td p, th p { text-indent: 0; }
+
+  .us { color: var(--us); }
+  .them { color: var(--them); }
+  em { font-style: italic; }
+  sup { font-size: .74em; line-height: 0; vertical-align: super; }
+  code {
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: .86em;
+  }
+
+  /* --- floats span the full measure, as in print ------------------------- */
+  figure, .tablewrap, figure.pair {
+    margin: 18px 0 16px;
+    break-inside: avoid;
+  }
+  figure img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+  figcaption {
+    font-size: 12px; line-height: 1.4; color: var(--ink-2);
+    margin-top: 7px; text-align: justify; hyphens: auto;
+  }
+  figcaption b { font-weight: 700; color: var(--ink); }
+
+  .pairhead { font-family: var(--sans); font-size: 11px; margin-bottom: 6px; }
+  .chip {
+    display: inline-block; padding: 1px 6px; border: 1px solid currentColor;
+    border-radius: 2px; font-size: 10px; letter-spacing: .04em;
+  }
+  .chip.them { color: var(--them); }
+  .chip.us { color: var(--us); }
+  .pairhead .to { color: var(--muted); margin: 0 6px; }
+
+  .verdict { font-family: var(--sans); font-size: 10.5px; font-weight: 700; }
+  .verdict.yes { color: #1a7f37; }
+  .verdict.no { color: #b5450b; }
+  .verdict.part { color: #9a6700; }
+
+  /* --- tables: journal rules, no vertical lines -------------------------- */
+  .tablewrap { overflow-x: auto; }
+  table {
+    border-collapse: collapse; width: 100%;
+    font-size: 12.5px; line-height: 1.34;
+    font-family: var(--serif);
+  }
+  caption {
+    caption-side: top; text-align: justify; hyphens: auto;
+    font-size: 12px; line-height: 1.4; color: var(--ink-2);
+    margin-bottom: 7px;
+  }
+  caption b { font-weight: 700; color: var(--ink); }
+  th {
+    font-weight: 700; text-align: left; padding: 5px 9px 5px 0;
+    border-top: 1.1px solid var(--rule);
+    border-bottom: 0.6px solid var(--rule);
+    vertical-align: bottom;
+  }
+  td {
+    padding: 4px 9px 4px 0; vertical-align: top;
+    border-bottom: 0.4px solid var(--hairline);
+    text-align: left; hyphens: none;
+  }
+  tr.last td, tbody tr:last-child td { border-bottom: 1.1px solid var(--rule); }
+  td.k, th.k { color: var(--muted); }
+  .num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .good { color: #1a7f37; }
+
+  td .mark { font-weight: 700; }
+  td .mark.yes { color: #1a7f37; }
+  td .mark.no { color: #b5450b; }
+  td .mark.part { color: #9a6700; }
+  td .mark.none { color: var(--muted); }
+
+  /* --- references: hanging indent, smaller ------------------------------- */
+  .refs { font-size: 12.5px; line-height: 1.38; }
+  .refs p {
+    margin: 0 0 5px; padding-left: 1.5em; text-indent: -1.5em;
+    text-align: left; hyphens: none;
+  }
+
+  .foot {
+    margin-top: 26px; padding-top: 12px;
+    border-top: 0.6px solid var(--hairline);
+    font-size: 11.5px; line-height: 1.42; color: var(--ink-2);
+    text-align: left; hyphens: none;
+  }
+
+  /* --- narrow screens: a single column is more use than a faithful one ---- */
+  @media (max-width: 820px) {
+    .sheet { padding: 40px 22px 48px; }
+    .abstract { max-width: 100%; }
+  }
+
+  /* --- print: this is the point of the whole exercise -------------------- */
+  @media print {
+    body { background: #fff; padding: 0; }
+    /* Print paginates, so two columns behave here as they do in a journal. */
+    .sheet {
+      max-width: none; box-shadow: none; padding: 0;
+      font-size: 9.6pt; line-height: 1.3;
+      column-count: 2; column-gap: 24px;
+    }
+    .draftbar, h1, .byline, .dateline, .abstract,
+    figure, .tablewrap, figure.pair, .foot { column-span: all; }
+    h1 { font-size: 17pt; }
+    .abstract { font-size: 9pt; }
+    figure, .tablewrap { break-inside: avoid; }
+    h2, h3 { break-after: avoid; }
+    .draftbar { display: none; }
+  }
+
+  /* --- elements Markdown produces that the manuscript does not ------------- */
+  .sheet ul, .sheet ol { margin: 0 0 10px; padding-left: 1.6em; }
+  .sheet li { margin: 0 0 4px; text-indent: 0; }
+  .sheet li > p { text-indent: 0; margin: 0 0 4px; }
+  .sheet blockquote {
+    margin: 12px 0; padding: 8px 0 8px 14px;
+    border-left: 2px solid var(--hairline);
+    color: var(--ink-2); font-size: 14px;
+  }
+  .sheet blockquote p { text-indent: 0; }
+  .sheet hr { border: 0; border-top: 0.6px solid var(--hairline); margin: 22px 0; }
+  .sheet del { color: var(--muted); }
+  .sheet h1 + p, .sheet h2 + p, .sheet h3 + p { text-indent: 0; }
+  .sheet table { margin: 12px 0; }
+  .sheet code { background: rgba(0,0,0,.035); padding: 0 3px; border-radius: 2px; }
+  .sheet a { color: var(--us); text-decoration: none; border-bottom: 0.5px solid currentColor; }
+  .notebar {
+    font-family: var(--sans); font-size: 9.5px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--draft);
+    border: 1px solid currentColor; display: inline-block;
+    padding: 2px 8px; margin: 0 0 20px;
+  }
+</style>
+
+<div class="sheet">
+<div class="notebar">Working note - not submitted</div>
+<h1>First resolve, then worry about contrast: a measured resolution gate for slit-fed companion radial velocimetry — and the free-floating regime where neither gate applies</h1>
+<p><em>Matthew Potts · independent analysis · draft 2026-08-14</em></p>
+<p><em>Instrument-oriented note. Target venue: A&amp;A/MNRAS short paper or an instrument-design note. Written from milestones M7–M29 of the <code>exosat-rv</code> archival project; measured quantities are cited inline as (M-n §s), or (queue) for the roster ledger, and every separation traces to a primary source. Quantities that could not be sourced are marked, not estimated.</em></p>
+<hr />
+<h2>Abstract</h2>
+<p>Companion-side radial velocimetry — measuring the reflex motion of a directly imaged brown
+dwarf or giant planet from its own spectrum, to detect a satellite or a second companion — is
+normally proposed on a photon-noise argument, and this project twice tried to replace that
+with a contrast threshold. Both are downstream of something simpler. Reading the <strong>nodding
+slit function</strong> — the spatial profile along the slit, whose FWHM is the resolution that
+observation actually delivered after AO, seeing and instrument — we measure <strong>R = projected
+separation / delivered PSF FWHM</strong>, the number of resolution elements between companion and
+host, for every target with a reduction on disk. <strong>R &lt; 1 means the pair sits inside one
+resolution element: there is no companion spectrum to extract, at any contrast.</strong> Across
+eight classifiable reductions the roster splits cleanly — resolved at R = 1.32, 1.42, 1.79,
+10.64, 11.26; blended at 0.39, 0.52, 0.54 — with nothing in between, and a second,
+independent diagnostic from the same profile (its height at the companion's offset)
+corroborates with a clean gap: 0.00–0.15 of peak when resolved, 0.55–0.71 when blended. The
+consequences are concrete. <strong>One of our own earlier readings is withdrawn</strong>: we had recorded
+HD 206893 B as &quot;clean, gates 100–102%&quot;, and at R = 0.52 that extraction is a measurement of
+its host. The withdrawal is of our reading of public archival data and of nothing that anyone
+has published about this system; the GRAVITY astrometry that supplies the separation, and on
+which the correction depends, is Kral et al.'s. <strong>β Pic b's verdict
+survives but its mechanism changes</strong>: at R = 0.54 there was never a resolved companion to
+contaminate, which is why its RV–barycentric correlation of <em>r</em> = +0.88 was unmoved by a
+rebuilt template and by masking the responsible spectral order, at 99–100% injection
+transmission throughout. And <strong>no fit statistic detects this</strong>: an injection gate measures
+whether the <em>fitter</em> transmits an imposed velocity, which a bright host does better than a
+faint companion — as do per-epoch precision and across-order dispersion. Only the spatial
+profile catches it. The contrast question survives only above R ≈ 1, and it is untested:
+every system in the interval where a contrast threshold would be tested is blended, which is
+not a coincidence but the same fact stated twice. The instrument consequence is therefore a
+requirement rather than a preference: <strong>fibre-fed starlight suppression is not a better way
+to work close in, it is the only way</strong>, because the slit cannot deliver a companion spectrum
+there to be limited by contrast at all. Isolated planetary-mass objects have no host, so
+neither gate applies.</p>
+<hr />
+<h2>1. Introduction</h2>
+<p>Doppler monitoring of a directly imaged companion was proposed by Vanderburg et al. (2018),
+applied to HR 8799 by Vanderburg &amp; Rodriguez (2021) and to HR 7672 B by Ruffio et al. (2023),
+forecast for the CRIRES+ era by Lazzoni et al. (2022), and pursued by Horstman et al. (2024)
+on GQ Lup B. Hoy et al. (2026, hereafter H26) reported the first detection, in CD-35 2722 B.</p>
+<p>Proposals in this genre are written on one feasibility axis: how bright the companion is.
+Lazzoni et al.'s threshold is a pure flux scaling — 100 m s⁻¹ at K = 13.5, degrading 1.585×
+per magnitude (M7 §1) — and this project's own ranking used the same form, re-anchored on
+H26's achieved 31.44 m s⁻¹ at K = 12.01 (M7 §2). Running one injection-gated pipeline across
+eleven archival systems shows that axis is not the binding one: companions of similar
+brightness differ by four orders of magnitude in delivered velocity scatter.</p>
+<p>Finding what <em>is</em> binding took four attempts, and the failures are part of the result. A
+contrast threshold was asserted for several milestones before anyone computed the ratios;
+computed, they moved, and one was contradicted by 2.4 mag by the discovery photometry.
+Contrast alone then failed to order the outcomes, and so did separation alone. A combination,
+S = contrast/θ², ordered them but could not be tested. What settled it was not a better
+statistic but a measurement nobody had made: <strong>the resolution each observation actually
+delivered</strong>, read off the spatial profile the pipeline already writes. This note reports two
+gates in series — a geometric one that decides whether a companion spectrum exists at all
+(§§3–6), and a contrast one that governs its quality and remains untested (§8) — and then the
+instrument requirement that follows (§9) and the regime where neither gate applies (§10).</p>
+<hr />
+<h2>2. Provenance, and the rules that govern what counts</h2>
+<p>All spectra are public ESO archive holdings. RVs are extracted with <code>viper</code> (Köhler et al.
+2025) in gas-cell-free CRIRES+ mode, forward-modelling each order against a telluric-free
+template built from the target's own observations; reductions use <code>cr2res</code> 1.6.10, from raw
+frames where required, and reproduce ESO's archived products to 42 m s⁻¹ in the final RV
+(M12 §9b). No published RV truth exists off CD-35 2722 B, so signal injection carries the
+validation burden for the velocities: every series below had to transmit an injected
+Keplerian — imposed by shifting the template, never the observation — at both a loud and an
+amplitude-matched semi-amplitude (M12 §8.1, M20 §1). §5 is about what that gate does <em>not</em>
+cover.</p>
+<p><strong>Nodding only.</strong> Every dataset this project had classified as &quot;staring-mode&quot; turned out to
+be <strong>HiRISE</strong>: fibre-fed SPHERE→CRIRES+ observations (<code>ESO INS MODE = HIRISE</code>), reduced by us
+through a slit recipe. Three ledgered verdicts were retracted (queue, HiRISE banner; LESSONS
+trap 1.10). Nodding conclusions stand; the fibre tier is provisional pending a
+fibre-appropriate reduction (M27) and appears here only where noted.</p>
+<p><strong>Every separation is sourced.</strong> The values this project quoted were, until this milestone,
+mostly unsourced — and a guessed separation is exactly what invalidates the analysis below.
+They now read: CD-35 2722 B 2.800″ (M0), η Tel B 4.210″ and β Pic b 0.511″ (Lazzoni et al.
+2022, Table 1, whose <code>Sep</code> column and host magnitudes sat unread in this repository for the
+project's whole duration), HIP 81208 B 0.325″ (Viswanath et al. 2023; 320.9 and 328.7 mas
+over two epochs), YSES 1 b 1.698″ (Bohn et al. 2020's projected 160 au with SIMBAD's
+parallax), 2M0103AB b 1.764″ (SIMBAD component coordinates, PA 338.7°), HD 206893 B 0.205″
+(GRAVITY astrometry, arXiv:2511.20091, interpolated to the CRIRES epoch between 206.8 mas at
+MJD 59453.093 and 193.1 mas at 60127.218), HD 4747 B 0.590″ (Lazzoni Table 1).</p>
+<p><strong>Contrasts are used only in §8, and carry known problems.</strong> The catalogue's
+companion-magnitude column is apparent magnitude — validated on YSES 1 b against Bohn et al.
+(2020) to 0.14 mag — but not uniformly reliable: for β Pic b it gives K = 14.9 where Currie
+et al. (2013, the source Bonnefoy et al. 2014 cite for that object's K_s photometry) measure
+K_s = 12.47 ± 0.13, i.e. a contrast of ≈ 3950× rather than 36 983×. A primary source
+overrides the column. η Tel B's entry is disputed on a colour argument and is not
+load-bearing anywhere below.</p>
+<hr />
+<h2>3. The measurement that changed the question</h2>
+<p>HD 4747 B was pulled from the archive as a decisive test of the contrast criterion (§8): at
+0.590″ it sat in the one interval no observation had ever sampled, with 19 public H-band
+nodding frames in the same slit and grating as CD-35 2722 B. The night reduced cleanly — 24
+of 24 spectral columns populated. The extraction is nevertheless of <strong>HD 4747 A</strong>.</p>
+<p>The slit function says so directly. At the companion's 0.590″ offset the profile sits at
+<strong>0.75 of the primary's peak height</strong> (median over 38 order-sides; 90th percentile 0.77).
+That is not a faint companion trace; it is the host's own PSF wing. Seeing that night ran
+0.86–1.31″, and the delivered profile FWHM is <strong>1.514″</strong> — the companion is well inside the
+host's seeing disk (M29 §9).</p>
+<p>That failure is more useful than the test would have been, because it names a quantity the
+whole contrast discussion had been assuming. The nodding slit function <em>is</em> the spatial
+profile along the slit, and its FWHM is the resolution that observation achieved after AO,
+seeing and instrument together. Measured per order per night (<code>scripts/m29_psf.py</code>; median
+subtracted, normalised to the peak, FWHM by linear interpolation on each side), it gives</p>
+<pre><code>R = projected separation / delivered PSF FWHM
+</code></pre>
+<p>the number of resolution elements between companion and host. Both inputs are measured;
+nothing is modelled or assumed. The classification rule was fixed before the sweep was run:
+<strong>R &lt; 1 means the pair lies within one resolution element, so the extraction describes the
+host, whatever the pipeline was told to call it.</strong></p>
+<p>The same profile yields a second, independent diagnostic: its <strong>height at the companion's
+offset</strong>, the quantity that flagged HD 4747 B. R comes from the profile's width, the wing
+from its height somewhere else; they share no arithmetic.</p>
+<p>This also dissolves what had looked like the roster's central anomaly. HIP 81208 B is clean
+at 0.325″ — closer than β Pic b (0.511″, flooded) and HD 4747 B (0.590″, unresolvable) —
+because its AO, on a bright B9 guide star, delivered a <strong>0.246″</strong> PSF, while β Pic b's nights
+delivered <strong>0.952″</strong>, nearly four times worse. In arcseconds the ordering is incoherent. In
+resolution elements it is trivial.</p>
+<hr />
+<h2>4. The roster sweep</h2>
+<p><code>scripts/m29_blend.py</code> applies the test to every target with a reduction on disk.</p>
+<table>
+<thead>
+<tr>
+<th>target</th>
+<th style="text-align:right">sep.</th>
+<th style="text-align:right">delivered PSF</th>
+<th style="text-align:right">orders</th>
+<th style="text-align:right"><strong>R</strong></th>
+<th style="text-align:right">wing</th>
+<th>class</th>
+<th>ledger verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>η Tel B</td>
+<td style="text-align:right">4.210″</td>
+<td style="text-align:right">0.374″</td>
+<td style="text-align:right">367</td>
+<td style="text-align:right"><strong>11.26</strong></td>
+<td style="text-align:right">0.00</td>
+<td>resolved</td>
+<td>NULL, injection-gated (M15)</td>
+</tr>
+<tr>
+<td>CD-35 2722 B</td>
+<td style="text-align:right">2.800″</td>
+<td style="text-align:right">0.263″</td>
+<td style="text-align:right">283</td>
+<td style="text-align:right"><strong>10.64</strong></td>
+<td style="text-align:right">0.00</td>
+<td>resolved</td>
+<td>CONFIRMED, 70–90 m s⁻¹ (M14)</td>
+</tr>
+<tr>
+<td>2M0103AB b</td>
+<td style="text-align:right">1.764″</td>
+<td style="text-align:right">0.986″</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right"><strong>1.79</strong></td>
+<td style="text-align:right">0.02</td>
+<td>resolved</td>
+<td>clean, ~53 m s⁻¹ (queue)</td>
+</tr>
+<tr>
+<td>YSES 1 b</td>
+<td style="text-align:right">1.698″</td>
+<td style="text-align:right">1.197″</td>
+<td style="text-align:right">24</td>
+<td style="text-align:right"><strong>1.42</strong></td>
+<td style="text-align:right">0.12</td>
+<td>resolved</td>
+<td>clean, 34 m s⁻¹ (queue)</td>
+</tr>
+<tr>
+<td>HIP 81208 B</td>
+<td style="text-align:right">0.325″</td>
+<td style="text-align:right">0.246″</td>
+<td style="text-align:right">32</td>
+<td style="text-align:right"><strong>1.32</strong></td>
+<td style="text-align:right">0.15</td>
+<td>resolved</td>
+<td>clean, 124 m s⁻¹ (queue)</td>
+</tr>
+<tr>
+<td>β Pic b</td>
+<td style="text-align:right">0.511″</td>
+<td style="text-align:right">0.952″</td>
+<td style="text-align:right">114</td>
+<td style="text-align:right"><strong>0.54</strong></td>
+<td style="text-align:right">0.55</td>
+<td><strong>blended</strong></td>
+<td>contamination-limited (M20 §2)</td>
+</tr>
+<tr>
+<td>HD 206893 B</td>
+<td style="text-align:right">0.205″</td>
+<td style="text-align:right">0.393″</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right"><strong>0.52</strong></td>
+<td style="text-align:right">0.63</td>
+<td><strong>blended</strong></td>
+<td><em>&quot;clean, gates 100–102%&quot;</em> — <strong>withdrawn</strong></td>
+</tr>
+<tr>
+<td>HD 4747 B</td>
+<td style="text-align:right">0.590″</td>
+<td style="text-align:right">1.514″</td>
+<td style="text-align:right">15</td>
+<td style="text-align:right"><strong>0.39</strong></td>
+<td style="text-align:right">0.71</td>
+<td><strong>blended</strong></td>
+<td>reduced as the §8 test; no verdict</td>
+</tr>
+<tr>
+<td>CD-35 deep pair</td>
+<td style="text-align:right">unsourced</td>
+<td style="text-align:right">0.278″</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">—</td>
+<td style="text-align:right">—</td>
+<td>unknown</td>
+<td>shelved (thermal-IR); carries no verdict</td>
+</tr>
+</tbody>
+</table>
+<p>Three things follow.</p>
+<p><strong>The two diagnostics agree, with a gap.</strong> Resolved cases have wing ≤ 0.15, blended cases
+≥ 0.55, and the ordering by wing is the ordering by R. No point lies between R = 0.54 and
+R = 1.32, so the empirical threshold is bracketed by a factor of 2.4 — and the value optics
+predicts, R ≈ 1, lies inside that bracket. Unlike every threshold this project has previously
+quoted, it was not read off the data.</p>
+<p><strong>One verdict is withdrawn.</strong> HD 206893 B is recorded in the ledger as &quot;clean data both
+settings, gates 100–102%, epochs banked&quot;. At R = 0.52 with a wing of 0.63 the pair is
+unresolved: the spectrum is the host's, and the verdict is not a companion measurement.</p>
+<p><strong>Four verdicts are confirmed as genuine companion measurements</strong> — CD-35 2722 B, η Tel B,
+YSES 1 b and HIP 81208 B, at R from 1.32 to 11.26, with 2M0103AB b's at-risk entry clearing
+at R = 1.79 and a wing of 0.02. Every claim this project rests on survives the check: the
+detection, the η Tel B limit, and the two best-precision series.</p>
+<p>Four limitations belong with the table. PDS 70 is absent, because its H-band nights were
+never reduced (blocked on an order-mapping quirk), so the one system that plausibly fails by
+a different mechanism — companions inside the AO core at 0.17–0.21″ — has no R. The slit
+function is fitted to the brightest trace, which is the companion when it is observed alone
+and the host when the pair is blended; the width is the delivered resolution either way, but
+these are not identical measurements. Order counts run from 10 to 367, and HD 4747 B's PSF
+rests on 15 order-profiles from a single night. And R was formed <em>after</em> the outcomes were
+known: it is a better-motivated hypothesis than its predecessors, not a validated criterion,
+and the honest test remains a target classified before its reduction.</p>
+<hr />
+<h2>5. Why no fit statistic catches this</h2>
+<p>The transferable lesson is not about resolution but about what verification can see.</p>
+<p>The injection gate this project relies on — impose a Keplerian on the template, re-run the
+full fit, require the amplitude back — measures whether <strong>the fitter</strong> transmits a velocity.
+A bright host transmits one <em>better</em> than a faint companion. HD 206893 B's gates read
+100–102% while the object being measured was the wrong star. The same holds for the other
+internal diagnostics: per-epoch precision improves on a host, and so does across-order
+dispersion. A blended extraction therefore looks, by every statistic this subfield uses,
+like an unusually good observation.</p>
+<p>This is the second time in this project that a passing gate accompanied a meaningless
+measurement, and the two are instructively different. In the first (PDS 70's nine-night
+template, M23 §4) the template had lost its stellar lever and the gate <em>did</em> catch it, at
+−62 ± 197% recovery. Here the gate cannot help, because nothing is wrong with the fit — the
+spectrum is real, well exposed, and belongs to another object.</p>
+<p><strong>A blending check therefore belongs in the pipeline before the injection gate, not after
+the verdict.</strong> It costs one read of a profile the reduction already writes, needs no extra
+data, and tests the one thing every other check assumes: that the spectrum belongs to the
+object named in the verdict.</p>
+<hr />
+<h2>6. β Pic b: the same verdict, a different mechanism</h2>
+<p>β Pic b remains contamination-limited, and the three-pass ladder that established it stands
+(M20 §2). A template reused from a single night gave 4712 m s⁻¹ of night scatter at
+<em>r</em>(RV, BERV) = +0.94. Rebuilding it across all 28 frames and 813 d halved the scatter to
+2466 m s⁻¹ and left <em>r</em> = +0.88. Masking the Br-γ order and dropping six injection-unstable
+orders left <em>r</em> = <strong>+0.88, unchanged</strong>, with injection transmission at 99–100% on the eleven
+surviving orders and every long-period peak dying under a BERV covariate.</p>
+<p>What changes is the explanation. This was reported as starlight leaking into a resolved
+companion's spectrum. At R = 0.54, with a wing of 0.55, <strong>there was no resolved companion</strong>:
+the extraction is a blend dominated by the host, which is precisely why no order mask and no
+template rebuild could move <em>r</em>(BERV) through v1, v2 and v3. An empirical result that had to
+be described — &quot;pervasive, not surgical&quot; — now has a cause.</p>
+<p>Three consequences survive intact and are strengthened by having a mechanism:</p>
+<ol>
+<li><strong>It is a systematic, not a sensitivity limit.</strong> The gates ran at 99–100% throughout: the
+pipeline transmitted injected velocity essentially perfectly while returning km s⁻¹ of
+host motion. <strong>Collecting area does not help.</strong> An ELT-class aperture improves the photon
+term, which was never binding; it also concentrates the PSF, which is the term that <em>does</em>
+bind — an argument for extreme-AO feeds rather than for aperture alone.</li>
+<li><strong>Masking is not a mitigation.</strong> Not because the contamination is spectrally broad, but
+because there is nothing to unmask.</li>
+<li><strong>The signature is cheap to test for in advance</strong>: km s⁻¹ epoch scatter with high injection
+transmission, a strong RV–BERV correlation, and candidate periodicities that vanish under a
+BERV covariate. Two independent reductions of β Pic b give ΔBIC −1.8 and −1.7 at the period
+where CD-35 2722 B gives +27.9 (M28 §1): no periodic content at all. The profile check of
+§3 is cheaper still, and diagnostic rather than suggestive.</li>
+</ol>
+<hr />
+<h2>7. Inside the resolved regime: contamination, bounded directly</h2>
+<p>At the far end of the roster the contaminating flux can be measured rather than inferred. On
+CD-35 2722 B (R = 10.64, wing 0.00) the extraction swath spans the full slit — order height
+179.8 px at 0.056″/px, i.e. 10.07″, sampled by a 512-point slit function at 0.0197″ per point
+— and the slit angle is pinned at POSANG = 153.1° on all eighteen nights with a 6″ nod throw,
+so the primary falls a fixed 161 points from the companion trace in every frame (M28 §5).</p>
+<p>Measured there, <strong>no primary peak is detected on any night</strong>: median height at the primary's
+offset, relative to the companion peak, 0.0006 against a local profile noise of 0.0072 —
+0.1σ. Per-night 3σ upper bounds run <strong>1–11%, median 2.5%</strong>, consistent with and on most
+nights tighter than H26's ~15% worst-night slit-viewer estimate. Two caveats: the profile
+median is removed first, so this bounds a <em>resolved</em> second trace rather than a smooth halo
+pedestal, and complements the slit-viewer method; and the one epoch our quality screen
+rejects carries the largest ratio of the eighteen (0.019) at 2.0σ, on the campaign's best
+seeing — contamination does not explain why that night is bad.</p>
+<p>Expressed as the fraction of host light in the extracted spectrum, ≲ a few percent
+accompanies 70–130 m s⁻¹ per epoch. That is the resolved regime working as intended, and it
+is the only direct measurement of the contaminating flux in the series.</p>
+<hr />
+<h2>8. The second gate: contrast, and why it is untested</h2>
+<p>Within the resolved regime, how much host light contaminates a real companion spectrum should
+still matter, and the natural quantity is the scattered host flux relative to the companion's:
+S = contrast / θⁿ, with a seeing- or AO-limited halo wing falling as θ⁻² to θ⁻³. The exponent
+was fixed by that argument and then scanned rather than fitted (<code>scripts/m29_wallaxis.py</code>); S
+separates this project's outcomes for <em>n</em> = 1.5–4.0, most cleanly at <em>n</em> = 2, with clean cases
+at S = 12, 24, 3557, 4327 against non-clean cases at 15 202 and 15 917.</p>
+<p><strong>One robustness check has since been run, and it passed.</strong> η Tel B's contrast rested on a
+catalogue magnitude that primary-source photometry has since overturned by 1.6 mag
+(Neuhäuser et al. 2011: K_s = 11.6, not 13.2), moving its S from 107 to 24. The class
+separation is unchanged — the correction only pushes a clean case further from the boundary.</p>
+<p><strong>The same correction exposed where this was weakest, and a better source has since closed
+it.</strong> The failure side rested on two points 4% apart — β Pic b at S = 15 202, primary-sourced
+(Currie et al. 2013), and PDS 70 b at S = 15 917, from the same suspect catalogue column and
+therefore effectively unverified. One verified point does not define a boundary.</p>
+<p>Lazzoni et al. (2020) resolves this. Its Table 2 carries contrasts <strong>measured from SPHERE
+observations</strong> for 27 companions, with matching separations at the same epoch — one
+instrument, one band, one paper, which is the primary-source photometry this axis needed. Three
+of our six systems appear in it, and re-running the class test on that column alone
+(<code>scripts/m32_wall_measured.py</code>), with no mixing of bands and the exponent carried over
+unchanged:</p>
+<table>
+<thead>
+<tr>
+<th>system</th>
+<th style="text-align:right">sep (″)</th>
+<th style="text-align:right">measured contrast</th>
+<th style="text-align:right">S</th>
+<th>verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>η Tel B</td>
+<td style="text-align:right">4.21</td>
+<td style="text-align:right">667×</td>
+<td style="text-align:right"><strong>38</strong></td>
+<td>clean</td>
+</tr>
+<tr>
+<td>PDS 70 b</td>
+<td style="text-align:right">0.19</td>
+<td style="text-align:right">1818×</td>
+<td style="text-align:right"><strong>50 365</strong></td>
+<td>fails</td>
+</tr>
+<tr>
+<td>β Pic b</td>
+<td style="text-align:right">0.33</td>
+<td style="text-align:right">10 000×</td>
+<td style="text-align:right"><strong>91 827</strong></td>
+<td>fails</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The ordering survives, and the margin widens from a factor 3.5 to a factor 1339.</strong> Both
+failure cases sit three orders of magnitude above the clean one. Crucially, PDS 70 b — the
+point that previously defined the boundary, on an unverified magnitude — is <em>further</em> into the
+failing regime when measured, so the boundary was drawn too tight rather than too loose.</p>
+<p>This is three points, and three points in two classes separate by chance easily; no threshold
+should be read off them, and it cannot replace the six-system test because CD-35 2722 B,
+HIP 81208 B and YSES 1 b are absent from that table. It is a check, and the check passed.
+PDS 70 b may still fail by a different mechanism regardless of photometry (§8).</p>
+<p>We report that, and claim nothing from it, for a reason that is itself the result. Applied to
+31 catalogued companions with thresholds fixed in advance, S predicted correctly for the only
+two systems genuinely held out (CT Cha b, AB Pic b) — both clean, both 50–100× below the
+threshold, neither discriminating — and there is no held-out failure case. Searching the
+catalogue for the untested interval, 4327 &lt; S &lt; 15 202, returns four systems, and <strong>every one
+of them is unavailable</strong>: κ And b is unobservable from Paranal, PDS 70 c shares frames with
+PDS 70 b inside the AO core, β Pic b sets the threshold it would be tested against, and
+HD 4747 B — the reduction that prompted this note — is blended.</p>
+<p><strong>One published result does sit in this space, and it changes what the gate means.</strong> Thé et
+al. (2023) extract companion spectra from high-contrast long-slit data by modelling star and
+companion jointly as a regularized inverse problem, over separations of 200–1850 mas and
+contrasts from χ ≥ 10⁻³ at ~250 mas to χ ~ 2×10⁻⁵ beyond 1200 mas. Their floor of 200 mas is
+5 λ/D at H band, so this is a tool for the <em>resolved</em> regime and no counter-example to §1–§7.
+But it does mean the contrast gate is <strong>algorithmic rather than physical</strong>: S is defined for
+the naive extraction used here, and an inverse model that knows the instrument response
+recovers companions that naive extraction cannot. A contrast threshold measured with one
+extraction method does not transfer to another. Their instrument, spectral resolution and
+objective all differ from ours — low-resolution spectral characterization, not velocimetry —
+so the two do not compose directly, but any claim that contrast sets a hard wall has to
+answer this first.</p>
+<p><strong>That is not bad luck.</strong> Being close enough to have an interesting S is what makes a
+companion unresolvable at a slit. The three blended systems have the three highest S values in
+the roster, and they are blended for the same reason their S is high. So the second gate may
+be not merely untested but <strong>untestable with slit spectroscopy</strong>: the regime where contrast
+would decide the outcome is the regime where the first gate has already decided it.</p>
+<p>Three predictions from S were placed on the record before the fact and are kept, restated in
+the two-gate form — all three sit at ≥ 2.2″ and so should pass the resolution gate under any
+delivered PSF in our sample (0.246–1.514″): DH Tau B (S = 41), GSC 6214-210 B (S = 37) and
+1RXS J160929.1-210524 b (S = 318) are predicted <strong>resolved and clean</strong>. They are weak tests,
+far below the threshold, and we say so.</p>
+<hr />
+<h2>9. The instrument requirement</h2>
+<p>The recommendation this project has carried since M20 — fibre-fed starlight suppression for
+close companions — changes character here, from a preference to a requirement derived from a
+measurement.</p>
+<p><strong>Nor is this a problem an algorithm can dissolve, which is worth stating because a reader
+will reasonably ask.</strong> The state of the art for host contamination in companion long-slit
+spectroscopy is EXOSPECO (Thé et al. 2023), a regularised inverse method that models the
+chromatic PSF and the spatio-spectral dispersion laws jointly and separates the star's and the
+companion's contributions from SPHERE/IRDIS data. It is a genuine advance, and it is aimed at
+the <em>other</em> gate: its data model is built around &quot;residual stellar light diffracted by the
+coronagraphic mask&quot;, which presupposes a coronagraph and, crucially, a companion that is
+already resolved from its host. Deconvolving a bright halo away from a faint but separable
+source is not the same operation as recovering two spectra from one resolution element, and
+nothing in that literature claims the latter. The two gates are attacked by different means:
+the contrast gate by better modelling, the resolution gate only by better optics.</p>
+<p><strong>A slit cannot deliver a companion spectrum below R ≈ 1 at any contrast.</strong> The three blended
+systems were not limited by contrast, by exposure time, by template quality or by extraction
+choices; there was no second spectrum in the aperture. Extreme-AO fibre feeds (HiRISE at the
+VLT, KPIC at Keck; RISTRETTO-class concepts in the same family) are therefore not a way to do
+the close regime <em>better</em>. They are the only way to do it at all. Interferometry sits in the
+same position from the other direction: the VLTI/GRAVITY astrometric exomoon search on
+HD 206893 B (arXiv:2511.20091) resolves at 0.205″ what our slit could not, which is how this
+note has that separation to quote in the first place.</p>
+<p>Two practical statements follow for anyone writing an observing block:</p>
+<ul>
+<li><strong>Specify the delivered PSF, not the separation.</strong> β Pic b at 0.511″ needed better than
+~0.5″ delivered; it got 0.952″, and thirteen nights over 813 days produced a host
+measurement. HIP 81208 B at 0.325″ succeeded on 0.246″. The measured spread across this
+roster is 0.246–1.514″ — a factor of six, and the difference between a companion series and
+an expensive stellar one.</li>
+<li><strong>The archive already holds the alternative</strong>: six public HiRISE nights of β Pic b (Oct–Dec
+2024), a starlight-suppressed series of exactly the object the slit loses (queue banner).</li>
+</ul>
+<p>And four things that cost nothing: read the slit function before trusting any verdict (§5);
+ask for 6–10 frames per night rather than ~2, the binding constraint on measuring companion RV
+jitter being frames per night rather than nights (M29; NEXT-DIRECTIONS §A1); run the
+phase–BERV geometry check before the block is written (CD-35 2722 B's sampling correlates
+orbital phase with the barycentric correction at <em>r</em> = −0.71, η Tel B's leaves the 150–300 d
+decade clean, M15 §1); and never build a template from a single night (LESSONS trap 6).</p>
+<hr />
+<h2>10. Free-floating planetary-mass objects: neither gate applies</h2>
+<p><strong>Both gates are defined by the presence of a host, and an isolated planetary-mass object has
+none.</strong> R is not large, it is undefined: there is no pair to resolve, no PSF wing at the
+companion's position, and no blend to mistake for a companion spectrum. The numerator of S is
+zero. Every failure mode in §§3–8 requires a star to produce it, as do the slit angle pinned
+across eighteen nights to keep a primary off the trace and the AO performance on which that
+turns. That matters more than it would if the gates were well located: the weakest parts of
+this note are the two thresholds — R ≈ 1 bracketed by a factor of 2.4, and a contrast gate
+that may be untestable at a slit — and for an isolated target neither uncertainty is reduced,
+both are irrelevant.</p>
+<p>What is <em>unchanged</em> is what makes the measurement possible: a young, self-luminous object
+radiating its own K ≈ 12–15 infrared spectrum, of the class this project measured eleven
+times. The telluric wavelength reference, the template built from the target's own data and
+the injection test are all host-independent.</p>
+<p><strong>The reach, from measured numbers.</strong> On η Tel B, a ~47 M_Jup host, 20 archival epochs over
+815 d at 127–130 m s⁻¹ exclude companions of 0.51–1.27 M_Jup across <em>P</em> = 20–300 d, at
+injection transmission 99–101 ± 1%. Nothing in that chain used the host star. We anchor on
+this target rather than on the deeper archival limit we also hold for HIP 65426 b, because
+those five nights belong to another group's active programme; that limit is not reported here.
+The per-epoch precisions behind such a limit — all injection-gated, all on resolved
+pairs — span <strong>34–190 m s⁻¹</strong> (§4), with 162 m s⁻¹ measured within a night on β Pic b (M17
+§§1–2), a number we now read as a statement about a blend rather than about a planet. Scaling
+to isolated hosts with the field's standard relation (Lazzoni et al. 2022 eq. 2, as
+implemented here), calibrated against our own injection-derived limits — at 3σ per epoch it
+returns 0.65, 1.18 and 1.40 M_Jup at <em>P</em> = 20, 120 and 200 d for η Tel B, against the measured
+0.51, 0.77 and 1.11, i.e. <strong>conservative by 1.3–1.5×</strong> across the decade it is anchored on:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">per-epoch σ</th>
+<th style="text-align:right">5 M_Jup host</th>
+<th style="text-align:right">10 M_Jup</th>
+<th style="text-align:right">13 M_Jup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">34 m s⁻¹ (best measured)</td>
+<td style="text-align:right">17 M_⊕</td>
+<td style="text-align:right">27 M_⊕</td>
+<td style="text-align:right">32 M_⊕</td>
+</tr>
+<tr>
+<td style="text-align:right">130 m s⁻¹ (typical measured)</td>
+<td style="text-align:right">65 M_⊕</td>
+<td style="text-align:right">103 M_⊕</td>
+<td style="text-align:right">123 M_⊕</td>
+</tr>
+<tr>
+<td style="text-align:right">190 m s⁻¹ (worst clean)</td>
+<td style="text-align:right">97 M_⊕</td>
+<td style="text-align:right">152 M_⊕</td>
+<td style="text-align:right">181 M_⊕</td>
+</tr>
+</tbody>
+</table>
+<p><em>Smallest satellite</em> m sin i <em>clearing 3σ on a single epoch at P = 50 d; ranking-grade,
+calibrated as above, not a substitute for an injection-derived limit.</em></p>
+<p>A lighter host helps — at fixed satellite mass and orbit the reflex amplitude scales as
+M_p^(−1/2), so a 5–13 M_Jup isolated object is a better wobble target than the 37–47 M_Jup
+brown dwarfs dominating this roster (M7 §5) — and two dynamical asymmetries follow from the
+absence of a star: the satellite's stable zone is not truncated from outside, that limit being
+set by the host's tidal field; and tidal spin-down of a giant planet <em>by its star</em>, which
+pushes corotation beyond the stability limit so that every stable satellite inspirals
+(M8 §§1–2), requires a star. Against that, the host mass is model-derived with no dynamical
+anchor, entering mildly: satellite mass scales as M_p^(1/2), so a 30% host-mass error is ~14%
+in it.</p>
+<p><strong>What we cannot claim.</strong> There is no archival result: the ESO archive was swept for isolated
+planetary-mass objects with multi-epoch CRIRES+ coverage and came back negative and exhaustive
+(queue banner, idea #4), so this is a proposal case. Brightness remains the binding cut and
+bites below K ≈ 15, where the flux scaling degrades faster than 1.585×/mag as background takes
+over (M7 §1); every precision quoted here was achieved at K = 12.0–15.1. We have run no
+population census. Acquisition and wavefront sensing on a target with no bright neighbour is
+an unquantified operational cost we have no measurement bearing on. And none of this is an
+exomoon-detection argument: the underlying population study expects RV to reach binary-like
+satellites (mass ratio ≳ 0.01), not solar-system analogues (M7 §1). Removing the host improves
+the noise, not the occurrence rate.</p>
+<hr />
+<h2>11. Summary for a proposal</h2>
+<ol>
+<li><strong>Check resolution first.</strong> R = separation / delivered PSF FWHM, both measured. Below
+R ≈ 1 there is no companion spectrum at any contrast, and the empirical bracket from this
+roster is 0.54 &lt; R_crit &lt; 1.32.</li>
+<li><strong>Read the slit function before believing any verdict.</strong> A blended extraction passes
+injection gates, improves per-epoch precision and improves across-order dispersion. One
+verdict here was withdrawn on this basis; four survived it.</li>
+<li><strong>Specify the delivered PSF in the observing block</strong>, not the separation. The spread across
+this roster is 0.246–1.514″.</li>
+<li><strong>Treat the contrast gate as open.</strong> It applies only above R ≈ 1, it is untested, and every
+system that would test it is blended — possibly making it untestable at a slit.</li>
+<li><strong>Where the pair is unresolved, a fibre feed or an interferometer is not an improvement but
+a requirement.</strong> Public HiRISE nights on β Pic b already exist.</li>
+<li><strong>And point some of it at objects with no host at all</strong>, where neither gate applies and the
+measured precisions transfer unchanged.</li>
+</ol>
+<hr />
+<h2>Acknowledgements and statement of AI involvement</h2>
+<p>The analyses summarised here — archive census, reduction, pipeline development, statistical
+calibration, the sourcing and blending audits, and the drafting of this note — were carried
+out by AI agents (Claude, Anthropic, running in Claude Code), directed and reviewed by the
+human author, who set the research questions, challenged the agents' claims, made every
+decision with external consequences, and takes sole responsibility for all content.
+Verification is primarily mechanical rather than expert-audited: every adopted pipeline change
+was scored against an external reference and required signal-injection recovery; positive
+controls preceded every null. Dead ends and retractions remain in the public record, including
+the three superseded framings of this note's organising variable and the verdict withdrawn in
+§4. Based on data obtained from the ESO Science Archive Facility. This document reports an
+independent analysis and is not affiliated with or endorsed by the authors of any work
+discussed.</p>
+<h2>Data and code availability</h2>
+<p>All spectra are public ESO archive products and raw frames. The pipeline — reduction drivers,
+converter, injection harness, the delivered-PSF measurement (<code>scripts/m29_psf.py</code>), the roster
+blending sweep (<code>scripts/m29_blend.py</code>), the slit-function contamination bound
+(<code>scripts/injection/m28_contam.py</code>), the contrast-axis tests (<code>scripts/m29_wallaxis.py</code>,
+<code>scripts/m29_wallpredict.py</code>) and the feasibility relations of §10 (<code>src/exosat_rv/</code>) — lives
+in the project repository, with the milestone documents cited inline throughout.</p>
+<h2>References</h2>
+<ul>
+<li>Bohn, A. J., Kenworthy, M. A., Ginski, C., et al. 2020, &quot;Two directly imaged, wide-orbit giant planets around the young, solar analog TYC 8998-760-1&quot;.</li>
+<li>Bonnefoy, M., Marleau, G.-D., Galicher, R., et al. 2014, A&amp;A (Letter), &quot;Physical and orbital properties of β Pictoris b&quot;.</li>
+<li>Currie, T., Burrows, A., Madhusudhan, N., et al. 2013, &quot;A combined VLT and Gemini study of the atmosphere of the directly-imaged planet β Pictoris b&quot;, arXiv:1306.0610.</li>
+<li>Hoy, K., Zurlo, A., Peña R., P. A., Köhler, J., et al. 2026, <em>Nature</em>, &quot;Satellite detected around a star's substellar companion&quot; (published version; supersedes arXiv:2607.05193v1).</li>
+<li>Horstman, K., Ruffio, J.-B., Batygin, K., et al. 2024, &quot;RV measurements of directly imaged brown dwarf GQ Lup B to search for exo-satellites&quot;, arXiv:2408.10299.</li>
+<li>Köhler, J., Zechmeister, M., Hatzes, A., et al. 2025, A&amp;A, &quot;viper: High-precision radial velocities from the optical to the infrared&quot;, arXiv:2505.08315.</li>
+<li>Thé, S., Thiébaut, É., Denis, L., et al. 2023, A&amp;A 678, A77, &quot;Characterization of stellar companions from high-contrast long-slit spectroscopy data: the EXOSPECO algorithm&quot;, doi:10.1051/0004-6361/202245565</li>
+<li>Langlois, M., Gratton, R., Lagrange, A.-M., et al. 2021, A&amp;A, &quot;The SPHERE infrared survey for exoplanets (SHINE). II.&quot;.</li>
+<li>Lazzoni, C., Desidera, S., Gratton, R., Zurlo, A., Mesa, D., &amp; Ray, S. 2022, MNRAS, &quot;Detectability of satellites around directly imaged exoplanets and brown dwarfs&quot;, arXiv:2207.07569.</li>
+<li>Ruffio, J.-B., Horstman, K., Mawet, D., et al. 2023, &quot;Detecting exomoons from radial velocity measurements of self-luminous planets: application to observations of HR 7672 B and future prospects&quot;, arXiv:2301.04206.</li>
+<li>Vanderburg, A., Rappaport, S. A., &amp; Mayo, A. W. 2018, &quot;Detecting exomoons via Doppler monitoring of directly imaged exoplanets&quot;, arXiv:1805.01903.</li>
+<li>Vanderburg, A., &amp; Rodriguez, J. E. 2021, &quot;First Doppler limits on binary planets and exomoons in the HR 8799 system&quot;, arXiv:2110.14650.</li>
+<li>Viswanath, G., Janson, M., Gratton, R., et al. 2023, A&amp;A, &quot;BEAST detection of a brown dwarf and a low-mass stellar companion around the young bright B star HIP 81208&quot;.</li>
+<li>Thé, S., Thiébaut, É., Denis, L., et al. 2023, A&amp;A, &quot;Characterization of stellar companions
+from high-contrast long-slit spectroscopy data: the EXOSPECO algorithm&quot;, arXiv:2306.03467.</li>
+<li>&quot;Exomoon search with VLTI/GRAVITY around the substellar companion HD 206893 B&quot;, A&amp;A, arXiv:2511.20091 — the source of HD 206893 B's projected separation. <em>(This project's milestone documents attribute this paper to two different first authors — Kral et al. in M7/M10, Kral et al. in M11 and the methods note — so the citation must be checked against the published version before submission.)</em></li>
+</ul>
+<hr />
+<h2>What to verify before submission</h2>
+<p>Items for the author; everything else traces to a numbered milestone document or to a paper</p>
+<ol start="0">
+<li>
+<p><strong>⚠ THE CONTRAST AXIS'S SOURCE COLUMN IS UNRELIABLE (M32) — but the result survived the
+one correction available.</strong> §8's numbers, and the 31-companion held-out test, read Lazzoni
+et al. 2022 Table 1's companion-magnitude column. Checked against primary sources three
+times, it is wrong twice: YSES 1 b to 0.14 mag (Bohn+2020) ✅, <strong>η Tel B by 1.6 mag</strong>
+(Neuhäuser+2011 K_s = 11.6) ❌, <strong>β Pic b by 2.4 mag</strong> (Currie+2013) ❌ — a factor 4–9 in
+contrast against a boundary interval only a factor 3.5 wide.</p>
+<p><strong>Applying the η Tel B correction did not break §8:</strong> S moves 107 → 24, and the class
+separation for <em>n</em> = 1.5–4.0 is unchanged, because the correction only pushes a clean case
+further from the boundary. That is a real robustness check and it is now stated in §8.</p>
+<p><strong>What it does expose is the failure side.</strong> It rests on two points 4% apart — β Pic b
+(primary-sourced) and PDS 70 b (same suspect column, unverified, and possibly failing by a
+different mechanism). <em>One verified point does not define a boundary.</em></p>
+<p><strong>RESOLVED, and better than expected.</strong> Lazzoni et al. <strong>2020</strong> (A&amp;A 641, A131 — the
+satellite-search paper that is also η Tel B's mass source, and which was unread here until
+M32) carries <em>measured</em> SPHERE contrasts for 27 companions in its Table 2, one instrument
+and one band. Re-running the class test on that column alone (<code>scripts/m32_wall_measured.py</code>)
+reproduces the ordering with the margin widening from a factor 3.5 to <strong>1339</strong>, and moves
+PDS 70 b — the point that defined the boundary from an unverified magnitude — <em>further</em>
+into the failing regime. Both results are now in §8.</p>
+<p><strong>What remains:</strong> the check covers only 3 of the 6 roster systems (CD-35 2722 B,
+HIP 81208 B and YSES 1 b are absent from that table), so the K-band test is not replaced,
+only corroborated. §1–§7 were never affected — they rest on measured separations and
+measured PSFs. <strong>The resolution gate is the note's result; the contrast gate is now a
+supported open question rather than an unsupported one.</strong></p>
+</li>
+<li>
+<p><s><strong>The withdrawn verdict, HD 206893 B (§4).</strong></s> — <strong>REWORDED (M33).</strong> §4 now says
+explicitly that it is <em>our own earlier reading</em> that is withdrawn, that the withdrawal
+concerns public archival data and not anything published about the system, and that the
+GRAVITY astrometry the correction depends on is Kral et al.'s.</p>
+</li>
+<li>
+<p><s><strong>Publication priority on HIP 65426 b.</strong></s> — <strong>RESOLVED BY REMOVING THE DEPENDENCY (M33).</strong>
+Rather than decide whether to publish a headline from another group's active-programme
+nights, the reach argument is now anchored on <strong>η Tel B</strong>, which this project owns outright
+and is publishing separately. The relation reproduces its measured limits at
+<em>P</em> = 20/120/200 d to within <strong>1.3–1.5× and on the conservative side</strong>, so the anchor is
+better constrained than before — three periods instead of one — and the HIP 65426 b limit is
+explicitly not reported. No permission is now required from anyone.</p>
+</li>
+<li>
+<p><s><strong>The delivered-PSF measurement.</strong></s> — <strong>TESTED AND PASSED (M33,
+<code>scripts/m33_psf_validation.py</code>).</strong> The referee's question is whether the slit-function
+FWHM is the sky's or the extraction's. ESO writes independent image-quality measurements
+into every header — DIMM seeing from a separate telescope, and an image-analysis FWHM from
+the guide probe — and neither passes through <code>cr2res</code>, so they are a clean external
+reference. Across 60 nights:</p>
+<ul>
+<li>it varies by <strong>69%</strong> night to night, so it is not set by fixed extraction parameters;</li>
+<li><strong>within a target, guide star held fixed, it tracks the telescope's own image-analysis
+FWHM at r = +0.51 (CD-35, n = 18) and +0.50 (β Pic, n = 11)</strong>;</li>
+<li>it sits at <strong>0.60×</strong> the seeing-limited H-band prediction, as adaptive optics plus the
+λ^(−1/5) gain require.</li>
+</ul>
+<p>Pooling targets gives only r = +0.25, but that is the wrong test: the AO loop is closed and
+guide-star magnitude spans 3.3–10.7, and AO exists to break the seeing-to-delivered
+relation. <strong>η Tel B shows no correlation at all (r = +0.02), and that is the informative
+case rather than a counter-example</strong> — its guide star is magnitude 5.2 against CD-35's 10.1,
+and a bright guide star is exactly where AO delivers a near-diffraction-limited core whose
+width stops following the seeing. Its R = 11.3 is nowhere near the threshold, so nothing in
+its classification depends on this.</p>
+<p><strong>What this does not establish, and the note should say so:</strong> the systems nearest the
+threshold cannot be validated individually — HIP 81208 B, YSES 1 b and 2M0103AB b have 3, 2
+and 1 nights. Their PSFs rest on the method validated here, not on their own evidence.</p>
+</li>
+<li>
+<p><s><strong>HD 4747 B's PSF rests on 15 order-profiles from one night</strong>, HD 206893 B's on 11.</s> —
+<strong>TESTED (M33, <code>scripts/m33_psf_robustness.py</code>).</strong> Bootstrapping the median over the
+available profiles and propagating into R gives 68% intervals of <strong>R = 0.39–0.39</strong>
+(HD 4747 B), <strong>0.52–0.57</strong> (HD 206893 B) and <strong>0.53–0.55</strong> (β Pic b, 114 profiles over 12
+nights). Every interval stays entirely below the boundary, so <strong>the blended classification
+does not depend on the thinness of the sample</strong> — only the point estimate would have.</p>
+</li>
+<li>
+<p><strong>PDS 70's R is still unmeasured — but the recorded reason was wrong (M33).</strong> These nights
+are not unreduced. All three ran through the <em>staring</em> recipe and carry
+<code>cr2res_obs_staring_slitfunc.fits</code>; every earlier sweep searched for the nodding filename
+and so read three usable nights as zero. The staring profile still cannot be used: only one
+of the three nights carries a trace-wave file, the profile is sampled ~906 points against
+the nodding path's ~512 over the same order height, and the width it yields is <strong>0.18× the
+telescope's own image-analysis FWHM on that night, where every nodding target sits between
+0.42× and 1.46×</strong> — several times too narrow to be a delivered PSF. Taken at face value it
+would place both PDS 70 companions <em>above</em> R = 1 and contradict this note's assumption that
+the system fails by sitting inside the AO core, which is precisely why it is not taken at
+face value. Closing this needs a nodding reduction or a standard star, not a re-read of
+what is already on disk.</p>
+</li>
+<li>
+<p><strong>Bibliographic details — mostly resolved (M33, <code>scripts/m33_resolve_refs.py</code>).</strong> ADS
+itself is unavailable here: its API needs an Authorization header and no key is configured.
+<strong>CrossRef needs none and holds everything item 6 actually asked for</strong>, so the four
+references now resolve by DOI:</p>
+<table>
+<thead>
+<tr>
+<th>reference</th>
+<th>resolved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bohn et al. 2020</td>
+<td>ApJL <strong>898</strong>, L16 — doi:10.3847/2041-8213/aba27e</td>
+</tr>
+<tr>
+<td>Viswanath et al. 2023</td>
+<td>A&amp;A <strong>675</strong>, A54 — doi:10.1051/0004-6361/202346154</td>
+</tr>
+<tr>
+<td>Langlois et al. 2021</td>
+<td>A&amp;A <strong>651</strong>, A71 — doi:10.1051/0004-6361/202039753</td>
+</tr>
+<tr>
+<td>Neuhäuser et al. 2011</td>
+<td>MNRAS <strong>416</strong>, 1430–1435 — doi:10.1111/j.1365-2966.2011.19139.x</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Still open:</strong> Bonnefoy et al. 2014, where CrossRef's title search returns an encyclopedia
+entry rather than the paper (the archived copy is an A&amp;A Letter, &quot;Physical and orbital
+properties of β Pictoris b&quot;), and Wahhaj et al. 2011, where it returns a conference
+abstract. Both need a DOI read off the paper itself. <strong>ADS bibcodes are not obtainable
+here at all</strong> — they are an ADS-specific identifier — so if the target journal wants
+bibcodes rather than DOIs, that step is genuinely a human one.</p>
+<p>⚠ One trap, paid for in this pass: a DOI lookup is exact <em>only if the DOI is verified</em>.
+Two were first filled from memory; one was right and the other resolved silently to a
+different 2014 A&amp;A paper by another author, and the tool reported it as exact because the
+lookup succeeded. <strong>The printed title is what catches that, not the DOI mechanism.</strong></p>
+</li>
+<li>
+<p><strong>Novelty claims — searched (M33), and one needed qualifying.</strong> The claims were extracted
+mechanically from every draft and the substantive ones checked against the literature. Most
+are enumeration or idiom (&quot;the first detection&quot;, meaning H26's). Two matter:</p>
+<p><strong>The resolution gate survives.</strong> Nothing found operates below one resolution element. The
+closest published work is <strong>Thé et al. (2023, A&amp;A 678, A77)</strong>, whose EXOSPECO algorithm
+extracts companion spectra from high-contrast long-slit data by jointly modelling star and
+companion as a regularized inverse problem — but its demonstrated envelope runs
+<strong>200–1850 mas</strong>, and 200 mas is <strong>5.0 λ/D</strong> at H band on an 8 m telescope. It is a tool
+for the resolved regime, not a counter-example to the blended one.</p>
+<p><strong>The contrast claim needed qualifying, and now is.</strong> §8 said no observation exists inside
+the untested interval. Thé et al. publish a contrast–separation envelope over that range —
+χ ≥ 10⁻³ at ~250 mas, falling to χ ~ 2×10⁻⁵ beyond 1200 mas — so the honest statement is
+narrower: <em>this project</em> has no measured point there, and the field's published trade-off
+comes from a different instrument, a different spectral resolution and a different
+objective (spectral characterization, not velocimetry). More importantly it shows the
+contrast limit is <strong>algorithmic rather than physical</strong>: an inverse model recovers
+companions that the naive extraction assumed by S cannot. That is now said in §8.</p>
+<p>Still not done: an ADS query by a human. Web and CrossRef searching is what found
+Kenworthy et al. and Thé et al., both of which the repo had missed, so it is not nothing —
+but it is not a systematic literature check either.</p>
+</li>
+</ol>
+
+</div>
