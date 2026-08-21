@@ -129,6 +129,25 @@ def split(t: dict) -> list[dict]:
     return [a, b]
 
 
+def covered_area(tiles: dict) -> float:
+    """Total DONE sky, not double-counting a done child inside a done parent.
+
+    `repair` re-queues a split parent whole while keeping its already-done
+    children (their rows are real; `select` de-duplicates on source_id). But
+    the AREA of such a child is inside its parent's area, so summing both
+    inflates the denominator of every rate in the funnel. Child ids are the
+    parent id plus a suffix, so a done tile is subsumed iff some other done
+    tile's id is a strict prefix of it.
+    """
+    done = {k: v for k, v in tiles.items() if v.get("status") == "done"}
+    tot = 0.0
+    for k, v in done.items():
+        if any(k != j and k.startswith(j) for j in done):
+            continue                      # inside a done ancestor already counted
+        tot += v.get("area", 0.0)
+    return tot
+
+
 # ------------------------------------------------------------- manifest ---
 def load_manifest() -> dict:
     if MANIFEST.exists():
@@ -141,6 +160,23 @@ def save_manifest(m: dict) -> None:
     tmp = MANIFEST.with_suffix(".tmp")
     tmp.write_text(json.dumps(m, indent=1, default=str))
     tmp.replace(MANIFEST)
+
+
+def health_probe(svc, secs: float) -> bool:
+    """Sleep `secs`, then ask the server for one trivial row.
+
+    True = the service is answering again. This is the measurement behind the
+    outage breaker: it distinguishes "ESAC is down" from "this tile is hard",
+    which the 2026-08-19 stall could not do.
+    """
+    print(f"      [breaker] cooling down {secs:.0f} s, then probing ...",
+          flush=True)
+    time.sleep(secs)
+    try:
+        svc.search("SELECT TOP 1 source_id FROM gaiadr3.gaia_source")
+        return True
+    except Exception:  # noqa: BLE001
+        return False
 
 
 # ----------------------------------------------------------------- pull ---
@@ -163,16 +199,50 @@ def pull(args: argparse.Namespace) -> None:
             continue
         queue.append({k: rec[k] for k in
                       ("id", "dec0", "dec1", "ra0", "ra1", "area")})
+    # M3: the 2026-08-19 stall exhausted the retry budget of 99 tiles in
+    # seconds (see the instant-failure logic below). Those tiles are not bad
+    # sky, they are sky that met a down server, so a resume must be able to
+    # forgive their `tries`. Opt-in and logged, never silent.
+    if args.reset_failed:
+        nres, ares = 0, 0.0
+        for tid, rec in m["tiles"].items():
+            if rec.get("status") == "failed":
+                rec["tries"] = 0
+                rec["status"] = "retry"
+                nres += 1
+                ares += rec.get("area", 0.0)
+        if nres:
+            save_manifest(m)
+            print(f"  --reset-failed: forgave the retry budget of {nres} "
+                  f"abandoned tiles ({ares:.0f} deg2)")
+            queue = [t for t in base
+                     if m["tiles"].get(t["id"], {}).get("status")
+                     not in ("done", "split")]
+            for tid, rec in m["tiles"].items():
+                if tid in base_ids or rec.get("status") in ("done", "split"):
+                    continue
+                queue.append({k: rec[k] for k in
+                              ("id", "dec0", "dec1", "ra0", "ra1", "area")})
+
     print(f"W4 pull: {len(queue)} tiles to go (mode={args.mode}, "
           f"join={args.join}-table), budget {args.budget_min} min")
+    print(f"  stop rules: budget {args.budget_min} min | outage breaker "
+          f"{args.instant_trigger} consecutive <{args.instant_sec:g}s failures "
+          f"-> cooldown ladder, {args.stall_probes} failed probes -> stop")
     t_start = time.time()
     n_done = n_fail = 0
     rows_total = 0
+    consec_instant = 0        # run of instant (= server-down) failures
+    consec_fail = 0           # run of failures of ANY kind (load included)
+    failed_probes = 0         # consecutive failed health probes
+    cooldown = args.cooldown_sec
+    stop_reason = "queue exhausted (all sky attempted)"
 
     while queue:
         if (time.time() - t_start) / 60.0 > args.budget_min:
-            print(f"\n[budget] {args.budget_min} min reached; "
-                  f"{len(queue)} tiles left. Re-run to resume.")
+            stop_reason = (f"wall-clock budget of {args.budget_min} min "
+                           f"reached with {len(queue)} tiles outstanding")
+            print(f"\n[budget] {stop_reason}. Re-run to resume.")
             break
         t = queue.pop(0)
         rec = m["tiles"].get(t["id"], {})
@@ -194,14 +264,74 @@ def pull(args: argparse.Namespace) -> None:
                                        seconds=round(dt, 1),
                                        file=path.name)
             save_manifest(m)
+            consec_instant = 0
+            consec_fail = 0
+            failed_probes = 0
+            cooldown = args.cooldown_sec
             print(f"  [{t['id']}] {dt:6.1f} s  {len(df):7d} rows  "
                   f"({t['area']:.0f} deg2)   queue={len(queue)}")
         except Exception as e:  # noqa: BLE001
             dt = time.time() - t0
             rec = m["tiles"].get(t["id"], {})
-            tries = rec.get("tries", 0) + 1
             msg = f"{type(e).__name__}: {str(e)[:160]}"
+            # MEASURED, 2026-08-19 stall (pre-registration PR-1 in M3): a
+            # failure returning in under --instant-sec is the server handing
+            # back an HTML error page, not this tile's query being too big.
+            # 679 of the 680 outage failures came back in 0.2-0.3 s; every
+            # load-wall failure took 181.6 +- 0.3 s. An instant failure says
+            # nothing about the tile and must NOT consume its retry budget --
+            # that is precisely how 99 tiles (21,379 deg2) were abandoned in
+            # seconds while the sky behind them was perfectly gettable.
+            consec_fail += 1
+            instant = dt < args.instant_sec
+            n_inst = rec.get("instant_tries", 0) + 1
+            if instant and n_inst <= args.max_instant:
+                consec_instant += 1
+                m["tiles"][t["id"]] = dict(t, status="retry",
+                                           tries=rec.get("tries", 0),
+                                           instant_tries=n_inst,
+                                           last_error=msg)
+                save_manifest(m)
+                print(f"  [{t['id']}] {dt:6.1f} s  FAIL (instant "
+                      f"#{consec_instant}, no retry consumed) {msg}")
+                queue.append(t)
+                if consec_instant >= args.instant_trigger:
+                    if health_probe(svc, cooldown):
+                        print("      [breaker] service answered -- resuming")
+                        consec_instant, failed_probes = 0, 0
+                        cooldown = args.cooldown_sec
+                    else:
+                        failed_probes += 1
+                        cooldown = min(cooldown * 2, args.cooldown_max)
+                        print(f"      [breaker] probe "
+                              f"{failed_probes}/{args.stall_probes} FAILED; "
+                              f"next cooldown {cooldown:.0f} s")
+                        if failed_probes >= args.stall_probes:
+                            stop_reason = (
+                                f"outage breaker: {args.stall_probes} "
+                                f"consecutive health probes failed after "
+                                f"{consec_instant} instant failures -- ESAC "
+                                f"is down again; stopping cleanly at partial "
+                                f"coverage (PR-1)")
+                            print(f"[breaker] {stop_reason}")
+                            break
+                continue
+            tries = rec.get("tries", 0) + 1
             print(f"  [{t['id']}] {dt:6.1f} s  FAIL ({tries}) {msg}")
+            # MEASURED 2026-08-21: ESAC answers "SELECT TOP 5" in 1.3 s but
+            # kills every query that touches the join tables -- a 3-table
+            # COUNT(*) died at 79.8 s and 215/107/54/27/13 deg2 tiles all died
+            # at 61.5-62.7 s, i.e. the wall is size-INDEPENDENT, so splitting
+            # cannot help and only load relief can. When a run of load
+            # failures says the server is saturated, stop pushing for a while:
+            # one polite connection that waits is worth more than one that
+            # retries into a wall.
+            if (args.load_pause_every > 0
+                    and consec_fail % args.load_pause_every == 0):
+                print(f"      [backoff] {consec_fail} consecutive failures; "
+                      f"pausing {args.load_pause_sec:.0f} s to let the "
+                      f"server recover", flush=True)
+                time.sleep(args.load_pause_sec)
             if tries < args.retries:
                 m["tiles"][t["id"]] = dict(t, status="retry", tries=tries,
                                            last_error=msg)
@@ -223,8 +353,9 @@ def pull(args: argparse.Namespace) -> None:
             save_manifest(m)
 
     done = [r for r in m["tiles"].values() if r.get("status") == "done"]
-    area = sum(r["area"] for r in done)
-    print(f"\npull: {len(done)} tiles done, {area:.0f} deg2 "
+    area = covered_area(m["tiles"])
+    print(f"\nSTOP REASON: {stop_reason}")
+    print(f"pull: {len(done)} tiles done, {area:.0f} deg2 "
           f"({100 * area / SKY_DEG2:.1f}% of sky), "
           f"{sum(r['n'] for r in done)} W3W4-detected rows, "
           f"{n_fail} tiles abandoned")
@@ -247,7 +378,7 @@ def status(_args: argparse.Namespace) -> None:
         print(f"  {k:8s} {len(v):4d} tiles  {a:9.0f} deg2  {n:9d} rows")
     done = by.get("done", [])
     if done:
-        area = sum(r["area"] for r in done)
+        area = covered_area(m["tiles"])
         secs = sum(r.get("seconds", 0) for r in done)
         print(f"\ncoverage {100 * area / SKY_DEG2:.2f}% of sky; "
               f"{secs / 60:.1f} min of query time; "
@@ -271,6 +402,12 @@ def repair(_args: argparse.Namespace) -> None:
     fixed, freed = [], 0.0
     done_ids = {k for k, v in m["tiles"].items() if v.get("status") == "done"}
     for tid, rec in sorted(m["tiles"].items()):
+        # A descendant popped by an earlier iteration of this loop is gone from
+        # the manifest but still present in this snapshot; re-adding it would
+        # queue sky that its re-queued ancestor already covers and would
+        # double-count that area in every rate. Skip anything already removed.
+        if tid not in m["tiles"]:
+            continue
         if rec.get("status") != "split":
             continue
         kids = rec.get("children", [])
@@ -298,14 +435,16 @@ def select(args: argparse.Namespace) -> None:
     """Run the local cuts (C2b..C6) on every tile harvested so far and write
     the funnel + the survivor list. Safe to run on a partial screen."""
     sys.path.insert(0, str(ROOT / "scripts"))
-    from w1_selection import fit_ds, load_pm13   # noqa: PLC0415
+    from w1_selection import fit_ds, load_pm13, use_locus   # noqa: PLC0415
+
+    use_locus(args.locus)
 
     m = load_manifest()
     done = [r for r in m["tiles"].values() if r.get("status") == "done"]
     if not done:
         print("nothing harvested yet")
         return
-    area = sum(r["area"] for r in done)
+    area = covered_area(m["tiles"])
     frames = []
     for r in done:
         p = TILES / r["file"]
@@ -356,8 +495,10 @@ def select(args: argparse.Namespace) -> None:
     funnel["T2_full10band"] = len(pre)
     pre["dmod"] = 5 * np.log10(pre["r_med_geo"] / 10.0)
     pre["M_G"] = pre["phot_g_mean_mag"] - pre["dmod"]
-    infit = pre[(pre["M_G"] >= 6.0) & (pre["M_G"] <= 14.5)]
+    infit = pre[(pre["M_G"] >= args.mg_lo) & (pre["M_G"] <= args.mg_hi)]
     funnel["T3_in_template_window"] = len(infit)
+    funnel["_mg_window"] = [args.mg_lo, args.mg_hi]
+    funnel["_locus"] = args.locus
 
     pm = load_pm13()
     t0 = time.time()
@@ -426,6 +567,33 @@ def main() -> None:
     p.add_argument("--retries", type=int, default=2)
     p.add_argument("--min-area", dest="min_area", type=float, default=25.0)
     p.add_argument("--budget-min", dest="budget_min", type=float, default=120.0)
+    # --- M3 resume controls, all pre-registered in M3-full-screen.md PR-1 ---
+    p.add_argument("--reset-failed", dest="reset_failed", action="store_true",
+                   help="forgive the retry budget of tiles abandoned during a "
+                        "server outage, so a resume can re-attempt them")
+    p.add_argument("--instant-sec", dest="instant_sec", type=float, default=5.0,
+                   help="a failure faster than this is a server error page, "
+                        "not a tile problem: it consumes no retry budget "
+                        "(measured: outage 0.2-0.3 s vs load wall 181.6 s)")
+    p.add_argument("--instant-trigger", dest="instant_trigger", type=int,
+                   default=8, help="consecutive instant failures that arm the "
+                                   "cooldown/probe ladder")
+    p.add_argument("--max-instant", dest="max_instant", type=int, default=60,
+                   help="cap on free instant retries per tile before it is "
+                        "treated as a genuine failure")
+    p.add_argument("--cooldown-sec", dest="cooldown_sec", type=float,
+                   default=120.0, help="first cooldown, doubling per failed "
+                                       "probe")
+    p.add_argument("--cooldown-max", dest="cooldown_max", type=float,
+                   default=900.0)
+    p.add_argument("--load-pause-every", dest="load_pause_every", type=int,
+                   default=10, help="pause after this many consecutive "
+                                    "load failures (0 disables)")
+    p.add_argument("--load-pause-sec", dest="load_pause_sec", type=float,
+                   default=180.0)
+    p.add_argument("--stall-probes", dest="stall_probes", type=int, default=6,
+                   help="consecutive failed health probes that stop the run "
+                        "cleanly at partial coverage")
     p.set_defaults(func=pull)
     p = sub.add_parser("status")
     p.set_defaults(func=status)
@@ -438,6 +606,15 @@ def main() -> None:
     # M2 measures the funnel at both -- the difference is 10x in selectivity.
     p.add_argument("--gamma-floor", dest="gamma_floor", type=float, default=0.10)
     p.add_argument("--tag", default="")
+    # M3: the template window. M1/M2 fitted only M_G 6-14.5 because the
+    # empirical locus was K/M dwarfs, which made the RMSE row a LOWER BOUND on
+    # a third of the stars. m3_locus_extend.py closes that: PM13 tabulates the
+    # WISE colours blueward of K5V itself, and agrees with the (saturated)
+    # empirical <30 pc medians to rms 0.050 mag. Hephaistos II's own templates
+    # spanned M_G 0-13.6, so 0.5-14.0 is the like-for-like window.
+    p.add_argument("--locus", default="mdwarf_wise_locus.csv")
+    p.add_argument("--mg-lo", dest="mg_lo", type=float, default=6.0)
+    p.add_argument("--mg-hi", dest="mg_hi", type=float, default=14.5)
     p.set_defaults(func=select)
     a = ap.parse_args()
     try:

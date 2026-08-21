@@ -3,6 +3,45 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-08-21** — **M3 ◐** ([M3-full-screen.md](M3-full-screen.md)) — **the screen is delivered on
+  48.18% of the sky and reported as such; the pull could not be finished because ESAC is down for
+  joins.** Coverage unchanged at **93 tiles / 19,874 deg²**: ESAC served **zero** tiles in ~3.5 h
+  across two resume attempts, answering `SELECT TOP 5` in 1.3 s while killing every query touching
+  the join tables — a bare 3-table `COUNT(*)` died at 79.8 s, and the wall is **size-independent**
+  (13.4–214.9 deg² all die at 61.5–62.7 s), so splitting cannot help. **The 2026-08-19 stall is
+  diagnosed**: 679 of 680 outage failures returned in **0.2–0.3 s** vs **181.6 ± 0.3 s** for real
+  load failures, and the driver spent 99 tiles' retry budgets in seconds; instant failures now cost
+  no retries, an outage breaker stops cleanly, and **no tile is abandoned** (100 sit in `retry`,
+  resumable). Two funnel-corrupting bugs fixed: `repair` resurrected the descendants it had just
+  deleted, and parent/child **area was double-counted**. **Funnel at γ ≥ 0.10 with Poisson
+  intervals**: 220,632 W3W4-detected → 4,773 RMSE (**0.88×** the paper) → 4,257 → **845 pre-visual
+  survivors against 177 expected = 4.77× [4.60–4.94]**; the pilot's RMSE deficit really was the
+  truncated template window. **The ~9× γ-floor finding is corrected to 5.83×** (and 5.0× → 2.93× at
+  the pre-visual gate). **Flagged, not explained: the parent sample is 1.43× the paper's** —
+  457,960 projected vs ~3.2 × 10⁵ — so no absolute sky-wide yield should be quoted yet.
+  **845 finalists vetted with the coded gates: 416 CONTAMINATION-CONSISTENT, 326 INDETERMINATE,
+  103 SUB-THRESHOLD, 0 STILL-CLEAN — no Matthew-gated candidate.** M2's two invented axes measured
+  at scale: **18.3% were never detected in a single W4 exposure**, and **13.3% have an excess band
+  the All-Sky release calls a non-detection and AllWISE promotes — with the reverse happening zero
+  times.** **The centroid axis was refused a vote**: at scale its 10″ peak search locks onto
+  brighter neighbours (a 9.51″ "offset" is a 2.4×-brighter source at 10.24″; an 11.89″ one is a
+  14×-brighter source at 16.36″), so it was disabled rather than retuned — hundreds would otherwise
+  have been convicted on an unrelated neighbour. Also fixed: the centroid cutout silently **clipped
+  at coadd-tile edges** (IBE's first row is often a corner tile) which manufactured 7.6–11.9″ fake
+  offsets; control C still reproduces at **3.72″ vs published 3.67″**. **Both method caveats
+  closed**: `ew_espels_halpha` is negative-for-emission (three sources) and the implementation was
+  **already correct** — but the cut is **near-inert** (0.001 recovery for active M dwarfs) and
+  **3 of the paper's 7 candidates were never testable by it** (G > 17.65; D misses by 0.011 mag);
+  and the template locus is **extended blueward** from PM13's own tabulated colours (validated to
+  rms 0.050 mag = 0.022 mag in the 10-band RMSE, **zero regression** on M1's 7/7), taking the fitted
+  fraction from 32% to **98.6%**. **GO 7199's third target: still unpublished** — the JWST-vetted
+  sample is **still 2, not 3**; candidate A's data are closed until **2027-07-16**, but **D's are
+  already public** and **E's open 2026-09-09**. **M4 route measured**: the **AIP mirror** hosts every
+  needed catalogue and **anonymous async works with no account** (30 s cap ⇒ ~27 deg² tiles); its
+  only gap, Bailer-Jones distances, is covered by a parallax proxy calibrated here to **99.09%
+  recall** (purity still unmeasured). Nothing submitted, posted or sent; the Ren+24 note and the
+  I dossier remain Matthew-gated, unchanged.
+
 - **2026-08-18** — **M2 ◐** ([M2-dossier-and-screen.md](M2-dossier-and-screen.md)) — three
   deliverables done, W4 running. **D formally retired** everywhere (README premise block, dated
   annotation on M1, §3.2 closure note): contamination-confirmed by JWST/Hephaistos IV, kept only as

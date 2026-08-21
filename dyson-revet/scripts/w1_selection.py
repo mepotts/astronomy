@@ -113,16 +113,36 @@ def load_pm13() -> pd.DataFrame:
 
 
 _LOCUS_CACHE: list[pd.DataFrame] = []
+_LOCUS_NAME = ["mdwarf_wise_locus.csv"]
+
+
+def use_locus(name: str) -> None:
+    """Choose which photospheric-colour locus template_grid uses.
+
+    "mdwarf_wise_locus.csv"  -- M1/M2's locus, M_G 6.75-13.25 (K/M dwarfs).
+    "wise_locus_extended.csv" -- M3's, M_G 0.5-14: PM13's own tabulated WISE
+        colours blueward of M_G 6.5 spliced onto that empirical locus. Built
+        and validated by scripts/m3_locus_extend.py; the two agree to rms
+        0.050 mag where they can be compared, i.e. 0.022 mag propagated into
+        the 10-band RMSE against a 0.2 gate.
+    """
+    if name != _LOCUS_NAME[0]:
+        _LOCUS_NAME[0] = name
+        _LOCUS_CACHE.clear()
 
 
 def wise_locus() -> pd.DataFrame:
-    """Empirical M-dwarf photospheric W1-W2/W1-W3/W1-W4 vs M_G locus
-    (built by w1_fetch_locus.py from <30 pc dwarfs with clean W3/W4;
-    PM13 has no WISE colors for K6V-M4.5V)."""
+    """Photospheric W1-W2/W1-W3/W1-W4 vs M_G locus.
+
+    Default: the empirical <30 pc M-dwarf locus from w1_fetch_locus.py, which
+    exists because PM13 tabulates no WISE colours for K6V-M4.5V. See
+    use_locus() for M3's blueward-extended version."""
     if not _LOCUS_CACHE:
-        path = DATA / "photometry" / "mdwarf_wise_locus.csv"
+        path = DATA / "photometry" / _LOCUS_NAME[0]
         if not path.exists():
-            raise FileNotFoundError("run scripts/w1_fetch_locus.py first")
+            raise FileNotFoundError(f"missing {path}; run "
+                                    "scripts/w1_fetch_locus.py (or "
+                                    "scripts/m3_locus_extend.py) first")
         _LOCUS_CACHE.append(pd.read_csv(path))
     return _LOCUS_CACHE[0]
 

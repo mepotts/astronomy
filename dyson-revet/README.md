@@ -27,6 +27,21 @@ astrophysics regardless of technosignature framing).
 > see [`I-dossier.md`](I-dossier.md). A third candidate (**A**) was observed by JWST on 14 Jul 2026
 > and the result is not yet published (M2 §0.4).
 
+> **Premise update, 2026-08-21 (M3 §5) — the JWST-vetted sample is still 2, not 3.**
+> M2 predicted the third GO 7199 target (candidate **A**, observed 2026-07-14) would shortly make
+> it 3. It has not: as of 2026-08-21 **no result on candidate A has been published anywhere**
+> (arXiv API sweeps over `Hephaistos`, Zackrisson, Suazo, Korn, Ren, Assef, Siemion, "Dyson
+> sphere", technosignature, megastructure; Semantic Scholar and OpenAlex both give
+> arXiv:2607.09460 **zero** citations; ADS remained unreachable). The collaboration's own newest
+> papers agree — Ren et al. (arXiv:2607.03619 **v3**, 2026-08-07, accepted MNRAS) still calls the
+> GO 7199 observations of "Candidates A, D, and E" **ongoing**, and Hephaistos III
+> (arXiv:2607.25701, 2026-07-28) still says "for **two** of our stars". **The tally above is
+> unchanged: five candidates with an identified contaminant (B, C, D, E, G), two of them by JWST.**
+> New and actionable: **candidate D's JWST/MIRI data have been public since 2026-07-28**, and
+> **candidate E's open on 2026-09-09**; candidate A's are under exclusive access until
+> **2027-07-16** ([GO 7199 program info](https://www.stsci.edu/jwst-program-info/program/?program=7199&pi=1),
+> MAST CAOM, 2026-08-21).
+
 > **Route correction, 2026-08-18 (M2 §4.1).** The W4 full-screen plan below was costed on ~24
 > anonymous ESA **async** strip jobs. **Anonymous async is broken** (HTTP 500 on every job); the
 > screen runs on sync with adaptive tiling instead, checkpointed and resumable. See

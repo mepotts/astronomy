@@ -90,9 +90,77 @@ def ibe_find_tile(ra: float, dec: float) -> str:
         if ln.startswith("|"):
             cols = [c.strip() for c in ln.strip("|").split("|")]
             break
-    idx = cols.index("coadd_id")
-    best = rows[0].split()[idx]
-    return best
+    return ibe_rank_tiles(r.text)[0]
+
+
+def ibe_tiles_for(ra: float, dec: float) -> list[str]:
+    """Ranked coadd_ids for a position (best-centred first)."""
+    r = None
+    for attempt in range(3):
+        try:
+            r = requests.get(IBE_SEARCH, params={"POS": f"{ra},{dec}"},
+                             timeout=180)
+            r.raise_for_status()
+            break
+        except requests.RequestException:
+            pass
+    if r is None:
+        raise RuntimeError("IBE search failed after 3 attempts")
+    return ibe_rank_tiles(r.text)
+
+
+def ibe_rank_tiles(text: str) -> list[str]:
+    """All distinct coadd_ids from an IBE search, best-centred FIRST.
+
+    BUG THIS FIXES (M3, 2026-08-21): the old code returned rows[0]. IBE
+    returns one row per (tile, band) for every overlapping coadd -- 16 rows
+    for a typical position -- in no useful order, and the first row is often a
+    tile on whose CORNER the target sits. The Atlas cutout then comes back
+    silently CLIPPED: a 90" request returned 39x66 px instead of 65x65, the
+    target landed within a few arcsec of the frame boundary, the "brightest
+    pixel within 10 arcsec" search ran off the edge, and the offsets returned
+    were 7.6-11.9" -- garbage that looks exactly like a contaminated object.
+    It never showed up in M1/M2 because those three targets drew usable tiles.
+
+    Ranking = distance from the target to the NEAREST tile edge, largest
+    first, from the corner coordinates IBE supplies (ra1..ra4/dec1..dec4).
+
+    PARSING NOTE, also learned the hard way: this is an IPAC table and its
+    date_obs/mid_obs columns CONTAIN SPACES, so ln.split() yields more fields
+    than there are columns and every row silently fails a length check. The
+    columns must be cut at the "|" positions of the header line.
+    """
+    lines = text.splitlines()
+    hdr = next(ln for ln in lines if ln.startswith("|"))
+    bars = [k for k, ch in enumerate(hdr) if ch == "|"]
+    cols = [hdr[a + 1:b].strip() for a, b in zip(bars[:-1], bars[1:])]
+
+    def cut(ln: str) -> dict:
+        return {c: ln[a + 1:b].strip()
+                for c, a, b in zip(cols, bars[:-1], bars[1:])}
+
+    seen: dict[str, float] = {}
+    for ln in lines:
+        if not ln or ln.startswith(("|", chr(92))):
+            continue
+        d = cut(ln)
+        try:
+            ra0, dec0 = float(d["in_ra"]), float(d["in_dec"])
+            ras = [float(d[f"ra{i}"]) for i in (1, 2, 3, 4)]
+            decs = [float(d[f"dec{i}"]) for i in (1, 2, 3, 4)]
+            cid = d["coadd_id"]
+        except (KeyError, ValueError):
+            continue
+        if not cid:
+            continue
+        cosd = np.cos(np.radians(dec0))
+        margin = min(min(abs(ra0 - min(ras)), abs(max(ras) - ra0)) * cosd,
+                     min(abs(dec0 - min(decs)), abs(max(decs) - dec0)))
+        if cid not in seen or margin > seen[cid]:
+            seen[cid] = margin
+    if not seen:
+        raise RuntimeError("IBE search returned no usable tile rows")
+    return [c for c, _ in sorted(seen.items(), key=lambda kv: -kv[1])]
 
 
 def fetch_cutout(label: str, coadd_id: str, band: int, ra: float, dec: float,
@@ -148,6 +216,13 @@ def measure_centroid(path: Path, ra_exp: float, dec_exp: float, band: int
     # search box: brightest pixel within 10 arcsec of expected position
     r_search = int(round(10.0 / px_scale))
     yy, xx = np.mgrid[0:sub.shape[0], 0:sub.shape[1]]
+    # EDGE GUARD (M3): if the search disk is not wholly inside the frame the
+    # peak search is unconstrained on one side and the offset it returns is an
+    # artefact of the crop, not a measurement. Say so instead of returning a
+    # number. See ibe_rank_tiles for how the clipped cutouts arose.
+    edge_clipped = bool(x_exp - r_search < 0 or y_exp - r_search < 0
+                        or x_exp + r_search >= sub.shape[1]
+                        or y_exp + r_search >= sub.shape[0])
     mask_search = (xx - x_exp) ** 2 + (yy - y_exp) ** 2 <= r_search ** 2
     peak_idx = np.nanargmax(np.where(mask_search, sub, -np.inf))
     py, px = np.unravel_index(peak_idx, sub.shape)
@@ -190,7 +265,9 @@ def measure_centroid(path: Path, ra_exp: float, dec_exp: float, band: int
     off = angsep(ra_c, dec_c, ra_exp, dec_exp)
     sig_pos = PSF_FWHM[band] / (2.355 * max(snr, 0.1))
     return dict(ra_centroid=float(ra_c), dec_centroid=float(dec_c),
-                offset_arcsec=float(off), snr=float(snr),
+                offset_arcsec=float("nan") if edge_clipped else float(off),
+                edge_clipped=edge_clipped,
+                raw_offset_arcsec=float(off), snr=float(snr),
                 sigma_pos_arcsec=float(sig_pos),
                 peak_ra=float(wcs.pixel_to_world_values(px, py)[0]),
                 peak_dec=float(wcs.pixel_to_world_values(px, py)[1]))
