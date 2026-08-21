@@ -42,6 +42,28 @@ astrophysics regardless of technosignature framing).
 > **2027-07-16** ([GO 7199 program info](https://www.stsci.edu/jwst-program-info/program/?program=7199&pi=1),
 > MAST CAOM, 2026-08-21).
 
+> **Premise update, 2026-08-21 (M4 §5) — candidate D's contaminant measured from the public JWST
+> data, not cited from the paper.** GO 7199's D products have been public since 2026-07-28 and were
+> pulled anonymously from MAST and re-measured here (the MAST L3 mosaics are `CAL_VER 2.0.1 /
+> CRDS jwst_1535`, a **newer, independent re-reduction** than the 1.20.2/1364 Hephaistos IV used).
+> **The contaminant is real and it is what carries the excess**: separation **1.23 ± 0.07″ at
+> PA 33 ± 1°** (the paper says only "≈1 arcsec" and quotes no PA), contrast f_con/f_star = **0.236 /
+> 7.24 / 83.1** in F560W/F1000W/F1500W, contaminant point-like to 94–97% of the CRDS point-source
+> concentration, F<sub>ν</sub> ∝ λ<sup>+4.4</sup>, and the pair reproduces the AllWISE W3 flux to
+> +12% with the contaminant supplying **88% at 10 μm and 98.8% at 15 μm**. The star itself is
+> photospheric (3473 K blackbody, no intrinsic excess). **The tally above is unchanged** — D was
+> already contamination-confirmed; what is new is that this project has now confirmed it from the
+> data rather than from the citation. **The z ≈ 0.9 Hot-DOG identification is NOT independently
+> confirmed here**: it rests on the MRS spectrum, which was not reduced — UNSOURCED by this project.
+> **What this calibrates**: the flux-weighted centroid pull is `sep · ρ/(1+ρ)`, so the geometric
+> ceiling is the separation itself, **1.23″**. Our own archival W4 offset for D (2.55 ± 0.50″) and
+> Ren et al. 2026's (1.8″) both **exceed that ceiling**, and our W3 offset points at PA 82.9° — 50°
+> away from the real contaminant, where MIRI shows nothing. The threshold separation an archival
+> centroid test needs is **sep_thr(ρ) = F · (1 + 1/ρ)**, asymptoting to the floor F itself, so
+> **≈10% (1″ floor) to ≈40% (2″ floor) of chance-aligned contaminants inside Suazo et al.'s own
+> 3.25″ aperture are invisible to centroid vetting at any brightness.** The README's "~1–2″ floor"
+> language above is confirmed and now carries a number.
+
 > **Route correction, 2026-08-18 (M2 §4.1).** The W4 full-screen plan below was costed on ~24
 > anonymous ESA **async** strip jobs. **Anonymous async is broken** (HTTP 500 on every job); the
 > screen runs on sync with adaptive tiling instead, checkpointed and resumable. See

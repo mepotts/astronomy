@@ -3,6 +3,63 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-08-21** — **M4 ✓** ([M4-sky-parent-gvar-jwst.md](M4-sky-parent-gvar-jwst.md)) — **the sky
+  is finished: 41,253 deg², 100.00%, 220 cells, 0 abandoned**, harvested anonymously through the
+  **AIP mirror** with no account while ESAC's join tables stayed dead all day (a 3-table `COUNT(*)`
+  still died at 61 s). **The route needed four corrections and three would have corrupted the
+  harvest silently**: the 30 s cap is a Postgres *statement* timeout, not the UWS
+  `executionDuration` M3 named (it accepts 86400 s and ignores it), and what beats it is a
+  **`source_id` range** — a HEALPix cell, exact sky area by construction — not a sky box
+  (215 deg² box = 27 s of DB time before a single join; 298 deg² source_id range = 18.7 s for the
+  whole 5-table join); **AIP stores AllWISE's null uncertainty as a sentinel 0.0**, so ESAC's
+  `IS NOT NULL` detection cut silently passes everything and inflated the parent **32×**; **the
+  2MASS join key is the designation, not the oid** — on the oid, **0 of 41,844** designations
+  matched ESAC and J was wrong by a median **+5.55 mag** while Gaia and AllWISE matched exactly;
+  and AIP renames `source_id` to `datalinkID` in every VOTable. **Then the acceptance test passed
+  exactly: all 220,632 ESAC rows recovered, Jaccard 1.00000, 0 unmatched either way, photometry to
+  max |diff| = 0.00000.** It also caught a **file-index collision** in our own ESAC distance cache
+  that had destroyed 2,000 lookups. **The proxy's purity is measured at last — 98.46%** (recall
+  98.99%) on 507,382 rows containing the complement — **and it is not needed**: ESAC's single-table
+  PK lookups work while its joins do not, so **all 439,923 parent rows carry an exact
+  Bailer-Jones distance and none falls back to the proxy**. **The 1.43× parent discrepancy is
+  settled and it was a stage-alignment error** — Suazo §2.1 says Table 4's "W3/W4 detection
+  ∼3.2×10⁵" row is *after* the contamination flag, so the like-for-like parent is
+  **328,937 vs 320,000 = 1.03×**; the paper's independent "∼200,000" cross-check lands at 1.011×.
+  **An absolute sky-wide yield may now be quoted.** **The Gvar reference gap is closed and was never
+  the largest factor**: M3's "the paper rejects 54%" was the **CNN** (Table 4 puts the nebular
+  classifier *between* the RMSE gate and the extra cuts, which reject **10.4%** against our
+  **11.15%**), our Gvar rejects **more** than the paper's, the reference offset is **reconstructed
+  from the paper's own published Gvar values (ours/paper = 1.2097, n=7)**, and a **reference-free
+  monotonicity bound caps the whole question at 12 survivors of 1,557 — 0.77%**. **What the 4.2×
+  actually is: the nebular CNN, localised by Galactic latitude.** Every reproducible stage
+  reproduces (parent 1.03×, RMSE 0.84×, extras 0.84×) and the pre-visual yield per deg² runs from
+  **20.9× the paper's mean at |b|<5°** to **1.05× [0.94–1.17] at |b|>50°**, where the conditional
+  S/N pass rate is 6.9% against their 7.2% (0.96 ± 0.10×) — and **all 7 of the paper's 7 published
+  candidates lie at |b|>30°** (p=0.008 isotropic). **M3's own explanation for that gap is refuted**:
+  **zero** of the 8,428 extra-cut survivors lie blueward of M_G = 6. Full-sky funnel at γ ≥ 0.10:
+  **439,923 W3W4-detected → 328,937 parent → 9,486 RMSE → 8,428 → 1,545 pre-visual survivors.**
+  **Candidate D's JWST data analysed — the first archival verdict graded against the imaging that
+  settled it.** From the public GO 7199 MIRI mosaics (a *newer re-reduction* than the paper's):
+  **separation 1.23 ± 0.07″ at PA 33 ± 1°** (Hephaistos IV says only "≈1 arcsec" and no PA),
+  contrast **0.236 / 7.24 / 83.1** at 5.6/10/15 μm, contaminant point-like and
+  F<sub>ν</sub> ∝ λ<sup>+4.4</sup>, supplying **88% of the 10 μm and 98.8% of the 15 μm flux**; the
+  star is photospheric. **Contamination CONFIRMED; z ≈ 0.9 NOT independently confirmed** (it rests
+  on the MRS spectrum, unreduced — UNSOURCED here). **The calibration**: the pull is
+  `sep·ρ/(1+ρ)`, so the geometric ceiling is the separation, **1.23″** — and **our archival W4
+  offset (2.55 ± 0.50″) and Ren+26's (1.8″) both exceed it**, while our W3 offset points at
+  **PA 82.9°, 50° away from the real contaminant**, where MIRI shows nothing. **The archival
+  centroid is unreliable in direction as well as magnitude near the floor**, which retires M3's
+  plan to retune it. **The floor now has a number**: `sep_thr(ρ) = F(1+1/ρ)`, asymptoting to F
+  itself, so **≈10% (1″ floor) to ≈40% (2″ floor) of chance-aligned contaminants are invisible at
+  any brightness**. Free by-product: **M3's extrapolation from 48% was good to a few percent, not
+  to Poisson** (+2.0% on the parent, +13.5% on pre-visual survivors, against quoted ±0.2%).
+  **Vetting of the 1,545 survivors was still running at session end** (IRSA costs ~3.5 s/position;
+  V5 stays disabled and §5 is now the reason) — resume with
+  `python scripts/m3_vet_survivors.py --tag m4_g0.1 --skip-centroid`. **No object can reach
+  STILL-CLEAN while the centroid axis is invalid, so there is no Matthew-gated candidate.** Nothing
+  submitted, posted or sent; no account created anywhere; the Ren+24 note and the I dossier remain
+  Matthew-gated, unchanged.
+
 - **2026-08-21** — **M3 ◐** ([M3-full-screen.md](M3-full-screen.md)) — **the screen is delivered on
   48.18% of the sky and reported as such; the pull could not be finished because ESAC is down for
   joins.** Coverage unchanged at **93 tiles / 19,874 deg²**: ESAC served **zero** tiles in ~3.5 h
