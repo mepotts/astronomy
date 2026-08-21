@@ -46,11 +46,30 @@ constant, G substituted -- conventional, marked; same as M3).
 Footprint: eROSITA-DE = 179.944 < l < 359.944 deg; only ~half the EB26
 sample can be tested at all -- the power statement is part of the result.
 
+AMENDMENT LOG
+  M6 (2026-08-21) -- SOURCE OF VERDICTS, not behaviour.  The verdict table
+  is no longer read from fixtures/elbadry2026_astrometric_candidates.csv
+  directly: it comes from the day-one VERDICT STORE
+  (scripts/verdict_schema.py, out/verdicts/*.csv), of which the EB26
+  fixture is one producer and the epoch-vet harness is the other.  The
+  test, the match machinery, the controls and the pre-registered rules are
+  untouched -- the acceptance test of the refactor is that this script's
+  frozen M4 artifacts reproduce BYTE-IDENTICALLY through the new path.
+  --verdicts / --scopes / --sources / --out-dir added so that on
+  2026-12-03 this question is re-asked against harness verdicts with no
+  new code.  A verdict-provenance line is printed every run and written
+  into the stats file only when the store carries more than one
+  (source, scope) combination -- see the asymmetry note in
+  scripts/verdict_schema.py before pooling scopes.
+
+Inputs : out/verdicts/*.csv  (the day-one verdict store; M6)
+         ../erosita-dr2/data/  (READ-ONLY)
 Outputs: out/m4_eb26_erosita_xmatch.csv   (per-target, all 76)
          out/m4_eb26_discriminator_stats.txt
 Run    : .venv/Scripts/python.exe scripts/m4_eb26_erosita_test.py
 """
 
+import argparse
 import os
 import sys
 
@@ -59,6 +78,9 @@ import pandas as pd
 from astropy.io import fits
 from scipy.spatial import cKDTree
 from scipy.stats import fisher_exact, mannwhitneyu
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import verdict_schema as vs  # noqa: E402
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ERO = os.path.join(os.path.dirname(BASE), "erosita-dr2", "data")
@@ -150,9 +172,28 @@ def load_nway():
     return nway
 
 
-def main():
-    eb = pd.read_csv(os.path.join(BASE, "fixtures",
-                                  "elbadry2026_astrometric_candidates.csv"))
+def main(argv=None):
+    ap = argparse.ArgumentParser(
+        description="M4 activity-vs-spuriousness test (EB26 x eROSITA-DE)")
+    ap.add_argument("--verdicts", nargs="*", default=None,
+                    help="verdict-store CSV(s); default out/verdicts/eb26.v1.csv")
+    ap.add_argument("--scopes", nargs="*", default=None)
+    ap.add_argument("--sources", nargs="*", default=None)
+    ap.add_argument("--out-dir", default=OUT_DIR)
+    a = ap.parse_args(sys.argv[1:] if argv is None else argv)
+    out_dir = a.out_dir
+    os.makedirs(out_dir, exist_ok=True)
+
+    # M6: verdicts come from the verdict STORE, not from the fixture.
+    store_paths = a.verdicts or [os.path.join(vs.STORE_DIR, "eb26.v1.csv")]
+    store = vs.load_store(store_paths, scopes=a.scopes, sources=a.sources)
+    prov = vs.scope_composition_string(store)
+    n_combo = store.groupby(["verdict_source", "verdict_scope"]).ngroups
+    print(f"VERDICT PROVENANCE: {len(store)} records from "
+          f"{[os.path.basename(p) for p in store_paths]}")
+    print(f"  scope composition: {prov}")
+    eb = vs.eb26_compatible_frame(store).drop(
+        columns=["verdict_source", "verdict_scope", "verdict_confidence"])
     tri = pd.read_parquet(
         os.path.join(BASE, "data", "dr3_amrf_triage.parquet"),
         columns=["source_id", "nss_solution_type", "ra", "dec", "l", "b",
@@ -299,7 +340,7 @@ def main():
             "ml_rate_1", "log_fx_fopt", "l_x_erg_s", "hr1", "hr2", "hr3",
             "dr1_rate_1", "rate_ratio_dr2_dr1", "uid_dr1", "flag_opt",
             "nway_p_any", "nway_sep", "notes"]
-    t[keep].to_csv(os.path.join(OUT_DIR, "m4_eb26_erosita_xmatch.csv"),
+    t[keep].to_csv(os.path.join(out_dir, "m4_eb26_erosita_xmatch.csv"),
                    index=False, lineterminator="\n")
 
     # ---- the statistics ---------------------------------------------------
@@ -311,6 +352,12 @@ def main():
     say("M4 activity-vs-spuriousness test -- EB26 x eROSITA-DE "
         "(2026-08-18)")
     say("=" * 72)
+    if n_combo > 1:
+        # MANDATORY disclosure when verdicts of more than one provenance or
+        # scope are pooled (scripts/verdict_schema.py: a harness
+        # `orbit_reality` CONFIRMED is weaker than an EB26 one).
+        say("VERDICT PROVENANCE (more than one source/scope in this run):")
+        say(f"  {prov}")
     nf = t.groupby("verdict")["in_footprint"].agg(["sum", "count"])
     say("\nfootprint (eROSITA-DE, 179.94<l<359.94):")
     for v, r in nf.iterrows():
@@ -420,7 +467,7 @@ def main():
             "see the power statement above for whether that is a real "
             "null or an underpowered test.")
 
-    with open(os.path.join(OUT_DIR, "m4_eb26_discriminator_stats.txt"),
+    with open(os.path.join(out_dir, "m4_eb26_discriminator_stats.txt"),
               "w", encoding="utf-8", newline="\n") as fh:
         fh.write("\n".join(lines) + "\n")
 

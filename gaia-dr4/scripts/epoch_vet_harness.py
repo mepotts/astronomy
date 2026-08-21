@@ -1,0 +1,651 @@
+#!/usr/bin/env python
+"""M6: the PRODUCTION epoch-vetting harness -- the verdict factory.
+
+M3 proved the loop works (3 orbit sources kept, 9 quiet ones demoted) with
+a 40-line prototype that reads one local file and holds everything in
+memory.  On 2026-12-02 the same loop has to run over a 983-row queue
+against a DataLink service that is the day's bottleneck, survive being
+killed, and report how fast it actually went.  This is that harness.
+
+=======================================================================
+PRE-REGISTERED VERDICT RULES (written before the M6 runs; they extend
+M3's prototype rule, they do not replace it)
+=======================================================================
+Input per source: the epoch astrometry served for it, and the single-star
+(5/6-parameter) fit of it by ESA's `gaiasupdate`.
+
+  f2  = the fit's goodness-of-fit statistic (gaiasupdate
+        solution_statistic.f2).  A source whose photocentre really moves on
+        an orbit cannot be fit by a single-star model, so f2 blows up; a
+        source with no epoch-level wobble sits at |f2| ~ 1.
+
+  n_used = CCD transits that survived the AGIS-like filtering and entered
+        the fit (results['n_measurements']).
+
+  RULE 1  n_used < MIN_TRANSITS (=50)      -> INCONCLUSIVE (scope
+          orbit_reality).  Too few epochs to say anything; NOT a demotion.
+  RULE 2  |f2| >  F2_GATE (=5)             -> CONFIRMED  (scope
+          orbit_reality): epoch-level wobble present, the orbit survives
+          and goes to the orbital refit.
+  RULE 3  |f2| <= F2_GATE                  -> SPURIOUS   (scope
+          orbit_reality): no epoch-level support for the claimed
+          photocentre orbit.
+  RULE 4  DataLink served nothing          -> NO_DATA.
+  RULE 5  the fit raised                   -> ERROR, with the exception
+          text in `notes`.  Never silently dropped, never retried into a
+          verdict.
+
+CONFIDENCE (pre-registered, r = |f2| / F2_GATE):
+  HIGH    r >= 2 (KEEP side) or r <= 0.5 (DEMOTE side) -- clear of the gate
+          by a factor 2 in either direction
+  MEDIUM  0.5 < r < 2 -- within a factor 2 of the gate
+  LOW     INCONCLUSIVE / NO_DATA / ERROR, or n_used < 100
+
+VERDICT SCOPE.  Every harness verdict is scope `orbit_reality`: it answers
+"does this photocentre orbit have epoch-level support?", NOT "is there a
+dark massive companion?" (EB26's `compact_companion` scope).  A harness
+SPURIOUS and an EB26 SPURIOUS mean nearly the same thing; a harness
+CONFIRMED is WEAKER than an EB26 CONFIRMED.  The schema keeps the two
+apart on purpose -- see scripts/verdict_schema.py.
+
+=======================================================================
+OPERATIONAL DESIGN (the part M3's prototype did not have)
+=======================================================================
+BATCHED.  DataLink epoch astrometry is not a TAP table (M1 finding #1), so
+  it is fetched through `Gaia.load_data(ids=[...], retrieval_type=
+  'EPOCH_ASTROMETRY', data_structure='RAW')`, which returns ONE file for
+  the whole batch with one row per (source, transit).  gaiasupdate's own
+  `from_gacs_datalink()` sends ids=[source_id] -- one HTTP round trip per
+  source -- which is why this harness does not use it.
+RESUMABLE.  Every fetched source is written to its own parquet under
+  data/epoch_cache/<release_tag>/ (atomically: .tmp then os.replace) and
+  every verdict is appended to the ledger CSV as it is produced.  On
+  restart, cached sources are not re-fetched and ledgered sources are not
+  re-fit.  A session kill costs at most the batch in flight.
+POLITE + RATE-LIMIT AWARE.  >= GAP_S between requests, 6 retries with
+  exponential backoff, and HTTP 429 / 503 with a Retry-After header is
+  honoured to the second (the archive is entitled to say "slow down"; the
+  house rule since M5 is that a multi-request pull cannot survive a
+  no-retry policy).
+INSTRUMENTED.  Per-batch: n_ids, n_served, seconds, rows, cache-hits.
+  Per-source: fetch share, fit seconds, transits.  Written to
+  out/m6_harness_timings.csv + out/m6_harness_throughput.txt, so
+  sources-per-hour is MEASURED, not assumed.
+
+Sources of epoch astrometry (--source):
+  prerelease  the 2026-06-26 12-source RAW VOTable -- the only real epoch
+              astrometry that exists today; the end-to-end validation path
+  datalink    the Gaia archive (December); needs `--release "Gaia DR4"`
+  cache       fits whatever is already in data/epoch_cache/, no network
+
+Run:
+  .venv/Scripts/python.exe scripts/epoch_vet_harness.py --source prerelease
+  .venv/Scripts/python.exe scripts/epoch_vet_harness.py --source datalink \
+      --queue out/epoch_vet_day1_queue.v2.csv --limit 50 --batch 20
+"""
+
+import argparse
+import os
+import sys
+import time
+import traceback
+import warnings
+
+import numpy as np
+import pandas as pd
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import verdict_schema as vs  # noqa: E402
+
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CACHE_ROOT = os.path.join(BASE, "data", "epoch_cache")
+OUT_DIR = os.path.join(BASE, "out")
+PRERELEASE_XML = os.path.join(
+    BASE, "data", "epoch-astrometry",
+    "GAIA_DR4_PRERELEASE_EPOCH_ASTROMETRY_RAW.xml")
+
+HARNESS_VERSION = "epoch_vet_harness 1.0 (M6, 2026-08-21)"
+CONFIG_VERSION = 5
+
+# ---- the pre-registered constants (docstring above) ----------------------
+F2_GATE = 5.0
+MIN_TRANSITS = 50
+LOW_CONFIDENCE_TRANSITS = 100
+CONF_FACTOR = 2.0
+
+# ---- politeness ----------------------------------------------------------
+GAP_S = 0.5
+RETRIES = 6
+BACKOFF_S = 5.0
+DEFAULT_BATCH = 20
+
+# columns gaiasupdate's archive->CU9 adapter requires; a served source
+# missing any of them is an ERROR, not a silent drop
+REQUIRED_EPOCH_COLS = [
+    "source_id", "obs_time_bary_corr", "centroid_pos_al",
+    "centroid_pos_error_al", "scan_pos_angle", "parallax_factor_al",
+    "colour_factor_al", "obs_time_tcb", "used_by_agis_al",
+    "agis_source_excess_noise", "ccd_proc_flags", "ipd_error_al",
+    "nu_eff_used_in_astrometry"]
+
+
+def release_tag(release):
+    return "".join(ch if ch.isalnum() else "_" for ch in release).strip("_")
+
+
+# ======================================================================
+# fetch layer
+# ======================================================================
+class EpochSource:
+    """Common interface: .fetch(ids) -> {source_id: DataFrame}, plus the
+    provenance strings that go on every verdict record."""
+
+    name = "abstract"
+    release = "unknown"
+    data_structure = "RAW"
+
+    def fetch(self, ids):
+        raise NotImplementedError
+
+
+class PrereleaseSource(EpochSource):
+    """The 2026-06-26 pre-release file.  No network; the whole point is
+    that the production code path is exercised on real epoch astrometry."""
+
+    name = "prerelease_file"
+
+    def __init__(self, path=PRERELEASE_XML):
+        from astropy.table import Table
+        self.path = path
+        self.release = "Gaia DR4 pre-release 2026-06-26"
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            self._df = Table.read(path, format="votable").to_pandas()
+        self._df["source_id"] = self._df["source_id"].astype("int64")
+
+    def all_ids(self):
+        return sorted(self._df["source_id"].unique().tolist())
+
+    def fetch(self, ids):
+        out = {}
+        for sid in ids:
+            sub = self._df[self._df["source_id"] == sid]
+            if len(sub):
+                out[int(sid)] = sub.reset_index(drop=True)
+        return out
+
+
+class DataLinkSource(EpochSource):
+    """Gaia archive DataLink, batched, polite, retrying, Retry-After aware.
+
+    RAW data_structure = one file per request holding every requested
+    source (arrays preserved) -- so one HTTP round trip serves `batch`
+    sources instead of one.  That is the single biggest lever on the
+    day-one wall clock and it is why this class exists rather than a call
+    to gaiasupdate's own one-id-per-call helper.
+    """
+
+    name = "gaia_datalink"
+
+    def __init__(self, release="Gaia DR4", retrieval_type="EPOCH_ASTROMETRY",
+                 fmt="votable", server=None):
+        from astroquery.gaia import Gaia, GaiaClass
+        self.release = release
+        self.retrieval_type = retrieval_type
+        self.fmt = fmt
+        self._Gaia = Gaia if server is None else GaiaClass(
+            gaia_tap_server=server, gaia_data_server=server)
+        self.last_response_seconds = None
+
+    def _load(self, ids):
+        return self._Gaia.load_data(
+            ids=[int(i) for i in ids], data_release=self.release,
+            retrieval_type=self.retrieval_type, data_structure="RAW",
+            format=self.fmt, verbose=False)
+
+    def fetch(self, ids):
+        from gaiasupdate.epoch_astrometry import GaiaEpochAstrometryArchive
+        last = None
+        for attempt in range(RETRIES):
+            try:
+                t0 = time.time()
+                res = self._load(ids)
+                self.last_response_seconds = time.time() - t0
+                break
+            except Exception as exc:            # noqa: BLE001
+                last = exc
+                if _is_deterministic(exc):
+                    # MEASURED 2026-08-21: asking ESAC for
+                    # retrieval_type='EPOCH_ASTROMETRY' returns
+                    #   HTTP 500: Unknown retrieval type: 'EPOCH_ASTROMETRY'
+                    # for BOTH 'Gaia DR4' and 'Gaia DR4_INT4' -- the service
+                    # does not serve it yet.  astroquery 0.4.11 lists the
+                    # type client-side, so nothing catches this earlier.
+                    # It is a 500, i.e. exactly what the retry policy is
+                    # built for -- and retrying it six times with backoff
+                    # burns five minutes on a deterministic answer.  Fail
+                    # fast and say what to do.
+                    raise RuntimeError(
+                        f"DataLink rejected the request DETERMINISTICALLY "
+                        f"({exc}). This is a wrong retrieval_type/release "
+                        f"pair, not a flaky archive -- probe the live "
+                        f"values (Phase 3.0 in DR4-DAY-RUNBOOK.md) instead "
+                        f"of retrying.") from exc
+                wait = _retry_after_seconds(exc)
+                if wait is None:
+                    wait = BACKOFF_S * (2 ** attempt)
+                print(f"    DataLink attempt {attempt+1}/{RETRIES} failed "
+                      f"({type(exc).__name__}: {exc}); sleeping {wait:.0f}s",
+                      flush=True)
+                if attempt == RETRIES - 1:
+                    raise
+                time.sleep(wait)
+        else:                                    # pragma: no cover
+            raise last
+
+        frames = []
+        for key, val in (res or {}).items():
+            for item in (val if isinstance(val, list) else [val]):
+                try:
+                    df = item.to_table().to_pandas()
+                except AttributeError:
+                    df = item.to_pandas()
+                frames.append(GaiaEpochAstrometryArchive.astropy_table_to_df(df))
+        if not frames:
+            return {}
+        allrows = pd.concat(frames, ignore_index=True)
+        idcol = "source_id" if "source_id" in allrows.columns else "SOURCE_ID"
+        allrows = allrows.rename(columns={idcol: "source_id"})
+        allrows["source_id"] = allrows["source_id"].astype("int64")
+        return {int(s): g.reset_index(drop=True)
+                for s, g in allrows.groupby("source_id")}
+
+
+DETERMINISTIC_MARKERS = ("unknown retrieval type", "unknown release",
+                         "invalid retrieval type", "not a valid release")
+
+
+def _is_deterministic(exc):
+    """True for archive errors that a retry cannot fix.
+
+    The Gaia data server answers a bad retrieval_type/release pair with an
+    HTTP 500 whose BODY says what is wrong -- so status code alone cannot
+    tell a deterministic rejection from a transient failure, and the retry
+    policy would happily burn six backoffs on it.  Read the body.
+    """
+    msg = str(exc).lower()
+    return any(m in msg for m in DETERMINISTIC_MARKERS)
+
+
+def _retry_after_seconds(exc):
+    """Honour an HTTP 429/503 Retry-After header if the exception carries
+    one (astroquery wraps requests' HTTPError in several ways)."""
+    for attr in ("response", "resp", "_response"):
+        r = getattr(exc, attr, None)
+        hdrs = getattr(r, "headers", None)
+        if hdrs:
+            ra = hdrs.get("Retry-After") or hdrs.get("retry-after")
+            if ra:
+                try:
+                    return max(1.0, float(ra))
+                except ValueError:
+                    return None
+    return None
+
+
+# ======================================================================
+# cache + ledger
+# ======================================================================
+def cache_dir(release):
+    d = os.path.join(CACHE_ROOT, release_tag(release))
+    os.makedirs(d, exist_ok=True)
+    return d
+
+
+def cache_path(release, sid):
+    return os.path.join(cache_dir(release), f"{int(sid)}.parquet")
+
+
+def cache_write(release, sid, df):
+    p = cache_path(release, sid)
+    tmp = p + ".tmp"
+    df.to_parquet(tmp, index=False)
+    os.replace(tmp, p)                 # atomic: a kill mid-write cannot
+    return p                           # leave a half-file that looks cached
+
+
+def cache_read(release, sid):
+    p = cache_path(release, sid)
+    return pd.read_parquet(p) if os.path.exists(p) else None
+
+
+def load_ledger(path):
+    if not os.path.exists(path) or os.path.getsize(path) == 0:
+        return vs.empty_frame()
+    return vs.coerce(pd.read_csv(path))
+
+
+def append_ledger(path, records):
+    """Append verdict records, writing the header only once.  Appending
+    (rather than rewriting) is what makes a session kill cost nothing."""
+    df = vs.coerce(pd.DataFrame(records))
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    header = not os.path.exists(path) or os.path.getsize(path) == 0
+    df.to_csv(path, mode="a", header=header, index=False, lineterminator="\n")
+    return df
+
+
+# ======================================================================
+# fit + verdict
+# ======================================================================
+def fit_single_star(df, sid, model=None):
+    """ESA's single-star fit.  Returns the gaiasupdate results dict."""
+    from gaiasupdate.epoch_astrometry import GaiaEpochAstrometryArchive
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        return GaiaEpochAstrometryArchive.supdate(df.copy(), int(sid),
+                                                 model=model)
+
+
+def verdict_from_fit(f2, n_used):
+    """The pre-registered rules, in one place so the runbook can quote it."""
+    if n_used is None or n_used < MIN_TRANSITS:
+        return ("INCONCLUSIVE", "LOW",
+                f"n_used {n_used} < MIN_TRANSITS {MIN_TRANSITS}: too few "
+                f"epochs to adjudicate the orbit")
+    r = abs(f2) / F2_GATE
+    if abs(f2) > F2_GATE:
+        conf = "HIGH" if r >= CONF_FACTOR else "MEDIUM"
+        basis = (f"|f2| {abs(f2):.2f} = {r:.2f}x the gate {F2_GATE} "
+                 f"(>= {CONF_FACTOR}x = HIGH)")
+        v = "CONFIRMED"
+    else:
+        conf = "HIGH" if r <= 1.0 / CONF_FACTOR else "MEDIUM"
+        basis = (f"|f2| {abs(f2):.2f} = {r:.2f}x the gate {F2_GATE} "
+                 f"(<= {1/CONF_FACTOR:.2f}x = HIGH)")
+        v = "SPURIOUS"
+    if n_used < LOW_CONFIDENCE_TRANSITS:
+        conf, basis = "LOW", basis + f"; but only {n_used} transits used"
+    return (v, conf, basis)
+
+
+def base_record(sid, src, run_id, queue_row=None):
+    import gaiasupdate
+    rec = {c: None for c in vs.COLUMNS}
+    rec.update({
+        "source_id": int(sid),
+        "release": src.release,
+        "nss_solution_type": None,
+        # provenance of the ORBIT being adjudicated -- which is the NSS
+        # table only when the source came off the queue.  The 12
+        # pre-release sources are a demo epoch-astrometry sample, not NSS
+        # candidates, and saying "gaiadr4.nss_two_body_orbit" for them
+        # would be a provenance lie in a schema whose whole point is
+        # provenance.
+        "orbit_source": (
+            "gaia_dr4_prerelease_epoch_sample_2026-06-26"
+            if queue_row is None and src.name == "prerelease_file"
+            else ("gaiadr4.nss_two_body_orbit" if "DR4" in src.release
+                  else "gaiadr3.nss_two_body_orbit")),
+        "queue_bin": None,
+        "queue_rank": None,
+        "verdict_scope": "orbit_reality",
+        "verdict_basis": "epoch_astrometry_f2",
+        "schema_version": vs.SCHEMA_VERSION,
+        "verdict_source": "epoch_vet_harness",
+        "verdict_source_version": HARNESS_VERSION,
+        "config_version": CONFIG_VERSION,
+        "epoch_data_release": src.release,
+        "epoch_data_structure": src.data_structure,
+        "gaiasupdate_version": getattr(gaiasupdate, "__version__", "0.1.2"),
+        "produced_utc": vs.utcnow(),
+        "run_id": run_id,
+    })
+    for f in vs.CAUTION_FLAGS:
+        rec[f] = False
+    if queue_row is not None:
+        for k, col in (("nss_solution_type", "nss_solution_type"),
+                       ("queue_bin", "queue_bin"),
+                       ("orbit_period_d", "period"),
+                       ("orbit_significance", "significance")):
+            if col in queue_row and pd.notna(queue_row[col]):
+                rec[k] = queue_row[col]
+        if "rank" in queue_row and pd.notna(queue_row["rank"]):
+            rec["queue_rank"] = int(queue_row["rank"])
+        for f in vs.CAUTION_FLAGS:
+            if f in queue_row and pd.notna(queue_row[f]):
+                rec[f] = bool(queue_row[f])
+    return rec
+
+
+# ======================================================================
+# the loop
+# ======================================================================
+def run(source="prerelease", queue=None, limit=None, batch=DEFAULT_BATCH,
+        release=None, ledger=None, timings=None, run_id=None, gap=GAP_S,
+        model=None, refit=False, verbose=True):
+    run_id = run_id or f"m6_{source}_{time.strftime('%Y%m%dT%H%M%S')}"
+    if source == "prerelease":
+        src = PrereleaseSource()
+    elif source == "datalink":
+        src = DataLinkSource(release=release or "Gaia DR4")
+    elif source == "cache":
+        src = EpochSource()
+        src.release = release or "Gaia DR4 pre-release 2026-06-26"
+        src.name = "cache_only"
+        src.fetch = lambda ids: {}
+    else:
+        raise ValueError(f"unknown --source {source}")
+
+    ledger = ledger or os.path.join(OUT_DIR, "verdicts",
+                                    f"harness_{source}.v1.csv")
+    timings = timings or os.path.join(OUT_DIR, "m6_harness_timings.csv")
+
+    # ---- the work list ---------------------------------------------------
+    qrows = {}
+    if queue:
+        q = pd.read_csv(queue)
+        ids = q["source_id"].astype("int64").tolist()
+        qrows = {int(r["source_id"]): r for _, r in q.iterrows()}
+    elif source == "prerelease":
+        ids = src.all_ids()
+    elif source == "cache":
+        d = cache_dir(src.release)
+        ids = sorted(int(f[:-8]) for f in os.listdir(d)
+                     if f.endswith(".parquet"))
+    else:
+        raise ValueError("--queue is required for --source datalink")
+    if limit:
+        ids = ids[:int(limit)]
+
+    done = load_ledger(ledger)
+    already = set(done["source_id"].dropna().astype("int64")) if len(done) \
+        else set()
+    if refit:
+        already = set()
+    todo = [i for i in ids if i not in already]
+    if verbose:
+        print(f"harness run {run_id}: {len(ids)} queued, {len(already)} "
+              f"already in the ledger, {len(todo)} to do "
+              f"(source={source}, release='{src.release}', batch={batch})")
+
+    rows_t = []
+    t_run0 = time.time()
+    n_fetch_calls = n_cached = n_fetched = 0
+    t_fetch_total = t_fit_total = 0.0
+    new_records = []
+
+    for bi in range(0, len(todo), batch):
+        chunk = todo[bi:bi + batch]
+        need = [s for s in chunk
+                if cache_read(src.release, s) is None]
+        n_cached += len(chunk) - len(need)
+        t0 = time.time()
+        served = {}
+        if need:
+            served = src.fetch(need)
+            n_fetch_calls += 1
+            for sid, df in served.items():
+                cache_write(src.release, sid, df)
+            n_fetched += len(served)
+        t_fetch = time.time() - t0
+        t_fetch_total += t_fetch
+        n_rows_served = int(sum(len(d) for d in served.values()))
+        rows_t.append({"kind": "batch", "run_id": run_id, "batch": bi // batch,
+                       "n_ids": len(chunk), "n_needed_fetch": len(need),
+                       "n_served": len(served), "n_rows": n_rows_served,
+                       "seconds": round(t_fetch, 3),
+                       "seconds_per_source": round(
+                           t_fetch / max(len(need), 1), 3)})
+        if verbose:
+            print(f"  batch {bi//batch}: {len(chunk)} ids "
+                  f"({len(chunk)-len(need)} cached), fetched {len(served)} "
+                  f"in {t_fetch:.1f}s ({n_rows_served} rows)", flush=True)
+
+        for sid in chunk:
+            rec = base_record(sid, src, run_id, qrows.get(int(sid)))
+            df = cache_read(src.release, sid)
+            if df is None or not len(df):
+                rec.update({"verdict": "NO_DATA", "verdict_confidence": "LOW",
+                            "verdict_confidence_basis":
+                                "DataLink served no epoch astrometry",
+                            "notes": "no epoch astrometry served"})
+                new_records.append(rec)
+                continue
+            missing = [c for c in REQUIRED_EPOCH_COLS if c not in df.columns]
+            if missing:
+                rec.update({"verdict": "ERROR", "verdict_confidence": "LOW",
+                            "verdict_confidence_basis":
+                                "served table missing required columns",
+                            "n_transits_fetched": len(df),
+                            "notes": f"missing columns: {missing}"})
+                new_records.append(rec)
+                continue
+            t1 = time.time()
+            try:
+                res = fit_single_star(df, sid, model=model)
+                t_fit = time.time() - t1
+                f2 = float(res["solution_statistic"].f2)
+                n_used = int(res["n_measurements"])
+                params = np.asarray(res["parameters"], float)
+                errs = np.asarray(res["parameters_formal_uncertainty"], float)
+                v, conf, basis = verdict_from_fit(f2, n_used)
+                rec.update({
+                    "n_transits_fetched": len(df),
+                    "n_transits_used": n_used,
+                    "f2_single_star": round(f2, 4),
+                    "parallax_mas": round(float(params[2]), 6),
+                    "excess_noise_mas": (None if res.get("excess_noise") is None
+                                         else float(res["excess_noise"])),
+                    "fit_model": str(res["solution_statistic"].model),
+                    "fit_seconds": round(t_fit, 4),
+                    "verdict": v, "verdict_confidence": conf,
+                    "verdict_confidence_basis": basis,
+                    "notes": (f"sigma_parallax {errs[2]:.4f} mas; "
+                              f"chi2 {res['solution_statistic'].chi2:.1f}; "
+                              f"n_outliers {res['n_outliers']}"),
+                })
+            except Exception as exc:              # noqa: BLE001
+                t_fit = time.time() - t1
+                rec.update({
+                    "n_transits_fetched": len(df), "fit_seconds": round(t_fit, 4),
+                    "verdict": "ERROR", "verdict_confidence": "LOW",
+                    "verdict_confidence_basis": "single-star fit raised",
+                    "notes": f"{type(exc).__name__}: {exc}",
+                })
+                if verbose:
+                    print(f"    {sid}: FIT FAILED {type(exc).__name__}: {exc}")
+                    traceback.print_exc(limit=1)
+            t_fit_total += t_fit
+            rows_t.append({"kind": "source", "run_id": run_id,
+                           "batch": bi // batch, "source_id": int(sid),
+                           "n_rows": len(df),
+                           "n_transits_used": rec["n_transits_used"],
+                           "seconds": round(t_fit, 3),
+                           "verdict": rec["verdict"]})
+            new_records.append(rec)
+
+        # checkpoint after every batch: the ledger is the resume point
+        if new_records:
+            append_ledger(ledger, new_records)
+            new_records = []
+        if need and bi + batch < len(todo):
+            time.sleep(gap)
+
+    if new_records:
+        append_ledger(ledger, new_records)
+
+    wall = time.time() - t_run0
+    tdf = pd.DataFrame(rows_t)
+    if len(tdf):
+        os.makedirs(os.path.dirname(timings), exist_ok=True)
+        header = not os.path.exists(timings) or os.path.getsize(timings) == 0
+        tdf.to_csv(timings, mode="a", header=header, index=False,
+                   lineterminator="\n")
+
+    stats = {
+        "run_id": run_id, "source": source, "release": src.release,
+        "n_queued": len(ids), "n_processed": len(todo),
+        "n_cache_hits": n_cached, "n_fetched": n_fetched,
+        "n_fetch_calls": n_fetch_calls, "batch_size": batch,
+        "wall_seconds": round(wall, 2),
+        "fetch_seconds": round(t_fetch_total, 2),
+        "fit_seconds": round(t_fit_total, 2),
+        "fit_seconds_per_source": (round(t_fit_total / len(todo), 4)
+                                   if todo else None),
+        "fetch_seconds_per_source": (round(t_fetch_total / n_fetched, 4)
+                                     if n_fetched else None),
+        "sources_per_hour": (round(3600.0 * len(todo) / wall, 1)
+                             if todo and wall > 0 else None),
+    }
+    led = load_ledger(ledger)
+    if verbose:
+        print(f"\nrun {run_id} complete: {len(todo)} sources in {wall:.1f}s "
+              f"-> {stats['sources_per_hour']} sources/hour")
+        print(f"  fetch {t_fetch_total:.1f}s ({n_fetch_calls} calls, "
+              f"{n_cached} cache hits) | fit {t_fit_total:.1f}s "
+              f"({stats['fit_seconds_per_source']} s/source)")
+        print(f"  ledger {os.path.relpath(ledger, BASE)}: {len(led)} records "
+              f"{led['verdict'].value_counts().to_dict()}")
+    return led, stats
+
+
+# ======================================================================
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    ap.add_argument("--source", default="prerelease",
+                    choices=["prerelease", "datalink", "cache"])
+    ap.add_argument("--queue", default=None)
+    ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--batch", type=int, default=DEFAULT_BATCH)
+    ap.add_argument("--release", default=None)
+    ap.add_argument("--ledger", default=None)
+    ap.add_argument("--timings", default=None)
+    ap.add_argument("--run-id", default=None)
+    ap.add_argument("--gap", type=float, default=GAP_S)
+    ap.add_argument("--model", default=None)
+    ap.add_argument("--refit", action="store_true",
+                    help="ignore the ledger and re-fit everything")
+    ap.add_argument("--expect-keep", default=None,
+                    help="comma-separated source_ids that MUST come back "
+                         "CONFIRMED and be the only ones (acceptance gate)")
+    a = ap.parse_args(argv)
+
+    led, stats = run(source=a.source, queue=a.queue, limit=a.limit,
+                     batch=a.batch, release=a.release, ledger=a.ledger,
+                     timings=a.timings, run_id=a.run_id, gap=a.gap,
+                     model=a.model, refit=a.refit)
+
+    if a.expect_keep is not None:
+        expect = {int(x) for x in a.expect_keep.split(",") if x.strip()}
+        kept = set(led.loc[led["verdict"] == "CONFIRMED",
+                           "source_id"].astype("int64"))
+        ok = kept == expect
+        print(f"\nACCEPTANCE kept == expected: "
+              f"{'PASS' if ok else 'FAIL -- symmetric difference ' + str(kept ^ expect)}")
+        return 0 if ok else 1
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

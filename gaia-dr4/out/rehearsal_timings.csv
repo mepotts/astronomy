@@ -1,11 +1,12 @@
 stage,seconds,status,note
-A_schema_pin,179.1,OK,"ESAC's TAP_SCHEMA path was unusable; introspection failed over to ari, esac (allowed: DR3 schema only, never the data path)"
-B_rename_patch,290.9,OK,one HTTP 500 retried; live TOP-5 probe returned 5 rows / 38 cols
-C_planB_ranged_pull,632.3,OK,"RESUMED from 94 cached range chunks -- this timing is cache validation + live histogram + live exact-COUNT guard, not a fresh pull (fresh pull measured twice: M2 ~35 min, M3 38.7 min); result byte-identical again, sha256 b3b099a6...dddd5231, 169227 rows, id-sum match"
-D_triage_acceptance,43.6,OK,BH1 margin 3.38x / BH2 2.44x -- ACCEPTANCE PASS
+A_schema_pin,7.3,OK,
+B_rename_patch,4.0,OK,
+C_planB_ranged_pull,8.1,OK,"RESUMED from 94 cached range chunks -- this timing is cache validation + live histogram + live exact-COUNT guard, not a fresh pull (fresh pull measured twice: M2 ~35 min, M3 38.7 min, byte-identical parquets)"
+D_triage_acceptance,59.0,OK,
 E_corrvec_note,0.0,OK,
-F_epoch_vet,3.4,OK,3/3 kept 9/9 demoted -- PASS
-G_bulletin,0.2,OK,951 candidates
-H_day1_queue,0.2,OK,"983 rows (951 main + 32 retrieval); BH1/BH2 top-2 asserted inside the builder; re-emitted separately at 19:12 with the complete config-v4 flag set (flag_astrom_quiet threshold 36.36) after the full run at 19:08 -- the other stages' numbers are that full run's"
+F_epoch_vet,3.2,OK,"PRODUCTION harness (M6): 3/3 kept, 9/9 demoted, max |delta f2| vs the M3 prototype 0.0050; fit 1.78s for 12 sources (12 epoch-cache hits, 0 fetched) -- the ledger is deleted at the start of every rehearsal so the verdicts are always recomputed"
+G_bulletin,0.4,OK,
+H_day1_queue,0.3,OK,
+I_verdict_store,0.1,OK,"88 verdict records (2 producers, 2 scopes) validated against schemas/day1_verdict_record.v1.json; consumer contract OK"
 E_corrvec_pull(measured),74.0,OK(measured),
 E_corrvec_mc(measured),10.0,OK(measured),

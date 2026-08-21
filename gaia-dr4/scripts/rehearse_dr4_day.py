@@ -19,8 +19,10 @@ Stages (each timed; failure branches noted in DR4-DAY-RUNBOOK.md):
   E. corrvec         not re-run here (politeness: the identical pull ran
                      today, 74 s for 4,203 rows in 11 sync chunks + 10 s
                      MC); timings carried into the table as measured.
-  F. epoch-vet       scripts/vet_epoch_astrometry.py on the pre-release
-                     epoch file (the DataLink stand-in), patched output.
+  F. epoch-vet       (M6) the PRODUCTION harness scripts/epoch_vet_harness.py
+                     on the pre-release epoch file (the DataLink stand-in),
+                     with the same acceptance the M3 prototype had plus an
+                     f2 agreement check against that prototype.
   G. bulletin        day-one candidate bulletin CSV assembled from the
                      rehearsal triage + covariance probabilities (+ dust
                      tier columns when present).
@@ -31,6 +33,11 @@ Stages (each timed; failure branches noted in DR4-DAY-RUNBOOK.md):
                      builder.  M4 produced this file from a separate
                      one-off script; December 2 must not depend on anyone
                      remembering to run it.
+  I. verdict store   (M6) assemble the day's verdict records (external +
+                     harness) into out/verdicts-shaped CSVs, validate them
+                     against schemas/day1_verdict_record.v1.json, and prove
+                     the discriminator consumers can eat the result -- the
+                     stage that makes 2026-12-03 a re-run, not a rewrite.
 
 Output: data/rehearsal/* + out/rehearsal_timings.csv
 Run   : .venv/Scripts/python.exe scripts/rehearse_dr4_day.py
@@ -299,10 +306,45 @@ def stage_e():
 
 @stage("F_epoch_vet")
 def stage_f():
-    import vet_epoch_astrometry as vet
-    vet.OUT = os.path.join(REH_OUT, "epoch_vetting_rehearsal.csv")
-    rc = vet.main()
-    assert rc == 0, "epoch-vet loop check FAILED in rehearsal"
+    """M6: the rehearsal now runs the PRODUCTION harness, not the M3
+    prototype.  Same acceptance (3 orbit sources kept, 9 quiet ones
+    demoted) but through the code path December will actually use --
+    batched fetch, per-source cache, append-only verdict ledger, timings --
+    so a defect in the harness fails the rehearsal instead of surfacing on
+    release day.  The prototype survives as scripts/vet_epoch_astrometry.py
+    and as the frozen out/epoch_vetting_prototype.csv it is checked against.
+    """
+    import epoch_vet_harness as evh
+    ledger = os.path.join(REH_OUT, "harness_prerelease_rehearsal.v1.csv")
+    if os.path.exists(ledger):
+        os.remove(ledger)           # the rehearsal always starts clean
+    led, stats = evh.run(source="prerelease", batch=6, ledger=ledger,
+                         timings=os.path.join(REH_OUT,
+                                              "harness_timings.csv"),
+                         run_id="rehearsal")
+    keep = set(led.loc[led["verdict"] == "CONFIRMED",
+                       "source_id"].astype("int64"))
+    demote = set(led.loc[led["verdict"] == "SPURIOUS",
+                         "source_id"].astype("int64"))
+    expect = {4318465066420528000, 3937211745905473024, 1457486023639239296}
+    assert keep == expect, f"epoch-vet acceptance FAILED: kept {keep}"
+    assert len(demote) == 9, f"expected 9 demotions, got {len(demote)}"
+    # and it must still agree with the M3 prototype it replaces
+    proto = pd.read_csv(os.path.join(BASE, "out",
+                                     "epoch_vetting_prototype.csv"))
+    j = proto.set_index("source_id").join(
+        led.set_index("source_id")[["f2_single_star"]], rsuffix="_h")
+    dmax = float((j["f2_single_star_h"] - j["f2_single_star"]).abs().max())
+    assert dmax <= 0.005, f"f2 drift vs the M3 prototype: {dmax}"
+    NOTES["F_epoch_vet"] = (
+        f"PRODUCTION harness (M6): {len(keep)}/3 kept, {len(demote)}/9 "
+        f"demoted, max |delta f2| vs the M3 prototype {dmax:.4f}; fit "
+        f"{stats['fit_seconds']}s for {stats['n_processed']} sources "
+        f"({stats['n_cache_hits']} epoch-cache hits, "
+        f"{stats['n_fetched']} fetched) -- the ledger is deleted at the "
+        f"start of every rehearsal so the verdicts are always recomputed")
+    print(f"  harness acceptance PASS (max |delta f2| vs prototype "
+          f"{dmax:.4f})")
 
 
 @stage("G_bulletin")
@@ -411,26 +453,66 @@ def stage_h():
               f"class-III set")
 
 
+@stage("I_verdict_store")
+def stage_i():
+    """M6: assemble the day's VERDICT STORE and prove the consumers can eat
+    it.  This is the stage that makes 2026-12-03 a re-run rather than a
+    rewrite: the discriminator tests take --verdicts, so if the store
+    assembles and validates here, they will run there with no new code.
+    """
+    import verdict_schema as vsx
+
+    eb_rec = vsx.from_eb26(
+        queue_path=os.path.join(REH_OUT, "epoch_vet_day1_queue.csv"),
+        run_id="rehearsal_eb26")
+    eb_path = os.path.join(REH_OUT, "verdicts_eb26.v1.csv")
+    vsx.write_store(eb_rec, eb_path)
+
+    paths = [eb_path]
+    har = os.path.join(REH_OUT, "harness_prerelease_rehearsal.v1.csv")
+    if os.path.exists(har):
+        paths.append(har)
+    store = vsx.load_store(paths)
+    vsx.validate(store)
+    print(f"  store: {len(store)} records over {len(paths)} producer file(s)")
+    print(f"  scope composition: {vsx.scope_composition_string(store)}")
+
+    # the consumer contract: the compatibility frame must hand back exactly
+    # the columns the M4/M5 tests consume, for BOTH producers at once
+    compat = vsx.eb26_compatible_frame(store)
+    for c in ("source_id", "verdict", "period_d", "significance", "notes"):
+        assert c in compat.columns, f"consumer contract broken: no {c}"
+    n_scopes = store["verdict_scope"].nunique()
+    print(f"  consumer contract OK: {len(compat)} rows, "
+          f"{n_scopes} scope(s) -- a pooled run would be disclosed "
+          f"automatically by both tests")
+    NOTES["I_verdict_store"] = (
+        f"{len(store)} verdict records ({len(paths)} producers, "
+        f"{n_scopes} scopes) validated against "
+        f"schemas/day1_verdict_record.v1.json; consumer contract OK")
+
+
 STAGES = [("A", stage_a), ("B", stage_b), ("C", stage_c), ("D", stage_d),
-          ("E", stage_e), ("F", stage_f), ("G", stage_g), ("H", stage_h)]
+          ("E", stage_e), ("F", stage_f), ("G", stage_g), ("H", stage_h),
+          ("I", stage_i)]
 STAGE_NAMES = {"A": "A_schema_pin", "B": "B_rename_patch",
                "C": "C_planB_ranged_pull", "D": "D_triage_acceptance",
                "E": "E_corrvec_note", "F": "F_epoch_vet", "G": "G_bulletin",
-               "H": "H_day1_queue"}
+               "H": "H_day1_queue", "I": "I_verdict_store"}
 
 
 def main(argv=None):
-    """--stages ABCDEFGH selects which stages run (default: all).
+    """--stages ABCDEFGHI selects which stages run (default: all).
 
     Stages A-C are the only network-bound ones.  When the archive is having
-    the kind of afternoon ESAC had on 2026-08-18, `--stages DEFGH` still
+    the kind of afternoon ESAC had on 2026-08-18, `--stages DEFGHI` still
     exercises everything downstream of the pull against the cached
     rehearsal artifacts, and the skipped stages are written into
     out/rehearsal_timings.csv as SKIPPED with the reason -- so a partial
     rehearsal can never be mistaken for a green one.
     """
     argv = sys.argv[1:] if argv is None else argv
-    want = "ABCDEFGH"
+    want = "ABCDEFGHI"
     reason = ""
     if "--stages" in argv:
         want = argv[argv.index("--stages") + 1].upper()

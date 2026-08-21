@@ -3,6 +3,67 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-08-21** — **M6 done** ([`M6-verdict-harness.md`](M6-verdict-harness.md)):
+  the verdict *factory* exists, the record it emits is frozen, and the day-one clock is
+  measured instead of assumed. **(1) the production epoch-vet harness**
+  (`scripts/epoch_vet_harness.py`): batched DataLink (RAW, one request per batch —
+  `gaiasupdate`'s own helper sends **one id per request**), per-source atomic parquet
+  cache + append-only verdict ledger (**resume demonstrated**: 5 sources then 7 over the
+  same ledger, 12 records, acceptance PASS), 6× retry with `Retry-After` honoured, and
+  timings written every run. **Measured: the `gaiasupdate` single-star fit costs
+  0.036 s/source steady state (~100,000/hour, 22 fits over two runs) and is NOT the
+  bottleneck; DataLink is, at 3.9 s/source.**
+  **Projected day-one throughput at batch 20: a BAND of 125–857 sources/hour ⇒ the
+  983-row queue in 1.1–7.9 h** (78 h on the 10×-degraded branch — the only branch that
+  misses 72 h). The band is two models fitted to the same calls (per-source server work
+  vs per-byte transport) because **the DataLink service is server-work-limited, not
+  bandwidth-limited (~1.8 KiB/s effective)** and DR4's real payload (50.9 KiB/source
+  zipped, measured on the pre-release file) is 6.8× the DR3 proxy's. A 5-request soak
+  spanned **3.2× with no monotone rise — archive LOAD, not throttling**, so the answer to
+  a slow DataLink is patience plus the resumable cache, and any single-call timing is
+  worthless for planning. Because the queue is ranked, a slow archive costs **depth, not
+  the headline**. **(2) the day-one verdict record** (`schemas/day1_verdict_record.v1.json`
+  + `scripts/verdict_schema.py`): identity / orbit provenance / fit statistics / verdict +
+  confidence / seven caution flags / provenance-versioning, with a mandatory
+  **`verdict_scope`** — EB26 answers `compact_companion`, the harness answers
+  `orbit_reality`, a harness SPURIOUS ≈ an EB26 SPURIOUS but **a harness CONFIRMED is
+  WEAKER than an EB26 CONFIRMED**, so pooling is asymmetric and every consumer prints the
+  scope composition the moment the store holds more than one producer. **(3) consumers
+  rewired and verified**: M4 and M5 read verdicts from the store, and **all five frozen
+  artifacts reproduce BYTE-IDENTICALLY** (`out/m6_refactor_check/SHA256SUMS.txt`) — M4
+  2/13 vs 0/16 at Fisher p 0.1921; M5 family A 7/76 NOT TESTABLE, family B AUC 0.659 →
+  Holm 0.1409, family C `astrometric_gof_al` Holm 0.0067. **(4) end-to-end validation**:
+  the harness reproduces M3's prototype through the production path — 3/3 kept
+  (BH3 893.97, HD 114762 186.50, Gaia-4 31.53), 9/9 demoted, all HIGH confidence, max
+  |Δf2| **0.005** = the prototype's own 2-dp rounding. **(5) `flag_astrom_quiet`: CARRY,
+  and now for a measured reason.** M5 measured it on all 65 verdicts; the flag operates on
+  the *queue*, where the screen leaves 48 verdicted rows (40 conf / 8 spur — M5's 46/2/
+  0-of-7 reproduce exactly as the main-bin subset). There the metric gives AUC 0.344
+  (p 0.17) against a smallest-detectable AUC of **0.80**, and the thresholded flag gives
+  Fisher p 1.000 against a smallest-detectable spurious marking-rate of **0.55**. **M5's
+  "0 of 7" was never evidence of failure: at the measured 7.5 % marking rate the expected
+  catch among 8 spurious rows is 0.60.** Decision rule for December pre-registered
+  (KEEP/REMOVE/CARRY) and in the config; one harness pass takes the in-list verdict count
+  from 48 to O(981), which clears both required sample sizes (80+16, or 160+32).
+  **(6) acceptance PASS on all four gates** (BH1/BH2 top-2 at Pr 1.0000; EB26 operating
+  point 39/42 + 7/23 **read through the store**; schema validation; harness end-to-end)
+  gating **config v5** — selection/screen/membership identical to v2/v3/v4 (949), adding
+  `verdict_schema`, `epoch_vet_policy` and the flag decision. **(7) runbook + rehearsal**:
+  Phase 3 rewritten as a first-class harness phase with a new **Phase 3.0** and six
+  measured failure branches; driver **stage F now runs the production harness** and
+  **new stage I** builds + validates the verdict store; **full rehearsal re-run, all 9
+  stages, COMPLETE in 82 s**, plan-B pull **byte-identical for the fourth time**
+  (sha256 b3b099a6…dddd5231, 169,227 rows) — but the 82 s is archive weather, not a
+  speedup (M5's 1,150 s was ESAC's worst afternoon; stage A 179 → 7.3 s, B 291 → 4.0 s,
+  while stage D ranged 59.0 / 89.6 / 104.2 s across three runs today purely on CPU
+  contention). What the rehearsal certifies is the nine statuses, and all nine are green.
+  **New landmine, and it is the day-one one: DataLink returns
+  HTTP 500 "Unknown retrieval type: 'EPOCH_ASTROMETRY'"** for both `Gaia DR4` and
+  `Gaia DR4_INT4` today, while **astroquery 0.4.11 accepts the type client-side** — a
+  deterministic rejection dressed as a transient failure. The harness now reads the error
+  *body* and fails fast; the runbook makes a one-source DataLink probe a hard gate before
+  the harness starts. Human TODOs unchanged (accounts) — but a logged-in DataLink quota is
+  now a measured lever, not a hypothetical one.
 - **2026-08-18** — **M5 done** ([`M5-activity-axis.md`](M5-activity-axis.md)):
   **(1) the activity axis with the footprint penalty removed — 65 of 65 verdicts
   instead of M4's 29** (rules pre-registered in

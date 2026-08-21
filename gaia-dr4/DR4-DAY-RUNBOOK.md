@@ -2,11 +2,13 @@
 
 *The operational sequence for release day, rehearsed end-to-end against DR3 on 2026-08-16
 (`scripts/rehearse_dr4_day.py`, timings in `out/rehearsal_timings.csv`; M3 doc §3).
-Config: `queries/dr4-triage-config.v4.json` (selection/screen frozen since M2; v2 added the
+Config: `queries/dr4-triage-config.v5.json` (selection/screen frozen since M2; v2 added the
 covariance probability method + dust tier; v3 (M4) added the Bayestar19 far-star
-arbitration and the X-ray caution-tag policy; **v4 (M5, 2026-08-18)** adds the all-sky
+arbitration and the X-ray caution-tag policy; v4 (M5) added the all-sky
 Vergely+2022 far-star arbitration, the measured activity policy — no activity flag — and
-one astrometric-quality caution flag. Membership and all cuts unchanged since M2: 949.)
+one astrometric-quality caution flag; **v5 (M6, 2026-08-21)** adds the day-one verdict
+record schema, the epoch-vet harness policy with its measured throughput, and the
+`flag_astrom_quiet` decision. Membership and all cuts unchanged since M2: 949.)
 Everything below is anonymous-TAP-safe; if the
 Gaia Archive account exists by then (Matthew's TODO), the async branch gets a longer rope,
 nothing else changes.*
@@ -96,8 +98,8 @@ solution type and pull `Orbital` first (the triage's bread and butter).
 ## Phase 2 — triage + covariance probabilities (T+1–2 h, ~15 min compute)
 
 1. **AMRF triage** (`scripts/amrf_triage.py`, rehearsed full-scale: 65 s for 169k rows
-   incl. MC, plots and the gate — `out/rehearsal_timings.csv` stage D): config v4
-   parameters (selection identical to v3/v2/v1) — P ∈ [10, 2200] d,
+   incl. MC, plots and the gate — `out/rehearsal_timings.csv` stage D): config v5
+   parameters (selection identical to v4/v3/v2/v1) — P ∈ [10, 2200] d,
    Halbwachs gates, σ_TI² ≤ 36, boundary ×1.15, screen sig > 10 + F2 mag-split; flags
    never cuts; **acceptance gate = BH1 + BH2 land class III** (their DR4 solutions exist
    by construction; if the gate fails, STOP — the config or the schema diff is wrong,
@@ -138,7 +140,15 @@ solution type and pull `Orbital` first (the triage's bread and butter).
    chains, 0 die, 1 σ-fragile, 0 left unresolved** — B19's 9 reproduced at the
    central value 9/9, and the 4 southern rows M4 could not reach are now closed.
 
-## Phase 3 — the epoch-vet loop, the false-positive killer (T+2 h onward)
+## Phase 3 — the epoch-vet HARNESS, the false-positive killer *and the verdict factory* (T+2 h onward)
+
+**Phase 3 is now a harness, not a loop you drive by hand** (M6):
+`scripts/epoch_vet_harness.py`. It is batched, resumable, rate-limit-aware and
+instrumented, and it emits **verdict records** in the frozen day-one schema
+(`schemas/day1_verdict_record.v1.json`) rather than an ad-hoc CSV. That last point is
+what makes 2026-12-03 a re-run instead of a rewrite: the M4 and M5 discriminator tests
+take `--verdicts` and consume harness verdicts and El-Badry+2026 verdicts through the
+same code path.
 
 **The queue is emitted BY THE REHEARSED DRIVER** (M5): `scripts/rehearse_dr4_day.py`
 **stage H** calls the shared builder `scripts/m5_day1_queue.py` on the day's own triage
@@ -152,14 +162,123 @@ desc, M₂_min tiebreak — carrying every caution flag (1-yr alias, low-|b|, σ
 X-ray-active, EB26 verdict, dust-unresolved-south, dust-σ-fragile, **astrom-quiet**).
 DR3 shape: 981 rows = 949 + 32;
 ranks 1–2 are BH1/BH2 and rank 3 is the EB26-refuted spurious — the loop's first kill.
-For every candidate, in that order:
-1. `has_epoch_astrometry` flag via TAP (in `gaia_source` and `all_source_flags`);
-2. **DataLink fetch** (`retrieval_type='EPOCH_ASTROMETRY'`) — **not a TAP table** (M1
-   finding #1); astroquery, batched politely, resumable;
-3. `gaiasupdate` single-star fit → **|f2| ≤ 5 ⇒ DEMOTE** (no epoch-level wobble ⇒ the
-   photocentre orbit has no epoch support); f2 ≫ 5 ⇒ keep → orbital refit
-   (`scripts/fit_prerelease_orbit_bh3.py` pattern). Rehearsed on the pre-release file:
-   3/3 orbit sources kept, 9/9 quiet sources demoted.
+
+### 3.0 — probe DataLink, THEN measure it (~7 min)
+
+**First, one source, and read the body of any error.** On 2026-08-21 the live ESAC data
+server answered `retrieval_type='EPOCH_ASTROMETRY'` with
+
+```
+HTTP 500  Unknown retrieval type: 'EPOCH_ASTROMETRY'
+```
+
+for **both** `RELEASE='Gaia DR4'` and `'Gaia DR4_INT4'` — the service does not serve it
+yet, and **astroquery 0.4.11 lists `EPOCH_ASTROMETRY` in its client-side
+`VALID_DATALINK_RETRIEVAL_TYPES`, so nothing catches this before the request goes out.**
+It arrives as a 500, which is exactly what the retry policy is built for; retrying it is
+five wasted minutes on a deterministic answer. The harness now reads the body and fails
+fast on `Unknown retrieval type` / `Unknown release`
+(`scripts/epoch_vet_harness.py::_is_deterministic`). On release day:
+
+```
+.venv\Scripts\python.exe -c "from astroquery.gaia import Gaia; ^
+  print(Gaia.load_data(ids=[4373465352415301632], data_release='Gaia DR4', ^
+  retrieval_type='EPOCH_ASTROMETRY', data_structure='RAW', format='votable').keys())"
+```
+
+If it 500s with an "Unknown …" body, the `RELEASE`/`retrieval_type` strings are wrong —
+go back to Phase 0's schema pin and find the live values. **Do not start the harness
+until one source comes back.**
+
+Then measure the archive **before** committing to a batch size:
+
+```
+.venv\Scripts\python.exe scripts\m6_datalink_throughput.py --repeats 1
+```
+
+It sweeps DataLink batch sizes against the live service, fits the two transport models,
+and reprints the wall-clock projection with *measured* coefficients. **Do this first.**
+Every number below was measured on 2026-08-21 with DR3 `EPOCH_PHOTOMETRY` as a labelled
+proxy, because DR4 epoch astrometry did not exist yet; six minutes on release day
+replaces the proxy with the real thing.
+
+DR3-day baselines to compare against (`out/m6_throughput_projection.txt`):
+
+| quantity | measured 2026-08-21 |
+|---|---|
+| DataLink per-request overhead | 2.3–6.0 s |
+| DataLink per-source cost (7.5 KiB/source payload) | **3.9 s** |
+| delivered rate | **~1.8 KiB/s** — this is *not* a network, it is server-side work |
+| run-to-run spread, 5 identical batch-10 requests | 22.7–72.2 s, **3.2×**, no monotone rise ⇒ load, **not** a rate limit aimed at us |
+| DR4 epoch-astrometry payload (real, pre-release) | 96.3 KiB/source raw, **50.9 KiB/source zipped** (6.8× the probe's) |
+| `gaiasupdate` single-star fit | **0.023 s/source** — ~155,000 sources/hour; the fit is *never* the bottleneck |
+
+**Projected day-one throughput at batch 20, undegraded: 125–857 sources/hour**, i.e.
+the 983-row queue in **1.1–7.9 h**. The band is spanned by two models fitted to the same
+calls — per-source server work (fast edge) vs per-byte transport (slow edge) — which
+disagree only because DR4's payload per source is ~7× the probe's. At a 10×-degraded
+archive the slow edge is **78 h**, the only branch measured that does *not* fit inside
+72 h.
+
+**Consequence, and it is the actionable one:** the queue is ranked and the harness
+consumes it in rank order, so a slow archive costs **depth, not the headline** — BH1,
+BH2 and the EB26-refuted poster child are adjudicated in the first minutes under every
+branch. Plan for running out of *hours*, not out of throughput; the harness is
+resumable, so 72 h is a checkpoint, not a deadline.
+
+### 3.1 — run the harness
+
+```
+.venv\Scripts\python.exe scripts\epoch_vet_harness.py --source datalink ^
+    --queue data\rehearsal\out\epoch_vet_day1_queue.csv ^
+    --release "Gaia DR4" --batch 20 ^
+    --ledger out\verdicts\harness_dr4day.v1.csv
+```
+
+What it does, per batch, in queue-rank order:
+1. skip sources already in the ledger and epochs already in
+   `data/epoch_cache/<release>/` — **restart is free**;
+2. **one DataLink request per batch** (`retrieval_type='EPOCH_ASTROMETRY'`,
+   `data_structure='RAW'`) — epoch astrometry is **DataLink-only, not a TAP table**
+   (M1 finding #1). Note `gaiasupdate`'s own `from_gacs_datalink()` sends **one id per
+   request**; the harness deliberately does not use it;
+3. write each served source to its own parquet **atomically** (`.tmp` → `os.replace`),
+   so a kill mid-write cannot leave a half-file that looks cached;
+4. `gaiasupdate` single-star fit (`6p_constrained_colour`, the DR4-like configuration)
+   → the pre-registered verdict rules below;
+5. append the verdict records to the ledger and the timings to
+   `out/m6_harness_timings.csv`. **Checkpoint after every batch.**
+
+**Pre-registered verdict rules** (config v5 `epoch_vet_policy`; these extend M3's
+prototype rule, they do not replace it):
+
+| condition | verdict (scope `orbit_reality`) |
+|---|---|
+| `n_used < 50` | **INCONCLUSIVE** — too few epochs to adjudicate. *Not* a demotion |
+| `\|f2\| > 5` | **CONFIRMED** — epoch-level wobble present → hand to the orbital refit (`scripts/fit_prerelease_orbit_bh3.py` pattern) |
+| `\|f2\| ≤ 5` | **SPURIOUS** — no epoch-level support for the claimed photocentre orbit |
+| DataLink served nothing | **NO_DATA** |
+| the fit raised | **ERROR**, with the exception text in `notes` — never silently dropped |
+
+Confidence: `r = |f2| / 5`; **HIGH** if `r ≥ 2` or `r ≤ 0.5`, **MEDIUM** within a factor
+2 of the gate, **LOW** if INCONCLUSIVE/NO_DATA/ERROR or `n_used < 100`.
+
+Validated end-to-end on the only real epoch astrometry that exists (the 2026-06-26
+pre-release file): **3/3 orbit sources CONFIRMED** (Gaia BH3 f2 894.0, HD 114762 186.5,
+Gaia-4 31.5), **9/9 quiet sources SPURIOUS** (|f2| ≤ 1.55), all twelve at HIGH
+confidence, and every f2 agreeing with M3's prototype to **0.005** — its own printed
+precision. That is rehearsal **stage F**.
+
+**Read `verdict_scope` before quoting anything.** A harness verdict answers *"does this
+photocentre orbit have epoch-level support?"* (`orbit_reality`). An EB26 verdict answers
+*"is there a dark massive companion?"* (`compact_companion`). A harness SPURIOUS and an
+EB26 SPURIOUS mean nearly the same thing; **a harness CONFIRMED is weaker than an EB26
+CONFIRMED** — orbit real, companion nature unestablished. Pooling the scopes is
+asymmetric, so every consumer prints the scope composition of both groups the moment
+the store holds more than one.
+
+### 3.2 — the caution crosses (unchanged in substance)
+
 4. **eROSITA cross** (`scripts/erosita_xmatch.py` against the local DR2 catalogs,
    ~4 min): on DR3 this found 30/471 coronal counterparts and 0 accretors. **An X-ray
    match is an activity/spurious-risk tag first, a headline only if log f_X/f_opt ≳ 0.**
@@ -193,10 +312,45 @@ For every candidate, in that order:
      config v4: controlling for `significance`, G and distance, gof_al retains only
      p = 0.048 and ruwe 0.094, so the flag largely restates the significance tier
      v2 already ranks on. Never quote it as independent evidence.
-   **Re-run this test on day-one epoch-vet verdicts.** At the observed effect,
-   resolving the variability axis needs ≈ 2× today's sample (**84 confirmed +
-   46 spurious**) — the epoch-vet loop adjudicates that many in 72 h, which makes
-   the loop the sample factory the DR3 test lacked.
+     **M6 re-asked this on the flag's own operating population** (the verdicted rows
+     that are *in* the queue, 40 confirmed / 8 spurious): AUC 0.344, p = 0.17, and the
+     thresholded flag at Fisher p = 1.00 — but the smallest effect that population can
+     see is AUC 0.80, and the smallest spurious marking-rate the Fisher test can see is
+     **0.55**. M5's "0 of 7" is a statement about sample size, not about the flag: at
+     the measured 7.5 % marking rate the *expected* catch among 8 spurious rows is 0.6.
+     **Decision: CARRY** — unchanged from v4, and the test that settles it is
+     pre-registered (§3.3).
+
+### 3.3 — re-ask every discriminator question against the day's own verdicts
+
+This is the milestone's whole point and it needs **no new code**:
+
+```
+.venv\Scripts\python.exe scripts\verdict_schema.py --build-eb26
+.venv\Scripts\python.exe scripts\m5_activity_discriminator.py --verdicts all
+.venv\Scripts\python.exe scripts\m4_eb26_erosita_test.py       --verdicts all
+.venv\Scripts\python.exe scripts\m6_astrom_quiet_decision.py   --verdicts all
+```
+
+`--verdicts all` means "every producer file in `out/verdicts/`". A directory path or a
+glob work too — `load_store()` expands all three itself, because **cmd.exe does not
+expand wildcards** and a runbook command that only works in one shell is a trap.
+Run each **twice**: scope-pure (`--scopes orbit_reality`) and pooled, and report both.
+The sample sizes that settle each open question, all measured:
+
+| question | needs | today | after one harness pass |
+|---|---|---|---|
+| photometric variability (ΔAmp_G, AUC 0.659) | 84 conf + 46 spur | 42 + 23 | ✓ |
+| `flag_astrom_quiet`, at M5's all-65 effect (AUC 0.254) | 80 + 16 **in-list** | 40 + 8 | ✓ |
+| `flag_astrom_quiet`, at its in-list effect (AUC 0.344) | 160 + 32 **in-list** | 40 + 8 | ✓ (981-row queue) |
+| chromospheric ESP-CS | ≥ 5 per side with a published index | 3 conf / 1 spur | **report DR4 coverage first — it may still be untestable** |
+
+`flag_astrom_quiet`'s December decision rule is pre-registered in
+`scripts/m6_astrom_quiet_decision.py` and copied into config v5: **KEEP** if the in-list
+continuous test reaches p < 0.05 in the M5 direction *and* the thresholded flag beats
+its own marking rate at Fisher p < 0.05; **REMOVE** if the in-list test is well powered
+(smallest detectable AUC ≤ 0.70) and the observed AUC is consistent with 0.5;
+**CARRY** otherwise.
 
 ## Failure branches (rehearsed or measured)
 
@@ -209,7 +363,12 @@ For every candidate, in that order:
 | assembled ≠ exact COUNT(*) | find the gap via per-range recount; the histogram is approximate near 2^53, the COUNT is law |
 | `nss_masses` row missing for a target (BH2 syndrome) | three-tier M₁ handles it; never hard-require a mass row (M2 landmine #2) |
 | join fan-out (rows > distinct sources) | expected: dual solutions + multi-row masses; dedupe on (source_id, solution_type) + combination_method preference; count both sides |
-| DataLink refuses/throttles | batch smaller, resume from the per-source cache; epoch-vet is restartable by design |
+| **DataLink refuses/throttles** | measured 2026-08-21: 5 identical batch-10 requests spanned 22.7–72.2 s (3.2×) with **no monotone rise** — that is archive *load*, not a rate limit aimed at us, so the answer is patience, not smaller batches. The harness already retries 6× with backoff and honours `Retry-After` to the second. If a real 429 appears, it is new information: record it, then halve `--batch` |
+| **the harness is killed mid-run** | restart the same command. Sources already in the ledger are not re-fit, epochs already in `data/epoch_cache/<release>/` are not re-fetched, and each cache file is written `.tmp` → `os.replace`, so a half-written file cannot masquerade as cached. Cost of a kill: at most the batch in flight |
+| **DataLink much slower than projected** | expected — the projection is a **band** (125–857 sources/hour at batch 20). The queue is *ranked*: a slow archive costs depth, not the headline. Re-run `scripts/m6_datalink_throughput.py` to replace the proxy numbers with the day's own, then decide how deep the first 24 h can go |
+| **a source comes back with < 50 usable transits** | `INCONCLUSIVE`, not a demotion — the verdict record says so and the row stays in the queue for the 72-h pass. Never let a thin epoch series masquerade as "no wobble" |
+| **`gaiasupdate` raises on a source** | the record is written as `ERROR` with the exception text and the loop continues. Errors are counted in the bulletin; a systematic error class (same exception on many sources) is a STOP, not a footnote |
+| **the verdict store fails schema validation** | `scripts/verdict_schema.py` raises with the exact violation. Nothing downstream may run on an invalid store — the discriminator tests would silently mix vocabularies |
 | corr_vec length ≠ n(n−1)/2 | that solution's fitted-parameter set differs from the nsstools layout — set the row's Pr to NaN, flag, continue (never guess an ordering) |
 | TAP_SCHEMA diff shows a rename not in the map | patch `queries/dr3-to-dr4-tables.md` first, then the SQL — the map is the single source of truth |
 | BH1/BH2 acceptance FAIL | full stop on publishing; diff schema + config against rehearsal state; the rehearsal proves the code path is sound on DR3-shaped data |
@@ -222,6 +381,11 @@ For every candidate, in that order:
   class-III list, Pr(III|corr), dust columns, flags, epoch-vet verdicts for whatever
   fraction DataLink has served;
 - BH1/BH2 acceptance statement + funnel counts (input → core → screen → class III);
+- **the day-one VERDICT STORE** (`out/verdicts/*.csv`, schema
+  `day1_verdict_record.v1`): one record per adjudicated orbit, with the fit
+  statistics, the verdict, its confidence and its **scope**, the seven caution
+  flags and full provenance. This is the artifact every later test consumes,
+  and the count of records in it is the day's real yield number;
 - **the day-one epoch-vet queue** (`epoch_vet_day1_queue.csv`: main list +
   retrieval-bin Pr ≥ 0.999, all caution flags) — **emitted by the driver itself**
   (stage H, M5), so it exists the moment the rehearsed pipeline finishes; the
@@ -250,9 +414,14 @@ For every candidate, in that order:
 **72 h**:
 - epoch-vet verdicts for the full priority queue; demotion statistics (the DR3-calibrated
   expectation: ~30 % of screen survivors are spurious — El-Badry operating point);
-- **the M5 discriminator test re-run on the day's own epoch-vet verdicts** — the loop
-  is the sample factory the DR3 test lacked. Ship the three family verdicts with
-  their power statements, whether or not anything reaches significance;
+- **every discriminator test re-run on the day's own epoch-vet verdicts, with no new
+  code** (M6): `m5_activity_discriminator.py`, `m4_eb26_erosita_test.py` and
+  `m6_astrom_quiet_decision.py` all take `--verdicts out\verdicts\*.csv`. Run each
+  **twice** — `--scopes orbit_reality` and pooled — and report both; the scope
+  composition is printed automatically the moment the store holds more than one
+  producer. Ship the family verdicts with their power statements whether or not
+  anything reaches significance, plus the `flag_astrom_quiet` KEEP/REMOVE/CARRY
+  decision under its pre-registered rule;
 - the rest of the retrieval-bin adjudication (DR3 analog: 239 rows; the 32 at Pr ≥ 0.999
   were already in the day-one queue);
 - HVS 6D rerun (W5) and the microlensing-input refresh (W4) start once the NSS thread is

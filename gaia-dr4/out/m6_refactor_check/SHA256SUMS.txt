@@ -1,0 +1,10 @@
+# M6 refactor acceptance: the M4/M5 discriminator tests re-run through the
+# day-one VERDICT STORE (scripts/verdict_schema.py) instead of the hard-coded
+# EB26 fixture, 2026-08-21.  Both columns are sha256; equality IS the acceptance.
+#
+artifact                                       frozen (out/)                                                      re-run through the store                                           verdict
+m4_eb26_erosita_xmatch.csv                     556144fc329935f8d31be0e9743822555c22b30571921e8c1b2d1647dcd27e8d   556144fc329935f8d31be0e9743822555c22b30571921e8c1b2d1647dcd27e8d   IDENTICAL
+m4_eb26_discriminator_stats.txt                ecea9350f3ceb6ed748eed9fbfb994abf2ab1392c8acf7c273422c736373550d   ecea9350f3ceb6ed748eed9fbfb994abf2ab1392c8acf7c273422c736373550d   IDENTICAL
+m5_activity_eb26_table.csv                     450c8f4e638a8c5060e6797502be27ed7788f0e0ddc52abe93befc2f412df7f1   450c8f4e638a8c5060e6797502be27ed7788f0e0ddc52abe93befc2f412df7f1   IDENTICAL
+m5_activity_metric_results.csv                 183234d12599fdf757de16e8b71a888f3f8b7a9025ace3bfb1c8fdcd7f59e063   183234d12599fdf757de16e8b71a888f3f8b7a9025ace3bfb1c8fdcd7f59e063   IDENTICAL
+m5_activity_discriminator_stats.txt            e6d9e1a2f45976af18d2ebc10674553f6df7ea6c9c2f4673a459c4e5d4e2d4f9   e6d9e1a2f45976af18d2ebc10674553f6df7ea6c9c2f4673a459c4e5d4e2d4f9   IDENTICAL

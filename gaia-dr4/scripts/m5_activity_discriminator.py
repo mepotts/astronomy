@@ -143,21 +143,43 @@ or as an explicitly-labelled post-hoc caveat.
       decision rule (Holm + G-stratified guard) was NOT changed.
     * "WHAT IT WOULD TAKE" sample-size projection and the family-A n = 7
       table + anecdote: descriptive additions, no test attached.
+  M6 (2026-08-21) -- SOURCE OF VERDICTS, not behaviour
+    * the verdict table is no longer read from the EB26 fixture directly:
+      it comes from the day-one VERDICT STORE (scripts/verdict_schema.py,
+      out/verdicts/*.csv), of which the EB26 fixture is now one producer
+      and the epoch-vet harness is the other.  That is the entire change;
+      the test, the rules, the seeds and the metrics are untouched, and
+      the acceptance test of the refactor is that the frozen M5 artifacts
+      reproduce BYTE-IDENTICALLY through the new path.
+    * --verdicts / --scopes / --sources / --out-dir added so December can
+      re-ask this question against harness verdicts with no new code.
+    * a verdict-provenance block is printed to stdout every run, and
+      written into the stats file ONLY when the store carries more than
+      one (source, scope) combination -- a single-scope run has nothing to
+      disclose, which is why today's output is unchanged.  The moment
+      harness verdicts join the store, every consumer must say so: a
+      harness `orbit_reality` SPURIOUS and an EB26 `compact_companion`
+      SPURIOUS are close cousins, but a harness CONFIRMED is WEAKER than
+      an EB26 CONFIRMED, so a pooled run is not the same experiment.
 
 Inputs : data/dr3_activity_columns.parquet (scripts/m5_pull_activity_columns.py)
-         fixtures/elbadry2026_astrometric_candidates.csv
+         out/verdicts/*.csv  (the day-one verdict store; M6)
          data/dr3_amrf_triage.parquet  (covariates)
 Outputs: out/m5_activity_eb26_table.csv     (per-target, all 76)
          out/m5_activity_discriminator_stats.txt
 Run    : .venv/Scripts/python.exe scripts/m5_activity_discriminator.py
 """
 
+import argparse
 import os
 import sys
 
 import numpy as np
 import pandas as pd
 from scipy.stats import fisher_exact, mannwhitneyu, norm
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import verdict_schema as vs  # noqa: E402
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_DIR = os.path.join(BASE, "out")
@@ -330,7 +352,19 @@ def amp_proxy(n_obs, flux_over_error):
 
 
 # ------------------------------------------------------------------- main
-def main():
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    ap.add_argument("--verdicts", nargs="*", default=None,
+                    help="verdict-store CSV(s); default out/verdicts/eb26.v1.csv")
+    ap.add_argument("--scopes", nargs="*", default=None,
+                    help="keep only these verdict_scope values")
+    ap.add_argument("--sources", nargs="*", default=None,
+                    help="keep only these verdict_source values")
+    ap.add_argument("--out-dir", default=OUT_DIR)
+    a = ap.parse_args(sys.argv[1:] if argv is None else argv)
+    out_dir = a.out_dir
+    os.makedirs(out_dir, exist_ok=True)
+
     rng = np.random.default_rng(SEED)
     lines = []
 
@@ -340,8 +374,20 @@ def main():
 
     act = pd.read_parquet(os.path.join(BASE, "data",
                                        "dr3_activity_columns.parquet"))
-    eb = pd.read_csv(os.path.join(BASE, "fixtures",
-                                  "elbadry2026_astrometric_candidates.csv"))
+    # M6: verdicts come from the verdict STORE, not from the fixture.  The
+    # compatibility frame hands back exactly the column names this test
+    # already used, which is what makes this a change of source and not of
+    # behaviour (see scripts/verdict_schema.py).
+    store_paths = a.verdicts or [os.path.join(vs.STORE_DIR, "eb26.v1.csv")]
+    store = vs.load_store(store_paths, scopes=a.scopes, sources=a.sources)
+    eb = vs.eb26_compatible_frame(store)
+    prov = vs.scope_composition_string(store)
+    n_combo = store.groupby(["verdict_source", "verdict_scope"]).ngroups
+    print(f"VERDICT PROVENANCE: {len(store)} records from "
+          f"{[os.path.basename(p) for p in store_paths]}")
+    print(f"  scope composition: {prov}")
+    eb = eb.drop(columns=["verdict_source", "verdict_scope",
+                          "verdict_confidence"])
     tri = pd.read_parquet(
         os.path.join(BASE, "data", "dr3_amrf_triage.parquet"),
         columns=["source_id", "nss_solution_type", "l", "b",
@@ -376,6 +422,13 @@ def main():
     say("=" * 74)
     say("Rules pre-registered in this script's docstring before any "
         "confirmed/spurious split was computed.")
+    if n_combo > 1:
+        # MANDATORY disclosure: this run pools verdicts of more than one
+        # provenance/scope, and a harness `orbit_reality` CONFIRMED is a
+        # weaker statement than an EB26 `compact_companion` CONFIRMED.
+        say("VERDICT PROVENANCE (more than one source/scope in this run -- "
+            "read the asymmetry note in scripts/verdict_schema.py):")
+        say(f"  {prov}")
     say("")
     say(f"sample: {len(t)} EB26 targets; verdicts "
         f"{t['verdict'].value_counts().to_dict()}")
@@ -730,11 +783,11 @@ def main():
             "astrometric_gof_al", "phot_bp_rp_excess_factor",
             "phot_g_n_obs", "visibility_periods_used", "notes"]
     keep = [c for c in keep if c in t.columns]
-    t[keep].to_csv(os.path.join(OUT_DIR, "m5_activity_eb26_table.csv"),
+    t[keep].to_csv(os.path.join(out_dir, "m5_activity_eb26_table.csv"),
                    index=False, lineterminator="\n")
-    res.to_csv(os.path.join(OUT_DIR, "m5_activity_metric_results.csv"),
+    res.to_csv(os.path.join(out_dir, "m5_activity_metric_results.csv"),
                index=False, lineterminator="\n")
-    with open(os.path.join(OUT_DIR,
+    with open(os.path.join(out_dir,
                            "m5_activity_discriminator_stats.txt"), "w",
               encoding="utf-8", newline="\n") as fh:
         fh.write("\n".join(lines) + "\n")
