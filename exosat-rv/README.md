@@ -1,21 +1,41 @@
 # exosat-rv
 
-Independently reproduce the first exosatellite radial-velocity detection — a planetary-mass
-companion to the brown dwarf **CD-35 2722 B**, itself orbiting an M dwarf — from public ESO
-data, and then apply the same method to substellar-companion analogues.
+An independent raw-to-radial-velocity pipeline for **directly imaged companions**, and what
+it finds when pointed at the one system where a satellite has been reported.
 
-The claim under test is Hoy et al. 2026, *Planetary-Mass Exosatellite Detected Around the
-Substellar Companion of a Star* ([arXiv:2607.05193](https://arxiv.org/abs/2607.05193);
-[Nature](https://www.nature.com/articles/s41586-026-10751-w)). They pointed VLT/CRIRES+ at
-the **companion** rather than the star and measured its reflex wobble — the first time
-radial velocity has produced evidence of a satellite.
+Rather than observing the star, the spectrograph is pointed at the *companion* and its own
+reflex motion is measured. Hoy et al. (2026, [Nature](https://www.nature.com/articles/s41586-026-10751-w);
+[arXiv:2607.05193](https://arxiv.org/abs/2607.05193)) used VLT/CRIRES+ this way on the brown
+dwarf **CD-35 2722 B** and reported a planetary-mass satellite. This project rebuilds the
+measurement from the public raw frames with an independently configured pipeline, and applies
+the same pipeline to nine further companions.
 
-Everything this project does runs on a laptop against public archives. See
-[`SPEC.md`](SPEC.md) for the thesis and prior-art assessment,
+**Results.**
+
+- The satellite **reproduces**. A blind period search that never sees a published number
+  finds it at ~169–171 d, it survives a barycentric nuisance term, permutation gives a
+  false-alarm probability of 5×10⁻⁴, and it is absent from every other companion series
+  reduced identically.
+- The reported **second** companion **does not** reproduce, and there is a mechanism: the
+  run-to-run scatter of the evidence integral is 1.1–8.1× larger than a single run's internal
+  uncertainty, and widens as live points increase.
+- **η Tel B**: no satellite, m sin i ≳ 0.51–1.27 M_Jup over P = 20–300 d.
+- The pipeline transfers unmodified across three wavelength settings and both observing
+  modes, at 99–101% injection recovery.
+
+**Papers** are in [`docs/paper/`](docs/paper/) — each `.md`/`.template.html` is the source
+and the matching `.html` is a rendered build product.
+
+**Running it.** [`scripts/cr2res/`](scripts/cr2res/) drives the reduction from raw frames;
+[`scripts/injection/`](scripts/injection/) holds the injection harness and the blind period
+search; [`data/published/`](data/published/) carries the transcribed reference table with
+provenance headers.
+
+Everything runs on a laptop against public archives. See [`SPEC.md`](SPEC.md) for the thesis,
 [`DATA-SOURCES.md`](DATA-SOURCES.md) for endpoints and their known incompletenesses, and
 [`BUILD-PLAN.md`](BUILD-PLAN.md) for the milestone plan.
 
-**Current state: M0–M26 complete, M27 open.** Start at [`LESSONS.md`](LESSONS.md) — the
+**Current state: M0–M34.** Start at [`LESSONS.md`](LESSONS.md) — the
 consolidated trap catalog and the map of which milestone document owns which conclusion —
 then [`HANDOFF.md`](HANDOFF.md) and the roster ledger
 [`docs/target-queue.md`](docs/target-queue.md). Milestone documents:

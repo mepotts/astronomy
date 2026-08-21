@@ -20,12 +20,20 @@ headed into the formal record.
 
 ## Research
 
-### [`exosat-rv/`](exosat-rv/) — testing the first exosatellite RV detection, then surveying the archive
+### [`exosat-rv/`](exosat-rv/) — an independent raw-to-RV pipeline for imaged companions
+
+> **Arriving from the paper?** Everything for it is in [`exosat-rv/`](exosat-rv/): the drafts
+> in [`docs/paper/`](exosat-rv/docs/paper/), the reduction drivers in
+> [`scripts/cr2res/`](exosat-rv/scripts/cr2res/), the injection harness and blind period
+> search in [`scripts/injection/`](exosat-rv/scripts/injection/), and the milestone record in
+> the numbered `M*-RESULTS.md` files. The other directories below are unrelated projects.
 
 The deepest project here: an independent reproduction of Hoy et al. 2026
 ([Nature](https://www.nature.com/articles/s41586-026-10751-w)), which measured the
 radial velocity of the imaged companion CD-35 2722 B *itself* — not its host star —
-and reported a planetary-mass satellite around it.
+and reported a planetary-mass satellite around it. The pipeline is not a reconstruction of
+theirs, which has never been published — it is an independent route to the same quantity,
+and it transfers unmodified across three wavelength settings and both observing modes.
 
 **The primary conclusion reproduces — from the raw data.** An independent
 re-reduction (ESO cr2res + viper forward modeling) reaches 70–90 m/s rms against
@@ -38,14 +46,15 @@ configurations, against the paper's reported +2.6.
 The validated method was then pointed at every archival CRIRES+
 companion-spectroscopy campaign a coordinate census could find. Eighteen systems
 adjudicated — one confirmation, one contradiction, four upper limits (including
-the first RV constraint a literature search can find on **eta Tel B**:
-msini ≳ 0.5–1.2 M_Jup at 90% across P = 20–300 d), one contamination-limited,
-four data-limited — plus a measured contrast wall for slit spectroscopy and an
+one on **eta Tel B** for which no previous measurement is known:
+msini ≳ 0.51–1.27 M_Jup at 90% across P = 20–300 d), one contamination-limited,
+four data-limited — plus a measured resolution gate for slit spectroscopy and an
 open front ([M27](exosat-rv/docs/target-queue.md)): the discovery that the
 archive's "staring" datasets are fiber-fed starlight-suppressed HiRISE
 observations, including six public nights of beta Pic b.
 
-A manuscript draft lives in [`exosat-rv/docs/paper/`](exosat-rv/docs/paper/);
+Five drafts live in [`exosat-rv/docs/paper/`](exosat-rv/docs/paper/), each with a rendered
+`.html` alongside its source;
 [`exosat-rv/LESSONS.md`](exosat-rv/LESSONS.md) is the consolidated trap catalog.
 
 ### [`itf-linker/`](itf-linker/) — linking the Minor Planet Center's orphan observations

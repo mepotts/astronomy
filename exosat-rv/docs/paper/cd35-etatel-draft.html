@@ -890,11 +890,16 @@
   <h2><span class="no"> </span>Data & code availability</h2>
   <p class="refs" style="font-size:14.5px">
   All spectra are public ESO archive products and raw frames (programmes 110.23RW,
-  111.24M0, 113.268Y, 115.287U, 083.C-0759, 383.D-0183). The full pipeline —
-  reduction drivers, the converter, injection harness, nested-sampling code, and every
-  script behind the figures and tables — lives in the project repository
-  (<code>exosat-rv/</code>, milestones M0–M18). The published RV table is transcribed
-  from the <span class="them">H26</span> appendix with provenance headers.
+  111.24M0, 113.268Y, 115.287U, 083.C-0759, 383.D-0183). The full pipeline &mdash;
+  reduction drivers, the ADP converter, the injection harness, the nested-sampling code and
+  every script behind the figures and tables &mdash; is at
+  <a href="https://github.com/mepotts/astronomy/tree/main/exosat-rv">github.com/mepotts/astronomy/tree/main/exosat-rv</a>,
+  released under the MIT licence. Useful entry points: <code>scripts/cr2res/</code> drives
+  the reduction from raw frames, <code>scripts/injection/</code> holds the injection harness
+  and the blind period search, and the numbered <code>M*-RESULTS.md</code> documents record
+  every milestone including the retractions &mdash; M0 through M34 at the time of writing.
+  The published RV table is transcribed from the <span class="them">H26</span> appendix with
+  provenance headers, in <code>data/published/</code>.
   </p>
 
   <h2><span class="no"> </span>References</h2>
