@@ -11,7 +11,15 @@ before building — sweep-reported facts are treated as claims until re-checked 
 repo's own tooling. Every externally-sourced number carries its source or the mark
 UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 
-## Active front — 2026-08-21
+## Active fronts — wave 6 (launched 2026-08-21)
+
+| Front | Folder | Scope |
+|---|---|---|
+| dyson-revet **M4** | [`dyson-revet/`](dyson-revet/) | Finish the sky **without ESAC** — the AIP mirror hosts every joined catalogue and its anonymous async works; **measure the parallax proxy's PURITY** (M3 only measured 99.09% recall, which cannot bound parent-sample contamination) before trusting it; settle the **1.43× parent discrepancy** so an absolute sky-wide yield can finally be quoted; close or bound the **Gvar reference gap** (currently explains part of the 4.77× overproduction); and **analyse candidate D's now-public JWST data** — the first chance to calibrate our archival axes against the imaging that actually settled a candidate |
+| gaia-dr4 **M6** | [`gaia-dr4/`](gaia-dr4/) | **Build the verdict-harvesting harness** — three milestones of discriminator tests all hit the same wall (65 published verdicts), and the epoch-vet loop is the only machine that makes more. Production DataLink→`gaiasupdate`→f2 loop, batched/resumable/instrumented with a **measured sources-per-hour and projected day-one wall-clock**; a verdict schema where external and harness-made verdicts are the same record type; M4/M5 tests refactored to consume it and required to **reproduce their published numbers exactly**; `flag_astrom_quiet` settled or explicitly deferred |
+| pta-mpta **M3** | [`pta-mpta/`](pta-mpta/) | **The front's first publishable product** — the all-83 noise campaign (overnight per M2's economics) under the gate *including* its new acceptance floor, every miss classified as sampling shortfall vs prior/convention vs genuine disagreement; then the two seams quantified across the array (the chromatic A–β ridge with untabulated priors; intrinsic-red vs 13/3 absorption, worth 1.3 dex on J1600); **whether seam (b) moves the CURN amplitude** — a significant shift is the headline, a null is equally publishable; 83-pulsar FL if the array completes; honest venue assessment |
+
+## Completed — 2026-08-21
 
 | Front | Folder | Scope |
 |---|---|---|
