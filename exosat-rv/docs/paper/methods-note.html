@@ -793,24 +793,91 @@ under an unchanged target. Named or not, that caveat should travel with the numb
 </ol>
 <p><strong>Bibliography</strong></p>
 <ol start="8">
-<li><strong>Köhler initial.</strong> The existing HTML draft's reference list reads &quot;Köhler, J.&quot;. The
-paper text in <code>papers/text/kohler2025_viper.txt</code> gives <strong>J. Köhler</strong>, and the H26 author
-list includes Jana Köhler. This note uses J.; the HTML draft should be corrected.</li>
-<li><strong>Journal, volume and year</strong> for Köhler et al. 2025, Lazzoni et al. 2022, Ruffio et al.
-2023, Horstman et al. 2024, Kral et al. 2026, Vanderburg et al. 2018 and Vanderburg &amp;
-Rodriguez 2021 are <strong>not</strong> given here because they are not confirmed anywhere in the
-repository. Fill from ADS before submission.</li>
-<li><s><strong>Kral et al. 2025</strong> filename looks misleading</s> — <strong>RESOLVED (M32).</strong> The archived
+<li>
+<p><s><strong>Köhler initial.</strong></s> — <strong>RESOLVED.</strong> Verified as <strong>J. Köhler</strong> against the archived
+paper and confirmed in <code>docs/REFERENCE-AUDIT.md</code>; the manuscript now reads J. throughout.</p>
+</li>
+<li>
+<p><s><strong>Journal, volume and year</strong> are not confirmed anywhere in the repository.</s> —
+<strong>RESOLVED (M33, <code>scripts/m33_resolve_refs.py</code>).</strong> ADS is unavailable here (its API needs
+an Authorization header and no key is configured), but CrossRef needs none and holds
+exactly these fields. Resolved by DOI:</p>
+<table>
+<thead>
+<tr>
+<th>reference</th>
+<th>journal, volume, page</th>
+<th>DOI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Köhler et al. 2025</td>
+<td>A&amp;A <strong>698</strong>, A44</td>
+<td>10.1051/0004-6361/202553919</td>
+</tr>
+<tr>
+<td>Lazzoni et al. 2022</td>
+<td>MNRAS <strong>516</strong>, 391–409</td>
+<td>10.1093/mnras/stac2081</td>
+</tr>
+<tr>
+<td>Ruffio et al. 2023</td>
+<td>AJ <strong>165</strong>, 113</td>
+<td>10.3847/1538-3881/acb34a</td>
+</tr>
+<tr>
+<td>Vanderburg &amp; Rodriguez 2021</td>
+<td>ApJL <strong>922</strong>, L2</td>
+<td>10.3847/2041-8213/ac33b4</td>
+</tr>
+<tr>
+<td>Vanderburg et al. 2018</td>
+<td>AJ <strong>156</strong>, 184</td>
+<td>10.3847/1538-3881/aae0fc</td>
+</tr>
+<tr>
+<td>Macias et al. 2026</td>
+<td>AJ <strong>171</strong>, 197</td>
+<td>10.3847/1538-3881/ae421c</td>
+</tr>
+<tr>
+<td>Speagle 2020 (dynesty)</td>
+<td>MNRAS <strong>493</strong>, 3132–3158</td>
+<td>10.1093/mnras/staa278</td>
+</tr>
+<tr>
+<td>Dorn et al. 2023 (CRIRES+)</td>
+<td>A&amp;A <strong>671</strong>, A24</td>
+<td>10.1051/0004-6361/202245217</td>
+</tr>
+</tbody>
+</table>
+<p>Vanderburg et al. 2018 is <em>&quot;Detecting Exomoons via Doppler Monitoring of Directly Imaged
+Exoplanets&quot;</em> — worth noting, since it is the paper this technique is usually credited to
+and its title states the method exactly. Still unresolved: <strong>Horstman et al. 2024</strong> and
+<strong>Kral et al. 2026</strong> (both need a DOI read off the paper), and ADS <em>bibcodes</em> cannot be
+obtained here at all.</p>
+</li>
+<li>
+<p><s><strong>Kral et al. 2025</strong> filename looks misleading</s> — <strong>RESOLVED (M32).</strong> The archived
 copy is the <strong>arXiv preprint</strong> (ESO 2025, dated 26 November 2025); A&amp;A <strong>published it in
 January 2026</strong>. So the <code>kral2026_*</code> filename is correct and the year to cite is <strong>2026</strong>,
 which is what the manuscript and the RNAAS note use. This note previously cited 2025,
-disagreeing with them; all occurrences are now 2026.</li>
-<li><strong>Peña R. et al. 2025 (EMPEROR/reddemcee)</strong> and <strong>Wahhaj et al. 2011</strong> appear in the HTML
-draft's reference list but are not cited here. Add only if used.</li>
-<li><strong>H26 title.</strong> Taken from <code>papers/text/hoy2026_nature_published.txt</code>, which renders it as
-&quot;Satellite Detected Around a Star's Substellar Companion&quot;. The existing HTML draft uses a
-different wording (&quot;A satellite orbiting the directly-imaged brown dwarf CD-35 2722 B&quot;,
-which is the preprint's). Check against the published article.</li>
+disagreeing with them; all occurrences are now 2026.</p>
+</li>
+<li>
+<p><strong>Peña R. et al. 2025 (EMPEROR/reddemcee)</strong> and <strong>Wahhaj et al. 2011</strong> appear in the HTML
+draft's reference list but are not cited here. Add only if used. <em>(M33: Wahhaj et al. 2011
+is now archived at <code>papers/text/wahhaj2011_cd35_discovery.txt</code> and confirms both numbers
+the manuscript leans on — K = 12.01 and 31 ± 8 M_Jup — in its own words.)</em></p>
+</li>
+<li>
+<p><s><strong>H26 title.</strong></s> — <strong>RESOLVED.</strong> The published article is <em>&quot;Satellite Detected Around a
+Star's Substellar Companion&quot;</em>; the other wording is the preprint's. <code>REFERENCE-AUDIT.md</code>
+verified the published title, venue and DOI against the archived PDF, and the manuscript
+uses the published form. First author is <strong>Kevin Hoy</strong> (not E.), corrected in M33.</p>
+</li>
 </ol>
 <p><strong>Claims that need a decision rather than a check</strong></p>
 <ol start="13">

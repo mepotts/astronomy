@@ -587,24 +587,42 @@ milestone document in the repository.
 
 **Bibliography**
 
-8. **Köhler initial.** The existing HTML draft's reference list reads "Köhler, J.". The
-   paper text in `papers/text/kohler2025_viper.txt` gives **J. Köhler**, and the H26 author
-   list includes Jana Köhler. This note uses J.; the HTML draft should be corrected.
-9. **Journal, volume and year** for Köhler et al. 2025, Lazzoni et al. 2022, Ruffio et al.
-    2023, Horstman et al. 2024, Kral et al. 2026, Vanderburg et al. 2018 and Vanderburg &
-    Rodriguez 2021 are **not** given here because they are not confirmed anywhere in the
-    repository. Fill from ADS before submission.
+8. ~~**Köhler initial.**~~ — **RESOLVED.** Verified as **J. Köhler** against the archived
+   paper and confirmed in `docs/REFERENCE-AUDIT.md`; the manuscript now reads J. throughout.
+9. ~~**Journal, volume and year** are not confirmed anywhere in the repository.~~ —
+    **RESOLVED (M33, `scripts/m33_resolve_refs.py`).** ADS is unavailable here (its API needs
+    an Authorization header and no key is configured), but CrossRef needs none and holds
+    exactly these fields. Resolved by DOI:
+
+    | reference | journal, volume, page | DOI |
+    |---|---|---|
+    | Köhler et al. 2025 | A&A **698**, A44 | 10.1051/0004-6361/202553919 |
+    | Lazzoni et al. 2022 | MNRAS **516**, 391–409 | 10.1093/mnras/stac2081 |
+    | Ruffio et al. 2023 | AJ **165**, 113 | 10.3847/1538-3881/acb34a |
+    | Vanderburg & Rodriguez 2021 | ApJL **922**, L2 | 10.3847/2041-8213/ac33b4 |
+    | Vanderburg et al. 2018 | AJ **156**, 184 | 10.3847/1538-3881/aae0fc |
+    | Macias et al. 2026 | AJ **171**, 197 | 10.3847/1538-3881/ae421c |
+    | Speagle 2020 (dynesty) | MNRAS **493**, 3132–3158 | 10.1093/mnras/staa278 |
+    | Dorn et al. 2023 (CRIRES+) | A&A **671**, A24 | 10.1051/0004-6361/202245217 |
+
+    Vanderburg et al. 2018 is *"Detecting Exomoons via Doppler Monitoring of Directly Imaged
+    Exoplanets"* — worth noting, since it is the paper this technique is usually credited to
+    and its title states the method exactly. Still unresolved: **Horstman et al. 2024** and
+    **Kral et al. 2026** (both need a DOI read off the paper), and ADS *bibcodes* cannot be
+    obtained here at all.
 10. ~~**Kral et al. 2025** filename looks misleading~~ — **RESOLVED (M32).** The archived
     copy is the **arXiv preprint** (ESO 2025, dated 26 November 2025); A&A **published it in
     January 2026**. So the `kral2026_*` filename is correct and the year to cite is **2026**,
     which is what the manuscript and the RNAAS note use. This note previously cited 2025,
     disagreeing with them; all occurrences are now 2026.
 11. **Peña R. et al. 2025 (EMPEROR/reddemcee)** and **Wahhaj et al. 2011** appear in the HTML
-    draft's reference list but are not cited here. Add only if used.
-12. **H26 title.** Taken from `papers/text/hoy2026_nature_published.txt`, which renders it as
-    "Satellite Detected Around a Star's Substellar Companion". The existing HTML draft uses a
-    different wording ("A satellite orbiting the directly-imaged brown dwarf CD-35 2722 B",
-    which is the preprint's). Check against the published article.
+    draft's reference list but are not cited here. Add only if used. *(M33: Wahhaj et al. 2011
+    is now archived at `papers/text/wahhaj2011_cd35_discovery.txt` and confirms both numbers
+    the manuscript leans on — K = 12.01 and 31 ± 8 M_Jup — in its own words.)*
+12. ~~**H26 title.**~~ — **RESOLVED.** The published article is *"Satellite Detected Around a
+    Star's Substellar Companion"*; the other wording is the preprint's. `REFERENCE-AUDIT.md`
+    verified the published title, venue and DOI against the archived PDF, and the manuscript
+    uses the published form. First author is **Kevin Hoy** (not E.), corrected in M33.
 
 **Claims that need a decision rather than a check**
 
