@@ -1,9 +1,25 @@
 # M34 — Is the CD-35 detection an artefact of tuning the extraction on the published RVs?
 
-> **Verdict: no, but the concern is legitimate and the manuscript now says so.** The signal
-> survives in configurations that agree *poorly* with the published series, so it is a property
-> of the spectra rather than of the selection metric. The tuning remains a real limitation of
-> the reproduction and is now stated as one.
+> **Verdict: no — and the question splits in two, which the first draft of this document ran
+> together.**
+>
+> **Is the METHOD overfitted? No.** The configuration transferred unmodified to nine further
+> companions across three wavelength settings and both observing modes, none with a published
+> velocity to tune against, at 99–101% injection recovery. A configuration fitted to one series
+> would not survive that. The tuning is *calibration against the only external reference that
+> exists in this class*, followed by demonstrated transfer where no reference exists — which is
+> the ordinary way a pipeline of this kind is validated, not a defect in it.
+>
+> **Is this particular REPRODUCTION fully independent? Not quite**, and that is a narrower
+> claim about one comparison rather than about the pipeline. Our agreement with H26's
+> velocities is not independent evidence, because the configuration was fixed with those
+> velocities in view. Everything downstream is independent, and §2 below bounds what the
+> calibration could have bought: the period survives in configurations that agree *poorly*
+> with the published series.
+>
+> The pipeline is also not a reconstruction of H26's procedure, which has never been
+> published. It is a different route to the same quantity, and it does not need to match
+> theirs in method for the two to be compared in result.
 
 Matthew asked the sharpest question anyone has put to this work: *is our raw-to-RV pipeline
 overfitted on Hoy et al.'s published RVs?*
