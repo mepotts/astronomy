@@ -1,0 +1,133 @@
+{
+  "run_id": "J1946-5403_noise_n1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 622,
+  "seed": 5620,
+  "ndim": 2,
+  "x0_kind": "prior-draw",
+  "x0": [
+    4.56442206925457,
+    -14.473947923306952
+  ],
+  "started_utc": "2026-08-21T19:30:13Z",
+  "wall_budget_min": 300.0,
+  "gate_raw_postburn": 100000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.25,
+  "eval_ms": 3.24,
+  "first_eval_s": 0.01,
+  "meta": {
+    "psr": "J1946-5403",
+    "ntoa": 1815,
+    "tspan_days": 1476.2300624383267,
+    "tmin_mjd": 58672.872854921225,
+    "tmax_mjd": 60149.102917359545,
+    "variant": "noise",
+    "add_red": false,
+    "fixed_whites": false,
+    "build_s": 16.1,
+    "kind": "noise",
+    "whites_fixed": null
+  },
+  "chunks": [
+    {
+      "iters": 185000,
+      "seconds": 837.3,
+      "it_per_s": 220.95,
+      "loadavg": 15.12,
+      "total_raw": 185000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 18501,
+    "post_burn_rows": 13876,
+    "raw_iters": 185000,
+    "raw_postburn": 138760,
+    "lnl_max": 20654.820533,
+    "acc_rate": 0.433811,
+    "stable": true,
+    "params": [
+      {
+        "param": "J1946-5403_efac",
+        "median": 0.9722571090886043,
+        "ci68": [
+          0.9561734879188468,
+          0.9885445203046569
+        ],
+        "halfshift": 0.0002,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1946-5403_gw13_log10_A",
+        "median": -15.530186493071366,
+        "ci68": [
+          -17.21818255157067,
+          -14.3850379424598
+        ],
+        "halfshift": 0.0138,
+        "tol": 0.1,
+        "stable": true
+      }
+    ]
+  },
+  "updated_utc": "2026-08-21T19:44:05Z",
+  "elapsed_min": 14.0,
+  "best_point": {
+    "J1946-5403_efac": 0.9706130901597618,
+    "J1946-5403_gw13_log10_A": -14.424626195362919
+  },
+  "lnl_best": 20654.820533,
+  "curn": {
+    "median": -15.530186493071366,
+    "ci68": [
+      -17.21818255157067,
+      -14.3850379424598
+    ],
+    "n": 13876
+  },
+  "a2": [
+    {
+      "param": "J1946-5403_efac",
+      "key": "efac",
+      "median": 0.9722571090886043,
+      "ci68": [
+        0.9561734879188468,
+        0.9885445203046569
+      ],
+      "published_map": 0.97,
+      "published_ci": [
+        0.95,
+        0.99
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1946-5403_gw13_log10_A",
+      "key": "gw13_log10_A",
+      "median": -15.530186493071366,
+      "ci68": [
+        -17.21818255157067,
+        -14.3850379424598
+      ],
+      "published_map": -14.46,
+      "published_ci": [
+        -17.22,
+        -14.41
+      ],
+      "agree": true
+    }
+  ],
+  "n_agree": 2,
+  "n_compared": 2,
+  "verdict": "CONVERGED-AGREES 2/2",
+  "param_names": [
+    "J1946-5403_efac",
+    "J1946-5403_gw13_log10_A"
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "run_id": "J2039-3616_fl_f1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 6452,
+  "seed": 8406,
+  "ndim": 3,
+  "x0_kind": "prior-draw",
+  "x0": [
+    -13.424523546242833,
+    4.589425190413847,
+    -11.591203927853323
+  ],
+  "started_utc": "2026-08-21T20:52:16Z",
+  "wall_budget_min": 120.0,
+  "gate_raw_postburn": 50000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.05,
+  "eval_ms": 2.63,
+  "first_eval_s": 0.14,
+  "meta": {
+    "psr": "J2039-3616",
+    "ntoa": 1917,
+    "tspan_days": 1476.2066372963454,
+    "tmin_mjd": 58672.904374150625,
+    "tmax_mjd": 60149.11101144697,
+    "variant": "fl",
+    "add_red": true,
+    "fixed_whites": true,
+    "sw_gamma_prior": [
+      0,
+      7
+    ],
+    "build_s": 38.4,
+    "kind": "fl",
+    "whites_fixed": {
+      "efac": 1.054034384638869
+    }
+  },
+  "chunks": [
+    {
+      "iters": 114000,
+      "seconds": 197.7,
+      "it_per_s": 576.51,
+      "loadavg": 29.36,
+      "total_raw": 114000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 11401,
+    "post_burn_rows": 8551,
+    "raw_iters": 114000,
+    "raw_postburn": 85510,
+    "lnl_max": 20483.441839,
+    "acc_rate": 0.497149,
+    "stable": true,
+    "params": [
+      {
+        "param": "J2039-3616_gw13_log10_A",
+        "median": -16.147266058654985,
+        "ci68": [
+          -17.407206501800708,
+          -14.875304115590927
+        ],
+        "halfshift": 0.001,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J2039-3616_red_gp_gamma",
+        "median": 3.150936371013431,
+        "ci68": [
+          1.0597284882499134,
+          5.6384021851521275
+        ],
+        "halfshift": 0.0225,
+        "tol": 0.3,
+        "stable": true
+      },
+      {
+        "param": "J2039-3616_red_gp_log10_A",
+        "median": -16.04905352755976,
+        "ci68": [
+          -17.418436082952624,
+          -14.657246897839883
+        ],
+        "halfshift": 0.0591,
+        "tol": 0.1,
+        "stable": true
+      }
+    ]
+  },
+  "updated_utc": "2026-08-21T20:55:35Z",
+  "elapsed_min": 3.3,
+  "best_point": {
+    "J2039-3616_gw13_log10_A": -17.6894701281097,
+    "J2039-3616_red_gp_gamma": 1.3131065391903642,
+    "J2039-3616_red_gp_log10_A": -17.410424282834384
+  },
+  "lnl_best": 20483.441839,
+  "curn": {
+    "median": -16.147266058654985,
+    "ci68": [
+      -17.407206501800708,
+      -14.875304115590927
+    ],
+    "n": 8551
+  }
+}

@@ -1,0 +1,40 @@
+{
+ "psr": "J1652-4838",
+ "params": [
+  "J1652-4838_bump_beta_g",
+  "J1652-4838_bump_log10_Amp",
+  "J1652-4838_bump_sigma_g",
+  "J1652-4838_bump_t0",
+  "J1652-4838_chrom_gp_gamma",
+  "J1652-4838_chrom_gp_idx",
+  "J1652-4838_chrom_gp_log10_A",
+  "J1652-4838_efac",
+  "J1652-4838_gw13_log10_A",
+  "J1652-4838_log10_ecorr",
+  "J1652-4838_log10_tnequad",
+  "J1652-4838_red_gp_gamma",
+  "J1652-4838_red_gp_log10_A",
+  "J1652-4838_sw_gp_gamma",
+  "J1652-4838_sw_gp_log10_A",
+  "n_earth"
+ ],
+ "lnl_published": 34013.17891091686,
+ "lnl_best": 34016.2009311413,
+ "lnl_best_recorded": 34016.200931,
+ "lnl_median": 34014.099578843125,
+ "dlnl_best_minus_pub": 3.0220202244381653,
+ "dlnl_median_minus_pub": 0.9206679262642865,
+ "n_agree": 15,
+ "n_compared": 16,
+ "misses": [
+  "J1652-4838_sw_gp_gamma"
+ ],
+ "miss_tightness": {
+  "J1652-4838_sw_gp_gamma": {
+   "pub_ci_width": 4.8100000000000005,
+   "prior_width": 7,
+   "frac": 0.6871428571428572,
+   "claims_measurement": false
+  }
+ }
+}

@@ -1,0 +1,114 @@
+{
+  "run_id": "J2322+2057_fl_f1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 5986,
+  "seed": 19983,
+  "ndim": 3,
+  "x0_kind": "prior-draw",
+  "x0": [
+    -11.154802638634097,
+    2.111651622251827,
+    -14.407345413140902
+  ],
+  "started_utc": "2026-08-21T20:46:46Z",
+  "wall_budget_min": 120.0,
+  "gate_raw_postburn": 50000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.05,
+  "eval_ms": 1.81,
+  "first_eval_s": 0.11,
+  "meta": {
+    "psr": "J2322+2057",
+    "ntoa": 1756,
+    "tspan_days": 1362.2276081533564,
+    "tmin_mjd": 58786.95695286136,
+    "tmax_mjd": 60149.184561014714,
+    "variant": "fl",
+    "add_red": true,
+    "fixed_whites": true,
+    "sw_gamma_prior": [
+      0,
+      7
+    ],
+    "build_s": 61.3,
+    "kind": "fl",
+    "whites_fixed": {
+      "efac": 1.0123145844672141,
+      "log10_tnequad": -7.754999315600113
+    }
+  },
+  "chunks": [
+    {
+      "iters": 166000,
+      "seconds": 271.4,
+      "it_per_s": 611.61,
+      "loadavg": 30.29,
+      "total_raw": 166000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 16601,
+    "post_burn_rows": 12451,
+    "raw_iters": 166000,
+    "raw_postburn": 124510,
+    "lnl_max": 18539.390661,
+    "acc_rate": 0.446584,
+    "stable": true,
+    "params": [
+      {
+        "param": "J2322+2057_gw13_log10_A",
+        "median": -15.004081973324054,
+        "ci68": [
+          -17.048923724124084,
+          -13.917418411212815
+        ],
+        "halfshift": 0.0062,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J2322+2057_red_gp_gamma",
+        "median": 3.7822009143657205,
+        "ci68": [
+          1.3735748787744932,
+          5.957278361113934
+        ],
+        "halfshift": 0.0337,
+        "tol": 0.3,
+        "stable": true
+      },
+      {
+        "param": "J2322+2057_red_gp_log10_A",
+        "median": -15.375465916175633,
+        "ci68": [
+          -17.16155270907333,
+          -14.033483957573335
+        ],
+        "halfshift": 0.027,
+        "tol": 0.1,
+        "stable": true
+      }
+    ]
+  },
+  "updated_utc": "2026-08-21T20:51:19Z",
+  "elapsed_min": 4.5,
+  "best_point": {
+    "J2322+2057_gw13_log10_A": -16.286930691763057,
+    "J2322+2057_red_gp_gamma": 6.932672450052566,
+    "J2322+2057_red_gp_log10_A": -14.65690008955052
+  },
+  "lnl_best": 18539.390661,
+  "curn": {
+    "median": -15.004081973324054,
+    "ci68": [
+      -17.048923724124084,
+      -13.917418411212815
+    ],
+    "n": 12451
+  }
+}

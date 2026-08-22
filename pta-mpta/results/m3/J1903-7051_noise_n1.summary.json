@@ -1,0 +1,223 @@
+{
+  "run_id": "J1903-7051_noise_n1",
+  "state": "running",
+  "exit_reason": null,
+  "error": null,
+  "pid": 11285,
+  "seed": 9639,
+  "ndim": 6,
+  "x0_kind": "prior-draw",
+  "x0": [
+    4.643434166749806,
+    -14.8608164453685,
+    0.32283369798316136,
+    -11.572766446028483,
+    -5.004038069603453,
+    11.847911192588082
+  ],
+  "started_utc": "2026-08-21T23:58:33Z",
+  "wall_budget_min": 300.0,
+  "gate_raw_postburn": 100000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.25,
+  "eval_ms": 120.13,
+  "first_eval_s": 0.21,
+  "meta": {
+    "psr": "J1903-7051",
+    "ntoa": 2913,
+    "tspan_days": 1591.7163338078724,
+    "tmin_mjd": 58557.35928005873,
+    "tmax_mjd": 60149.075613866604,
+    "variant": "noise",
+    "add_red": false,
+    "fixed_whites": false,
+    "sw_gamma_prior": [
+      0,
+      7
+    ],
+    "build_s": 32.2,
+    "kind": "noise",
+    "whites_fixed": null
+  },
+  "chunks": [
+    {
+      "iters": 2000,
+      "seconds": 111.4,
+      "it_per_s": 17.96,
+      "loadavg": 26.14,
+      "total_raw": 2000
+    },
+    {
+      "iters": 5000,
+      "seconds": 275.9,
+      "it_per_s": 18.12,
+      "loadavg": 26.45,
+      "total_raw": 7000
+    },
+    {
+      "iters": 5000,
+      "seconds": 238.3,
+      "it_per_s": 20.98,
+      "loadavg": 26.11,
+      "total_raw": 12000
+    },
+    {
+      "iters": 6000,
+      "seconds": 178.6,
+      "it_per_s": 33.59,
+      "loadavg": 26.2,
+      "total_raw": 18000
+    },
+    {
+      "iters": 10000,
+      "seconds": 315.2,
+      "it_per_s": 31.72,
+      "loadavg": 26.31,
+      "total_raw": 28000
+    },
+    {
+      "iters": 10000,
+      "seconds": 331.8,
+      "it_per_s": 30.14,
+      "loadavg": 26.16,
+      "total_raw": 38000
+    },
+    {
+      "iters": 9000,
+      "seconds": 321.7,
+      "it_per_s": 27.97,
+      "loadavg": 26.06,
+      "total_raw": 47000
+    },
+    {
+      "iters": 8000,
+      "seconds": 293.9,
+      "it_per_s": 27.22,
+      "loadavg": 26.06,
+      "total_raw": 55000
+    },
+    {
+      "iters": 8000,
+      "seconds": 305.1,
+      "it_per_s": 26.22,
+      "loadavg": 26.18,
+      "total_raw": 63000
+    },
+    {
+      "iters": 8000,
+      "seconds": 293.2,
+      "it_per_s": 27.28,
+      "loadavg": 26.06,
+      "total_raw": 71000
+    },
+    {
+      "iters": 8000,
+      "seconds": 320.5,
+      "it_per_s": 24.96,
+      "loadavg": 28.43,
+      "total_raw": 79000
+    },
+    {
+      "iters": 7000,
+      "seconds": 305.9,
+      "it_per_s": 22.89,
+      "loadavg": 27.48,
+      "total_raw": 86000
+    },
+    {
+      "iters": 7000,
+      "seconds": 298.8,
+      "it_per_s": 23.43,
+      "loadavg": 26.3,
+      "total_raw": 93000
+    },
+    {
+      "iters": 7000,
+      "seconds": 373.0,
+      "it_per_s": 18.77,
+      "loadavg": 28.39,
+      "total_raw": 100000
+    }
+  ],
+  "gate_met": false,
+  "chain": {
+    "rows": 10001,
+    "post_burn_rows": 7501,
+    "raw_iters": 100000,
+    "raw_postburn": 75010,
+    "lnl_max": 31880.066053,
+    "acc_rate": 0.351856,
+    "stable": false,
+    "params": [
+      {
+        "param": "J1903-7051_dm_gp_gamma",
+        "median": 3.945893491734243,
+        "ci68": [
+          2.309574252507862,
+          5.813555018392852
+        ],
+        "halfshift": 0.0103,
+        "tol": 0.3,
+        "stable": true
+      },
+      {
+        "param": "J1903-7051_dm_gp_log10_A",
+        "median": -13.878308117264734,
+        "ci68": [
+          -14.353354882925306,
+          -13.51972229350428
+        ],
+        "halfshift": 0.0033,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1903-7051_efac",
+        "median": 1.0429130172538708,
+        "ci68": [
+          1.0290102247991972,
+          1.0560983290147
+        ],
+        "halfshift": 0.0004,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1903-7051_gw13_log10_A",
+        "median": -15.831953060796144,
+        "ci68": [
+          -17.31306871162507,
+          -14.449511632732694
+        ],
+        "halfshift": 0.0436,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1903-7051_log10_ecorr",
+        "median": -7.036231673278593,
+        "ci68": [
+          -8.237740133752428,
+          -6.843888522329505
+        ],
+        "halfshift": 0.0172,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "n_earth",
+        "median": 9.233527040557433,
+        "ci68": [
+          3.656826938193726,
+          16.946374915239392
+        ],
+        "halfshift": 0.3317,
+        "tol": 0.3,
+        "stable": false
+      }
+    ]
+  },
+  "updated_utc": "2026-08-22T01:05:00Z"
+}

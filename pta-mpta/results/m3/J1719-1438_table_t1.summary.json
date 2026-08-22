@@ -1,0 +1,113 @@
+{
+  "run_id": "J1719-1438_table_t1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 9163,
+  "seed": 30854,
+  "ndim": 3,
+  "x0_kind": "prior-draw",
+  "x0": [
+    1.1796174380104758,
+    -15.71046557477031,
+    -11.70703239040844
+  ],
+  "started_utc": "2026-08-21T22:14:34Z",
+  "wall_budget_min": 120.0,
+  "gate_raw_postburn": 50000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.05,
+  "eval_ms": 1.89,
+  "first_eval_s": 0.15,
+  "meta": {
+    "psr": "J1719-1438",
+    "ntoa": 2659,
+    "tspan_days": 1558.6193431386241,
+    "tmin_mjd": 58596.240189896715,
+    "tmax_mjd": 60154.859533035335,
+    "variant": "table",
+    "add_red": false,
+    "fixed_whites": true,
+    "sw_gamma_prior": [
+      0,
+      7
+    ],
+    "build_s": 33.2,
+    "kind": "table",
+    "whites_fixed": {
+      "efac": 1.0234589076836433
+    }
+  },
+  "chunks": [
+    {
+      "iters": 159000,
+      "seconds": 613.9,
+      "it_per_s": 258.98,
+      "loadavg": 12.54,
+      "total_raw": 159000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 15901,
+    "post_burn_rows": 11926,
+    "raw_iters": 159000,
+    "raw_postburn": 119260,
+    "lnl_max": 27367.714335,
+    "acc_rate": 0.268925,
+    "stable": true,
+    "params": [
+      {
+        "param": "J1719-1438_dm_gp_gamma",
+        "median": 3.072050290528588,
+        "ci68": [
+          1.812539079164283,
+          4.963206096506992
+        ],
+        "halfshift": 0.0831,
+        "tol": 0.3,
+        "stable": true
+      },
+      {
+        "param": "J1719-1438_dm_gp_log10_A",
+        "median": -13.812862733372118,
+        "ci68": [
+          -16.677797544637023,
+          -13.248193071979626
+        ],
+        "halfshift": 0.066,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1719-1438_gw13_log10_A",
+        "median": -13.486030261476092,
+        "ci68": [
+          -16.444777850571604,
+          -13.118903440537375
+        ],
+        "halfshift": 0.0008,
+        "tol": 0.1,
+        "stable": true
+      }
+    ]
+  },
+  "updated_utc": "2026-08-21T22:24:50Z",
+  "elapsed_min": 10.2,
+  "best_point": {
+    "J1719-1438_dm_gp_gamma": 2.322718910384404,
+    "J1719-1438_dm_gp_log10_A": -13.282147787864771,
+    "J1719-1438_gw13_log10_A": -13.603869768206668
+  },
+  "lnl_best": 27367.714335,
+  "curn": {
+    "median": -13.486030261476092,
+    "ci68": [
+      -16.444777850571604,
+      -13.118903440537375
+    ],
+    "n": 11926
+  }
+}

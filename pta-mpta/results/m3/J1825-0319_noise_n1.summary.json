@@ -1,0 +1,360 @@
+{
+  "run_id": "J1825-0319_noise_n1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 9560,
+  "seed": 26491,
+  "ndim": 8,
+  "x0_kind": "prior-draw",
+  "x0": [
+    5.169688385578308,
+    3.1066870759316254,
+    -11.274968095678446,
+    1.2174985810512797,
+    -14.704701772793946,
+    2.5897078934905644,
+    -4.968455883835919,
+    26.01654311642026
+  ],
+  "started_utc": "2026-08-21T22:26:15Z",
+  "wall_budget_min": 300.0,
+  "gate_raw_postburn": 100000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.25,
+  "eval_ms": 67.83,
+  "first_eval_s": 0.11,
+  "meta": {
+    "psr": "J1825-0319",
+    "ntoa": 3044,
+    "tspan_days": 1476.1102045085033,
+    "tmin_mjd": 58672.934225369194,
+    "tmax_mjd": 60149.0444298777,
+    "variant": "noise",
+    "add_red": false,
+    "fixed_whites": false,
+    "sw_gamma_prior": [
+      0,
+      7
+    ],
+    "build_s": 25.1,
+    "kind": "noise",
+    "whites_fixed": null
+  },
+  "chunks": [
+    {
+      "iters": 4000,
+      "seconds": 400.9,
+      "it_per_s": 9.98,
+      "loadavg": 24.02,
+      "total_raw": 113000
+    },
+    {
+      "iters": 3000,
+      "seconds": 292.6,
+      "it_per_s": 10.25,
+      "loadavg": 24.38,
+      "total_raw": 116000
+    },
+    {
+      "iters": 3000,
+      "seconds": 343.1,
+      "it_per_s": 8.74,
+      "loadavg": 22.77,
+      "total_raw": 119000
+    },
+    {
+      "iters": 3000,
+      "seconds": 250.7,
+      "it_per_s": 11.97,
+      "loadavg": 24.1,
+      "total_raw": 122000
+    },
+    {
+      "iters": 4000,
+      "seconds": 378.0,
+      "it_per_s": 10.58,
+      "loadavg": 24.06,
+      "total_raw": 126000
+    },
+    {
+      "iters": 3000,
+      "seconds": 313.5,
+      "it_per_s": 9.57,
+      "loadavg": 25.17,
+      "total_raw": 129000
+    },
+    {
+      "iters": 3000,
+      "seconds": 340.6,
+      "it_per_s": 8.81,
+      "loadavg": 26.24,
+      "total_raw": 132000
+    },
+    {
+      "iters": 3000,
+      "seconds": 278.6,
+      "it_per_s": 10.77,
+      "loadavg": 26.27,
+      "total_raw": 135000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 13501,
+    "post_burn_rows": 10126,
+    "raw_iters": 135000,
+    "raw_postburn": 101260,
+    "lnl_max": 32101.708047,
+    "acc_rate": 0.375934,
+    "stable": true,
+    "params": [
+      {
+        "param": "J1825-0319_chrom_gp_gamma",
+        "median": 2.109415069143271,
+        "ci68": [
+          1.8459097416635795,
+          2.3760100804352704
+        ],
+        "halfshift": 0.0038,
+        "tol": 0.3,
+        "stable": true
+      },
+      {
+        "param": "J1825-0319_chrom_gp_idx",
+        "median": 2.6313144338303376,
+        "ci68": [
+          2.3737793345400284,
+          2.9654056035808622
+        ],
+        "halfshift": 0.0038,
+        "tol": 0.3,
+        "stable": true
+      },
+      {
+        "param": "J1825-0319_chrom_gp_log10_A",
+        "median": -12.43780154451407,
+        "ci68": [
+          -12.53524827925073,
+          -12.335589777005678
+        ],
+        "halfshift": 0.0033,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1825-0319_efac",
+        "median": 1.0207400767038317,
+        "ci68": [
+          1.006959958839382,
+          1.0338534171337719
+        ],
+        "halfshift": 0.0005,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1825-0319_gw13_log10_A",
+        "median": -15.399842731051887,
+        "ci68": [
+          -17.199927973274907,
+          -13.625547564360678
+        ],
+        "halfshift": 0.0034,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1825-0319_sw_gp_gamma",
+        "median": 3.196329049242327,
+        "ci68": [
+          1.2319056709101794,
+          5.639665240675574
+        ],
+        "halfshift": 0.1355,
+        "tol": 0.3,
+        "stable": true
+      },
+      {
+        "param": "J1825-0319_sw_gp_log10_A",
+        "median": -7.600212257878196,
+        "ci68": [
+          -9.272055511499937,
+          -6.087847065513701
+        ],
+        "halfshift": 0.0574,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "n_earth",
+        "median": 4.588172935943071,
+        "ci68": [
+          1.1844687489934782,
+          11.258854818359202
+        ],
+        "halfshift": 0.2986,
+        "tol": 0.3,
+        "stable": true
+      }
+    ]
+  },
+  "updated_utc": "2026-08-21T23:09:45Z",
+  "elapsed_min": 43.4,
+  "best_point": {
+    "J1825-0319_chrom_gp_gamma": 2.0335947335151356,
+    "J1825-0319_chrom_gp_idx": 2.6690651323287917,
+    "J1825-0319_chrom_gp_log10_A": -12.482674834823055,
+    "J1825-0319_efac": 1.023655494607584,
+    "J1825-0319_gw13_log10_A": -17.07386487646375,
+    "J1825-0319_sw_gp_gamma": 5.924755722160421,
+    "J1825-0319_sw_gp_log10_A": -6.765212240601122,
+    "n_earth": 0.2387050014583294
+  },
+  "lnl_best": 32101.708047,
+  "curn": {
+    "median": -15.399842731051887,
+    "ci68": [
+      -17.199927973274907,
+      -13.625547564360678
+    ],
+    "n": 10126
+  },
+  "a2": [
+    {
+      "param": "J1825-0319_chrom_gp_gamma",
+      "key": "chrom_gamma",
+      "median": 2.109415069143271,
+      "ci68": [
+        1.8459097416635795,
+        2.3760100804352704
+      ],
+      "published_map": 2.04,
+      "published_ci": [
+        1.82,
+        2.34
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1825-0319_chrom_gp_idx",
+      "key": "chrom_beta",
+      "median": 2.6313144338303376,
+      "ci68": [
+        2.3737793345400284,
+        2.9654056035808622
+      ],
+      "published_map": 2.53,
+      "published_ci": [
+        2.3499999999999996,
+        2.9
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1825-0319_chrom_gp_log10_A",
+      "key": "chrom_log10_A",
+      "median": -12.43780154451407,
+      "ci68": [
+        -12.53524827925073,
+        -12.335589777005678
+      ],
+      "published_map": -12.42,
+      "published_ci": [
+        -12.52,
+        -12.33
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1825-0319_efac",
+      "key": "efac",
+      "median": 1.0207400767038317,
+      "ci68": [
+        1.006959958839382,
+        1.0338534171337719
+      ],
+      "published_map": 1.02,
+      "published_ci": [
+        1.01,
+        1.03
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1825-0319_gw13_log10_A",
+      "key": "gw13_log10_A",
+      "median": -15.399842731051887,
+      "ci68": [
+        -17.199927973274907,
+        -13.625547564360678
+      ],
+      "published_map": -17.58,
+      "published_ci": [
+        -17.159999999999997,
+        -13.689999999999998
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1825-0319_sw_gp_gamma",
+      "key": "sw_gamma",
+      "median": 3.196329049242327,
+      "ci68": [
+        1.2319056709101794,
+        5.639665240675574
+      ],
+      "published_map": 1.72,
+      "published_ci": [
+        -1.5000000000000002,
+        3.0999999999999996
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1825-0319_sw_gp_log10_A",
+      "key": "sw_log10_A",
+      "median": -7.600212257878196,
+      "ci68": [
+        -9.272055511499937,
+        -6.087847065513701
+      ],
+      "published_map": -8.59,
+      "published_ci": [
+        -9.459999999999999,
+        -6.35
+      ],
+      "agree": true
+    },
+    {
+      "param": "n_earth",
+      "key": "n_earth",
+      "median": 4.588172935943071,
+      "ci68": [
+        1.1844687489934782,
+        11.258854818359202
+      ],
+      "published_map": 2.1,
+      "published_ci": [
+        1.34,
+        11.35
+      ],
+      "agree": true
+    }
+  ],
+  "n_agree": 8,
+  "n_compared": 8,
+  "verdict": "CONVERGED-AGREES 8/8",
+  "param_names": [
+    "J1825-0319_chrom_gp_gamma",
+    "J1825-0319_chrom_gp_idx",
+    "J1825-0319_chrom_gp_log10_A",
+    "J1825-0319_efac",
+    "J1825-0319_gw13_log10_A",
+    "J1825-0319_sw_gp_gamma",
+    "J1825-0319_sw_gp_log10_A",
+    "n_earth"
+  ]
+}

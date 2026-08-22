@@ -1,0 +1,101 @@
+{
+  "run_id": "J1446-4701_table_t1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 5443,
+  "seed": 1236,
+  "ndim": 2,
+  "x0_kind": "prior-draw",
+  "x0": [
+    -16.194008150862278,
+    14.599441196511043
+  ],
+  "started_utc": "2026-08-21T20:35:01Z",
+  "wall_budget_min": 120.0,
+  "gate_raw_postburn": 50000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.05,
+  "eval_ms": 8.46,
+  "first_eval_s": 0.09,
+  "meta": {
+    "psr": "J1446-4701",
+    "ntoa": 2207,
+    "tspan_days": 1606.329802648955,
+    "tmin_mjd": 58550.26118625064,
+    "tmax_mjd": 60156.59098889959,
+    "variant": "table",
+    "add_red": false,
+    "fixed_whites": true,
+    "sw_gamma_prior": [
+      0,
+      7
+    ],
+    "build_s": 40.0,
+    "kind": "table",
+    "whites_fixed": {
+      "efac": 1.050889293984517,
+      "log10_ecorr": -6.677609422726579
+    }
+  },
+  "chunks": [
+    {
+      "iters": 35000,
+      "seconds": 158.7,
+      "it_per_s": 220.53,
+      "loadavg": 26.06,
+      "total_raw": 289000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 28901,
+    "post_burn_rows": 21676,
+    "raw_iters": 289000,
+    "raw_postburn": 216760,
+    "lnl_max": 24539.973014,
+    "acc_rate": 0.498396,
+    "stable": true,
+    "params": [
+      {
+        "param": "J1446-4701_gw13_log10_A",
+        "median": -16.16843213829921,
+        "ci68": [
+          -17.404678349808233,
+          -14.93889615674099
+        ],
+        "halfshift": 0.0043,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "n_earth",
+        "median": 2.178469807032208,
+        "ci68": [
+          0.6209478272060269,
+          4.825185655660976
+        ],
+        "halfshift": 0.0212,
+        "tol": 0.3,
+        "stable": true
+      }
+    ]
+  },
+  "updated_utc": "2026-08-21T20:37:40Z",
+  "elapsed_min": 2.7,
+  "best_point": {
+    "J1446-4701_gw13_log10_A": -17.24000207718898,
+    "n_earth": 0.0007675393527528662
+  },
+  "lnl_best": 24539.973014,
+  "curn": {
+    "median": -16.16843213829921,
+    "ci68": [
+      -17.404678349808233,
+      -14.93889615674099
+    ],
+    "n": 21676
+  }
+}

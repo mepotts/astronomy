@@ -1,0 +1,122 @@
+{
+  "run_id": "J1216-6410_fl_f1",
+  "state": "running",
+  "exit_reason": null,
+  "error": null,
+  "pid": 12981,
+  "seed": 9041,
+  "ndim": 5,
+  "x0_kind": "prior-draw",
+  "x0": [
+    4.676485658831732,
+    -15.70222046747342,
+    -11.41852242098879,
+    3.748315357666996,
+    -13.228286628977255
+  ],
+  "started_utc": "2026-08-22T01:02:55Z",
+  "wall_budget_min": 120.0,
+  "gate_raw_postburn": 50000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.05,
+  "eval_ms": 10.62,
+  "first_eval_s": 0.32,
+  "meta": {
+    "psr": "J1216-6410",
+    "ntoa": 3256,
+    "tspan_days": 1599.3434814394845,
+    "tmin_mjd": 58557.21034682704,
+    "tmax_mjd": 60156.55382826653,
+    "variant": "fl",
+    "add_red": true,
+    "fixed_whites": true,
+    "sw_gamma_prior": [
+      0,
+      7
+    ],
+    "build_s": 34.6,
+    "kind": "fl",
+    "whites_fixed": {
+      "efac": 0.9983102247127842
+    }
+  },
+  "chunks": [
+    {
+      "iters": 28000,
+      "seconds": 186.6,
+      "it_per_s": 150.07,
+      "loadavg": 27.12,
+      "total_raw": 28000
+    }
+  ],
+  "gate_met": false,
+  "chain": {
+    "rows": 2801,
+    "post_burn_rows": 2101,
+    "raw_iters": 28000,
+    "raw_postburn": 21010,
+    "lnl_max": 38160.038499,
+    "acc_rate": 0.28375,
+    "stable": false,
+    "params": [
+      {
+        "param": "J1216-6410_dm_gp_gamma",
+        "median": 2.586083254313925,
+        "ci68": [
+          2.177945773996396,
+          3.0103914568410373
+        ],
+        "halfshift": 0.0039,
+        "tol": 0.3,
+        "stable": true
+      },
+      {
+        "param": "J1216-6410_dm_gp_log10_A",
+        "median": -13.166032213972969,
+        "ci68": [
+          -13.24748991952535,
+          -13.07936917273177
+        ],
+        "halfshift": 0.0001,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1216-6410_gw13_log10_A",
+        "median": -14.265533772857621,
+        "ci68": [
+          -16.595568988231804,
+          -13.83635407821735
+        ],
+        "halfshift": 0.0712,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1216-6410_red_gp_gamma",
+        "median": 3.749880436883463,
+        "ci68": [
+          1.7002636465661303,
+          5.891139545772569
+        ],
+        "halfshift": 0.3962,
+        "tol": 0.3,
+        "stable": false
+      },
+      {
+        "param": "J1216-6410_red_gp_log10_A",
+        "median": -14.84529358970655,
+        "ci68": [
+          -16.950979195313536,
+          -13.91818540256759
+        ],
+        "halfshift": 0.2716,
+        "tol": 0.1,
+        "stable": false
+      }
+    ]
+  },
+  "updated_utc": "2026-08-22T01:06:03Z"
+}

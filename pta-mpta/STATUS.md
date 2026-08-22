@@ -3,6 +3,53 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-08-21** — **M3 in progress → reported** ([`M3-noise-criticism.md`](M3-noise-criticism.md)).
+  **The all-83 campaign is 48/83 gated and agrees with the published table on 296 of 299
+  parameters (99.0%), 46 of 48 pulsars in full** — including 9 chromatic Gaussian events, 4 annual
+  chromatic terms, 7 free-β chromatic GPs, 21 DM GPs and 10 free red processes, all rebuilt from
+  public data. **The mode-vs-model diagnostic was run on every gated pulsar, not just the misses:
+  ΔlnL(ours − published) median +0.40, 45 positive / 3 negative, range −0.67 to +8.56** — our
+  sampler never under-performs the published solution anywhere, and the largest ΔlnL values sit on
+  pulsars that agree on everything (the diagnostic's noise floor).
+  **All 3 misses are the same parameter, γ_SW, on the 2 pulsars whose published value is NEGATIVE
+  and therefore outside the prior we declared.** Root cause found and measured: the paper tabulates
+  **no prior ranges at all**, M1's blanket γ ~ U(0,7) was applied to the solar-wind GP, and
+  **enterprise_extensions' own `solar_wind_block` defaults to γ_SW ~ U(−2,1)** — so **7 of 26
+  tabulated γ_SW values (27%) cannot be reached by a good-faith reproducer** (19 of 26 affected once
+  interval-crossings are counted). A declared post-hoc rerun with γ_SW ~ U(−4,4) turns J1327-0755
+  from **3/5 to 5/5**. **Table audit (no sampling): 26 of 588 published values (4.4%, 22 pulsars)
+  have a MAP outside their own printed 68% interval** — 13 of them in the A_13/3 column, 5 of 20 in
+  E_Q, zero in every non-amplitude column — **and 66 of 83 A_13/3 rows are bounded by the prior**
+  (68% interval reaching below −16.5, the paper's own "clearly disfavoured" point); only **6** are
+  constrained to better than 0.7 dex. **Seam (a): the A–β ridge is universal** (median r = −0.90,
+  slope −0.21 dex per unit β) **but only 2 of 9 free-β pulsars are prior-driven** — J0437-4715
+  (A_Chrom moves 0.38 dex, and its A_13/3 0.17 dex, under a U(0,7) β prior) and J1802-2124.
+  **This corrects M2: J1017-7156 is data-driven, not the prior finding M2 called it** (0.00 dex
+  under every alternative prior). Exploratory bonus: the amplitude–β covariance vanishes at a
+  **reference frequency of ~855 MHz, not the tabulated 1400** — re-quoting there halves the
+  amplitude uncertainty (0.46 → 0.21 dex) for free. **Seam (b): real, one-directional, and smaller
+  than M2 thought.** With a proper whites-fixed control isolating the added red process, Δ(A_13/3)
+  has median −0.03 dex, range −0.77 to +0.12, **8 of 26 above the 6-pulsar null control's 0.144 dex
+  threshold, 18 of 26 moving DOWN**; the two biggest movers (J1721-2457, J1547-5709) are among the
+  six best-constrained rows in the table. **M2's "J1600's A_13/3 drops 1.3 dex" is withdrawn** — it
+  was confounded by simultaneously fixing the white noise. **CURN: FL product −14.30 (36 psr, `fl`
+  config) and −14.18 (33 psr, `table` config), both consistent with the published −14.28 ± 0.21;
+  on the 32 pulsars gated in both, ΔMAP = +0.14 dex** — inside the published 1σ, but flagged
+  significant by the pre-registered exclusion clause, and **the real effect is the width**:
+  [−14.63,−14.12] → [−16.85,−14.31]. Adding the collaboration's own mitigation costs sensitivity,
+  and this is a number for that cost. **83-pulsar FL NOT reached** (coverage 48/83).
+  **A1 extended to all 83: 82/83 PASS**; the 63 pulsars whose release is internally complete match
+  tempo2's own TRES to a median of **0.02%**, and every material discrepancy traces to the 20 that
+  ship fewer ToAs than their par fitted. Three ephemeris defects found: 8 pars miss their own TRES
+  until one WLS refit (7 recovered), **J1825-0319 ships an unphysical negative Shapiro amplitude**
+  (H3 = −2.98e−7 s ⇒ M2 < 0; PINT refuses to build it), `TRACK -2` confirmed inert array-wide.
+  Economics corrected: **86 CPU-hours** so far; the binding cost is not the likelihood but the
+  **absolute** stability tolerance applied to 3-dex-wide prior-limited posteriors (a relative rule
+  would have passed 52 rather than 48). **Venue: bar NOT yet cleared** — coverage fails, the CURN
+  result is a width not a shift; the table audit alone is an RNAAS-sized, finished product.
+  **M4 rec: finish the array (60–100 more core-hours), register the relative gate, run γ_SW wide as
+  a registered variant, then write up.** No commits, no accounts, no submissions.
+
 - **2026-08-18** — **M2 complete** ([`M2-converge-scale.md`](M2-converge-scale.md)).
   **J1909-3744 CONVERGED 9/9** — and *both blind chains found the mode unaided* (the informed
   chain, started at the published MAP, only confirms it stays and mixes); M1's ΔlnL = +22.4

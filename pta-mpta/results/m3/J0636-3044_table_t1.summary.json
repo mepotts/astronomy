@@ -1,0 +1,120 @@
+{
+  "run_id": "J0636-3044_table_t1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 10581,
+  "seed": 22047,
+  "ndim": 3,
+  "x0_kind": "prior-draw",
+  "x0": [
+    0.5545639594475239,
+    -12.159352292244343,
+    -15.214409659098635
+  ],
+  "started_utc": "2026-08-21T23:18:08Z",
+  "wall_budget_min": 120.0,
+  "gate_raw_postburn": 50000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.05,
+  "eval_ms": 10.89,
+  "first_eval_s": 0.18,
+  "meta": {
+    "psr": "J0636-3044",
+    "ntoa": 2217,
+    "tspan_days": 1539.0349578618452,
+    "tmin_mjd": 58617.44325164039,
+    "tmax_mjd": 60156.47820950223,
+    "variant": "table",
+    "add_red": false,
+    "fixed_whites": true,
+    "sw_gamma_prior": [
+      0,
+      7
+    ],
+    "build_s": 28.8,
+    "kind": "table",
+    "whites_fixed": {
+      "efac": 1.042594680180725
+    }
+  },
+  "chunks": [
+    {
+      "iters": 28000,
+      "seconds": 173.0,
+      "it_per_s": 161.89,
+      "loadavg": 25.76,
+      "total_raw": 28000
+    },
+    {
+      "iters": 49000,
+      "seconds": 244.2,
+      "it_per_s": 200.63,
+      "loadavg": 25.22,
+      "total_raw": 77000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 7701,
+    "post_burn_rows": 5776,
+    "raw_iters": 77000,
+    "raw_postburn": 57760,
+    "lnl_max": 23172.12832,
+    "acc_rate": 0.49626,
+    "stable": true,
+    "params": [
+      {
+        "param": "J0636-3044_dm_gp_gamma",
+        "median": 3.005776081925445,
+        "ci68": [
+          1.0006965810297992,
+          5.387858404502777
+        ],
+        "halfshift": 0.0753,
+        "tol": 0.3,
+        "stable": true
+      },
+      {
+        "param": "J0636-3044_dm_gp_log10_A",
+        "median": -15.65969438455658,
+        "ci68": [
+          -17.32261745405195,
+          -13.991283304066267
+        ],
+        "halfshift": 0.0337,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J0636-3044_gw13_log10_A",
+        "median": -15.909390155786703,
+        "ci68": [
+          -17.33052085876878,
+          -14.374998409631038
+        ],
+        "halfshift": 0.0384,
+        "tol": 0.1,
+        "stable": true
+      }
+    ]
+  },
+  "updated_utc": "2026-08-21T23:25:07Z",
+  "elapsed_min": 7.0,
+  "best_point": {
+    "J0636-3044_dm_gp_gamma": 1.0305335808680334,
+    "J0636-3044_dm_gp_log10_A": -13.54827792616341,
+    "J0636-3044_gw13_log10_A": -16.164060720954303
+  },
+  "lnl_best": 23172.12832,
+  "curn": {
+    "median": -15.909390155786703,
+    "ci68": [
+      -17.33052085876878,
+      -14.374998409631038
+    ],
+    "n": 5776
+  }
+}

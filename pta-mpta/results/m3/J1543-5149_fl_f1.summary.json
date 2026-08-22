@@ -1,0 +1,180 @@
+{
+  "run_id": "J1543-5149_fl_f1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 11182,
+  "seed": 3800,
+  "ndim": 6,
+  "x0_kind": "prior-draw",
+  "x0": [
+    2.1332799796006134,
+    -16.52428069629576,
+    -13.887579692651551,
+    0.7200929626702526,
+    -13.537194215251453,
+    21.42078771672741
+  ],
+  "started_utc": "2026-08-21T23:50:36Z",
+  "wall_budget_min": 120.0,
+  "gate_raw_postburn": 50000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.05,
+  "eval_ms": 20.11,
+  "first_eval_s": 0.22,
+  "meta": {
+    "psr": "J1543-5149",
+    "ntoa": 2685,
+    "tspan_days": 1599.3973293717481,
+    "tmin_mjd": 58557.21595615678,
+    "tmax_mjd": 60156.61328552853,
+    "variant": "fl",
+    "add_red": true,
+    "fixed_whites": true,
+    "sw_gamma_prior": [
+      0,
+      7
+    ],
+    "build_s": 31.3,
+    "kind": "fl",
+    "whites_fixed": {
+      "efac": 1.047136810491033
+    }
+  },
+  "chunks": [
+    {
+      "iters": 15000,
+      "seconds": 125.6,
+      "it_per_s": 119.43,
+      "loadavg": 26.4,
+      "total_raw": 15000
+    },
+    {
+      "iters": 36000,
+      "seconds": 249.2,
+      "it_per_s": 144.46,
+      "loadavg": 26.25,
+      "total_raw": 51000
+    },
+    {
+      "iters": 43000,
+      "seconds": 356.9,
+      "it_per_s": 120.47,
+      "loadavg": 26.0,
+      "total_raw": 94000
+    },
+    {
+      "iters": 36000,
+      "seconds": 251.1,
+      "it_per_s": 143.37,
+      "loadavg": 26.26,
+      "total_raw": 130000
+    },
+    {
+      "iters": 43000,
+      "seconds": 310.9,
+      "it_per_s": 138.32,
+      "loadavg": 26.36,
+      "total_raw": 173000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 17301,
+    "post_burn_rows": 12976,
+    "raw_iters": 173000,
+    "raw_postburn": 129760,
+    "lnl_max": 27693.265311,
+    "acc_rate": 0.430764,
+    "stable": true,
+    "params": [
+      {
+        "param": "J1543-5149_dm_gp_gamma",
+        "median": 3.18109539102898,
+        "ci68": [
+          1.2197299934418897,
+          5.542873148796341
+        ],
+        "halfshift": 0.0245,
+        "tol": 0.3,
+        "stable": true
+      },
+      {
+        "param": "J1543-5149_dm_gp_log10_A",
+        "median": -15.524409544580745,
+        "ci68": [
+          -17.202772517670542,
+          -14.012979812201227
+        ],
+        "halfshift": 0.0196,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1543-5149_gw13_log10_A",
+        "median": -15.530774914895996,
+        "ci68": [
+          -17.208593548184147,
+          -13.996169751851214
+        ],
+        "halfshift": 0.0065,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1543-5149_red_gp_gamma",
+        "median": 3.3492164599543326,
+        "ci68": [
+          1.1799252968971325,
+          5.7048984422163125
+        ],
+        "halfshift": 0.0659,
+        "tol": 0.3,
+        "stable": true
+      },
+      {
+        "param": "J1543-5149_red_gp_log10_A",
+        "median": -15.567456229049245,
+        "ci68": [
+          -17.22206306453017,
+          -13.944027305862363
+        ],
+        "halfshift": 0.025,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "n_earth",
+        "median": 4.298421804950521,
+        "ci68": [
+          1.1037464398167047,
+          9.738892170323943
+        ],
+        "halfshift": 0.0727,
+        "tol": 0.3,
+        "stable": true
+      }
+    ]
+  },
+  "updated_utc": "2026-08-22T00:12:17Z",
+  "elapsed_min": 21.6,
+  "best_point": {
+    "J1543-5149_dm_gp_gamma": 2.3935549207394913,
+    "J1543-5149_dm_gp_log10_A": -13.650579652845407,
+    "J1543-5149_gw13_log10_A": -17.52970432512254,
+    "J1543-5149_red_gp_gamma": 2.8238878294282146,
+    "J1543-5149_red_gp_log10_A": -15.066817062966175,
+    "n_earth": 0.40913338170699864
+  },
+  "lnl_best": 27693.265311,
+  "curn": {
+    "median": -15.530774914895996,
+    "ci68": [
+      -17.208593548184147,
+      -13.996169751851214
+    ],
+    "n": 12976
+  }
+}

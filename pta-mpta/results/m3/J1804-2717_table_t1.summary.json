@@ -1,0 +1,97 @@
+{
+  "run_id": "J1804-2717_table_t1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 1891,
+  "seed": 7535,
+  "ndim": 2,
+  "x0_kind": "prior-draw",
+  "x0": [
+    -13.676361137091602,
+    17.46040751816016
+  ],
+  "started_utc": "2026-08-21T20:09:05Z",
+  "wall_budget_min": 120.0,
+  "gate_raw_postburn": 50000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.05,
+  "eval_ms": 1.82,
+  "first_eval_s": 0.03,
+  "meta": {
+    "psr": "J1804-2717",
+    "ntoa": 1569,
+    "tspan_days": 1145.9458273937637,
+    "tmin_mjd": 59008.98257422485,
+    "tmax_mjd": 60154.928401618614,
+    "variant": "table",
+    "add_red": false,
+    "fixed_whites": true,
+    "build_s": 19.0,
+    "kind": "table",
+    "whites_fixed": {
+      "efac": 1.0119597945015903,
+      "log10_ecorr": -6.110483468275599
+    }
+  },
+  "chunks": [
+    {
+      "iters": 329000,
+      "seconds": 455.8,
+      "it_per_s": 721.88,
+      "loadavg": 10.84,
+      "total_raw": 329000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 32901,
+    "post_burn_rows": 24676,
+    "raw_iters": 329000,
+    "raw_postburn": 246760,
+    "lnl_max": 15631.09876,
+    "acc_rate": 0.530964,
+    "stable": true,
+    "params": [
+      {
+        "param": "J1804-2717_gw13_log10_A",
+        "median": -15.17463064972643,
+        "ci68": [
+          -17.090724029630458,
+          -13.591675435563365
+        ],
+        "halfshift": 0.0009,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "n_earth",
+        "median": 4.5948378090607935,
+        "ci68": [
+          2.5659525464875426,
+          6.669057159552384
+        ],
+        "halfshift": 0.0087,
+        "tol": 0.3,
+        "stable": true
+      }
+    ]
+  },
+  "updated_utc": "2026-08-21T20:16:41Z",
+  "elapsed_min": 7.6,
+  "best_point": {
+    "J1804-2717_gw13_log10_A": -13.592826990740672,
+    "n_earth": 4.60590263790603
+  },
+  "lnl_best": 15631.09876,
+  "curn": {
+    "median": -15.17463064972643,
+    "ci68": [
+      -17.090724029630458,
+      -13.591675435563365
+    ],
+    "n": 24676
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "run_id": "J1708-3506_noise_n1",
+  "state": "running",
+  "exit_reason": null,
+  "error": null,
+  "pid": 12978,
+  "seed": 989,
+  "ndim": 7,
+  "x0_kind": "prior-draw",
+  "x0": [
+    4.92182215594882,
+    -12.740561042534607,
+    1.4761558583704275,
+    -12.446753261006073,
+    1.4105470099609243,
+    -13.097262210649154,
+    -5.656939368402556
+  ],
+  "started_utc": "2026-08-22T01:02:49Z",
+  "wall_budget_min": 300.0,
+  "gate_raw_postburn": 100000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.25,
+  "eval_ms": 145.2,
+  "first_eval_s": 0.27,
+  "meta": {
+    "psr": "J1708-3506",
+    "ntoa": 2492,
+    "tspan_days": 1148.9019638462198,
+    "tmin_mjd": 59005.94317253145,
+    "tmax_mjd": 60154.84513637767,
+    "variant": "noise",
+    "add_red": false,
+    "fixed_whites": false,
+    "sw_gamma_prior": [
+      0,
+      7
+    ],
+    "build_s": 32.8,
+    "kind": "noise",
+    "whites_fixed": null
+  },
+  "chunks": [
+    {
+      "iters": 2000,
+      "seconds": 121.4,
+      "it_per_s": 16.47,
+      "loadavg": 28.83,
+      "total_raw": 2000
+    }
+  ],
+  "gate_met": false,
+  "chain": {
+    "rows": 201,
+    "post_burn_rows": 151,
+    "raw_iters": 2000,
+    "raw_postburn": 1510,
+    "lnl_max": 26065.997341,
+    "acc_rate": 0.2255,
+    "stable": false,
+    "params": [
+      {
+        "param": "J1708-3506_chrom_gp_gamma",
+        "median": 4.265786835646627,
+        "ci68": [
+          1.0657092309089518,
+          6.289590631562456
+        ],
+        "halfshift": 1.2547,
+        "tol": 0.3,
+        "stable": false
+      },
+      {
+        "param": "J1708-3506_chrom_gp_log10_A",
+        "median": -13.867626089327702,
+        "ci68": [
+          -14.626731999358118,
+          -13.591699742998259
+        ],
+        "halfshift": 0.4929,
+        "tol": 0.1,
+        "stable": false
+      },
+      {
+        "param": "J1708-3506_dm_gp_gamma",
+        "median": 1.326803819447696,
+        "ci68": [
+          0.9753391114798311,
+          1.6813852867501624
+        ],
+        "halfshift": 0.0125,
+        "tol": 0.3,
+        "stable": true
+      },
+      {
+        "param": "J1708-3506_dm_gp_log10_A",
+        "median": -12.66476587811905,
+        "ci68": [
+          -12.822025071286248,
+          -12.584293722008143
+        ],
+        "halfshift": 0.0953,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1708-3506_efac",
+        "median": 1.0204045306690714,
+        "ci68": [
+          1.0135519268706907,
+          1.0403988127510684
+        ],
+        "halfshift": 0.0074,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1708-3506_gw13_log10_A",
+        "median": -15.343075881948236,
+        "ci68": [
+          -17.736419589798345,
+          -13.195919686857703
+        ],
+        "halfshift": 0.0904,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1708-3506_log10_tnequad",
+        "median": -8.461796349434687,
+        "ci68": [
+          -9.355852992273421,
+          -7.0876543430149646
+        ],
+        "halfshift": 0.0645,
+        "tol": 0.1,
+        "stable": true
+      }
+    ]
+  },
+  "updated_utc": "2026-08-22T01:04:51Z"
+}
