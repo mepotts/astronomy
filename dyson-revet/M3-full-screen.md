@@ -728,3 +728,25 @@ difference that must be understood before the other 52% of sky is trusted.
 `data/photometry/wise_locus_extended.csv`.
 
 **Nothing in this milestone has been submitted, posted, or sent anywhere.**
+
+---
+
+> **Append-only annotation, 2026-08-23 (M5 §6) — V5 is RETIRED, not retuned.**
+> §3.2 above disabled the centroid axis and prescribed two fixes for M4: a 3″
+> search radius and a neighbour-aware validity check. **That prescription is
+> withdrawn.** M4 §5.3 measured candidate D's contaminant from public JWST/MIRI
+> mosaics at **1.23 ± 0.07″, PA 33 ± 1°**, and against that truth the archival
+> centroid is wrong in **direction** (our W3 offset points at PA 82.9°, 50°
+> away, where MIRI shows nothing) as well as **magnitude** (our W4 offset,
+> 2.55 ± 0.50″, is +2.6σ above the hard geometric ceiling of 1.23″, and Ren et
+> al. 2026's independent 1.8″ exceeds it too). A smaller search radius cannot
+> repair a measurement whose direction carries no information, and §3.2's fixes
+> target the wrong failure: D's contaminant was never a separate AllWISE source
+> at all (M5 §3.3 measures **zero** W4-comparable neighbours within 60″ of D).
+> **The axis is formally retired for objects near the floor**, replaced by
+> `sep_thr(ρ) = F · (1 + 1/ρ)` as the statement of what centroid vetting can and
+> cannot do; the offsets stay in `out/w2_centroid_offsets.csv` as flagged data
+> and decide no verdict. The consequence — that **STILL-CLEAN is unreachable**,
+> so §3's "0 STILL-CLEAN" is a property of the method and not of the objects —
+> is carried in every verdict table from here on. Full record:
+> [M5 §6](M5-nebular-stage-highlat-catalog.md). *Nothing else in M3 is changed.*

@@ -64,6 +64,45 @@ astrophysics regardless of technosignature framing).
 > 3.25″ aperture are invisible to centroid vetting at any brightness.** The README's "~1–2″ floor"
 > language above is confirmed and now carries a number.
 
+> **Result, 2026-08-23 (M5) — the last irreproducible stage now has a reproducible replacement, and
+> the positive deliverable exists.** M4 localised the entire 4.2× overproduction to Hephaistos II's
+> unpublished nebular CNN. [M5](M5-nebular-stage-highlat-catalog.md) builds a stage out of public
+> data — **N1**, a veto on the *published angular extent* of **29,462 nebulae from 14 VizieR
+> catalogues** (no free parameter: the radius is the catalogue's own); **N2**, the percentile rank of
+> AllWISE's own coadd background (`w3sky`/`w4sky`) against the **|b| > 50° parent binned by ecliptic
+> latitude**, cut at 0.99; **N3**, the local source density, reported and not cut. **Pre-visual
+> survivors 1,545 → 585 against the paper's 368: 4.20× → 1.59×**, and by latitude **20.89× → 2.62×
+> at |b| < 5°** while **|b| > 50° is untouched at 1.05×**. **7/7 published candidates preserved**,
+> the rejected fraction falls **monotonically** with |b|, and the 0.95/0.99/0.999 sensitivity band
+> moves the answer by only ±5%. **Stated in advance and true: it does not close the plane** — ours
+> rejects 31.2% at the RMSE gate where their CNN rejects 49.0%, and that **17.8-point difference is
+> the measurement of what the unpublished stage was doing**. **The vetting of all 1,545 full-sky
+> survivors is finished: 719 CONTAMINATION-CONSISTENT, 584 INDETERMINATE, 242 SUB-THRESHOLD,
+> 0 STILL-CLEAN** — and the zero is **by construction**, because V5 is retired (below), so the
+> survivors are *objects with no detectable contamination evidence given a method with a known blind
+> spot*, never "clean". **The positive deliverable is shipped**:
+> [`catalog/`](catalog/dyson-revet_highlat_extreme_IR_excess_v1.csv) — **223 extreme mid-IR-excess
+> stars within 300 pc at |b| > 30°**, 62 columns, the **90-object |b| > 50° calibrated core flagged
+> per row**, its own [README](catalog/README.md), and completeness/contamination stated as measured
+> numbers including what is **UNMEASURED**. *Route finding, reusable everywhere: **IRSA's Gator
+> multi-position upload is anonymous and runs at 0.0027 s/position against TAP's 3.5 s — ~1,300×**;
+> it counted only after an acceptance test returned 1,545/1,545 identical designations with zero
+> disagreements.*
+
+> **Method retirement, 2026-08-23 (M5 §6) — V5, the archival centroid axis, is formally RETIRED.**
+> M3 §3.2 disabled it and prescribed a retune (3″ search radius, neighbour-aware validity check);
+> **that prescription is withdrawn.** M4 §5.3 measured candidate D's contaminant at
+> **1.23 ± 0.07″, PA 33 ± 1°** from public JWST/MIRI mosaics, and against that truth the archival
+> centroid is wrong in **direction** (our W3 offset points 50° away, where MIRI shows nothing) as
+> well as **magnitude** (our W4 offset 2.55 ± 0.50″ is +2.6σ above a hard geometric ceiling of
+> 1.23″; Ren et al. 2026's 1.8″ exceeds it too). A smaller search radius cannot repair a measurement
+> whose direction carries no information, and D's contaminant was never a separate AllWISE source at
+> all. **What replaces it**: `sep_thr(ρ) = F · (1 + 1/ρ)`, asymptoting to the floor itself — so
+> **≈10% (1″ floor) to ≈40% (2″ floor) of chance-aligned contaminants are invisible at any
+> brightness**. **Consequence, carried in every verdict table: STILL-CLEAN is unreachable, and there
+> is no Matthew-gated candidate from this screen.** The falsifier that would un-retire the axis is
+> written down ahead of candidate E's data (M5 §5.3).
+
 > **Route correction, 2026-08-18 (M2 §4.1).** The W4 full-screen plan below was costed on ~24
 > anonymous ESA **async** strip jobs. **Anonymous async is broken** (HTTP 500 on every job); the
 > screen runs on sync with adaptive tiling instead, checkpointed and resumable. See
@@ -82,8 +121,13 @@ astrophysics regardless of technosignature framing).
 - **W3 — the SPHEREx axis.** 102-band public spectral images (IRSA QR2, account-free) at each
   candidate position — an SED axis that did not exist when Hephaistos ran. Coverage check first;
   honest about calibration limits.
-- **W4 — the full re-screen** (only after W1–W2 validate): the 5M-star selection re-run with the
-  contamination machinery, producing the vetted catalog or the calibrated null.
+- **W4 — the full re-screen.** ✓ **done, 100.00% of the sky** (M4) with the contamination
+  machinery, the vetting finished and a reproducible nebular stage in place of the paper's
+  unpublished CNN (M5). It produced **both** halves of the README's own framing: a **calibrated
+  null** — no object reaches STILL-CLEAN, and none can while the centroid axis is retired — and
+  a **defensibly-bounded extreme-IR-excess catalogue**,
+  [`catalog/`](catalog/dyson-revet_highlat_extreme_IR_excess_v1.csv), 223 objects at |b| > 30°
+  with per-object vetting flags and measured completeness and contamination.
 
 ## Conventions
 

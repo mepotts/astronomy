@@ -3,6 +3,64 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-08-23** — **M5 ✓** ([M5-nebular-stage-highlat-catalog.md](M5-nebular-stage-highlat-catalog.md)) —
+  **the last irreproducible stage now has a reproducible replacement, and it closes 81.6% of the
+  gap.** M4 localised the whole 4.2× overproduction to the paper's unpublished nebular CNN; M5
+  builds a stage out of public data and measures what it does. **Pre-visual survivors 1,545 → 585
+  against the paper's 368: 4.20× → 1.59×** (1.72× on the conservative area-corrected reading), and
+  by latitude **20.89× → 2.62× at |b| < 5°** while **|b| > 50° is untouched at 1.05×** — the stage
+  does nothing where M4 proved nothing needed doing, which is the strongest single check on it.
+  Three components, every threshold fixed by a stated rule before any count was looked at:
+  **N1**, a veto on the **published angular extent** of **29,462 nebulae from 14 VizieR catalogues**
+  (no free parameter — the radius is the catalogue's own); **N2**, the percentile rank of AllWISE's
+  own coadd background (`w3sky`/`w4sky`, measured by their pipeline, delivered as a catalogue
+  column) against the **|b| > 50° parent binned by ecliptic latitude**, cut at 0.99; **N3**, the
+  local source density, **reported and not cut** exactly as pre-registered. **Validation passes on
+  all three criteria: 7/7 published candidates preserved** (10/10 labelled, N1 flags none, N2 flags
+  none), the rejected fraction **falls monotonically** with |b| (87.5, 61.3, 59.7, 37.0, 3.0, 0.0%)
+  and overproduction moves toward 1.0 in **every** band, and the 0.95/0.99/0.999 sensitivity band
+  gives 557/585/609 — **±0.05 on the threshold moves the answer ±5%**. **N1 is not just a sky mask
+  and the enrichment statistic proves it**: it flags 56.4% of 10–20° survivors while masking 9.5% of
+  that sky (**enrichment 5.93**), and the whole veto masks 7.77% of the sky but **0.03% of the
+  |b| > 50° core**. **N2 is measuring the plane and not the zodiacal light, shown not asserted**: in
+  *every* ecliptic bin the |b| < 5° background sits 2.5–21% above the clean-sky median of the same
+  bin while |b| > 50° sits on it, and **60.6% of |b| < 5° survivors are in the top 1% of clean sky
+  against a measured 1.29% false-positive rate**. **Stated in advance and true: it does not close
+  the plane** — ours rejects **31.2%** at the RMSE gate where their CNN rejects **49.0%**, and that
+  **17.8-point difference is the publishable statement** about what the unpublished stage was doing:
+  roughly 1.6× more than every catalogued nebula on the sky plus a 1%-FPR background cut. **The
+  vetting of the 1,545 is finished — 719 CONTAMINATION-CONSISTENT, 584 INDETERMINATE, 242
+  SUB-THRESHOLD, 0 STILL-CLEAN** (M4's own status line was wrong: the run completed 31 minutes after
+  M4's document was written). **The zero is by construction, not measurement** — V5 is retired, so
+  the surviving set is *objects with no detectable contamination evidence given a method with a
+  known blind spot*, never "clean". **A route finding worth more than the milestone: IRSA's Gator
+  multi-position upload is anonymous and does the same cross-match at 0.0027 s/position against
+  TAP's 3.5 s — ~1,300×.** The V1+V2 pass M4 costed at 3 hours takes **8.1 s**; the 9,486-position
+  background pull that would have been 9 hours takes **23 s**. It counted only after PR-1's
+  acceptance test: **1,545/1,545 designations identical on both releases, 0 disagreements**,
+  photometry to float32 rounding. M4 §7.1's checkpointing hazard is **fixed anyway** (per-chunk
+  cache with resume). **The positive deliverable is delivered**:
+  [`catalog/`](catalog/dyson-revet_highlat_extreme_IR_excess_v1.csv) — **223 extreme mid-IR-excess
+  stars within 300 pc at |b| > 30°, 62 columns**, with the **90-object |b| > 50° calibrated core
+  flagged per row**, per-object vetting flags, its own [README](catalog/README.md), and
+  completeness/contamination as measured numbers (γ ≥ 0.10 floor misses most weaker excesses; S/N
+  cut removes 92.8%; injection-recovery **UNMEASURED** and marked so; 38.1% convicted by our own
+  gates, and the rejects are **kept in the table with their evidence**). **V4's chance-alignment
+  prior is measured locally for the first time and a global constant cannot carry it**: Suazo's own
+  colour band runs **1,830 deg⁻² at |b| < 5° to 255 at |b| > 50°** against V4's single 4.57 —
+  6.7 expected interlopers among 1,545 versus 0.018, a factor **372** — and even that upper bound is
+  far short of 585, so **the interlopers that matter are the ones AllWISE never resolves**, exactly
+  candidate D's 1.23″ companion. **V5 formally retired** (M5 §6, append-only, annotated onto M3 and
+  into the vetting code) with M4 §5 as the reason and `sep_thr(ρ) = F(1+1/ρ)` as the replacement;
+  the falsifier that would un-retire it is written down. **Candidate E is ready**: the D chain is
+  parameterised and reproduces M4 §5 on **all seven checks** (sep 1.233″ vs 1.230″, PA 33.00°,
+  ρ = 0.236/7.242/83.135, pull 1.179″), E's MAST status re-checked today (**39 obs, 0 public, all
+  EXCLUSIVE_ACCESS, release 2026-09-09**, imaging in the **same three filters on
+  `jw07199-o006_t008`**), three commands, and a **four-case outcome map written before the data
+  open**. Nothing submitted, posted or sent; no account created anywhere; the Ren+24 note and the
+  I dossier remain Matthew-gated, unchanged. **M5 adds no Matthew-gated item — no object reached
+  STILL-CLEAN and none can.**
+
 - **2026-08-21** — **M4 ✓** ([M4-sky-parent-gvar-jwst.md](M4-sky-parent-gvar-jwst.md)) — **the sky
   is finished: 41,253 deg², 100.00%, 220 cells, 0 abandoned**, harvested anonymously through the
   **AIP mirror** with no account while ESAC's join tables stayed dead all day (a 3-table `COUNT(*)`

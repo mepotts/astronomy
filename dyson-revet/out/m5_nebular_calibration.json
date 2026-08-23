@@ -1,0 +1,23 @@
+{
+  "calibration_population": "parent sample at |b| > 50 deg",
+  "n_calibration": 68209,
+  "ecl_bin_deg": 10.0,
+  "n_ecl_bins": 7,
+  "per_bin_n": {
+    "0": 12980,
+    "1": 10294,
+    "2": 11074,
+    "3": 11164,
+    "4": 10287,
+    "5": 8073,
+    "6": 4337
+  },
+  "rule": "score = max(percentile rank of w3sky, percentile rank of w4sky) within the object's |ecliptic latitude| bin of the calibration population; flagged if score > 0.99 (PR-2)",
+  "threshold": 0.99,
+  "measured_combined_FPR_on_calibration": {
+    "0.95": 0.058892521514756116,
+    "0.99": 0.012901523259393921,
+    "0.999": 0.0015687079417672156
+  },
+  "spearman_w3sky_w4sky": 0.9991614870431402
+}

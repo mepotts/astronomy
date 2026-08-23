@@ -112,28 +112,70 @@ def box_or(ra: np.ndarray, dec: np.ndarray, radius_as: float) -> str:
 
 
 def tap_chunks(svc, table: str, cols: str, ra, dec, radius_as: float,
-               chunk: int = 40, tag: str = "") -> pd.DataFrame:
+               chunk: int = 40, tag: str = "",
+               part: Path | None = None) -> pd.DataFrame:
     """Positional cross-match in OR'd cone chunks (IRSA TAP has no upload for
-    anonymous users; 25 cones per query keeps the ADQL inside the parser)."""
-    frames = []
-    for i in range(0, len(ra), chunk):
+    anonymous users; 25 cones per query keeps the ADQL inside the parser).
+
+    M5: the partial result is written to `part` AFTER EVERY CHUNK and reloaded
+    on restart.  M4 Sec 7.1 recorded the failure this fixes -- the combined
+    V1+V2 cache was written only after BOTH releases had been queried, so a run
+    killed part-way through 3 h of IRSA queries lost everything.  Each chunk
+    now carries a `_chunk` column so a resumed run knows exactly which
+    positions are already done, and only the missing chunks are re-issued.
+    """
+    done: dict[int, pd.DataFrame] = {}
+    if part is not None and part.exists():
+        prev = pd.read_csv(part)
+        for k, g in prev.groupby("_chunk"):
+            done[int(k)] = g
+        print(f"    [{tag}] resuming from {part.name}: {len(done)} chunk(s), "
+              f"{len(prev):,} rows already fetched", flush=True)
+    frames = [done[k] for k in sorted(done)]
+    nchunk = int(np.ceil(len(ra) / chunk)) if len(ra) else 0
+    for k in range(nchunk):
+        if k in done:
+            continue
+        i = k * chunk
         rs, ds = ra[i:i + chunk], dec[i:i + chunk]
         q = f"SELECT {cols} FROM {table} WHERE {box_or(rs, ds, radius_as)}"
         for attempt in range(4):
             try:
                 t = svc.search(q).to_table().to_pandas()
+                t["_chunk"] = k
                 frames.append(t)
                 break
             except Exception as e:  # noqa: BLE001
                 if attempt == 3:
-                    print(f"    [{tag}] chunk {i // chunk} FAILED after 4 "
+                    print(f"    [{tag}] chunk {k} FAILED after 4 "
                           f"tries: {type(e).__name__}: {str(e)[:120]}")
                 else:
                     time.sleep(5 * (attempt + 1))
+        if part is not None and frames:
+            pd.concat(frames, ignore_index=True).to_csv(part, index=False)
         print(f"    [{tag}] {min(i + chunk, len(ra))}/{len(ra)} positions, "
               f"{sum(len(f) for f in frames)} rows", flush=True)
-    return (pd.concat(frames, ignore_index=True) if frames
-            else pd.DataFrame(columns=cols.split(",")))
+    out = (pd.concat(frames, ignore_index=True) if frames
+           else pd.DataFrame(columns=cols.split(",")))
+    return out.drop(columns=["_chunk"], errors="ignore")
+
+
+def gator_chunks(table: str, cols: str, ra, dec, radius_as: float,
+                 chunk: int = 5000, tag: str = "",
+                 part: Path | None = None) -> pd.DataFrame:
+    """The same cross-match through IRSA's Gator multi-position UPLOAD.
+
+    MEASURED 2026-08-23 (M5 Sec 1.1): 1,545 positions in 4.2 s, i.e.
+    0.0027 s/position against the 3.5 s/position the OR'd-box TAP route costs.
+    The module docstring's "IRSA TAP has no upload for anonymous users" is
+    still true of TAP; Gator is a different service and its upload IS
+    anonymous.  Selected only via --backend gator, and only after
+    `scripts/m5_vet_accept.py` has shown it returns the same rows.
+    """
+    from m5_nebular import gator_upload                     # noqa: PLC0415
+    g = gator_upload(np.asarray(ra), np.asarray(dec), table, cols,
+                     radius_as, chunk=chunk, cache=part, tag=tag)
+    return g.drop(columns=["_chunk", "_row"], errors="ignore")
 
 
 def nearest_match(surv: pd.DataFrame, cat: pd.DataFrame, suffix: str,
@@ -208,6 +250,22 @@ def verdict(r: pd.Series) -> tuple[str, str]:
     # objects of contamination on the strength of an unrelated neighbour.
     # A measurement that fails its own validity check does not get to decide
     # a verdict; the offsets are kept in the table as data, flagged.
+    #
+    # 2026-08-23 (M5 Sec 6), append-only: V5 is now FORMALLY RETIRED, not
+    # merely disabled, and M3 Sec 3.2's prescribed fixes (3" search radius,
+    # neighbour-aware validity check) are WITHDRAWN. M4 Sec 5.3 measured
+    # candidate D's contaminant from public JWST/MIRI mosaics at 1.23 +- 0.07"
+    # PA 33 +- 1 deg; against that truth the archival centroid is wrong in
+    # DIRECTION (our W3 offset points at PA 82.9 deg, 50 deg away, where MIRI
+    # shows nothing) as well as MAGNITUDE (our W4 offset 2.55 +- 0.50" is
+    # +2.6 sigma above the hard geometric ceiling of 1.23"). A smaller search
+    # radius cannot repair a measurement whose direction carries no
+    # information, and D's contaminant was never a separate AllWISE source at
+    # all. What replaces it is sep_thr(rho) = F (1 + 1/rho). Do not re-enable
+    # or retune this axis without a second (separation, contrast) pair in
+    # which the archival centroid points at the REAL contaminant -- that
+    # falsifier is written down in M5 Sec 5.3, Outcome 1, ahead of candidate
+    # E's data opening on 2026-09-09.
     off = float("nan")
     if why:
         return "CONTAMINATION-CONSISTENT", "; ".join(why)
@@ -243,6 +301,12 @@ def main() -> None:
     ap.add_argument("--refresh", action="store_true",
                     help="re-query the V1/V2 catalogue axes instead of using "
                          "the cache")
+    ap.add_argument("--backend", choices=["tap", "gator"], default="tap",
+                    help="catalogue cross-match route for V1/V2. 'tap' is "
+                         "M3/M4's (~3.5 s/position); 'gator' is IRSA's "
+                         "multi-position upload (~0.003 s/position), and is "
+                         "only legitimate because m5_vet_accept.py shows the "
+                         "two return the same rows (M5 Sec 1.1)")
     a = ap.parse_args()
 
     src = OUT / f"w4_previsual_candidates_{a.tag}.csv"
@@ -272,20 +336,28 @@ def main() -> None:
     else:
         svc = pyvo.dal.TAPService(IRSA_TAP)
         ra, dec = surv["ra"].to_numpy(), surv["dec"].to_numpy()
+        # M5: partial caches, one per release, written after every chunk.
+        p1 = OUT / f"m3_vet_cache_{a.tag}.V1.part.csv"
+        p2 = OUT / f"m3_vet_cache_{a.tag}.V2.part.csv"
+        fetch = (gator_chunks if a.backend == "gator"
+                 else (lambda t, c, r, d, rad, tag, part:
+                       tap_chunks(svc, t, c, r, d, rad, tag=tag, part=part)))
 
-        print("\n== V1: AllWISE detail (single-exposure counts, flags) ==")
-        aw = tap_chunks(svc, "allwise_p3as_psd",
-                        "designation,ra,dec,w3mpro,w3sigmpro,w4mpro,w4sigmpro,"
-                        "w3snr,w4snr,w3nm,w4nm,w3m,w4m,w3flg,w4flg,nb,na,"
-                        "w3rchi2,w4rchi2,ph_qual,cc_flags,ext_flg,var_flg",
-                        ra, dec, 3.0, tag="allwise")
+        print(f"\n== V1: AllWISE detail (single-exposure counts, flags) "
+              f"[backend={a.backend}] ==")
+        aw = fetch("allwise_p3as_psd",
+                   "designation,ra,dec,w3mpro,w3sigmpro,w4mpro,w4sigmpro,"
+                   "w3snr,w4snr,w3nm,w4nm,w3m,w4m,w3flg,w4flg,nb,na,"
+                   "w3rchi2,w4rchi2,ph_qual,cc_flags,ext_flg,var_flg",
+                   ra, dec, 3.0, "allwise", p1)
         surv = nearest_match(surv, aw, "_aw", 3.0)
 
-        print("\n== V2: WISE All-Sky Release (same photons, earlier pipeline) ==")
-        ask = tap_chunks(svc, "allsky_4band_p3as_psd",
-                         "designation,ra,dec,w3mpro,w3sigmpro,w4mpro,w4sigmpro,"
-                         "w3snr,w4snr,ph_qual,cc_flags,w3flg,w4flg",
-                         ra, dec, 3.0, tag="allsky")
+        print(f"\n== V2: WISE All-Sky Release (same photons, earlier pipeline) "
+              f"[backend={a.backend}] ==")
+        ask = fetch("allsky_4band_p3as_psd",
+                    "designation,ra,dec,w3mpro,w3sigmpro,w4mpro,w4sigmpro,"
+                    "w3snr,w4snr,ph_qual,cc_flags,w3flg,w4flg",
+                    ra, dec, 3.0, "allsky", p2)
         surv = nearest_match(surv, ask, "_as", 3.0)
         surv.to_csv(cache, index=False)
         print(f"  cached V1/V2 to {cache.name}")

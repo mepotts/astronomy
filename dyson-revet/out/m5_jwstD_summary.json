@@ -1,0 +1,145 @@
+{
+  "label": "D",
+  "source_id": 2660349163149053824,
+  "n_filters": 3,
+  "n_detected": 3,
+  "detection_criterion": "peak in the 0.5-2.2\" annulus >= 5x the 3.0-4.5\" annulus RMS, in >= 2 filters (M5 PR-4)",
+  "second_source_detected": true,
+  "per_filter": {
+    "f1000w": {
+      "sep": 1.211407652209175,
+      "pa": 33.88922121043145,
+      "rho": 7.2414835410339755,
+      "detected": true,
+      "peak_sigma": 1538.840630488646,
+      "brighter": "gal",
+      "fwhm_star": 0.4571597034903215,
+      "fwhm_second": 0.47615017820944866,
+      "jdox": 0.328,
+      "epoch": 2025.5704176104134,
+      "cal_ver": "2.0.1",
+      "crds": "jwst_1535.pmap",
+      "um": 10.0
+    },
+    "f1500w": {
+      "sep": 1.230222237467674,
+      "pa": 32.58416785964195,
+      "rho": 83.13509049257009,
+      "detected": true,
+      "peak_sigma": 496.43337795585893,
+      "brighter": "gal",
+      "fwhm_star": 0.6255038588930737,
+      "fwhm_second": 0.611662495013169,
+      "jdox": 0.488,
+      "epoch": 2025.5703583877473,
+      "cal_ver": "2.0.1",
+      "crds": "jwst_1535.pmap",
+      "um": 15.0
+    },
+    "f560w": {
+      "sep": 1.2569484684545162,
+      "pa": 32.52134730664887,
+      "rho": 0.23587962507995636,
+      "detected": true,
+      "peak_sigma": 229.88922633437414,
+      "brighter": "star",
+      "fwhm_star": NaN,
+      "fwhm_second": NaN,
+      "jdox": 0.207,
+      "epoch": 2025.570477096905,
+      "cal_ver": "2.0.1",
+      "crds": "jwst_1535.pmap",
+      "um": 5.6
+    }
+  },
+  "separation_arcsec_mean": 1.232859452710455,
+  "separation_arcsec_sd": 0.02288466002042748,
+  "PA_deg_mean": 32.99824545890743,
+  "PA_deg_sd": 0.7722466884502921,
+  "rho_powerlaw_index": 5.949287474119943,
+  "rho_W3_12um": 21.810596525747457,
+  "rho_W4_22um": 803.0942461798614,
+  "predicted_centroid_pull_W3_arcsec": 1.178811788883739,
+  "predicted_centroid_pull_W4_arcsec": 1.231326225158377,
+  "geometric_ceiling_arcsec": 1.232859452710455,
+  "archival_floor": {
+    "1.0": {
+      "sep_thr_arcsec": 1.0458492732566713,
+      "blind_fraction": 0.10355509608250961,
+      "this_object_visible": true
+    },
+    "2.0": {
+      "sep_thr_arcsec": 2.0916985465133426,
+      "blind_fraction": 0.41422038433003844,
+      "this_object_visible": false
+    }
+  },
+  "archival_centroid_rows": [
+    {
+      "label": "D",
+      "band": "W1",
+      "epoch": 2010.46,
+      "offset_arcsec": 0.1484938044189708,
+      "sigma_pos_arcsec": 0.0360082155356288,
+      "snr": 71.93451569641422,
+      "ren2026_offset": 0.53,
+      "ra_centroid": 351.96381632089754,
+      "dec_centroid": 5.107307327242301
+    },
+    {
+      "label": "D",
+      "band": "W2",
+      "epoch": 2010.46,
+      "offset_arcsec": 0.2255389729374508,
+      "sigma_pos_arcsec": 0.0725970185840836,
+      "snr": 37.43434832012817,
+      "ren2026_offset": 0.46,
+      "ra_centroid": 351.963840247593,
+      "dec_centroid": 5.10729091711643
+    },
+    {
+      "label": "D",
+      "band": "W3",
+      "epoch": 2010.46,
+      "offset_arcsec": 1.4123984916759398,
+      "sigma_pos_arcsec": 0.2090334957492915,
+      "snr": 13.20403180263695,
+      "ren2026_offset": 0.75,
+      "ra_centroid": 351.96416797817926,
+      "dec_centroid": 5.107344016868613
+    },
+    {
+      "label": "D",
+      "band": "W4",
+      "epoch": 2010.46,
+      "offset_arcsec": 2.554944882127381,
+      "sigma_pos_arcsec": 0.5011265635867025,
+      "snr": 10.168172616521613,
+      "ren2026_offset": 1.8,
+      "ra_centroid": 351.96399034264965,
+      "dec_centroid": 5.107970527445922
+    },
+    {
+      "label": "D",
+      "band": "W3u",
+      "epoch": 2010.46,
+      "offset_arcsec": 1.065006035243088,
+      "sigma_pos_arcsec": 0.2186410768106525,
+      "snr": 12.62381692384505,
+      "ren2026_offset": NaN,
+      "ra_centroid": 351.96407060768905,
+      "dec_centroid": 5.107340419125385
+    },
+    {
+      "label": "D",
+      "band": "W4u",
+      "epoch": 2010.46,
+      "offset_arcsec": 2.15278883174851,
+      "sigma_pos_arcsec": 0.9725545576409416,
+      "snr": 5.23933733201949,
+      "ren2026_offset": NaN,
+      "ra_centroid": 351.9640668949797,
+      "dec_centroid": 5.107817139157955
+    }
+  ]
+}
