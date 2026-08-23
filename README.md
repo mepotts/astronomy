@@ -22,11 +22,11 @@ headed into the formal record.
 
 ### [`exosat-rv/`](exosat-rv/) — an independent raw-to-RV pipeline for imaged companions
 
-> **Arriving from the paper?** Everything for it is in [`exosat-rv/`](exosat-rv/): the drafts
-> in [`docs/paper/`](exosat-rv/docs/paper/), the reduction drivers in
-> [`scripts/cr2res/`](exosat-rv/scripts/cr2res/), the injection harness and blind period
-> search in [`scripts/injection/`](exosat-rv/scripts/injection/), and the milestone record in
-> the numbered `M*-RESULTS.md` files. The other directories below are unrelated projects.
+> **Arriving from the paper?** This project now has its own repository:
+> **[github.com/mepotts/exosat-rv](https://github.com/mepotts/exosat-rv)** — the drafts, the
+> reduction drivers, the injection harness and blind period search, and the full milestone
+> record with its retractions. That is the repository the papers cite. The copy below is
+> retained here for now and is not the canonical one.
 
 The deepest project here: an independent reproduction of Hoy et al. 2026
 ([Nature](https://www.nature.com/articles/s41586-026-10751-w)), which measured the
