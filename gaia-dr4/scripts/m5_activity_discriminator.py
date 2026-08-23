@@ -411,8 +411,29 @@ def main(argv=None):
 
     t = eb.merge(act, on="source_id", how="left") \
           .merge(tri, on="source_id", how="left")
-    assert len(t) == 76, f"EB26 join fanned out: {len(t)}"
-    assert t["ruwe"].notna().all(), "some EB26 target missing gaia_source"
+    # M7: same fix as m4_eb26_erosita_test.py -- the invariant is no fan-out,
+    # not a store of exactly 76.  `--verdicts all` (and therefore the
+    # runbook's pooled command) crashed here the moment the store held a
+    # second producer.  Rows with no gaia_source row cannot be tested and are
+    # dropped with a count, never silently.
+    assert len(t) == len(eb), f"verdict join fanned out: {len(t)} vs {len(eb)}"
+    n_unjoined = int(t["ruwe"].isna().sum())
+    if n_unjoined:
+        print(f"  {n_unjoined} of {len(t)} verdict rows have no "
+              f"gaia_source row in the pulled columns -- DROPPED")
+        t = t[t["ruwe"].notna()].reset_index(drop=True)
+    if len(t) == 0:
+        # M7: an empty testable set is a COVERAGE RESULT, not a crash.  The
+        # pre-registered scope-pure primary run selects harness verdicts
+        # only, and on 2026-08-23 the only harness verdicts in existence are
+        # the 12 pre-release demo sources, none of which are in the pulled
+        # gaia_source columns.  Raising an AssertionError there says
+        # "something broke"; nothing broke, there is nothing to test.
+        print("\nNOT TESTABLE: 0 of the selected verdict rows have a "
+              "gaia_source row in the pulled columns.")
+        print("  This is a coverage result, not a failure. Report the "
+              "coverage; claim nothing.")
+        return 2
 
     t["is_variable"] = t["phot_variable_flag"].astype(str) == "VARIABLE"
     t["d_pc"] = 1000.0 / t["nss_parallax"]
@@ -791,9 +812,14 @@ def main(argv=None):
                            "m5_activity_discriminator_stats.txt"), "w",
               encoding="utf-8", newline="\n") as fh:
         fh.write("\n".join(lines) + "\n")
-    print(f"\nwrote out/m5_activity_eb26_table.csv, "
-          f"out/m5_activity_metric_results.csv, "
-          f"out/m5_activity_discriminator_stats.txt")
+    # M7: print the REAL directory.  This line hard-coded "out/" while the
+    # files went wherever --out-dir pointed, so a pooled December run would
+    # have announced that it had just overwritten the frozen M5 artifacts
+    # when it had not.  A log line that lies about a path is a log line that
+    # will be believed at 3 a.m. on release day.
+    print(f"\nwrote {os.path.relpath(out_dir, BASE)}/"
+          f"m5_activity_eb26_table.csv, m5_activity_metric_results.csv, "
+          f"m5_activity_discriminator_stats.txt")
     return 0
 
 

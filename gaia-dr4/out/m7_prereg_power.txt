@@ -1,0 +1,75 @@
+M7 -- decisive-sample thresholds for the December discriminator re-runs
+==========================================================================
+Computed 2026-08-23, BEFORE any December verdict exists.
+alpha = 0.05 two-sided, target power = 80 %, using M5's own power routines
+(scripts/m5_activity_discriminator.py: mwu_power / min_detectable_auc on a 0.025
+AUC grid, fisher_power / min_detectable_rate on a 0.05 rate grid, 5000 MC trials).
+
+0. REPRODUCTION OF THE PUBLISHED POWER STATEMENTS (a check on this driver)
+--------------------------------------------------------------------------
+  M5 families B/C, n = 42 conf / 23 spur : min detectable AUC 0.725   (M5 published 0.725)  MATCH
+  M6 in-list,      n = 40 conf /  8 spur : min detectable AUC 0.800   (M6 published 0.800)  MATCH
+  M6 thresholded flag, n = 40/8, confirmed marking rate 0.075:
+      min detectable SPURIOUS marking rate 0.55   (M6 published 0.55)  MATCH
+  M4 X-ray, n = 16 conf / 13 spur, confirmed detection rate 0.000:
+      min detectable SPURIOUS detection rate 0.40   (M4 published 0.40)  MATCH
+
+1. HOW BIG DECEMBER'S VERDICT SAMPLE HAS TO BE, PER TEST
+--------------------------------------------------------------------------
+
+  D1  X-RAY (eROSITA-DE) -- Fisher on the detection rate
+      effect under test = M4's observed SPURIOUS 0.154 vs CONFIRMED 0.000.
+      The n below are IN-FOOTPRINT. eROSITA-DE is half the sky and M4 found
+      29 of 65 verdicted targets inside it (45 %), so the total verdict
+      count needed is roughly the in-footprint count divided by 0.45.
+      1:1                                              50 conf +   50 spur in footprint  (~222 verdicts)
+      1.83:1 (the EB26 split 42:23)                    49 conf +   27 spur in footprint  (~168 verdicts)
+      0.33:1 (the M6 pre-release harness split 3:9)    32 conf +   95 spur in footprint  (~282 verdicts)
+      against a non-zero CONFIRMED baseline of 0.02, which is the more
+      honest null (M4's 0/16 is a point estimate of zero, not a zero):
+      1:1                                              75 conf +   75 spur in footprint
+      1.83:1 (the EB26 split 42:23)                    91 conf +   50 spur in footprint
+      0.33:1 (the M6 pre-release harness split 3:9)    46 conf +  139 spur in footprint
+
+  D2  PHOTOMETRIC VARIABILITY (dAmp_G, magnitude-detrended) -- MWU
+      effect under test = M5's observed AUC 0.659 (spurious MORE variable).
+      1:1                                              51 conf +   51 spur
+      1.83:1 (the EB26 split 42:23)                    71 conf +   39 spur
+      0.33:1 (the M6 pre-release harness split 3:9)    34 conf +  103 spur
+      (M5 published 'about 84 + 46' at the EB26 ratio, from a coarser scan;
+       the EB26-ratio line above supersedes it as the frozen threshold.)
+
+  D3  ASTROMETRIC QUALITY (astrometric_gof_al) -- MWU
+      effect under test (a) = M5's all-65 AUC 0.254, i.e. 0.746 on the high side
+      1:1                                              20 conf +   20 spur
+      1.83:1 (the EB26 split 42:23)                    29 conf +   16 spur
+      0.33:1 (the M6 pre-release harness split 3:9)    14 conf +   41 spur
+      effect under test (b) = M6's weaker IN-LIST AUC 0.344, i.e. 0.656 high side
+      -- (b) is the binding one, because the day-one sample IS the in-list
+      population and M6 showed the two populations give different effects.
+      1:1                                              54 conf +   54 spur
+      1.83:1 (the EB26 split 42:23)                    73 conf +   40 spur
+      0.33:1 (the M6 pre-release harness split 3:9)    35 conf +  104 spur
+
+  D4  flag_astrom_quiet, THRESHOLDED -- Fisher on the marking rate
+      effect under test = the flag marks SPURIOUS at 0.30 against the
+      measured in-list CONFIRMED marking rate of 0.075.  0.30 is DECLARED
+      here, in advance, as the smallest marking rate that would make the
+      flag worth keeping as a tiebreaker; it is not the observed 0.00, and
+      choosing it after seeing December would be the exact manoeuvre this
+      pre-registration exists to prevent.
+      1:1                                              52 conf +   52 spur in the QUEUE
+      1.83:1 (the EB26 split 42:23)                    64 conf +   35 spur in the QUEUE
+      0.33:1 (the M6 pre-release harness split 3:9)    34 conf +  101 spur in the QUEUE
+
+2. WHAT ONE HARNESS PASS OVER THE 981-ROW QUEUE DELIVERS
+--------------------------------------------------------------------------
+  Every adjudicated queue row is an in-list verdict by construction, so the
+  binding quantity is the CONFIRMED:SPURIOUS split, not the total.
+      1:1                                            ~ 490 conf +  490 spur
+      1.83:1 (the EB26 split 42:23)                  ~ 633 conf +  347 spur
+      0.33:1 (the M6 pre-release harness split 3:9)  ~ 245 conf +  735 spur
+  Read D2, D3 and D4 against those rows: at every ratio, one full pass
+  clears them.  D1 is the exception and cannot be cleared by throughput --
+  it is capped by the eROSITA-DE footprint at ~45 % of whatever is
+  adjudicated, and by the low absolute detection rate.

@@ -203,8 +203,15 @@ class DataLinkSource(EpochSource):
             retrieval_type=self.retrieval_type, data_structure="RAW",
             format=self.fmt, verbose=False)
 
-    def fetch(self, ids):
-        from gaiasupdate.epoch_astrometry import GaiaEpochAstrometryArchive
+    def _call_with_retries(self, ids):
+        """The polite, retrying, fail-fast HTTP half of fetch().
+
+        Extracted from fetch() in M7 (behaviour unchanged) so that a
+        subclass can reuse the retry/backoff/Retry-After/deterministic-error
+        policy while parsing a DIFFERENT DataLink product -- the day-one-scale
+        dry run has to be transported by the same code that December will
+        use, or it rehearses nothing.
+        """
         last = None
         for attempt in range(RETRIES):
             try:
@@ -242,15 +249,24 @@ class DataLinkSource(EpochSource):
                 time.sleep(wait)
         else:                                    # pragma: no cover
             raise last
+        return res
 
+    def _frames_from(self, res):
+        """Parse a DataLink RAW result into epoch-astrometry frames."""
+        from gaiasupdate.epoch_astrometry import GaiaEpochAstrometryArchive
         frames = []
-        for key, val in (res or {}).items():
+        for _key, val in (res or {}).items():
             for item in (val if isinstance(val, list) else [val]):
                 try:
                     df = item.to_table().to_pandas()
                 except AttributeError:
                     df = item.to_pandas()
                 frames.append(GaiaEpochAstrometryArchive.astropy_table_to_df(df))
+        return frames
+
+    def fetch(self, ids):
+        res = self._call_with_retries(ids)
+        frames = self._frames_from(res)
         if not frames:
             return {}
         allrows = pd.concat(frames, ignore_index=True)
@@ -329,6 +345,53 @@ def append_ledger(path, records):
     """Append verdict records, writing the header only once.  Appending
     (rather than rewriting) is what makes a session kill cost nothing."""
     df = vs.coerce(pd.DataFrame(records))
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    header = not os.path.exists(path) or os.path.getsize(path) == 0
+    df.to_csv(path, mode="a", header=header, index=False, lineterminator="\n")
+    return df
+
+
+# ---- transport-rehearsal ledger (M7) -------------------------------------
+# A dry run against DR3 EPOCH_PHOTOMETRY transports real products through the
+# real code path but CANNOT adjudicate anything: photometry carries no
+# astrometric epochs, so there is no f2 and therefore no verdict.  Writing a
+# placeholder verdict into the verdict store would be exactly the kind of
+# provenance lie the schema exists to prevent, so a transport rehearsal gets
+# its own ledger, with its own columns, outside out/verdicts/.  The resume
+# contract is identical: append-only, one row per source, restart skips what
+# is already in it.
+TRANSPORT_LEDGER_COLS = ["source_id", "run_id", "batch", "served", "n_rows",
+                         "n_cols", "n_transits", "n_cells", "cache_bytes",
+                         "produced_utc", "note"]
+
+
+def payload_cells(df):
+    """Served data volume in table cells, counting array-valued cells by
+    their length.
+
+    A DataLink RAW product is not always one row per transit: epoch
+    ASTROMETRY arrives exploded (one row per CCD transit), epoch PHOTOMETRY
+    arrives as ONE row per source with ~48 array columns.  Row count is
+    therefore not a payload measure across products, and the parquet cache
+    file size is dominated by per-file format overhead at these sizes.
+    Cells are the measure that means the same thing for both.
+    """
+    total = 0
+    for c in df.columns:
+        for v in df[c].to_numpy():
+            total += int(v.size) if isinstance(v, np.ndarray) else 1
+    return total
+
+
+def load_transport_ledger(path):
+    if not os.path.exists(path) or os.path.getsize(path) == 0:
+        return pd.DataFrame({c: pd.Series(dtype="object")
+                             for c in TRANSPORT_LEDGER_COLS})
+    return pd.read_csv(path)
+
+
+def append_transport_ledger(path, rows):
+    df = pd.DataFrame(rows)[TRANSPORT_LEDGER_COLS]
     os.makedirs(os.path.dirname(path), exist_ok=True)
     header = not os.path.exists(path) or os.path.getsize(path) == 0
     df.to_csv(path, mode="a", header=header, index=False, lineterminator="\n")
@@ -423,12 +486,26 @@ def base_record(sid, src, run_id, queue_row=None):
 # ======================================================================
 def run(source="prerelease", queue=None, limit=None, batch=DEFAULT_BATCH,
         release=None, ledger=None, timings=None, run_id=None, gap=GAP_S,
-        model=None, refit=False, verbose=True):
+        model=None, refit=False, verbose=True, retrieval_type=None,
+        epoch_source=None, transport_only=False, progress_every=0):
+    """The production loop.
+
+    M7 added three optional arguments, none of which change the December
+    path: `retrieval_type` / `epoch_source` (inject an already-built fetch
+    layer -- used by the day-one-scale dry run so the SAME batching, cache,
+    retry and checkpoint code transports a different DataLink product) and
+    `transport_only` (skip adjudication and write the transport ledger; see
+    TRANSPORT_LEDGER_COLS for why a dry run must not write verdicts).
+    """
     run_id = run_id or f"m6_{source}_{time.strftime('%Y%m%dT%H%M%S')}"
-    if source == "prerelease":
+    if epoch_source is not None:
+        src = epoch_source
+    elif source == "prerelease":
         src = PrereleaseSource()
     elif source == "datalink":
-        src = DataLinkSource(release=release or "Gaia DR4")
+        src = DataLinkSource(release=release or "Gaia DR4",
+                             **({"retrieval_type": retrieval_type}
+                                if retrieval_type else {}))
     elif source == "cache":
         src = EpochSource()
         src.release = release or "Gaia DR4 pre-release 2026-06-26"
@@ -458,7 +535,8 @@ def run(source="prerelease", queue=None, limit=None, batch=DEFAULT_BATCH,
     if limit:
         ids = ids[:int(limit)]
 
-    done = load_ledger(ledger)
+    done = (load_transport_ledger(ledger) if transport_only
+            else load_ledger(ledger))
     already = set(done["source_id"].dropna().astype("int64")) if len(done) \
         else set()
     if refit:
@@ -501,6 +579,43 @@ def run(source="prerelease", queue=None, limit=None, batch=DEFAULT_BATCH,
             print(f"  batch {bi//batch}: {len(chunk)} ids "
                   f"({len(chunk)-len(need)} cached), fetched {len(served)} "
                   f"in {t_fetch:.1f}s ({n_rows_served} rows)", flush=True)
+
+        if transport_only:
+            # transport rehearsal: no fit is possible and none is faked
+            for sid in chunk:
+                df = cache_read(src.release, sid)
+                p = cache_path(src.release, sid)
+                new_records.append({
+                    "source_id": int(sid), "run_id": run_id,
+                    "batch": bi // batch,
+                    "served": df is not None and len(df) > 0,
+                    "n_rows": 0 if df is None else int(len(df)),
+                    "n_cols": 0 if df is None else int(df.shape[1]),
+                    "n_transits": (0 if df is None else
+                                   int(pd.to_numeric(df["n_transits"],
+                                                     errors="coerce").sum())
+                                   if "n_transits" in df.columns
+                                   else int(len(df))),
+                    "n_cells": 0 if df is None else payload_cells(df),
+                    "cache_bytes": (os.path.getsize(p)
+                                    if os.path.exists(p) else 0),
+                    "produced_utc": vs.utcnow(),
+                    "note": ("transport rehearsal: DR3 EPOCH_PHOTOMETRY "
+                             "carries no astrometric epochs, no adjudication "
+                             "attempted"),
+                })
+            append_transport_ledger(ledger, new_records)
+            n_done = bi + len(chunk)
+            if progress_every and (bi // batch) % progress_every == 0:
+                el = time.time() - t_run0
+                print(f"  [checkpoint] {n_done}/{len(todo)} in {el/60:.1f} min "
+                      f"-> {3600.0*n_done/max(el,1e-9):.0f} sources/hour; "
+                      f"ETA {(el/max(n_done,1))*(len(todo)-n_done)/60:.0f} min",
+                      flush=True)
+            new_records = []
+            if need and bi + batch < len(todo):
+                time.sleep(gap)
+            continue
 
         for sid in chunk:
             rec = base_record(sid, src, run_id, qrows.get(int(sid)))
@@ -573,7 +688,8 @@ def run(source="prerelease", queue=None, limit=None, batch=DEFAULT_BATCH,
             time.sleep(gap)
 
     if new_records:
-        append_ledger(ledger, new_records)
+        (append_transport_ledger if transport_only else append_ledger)(
+            ledger, new_records)
 
     wall = time.time() - t_run0
     tdf = pd.DataFrame(rows_t)
@@ -598,15 +714,18 @@ def run(source="prerelease", queue=None, limit=None, batch=DEFAULT_BATCH,
         "sources_per_hour": (round(3600.0 * len(todo) / wall, 1)
                              if todo and wall > 0 else None),
     }
-    led = load_ledger(ledger)
+    led = load_transport_ledger(ledger) if transport_only \
+        else load_ledger(ledger)
     if verbose:
         print(f"\nrun {run_id} complete: {len(todo)} sources in {wall:.1f}s "
               f"-> {stats['sources_per_hour']} sources/hour")
         print(f"  fetch {t_fetch_total:.1f}s ({n_fetch_calls} calls, "
               f"{n_cached} cache hits) | fit {t_fit_total:.1f}s "
               f"({stats['fit_seconds_per_source']} s/source)")
+        tally = (led["served"].value_counts().to_dict() if transport_only
+                 else led["verdict"].value_counts().to_dict())
         print(f"  ledger {os.path.relpath(ledger, BASE)}: {len(led)} records "
-              f"{led['verdict'].value_counts().to_dict()}")
+              f"{tally}")
     return led, stats
 
 

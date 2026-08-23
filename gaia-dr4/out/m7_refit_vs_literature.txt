@@ -1,0 +1,48 @@
+
+REFIT vs DR3 CATALOGUE vs PUBLISHED
+     name           source_id            element       refit  published  published_err    dr3_nss  refit_formal_err  sigma_vs_published  delta_over_refit_formal_err  frac_vs_dr3_nss
+   Gaia-4 1457486023639239296                P_d  578.959816  571.30000        1.35000 564.024281          2.993730                5.67                         2.56           0.0265
+   Gaia-4 1457486023639239296                ecc    0.414815    0.33800        0.02450   0.507581          0.061754                3.14                         1.24          -0.1828
+   Gaia-4 1457486023639239296             a0_mas    0.255092    0.27900        0.01500   0.312847          0.008801               -1.59                        -2.72          -0.1846
+   Gaia-4 1457486023639239296       parallax_mas   13.623494   13.62800        0.02100  13.643127          0.006474               -0.21                        -0.70          -0.0014
+   Gaia-4 1457486023639239296            inc_deg  120.926513  116.90000        4.30000        NaN               NaN                0.94                          NaN              NaN
+   Gaia-4 1457486023639239296            m1_msun    0.639188    0.64400        0.02400        NaN               NaN               -0.20                          NaN              NaN
+   Gaia-4 1457486023639239296            m2_msun    0.010330    0.01126        0.00067        NaN               NaN               -1.39                          NaN              NaN
+HD 114762 3937211745905473024                P_d   83.837596   83.91712        0.00064  83.738185          0.012901             -124.26                        -6.16           0.0012
+HD 114762 3937211745905473024                ecc    0.305329    0.34420        0.00120   0.323893          0.009803              -32.39                        -3.97          -0.0573
+HD 114762 3937211745905473024             a0_mas    1.851186        NaN            NaN   1.797136          0.017224                 NaN                          NaN           0.0301
+HD 114762 3937211745905473024       parallax_mas   25.309416   25.35000        0.03500  25.357021          0.011411               -1.16                        -3.56          -0.0019
+HD 114762 3937211745905473024            inc_deg    8.609223    3.63000        0.06000        NaN               NaN               82.99                          NaN              NaN
+HD 114762 3937211745905473024            m1_msun    1.074712    1.00000        0.10000        NaN               NaN                0.75                          NaN              NaN
+HD 114762 3937211745905473024            m2_msun    0.233361    0.21500        0.01300        NaN               NaN                1.41                          NaN              NaN
+ Gaia BH3 4318465066420528000                P_d 4183.679384 4194.70000      112.30000        NaN         72.221447               -0.10                        -0.15              NaN
+ Gaia BH3 4318465066420528000                ecc    0.727816    0.72620        0.00560        NaN          0.003540                0.29                         0.46              NaN
+ Gaia BH3 4318465066420528000             a0_mas   27.110042   27.07000        0.56000        NaN          0.367528                0.07                         0.11              NaN
+ Gaia BH3 4318465066420528000       parallax_mas    1.659797    1.67470        0.00940        NaN          0.006523               -1.59                        -2.28              NaN
+ Gaia BH3 4318465066420528000            inc_deg  110.545595  110.65900        0.10700        NaN               NaN               -1.06                          NaN              NaN
+ Gaia BH3 4318465066420528000          omega_deg   78.219406   77.77000        0.66000        NaN               NaN                0.68                          NaN              NaN
+ Gaia BH3 4318465066420528000       bigomega_deg  136.360346  136.20000        0.14700        NaN               NaN                1.09                          NaN              NaN
+ Gaia BH3 4318465066420528000 mass_function_msun   33.212789   32.03000        0.64000        NaN               NaN                1.85                          NaN              NaN
+ Gaia BH3 4318465066420528000            m1_msun    0.760000    0.76000        0.05000        NaN               NaN                0.00                          NaN              NaN
+ Gaia BH3 4318465066420528000            m2_msun   34.684250   32.70000        0.82000        NaN               NaN                2.42                          NaN              NaN
+
+  ERROR-BAR CALIBRATION (|refit - published| / the refit's OWN formal error)
+    n = 11 elements with both a published value and a formal error
+    median 2.28 | max 6.16 | within 1 sigma 4/11 (36 %, expect 68) | within 2 sigma 5/11 (45 %, expect 95)
+    -> the Laplace/Hessian errors are LOWER BOUNDS. An inflation factor of about
+       2.3x would make this trio self-consistent. Quote the posterior as a
+       formal interval, never as a total uncertainty.
+
+  PARALLAX OFFSET, all 3 targets: -4.5, -40.6, -14.9 uas (refit minus published)
+    every one NEGATIVE, magnitudes 5-41 uas -- the Lindegren+2021 zero-point
+    scale.  The photocentre mass function goes as parallax^-3, so this propagates
+    to about 1.1 % on every companion mass and is the arm's dominant systematic.
+
+  [Gaia BH3] Gaia Collaboration: Panuzzo et al. 2024, A&A 686, L2 (DOI 10.1051/0004-6361/202449763, arXiv:2404.10486), Table 2 ASTROMETRIC-ONLY column
+      The published M_BH 32.70 +/- 0.82 comes from the COMBINED astrometry+RVS solution via a1 in AU, NOT from a0/parallax -- Panuzzo says explicitly that the Table-2 mass-function uncertainty is underestimated because the preliminary-NSS parallax bias could not be quantified. A photocentre-only mass function goes as parallax^-3, so this is the single largest systematic the refit arm carries.
+
+  [Gaia-4] Stefansson et al. 2025, AJ 169, 107 (DOI 10.3847/1538-3881/ada9e1, arXiv:2410.05654), Table 2 ADOPTED Gaia+RV column; DR3 NSS column in the same table
+      m2 in Msun is a UNIT CONVERSION of the published 11.8 +0.73/-0.66 MJup at 1 MJup = 9.5458e-4 Msun, not a published number. The paper's abstract a0 = 0.312 mas is the Gaia-ONLY value; the adopted joint a0 is 0.279.
+
+  [HD 114762] Winn 2022, arXiv:2209.05516 (AJ volume/page UNVERIFIED), joint Gaia DR3 + Doppler WITH the M/L prior; Doppler period from the same Table 3
+      THE LITERATURE CONFLICTS BY A FACTOR ~2 and the conflict is the interesting part: Kiefer 2019 gives 108 +31/-26 MJup = 0.103 Msun and Kiefer et al. 2021 gives 147 +39/-42 MJup = 0.140 Msun (both GASTON excess-noise masses), against Winn 2022's 0.215 +/- 0.013 (0.293 +0.103/-0.056 without the M/L prior). Winn's own note that 'Kiefer 2019 found 0.13 +/- 0.03' misquotes Kiefer's uncorrected Table 4 rather than his adopted abstract value. a0 is not tabulated by Winn.

@@ -3,6 +3,99 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-08-23** — **M7 done** ([`M7-dryrun-refit-prereg.md`](M7-dryrun-refit-prereg.md)):
+  M6's three recommendations, in M6's order — the clock is a number, the headline arm is a
+  pipeline, and December is pre-registered. **(1) THE CLOCK HAS A MEASURED CENTRE, and the
+  half of M6's band that a better experiment could remove is removed: M6's models A and B
+  were never rivals — they are the two terms of one cost model**, and
+  the probe that could not separate them was collinear by construction. A **981-source dry
+  run through the production harness** (`scripts/m7_day1_dryrun.py`, DR3
+  `EPOCH_PHOTOMETRY`) at a *fixed* batch 20 with payload deliberately varied **4.7×**
+  across batches (48 of 50 batches serving exactly 20 sources; batch time then varies
+  **6.0×** where a flat model predicts 1.0×, and correlates 0.83 with served transits
+  against 0.26 with source count) separates them: **`t = 2.42 ±0.81 s + 0.215 ±0.100 s/source × n + 0.1424
+  ±0.0105 s/KiB × KiB`** (100 requests, R² 0.878; per-byte term **13.5 σ**, per-source
+  2.2 σ; at fixed n the flat model explains **R² 0.000**). At DR4's real 50.9 KiB/source
+  the bytes cost 7.25 s/source against the source term's 0.22 s ⇒ **468 sources/hour, the
+  981-row queue in 2.1 h — a measured central value where M6 had none**. A band remains,
+  126–803/hour (1.2–7.8 h), and the width is honestly similar to M6's; what changed is
+  what the width *means*. M6's was a model ambiguity with no defensible centre, spanned by
+  two extrapolations neither of which had been observed; **M7's is archive weather, every
+  edge of it is an archive state somebody measured, and a SUSTAINED run varies by only
+  ±8 %** (the two halves of phase B, 2,626 and 2,236 sources/hour) because a 50-batch
+  wall clock averages single-request extremes away. The half of the uncertainty a better
+  experiment could remove has been removed; the half only release day can settle has not.
+  **M6's 78-h worst branch is superseded: the same 10× degradation now costs 20.2 h**, so
+  every branch fits inside 72 h. Also measured, and each one corrects M6: the empty-request
+  overhead is **0.65 s** (14 requests that served nothing), not 2.3–6.0 s; **only 74 of the
+  981 queue members (7.5 %) have DR3 epoch photometry at all**, which is why a
+  payload-stratified control set had to be built; **resume was exercised at real scale**
+  (stopped at 400, restarted, `581 to do`, picked up at batch 20 of 50); the fit half
+  sustained **981 consecutive fits at 0.123 s** with drift −0.011 s/1000 and f2
+  bit-identical on repeats; and archive weather over **60 requests spanning 2.0 h** spans
+  2.8× (median 26.9 s, p90 34.3 s) with **0 failures** and no monotone trend. **(2) THE ORBITAL-REFIT ARM
+  EXISTS** (`scripts/orbital_refit_arm.py`): epoch astrometry → Keplerian orbit → M₁-free
+  mass function → **companion-mass posterior** (Laplace, from kepmodel's log-likelihood
+  Hessian, 20,000 draws), M₁ taken from the *triage's own three-tier ladder* with the rung
+  recorded, output as **verdict-record v2** (`scripts/verdict_schema_v2.py`, 74 cols =
+  v1's 39 + 35 `refit_*`; v1 untouched, every v1 record valid v2 after `upgrade()`, round
+  trip verified on the frozen EB26 store). **Pre-registered acceptance PASS**: Gaia BH3
+  re-derived to **P 11.45429 yr, e 0.727816, M₂ 34.68425 M☉** — inside M1's *printed*
+  precision on all three (|Δ| 0.00029 / 0.000016 / 0.00425) — plus the posterior M1 never
+  had, 68 % [34.20, 35.17]. On the trio: **BH3 every Campbell element within 1.1 σ of
+  Panuzzo's astrometric solution** (and BH3 has **no DR3 NSS row at all**, which is why
+  the Letter needed preliminary DR4 astrometry); **HD 114762 M₂ 0.2334 [0.2205, 0.2456]
+  lands 1.5 σ from Winn 2022's 0.215 ± 0.013 and excludes Kiefer's 0.10–0.14 at 7–10 σ
+  (3.2–4.5 σ even after inflating the formal error by the measured ×2.3)**; **Gaia-4 10.8
+  M_Jup vs Stefánsson 2025's 11.8 ± 0.7**, with the `binary_masses` M₁ rung reproducing
+  their EXOFASTv2 host mass to −0.20 σ. **Two measured caveats now ride with every mass:
+  the formal errors are lower bounds by a median factor 2.3** (11 elements vs published;
+  only 4 of 11 inside 1 σ), and **all three refit parallaxes ran 5–41 µas LOW** — the
+  mass function goes as ϖ⁻³, which *is* the arm's +2.4 σ offset from Panuzzo's published
+  M_BH, and Panuzzo avoided the same trap by taking the headline mass from the combined
+  astrometry+RVS solution via `a1`. **(3) DECEMBER IS PRE-REGISTERED AND FROZEN**
+  ([`PREREG-2026-08-23-december-discriminators.md`](PREREG-2026-08-23-december-discriminators.md)):
+  **primary analyses are scope-pure** (harness verdicts alone; the EB26-only run is a
+  byte-identity regression check, not evidence), and **a pooled analysis is interpretable
+  in one direction only** — pooled significance is a conservative positive because
+  dilution biases toward the null, pooled non-significance may never be reported as a
+  null. Each test then gets one of **six pre-assigned labels** (POSITIVE / POSITIVE
+  (conservative, pooled) / **NULL** / UNDERPOWERED / DIRECTION REVERSAL / NOT TESTABLE)
+  where NULL
+  requires the test to be *decisive*. Holm family sizes fixed now (D1 3, D2 5, D3 6,
+  D4 1), directions fixed, `INCONCLUSIVE` never folded into `SPURIOUS`, and the negative
+  control `phot_g_n_obs` given a **veto**. Thresholds computed by importing **M5's own
+  power routines** (`scripts/m7_prereg_power.py`; a fresh implementation reproduced M5's
+  published column only to ~2 %): at the EB26 ratio **D2 needs 71+39, D3 73+40 (at M6's
+  weaker *in-list* AUC 0.344, the binding one), D4 64+35, D1 49+27 in-footprint** — and
+  one harness pass gives ~633+347. **So a non-significant December result on D2/D3/D4 is
+  a NULL, the outcome this project has never been able to claim; D1 alone stays
+  footprint-capped.** **(4) runbook + rehearsal**: the measured clock, a new **§3.4 = the
+  refit arm** with both caveats, §3.3 rewritten to STOP-and-read the pre-registration with
+  the three-way primary/regression/pooled command set, five new failure branches — and
+  **running those commands found the runbook's own December command was broken**: both
+  discriminator tests hard-coded `== 76` on the verdict join, so `--verdicts all` raised
+  the moment the store held a second producer and the *pooled* half of "run each twice"
+  would have died on the day. Both now assert only no-fan-out and drop unjoinable rows
+  with a printed count; **all five frozen M4/M5 artifacts still reproduce
+  BYTE-IDENTICALLY** through the fixed path, and the pooled run works (10 of 88 rows
+  dropped, scope composition printed). **Full rehearsal re-run after every change: all
+  nine stages OK (358 s, then 722 s on a re-run after the consumer fixes — the difference is ESAC weather, stage A alone 128 s then 292 s)**, stage F 3/3 kept + 9/9 demoted at max |Δf2| 0.0050 through
+  the refactored fetch layer, plan-B pull **byte-identical for the FIFTH time**
+  (sha256 b3b099a6…dddd5231, 169,227 rows); stage A took 128 s because **ESAC's
+  `TAP_SCHEMA` path was unusable again** and failed over to ARI, exactly as M5's branch
+  prescribes.
+  **No config written — M7 moved nothing about the list, and a version bump that carries
+  no decision is noise.** New landmines: **`DataFrame.iloc[0].to_dict()` rounds
+  `source_id` past 2^53** (BH3's DR3 id came back as a source that does not exist — the
+  pandas twin of M2's ADQL landmine); **Newton diverges on the mass-function cubic** from
+  its natural starting guess and returned M₂ = 1e−9 for BH3, caught only by the
+  cross-check against `pystrometry.pjGet_m2`; the astronomical mass function and
+  pystrometry's SI chain differ by 1e−4; **`min_detectable_rate` takes the fixed-rate
+  group first** (0.60 vs M6's published 0.55, caught only by the reproduction block); and
+  a CSV appender that does not align columns corrupts silently. Human TODOs unchanged
+  (accounts) — but at 468 sources/hour a logged-in quota now buys **depth beyond the
+  queue**, not the queue itself.
 - **2026-08-21** — **M6 done** ([`M6-verdict-harness.md`](M6-verdict-harness.md)):
   the verdict *factory* exists, the record it emits is frozen, and the day-one clock is
   measured instead of assumed. **(1) the production epoch-vet harness**

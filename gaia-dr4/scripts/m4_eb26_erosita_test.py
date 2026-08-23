@@ -200,8 +200,29 @@ def main(argv=None):
                  "pmra", "pmdec", "nss_parallax", "phot_g_mean_mag",
                  "class_det", "cuts_eb26", "significance"])
     t = eb.merge(tri, on="source_id", how="left", suffixes=("", "_tri"))
-    assert len(t) == len(eb) == 76 and t["ra"].notna().all(), \
-        "EB26 join to triage parquet must be 1:1 and complete"
+    # M7: the invariant this guards is NO JOIN FAN-OUT, which is a property
+    # of the merge; the "== 76" was the size of the ONLY store that existed
+    # when it was written.  The moment the store holds a second producer --
+    # which is the entire point of the schema -- `--verdicts all` failed
+    # here, and so did the pooled command the runbook told December to run.
+    # Rows that are not in the day's triage frame cannot be tested and are
+    # DROPPED WITH A COUNT, never silently: today that is the 12 pre-release
+    # demo sources, which are not NSS candidates at all.
+    assert len(t) == len(eb), \
+        f"verdict join to triage parquet fanned out: {len(t)} vs {len(eb)}"
+    n_unjoined = int(t["ra"].isna().sum())
+    if n_unjoined:
+        print(f"  {n_unjoined} of {len(t)} verdict rows are not in the "
+              f"triage frame (no sky position) -- DROPPED from this test")
+        t = t[t["ra"].notna()].reset_index(drop=True)
+    if len(t) == 0:
+        # M7: an empty testable set is a COVERAGE RESULT, not a crash --
+        # see the matching note in m5_activity_discriminator.py.
+        print("\nNOT TESTABLE: 0 of the selected verdict rows are in the "
+              "triage frame (no sky position).")
+        print("  This is a coverage result, not a failure. Report the "
+              "coverage; claim nothing.")
+        return 2
 
     t["in_footprint"] = (t["l"] > L_LO) & (t["l"] < L_HI)
 
