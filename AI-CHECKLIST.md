@@ -21,7 +21,9 @@ answers for it" should be checkable, not asserted.*
 Model versions per stage are recorded in the repository commit trail
 (`Co-Authored-By` lines) and the session-level milestone documents.
 
-## Paper 1: CD-35 2722 B reproduction + eta Tel B limits (`exosat-rv/docs/paper/`)
+## Paper 1: CD-35 2722 B reproduction + eta Tel B limits
+
+*This project now lives at [github.com/mepotts/exosat-rv](https://github.com/mepotts/exosat-rv); the drafts are in its `docs/paper/`. The `exosat-rv/...` paths in the evidence column below are relative to that repository, which also carries its own copy of this checklist — that is the one its papers link to.*
 
 | Research stage | Level | Notes and evidence |
 |---|:---:|---|

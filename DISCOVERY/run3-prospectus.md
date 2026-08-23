@@ -84,7 +84,7 @@ Tier 3 is new domains worth a scoped pilot.
 **1. New public CRIRES+ epochs on the exosat-rv roster** · *extends exosat-rv · competition: no known
 outside pipeline · embargo calendar: Sep 25–Oct 1, then Dec 19 → May 2*
 ⚠️ **Corrected in place by M30 ground-truthing (2026-08-14, same day —
-[`exosat-rv/M30-RESULTS.md`](../exosat-rv/M30-RESULTS.md)).** The sweep's three headline blocks were
+[`M30-RESULTS.md`](https://github.com/mepotts/exosat-rv/blob/main/M30-RESULTS.md)).** The sweep's three headline blocks were
 all already in the project ledger, and none of its counts or "public since" dates survived per-night
 verification: the "90-exposure HIP 65426" block is M22's already-consumed K2192 series (134 frames);
 the "300-exposure CD-35 2722" block is the known, shelved M4368 thermal-IR deep pair (not K-band, and

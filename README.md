@@ -20,13 +20,14 @@ headed into the formal record.
 
 ## Research
 
-### [`exosat-rv/`](exosat-rv/) — an independent raw-to-RV pipeline for imaged companions
+### [`exosat-rv`](https://github.com/mepotts/exosat-rv) — an independent raw-to-RV pipeline for imaged companions
 
-> **Arriving from the paper?** This project now has its own repository:
+> **This project now lives in its own repository:**
 > **[github.com/mepotts/exosat-rv](https://github.com/mepotts/exosat-rv)** — the drafts, the
 > reduction drivers, the injection harness and blind period search, and the full milestone
-> record with its retractions. That is the repository the papers cite. The copy below is
-> retained here for now and is not the canonical one.
+> record with its retractions. That is the repository the papers cite, and the only copy;
+> the working tree that used to sit here has been removed. The summary below stays as the
+> portfolio's account of the work, and every link in it points there.
 
 The deepest project here: an independent reproduction of Hoy et al. 2026
 ([Nature](https://www.nature.com/articles/s41586-026-10751-w)), which measured the
@@ -49,13 +50,13 @@ adjudicated — one confirmation, one contradiction, four upper limits (includin
 one on **eta Tel B** for which no previous measurement is known:
 msini ≳ 0.51–1.27 M_Jup at 90% across P = 20–300 d), one contamination-limited,
 four data-limited — plus a measured resolution gate for slit spectroscopy and an
-open front ([M27](exosat-rv/docs/target-queue.md)): the discovery that the
+open front ([M27](https://github.com/mepotts/exosat-rv/blob/main/docs/target-queue.md)): the discovery that the
 archive's "staring" datasets are fiber-fed starlight-suppressed HiRISE
 observations, including six public nights of beta Pic b.
 
-Five drafts live in [`exosat-rv/docs/paper/`](exosat-rv/docs/paper/), each with a rendered
+Five drafts live in [`docs/paper/`](https://github.com/mepotts/exosat-rv/tree/main/docs/paper), each with a rendered
 `.html` alongside its source;
-[`exosat-rv/LESSONS.md`](exosat-rv/LESSONS.md) is the consolidated trap catalog.
+[`LESSONS.md`](https://github.com/mepotts/exosat-rv/blob/main/LESSONS.md) is the consolidated trap catalog.
 
 ### [`itf-linker/`](itf-linker/) — linking the Minor Planet Center's orphan observations
 
