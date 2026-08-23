@@ -56,6 +56,9 @@ from itf_linker.mpc80 import parse_line
 
 LEDGER_M8 = ROOT / "m8-ledger.json"
 DROPPED = ROOT / "data" / "raw" / "rubin" / "m9-dropped-tracklets.parquet"
+#: The 08-16 key set. **The archive's rolling retention prunes it** -- by
+#: 2026-08-23 this path no longer exists (M11 section 1.0). Override with
+#: --slim, pointing at a rebuilt table from scripts/m11_snapshot_series.py.
 SLIM = ROOT / "data" / "snapshots" / "20260816T202701Z" / "observations.parquet"
 M8_FIT_ROOT = ROOT / "data" / "m8-fits"
 FIT_ROOT = ROOT / "data" / "m9-fits"
@@ -80,8 +83,21 @@ def fit_fields(fit: Any) -> dict[str, Any]:
     }
 
 
+#: Where a consumed tracklet's verbatim fitted lines live, by fit-tag prefix. M9 only
+#: ever needed M8's directory (every M8 tag is ``m8a...``); M11 combines the M10 shell
+#: tier, whose tags are ``mAa...``, and its own deep-end queue (``mCa...``).
+FIT_ROOTS_BY_PREFIX = {
+    "m7a": ROOT / "data" / "m7-fits",
+    "m8a": M8_FIT_ROOT,
+    "m9a": ROOT / "data" / "m9-fits",
+    "mAa": ROOT / "data" / "m10-shell-fits",
+    "mCa": ROOT / "data" / "m11-deep-fits",
+}
+
+
 def tracklet_lines_from_fit_dir(tag: str, obscode: str, mjds: list[float]) -> list[str]:
-    obs_txt = M8_FIT_ROOT / tag / "obs.txt"
+    root = FIT_ROOTS_BY_PREFIX.get(tag[:3], M8_FIT_ROOT)
+    obs_txt = root / tag / "obs.txt"
     if not obs_txt.exists():
         return []
     out = []
@@ -98,11 +114,42 @@ def main() -> None:
                     help="additional ledger JSONs whose PASS rows join the pool "
                          "(e.g. m9-ledger.json once it exists)")
     ap.add_argument("--min-tracklets", type=int, default=2)
+    ap.add_argument("--consumed", type=Path, default=None,
+                    help="a refresh report (m11-refresh.json) whose consumed rows join "
+                         "m9-dropped-tracklets.parquet. Without it, only the 08-16 to "
+                         "08-18 consumptions are known and a member the MPC took last "
+                         "week is silently reported as unconsumed submission value")
+    ap.add_argument("--ledgers", nargs="*", default=None,
+                    help="REPLACE the default source list (m8-ledger.json). M11 uses "
+                         "this to combine the M10 shell tier on its own without "
+                         "re-running or overwriting M9's 45-object tier")
+    ap.add_argument("--out", type=Path, default=OUT)
+    ap.add_argument("--fit-root", type=Path, default=FIT_ROOT,
+                    help="where this run's fo directories go")
+    ap.add_argument("--tag-prefix", default="m9",
+                    help="two characters; fit tags are <prefix>c#### (combined) and "
+                         "<prefix>e#### (baseline). Seven characters total -- the "
+                         "trkSub field truncates at 7 (HANDOFF section 2)")
+    ap.add_argument("--slim", type=Path, default=SLIM,
+                    help="08-16 observation table (obs_key/desig/obscode/mjd "
+                         "is enough). The archive prunes the snapshot this "
+                         "defaults to; scripts/m11_snapshot_series.py rebuilds "
+                         "it exactly from the delta chain")
     args = ap.parse_args()
+    if not args.slim.exists():
+        raise SystemExit(
+            f"{args.slim} does not exist -- the archive's retention has pruned "
+            "the 08-16 key set. Rebuild it with scripts/m11_snapshot_series.py "
+            "and pass --slim; do NOT silently substitute a newer snapshot."
+        )
 
     # ---- the pool: PASS rows grouped by object -------------------------------------
-    sources = [("M8", LEDGER_M8)] + [(f"extra{i}", Path(p))
-                                     for i, p in enumerate(args.extra_ledgers)]
+    if len(args.tag_prefix) != 2:
+        ap.error("--tag-prefix must be exactly two characters (7-char trkSub field)")
+    base = ([("M8", LEDGER_M8)] if args.ledgers is None
+            else [(Path(p).stem, Path(p)) for p in args.ledgers])
+    sources = base + [(f"extra{i}", Path(p))
+                      for i, p in enumerate(args.extra_ledgers)]
     passes: dict[str, list[dict[str, Any]]] = {}
     for label, path in sources:
         doc = json.loads(path.read_text(encoding="utf-8"))
@@ -126,6 +173,13 @@ def main() -> None:
     dropped = pl.read_parquet(DROPPED)
     dset = set(zip(dropped["desig"].to_list(), dropped["obscode"].to_list(),
                    dropped["night"].to_list()))
+    if args.consumed is not None:
+        doc = json.loads(args.consumed.read_text(encoding="utf-8"))
+        extra = {(r["trksub"], r["obscode"], int(r["night"]))
+                 for r in doc.get("consumed_rows", [])}
+        print(f"consumed keys: {len(dset)} from the 08-16/08-18 drop set "
+              f"+ {len(extra - dset)} newer", flush=True)
+        dset |= extra
 
     # tracklet observation epochs from the 08-16 slim table (for fit-dir extraction
     # of consumed tracklets, and for per-tracklet used checks)
@@ -136,7 +190,7 @@ def main() -> None:
     )
     all_trksubs = {v["trksub"] for rows in multi.values() for v in rows}
     slim = (
-        pl.scan_parquet(SLIM)
+        pl.scan_parquet(args.slim)
         .filter(pl.col("desig").is_in(sorted(all_trksubs)))
         .join(lon_df.lazy(), on="obscode", how="left")
         .with_columns(
@@ -159,11 +213,11 @@ def main() -> None:
     for k, (desig, rows) in enumerate(sorted(multi.items())):
         obj_lines = m8run.get_obs80_cached(desig)  # M8-era cache (see module doc)
 
-        base_tag = f"m9e{k:04d}"
+        base_tag = f"{args.tag_prefix}e{k:04d}"
         cfg = prepare_config_dir(shell, base_tag)
         run = run_fo(
             [_relabel(ln, base_tag) for ln in obj_lines],
-            FIT_ROOT / base_tag,
+            args.fit_root / base_tag,
             designations=[base_tag],
             shell=shell,
             config_dir=cfg,
@@ -179,11 +233,26 @@ def main() -> None:
         for v in rows:
             key = (v["trksub"], v["obscode"], v["night"])
             mjds = trk_mjds(*key)
-            lines = index.get(key) or tracklet_lines_from_fit_dir(
+            # The ITF line index is built from *today's* pull, but the tracklet is a
+            # statement about the 08-16 universe. A tracklet the MPC has partially
+            # consumed since then still appears in today's file with FEWER
+            # observations, and taking those lines would silently fit a different
+            # tracklet from the one the ledger passed. Accept the live lines only when
+            # their count matches the 08-16 slim; otherwise fall back to the verbatim
+            # lines fo actually fitted.
+            live = index.get(key) or []
+            live_ok = bool(live) and len(
+                [ln for ln in live if parse_line(ln, strict=False)]
+            ) == len(mjds)
+            lines = live if live_ok else tracklet_lines_from_fit_dir(
                 v.get("fit_tag") or "", v["obscode"], mjds
             )
-            source = ("itf" if index.get(key) else
-                      "m8_fit_dir" if lines else "MISSING")
+            source = ("itf" if live_ok else
+                      "fit_dir" if lines else "MISSING")
+            if live and not live_ok:
+                print(f"  {v['trksub']}/{v['obscode']}/n{v['night']}: live ITF has "
+                      f"{len(live)} lines vs {len(mjds)} at 08-16 -- using the fit dir",
+                      flush=True)
             obs = [o for o in (parse_line(ln, strict=False) for ln in lines) if o]
             members.append(
                 {
@@ -208,11 +277,11 @@ def main() -> None:
             print(f"{desig}: MISSING lines for a member; skipped", flush=True)
             continue
 
-        tag = f"m9c{k:04d}"
+        tag = f"{args.tag_prefix}c{k:04d}"
         cfg = prepare_config_dir(shell, tag)
         run = run_fo(
             [_relabel(ln, tag) for ln in joint_lines],
-            FIT_ROOT / tag,
+            args.fit_root / tag,
             designations=[tag],
             shell=shell,
             config_dir=cfg,
@@ -326,9 +395,10 @@ def main() -> None:
         "n_objects": len(multi),
         "results": results,
     }
-    OUT.write_text(json.dumps(doc, indent=2), encoding="utf-8")
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.write_text(json.dumps(doc, indent=2), encoding="utf-8")
     n_pass = sum(1 for r in results if r.get("tier") == "combined_pass")
-    print(f"combined_pass: {n_pass}/{len(results)}; wrote {OUT}", flush=True)
+    print(f"combined_pass: {n_pass}/{len(results)}; wrote {args.out}", flush=True)
 
 
 if __name__ == "__main__":

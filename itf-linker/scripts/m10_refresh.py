@@ -60,8 +60,14 @@ from itf_linker.mpc80 import parse_line
 M8_LEDGER = ROOT / "m8-ledger.json"
 M9_LEDGER = ROOT / "m9-ledger.json"
 SNAP_DIR = ROOT / "data" / "snapshots"
+#: Where a consumed tracklet's verbatim fitted lines live, keyed by fit-tag prefix.
+#: ``mAa`` is M10's shell queue and ``mCa`` M11's deep-end queue -- both needed once the
+#: refresh covers the shell tier (M11 section 0.2), because a consumed tracklet's
+#: astrometry cannot come from the ITF it has left.
 FIT_ROOTS = {"m8a": ROOT / "data" / "m8-fits", "m9a": ROOT / "data" / "m9-fits",
-             "m7a": ROOT / "data" / "m7-fits"}
+             "m7a": ROOT / "data" / "m7-fits",
+             "mAa": ROOT / "data" / "m10-shell-fits",
+             "mCa": ROOT / "data" / "m11-deep-fits"}
 FRESH_CACHE = ROOT / "data" / "raw" / "rubin" / "obs80-m10fresh"
 OUT = ROOT / "data" / "raw" / "rubin" / "m10-refresh.json"
 
@@ -191,9 +197,51 @@ def observation_in_published(
     return False
 
 
-def load_rows() -> list[dict[str, Any]]:
+def scan_series(fresh_slim: Path, fresh_prov: dict[str, Any]) -> list[dict[str, Any]]:
+    """The archive's surviving key sets at/after the base, plus the fresh pull.
+
+    **Guarded, because the failure mode is silent.** The archive's retention prunes
+    ``observations.parquet`` on a rolling window, so this scan quietly starts returning
+    a *later* snapshot as element 0 once the base has been pruned -- and every
+    "consumed since <base>" count downstream then measures a shorter interval under
+    the old heading. Measured 2026-08-23: the scan returned 08-21 -> 08-22 -> 08-23
+    for a base of 08-16. Refuse rather than report.
+    """
+    series: list[dict[str, Any]] = []
+    for sid in sorted(p.name for p in SNAP_DIR.iterdir()
+                      if (p / "observations.parquet").exists()
+                      and p.name >= BASE_SNAPSHOT):
+        manifest = json.loads(
+            (SNAP_DIR / sid / "manifest.json").read_text(encoding="utf-8")
+        )
+        series.append({
+            "snapshot_id": sid,
+            "last_modified": manifest["provenance"]["last_modified"],
+            "observations": manifest["observations"],
+            "slim": SNAP_DIR / sid / "observations.parquet",
+        })
+    series.append({
+        "snapshot_id": "FRESH-" + fresh_prov["last_modified"],
+        "last_modified": fresh_prov["last_modified"],
+        "observations": None,
+        "slim": fresh_slim,
+    })
+    if series[0]["snapshot_id"] != BASE_SNAPSHOT:
+        raise SystemExit(
+            f"the base snapshot {BASE_SNAPSHOT} has no surviving key set (the "
+            f"archive's retention pruned it); element 0 of the series would be "
+            f"{series[0]['snapshot_id']} and every 'consumed since' count would "
+            f"silently measure a different interval. Rebuild the series with "
+            f"scripts/m11_snapshot_series.py and pass --series."
+        )
+    return series
+
+
+def load_rows(extra: list[tuple[str, Path]] | None = None) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
-    for path, tag in ((M8_LEDGER, "M8"), (M9_LEDGER, "M9")):
+    for path, tag in [(M8_LEDGER, "M8"), (M9_LEDGER, "M9")] + [
+        (p, t) for t, p in (extra or [])
+    ]:
         doc = json.loads(path.read_text(encoding="utf-8"))
         for v in doc["verdicts"]:
             r = dict(v)
@@ -211,6 +259,7 @@ def load_rows() -> list[dict[str, Any]]:
 
 
 def main() -> None:
+    global FRESH_CACHE
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--fresh-slim", type=Path, required=True,
                     help="slim (obs_key, desig, obscode, mjd) parquet of a pull taken "
@@ -219,10 +268,35 @@ def main() -> None:
     ap.add_argument("--fresh-provenance", type=Path, required=True)
     ap.add_argument("--no-network", action="store_true",
                     help="skip the live get-obs agreement check (offline dry run)")
+    ap.add_argument("--extra-ledgers", nargs="*", default=[],
+                    help="additional ledgers whose fitted rows join the refresh, as "
+                         "LABEL=path (M11: M10-shell=m10-shell-ledger.json). Default "
+                         "off, so M10's 1,903-row population reproduces unchanged")
+    ap.add_argument("--out", type=Path, default=OUT,
+                    help="report destination. Default is M10's; M11 writes its own so "
+                         "m10-refresh.json stays the input every M10 artifact cites")
+    ap.add_argument("--series", type=Path, default=None,
+                    help="series.json from scripts/m11_snapshot_series.py, replacing "
+                         "the data/snapshots scan. Required once the archive's "
+                         "retention has pruned the base snapshot's key set")
+    ap.add_argument("--fresh-cache", type=Path, default=FRESH_CACHE,
+                    help="get-obs cache for the agreement check. MUST be a cache no "
+                         "older than the interval being tested: a stale published "
+                         "record makes an agreeing consumption look like a "
+                         "disagreement. Default is M10's 08-18 cache; every later "
+                         "refresh needs its own")
     args = ap.parse_args()
+    FRESH_CACHE = args.fresh_cache
+
+    extra: list[tuple[str, Path]] = []
+    for spec in args.extra_ledgers:
+        label, _, path = spec.partition("=")
+        if not path:
+            ap.error("--extra-ledgers entries must be LABEL=path")
+        extra.append((label, Path(path)))
 
     t0 = time.monotonic()
-    rows = load_rows()
+    rows = load_rows(extra)
     print(f"cumulative ledger rows: {len(rows)}", flush=True)
 
     lon_df = lon_frame()
@@ -231,22 +305,17 @@ def main() -> None:
     # ---- the snapshot series -------------------------------------------------------
     fresh_prov = json.loads(args.fresh_provenance.read_text(encoding="utf-8"))
     series: list[dict[str, Any]] = []
-    for sid in sorted(p.name for p in SNAP_DIR.iterdir()
-                      if (p / "observations.parquet").exists()
-                      and p.name >= BASE_SNAPSHOT):
-        manifest = json.loads((SNAP_DIR / sid / "manifest.json").read_text(encoding="utf-8"))
-        series.append({
-            "snapshot_id": sid,
-            "last_modified": manifest["provenance"]["last_modified"],
-            "observations": manifest["observations"],
-            "slim": SNAP_DIR / sid / "observations.parquet",
-        })
-    series.append({
-        "snapshot_id": "FRESH-" + fresh_prov["last_modified"],
-        "last_modified": fresh_prov["last_modified"],
-        "observations": None,
-        "slim": args.fresh_slim,
-    })
+    if args.series is not None:
+        # An explicit series. M11 needs this because the archive's rolling retention
+        # PRUNED the base snapshot's key set: the directory scan below silently returns
+        # 08-21 as element 0 and every "consumed since 08-16" count then measures
+        # something else under the old heading. scripts/m11_snapshot_series.py rebuilds
+        # the series exactly from the contiguous delta chain and verifies it.
+        doc = json.loads(args.series.read_text(encoding="utf-8"))
+        for e in doc["series"]:
+            series.append({**e, "slim": Path(e["slim"])})
+    else:
+        series = scan_series(args.fresh_slim, fresh_prov)
     print("snapshot series: " + " -> ".join(s["snapshot_id"] for s in series), flush=True)
 
     counts_by_snap: list[dict[tuple[str, str, int], int]] = []
@@ -284,7 +353,7 @@ def main() -> None:
 
     # ---- agreement check on the consumed rows --------------------------------------
     epochs = tracklet_epochs(
-        SNAP_DIR / BASE_SNAPSHOT / "observations.parquet",
+        series[0]["slim"],
         [r["_key"] for r in consumed] or [("", "", 0)],
         lon_df,
     ) if consumed else {}
@@ -336,11 +405,15 @@ def main() -> None:
               f"n{r['night']} ({r['ledger']})", flush=True)
 
     # ---- decay curve ---------------------------------------------------------------
-    fitted = [r for r in rows if r["ledger"] in ("M8", "M9") and r["n_obs_base"] > 0]
+    # "M7" is the three held rows, which were never fitted through the sweep queue and
+    # carry no verdict of their own. Everything else -- M8, M9, and any ledger passed
+    # with --extra-ledgers (M11: the M10 shell) -- is a fitted population.
+    fitted = [r for r in rows if r["ledger"] != "M7" and r["n_obs_base"] > 0]
     passes = [r for r in fitted if r["verdict"] == "PASS"]
+    ledger_labels = sorted({r["ledger"] for r in fitted})
     curve = []
     for s, c in zip(series, counts_by_snap):
-        curve.append({
+        entry = {
             "snapshot_id": s["snapshot_id"],
             "last_modified": s["last_modified"],
             "itf_observations": s["observations"],
@@ -348,7 +421,14 @@ def main() -> None:
             "fitted_total": len(fitted),
             "pass_live": sum(1 for r in passes if c.get(r["_key"], 0) >= r["n_obs_base"]),
             "pass_total": len(passes),
-        })
+        }
+        for lab in ledger_labels:
+            sub = [r for r in passes if r["ledger"] == lab]
+            entry[f"pass_live_{lab}"] = sum(
+                1 for r in sub if c.get(r["_key"], 0) >= r["n_obs_base"]
+            )
+            entry[f"pass_total_{lab}"] = len(sub)
+        curve.append(entry)
 
     summary: dict[str, Any] = {
         "cumulative_rows": len(rows),
@@ -377,6 +457,16 @@ def main() -> None:
     summary["pass_consumed_and_disagreed"] = sum(
         1 for r in passes if r.get("agreement") == "CONSUMED_AND_DISAGREED"
     )
+    summary["pass_by_ledger"] = {
+        lab: {
+            "total": sum(1 for r in passes if r["ledger"] == lab),
+            "still_live": sum(1 for r in passes
+                              if r["ledger"] == lab and r["itf_status"] == "STILL_LIVE"),
+            "consumed": sum(1 for r in passes if r["ledger"] == lab
+                            and r["itf_status"] in ("CONSUMED", "PARTIALLY_CONSUMED")),
+        }
+        for lab in sorted({r["ledger"] for r in passes})
+    }
 
     out = {
         "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
@@ -394,11 +484,11 @@ def main() -> None:
             {k: v for k, v in r.items() if k != "_key" and k != "skybot"} for r in rows
         ],
     }
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(out, indent=2), encoding="utf-8")
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.write_text(json.dumps(out, indent=2), encoding="utf-8")
     print(json.dumps(summary, indent=2))
     print(json.dumps(curve, indent=2))
-    print(f"wrote {OUT} in {time.monotonic() - t0:.1f}s")
+    print(f"wrote {args.out} in {time.monotonic() - t0:.1f}s")
 
 
 if __name__ == "__main__":

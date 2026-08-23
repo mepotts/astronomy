@@ -578,3 +578,38 @@ numbers must stay reproducible: `MIN_LOOKBACK_DAYS == 0.0`, `CALIBRATION_KEY ==
 `m10-distant-fits.json`; and `out/review-queue.csv` + `out/review-queue-summary.json`,
 which are the deliverable and are small enough to keep. The fresh 2026-08-18 21:26:46
 GMT ITF pull was parsed **outside the repository** and is not part of the archive.*
+
+---
+
+## Addendum, appended 2026-08-23 by M11 — what a longer baseline changed
+
+**Nothing above has been edited.** Every number in M10 remains what M10 measured on its
+own window. These are the four places where M11's longer baseline, larger sample or
+extra test changes how an M10 claim should be *cited*. Full detail in `M11-RESULTS.md`.
+
+| M10 claim | Status after M11 | Where |
+|---|---|---|
+| §2 "**M9 PASS 0 of 272**, half-life > 101 d, Fisher p = 7.1 × 10⁻⁵" — the decay is *entirely* in M8's head | **Superseded — it was a burst.** Over seven days M9's PASS rows lost **12 of 272** (half-life 106 d) against M8's 50 of 482 (43.8 d). The head-vs-tail effect is real but **2.4×, not infinite** (p = 0.0024); M8's own top/bottom ratio fell 2.8× → 1.9×. M10's own trap 2 predicted this exactly | `M11-RESULTS.md` §1.2 |
+| §5.3 "the shell's ~54 wide-gate rows deserve a decoy-controlled *fit-stage* test before anyone treats them as candidates" | **Test run, and the shell passed it.** 0 of 300 decoy fits are fit-grade against 76 of 300 real (p = 5.7 × 10⁻²⁶), 0 % in *every* sep, sep/gate and tracklet-length stratum. The wide-gate rows are not chance. Caveats 1 and 2 (one observatory, 2-observation tracklets) are untouched by this and remain open | `M11-RESULTS.md` §4 |
+| §5.2 "Thirteen objects carry ≥ 2 passing shell tracklets" — and the strongest-rows table, led by **2015 KP488** (691 + G96, 8.9″/9.9″) | **Refined and partly reversed.** Thirteen counts *fit-grade* fits; the verdict chain leaves **10** objects with ≥ 2 PASS rows. Combined-fitted, only **3 of 10** pass, against the main tier's 40 of 45 (p = 3.5 × 10⁻⁴) — and **2015 KP488 fails**: both tracklets fully used but joint RMS 0.305″ against a 0.045″ baseline and σ_a 88× worse. **2021 SZ54 is confirmed**: it passes combined *and* the MPC has since consumed all three of its tracklets into it | `M11-RESULTS.md` §3.2, §4.3 |
+| §9 item 4 "the coarse sweep has 14,717 matches in the 24–25 y bin **that nothing has fitted**" | **Premise wrong; conclusion tested anyway.** M10's own global head spans 15.26–25.00 y and already held 90 fits at 21–25 y (40 at 24–25 y), all zero fit-grade. A rank-stratified round-robin added 40 more deep fits and found the same: **0 fit-grade of 130 beyond 20.74 y** against 33 of 90 at 20–21 y (p = 2.3 × 10⁻¹⁵). The cliff is the sky, not the ranking | `M11-RESULTS.md` §5 |
+
+Two M10 results were *confirmed* on populations they had not been tested against, and
+both are worth citing as strengthened rather than merely repeated:
+
+* **§6.1's explanation of the pointed-field confound** ("a property of follow-up, so it
+  scales with how interesting the object already was") predicted **0** flags in a 15–25 y
+  precovery shell. Recorded as a prediction before the run and confirmed: 0
+  `POINTED_FIELD` **and** 0 `SAME_NIGHT_FIELD` across the shell tier's 70 screenable
+  PASS/BORDERLINE rows, cleaner than the main tier's 0 and 5 of 735.
+* **§6.2's self-designation screen** measured 0 across 1,971 *fitted* ledger rows — a
+  population that had already survived a fit, which is the one thing this artefact class
+  always does. Screened against the shell's **coarse** ranked top 2,000, before any gate,
+  it is still 0.
+
+One M10 artifact is superseded operationally: `out/review-queue.csv` is kept
+**byte-identical** (md5 `05ed531d196b47571de06e79234fffac`) so a review in progress is
+not renumbered, and `out/review-queue-v2-20260823.csv` (669 rows) ships beside it with
+`out/review-queue-v2-20260823-diff.json`. Regenerating M10's numbers from
+`scripts/m10_refresh.py` now **requires** `--series`, because the archive's retention has
+pruned the 08-16 key set the original command line depended on (`M11-RESULTS.md` §1.0).

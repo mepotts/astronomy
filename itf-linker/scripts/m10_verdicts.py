@@ -53,9 +53,16 @@ def main() -> None:
     ap.add_argument("--fresh-slim", type=Path, required=True,
                     help="the same pull m10_refresh.py used, so 'still live' means one "
                          "thing across the whole review queue")
+    ap.add_argument("--report", type=Path, default=REPORT,
+                    help="fit report to adjudicate. M11's deep-end queue writes the "
+                         "same shape, so the chain runs over it unchanged")
+    ap.add_argument("--out", type=Path, default=OUT)
+    ap.add_argument("--provenance", default="M10-shell",
+                    help="what the ledger rows call themselves")
+    ap.add_argument("--window", default="15 y < |dt| <= 25 y (M10-RESULTS.md section 0.2)")
     args = ap.parse_args()
 
-    fits = json.loads(REPORT.read_text(encoding="utf-8")).get("fits") or []
+    fits = json.loads(args.report.read_text(encoding="utf-8")).get("fits") or []
     print(f"shell fits to adjudicate: {len(fits)}", flush=True)
 
     lon = fetch_obscodes()
@@ -157,7 +164,7 @@ def main() -> None:
         siblings = per_object.get(f["orbit_desig"], [])
         stations = sorted({s["obscode"] for s in siblings})
         verdicts.append({
-            "provenance": "M10-shell",
+            "provenance": args.provenance,
             "orbit_desig": f["orbit_desig"],
             "trksub": f["trksub"],
             "obscode": f["obscode"],
@@ -190,8 +197,8 @@ def main() -> None:
     passes = [v for v in verdicts if v["verdict"] == "PASS"]
     ledger = {
         "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "generated_from": REPORT.name,
-        "window": "15 y < |dt| <= 25 y (M10-RESULTS.md section 0.2)",
+        "generated_from": args.report.name,
+        "window": args.window,
         "ledgers_untouched": ["m8-ledger.json", "m9-ledger.json"],
         "rules": {
             "note": "identical to m8-ledger.json rules; nothing loosened",
@@ -212,7 +219,7 @@ def main() -> None:
         },
         "verdicts": verdicts,
     }
-    OUT.write_text(json.dumps(ledger, indent=2), encoding="utf-8")
+    args.out.write_text(json.dumps(ledger, indent=2), encoding="utf-8")
     print(f"M10 shell verdicts: {json.dumps(counts)}; SkyBoT calls: {n_skybot}")
     for v in verdicts:
         if v["verdict"] != "FAIL":
@@ -222,7 +229,7 @@ def main() -> None:
                   f"rms {v['rms_joint']} used {v['trk_obs_used']}/{v['trk_obs_total']}"
                   f" sib {v['sibling_passes_on_object']}"
                   f"{' XSURVEY' if v['cross_observatory'] else ''}")
-    print(f"wrote {OUT}")
+    print(f"wrote {args.out}")
 
 
 if __name__ == "__main__":

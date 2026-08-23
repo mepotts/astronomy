@@ -55,6 +55,9 @@ from itf_linker.mpc80 import parse_line
 LEDGER_M8 = ROOT / "m8-ledger.json"
 CONSUMED = ROOT / "data" / "raw" / "rubin" / "m9-consumed-check.json"
 DROPPED = ROOT / "data" / "raw" / "rubin" / "m9-dropped-tracklets.parquet"
+#: The 08-16 key set. **The archive's rolling retention prunes it** -- by
+#: 2026-08-23 this path no longer exists (M11 section 1.0). Override with
+#: --slim, pointing at a rebuilt table from scripts/m11_snapshot_series.py.
 SLIM = ROOT / "data" / "snapshots" / "20260816T202701Z" / "observations.parquet"
 M8_FIT_ROOT = ROOT / "data" / "m8-fits"
 FIT_ROOT = ROOT / "data" / "m9-fits"
@@ -68,6 +71,10 @@ FIT_ROOTS_BY_PREFIX = {
     "m7a": ROOT / "data" / "m7-fits",
     "m8a": M8_FIT_ROOT,
     "m9a": ROOT / "data" / "m9-fits",
+    # M11 adjudicates the M10 shell ledger (tags ``mAa...``) and its own deep-end
+    # queue (``mCa...``); a consumed tracklet's verbatim lines live in those roots.
+    "mAa": ROOT / "data" / "m10-shell-fits",
+    "mCa": ROOT / "data" / "m11-deep-fits",
 }
 
 
@@ -136,7 +143,18 @@ def main() -> None:
                          "the pull the ledger rows were fitted against rather than "
                          "whatever the daily archive last wrote (HANDOFF section 2)")
     ap.add_argument("--out", type=Path, default=OUT)
+    ap.add_argument("--slim", type=Path, default=SLIM,
+                    help="08-16 observation table (obs_key/desig/obscode/mjd "
+                         "is enough). The archive prunes the snapshot this "
+                         "defaults to; scripts/m11_snapshot_series.py rebuilds "
+                         "it exactly from the delta chain")
     args = ap.parse_args()
+    if not args.slim.exists():
+        raise SystemExit(
+            f"{args.slim} does not exist -- the archive's retention has pruned "
+            "the 08-16 key set. Rebuild it with scripts/m11_snapshot_series.py "
+            "and pass --slim; do NOT silently substitute a newer snapshot."
+        )
 
     if len(args.tag_prefix) != 2:
         ap.error("--tag-prefix must be exactly two characters (7-char trkSub field)")
@@ -168,7 +186,7 @@ def main() -> None:
     )
     trksubs = {v["trksub"] for v in rows}
     slim = (
-        pl.scan_parquet(SLIM)
+        pl.scan_parquet(args.slim)
         .filter(pl.col("desig").is_in(sorted(trksubs)))
         .join(lon_df.lazy(), on="obscode", how="left")
         .with_columns(

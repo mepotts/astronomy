@@ -19,12 +19,22 @@ against the Rubin bulk-batch orbits), M8 (the perturbed backend, at full batch
 scale), M9 (the unconsumed partitions, the queue extension, and the MPC's
 independent confirmation of 30/30 consumed candidates) and M10 (the ledger
 refreshed for review, the decay clock re-measured with an uncertainty, and the
-15-25 y shell opened) complete.**
+15-25 y shell opened) and M11 (the shell's fit stage priced against a decoy, its deep
+end closed, and the ledger refreshed a second time) complete.**
 
-> **Reviewing candidates? Open [`out/review-queue.csv`](out/review-queue.csv).**
-> 701 still-live rows, ranked by submission value, with an adjudicable column set and
-> a ten-row spot-check sample at the top. Regenerate it with
-> `python scripts/m10_review_queue.py`. Nothing in it has been submitted anywhere. Milestone findings:
+> **Reviewing candidates? Open
+> [`out/review-queue-v2-20260823.csv`](out/review-queue-v2-20260823.csv)** — the current
+> version, **669 still-live rows** against a 2026-08-23 18:27 GMT ITF pull, ranked by
+> submission value, with an adjudicable column set and a ten-row spot-check sample at
+> the top.
+> [`out/review-queue.csv`](out/review-queue.csv) is the earlier 08-18 copy and is kept
+> **byte-identical** so a half-finished review is not renumbered underneath it;
+> [`out/review-queue-v2-20260823-diff.json`](out/review-queue-v2-20260823-diff.json)
+> lists exactly what changed (32 rows left, 0 entered, 0 changed tier — every departure
+> an MPC consumption that agreed with the ledger). Regenerate with
+> `python scripts/m10_review_queue.py --out <new versioned path> --refresh <a fresh
+> refresh> --slim <a rebuilt 08-16 table>`, never in place. Nothing in it has been
+> submitted anywhere. Milestone findings:
 [`M0-RESULTS.md`](M0-RESULTS.md) (kill-check) · [`M1-RESULTS.md`](M1-RESULTS.md)
 (orbit fitting) · [`M2-RESULTS.md`](M2-RESULTS.md) (catalogue vetting) ·
 [`M3-RESULTS.md`](M3-RESULTS.md) (linking) · [`M4-RESULTS.md`](M4-RESULTS.md) (NEO to TNO
@@ -52,7 +62,18 @@ queue head**, half-life 32 d there against zero of 272 M9 PASS rows;
 `out/review-queue.csv`; M9's 60 ambiguities adjudicated 57-3; the 15-25 y main-belt
 shell swept on a gate *derived* from M9's measured envelope; and the pointed-field
 screen built, validated 3/3 against M9's failures, and measured against the live
-ledger).
+ledger) ·
+[`M11-RESULTS.md`](M11-RESULTS.md) (the 15-25 y shell's **fit stage priced against a
+decoy for the first time — 0 of 300 decoy fits pass against 76 of 300 real**, with the
+re-run control reproducing M10's to the count, and the separation living **entirely in
+the "did fo use the tracklet" primary gate** while the strict RMS gate passes *more*
+decoys than reals; the MPC independently consuming **6 shell PASS rows and agreeing with
+all 6**; the shell's multi-tracklet objects passing their combined fit only 3 of 10
+against the main tier's 40 of 45; the deep end closed at **0 fit-grade of 130 fits
+beyond 20.74 y**; the cumulative ledger refreshed to 2,203 rows with **68 of 68 consumed
+PASSes agreeing** and the strict gate's true-negative count at five; and the archive's
+retention found to have **pruned the base snapshot**, which made the first refresh read
+18 consumptions instead of 103 with nothing in the output to show it).
 
 M1 built Find_Orb under WSL, verified it against JPL Horizons, and fitted the ITF
 designations that already span 3+ nights. M2 built the MPChecker / SkyBoT / SBIDENT /
@@ -207,7 +228,7 @@ re-fetchable, so nothing bulk is ever committed.
 ## Tests
 
 ```bash
-.venv/Scripts/python -m pytest          # unit tests, no network, no snapshot needed
+.venv/Scripts/python -m pytest          # 505 unit tests, no network, no snapshot needed
 .venv/Scripts/python -m pytest -m slow  # additionally requires a fetched ITF snapshot
 ```
 

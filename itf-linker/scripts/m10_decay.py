@@ -23,6 +23,7 @@ Pure post-run analysis: no network, no fits, nothing loosened.
 
 from __future__ import annotations
 
+import argparse
 import itertools
 import json
 import math
@@ -99,7 +100,11 @@ def survival_rate(k: int, n: int, days: float) -> dict[str, Any]:
 
 
 def main() -> None:
-    doc = json.loads(REFRESH.read_text(encoding="utf-8"))
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--refresh", type=Path, default=REFRESH)
+    ap.add_argument("--out", type=Path, default=OUT)
+    args = ap.parse_args()
+    doc = json.loads(args.refresh.read_text(encoding="utf-8"))
     curve = doc["decay_curve"]
     rows = doc["rows"]
     t0 = parse_http_date(curve[0]["last_modified"])
@@ -112,8 +117,11 @@ def main() -> None:
     intervals = []
     for a, b in itertools.pairwise(curve):
         dt = b["days_since_base"] - a["days_since_base"]
-        for label, live_k, tot_k in (("fitted", "fitted_live", "fitted_total"),
-                                     ("pass", "pass_live", "pass_total")):
+        pop_keys = [("fitted", "fitted_live", "fitted_total"),
+                    ("pass", "pass_live", "pass_total")]
+        pop_keys += [(k[len("pass_live_"):], k, "pass_total_" + k[len("pass_live_"):])
+                     for k in a if k.startswith("pass_live_")]
+        for label, live_k, tot_k in pop_keys:
             k = a[live_k] - b[live_k]
             intervals.append({
                 "population": label,
@@ -127,7 +135,9 @@ def main() -> None:
     total_days = curve[-1]["days_since_base"]
 
     # ---- pooled rates, whole window --------------------------------------------------
-    fitted = [r for r in rows if r["ledger"] in ("M8", "M9") and r["n_obs_base"] > 0]
+    # Any ledger the refresh covered, minus M7's three held rows (never fitted through
+    # a sweep queue). Identical to M10's M8/M9 pair when no extra ledger was passed.
+    fitted = [r for r in rows if r["ledger"] != "M7" and r["n_obs_base"] > 0]
     def consumed(rs: list[dict[str, Any]]) -> int:
         return sum(1 for r in rs if r["itf_status"] != "STILL_LIVE")
 
@@ -144,6 +154,12 @@ def main() -> None:
                         and r["verdict"] == "PASS"],
         "all_fail": [r for r in fitted if r["verdict"] == "FAIL"],
     }
+    for lab in sorted({r["ledger"] for r in fitted}):
+        pops.setdefault(f"{lab}_fitted",
+                        [r for r in fitted if r["ledger"] == lab])
+        pops.setdefault(f"{lab}_pass",
+                        [r for r in fitted if r["ledger"] == lab
+                         and r["verdict"] == "PASS"])
     rates = {k: survival_rate(consumed(v), len(v), total_days) for k, v in pops.items()}
 
     # ---- is the head eaten faster than the tail? ------------------------------------
@@ -180,9 +196,9 @@ def main() -> None:
             "reproduced_here": rates["M8_fitted"],
         },
     }
-    OUT.write_text(json.dumps(out, indent=2), encoding="utf-8")
+    args.out.write_text(json.dumps(out, indent=2), encoding="utf-8")
     print(json.dumps({k: v for k, v in out.items() if k != "curve"}, indent=2))
-    print(f"wrote {OUT}")
+    print(f"wrote {args.out}")
 
 
 if __name__ == "__main__":

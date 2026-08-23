@@ -125,9 +125,23 @@ def skybot_cell(sb: dict[str, Any] | None) -> str:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--out", type=Path, default=OUT_CSV)
+    ap.add_argument("--summary", type=Path, default=OUT_JSON)
+    ap.add_argument("--refresh", type=Path, default=REFRESH,
+                    help="liveness source. A queue is only as fresh as this file")
+    ap.add_argument("--adjudications", nargs="*", default=None,
+                    help="REPLACE the default adjudication list")
+    ap.add_argument("--slim", type=Path, default=SLIM,
+                    help="08-16 observation table; the archive's retention prunes the "
+                         "snapshot this defaults to (scripts/m11_snapshot_series.py)")
     args = ap.parse_args()
+    if not args.slim.exists():
+        raise SystemExit(
+            f"{args.slim} does not exist -- the archive's retention has pruned the "
+            "08-16 key set. Rebuild it with scripts/m11_snapshot_series.py and pass "
+            "--slim; do NOT silently substitute a newer snapshot."
+        )
 
-    refresh = json.loads(REFRESH.read_text(encoding="utf-8"))
+    refresh = json.loads(args.refresh.read_text(encoding="utf-8"))
     status = {
         (r["trksub"], r["obscode"], int(r["night"])): r["itf_status"]
         for r in refresh["rows"]
@@ -158,7 +172,8 @@ def main() -> None:
 
     # ---- adjudications, both milestones' -------------------------------------------
     adj: dict[tuple[str, str], dict[str, Any]] = {}
-    for p in (ADJ_M9, ADJ_M10):
+    for p in ([Path(x) for x in args.adjudications]
+              if args.adjudications is not None else (ADJ_M9, ADJ_M10)):
         if p.exists():
             for e in json.loads(p.read_text(encoding="utf-8"))["results"]:
                 adj[(e["orbit_desig"], e["link_key"])] = e
@@ -169,7 +184,7 @@ def main() -> None:
                            "lon_deg": [v - 360.0 if v > 180.0 else v
                                        for v in lon.values()]})
     slim = (
-        pl.scan_parquet(SLIM)
+        pl.scan_parquet(args.slim)
         .filter(pl.col("desig").is_in([r["trksub"] for r in ledger_rows]))
         .join(lon_df.lazy(), on="obscode", how="left")
         .with_columns((pl.col("mjd") + pl.col("lon_deg").fill_null(0.0) / 360.0 + 0.5)
@@ -421,7 +436,8 @@ def main() -> None:
         "csv_bytes": args.out.stat().st_size,
         "csv": str(args.out),
     }
-    OUT_JSON.write_text(json.dumps(summary, indent=2), encoding="utf-8")
+    args.summary.parent.mkdir(parents=True, exist_ok=True)
+    args.summary.write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print(json.dumps(summary, indent=2))
 
 

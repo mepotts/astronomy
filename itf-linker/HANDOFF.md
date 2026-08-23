@@ -5,8 +5,8 @@ knowledge in this repository is not the code — it is the list of things that w
 measured, and found to be wrong. That list is spread across eight documents and would
 otherwise have to be rediscovered.
 
-**One-line status:** M0–M5 + M7–M10 complete, the MPC's Isolated Tracklet File searched at
-~100% coverage on both slices, **zero linking discoveries**, 485 tests green. The durable
+**One-line status:** M0–M5 + M7–M11 complete, the MPC's Isolated Tracklet File searched at
+~100% coverage on both slices, **zero linking discoveries**, 505 tests green. The durable
 outputs are a validated linking pipeline, a daily archive that independently confirmed 21
 of its own groupings, a replicated methodological result drafted for publication — and an
 **attribution** capability (ITF tracklet → known orbit) at production scale: a perturbed
@@ -17,11 +17,17 @@ and a candidate ledger now holding **733 live unsubmitted PASS rows across ~695 
 (40 passing, arc extensions to +5,107 d), 87 of 88 lost-object ambiguities resolved** —
 plus M7's held pair (2025 PD152; 2025 MQ241 borderline, joined by M9's 2026 AK20), all
 awaiting Matthew's per-batch review, now **ranked and ready to open at
-`out/review-queue.csv`** (M10). **Of the 33 ledger tracklets the MPC has consumed since
-08-16, 31 went to exactly the object the ledger named — 21/21 of the PASS rows — and the
-two that did not were both rows the strict gate had already refused** (`M10-RESULTS.md`
-§1): external ground truth for the chain, agreeing on everything it asserted and
-supplying the gate's first two measured true negatives. Nothing has ever been submitted.
+`out/review-queue-v2-20260823.csv`** (M11's versioned successor to M10's
+`out/review-queue.csv`, which is kept byte-identical alongside it). **Of the 103 ledger
+tracklets the MPC has consumed since 08-16, 97 went to exactly the object the ledger
+named — 68/68 of the PASS rows — and the five that did not were all rows the strict gate
+had already refused** (`M11-RESULTS.md` §1): external ground truth for the chain,
+agreeing on everything it asserted, and the gate's first five measured true negatives.
+The **15–25 y shell tier** is separately priced: **0 of 300 decoy fits pass against 76 of
+300 real** (`M11-RESULTS.md` §4), the MPC has consumed six of its PASS rows and agreed
+with all six — but its multi-tracklet objects pass their combined fit only 3 of 10, so
+the tier is **recorded, not promoted, and stays out of the review queue**. Nothing has
+ever been submitted.
 
 ---
 
@@ -41,7 +47,8 @@ supplying the gate's first two measured true negatives. Nothing has ever been su
 | 10 | `M8-RESULTS.md` | Attribution at **full batch scale**: the perturbed backend (measured ~100× tighter than two-body at 5–15 y), bulk MPCORB orbits, the decoy at scale, the checkpointed fit queue, ledger v2, and the batch watcher |
 | 11 | `M9-RESULTS.md` | The unconsumed partitions consumed, the queue extended under a pre-registered stopping rule, combined fits for the multi-tracklet tier, the 88 ambiguities adjudicated — and the MPC **independently confirming 30/30 consumed M8 candidates**, ground truth the chain never had before |
 | 12 | `M10-RESULTS.md` | The ledger refreshed against a same-hour pull for review (`out/review-queue.csv`), the decay clock re-measured across three intervals and found concentrated in M8's queue head alone, M9's 60 ambiguities adjudicated, the 15–25 y main-belt shell, and the pointed-field screen validated and measured |
-| 13 | `SNAPSHOT-VALIDATION.md` | The one check independent of the whole pipeline |
+| 13 | `M11-RESULTS.md` | The shell's **fit stage priced with a decoy** (0/300 vs 76/300) and the finding that the primary "did fo use the tracklet" gate does all the discriminating; the shell's deep end closed at 20.74 y; the cumulative ledger refreshed after the archive pruned the base snapshot; the versioned review queue |
+| 14 | `SNAPSHOT-VALIDATION.md` | The one check independent of the whole pipeline |
 | 11 | `docs/archive-operations.md` | How the daily archive runs and how it has failed |
 | 12 | `docs/rnaas-subset-guard.md` + `rnaas-notes.md` | The publishable finding, and its 14 known weaknesses |
 
@@ -61,6 +68,9 @@ before re-deriving anything or asserting a claim from an older document.**
 | An Atira *requires* the near branch | False. The far branch also clusters one inside the radius. Narrowed to "half the valid states inside 1 AU the old solver could not express" | `M4-RESULTS.md` §2.2 |
 | 29P sat in a band M3 could not reach | False. Its hypothesis is at 5.6 AU, the **shared ceiling of both grids**. What made it findable is the *slice*, not the band | `M4-RESULTS.md` |
 | M4's fit ordering was good prioritisation | It scored **worse than a random shuffle** (0.000/0.025/0.102 vs 0.127/0.271/0.517 at top 10/25/50%) | `M5-RESULTS.md` §2 |
+| "The ledger's decay is **entirely** in M8's queue head — M9 PASS **0 of 272**, half-life > 101 d, Fisher p = 7 × 10⁻⁵" (M10 §2) | A two-day sample of a bursty process, as M10's own trap 2 warned. Over seven days M9 PASS lost **12 of 272** (half-life 106 d) against M8's 50 of 482 (43.8 d): real but **2.4×, not infinite** (p = 0.0024) | `M11-RESULTS.md` §1.2, `M10-RESULTS.md` addendum |
+| "The 24–25 y bin has 14,717 coarse matches **that nothing has fitted**" (M10 §9 item 4) | M10's own head already held 90 fits at 21–25 y, all zero fit-grade. The *yield* stopped at −20.74 y, not the queue | `M11-RESULTS.md` §5.0 |
+| "**Thirteen** objects carry ≥ 2 passing shell tracklets" (M10 §5.2) | Thirteen counts *fit-grade* fits; the verdict chain leaves **10** with ≥ 2 PASS rows, of which only 3 survive a combined fit — and M10's flagship **2015 KP488 is one of the failures** | `M11-RESULTS.md` §3.2 |
 
 ### Methods that were tried and do not work
 
@@ -89,6 +99,10 @@ before re-deriving anything or asserting a claim from an older document.**
 | **M8's resume path dropped `real_matches` from the final report** | The 08-17 tranche-2 run silently destroyed the 119,607-row ranked queue; `--resume-sweep` would KeyError, and "rank 901" pointed at nothing | Fixed in `m8_attribution.py`; queue regenerated bit-compatibly from the reconstructed snapshot (M9 §0.1, §10). Pre-fix report preserved at `data/raw/rubin/m8-attribution-asof-20260817.json` |
 | **The MPC's object records update in the same cycle as the ITF removal** | Tempting to explain a "consumed but not in the object" row as republication lag. It is not: in the same six-hour window one candidate's object gained exactly the consumed tracklet's four rows while two others' records were byte-identical. A consumption that does not show up in the attributed object went **somewhere else**, and that is a measurable verdict, not a timing artefact | `M10-RESULTS.md` §1.1, `scripts/m10_refresh.py` |
 | **One candidate can be recorded twice across milestones** | 2025 MQ241 + `nf2088` is both an M7 held row and M8's BORDERLINE row. A reviewer working from either document alone double-counts it; a naive queue emits it twice | Deduplicate by `(object, tracklet key)`; `scripts/m10_review_queue.py` |
+| **The archive's retention prunes the snapshot a milestone pinned, and the refresh answers anyway** | `m10_refresh.py` scanned `data/snapshots/` for surviving key sets at/after `BASE_SNAPSHOT`. Five days after M10 the 08-16 … 08-20 key sets are gone, so element 0 became **08-21** and "consumed since 08-16" reported **18** where the truth was **103** — under a heading that still said 08-16 | `scan_series` now raises and names the substitute; `scripts/m11_snapshot_series.py` rebuilds the series exactly by inverting the contiguous `delta.parquet` chain (`keys(parent) = keys(child) − appeared + gone`). `M11-RESULTS.md` §1.0 |
+| **`itf_observations_20260816_reconstructed.parquet` is the 08-16 ∩ 08-18 *intersection*, not the 08-16 table** | M9 dropped whole every tracklet that lost any observation, so verifying an 08-16 rebuild against it fails by exactly the tracklets consumed in between (106 ledger observations). Read as a rebuild error it would condemn a correct series | Verify at **08-18**, where the two must agree; use the delta walk for 08-16. `scripts/m11_snapshot_series.py` |
+| **A refresh reusing an older milestone's "fresh" get-obs cache measures the wrong thing** | The agreement check asks whether a consumed tracklet is in the object's record *now*. Against M10's 08-18 cache every consumption since would read `CONSUMED_AND_DISAGREED` | `--fresh-cache` is explicit; every refresh gets its own directory. `scripts/m10_refresh.py` |
+| **Combined fits took tracklet lines from *today's* ITF** | A tracklet the MPC has *partially* consumed since the sweep still appears in the current file with fewer observations, so the joint fit is silently of a different tracklet from the one the ledger passed | Accept live lines only when their count matches the pinned slim table, else use the verbatim `obs.txt` fo fitted. `scripts/m9_combined.py` |
 | **Same-station sibling tracklets break JD-window residual attribution** | Pan-STARRS pairs can share the same *exposures* with near-duplicate astrometry 0.03–0.16″ apart; an obscode+JD-window match then counts the sibling's rows as yours (`obs_used > n_obs` on 7 of 29 combined fits) | Match per observation by epoch **and** observed RA/Dec (fo residual records carry both); `scripts/m9_combined.py`, `M9-RESULTS.md` §6 |
 
 ### Environment and harness traps
@@ -107,6 +121,32 @@ before re-deriving anything or asserting a claim from an older document.**
   strongly rank-dependent, so a pooled two-point number both overstates the deep queue's
   perishability and understates the head's. Measure per-interval and per-population.
   `scripts/m10_decay.py`, `M10-RESULTS.md` §2.
+- **A decoy control cannot be reconstructed from a finished sweep report.**
+  `m8_attribution.run_sweep(decoy=True)` does `m.pop("row")` — the decoy matches lose
+  their tracklet identity — and only `fake[:100]`, *unranked*, is stored as
+  `control_matches_sample`. Any milestone that wants to price a **fit** stage must
+  re-run the control and then prove it is the same control: M11's reproduction gate
+  (188,494 matches and five histogram bins, exact) is what licenses comparing its
+  0-of-300 to M10's 76-of-300. `scripts/m11_shell_decoy.py`, `M11-RESULTS.md` §4.
+- **A post-fit orbit-quality gate is the wrong instrument for a decoy, and it fails
+  flatteringly.** Measured on the shell: the strict gate passes **295 of 300 decoy fits
+  against 228 of 300 real**, because fo drops the fake tracklet whole and then grades the
+  object's own pristine baseline orbit. The entire separation lives in the primary gate —
+  *did fo use the tracklet* — at 162/300 real against **0/300** decoy (p = 1 × 10⁻⁶²).
+  Never report a decoy comparison on the RMS gate alone, and never relax "fully used"
+  without a decoy arm. `M11-RESULTS.md` §4.2.
+- **"N objects with ≥ 2 passing tracklets" depends on which population you count.**
+  M10's "13 multi-tracklet shell objects" counts *fit-grade* fits; the verdict chain then
+  demoted one member each of three objects, leaving **10** with ≥ 2 PASS rows. State the
+  population or the next milestone derives a different number and thinks something moved.
+- **A "nothing has fitted this" claim needs checking against the fit report.** M10 §9
+  item 4 said the 24–25 y bin was unfitted; M10's own head already held 90 fits at
+  21–25 y (40 of them at 24–25 y) with zero fit-grade. It was the *yield* that stopped at
+  −20.74 y, not the queue. `M11-RESULTS.md` §5.0.
+- **A long bash heredoc silently truncates in the Claude Code harness** — a ~120-line
+  `cat > file <<'EOF'` fails with "unexpected EOF while looking for matching `''`",
+  the content having been cut before the terminator. Write long files with the
+  file-writing tool.
 - **A trkSub that IS the object's own packed designation sails through every gate.**
   The all-sky distant head held rows like `/18K03H` sitting 2.6" from **2018 KH3**
   (packed `K18K03H`) — the same seven characters with the century byte replaced. The
@@ -168,6 +208,14 @@ before re-deriving anything or asserting a claim from an older document.**
   the PASS population's per-interval rate ran 0.80 → 2.01 → 0.00 %/day — so a
   single-interval estimate samples one MPC batch sweep. Practical consequence for
   review order: **the M8 rows are the perishable ones.**
+  **M11 (2026-08-23) re-measured this over eight intervals and M10's headline did not
+  survive.** M9's PASS rows are *not* static: 12 of 272 gone in seven days (half-life
+  106 d) against M8's 50 of 482 (43.8 d). The head-vs-tail effect is real but **2.4×,
+  not infinite** (Fisher p = 0.0024), and M8's own top-half/bottom-half ratio fell from
+  2.8× to 1.9×. Burstiness is confirmed and larger: per-interval PASS hazards ran
+  0.73 → 1.84 → 1.00 → 2.33 → 1.31 → **0.00** → 1.67 → **0.00** %/day. The shell tier
+  decays at main-tier speed (6/71). Work the M8 rows first, but M9's are perishable too.
+  `M11-RESULTS.md` §1.2.
 - ~~**Attribution's lookback is bounded at 4 years by measurement, not preference.**~~
   **Closed by M8 (2026-08-17):** the perturbed backend (`attrib/perturbed.py` — Sun +
   eight planets as point masses, vectorised RK4, dense Hermite output; a justified
@@ -182,6 +230,24 @@ before re-deriving anything or asserting a claim from an older document.**
   §3a. Still a floor rather than a rate: *n* = 26, and the sample is biased toward links
   easy enough for someone else to have made. **The acceptance gate is now the open
   question** — it discards 22 of those 28 rows, where the MPC's published rule keeps 14.
+  A second, independent sample is now accumulating for free from the ledger refresh:
+  across 33 consumed **FAIL** rows the MPC's destination agrees with the ledger 27 times
+  (the gate was over-conservative), disagrees 5 times (the gate was **right**) and splits
+  once. That puts the strict gate's rejections at roughly **15 % correct refusals** —
+  the first sample large enough to be a rate rather than an anecdote.
+  `M11-RESULTS.md` §1.1.
+- **The 15–25 y shell tier is priced but not promoted.** Its fit stage survives a decoy
+  outright (0/300 vs 76/300, p = 5.7 × 10⁻²⁶) and the MPC has consumed six of its PASS
+  rows into exactly the objects it named — but 47 of 71 passes are one observatory, 56 of
+  71 are 2-observation tracklets, and its multi-tracklet objects pass a combined fit only
+  **3 of 10** where the main tier passes 40 of 45. It lives in `m10-shell-ledger.json` +
+  `m11-deep-ledger.json` and is deliberately **absent from the review queue**.
+  `M11-RESULTS.md` §3.2, §4.
+- **The shell's deep end is closed, not unexplored.** 220 fits at 20–25 y under a
+  rank-stratified round-robin: **0 fit-grade of 130 beyond 20.74 y** against 33 of 90 at
+  20–21 y (p = 2.3 × 10⁻¹⁵). The productive window is 15 y < |Δt| ≲ 20.7 y. Do not spend
+  further fo time at 21–25 y, and do not widen past 25 y — that bound is measured and the
+  main-belt envelope breaks at 28 y. `M11-RESULTS.md` §5.
 
 ## 5. If you are looking for a discovery
 
