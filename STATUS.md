@@ -11,7 +11,16 @@ before building — sweep-reported facts are treated as claims until re-checked 
 repo's own tooling. Every externally-sourced number carries its source or the mark
 UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 
-## Active fronts — wave 6 (launched 2026-08-21)
+## Active fronts — wave 7 (launched 2026-08-21)
+
+| Front | Folder | Scope |
+|---|---|---|
+| pta-mpta **M4** | [`pta-mpta/`](pta-mpta/) | Finish the array (60–100 core-hours) under a **registered relative** stability gate (M3: the absolute tolerance on 3-dex prior-limited posteriors is what's binding — a relative rule passes 52 not 48), both gates reported side by side; the **γ_SW wide-prior variant** as a declared variant, never a retrofit; 83-pulsar FL if coverage lands; and **draft the table-audit note** — the front's first finished product, needing zero further compute (no tabulated priors; 7 of 26 γ_SW values unreachable; 4.4% of published values outside their own interval; 66 of 83 amplitudes prior-bounded), plus a drafted-not-sent paragraph for the collaboration |
+| gaia-dr4 **M7** | [`gaia-dr4/`](gaia-dr4/) | **Day-one-scale dry run** over all 981 queue members to convert M6's 125–857/hr band into a measurement (the last unrehearsed component); **build the orbital-refit arm** — the harness stops at "the orbit is real" but December's headline is the independent orbit and its M₂ — acceptance = re-derive BH3 through the production path; and **freeze the December pre-registration now, while no verdicts exist**, covering scope-pooling, sample thresholds and what counts as null vs underpowered |
+| dyson-revet **M5** | [`dyson-revet/`](dyson-revet/) | Finish vetting the 1,545 (cache made incrementally resumable first; centroid stays retired); **build a reproducible nebular stage — now the entire remaining gap**, validated by preserving 7/7 published candidates with a threshold chosen by rule not by survivor count; ship the **high-latitude catalogue** as the positive deliverable (the screen is calibrated to 1.05× there); and a dated, runnable procedure for **candidate E's JWST data, public 2026-09-09** |
+| itf-linker **M11** | [`itf-linker/`](itf-linker/) | Ledger refresh first (versioned queue so Matthew's copy isn't swapped mid-review); shell ambiguities + combined fits; **price the shell's fit stage with a decoy** — the coarse control never covered it, so the 71 shell PASSes aren't yet priced against chance, and if they don't separate the tier demotes; work the 14,717 unfitted 24–25 yr matches under a rank-stratified stopping rule |
+
+## Completed fronts — wave 6 (2026-08-21)
 
 | Front | Folder | Scope |
 |---|---|---|
