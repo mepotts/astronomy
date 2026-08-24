@@ -237,6 +237,52 @@ def main():
     if d["ess_verdict"] != "NEGATIVE":
         fails.append("E5 verdict changed; the paper's wording assumes NEGATIVE")
 
+    # --- M6: the numbers added to the audit so that the paper's claim of full
+    # --- traceability is literally true (M6 section 5) ---------------------------
+    want(f"98.0% and {d['agree_pct_abs']}% respectively", "absolute-gate rate")
+    for key, lab in (("cls_measured_wA", "measurement"),
+                     ("cls_propped_wA", "prior-propped"),
+                     ("cls_unconstrained_wA", "unconstrained"),
+                     ("cls_other_wA", "other")):
+        lo, hi = d[key]
+        want_any([f"{lo:.2f} → {hi:.2f} dex"],
+                 f"census width row: {lab}", loose=True)
+    want(f"published γ_SW of +{d['j1744_pub_gamma']}",
+         "J1744-1134 published value")
+    want(f"from {d['j1744_w'][0]:.2f} to {d['j1744_w'][1]:.2f}",
+         "J1744-1134 width under the two priors")
+    want(f"{d['j1614_pub_w']} and {d['j1744_pub_w']}", "the two printed widths")
+    want(f"(width {d['j1525_pub_w']})", "J1525-5545 printed width")
+    want(f"median by at most {d['cens_ctrl_worst_logA']}",
+         "control worst log10A_SW move")
+    want(f"effective sample size is {d['j1525_ess']}", "J1525-5545 minimum ESS")
+    want(f"stays {d['f5_pre_w'][0]}-{d['f5_pre_w'][1]} dex wide",
+         "pre-step width range")
+    want(f"between {d['f5_pre_map'][0]} and {d['f5_pre_map'][1]}",
+         "pre-step mode range")
+    want(f"span a {d['null_sd']} dex standard deviation", "thinning spread")
+    want(f"it reads +{d['dmap_ess']:.2f}", "shift on the floored subset")
+    want(f"{d['ctrl_bar_6']} dex (6 controls), then {d['ctrl_bar_12']} dex "
+         f"(12 controls)", "the two control bars")
+    want(f"({d['m3_fl_width32']} → {d['fl_width83']} dex)",
+         "the withdrawn width headline")
+    want(f"at **{d['j1600_delta']:.2f} dex**", "J1600-3053 reinstated shift")
+    want(f"a factor {d['nupiv_factor']} in precision", "pivot precision factor")
+    want(f"at least {d['gate_iters']:,} post-burn iterations "
+         f"({d['gate_iters_fw']:,} for the fixed-white variants)",
+         "gate iteration counts")
+    want(f"acceptance rate of at least {d['acc_floor']}", "acceptance floor")
+    want(f"agree on {d['relonly_agree']} of {d['relonly_total']} parameters",
+         "relative-only agreement")
+    want(f"for the first {d['f5_pre_n']} additions", "additions before the step")
+    want(f"median +{d['seamb_ctrl_median']}", "seam-b control median")
+    lo, hi = d["sw_below_ee_values"]
+    want(f"({hi}, {lo})", "the two values below the e_e floor")
+    want(f"interval edge is {d['hist_lowest_edge']}",
+         "our superseded lowest-edge claim, quoted as ours")
+    want(f"shift is +{d['hist_dmap_82']} dex",
+         "our withdrawn product-level magnitude, quoted as ours")
+
     # --- discipline ----------------------------------------------------------------
     want("Goncharov & Sardana (2025)", "prior art credited")
     want("van Haasteren (2024)", "prior art credited")

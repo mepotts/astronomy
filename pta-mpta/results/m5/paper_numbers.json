@@ -144,6 +144,62 @@
  "ess_verdict": "NEGATIVE",
  "core_hours": 192.4,
  "n_runs": 277,
+ "agree_pct_abs": 97.9,
+ "cls_measured_wA": [
+  0.29,
+  0.3
+ ],
+ "cls_propped_wA": [
+  0.47,
+  2.14
+ ],
+ "cls_unconstrained_wA": [
+  2.75,
+  3.04
+ ],
+ "cls_other_wA": [
+  2.38,
+  2.12
+ ],
+ "j1744_pub_gamma": 0.91,
+ "j1744_w": [
+  1.52,
+  4.42
+ ],
+ "j1614_pub_w": 1.73,
+ "j1744_pub_w": 1.47,
+ "j1525_pub_w": 3.44,
+ "cens_ctrl_worst_logA": 0.035,
+ "j1525_ess": 86,
+ "f5_pre_w": [
+  1.9,
+  2.4
+ ],
+ "f5_pre_map": [
+  -17.1,
+  -14.5
+ ],
+ "null_sd": 0.34,
+ "dmap_ess": 0.04,
+ "ctrl_bar_12": 0.463,
+ "ctrl_bar_6": 0.144,
+ "m3_fl_width32": 2.54,
+ "fl_width83": 0.29,
+ "j1600_delta": -1.22,
+ "nupiv_factor": 2.4,
+ "relonly_agree": 61,
+ "relonly_total": 62,
+ "f5_pre_n": 57,
+ "seamb_ctrl_median": 0.0004,
+ "sw_below_ee_values": [
+  -2.32,
+  -2.21
+ ],
+ "hist_lowest_edge": -3.14,
+ "hist_dmap_82": 0.259,
+ "gate_iters": 100000,
+ "gate_iters_fw": 50000,
+ "acc_floor": 0.05,
  "_audit": [
   {
    "key": "n_psr",
@@ -919,6 +975,254 @@
    "value": 277,
    "artifact": "results/m3/*.summary.json",
    "field": "elapsed_min"
+  },
+  {
+   "key": "agree_pct_abs",
+   "claim": "agreement rate under the absolute gate (%)",
+   "value": 97.9,
+   "artifact": "results/m4/agreement_both_gates.json",
+   "field": "absolute.pct"
+  },
+  {
+   "key": "cls_measured_wA",
+   "claim": "census class MEASURED: median log10A_SW 68% width, U(0,7) -> U(-4,4)",
+   "value": [
+    0.29,
+    0.3
+   ],
+   "artifact": "results/m5/sw_census.json",
+   "field": "rows[klass==MEASURED].wA_*"
+  },
+  {
+   "key": "cls_propped_wA",
+   "claim": "census class PRIOR-PROPPED: median log10A_SW 68% width, U(0,7) -> U(-4,4)",
+   "value": [
+    0.47,
+    2.14
+   ],
+   "artifact": "results/m5/sw_census.json",
+   "field": "rows[klass==PRIOR-PROPPED].wA_*"
+  },
+  {
+   "key": "cls_unconstrained_wA",
+   "claim": "census class UNCONSTRAINED-BOTH: median log10A_SW 68% width, U(0,7) -> U(-4,4)",
+   "value": [
+    2.75,
+    3.04
+   ],
+   "artifact": "results/m5/sw_census.json",
+   "field": "rows[klass==UNCONSTRAINED-BOTH].wA_*"
+  },
+  {
+   "key": "cls_other_wA",
+   "claim": "census class OTHER: median log10A_SW 68% width, U(0,7) -> U(-4,4)",
+   "value": [
+    2.38,
+    2.12
+   ],
+   "artifact": "results/m5/sw_census.json",
+   "field": "rows[klass==OTHER].wA_*"
+  },
+  {
+   "key": "j1744_pub_gamma",
+   "claim": "J1744-1134 published gamma_SW",
+   "value": 0.91,
+   "artifact": "results/m5/sw_census.json",
+   "field": "rows[J1744-1134].pub_gamma"
+  },
+  {
+   "key": "j1744_w",
+   "claim": "J1744-1134 gamma_SW 68% width, U(0,7) -> U(-4,4)",
+   "value": [
+    1.52,
+    4.42
+   ],
+   "artifact": "results/m5/sw_census.json",
+   "field": "rows[J1744-1134].w_narrow/w_wide"
+  },
+  {
+   "key": "j1614_pub_w",
+   "claim": "J1614-2230 printed gamma_SW 68% width",
+   "value": 1.73,
+   "artifact": "results/m5/sw_census.json",
+   "field": "rows[J1614-2230].pub_w68"
+  },
+  {
+   "key": "j1744_pub_w",
+   "claim": "J1744-1134 printed gamma_SW 68% width",
+   "value": 1.47,
+   "artifact": "results/m5/sw_census.json",
+   "field": "rows[J1744-1134].pub_w68"
+  },
+  {
+   "key": "j1525_pub_w",
+   "claim": "J1525-5545 printed gamma_SW 68% width",
+   "value": 3.44,
+   "artifact": "results/m5/sw_census.json",
+   "field": "rows[J1525-5545].pub_w68"
+  },
+  {
+   "key": "cens_ctrl_worst_logA",
+   "claim": "worst |d median log10A_SW| over the control set",
+   "value": 0.035,
+   "artifact": "results/m5/sw_census.json",
+   "field": "control.worst_d_logA"
+  },
+  {
+   "key": "j1525_ess",
+   "claim": "J1525-5545 minimum ESS on its swwide run",
+   "value": 86,
+   "artifact": "results/m3/J1525-5545_swwide_s1.summary.json",
+   "field": "chain.ess_min"
+  },
+  {
+   "key": "f5_pre_w",
+   "claim": "68% width range over the additions before the step (dex)",
+   "value": [
+    1.9,
+    2.4
+   ],
+   "artifact": "results/m4/fl_growth_fl.json",
+   "field": "curve[:step].width"
+  },
+  {
+   "key": "f5_pre_map",
+   "claim": "mode range over the additions before the step",
+   "value": [
+    -17.1,
+    -14.5
+   ],
+   "artifact": "results/m4/fl_growth_fl.json",
+   "field": "curve[:step].map"
+  },
+  {
+   "key": "null_sd",
+   "claim": "standard deviation of the shift over random thinnings (dex)",
+   "value": 0.34,
+   "artifact": "results/m5/seamb_subset_null.json",
+   "field": "null.sd"
+  },
+  {
+   "key": "dmap_ess",
+   "claim": "the shift on the ESS-floored subset (dex)",
+   "value": 0.04,
+   "artifact": "results/m5/seamb_subset_null.json",
+   "field": "dmap_ess"
+  },
+  {
+   "key": "ctrl_bar_12",
+   "claim": "per-pulsar control bar, 12 controls (dex)",
+   "value": 0.463,
+   "artifact": "results/m5/seamb_subset_null.json",
+   "field": "control_bar.all.bar"
+  },
+  {
+   "key": "ctrl_bar_6",
+   "claim": "per-pulsar control bar, 6 ESS-floored controls (dex)",
+   "value": 0.144,
+   "artifact": "results/m5/seamb_subset_null.json",
+   "field": "control_bar.ess.bar"
+  },
+  {
+   "key": "m3_fl_width32",
+   "claim": "M3's 32-pulsar fl product 68% width (the withdrawn width headline) (dex)",
+   "value": 2.54,
+   "artifact": "results/m4/fl_both_gates.json",
+   "field": "m3_common32.fl.ci68"
+  },
+  {
+   "key": "fl_width83",
+   "claim": "the same width at full coverage (dex)",
+   "value": 0.29,
+   "artifact": "results/m5/curn_stability.json",
+   "field": "fl.ci68_width"
+  },
+  {
+   "key": "j1600_delta",
+   "claim": "J1600-3053 seam-b shift, whites held fixed (dex)",
+   "value": -1.22,
+   "artifact": "results/m3/seam_b.json",
+   "field": "rows[J1600-3053].delta"
+  },
+  {
+   "key": "nupiv_factor",
+   "claim": "precision factor gained by re-quoting at the pivot",
+   "value": 2.4,
+   "artifact": "results/m3/seam_a.json",
+   "field": "width_A_1400 / width_A_pivot"
+  },
+  {
+   "key": "relonly_agree",
+   "claim": "parameters agreeing on the pulsars admitted only by the relaxation",
+   "value": 61,
+   "artifact": "results/m4/agreement_both_gates.json",
+   "field": "r5.only_agree"
+  },
+  {
+   "key": "relonly_total",
+   "claim": "parameters compared on those pulsars",
+   "value": 62,
+   "artifact": "results/m4/agreement_both_gates.json",
+   "field": "r5.only_total"
+  },
+  {
+   "key": "f5_pre_n",
+   "claim": "additions before the one-pulsar step",
+   "value": 57,
+   "artifact": "results/m4/fl_growth_fl.json",
+   "field": "curve[].n at the step, minus one"
+  },
+  {
+   "key": "seamb_ctrl_median",
+   "claim": "median shift over the control pulsars (dex)",
+   "value": 0.0004,
+   "artifact": "results/m5/curn_stability.json",
+   "field": "seam_b_paired.control_median"
+  },
+  {
+   "key": "sw_below_ee_values",
+   "claim": "the published gamma_SW values below the enterprise_extensions floor of the day",
+   "value": [
+    -2.32,
+    -2.21
+   ],
+   "artifact": "results/m4/note_numbers.json",
+   "field": "sw_negative, ee_sw_gamma_default"
+  },
+  {
+   "key": "hist_lowest_edge",
+   "claim": "M3's pre-registered lowest printed gamma_SW edge, since corrected",
+   "value": -3.14,
+   "artifact": "M3-noise-criticism.md",
+   "field": "pre-registration 1.3 (superseded; see row 7)"
+  },
+  {
+   "key": "hist_dmap_82",
+   "claim": "M4's product-level shift as first reported (82 psr)",
+   "value": 0.259,
+   "artifact": "M4-finish-the-array.md",
+   "field": "section B-2 (withdrawn; see row 9)"
+  },
+  {
+   "key": "gate_iters",
+   "claim": "registered minimum post-burn iterations",
+   "value": 100000,
+   "artifact": "M3-noise-criticism.md",
+   "field": "section 1 (A1)"
+  },
+  {
+   "key": "gate_iters_fw",
+   "claim": "the same for the fixed-white variants",
+   "value": 50000,
+   "artifact": "M3-noise-criticism.md",
+   "field": "section 1 (A1)"
+  },
+  {
+   "key": "acc_floor",
+   "claim": "registered acceptance floor",
+   "value": 0.05,
+   "artifact": "M2-converge-scale.md",
+   "field": "acceptance floor"
   }
  ]
 }

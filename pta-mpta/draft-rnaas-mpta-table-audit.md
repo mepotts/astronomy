@@ -15,7 +15,7 @@ in [`M4-finish-the-array.md`](M4-finish-the-array.md) §5. Pre-registration for 
 §1.5 (N1–N6). Prior-art verdict and its sources: §5.3.*
 
 **Word count of the note proper (Title → end of "What would fix it"), excluding Table 1 and the
-reference list: 1,391** (RNAAS limit 1,500).
+reference list: 1,451** (RNAAS limit 1,500).
 
 ---
 
@@ -64,9 +64,12 @@ occur at all. No numeric prior range is given anywhere for any of the 588 values
 supplied elsewhere: the companion gravitational-wave paper defers to this one, and the Data Central
 release contains 83 `.par` files, 83 `.tim` files, the archives, the portraits and a nine-video
 anisotropy supplement — no chains, no posterior samples, no configuration or prior file (verified by
-inspecting the downloaded tarballs). A reproducer must guess all of them. For most columns the guess
-is harmless, because the published posterior sits far inside any reasonable range. For one column it
-is not.
+inspecting the downloaded tarballs). A reproducer working from the paper and the release must
+guess all of them. They are undocumented rather than unknowable: a public repository belonging to
+the paper's first author (`MattTMiles/MPTAGW`, no README, licence, tag or DOI, cited by no MPTA
+publication) sets γ_SW ~ U(−4, 4), a range that brackets the whole column — but nothing in the
+paper or the release points a reader there. For most columns the guess is harmless anyway, because
+the published posterior sits far inside any reasonable range. For one column it is not.
 
 ## (b) Seven solar-wind spectral indices cannot be reached
 
@@ -170,6 +173,8 @@ hard-coded for γ_SW; U(−6,5) is its range since September 2025.
 - Miles, M. T., Shannon, R. M., Reardon, D. J., et al. 2025, MNRAS 536, 1467 — arXiv:2412.01148,
   doi:10.1093/mnras/stae2572
 - Susarla, S. C., Chalumeau, A., Tiburzi, C., et al. 2024, A&A 692, A18
+- Taylor, S. R., Baker, P. T., Hazboun, J. S., Simon, J. & Vigeland, S. J. 2021,
+  enterprise_extensions v2.4.3, https://github.com/nanograv/enterprise_extensions
 - van Haasteren, R. 2024, ApJS 273, 23 — arXiv:2406.05081
 
 ---
@@ -177,6 +182,16 @@ hard-coded for γ_SW; U(−6,5) is its range since September 2025.
 ## Notes for Matthew — NOT part of the note
 
 ### Prior-art verdict
+
+*Re-swept 2026-08-24 and still NOT SCOOPED on all four claims. The re-sweep added INSPIRE
+(76 citing works against OpenAlex's 44) and found nothing auditing or reproducing this table, no
+erratum (Crossref reports no `update-to` relation on doi:10.1093/mnras/stae2572), no second MPTA
+release, and no prior ranges published anywhere. It did change one thing, folded into claim (a)
+above: the γ_SW range is readable in public code. It also found the `enterprise_extensions`
+default unchanged since the September 2025 widening, and that at the commit contemporaneous with
+the paper the default was U(−2, 1) — which two published values fall below and most of the rest
+above, so the collaboration demonstrably did not use the library default of the day. NASA ADS
+refused automated access again.*
 
 **NOT SCOOPED on any of the four claims, nor on J1825−0319.** The check covered: the arXiv listing
 (v1 only, no replacement, no comments, no ancillary files); the OUP record (no erratum or
@@ -233,6 +248,11 @@ call alone.*
 > `solar_wind_block` value of the time, U(−2, 1), does not contain two of them either — the package
 > only widened to U(−6, 5) in September 2025. Widening my own prior to U(−4, 4) reproduced the
 > published values, which is what convinced me the problem was my prior and not your data.
+>
+> I should add that I later found U(−4, 4) in your `MPTAGW` repository, so I may well have
+> arrived at the range you actually used. That is the point rather than a caveat: the number
+> exists and is even public, but nothing in the paper or the Data Central release points to it,
+> so a reader who does not go looking through personal repositories cannot get there.
 >
 > More generally, the paper does not give a prior range for any of the 588 tabulated values. For
 > most columns that is harmless; for γ_SW it is the difference between a table that can be

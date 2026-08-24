@@ -3,6 +3,77 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-08-24** — **M6 complete — THE CLOSING MILESTONE**
+  ([`M6-close-the-paper.md`](M6-close-the-paper.md)). **All three documents are submission-ready and
+  the only blocker left is the DOI.** No chains were run: M6 is citations, one external sweep,
+  a cold read, a new note, and verification.
+  **THE PRIOR-ART RE-SWEEP CHANGED THE POSITIONING ON TWO OF FOUR CLAIMS, AND BOTH ARE DECLARED.**
+  (1) **Claim (iv) is PARTIALLY SCOOPED.** **Larsen et al. 2025 (MNRAS 542, 3028, arXiv:2503.20949)
+  §4.1.4 and Fig. 8 already publish a drop-one-pulsar analysis of a DIFFERENCE of two
+  factorised-likelihood products**, concluding verbatim that "the overall discrepancy is sensitive to
+  systematic errors in the individual pulsars"; Reardon et al. 2023 already name the three pulsars
+  that "dominate the factorized likelihood". **The paper's §6.2 and the new methods note both now
+  lead with that credit**, and the paper's corrections table gains row 13. What survives as new is
+  narrower and is stated as such: the jackknife measured on the SAME AXIS as the product's own
+  credible interval (0.256 vs 0.149 dex), the one-pulsar transition, and the threshold rule.
+  **Larsen does not cite the MPTA release, so it is in no citing-works list — a citation-graph sweep
+  is structurally blind to parallel work that does not cite you**, and that sentence is now in the
+  paper's threats section. INSPIRE carries **76** citing works against OpenAlex's 44; enumerating
+  all 76 found nothing else. NASA ADS refused automated access again.
+  (2) **Claim (ii) is REFRAMED: the missing prior is public, as uncited code.** Verified in-session,
+  not taken on trust: **`github.com/MattTMiles/MPTAGW`** (the first author's repo — no README, no
+  licence, no tag, no DOI, cited by no MPTA paper) sets **`gamma_sw = parameter.Uniform(-4, 4)`** at
+  six places, plus `log10_A_sw = Uniform(-10, 1)`. **"Undocumented" survives; "unreachable" does
+  not**, and every such phrasing was fixed. **Our blind registered variant chose U(−4,4) — their
+  range exactly — and our declared log₁₀A_SW prior U(−10,1) is identical too**, which STRENGTHENS the
+  diagnosis that the twelve disagreements are a prior mismatch and nothing else. Also folded in
+  against ourselves: γ∈[0,7] is the convention for DM/red indices, not the solar wind — the one
+  printed γ_SW prior in the literature is Susarla et al. 2024's U(−6,5). No erratum, no second
+  release, no prior file, `enterprise_extensions` unchanged since Sept 2025; and at the commit
+  contemporaneous with the paper the default was U(−2,1), which the published values straddle — so
+  the collaboration demonstrably did not use the library default of the day.
+  **CITATIONS AND ACKNOWLEDGEMENTS FILLED — the draft's last UNSOURCED slots are gone.** Every
+  package cited **in the form its own authors ask for** (seven traps recorded: `enterprise` wants a
+  Zenodo record not its ASCL entry; `enterprise_extensions` wants **no DOI**; PINT wants **two**
+  papers and its own `citation.cff` under-cites; tempo2 wants papers I and II only — **and we never
+  ran tempo2**; `parallel-bilby` is Smith, Ashton, **Vajpeyi** & Talbot; `enterprise_warp` has no
+  citation request at all), with **exact versions inline** in §2.2. **The facility policy was read,
+  not assumed, and it added a requirement nobody had listed: PTUSE demands a second acknowledgement
+  paragraph "in addition to" SARAO's** — both are now quoted verbatim, along with Data Central's
+  sentence. **M1's "no license stated" is CORRECTED: the release is CC BY 4.0** in its DataCite
+  metadata, so the dataset is now cited in its own right. Two verification traps recorded: a search
+  summary gave SARAO's department name wrongly, and a fetch of the paywalled OUP page **fabricated an
+  entire Data Availability section**.
+  **THE COLD READ MADE TEN CHANGES**, including the title (*"How much of a PTA noise table is a
+  measurement?"* → *"Which entries in a PTA noise table are measurements?"*), three section headings,
+  the MAP-outside paragraph (from defensive to mechanistic), scope moved inline to ride with the
+  census number, and — the one that matters most — **"We withdraw one array-level claim of our own"
+  now appears in the abstract**. Abstract trimmed **333 → 240 words** (MNRAS's 250 verified live;
+  A&A's site refused access, recorded). A **Conclusions** section was added because MNRAS requires
+  one as the final numbered section.
+  **THE METHODS NOTE IS DRAFTED — NOT SUBMITTED**
+  ([`draft-rnaas-composition-jackknife.md`](draft-rnaas-composition-jackknife.md)), RNAAS, **1,300
+  words** against limits verified live today, one table, its own numbers script and its own checker
+  (**42 numbers, 49 checks, 0 failures**, and falsification-tested). Headline: *a factorised-likelihood
+  product's credible interval understates its dependence on which pulsars are in the set, so a
+  difference of two such products against a fixed threshold is not a significance test* — with our
+  own withdrawn B-2 claim as the worked example.
+  **FINAL VERIFICATION: paper 137 numbers / 119 checks / 0 failures; table-audit note 29 / 22 / 0;
+  methods note 42 / 49 / 0.** **The pass found four real errors in our own drafts:** the
+  factorised-likelihood reference had **the wrong author list** (we had "Taylor, van Haasteren &
+  Wang"; it is Taylor, Simon, Schult, Pol & Lamb — caught against the release's own `ref.bib`); two
+  growth-curve range numbers did not survive re-derivation (1.9–2.2 → **1.9–2.4** dex, −16.7 →
+  **−17.1**); **the paper's own audit did not cover the paper** — a token-level sweep found 32
+  content numbers untraced, and all 32 were added rather than excused (105 → 137 rows, 92 → 119
+  checks); and the audit script itself had a hard-coded fallback, now a real artifact read.
+  **READINESS: only the DOI blocks the paper.** The two RNAAS notes need an AAS account and author
+  details; the methods note additionally needs Matthew's go/no-go on its narrowed novelty. **No
+  measurement, chain, check or citation is outstanding in any of the three.** ⚠ The table-audit note
+  is now **1,451 of 1,500 words** (was 1,391) — about forty words of headroom left. The drafted
+  collaboration paragraph was **rewritten** to say we later found U(−4,4) in their own repo, because
+  sending "you never said which prior" would have been wrong. Campaign total unchanged at ≥192.4
+  core-hours over 277 runs. No commits, no accounts, no submissions, nothing sent.
+
 - **2026-08-24** — **M5 complete**
   ([`M5-ess-floor-sw-census-and-the-paper.md`](M5-ess-floor-sw-census-and-the-paper.md)).
   **THE CAMPAIGN IS FINISHED AND SAYS SO ON DISK: 83/83 `noise`, 83/83 `table`, 83/83 `fl`,

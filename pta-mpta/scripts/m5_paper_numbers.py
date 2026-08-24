@@ -339,6 +339,126 @@ def main():
     add("n_runs", "runs with a recorded final launch", nrun,
         "results/m3/*.summary.json", "elapsed_min")
 
+    # ---- M6: the remaining content numbers, so that "every number in the
+    # ---- paper traces to an artifact" is literally true rather than nearly so.
+    # A sweep of every numeric token in the paper body (M6 §5) found these
+    # quoted in the text but absent from the audit above.
+    seamb3 = json.loads((M3 / "seam_b.json").read_text())
+    both = json.loads((M4 / "fl_both_gates.json").read_text())
+    add("agree_pct_abs", "agreement rate under the absolute gate (%)",
+        round(ab["pct"], 1), "results/m4/agreement_both_gates.json",
+        "absolute.pct")
+
+    # census class widths, as printed in the sec 4.3 table
+    import statistics as _st
+    for klass, key in (("MEASURED", "cls_measured_wA"),
+                       ("PRIOR-PROPPED", "cls_propped_wA"),
+                       ("UNCONSTRAINED-BOTH", "cls_unconstrained_wA"),
+                       ("OTHER", "cls_other_wA")):
+        rws = [r for r in cens["rows"] if r["klass"] == klass]
+        add(key, f"census class {klass}: median log10A_SW 68% width, "
+            f"U(0,7) -> U(-4,4)",
+            [round(_st.median(r["wA_narrow"] for r in rws), 2),
+             round(_st.median(r["wA_wide"] for r in rws), 2)],
+            "results/m5/sw_census.json", f"rows[klass=={klass}].wA_*")
+
+    byname = {r["psr"]: r for r in cens["rows"]}
+    add("j1744_pub_gamma", "J1744-1134 published gamma_SW",
+        byname["J1744-1134"]["pub_gamma"], "results/m5/sw_census.json",
+        "rows[J1744-1134].pub_gamma")
+    add("j1744_w", "J1744-1134 gamma_SW 68% width, U(0,7) -> U(-4,4)",
+        [round(byname["J1744-1134"]["w_narrow"], 2),
+         round(byname["J1744-1134"]["w_wide"], 2)],
+        "results/m5/sw_census.json", "rows[J1744-1134].w_narrow/w_wide")
+    for psr, key in (("J1614-2230", "j1614_pub_w"), ("J1744-1134", "j1744_pub_w"),
+                     ("J1525-5545", "j1525_pub_w")):
+        add(key, f"{psr} printed gamma_SW 68% width", byname[psr]["pub_w68"],
+            "results/m5/sw_census.json", f"rows[{psr}].pub_w68")
+    add("cens_ctrl_worst_logA",
+        "worst |d median log10A_SW| over the control set",
+        cens["control"]["worst_d_logA"], "results/m5/sw_census.json",
+        "control.worst_d_logA")
+
+    j1525 = json.loads((M3 / "J1525-5545_swwide_s1.summary.json").read_text())
+    add("j1525_ess", "J1525-5545 minimum ESS on its swwide run",
+        int(round(j1525["chain"]["ess_min"])),
+        "results/m3/J1525-5545_swwide_s1.summary.json", "chain.ess_min")
+
+    # growth curve: the stretch before the one-pulsar step
+    cv = grow["curve"]
+    stp = max(range(1, len(cv)),
+              key=lambda i: cv[i - 1]["width"] - cv[i]["width"])
+    pre = cv[:stp]
+    add("f5_pre_w", "68% width range over the additions before the step (dex)",
+        [round(min(r["width"] for r in pre), 1),
+         round(max(r["width"] for r in pre), 1)],
+        "results/m4/fl_growth_fl.json", "curve[:step].width")
+    add("f5_pre_map", "mode range over the additions before the step",
+        [round(min(r["map"] for r in pre), 1),
+         round(max(r["map"] for r in pre), 1)],
+        "results/m4/fl_growth_fl.json", "curve[:step].map")
+
+    add("null_sd", "standard deviation of the shift over random thinnings (dex)",
+        null["null"]["sd"], "results/m5/seamb_subset_null.json", "null.sd")
+    add("dmap_ess", "the shift on the ESS-floored subset (dex)", null["dmap_ess"],
+        "results/m5/seamb_subset_null.json", "dmap_ess")
+    add("ctrl_bar_12", "per-pulsar control bar, 12 controls (dex)",
+        null["control_bar"]["all"]["bar"], "results/m5/seamb_subset_null.json",
+        "control_bar.all.bar")
+    add("ctrl_bar_6", "per-pulsar control bar, 6 ESS-floored controls (dex)",
+        null["control_bar"]["ess"]["bar"], "results/m5/seamb_subset_null.json",
+        "control_bar.ess.bar")
+
+    # the withdrawn M3 "width not shift" headline, and what it is now
+    m3c = both["m3_common32"]["fl"]["ci68"]
+    add("m3_fl_width32", "M3's 32-pulsar fl product 68% width (the withdrawn "
+        "width headline) (dex)", round(m3c[1] - m3c[0], 2),
+        "results/m4/fl_both_gates.json", "m3_common32.fl.ci68")
+    add("fl_width83", "the same width at full coverage (dex)",
+        round(stab["fl"]["ci68_width"], 2), "results/m5/curn_stability.json",
+        "fl.ci68_width")
+    add("j1600_delta", "J1600-3053 seam-b shift, whites held fixed (dex)",
+        round([r for r in seamb3["rows"] if r["psr"] == "J1600-3053"][0]["delta"], 2),
+        "results/m3/seam_b.json", "rows[J1600-3053].delta")
+    add("nupiv_factor", "precision factor gained by re-quoting at the pivot",
+        round(rows[[r["key"] for r in rows].index("nupiv_w1400")]["value"]
+              / rows[[r["key"] for r in rows].index("nupiv_wpiv")]["value"], 1),
+        "results/m3/seam_a.json", "width_A_1400 / width_A_pivot")
+
+    r5 = agree["r5"]
+    add("relonly_agree", "parameters agreeing on the pulsars admitted only by "
+        "the relaxation", r5["only_agree"],
+        "results/m4/agreement_both_gates.json", "r5.only_agree")
+    add("relonly_total", "parameters compared on those pulsars", r5["only_total"],
+        "results/m4/agreement_both_gates.json", "r5.only_total")
+    add("f5_pre_n", "additions before the one-pulsar step", cv[stp]["n"] - 1,
+        "results/m4/fl_growth_fl.json", "curve[].n at the step, minus one")
+    add("seamb_ctrl_median", "median shift over the control pulsars (dex)",
+        stab["seam_b_paired"]["control_median"],
+        "results/m5/curn_stability.json", "seam_b_paired.control_median")
+    add("sw_below_ee_values", "the published gamma_SW values below the "
+        "enterprise_extensions floor of the day",
+        sorted(v for _, v in note["sw_negative"]
+               if v < note["ee_sw_gamma_default"][0]),
+        "results/m4/note_numbers.json", "sw_negative, ee_sw_gamma_default")
+
+    # historical claims quoted in section 7 as our own, superseded numbers
+    add("hist_lowest_edge", "M3's pre-registered lowest printed gamma_SW edge, "
+        "since corrected", -3.14, "M3-noise-criticism.md",
+        "pre-registration 1.3 (superseded; see row 7)")
+    add("hist_dmap_82", "M4's product-level shift as first reported (82 psr)",
+        0.259, "M4-finish-the-array.md",
+        "section B-2 (withdrawn; see row 9)")
+
+    # criteria constants: these are registrations, not measurements, and the
+    # committed artifact is the pre-registration document itself.
+    add("gate_iters", "registered minimum post-burn iterations", 100000,
+        "M3-noise-criticism.md", "section 1 (A1)")
+    add("gate_iters_fw", "the same for the fixed-white variants", 50000,
+        "M3-noise-criticism.md", "section 1 (A1)")
+    add("acc_floor", "registered acceptance floor", 0.05,
+        "M2-converge-scale.md", "acceptance floor")
+
     # ---- emit ---------------------------------------------------------
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps({r["key"]: r["value"] for r in rows}
