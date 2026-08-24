@@ -150,9 +150,14 @@ def test_shell_gate_is_the_frozen_formula_on_the_measured_envelope(tmp_path):
 
 
 def test_main_belt_and_tno_envelopes_are_never_mixed():
-    """28 y is a TNO number; the main-belt envelope breaks there at 304 arcsec."""
+    """28 y is a TNO number; the main-belt envelope breaks there at 304 arcsec.
+
+    The envelopes are copied into ``tests/data`` rather than read from the M9
+    calibration doc under ``data/``: that tree is gitignored, so reading it made this
+    the one test in the suite that could not run on a fresh clone.
+    """
     doc = json.loads(
-        (ROOT / "data" / "raw" / "rubin" / "m9-calibration.json").read_text(
+        (Path(__file__).parent / "data" / "m9-calibration-envelopes.json").read_text(
             encoding="utf-8"
         )
     )
