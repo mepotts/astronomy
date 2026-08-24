@@ -1,0 +1,114 @@
+==============================================================================
+M9 TASK 2 -- L21 vs DR4's OWN `tentative_parallax_bias`
+  the comparison, and the decision, fixed BEFORE the data exists
+==============================================================================
+
+------------------------------------------------------------------------------
+THE GUARD COLUMN (draft data model p. 19; M8 found the rename, not the
+value-set change that makes it bite)
+  DR4 `astrometric_params` -> the L21 guard value, for every declared value
+    value    parallax  pseudo-C  Orbital   VIM/Resolv guard  zpt.get_zpt on the RAW value
+    3        NO        no        no        no        0      *** RAISES ***
+    7        yes       no        no        no        31     *** RAISES ***
+    27       NO        no        no        no        0      *** RAISES ***
+    31       yes       no        no        no        31     OK
+    63       yes       no        no        no        31     *** RAISES ***
+    95       yes       yes       no        no        95     OK
+    479      yes       yes       no        no        95     *** RAISES ***
+    2015     yes       yes       no        no        95     *** RAISES ***
+    2079     yes       no        yes       no        31     *** RAISES ***
+    2463     yes       no        yes       no        31     *** RAISES ***
+    3999     yes       no        yes       no        31     *** RAISES ***
+    4127     yes       no        no        yes       31     *** RAISES ***
+    4575     yes       yes       no        yes       95     *** RAISES ***
+    6111     yes       yes       no        yes       95     *** RAISES ***
+    6175     yes       no        yes       yes       31     *** RAISES ***
+    8223     yes       no        no        yes       31     *** RAISES ***
+    8607     yes       no        no        yes       31     *** RAISES ***
+    10143    yes       no        no        yes       31     *** RAISES ***
+    10271    yes       no        yes       yes       31     *** RAISES ***
+    -> 17 of 19 declared values would make zpt.get_zpt RAISE if passed raw.
+    -> 11 of them are NON-SINGLE-STAR values, and NONE of those has the
+       pseudocolour bit: December's queue is expected entirely on L21's
+       FIVE-parameter branch (nu_eff_used_in_astrometry).
+
+------------------------------------------------------------------------------
+THE PREDICTION -- L21's Z for the day-one queue, frozen
+  queue rows with the five L21 inputs pulled : 981 of 981
+  correctable by L21 (inside the validity box): 979 (99.8 %)
+  Z over the queue [uas]: median -35.47, p10 -43.52, p90 -23.66, min -52.46, max -2.01
+  by 5p/6p branch: {31: 971, 95: 10}
+  wrote out\m9_zeropoint_prediction.csv
+
+------------------------------------------------------------------------------
+THE REHEARSAL -- six declared scenarios through the decision rule
+
+  SCENARIO perfect_agreement  DR4 = L21 exactly
+  queue rows              : 981
+  with BOTH a DR4 bias and an L21 Z : 979 (0.2 % null/absent)
+  median(bias_DR4 - Z_L21) : +0.00 uas
+  NMAD of the difference   : 0.00 uas
+  Spearman rho             : +1.000
+  what the DIFFERENCE is worth as a companion mass (3 D / varpi):
+    median 0.00 %, p90 0.00 %, worst 0.00 %
+  VERDICT: AGREE  ->  USE: DR4 column
+    |median D| 0.0 <= 10.0 uas, rho 1.00 >= 0.5, NMAD 0.0 <= 20.0
+    declared AGREE            got AGREE             OK
+
+  SCENARIO small_scatter      DR4 = L21 + N(0, 5 uas)
+  queue rows              : 981
+  with BOTH a DR4 bias and an L21 Z : 979 (0.2 % null/absent)
+  median(bias_DR4 - Z_L21) : -0.38 uas
+  NMAD of the difference   : 5.02 uas
+  Spearman rho             : +0.813
+  what the DIFFERENCE is worth as a companion mass (3 D / varpi):
+    median 0.43 %, p90 1.86 %, worst 8.59 %
+  VERDICT: AGREE  ->  USE: DR4 column
+    |median D| 0.4 <= 10.0 uas, rho 0.81 >= 0.5, NMAD 5.0 <= 20.0
+    declared AGREE            got AGREE             OK
+
+  SCENARIO recalibrated       DR4 = 0.7 x L21 + N(0, 5 uas) -- a shorter zero-point, as a longer baseline should give
+  queue rows              : 981
+  with BOTH a DR4 bias and an L21 Z : 979 (0.2 % null/absent)
+  median(bias_DR4 - Z_L21) : +10.30 uas
+  NMAD of the difference   : 5.95 uas
+  Spearman rho             : +0.678
+  what the DIFFERENCE is worth as a companion mass (3 D / varpi):
+    median 1.17 %, p90 4.20 %, worst 17.36 %
+  VERDICT: OFFSET  ->  USE: DR4 column
+    |median D| 10.3 > 10.0 uas with rho 0.68 and NMAD 6.0: a recalibration, expected
+    declared OFFSET           got OFFSET            OK
+
+  SCENARIO uncorrelated       DR4 = a random draw with L21's own spread
+  queue rows              : 981
+  with BOTH a DR4 bias and an L21 Z : 979 (0.2 % null/absent)
+  median(bias_DR4 - Z_L21) : +0.16 uas
+  NMAD of the difference   : 11.80 uas
+  Spearman rho             : -0.041
+  what the DIFFERENCE is worth as a companion mass (3 D / varpi):
+    median 0.91 %, p90 4.71 %, worst 32.41 %
+  VERDICT: UNCORRELATED  ->  USE: DR4 column, EVERY MASS FLAGGED
+    rho -0.04 < 0.5 or NMAD 11.8 > 20.0 uas: the two recipes do not describe the same effect
+    declared UNCORRELATED     got UNCORRELATED      OK
+
+  SCENARIO sign_flip          DR4 = -L21 -- the convention read backwards
+  queue rows              : 981
+  with BOTH a DR4 bias and an L21 Z : 979 (0.2 % null/absent)
+  median(bias_DR4 - Z_L21) : +70.94 uas
+  NMAD of the difference   : 13.87 uas
+  Spearman rho             : -1.000
+  what the DIFFERENCE is worth as a companion mass (3 D / varpi):
+    median 8.40 %, p90 26.53 %, worst 87.95 %
+  VERDICT: CONVENTION FLIP  ->  USE: NEITHER -- STOP
+    rho -1.00 <= -0.5: one side has the opposite sign convention
+    declared CONVENTION FLIP  got CONVENTION FLIP   OK
+
+  SCENARIO mostly_null        DR4 present for 20 % of the queue
+  queue rows              : 981
+  with BOTH a DR4 bias and an L21 Z : 187 (80.9 % null/absent)
+  -> more than 50 % missing: verdict UNUSABLE
+    declared UNUSABLE         got UNUSABLE          OK
+
+  SELFTEST: PASS (6/6 scenarios)
+
+  0.5 s

@@ -1,0 +1,74 @@
+{
+  "what": "M9 full production chain at December scale",
+  "produced_utc": "2026-08-24T22:26:55Z",
+  "chain_wall_seconds": 467.75,
+  "chain_wall_minutes": 7.8,
+  "stages": [
+    {
+      "stage": "0 preflight",
+      "seconds": 0.35,
+      "ok": true,
+      "n_zeropoint_sources": 1904,
+      "eb26_copied": true
+    },
+    {
+      "stage": "1 transport",
+      "seconds": 0.0,
+      "rc": null,
+      "skipped": true
+    },
+    {
+      "stage": "2 adjudicate",
+      "seconds": 50.64,
+      "rc": 0,
+      "n_ledger": 981,
+      "n_duplicate_ids": 0,
+      "verdicts": {
+        "SPURIOUS": 668,
+        "CONFIRMED": 219,
+        "INCONCLUSIVE": 47,
+        "NO_DATA": 47
+      }
+    },
+    {
+      "stage": "3 refit",
+      "seconds": 97.88,
+      "rc": 0,
+      "n_refit_ledger": 219,
+      "n_duplicate_ids": 0,
+      "status": {
+        "OK": 219
+      },
+      "arm_stats": {
+        "run_id": "m9_refit_20260824T181959",
+        "n_in_ledger": 219,
+        "n_refitted_this_run": 219,
+        "n_total_in_refit_ledger": 219,
+        "seconds": 97.25,
+        "seconds_per_source": 0.4441,
+        "sources_per_hour": 8106.9,
+        "n_ok": 219,
+        "n_no_data": 0,
+        "n_no_peak": 0,
+        "n_fit_failed": 0,
+        "n_without_zeropoint": 1,
+        "zeropoint": true,
+        "epoch_release": "Gaia DR4 M9 rehearsal Dec-scale fixture"
+      }
+    },
+    {
+      "stage": "4 labels",
+      "seconds": 318.86,
+      "rc": 0,
+      "n_labels": 7,
+      "labels": {
+        "POOLED: UNINTERPRETABLE (diluted)": 3,
+        "UNDERPOWERED": 2,
+        "NULL": 1,
+        "DIRECTION REVERSAL": 1
+      }
+    }
+  ],
+  "frozen_artifacts_moved": [],
+  "skip_transport": true
+}

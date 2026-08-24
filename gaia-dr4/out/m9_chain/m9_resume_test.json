@@ -1,0 +1,40 @@
+{
+  "what": "M9 resume-contract test",
+  "produced_utc": "2026-08-24T22:06:39Z",
+  "kill_after_seconds": [
+    25,
+    12,
+    20
+  ],
+  "results": [
+    {
+      "stage": "2 adjudicate",
+      "after_kill": 260,
+      "after_restart": 981,
+      "expected": 981,
+      "killed": true,
+      "duplicates": 0,
+      "restart_rc": 0,
+      "pass": true
+    },
+    {
+      "stage": "3 refit",
+      "after_kill": 56,
+      "after_restart": 219,
+      "expected": 219,
+      "killed": true,
+      "duplicates": 0,
+      "restart_rc": 0,
+      "pass": true
+    },
+    {
+      "stage": "4 labels",
+      "contract": "idempotent re-run",
+      "sha_first": "1a4dcd3041dfc9e5",
+      "sha_second": "1a4dcd3041dfc9e5",
+      "n_labels": 7,
+      "pass": true
+    }
+  ],
+  "all_pass": true
+}

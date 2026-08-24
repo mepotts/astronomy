@@ -264,9 +264,38 @@ class DataLinkSource(EpochSource):
                 frames.append(GaiaEpochAstrometryArchive.astropy_table_to_df(df))
         return frames
 
+    @staticmethod
+    def _temp_dirs():
+        """astroquery's own scratch directories, in the CWD.
+
+        M9 FINDING (the small one, and it is 50 directories by the end of a
+        December run).  `Gaia.load_data` writes the downloaded payload into
+        a fresh `temp_<YYYYMMDD_HHMMSS.ffffff>/` directory **in the current
+        working directory** -- one per call -- and never removes it.  M6
+        landmine #8 noticed astroquery writing into the CWD for
+        `dump_to_file`; this is the same habit on the normal path.  At DR4's
+        50.9 KiB/source and batch 20 that is ~1 MB per batch, so a 50-batch
+        run leaves ~50 MB of DUPLICATED payload and 50 untracked
+        directories in the repo root, on top of the harness's own cache.
+        """
+        try:
+            return {d for d in os.listdir(".")
+                    if d.startswith("temp_") and os.path.isdir(d)}
+        except OSError:
+            return set()
+
     def fetch(self, ids):
+        before = self._temp_dirs()
         res = self._call_with_retries(ids)
         frames = self._frames_from(res)
+        # remove only what THIS call created, and only if it matches
+        # astroquery's own name shape.  Never a blanket temp_* sweep.
+        import shutil
+        for d in self._temp_dirs() - before:
+            try:
+                shutil.rmtree(d, ignore_errors=True)
+            except OSError:
+                pass
         if not frames:
             return {}
         allrows = pd.concat(frames, ignore_index=True)
@@ -322,17 +351,134 @@ def cache_path(release, sid):
     return os.path.join(cache_dir(release), f"{int(sid)}.parquet")
 
 
+REPLACE_RETRIES = 6
+REPLACE_BACKOFF_S = 0.2
+
+
 def cache_write(release, sid, df):
+    """Write one source's epoch table atomically.
+
+    M9 DEFECT, found only by a long run at December scale.  `os.replace` is
+    atomic on Windows but it is NOT immune to sharing violations: another
+    process holding either path open -- an antivirus or the search indexer
+    scanning the file microseconds after it is written is the usual one --
+    makes it raise
+
+        PermissionError: [WinError 5] Access is denied: '...parquet.tmp'
+                          -> '...parquet'
+
+    and that killed a 981-source transport run at source 360 with a
+    non-zero exit.  The failure is TRANSIENT and per-file: the only correct
+    response is to retry.  Nothing about the atomicity guarantee changes --
+    the reader still sees either the old file or the new one, never a half
+    one -- and if every retry fails the exception is re-raised with the
+    cause named, because a cache that cannot be written is a real stop.
+    """
     p = cache_path(release, sid)
     tmp = p + ".tmp"
     df.to_parquet(tmp, index=False)
-    os.replace(tmp, p)                 # atomic: a kill mid-write cannot
-    return p                           # leave a half-file that looks cached
+    last = None
+    for attempt in range(REPLACE_RETRIES):
+        try:
+            os.replace(tmp, p)         # atomic: a kill mid-write cannot
+            return p                   # leave a half-file that looks cached
+        except PermissionError as exc:                           # noqa: PERF203
+            last = exc
+            time.sleep(REPLACE_BACKOFF_S * (2 ** attempt))
+    raise PermissionError(
+        "cache_write could not replace %s after %d attempts (%s). On "
+        "Windows this is a sharing violation, usually an antivirus or "
+        "indexer holding the file; exclude data/epoch_cache/ from "
+        "real-time scanning." % (p, REPLACE_RETRIES, last)) from last
 
 
 def cache_read(release, sid):
     p = cache_path(release, sid)
     return pd.read_parquet(p) if os.path.exists(p) else None
+
+
+class LedgerLock:
+    """One writer per ledger.  M9 DEFECT, paid for in duplicated work.
+
+    The harness's whole resume contract is "the ledger is the resume point:
+    a restart skips what is in it".  That is only true of ONE writer.  Two
+    processes pointed at the same ledger each read it at start-up, each
+    compute a `todo` from a snapshot that is immediately stale, and then
+    both fetch and both append -- so the file grows with DUPLICATE rows,
+    the "already in the ledger" count under-reports, and the two runs
+    silently do the same work twice.  Measured here: 440 rows for 260
+    distinct sources, 180 duplicates, and one restart that announced "220
+    already in the ledger" against a file holding 360.
+
+    Nothing in the harness prevented it, and on release day somebody WILL
+    double-launch -- a terminal left open, a scheduled retry, a background
+    job the shell reported as finished while the detached process ran on
+    (which is exactly how it happened here).  An exclusive-create lock file
+    beside the ledger costs nothing and refuses the second run out loud.
+    A stale lock (the holder died) is detected by pid and can be cleared
+    with --force-unlock.
+    """
+
+    def __init__(self, ledger, force=False):
+        self.path = ledger + ".lock"
+        self.force = force
+        self.fd = None
+
+    def __enter__(self):
+        os.makedirs(os.path.dirname(self.path) or ".", exist_ok=True)
+        if self.force and os.path.exists(self.path):
+            os.remove(self.path)
+        try:
+            self.fd = os.open(self.path,
+                              os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+            os.write(self.fd, ("pid=%d\nstarted=%s\n"
+                               % (os.getpid(),
+                                  time.strftime("%Y-%m-%dT%H:%M:%S"))
+                               ).encode())
+        except FileExistsError:
+            try:
+                held = open(self.path).read().strip().replace("\n", " ")
+            except Exception:                                    # noqa: BLE001
+                held = "unreadable"
+            raise RuntimeError(
+                "another harness run already holds %s (%s). Two writers on "
+                "one ledger duplicate work and corrupt the resume count -- "
+                "wait for it, or if it is dead re-run with --force-unlock."
+                % (os.path.relpath(self.path, BASE), held)) from None
+        return self
+
+    def __exit__(self, *exc):
+        if self.fd is not None:
+            os.close(self.fd)
+            self.fd = None
+        try:
+            os.remove(self.path)
+        except OSError:
+            pass
+        return False
+
+
+def _flush_timings(path, rows):
+    """Append and CLEAR the pending timing rows.
+
+    M9 DEFECT, the twin of the one above and found by the same crash.  The
+    timings CSV used to be written ONCE, after the batch loop -- so a run
+    that died at batch 17 of 50 lost every per-batch measurement it had
+    made, which is precisely the instrumentation you need to (a) diagnose
+    the crash and (b) read the day's delivered KiB/s, which DR4-DAY-RUNBOOK
+    sec.3.0 instructs you to take from `out/m6_harness_timings.csv`.  The
+    ledger checkpointed every batch and the instrumentation did not.
+    Flushed per batch now; the rows list is cleared in place so nothing is
+    written twice.
+    """
+    if not rows:
+        return
+    df = pd.DataFrame(rows)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    header = not os.path.exists(path) or os.path.getsize(path) == 0
+    df.to_csv(path, mode="a", header=header, index=False,
+              lineterminator="\n")
+    rows.clear()
 
 
 def load_ledger(path):
@@ -484,7 +630,24 @@ def base_record(sid, src, run_id, queue_row=None):
 # ======================================================================
 # the loop
 # ======================================================================
-def run(source="prerelease", queue=None, limit=None, batch=DEFAULT_BATCH,
+def run(*a, **kw):
+    """The production loop, under a single-writer lock (M9).
+
+    Everything is in _run_unlocked; this wrapper exists only so that no
+    caller can accidentally run two writers against one ledger.  See
+    LedgerLock for what that cost when it happened.
+    """
+    force = kw.pop("force_unlock", False)
+    ledger = kw.get("ledger")
+    if ledger is None:
+        src = kw.get("source", a[0] if a else "prerelease")
+        ledger = os.path.join(OUT_DIR, "verdicts", "harness_%s.v1.csv" % src)
+    with LedgerLock(ledger, force=force):
+        return _run_unlocked(*a, **kw)
+
+
+def _run_unlocked(source="prerelease", queue=None, limit=None,
+        batch=DEFAULT_BATCH,
         release=None, ledger=None, timings=None, run_id=None, gap=GAP_S,
         model=None, refit=False, verbose=True, retrieval_type=None,
         epoch_source=None, transport_only=False, progress_every=0):
@@ -605,6 +768,7 @@ def run(source="prerelease", queue=None, limit=None, batch=DEFAULT_BATCH,
                              "attempted"),
                 })
             append_transport_ledger(ledger, new_records)
+            _flush_timings(timings, rows_t)
             n_done = bi + len(chunk)
             if progress_every and (bi // batch) % progress_every == 0:
                 el = time.time() - t_run0
@@ -684,6 +848,7 @@ def run(source="prerelease", queue=None, limit=None, batch=DEFAULT_BATCH,
         if new_records:
             append_ledger(ledger, new_records)
             new_records = []
+        _flush_timings(timings, rows_t)
         if need and bi + batch < len(todo):
             time.sleep(gap)
 
@@ -692,12 +857,7 @@ def run(source="prerelease", queue=None, limit=None, batch=DEFAULT_BATCH,
             ledger, new_records)
 
     wall = time.time() - t_run0
-    tdf = pd.DataFrame(rows_t)
-    if len(tdf):
-        os.makedirs(os.path.dirname(timings), exist_ok=True)
-        header = not os.path.exists(timings) or os.path.getsize(timings) == 0
-        tdf.to_csv(timings, mode="a", header=header, index=False,
-                   lineterminator="\n")
+    _flush_timings(timings, rows_t)
 
     stats = {
         "run_id": run_id, "source": source, "release": src.release,
@@ -745,6 +905,9 @@ def main(argv=None):
     ap.add_argument("--model", default=None)
     ap.add_argument("--refit", action="store_true",
                     help="ignore the ledger and re-fit everything")
+    ap.add_argument("--force-unlock", action="store_true",
+                    help="clear a STALE ledger lock (only when you have "
+                         "checked that no other harness run is alive)")
     ap.add_argument("--expect-keep", default=None,
                     help="comma-separated source_ids that MUST come back "
                          "CONFIRMED and be the only ones (acceptance gate)")
@@ -753,7 +916,8 @@ def main(argv=None):
     led, stats = run(source=a.source, queue=a.queue, limit=a.limit,
                      batch=a.batch, release=a.release, ledger=a.ledger,
                      timings=a.timings, run_id=a.run_id, gap=a.gap,
-                     model=a.model, refit=a.refit)
+                     model=a.model, refit=a.refit,
+                     force_unlock=a.force_unlock)
 
     if a.expect_keep is not None:
         expect = {int(x) for x in a.expect_keep.split(",") if x.strip()}

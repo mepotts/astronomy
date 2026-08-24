@@ -1,0 +1,39 @@
+==============================================================================
+DECEMBER SECTION 3.3 -- the pre-registered analysis, as one command
+  verdicts   : out/m9_chain/seedctl_store
+  out        : out\m9_chain\seedctl_dec
+  prereg     : PREREG-2026-08-23-december-discriminators.md (FROZEN)
+==============================================================================
+  primary    m4_eb26_erosita_test.py          rc=0  20.8s
+  primary    m5_activity_discriminator.py     rc=0  102.2s
+  primary    m6_astrom_quiet_decision.py      rc=0  101.4s
+  pooled     m4_eb26_erosita_test.py          rc=0  20.4s
+  pooled     m5_activity_discriminator.py     rc=0  98.2s
+
+------------------------------------------------------------------------------
+REGRESSION CHECK (prereg sec.2.2): the frozen M4/M5 artifacts
+  SKIPPED (--no-regression)
+
+------------------------------------------------------------------------------
+LABELS (prereg sec.5 + sec.2.2, via m8_prereg_labels.py)
+
+  PRIMARY  (negative control phot_g_n_obs p = 0.5097)
+      D1  primary    n= 113+327   p_holm=1.0000  eff=-0.001  min_det=0.150  dec=Y  ->  NULL
+      D2  primary    n= 221+667   p_holm=1.0000  eff=+0.509  min_det=0.575  dec=Y  ->  NULL
+      D3  primary    n= 221+667   p_holm=1.0000  eff=+0.506  min_det=0.575  dec=Y  ->  NULL
+      D4  primary    n= 221+667   p_holm=0.7239  eff=-0.014  min_det=0.400  dec=n  ->  UNDERPOWERED
+
+  POOLED  (negative control phot_g_n_obs p = 0.5057)
+      D1  pooled     n= 129+340   p_holm=1.0000  eff=+0.009  min_det=0.150  dec=Y  ->  POOLED: UNINTERPRETABLE (diluted)
+      D2  pooled     n= 263+690   p_holm=0.3884  eff=+0.532  min_det=0.575  dec=Y  ->  POOLED: UNINTERPRETABLE (diluted)
+      D3  pooled     n= 263+690   p_holm=0.9595  eff=+0.475  min_det=0.575  dec=Y  ->  POOLED: UNINTERPRETABLE (diluted)
+
+------------------------------------------------------------------------------
+SUMMARY
+  NULL                                           3
+  POOLED: UNINTERPRETABLE (diluted)              3
+  UNDERPOWERED                                   1
+  labels with a registration defect code: 7
+  -> a defect code is NOT a licence to choose: report the emitted label, the code, and which reading was used.
+  wall clock 356.1 s over 5 subprocess runs, 0 non-zero exits
+  wrote out\m9_chain\seedctl_dec\dec_labels.csv

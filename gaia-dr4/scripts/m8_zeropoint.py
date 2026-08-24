@@ -112,11 +112,51 @@ def _arr(x):
     return np.atleast_1d(np.asarray(x, dtype=float))
 
 
+BIT_PARALLAX, BIT_PSEUDOCOLOUR = 4, 64
+
+
+def normalise_solved(astrometric_params):
+    """DR3 `astrometric_params_solved` OR DR4 `astrometric_params` -> the
+    value the L21 recipe needs (31, 95, or 0 = not correctable).
+
+    *** M9 FINDING.  M8 flagged that the guard column is RENAMED in DR4.
+    The bigger half is that its VALUE SET changed.  DR3 took 3/31/95; the
+    DR4 draft data model (p. 19) declares nineteen values, because DR4 adds
+    bits for fitted acceleration terms and, at bits 11/12/13, for
+    non-single-star models (Orbital / VIM / Resolved).  SEVENTEEN of the
+    nineteen are outside {31, 95}, and ELEVEN of those are the
+    non-single-star values -- which is this project's ENTIRE candidate list.
+
+    What that would have cost is not a crash.  `parallax_zeropoint` already
+    masks anything outside {31,95} rather than letting `zpt.get_zpt` raise,
+    so on 2 December it would have returned NaN for EVERY queue member, the
+    refit arm would have printed "no L21 zero-point available ...
+    UNCORRECTED" 981 times, and every companion mass would have shipped
+    high by ~3Z/varpi (5-10 %).  A silent total loss of the correction is
+    worse than the raise M8 was watching for. ***
+
+    The decode reads the two bits that decide L21's branch and ignores the
+    rest: bit 2 (=4) parallax fitted at all, bit 6 (=64) pseudocolour fitted
+    (six-parameter).  It is a strict NO-OP on DR3's 3/31/95 -- verified by
+    `--selftest` and by the M8 artifacts reproducing byte-identically.
+    """
+    a = np.asarray(astrometric_params)
+    a = np.where(np.isfinite(np.asarray(a, dtype=float)), a, 0)
+    a = np.asarray(a).astype("int64")
+    return np.where((a & BIT_PARALLAX) == 0, 0,
+                    np.where((a & BIT_PSEUDOCOLOUR) != 0, SOLVED_6P,
+                             SOLVED_5P))
+
+
 def parallax_zeropoint(phot_g_mean_mag, nu_eff_used_in_astrometry,
                        pseudocolour, ecl_lat, astrometric_params_solved):
     """Z [mas] per source, NaN where the correction is not defined.
 
     Masks non-(31,95) solutions BEFORE the call -- get_zpt raises on them.
+    The guard value goes through `normalise_solved()` first, so a DR4
+    `astrometric_params` (which is a bitmask with extra bits set, never a
+    bare 31 or 95, for every non-single-star source) is decoded rather than
+    silently dropped.  No-op on DR3 values.
     """
     zpt = _zpt()
     g = _arr(phot_g_mean_mag)
@@ -128,6 +168,7 @@ def parallax_zeropoint(phot_g_mean_mag, nu_eff_used_in_astrometry,
     if len(shapes) != 1:
         raise ValueError(f"inputs must share one shape; got {sorted(shapes)}")
     out = np.full(g.shape, np.nan, dtype=float)
+    solved = normalise_solved(solved)
     ok = (solved == SOLVED_5P) | (solved == SOLVED_6P)
     if np.any(ok):
         with warnings.catch_warnings():

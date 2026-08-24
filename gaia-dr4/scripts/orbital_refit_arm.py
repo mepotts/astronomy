@@ -689,6 +689,156 @@ def run_prerelease(ids=None, use_dr3=True, n_posterior=N_POSTERIOR,
     return pd.DataFrame(rows)
 
 
+# ======================================================================
+# M9: the DECEMBER path -- consume a harness ledger, at scale, resumably.
+#
+# DEFECT M9-1, found by running the chain end to end.  Until M9 the only
+# entry points into this arm were `--acceptance`, `--trio` and `--ids`, and
+# ALL THREE route to run_prerelease(), which fetches epoch astrometry from
+# the twelve-source 2026-06-26 pre-release VOTable.  The DR4-DAY-RUNBOOK's
+# own December command --
+#     orbital_refit_arm.py --ids <comma-separated> --zeropoint
+# -- therefore returns NO_DATA for every DR4 id, and then dies with
+# `KeyError: 'delta_over_refit_formal_err'` inside literature_comparison
+# because the comparison frame is empty.  It is the same family as M8's
+# DEFECT C-1 (the D4 command that did not parse): a pre-registered command
+# nobody had ever typed against the input December will actually hand it.
+#
+# What December hands the arm is a v1 verdict ledger from the harness and a
+# per-source epoch cache the harness has already filled.  That is what
+# run_queue consumes.  Resume is the harness's own contract: the refit
+# ledger is append-only, one row per source, and a restart skips what is in
+# it -- so a kill costs at most the source in flight.
+# ======================================================================
+REFIT_LEDGER_META = ["source_id", "refit_run_id", "refit_produced_utc"]
+
+
+def load_refit_ledger(path):
+    if not path or not os.path.exists(path) or os.path.getsize(path) == 0:
+        return pd.DataFrame(columns=REFIT_LEDGER_META)
+    return pd.read_csv(path)
+
+
+def append_refit_ledger(path, rec):
+    """One row, appended.  Writing per source (not per chunk) is what makes
+    the resume contract exact: the ledger and the work done never differ by
+    more than the source currently being fitted."""
+    df = pd.DataFrame([rec])
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    header = not os.path.exists(path) or os.path.getsize(path) == 0
+    df.to_csv(path, mode="a", header=header, index=False, lineterminator="\n")
+
+
+def _triage_m1_index(path=None):
+    """(source_id, nss_solution_type) -> the triage frame's own M1 rung.
+
+    The queue was RANKED with this ladder (config v2+), so the mass posterior
+    has to use the same one or the two cannot be quoted together.  Reading it
+    from the frame is also what removes the per-source DR3 cone search that
+    run_prerelease needs -- December already knows the source's id.
+    """
+    path = path or os.path.join(BASE, "data", "dr3_amrf_triage.parquet")
+    if not os.path.exists(path):
+        return None
+    t = pd.read_parquet(path, columns=["source_id", "nss_solution_type",
+                                       "m1_used", "m1_sigma", "m1_source"])
+    t["source_id"] = t["source_id"].astype("int64")
+    return t.drop_duplicates(["source_id", "nss_solution_type"]).set_index(
+        ["source_id", "nss_solution_type"])
+
+
+def run_queue(ledger, epoch_release, out_ledger, zeropoint=False,
+              n_posterior=N_POSTERIOR, limit=None, triage_path=None,
+              verbose=True, progress_every=25, run_id=None,
+              verdicts=("CONFIRMED",), scope="orbit_reality"):
+    """Refit every CONFIRMED orbit in a harness ledger.  Resumable.
+
+    Returns (refits DataFrame, stats dict).
+    """
+    import verdict_schema as vs
+    run_id = run_id or ("m9_refit_%s" % time.strftime("%Y%m%dT%H%M%S"))
+    led = vs.coerce(pd.read_csv(ledger))
+    sel = led[led["verdict"].isin(verdicts)]
+    if scope:
+        sel = sel[sel["verdict_scope"] == scope]
+    ids = sel["source_id"].astype("int64").tolist()
+    types = dict(zip(sel["source_id"].astype("int64"),
+                     sel["nss_solution_type"]))
+    if limit:
+        ids = ids[:int(limit)]
+    done = load_refit_ledger(out_ledger)
+    already = set(done["source_id"].astype("int64")) if len(done) else set()
+    todo = [i for i in ids if i not in already]
+    if verbose:
+        print("refit arm run %s: %d %s in the ledger, %d already refitted, "
+              "%d to do (zeropoint=%s)"
+              % (run_id, len(ids), "/".join(verdicts), len(already),
+                 len(todo), zeropoint))
+
+    tri = _triage_m1_index(triage_path)
+    t0 = time.time()
+    n_ok = n_nodata = n_nopeak = n_failed = n_nozp = 0
+    for k, sid in enumerate(todo):
+        st = types.get(sid)
+        df_raw = H.cache_read(epoch_release, sid)
+        if df_raw is None or not len(df_raw):
+            rec = {c: None for c in v2.REFIT_COLUMNS}
+            rec.update({"refit_status": "NO_DATA", "refit_method": METHOD,
+                        "refit_code_version": ARM_VERSION,
+                        "refit_notes": "no epoch astrometry in cache "
+                                       "'%s'" % epoch_release})
+            n_nodata += 1
+        else:
+            m1 = m1s = None
+            rung = "UNSOURCED"
+            if tri is not None and (sid, st) in tri.index:
+                r = tri.loc[(sid, st)]
+                if pd.notna(r["m1_used"]):
+                    m1 = float(r["m1_used"])
+                    m1s = (float(r["m1_sigma"]) if pd.notna(r["m1_sigma"])
+                           else 0.1 * m1)
+                    rung = "triage_frame:" + str(r["m1_source"])
+            zp = zeropoint_for(sid) if zeropoint else None
+            if zeropoint and zp is None:
+                n_nozp += 1
+            rec = refit_source(sid, df_raw, m1=m1, m1_sigma=m1s,
+                               m1_source=rung, n_posterior=n_posterior,
+                               verbose=False, zeropoint_mas=zp)
+            st_ = rec.get("refit_status")
+            n_ok += st_ == "OK"
+            n_nopeak += st_ == "NO_PEAK"
+            n_failed += st_ == "FIT_FAILED"
+        rec["source_id"] = int(sid)
+        rec["refit_run_id"] = run_id
+        rec["refit_produced_utc"] = v2.utcnow()
+        append_refit_ledger(out_ledger, rec)
+        if verbose and progress_every and k and k % progress_every == 0:
+            print("    %d/%d refits, %.0fs elapsed" % (k, len(todo),
+                                                       time.time() - t0),
+                  flush=True)
+    wall = time.time() - t0
+    out = load_refit_ledger(out_ledger)
+    stats = {"run_id": run_id, "n_in_ledger": len(ids),
+             "n_refitted_this_run": len(todo), "n_total_in_refit_ledger":
+             len(out), "seconds": round(wall, 2),
+             "seconds_per_source": round(wall / max(len(todo), 1), 4),
+             "sources_per_hour": round(3600.0 * len(todo) / max(wall, 1e-9), 1),
+             "n_ok": n_ok, "n_no_data": n_nodata, "n_no_peak": n_nopeak,
+             "n_fit_failed": n_failed, "n_without_zeropoint": n_nozp,
+             "zeropoint": bool(zeropoint), "epoch_release": epoch_release}
+    if verbose:
+        print("  %d refits in %.1fs (%.3f s/source, %s/hour) -- "
+              "OK %d, NO_PEAK %d, NO_DATA %d, FIT_FAILED %d"
+              % (len(todo), wall, stats["seconds_per_source"],
+                 stats["sources_per_hour"], n_ok, n_nopeak, n_nodata,
+                 n_failed))
+        if zeropoint and n_nozp:
+            print("  WARNING: %d source(s) had no L21 zero-point and were "
+                  "left UNCORRECTED -- see DR4-DAY-RUNBOOK failure branches"
+                  % n_nozp)
+    return out, stats
+
+
 def acceptance(n_posterior=N_POSTERIOR, verbose=True):
     """The pre-registered gate: BH3 through the production arm vs M1."""
     print("ACCEPTANCE -- Gaia BH3 through the production refit arm")
@@ -789,6 +939,14 @@ def literature_comparison(refits, out_path=None):
     # Laplace error bars were honest this would be ~1 and ~68 % of the rows
     # would fall inside 1.  It is the only external check the arm has, and
     # it is the number December must quote next to every mass.
+    # DEFECT M9-1b: with no comparable row (every input NO_DATA, e.g. an id
+    # this arm cannot fetch) the frame is EMPTY and has no columns at all,
+    # so this line raised KeyError and took the exit code with it -- after
+    # the trio CSV had already been written.  An empty comparison is a
+    # legitimate outcome; say so and return.
+    if "delta_over_refit_formal_err" not in out.columns:
+        print("\n  (no comparable elements: nothing to calibrate against)")
+        return out
     z = out["delta_over_refit_formal_err"].dropna().abs()
     if len(z):
         print("\n  ERROR-BAR CALIBRATION (|refit - published| / the refit's "
@@ -863,7 +1021,26 @@ def main(argv=None):
     ap.add_argument("--acceptance", action="store_true")
     ap.add_argument("--trio", action="store_true")
     ap.add_argument("--ids", default=None,
-                    help="comma-separated pre-release source_ids")
+                    help="comma-separated PRE-RELEASE source_ids. NOT the "
+                         "December path -- these are fetched from the "
+                         "12-source pre-release file. Use --queue.")
+    # ---- the December path (M9) -------------------------------------
+    ap.add_argument("--queue", default=None,
+                    help="a v1 harness verdict ledger. Refits every "
+                         "CONFIRMED (orbit_reality) row from the epoch "
+                         "cache. THIS IS THE DECEMBER ENTRY POINT.")
+    ap.add_argument("--epoch-release", default="Gaia DR4",
+                    help="release tag of the harness epoch cache to read "
+                         "(data/epoch_cache/<tag>/); must match the tag the "
+                         "harness ran under")
+    ap.add_argument("--refit-ledger", default=None,
+                    help="append-only refit ledger (resume point). "
+                         "Default <out-dir>/refit_ledger.csv")
+    ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--triage", default=None,
+                    help="triage parquet supplying the M1 ladder rung")
+    ap.add_argument("--v2-out", default=None,
+                    help="where to write the v2 store built from --queue")
     ap.add_argument("--n-posterior", type=int, default=N_POSTERIOR)
     ap.add_argument("--zeropoint", action="store_true",
                     help="apply the Lindegren+2021 parallax zero-point "
@@ -892,6 +1069,26 @@ def main(argv=None):
                                    (v.item() if hasattr(v, "item") else v))
                                for k, v in df.iloc[0].items()}}, fh, indent=2)
         status |= 0 if ok else 1
+
+    if a.queue:
+        print("\nORBITAL REFIT ARM -- DECEMBER PATH (from a harness ledger)")
+        print("=" * 72)
+        rl = a.refit_ledger or os.path.join(outdir, "refit_ledger.csv")
+        refits, st = run_queue(a.queue, a.epoch_release, rl,
+                               zeropoint=a.zeropoint,
+                               n_posterior=a.n_posterior, limit=a.limit,
+                               triage_path=a.triage)
+        with open(os.path.join(outdir, "refit_queue_stats.json"), "w",
+                  newline="\n", encoding="utf-8") as fh:
+            json.dump(st, fh, indent=2)
+        m, sp = build_v2_store(
+            refits, ledger=a.queue,
+            out_path=(a.v2_out or os.path.join(outdir,
+                                               "harness_refit.v2.csv")))
+        print("v2 store: %s (%d records, %d with a refit)"
+              % (os.path.relpath(sp, BASE), len(m),
+                 int((m["refit_status"] != "SKIPPED").sum())))
+        return status
 
     if a.trio or a.ids:
         ids = [int(x) for x in a.ids.split(",")] if a.ids else None
