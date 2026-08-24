@@ -1,0 +1,181 @@
+# Daily watch on the MPC identification queue. It notifies; it never submits.
+#
+# WHAT THIS SOLVES. The candidate ledger decays: M12 measured the ITF draining at 4.4
+# departures per arrival, and a full run over the queue on 2026-08-24 already found one row
+# the MPC had identified itself since the queue was built the day before. Left alone, the
+# queue quietly rots. This says so, daily, by email.
+#
+# WHY IT CAN RUN HERE AT ALL, when the snapshot job could not. `itf-snapshot.yml` documents
+# the ConnectTimeout that killed the archive cron on 2026-08-04 -- the MPC is unreachable
+# from Actions runners. Nothing in this workflow needs it:
+#
+#   review queue          committed to the repo
+#   ITF key set           a GitHub RELEASE ASSET (observations-<sid>.parquet), from GitHub
+#   observatory table     committed (data/raw/ObsCodes.html, force-added past .gitignore)
+#
+# and `m13_submit_payload` was deliberately written to read only desig/obscode/mjd, which
+# is exactly what the slim release asset carries. So the one step that needs a residential
+# IP (pull the ITF, publish the key set) stays on the local scheduled task, and everything
+# downstream of it runs in the cloud.
+#
+# THE HONEST LIMIT. This is only as fresh as the last key set the local task published. If
+# that machine is off for three days, this reports the same state three times and says so
+# in the log rather than inventing news.
+#
+# ⚠️ BOTH triggers need this file on the repository's DEFAULT branch. `schedule` only ever
+# fires from there -- that much `itf-snapshot.yml` already documents -- but so does
+# `workflow_dispatch`: GitHub registers a workflow as dispatchable by its presence on the
+# default branch, and the API returns
+#
+#   HTTP 404: workflow not found on the default branch
+#
+# for a workflow that exists only on a feature branch. The `--ref` argument then chooses
+# WHICH branch's copy runs, but it cannot make an unregistered workflow runnable. So this
+# does nothing at all until it is merged to `main`, manual runs included.
+
+name: ITF submission watch
+
+on:
+  schedule:
+    # 15:00 UTC, a couple of hours after the local task's usual ~12:26 UTC pull.
+    - cron: "0 15 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: itf-submission-watch
+  cancel-in-progress: false
+
+permissions:
+  contents: write     # commit the watch state back
+  issues: write       # the notification itself
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: itf-linker
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: itf-linker/pyproject.toml
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e "."
+
+      # The key set is the only large input and it comes from our own release, never the
+      # MPC. A missing asset is not an error worth failing on -- it means the local task
+      # has not published yet -- but there is nothing to measure without one.
+      - name: Fetch the newest published key set
+        id: keyset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p data/keyset
+          name=$(gh release view itf-state --json assets \
+            -q '.assets[].name | select(startswith("observations-"))' | sort | tail -1)
+          if [ -z "$name" ]; then
+            echo "::warning::no published key set; the local archive task has not run"
+            echo "found=0" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          gh release download itf-state --pattern "$name" --dir data/keyset --clobber
+          sid="${name#observations-}"; sid="${sid%.parquet}"
+          echo "found=1"        >> "$GITHUB_OUTPUT"
+          echo "sid=$sid"       >> "$GITHUB_OUTPUT"
+          echo "path=data/keyset/$name" >> "$GITHUB_OUTPUT"
+          echo "using key set $name (snapshot $sid)"
+
+      - name: Check the queue against it
+        id: watch
+        if: steps.keyset.outputs.found == '1'
+        run: |
+          python scripts/m13_submission_watch.py \
+            --queue out/review-queue-v2-20260823.csv \
+            --itf "${{ steps.keyset.outputs.path }}" \
+            --snapshot-id "${{ steps.keyset.outputs.sid }}" \
+            --state out/submission-watch-state.json \
+            --neo-status out/queue-neo-status.json \
+            --name "M.Potts" --email "mepotts@berkeley.edu" \
+            --out-payload out/submission-tierA.json \
+            --out-report out/submission-watch-report.md \
+            --github-output "$GITHUB_OUTPUT"
+
+      # ------------------------------------------------------------------------------
+      # THE EXPERIMENT. Is the MPC reachable from an Actions runner at all?
+      #
+      # `itf-snapshot.yml` established that the ITF *file* download times out from here,
+      # and inferred a datacenter IP-range block. But four ordinary minorplanetcenter.net
+      # pages fetched fine from a different datacenter on 2026-08-24, so the block may be
+      # specific to GitHub's ranges, or to the bulk-file path, rather than blanket.
+      #
+      # That distinction decides whether an approve-then-submit pipeline is even possible
+      # from here, so it is worth measuring rather than assuming. This is a plain GET of a
+      # documentation page: no submission, no payload, nothing sent. It never fails the
+      # job -- the answer is the point, either way.
+      # ------------------------------------------------------------------------------
+      - name: Probe MPC reachability (informational, never fails)
+        if: always()
+        run: |
+          url=https://www.minorplanetcenter.net/mpcops/documentation/identifications/
+          code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 45 "$url" || echo "TIMEOUT")
+          echo "MPC probe: $code"
+          {
+            echo "### MPC reachability from this runner"
+            echo
+            if [ "$code" = "200" ]; then
+              echo "\`$code\` — **reachable.** The 2026-08-04 block was not a blanket ban on"
+              echo "this host from Actions, so an approve-gated submit job is worth designing."
+            else
+              echo "\`$code\` — **not reachable.** Consistent with the IP-range block that moved"
+              echo "the snapshot job to a local scheduled task. Submission cannot originate here."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload the payload
+        if: steps.watch.outputs.ready != '' && steps.watch.outputs.ready != '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: mpc-submission-payload
+          path: |
+            itf-linker/out/submission-tierA.json
+            itf-linker/out/submission-watch-report.md
+          retention-days: 90
+
+      # One rolling issue, one comment per change. GitHub emails on both, which is the
+      # notification -- no SMTP secret, no third-party action, and the JSON is inline in
+      # the mail rather than behind a download.
+      - name: Notify
+        if: steps.watch.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="ITF identifications ready: ${{ steps.watch.outputs.ready }}"
+          num=$(gh issue list --label itf-submission --state open \
+                  --json number -q '.[0].number' || true)
+          gh label create itf-submission --color 0E8A16 \
+            --description "MPC identification queue watch" 2>/dev/null || true
+          body=$(cat out/submission-watch-report.md)
+          if [ -z "$num" ]; then
+            gh issue create --title "$title" --label itf-submission --body "$body"
+          else
+            gh issue comment "$num" --body "$body"
+            gh issue edit "$num" --title "$title"
+          fi
+
+      - name: Record the state
+        if: steps.watch.outputs.changed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f out/submission-watch-state.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "ITF submission watch: ${{ steps.watch.outputs.ready }} ready [skip ci]"
+          git push origin HEAD:${{ github.ref_name }}

@@ -1,0 +1,3324 @@
+{
+  "generated_utc": "2026-08-24T21:24:42Z",
+  "queue": "review-queue-v2-20260823.csv",
+  "mpcorb": "mpcorb_extended_20260823.json.gz",
+  "neo_definition": "perihelion q = a(1-e) < 1.3 au",
+  "note": "An object absent from `objects` is treated as NON-NEO by the payload builder -- the restrictive branch. Never infer the exemption from absence.",
+  "n_objects": 662,
+  "n_neo": 0,
+  "missing_from_mpcorb": [
+    "2014 HM208"
+  ],
+  "objects": {
+    "2011 UE222": {
+      "q_au": 2.6421,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2015 KP488": {
+      "q_au": 2.5471,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2015 KX508": {
+      "q_au": 2.6711,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2015 RR390": {
+      "q_au": 1.7002,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2016 GS315": {
+      "q_au": 1.8744,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2018 CV33": {
+      "q_au": 2.7793,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2019 FQ14": {
+      "q_au": 2.4663,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2020 OA87": {
+      "q_au": 2.7374,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2020 RP131": {
+      "q_au": 2.3368,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2021 RE93": {
+      "q_au": 1.7591,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2023 RK104": {
+      "q_au": 2.5291,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 CX10": {
+      "q_au": 1.9399,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 HB66": {
+      "q_au": 2.8453,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 HC83": {
+      "q_au": 2.6734,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 HF59": {
+      "q_au": 2.5803,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 HG59": {
+      "q_au": 2.7352,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 HJ72": {
+      "q_au": 2.8595,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 HK67": {
+      "q_au": 2.5763,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 HM58": {
+      "q_au": 2.3853,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 HO61": {
+      "q_au": 2.5932,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 HP80": {
+      "q_au": 2.0223,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 HT55": {
+      "q_au": 2.6583,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 HU57": {
+      "q_au": 2.4391,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 HV93": {
+      "q_au": 2.5218,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 JQ6": {
+      "q_au": 1.7197,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 KC23": {
+      "q_au": 1.9092,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 KC60": {
+      "q_au": 2.5559,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 KK32": {
+      "q_au": 2.4877,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 KS33": {
+      "q_au": 2.0635,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 KU46": {
+      "q_au": 2.7476,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 KV60": {
+      "q_au": 1.8667,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 LB6": {
+      "q_au": 2.2552,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 LY5": {
+      "q_au": 1.945,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MA106": {
+      "q_au": 2.857,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MA115": {
+      "q_au": 2.631,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MA134": {
+      "q_au": 1.8823,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MA143": {
+      "q_au": 2.9503,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MA148": {
+      "q_au": 3.2359,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MA150": {
+      "q_au": 2.5613,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MA191": {
+      "q_au": 2.6187,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MA205": {
+      "q_au": 1.837,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MA212": {
+      "q_au": 2.5159,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MA230": {
+      "q_au": 2.0211,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MA237": {
+      "q_au": 2.1073,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MA250": {
+      "q_au": 2.5944,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MA287": {
+      "q_au": 2.1849,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MA290": {
+      "q_au": 2.499,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MA313": {
+      "q_au": 2.562,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MA340": {
+      "q_au": 2.1541,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MB103": {
+      "q_au": 2.7647,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MB176": {
+      "q_au": 1.9944,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MB187": {
+      "q_au": 2.5456,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MB202": {
+      "q_au": 2.1389,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MB215": {
+      "q_au": 2.7602,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MB225": {
+      "q_au": 2.9125,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MB230": {
+      "q_au": 2.8858,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MB255": {
+      "q_au": 2.0292,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MB300": {
+      "q_au": 2.2639,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MB337": {
+      "q_au": 2.5558,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MC157": {
+      "q_au": 2.8448,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MC165": {
+      "q_au": 2.4867,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MC186": {
+      "q_au": 2.3313,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MC196": {
+      "q_au": 2.3485,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MC197": {
+      "q_au": 2.6139,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MC212": {
+      "q_au": 2.4468,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MC241": {
+      "q_au": 2.4716,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MC285": {
+      "q_au": 2.1169,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MD104": {
+      "q_au": 2.3973,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MD117": {
+      "q_au": 2.7146,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MD141": {
+      "q_au": 2.936,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MD158": {
+      "q_au": 2.2097,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MD179": {
+      "q_au": 2.8355,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MD184": {
+      "q_au": 2.038,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MD198": {
+      "q_au": 1.8063,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MD242": {
+      "q_au": 2.2879,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MD249": {
+      "q_au": 2.1331,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MD253": {
+      "q_au": 2.7604,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MD276": {
+      "q_au": 2.5316,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MD314": {
+      "q_au": 2.496,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MD317": {
+      "q_au": 2.4985,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ME102": {
+      "q_au": 2.964,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ME108": {
+      "q_au": 2.7768,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ME167": {
+      "q_au": 2.326,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ME189": {
+      "q_au": 1.9192,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ME210": {
+      "q_au": 2.0677,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ME283": {
+      "q_au": 2.4897,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ME302": {
+      "q_au": 2.6391,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ME358": {
+      "q_au": 2.5591,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MF127": {
+      "q_au": 2.8496,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MF145": {
+      "q_au": 2.5545,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MF154": {
+      "q_au": 2.3752,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MF209": {
+      "q_au": 2.403,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MF294": {
+      "q_au": 2.5991,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MF306": {
+      "q_au": 2.2583,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MF324": {
+      "q_au": 2.2005,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MF336": {
+      "q_au": 1.8677,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MF357": {
+      "q_au": 2.2494,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MG140": {
+      "q_au": 2.8788,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MG141": {
+      "q_au": 2.9142,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MG180": {
+      "q_au": 1.9537,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MG218": {
+      "q_au": 2.7992,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MG233": {
+      "q_au": 2.5778,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MG271": {
+      "q_au": 2.2099,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MG296": {
+      "q_au": 1.9588,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MG319": {
+      "q_au": 2.6887,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MG320": {
+      "q_au": 2.0376,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MG338": {
+      "q_au": 1.8198,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MH101": {
+      "q_au": 3.3016,
+      "orbit_type": "Hilda",
+      "is_neo": false
+    },
+    "2025 MH102": {
+      "q_au": 2.9047,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MH109": {
+      "q_au": 2.9237,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MH135": {
+      "q_au": 2.7829,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MH139": {
+      "q_au": 2.1873,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MH149": {
+      "q_au": 3.0156,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MH169": {
+      "q_au": 2.714,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MH187": {
+      "q_au": 2.5252,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MH223": {
+      "q_au": 2.9392,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MH235": {
+      "q_au": 2.8023,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MH252": {
+      "q_au": 2.2448,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MH255": {
+      "q_au": 2.6381,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MH295": {
+      "q_au": 2.4202,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MH325": {
+      "q_au": 2.3778,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MH327": {
+      "q_au": 2.6662,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MH332": {
+      "q_au": 2.346,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MJ105": {
+      "q_au": 2.9511,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MJ119": {
+      "q_au": 2.1586,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MJ137": {
+      "q_au": 2.0886,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MJ164": {
+      "q_au": 2.8665,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MJ174": {
+      "q_au": 2.1221,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MJ234": {
+      "q_au": 2.6086,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MJ239": {
+      "q_au": 3.0123,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MJ263": {
+      "q_au": 1.8596,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MJ268": {
+      "q_au": 2.1816,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MJ273": {
+      "q_au": 1.9603,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MJ300": {
+      "q_au": 3.1142,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MJ306": {
+      "q_au": 2.7361,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MK167": {
+      "q_au": 2.7204,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MK171": {
+      "q_au": 2.6515,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MK175": {
+      "q_au": 1.8312,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MK203": {
+      "q_au": 2.121,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MK223": {
+      "q_au": 2.5746,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MK234": {
+      "q_au": 2.0516,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MK245": {
+      "q_au": 2.6512,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MK265": {
+      "q_au": 2.4045,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MK280": {
+      "q_au": 2.4542,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MK317": {
+      "q_au": 2.271,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MK328": {
+      "q_au": 1.7632,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ML149": {
+      "q_au": 2.5164,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ML150": {
+      "q_au": 3.2807,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ML165": {
+      "q_au": 2.2702,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ML178": {
+      "q_au": 2.1071,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ML209": {
+      "q_au": 2.4901,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ML246": {
+      "q_au": 2.5366,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ML278": {
+      "q_au": 2.6346,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ML284": {
+      "q_au": 2.4614,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ML331": {
+      "q_au": 2.2909,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ML384": {
+      "q_au": 2.6865,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MM104": {
+      "q_au": 2.6385,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MM108": {
+      "q_au": 2.9236,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MM111": {
+      "q_au": 2.6134,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MM113": {
+      "q_au": 2.5287,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MM118": {
+      "q_au": 2.819,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MM121": {
+      "q_au": 2.5277,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MM125": {
+      "q_au": 2.1697,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MM164": {
+      "q_au": 2.8023,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MM167": {
+      "q_au": 2.6328,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MM186": {
+      "q_au": 2.4841,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MM246": {
+      "q_au": 2.4742,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MM255": {
+      "q_au": 2.4626,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MM299": {
+      "q_au": 2.5475,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MM311": {
+      "q_au": 2.5807,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MN133": {
+      "q_au": 3.0165,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MN172": {
+      "q_au": 2.7635,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MN222": {
+      "q_au": 2.6018,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MN234": {
+      "q_au": 2.3969,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MN240": {
+      "q_au": 2.5325,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MN257": {
+      "q_au": 2.5482,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MN326": {
+      "q_au": 2.7485,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MN355": {
+      "q_au": 2.2106,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MO111": {
+      "q_au": 2.6836,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MO118": {
+      "q_au": 2.5903,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MO153": {
+      "q_au": 2.0485,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MO169": {
+      "q_au": 2.9498,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MO171": {
+      "q_au": 2.8899,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MO176": {
+      "q_au": 1.8546,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MO191": {
+      "q_au": 2.6841,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MO198": {
+      "q_au": 2.5122,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MO201": {
+      "q_au": 2.2808,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MO209": {
+      "q_au": 2.2417,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MO232": {
+      "q_au": 2.4628,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MO279": {
+      "q_au": 2.5995,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MO353": {
+      "q_au": 2.5099,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MO356": {
+      "q_au": 2.5856,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MP131": {
+      "q_au": 2.4998,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MP151": {
+      "q_au": 2.0525,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MP156": {
+      "q_au": 2.5096,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MP192": {
+      "q_au": 1.946,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MP207": {
+      "q_au": 2.0013,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MP211": {
+      "q_au": 2.9894,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MP229": {
+      "q_au": 2.6876,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MP242": {
+      "q_au": 2.9618,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MP252": {
+      "q_au": 2.5233,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MP273": {
+      "q_au": 2.4072,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MP277": {
+      "q_au": 1.8152,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MP279": {
+      "q_au": 2.1806,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MP293": {
+      "q_au": 2.542,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MQ132": {
+      "q_au": 2.8495,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MQ161": {
+      "q_au": 2.2537,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MQ209": {
+      "q_au": 2.0212,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MQ241": {
+      "q_au": 2.1452,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MQ287": {
+      "q_au": 1.954,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MQ288": {
+      "q_au": 2.5797,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MQ359": {
+      "q_au": 2.8349,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MR102": {
+      "q_au": 2.8523,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MR146": {
+      "q_au": 2.1767,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MR152": {
+      "q_au": 2.5231,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MR177": {
+      "q_au": 2.9342,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MR187": {
+      "q_au": 2.0368,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MR207": {
+      "q_au": 2.5701,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MR231": {
+      "q_au": 2.7386,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MR238": {
+      "q_au": 2.7223,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MR263": {
+      "q_au": 1.5214,
+      "orbit_type": "Object with perihelion distance < 1.665 AU",
+      "is_neo": false
+    },
+    "2025 MR266": {
+      "q_au": 1.9102,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MR298": {
+      "q_au": 2.4097,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MR356": {
+      "q_au": 2.6136,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MS114": {
+      "q_au": 2.8865,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MS119": {
+      "q_au": 2.8301,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MS122": {
+      "q_au": 2.0878,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MS135": {
+      "q_au": 1.836,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MS137": {
+      "q_au": 2.2115,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MS153": {
+      "q_au": 2.5935,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MS182": {
+      "q_au": 2.9174,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MS198": {
+      "q_au": 1.9274,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MS199": {
+      "q_au": 2.4824,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MS241": {
+      "q_au": 2.9488,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MS254": {
+      "q_au": 2.308,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MS299": {
+      "q_au": 2.5426,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MS300": {
+      "q_au": 2.7788,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MS354": {
+      "q_au": 2.3091,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MS389": {
+      "q_au": 2.5553,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MT113": {
+      "q_au": 2.8049,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MT123": {
+      "q_au": 2.8305,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MT146": {
+      "q_au": 2.4884,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MT152": {
+      "q_au": 1.8792,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MT155": {
+      "q_au": 2.9494,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MT164": {
+      "q_au": 1.911,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MT204": {
+      "q_au": 2.1655,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MT205": {
+      "q_au": 2.0385,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MT215": {
+      "q_au": 3.0108,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MT235": {
+      "q_au": 2.8894,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MT249": {
+      "q_au": 2.6359,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MT303": {
+      "q_au": 2.1014,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MT332": {
+      "q_au": 2.3276,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MT334": {
+      "q_au": 2.3196,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MU112": {
+      "q_au": 2.8287,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MU132": {
+      "q_au": 2.7249,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MU138": {
+      "q_au": 2.7734,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MU167": {
+      "q_au": 1.9803,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MU174": {
+      "q_au": 2.9262,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MU188": {
+      "q_au": 2.6601,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MU193": {
+      "q_au": 2.7122,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MU198": {
+      "q_au": 2.1415,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MV144": {
+      "q_au": 1.9907,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MV145": {
+      "q_au": 2.246,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MV203": {
+      "q_au": 2.5506,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MV248": {
+      "q_au": 2.9546,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MV252": {
+      "q_au": 1.7397,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MV276": {
+      "q_au": 2.12,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MW114": {
+      "q_au": 3.0211,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MW195": {
+      "q_au": 2.4434,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MW196": {
+      "q_au": 2.0296,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MW212": {
+      "q_au": 2.7576,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MW297": {
+      "q_au": 2.3621,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MW323": {
+      "q_au": 2.511,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MX142": {
+      "q_au": 2.3413,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MX152": {
+      "q_au": 2.4917,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MX187": {
+      "q_au": 2.6174,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MX224": {
+      "q_au": 2.5749,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MX230": {
+      "q_au": 2.6313,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MX251": {
+      "q_au": 2.1243,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MX319": {
+      "q_au": 1.9877,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MY131": {
+      "q_au": 2.2964,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MY143": {
+      "q_au": 2.304,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MY233": {
+      "q_au": 2.0174,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MY243": {
+      "q_au": 2.5685,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MY305": {
+      "q_au": 2.3502,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MZ113": {
+      "q_au": 2.544,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MZ128": {
+      "q_au": 3.0014,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MZ183": {
+      "q_au": 2.3114,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MZ218": {
+      "q_au": 2.4993,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MZ224": {
+      "q_au": 2.9789,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MZ288": {
+      "q_au": 2.2721,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MZ296": {
+      "q_au": 2.3591,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MZ298": {
+      "q_au": 2.4134,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MZ301": {
+      "q_au": 2.5487,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MZ316": {
+      "q_au": 2.6704,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 MZ321": {
+      "q_au": 2.8193,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NA125": {
+      "q_au": 2.4395,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NA21": {
+      "q_au": 2.0242,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NA213": {
+      "q_au": 2.1692,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NA257": {
+      "q_au": 1.7628,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NA535": {
+      "q_au": 2.8649,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NB105": {
+      "q_au": 2.5769,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NB115": {
+      "q_au": 2.9735,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NB128": {
+      "q_au": 2.9127,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NB222": {
+      "q_au": 1.5454,
+      "orbit_type": "Object with perihelion distance < 1.665 AU",
+      "is_neo": false
+    },
+    "2025 NB58": {
+      "q_au": 2.6814,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NB69": {
+      "q_au": 2.6936,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NB96": {
+      "q_au": 2.4973,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NC104": {
+      "q_au": 2.8113,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NC64": {
+      "q_au": 2.727,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NC87": {
+      "q_au": 2.6858,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NC93": {
+      "q_au": 2.5038,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ND119": {
+      "q_au": 2.8859,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ND199": {
+      "q_au": 2.702,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ND20": {
+      "q_au": 2.6703,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ND230": {
+      "q_au": 1.6908,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ND24": {
+      "q_au": 2.4343,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ND291": {
+      "q_au": 2.1153,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NE31": {
+      "q_au": 2.1349,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NE376": {
+      "q_au": 2.9074,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NE399": {
+      "q_au": 2.0042,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NE521": {
+      "q_au": 2.5367,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NF134": {
+      "q_au": 2.5758,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NF142": {
+      "q_au": 2.7411,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NF172": {
+      "q_au": 2.2198,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NF347": {
+      "q_au": 2.7318,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NF43": {
+      "q_au": 2.5586,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NF72": {
+      "q_au": 2.6673,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NF85": {
+      "q_au": 2.4699,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NG124": {
+      "q_au": 1.8108,
+      "orbit_type": "Hungaria",
+      "is_neo": false
+    },
+    "2025 NH12": {
+      "q_au": 2.6042,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NH28": {
+      "q_au": 2.2735,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NH36": {
+      "q_au": 2.625,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NH475": {
+      "q_au": 2.0391,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NH502": {
+      "q_au": 2.5147,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NJ167": {
+      "q_au": 2.7017,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NJ267": {
+      "q_au": 2.5613,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NJ269": {
+      "q_au": 2.6721,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NJ78": {
+      "q_au": 2.5975,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NK421": {
+      "q_au": 2.0364,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NK70": {
+      "q_au": 1.9368,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NL163": {
+      "q_au": 2.7323,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NL23": {
+      "q_au": 2.8556,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NL307": {
+      "q_au": 1.7971,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NL55": {
+      "q_au": 2.9204,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NM28": {
+      "q_au": 2.6474,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NM364": {
+      "q_au": 2.7475,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NM404": {
+      "q_au": 2.2814,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NN14": {
+      "q_au": 2.5262,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NN194": {
+      "q_au": 1.9667,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NN198": {
+      "q_au": 2.9469,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NN21": {
+      "q_au": 2.5119,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NN227": {
+      "q_au": 2.3932,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NN248": {
+      "q_au": 2.4768,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NN306": {
+      "q_au": 2.5521,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NN380": {
+      "q_au": 2.9037,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NN40": {
+      "q_au": 2.4671,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NN82": {
+      "q_au": 2.8423,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NN94": {
+      "q_au": 2.4932,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NO220": {
+      "q_au": 2.4068,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NO228": {
+      "q_au": 2.724,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NO98": {
+      "q_au": 2.4974,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NP271": {
+      "q_au": 2.2145,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NP96": {
+      "q_au": 2.8406,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NQ163": {
+      "q_au": 2.7391,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NQ194": {
+      "q_au": 2.2699,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NQ216": {
+      "q_au": 2.3466,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NQ236": {
+      "q_au": 2.1874,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NQ258": {
+      "q_au": 1.9659,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NQ28": {
+      "q_au": 2.9003,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NQ346": {
+      "q_au": 3.1039,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NQ362": {
+      "q_au": 2.7593,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NQ55": {
+      "q_au": 2.1591,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NR122": {
+      "q_au": 2.3852,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NR133": {
+      "q_au": 2.9437,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NR259": {
+      "q_au": 2.5811,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NR266": {
+      "q_au": 2.8133,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NR270": {
+      "q_au": 2.5354,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NR491": {
+      "q_au": 1.9612,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NR70": {
+      "q_au": 2.6235,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NS112": {
+      "q_au": 1.8771,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NS141": {
+      "q_au": 2.3113,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NS165": {
+      "q_au": 2.5064,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NS41": {
+      "q_au": 2.537,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NS5": {
+      "q_au": 2.595,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NT149": {
+      "q_au": 1.739,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NT170": {
+      "q_au": 2.9578,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NT33": {
+      "q_au": 2.5035,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NT363": {
+      "q_au": 2.9211,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NT380": {
+      "q_au": 1.9296,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NU157": {
+      "q_au": 2.9828,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NU396": {
+      "q_au": 2.2315,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NU72": {
+      "q_au": 2.605,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NV112": {
+      "q_au": 1.9216,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NV31": {
+      "q_au": 1.9466,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NV403": {
+      "q_au": 2.1248,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NV524": {
+      "q_au": 3.0112,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NW122": {
+      "q_au": 2.7314,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NW260": {
+      "q_au": 2.2946,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NW268": {
+      "q_au": 2.9823,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NW32": {
+      "q_au": 3.3163,
+      "orbit_type": "Hilda",
+      "is_neo": false
+    },
+    "2025 NW43": {
+      "q_au": 2.5622,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NW64": {
+      "q_au": 2.7017,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NX28": {
+      "q_au": 2.6734,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NX431": {
+      "q_au": 2.2115,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NX529": {
+      "q_au": 2.0174,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NY152": {
+      "q_au": 1.8771,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NY327": {
+      "q_au": 1.892,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NZ118": {
+      "q_au": 2.4566,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NZ16": {
+      "q_au": 2.5268,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NZ175": {
+      "q_au": 2.2142,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NZ319": {
+      "q_au": 2.7148,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 NZ326": {
+      "q_au": 1.9523,
+      "orbit_type": "Phocaea",
+      "is_neo": false
+    },
+    "2025 NZ390": {
+      "q_au": 2.7259,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OA6": {
+      "q_au": 1.791,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OA728": {
+      "q_au": 2.1936,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OB10": {
+      "q_au": 2.5087,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OB729": {
+      "q_au": 2.4277,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OC112": {
+      "q_au": 2.3229,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OC36": {
+      "q_au": 1.6128,
+      "orbit_type": "Object with perihelion distance < 1.665 AU",
+      "is_neo": false
+    },
+    "2025 OC645": {
+      "q_au": 2.4721,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OD375": {
+      "q_au": 2.829,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OD62": {
+      "q_au": 2.8349,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OE638": {
+      "q_au": 2.902,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OE75": {
+      "q_au": 2.1058,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OE77": {
+      "q_au": 2.2188,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OF152": {
+      "q_au": 2.8098,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OF203": {
+      "q_au": 2.5742,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OF27": {
+      "q_au": 2.1772,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OF33": {
+      "q_au": 2.0641,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OF53": {
+      "q_au": 1.7594,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OF77": {
+      "q_au": 2.1585,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OG264": {
+      "q_au": 1.9984,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OG34": {
+      "q_au": 2.3413,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OG541": {
+      "q_au": 2.0841,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OG606": {
+      "q_au": 2.6017,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OG82": {
+      "q_au": 2.6073,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OG99": {
+      "q_au": 2.5432,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OH151": {
+      "q_au": 3.0361,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OH306": {
+      "q_au": 2.1107,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OH441": {
+      "q_au": 2.9395,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OH680": {
+      "q_au": 2.1596,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OJ112": {
+      "q_au": 1.8846,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OJ142": {
+      "q_au": 1.6305,
+      "orbit_type": "Object with perihelion distance < 1.665 AU",
+      "is_neo": false
+    },
+    "2025 OJ414": {
+      "q_au": 1.8963,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OJ471": {
+      "q_au": 3.0475,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OJ731": {
+      "q_au": 2.1341,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OK143": {
+      "q_au": 2.8115,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OK278": {
+      "q_au": 2.2618,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OK650": {
+      "q_au": 2.7053,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OM359": {
+      "q_au": 1.8224,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OM561": {
+      "q_au": 2.7178,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OM587": {
+      "q_au": 2.6249,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OM63": {
+      "q_au": 2.523,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OM698": {
+      "q_au": 2.417,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ON25": {
+      "q_au": 2.102,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ON515": {
+      "q_au": 2.0067,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 ON97": {
+      "q_au": 2.4771,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OO130": {
+      "q_au": 1.9626,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OO171": {
+      "q_au": 2.7373,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OO32": {
+      "q_au": 2.7214,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OO450": {
+      "q_au": 2.4319,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OO71": {
+      "q_au": 1.9846,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OO93": {
+      "q_au": 2.5449,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OP543": {
+      "q_au": 2.4566,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OQ105": {
+      "q_au": 2.3162,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OQ126": {
+      "q_au": 2.7545,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OQ294": {
+      "q_au": 2.5809,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OQ577": {
+      "q_au": 1.7767,
+      "orbit_type": "Hungaria",
+      "is_neo": false
+    },
+    "2025 OR143": {
+      "q_au": 2.095,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OR261": {
+      "q_au": 2.8758,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OR421": {
+      "q_au": 1.8512,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OR548": {
+      "q_au": 2.7634,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OR641": {
+      "q_au": 2.4934,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OS138": {
+      "q_au": 2.6119,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OT134": {
+      "q_au": 1.8929,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OT162": {
+      "q_au": 3.235,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OT40": {
+      "q_au": 1.7291,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OT418": {
+      "q_au": 2.1831,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OT527": {
+      "q_au": 1.948,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OT579": {
+      "q_au": 2.901,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OU459": {
+      "q_au": 3.026,
+      "orbit_type": "Hilda",
+      "is_neo": false
+    },
+    "2025 OU77": {
+      "q_au": 2.8343,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OU95": {
+      "q_au": 3.2675,
+      "orbit_type": "Hilda",
+      "is_neo": false
+    },
+    "2025 OV182": {
+      "q_au": 2.6383,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OV552": {
+      "q_au": 2.735,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OV614": {
+      "q_au": 2.0664,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OV693": {
+      "q_au": 2.6358,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OW35": {
+      "q_au": 2.5061,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OW42": {
+      "q_au": 2.4485,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OX311": {
+      "q_au": 3.0882,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OX516": {
+      "q_au": 2.932,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OY141": {
+      "q_au": 2.6388,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OY21": {
+      "q_au": 2.0149,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OY319": {
+      "q_au": 1.8607,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OY39": {
+      "q_au": 1.8328,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OY549": {
+      "q_au": 2.5573,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OY657": {
+      "q_au": 2.5771,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OY66": {
+      "q_au": 1.6724,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OZ14": {
+      "q_au": 1.9262,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OZ536": {
+      "q_au": 2.0215,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 OZ60": {
+      "q_au": 2.6778,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PA132": {
+      "q_au": 1.9093,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PA27": {
+      "q_au": 2.9222,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PA45": {
+      "q_au": 2.4277,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PA60": {
+      "q_au": 2.7131,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PB5": {
+      "q_au": 2.0813,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PC10": {
+      "q_au": 1.7318,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PC147": {
+      "q_au": 2.6076,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PD103": {
+      "q_au": 1.9858,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PD152": {
+      "q_au": 1.8075,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PD51": {
+      "q_au": 2.3125,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PE153": {
+      "q_au": 2.6441,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PE284": {
+      "q_au": 2.784,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PF127": {
+      "q_au": 2.2542,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PF40": {
+      "q_au": 1.886,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PF66": {
+      "q_au": 2.7589,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PG106": {
+      "q_au": 2.691,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PG139": {
+      "q_au": 2.2602,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PG211": {
+      "q_au": 2.611,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PG27": {
+      "q_au": 1.8891,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PH102": {
+      "q_au": 2.754,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PH223": {
+      "q_au": 2.6777,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PH244": {
+      "q_au": 2.0676,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PJ112": {
+      "q_au": 2.6811,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PJ119": {
+      "q_au": 2.8591,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PJ285": {
+      "q_au": 2.4807,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PK121": {
+      "q_au": 2.5337,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PK34": {
+      "q_au": 1.9769,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PK60": {
+      "q_au": 2.5305,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PL103": {
+      "q_au": 2.5745,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PL43": {
+      "q_au": 2.7167,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PL84": {
+      "q_au": 2.2316,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PL99": {
+      "q_au": 2.1723,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PM268": {
+      "q_au": 2.8897,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PN27": {
+      "q_au": 2.0292,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PN43": {
+      "q_au": 2.5564,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PO112": {
+      "q_au": 2.4664,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PO173": {
+      "q_au": 3.066,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PO50": {
+      "q_au": 2.9796,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PO67": {
+      "q_au": 2.8544,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PP140": {
+      "q_au": 2.6805,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PP145": {
+      "q_au": 2.2357,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PP201": {
+      "q_au": 2.7147,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PP23": {
+      "q_au": 2.429,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PP40": {
+      "q_au": 2.2034,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PQ103": {
+      "q_au": 2.6711,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PQ164": {
+      "q_au": 2.7165,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PQ166": {
+      "q_au": 2.5532,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PR108": {
+      "q_au": 2.1484,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PR214": {
+      "q_au": 2.7239,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PR39": {
+      "q_au": 3.0449,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PR45": {
+      "q_au": 2.5997,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PS245": {
+      "q_au": 2.9358,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PS3": {
+      "q_au": 1.6674,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PS88": {
+      "q_au": 2.3791,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PT137": {
+      "q_au": 1.8657,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PU135": {
+      "q_au": 2.636,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PU172": {
+      "q_au": 2.5529,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PU35": {
+      "q_au": 2.3146,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PU43": {
+      "q_au": 3.0539,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PU92": {
+      "q_au": 2.2461,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PU98": {
+      "q_au": 2.8976,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PV108": {
+      "q_au": 2.1437,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PV125": {
+      "q_au": 1.7126,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PV29": {
+      "q_au": 2.1765,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PV44": {
+      "q_au": 2.1239,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PW136": {
+      "q_au": 2.5044,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PW15": {
+      "q_au": 1.7892,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PW63": {
+      "q_au": 2.5784,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PX141": {
+      "q_au": 2.6746,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PX23": {
+      "q_au": 2.8107,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PX5": {
+      "q_au": 2.3882,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PX86": {
+      "q_au": 2.8558,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PY133": {
+      "q_au": 1.8618,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PY65": {
+      "q_au": 2.1461,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PZ158": {
+      "q_au": 3.1062,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PZ251": {
+      "q_au": 2.3743,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PZ64": {
+      "q_au": 2.9085,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 PZ98": {
+      "q_au": 2.826,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QE139": {
+      "q_au": 2.7935,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QF201": {
+      "q_au": 3.4257,
+      "orbit_type": "Hilda",
+      "is_neo": false
+    },
+    "2025 QG63": {
+      "q_au": 2.0601,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QH107": {
+      "q_au": 3.0496,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QH119": {
+      "q_au": 2.6463,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QL197": {
+      "q_au": 2.6971,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QL199": {
+      "q_au": 2.977,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QL59": {
+      "q_au": 1.9306,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QM194": {
+      "q_au": 2.8478,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QM197": {
+      "q_au": 2.4614,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QN123": {
+      "q_au": 1.7598,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QN193": {
+      "q_au": 2.1081,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QQ194": {
+      "q_au": 2.1289,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QR117": {
+      "q_au": 2.8305,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QS182": {
+      "q_au": 2.4544,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QV212": {
+      "q_au": 2.546,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QW199": {
+      "q_au": 2.4602,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QW217": {
+      "q_au": 1.7969,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QX75": {
+      "q_au": 2.734,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QY145": {
+      "q_au": 2.7303,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 QZ124": {
+      "q_au": 2.6104,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 RO57": {
+      "q_au": 2.3873,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 RT32": {
+      "q_au": 1.7125,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 SH57": {
+      "q_au": 2.8588,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 WZ44": {
+      "q_au": 2.5231,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2025 YC23": {
+      "q_au": 35.8342,
+      "orbit_type": "Distant Object",
+      "is_neo": false
+    },
+    "2026 AK20": {
+      "q_au": 2.3046,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DA42": {
+      "q_au": 2.701,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DB30": {
+      "q_au": 2.4239,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DC34": {
+      "q_au": 2.9299,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DD31": {
+      "q_au": 2.844,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DD41": {
+      "q_au": 2.9287,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DF30": {
+      "q_au": 2.1814,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DH43": {
+      "q_au": 2.6643,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DJ39": {
+      "q_au": 2.3099,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DL59": {
+      "q_au": 2.7854,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DN31": {
+      "q_au": 2.0177,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DN38": {
+      "q_au": 2.4261,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DN40": {
+      "q_au": 2.8825,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DQ24": {
+      "q_au": 2.9868,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DR31": {
+      "q_au": 2.7409,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DR35": {
+      "q_au": 2.8726,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DV32": {
+      "q_au": 2.8345,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DV36": {
+      "q_au": 2.1727,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DX34": {
+      "q_au": 2.5874,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DY29": {
+      "q_au": 2.5098,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DY31": {
+      "q_au": 2.7446,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 DZ42": {
+      "q_au": 2.7851,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EA14": {
+      "q_au": 2.7064,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EB22": {
+      "q_au": 2.1631,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EC20": {
+      "q_au": 2.6541,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EC68": {
+      "q_au": 3.0226,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 ED8": {
+      "q_au": 2.2464,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EE116": {
+      "q_au": 3.0307,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EG64": {
+      "q_au": 2.3071,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EH43": {
+      "q_au": 2.9043,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EK16": {
+      "q_au": 2.7839,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EK95": {
+      "q_au": 2.1476,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EM100": {
+      "q_au": 2.7186,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EM28": {
+      "q_au": 2.4741,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EM41": {
+      "q_au": 2.6892,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EN15": {
+      "q_au": 1.9823,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EO35": {
+      "q_au": 3.1766,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EP34": {
+      "q_au": 2.0226,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EQ11": {
+      "q_au": 2.7884,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EQ72": {
+      "q_au": 1.9859,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 ER104": {
+      "q_au": 2.7682,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 ES24": {
+      "q_au": 2.2527,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 ES66": {
+      "q_au": 2.6457,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 ET108": {
+      "q_au": 2.795,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 ET82": {
+      "q_au": 2.7379,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EU73": {
+      "q_au": 2.3737,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EV96": {
+      "q_au": 2.7031,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 EY71": {
+      "q_au": 2.8023,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 FK17": {
+      "q_au": 2.914,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 FV30": {
+      "q_au": 2.7583,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 FX17": {
+      "q_au": 2.3578,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 FZ17": {
+      "q_au": 2.4577,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 GJ6": {
+      "q_au": 4.8217,
+      "orbit_type": "Jupiter Trojan",
+      "is_neo": false
+    },
+    "2026 GS6": {
+      "q_au": 2.0326,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 GS8": {
+      "q_au": 2.6597,
+      "orbit_type": "MBA",
+      "is_neo": false
+    },
+    "2026 GV11": {
+      "q_au": 2.0971,
+      "orbit_type": "MBA",
+      "is_neo": false
+    }
+  }
+}

@@ -14,12 +14,66 @@ this project does runs on a laptop. See [`SPEC.md`](SPEC.md) for the thesis and 
 prior-art assessment, [`DATA-SOURCES.md`](DATA-SOURCES.md) for endpoints and formats, and
 [`BUILD-PLAN.md`](BUILD-PLAN.md) for the milestone plan.
 
-**Current state: M5 (the pre-2023 slice fitted to completion) complete.** Milestone
-findings: [`M0-RESULTS.md`](M0-RESULTS.md) (kill-check) · [`M1-RESULTS.md`](M1-RESULTS.md)
+**Current state: M5 (the pre-2023 slice fitted to completion), M7 (attribution
+against the Rubin bulk-batch orbits), M8 (the perturbed backend, at full batch
+scale), M9 (the unconsumed partitions, the queue extension, and the MPC's
+independent confirmation of 30/30 consumed candidates) and M10 (the ledger
+refreshed for review, the decay clock re-measured with an uncertainty, and the
+15-25 y shell opened) and M11 (the shell's fit stage priced against a decoy, its deep
+end closed, and the ledger refreshed a second time) complete.**
+
+> **Reviewing candidates? Open
+> [`out/review-queue-v2-20260823.csv`](out/review-queue-v2-20260823.csv)** — the current
+> version, **669 still-live rows** against a 2026-08-23 18:27 GMT ITF pull, ranked by
+> submission value, with an adjudicable column set and a ten-row spot-check sample at
+> the top.
+> [`out/review-queue.csv`](out/review-queue.csv) is the earlier 08-18 copy and is kept
+> **byte-identical** so a half-finished review is not renumbered underneath it;
+> [`out/review-queue-v2-20260823-diff.json`](out/review-queue-v2-20260823-diff.json)
+> lists exactly what changed (32 rows left, 0 entered, 0 changed tier — every departure
+> an MPC consumption that agreed with the ledger). Regenerate with
+> `python scripts/m10_review_queue.py --out <new versioned path> --refresh <a fresh
+> refresh> --slim <a rebuilt 08-16 table>`, never in place. Nothing in it has been
+> submitted anywhere. Milestone findings:
+[`M0-RESULTS.md`](M0-RESULTS.md) (kill-check) · [`M1-RESULTS.md`](M1-RESULTS.md)
 (orbit fitting) · [`M2-RESULTS.md`](M2-RESULTS.md) (catalogue vetting) ·
 [`M3-RESULTS.md`](M3-RESULTS.md) (linking) · [`M4-RESULTS.md`](M4-RESULTS.md) (NEO to TNO
 distances, and the pre-2023 slice) · [`M5-RESULTS.md`](M5-RESULTS.md) (that slice fitted
-from 1.08% to 100%, and the cross-survey pool exhausted).
+from 1.08% to 100%, and the cross-survey pool exhausted) ·
+[`M7-RESULTS.md`](M7-RESULTS.md) (the ITF-to-designated direction: known Rubin orbits
+propagated *into* the ITF under a measured two-body window and a decoy control, yielding
+one unsubmitted precovery candidate) · [`M8-RESULTS.md`](M8-RESULTS.md) (a perturbed
+ephemeris backend measured against Horizons — two-body's degree-scale error at 5–15
+years becomes tens of arcseconds — opening the pre-2023 ITF to attribution at full
+Feb+April Rubin batch scale, with bulk MPCORB orbits, the decoy control at scale, a
+checkpointed fit queue, the SkyBoT check folded into the verdict chain, and a
+batch-landing watcher designed but deliberately not scheduled) ·
+[`M9-RESULTS.md`](M9-RESULTS.md) (the watcher's flagged partitions consumed on an
+exactly-reconstructed snapshot, the fit queue extended under a pre-registered
+stopping rule, combined fits promoting 28 of 29 multi-tracklet objects, the 88
+lost-object ambiguities adjudicated, a 28-year TNO calibration with three scoping
+candidates — and the MPC consuming 30 of M8's fitted candidates within two days,
+**every one into the object the ledger had attributed it to**) ·
+[`M10-RESULTS.md`](M10-RESULTS.md) (the whole cumulative ledger refreshed against a
+pull taken that hour — 733 live PASS rows, 33 consumed, 21/21 PASSes still agreeing
+and the strict gate's **first two measured true negatives**; the decay clock
+re-measured across three intervals and found to be **entirely concentrated in M8's
+queue head**, half-life 32 d there against zero of 272 M9 PASS rows;
+`out/review-queue.csv`; M9's 60 ambiguities adjudicated 57-3; the 15-25 y main-belt
+shell swept on a gate *derived* from M9's measured envelope; and the pointed-field
+screen built, validated 3/3 against M9's failures, and measured against the live
+ledger) ·
+[`M11-RESULTS.md`](M11-RESULTS.md) (the 15-25 y shell's **fit stage priced against a
+decoy for the first time — 0 of 300 decoy fits pass against 76 of 300 real**, with the
+re-run control reproducing M10's to the count, and the separation living **entirely in
+the "did fo use the tracklet" primary gate** while the strict RMS gate passes *more*
+decoys than reals; the MPC independently consuming **6 shell PASS rows and agreeing with
+all 6**; the shell's multi-tracklet objects passing their combined fit only 3 of 10
+against the main tier's 40 of 45; the deep end closed at **0 fit-grade of 130 fits
+beyond 20.74 y**; the cumulative ledger refreshed to 2,203 rows with **68 of 68 consumed
+PASSes agreeing** and the strict gate's true-negative count at five; and the archive's
+retention found to have **pruned the base snapshot**, which made the first refresh read
+18 consumptions instead of 103 with nothing in the output to show it).
 
 M1 built Find_Orb under WSL, verified it against JPL Horizons, and fitted the ITF
 designations that already span 3+ nights. M2 built the MPChecker / SkyBoT / SBIDENT /
@@ -152,6 +206,17 @@ Windows it runs `fo` in a Linux-side scratch directory, which is worth ~9× unde
 because `/mnt/c` is reached over WSL's 9p bridge; `--no-scratch` restores the earlier
 file layout.
 
+**Attribution (M7/M8) runs as scripts rather than CLI subcommands** — the direction is
+inverted (known orbit → ITF tracklets) and the run shape is one-shot per batch:
+
+```bash
+python scripts/m8_calibration.py        # measure two-body AND perturbed error vs Horizons
+python scripts/m8_fetch_bulk.py         # MPCORB extended JSON + batch partitions + verify
+python scripts/m8_attribution.py        # the sweep + decoy + ranked, checkpointed fo fits
+python scripts/m8_verdicts.py           # verdict chain v2 -> m8-ledger.json (SkyBoT folded in)
+python scripts/watch_rubin_batches.py   # has a new Rubin bulk batch landed? (no scheduling)
+```
+
 The fitting commands need Find_Orb. It is **not** bundled: build it once with the steps in
 [`DATA-SOURCES.md` §4](DATA-SOURCES.md#4-find_orb-build-wsl--verified-2026-07-29), which
 takes about two minutes plus a 102 MB ephemeris download. `ITF_LINKER_FO` and
@@ -163,7 +228,7 @@ re-fetchable, so nothing bulk is ever committed.
 ## Tests
 
 ```bash
-.venv/Scripts/python -m pytest          # unit tests, no network, no snapshot needed
+.venv/Scripts/python -m pytest          # 505 unit tests, no network, no snapshot needed
 .venv/Scripts/python -m pytest -m slow  # additionally requires a fetched ITF snapshot
 ```
 
