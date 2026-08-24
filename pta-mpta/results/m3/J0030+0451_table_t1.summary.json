@@ -83,7 +83,12 @@
         ],
         "halfshift": 0.0124,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 2.6098,
+        "tol_rel": 0.261,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 6562.1
       },
       {
         "param": "n_earth",
@@ -94,9 +99,16 @@
         ],
         "halfshift": 0.012,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 2.3573,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 5234.7
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 5234.7
   },
   "updated_utc": "2026-08-21T21:01:01Z",
   "elapsed_min": 13.3,
@@ -112,5 +124,10 @@
       -14.767329279117027
     ],
     "n": 9451
-  }
+  },
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

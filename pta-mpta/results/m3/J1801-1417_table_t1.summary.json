@@ -92,7 +92,12 @@
         ],
         "halfshift": 0.0285,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 4.1295,
+        "tol_rel": 0.4129,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 976.3
       },
       {
         "param": "J1801-1417_dm_gp_log10_A",
@@ -103,7 +108,12 @@
         ],
         "halfshift": 0.0242,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.8426,
+        "tol_rel": 0.3843,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 470.5
       },
       {
         "param": "J1801-1417_gw13_log10_A",
@@ -114,7 +124,12 @@
         ],
         "halfshift": 0.0887,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.5402,
+        "tol_rel": 0.354,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 544.7
       },
       {
         "param": "J1801-1417_red_gp_gamma",
@@ -125,7 +140,12 @@
         ],
         "halfshift": 0.0878,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 3.6572,
+        "tol_rel": 0.3657,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1121.6
       },
       {
         "param": "J1801-1417_red_gp_log10_A",
@@ -136,7 +156,12 @@
         ],
         "halfshift": 0.0772,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.8823,
+        "tol_rel": 0.3882,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 344.9
       },
       {
         "param": "n_earth",
@@ -147,9 +172,16 @@
         ],
         "halfshift": 0.0142,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 4.2447,
+        "tol_rel": 0.4245,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1374.4
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 344.9
   },
   "updated_utc": "2026-08-21T21:52:05Z",
   "elapsed_min": 17.9,
@@ -169,5 +201,10 @@
       -13.001656962078686
     ],
     "n": 8926
-  }
+  },
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

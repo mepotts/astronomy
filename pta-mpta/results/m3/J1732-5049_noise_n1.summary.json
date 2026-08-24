@@ -1,28 +1,29 @@
 {
   "run_id": "J1732-5049_noise_n1",
-  "state": "running",
-  "exit_reason": null,
+  "state": "done",
+  "exit_reason": "gate_met",
   "error": null,
-  "pid": 12743,
-  "seed": 27907,
+  "pid": 864,
+  "seed": 23100,
   "ndim": 5,
   "x0_kind": "prior-draw",
   "x0": [
-    1.0418685733491928,
-    -16.67666653217346,
-    0.28863337091757857,
-    -4.385705806761017,
-    10.550212185763982
+    2.4351977595433025,
+    -17.990941620374343,
+    0.6570984975198705,
+    -7.685005582658303,
+    20.938274392138343
   ],
-  "started_utc": "2026-08-22T01:01:04Z",
+  "started_utc": "2026-08-23T19:17:46Z",
   "wall_budget_min": 300.0,
   "gate_raw_postburn": 100000,
   "nice": 19,
   "omp_threads": "1",
   "min_acc": 0.05,
   "cov_scale0": 0.25,
-  "eval_ms": 124.92,
-  "first_eval_s": 0.31,
+  "gate_rule": "relative",
+  "eval_ms": 108.22,
+  "first_eval_s": 0.25,
   "meta": {
     "psr": "J1732-5049",
     "ntoa": 4442,
@@ -36,92 +37,304 @@
       0,
       7
     ],
-    "build_s": 48.3,
+    "build_s": 29.2,
     "kind": "noise",
     "whites_fixed": null
   },
   "chunks": [
     {
-      "iters": 2000,
-      "seconds": 96.4,
-      "it_per_s": 20.75,
-      "loadavg": 31.34,
-      "total_raw": 2000
+      "iters": 3000,
+      "seconds": 149.5,
+      "it_per_s": 20.07,
+      "loadavg": 23.22,
+      "total_raw": 72000
     },
     {
       "iters": 6000,
-      "seconds": 295.3,
-      "it_per_s": 20.32,
-      "loadavg": 26.95,
-      "total_raw": 8000
+      "seconds": 337.3,
+      "it_per_s": 17.79,
+      "loadavg": 24.16,
+      "total_raw": 78000
+    },
+    {
+      "iters": 5000,
+      "seconds": 228.9,
+      "it_per_s": 21.84,
+      "loadavg": 25.35,
+      "total_raw": 83000
+    },
+    {
+      "iters": 7000,
+      "seconds": 365.1,
+      "it_per_s": 19.17,
+      "loadavg": 24.55,
+      "total_raw": 90000
+    },
+    {
+      "iters": 6000,
+      "seconds": 320.2,
+      "it_per_s": 18.74,
+      "loadavg": 25.26,
+      "total_raw": 96000
+    },
+    {
+      "iters": 6000,
+      "seconds": 294.1,
+      "it_per_s": 20.4,
+      "loadavg": 30.63,
+      "total_raw": 102000
+    },
+    {
+      "iters": 6000,
+      "seconds": 395.3,
+      "it_per_s": 15.18,
+      "loadavg": 34.15,
+      "total_raw": 108000
+    },
+    {
+      "iters": 5000,
+      "seconds": 327.6,
+      "it_per_s": 15.26,
+      "loadavg": 31.12,
+      "total_raw": 113000
+    },
+    {
+      "iters": 5000,
+      "seconds": 341.7,
+      "it_per_s": 14.63,
+      "loadavg": 31.16,
+      "total_raw": 118000
+    },
+    {
+      "iters": 4000,
+      "seconds": 245.3,
+      "it_per_s": 16.31,
+      "loadavg": 30.58,
+      "total_raw": 122000
+    },
+    {
+      "iters": 5000,
+      "seconds": 280.7,
+      "it_per_s": 17.81,
+      "loadavg": 30.82,
+      "total_raw": 127000
+    },
+    {
+      "iters": 5000,
+      "seconds": 350.5,
+      "it_per_s": 14.26,
+      "loadavg": 30.19,
+      "total_raw": 132000
+    },
+    {
+      "iters": 4000,
+      "seconds": 306.0,
+      "it_per_s": 13.07,
+      "loadavg": 30.11,
+      "total_raw": 136000
     }
   ],
-  "gate_met": false,
+  "gate_met": true,
   "chain": {
-    "rows": 801,
-    "post_burn_rows": 601,
-    "raw_iters": 8000,
-    "raw_postburn": 6010,
-    "lnl_max": 47837.612081,
-    "acc_rate": 0.377874,
-    "stable": false,
+    "rows": 13601,
+    "post_burn_rows": 10201,
+    "raw_iters": 136000,
+    "raw_postburn": 102010,
+    "lnl_max": 47837.673501,
+    "acc_rate": 0.385307,
+    "stable": true,
+    "stable_rel": true,
+    "ess_min": 345.5,
     "params": [
       {
         "param": "J1732-5049_efac",
-        "median": 1.040213398891121,
+        "median": 1.0391832285337899,
         "ci68": [
-          1.0304426425958058,
-          1.05027975774573
+          1.0280282091900204,
+          1.0497887937462802
         ],
-        "halfshift": 0.0008,
+        "halfshift": 0.0003,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.0218,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1459.3
       },
       {
         "param": "J1732-5049_gw13_log10_A",
-        "median": -15.76872328876313,
+        "median": -15.957323610536843,
         "ci68": [
-          -17.10989269285286,
-          -14.482184696039951
+          -17.34935907328585,
+          -14.56440728627407
         ],
-        "halfshift": 0.1028,
+        "halfshift": 0.0137,
         "tol": 0.1,
-        "stable": false
+        "stable": true,
+        "w68": 2.785,
+        "tol_rel": 0.2785,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 2961.8
       },
       {
         "param": "J1732-5049_sw_gp_gamma",
-        "median": 2.395065696804282,
+        "median": 2.488955390218643,
         "ci68": [
-          1.7786153969617406,
-          3.26434526655085
+          1.79101468461197,
+          3.3386489200758085
         ],
-        "halfshift": 0.0808,
+        "halfshift": 0.0006,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 1.5476,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1484.3
       },
       {
         "param": "J1732-5049_sw_gp_log10_A",
-        "median": -5.703942356447125,
+        "median": -5.707145686044838,
         "ci68": [
-          -5.904070308156344,
-          -5.515812322516973
+          -5.890094234479002,
+          -5.558734132818477
         ],
-        "halfshift": 0.033,
+        "halfshift": 0.0009,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.3314,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 345.5
       },
       {
         "param": "n_earth",
-        "median": 14.590634530588334,
+        "median": 13.49812604519994,
         "ci68": [
-          6.056314409511412,
-          21.42603650403395
+          6.403322922079888,
+          21.09986303601882
         ],
-        "halfshift": 0.2465,
+        "halfshift": 0.1199,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 14.6965,
+        "tol_rel": 1.4697,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 2641.8
       }
     ]
   },
-  "updated_utc": "2026-08-22T01:07:38Z"
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "updated_utc": "2026-08-23T20:23:34Z",
+  "elapsed_min": 65.8,
+  "best_point": {
+    "J1732-5049_efac": 1.0396438598063598,
+    "J1732-5049_gw13_log10_A": -17.840533684244424,
+    "J1732-5049_sw_gp_gamma": 2.263649965000255,
+    "J1732-5049_sw_gp_log10_A": -5.679607105033451,
+    "n_earth": 13.263938603252683
+  },
+  "lnl_best": 47837.673501,
+  "curn": {
+    "median": -15.957323610536843,
+    "ci68": [
+      -17.34935907328585,
+      -14.56440728627407
+    ],
+    "n": 10201
+  },
+  "a2": [
+    {
+      "param": "J1732-5049_efac",
+      "key": "efac",
+      "median": 1.0391832285337899,
+      "ci68": [
+        1.0280282091900204,
+        1.0497887937462802
+      ],
+      "published_map": 1.04,
+      "published_ci": [
+        1.03,
+        1.05
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1732-5049_gw13_log10_A",
+      "key": "gw13_log10_A",
+      "median": -15.957323610536843,
+      "ci68": [
+        -17.34935907328585,
+        -14.56440728627407
+      ],
+      "published_map": -15.73,
+      "published_ci": [
+        -17.25,
+        -14.43
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1732-5049_sw_gp_gamma",
+      "key": "sw_gamma",
+      "median": 2.488955390218643,
+      "ci68": [
+        1.79101468461197,
+        3.3386489200758085
+      ],
+      "published_map": 2.04,
+      "published_ci": [
+        1.21,
+        2.91
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1732-5049_sw_gp_log10_A",
+      "key": "sw_log10_A",
+      "median": -5.707145686044838,
+      "ci68": [
+        -5.890094234479002,
+        -5.558734132818477
+      ],
+      "published_map": -5.72,
+      "published_ci": [
+        -6.02,
+        -5.58
+      ],
+      "agree": true
+    },
+    {
+      "param": "n_earth",
+      "key": "n_earth",
+      "median": 13.49812604519994,
+      "ci68": [
+        6.403322922079888,
+        21.09986303601882
+      ],
+      "published_map": 14.5,
+      "published_ci": [
+        5.16,
+        16.84
+      ],
+      "agree": true
+    }
+  ],
+  "n_agree": 5,
+  "n_compared": 5,
+  "verdict": "CONVERGED-AGREES 5/5",
+  "param_names": [
+    "J1732-5049_efac",
+    "J1732-5049_gw13_log10_A",
+    "J1732-5049_sw_gp_gamma",
+    "J1732-5049_sw_gp_log10_A",
+    "n_earth"
+  ],
+  "gate_met_m3": true,
+  "postprocessed": true
 }

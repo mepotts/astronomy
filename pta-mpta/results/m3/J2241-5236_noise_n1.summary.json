@@ -201,7 +201,12 @@
         ],
         "halfshift": 0.0001,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.0256,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1923.3
       },
       {
         "param": "J2241-5236_gw13_log10_A",
@@ -212,7 +217,12 @@
         ],
         "halfshift": 0.0029,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.823,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1502.6
       },
       {
         "param": "J2241-5236_sw_gp_gamma",
@@ -223,7 +233,12 @@
         ],
         "halfshift": 0.0006,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 0.5238,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1080.6
       },
       {
         "param": "J2241-5236_sw_gp_log10_A",
@@ -234,7 +249,12 @@
         ],
         "halfshift": 0.001,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.1674,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1222.3
       },
       {
         "param": "n_earth",
@@ -245,9 +265,16 @@
         ],
         "halfshift": 0.0609,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 3.6531,
+        "tol_rel": 0.3653,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1881.8
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 1080.6
   },
   "updated_utc": "2026-08-22T00:10:27Z",
   "elapsed_min": 101.2,
@@ -353,5 +380,10 @@
     "J2241-5236_sw_gp_gamma",
     "J2241-5236_sw_gp_log10_A",
     "n_earth"
-  ]
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

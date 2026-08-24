@@ -75,7 +75,12 @@
         ],
         "halfshift": 0.0709,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 2.8492,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 376.3
       },
       {
         "param": "J1547-5709_dm_gp_log10_A",
@@ -86,7 +91,12 @@
         ],
         "halfshift": 0.0201,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 2.6529,
+        "tol_rel": 0.2653,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 336.0
       },
       {
         "param": "J1547-5709_gw13_log10_A",
@@ -97,9 +107,16 @@
         ],
         "halfshift": 0.0014,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.4686,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 849.0
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 336.0
   },
   "updated_utc": "2026-08-21T23:05:59Z",
   "elapsed_min": 6.5,
@@ -116,5 +133,10 @@
       -12.839317327341451
     ],
     "n": 6226
-  }
+  },
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

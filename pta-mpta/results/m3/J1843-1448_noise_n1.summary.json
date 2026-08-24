@@ -76,7 +76,12 @@
         ],
         "halfshift": 0.1931,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 3.9352,
+        "tol_rel": 0.3935,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1163.0
       },
       {
         "param": "J1843-1448_dm_gp_log10_A",
@@ -87,7 +92,12 @@
         ],
         "halfshift": 0.0198,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.518,
+        "tol_rel": 0.3518,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 991.8
       },
       {
         "param": "J1843-1448_efac",
@@ -98,7 +108,12 @@
         ],
         "halfshift": 0.0001,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.0951,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 86.1
       },
       {
         "param": "J1843-1448_gw13_log10_A",
@@ -109,7 +124,12 @@
         ],
         "halfshift": 0.0036,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.3967,
+        "tol_rel": 0.3397,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 2918.7
       },
       {
         "param": "J1843-1448_log10_tnequad",
@@ -120,7 +140,12 @@
         ],
         "halfshift": 0.0008,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.2055,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 57.5
       },
       {
         "param": "n_earth",
@@ -131,9 +156,16 @@
         ],
         "halfshift": 0.016,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 11.668,
+        "tol_rel": 1.1668,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 2050.5
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 57.5
   },
   "updated_utc": "2026-08-21T21:35:49Z",
   "elapsed_min": 11.4,
@@ -256,5 +288,10 @@
     "J1843-1448_gw13_log10_A",
     "J1843-1448_log10_tnequad",
     "n_earth"
-  ]
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

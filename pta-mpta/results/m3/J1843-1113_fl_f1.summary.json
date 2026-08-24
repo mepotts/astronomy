@@ -85,7 +85,12 @@
         ],
         "halfshift": 0.0051,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 0.7495,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 545.1
       },
       {
         "param": "J1843-1113_dm_gp_log10_A",
@@ -96,7 +101,12 @@
         ],
         "halfshift": 0.0049,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.1538,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 681.1
       },
       {
         "param": "J1843-1113_gw13_log10_A",
@@ -107,7 +117,12 @@
         ],
         "halfshift": 0.0347,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 2.7486,
+        "tol_rel": 0.2749,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1229.0
       },
       {
         "param": "J1843-1113_red_gp_gamma",
@@ -118,7 +133,12 @@
         ],
         "halfshift": 0.0399,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 4.6606,
+        "tol_rel": 0.4661,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1005.4
       },
       {
         "param": "J1843-1113_red_gp_log10_A",
@@ -129,7 +149,12 @@
         ],
         "halfshift": 0.0387,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 2.7414,
+        "tol_rel": 0.2741,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 726.0
       },
       {
         "param": "n_earth",
@@ -140,9 +165,16 @@
         ],
         "halfshift": 0.0231,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 2.0073,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 696.1
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 545.1
   },
   "updated_utc": "2026-08-22T00:22:01Z",
   "elapsed_min": 11.3,
@@ -162,5 +194,10 @@
       -14.617082414517544
     ],
     "n": 6376
-  }
+  },
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

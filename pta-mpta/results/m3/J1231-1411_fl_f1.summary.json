@@ -86,7 +86,12 @@
         ],
         "halfshift": 0.1688,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 9.3855,
+        "tol_rel": 0.9385,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 214.8
       },
       {
         "param": "J1231-1411_annual_log10_Amp",
@@ -97,7 +102,12 @@
         ],
         "halfshift": 0.0883,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 7.3183,
+        "tol_rel": 0.7318,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 152.7
       },
       {
         "param": "J1231-1411_annual_phase",
@@ -108,7 +118,12 @@
         ],
         "halfshift": 0.0,
         "tol": 0.6283185307179586,
-        "stable": true
+        "stable": true,
+        "w68": 2.4049,
+        "tol_rel": 0.6283,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 513.1
       },
       {
         "param": "J1231-1411_gw13_log10_A",
@@ -119,7 +134,12 @@
         ],
         "halfshift": 0.0517,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 2.7463,
+        "tol_rel": 0.2746,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 5396.1
       },
       {
         "param": "J1231-1411_red_gp_gamma",
@@ -130,7 +150,12 @@
         ],
         "halfshift": 0.0373,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 4.6794,
+        "tol_rel": 0.4679,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 2648.9
       },
       {
         "param": "J1231-1411_red_gp_log10_A",
@@ -141,7 +166,12 @@
         ],
         "halfshift": 0.0453,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.3307,
+        "tol_rel": 0.3331,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 2303.3
       },
       {
         "param": "n_earth",
@@ -152,9 +182,16 @@
         ],
         "halfshift": 0.0111,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 5.0121,
+        "tol_rel": 0.5012,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 773.0
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 152.7
   },
   "updated_utc": "2026-08-21T21:15:29Z",
   "elapsed_min": 13.1,
@@ -175,5 +212,10 @@
       -14.637120535965144
     ],
     "n": 15301
-  }
+  },
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

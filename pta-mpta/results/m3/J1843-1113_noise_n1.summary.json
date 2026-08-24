@@ -96,7 +96,12 @@
         ],
         "halfshift": 0.0016,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 0.77,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1521.8
       },
       {
         "param": "J1843-1113_dm_gp_log10_A",
@@ -107,7 +112,12 @@
         ],
         "halfshift": 0.0022,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.1557,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1311.9
       },
       {
         "param": "J1843-1113_efac",
@@ -118,7 +128,12 @@
         ],
         "halfshift": 0.0005,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.0271,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1838.3
       },
       {
         "param": "J1843-1113_gw13_log10_A",
@@ -129,7 +144,12 @@
         ],
         "halfshift": 0.0477,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 2.7307,
+        "tol_rel": 0.2731,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 3144.9
       },
       {
         "param": "n_earth",
@@ -140,9 +160,16 @@
         ],
         "halfshift": 0.0275,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 2.038,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1707.6
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 1311.9
   },
   "updated_utc": "2026-08-21T22:49:02Z",
   "elapsed_min": 22.6,
@@ -248,5 +275,10 @@
     "J1843-1113_efac",
     "J1843-1113_gw13_log10_A",
     "n_earth"
-  ]
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

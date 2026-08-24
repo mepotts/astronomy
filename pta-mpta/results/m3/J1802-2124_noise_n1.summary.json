@@ -247,7 +247,12 @@
         ],
         "halfshift": 0.0036,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 0.4206,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 601.2
       },
       {
         "param": "J1802-2124_chrom_gp_idx",
@@ -258,7 +263,12 @@
         ],
         "halfshift": 0.0441,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 1.3907,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 375.5
       },
       {
         "param": "J1802-2124_chrom_gp_log10_A",
@@ -269,7 +279,12 @@
         ],
         "halfshift": 0.006,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.3252,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 375.3
       },
       {
         "param": "J1802-2124_dm_gp_gamma",
@@ -280,7 +295,12 @@
         ],
         "halfshift": 0.003,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 0.9974,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 895.1
       },
       {
         "param": "J1802-2124_dm_gp_log10_A",
@@ -291,7 +311,12 @@
         ],
         "halfshift": 0.0047,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.2038,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 667.3
       },
       {
         "param": "J1802-2124_efac",
@@ -302,7 +327,12 @@
         ],
         "halfshift": 0.0004,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.0279,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1117.3
       },
       {
         "param": "J1802-2124_gw13_log10_A",
@@ -313,7 +343,12 @@
         ],
         "halfshift": 0.0367,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.0957,
+        "tol_rel": 0.3096,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 2380.2
       },
       {
         "param": "J1802-2124_log10_ecorr",
@@ -324,7 +359,12 @@
         ],
         "halfshift": 0.0001,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.1052,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 954.4
       },
       {
         "param": "n_earth",
@@ -335,9 +375,16 @@
         ],
         "halfshift": 0.0044,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 3.2545,
+        "tol_rel": 0.3255,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1724.0
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 375.3
   },
   "updated_utc": "2026-08-22T00:38:40Z",
   "elapsed_min": 131.9,
@@ -511,5 +558,10 @@
     "J1802-2124_gw13_log10_A",
     "J1802-2124_log10_ecorr",
     "n_earth"
-  ]
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

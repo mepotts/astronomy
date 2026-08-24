@@ -76,7 +76,12 @@
         ],
         "halfshift": 0.034,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 4.5758,
+        "tol_rel": 0.4576,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1986.2
       },
       {
         "param": "J2317+1439_dm_gp_log10_A",
@@ -87,7 +92,12 @@
         ],
         "halfshift": 0.0463,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.1183,
+        "tol_rel": 0.3118,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1283.2
       },
       {
         "param": "J2317+1439_efac",
@@ -98,7 +108,12 @@
         ],
         "halfshift": 0.0001,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.0307,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1605.7
       },
       {
         "param": "J2317+1439_gw13_log10_A",
@@ -109,7 +124,12 @@
         ],
         "halfshift": 0.0292,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 2.838,
+        "tol_rel": 0.2838,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 958.1
       },
       {
         "param": "J2317+1439_red_gp_gamma",
@@ -120,7 +140,12 @@
         ],
         "halfshift": 0.0922,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 4.1725,
+        "tol_rel": 0.4172,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1372.9
       },
       {
         "param": "J2317+1439_red_gp_log10_A",
@@ -131,9 +156,16 @@
         ],
         "halfshift": 0.0907,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.5137,
+        "tol_rel": 0.3514,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 780.1
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 780.1
   },
   "updated_utc": "2026-08-21T20:35:14Z",
   "elapsed_min": 11.1,
@@ -256,5 +288,10 @@
     "J2317+1439_gw13_log10_A",
     "J2317+1439_red_gp_gamma",
     "J2317+1439_red_gp_log10_A"
-  ]
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

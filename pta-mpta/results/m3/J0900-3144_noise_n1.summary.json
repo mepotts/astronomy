@@ -1,7 +1,7 @@
 {
   "run_id": "J0900-3144_noise_n1",
-  "state": "running",
-  "exit_reason": null,
+  "state": "done",
+  "exit_reason": "gate_met",
   "error": null,
   "pid": 9561,
   "seed": 2292,
@@ -270,140 +270,429 @@
       "it_per_s": 7.02,
       "loadavg": 28.4,
       "total_raw": 202000
+    },
+    {
+      "iters": 2000,
+      "seconds": 227.6,
+      "it_per_s": 8.79,
+      "loadavg": 26.12,
+      "total_raw": 204000
+    },
+    {
+      "iters": 3000,
+      "seconds": 383.2,
+      "it_per_s": 7.83,
+      "loadavg": 26.23,
+      "total_raw": 207000
+    },
+    {
+      "iters": 2000,
+      "seconds": 293.2,
+      "it_per_s": 6.82,
+      "loadavg": 26.08,
+      "total_raw": 209000
     }
   ],
-  "gate_met": false,
+  "gate_met": true,
   "chain": {
-    "rows": 20201,
-    "post_burn_rows": 15151,
-    "raw_iters": 202000,
-    "raw_postburn": 151510,
+    "rows": 20901,
+    "post_burn_rows": 15676,
+    "raw_iters": 209000,
+    "raw_postburn": 156760,
     "lnl_max": 35370.754622,
-    "acc_rate": 0.21611,
-    "stable": false,
+    "acc_rate": 0.217173,
+    "stable": true,
     "params": [
       {
         "param": "J0900-3144_chrom_gp_gamma",
-        "median": 1.6101806311479132,
+        "median": 1.6154108395773277,
         "ci68": [
-          1.3842719478354653,
-          1.9120788972376133
+          1.385997900970351,
+          1.919647000818572
         ],
-        "halfshift": 0.014,
+        "halfshift": 0.0302,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 0.5336,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 268.4
       },
       {
         "param": "J0900-3144_chrom_gp_idx",
-        "median": 5.16677881089301,
+        "median": 5.168445434482378,
         "ci68": [
-          4.499208109977118,
-          5.942875966277524
+          4.491006850414119,
+          5.946987970347958
         ],
-        "halfshift": 0.0529,
+        "halfshift": 0.0369,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 1.456,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 313.0
       },
       {
         "param": "J0900-3144_chrom_gp_log10_A",
-        "median": -13.191130501137271,
+        "median": -13.191739691301786,
         "ci68": [
-          -13.368703987727933,
-          -13.022117247884445
+          -13.367871179906267,
+          -13.022527550544709
         ],
-        "halfshift": 0.0065,
+        "halfshift": 0.0079,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.3453,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 270.0
       },
       {
         "param": "J0900-3144_efac",
-        "median": 1.049071015143508,
+        "median": 1.0491830764704952,
         "ci68": [
-          1.0349115444948256,
-          1.0623164946054866
+          1.035006722587917,
+          1.0623837150321287
         ],
-        "halfshift": 0.0003,
+        "halfshift": 0.0004,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.0274,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1192.1
       },
       {
         "param": "J0900-3144_gw13_log10_A",
-        "median": -12.682839282548166,
+        "median": -12.688192025270446,
         "ci68": [
-          -15.387597923106314,
-          -12.426295450838612
+          -15.430618869223778,
+          -12.429236798378458
         ],
-        "halfshift": 0.0301,
+        "halfshift": 0.0356,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.0014,
+        "tol_rel": 0.3001,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 243.9
       },
       {
         "param": "J0900-3144_log10_ecorr",
-        "median": -6.12958394673533,
+        "median": -6.134229229852855,
         "ci68": [
-          -8.348603204126947,
-          -5.985754821943684
+          -8.35503611528008,
+          -5.988299175024782
         ],
-        "halfshift": 0.0049,
+        "halfshift": 0.027,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 2.3667,
+        "tol_rel": 0.2367,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 57.5
       },
       {
         "param": "J0900-3144_red_gp_gamma",
-        "median": 2.2168056725052407,
+        "median": 2.2203117149809195,
         "ci68": [
-          1.1583860173455727,
-          4.407954462873853
+          1.1637399600125464,
+          4.3485641538983035
         ],
-        "halfshift": 0.1446,
+        "halfshift": 0.008,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 3.1848,
+        "tol_rel": 0.3185,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 127.9
       },
       {
         "param": "J0900-3144_red_gp_log10_A",
-        "median": -12.639049205501994,
+        "median": -12.628687842444318,
         "ci68": [
-          -15.734918090449549,
-          -12.300915933696817
+          -15.64953613506816,
+          -12.294511883671435
         ],
-        "halfshift": 0.0977,
+        "halfshift": 0.0899,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.355,
+        "tol_rel": 0.3355,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 133.6
       },
       {
         "param": "J0900-3144_sw_gp_gamma",
-        "median": 3.08233912744996,
+        "median": 3.007700565363852,
         "ci68": [
-          0.9321078249150997,
-          5.651968815683171
+          0.9052656040037679,
+          5.648769311543613
         ],
-        "halfshift": 0.0565,
+        "halfshift": 0.0982,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 4.7435,
+        "tol_rel": 0.4744,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1170.2
       },
       {
         "param": "J0900-3144_sw_gp_log10_A",
-        "median": -7.540971188237718,
+        "median": -7.518342125923332,
         "ci68": [
-          -9.214147492703749,
-          -5.8452014235447995
+          -9.20079728686349,
+          -5.83465862545252
         ],
-        "halfshift": 0.0265,
+        "halfshift": 0.047,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.3661,
+        "tol_rel": 0.3366,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 708.9
       },
       {
         "param": "n_earth",
-        "median": 13.133776521337824,
+        "median": 13.090514553815437,
         "ci68": [
-          3.961752406093419,
-          23.91397069072514
+          3.9661035112878507,
+          23.91463162003756
         ],
-        "halfshift": 0.4175,
+        "halfshift": 0.1044,
         "tol": 0.3,
-        "stable": false
+        "stable": true,
+        "w68": 19.9485,
+        "tol_rel": 1.9949,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1520.1
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 57.5
   },
-  "updated_utc": "2026-08-22T01:07:47Z"
+  "updated_utc": "2026-08-22T01:22:57Z",
+  "elapsed_min": 175.9,
+  "best_point": {
+    "J0900-3144_chrom_gp_gamma": 1.503941506514508,
+    "J0900-3144_chrom_gp_idx": 5.320576603097371,
+    "J0900-3144_chrom_gp_log10_A": -13.235766376349803,
+    "J0900-3144_efac": 1.0433454992214162,
+    "J0900-3144_gw13_log10_A": -12.601783326067912,
+    "J0900-3144_log10_ecorr": -6.730768297293184,
+    "J0900-3144_red_gp_gamma": 1.3139325444441596,
+    "J0900-3144_red_gp_log10_A": -12.597863938530594,
+    "J0900-3144_sw_gp_gamma": 1.081402337836823,
+    "J0900-3144_sw_gp_log10_A": -7.204895816827351,
+    "n_earth": 7.201163092173857
+  },
+  "lnl_best": 35370.754622,
+  "curn": {
+    "median": -12.688192025270446,
+    "ci68": [
+      -15.430618869223778,
+      -12.429236798378458
+    ],
+    "n": 15676
+  },
+  "a2": [
+    {
+      "param": "J0900-3144_chrom_gp_gamma",
+      "key": "chrom_gamma",
+      "median": 1.6154108395773277,
+      "ci68": [
+        1.385997900970351,
+        1.919647000818572
+      ],
+      "published_map": 1.58,
+      "published_ci": [
+        1.3900000000000001,
+        1.9200000000000002
+      ],
+      "agree": true
+    },
+    {
+      "param": "J0900-3144_chrom_gp_idx",
+      "key": "chrom_beta",
+      "median": 5.168445434482378,
+      "ci68": [
+        4.491006850414119,
+        5.946987970347958
+      ],
+      "published_map": 5.25,
+      "published_ci": [
+        4.72,
+        6.24
+      ],
+      "agree": true
+    },
+    {
+      "param": "J0900-3144_chrom_gp_log10_A",
+      "key": "chrom_log10_A",
+      "median": -13.191739691301786,
+      "ci68": [
+        -13.367871179906267,
+        -13.022527550544709
+      ],
+      "published_map": -13.28,
+      "published_ci": [
+        -13.42,
+        -13.069999999999999
+      ],
+      "agree": true
+    },
+    {
+      "param": "J0900-3144_efac",
+      "key": "efac",
+      "median": 1.0491830764704952,
+      "ci68": [
+        1.035006722587917,
+        1.0623837150321287
+      ],
+      "published_map": 1.06,
+      "published_ci": [
+        1.04,
+        1.07
+      ],
+      "agree": true
+    },
+    {
+      "param": "J0900-3144_gw13_log10_A",
+      "key": "gw13_log10_A",
+      "median": -12.688192025270446,
+      "ci68": [
+        -15.430618869223778,
+        -12.429236798378458
+      ],
+      "published_map": -12.65,
+      "published_ci": [
+        -16.060000000000002,
+        -12.46
+      ],
+      "agree": true
+    },
+    {
+      "param": "J0900-3144_log10_ecorr",
+      "key": "log10_ecorr",
+      "median": -6.134229229852855,
+      "ci68": [
+        -8.35503611528008,
+        -5.988299175024782
+      ],
+      "published_map": -6.04,
+      "published_ci": [
+        -8.89,
+        -5.99
+      ],
+      "agree": true
+    },
+    {
+      "param": "J0900-3144_red_gp_gamma",
+      "key": "red_gamma",
+      "median": 2.2203117149809195,
+      "ci68": [
+        1.1637399600125464,
+        4.3485641538983035
+      ],
+      "published_map": 2.28,
+      "published_ci": [
+        1.13,
+        4.14
+      ],
+      "agree": true
+    },
+    {
+      "param": "J0900-3144_red_gp_log10_A",
+      "key": "red_log10_A",
+      "median": -12.628687842444318,
+      "ci68": [
+        -15.64953613506816,
+        -12.294511883671435
+      ],
+      "published_map": -12.29,
+      "published_ci": [
+        -16.21,
+        -12.28
+      ],
+      "agree": true
+    },
+    {
+      "param": "J0900-3144_sw_gp_gamma",
+      "key": "sw_gamma",
+      "median": 3.007700565363852,
+      "ci68": [
+        0.9052656040037679,
+        5.648769311543613
+      ],
+      "published_map": -0.2,
+      "published_ci": [
+        -2.17,
+        2.26
+      ],
+      "agree": false
+    },
+    {
+      "param": "J0900-3144_sw_gp_log10_A",
+      "key": "sw_log10_A",
+      "median": -7.518342125923332,
+      "ci68": [
+        -9.20079728686349,
+        -5.83465862545252
+      ],
+      "published_map": -6.16,
+      "published_ci": [
+        -9.18,
+        -5.7
+      ],
+      "agree": true
+    },
+    {
+      "param": "n_earth",
+      "key": "n_earth",
+      "median": 13.090514553815437,
+      "ci68": [
+        3.9661035112878507,
+        23.91463162003756
+      ],
+      "published_map": 8.5,
+      "published_ci": [
+        2.92,
+        16.490000000000002
+      ],
+      "agree": true
+    }
+  ],
+  "n_agree": 10,
+  "n_compared": 11,
+  "verdict": "CONVERGED-PARTIAL 10/11",
+  "param_names": [
+    "J0900-3144_chrom_gp_gamma",
+    "J0900-3144_chrom_gp_idx",
+    "J0900-3144_chrom_gp_log10_A",
+    "J0900-3144_efac",
+    "J0900-3144_gw13_log10_A",
+    "J0900-3144_log10_ecorr",
+    "J0900-3144_red_gp_gamma",
+    "J0900-3144_red_gp_log10_A",
+    "J0900-3144_sw_gp_gamma",
+    "J0900-3144_sw_gp_log10_A",
+    "n_earth"
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

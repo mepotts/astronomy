@@ -88,7 +88,12 @@
         ],
         "halfshift": 0.078,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 3.5875,
+        "tol_rel": 0.3587,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 428.2
       },
       {
         "param": "J1547-5709_dm_gp_log10_A",
@@ -99,7 +104,12 @@
         ],
         "halfshift": 0.0024,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.1836,
+        "tol_rel": 0.3184,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 419.9
       },
       {
         "param": "J1547-5709_efac",
@@ -110,7 +120,12 @@
         ],
         "halfshift": 0.0003,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.0268,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1259.4
       },
       {
         "param": "J1547-5709_gw13_log10_A",
@@ -121,9 +136,16 @@
         ],
         "halfshift": 0.0005,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.4781,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 673.8
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 419.9
   },
   "updated_utc": "2026-08-21T22:46:03Z",
   "elapsed_min": 19.7,
@@ -212,5 +234,10 @@
     "J1547-5709_dm_gp_log10_A",
     "J1547-5709_efac",
     "J1547-5709_gw13_log10_A"
-  ]
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

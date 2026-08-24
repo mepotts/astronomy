@@ -128,7 +128,12 @@
         ],
         "halfshift": 0.1182,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 7.6506,
+        "tol_rel": 0.7651,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 182.3
       },
       {
         "param": "J2150-0326_bump_log10_Amp",
@@ -139,7 +144,12 @@
         ],
         "halfshift": 0.0233,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 4.1498,
+        "tol_rel": 0.415,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 78.0
       },
       {
         "param": "J2150-0326_bump_sigma_g",
@@ -150,7 +160,12 @@
         ],
         "halfshift": 39.064,
         "tol": 199.0,
-        "stable": true
+        "stable": true,
+        "w68": 1270.4021,
+        "tol_rel": 199.0,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 229.9
       },
       {
         "param": "J2150-0326_bump_t0",
@@ -161,7 +176,12 @@
         ],
         "halfshift": 3.3238,
         "tol": 146.50652815680263,
-        "stable": true
+        "stable": true,
+        "w68": 754.5808,
+        "tol_rel": 146.5065,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 945.6
       },
       {
         "param": "J2150-0326_chrom_gp_gamma",
@@ -172,7 +192,12 @@
         ],
         "halfshift": 0.0178,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 0.8703,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 183.6
       },
       {
         "param": "J2150-0326_chrom_gp_log10_A",
@@ -183,7 +208,12 @@
         ],
         "halfshift": 0.005,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.4207,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 145.9
       },
       {
         "param": "J2150-0326_efac",
@@ -194,7 +224,12 @@
         ],
         "halfshift": 0.0,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.0317,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1675.0
       },
       {
         "param": "J2150-0326_gw13_log10_A",
@@ -205,7 +240,12 @@
         ],
         "halfshift": 0.0892,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.423,
+        "tol_rel": 0.3423,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 463.2
       },
       {
         "param": "n_earth",
@@ -216,9 +256,16 @@
         ],
         "halfshift": 0.0488,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 2.6312,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1328.0
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 78.0
   },
   "updated_utc": "2026-08-21T21:17:50Z",
   "elapsed_min": 42.4,
@@ -392,5 +439,10 @@
     "J2150-0326_efac",
     "J2150-0326_gw13_log10_A",
     "n_earth"
-  ]
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

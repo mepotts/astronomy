@@ -72,7 +72,12 @@
         ],
         "halfshift": 0.0132,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 8.6912,
+        "tol_rel": 0.8691,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 600.5
       },
       {
         "param": "J1231-1411_annual_log10_Amp",
@@ -83,7 +88,12 @@
         ],
         "halfshift": 0.0751,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 6.5523,
+        "tol_rel": 0.6552,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 401.9
       },
       {
         "param": "J1231-1411_annual_phase",
@@ -94,7 +104,12 @@
         ],
         "halfshift": 0.0077,
         "tol": 0.6283185307179586,
-        "stable": true
+        "stable": true,
+        "w68": 1.9628,
+        "tol_rel": 0.6283,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1039.8
       },
       {
         "param": "J1231-1411_efac",
@@ -105,7 +120,12 @@
         ],
         "halfshift": 0.0003,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.0322,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 4118.9
       },
       {
         "param": "J1231-1411_gw13_log10_A",
@@ -116,7 +136,12 @@
         ],
         "halfshift": 0.008,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 2.6924,
+        "tol_rel": 0.2692,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 6904.0
       },
       {
         "param": "n_earth",
@@ -127,9 +152,16 @@
         ],
         "halfshift": 0.1221,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 5.0553,
+        "tol_rel": 0.5055,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 968.8
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 401.9
   },
   "updated_utc": "2026-08-21T19:54:48Z",
   "elapsed_min": 15.8,
@@ -252,5 +284,10 @@
     "J1231-1411_efac",
     "J1231-1411_gw13_log10_A",
     "n_earth"
-  ]
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

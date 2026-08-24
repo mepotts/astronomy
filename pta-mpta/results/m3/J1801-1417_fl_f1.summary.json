@@ -113,7 +113,12 @@
         ],
         "halfshift": 0.0613,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 3.9155,
+        "tol_rel": 0.3916,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 2178.8
       },
       {
         "param": "J1801-1417_dm_gp_log10_A",
@@ -124,7 +129,12 @@
         ],
         "halfshift": 0.0804,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.7556,
+        "tol_rel": 0.3756,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1224.9
       },
       {
         "param": "J1801-1417_gw13_log10_A",
@@ -135,7 +145,12 @@
         ],
         "halfshift": 0.0045,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.6603,
+        "tol_rel": 0.366,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1468.8
       },
       {
         "param": "J1801-1417_red_gp_gamma",
@@ -146,7 +161,12 @@
         ],
         "halfshift": 0.0138,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 3.6346,
+        "tol_rel": 0.3635,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 3132.1
       },
       {
         "param": "J1801-1417_red_gp_log10_A",
@@ -157,7 +177,12 @@
         ],
         "halfshift": 0.0552,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.8584,
+        "tol_rel": 0.3858,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1204.1
       },
       {
         "param": "n_earth",
@@ -168,9 +193,16 @@
         ],
         "halfshift": 0.0138,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 4.182,
+        "tol_rel": 0.4182,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 3522.6
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 1204.1
   },
   "updated_utc": "2026-08-21T23:25:00Z",
   "elapsed_min": 38.1,
@@ -190,5 +222,10 @@
       -13.021940750791098
     ],
     "n": 21301
-  }
+  },
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

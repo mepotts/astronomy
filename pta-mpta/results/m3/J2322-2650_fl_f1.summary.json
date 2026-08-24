@@ -76,7 +76,12 @@
         ],
         "halfshift": 0.017,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.0795,
+        "tol_rel": 0.308,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 5832.1
       },
       {
         "param": "J2322-2650_red_gp_gamma",
@@ -87,7 +92,12 @@
         ],
         "halfshift": 0.0156,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 4.6093,
+        "tol_rel": 0.4609,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 4801.9
       },
       {
         "param": "J2322-2650_red_gp_log10_A",
@@ -98,7 +108,12 @@
         ],
         "halfshift": 0.0262,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 2.9927,
+        "tol_rel": 0.2993,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 4000.1
       },
       {
         "param": "n_earth",
@@ -109,9 +124,16 @@
         ],
         "halfshift": 0.0927,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 10.883,
+        "tol_rel": 1.0883,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 5783.6
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 4000.1
   },
   "updated_utc": "2026-08-21T21:04:23Z",
   "elapsed_min": 7.9,
@@ -129,5 +151,10 @@
       -14.220962157434052
     ],
     "n": 12451
-  }
+  },
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

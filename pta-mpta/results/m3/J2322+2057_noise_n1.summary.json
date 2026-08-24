@@ -62,7 +62,12 @@
         ],
         "halfshift": 0.0003,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.0355,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 3553.9
       },
       {
         "param": "J2322+2057_gw13_log10_A",
@@ -73,7 +78,12 @@
         ],
         "halfshift": 0.0577,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.0218,
+        "tol_rel": 0.3022,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 5364.5
       },
       {
         "param": "J2322+2057_log10_tnequad",
@@ -84,9 +94,16 @@
         ],
         "halfshift": 0.0004,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 2.6731,
+        "tol_rel": 0.2673,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 4374.9
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 3553.9
   },
   "updated_utc": "2026-08-21T19:43:03Z",
   "elapsed_min": 12.9,
@@ -158,5 +175,10 @@
     "J2322+2057_efac",
     "J2322+2057_gw13_log10_A",
     "J2322+2057_log10_tnequad"
-  ]
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

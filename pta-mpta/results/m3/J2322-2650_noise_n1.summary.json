@@ -69,7 +69,12 @@
         ],
         "halfshift": 0.0003,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.0302,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 7301.1
       },
       {
         "param": "J2322-2650_gw13_log10_A",
@@ -80,7 +85,12 @@
         ],
         "halfshift": 0.0244,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.0456,
+        "tol_rel": 0.3046,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 12686.6
       },
       {
         "param": "n_earth",
@@ -91,9 +101,16 @@
         ],
         "halfshift": 0.0247,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 10.8525,
+        "tol_rel": 1.0853,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 10822.3
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 7301.1
   },
   "updated_utc": "2026-08-21T19:51:07Z",
   "elapsed_min": 21.0,
@@ -165,5 +182,10 @@
     "J2322-2650_efac",
     "J2322-2650_gw13_log10_A",
     "n_earth"
-  ]
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

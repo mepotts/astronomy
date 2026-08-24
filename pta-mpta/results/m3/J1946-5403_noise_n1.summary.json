@@ -61,7 +61,12 @@
         ],
         "halfshift": 0.0002,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.0324,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 6895.8
       },
       {
         "param": "J1946-5403_gw13_log10_A",
@@ -72,9 +77,16 @@
         ],
         "halfshift": 0.0138,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 2.8331,
+        "tol_rel": 0.2833,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 9756.1
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 6895.8
   },
   "updated_utc": "2026-08-21T19:44:05Z",
   "elapsed_min": 14.0,
@@ -129,5 +141,10 @@
   "param_names": [
     "J1946-5403_efac",
     "J1946-5403_gw13_log10_A"
-  ]
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

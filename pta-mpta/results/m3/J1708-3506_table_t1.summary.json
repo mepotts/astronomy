@@ -1,0 +1,193 @@
+{
+  "run_id": "J1708-3506_table_t1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 65672,
+  "seed": 30387,
+  "ndim": 5,
+  "x0_kind": "prior-draw",
+  "x0": [
+    3.141616163382899,
+    -14.406282077551552,
+    6.5538050741582605,
+    -15.290180645803815,
+    -17.59825925088646
+  ],
+  "started_utc": "2026-08-23T21:32:48Z",
+  "wall_budget_min": 120.0,
+  "gate_raw_postburn": 50000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.05,
+  "gate_rule": "relative",
+  "eval_ms": 15.36,
+  "first_eval_s": 0.32,
+  "meta": {
+    "psr": "J1708-3506",
+    "ntoa": 2492,
+    "tspan_days": 1148.9019638462198,
+    "tmin_mjd": 59005.94317253145,
+    "tmax_mjd": 60154.84513637767,
+    "variant": "table",
+    "add_red": false,
+    "fixed_whites": true,
+    "sw_gamma_prior": [
+      0,
+      7
+    ],
+    "build_s": 45.4,
+    "kind": "table",
+    "whites_fixed": {
+      "efac": 1.008587162367714,
+      "log10_tnequad": -6.335918839306899
+    }
+  },
+  "chunks": [
+    {
+      "iters": 20000,
+      "seconds": 430.3,
+      "it_per_s": 46.47,
+      "loadavg": 30.14,
+      "total_raw": 20000
+    },
+    {
+      "iters": 14000,
+      "seconds": 235.9,
+      "it_per_s": 59.34,
+      "loadavg": 30.16,
+      "total_raw": 34000
+    },
+    {
+      "iters": 18000,
+      "seconds": 260.5,
+      "it_per_s": 69.1,
+      "loadavg": 30.21,
+      "total_raw": 52000
+    },
+    {
+      "iters": 21000,
+      "seconds": 471.6,
+      "it_per_s": 44.53,
+      "loadavg": 29.42,
+      "total_raw": 73000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 7301,
+    "post_burn_rows": 5476,
+    "raw_iters": 73000,
+    "raw_postburn": 54760,
+    "lnl_max": 26066.170607,
+    "acc_rate": 0.183402,
+    "stable": false,
+    "stable_rel": true,
+    "ess_min": 70.4,
+    "params": [
+      {
+        "param": "J1708-3506_chrom_gp_gamma",
+        "median": 4.652481381375501,
+        "ci68": [
+          2.0997804518873764,
+          6.362140687755808
+        ],
+        "halfshift": 0.2393,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 4.2624,
+        "tol_rel": 0.4262,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 73.7
+      },
+      {
+        "param": "J1708-3506_chrom_gp_log10_A",
+        "median": -13.690473913206606,
+        "ci68": [
+          -14.24880373119567,
+          -13.190494749401836
+        ],
+        "halfshift": 0.0194,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 1.0583,
+        "tol_rel": 0.1058,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 187.1
+      },
+      {
+        "param": "J1708-3506_dm_gp_gamma",
+        "median": 1.3045340384277009,
+        "ci68": [
+          0.934392141992636,
+          1.7243152095032828
+        ],
+        "halfshift": 0.0878,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 0.7899,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 74.4
+      },
+      {
+        "param": "J1708-3506_dm_gp_log10_A",
+        "median": -12.712408772278001,
+        "ci68": [
+          -12.956377560549685,
+          -12.56150707678685
+        ],
+        "halfshift": 0.0369,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 0.3949,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 70.4
+      },
+      {
+        "param": "J1708-3506_gw13_log10_A",
+        "median": -14.460030258611312,
+        "ci68": [
+          -16.809304272762763,
+          -13.17353373637453
+        ],
+        "halfshift": 0.259,
+        "tol": 0.1,
+        "stable": false,
+        "w68": 3.6358,
+        "tol_rel": 0.3636,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 293.0
+      }
+    ]
+  },
+  "gate_met_abs": false,
+  "gate_met_rel": true,
+  "updated_utc": "2026-08-23T21:56:07Z",
+  "elapsed_min": 23.3,
+  "best_point": {
+    "J1708-3506_chrom_gp_gamma": 6.966294312130927,
+    "J1708-3506_chrom_gp_log10_A": -14.356237313705194,
+    "J1708-3506_dm_gp_gamma": 1.1904810606779779,
+    "J1708-3506_dm_gp_log10_A": -12.753606710682792,
+    "J1708-3506_gw13_log10_A": -13.320499038513509
+  },
+  "lnl_best": 26066.170607,
+  "curn": {
+    "median": -14.460030258611312,
+    "ci68": [
+      -16.809304272762763,
+      -13.17353373637453
+    ],
+    "n": 5476
+  },
+  "gate_met_m3": true,
+  "postprocessed": true
+}

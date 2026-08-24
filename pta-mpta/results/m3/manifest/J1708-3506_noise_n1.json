@@ -1,16 +1,16 @@
 {
   "run_id": "J1708-3506_noise_n1",
-  "pid": 12978,
-  "state": "running",
-  "exit_reason": null,
-  "started": "2026-08-22T01:02:49Z",
-  "updated": "2026-08-22T01:04:51Z",
+  "pid": 865,
+  "state": "done",
+  "exit_reason": "gate_met",
+  "started": "2026-08-23T19:17:42Z",
+  "updated": "2026-08-23T21:05:19Z",
   "wall_budget_min": 300.0,
-  "elapsed_min": 2.0,
-  "raw_iters": 2000,
-  "gate_met": false,
-  "eval_ms": 145.2,
+  "elapsed_min": 107.4,
+  "raw_iters": 135000,
+  "gate_met": true,
+  "eval_ms": 43.41,
   "psr": "J1708-3506",
   "kind": "noise",
-  "loadavg": 28.83
+  "loadavg": 30.22
 }

@@ -75,7 +75,12 @@
         ],
         "halfshift": 0.2119,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 3.6223,
+        "tol_rel": 0.3622,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 34.0
       },
       {
         "param": "J1600-3053_bump_log10_Amp",
@@ -86,7 +91,12 @@
         ],
         "halfshift": 0.0936,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 1.6613,
+        "tol_rel": 0.1661,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 28.7
       },
       {
         "param": "J1600-3053_bump_sigma_g",
@@ -97,7 +107,12 @@
         ],
         "halfshift": 26.9612,
         "tol": 199.0,
-        "stable": true
+        "stable": true,
+        "w68": 810.8171,
+        "tol_rel": 199.0,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 152.0
       },
       {
         "param": "J1600-3053_bump_t0",
@@ -108,7 +123,12 @@
         ],
         "halfshift": 24.4624,
         "tol": 158.76480013163666,
-        "stable": true
+        "stable": true,
+        "w68": 382.8605,
+        "tol_rel": 158.7648,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 161.9
       },
       {
         "param": "J1600-3053_chrom_gp_gamma",
@@ -119,7 +139,12 @@
         ],
         "halfshift": 0.0038,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 0.6884,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 121.7
       },
       {
         "param": "J1600-3053_chrom_gp_log10_A",
@@ -130,7 +155,12 @@
         ],
         "halfshift": 0.0064,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.2418,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 104.3
       },
       {
         "param": "J1600-3053_dm_gp_gamma",
@@ -141,7 +171,12 @@
         ],
         "halfshift": 0.0197,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 0.471,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 190.7
       },
       {
         "param": "J1600-3053_dm_gp_log10_A",
@@ -152,7 +187,12 @@
         ],
         "halfshift": 0.0039,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.1616,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 235.7
       },
       {
         "param": "J1600-3053_efac",
@@ -163,7 +203,12 @@
         ],
         "halfshift": 0.0015,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.0416,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 64.0
       },
       {
         "param": "J1600-3053_gw13_log10_A",
@@ -174,7 +219,12 @@
         ],
         "halfshift": 0.0056,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.0221,
+        "tol_rel": 0.3022,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 196.6
       },
       {
         "param": "J1600-3053_log10_tnequad",
@@ -185,7 +235,12 @@
         ],
         "halfshift": 0.0113,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.3151,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 98.4
       },
       {
         "param": "n_earth",
@@ -196,9 +251,16 @@
         ],
         "halfshift": 0.0366,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 2.3423,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 784.4
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 28.7
   },
   "updated_utc": "2026-08-21T22:28:09Z",
   "elapsed_min": 1.8,
@@ -423,5 +485,10 @@
     "J1600-3053_gw13_log10_A",
     "J1600-3053_log10_tnequad",
     "n_earth"
-  ]
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

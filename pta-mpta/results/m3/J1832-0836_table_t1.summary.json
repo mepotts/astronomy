@@ -86,7 +86,12 @@
         ],
         "halfshift": 0.0421,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 1.3486,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 214.4
       },
       {
         "param": "J1832-0836_bump_log10_Amp",
@@ -97,7 +102,12 @@
         ],
         "halfshift": 0.0029,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.6907,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 261.0
       },
       {
         "param": "J1832-0836_bump_sigma_g",
@@ -108,7 +118,12 @@
         ],
         "halfshift": 36.0924,
         "tol": 199.0,
-        "stable": true
+        "stable": true,
+        "w68": 921.1952,
+        "tol_rel": 199.0,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 124.2
       },
       {
         "param": "J1832-0836_bump_t0",
@@ -119,7 +134,12 @@
         ],
         "halfshift": 14.9226,
         "tol": 156.49381513581343,
-        "stable": true
+        "stable": true,
+        "w68": 285.4252,
+        "tol_rel": 156.4938,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 243.3
       },
       {
         "param": "J1832-0836_dm_gp_gamma",
@@ -130,7 +150,12 @@
         ],
         "halfshift": 0.002,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 0.6965,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 803.1
       },
       {
         "param": "J1832-0836_dm_gp_log10_A",
@@ -141,7 +166,12 @@
         ],
         "halfshift": 0.001,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.1621,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 753.5
       },
       {
         "param": "J1832-0836_gw13_log10_A",
@@ -152,9 +182,16 @@
         ],
         "halfshift": 0.0494,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 2.7556,
+        "tol_rel": 0.2756,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1565.8
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 124.2
   },
   "updated_utc": "2026-08-21T21:08:32Z",
   "elapsed_min": 14.7,
@@ -175,5 +212,10 @@
       -14.53599979731075
     ],
     "n": 6676
-  }
+  },
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

@@ -88,7 +88,12 @@
         ],
         "halfshift": 0.018,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 1.1701,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 202.6
       },
       {
         "param": "J1832-0836_bump_log10_Amp",
@@ -99,7 +104,12 @@
         ],
         "halfshift": 0.0205,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.6483,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 210.9
       },
       {
         "param": "J1832-0836_bump_sigma_g",
@@ -110,7 +120,12 @@
         ],
         "halfshift": 4.5268,
         "tol": 199.0,
-        "stable": true
+        "stable": true,
+        "w68": 808.3322,
+        "tol_rel": 199.0,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 246.2
       },
       {
         "param": "J1832-0836_bump_t0",
@@ -121,7 +136,12 @@
         ],
         "halfshift": 13.198,
         "tol": 156.49381513581343,
-        "stable": true
+        "stable": true,
+        "w68": 281.2432,
+        "tol_rel": 156.4938,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 246.2
       },
       {
         "param": "J1832-0836_dm_gp_gamma",
@@ -132,7 +152,12 @@
         ],
         "halfshift": 0.0183,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 0.6716,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 689.4
       },
       {
         "param": "J1832-0836_dm_gp_log10_A",
@@ -143,7 +168,12 @@
         ],
         "halfshift": 0.0084,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.1584,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 466.4
       },
       {
         "param": "J1832-0836_gw13_log10_A",
@@ -154,7 +184,12 @@
         ],
         "halfshift": 0.0373,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 2.7401,
+        "tol_rel": 0.274,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1779.7
       },
       {
         "param": "J1832-0836_red_gp_gamma",
@@ -165,7 +200,12 @@
         ],
         "halfshift": 0.008,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 4.7074,
+        "tol_rel": 0.4707,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 997.5
       },
       {
         "param": "J1832-0836_red_gp_log10_A",
@@ -176,9 +216,16 @@
         ],
         "halfshift": 0.0077,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 2.8723,
+        "tol_rel": 0.2872,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1062.8
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 202.6
   },
   "updated_utc": "2026-08-21T21:46:10Z",
   "elapsed_min": 13.2,
@@ -201,5 +248,10 @@
       -14.622274387641392
     ],
     "n": 7651
-  }
+  },
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

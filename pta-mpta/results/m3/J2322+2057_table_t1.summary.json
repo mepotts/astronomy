@@ -63,9 +63,16 @@
         ],
         "halfshift": 0.0053,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 2.9688,
+        "tol_rel": 0.2969,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 47037.0
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 47037.0
   },
   "updated_utc": "2026-08-21T20:08:37Z",
   "elapsed_min": 11.8,
@@ -80,5 +87,10 @@
       -13.858531278799287
     ],
     "n": 58876
-  }
+  },
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

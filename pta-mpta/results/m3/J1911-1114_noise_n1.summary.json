@@ -83,7 +83,12 @@
         ],
         "halfshift": 0.0207,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 1.8351,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1112.7
       },
       {
         "param": "J1911-1114_chrom_gp_idx",
@@ -94,7 +99,12 @@
         ],
         "halfshift": 0.0062,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 4.0562,
+        "tol_rel": 0.4056,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1010.8
       },
       {
         "param": "J1911-1114_chrom_gp_log10_A",
@@ -105,7 +115,12 @@
         ],
         "halfshift": 0.0037,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.8633,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1000.7
       },
       {
         "param": "J1911-1114_efac",
@@ -116,7 +131,12 @@
         ],
         "halfshift": 0.0006,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.0339,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 2167.5
       },
       {
         "param": "J1911-1114_gw13_log10_A",
@@ -127,7 +147,12 @@
         ],
         "halfshift": 0.0385,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.584,
+        "tol_rel": 0.3584,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 2768.7
       },
       {
         "param": "n_earth",
@@ -138,9 +163,16 @@
         ],
         "halfshift": 0.0227,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 4.606,
+        "tol_rel": 0.4606,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 2888.5
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 1000.7
   },
   "updated_utc": "2026-08-21T21:45:35Z",
   "elapsed_min": 21.1,
@@ -263,5 +295,10 @@
     "J1911-1114_efac",
     "J1911-1114_gw13_log10_A",
     "n_earth"
-  ]
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

@@ -70,7 +70,12 @@
         ],
         "halfshift": 0.0003,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.0371,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 4793.7
       },
       {
         "param": "J1804-2717_gw13_log10_A",
@@ -81,7 +86,12 @@
         ],
         "halfshift": 0.0352,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 3.5682,
+        "tol_rel": 0.3568,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 8367.3
       },
       {
         "param": "J1804-2717_log10_ecorr",
@@ -92,7 +102,12 @@
         ],
         "halfshift": 0.0003,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.1854,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 4942.4
       },
       {
         "param": "n_earth",
@@ -103,9 +118,16 @@
         ],
         "halfshift": 0.0014,
         "tol": 0.3,
-        "stable": true
+        "stable": true,
+        "w68": 4.1502,
+        "tol_rel": 0.415,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 6680.1
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 4793.7
   },
   "updated_utc": "2026-08-21T19:52:58Z",
   "elapsed_min": 22.8,
@@ -194,5 +216,10 @@
     "J1804-2717_gw13_log10_A",
     "J1804-2717_log10_ecorr",
     "n_earth"
-  ]
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

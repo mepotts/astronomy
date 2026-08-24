@@ -68,7 +68,12 @@
         ],
         "halfshift": 0.0,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 0.0339,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 10357.1
       },
       {
         "param": "J2039-3616_gw13_log10_A",
@@ -79,9 +84,16 @@
         ],
         "halfshift": 0.0042,
         "tol": 0.1,
-        "stable": true
+        "stable": true,
+        "w68": 2.5918,
+        "tol_rel": 0.2592,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 15204.0
       }
-    ]
+    ],
+    "stable_rel": true,
+    "ess_min": 10357.1
   },
   "updated_utc": "2026-08-21T19:51:39Z",
   "elapsed_min": 21.5,
@@ -136,5 +148,10 @@
   "param_names": [
     "J2039-3616_efac",
     "J2039-3616_gw13_log10_A"
-  ]
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
 }

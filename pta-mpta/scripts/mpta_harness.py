@@ -113,38 +113,91 @@ def _prior_draw_factory(pta, par_names, tag):
     return draw
 
 
+def _ess(x):
+    """Effective sample size, initial-positive-sequence autocorrelation
+    estimator (Geyer 1992) on a 1-D thinned chain. Recorded, not gated on
+    (M4 doc section 1.2, R4)."""
+    x = np.asarray(x, dtype=float)
+    n = len(x)
+    if n < 8:
+        return float(n)
+    v = x - x.mean()
+    s2 = float(np.dot(v, v) / n)
+    if s2 <= 0:
+        return float(n)
+    nfft = 1 << (2 * n - 1).bit_length()
+    f = np.fft.rfft(v, nfft)
+    acf = np.fft.irfft(f * np.conjugate(f), nfft)[:n].real
+    acf /= (acf[0] if acf[0] != 0 else 1.0)
+    # initial positive sequence: sum adjacent pairs while they stay positive
+    gsum, k = 0.0, 1
+    while k + 1 < n:
+        g = acf[k] + acf[k + 1]
+        if g <= 0:
+            break
+        gsum += g
+        k += 2
+    tau = 1.0 + 2.0 * gsum
+    return float(max(1.0, min(n, n / max(tau, 1e-9))))
+
+
 def _summarize(chain, param_names, tolerances):
-    """Medians/CIs, max lnL, stability check on the thinned chain."""
+    """Medians/CIs, max lnL, ESS, and BOTH stability verdicts on the thinned
+    chain.
+
+    `stable`     = the M1/M2/M3 ABSOLUTE rule (|shift| <= t_abs).
+    `stable_rel` = the M4 SCALE-RELATIVE rule, pre-registered in
+                   M4-finish-the-array.md section 1.2 (R1):
+                   |shift| <= max(t_abs, 0.1 * 68% interval width).
+    R1 is a strict relaxation of the absolute rule, so both verdicts are
+    always computed and always reported side by side (R3); nothing is
+    silently re-gated.
+    """
     ndim = len(param_names)
     rows = len(chain)
     burn = rows // 4
     post = chain[burn:, :ndim]
     lnlike = chain[:, ndim + 1]
     half = post[len(post) // 2:]
-    params, stable = [], True
+    params, stable, stable_rel = [], True, True
+    ess_min = float("inf")
     for i, name in enumerate(param_names):
         med = float(np.median(post[:, i]))
         mh = float(np.median(half[:, i]))
         lo, hi = (float(np.percentile(post[:, i], q)) for q in (16, 84))
         tol = tolerances.get(name, 0.1)
-        ok = abs(med - mh) <= tol
+        w68 = float(hi - lo)
+        tol_rel = max(tol, 0.1 * w68)
+        shift = abs(med - mh)
+        ok = shift <= tol
+        ok_rel = shift <= tol_rel
         stable &= ok
+        stable_rel &= ok_rel
+        ess = _ess(post[:, i])
+        ess_min = min(ess_min, ess)
         params.append(dict(param=name, median=med, ci68=[lo, hi],
-                           halfshift=round(abs(med - mh), 4),
-                           tol=tol, stable=bool(ok)))
+                           halfshift=round(shift, 4),
+                           tol=tol, stable=bool(ok),
+                           w68=round(w68, 4), tol_rel=round(tol_rel, 4),
+                           stable_rel=bool(ok_rel),
+                           bound_by=("abs" if tol >= 0.1 * w68 else "rel"),
+                           ess=round(ess, 1)))
     return dict(rows=rows, post_burn_rows=len(post),
                 raw_iters=(rows - 1) * THIN,
                 raw_postburn=(len(post)) * THIN,
                 lnl_max=float(np.max(lnlike)),
                 acc_rate=float(chain[-1, ndim + 2]),
-                stable=bool(stable), params=params)
+                stable=bool(stable), stable_rel=bool(stable_rel),
+                ess_min=(None if ess_min == float("inf")
+                         else round(ess_min, 1)),
+                params=params)
 
 
 def run(pta, run_id, results_dir, chains_dir, wall_min=480.0,
         gate_raw_postburn=100_000, tolerances=None, seed=1234,
         x0=None, x0_kind="prior-draw", chunk_target_s=600.0,
         meta=None, jump_blocks=None, max_raw_iters=4_000_000,
-        cov_scale0=0.25, min_acc=0.05):
+        cov_scale0=0.25, min_acc=0.05, gate_rule="absolute"):
     """Run one wall-clock-bounded, resumable PTMCMC sampling campaign.
 
     Returns the final summary dict (also on disk however the run ends).
@@ -165,6 +218,12 @@ def run(pta, run_id, results_dir, chains_dir, wall_min=480.0,
     stop_global = manifest_dir / "STOP_ALL"
 
     tolerances = tolerances or {}
+    # which stability verdict the GATE uses. "absolute" = the M1/M2/M3 rule;
+    # "relative" = M4's pre-registered scale-relative rule (M4 doc 1.2, R1).
+    # Both verdicts are computed and stored on every run either way (R3).
+    if gate_rule not in ("absolute", "relative"):
+        raise ValueError(f"gate_rule must be absolute|relative, got {gate_rule}")
+    _stable_key = "stable" if gate_rule == "absolute" else "stable_rel"
     ndim = len(pta.params)
     ncol = ndim + 4
     param_names = list(pta.param_names)
@@ -197,9 +256,10 @@ def run(pta, run_id, results_dir, chains_dir, wall_min=480.0,
         started_utc=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         wall_budget_min=wall_min, gate_raw_postburn=gate_raw_postburn,
         nice=os.nice(0), omp_threads=os.environ.get("OMP_NUM_THREADS"),
-        min_acc=min_acc, cov_scale0=cov_scale0,
+        min_acc=min_acc, cov_scale0=cov_scale0, gate_rule=gate_rule,
         eval_ms=round(t_eval * 1e3, 2), first_eval_s=round(t_first, 2),
         meta=meta or {}, chunks=[], gate_met=False, chain=None,
+        gate_met_abs=False, gate_met_rel=False,
     )
 
     def flush(reason=None, err=None):
@@ -238,7 +298,7 @@ def run(pta, run_id, results_dir, chains_dir, wall_min=480.0,
             # (acc 0.016) passed the raw-iteration + median-stability gate
             # because not moving is maximally "stable". M2's reported
             # verdicts stand as pre-registered; this protects later runs.
-            if state["chain"] and state["chain"]["stable"] \
+            if state["chain"] and state["chain"][_stable_key] \
                     and state["chain"]["acc_rate"] >= min_acc \
                     and state["chain"]["raw_postburn"] >= gate_raw_postburn:
                 state["gate_met"] = True
@@ -314,10 +374,17 @@ def run(pta, run_id, results_dir, chains_dir, wall_min=480.0,
                     chain = np.loadtxt(f, ndmin=2)
                     state["chain"] = _summarize(chain, param_names,
                                                 tolerances)
-                    if state["chain"]["stable"] \
+                    if state["chain"][_stable_key] \
                             and state["chain"]["acc_rate"] >= min_acc \
                             and state["chain"]["raw_postburn"] >= gate_raw_postburn:
                         state["gate_met"] = True
+                    _ok = (state["chain"]["acc_rate"] >= min_acc
+                           and state["chain"]["raw_postburn"]
+                           >= gate_raw_postburn)
+                    state["gate_met_abs"] = bool(
+                        _ok and state["chain"]["stable"])
+                    state["gate_met_rel"] = bool(
+                        _ok and state["chain"]["stable_rel"])
         except Exception:
             err_txt = (err_txt or "") + "\n" + traceback.format_exc()
         state["state"] = "done" if exit_reason in (

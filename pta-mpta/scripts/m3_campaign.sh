@@ -12,6 +12,9 @@ cd /mnt/c/Users/matth/projects/astronomy/pta-mpta
 mkdir -p results/m3/manifest logs/m3 chains/m3
 
 MODE=${1:-noise}
+# GATE_RULE: absolute = the M1/M2/M3 stability rule; relative = M4's
+# pre-registered scale-relative rule (M4-finish-the-array.md 1.2 R1).
+GATE_RULE=${GATE_RULE:-absolute}
 NPROC=${NPROC:-15}
 THREADS=${THREADS:-2}
 case "$MODE" in
@@ -71,12 +74,12 @@ run_one () {
   NUMEXPR_NUM_THREADS=$THREADS VECLIB_MAXIMUM_THREADS=$THREADS \
   nice -n 19 python scripts/m3_run.py "$psr" --variant "$MODE" --tag "$TAG" \
       --wall-min "$WALL" --gate "$GATE" --seed $((RANDOM)) \
-      --chunk-min "${CHUNK_MIN:-10}" "${extra[@]}" \
+      --chunk-min "${CHUNK_MIN:-10}" --gate-rule "${GATE_RULE:-absolute}"       "${extra[@]}" \
       > "logs/m3/${id}.log" 2>&1
   echo "done ${id} rc=$?"
 }
 export -f run_one
-export MODE TAG WALL GATE THREADS CHUNK_MIN
+export MODE TAG WALL GATE THREADS CHUNK_MIN GATE_RULE
 
 xargs -a "$ORDER_FILE" -P "$NPROC" -I{} bash -c 'run_one "$@"' _ {}
 echo "campaign ${MODE} finished"

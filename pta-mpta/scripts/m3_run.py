@@ -72,15 +72,26 @@ def main():
     ap.add_argument("--cov-scale0", type=float, default=None,
                     help="default 0.25 sampled-white / 0.05 fixed-white")
     ap.add_argument("--min-acc", type=float, default=0.05)
+    ap.add_argument("--gate-rule", choices=["absolute", "relative"],
+                    default="absolute",
+                    help="stability rule the GATE uses. absolute = M1/M2/M3; "
+                         "relative = M4's pre-registered scale-relative rule "
+                         "(M4-finish-the-array.md 1.2 R1). Both verdicts are "
+                         "recorded on every run regardless.")
     ap.add_argument("--sw-gamma-prior", default=None,
                     help="lo,hi override for the SW GP spectral index "
                          "(post-hoc supplementary check, M3 section 6)")
+    ap.add_argument("--run-label", default=None,
+                    help="overrides the variant string in the run id (used by "
+                         "the M4 gamma_SW wide-prior registered variant, which "
+                         "is the noise model under a different SW prior and "
+                         "must not overwrite the registered noise run)")
     ap.add_argument("--bench-only", action="store_true")
     args = ap.parse_args()
 
     import mpta_harness as H
 
-    run_id = f"{args.psr}_{args.variant}_{args.tag}"
+    run_id = f"{args.psr}_{args.run_label or args.variant}_{args.tag}"
     whites = None
     if args.variant in ("table", "fl"):
         if not args.whites_from:
@@ -132,7 +143,8 @@ def main():
                   tolerances=tolerances, seed=args.seed,
                   chunk_target_s=args.chunk_min * 60.0, meta=meta,
                   jump_blocks=jump_blocks_for(pta, args.psr),
-                  cov_scale0=cov0, min_acc=args.min_acc)
+                  cov_scale0=cov0, min_acc=args.min_acc,
+                  gate_rule=args.gate_rule)
 
     f = H._chain_file(CHAINS / run_id)
     if f is None:
