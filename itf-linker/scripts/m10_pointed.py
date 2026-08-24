@@ -119,6 +119,11 @@ def pointed_field_flags(trk_obs: list[Any], pub_obs: list[Any]) -> dict[str, Any
     }
 
 
+#: The MPC's base-62 alphabet for packed cycle counts (digits, UPPER, lower).
+#: Shared with :mod:`itf_linker.verify.killcheck`, which verified it against MPEC 2026-O57.
+_BASE62 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+
+
 def packed_provisional(desig: str) -> str | None:
     """MPC packed form of a provisional designation: 2018 KH3 -> K18K03H."""
     m = re.match(r"^(\d{4}) ([A-Z])([A-Z])(\d*)$", desig.strip())
@@ -129,12 +134,24 @@ def packed_provisional(desig: str) -> str | None:
     century = {"18": "I", "19": "J", "20": "K"}.get(yr[:2])
     if century is None:
         return None
+    # Columns 5-6 carry the cycle count in the MPC's base-62 alphabet: digits, then
+    # UPPERCASE, then lowercase. The arithmetic version of this was wrong past cycle 359
+    # because `chr(ord("A") + 26)` walks off the end of the alphabet into ASCII
+    # punctuation -- `[ \ ] ^ _ ` ` -- and then into lowercase shifted by six. Two
+    # different failures came out of that: 360-419 produced a malformed designation, and
+    # >=420 produced a **well-formed designation for a different object** (2015 KP488
+    # packed as K15Kg8P, which reads back as 2015 KP428). 59 of the 663 objects in the
+    # M11 review queue were affected. Use the same table `verify.killcheck` uses -- it is
+    # the one checked against a real MPEC -- so there is one encoding in this repository
+    # rather than two.
     if n < 100:
         cycle = f"{n:02d}"
     elif n < 620:
-        cycle = chr(ord("A") + (n - 100) // 10) + str(n % 10)
+        cycle = _BASE62[n // 10] + str(n % 10)
     else:
-        cycle = chr(ord("a") + (n - 360) // 10) + str(n % 10)
+        # Beyond 619 the original scheme is exhausted; the extended `_PD0000` form
+        # applies and this function does not implement it, so refuse rather than guess.
+        return None
     return f"{century}{yr[2:]}{half}{cycle}{order}"
 
 

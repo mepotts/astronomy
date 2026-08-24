@@ -246,6 +246,44 @@ def test_fisher_exact_finds_the_head_vs_tail_difference():
 # The self-designation screen
 # ----------------------------------------------------------------------------------
 
+def test_packed_cycle_counts_match_the_mpcs_own_worked_examples(screen):
+    """The five examples the MPC prints on its provisional-designation page.
+
+    The two with cycle counts above 99 are the ones that matter: columns 5-6 hold the
+    count in a base-62 alphabet (digits, UPPERCASE, lowercase), and the arithmetic
+    shortcut that looks right -- ``chr(ord("A") + n // 10 - 10)`` -- walks off the end of
+    the alphabet at cycle 360 into ASCII punctuation, then into lowercase shifted by six.
+    It was wrong for 59 of the 663 objects in M11's review queue, one of them in the
+    submittable Tier A, and past 420 it produced a **valid designation for the wrong
+    object** (2015 KP488 -> K15Kg8P, which reads back as 2015 KP428). Only the >=100
+    cases can catch it, and the previous tests were all single digit.
+    """
+    for desig, packed in [
+        ("1995 XA", "J95X00A"),
+        ("1995 XL1", "J95X01L"),
+        ("1995 FB13", "J95F13B"),
+        ("1998 SQ108", "J98SA8Q"),      # cycle 108 -> "A8"
+        ("2099 AZ193", "K99AJ3Z"),      # cycle 193 -> "J3"
+    ]:
+        assert screen.packed_provisional(desig) == packed, desig
+
+
+def test_the_cycle_alphabet_runs_Z_to_a_with_no_punctuation_between(screen):
+    """359 -> 'Z9', 360 -> 'a0'. Anything in between is the bug."""
+    assert screen.packed_provisional("2015 KP359") == "K15KZ9P"
+    assert screen.packed_provisional("2015 KP360") == "K15Ka0P"
+    assert screen.packed_provisional("2015 KP488") == "K15Km8P"
+    assert screen.packed_provisional("2015 KP619") == "K15Kz9P"
+    for n in range(340, 500):
+        got = screen.packed_provisional(f"2015 KP{n}")
+        assert got is not None and got[4].isalnum(), f"cycle {n} packed to {got!r}"
+
+
+def test_beyond_the_schemes_range_it_refuses_rather_than_guessing(screen):
+    """620+ needs the extended `_PD0000` form, which this function does not implement."""
+    assert screen.packed_provisional("2015 KP620") is None
+
+
 def test_packed_provisional_designation(screen):
     """Pinned against the four all-sky head rows that exposed the artefact."""
     assert screen.packed_provisional("2018 KH3") == "K18K03H"
