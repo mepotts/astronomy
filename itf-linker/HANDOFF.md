@@ -48,9 +48,10 @@ ever been submitted.
 | 11 | `M9-RESULTS.md` | The unconsumed partitions consumed, the queue extended under a pre-registered stopping rule, combined fits for the multi-tracklet tier, the 88 ambiguities adjudicated — and the MPC **independently confirming 30/30 consumed M8 candidates**, ground truth the chain never had before |
 | 12 | `M10-RESULTS.md` | The ledger refreshed against a same-hour pull for review (`out/review-queue.csv`), the decay clock re-measured across three intervals and found concentrated in M8's queue head alone, M9's 60 ambiguities adjudicated, the 15–25 y main-belt shell, and the pointed-field screen validated and measured |
 | 13 | `M11-RESULTS.md` | The shell's **fit stage priced with a decoy** (0/300 vs 76/300) and the finding that the primary "did fo use the tracklet" gate does all the discriminating; the shell's deep end closed at 20.74 y; the cumulative ledger refreshed after the archive pruned the base snapshot; the versioned review queue |
-| 14 | `SNAPSHOT-VALIDATION.md` | The one check independent of the whole pipeline |
-| 11 | `docs/archive-operations.md` | How the daily archive runs and how it has failed |
-| 12 | `docs/rnaas-subset-guard.md` + `rnaas-notes.md` | The publishable finding, and its 14 known weaknesses |
+| 14 | `M12-RESULTS.md` | The daily archive read as a **series** rather than as snapshot pairs: the ITF is draining 4.4 : 1, the departures are whole tracklets being linked (confirmed against the objects' own published records), and a five-day collapse in Pan-STARRS intake that only a daily archive could have recorded |
+| 15 | `SNAPSHOT-VALIDATION.md` | The one check independent of the whole pipeline |
+| 16 | `docs/archive-operations.md` | How the daily archive runs and how it has failed |
+| 17 | `docs/rnaas-subset-guard.md` + `rnaas-notes.md` | The publishable finding, and its 14 known weaknesses |
 
 `git log` is worth reading; commit messages carry the reasoning, not just the change.
 
