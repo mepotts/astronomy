@@ -1,0 +1,166 @@
+{
+  "by_f": [
+    {
+      "inject_psf": "epsf",
+      "recover_psf": "epsf",
+      "f_true": 0.01,
+      "ratio": 1.0362660358
+    },
+    {
+      "inject_psf": "epsf",
+      "recover_psf": "epsf",
+      "f_true": 0.02,
+      "ratio": 0.9862672149
+    },
+    {
+      "inject_psf": "epsf",
+      "recover_psf": "epsf",
+      "f_true": 0.05,
+      "ratio": 1.0017733136
+    },
+    {
+      "inject_psf": "epsf",
+      "recover_psf": "epsf",
+      "f_true": 0.1,
+      "ratio": 1.0031781678
+    },
+    {
+      "inject_psf": "epsf",
+      "recover_psf": "epsf",
+      "f_true": 0.3,
+      "ratio": 0.9997842276
+    },
+    {
+      "inject_psf": "epsf",
+      "recover_psf": "gauss",
+      "f_true": 0.01,
+      "ratio": 0.5762944222
+    },
+    {
+      "inject_psf": "epsf",
+      "recover_psf": "gauss",
+      "f_true": 0.02,
+      "ratio": 0.8512437202
+    },
+    {
+      "inject_psf": "epsf",
+      "recover_psf": "gauss",
+      "f_true": 0.05,
+      "ratio": 0.9303116697
+    },
+    {
+      "inject_psf": "epsf",
+      "recover_psf": "gauss",
+      "f_true": 0.1,
+      "ratio": 0.9469675957
+    },
+    {
+      "inject_psf": "epsf",
+      "recover_psf": "gauss",
+      "f_true": 0.3,
+      "ratio": 0.9868242994
+    },
+    {
+      "inject_psf": "gauss",
+      "recover_psf": "epsf",
+      "f_true": 0.01,
+      "ratio": 1.2056826993
+    },
+    {
+      "inject_psf": "gauss",
+      "recover_psf": "epsf",
+      "f_true": 0.02,
+      "ratio": 1.1939794743
+    },
+    {
+      "inject_psf": "gauss",
+      "recover_psf": "epsf",
+      "f_true": 0.05,
+      "ratio": 1.0196707205
+    },
+    {
+      "inject_psf": "gauss",
+      "recover_psf": "epsf",
+      "f_true": 0.1,
+      "ratio": 1.0496667083
+    },
+    {
+      "inject_psf": "gauss",
+      "recover_psf": "epsf",
+      "f_true": 0.3,
+      "ratio": 1.0119963785
+    },
+    {
+      "inject_psf": "gauss",
+      "recover_psf": "gauss",
+      "f_true": 0.01,
+      "ratio": 0.9724326885
+    },
+    {
+      "inject_psf": "gauss",
+      "recover_psf": "gauss",
+      "f_true": 0.02,
+      "ratio": 1.0076333985
+    },
+    {
+      "inject_psf": "gauss",
+      "recover_psf": "gauss",
+      "f_true": 0.05,
+      "ratio": 0.9892153166
+    },
+    {
+      "inject_psf": "gauss",
+      "recover_psf": "gauss",
+      "f_true": 0.1,
+      "ratio": 1.0034474387
+    },
+    {
+      "inject_psf": "gauss",
+      "recover_psf": "gauss",
+      "f_true": 0.3,
+      "ratio": 1.000440616
+    }
+  ],
+  "summary": [
+    {
+      "inject_psf": "epsf",
+      "recover_psf": "epsf",
+      "median": 1.0007881921,
+      "mean": 1.0040915032,
+      "std": 0.2040371824,
+      "count": 50
+    },
+    {
+      "inject_psf": "epsf",
+      "recover_psf": "gauss",
+      "median": 0.9734110962,
+      "mean": 1.5987685342,
+      "std": 2.4095598046,
+      "count": 50
+    },
+    {
+      "inject_psf": "gauss",
+      "recover_psf": "epsf",
+      "median": 1.026985691,
+      "mean": 0.505610192,
+      "std": 1.838229991,
+      "count": 50
+    },
+    {
+      "inject_psf": "gauss",
+      "recover_psf": "gauss",
+      "median": 0.998131604,
+      "mean": 0.991878857,
+      "std": 0.1136697867,
+      "count": 50
+    }
+  ],
+  "f_grid": [
+    0.01,
+    0.02,
+    0.05,
+    0.1,
+    0.3
+  ],
+  "note": "synthetic scenes: donor + a companion of KNOWN fraction f at the same 1.233 arcsec separation but PA+90 deg, a position used nowhere in the PSF construction.  The gauss/gauss cell grades M6's method against a known truth; the off-diagonal cells price the circularity of injecting and recovering with the same profile."
+}

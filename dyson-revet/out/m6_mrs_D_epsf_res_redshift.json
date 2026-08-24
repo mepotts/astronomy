@@ -1,0 +1,269 @@
+{
+  "label": "D_epsf_res",
+  "assoc": "o002",
+  "n_cubes": 8,
+  "cal_ver": [
+    "2.0.1"
+  ],
+  "crds_ctx": [
+    "jwst_1535.pmap"
+  ],
+  "lam_range_um": [
+    4.900400095357327,
+    15.568750102771446
+  ],
+  "n_slices": 8718,
+  "band_overlap_ratios_contaminant": [
+    {
+      "pair": "1-short|1-medium",
+      "overlap_um": 0.0792002267553471,
+      "ratio": 0.9432567904616219
+    },
+    {
+      "pair": "1-medium|1-long",
+      "overlap_um": 0.09959961310960352,
+      "ratio": 0.8358659139607163
+    },
+    {
+      "pair": "1-long|2-short",
+      "overlap_um": 0.13894995264127008,
+      "ratio": 1.5274973071618816
+    },
+    {
+      "pair": "2-short|2-medium",
+      "overlap_um": 0.09970015601720661,
+      "ratio": 0.9274909412799501
+    },
+    {
+      "pair": "2-medium|2-long",
+      "overlap_um": 0.1198998513864371,
+      "ratio": 1.089094132864712
+    },
+    {
+      "pair": "2-long|3-short",
+      "overlap_um": 0.14810004277387456,
+      "ratio": 1.172006668710063
+    },
+    {
+      "pair": "3-short|3-medium",
+      "overlap_um": 0.12999999523162664,
+      "ratio": 1.037916861387101
+    }
+  ],
+  "acceptance": {
+    "f560w_star": {
+      "mrs_uJy": 327.0174680899879,
+      "m4_imaging_uJy": 300.6,
+      "ratio": 1.0878824620425411,
+      "bandpass_covered": 0.9995470277215963,
+      "pass": true,
+      "dominant_component": true
+    },
+    "f560w_con": {
+      "mrs_uJy": 55.28708336638417,
+      "m4_imaging_uJy": 70.9,
+      "ratio": 0.7797896102451927,
+      "bandpass_covered": 0.9995470277215963,
+      "pass": true,
+      "dominant_component": false
+    },
+    "f1000w_star": {
+      "mrs_uJy": 120.737548184886,
+      "m4_imaging_uJy": 124.0,
+      "ratio": 0.9736899047168225,
+      "bandpass_covered": 0.9999914810132217,
+      "pass": true,
+      "dominant_component": false
+    },
+    "f1000w_con": {
+      "mrs_uJy": 914.9810269575357,
+      "m4_imaging_uJy": 898.2,
+      "ratio": 1.0186829514111955,
+      "bandpass_covered": 0.9999914810132217,
+      "pass": true,
+      "dominant_component": true
+    },
+    "f1500w_star": {
+      "mrs_uJy": 50.04157132693576,
+      "m4_imaging_uJy": 50.0,
+      "ratio": 1.0008314265387153,
+      "bandpass_covered": 0.6332579691922323,
+      "pass": true,
+      "dominant_component": false
+    },
+    "f1500w_con": {
+      "mrs_uJy": 4013.653158412288,
+      "m4_imaging_uJy": 4159.1,
+      "ratio": 0.9650292511390175,
+      "bandpass_covered": 0.6332579691922323,
+      "pass": true,
+      "dominant_component": true
+    }
+  },
+  "acceptance_pass": true,
+  "acceptance_pass_dominant_only": true,
+  "valid_range_um": [
+    5.8924000953572175,
+    12.94840009535644
+  ],
+  "noise": {
+    "median_formal_uJy": 11.814526836437379,
+    "median_empirical_uJy": 23.476553408883145,
+    "inflation_factor": 1.9074384128711457,
+    "note": "adjacent MRS slices are correlated, so the per-slice formal error under-states the noise on a combined spectrum; the empirical high-frequency scatter is used everywhere below"
+  },
+  "blind_scan": {
+    "z_grid": [
+      0.0,
+      3.0,
+      0.0005
+    ],
+    "z_best": 0.6265000000000001,
+    "peak_score": 397.9404547936804,
+    "scan_rms": 126.43304752657146,
+    "peak_over_scan_rms": 3.1474401873453877,
+    "score_at_0.922": 337.98807258115284,
+    "delta_z_from_published": -0.2955,
+    "top5_separated_peaks": [
+      [
+        0.6265000000000001,
+        397.9404547936804
+      ],
+      [
+        0.9425,
+        386.15336905529534
+      ],
+      [
+        0.657,
+        377.1281508445847
+      ],
+      [
+        0.5965,
+        372.59887592251283
+      ],
+      [
+        0.5665,
+        320.7478881460713
+      ]
+    ],
+    "z_best_vs_continuum_window": {
+      "0.06": 0.9365,
+      "0.08": 0.937,
+      "0.1": 0.9390000000000001
+    }
+  },
+  "narrow_consensus_scan": {
+    "grid": [
+      0.05,
+      2.5,
+      0.002
+    ],
+    "max_narrow_lines_at_5sigma": 4,
+    "n_at_published_z": 0,
+    "sum_snr_at_published_z": 0.0,
+    "n_grid_points_reaching_max": 17,
+    "fraction_of_grid_reaching_n_at_published_z": 1.0,
+    "z_of_best_sum_snr_among_max": 0.14000000000000007,
+    "published_z_is_among_best": false
+  },
+  "star_control": {
+    "z_best": 0.9560000000000001,
+    "peak_score": 64.22513133398985,
+    "peak_over_scan_rms": 3.5445060244167053,
+    "score_at_0.922": 51.571323163595906,
+    "note": "the star is a bare M-dwarf photosphere (M4 Sec 5.2) and must show no PAH pattern; it is also the component the deblend leaks INTO, since the contaminant supplies >94% of the light beyond 10 um"
+  },
+  "features": {
+    "blind_best": [
+      {
+        "name": "PAH 6.2",
+        "kind": "pah",
+        "lam_rest_um": 6.22,
+        "lam_pred_um": 10.11683,
+        "lam_fit_um": 10.1477335,
+        "z_from_centroid": 0.6314684084,
+        "amp_rel": 0.2310150299,
+        "e_amp_rel": 0.0018766305,
+        "snr": 123.100969604
+      },
+      {
+        "name": "PAH 7.7",
+        "kind": "pah",
+        "lam_rest_um": 7.7,
+        "lam_pred_um": 12.52405,
+        "lam_fit_um": 12.52405,
+        "z_from_centroid": 0.6265,
+        "amp_rel": 0.2280459218,
+        "e_amp_rel": 0.0005940175,
+        "snr": 383.904370895
+      },
+      {
+        "name": "[Ar II]",
+        "kind": "fs",
+        "lam_rest_um": 6.985,
+        "lam_pred_um": 11.3611025,
+        "lam_fit_um": 11.3448375,
+        "z_from_centroid": 0.6241714388,
+        "amp_rel": -0.2000917324,
+        "e_amp_rel": 0.0058179745,
+        "snr": -34.391991703
+      }
+    ],
+    "blind_best_summary": {
+      "n_tested": 3,
+      "n_detected_5sigma": 2,
+      "detected": [
+        "PAH 6.2",
+        "PAH 7.7"
+      ],
+      "z_centroid_mean": 0.628984204180064,
+      "z_centroid_std": 0.003513195243149985,
+      "z_spread_within_0.01": true
+    },
+    "published_0.922": [
+      {
+        "name": "PAH 6.2",
+        "kind": "pah",
+        "lam_rest_um": 6.22,
+        "lam_pred_um": 11.95484,
+        "lam_fit_um": 12.0765666667,
+        "z_from_centroid": 0.9415702036,
+        "amp_rel": 0.4891701964,
+        "e_amp_rel": 0.0012688381,
+        "snr": 385.5260955737
+      }
+    ],
+    "published_0.922_summary": {
+      "n_tested": 1,
+      "n_detected_5sigma": 1,
+      "detected": [
+        "PAH 6.2"
+      ],
+      "z_centroid_mean": 0.9415702036441578,
+      "z_centroid_std": null,
+      "z_spread_within_0.01": false
+    }
+  },
+  "silicate": {},
+  "continuum_shape": {
+    "best_single_blackbody_T_observed_K": 199.0,
+    "implied_rest_frame_T_at_z0.922_K": 382.478,
+    "M4_sec5.2_rest_frame_T_K": 441.0,
+    "global_power_law_index_5.9_to_23.8um": 5.797436922908709,
+    "index_5.9_to_10um": 7.441521120649926,
+    "index_10_to_15um": 3.4997133226753947,
+    "M4_index_5.6_to_10um": 4.4,
+    "M4_index_10_to_15um": 3.8,
+    "note": "a single blackbody is a poor description of a PAH-bearing, silicate-absorbed spectrum; the number is reported because M4 Sec 5.2 quoted one from three photometric points, and this is the first test of it"
+  },
+  "verdict": {
+    "acceptance": "PASS",
+    "acceptance_dominant_component_only": "PASS",
+    "criterion": ">=2 independent features, each >=5 sigma, agreeing on z to +-0.01 (M6 PR-2, fixed before the extraction)",
+    "met_at_published_z": false,
+    "met_at_blind_best_z": true,
+    "blind_best_z": 0.6265000000000001,
+    "blind_agrees_with_published": false,
+    "PR2_consequence_of_acceptance": "n/a"
+  }
+}

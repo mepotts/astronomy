@@ -1,5 +1,13 @@
 # dyson-revet — the Gaia × WISE extreme-IR-excess screen, done with real false-positive control
 
+> ### ▶ Start here: [`FRONT-SUMMARY.md`](FRONT-SUMMARY.md)
+>
+> **The front is closed** (M7, 2026-08-24) pending its dated triggers. One document
+> carries what the re-screen established, what it could not, what the catalogue is and
+> is not usable for, and the standing triggers — **candidate E's data open
+> 2026-09-09**. Read that first; everything below is the front's own history, kept
+> append-only and superseded in places by the milestones it links to.
+
 **What this is.** Avenue **#7** of [`../DISCOVERY/run3-prospectus.md`](../DISCOVERY/run3-prospectus.md),
 extending the portfolio's SETI thread: Project Hephaistos II selected 7 Dyson-sphere candidates from
 ~5M Gaia×2MASS×WISE stars ([MNRAS 2024](https://academic.oup.com/mnras/article/531/1/695/7665761)).
