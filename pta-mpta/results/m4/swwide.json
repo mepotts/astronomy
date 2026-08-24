@@ -32,7 +32,7 @@
   "J2234+0944",
   "J2241-5236"
  ],
- "compared": 25,
+ "compared": 26,
  "rows": [
   {
    "psr": "J0614-3329",
@@ -196,6 +196,23 @@
    "d_log10A_sw": -0.334,
    "raw_var": 107260,
    "acc_var": 0.256539
+  },
+  {
+   "psr": "J1525-5545",
+   "klass": "crosses-0",
+   "pub_gamma": 1.63,
+   "n_agree_reg": 11,
+   "n_cmp_reg": 11,
+   "n_agree_var": 11,
+   "n_cmp_var": 11,
+   "miss_reg": [],
+   "miss_var": [],
+   "fixed": [],
+   "broke": [],
+   "d_gamma_sw": -0.54,
+   "d_log10A_sw": -0.74,
+   "raw_var": 115510,
+   "acc_var": 0.225768
   },
   {
    "psr": "J1614-2230",
@@ -496,13 +513,7 @@
    "acc_var": 0.275889
   }
  ],
- "missing": [
-  {
-   "psr": "J1525-5545",
-   "registered": true,
-   "variant": false
-  }
- ],
+ "missing": [],
  "resolved": [
   [
    "J0900-3144",
@@ -599,6 +610,15 @@
    "ratio": 2.49,
    "w_A_narrow": 0.5228,
    "w_A_wide": 2.1453
+  },
+  {
+   "psr": "J1525-5545",
+   "klass": "crosses-0",
+   "w_gamma_narrow": 2.2538,
+   "w_gamma_wide": 4.3136,
+   "ratio": 1.91,
+   "w_A_narrow": 2.313,
+   "w_A_wide": 3.255
   },
   {
    "psr": "J0614-3329",

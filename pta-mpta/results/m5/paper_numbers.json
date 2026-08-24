@@ -1,0 +1,924 @@
+{
+ "n_psr": 83,
+ "n_values": 588,
+ "n_toa": 245907,
+ "inv_bump": 15,
+ "inv_annual": 8,
+ "inv_chrom_free": 13,
+ "inv_chrom_fixed": 10,
+ "inv_dm": 49,
+ "inv_sw_full": 26,
+ "inv_red": 12,
+ "inv_equad": 20,
+ "inv_ecorr": 29,
+ "a1_complete": 63,
+ "a1_short": 20,
+ "a1_med_frac_pct": 0.015,
+ "cov_rel": 83,
+ "cov_abs": 76,
+ "agree_params": 576,
+ "agree_total": 588,
+ "agree_pct": 98.0,
+ "agree_psr": 73,
+ "n_miss": 12,
+ "miss_sw": 10,
+ "miss_sigma_g": 2,
+ "miss_keys": {
+  "bump_sigma": 2,
+  "sw_gamma": 8,
+  "sw_log10_A": 2
+ },
+ "dlnl_median": 0.7,
+ "dlnl_pos": 79,
+ "dlnl_neg": 4,
+ "dlnl_min": -0.67,
+ "acc_lo": 0.158,
+ "acc_hi": 0.527,
+ "n_swfull": 26,
+ "sw_neg": 7,
+ "sw_cross": 12,
+ "sw_affected": 19,
+ "sw_below_ee": 2,
+ "sw_lowest_edge": -3.21,
+ "sw_lowest_edge_psr": "J1811-2405",
+ "ee_default": [
+  -2.0,
+  1.0
+ ],
+ "swwide_cmp": 26,
+ "swwide_miss_reg": 10,
+ "swwide_miss_var": 0,
+ "swwide_created": 0,
+ "cens_n": 26,
+ "cens_measured": 5,
+ "cens_prior_propped": 5,
+ "cens_unconstrained_both": 15,
+ "cens_other": 1,
+ "cens_primary": 20,
+ "cens_quote": "16-20",
+ "cens_meas_range": [
+  4,
+  7
+ ],
+ "cens_ctrl_n": 5,
+ "cens_ctrl_worst": 0.135,
+ "cens_ctrl_verdict": "PASS",
+ "cens_tableonly": 19,
+ "cens_divergent": [
+  "J1614-2230",
+  "J1744-1134"
+ ],
+ "cens_propped_psr": [
+  "J1327-0755",
+  "J1614-2230",
+  "J1744-1134",
+  "J1811-2405",
+  "J2145-0750"
+ ],
+ "a13_prior_limited": 66,
+ "a13_better": 6,
+ "a13_median_w": 3.01,
+ "map_outside": 26,
+ "map_outside_psr": 22,
+ "nupiv": 857,
+ "nupiv_w1400": 0.46,
+ "nupiv_wpiv": 0.19,
+ "prior_driven": 2,
+ "n_free_beta": 13,
+ "fl_n": 83,
+ "fl_map": -14.439,
+ "fl_ci": [
+  -14.642,
+  -14.348
+ ],
+ "fl_width": 0.294,
+ "fl_jk": 0.137,
+ "tab_n": 83,
+ "tab_map": -14.183,
+ "tab_ci": [
+  -14.283,
+  -14.134
+ ],
+ "tab_width": 0.149,
+ "tab_jk": 0.256,
+ "seamb_n": 70,
+ "seamb_down": 49,
+ "seamb_median": -0.0728,
+ "seamb_sign_p": 0.0011,
+ "seamb_wilcox_p": 5.8e-06,
+ "seamb_ctrl_n": 12,
+ "seamb_ctrl_p": 0.677,
+ "dmap": 0.257,
+ "dmap_n": 83,
+ "dmap_jk": 0.212,
+ "dmap_sigma": 1.2,
+ "dmap_f4": 0.21,
+ "dmap_influential": [
+  "J2129-5721",
+  0.075
+ ],
+ "f5_step_n": 58,
+ "f5_step_psr": "J1909-3744",
+ "f5_before": 1.92,
+ "f5_after": 0.37,
+ "f5_swing": 0.0303333333333331,
+ "ess_floor": 100,
+ "ess_noise": [
+  83,
+  65
+ ],
+ "ess_table": [
+  83,
+  63
+ ],
+ "ess_fl": [
+  83,
+  56
+ ],
+ "ess_swwide": [
+  26,
+  18
+ ],
+ "ess_admit_pct": 97.74,
+ "ess_reject_pct": 98.42,
+ "ess_verdict": "NEGATIVE",
+ "core_hours": 192.4,
+ "n_runs": 277,
+ "_audit": [
+  {
+   "key": "n_psr",
+   "claim": "pulsars in the release",
+   "value": 83,
+   "artifact": "results/m4/note_numbers.json",
+   "field": "n_noise_rows"
+  },
+  {
+   "key": "n_values",
+   "claim": "tabulated parameter values with a printed interval",
+   "value": 588,
+   "artifact": "results/m4/note_numbers.json",
+   "field": "n_values"
+  },
+  {
+   "key": "n_toa",
+   "claim": "sub-banded ToAs in the release (counted from the 83 .tim)",
+   "value": 245907,
+   "artifact": "data/partim/*.tim",
+   "field": "line count"
+  },
+  {
+   "key": "inv_bump",
+   "claim": "model inventory: chromatic Gaussian events",
+   "value": 15,
+   "artifact": "results/m3/published_table.json",
+   "field": "model.bump"
+  },
+  {
+   "key": "inv_annual",
+   "claim": "model inventory: annual chromatic variations",
+   "value": 8,
+   "artifact": "results/m3/published_table.json",
+   "field": "model.annual"
+  },
+  {
+   "key": "inv_chrom_free",
+   "claim": "model inventory: free-index chromatic GPs",
+   "value": 13,
+   "artifact": "results/m3/published_table.json",
+   "field": "model.chrom_free"
+  },
+  {
+   "key": "inv_chrom_fixed",
+   "claim": "model inventory: fixed-index chromatic GPs",
+   "value": 10,
+   "artifact": "results/m3/published_table.json",
+   "field": "model.chrom_fixed"
+  },
+  {
+   "key": "inv_dm",
+   "claim": "model inventory: DM GPs",
+   "value": 49,
+   "artifact": "results/m3/published_table.json",
+   "field": "model.dm"
+  },
+  {
+   "key": "inv_sw_full",
+   "claim": "model inventory: solar-wind GPs",
+   "value": 26,
+   "artifact": "results/m3/published_table.json",
+   "field": "model.sw_full"
+  },
+  {
+   "key": "inv_red",
+   "claim": "model inventory: free achromatic red processes",
+   "value": 12,
+   "artifact": "results/m3/published_table.json",
+   "field": "model.red"
+  },
+  {
+   "key": "inv_equad",
+   "claim": "model inventory: EQUAD terms",
+   "value": 20,
+   "artifact": "results/m3/published_table.json",
+   "field": "model.equad"
+  },
+  {
+   "key": "inv_ecorr",
+   "claim": "model inventory: ECORR terms",
+   "value": 29,
+   "artifact": "results/m3/published_table.json",
+   "field": "model.ecorr"
+  },
+  {
+   "key": "a1_complete",
+   "claim": "pulsars whose release ships as many ToAs as its ephemeris was fitted to",
+   "value": 63,
+   "artifact": "results/m3/a1_summary.json",
+   "field": "records[].ntoa == ntoa_pub"
+  },
+  {
+   "key": "a1_short",
+   "claim": "pulsars that ship fewer ToAs than their ephemeris fitted",
+   "value": 20,
+   "artifact": "results/m3/a1_summary.json",
+   "field": "records[]"
+  },
+  {
+   "key": "a1_med_frac_pct",
+   "claim": "median |wRMS - TRES| / TRES over the complete set (%)",
+   "value": 0.015,
+   "artifact": "results/m3/a1_summary.json",
+   "field": "records[].frac"
+  },
+  {
+   "key": "cov_rel",
+   "claim": "pulsars clearing the registered (relative) gate",
+   "value": 83,
+   "artifact": "results/m4/agreement_both_gates.json",
+   "field": "relative.n"
+  },
+  {
+   "key": "cov_abs",
+   "claim": "pulsars clearing the absolute (M1-M3) gate",
+   "value": 76,
+   "artifact": "results/m4/agreement_both_gates.json",
+   "field": "absolute.n"
+  },
+  {
+   "key": "agree_params",
+   "claim": "parameters agreeing under the registered A2 rule",
+   "value": 576,
+   "artifact": "results/m4/agreement_both_gates.json",
+   "field": "relative.params_agree"
+  },
+  {
+   "key": "agree_total",
+   "claim": "parameters compared",
+   "value": 588,
+   "artifact": "results/m4/agreement_both_gates.json",
+   "field": "relative.params_total"
+  },
+  {
+   "key": "agree_pct",
+   "claim": "agreement rate (%)",
+   "value": 98.0,
+   "artifact": "results/m4/agreement_both_gates.json",
+   "field": "relative.pct"
+  },
+  {
+   "key": "agree_psr",
+   "claim": "pulsars agreeing on every tabulated value",
+   "value": 73,
+   "artifact": "results/m4/agreement_both_gates.json",
+   "field": "relative.n_full"
+  },
+  {
+   "key": "n_miss",
+   "claim": "parameters missing",
+   "value": 12,
+   "artifact": "results/m4/agreement_both_gates.json",
+   "field": "derived"
+  },
+  {
+   "key": "miss_sw",
+   "claim": "misses that are solar-wind parameters",
+   "value": 10,
+   "artifact": "results/m4/agreement_both_gates.json",
+   "field": "miss_keys"
+  },
+  {
+   "key": "miss_sigma_g",
+   "claim": "misses that are the Gaussian-event width",
+   "value": 2,
+   "artifact": "results/m4/agreement_both_gates.json",
+   "field": "miss_keys"
+  },
+  {
+   "key": "miss_keys",
+   "claim": "the miss keys themselves",
+   "value": {
+    "bump_sigma": 2,
+    "sw_gamma": 8,
+    "sw_log10_A": 2
+   },
+   "artifact": "results/m4/agreement_both_gates.json",
+   "field": "miss_keys"
+  },
+  {
+   "key": "dlnl_median",
+   "claim": "median dlnL(ours - published)",
+   "value": 0.7,
+   "artifact": "results/m4/agreement_both_gates.json",
+   "field": "dlnl.median"
+  },
+  {
+   "key": "dlnl_pos",
+   "claim": "pulsars with dlnL > 0",
+   "value": 79,
+   "artifact": "results/m4/agreement_both_gates.json",
+   "field": "dlnl.n_pos"
+  },
+  {
+   "key": "dlnl_neg",
+   "claim": "pulsars with dlnL < 0",
+   "value": 4,
+   "artifact": "results/m4/agreement_both_gates.json",
+   "field": "dlnl.n_neg"
+  },
+  {
+   "key": "dlnl_min",
+   "claim": "most negative dlnL",
+   "value": -0.67,
+   "artifact": "results/m4/agreement_both_gates.json",
+   "field": "dlnl.min"
+  },
+  {
+   "key": "acc_lo",
+   "claim": "lowest acceptance over gated runs",
+   "value": 0.158,
+   "artifact": "results/m4/agreement_both_gates.json",
+   "field": "relative.acc_min"
+  },
+  {
+   "key": "acc_hi",
+   "claim": "highest acceptance over gated runs",
+   "value": 0.527,
+   "artifact": "results/m4/agreement_both_gates.json",
+   "field": "relative.acc_max"
+  },
+  {
+   "key": "n_swfull",
+   "claim": "pulsars whose favoured model samples gamma_SW",
+   "value": 26,
+   "artifact": "results/m4/note_numbers.json",
+   "field": "n_swfull"
+  },
+  {
+   "key": "sw_neg",
+   "claim": "published gamma_SW values that are negative",
+   "value": 7,
+   "artifact": "results/m4/note_numbers.json",
+   "field": "n_sw_gamma_negative"
+  },
+  {
+   "key": "sw_cross",
+   "claim": "further rows whose 68% interval crosses zero",
+   "value": 12,
+   "artifact": "results/m4/note_numbers.json",
+   "field": "n_sw_gamma_ci_crossing"
+  },
+  {
+   "key": "sw_affected",
+   "claim": "rows outside or straddling gamma in [0,7]",
+   "value": 19,
+   "artifact": "results/m4/note_numbers.json",
+   "field": "n_sw_affected"
+  },
+  {
+   "key": "sw_below_ee",
+   "claim": "published values below the e_e U(-2,1) floor",
+   "value": 2,
+   "artifact": "results/m4/note_numbers.json",
+   "field": "n_sw_below_ee_default"
+  },
+  {
+   "key": "sw_lowest_edge",
+   "claim": "lowest printed gamma_SW 68% lower edge",
+   "value": -3.21,
+   "artifact": "results/m4/note_numbers.json",
+   "field": "sw_gamma_lowest_ci_edge"
+  },
+  {
+   "key": "sw_lowest_edge_psr",
+   "claim": "the pulsar it belongs to",
+   "value": "J1811-2405",
+   "artifact": "results/m4/note_numbers.json",
+   "field": "sw_gamma_lowest_ci_edge_psr"
+  },
+  {
+   "key": "ee_default",
+   "claim": "enterprise_extensions solar_wind_block gamma default",
+   "value": [
+    -2.0,
+    1.0
+   ],
+   "artifact": "results/m4/note_numbers.json",
+   "field": "ee_sw_gamma_default"
+  },
+  {
+   "key": "swwide_cmp",
+   "claim": "SW_Full pulsars with both priors gated (M4 variant)",
+   "value": 26,
+   "artifact": "results/m4/swwide.json",
+   "field": "compared"
+  },
+  {
+   "key": "swwide_miss_reg",
+   "claim": "campaign misses covered by the variant",
+   "value": 10,
+   "artifact": "results/m4/swwide.json",
+   "field": "n_miss_registered"
+  },
+  {
+   "key": "swwide_miss_var",
+   "claim": "misses remaining under U(-4,4)",
+   "value": 0,
+   "artifact": "results/m4/swwide.json",
+   "field": "n_miss_variant"
+  },
+  {
+   "key": "swwide_created",
+   "claim": "misses created by the wide prior",
+   "value": 0,
+   "artifact": "results/m4/swwide.json",
+   "field": "created"
+  },
+  {
+   "key": "cens_n",
+   "claim": "SW_Full pulsars in the census",
+   "value": 26,
+   "artifact": "results/m5/sw_census.json",
+   "field": "n_compared"
+  },
+  {
+   "key": "cens_measured",
+   "claim": "census class MEASURED",
+   "value": 5,
+   "artifact": "results/m5/sw_census.json",
+   "field": "counts.MEASURED"
+  },
+  {
+   "key": "cens_prior_propped",
+   "claim": "census class PRIOR-PROPPED",
+   "value": 5,
+   "artifact": "results/m5/sw_census.json",
+   "field": "counts.PRIOR-PROPPED"
+  },
+  {
+   "key": "cens_unconstrained_both",
+   "claim": "census class UNCONSTRAINED-BOTH",
+   "value": 15,
+   "artifact": "results/m5/sw_census.json",
+   "field": "counts.UNCONSTRAINED-BOTH"
+  },
+  {
+   "key": "cens_other",
+   "claim": "census class OTHER",
+   "value": 1,
+   "artifact": "results/m5/sw_census.json",
+   "field": "counts.OTHER"
+  },
+  {
+   "key": "cens_primary",
+   "claim": "rows that are NOT a measurement of gamma_SW",
+   "value": 20,
+   "artifact": "results/m5/sw_census.json",
+   "field": "primary"
+  },
+  {
+   "key": "cens_quote",
+   "claim": "how the primary number must be quoted (S4 rule)",
+   "value": "16-20",
+   "artifact": "results/m5/sw_census.json",
+   "field": "sensitivity.quote"
+  },
+  {
+   "key": "cens_meas_range",
+   "claim": "MEASURED count across the sensitivity grid",
+   "value": [
+    4,
+    7
+   ],
+   "artifact": "results/m5/sw_census.json",
+   "field": "sensitivity.measured_range"
+  },
+  {
+   "key": "cens_ctrl_n",
+   "claim": "re-specified control set size",
+   "value": 5,
+   "artifact": "results/m5/sw_census.json",
+   "field": "control.n"
+  },
+  {
+   "key": "cens_ctrl_worst",
+   "claim": "worst |d median gamma_SW| over the control set",
+   "value": 0.135,
+   "artifact": "results/m5/sw_census.json",
+   "field": "control.worst_d_gamma"
+  },
+  {
+   "key": "cens_ctrl_verdict",
+   "claim": "S2 control verdict",
+   "value": "PASS",
+   "artifact": "results/m5/sw_census.json",
+   "field": "control.verdict"
+  },
+  {
+   "key": "cens_tableonly",
+   "claim": "rows the printed table alone already flags",
+   "value": 19,
+   "artifact": "results/m5/sw_census.json",
+   "field": "table_only.counts"
+  },
+  {
+   "key": "cens_divergent",
+   "claim": "rows the printed table alone CANNOT flag",
+   "value": [
+    "J1614-2230",
+    "J1744-1134"
+   ],
+   "artifact": "results/m5/sw_census.json",
+   "field": "table_only.divergent"
+  },
+  {
+   "key": "cens_propped_psr",
+   "claim": "the prior-propped pulsars",
+   "value": [
+    "J1327-0755",
+    "J1614-2230",
+    "J1744-1134",
+    "J1811-2405",
+    "J2145-0750"
+   ],
+   "artifact": "results/m5/sw_census.json",
+   "field": "rows[].klass"
+  },
+  {
+   "key": "a13_prior_limited",
+   "claim": "A_13/3 rows whose 68% reaches below -16.5",
+   "value": 66,
+   "artifact": "results/m4/note_numbers.json",
+   "field": "n_a13_prior_limited"
+  },
+  {
+   "key": "a13_better",
+   "claim": "A_13/3 rows constrained better than 0.7 dex",
+   "value": 6,
+   "artifact": "results/m4/note_numbers.json",
+   "field": "n_a13_better_than_0p7"
+  },
+  {
+   "key": "a13_median_w",
+   "claim": "median 68% width of the prior-bounded A_13/3 rows",
+   "value": 3.01,
+   "artifact": "results/m4/note_numbers.json",
+   "field": "a13_median_width_prior_limited"
+  },
+  {
+   "key": "map_outside",
+   "claim": "values whose MAP lies outside their own 68% interval",
+   "value": 26,
+   "artifact": "results/m4/note_numbers.json",
+   "field": "n_map_outside"
+  },
+  {
+   "key": "map_outside_psr",
+   "claim": "pulsars affected",
+   "value": 22,
+   "artifact": "results/m4/note_numbers.json",
+   "field": "n_pulsars_map_outside"
+  },
+  {
+   "key": "nupiv",
+   "claim": "median decorrelating reference frequency (MHz)",
+   "value": 857,
+   "artifact": "results/m3/seam_a.json",
+   "field": "nu_pivot_MHz (free-beta rows)"
+  },
+  {
+   "key": "nupiv_w1400",
+   "claim": "median log10A_Chrom 68% width at 1400 MHz (dex)",
+   "value": 0.46,
+   "artifact": "results/m3/seam_a.json",
+   "field": "width_A_1400"
+  },
+  {
+   "key": "nupiv_wpiv",
+   "claim": "the same width at the pivot frequency (dex)",
+   "value": 0.19,
+   "artifact": "results/m3/seam_a.json",
+   "field": "width_A_pivot"
+  },
+  {
+   "key": "prior_driven",
+   "claim": "free-beta chromatic pulsars that are prior-driven",
+   "value": 2,
+   "artifact": "results/m3/seam_a.json",
+   "field": "prior_driven"
+  },
+  {
+   "key": "n_free_beta",
+   "claim": "free-beta chromatic pulsars",
+   "value": 13,
+   "artifact": "results/m3/seam_a.json",
+   "field": "chrom == free"
+  },
+  {
+   "key": "fl_n",
+   "claim": "pulsars in the fl factorised-likelihood product",
+   "value": 83,
+   "artifact": "results/m5/curn_stability.json",
+   "field": "fl.n"
+  },
+  {
+   "key": "fl_map",
+   "claim": "fl product MAP log10 A_CURN",
+   "value": -14.439,
+   "artifact": "results/m5/curn_stability.json",
+   "field": "fl.map"
+  },
+  {
+   "key": "fl_ci",
+   "claim": "fl product 68% interval",
+   "value": [
+    -14.642,
+    -14.348
+   ],
+   "artifact": "results/m5/curn_stability.json",
+   "field": "fl.ci68"
+  },
+  {
+   "key": "fl_width",
+   "claim": "fl product 68% width",
+   "value": 0.294,
+   "artifact": "results/m5/curn_stability.json",
+   "field": "fl.ci68_width"
+  },
+  {
+   "key": "fl_jk",
+   "claim": "fl product jackknife SE over pulsar composition",
+   "value": 0.137,
+   "artifact": "results/m5/curn_stability.json",
+   "field": "fl.jackknife_se"
+  },
+  {
+   "key": "tab_n",
+   "claim": "pulsars in the table-configuration product",
+   "value": 83,
+   "artifact": "results/m5/curn_stability.json",
+   "field": "table.n"
+  },
+  {
+   "key": "tab_map",
+   "claim": "table product MAP",
+   "value": -14.183,
+   "artifact": "results/m5/curn_stability.json",
+   "field": "table.map"
+  },
+  {
+   "key": "tab_ci",
+   "claim": "table product 68% interval",
+   "value": [
+    -14.283,
+    -14.134
+   ],
+   "artifact": "results/m5/curn_stability.json",
+   "field": "table.ci68"
+  },
+  {
+   "key": "tab_width",
+   "claim": "table product 68% width",
+   "value": 0.149,
+   "artifact": "results/m5/curn_stability.json",
+   "field": "table.ci68_width"
+  },
+  {
+   "key": "tab_jk",
+   "claim": "table product jackknife SE over pulsar composition",
+   "value": 0.256,
+   "artifact": "results/m5/curn_stability.json",
+   "field": "table.jackknife_se"
+  },
+  {
+   "key": "seamb_n",
+   "claim": "pulsars in the paired seam-(b) test",
+   "value": 70,
+   "artifact": "results/m5/curn_stability.json",
+   "field": "seam_b_paired.n_test"
+  },
+  {
+   "key": "seamb_down",
+   "claim": "of those, moving DOWN",
+   "value": 49,
+   "artifact": "results/m5/curn_stability.json",
+   "field": "seam_b_paired.n_down"
+  },
+  {
+   "key": "seamb_median",
+   "claim": "median per-pulsar shift (dex)",
+   "value": -0.0728,
+   "artifact": "results/m5/curn_stability.json",
+   "field": "seam_b_paired.median"
+  },
+  {
+   "key": "seamb_sign_p",
+   "claim": "sign-test p",
+   "value": 0.0011,
+   "artifact": "results/m5/curn_stability.json",
+   "field": "seam_b_paired.sign_test_p"
+  },
+  {
+   "key": "seamb_wilcox_p",
+   "claim": "Wilcoxon signed-rank p",
+   "value": 5.8e-06,
+   "artifact": "results/m5/curn_stability.json",
+   "field": "seam_b_paired.wilcoxon_p"
+  },
+  {
+   "key": "seamb_ctrl_n",
+   "claim": "control pulsars (same model twice)",
+   "value": 12,
+   "artifact": "results/m5/curn_stability.json",
+   "field": "seam_b_paired.n_control"
+  },
+  {
+   "key": "seamb_ctrl_p",
+   "claim": "Wilcoxon p on the control set",
+   "value": 0.677,
+   "artifact": "results/m5/curn_stability.json",
+   "field": "seam_b_paired.control_wilcoxon_p"
+  },
+  {
+   "key": "dmap",
+   "claim": "product-level shift (table - fl) on the common set",
+   "value": 0.257,
+   "artifact": "results/m5/seamb_subset_null.json",
+   "field": "dmap_all"
+  },
+  {
+   "key": "dmap_n",
+   "claim": "pulsars in that comparison",
+   "value": 83,
+   "artifact": "results/m5/seamb_subset_null.json",
+   "field": "n_common"
+  },
+  {
+   "key": "dmap_jk",
+   "claim": "delete-1 jackknife SE of that shift",
+   "value": 0.212,
+   "artifact": "results/m5/seamb_subset_null.json",
+   "field": "jackknife.se"
+  },
+  {
+   "key": "dmap_sigma",
+   "claim": "the shift in units of its own jackknife SE",
+   "value": 1.2,
+   "artifact": "results/m5/seamb_subset_null.json",
+   "field": "derived"
+  },
+  {
+   "key": "dmap_f4",
+   "claim": "the registered F4 magnitude threshold",
+   "value": 0.21,
+   "artifact": "results/m5/seamb_subset_null.json",
+   "field": "jackknife.f4_threshold"
+  },
+  {
+   "key": "dmap_influential",
+   "claim": "single pulsar whose removal moves it most",
+   "value": [
+    "J2129-5721",
+    0.075
+   ],
+   "artifact": "results/m5/seamb_subset_null.json",
+   "field": "jackknife.most_influential"
+  },
+  {
+   "key": "f5_step_n",
+   "claim": "addition at which the FL product leaves the prior rail",
+   "value": 58,
+   "artifact": "results/m4/fl_growth_fl.json",
+   "field": "curve"
+  },
+  {
+   "key": "f5_step_psr",
+   "claim": "the pulsar responsible",
+   "value": "J1909-3744",
+   "artifact": "results/m4/fl_growth_fl.json",
+   "field": "curve"
+  },
+  {
+   "key": "f5_before",
+   "claim": "68% width just before that step (dex)",
+   "value": 1.92,
+   "artifact": "results/m4/fl_growth_fl.json",
+   "field": "curve"
+  },
+  {
+   "key": "f5_after",
+   "claim": "68% width just after (dex)",
+   "value": 0.37,
+   "artifact": "results/m4/fl_growth_fl.json",
+   "field": "curve"
+  },
+  {
+   "key": "f5_swing",
+   "claim": "MAP swing over the final ten additions (dex)",
+   "value": 0.0303333333333331,
+   "artifact": "results/m4/fl_growth_fl.json",
+   "field": "map_swing_last10"
+  },
+  {
+   "key": "ess_floor",
+   "claim": "the registered floor",
+   "value": 100,
+   "artifact": "results/m5/ess_floor.json",
+   "field": "floor"
+  },
+  {
+   "key": "ess_noise",
+   "claim": "noise runs gated / clearing the floor",
+   "value": [
+    83,
+    65
+   ],
+   "artifact": "results/m5/ess_floor.json",
+   "field": "coverage.noise"
+  },
+  {
+   "key": "ess_table",
+   "claim": "table runs gated / clearing the floor",
+   "value": [
+    83,
+    63
+   ],
+   "artifact": "results/m5/ess_floor.json",
+   "field": "coverage.table"
+  },
+  {
+   "key": "ess_fl",
+   "claim": "fl runs gated / clearing the floor",
+   "value": [
+    83,
+    56
+   ],
+   "artifact": "results/m5/ess_floor.json",
+   "field": "coverage.fl"
+  },
+  {
+   "key": "ess_swwide",
+   "claim": "swwide runs gated / clearing the floor",
+   "value": [
+    26,
+    18
+   ],
+   "artifact": "results/m5/ess_floor.json",
+   "field": "coverage.swwide"
+  },
+  {
+   "key": "ess_admit_pct",
+   "claim": "agreement rate over runs the floor ADMITS",
+   "value": 97.74,
+   "artifact": "results/m5/ess_floor.json",
+   "field": "e5_falsifier.admitted.pct"
+  },
+  {
+   "key": "ess_reject_pct",
+   "claim": "agreement rate over runs the floor REJECTS",
+   "value": 98.42,
+   "artifact": "results/m5/ess_floor.json",
+   "field": "e5_falsifier.rejected.pct"
+  },
+  {
+   "key": "ess_verdict",
+   "claim": "E5 falsifier verdict",
+   "value": "NEGATIVE",
+   "artifact": "results/m5/ess_floor.json",
+   "field": "e5_falsifier.verdict"
+  },
+  {
+   "key": "core_hours",
+   "claim": "core-hours recorded on the final launch of each run",
+   "value": 192.4,
+   "artifact": "results/m3/*.summary.json",
+   "field": "elapsed_min"
+  },
+  {
+   "key": "n_runs",
+   "claim": "runs with a recorded final launch",
+   "value": 277,
+   "artifact": "results/m3/*.summary.json",
+   "field": "elapsed_min"
+  }
+ ]
+}

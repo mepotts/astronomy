@@ -243,6 +243,30 @@ call alone.*
 > With thanks for a genuinely open data release,
 > [name]
 
+### Reviewed against M5, and unchanged (2026-08-24)
+
+M5 re-derived every number in this note (`scripts/m4_note_numbers.py`: 29 audited, 28 PASS, the one
+CORRECTED row unchanged) and re-ran the note-vs-artifact checker
+(`scripts/m4_note_check.py`: 22 checks, 0 failures). **M5's two new measurements — the registered
+ESS floor and the solar-wind prior-propping census — change no number in this note**, because every
+claim here is a property of the published table that needs no sampling, which is exactly the scope
+N-criteria fixed for it. The note is therefore left as drafted.
+
+Two M5 results bear on it without belonging in it, and are recorded here rather than added to the
+text (adding them would break the note's zero-compute scope and its 1,500-word budget):
+
+- **Claim (b)'s "19 of 26" is a lower bound, and M5 now measures by how much.** Across all 26
+  solar-wind rows, run under both priors, **only five are measurements of γ_SW**; five more have an
+  apparent constraint that is the prior edge, and fifteen are unconstrained under either prior — 20
+  of 26 in total (16–20 across M5's registered sensitivity grid). Two of them — J1614−2230 and
+  J1744−1134 — print *narrow* intervals and have *positive* published values, so a reader cannot
+  flag them from the table alone. That is the companion paper's result, not this note's.
+- **A companion full paper now exists in draft**
+  ([`draft-paper-mpta-noise-reproduction.md`](draft-paper-mpta-noise-reproduction.md), DRAFT — NOT
+  SUBMITTED). If this note goes out first, the paper cites it; if the paper goes first, this note
+  stays publishable on its own, because its four claims are table-only and none of them depends on
+  the reproduction.
+
 ### State
 
 **DRAFT — NOT SUBMITTED. Collaboration paragraph DRAFTED — NOT SENT.** Both are Matthew's calls.

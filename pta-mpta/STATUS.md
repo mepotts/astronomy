@@ -3,6 +3,78 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-08-24** — **M5 complete**
+  ([`M5-ess-floor-sw-census-and-the-paper.md`](M5-ess-floor-sw-census-and-the-paper.md)).
+  **THE CAMPAIGN IS FINISHED AND SAYS SO ON DISK: 83/83 `noise`, 83/83 `table`, 83/83 `fl`,
+  26/26 `swwide`** — the tail was two runs and both were the same pulsar, J1525-5545 (the array's
+  slowest model, 300–430 ms per likelihood evaluation against an array median of 68 ms). A
+  **completion sentinel** now exists (`results/m4/CAMPAIGN_COMPLETE.json`, plus a per-round
+  heartbeat in `CAMPAIGN_STATE.json`): M4's supervisor expired silently at `MAX_ROUNDS` with work
+  outstanding and nothing on disk distinguished that from success — **absence of the COMPLETE file
+  now means unfinished, and a stale heartbeat means the supervisor is dead.**
+  `scripts/m5_supervise.sh` also closes the double-write hole M4's guard left open: it checks for
+  live `m3_run.py` workers **by tag**, not only for a live pool driver, and it declined to relaunch
+  on its very first round because orphaned samplers were on the process table with no driver — the
+  exact state a session disruption produces. **One correction to M4's own STATUS line, declared
+  rather than retro-edited:** it says the γ_SW variant compared "24 of 26" and that "5 of 24" rows
+  widen; M4's document §4.1 and its artifact `results/m4/swwide.json` both say **25**, and they are
+  right. At full coverage it is 5 of 26.
+  **ESS FLOOR REGISTERED AND APPLIED (M4's R4 successor): ESS_min ≥ 100**, derived before use from
+  the Monte-Carlo error of a 68% interval edge (1.51/√N ≤ 15% of the half-width), cross-checked
+  against M4's measured medians (347 absolute-gated / 105 relative-only, both re-derived
+  digit-identically). **65 of 83 `noise`, 63 of 83 `table`, 56 of 83 `fl` and 18 of 26 `swwide` runs
+  clear it. Its registered falsifier came back NEGATIVE and is reported as one: the runs the floor
+  REJECTS agree with the published table slightly BETTER (98.4%) than the ones it ADMITS (97.7%)**,
+  so ESS_min is not diagnostic of fidelity to the published table here — the floor is kept only as a
+  bound on our own Monte-Carlo error, and that is the only claim made for it.
+  **ONE M4 HEADLINE MOVES AND IS WITHDRAWN.** M4's B-2 number — the seam-(b) product-level shift of
+  **+0.259 dex**, declared "significant" against a pre-registered 0.21 dex threshold — reads +0.040
+  dex on the ESS-floored subset. The declared post-hoc diagnosis is bigger than the floor: a
+  **delete-1 jackknife over the 83 pulsars gated in both configurations gives +0.257 ± 0.212 dex —
+  1.2σ, and the threshold rule never had an uncertainty attached**; removing one pulsar
+  (J2129-5721) takes it to +0.075, and random equal-sized thinnings give a 0.34 dex spread.
+  **The product-level magnitude is withdrawn.** What replaces it is
+  stronger and was already in the data: the **paired per-pulsar** form of the same question —
+  **49 of 70 pulsars move DOWN, sign test p = 0.0011, Wilcoxon p = 5.8 × 10⁻⁶, against a 12-pulsar
+  control consistent with zero (p = 0.68)**. Same root cause behind two more rows: the `table` CURN
+  product's **composition jackknife (0.256 dex) exceeds its own 68% width (0.149 dex)**, and the F5
+  one-pulsar step survives as structure but not as an identity. **A factorised product's credible
+  interval understates how much it depends on which pulsars are in it** — a methods result in its own
+  right.
+  **SOLAR-WIND CONTROL RE-SPECIFIED, AND IT PASSES: M4's V4 count is REINSTATED.** Defining
+  "measured" by posterior/prior width instead of the published value's sign gives five control
+  pulsars; over them the wider prior moves γ_SW by at most **0.135** and log₁₀A_SW by 0.035 (yardstick
+  0.19) and breaks nothing — so **γ_SW ~ U(−4,4) resolving 10 of 10 solar-wind misses and creating
+  none no longer carries a VOID, now over all 26.** **THE PRIOR-PROPPING CENSUS, the publishable
+  number: of the 26 published γ_SW rows, only FIVE are measurements of γ_SW** — 5 more have an
+  apparent constraint that is the prior edge (their log₁₀A_SW widths go 0.47 → 2.14 dex) and 15 were
+  never constrained under either prior. **20 of 26 are not measurements (quoted as a range 16–20 per
+  the registered sensitivity rule; the measured count is 4–7 across the whole grid).**
+  **A reader can flag 18 of the 20 from the printed table alone — but not J1614-2230 and
+  J1744-1134**, which print narrow intervals around *positive* values and are prior-propped, which is
+  also exactly why M4's sign-based control failed.
+  **THE PAPER IS DRAFTED — NOT SUBMITTED**
+  ([`draft-paper-mpta-noise-reproduction.md`](draft-paper-mpta-noise-reproduction.md)), A&A/MNRAS
+  short-paper shape, placeholder authors and DOI. Headline: *an independent reproduction agrees with
+  576 of 588 published values, every disagreement traces to one undocumented prior, and that
+  column is mostly not a measurement.* **105 numbers re-derived from committed artifacts with an
+  audit table (`m5_paper_numbers.py`), and the drafted text checked back against it:
+  `m5_paper_check.py` = 92 checks, 0 failures.** Prior art positioned as registered — Goncharov &
+  Sardana 2025 and van Haasteren 2024 own the general claim and the paper says *"This paper claims
+  none of that"*; the γ_SW unreachability and the census are what is new. **A ten-row
+  "corrections to our own earlier analysis" section** carries every claim this project has withdrawn,
+  narrowed or reinstated. Two accuracy fixes found while drafting: the collaboration's single-pulsar
+  posteriors come from **nested sampling** (`parallel-bilby` via `enterprise_warp`), not MCMC — so
+  the reproduction crosses sampler families, which is a stronger check and is now said — and the
+  paper's own methods sentence shows the prior ranges exist machine-readably in their pipeline.
+  **No number in the RNAAS note changed**: re-derived (29 audited, 1 CORRECTED — the same M4 row)
+  and re-checked (22 checks, 0 failures), because every claim in it is table-only and needs no
+  sampling; only a short non-note addendum was added, recording the review and pointing at the
+  paper. **Venue bar: 3 of 4, and the gap is still B-4 (a citable DOI), still a human step.**
+  ≥192.4 core-hours over 277 runs. **M6 rec: mint the DOI, fill the paper's software citations
+  (its only UNSOURCED slots), re-run the prior-art sweep at submission time, and consider a short
+  methods note on the composition jackknife.** No commits, no accounts, no submissions, nothing sent.
+
 - **2026-08-23** — **M4 complete** ([`M4-finish-the-array.md`](M4-finish-the-array.md)).
   **THE ARRAY IS FINISHED: 83/83 pulsars gated, and the reproduction agrees with the published
   noise table on 576 of its 588 values (98.0%), 73 of 83 pulsars in full** — every DM GP,
