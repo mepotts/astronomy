@@ -6,6 +6,15 @@ every number in it is emitted by code, never hand-entered. Machine-readable
 provenance and the completeness/contamination numbers quoted below live in
 [`catalog_stats.json`](catalog_stats.json).
 
+
+> **Dated annotation, 2026-08-24 (M6).** A **v2** of this catalogue exists:
+> [`dyson-revet_highlat_extreme_IR_excess_v2.csv`](dyson-revet_highlat_extreme_IR_excess_v2.csv)
+> and [`README_v2.md`](README_v2.md) — the same 223 rows with 13 added columns
+> (the M6 N4 coadd-morphology statistics) and **completeness measured by
+> injection-recovery** in place of the UNMEASURED line below. **Nothing in this
+> file or in v1 has been changed**; this annotation is append-only, per repo
+> practice, so that a reader arriving here is not left on the older version.
+
 ---
 
 ## What this is

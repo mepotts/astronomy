@@ -89,6 +89,45 @@ astrophysics regardless of technosignature framing).
 > it counted only after an acceptance test returned 1,545/1,545 identical designations with zero
 > disagreements.*
 
+> **Result, 2026-08-24 (M6) — the morphology stage exists, it closes part of the 17.8 points, and
+> the reduction of candidate D's spectrum says what it can and cannot settle.**
+> [M6](M6-morphology-mrs-completeness.md) adds **N4**, a structure statistic read off the AllWISE
+> W3/W4 coadds themselves: **S = σ_obs/σ_exp** in a 12–45″ annulus — the robust dispersion of the
+> PSF-smoothed image over what the coadd's *own uncertainty image* predicts — with **no training
+> set** and a **parameter-free null of 1** (measured 1.396/1.245 on 27,876 |b| > 50° parent stars).
+> Its threshold is M5's N2 rule *verbatim*, so no new free parameter enters. **All three validation
+> criteria pass: 7/7 published candidates preserved**, the flagged fraction falls **monotonically**
+> with |b| (70.3 → 1.1%), and at |b| > 50° that **1.14% is below the stage's own measured 1.20%
+> false-positive rate.** **Pre-visual survivors 1,545 → 585 (M5) → 411 against the paper's 368;
+> overproduction 4.20× → 1.59× → 1.117×, and every latitude band now sits within ±50% of the
+> published rate.** **But the 17.8 points are only partly closed**: at the RMSE gate ours rejects
+> **36.3%** against the CNN's **49.0%** — **5.1 points closed, 12.7 remaining**, with the candidates
+> for the residual named. **N4 sees what N1 and N2 cannot: 486 objects, 5.1% of the RMSE survivors,
+> that no catalogue lists and whose background is not in the top 1%.**
+>
+> **Candidate D's MRS cubes are reduced** — twelve public Level-3 cubes, 4.90–28.70 µm,
+> 11,625 slices deblended — and **the first independent extraction of the 1.23″ contaminant's
+> spectrum now exists**. **It cannot settle z ≈ 0.922, and the reason is measured**: the
+> pre-registered acceptance test **fails 4-of-6, with the *dominant* member of the pair passing in
+> every band and only the *sub-dominant* one failing** (PSF-wing leakage across 1.23″); the blind
+> redshift scan's best z moves **0.47 → 1.06** for a ±0.02 dex change in the continuum window; a
+> blind narrow-line test finds **41.1% of the redshift grid does as well as z = 0.922**; and the MRS
+> **sub-band stitching offsets reach 11–28%, the same size as the features being searched for**.
+> **No redshift is quoted**, per the pre-registration. What it *does* establish: the contaminant is
+> spectroscopically non-stellar over twelve sub-bands, M4's 10–15 µm index **3.8 reproduces at
+> 3.79**, and **M4's 441 K single blackbody is tested for the first time and comes out ~10% cooler,
+> 394 K**. **The published identification still rests on a reduction only the collaboration has
+> done.**
+>
+> **Completeness is measured at last** — 75,600 injections through the unmodified pipeline: in-grid
+> pre-visual recovery **50.2% all-sky, 45.8% at |b| > 30°**, and **the RMSE fit is not the
+> bottleneck** (it passes 90.3%). **Two hard walls become numbers: γ = 0.01 → 0.00%, 0.05 → 2.5%,
+> 0.10 → 43.9%** — below γ ≈ 0.05 the screen is *blind*, not inefficient — and **T_ds = 1000 K →
+> 0.17% against ~31% inside the [100, 700] K grid**, a second wall nobody had costed. A control of
+> **8,400 bare photospheres gives a 0.00% RMSE-gate false-positive rate**. The catalogue is
+> re-issued as [**v2**](catalog/dyson-revet_highlat_extreme_IR_excess_v2.csv) — same 223 rows, 13
+> added columns, its own [README](catalog/README_v2.md) — **with v1 left untouched**.
+
 > **Method retirement, 2026-08-23 (M5 §6) — V5, the archival centroid axis, is formally RETIRED.**
 > M3 §3.2 disabled it and prescribed a retune (3″ search radius, neighbour-aware validity check);
 > **that prescription is withdrawn.** M4 §5.3 measured candidate D's contaminant at

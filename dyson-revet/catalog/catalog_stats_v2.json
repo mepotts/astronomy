@@ -1,0 +1,99 @@
+{
+  "footprint": {
+    "definition": "|b| > 30 deg",
+    "area_deg2": 20626.480620000002,
+    "n": 223,
+    "calibrated_core": {
+      "definition": "|b| > 50 deg",
+      "area_deg2": 9651.359519895415,
+      "n": 90
+    }
+  },
+  "columns": 75,
+  "selection_function": {
+    "parent": "Gaia DR3 x AllWISE x 2MASS, Bailer-Jones EDR3 r_med_geo < 300 pc, W3 AND W4 profile-fit detections, AllWISE cc_flags clean, full 10-band photometry, inside the template M_G window [0.5, 14.0]",
+    "model": "star + blackbody Dyson-sphere grid, RMSE <= 0.2 mag over 10 bands, covering fraction gamma >= 0.10 -- the paper's own stated grid floor",
+    "cuts": "Gvar < 2, RUWE < 1.4, ext_flg = 0, classprob > 0.9, W3 and W4 S/N >= 3.5",
+    "nebular_stage": "M5 N1 (catalogue veto) | N2 (coadd background percentile > 0.99) | M6 N4 (coadd structure index S, percentile > 0.99).  All three are carried as per-row FLAGS in this catalogue and none of them cuts a row from it."
+  },
+  "completeness": {
+    "statement": "This is a SELECTION-FUNCTION-DEFINED catalogue, not a complete one. Every number below is a known way it is incomplete, measured or cited, never estimated.",
+    "gamma_floor": "objects with covering fraction gamma < 0.10 are not selected at all. M3 measured that dropping the floor to gamma >= 0.01 multiplies RMSE survivors by 5.83x and pre-visual survivors by 2.93x, so the catalogue misses the majority of weaker excesses by construction",
+    "snr_floor": "W3 and W4 S/N >= 3.5. In this footprint that cut alone removes 92.8 per cent of the 3,095 objects that reach it",
+    "tenband_requirement": "full G/BP/RP/J/H/Ks/W1-W4 photometry is required; 326,540 of 328,937 parent rows (99.27 per cent) have it",
+    "distance_cut": "r_med_geo < 300 pc; nothing beyond is in the parent",
+    "sky": "100 per cent of the sky is screened (M4 Sec 6.1), so there is no coverage incompleteness; the N1 catalogue veto masks 0.97 per cent of the |b| > 30 deg sky and 0.03 per cent of the |b| > 50 deg core",
+    "injection_recovery": {
+      "status": "MEASURED (M6 Sec 3)",
+      "method": "synthetic star + blackbody SEDs from the selection code's own forward model, injected onto real parent hosts with the survey's own per-band uncertainties at the injected brightness, pushed through the unmodified pipeline",
+      "n_injections": 75600,
+      "previsual_recovery_b_gt_30": 0.24924107142857144,
+      "previsual_recovery_core_b_gt_50": 0.24973214285714285,
+      "core_recovery_by_gamma": {
+        "0.01": 0.0,
+        "0.02": 0.0,
+        "0.05": 0.0314285714,
+        "0.1": 0.4264285714,
+        "0.15": 0.4421428571,
+        "0.2": 0.4035714286,
+        "0.3": 0.3864285714,
+        "0.5": 0.3078571429
+      },
+      "core_rmse_gate_by_gamma": {
+        "0.01": 0.0,
+        "0.02": 0.0,
+        "0.05": 0.075,
+        "0.1": 0.7914285714,
+        "0.15": 0.7728571429,
+        "0.2": 0.7264285714,
+        "0.3": 0.645,
+        "0.5": 0.5192857143
+      },
+      "control_gamma0_rmse_false_positive_rate": 0.0,
+      "still_unmeasured": "the recovery fraction is measured for the model family the selection itself assumes (a single blackbody shell on a main-sequence photosphere). Excesses whose SED is NOT of that family -- a two-temperature disk, a silicate-featured disk, an edge-on system -- are still UNMEASURED, and this test cannot reach them."
+    },
+    "morphology_stage": {
+      "n4_false_positive_rate_on_calibration": {
+        "0.95": 0.07181805137035442,
+        "0.99": 0.01201750609843593,
+        "0.999": 0.001327306643707849
+      },
+      "n4_cutout_validity": 0.9955714285714286
+    }
+  },
+  "contamination": {
+    "own_gates": {
+      "CONTAMINATION-CONSISTENT": 85,
+      "INDETERMINATE": 75,
+      "SUB-THRESHOLD": 63
+    },
+    "contamination_consistent_frac": 0.3811659192825112,
+    "subthreshold_frac": 0.2825112107623318,
+    "chance_alignment": {
+      "density_deg2": 4.5692612968006285,
+      "source": "Suazo et al. 2024 Sec 3.1's own faint-red-galaxy density, 15000 sr^-1 -- NOT Ren et al. 2024's 3600x-slipped value (M1)",
+      "p_within_1as": 1.107619581164343e-06,
+      "p_within_3p25as": 1.1699169869872073e-05,
+      "expected_in_footprint_1as": 0.0002469991665996485,
+      "expected_in_footprint_3p25as": 0.002608914880981472,
+      "expected_over_the_whole_parent_3p25as": 3.84828983948611,
+      "reading": "With Suazo et al.'s own density the expected number of chance-aligned faint red galaxies is 3.8 over the ENTIRE 328,937-star parent and 0.003 inside this footprint. That population therefore cannot account for a catalogue of 223 objects, and V4 is a weak axis at this sample size -- which M3 already recorded. What our gates do convict these objects on is photometric: single-exposure non-detections, release-dependent photometry and sub-5-sigma bands (V1-V3). The fainter red-galaxy population M1 identified as the real contaminant class has no published density and is NOT quantified here."
+    },
+    "centroid_blind_spot": "V5 is retired (M5 PR-5). M4 Sec 5.3 measured sep_thr(rho) = F (1 + 1/rho): at a 1\" floor ~10% and at a 2\" floor ~40% of chance-aligned contaminants inside Suazo's own 3.25\" aperture are invisible to archival centroid vetting at ANY brightness. No object in this catalogue can be called clean.",
+    "residual_overproduction": "after the M5 nebular stage the |b| > 50 deg yield is 1.05x the paper's all-sky rate and the 30-50 deg band is 1.32x; the excess over a calibrated screen in this footprint is therefore small but not zero",
+    "jwst_ground_truth": "of the ten labelled Hephaistos objects, five have an identified contaminant (B, C, D, E, G), two of them confirmed by JWST. The base rate of contamination among published candidates of this kind is high."
+  },
+  "scientific_use_beyond_technosignatures": [
+    "Extreme debris disks: main-sequence stars within 300 pc with 12 and 22 micron excesses far above the photosphere. The fitted blackbody temperature t_ds and covering fraction gamma are in the table.",
+    "White-dwarf and low-mass-star dust pollution: candidate infrared excesses around evolved and very-low-mass objects, selected without any prior on host type beyond the M_G window.",
+    "Extreme M-dwarf mid-IR excesses: the sample is dominated by M_G 10-12 dwarfs, a regime where WISE excess samples are sparse.",
+    "A measured false-positive set for WISE-excess searches: the objects our gates convict are a catalogued, position-resolved sample of the ways AllWISE manufactures a 22 micron excess -- single-exposure non-detections, release-dependent photometry, sub-5-sigma bands, and blends below the archival centroid floor.",
+    "A calibration set for the archival contamination floor: paired with the JWST measurement of candidate D (M4 Sec 5), these are the objects on which sep_thr(rho) = F (1 + 1/rho) can be tested if imaging becomes available."
+  ],
+  "catalog_version": "v2",
+  "supersedes": {
+    "file": "dyson-revet_highlat_extreme_IR_excess_v1.csv",
+    "difference": "0 rows added, 0 rows removed; 13 columns added (N4 coadd-morphology statistics and flag, and the v2 nebular union)",
+    "note": "v1 is retained unmodified in this directory"
+  }
+}

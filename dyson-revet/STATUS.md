@@ -3,6 +3,68 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-08-24** — **M6 ✓** ([M6-morphology-mrs-completeness.md](M6-morphology-mrs-completeness.md)) —
+  **the morphology stage is built and it closes 5.1 of the last 17.8 points, not all of them — and
+  the remainder is named.** **N4** reads the AllWISE W3/W4 coadds directly:
+  **S = σ_obs/σ_exp** in a 12–45″ annulus, the robust dispersion of the PSF-smoothed image over what
+  the coadd's *own uncertainty image* predicts — one line, **no training set, and a parameter-free
+  null of 1** (measured **1.396 / 1.245** on 27,876 |b| > 50° parent stars). Its threshold is
+  **M5 PR-2's N2 rule verbatim** — percentile in ecliptic bins of the |b| > 50° parent, max over
+  bands, 0.99 — so **no new free parameter anywhere**; measured combined FPR **1.20%**. **All three
+  validation criteria pass: 7/7 published candidates preserved** (N4 flags 0 of 10 labelled), the
+  flagged fraction falls **monotonically** with |b| — **70.3, 36.3, 24.9, 6.0, 2.3, 1.1%** — and at
+  |b| > 50° that **1.14% is below the stage's own 1.20% false-positive rate**: it does nothing where
+  M4 proved nothing needs doing. **Median structure index 12.50 at |b| < 5° to 1.41 at |b| > 50°**,
+  a factor of nine on a statistic whose noise value is 1. **Funnel: pre-visual survivors
+  1,545 → 585 (M5) → 411 against the paper's 368; overproduction 4.20× → 1.59× → 1.117×** (1.211×
+  area-corrected), **96.3% of the excess removed**, and **every latitude band now within ±50% of the
+  published rate** (0.78, 1.19, 1.48, 0.98, 1.13, 1.02×). **But the 17.8 points are only partly
+  closed and the doc says so**: at the RMSE gate ours rejects **36.3%** against their CNN's
+  **49.0%** — **5.1 points closed, 12.7 remaining**, with the candidates for the residual stated
+  rather than guessed. **N4 sees what N1 and N2 cannot: 486 objects — 5.1% of RMSE survivors — that
+  no catalogue lists and whose background is not in the top 1%**, exactly the category M5 §3.6
+  predicted and could not measure. **Its one failure mode was found before it could matter and
+  bounded**: on clean sky S flags **70.1%** of sources brighter than W3 = 5 (PSF wings fill the
+  annulus) — and **zero survivors are that bright**; against a **magnitude-matched** expectation the
+  enrichment is **289× at |b| < 5°, 88× all sky**. **Candidate D's MRS cubes are reduced — 12 public
+  L3 cubes, 4.90–28.70 µm, 11,625 slices deblended, `CAL_VER 2.0.1 / CRDS jwst_1535`, the same newer
+  re-reduction M4 found for the imaging — and the first independent extraction of the contaminant's
+  spectrum now exists. It cannot settle z ≈ 0.922, and the reason is measured rather than asserted.**
+  **PR-2's acceptance test FAILS 4-of-6, and the structure of the failure is the finding: in every
+  band the *dominant* member of the pair passes and only the *sub-dominant* one fails** — PSF-wing
+  leakage across 1.23″, which is a hard limit on any parametric deblend of a close pair and a direct
+  warning for E. **PR-2's consequence is honoured: no redshift is quoted.** The blind
+  cross-correlation's best z moves **0.47 → 1.06** for a ±0.02 dex change in the continuum window; a
+  blind narrow-line consensus scan finds 3 lines at ≥ 5σ at z = 0.922 while **41.1% of the redshift
+  grid does at least as well**; the **star control** throws a spurious peak at **4.16× the scan
+  rms**; and **the MRS sub-band stitching offsets reach 11–28% at five of eleven joins — the same
+  size as the features being searched for.** What it *does* establish: the contaminant is
+  spectroscopically non-stellar over 12 sub-bands (×250 rise from 5 to 25 µm); **M4's 10–15 µm index
+  3.8 reproduces exactly at 3.79**; and **M4's 441 K single blackbody is tested for the first time
+  and comes out ~10% cooler, 394 K rest-frame**. **The published identification still rests on a
+  reduction only the collaboration has done.** **Completeness is measured at last — 75,600
+  injections**, real hosts, real per-band uncertainties at the *injected* brightness, the unmodified
+  pipeline: **inside the model grid the pre-visual recovery is 50.2% all-sky, 45.8% at |b| > 30°**,
+  and **the RMSE fit is not the bottleneck** (it passes 90.3%) — 20.2% are never detected and 31.2%
+  fall to the host's own Gaia flags. **Two hard walls are now numbers: γ = 0.01 → 0.00%, 0.02 →
+  0.01%, 0.05 → 2.5%, 0.10 → 43.9%** (below γ ≈ 0.05 the screen is *blind*, not inefficient), and
+  **T_ds = 1000 K → 0.17% against ~31% inside the [100, 700] K grid — the grid's temperature range
+  is a second hard boundary nobody had costed**. **A control the screen had never been given: 8,400
+  bare photospheres give an RMSE-gate false-positive rate of 0.00%.** Recovery is **not monotonic**
+  in γ — it falls from 44.4% to 39.7% because Eq. 3's obscuration makes a covered star fainter.
+  **Catalogue versioned, not clobbered**: `..._v2.csv`, **same 223 rows, 13 new columns**, its own
+  [README_v2](catalog/README_v2.md), completeness measured where the injection reaches and still
+  **UNMEASURED** where it cannot; **v1, its stats and its README are untouched** (v1's README carries
+  only an append-only dated pointer). **Candidate E READY and nothing pre-empted**: M5 §5.3's
+  four-case outcome map is **byte-identical to the last committed M5 (SHA-256 verified)**, the
+  parameterised chain still reproduces M4 §5 on **all seven checks**, and E is **0 PUBLIC of 39,
+  release 2026-09-09**, unchanged. **Route finding paid for in a corrupted cache: IRSA's IBE returns
+  HTTP 503 in ~0.1 s under concurrency and the sustained cap is ~12 requests/s per client, which
+  splitting across processes does not raise** — a fetcher that reads 503 as "no image" silently
+  marks good objects invalid, and it did, for 927 of them; the back-off and the cache repair are now
+  in the code. Nothing submitted, posted or sent; no account created anywhere; the Ren+24 note and
+  the I dossier remain Matthew-gated, unchanged. **M6 adds no Matthew-gated item.**
+
 - **2026-08-23** — **M5 ✓** ([M5-nebular-stage-highlat-catalog.md](M5-nebular-stage-highlat-catalog.md)) —
   **the last irreproducible stage now has a reproducible replacement, and it closes 81.6% of the
   gap.** M4 localised the whole 4.2× overproduction to the paper's unpublished nebular CNN; M5

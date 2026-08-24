@@ -1,0 +1,46 @@
+{
+  "calibration_population": "parent sample at |b| > 50 deg, PR-1 stratified subsample (seed 20260824, <= 4000/ecliptic bin)",
+  "n_requested": 28000,
+  "n_valid": 27876,
+  "valid_fraction": 0.9955714285714286,
+  "invalid_reasons": {
+    "fetch_failed": 8
+  },
+  "ecl_bin_deg": 10.0,
+  "per_bin_n": {
+    "0": 3983,
+    "1": 3984,
+    "2": 3976,
+    "3": 3981,
+    "4": 3981,
+    "5": 3988,
+    "6": 3983
+  },
+  "rule": "score = max(percentile rank of W3 S, percentile rank of W4 S) within the object's |ecliptic latitude| bin of the calibration population; flagged if score > 0.99 (M6 PR-1) -- M5 PR-2's N2 rule verbatim, on S instead of w?sky",
+  "threshold": 0.99,
+  "measured_combined_FPR_on_calibration": {
+    "0.95": 0.07181805137035442,
+    "0.99": 0.01201750609843593,
+    "0.999": 0.001327306643707849
+  },
+  "S_null": {
+    "w3_median": 1.3962054884865656,
+    "w4_median": 1.2445228135015238,
+    "w3_q99": 7.471631355809171,
+    "w4_q99": 3.3465384127804336,
+    "note": "on nebulosity-free sky S should approach its parameter-free null of 1; it sits slightly above because AllWISE coadd noise is spatially correlated by the resampling, which the per-pixel uncertainty image does not carry"
+  },
+  "spearman_w3S_w4S": 0.2995127839553524,
+  "diagnostic_corr_S_vs_source_brightness": {
+    "w3_spearman_S_w3mpro": -0.3450967926297325,
+    "w4_spearman_S_w4mpro": -0.38440487942724216
+  },
+  "reported_not_cut": {
+    "A_w3_median": 0.833443028433347,
+    "A_w4_median": 0.861164851853788,
+    "G_w3_median": 0.10739684317779766,
+    "G_w4_median": 0.22837959734253555,
+    "C_w3_median": 0.4939058234061974,
+    "C_w4_median": 0.5631035463532632
+  }
+}
