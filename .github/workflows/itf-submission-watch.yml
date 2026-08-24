@@ -22,8 +22,16 @@
 # that machine is off for three days, this reports the same state three times and says so
 # in the log rather than inventing news.
 #
-# ⚠️ `schedule` only fires from the repository's DEFAULT branch. Until this file is merged
-# to `main` the cron will not run; `workflow_dispatch` works from any branch.
+# ⚠️ BOTH triggers need this file on the repository's DEFAULT branch. `schedule` only ever
+# fires from there -- that much `itf-snapshot.yml` already documents -- but so does
+# `workflow_dispatch`: GitHub registers a workflow as dispatchable by its presence on the
+# default branch, and the API returns
+#
+#   HTTP 404: workflow not found on the default branch
+#
+# for a workflow that exists only on a feature branch. The `--ref` argument then chooses
+# WHICH branch's copy runs, but it cannot make an unregistered workflow runnable. So this
+# does nothing at all until it is merged to `main`, manual runs included.
 
 name: ITF submission watch
 
