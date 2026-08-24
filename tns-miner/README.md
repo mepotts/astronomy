@@ -36,6 +36,22 @@ which structurally discards stellar, in-plane transients at any magnitude.
 **The clock: ZTF primary operations end December 2026.** This niche compresses hard and then
 migrates to Rubin/LS4 streams.
 
+## Start here
+
+**[`OPERATING-GUIDE.md`](OPERATING-GUIDE.md) is the only file you need to run this
+front.** It carries the nightly commands, every pre-registered threshold and the
+rule that fixed it, the known failure modes, and the end-to-end submission path
+including the three accounts a human has to create. The `M<N>-*.md` documents are
+the evidence behind it, not required reading.
+
+**The number that governs how this tool is used** ([`M2-02`](M2-02-precision.md)):
+a hand-vetted, pre-registered random sample of the M1 candidate list measured
+**precision at 3.5%, 95% CI [1.1%, 15.6%]** — 40% image artifacts, 53% known or
+evident variables. The M1 list was declared **not submittable** under a rule fixed
+before counting. This is a human-in-the-loop search tool that turns ~100,000
+alerts a night into a handful of objects to look at. It is not an automatic
+reporter, and it cannot be run unattended.
+
 ## Scope
 
 - **Target classes:** galactic novae, M31/M81 novae, CVs and dwarf novae, faint ZTF residue.

@@ -1,0 +1,177 @@
+{
+  "M1_list": {
+    "population": 184,
+    "n_vetted": 40,
+    "class_counts": {
+      "known_variable": 21,
+      "artifact": 16,
+      "plausible_transient": 2,
+      "undecidable": 1
+    },
+    "rule_counts": {
+      "R2b": 16,
+      "R1a": 14,
+      "R2c": 5,
+      "R3": 2,
+      "R1c": 2,
+      "R4": 1
+    },
+    "strata": {
+      "A": {
+        "N": 3,
+        "n": 3,
+        "n_plausible": 1,
+        "n_undecidable": 0,
+        "census": true,
+        "counts": {
+          "known_variable": 2,
+          "plausible_transient": 1
+        },
+        "strict": {
+          "p": 0.3333333333333333,
+          "wilson95": [
+            0.06149194402093078,
+            0.7923404011921757
+          ]
+        },
+        "lenient": {
+          "p": 0.3333333333333333,
+          "wilson95": [
+            0.06149194402093078,
+            0.7923404011921757
+          ]
+        }
+      },
+      "B": {
+        "N": 5,
+        "n": 5,
+        "n_plausible": 0,
+        "n_undecidable": 0,
+        "census": true,
+        "counts": {
+          "artifact": 3,
+          "known_variable": 2
+        },
+        "strict": {
+          "p": 0.0,
+          "wilson95": [
+            0.0,
+            0.43448246865939283
+          ]
+        },
+        "lenient": {
+          "p": 0.0,
+          "wilson95": [
+            0.0,
+            0.43448246865939283
+          ]
+        }
+      },
+      "C": {
+        "N": 176,
+        "n": 32,
+        "n_plausible": 1,
+        "n_undecidable": 1,
+        "census": false,
+        "counts": {
+          "known_variable": 17,
+          "artifact": 13,
+          "plausible_transient": 1,
+          "undecidable": 1
+        },
+        "strict": {
+          "p": 0.03125,
+          "wilson95": [
+            0.00553786010270331,
+            0.15744263967668448
+          ]
+        },
+        "lenient": {
+          "p": 0.03225806451612903,
+          "wilson95": [
+            0.005717221462126484,
+            0.16194105315828217
+          ]
+        }
+      }
+    },
+    "strict": {
+      "precision": 0.03533,
+      "stratified_normal_95": [
+        0.0,
+        0.08748
+      ],
+      "stratified_wilson_95": [
+        0.01073,
+        0.15603
+      ],
+      "sd": 0.02661
+    },
+    "lenient": {
+      "precision": 0.03629,
+      "stratified_normal_95": [
+        0.0,
+        0.09029
+      ],
+      "stratified_wilson_95": [
+        0.0109,
+        0.16033
+      ],
+      "sd": 0.02755
+    },
+    "decision_A5_list": "NOT SUBMITTABLE",
+    "decision_A5_triage": {
+      "n_plausible_in_tiers_AB": 1,
+      "verdict": "M1-05 triage NOT WORKING"
+    }
+  },
+  "M2_list": {
+    "population": 37,
+    "n_vetted": 25,
+    "sample_seed": 20260825,
+    "class_counts": {
+      "known_variable": 11,
+      "known_cv_outburst": 8,
+      "artifact": 3,
+      "plausible_transient": 2,
+      "undecidable": 1
+    },
+    "rule_counts": {
+      "R2b": 10,
+      "R2-subtally": 8,
+      "R3": 2,
+      "R1a": 2,
+      "R2c": 1,
+      "R4": 1,
+      "R1c": 1
+    },
+    "strict": {
+      "precision": 0.08,
+      "wilson95": [
+        0.02222,
+        0.24966
+      ]
+    },
+    "lenient": {
+      "precision": 0.08333,
+      "wilson95": [
+        0.02316,
+        0.25849
+      ]
+    },
+    "real_event_rate": {
+      "k": 10,
+      "n": 25,
+      "rate": 0.4,
+      "wilson95": [
+        0.23403,
+        0.59261
+      ],
+      "note": "plausible_transient + known_cv_outburst. A real astrophysical outburst was found and correctly characterised, but the known_cv part is NOT a new object and must not be filed as an AT report. Reported separately and never inside precision, exactly as M2-01 A0 required."
+    },
+    "plausible": [
+      "ZTF24abuzrht",
+      "ZTF19acbplek"
+    ]
+  }
+}

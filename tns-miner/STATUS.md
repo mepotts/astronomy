@@ -2,6 +2,112 @@
 
 *Newest first. Root [`../STATUS.md`](../STATUS.md) carries the one-line summary.*
 
+- **2026-08-24 — M2 complete, and the front is closed. Precision measured for the
+  first time: the M1 candidate list was NOT SUBMITTABLE at 3.5%; the fixed filter
+  reaches 8.0% and cuts image artifacts from 40% to 12%.** Nothing submitted to
+  TNS; no account created anywhere; the read-only allowlist in `tnscommon.py` is
+  unchanged and was re-verified.
+
+  **Read [`OPERATING-GUIDE.md`](OPERATING-GUIDE.md) instead of this log.** It is
+  the hand-over document: nightly commands, every threshold and the rule that
+  fixed it, nine known failure modes, M31/M81's September reopening, and the
+  end-to-end submission path with the three accounts a human must create.
+
+  **The headline — precision, which M1 could not claim**
+  ([`M2-02`](M2-02-precision.md), protocol frozen first in
+  [`M2-01`](M2-01-preregistration.md)). Forty objects hand-vetted against ZTF
+  cutout triplets, per-band light curves and six archival catalogues: tiers A+B as
+  a census, tier C a seeded random sample. **Precision of the 184-object M1 list =
+  3.5%, 95% CI [1.1%, 15.6%]** — **40% image artifacts, 53% known or evident
+  variables, 2 plausible transients**. The pre-registered rule ("upper bound below
+  0.20 → NOT SUBMITTABLE") fired, and so did the second rule: tiers A+B yielded
+  one plausible object, below the threshold of two, so **`M1-05`'s declared triage
+  did not work either**. Three causes, all measured:
+  - **`drb ≥ 0.90` cannot see a bad subtraction.** All 16 artifacts carry
+    `drb ≥ 0.913`. The classifier asks "is there a real source in this stamp",
+    and for a registration dipole the answer is yes.
+  - **The catalogue layer was reading one catalogue when it needed four.** Fink's
+    `d:vsx` matched 1 of 40; an independent ATLAS-variable-star match found 14,
+    Gaia DR3 variability 2 — **40% were already catalogued and the filter did not
+    know**.
+  - **The Mira trap is not theoretical.** `ZTF18abobdzu`, written up in `M1-05` as
+    the single best candidate, is BP−RP = 5.18, J−K = 1.69, with an ATLAS-VS
+    counterpart 0.39″ away and seven years of continuous detection. A red LPV.
+  - **The one cheap discriminator M1 had and never used:** 39 of 40 have a Gaia
+    DR3 counterpart within 3″; the exception is the one clean dwarf nova.
+
+  **Five fixes, each costed against the M1-04 positive control**
+  ([`M2-03`](M2-03-the-fixes.md); the baseline config reproduces M1-04 at exactly
+  70/102). **M2 full: recall 46.1%, median lead 3.12 d, negative control 10.0% →
+  5.0%, contrast 6.9× → 9.2×.**
+  - **(a) per-band amplitude ≥ 1.0 + flat-residual veto — costs 24 objects
+    (68.6% → 45.1%)**, and *all 24 are unclassified DCAP reports*: confirmed novae
+    stay at 2/3, confirmed CVs at 0/2. It also fixed a mixed-filter bug inside M1's
+    own amplitude — `magnr` is per-band, and `M1-05` averaged it across filters.
+  - **(b) a real outburst enumerator — the discovery that made it possible is that
+    Fink's `/api/v1/latests` accepts `startdate`/`stopdate`**, undocumented in M1.
+    Two arms: ALeRCE `firstmjd` for new sources, Fink `latests` across every
+    non-vetoed class for known sources erupting, with `magnr − magpsf ≥ 1.0`
+    applied at enumeration. **46 of the 51 objects passing the final pass came
+    from the new arm; M1's entire enumerator contributed 5.**
+  - **(c1) VSX/GCVS demoted to a flag — costs nothing and gains a nova.** Novae go
+    **2/3 → 3/3**: `AT 2026lck` is recovered, the confirmed nova `M1-04` lost to a
+    `YSO:` mislabel.
+  - **(c2) SIMBAD's generic classes demoted — measured effect zero**, reported as
+    a null result and kept because the failure mode is structural.
+  - **(c3) `_Candidate` suffix stripped before every class comparison** — not
+    pre-registered, but a structural symmetry bug with no threshold. `M1-03`
+    handled the suffix on the target side and never on the veto side, so `AGN` was
+    vetoed while `AGN_Candidate`, `QSO_Candidate`, `Mira_Candidate` and
+    `LongPeriodV*_Candidate` (≈2,700 alerts a night) all passed. Zero recall cost.
+  - **(d) negative-subtraction veto — POST-HOC, and the best cut in the
+    milestone.** A source above its reference cannot subtract negative. **0 of
+    DCAP's 98 objects has a single high-confidence negative detection in its whole
+    Fink history**, so the cut costs nothing at any threshold from 0.00 to 0.50 —
+    and it removes 16 of 40 M1 candidates, all sixteen non-transients, neither
+    plausible transient touched.
+
+  **The final list — 37 candidates, MATTHEW-GATED**
+  ([`M2-04`](M2-04-final-list.md)). Pool 3,039 over MJD 61274–61277 → 51 pass → 14
+  already in TNS → **37**. **Precision 8.0%, 95% CI [2.2%, 25.0%]** on a
+  pre-registered random 25; **artifacts 40% → 12%**; a further **32% are real
+  dwarf-nova or symbiotic outbursts on already-catalogued stars** — found,
+  flagged `known_cv`, and told in words not to file. Real-event rate 40%
+  [23%, 59%].
+  - **A bug found while vetting and fixed:** the first list had **41 of 44
+    candidates whose passing epoch was more than a year before the window**.
+    Evaluating a candidate pass without a `jd_floor` fires the filter at the
+    object's all-time first pass, so magnitude, amplitude, peak-to-peak and the
+    flat veto all described an outburst from 2019. **M1's pass has the same
+    defect.** Floored at 60 days; no threshold moved; 44 → 37 candidates and the
+    flat veto's catch tripled.
+  - **Live fire, unrewound:** 14 of the passing objects were independently
+    reported to TNS by other groups from the same three nights — **all 11 that
+    reached channel `A2_nova_like` were real transients somebody filed**. Our
+    passing epoch preceded their report in **5 of 14**, median −0.55 d, best
+    +1.42 d; ZTF's own pipeline filed 11 of them. Thirteen of the fourteen sit at
+    |b| > 12°, i.e. outside this front's niche.
+  - **Best objects:** `ZTF18accebtg` (19:04:52.95 +09:15:02.8, **|b| = +1.25°**,
+    no Gaia counterpart, PS1 reference 21.7, **four outburst episodes** over four
+    years, 2.8 mag up — an uncatalogued recurrent dwarf nova in the plane);
+    `ZTF19acbplek` (**vetted plausible twice independently**, 13 episodes, 3.7 mag
+    up); `ZTF19aampgvg` (21 episodes over seven years, 3.3 mag up).
+  - **Submission-grade: five objects vetted as plausible new transients across the
+    milestone, and none submittable today** — a TNS AT report is rejected without
+    a pre-discovery non-detection, which needs an ATLAS forced-photometry account.
+  - **A two-column rule that works:** rows with no `known_cv` flag *and* no
+    ATLAS-VS / VSX / Gaia-variability match were 13 of 37, and a full census of
+    that subset found **zero artifacts and five plausible transients**.
+
+  **Recommended M3: none for the filter. The front is done.** The one change worth
+  making is named and costed in the guide (§4.5): promote Gaia DR3 `vclassre` from
+  a printed column to a Layer-3 veto input — it identified five AGN that Fink's
+  SIMBAD match calls `Unknown`. Everything else that remains is Matthew's:
+  register at TNS, define a bot on production, register at ATLAS forced
+  photometry, and walk the §5 check on `ZTF18accebtg`. **M31 reopens in
+  mid-September and needs the three changes in §7 first — a cone enumerator, a
+  host-galaxy exemption from the nuclear veto, and its own positive control.**
+
 - **2026-08-24 — M1 complete. Access verified, the gap re-measured and half the
   founding premise withdrawn, filter built and validated against a positive
   control at 68.6% recovery.** Nothing submitted to TNS; no account created
