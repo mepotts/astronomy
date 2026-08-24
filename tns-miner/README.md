@@ -12,10 +12,26 @@ camera recorded it, nobody filed it, and you file it — **you are the discovere
 12 months** off the public ZTF alert stream — including **2 of the 6 galactic novae discovered in
 all of 2026**. Site: `https://dcap-minruining.github.io/DCAP/`.
 
-**Where the gap is.** ~80% of TNS reports come from five automated pipelines (Pan-STARRS, ZTF,
-ALeRCE, ATLAS, Gaia). The bright end is dead — ZTF's Bright Transient Survey sweeps everything
-brighter than ~18.5. But the auto-reporters filter on real-bogus score, host separation and
-detection multiplicity, **not** the full 5σ stream. DCAP lives at mag 19–20.6.
+**Where the gap is.** *(This paragraph was written from the 2026-08-14 sweep. M1 measured it
+against 30,454 real TNS reports on 2026-08-24 and found it half wrong — see
+[`M1-02-the-measured-gap.md`](M1-02-the-measured-gap.md). Superseded text kept below for the
+record.)*
+
+- ~~"~80% of TNS reports come from five automated pipelines (Pan-STARRS, ZTF, ALeRCE, ATLAS,
+  Gaia)"~~ → **MEASURED**: five machines do dominate, but they are **ATLAS, Pan-STARRS, GOTO,
+  WFST, ZTF**. **Gaia filed zero reports in the last 12 months.** WFST and GOTO are not in the
+  sweep's list at all.
+- ~~"The bright end is dead… DCAP lives at mag 19–20.6"~~ → **MEASURED and inverted**: the TNS
+  median discovery magnitude is **20.36**, and 45% of all reports already sit in 19.0–20.6.
+  DCAP's median is **18.74** — 1.6 mag *brighter* than the population. The bright end is not
+  dead; it is where the survey pipelines are absent.
+- **The axis that actually separates DCAP from the pipelines is galactic latitude.** 5.8% of all
+  TNS reports come from |b| < 15°. For DCAP it is **55%**, for XOSS **68%**, and for every
+  automated reporter it is between **0.4% and 8.1%**.
+
+The mechanism the paragraph named is still right: the auto-reporters filter on real-bogus score,
+host separation and star/galaxy score because they hunt supernovae, **not** the full 5σ stream —
+which structurally discards stellar, in-plane transients at any magnitude.
 
 **The clock: ZTF primary operations end December 2026.** This niche compresses hard and then
 migrates to Rubin/LS4 streams.
