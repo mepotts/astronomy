@@ -85,6 +85,33 @@ transit_proc_flags, ccd_proc_flags, multipeak, blended, ipd_error_al/ac, g_mag, 
 gates, source_dist_to_last_ci, ac_rate, sub_pixel_coord, mu`.
 `gaiasupdate.epoch_astrometry.GaiaEpochAstrometryArchive` consumes exactly this layout.
 
+## Parallax zero-point inputs (added M8, 2026-08-24)
+
+`scripts/m8_zeropoint.py` needs FIVE `gaia_source` columns, and the day-one arm cannot
+apply the Lindegren+2021 correction without all five. **Diff them on the day** -- they are
+not otherwise in this map, and `astrometric_params_solved` is already flagged above as a
+likely rename:
+
+| DR3 column | DR4 status (read off the draft data model PDF, M8) | note |
+|---|---|---|
+| `phot_g_mean_mag` | present | |
+| `nu_eff_used_in_astrometry` | **present** (draft pp. 18, 25, 75, 76, ...) | 5-parameter solutions |
+| `pseudocolour` | **present** (draft pp. 18, 19, 22, 27, 76, 77, ...) | 6-parameter solutions |
+| `ecl_lat` | **present** (draft pp. 16, 55, 67, 87, ...) | |
+| `astrometric_params_solved` | **RENAMED to `astrometric_params`** (draft p. 19: "Bitwise code describing which astrometric parameters are provided (short)") | the 31/95 guard reads this; get it wrong and `zpt.get_zpt` **RAISES** rather than returning NaN. **Confirm the bit encoding too** -- the draft describes a bitwise code, not DR3's 3/31/95 integers |
+
+**AND DR4 SHIPS ITS OWN CORRECTION -- PREFER IT.** The draft data model declares, in both
+`gaia_source` (p. 20) and `all_source_astrometry` (p. 74):
+
+> `tentative_parallax_bias` : Parallax bias correction (double, Angle[mas]). "This is the
+> parallax bias correction computed based on the recipe in [the DR4 astrometry paper].
+> **This correction is to be subtracted from `parallax` to get the corrected parallax.**"
+
+Same convention as Lindegren+2021. Pull it in Phase 0, use it in preference to the L21
+recipe, and keep L21 as the cross-check -- see DR4-DAY-RUNBOOK Phase 3.4. The name carries
+"tentative" and the model is a draft, so verify it exists and is non-null before relying
+on it.
+
 ## Day-one checklist
 
 1. `SELECT schema_name FROM TAP_SCHEMA.schemas` — pin the real prefix.

@@ -1,0 +1,8 @@
+test,analysis,n_conf,n_spur,p_holm,effect,min_detectable,decisive,direction_ok,defect,label,reason,decisive_by_diff,scenario,control_p,control_vetoed
+D1,primary,164,105,1.0,-0.0072590011614401,0.2,False,False,GAP-4,UNDERPOWERED,not significant (Holm p 1.0000) and NOT decisive: smallest detectable 0.200 > effect under test 0.154,True,no_coverage,,False
+D2,primary,0,0,,,,False,,,NOT TESTABLE,zero rows survive the join to the metric's data,,no_coverage,,False
+D3,primary,0,0,,,,False,,,NOT TESTABLE,zero rows survive the join to the metric's data,,no_coverage,,False
+D4,primary,0,0,1.0,,,False,,,NOT TESTABLE,fewer than 5 rows on a side (0 confirmed / 0 spurious),,no_coverage,,False
+D1,pooled,180,118,1.0,0.009322033898305,0.15,True,True,GAP-2,POOLED: UNINTERPRETABLE (diluted),"section 2.2: pooled non-significance is dilution, never a null.  Section 5 has no label for it.",True,no_coverage,0.1439619381939186,False
+D2,pooled,42,23,0.1408509331593998,0.6594202898550725,0.7250000000000002,False,True,GAP-2,POOLED: UNINTERPRETABLE (diluted),"section 2.2: pooled non-significance is dilution, never a null.  Section 5 has no label for it.",,no_coverage,0.1439619381939186,False
+D3,pooled,42,23,0.0067244420135031,0.2536231884057971,0.7250000000000002,False,True,,"POSITIVE (conservative, pooled)","significant in the pooled secondary: a conservative positive, it survived dilution",,no_coverage,0.1439619381939186,False

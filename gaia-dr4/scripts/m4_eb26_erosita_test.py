@@ -122,6 +122,20 @@ def match_positional(cand_ra, cand_dec, ero_ra, ero_dec, radius_as):
     return np.array(ic, int), np.array(ie, int), np.array(sep, float)
 
 
+def _holm(pvals):
+    """Holm-Bonferroni, the same routine M5 uses.  Local so that the new
+    machine-readable results file (M8) does not add an import cycle."""
+    p = np.asarray(pvals, float)
+    order = np.argsort(p)
+    m = len(p)
+    adj = np.empty(m)
+    run = 0.0
+    for rank, i in enumerate(order):
+        run = max(run, (m - rank) * p[i])
+        adj[i] = min(1.0, run)
+    return adj
+
+
 def wilson_ci(k, n, z=1.959964):
     if n == 0:
         return (np.nan, np.nan)
@@ -491,6 +505,48 @@ def main(argv=None):
     with open(os.path.join(out_dir, "m4_eb26_discriminator_stats.txt"),
               "w", encoding="utf-8", newline="\n") as fh:
         fh.write("\n".join(lines) + "\n")
+
+    # ---- machine-readable results (M8) ------------------------------------
+    # The pre-registration assigns each test one of six labels "mechanically
+    # from the numbers", and until M8 the only numbers this test emitted were
+    # inside prose.  A December label assigned by regexing a .txt at 3 a.m.
+    # is not mechanical.  This is a NEW file: the five frozen M4/M5 artifacts
+    # are untouched and their byte-identity check still means what it meant.
+    # Family D1's three metrics, in the pre-registered order (Holm m = 3).
+    k_hard_c = int(conf["det_hard"].sum()) if "det_hard" in conf else 0
+    k_hard_s = int(spur["det_hard"].sum()) if "det_hard" in spur else 0
+    fade_c = int((conf["det_dr1"] & ~conf["det_dr2"]).sum())
+    fade_s = int((spur["det_dr1"] & ~spur["det_dr2"]).sum())
+    res_rows = []
+    for name, kc, ks in [("D1a in-footprint detection rate", k1, k2),
+                         ("D1b hard-band (2.3-5 keV) rate", k_hard_c,
+                          k_hard_s),
+                         ("D1c DR1-only fader rate", fade_c, fade_s)]:
+        _, pv = fisher_exact([[ks, n2 - ks], [kc, n1 - kc]])
+        res_rows.append({
+            "family": "D1 (X-ray activity, eROSITA-DE)", "metric": name,
+            "kind": "rate", "n_conf": n1, "n_spur": n2,
+            "k_conf": kc, "k_spur": ks,
+            "rate_conf": kc / n1 if n1 else np.nan,
+            "rate_spur": ks / n2 if n2 else np.nan,
+            "effect": (ks / n2 if n2 else np.nan)
+            - (kc / n1 if n1 else np.nan),
+            "p": float(pv),
+            "min_detectable": (float(detectable[0]) if detectable
+                               else np.nan),
+            "testable": bool(n1 >= 5 and n2 >= 5),
+            "n_in_footprint": int(len(f)),
+            "n_store_rows": int(len(t)),
+        })
+    rdf = pd.DataFrame(res_rows)
+    tst = rdf[rdf["testable"]]
+    if len(tst):
+        adj = _holm(tst["p"].to_numpy(float))
+        rdf.loc[tst.index, "p_holm"] = adj
+    else:
+        rdf["p_holm"] = np.nan
+    rdf.to_csv(os.path.join(out_dir, "m4_eb26_discriminator_results.csv"),
+               index=False, lineterminator="\n")
 
     # per-target detected table for the record
     det = t[t["det_dr2"]].sort_values("log_fx_fopt", ascending=False)

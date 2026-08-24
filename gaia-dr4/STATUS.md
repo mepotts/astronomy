@@ -3,6 +3,125 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-08-24** — **M8 done** ([`M8-inflation-zeropoint-rehearsal.md`](M8-inflation-zeropoint-rehearsal.md)):
+  M7's three recommendations, in M7's order — measure the inflation factor on a real
+  sample, close or bound the parallax zero-point, and *run* the pre-registration.
+  **(0) THE LITERAL ASK COULD NOT BE RUN, AND SAYING SO IS THE FIRST RESULT: Gaia DR3
+  publishes no stellar epoch astrometry**, so the refit arm's Keplerian half cannot be run
+  over hundreds of DR3 sources by anyone before 2026-12-02 — the only epoch astrometry in
+  existence is the 12-source pre-release file. **(1) THE INFLATION FACTOR IS ×1.4,
+  MEASURED FOUR WAYS, AND M7's ×2.3 WAS NOT AN INFLATION FACTOR AT ALL** (it is a median
+  |z|; a standard normal has median |z| = 0.674, so M7's own 11 elements imply **×3.4** on
+  the median|z|/0.674 convention used throughout now). Against **SB9** (Pourbaix+2004, CDS
+  B/sb9, pulled live — ground-based spectroscopy that shares no photons with Gaia),
+  **202 element comparisons from 138 systems** passing a pre-registered same-orbit gate
+  give **1.40 [1.31, 1.52]**, with **52 % of elements inside 1 σ against the expected
+  68 %** and 85 % inside 2 σ against 95 % — *the coverage test the task asked for*. It
+  **rises monotonically with NSS `significance`, 0.88 → 1.33 → 1.37 → 1.83**, which is the
+  axis this project selects on; it falls with period (1.74 → 1.01); it is flat in G and
+  across solution types. Reweighted to the day-one queue's own significance distribution
+  it is **1.19** (SB9's stars are G 8.4, the queue's are G 15.0 — the sample mismatch is
+  stated, not hidden). **And the route that settles what M7 could not say: 400
+  injection–recovery runs through the arm's own fitter** on real pre-release scan geometry
+  return **1.05 [1.03, 1.09]** with a correct noise model and **1.51 [1.47, 1.56]** with
+  one unit of unmodelled jitter — **so the Laplace/Hessian error bar is right to 5 % and
+  the inflation is model misspecification, not a broken Hessian**. The 98 dual-solution
+  DR3 sources give 0.89 over 784 comparisons and are reported as the **lower bound** they
+  structurally are (shared photons). Named limit: SB9 constrains **P and e**; the mass
+  goes as **a₀³** and a₀ still has no external calibration. **(2) THE ZERO-POINT IS CLOSED,
+  AND HALF OF M7's CAVEAT WAS A CONVENTION MISMATCH.** Panuzzo's Letter applies a
+  **35.4 µas** Lindegren+2021 correction to BH3's *single-star catalogue* parallax
+  (Table 1 footnote b) and explicitly does **not** correct the *NSS orbital* parallaxes
+  M7 compared against (Table 2: "we do not have enough information at this stage to
+  quantify the bias") — so the zero-point cancelled in M7's difference. This
+  implementation reproduces their 35.4 µas to **0.006 µas**, matches El-Badry+2026's own
+  applied L21 shifts on eight published pairs to a median **2.0 µas**, and rests on EB26's
+  direct measurement of the zero-point **for astrometric orbital solutions**
+  (**Z = −0.0362 ± 0.0053 mas** vs the L21 median −0.0342, their conclusion: the
+  single-star correction "can and should be applied to binary solutions as well").
+  **Applying it moves Gaia BH3 from M₂ 34.68 to 32.64 M☉ and the offset from Panuzzo's
+  published 32.70 ± 0.82 from +2.42 σ to −0.07 σ — the 2.4 σ CLOSES** — and the corrected
+  refit parallax lands on Panuzzo's **zero-point-free** a₀/a₁ parallax (1.6933 ± 0.0164)
+  to **+1.9 µas = +0.11 σ**, where the raw one sat **1.90 σ** away. That is a prediction
+  that could have failed. Across the 981-row queue the correction moves the median
+  companion mass **−1.95 %**, the worst −11.9 %, and it is **distance-dependent**
+  (−9.9 % inside 0.5 mas, −0.9 % beyond 5 mas) — so it grows in DR4, exactly as EB26
+  forecast. **The M₁-free mass function moves far more — median −4.1 %, worst −33.7 % —
+  and six of the ten highest-M₂_min candidates have no M₁ point mass, so f_M is all there
+  is to quote for them: their shifts reach −30.6 %.** "About 2 %" is true of the median
+  companion and badly wrong about the objects anyone looks at first. **Residual bounded three ways at ≤ 2 µas ⇒ ≤ 0.4 % of a companion mass at
+  1.7 mas**: after correction the zero-point is no longer the dominant systematic; the
+  ×1.4 inflation is. Wired into the arm as **`--zeropoint`** (default off so M7's frozen
+  acceptance reproduces byte-identically; **mandatory for December**), applied to the
+  posterior draws as well as the point estimate. **(3) THE PRE-REGISTRATION HAS NOW BEEN
+  RUN — **55 command runs, 0 non-zero exits, 77 labels, every targeted expectation met and the frozen EB26 regression byte-identical**** — against **eleven synthetic verdict stores at
+  December's projected sample sizes** (633+347, 490+490, 245+735), built on the **real**
+  981 queue ids under **declared** nulls and declared effects whose *realised* values are
+  recorded (D2 AUC 0.6573 for a target 0.659; D3 0.3440 for 0.344; D1 0.1512 vs 0.0000 for
+  0.154 vs 0.000; D4 0.2993/0.0758 for 0.30/0.075), written to `out/verdicts_synth/` and
+  **never** into `out/verdicts/` because the December command is `--verdicts all`.
+  **Three CODE defects, and the first would have fired on the day: the pre-registered D4
+  command does not parse** — `m6_astrom_quiet_decision.py` had no `--scopes`, so it exits 2
+  with `unrecognized arguments`, and M7's "the commands as written below run" was true only
+  for the four commands M7 actually typed; **`m5_activity_discriminator.py` CRASHES at
+  December's sample size** (`TypeError: … no callable log10 method` — the confound guard
+  only runs for a metric that discriminates, and at 633+347 a *binary* metric reaches it
+  for the first time; `np.clip` on a boolean Series returns object dtype), killing both
+  the primary and the pooled run after most of the output; and M7 landmine #14's **third**
+  occurrence (m6 announced `out/…` regardless of `--out-dir`). **Four GAPS in the frozen
+  registration, reported and not patched**: §5's six labels are **not exhaustive**
+  (significant + right direction + not decisive has no label), §5 and §2.2 **disagree**
+  (a pooled non-significant result must be reported as "pooled: uninterpretable", which is
+  not one of the six), a **pooled significant reversal** is covered by neither, and
+  **DECISIVE is ill-defined for the rate tests** when the observed baseline differs from
+  the pre-registered one — **and GAP-4 is not cosmetic: it fired 11 times, every time with
+  the literal reading saying NOT DECISIVE and the difference reading saying DECISIVE, so
+  under the literal rule D4 reads UNDERPOWERED in all three null scenarios where it should
+  read NULL. Which sentence of §4 December reads decides whether it can claim a D4 null.**
+  **The rehearsal also proves the registration's central promise executes: at all three
+  projected ratios the smallest detectable AUC is 0.575 against effects under test of
+  0.659 and 0.656, so a non-significant D1/D2/D3 comes back **NULL** — 17 times across the
+  run — and not UNDERPOWERED.** `scripts/m8_prereg_labels.py` is §5+§2.2 as one **total,
+  deterministic** function — its selftest reaches all six labels, all three
+  beyond-the-six cases and the negative-control veto (which no consumer implemented) — and
+  the amendments are written up **for Matthew**, never applied. **Also measured, and it
+  changes how a December positive is written up: D1 and D2 are NOT independent axes** —
+  on the queue's own 489 in-footprint rows the 30 X-ray detections are more photometrically
+  variable at **AUC 0.873, p = 7.4×10⁻¹²**, so two positives would be one finding reported
+  twice. **(4) runbook + config v6 + rehearsal**: the runbook changed in six places (apply
+  the zero-point, inflate by ×1.4, assign the labels *in code*, three new failure branches,
+  and a **DR4-specific STOP** — L21 is an EDR3/DR3 calibration and the residual bound is
+  unverified for DR4); the rename map
+  gains the five zero-point input columns — and reading the DR4 **draft data model** to
+  check them turned up a column this repo did not know existed: **`tentative_parallax_bias`
+  in both `gaia_source` and `all_source_astrometry`** (draft pp. 20, 74), *"the parallax
+  bias correction … to be subtracted from `parallax`"* — **DR4 ships its own zero-point,
+  on L21's convention, so December prefers it and keeps L21 as the cross-check**; the same
+  read confirms `nu_eff_used_in_astrometry` / `pseudocolour` / `ecl_lat` survive but
+  **`astrometric_params_solved` becomes `astrometric_params`**, and that column is the
+  31/95 guard that makes `zpt.get_zpt` **raise** rather than return NaN if it is wrong; and
+  **config v6** — the first bump since v5 and the first that carries a decision — records
+  `parallax_zeropoint_policy`, `error_inflation_policy`, `discriminator_axis_independence`
+  and `prereg_execution`, with **selection, screen, probability method and membership
+  identical to v2–v5 (949)** and acceptance re-checked (BH1+BH2 top-2 by M₂_min; EB26
+  operating point 39/42 + 7/23). **Full nine-stage rehearsal re-run: ALL GREEN in 56 s**,
+  plan-B pull **byte-identical for the SIXTH time** (sha256 b3b099a6…dddd5231), stage F
+  3/3 kept + 9/9 demoted at max |Δf2| 0.0050, and the five frozen M4/M5 artifacts
+  reproduce **byte-identically** through every consumer change. New landmines:
+  **a frozen M7 artifact (`out/m7_refit_acceptance.json`) still contains the rounded,
+  non-existent DR3 source id** that M7's own landmine #4 describes — fixing the code does
+  not fix the artifacts the bug already wrote; **`DataFrame.iterrows()` is the same 2⁵³
+  trap** as `.iloc[0].to_dict()`; **two `--out-dir` leaks in one file** wrote over frozen
+  artifacts (caught by hashing and by `git status` at close); **a zero-point applied to the
+  point estimate but not the posterior** ships a corrected mass inside an uncorrected
+  interval; **latent bugs live behind significance gates** — a guard that only runs for
+  metrics that discriminate is a code path that only executes at scale; a **synthetic
+  control that does not change what the test reads is worse than none** (the first
+  `no_coverage` store blanked a column the test never consults, and was caught only
+  because its numbers came out byte-identical to the null store); and — the one that eats
+  the result — **the pre-registered label `NULL` is pandas' default NA token**, so
+  `read_csv` on December's own label file turns all 17 nulls into `NaN` and
+  `value_counts()` reports zero of them. Human TODOs unchanged (accounts).
 - **2026-08-23** — **M7 done** ([`M7-dryrun-refit-prereg.md`](M7-dryrun-refit-prereg.md)):
   M6's three recommendations, in M6's order — the clock is a number, the headline arm is a
   pipeline, and December is pre-registered. **(1) THE CLOCK HAS A MEASURED CENTRE, and the

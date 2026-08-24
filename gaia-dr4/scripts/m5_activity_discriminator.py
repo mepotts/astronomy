@@ -681,11 +681,27 @@ def main(argv=None):
                    & np.isfinite(m["phot_g_mean_mag"])
                    & np.isfinite(m["d_pc"]))
             mm = m[use]
+            # DEFECT FOUND BY THE M8 REHEARSAL, and it is a DECEMBER-DAY
+            # CRASH.  This confound block runs only for a metric that
+            # DISCRIMINATES.  On the 65 EB26 verdicts the only metrics that
+            # ever got here were `astrometric_gof_al` and `ruwe`, both
+            # strictly positive floats.  At December's sample size a BINARY
+            # metric reaches it -- `B4 phot_variable_flag == VARIABLE` did,
+            # on a 633+347 synthetic store -- and `np.clip` on a boolean
+            # Series returns object dtype, so np.log10 raises
+            #   TypeError: loop of ufunc does not support argument 0 of type
+            #   float which has no callable log10 method
+            # and the whole test dies after printing most of its output.
+            # `.astype(float)` is a no-op for the float columns, so the five
+            # frozen M4/M5 artifacts stay byte-identical (verified).
             X = np.column_stack([
                 zscore(np.log10(np.clip(
-                    pd.to_numeric(mm[col], errors="coerce"), 1e-6, None))),
-                zscore(np.log10(np.clip(mm["significance_archive"], 1e-6,
-                                        None))),
+                    pd.to_numeric(mm[col], errors="coerce").astype(float),
+                    1e-6, None))),
+                zscore(np.log10(np.clip(
+                    pd.to_numeric(mm["significance_archive"],
+                                  errors="coerce").astype(float),
+                    1e-6, None))),
                 zscore(mm["phot_g_mean_mag"]),
                 zscore(np.log10(mm["d_pc"]))])
             b, se, pw = logit_irls(X, mm["y"].values)

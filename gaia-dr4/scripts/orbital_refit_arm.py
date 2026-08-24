@@ -423,7 +423,8 @@ def keplerian_fit(model, p_best):
     return kep
 
 
-def posterior_draws(kep, m1, m1_sigma, n=N_POSTERIOR, seed=RNG_SEED):
+def posterior_draws(kep, m1, m1_sigma, n=N_POSTERIOR, seed=RNG_SEED,
+                    zeropoint_mas=None):
     """Laplace posterior on (P, a0, parallax) x the M1 prior -> M2 draws.
 
     cov = -inv(loglike_hess) at the optimum, i.e. exactly the matrix
@@ -449,6 +450,12 @@ def posterior_draws(kep, m1, m1_sigma, n=N_POSTERIOR, seed=RNG_SEED):
     P = draws[:, idx["kep.0.P"]]
     a0 = draws[:, idx["kep.0.as"]]
     plx = draws[:, idx["lin.parallax"]]
+    # M8: the zero-point has to move the POSTERIOR, not only the point
+    # estimate.  The first wiring shifted refit_m2_msun and left
+    # refit_m2_p16/p84 on the raw parallax, which would have shipped a
+    # corrected mass inside an uncorrected interval.
+    if zeropoint_mas is not None and np.isfinite(zeropoint_mas):
+        plx = plx - float(zeropoint_mas)
     ecc = draws[:, idx["kep.0.e"]]
     good = (P > 0) & (a0 > 0) & (plx > 0) & (ecc >= 0) & (ecc < 1)
     fmass = mass_function_msun(a0[good], P[good], plx[good])
@@ -464,9 +471,40 @@ def posterior_draws(kep, m1, m1_sigma, n=N_POSTERIOR, seed=RNG_SEED):
 
 
 # ======================================================================
+def zeropoint_for(dr3_source_id):
+    """Lindegren+2021 Z [mas] for a DR3 source, or None.
+
+    M8 task 2.  The house pattern lives in scripts/m8_zeropoint.py, which is
+    itself a reproduction of the sibling seti-ellipsoid-broker project's
+    implementation.  Convention: varpi_true = varpi - Z, Z typically
+    negative, corrected parallax LARGER, companion mass SMALLER.
+    """
+    try:
+        import m8_zeropoint as ZP
+        d = ZP.load()
+        row = d[d["source_id"] == int(dr3_source_id)]
+        if not len(row):
+            return None
+        z = ZP.parallax_zeropoint(
+            row["phot_g_mean_mag"].values,
+            row["nu_eff_used_in_astrometry"].values,
+            row["pseudocolour"].values, row["ecl_lat"].values,
+            row["astrometric_params_solved"].values)[0]
+        return None if not np.isfinite(z) else float(z)
+    except Exception:                                            # noqa: BLE001
+        return None
+
+
 def refit_source(sid, df_raw, m1=None, m1_sigma=None, m1_source=None,
-                 n_posterior=N_POSTERIOR, verbose=True):
-    """One source, raw epoch table in -> one dict of refit_* fields out."""
+                 n_posterior=N_POSTERIOR, verbose=True, zeropoint_mas=None):
+    """One source, raw epoch table in -> one dict of refit_* fields out.
+
+    `zeropoint_mas` (M8): if given, the Lindegren+2021 zero-point is applied
+    to the fitted parallax BEFORE the mass function -- which is the only
+    place it can be applied, because the mass function goes as parallax^-3.
+    Default None reproduces M7 exactly, so the frozen acceptance and the
+    frozen trio table are byte-identical without the flag.
+    """
     t0 = time.time()
     rec = {c: None for c in v2.REFIT_COLUMNS}
     rec.update({"refit_status": "OK", "refit_method": METHOD,
@@ -492,7 +530,14 @@ def refit_source(sid, df_raw, m1=None, m1_sigma=None, m1_source=None,
         vals, errs = kep.get_param_error(param=names)
         gp = dict(zip(names, vals))
         ge = dict(zip(names, errs))
-        plx = float(gp["lin.parallax"])
+        plx_raw = float(gp["lin.parallax"])
+        plx = plx_raw
+        zp_note = ""
+        if zeropoint_mas is not None and np.isfinite(zeropoint_mas):
+            plx = plx_raw - float(zeropoint_mas)
+            zp_note = ("L21 zero-point APPLIED before the mass function: "
+                       "Z %+.1f uas, parallax %.6f -> %.6f mas; "
+                       % (1e3 * zeropoint_mas, plx_raw, plx))
         rec.update({
             "refit_period_d": round(float(gp["kep.0.P"]), 6),
             "refit_period_err_d": round(float(ge["kep.0.P"]), 6),
@@ -529,7 +574,8 @@ def refit_source(sid, df_raw, m1=None, m1_sigma=None, m1_source=None,
             rec["refit_m2_msun"] = round(m2_ref, 6)
             post = posterior_draws(kep, float(m1), float(m1_sigma or 0.1
                                                          * m1),
-                                   n=n_posterior)
+                                   n=n_posterior,
+                                   zeropoint_mas=zeropoint_mas)
             q = np.nanpercentile(post["m2"], [5, 16, 50, 84, 95])
             rec.update({
                 "refit_m2_p05": round(float(q[0]), 6),
@@ -540,7 +586,7 @@ def refit_source(sid, df_raw, m1=None, m1_sigma=None, m1_source=None,
                 "refit_m2_posterior_n": int(post["n_draws"]),
             })
             fq = np.nanpercentile(post["fmass"], [16, 84])
-            rec["refit_notes"] = (
+            rec["refit_notes"] = zp_note + (
                 "mass function 68%% CI %.4f-%.4f Msun; a0^3/(P_yr^2 plx^3) "
                 "shortcut gives %.4f (%.1e rel.); %d/%d draws rejected as "
                 "unphysical; %d negative Hessian eigenvalue(s) clipped"
@@ -549,9 +595,10 @@ def refit_source(sid, df_raw, m1=None, m1_sigma=None, m1_source=None,
                    post["n_rejected"] + post["n_draws"],
                    post["n_negative_eig"]))
         else:
-            post = posterior_draws(kep, np.nan, np.nan, n=n_posterior)
+            post = posterior_draws(kep, np.nan, np.nan, n=n_posterior,
+                                   zeropoint_mas=zeropoint_mas)
             fq = np.nanpercentile(post["fmass"], [16, 84])
-            rec["refit_notes"] = (
+            rec["refit_notes"] = zp_note + (
                 "M1 UNSOURCED: companion mass not computed. Mass function "
                 "(M1-free) %.4f Msun, 68%% CI %.4f-%.4f; shortcut %.4f"
                 % (fmass, fq[0], fq[1], f_short))
@@ -572,7 +619,7 @@ def _inventory():
 
 
 def run_prerelease(ids=None, use_dr3=True, n_posterior=N_POSTERIOR,
-                   verbose=True):
+                   verbose=True, zeropoint=False):
     """Refit the pre-release sources named in `ids` (default: the trio)."""
     src = H.PrereleaseSource()
     inv = _inventory()
@@ -603,9 +650,16 @@ def run_prerelease(ids=None, use_dr3=True, n_posterior=N_POSTERIOR,
         plx_fit = pre.get("refit_parallax_mas") or plx0
         m1, m1s, rung = primary_mass(sid, plx_fit, g_mag=g_mag, bp_rp=bp_rp,
                                      dr3=dr3)
+        zp = None
+        if zeropoint and dr3 is not None:
+            zp = zeropoint_for(int(dr3["source_id"]))
+            if zp is None and verbose:
+                print("    %d: no L21 zero-point available (outside the "
+                      "validity box, or a 2-parameter solution) -- "
+                      "UNCORRECTED" % sid)
         rec = refit_source(sid, got[sid], m1=m1, m1_sigma=m1s,
                            m1_source=rung, n_posterior=n_posterior,
-                           verbose=verbose)
+                           verbose=verbose, zeropoint_mas=zp)
         rec["source_id"] = sid
         rec["_name"] = TRIO.get(sid, "")
         rec["_dr3_source_id"] = None if dr3 is None else int(dr3["source_id"])
@@ -758,9 +812,21 @@ def literature_comparison(refits, out_path=None):
         print("\n  PARALLAX OFFSET, all %d targets: %s uas (refit minus "
               "published)"
               % (len(plx), ", ".join("%+.1f" % v for v in d_uas)))
-        print("    every one NEGATIVE, magnitudes %.0f-%.0f uas -- the "
-              "Lindegren+2021 zero-point"
-              % (d_uas.abs().min(), d_uas.abs().max()))
+        # M8: this line used to assert "every one NEGATIVE" unconditionally.
+        # With --zeropoint the offsets change sign and the sentence became a
+        # log line that lied.  It is now read off the numbers -- and the
+        # comparison itself needs a health warning, because the published
+        # parallaxes here are NOT zero-point corrected (Panuzzo Table 2, and
+        # the Letter says why), so a corrected refit is deliberately being
+        # compared against an uncorrected reference.  The apples-to-apples
+        # test is against Panuzzo's zero-point-FREE a0/a1 parallax, and that
+        # lives in scripts/m8_zeropoint_effect.py section Z2.
+        sgn = ("every one NEGATIVE" if (d_uas < 0).all()
+               else "every one POSITIVE" if (d_uas > 0).all()
+               else "MIXED SIGN")
+        print("    %s, magnitudes %.0f-%.0f uas -- the Lindegren+2021 "
+              "zero-point"
+              % (sgn, d_uas.abs().min(), d_uas.abs().max()))
         print("    scale.  The photocentre mass function goes as "
               "parallax^-3, so this propagates")
         print("    to about %.1f %% on every companion mass and is the "
@@ -799,6 +865,11 @@ def main(argv=None):
     ap.add_argument("--ids", default=None,
                     help="comma-separated pre-release source_ids")
     ap.add_argument("--n-posterior", type=int, default=N_POSTERIOR)
+    ap.add_argument("--zeropoint", action="store_true",
+                    help="apply the Lindegren+2021 parallax zero-point "
+                         "before the mass function (M8). DEFAULT OFF so the "
+                         "frozen M7 acceptance reproduces byte-identically; "
+                         "DECEMBER MUST PASS IT -- see DR4-DAY-RUNBOOK 3.4")
     ap.add_argument("--no-dr3", action="store_true",
                     help="skip the positional DR3 crossmatch for M1")
     ap.add_argument("--out-dir", default=None)
@@ -827,12 +898,27 @@ def main(argv=None):
         print("\nORBITAL REFIT ARM -- pre-release orbit trio")
         print("=" * 72)
         df = run_prerelease(ids=ids, use_dr3=not a.no_dr3,
-                            n_posterior=a.n_posterior)
+                            n_posterior=a.n_posterior,
+                            zeropoint=a.zeropoint)
         p = os.path.join(outdir, "m7_refit_trio.csv")
         df.to_csv(p, index=False, lineterminator="\n")
         print("wrote %s" % os.path.relpath(p, BASE))
-        literature_comparison(df)
-        m, sp = build_v2_store(df)
+        # LANDMINE (M8), second instance in this file: literature_comparison
+        # also defaulted to out/, so `--trio --out-dir <scratch>` wrote its
+        # comparison table over the FROZEN M7 one.  Caught by `git status`
+        # at close, which is why the close-out check exists.
+        literature_comparison(
+            df, out_path=(os.path.join(outdir, "m7_refit_vs_literature.csv")
+                          if a.out_dir else None))
+        # LANDMINE (M8): build_v2_store defaults to out/verdicts_v2/, so a
+        # run given --out-dir wrote its trio table into the scratch directory
+        # and its v2 STORE straight over the frozen one.  Same family as M7
+        # landmine #14 -- a script that writes outside the directory it was
+        # told to write in.  An explicit --out-dir now contains everything.
+        m, sp = build_v2_store(
+            df, out_path=(os.path.join(outdir,
+                                       "harness_prerelease_refit.v2.csv")
+                          if a.out_dir else None))
         print("v2 store: %s (%d records, %d with a refit)"
               % (os.path.relpath(sp, BASE), len(m),
                  int((m["refit_status"] == "OK").sum())))

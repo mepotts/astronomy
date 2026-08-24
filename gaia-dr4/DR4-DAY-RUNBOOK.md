@@ -2,7 +2,7 @@
 
 *The operational sequence for release day, rehearsed end-to-end against DR3 on 2026-08-16
 (`scripts/rehearse_dr4_day.py`, timings in `out/rehearsal_timings.csv`; M3 doc §3).
-Config: `queries/dr4-triage-config.v5.json` (selection/screen frozen since M2; v2 added the
+Config: `queries/dr4-triage-config.v6.json` (selection/screen frozen since M2; v2 added the
 covariance probability method + dust tier; v3 (M4) added the Bayestar19 far-star
 arbitration and the X-ray caution-tag policy; v4 (M5) added the all-sky
 Vergely+2022 far-star arbitration, the measured activity policy — no activity flag — and
@@ -10,7 +10,11 @@ one astrometric-quality caution flag; **v5 (M6, 2026-08-21)** adds the day-one v
 record schema, the epoch-vet harness policy with its measured throughput, and the
 `flag_astrom_quiet` decision. Membership and all cuts unchanged since M2: 949.
 **M7 (2026-08-23) wrote no config**: it changed nothing about the list, the screen or any
-flag, so v5 stands.)
+flag, so v5 stands. **v6 (M8, 2026-08-24)** — membership still 949, selection/screen
+untouched since M2 — adds the two decisions that change every published number:
+`parallax_zeropoint_policy` (Lindegren+2021, APPLIED before the mass function) and
+`error_inflation_policy` (×1.4, measured on 202 Gaia-vs-SB9 comparisons), plus
+`discriminator_axis_independence` and `prereg_execution`.)
 Everything below is anonymous-TAP-safe; if the
 Gaia Archive account exists by then (Matthew's TODO), the async branch gets a longer rope,
 nothing else changes.*
@@ -34,6 +38,25 @@ results. All commands below run from `gaia-dr4/` with `.venv\Scripts\python.exe`
 > sizes, and what counts as a positive, a null and an underpowered result — all written
 > while zero December verdicts existed. It is not editable; later work appends to its
 > variant log only.
+>
+> **🔭 TWO NUMBERS M8 MEASURED THAT EVERY COMPANION MASS CARRIES (2026-08-24).**
+> **(1) APPLY THE PARALLAX ZERO-POINT — `--zeropoint` is MANDATORY on the refit arm.**
+> Lindegren+2021, via `scripts/m8_zeropoint.py`. On Gaia BH3 it moves M₂ from
+> 34.68 to 32.64 M☉ and the offset from Panuzzo's published 32.70 ± 0.82 from
+> **+2.42 σ to −0.07 σ**; across the day-one queue the median companion mass moves
+> **−1.95 %** — but the **M₁-free mass function** moves by a median **−4.1 %** and up to
+> **−33.7 %**, and **six of the ten highest-M₂_min candidates have no M₁ point mass, so f_M
+> is all there is to quote for them**: their shifts run to −30.6 %. "About 2 %" is true of
+> the median companion and badly wrong about the objects anyone looks at first, because
+> the list is ranked by M₂_min and M₂_min is highest where the parallax is smallest.
+> El-Badry+2026 measured the
+> zero-point *for astrometric orbital solutions* at −0.0362 ± 0.0053 mas and concluded the
+> single-star correction "can and should be applied to binary solutions as well". The
+> residual after correction is bounded at **≤ 2 µas ⇒ ≤ 0.4 % of a companion mass at
+> 1.7 mas**. **(2) INFLATE THE FORMAL ERRORS BY ×1.4**, measured on **202 Gaia-vs-SB9
+> element comparisons** (52 % inside 1 σ where 68 % is expected), not on M7's three
+> objects. Details in **Phase 3.4**; M7's "×2.3" was a median |z|, not an inflation
+> factor — the same eleven elements imply ×3.4 on this convention.
 
 ---
 
@@ -116,7 +139,7 @@ solution type and pull `Orbital` first (the triage's bread and butter).
 ## Phase 2 — triage + covariance probabilities (T+1–2 h, ~15 min compute)
 
 1. **AMRF triage** (`scripts/amrf_triage.py`, rehearsed full-scale: 65 s for 169k rows
-   incl. MC, plots and the gate — `out/rehearsal_timings.csv` stage D): config v5
+   incl. MC, plots and the gate — `out/rehearsal_timings.csv` stage D): config v6
    parameters (selection identical to v4/v3/v2/v1) — P ∈ [10, 2200] d,
    Halbwachs gates, σ_TI² ≤ 36, boundary ×1.15, screen sig > 10 + F2 mag-split; flags
    never cuts; **acceptance gate = BH1 + BH2 land class III** (their DR4 solutions exist
@@ -383,7 +406,7 @@ This is the milestone's whole point and it needs **no new code**:
 :: PRIMARY -- scope-pure, harness verdicts only. This is the powered analysis.
 .venv\Scripts\python.exe scripts\m4_eb26_erosita_test.py       --verdicts all --scopes orbit_reality --sources epoch_vet_harness --out-dir out\dec\primary
 .venv\Scripts\python.exe scripts\m5_activity_discriminator.py  --verdicts all --scopes orbit_reality --sources epoch_vet_harness --out-dir out\dec\primary
-.venv\Scripts\python.exe scripts\m6_astrom_quiet_decision.py   --verdicts all --scopes orbit_reality
+.venv\Scripts\python.exe scripts\m6_astrom_quiet_decision.py   --verdicts all --scopes orbit_reality --out-dir out\dec\primary
 
 :: REGRESSION CHECK -- EB26 alone. MUST reproduce the frozen M4/M5 artifacts byte-identically.
 .venv\Scripts\python.exe scripts\m4_eb26_erosita_test.py       --verdicts all --scopes compact_companion --sources elbadry2026 --out-dir out\dec\regression
@@ -426,6 +449,18 @@ non-significant December result on them is a NULL, not "underpowered"** — the 
 project has not yet been able to claim. The six outcome labels and the exact conditions
 for each are in §5 of the pre-registration.
 
+**M8 executed that claim rather than asserting it.** On synthetic stores at all three
+projected ratios the smallest detectable AUC came out at **0.575**, against effects under
+test of 0.659 (D2) and 0.656 (D3) — so a non-significant D1/D2/D3 is labelled **`NULL`**,
+17 times across the rehearsal. **D4 is the exception and the reason is GAP-4 above, not
+the sample size.**
+
+> **⚠ AND WATCH FOR THIS WHEN YOU LOAD THE LABEL FILE: `NULL` is pandas' default NA
+> token.** `pd.read_csv('…labels.csv')` silently reads every `NULL` label back as `NaN`
+> and `value_counts()` then reports **zero nulls** — the one result this project has never
+> been able to claim, deleted by a default argument. Read with
+> `keep_default_na=False`; the writer emits a header line saying so.
+
 `flag_astrom_quiet`'s December decision rule is pre-registered in
 `scripts/m6_astrom_quiet_decision.py`, copied into config v5, and restated unchanged in the
 pre-registration: **KEEP** if the in-list continuous test reaches p < 0.05 in the M5
@@ -435,7 +470,56 @@ observed AUC is consistent with 0.5; **CARRY** otherwise.
 
 **The negative control has a veto.** `phot_g_n_obs` is re-run uncorrected and outside every
 family. If it reaches p < 0.05, no D1–D4 positive may be reported as a finding until it is
-explained.
+explained. **M8 gave that rule a code path** — no consumer implemented it —
+in `scripts/m8_prereg_labels.py::apply_negative_control_veto`.
+
+#### THEN ASSIGN THE LABELS — do not do this by hand (M8, 2026-08-24)
+
+§5 of the pre-registration says each test gets exactly one of six labels "mechanically from
+the numbers". Nothing computed one: M4 prints WORKS / UNDERPOWERED / NOT TESTABLE, M5
+prints WORKS / DOESN'T / UNDERPOWERED / NOT TESTABLE, M6 prints KEEP / REMOVE / CARRY,
+none of them knows the pre-registered *direction*, and none knows whether it is the
+scope-pure primary or the pooled secondary. `scripts/m8_prereg_labels.py` is §5 and §2.2
+written as one total function; `scripts/m8_prereg_rehearsal.py` shows how to drive it, and
+`m4_eb26_discriminator_results.csv` + `m5_activity_metric_results.csv` +
+`m6_astrom_quiet_d4_results.csv` are the machine-readable inputs it reads.
+
+**Four places where the frozen registration does not determine a label** (found by running
+it against synthetic December-scale stores; reported, never patched — the file is frozen
+and only Matthew may amend it). If the label printer emits a `defect` code, read this:
+
+| code | the case | what the code emits |
+|---|---|---|
+| **GAP-1** | significant, right direction, **not** DECISIVE | `POSITIVE (not decisive)` — none of the six applies |
+| **GAP-2** | **pooled** and not significant | `POOLED: UNINTERPRETABLE (diluted)` — §2.2 forbids NULL/UNDERPOWERED here, §5 offers nothing else |
+| **GAP-3** | **pooled** and significant in the **wrong** direction | `DIRECTION REVERSAL (pooled, not interpretable)` |
+| **GAP-4** | a **rate** test (D1, D4) whose observed baseline ≠ the pre-registered one, so `min_detectable_rate` and the "effect under test" are not on one scale | both readings computed; the disagreement is flagged |
+
+> **GAP-4 is the one that will bite, and it has a number.** In the M8 rehearsal it fired
+> **11 times, and every single time** the literal reading said NOT DECISIVE while the
+> difference-based reading said DECISIVE. Concretely: **D4 came back `UNDERPOWERED` in all
+> three null scenarios where it should read `NULL`**. `min_detectable_rate` returns the
+> smallest detectable *spurious* rate against the **observed** confirmed rate — and
+> `flag_astrom_quiet` marks ~26 % of the queue, so it returns 0.35–0.45 and losing the
+> literal comparison against the pre-registered **absolute** 0.30, despite ample power for
+> the pre-registered **difference** of 0.225. **Whether December may claim a D4 null turns
+> on which sentence of §4 is read.** Until Matthew rules, report both readings.
+
+**A defect code is not a licence to choose.** Report the emitted label, report the code,
+and say which reading you used.
+
+**And one thing that is not a defect but changes how a positive is written up (M8):
+D1 and D2 are NOT independent axes.** Measured on the day-one queue itself, with no
+verdicts involved (`scripts/m8_synthetic_store.py --axis-correlation`,
+`out/m8_axis_correlation.txt`): among the 489 in-footprint queue rows, the 30 X-ray
+detections are strongly more photometrically variable — **AUC 0.873, p = 7.4×10⁻¹²**.
+D3 is not correlated with X-ray (AUC 0.584, p = 0.12). The pre-registration corrects
+within families and not across them, on the stated ground that the families "ask
+different questions of different data"; for D1 and D2 that premise is measurably false —
+both are activity proxies, which is astrophysically expected. **Keep the correction rule
+as frozen** (it is what makes December's p-values comparable with M4's and M5's), but
+**if D1 and D2 both come back POSITIVE, that is one finding reported twice, not two
+independent confirmations** — say so in the write-up.
 
 ### 3.4 — the ORBITAL REFIT ARM: from "the orbit is real" to the orbit and its mass
 
@@ -447,31 +531,92 @@ orbit from the epoch astrometry, the **M₁-free astrometric mass function**, an
 same row as the verdict that triggered it.
 
 ```
-:: acceptance FIRST -- it re-derives Gaia BH3 and must match M1's numbers
+:: zero-point inputs for the day's sources FIRST (5 columns from gaia_source; ~10 s for 2k ids)
+.venv\Scripts\python.exe scripts\m8_zeropoint.py --selftest
+.venv\Scripts\python.exe scripts\m8_zeropoint.py --pull --force
+
+:: acceptance -- it re-derives Gaia BH3 and must match M1's numbers.
+:: NO --zeropoint here: the gate is a REPRODUCTION of M1's uncorrected numbers.
 .venv\Scripts\python.exe scripts\orbital_refit_arm.py --acceptance
 
-:: then the day's confirmed orbits
-.venv\Scripts\python.exe scripts\orbital_refit_arm.py --ids <comma-separated>
+:: then the day's confirmed orbits -- WITH the zero-point.  This is the science run.
+.venv\Scripts\python.exe scripts\orbital_refit_arm.py --ids <comma-separated> --zeropoint
 ```
+
+**`--zeropoint` is default-OFF on purpose** — the acceptance gate is a bit-for-bit
+reproduction of M1's *uncorrected* numbers and must stay one. Every science run passes it.
+If `m8_zeropoint.py --pull` has not run for the day's ids the arm prints
+`no L21 zero-point available … UNCORRECTED` per source and leaves the parallax alone: that
+message is a **STOP**, not a footnote.
+
+> **⚠ DR4 SHIPS ITS OWN PARALLAX BIAS COLUMN — PREFER IT OVER L21.**
+> The pre-release **draft data model** (M8 read it, `data/draft-data-model/…pdf`,
+> pp. 20 and 74) declares, in **both `gaia_source` and `all_source_astrometry`**:
+>
+> > `tentative_parallax_bias` : Parallax bias correction (double, Angle[mas]) — "This is
+> > the parallax bias correction computed based on the recipe in [the DR4 astrometry
+> > paper]. **This correction is to be subtracted from `parallax` to get the corrected
+> > parallax.**"
+>
+> Same convention as Lindegren+2021 (`corrected = parallax − bias`), computed by ESA
+> per source for DR4's own astrometry. **On 2026-12-02, pull it in Phase 0 and use it
+> instead of the L21 recipe**, keeping L21 as the cross-check: they should agree to tens
+> of µas, and a disagreement is worth a paragraph. It is a *draft* column name and a
+> *tentative* quantity — if it is absent or null on the day, fall back to
+> `scripts/m8_zeropoint.py`, which is why the fallback exists.
+>
+> **What is being fallen back to, stated honestly.** Lindegren+2021 is calibrated on
+> **EDR3/DR3** and `m8_zeropoint.py` pulls its five inputs from **`gaiadr3.gaia_source`**.
+> Applying it to DR4 astrometry is an approximation — defensible because it is the only
+> published correction, because El-Badry+2026 measured it to hold for DR3 *orbital*
+> solutions (−0.0362 ± 0.0053 vs the L21 median −0.0342), and because the residual is
+> bounded at ≤ 2 µas *on DR3*. None of that transfers automatically: if L21 is used,
+> say so in the write-up and treat the ≤ 2 µas bound as **unverified for DR4**.
+> Good news from the same read: `nu_eff_used_in_astrometry`, `pseudocolour` and `ecl_lat`
+> **all appear in the DR4 draft model**, so the L21 inputs survive — but
+> `astrometric_params_solved` is **`astrometric_params`** in DR4 (draft p. 19), and
+> `zpt.get_zpt` **raises** rather than returning NaN if that guard column is wrong.
 
 Cost: **1.0–2.2 s per source** (n = 3, on 558–824 CCD transits, machine-load dependent) — negligible beside DataLink.
 Acceptance, pre-registered in the arm's docstring: BH3 to **P 11.454 yr, e 0.7278,
 M₂ 34.68 M☉** within M1's *printed* precision (0.005 / 0.0005 / 0.005). Passed
 2026-08-23, `out/m7_refit_acceptance.json`.
 
-**Two caveats that must be printed next to every mass this arm produces** (both measured
-in M7 §2e against three published solutions):
+**Two caveats that must be printed next to every mass this arm produces. M8 (2026-08-24)
+measured both at scale and one of them changed sign:**
 
-1. **The formal error bars are lower bounds.** Across 11 trio elements with a published
-   comparison, |refit − published| / (the refit's own σ) has **median 2.28, max 6.16**, and
-   only 4 of 11 land inside 1 σ. The posterior is a **Laplace** interval, not a total
-   uncertainty. **Inflate by ≥ 2.3, or say it is formal.**
-2. **The parallax zero-point, cubed.** All three trio parallaxes came out 5–41 µas *below*
-   the published values (the Lindegren+2021 scale) and the photocentre mass function goes
-   as **ϖ⁻³**. That is the whole of the arm's +2.4 σ offset from Panuzzo's published
-   M_BH — and Panuzzo avoided the same trap by deriving the headline mass from the
-   **combined astrometry+RVS** solution via `a1` in AU rather than from a₀/ϖ. **If DR4
-   publishes `a1` for a candidate, prefer it.**
+1. **The formal error bars are lower bounds — inflate by ×1.4, and say what that number
+   is.** Measured on **202 element comparisons between Gaia DR3 NSS and SB9** (Pourbaix
+   et al. 2004, ground-based spectroscopy — the only reference that shares no photons with
+   Gaia): inflation **1.40 [1.31, 1.52]**, with **52 % of elements inside 1 σ** where 68 %
+   is expected and 85 % inside 2 σ where 95 % is expected. Reweighted to the day-one
+   queue's own `significance` distribution it is **1.19**; it **rises with significance**,
+   from 0.88 in the lowest quartile to **1.83 in the highest** — so the loudest solutions
+   have the worst-calibrated errors. The arm's *own* Laplace σ is fine: 400
+   injection–recovery runs through the arm's actual fitter on real pre-release scan
+   geometry return **1.05 [1.03, 1.09]** with a correct noise model and **1.51** with one
+   unit of unmodelled jitter. **So the inflation is unmodelled noise, not a broken
+   Hessian.** M7's "×2.3" was the median |z|; on the median|z|/0.674 convention used
+   everywhere now, the same eleven elements give ×3.4. Quote the posterior as a **formal
+   Laplace interval** with the factor beside it — never as a total uncertainty.
+   (`scripts/m8_error_inflation.py`, `out/m8_error_inflation.txt`.)
+2. **The parallax zero-point — APPLY IT. `--zeropoint` is mandatory.** M7 reported the
+   trio's refit parallaxes as 5–41 µas *below* published and called it the arm's dominant
+   systematic. **Half of that was a convention mismatch**: Panuzzo's Table 1 (the DR3
+   single-star parallax) **is** L21-corrected, by 35.4 µas, and his Table 2 (the NSS
+   orbital solutions M7 compared against) explicitly **is not** — so the zero-point
+   cancels in M7's difference. The independent check that decides it is Panuzzo's
+   zero-point-**free** parallax ϖ = a₀/a₁ = 1.6933 ± 0.0164 mas: the **raw** refit sits
+   −33.5 µas (−1.90 σ) from it, the **corrected** refit +1.9 µas (**+0.11 σ**).
+   Correcting moves Gaia BH3 from **M₂ 34.68 (+2.42 σ from Panuzzo) to 32.64
+   (−0.07 σ)**. Across the queue the median mass moves −1.95 %, the worst −11.9 %, and the
+   effect is **distance-dependent** (−9.9 % inside 0.5 mas, −0.9 % beyond 5 mas) — so it
+   grows in DR4, which reaches further. Residual after correction: **≤ 2 µas**, i.e.
+   ≤ 0.4 % of a companion mass at 1.7 mas. Panuzzo's own route around the parallax (the
+   RVS-derived `a1`) is still better where DR4 publishes it — **if `a1` exists for a
+   candidate, prefer it** — but it is no longer the only defence.
+   (`scripts/m8_zeropoint.py`, `scripts/m8_zeropoint_effect.py`,
+   `out/m8_zeropoint_effect.txt`.)
 
 Sanity numbers to compare the day's output against (M7 `out/m7_refit_vs_literature.txt`):
 BH3 every Campbell element within **1.1 σ** of Panuzzo's astrometric solution; HD 114762
@@ -495,10 +640,13 @@ reproducing their host mass to **−0.20 σ**.
 | **DataLink much slower than measured** | the clock is now an equation, not a band: `t = 2.42 s + 0.215 s/source × n + 0.1424 s/KiB × KiB` (M7). Measure the day's KiB/s from the harness's own first ten batches (`out/m6_harness_timings.csv`, `seconds` vs served rows) and read the wall clock straight off it. 6.9 KiB/s → 2.1 h; 1.8 KiB/s → 7.8 h; 0.69 KiB/s → 20 h. All inside 72 h. The queue is *ranked*: a slow archive costs depth, not the headline. **Do not shrink `--batch`** — the per-source term is 0.215 s and the per-request overhead 0.65 s, so smaller batches buy nothing and cost overhead |
 | **DataLink serves nothing for many sources** | measured on DR3: an empty request costs 0.65 s, so a low-coverage queue runs *fast* and the ledger fills with `NO_DATA`. That is not a failure of the harness — but if DR4 serves epoch astrometry for materially less than the whole queue, **that is the day's biggest finding** and it is a STOP-and-report, not a footnote. (M7 measured DR3 epoch-photometry coverage of the queue at **7.5 %**; DR4 epoch astrometry is expected to be near-complete for NSS sources, and if it is not, everything downstream changes) |
 | **the refit arm returns `NO_PEAK`** | the periodogram of the single-star residuals has FAP ≥ 1e−3: there is no orbit to refit even though f2 said the source is not a single star. Record it, keep the `orbit_reality` CONFIRMED verdict, and do **not** quote a mass. It is a real outcome, not an error |
+| **the refit arm prints `no L21 zero-point available … UNCORRECTED`** | either `m8_zeropoint.py --pull` has not been run for that id, or the source is outside the Lindegren+2021 validity box (6 < G < 21, 1.1 < ν_eff < 1.9 for 5p, 1.24 < pseudocolour < 1.72 for 6p) or carries a 2-parameter solution. The arm falls back to the **uncorrected** parallax, which is the safe behaviour and the wrong number: that source's companion mass is high by ~3Z/ϖ (≈ 6 % at 1.7 mas, ≈ 20 % at 0.5 mas). Count them, name them, and do not put one in a headline without the caveat. M8 measured 6 of 1,904 uncorrectable |
 | **the refit arm's mass disagrees with the catalogue's `m2_min`** | expected and informative. M7 measured the arm against DR3 for two sources: period agreed to 0.1–2.6 %, a₀ to 3–18 %, and the mass function goes as a₀³, so an 18 % a₀ difference is 1.8× in mass. The **refit** is the independent measurement; the catalogue value is the thing being checked. Report both, and check the parallax offset before believing either |
 | **a source comes back with < 50 usable transits** | `INCONCLUSIVE`, not a demotion — the verdict record says so and the row stays in the queue for the 72-h pass. Never let a thin epoch series masquerade as "no wobble" |
 | **`gaiasupdate` raises on a source** | the record is written as `ERROR` with the exception text and the loop continues. Errors are counted in the bulletin; a systematic error class (same exception on many sources) is a STOP, not a footnote |
 | **the verdict store fails schema validation** | `scripts/verdict_schema.py` raises with the exact violation. Nothing downstream may run on an invalid store — the discriminator tests would silently mix vocabularies |
+| **`m6_astrom_quiet_decision.py: error: unrecognized arguments: --scopes`** | fixed in M8, and it would have fired on the day. The pre-registered D4 command carries `--scopes orbit_reality` and that parser had no such flag; M7's executability note covered the two discriminator commands only, so the D4 line was the one command nobody had ever typed. If it reappears, you are on a pre-M8 checkout |
+| **`TypeError: … no callable log10 method` in `m5_activity_discriminator.py`** | fixed in M8, and it is a DECEMBER-SCALE bug: the confound guard runs only for a metric that *discriminates*, and on 65 EB26 rows only strictly-positive floats ever got there. At 633+347 a **binary** metric reaches it (`B4 phot_variable_flag==VARIABLE` did) and `np.clip` on a boolean Series returns object dtype. Both the primary and the pooled run died, after printing most of their output. If it reappears, another binary metric has found another un-floated path — cast, do not skip the metric |
 | **a discriminator test raises on the verdict join** | fixed in M7, but know what it means. Both tests used to hard-code `== 76` — the size of the only store that existed when they were written — so `--verdicts all` died the moment the store held a second producer, and the *pooled* command this runbook prescribes died with it. They now assert only **no fan-out** (`len(t) == len(eb)`) and **drop unjoinable rows with a printed count**. If the drop count is large, that is the story: a verdict row that is not in the day's triage frame or has no `gaia_source` row cannot be tested, and the reason needs finding before any result is quoted |
 | corr_vec length ≠ n(n−1)/2 | that solution's fitted-parameter set differs from the nsstools layout — set the row's Pr to NaN, flag, continue (never guess an ordering) |
 | TAP_SCHEMA diff shows a rename not in the map | patch `queries/dr3-to-dr4-tables.md` first, then the SQL — the map is the single source of truth |
@@ -521,9 +669,11 @@ reproducing their host mass to **−0.20 σ**.
   v1 + 35 `refit_*` fields): for every `CONFIRMED (orbit_reality)` source, an
   independent Keplerian orbit, the M₁-free astrometric mass function, and a companion
   -mass posterior with the M₁ rung recorded. **This is the headline artifact.** Ship it
-  with both M7 caveats attached — the formal errors are lower bounds (median ×2.3 too
-  small on the trio) and the mass function goes as ϖ⁻³ against a parallax that ran
-  5–41 µas low on all three test objects;
+  **run with `--zeropoint`** and with both M8 caveats attached: the posterior is a
+  **formal Laplace interval** and carries an **×1.4** inflation factor measured on 202
+  Gaia-vs-SB9 comparisons, and the parallax has had the **Lindegren+2021** correction
+  applied before the mass function (median −1.95 % on M₂, up to −11.9 %, residual
+  ≤ 2 µas). A mass shipped without the correction is high by ~3Z/ϖ;
 - **the day-one epoch-vet queue** (`epoch_vet_day1_queue.csv`: main list +
   retrieval-bin Pr ≥ 0.999, all caution flags) — **emitted by the driver itself**
   (stage H, M5), so it exists the moment the rehearsed pipeline finishes; the

@@ -82,6 +82,18 @@ METRICS = [("astrometric_gof_al", "C5 astrometric_gof_al (the frozen flag's "
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--verdicts", nargs="*", default=None)
+    # DEFECT FOUND BY THE M8 REHEARSAL, and it would have fired on the day.
+    # The frozen pre-registration's section 6 and DR4-DAY-RUNBOOK section 3.3
+    # both prescribe
+    #     m6_astrom_quiet_decision.py --verdicts all --scopes orbit_reality
+    # and this parser had no --scopes.  argparse exits 2 with "unrecognized
+    # arguments" -- so the D4 command, alone of the seven, had never been
+    # run.  M7's executability note covered the two discriminator tests only.
+    # Adding the flag makes the pre-registered command executable AS
+    # WRITTEN; it changes no rule and no default (None = every scope, which
+    # is what the script did before).
+    ap.add_argument("--scopes", nargs="*", default=None)
+    ap.add_argument("--sources", nargs="*", default=None)
     ap.add_argument("--queue", default=os.path.join(
         OUT, "epoch_vet_day1_queue.v2.csv"))
     ap.add_argument("--out-dir", default=OUT)
@@ -94,7 +106,8 @@ def main(argv=None):
         print(s)
 
     store = vs.load_store(a.verdicts or
-                          [os.path.join(vs.STORE_DIR, "eb26.v1.csv")])
+                          [os.path.join(vs.STORE_DIR, "eb26.v1.csv")],
+                          scopes=a.scopes, sources=a.sources)
     q = pd.read_csv(a.queue)
     act = pd.read_parquet(os.path.join(BASE, "data",
                                        "dr3_activity_columns.parquet"))
@@ -217,6 +230,24 @@ def main(argv=None):
         f"and a")
     say(f"     dead one predict.  The in-list test has no power, full stop.")
 
+    # ---- machine-readable D4 result (M8) ---------------------------------
+    # Same reason as the M4 addition: the pre-registration assigns D4 one of
+    # six labels "mechanically from the numbers", and the numbers were only
+    # ever in prose.  New file; nothing frozen is touched.
+    pd.DataFrame([{
+        "family": "D4 (flag_astrom_quiet, thresholded)",
+        "metric": "flagged fraction, in-list", "kind": "rate",
+        "n_conf": n1, "n_spur": n2, "k_conf": k1, "k_spur": k2,
+        "rate_conf": k1 / n1 if n1 else np.nan,
+        "rate_spur": k2 / n2 if n2 else np.nan,
+        "effect": (k2 / n2 if n2 else np.nan) - (k1 / n1 if n1 else np.nan),
+        "p": float(pf), "p_holm": float(pf),      # family size m = 1
+        "min_detectable": float(mdr) if mdr is not None else np.nan,
+        "testable": bool(n1 >= 5 and n2 >= 5),
+        "n_store_rows": int(len(store)), "n_in_list": int(len(inl)),
+    }]).to_csv(os.path.join(a.out_dir, "m6_astrom_quiet_d4_results.csv"),
+               index=False, lineterminator="\n")
+
     # ---- 3. what December needs -----------------------------------------
     say("")
     say("3. WHAT DECEMBER HAS TO HARVEST TO SETTLE IT " + "-" * 29)
@@ -299,8 +330,15 @@ def main(argv=None):
     with open(os.path.join(a.out_dir, "m6_astrom_quiet_decision.txt"), "w",
               encoding="utf-8", newline="\n") as fh:
         fh.write("\n".join(lines) + "\n")
-    print(f"\nwrote out/m6_astrom_quiet_decision.txt, "
-          f"out/m6_astrom_quiet_inlist.csv")
+    # M7 landmine #14, third occurrence: this line hard-coded `out/...` while
+    # the files went to --out-dir, so a rehearsal or a December run into a
+    # scratch directory reported that it had just overwritten the FROZEN M6
+    # artifacts when it had not.  M7 fixed the same bug in
+    # m5_activity_discriminator.py and did not check this script.
+    rel = os.path.relpath(a.out_dir, BASE)
+    print(f"\nwrote {rel}/m6_astrom_quiet_decision.txt, "
+          f"{rel}/m6_astrom_quiet_inlist.csv, "
+          f"{rel}/m6_astrom_quiet_d4_results.csv")
     return 0
 
 
