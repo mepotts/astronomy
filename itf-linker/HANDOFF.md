@@ -5,8 +5,8 @@ knowledge in this repository is not the code — it is the list of things that w
 measured, and found to be wrong. That list is spread across eight documents and would
 otherwise have to be rediscovered.
 
-**One-line status:** M0–M5 + M7–M11 complete, the MPC's Isolated Tracklet File searched at
-~100% coverage on both slices, **zero linking discoveries**, 505 tests green. The durable
+**One-line status:** M0–M5 + M7–M12 complete, the MPC's Isolated Tracklet File searched at
+~100% coverage on both slices, **zero linking discoveries**, 519 tests green. The durable
 outputs are a validated linking pipeline, a daily archive that independently confirmed 21
 of its own groupings, a replicated methodological result drafted for publication — and an
 **attribution** capability (ITF tracklet → known orbit) at production scale: a perturbed
@@ -27,7 +27,12 @@ The **15–25 y shell tier** is separately priced: **0 of 300 decoy fits pass ag
 300 real** (`M11-RESULTS.md` §4), the MPC has consumed six of its PASS rows and agreed
 with all six — but its multi-tracklet objects pass their combined fit only 3 of 10, so
 the tier is **recorded, not promoted, and stays out of the review queue**. Nothing has
-ever been submitted.
+ever been submitted. **M12** then read the daily archive as a *series* for the first time:
+the ITF is **draining 4.4 : 1** (−129,759 observations in 26 days), the departures are whole
+tracklets being **linked** — 133 of a random 150, none of them ledger rows, confirmed against
+the absorbing objects' own published records — and a **five-day collapse in Pan-STARRS intake**
+(81% of everything entering the file, down 86×) is recorded that the MPC's own servers can no
+longer show, since they serve only the current ITF.
 
 ---
 

@@ -374,3 +374,40 @@ def test_checkpoints_are_marked_partial(crosswalk, tmp_path):
     final = crosswalk.write_doc(args, ["A", "B", "C"], ["A", "B", "C", "D"], rows,
                                 partial=False)
     assert final["partial"] is False
+
+
+# ----------------------------------------------------------------------------------
+# Retention: the window that cost two measurements
+# ----------------------------------------------------------------------------------
+
+def test_key_set_retention_survives_a_missed_week():
+    """FULL_KEEP is what makes the next delta computable and an old universe re-readable.
+
+    At one snapshot a day a window of 3 is three days, and it cost two measurements
+    outright: M11's refresh silently reported "since 08-21" under a heading that said
+    08-16, and 2026-08-13's delta could not be computed at all -- a permanent hole,
+    because the MPC serves only the current ITF. The machine is not always on, so the
+    window has to absorb missed days too.
+    """
+    from itf_linker import snapshot
+
+    assert snapshot.FULL_KEEP >= 7, (
+        "a week is the minimum useful window: the archive misses days when the machine "
+        "is off, and a milestone re-reads its base snapshot days after sweeping it"
+    )
+
+
+def test_the_shell_task_keeps_its_release_mirror_in_step():
+    """KEYSET_KEEP guards recovery; FULL_KEEP guards the next delta. Both or neither."""
+    import re
+
+    text = (ROOT / "scripts" / "snapshot-local.sh").read_text(encoding="utf-8")
+    m = re.search(r"^KEYSET_KEEP=(\d+)", text, re.MULTILINE)
+    assert m, "snapshot-local.sh must declare KEYSET_KEEP"
+
+    from itf_linker import snapshot
+
+    assert int(m.group(1)) >= snapshot.FULL_KEEP, (
+        "the release mirror must reach at least as far back as local retention, or a "
+        "key set can be pruned locally with no copy left to restore from"
+    )

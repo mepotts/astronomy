@@ -42,7 +42,14 @@ GH_REPO="mepotts/astronomy"
 
 # Generations of key set retained as release assets. More than one so that a corrupt or
 # half-finished upload can never be the only copy in existence; see "no single generation".
-KEYSET_KEEP=4
+#
+# Raised 4 -> 14 to match snapshot.py's FULL_KEEP, which went 3 -> 14 for the same reason:
+# a three-day window cost M11 a silently wrong interval and M12 a permanent hole in the
+# series (2026-08-13's delta could not be computed at all), and the MPC serves only the
+# current ITF, so neither is repairable at any price. Keep the two in step -- the local
+# window is what makes the next delta computable, the release mirror is what lets an old
+# one be recovered.
+KEYSET_KEEP=14
 
 exec >>"$LOG" 2>&1
 echo "=============================================================="

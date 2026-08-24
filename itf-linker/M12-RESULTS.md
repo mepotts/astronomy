@@ -5,7 +5,7 @@ the daily archive (2026-07-29 05:26:45 GMT → 2026-08-23 12:26:46 GMT), their
 `manifest.json` and `delta.parquet` chain, the six full key sets that still survive on
 disk, M9's independent 08-16 reconstruction, and a fresh MPCORB pulled for this milestone
 (2026-08-24 02:24:39 GMT, 1,558,557 orbits). **Nothing was submitted anywhere.** Every
-input is read-only; M12 writes only its own outputs. Tests: 517 green.
+input is read-only; M12 writes only its own outputs. Tests: 519 green.
 
 **Scope note.** M11 §9 recommends five things for M12 — the submission decision, a
 pre-submission refresh, the shell's arc-extension test, the 20.7 y stopping rule, and
@@ -19,10 +19,12 @@ left against 38,319 that arrived, a ratio of **4.4 : 1** and a net loss of **129
 with the file falling 9,322,655 → 9,194,631 observations in 26 days. The drain is
 **linkage, not attrition**: only 0.15% of departures are re-labellings, **99.57% of
 departed observations belong to designations that vanished entirely** (a whole
-tracklet at a time, typically 4 observations), and a random sample of departed tracklets,
-attributed against MPCORB and then checked against the objects' own published records,
-CROSSWALK_HEADLINE. Underneath that steady drain sits something the archive exists to
-catch and nothing else would have: **for five consecutive days, 2026-08-17 → 08-21,
+tracklet at a time, typically 4 observations), and a random sample of 150 departed
+tracklets — **none of them ledger rows** — attributed against the full 1.56M-orbit MPCORB
+and then checked against the candidate objects' own published records **confirms 133 of
+them (88.7%, Wilson 95% [82.6%, 92.8%]), every single one matching the tracklet's
+*entire* observation set**. Underneath that steady drain sits something the archive
+exists to catch and nothing else would have: **for five consecutive days, 2026-08-17 → 08-21,
 intake from Pan-STARRS collapsed by a factor of 86** — F51+F52 supply **81% of all ITF
 intake** at 1,640 observations/day and fell to **19/day** — while removals continued at
 full rate. Total intake appears to recover on 08-22, but **it is a different observatory
@@ -65,9 +67,15 @@ that record counts as **UNCONFIRMED**, not as a hit.
 
 ### 0.5 What M12 may not do
 
-It may not touch the ledger, the review queue, the archive, or the archive's clone. It may
-not re-run any sweep or fit. It may not submit anything. Its outputs are new files under
-`data/raw/rubin/` plus this document.
+It may not touch the ledger, the review queue, the archive's committed records, or the
+archive's clone. It may not re-run any sweep or fit. It may not submit anything. Its
+outputs are new files under `data/raw/rubin/` plus this document.
+
+**One exception, taken deliberately and recorded here:** M12 changes the archive's
+*retention settings* (§6). It does not touch a single byte of archived data — it stops
+future data being deleted. Leaving that until "next milestone" would have meant another
+week of three-day windows, and the whole point of §5's traps 1 and 5 is that this
+particular loss is not repairable afterwards at any price.
 
 ---
 
@@ -177,8 +185,25 @@ entirely different program that happens to restore the total while the dominant 
 is still dark.
 
 A count of arrivals would have shown "stall, then recovery". The station split shows
-"stall, still stalled, plus an unrelated batch". As of the last snapshot **Pan-STARRS
-intake has not returned.**
+"stall, still stalled, plus an unrelated batch". As of the last snapshot in the analysis
+window **Pan-STARRS intake has not returned.**
+
+**Postscript, one day past the frozen window.** The archive took `20260824T122648Z` while
+this document was being written. It is *not* folded into §1 — that table is frozen at
+08-23 and the §3 sample is drawn from the 08-19 → 08-23 window — but it answers the
+question §8 asks, so it is recorded here:
+
+| 2026-08-24, vs 08-23 | |
+|---|---:|
+| Pan-STARRS arrivals | **18 (0.5% of intake)** |
+| All arrivals / departures | 3,647 / 6,882 per day |
+| Top station | V00, 3,530 |
+| Observations | 9,194,631 → **9,191,373** |
+| Designations with ≥3 nights | 2,455 → **2,452** |
+
+**Eight consecutive days now** — 08-17 through 08-24 — with Pan-STARRS at ~19/day against
+a normal 1,640. V00 is still the thing carrying the total, and the drain continues at
+−3,509 observations for the day.
 
 ### 2.3 Removals never paused
 
@@ -208,7 +233,80 @@ demonstrated on a real event rather than argued.
 
 ## 3. Where the departures go — a random sample, attributed and confirmed
 
-CROSSWALK_SECTION
+`scripts/m12_crosswalk.py`. **150 departed designations drawn at random** from the
+11,704 that left between 2026-08-19 and 08-23 with complete astrometry recoverable, each
+attributed against the full 1,558,557-orbit MPCORB catalogue and then checked against the
+candidate object's **own published record**.
+
+> **133 of 150 confirmed — 88.7%, Wilson 95% CI [82.6%, 92.8%].**
+> **All 133 matched every single observation of the tracklet. Not one partial match.**
+
+| | |
+|---|---:|
+| Sampled | 150 |
+| **Confirmed against the published record** | **133 (88.7%)** |
+| Confirmations where *all* observations matched | **133 / 133 (100%)** |
+| Median separation of the confirmed object | **5.4″** |
+| Separation p90 / max | 27.4″ / 125.9″ |
+| Attribution failures (`refine_error`) | **0** |
+| **Ledger rows in the sample** | **0** |
+
+### 3.1 The sample is entirely independent of the ledger
+
+Only 74 of the 11,704 departed designations in the window are ledger rows, and the draw
+picked **none of them**. Every one of these 150 tracklets is a piece of the file the
+project never fitted, never gated and never proposed. That matters because the existing
+confirmations — M9's 30 of 30, M11's 97 of 103 — are all on rows the ledger had
+*selected*, and a selected sample has no obligation to decay like the population. It
+turns out to: the file at large confirms at **88.7%**, the ledger rows confirmed at 97 of
+103, and both say the same thing.
+
+### 3.2 Whole tracklets go to exactly one object
+
+Every confirmation matched the tracklet's **entire** observation set — 3 of 3, 5 of 5, 4
+of 4, 133 times out of 133, with zero partials. Combined with §1.2's 99.57%, the picture
+is unambiguous at both levels: a designation leaves the ITF all at once, and the
+observations that leave together arrive together in one object's published record. That
+is what an identification looks like. It is not what data loss looks like.
+
+### 3.3 The 17 that did not confirm are attribution misses, not refutations
+
+Their best attributions sit at **62–1,698″** — the search never put a plausible object in
+front of the confirmation step. None of them is a case where an object was found in the
+right place and its record turned out not to contain the observations.
+
+**The obvious explanation was tested and is wrong.** The confirmation only asks the ten
+best-ranked candidates, so the natural reading is that the right object was there but sat
+at rank 11 or 40. All 17 were re-run at **confirm depth 50** — every one of them had at
+least 132 candidates available, so all 17 genuinely queried fifty objects apiece, 850 MPC
+requests in total:
+
+> **0 of 17 confirmed at depth 50. Going five times deeper added nothing.**
+
+So the ceiling is **not** a ranking artifact, and spending more MPC requests on it will not
+move it. What remains is the asymmetry declared in §0.4: a tracklet linked into an object
+**that does not exist in the MPCORB catalogue** — a designation created by the link
+itself, or an object with no published orbit — is structurally invisible to a catalogue
+search and lands here as UNCONFIRMED.
+
+**88.7% is a floor on the linkage fraction, and 11.3% is a ceiling on "not a linkage",
+not a measurement of it.** The depth test narrows *why* it is a ceiling; it does not lower
+it. (`data/raw/rubin/m12-crosswalk-deep.json`.)
+
+### 3.4 What made the method work
+
+Two settings decide almost everything, and both were found by measurement rather than
+argument (§5, traps 3 and 5):
+
+* the prefilter must return survivors **sorted by separation** — unsorted, the pilot
+  confirmed 1 of 10;
+* the refine cap must not bind — 60 gave 4 of 10, 400 gave 6, effectively unlimited gave
+  8, **at no measurable wall-clock cost**, because the 1.56M Kepler propagations dominate
+  and the perturbed integration is nearly free beside them.
+
+Confirming the best **ten** candidates rather than the best one also matters: the pilot
+confirmed a tracklet whose best separation was 141.7″, and the full run confirmed three
+beyond 60″. Ranking proposes; the published record decides.
 
 ---
 
@@ -244,10 +342,12 @@ size: the review queue is not merely *stale-able*, it is draining at a rate the 
 can now quote. An unreviewed candidate is not waiting indefinitely — the MPC is working
 through the same file, from its own side, at 4.4 departures per arrival.
 
-**The one thing §1.2 rules out** is the pessimistic reading of that drain. Departures are
-not the MPC deleting data; they are whole tracklets being identified. A candidate that
-disappears has almost always been *linked*, not lost — which is exactly the outcome M9 and
-M11 measured on ledger rows, now shown to be how the file behaves in general.
+**The one thing §1.2 and §3 rule out together** is the pessimistic reading of that drain.
+Departures are not the MPC deleting data; they are whole tracklets being identified —
+**at least 88.7% of them demonstrably so**, against the absorbing objects' own published
+records, on a sample containing no ledger rows at all. A candidate that disappears has
+almost always been *linked*, not lost. That is exactly the outcome M9 and M11 measured on
+rows the ledger had selected, now shown to be how the file behaves in general.
 
 ---
 
@@ -283,23 +383,62 @@ established was consumed into 2025 OZ431 — returns HTTP 500, `Bad Label from d
 identifier`. There is no trksub → object lookup at the MPC, which is why the cross-walk
 has to search the catalogue locally.
 
-**5. The development checkout is not the archive.** The daily task writes key sets into
+**5. Light time is part of the integration span, not padding on it.** `predict_dense`
+asks the trajectory for `t - tau`, and tau is the light time to the object. A 3° prefilter
+over 1.56M orbits admits genuinely distant bodies, and the first full run died twenty
+minutes in on one at **2,389 AU, where tau is 13.8 days** — outside a 2-day margin.
+`SPAN_MARGIN_DAYS = 90` covers ~15,600 AU and costs nothing against a multi-year span.
+The same run had written **nothing**: fifty completed tracklets and every paid-for MPC
+query with them. A refine failure now costs one tracklet, results are checkpointed every
+ten, and a checkpoint is stamped `partial: true` so a half-finished file can never be read
+as a finished one.
+
+**6. The development checkout is not the archive.** The daily task writes key sets into
 the development tree but commits manifests and deltas from a separate archive clone, so
 **neither tree alone holds the whole series**: the dev tree was missing six snapshots'
 manifests that `main` has, and three of its snapshot directories hold a key set with no
 manifest beside it. `m12_series.py` takes `--snapshots` for exactly this reason and was
 pointed at a merged read-only view.
 
-**6. Hand-built 80-column lines do not parse.** Two attempts at synthesising an OBS80
+**7. Hand-built 80-column lines do not parse.** Two attempts at synthesising an OBS80
 fixture for the confirmation test were rejected by `mpc80.parse_line` on column
 alignment. The test now uses a line lifted verbatim from a real published record, which is
 also the repository's existing convention (`tests/conftest.py`).
 
 ---
 
-## 6. Tests
+## 6. The retention window, widened
 
-**517 passed** (505 before M12, plus 12 in `tests/test_m12.py`), ruff clean.
+Two of this milestone's findings are holes rather than measurements — 2026-08-13's delta
+could not be computed, and the 2026-07-29 segment has no anchor and never will again —
+and M11 §1.0 was a third. All three have one cause: **at one snapshot a day, a rolling
+window of three or four is three or four days.**
+
+| Setting | Where | Was | Now |
+|---|---|---:|---:|
+| `FULL_KEEP` | `src/itf_linker/snapshot.py` | 3 | **14** |
+| `KEYSET_KEEP` | `scripts/snapshot-local.sh` | 4 | **14** |
+
+The two do different jobs and both were too small. `FULL_KEEP` is the local window, and it
+is what decides whether the **next** delta can be computed at all — the local task passes
+no override, so the module constant is the only setting that matters. `KEYSET_KEEP` is the
+release mirror, and it is what decides whether an already-pruned key set can be
+**recovered**. A mirror shallower than the local window is a mirror that cannot restore
+what the window drops, so a test now asserts `KEYSET_KEEP >= FULL_KEEP`.
+
+Cost: ~185 MB per snapshot, so ~2.6 GB on a disk with 703 GB free, against a
+re-measurement that is impossible at any price — the MPC serves only the current ITF.
+Pruning is unchanged in every other respect: it still runs only after a confirmed upload,
+so it can never leave the newest generation missing.
+
+This does not repair anything. 08-13 and 07-29 stay lost. It stops the fourth one.
+
+---
+
+## 7. Tests
+
+**521 passed** (505 before M12, plus 16 in `tests/test_m12.py`), ruff clean across the
+repository.
 
 The new tests pin the two pieces of machinery that failed silently, plus the confound the
 whole milestone rests on:
@@ -315,11 +454,18 @@ whole milestone rests on:
 * **the prefilter returns candidates nearest-first** and its radius actually excludes;
 * the confirmation rule needs *both* halves — a published row at the same instant but 10″
   away, an hour later at the same place, or at a different station all fail to match,
-  which is the pointed-field confound M10 had to screen for.
+  which is the pointed-field confound M10 had to screen for;
+* **`refine` survives an orbit at 500 AU**, whose light time exceeds the margin the first
+  version used, and still returns it ranked correctly;
+* a checkpoint is stamped `partial`, counts what was *done* rather than what was asked
+  for, and reports its refine failures;
+* **the retention window survives a missed week**, and the release mirror reaches at least
+  as far back as local retention — the two settings of §6, pinned so they cannot quietly
+  drift back to three days.
 
 ---
 
-## 7. Outputs
+## 8. Outputs
 
 | File | What it is |
 |---|---|
@@ -329,7 +475,9 @@ whole milestone rests on:
 | `data/raw/rubin/m12-crosswalk.json` | The sampled tracklets and their confirmations |
 | `data/raw/rubin/m12-departed-window.parquet` | Departures 08-19 → 08-23 with astrometry |
 | `data/raw/rubin/m12-orbits-full.parquet` | 1,558,557 MPCORB orbits in sweep layout |
-| `tests/test_m12.py` | 12 tests |
+| `data/raw/rubin/m12-crosswalk.log` | The sample's run log |
+| `data/raw/rubin/m12-crosswalk-deep.json` | The 17 unconfirmed, re-run at confirm depth 50 |
+| `tests/test_m12.py` | 16 tests |
 
 Reproduce with:
 
@@ -343,22 +491,40 @@ python scripts/m12_crosswalk.py --departed data/raw/rubin/m12-departed-window.pa
 
 ---
 
-## 8. Recommended next milestone
+## 9. Recommended next milestone
 
 M11 §9's five items are **all still open and all still rank above this**. In particular
 item 1, the submission decision, is Matthew's and is unchanged by anything here — except
 that §4 now puts a measured rate on the cost of waiting.
 
-What M12 adds to that list:
+Three of the four things M12 first listed for itself were done inside M12 and are struck
+out here rather than carried forward:
 
-1. **Watch whether Pan-STARRS intake returns.** As of 08-23 it has not. The archive will
-   answer this for free on whatever days the machine is on; nothing needs to be built. If
-   it stays dark, the ITF's growth stops and the file drains monotonically, which changes
-   the arithmetic in §4.
-2. **The 08-13 hole is the second measurement lost to key-set retention** (M11 §1.0 was
-   the first). `KEYSET_KEEP = 4` in `snapshot-local.sh` is what bounds it. Raising it is
-   cheap — each asset is ~170 MB and they are release assets, not git objects — and it
-   would have prevented both.
-3. **The unanchored 07-29 segment can never be recovered.** Its key sets are gone. If the
-   earliest days matter, the only fix is to stop pruning, and it has to happen before the
-   window rolls, not after.
+1. ~~**Lower the 11.3% ceiling by searching deeper.**~~ **Done, and it did not work** — §3.3.
+   All 17 re-run at confirm depth 50, 850 MPC requests, **0 additional confirmations**. The
+   ceiling is not a ranking artifact and more depth will not move it. What is left is the
+   one explanation the method cannot see from inside: the absorbing object is absent from
+   MPCORB. Testing *that* needs a different instrument — two MPCORB pulls far enough apart
+   that a designation created by a link appears in the later one but not the earlier — and
+   it is worth doing only if the 11.3% ever has to become a measurement rather than a
+   bound. It does not currently carry any conclusion.
+2. ~~**Watch whether Pan-STARRS intake returns.**~~ **Answered for one more day** — §2.2
+   postscript. 2026-08-24 puts it at 18 arrivals, 0.5% of intake: **eight consecutive
+   days**. This still costs nothing to keep watching, and it is the one number here that
+   changes the arithmetic in §4 if it stays where it is. If Pan-STARRS does not come back,
+   the ITF stops growing and drains monotonically.
+3. ~~**Raise the key-set retention window.**~~ **Done** — §6. `FULL_KEEP` 3 → 14 and
+   `KEYSET_KEEP` 4 → 14, with a test asserting the mirror is never shallower than the local
+   window. This repairs nothing; it stops the fourth loss.
+4. **The unanchored 2026-07-29 segment can never be recovered.** Its key sets are gone and
+   §6 came too late for them. Stated here only so nobody spends time trying: the fix for
+   this class of problem has to land before the window rolls, never after.
+
+What M12 leaves genuinely open:
+
+5. **Nothing in this milestone was verified against a second ITF source, because there
+   isn't one.** Every number rests on the archive's own chain, which is internally verified
+   five ways (§0.3) but has no external check — the MPC serves only the current file, so
+   there is nothing to reconcile against. That is a permanent property of the problem, not
+   a gap to close, and it is the reason §2.4 refuses to name a cause for the Pan-STARRS
+   collapse.

@@ -81,7 +81,23 @@ from . import config
 RAW_KEEP = 1
 
 #: Number of most-recent snapshots keeping their full key set and designation summary.
-FULL_KEEP = 3
+#:
+#: Raised from 3 to 14 after this window cost two measurements outright. A key set is the
+#: only thing that makes the *next* delta computable and the only thing that lets a
+#: milestone re-read the universe it swept, and at one snapshot a day a window of 3 is
+#: three days:
+#:
+#: * **M11 §1.0** — the 08-16 base snapshot was pruned before M11's refresh, so
+#:   "consumed since 08-16" silently measured "since 08-21" and read 18 instead of 103.
+#: * **M12 §5** — 2026-08-13's delta could not be computed at all ("no ancestor retains a
+#:   full key set") and is a permanent hole in the series; the 07-29 segment lost its
+#:   anchor entirely and can never be recovered.
+#:
+#: Neither is repairable after the fact: the MPC serves only the current ITF. 14 costs
+#: ~2.6 GB on disk (~185 MB per snapshot) against a re-measurement that is impossible at
+#: any price. ``scripts/snapshot-local.sh`` keeps ``KEYSET_KEEP`` in step so the release
+#: mirror can restore anything this window still holds.
+FULL_KEEP = 14
 
 OBS_FILE = "observations.parquet"
 DESIG_FILE = "designations.parquet"

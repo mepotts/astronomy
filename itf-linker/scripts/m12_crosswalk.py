@@ -285,7 +285,7 @@ def write_doc(args, pick, desigs, results, *, partial: bool) -> dict[str, Any]:
         "rules": {
             "prefilter_deg": PREFILTER_DEG,
             "refine_keep": REFINE_KEEP,
-            "confirm_depth": CONFIRM_DEPTH,
+            "confirm_depth": getattr(args, "confirm_depth", CONFIRM_DEPTH),
             "match_seconds": MATCH_SECONDS,
             "match_arcsec": MATCH_ARCSEC,
             "note": "UNCONFIRMED is an upper bound on 'not a linkage': a link into an "
@@ -316,15 +316,28 @@ def main() -> None:
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--sample", type=int, default=150)
     ap.add_argument("--seed", type=int, default=20260823)
+    ap.add_argument("--confirm-depth", type=int, default=CONFIRM_DEPTH,
+                    help="how far down the ranking to ask get-obs")
+    ap.add_argument("--only", nargs="*", default=None,
+                    help="run these designations instead of drawing a sample")
     args = ap.parse_args()
 
     df = pl.read_parquet(args.departed)
     desigs = df["desig"].unique().sort().to_list()
-    rng = np.random.default_rng(args.seed)
-    pick = [desigs[i] for i in rng.choice(len(desigs), size=min(args.sample, len(desigs)),
-                                          replace=False)]
-    print(f"{len(desigs):,} departed designations available; sampling {len(pick)}",
-          flush=True)
+    if args.only:
+        missing = [d for d in args.only if d not in set(desigs)]
+        if missing:
+            raise SystemExit(f"not in the departed table: {missing}")
+        pick = list(args.only)
+        print(f"re-running {len(pick)} named designations at confirm depth "
+              f"{args.confirm_depth}", flush=True)
+    else:
+        rng = np.random.default_rng(args.seed)
+        pick = [desigs[i] for i in rng.choice(len(desigs),
+                                              size=min(args.sample, len(desigs)),
+                                              replace=False)]
+        print(f"{len(desigs):,} departed designations available; sampling {len(pick)}",
+              flush=True)
 
     orbits = build_orbit_table(args.mpcorb, args.orbit_table)
     arr = orbit_arrays(orbits)
@@ -360,7 +373,7 @@ def main() -> None:
         # ranking-only answer would have thrown away a real linkage. The loop breaks on
         # the first hit, so the extra queries are paid only by tracklets that fail.
         rec["confirmation"] = None
-        for cand in cands[:CONFIRM_DEPTH]:
+        for cand in cands[:args.confirm_depth]:
             c = confirm(obs, cand["primary"], args.cache)
             if c["matched"] > 0:
                 rec["confirmation"] = {"object": cand["primary"],
