@@ -1,5 +1,16 @@
 # Plate archaeology — IAU designations from century-old glass
 
+> **Execution update (2026-09-02):** a narrow account-free light-curve/API slice in
+> [`../dasch-pilot/`](../dasch-pilot/) passed on a published T CrB positive
+> control plus a frozen nearby field control. No unknown-source search ran.
+> The original M0's `daschlab`/plate-cutout recovery was not executed, so M0
+> remains open rather than passed in full.
+> Before this plan can advance to candidates, it needs multiple matched
+> controls, an empirical stable-star false-positive rate, an untouched
+> validation split, and manual plate-cutout/source-splitting review. The older
+> broad-search and novelty language below is a prospectus, not a current
+> finding or submission queue.
+
 **One-liner:** Digitized photographic plate archives span 1880–1990 and contain transients that nobody
 alive ever noticed, because no survey pipeline reads glass. Find one, report it to the Transient Name
 Server, and it receives a permanent IAU designation — for an event that happened decades ago.
@@ -10,7 +21,7 @@ Server, and it receives a permanent IAU designation — for an event that happen
 B **3/5** (image work on heterogeneous scanned plates; harder than catalogue queries) · E **5/5** (a
 permanent IAU designation for a supernova that exploded before you were born)
 
-**Status:** proposed
+**Status:** narrow API/light-curve slice passed; original plate-cutout M0 and blind discovery stage not completed
 
 **Cost to operate: $0** — DASCH and DSS/POSS scans are free downloads.
 
@@ -128,6 +139,10 @@ direction of inference. Build one, get most of the other.
 and confirm you can recover it — visible at the right epoch, absent adjacent. *If you cannot recover a
 known event, the detection logic is not ready.* Also verify the TNS account from
 [tns-alert-miner](tns-alert-miner.md) is approved — same account serves both.
+
+The 2026-09-02 pilot completed only the public-API light-curve portion on T CrB and one
+nearby field control. It did not recover a plate cutout, test adjacent-epoch image
+absence, or verify/create a TNS account; those original M0 gates remain open.
 
 **M1 — blind search on a bounded sky region.** Pick a well-plated field. Run epoch-differencing. Measure
 your false-positive rate against plate defects — **this number decides whether the project is viable**,

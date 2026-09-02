@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "analysis_id": "dasch-m0-tcrb-20260902",
+  "retrieval_completed_utc": "2026-09-02T16:44:37Z",
+  "api_base": "https://api.starglass.cfa.harvard.edu/public/",
+  "target": {
+    "name": "T CrB",
+    "role": "published positive control; not a discovery candidate",
+    "ra_deg": 239.8756759441,
+    "dec_deg": 25.9201703842
+  },
+  "artifacts": [
+    {
+      "role": "target_querycat",
+      "path": "data/raw/tcrb-querycat.json",
+      "endpoint": "dasch/dr7/querycat",
+      "retrieved_utc": "2026-09-02T16:12:33Z",
+      "request": {
+        "refcat": "apass",
+        "ra_deg": 239.8756759441,
+        "dec_deg": 25.9201703842,
+        "radius_arcsec": 30
+      },
+      "bytes": 343,
+      "sha256": "281651dcef997213634f0254c39dffcd734c5017ed41257d71e267d23f40f923"
+    },
+    {
+      "role": "target_lightcurve",
+      "path": "data/raw/tcrb-lightcurve.json",
+      "endpoint": "dasch/dr7/lightcurve",
+      "retrieved_utc": "2026-09-02T16:12:47Z",
+      "request": {
+        "refcat": "apass",
+        "ref_number": 415593021255513,
+        "gsc_bin_index": 121408110
+      },
+      "bytes": 1125419,
+      "sha256": "fd4937b16ca3ae471a6cab65545c7321cf08d66e12de67b17aa766e0a08d0fef"
+    },
+    {
+      "role": "field_querycat",
+      "path": "data/raw/tcrb-field-querycat.json",
+      "endpoint": "dasch/dr7/querycat",
+      "retrieved_utc": "2026-09-02T16:17:13Z",
+      "request": {
+        "refcat": "apass",
+        "ra_deg": 239.8756759441,
+        "dec_deg": 25.9201703842,
+        "radius_arcsec": 600
+      },
+      "bytes": 25749,
+      "sha256": "ba000feb665f5a192e2fecf5a5e5a1272d8e3f02c5e3a7088a3072f08e8ec7f5"
+    },
+    {
+      "role": "field_lightcurve",
+      "path": "data/raw/field-control-lightcurve.json",
+      "endpoint": "dasch/dr7/lightcurve",
+      "retrieved_utc": "2026-09-02T16:18:05Z",
+      "selection_rule": "highest num_matches among APASS class=0 and v_flag=0 sources in the frozen 600-arcsec field query; ties by ref_text",
+      "request": {
+        "refcat": "apass",
+        "ref_number": 416000611255238,
+        "gsc_bin_index": 121366668
+      },
+      "bytes": 342139,
+      "sha256": "9b0eebc5b0c44ec4c9dcb78f4e9881501a7ebee6d0a2990439b72dbb280ddffe"
+    },
+    {
+      "role": "api_health",
+      "path": "data/raw/health.json",
+      "endpoint": "health",
+      "retrieved_utc": "2026-09-02T16:44:37Z",
+      "request": {},
+      "bytes": 63,
+      "sha256": "91baba90f93e78390dd18662f01bd6815171d9ae752565a14c46ef1f171c3b98"
+    }
+  ],
+  "official_documentation": [
+    "https://dasch.cfa.harvard.edu/dr7/web-apis/",
+    "https://dasch.cfa.harvard.edu/dr7/reduce-lightcurve/",
+    "https://dasch.cfa.harvard.edu/dr7/lightcurve-columns/",
+    "https://daschlab.readthedocs.io/en/latest/api/daschlab.photometry.Photometry.html"
+  ],
+  "known_control_reference": {
+    "citation": "Luna et al. (2020), Increasing activity in T CrB suggests nova eruption is impending",
+    "arxiv": "https://arxiv.org/abs/2009.11902",
+    "doi": "https://doi.org/10.3847/2041-8213/abbb2c"
+  }
+}

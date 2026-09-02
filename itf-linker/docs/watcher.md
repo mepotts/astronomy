@@ -69,7 +69,16 @@ to contain **66** new batch-sized partitions. That was false: **64 were internal
 The exact-path rule now rejects them before they enter state or event logic, with the
 mixed bucket response pinned in `tests/data/rubin_bucket_listing.json`.
 
-After that correction, exactly two genuine canonical aggregates remain unprocessed:
+After that correction, exactly two genuine canonical aggregates remained:
 **2026-08-19** and **2026-08-24**. They are explicit regression expectations in
-`tests/test_rubin_batch_watch.py`. Exit code 2 means a human may queue those two dates for
-the existing M8/M9 attribution workflow; it still does not start that workflow itself.
+`tests/test_rubin_batch_watch.py`.
+
+**M14 inspected both on 2026-09-02.** Anatomy classified 1,288,856 observations as
+numbered and 23,427 under 1,104 old 2000–2005 unnumbered designations, but left two rows
+unclassified. That accounting residue should have stopped the prospective internal plan.
+The later real/decoy and fit work is exploratory; exact accounting bounds the corrected
+diagnostic at 0–2/100 (two usage-HOLD rows), but it is noninferential
+because the usage counter can create false FAILs. See [`M14-RESULTS.md`](../M14-RESULTS.md). The watcher
+was correct to signal the files; its job is deliberately content-agnostic. Exit code 2
+still means “run an anatomy gate,” not “a discovery batch exists,” and never starts the
+attribution pipeline itself.

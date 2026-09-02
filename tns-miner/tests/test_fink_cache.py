@@ -16,10 +16,21 @@ import m1_fetch_fink as fink  # noqa: E402
 
 
 class StubResponse:
-    def __init__(self, status_code: int = 200, payload=None, json_error=None):
+    def __init__(
+        self, status_code: int = 200, payload=None, json_error=None, content=None
+    ):
         self.status_code = status_code
         self.payload = payload
         self.json_error = json_error
+        self.content = (
+            content
+            if content is not None
+            else (
+                json.dumps(payload, separators=(",", ":")).encode("utf-8")
+                if json_error is None
+                else b""
+            )
+        )
 
     def json(self):
         if self.json_error is not None:
@@ -100,8 +111,10 @@ class FinkCacheTests(unittest.TestCase):
     def test_malformed_json_never_writes_empty_cache(self):
         oid = "ZTF26malformed"
         s = StubSession(
-            [StubResponse(json_error=ValueError("bad JSON"))
-             for _ in range(fink.FETCH_ATTEMPTS)]
+            [
+                StubResponse(json_error=ValueError("bad JSON"))
+                for _ in range(fink.FETCH_ATTEMPTS)
+            ]
         )
 
         with self.assertRaises(fink.FinkFetchError):
@@ -114,8 +127,7 @@ class FinkCacheTests(unittest.TestCase):
         incomplete = record(oid)
         del incomplete["i:jd"]
         s = StubSession(
-            [StubResponse(payload=[incomplete])
-             for _ in range(fink.FETCH_ATTEMPTS)]
+            [StubResponse(payload=[incomplete]) for _ in range(fink.FETCH_ATTEMPTS)]
         )
 
         with self.assertRaises(fink.FinkFetchError):
@@ -126,8 +138,10 @@ class FinkCacheTests(unittest.TestCase):
     def test_wrong_object_response_never_enters_cache(self):
         oid = "ZTF26wanted"
         s = StubSession(
-            [StubResponse(payload=[record("ZTF26other")])
-             for _ in range(fink.FETCH_ATTEMPTS)]
+            [
+                StubResponse(payload=[record("ZTF26other")])
+                for _ in range(fink.FETCH_ATTEMPTS)
+            ]
         )
 
         with self.assertRaises(fink.FinkFetchError):
@@ -149,15 +163,40 @@ class FinkCacheTests(unittest.TestCase):
         self.assertEqual(meta["row_count"], 0)
         self.assertEqual(meta["source_url"], fink.FINK_OBJECTS)
         self.assertIn("fetched_at_utc", meta)
+        raw = meta["raw_input"]
+        self.assertTrue((self.cache / raw["path"]).exists())
+        self.assertTrue(raw["proof"]["exact_http_entity_bytes"])
 
         # A proved empty is a real cache hit, not another network request.
         second = StubSession([])
         self.assertEqual(fink.fetch_one(second, oid), [])
         self.assertEqual(second.calls, [])
 
+    def test_retained_raw_response_is_authenticated_and_tamper_evident(self):
+        oid = "ZTF26rawproof"
+        response_bytes = json.dumps([record(oid)], separators=(",", ":")).encode(
+            "utf-8"
+        )
+        fink.fetch_one(
+            StubSession([StubResponse(payload=[record(oid)], content=response_bytes)]),
+            oid,
+        )
+        provenance = fink.cache_provenance([oid])
+
+        authenticated = fink.authenticate_raw_inputs(provenance, require_exact=True)
+
+        self.assertEqual(authenticated["n_raw_responses"], 1)
+        self.assertEqual(authenticated["n_raw_bytes"], len(response_bytes))
+        raw_path = self.cache / provenance["object_inputs"][oid]["raw_input"]["path"]
+        raw_path.write_bytes(b"[]")
+        with self.assertRaisesRegex(fink.FinkFetchError, "failed authentication"):
+            fink.authenticate_raw_inputs(provenance, require_exact=True)
+
     def test_stale_empty_is_refetched(self):
         oid = "ZTF26staleempty"
-        self.assertEqual(fink.fetch_one(StubSession([StubResponse(payload=[])]), oid), [])
+        self.assertEqual(
+            fink.fetch_one(StubSession([StubResponse(payload=[])]), oid), []
+        )
         meta_path = self.cache / "_meta" / f"{oid}.json"
         meta = json.loads(meta_path.read_text(encoding="utf-8"))
         meta["fetched_at_utc"] = "2000-01-01T00:00:00Z"
@@ -181,8 +220,10 @@ class FinkCacheTests(unittest.TestCase):
         meta_path = self.cache / "_meta" / f"{oid}.json"
         meta = json.loads(meta_path.read_text(encoding="utf-8"))
         meta["fetched_at_utc"] = (
-            datetime.now(timezone.utc) + timedelta(days=1)
-        ).isoformat().replace("+00:00", "Z")
+            (datetime.now(timezone.utc) + timedelta(days=1))
+            .isoformat()
+            .replace("+00:00", "Z")
+        )
         meta_path.write_text(json.dumps(meta), encoding="utf-8")
         replacement = record(oid)
         session = StubSession([StubResponse(payload=[replacement])])
@@ -250,9 +291,7 @@ class FinkCacheTests(unittest.TestCase):
         )
         replacement = record(oid, 2460001.5)
         session = StubSession([StubResponse(payload=[replacement])])
-        required = fink._datetime_to_jd(
-            datetime.now(timezone.utc) - timedelta(hours=1)
-        )
+        required = fink._datetime_to_jd(datetime.now(timezone.utc) - timedelta(hours=1))
 
         got = fink.fetch_one(
             session,
@@ -288,7 +327,9 @@ class FinkCacheTests(unittest.TestCase):
 
     def test_batch_refresh_bypasses_a_fresh_cache(self):
         oid = "ZTF26batchrefresh"
-        fink.fetch_one(StubSession([StubResponse(payload=[record(oid, 2460000.5)])]), oid)
+        fink.fetch_one(
+            StubSession([StubResponse(payload=[record(oid, 2460000.5)])]), oid
+        )
         newer = record(oid, 2460001.5)
         s = StubSession([StubResponse(payload=[newer])])
 
@@ -413,7 +454,9 @@ class FinkCacheTests(unittest.TestCase):
                 raise OSError("simulated interruption before proof")
             real_write(path, text)
 
-        with mock.patch.object(fink, "_atomic_write", side_effect=interrupt_before_proof):
+        with mock.patch.object(
+            fink, "_atomic_write", side_effect=interrupt_before_proof
+        ):
             with self.assertRaisesRegex(OSError, "simulated interruption"):
                 fink.resolve_oid(
                     StubSession([StubResponse(payload=[record(new_oid)])]),
@@ -422,7 +465,9 @@ class FinkCacheTests(unittest.TestCase):
                     refresh=True,
                 )
 
-        self.assertEqual(json.loads(cache_path.read_text(encoding="utf-8"))[key], new_oid)
+        self.assertEqual(
+            json.loads(cache_path.read_text(encoding="utf-8"))[key], new_oid
+        )
         self.assertEqual(
             json.loads(meta_path.read_text(encoding="utf-8"))[key]["resolved_oid"],
             old_oid,

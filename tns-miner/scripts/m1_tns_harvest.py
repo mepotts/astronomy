@@ -82,6 +82,7 @@ def _write_month_cache(
     *,
     fetch_started: datetime,
     fetch_finished: datetime,
+    raw_page_inputs: list[dict] | None = None,
 ) -> dict:
     payload = frame.to_csv(index=False, lineterminator="\n").encode("utf-8")
     return write_cache(
@@ -95,6 +96,7 @@ def _write_month_cache(
             "fetch_started_at_jd": datetime_to_jd(fetch_started),
             "fetch_finished_at_utc": fetch_finished.isoformat().replace("+00:00", "Z"),
             "fetch_finished_at_jd": datetime_to_jd(fetch_finished),
+            "raw_page_inputs": raw_page_inputs or [],
         },
     )
 
@@ -161,7 +163,38 @@ def _publish_snapshot(
     return metadata
 
 
-def fetch_window(s, d0: date, d1: date, extra: dict | None = None) -> pd.DataFrame:
+def _preserve_raw_page(
+    response,
+    frame: pd.DataFrame,
+    *,
+    raw_dir: Path,
+    params: dict,
+    page: int,
+) -> dict:
+    payload = response.content
+    if not isinstance(payload, bytes) or not payload:
+        raise RuntimeError("TNS response did not expose exact HTTP entity bytes")
+    path = raw_dir / f"page_{page:04d}.csv"
+    proof = write_cache(
+        path,
+        payload,
+        kind="tns_search_page_raw",
+        contract={"source_url": TNS_SEARCH, "query": params},
+        row_count=len(frame),
+        metadata_extra={"exact_http_entity_bytes": True},
+    )
+    return {"path": path.relative_to(TNSDIR).as_posix(), "proof": proof}
+
+
+def fetch_window(
+    s,
+    d0: date,
+    d1: date,
+    extra: dict | None = None,
+    *,
+    raw_dir: Path | None = None,
+    raw_provenance: list[dict] | None = None,
+) -> pd.DataFrame:
     """All TNS objects with discovery date in [d0, d1), paginated."""
     frames, page = [], 0
     empty_schema: pd.DataFrame | None = None
@@ -180,10 +213,24 @@ def fetch_window(s, d0: date, d1: date, extra: dict | None = None) -> pd.DataFra
         r.raise_for_status()
         txt = r.content.decode("utf-8", "replace")
         if not txt.lstrip().startswith('"ID"'):
-            raise RuntimeError(f"unexpected TNS payload at {d0} page {page}: {txt[:200]!r}")
+            raise RuntimeError(
+                f"unexpected TNS payload at {d0} page {page}: {txt[:200]!r}"
+            )
         df = pd.read_csv(io.StringIO(txt), dtype=str)
         print(f"  {d0} page {page}: {len(df)} rows", flush=True)
+        required_columns = {"ID", "Discovery Date (UT)"}
+        if not required_columns.issubset(df.columns):
+            raise RuntimeError(
+                f"TNS page {page} lacks columns "
+                f"{sorted(required_columns - set(df.columns))}"
+            )
         if df.empty:
+            if raw_dir is not None:
+                entry = _preserve_raw_page(
+                    r, df, raw_dir=raw_dir, params=params, page=page
+                )
+                if raw_provenance is not None:
+                    raw_provenance.append(entry)
             empty_schema = df
             break
         if "ID" not in df.columns or df["ID"].isna().any():
@@ -199,8 +246,7 @@ def fetch_window(s, d0: date, d1: date, extra: dict | None = None) -> pd.DataFra
         if discovery_times.isna().any():
             bad_rows = df.index[discovery_times.isna()].tolist()[:3]
             raise RuntimeError(
-                f"TNS page {page} has invalid discovery timestamps at rows "
-                f"{bad_rows}"
+                f"TNS page {page} has invalid discovery timestamps at rows {bad_rows}"
             )
         start = pd.Timestamp(d0, tz="UTC")
         end = pd.Timestamp(d1, tz="UTC")
@@ -224,6 +270,10 @@ def fetch_window(s, d0: date, d1: date, extra: dict | None = None) -> pd.DataFra
                 f"{sample}; snapshot completeness is unproved"
             )
         seen_ids.update(page_ids)
+        if raw_dir is not None:
+            entry = _preserve_raw_page(r, df, raw_dir=raw_dir, params=params, page=page)
+            if raw_provenance is not None:
+                raw_provenance.append(entry)
         frames.append(df)
         page += 1
         if page > 40:
@@ -295,6 +345,7 @@ def main() -> None:
     allf = []
     month_provenance = []
     seen_snapshot_ids: set[str] = set()
+    harvest_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
     for d0, d1 in months:
         tag = validated_tag(f"month_{d0:%Y%m}")
         cache = TNSDIR / f"{tag}.csv"
@@ -305,7 +356,15 @@ def main() -> None:
         # tokenless registry snapshot contract available from this export.
         _read_month_cache(cache, d0, d1)
         fetch_started = datetime.now(timezone.utc)
-        df = fetch_window(s, d0, d1)
+        raw_page_inputs: list[dict] = []
+        raw_dir = TNSDIR / "raw" / harvest_id / f"{d0:%Y%m%d}_{d1:%Y%m%d}"
+        df = fetch_window(
+            s,
+            d0,
+            d1,
+            raw_dir=raw_dir,
+            raw_provenance=raw_page_inputs,
+        )
         fetch_finished = datetime.now(timezone.utc)
         window_state = _window_state(
             df,
@@ -321,17 +380,21 @@ def main() -> None:
             d1,
             fetch_started=fetch_started,
             fetch_finished=fetch_finished,
+            raw_page_inputs=raw_page_inputs,
         )
-        month_provenance.append({
-            "window": [d0.isoformat(), d1.isoformat()],
-            "window_state": window_state,
-            "sha256": month_meta["payload_sha256"],
-            "row_count": month_meta["row_count"],
-            "fetch_started_at_utc": month_meta["fetch_started_at_utc"],
-            "fetch_started_at_jd": month_meta["fetch_started_at_jd"],
-            "fetch_finished_at_utc": month_meta["fetch_finished_at_utc"],
-            "fetch_finished_at_jd": month_meta["fetch_finished_at_jd"],
-        })
+        month_provenance.append(
+            {
+                "window": [d0.isoformat(), d1.isoformat()],
+                "window_state": window_state,
+                "sha256": month_meta["payload_sha256"],
+                "row_count": month_meta["row_count"],
+                "fetch_started_at_utc": month_meta["fetch_started_at_utc"],
+                "fetch_started_at_jd": month_meta["fetch_started_at_jd"],
+                "fetch_finished_at_utc": month_meta["fetch_finished_at_utc"],
+                "fetch_finished_at_jd": month_meta["fetch_finished_at_jd"],
+                "raw_page_inputs": raw_page_inputs,
+            }
+        )
         print(f"{tag}: fetched {len(df)}", flush=True)
         allf.append(df)
 

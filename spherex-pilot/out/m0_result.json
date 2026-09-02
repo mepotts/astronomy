@@ -1,0 +1,136 @@
+{
+  "blinded_probe": {
+    "control_rows": 3,
+    "control_selection_quality": {
+      "all_separations_within_frozen_bounds": true,
+      "all_w2_deltas_within_frozen_bound": true,
+      "count": 3
+    },
+    "coordinates_sent_externally": 0,
+    "position_coverage_status": "NOT_QUERIED_OUTBOUND_QUERY_GATE",
+    "private_rows_prepared_locally": 6,
+    "target_rows": 3
+  },
+  "claim_scope": "aggregate feasibility; target ranking is reconstructible from the existing tracked upstream catalog",
+  "decision": {
+    "exact_unblock_action": "Approve anonymous IRSA TAP coverage queries for the six rows in the gitignored private manifest; then rerun the probe and apply the frozen coverage/runtime gates.",
+    "next_science_step_if_unblocked": "If the coverage gate passes, run only the leading warm-tail row, its nearby photospheric control, and the second-ranked subthreshold falsifier through the official IRSA Spectrophotometry Tool over D5+D6; grade flags, fit_ql, flux_bkg, and the predeclared flux contrast.",
+    "old_premise": "KILL: forced photometry is an official IRSA capability, not novelty",
+    "privacy_note": "The existing tracked upstream catalog and tracked ranking code make the target ranking reproducible. The gate protects the exact outbound IRSA payload and gitignored control identities; it does not claim target secrecy from readers.",
+    "publication_or_submission_authorized": false,
+    "survey_scale": "KILL: the catalogue-wide cold-excess use case is below 5 microns",
+    "why_blocked": "The preregistered position-coverage test would send six target/control coordinates to IRSA. That exact outward payload was not authorized, so no coordinate-bearing request was sent."
+  },
+  "generated_utc": "2026-09-02T17:30:45.023895+00:00",
+  "inputs": {
+    "catalog": {
+      "bytes": 199149,
+      "rows": 223,
+      "sha256": "e2c72846fd160b45dda3321af2135eb16b2c8fbcf21c696b2340c6ad9a85361e"
+    },
+    "control_cells": {
+      "bytes": 200107778,
+      "files": 220,
+      "tree_sha256": "35212bd514d70747ba45630263a09dc368eebe961e42d0c2aeba07e7cbf424b7"
+    },
+    "pm13_locus": {
+      "bytes": 55680,
+      "sha256": "1de2edeec17bb3346e0e4e70b999de5ee29947df38474e64cddb7cfacc164b7f"
+    },
+    "private_manifest_sha256": "397844db7532003c4bc7faa76907b260b20c37c4d44b6a3b584390211a74bf1a",
+    "warm_error_references": [
+      {
+        "bytes": 85778,
+        "path": "dyson-revet/out/w3_spherex_D_sed.csv",
+        "sha256": "ff09713887eb2c8588c861f0600455a897f85757fd855007dd48b28c48b38115"
+      },
+      {
+        "bytes": 65489,
+        "path": "dyson-revet/out/w3_spherex_I_sed.csv",
+        "sha256": "5592832839093bf16f137f62600162872cec0f7ca96bc07efa853478ca8c3a05"
+      }
+    ]
+  },
+  "official_sources": {
+    "aws_level2_list": {
+      "bytes": 763,
+      "sha256": "5891e226a0d110867dcc2f8f79fc4efcc6e51358b059d4284ca27f3cbf9a3247",
+      "url": "https://nasa-irsa-spherex.s3.amazonaws.com/?list-type=2&prefix=qr2%2Flevel2%2F&delimiter=%2F&max-keys=5"
+    },
+    "aws_registry": {
+      "bytes": 18427,
+      "sha256": "3553a63b293c78b0a3dca0cbccff8a6483674ad4f21d87eeb07d64fb66d8d164",
+      "url": "https://registry.opendata.aws/spherex-qr/"
+    },
+    "irsa_mission": {
+      "bytes": 8864,
+      "sha256": "d5b6d83d6050a961313d6823ca58f386e55ef01663d98987f38d386fb685d4ec",
+      "url": "https://irsa.ipac.caltech.edu/Missions/spherex.html"
+    },
+    "irsa_spectrophotometry": {
+      "bytes": 57312,
+      "sha256": "8a223d69cfc62f55a78751ca9f21bc88786da1fe1f0251a5e3dd1527d08397bf",
+      "url": "https://irsa.ipac.caltech.edu/onlinehelp/spherex/spherex/sp.html"
+    },
+    "irsa_tap_pipeline_versions": {
+      "bytes": 53,
+      "frozen_qr2_versions": [
+        "6.4",
+        "6.5.3",
+        "6.5.4",
+        "6.5.5",
+        "6.5.6",
+        "6.5.7"
+      ],
+      "observed_versions": [
+        "6.4",
+        "6.5.3",
+        "6.5.4",
+        "6.5.5",
+        "6.5.6",
+        "6.5.7"
+      ],
+      "query_sha256": "a14f68430552cae806e7ee11d2f48793f07716ec4c6464ab17160f75303c7ee1",
+      "sha256": "99f46b60fb1f80ddd43b8597845bcc85de736fbd507e5e0ea0152b24fa0617fc",
+      "url": "https://irsa.ipac.caltech.edu/TAP/sync"
+    },
+    "irsa_tap_schema": {
+      "bytes": 2441,
+      "query_sha256": "1b2c4cd412112ee965c7bea047cdefb67a114fbe917e81f9d44d3e204c447a75",
+      "sha256": "e2c8adebd226debe4e6cb5c3a71bb7a5f6722ceec54f4e21c492836b93a2fbc7",
+      "url": "https://irsa.ipac.caltech.edu/TAP/sync"
+    }
+  },
+  "physical_kill_check": {
+    "conservative_5sigma_floor_ujy": 139.17255085530053,
+    "existing_aperture_stacked_1sigma_ujy": {
+      "max": 27.834510171060106,
+      "median": 25.067790473183322,
+      "min": 22.301070775306535
+    },
+    "fitted_temperature_k": {
+      "max": 283.050847,
+      "median": 140.677966,
+      "min": 100.0
+    },
+    "predicted_4p8um_excess_ujy": {
+      "max": 161.1950299783225,
+      "median": 0.01582638675319305,
+      "min": 1.011415548714656e-05,
+      "p90": 0.7034725025793287,
+      "second_highest": 13.463331242999834
+    },
+    "rows_above_floor": 1
+  },
+  "public_source_validation": {
+    "aws_level2_list": true,
+    "aws_registry": true,
+    "frozen_qr2_versions_observed": true,
+    "irsa_mission": true,
+    "irsa_spectrophotometry": true,
+    "irsa_tap_required_columns": true
+  },
+  "schema_version": 1,
+  "scientific_disposition_before_coverage_gate": "NARROW/PIVOT",
+  "verdict": "BLOCKED"
+}

@@ -65,9 +65,9 @@ ALERCE = "https://api.alerce.online/ztf/v1/objects/"
 FINK_LATESTS = "https://api.ztf.fink-portal.org/api/v1/latests"
 FINK_CLASSES = "https://api.ztf.fink-portal.org/api/v1/classes"
 
-AMP_ENUM = F2.AMP_MIN          # never deeper than the filter
-EPISODE_FLOOR_DAYS = 60.0      # see the note in main(): a candidate pass
-                               # must be evaluated on the CURRENT episode
+AMP_ENUM = F2.AMP_MIN  # never deeper than the filter
+EPISODE_FLOOR_DAYS = 60.0  # see the note in main(): a candidate pass
+# must be evaluated on the CURRENT episode
 POOL = DATA / "pool"
 POOL.mkdir(parents=True, exist_ok=True)
 ALERCE_PAGE_SIZE = 1000
@@ -75,15 +75,25 @@ ALERCE_MAX_PAGES = 200
 FINK_CAP = 1000
 FINK_MAX_BISECT_DEPTH = 14
 FINK_MAX_SLICE_CALLS = 4096
+FINK_FETCH_ATTEMPTS = 5
+FINK_RETRYABLE_STATUSES = {408, 425, 429, 500, 502, 503, 504}
+FINK_LATESTS_TIMEOUT_SECONDS = 30
 
-E2_COLS = ("i:objectId,i:jd,i:magpsf,i:magnr,i:fid,i:ra,i:dec,i:drb,i:rb,"
-           "i:isdiffpos,i:ndethist,i:jdstarthist,d:cdsxmatch")
+E2_COLS = (
+    "i:objectId,i:jd,i:magpsf,i:magnr,i:fid,i:ra,i:dec,i:drb,i:rb,"
+    "i:isdiffpos,i:ndethist,i:jdstarthist,d:cdsxmatch"
+)
 
 # classes that are never worth enumerating whatever the veto list says:
 # solar-system (M1 Layer 1 rejects them by construction) and the aggregate
 # counters Fink publishes in /statistics but does not serve as classes.
-NEVER_ENUMERATE = {"Solar System MPC", "Solar System candidate", "Tracklet",
-                   "simbad_gal", "simbad_tot"}
+NEVER_ENUMERATE = {
+    "Solar System MPC",
+    "Solar System candidate",
+    "Tracklet",
+    "simbad_gal",
+    "simbad_tot",
+}
 FINK_TAXONOMY_CONTRACT_VERSION = 1
 FINK_TAXONOMY_MIN_NON_TNS_CLASSES = 250
 # Deliberate cross-family sentinels from the Fink class catalogue observed when
@@ -98,6 +108,14 @@ FINK_TAXONOMY_REQUIRED_FAMILIES = {
 }
 
 
+class FinkLatestsUnavailable(RuntimeError):
+    """A retryable Fink latests slice remained unavailable after backoff."""
+
+
+class FinkLatestsNeedsBisection(FinkLatestsUnavailable):
+    """The gateway could not evaluate this slice at its current width."""
+
+
 def _e1_contract(t0: float, t1: float) -> dict:
     return {
         "source_url": ALERCE,
@@ -106,6 +124,8 @@ def _e1_contract(t0: float, t1: float) -> dict:
         "ndet_min": 2,
         "page_size": ALERCE_PAGE_SIZE,
         "pagination": "until_short_page",
+        "order_by": "oid",
+        "order_mode": "ASC",
     }
 
 
@@ -137,6 +157,35 @@ def _e2_contract(t0: float, t1: float) -> dict:
     }
 
 
+def _response_bytes(response, parsed) -> tuple[bytes, bool]:
+    """Return exact HTTP entity bytes when available, else canonical test bytes."""
+    content = getattr(response, "content", None)
+    if isinstance(content, bytes) and content:
+        return content, True
+    return (
+        json.dumps(parsed, separators=(",", ":"), ensure_ascii=True).encode("utf-8"),
+        False,
+    )
+
+
+def _taxonomy_contract() -> dict:
+    return {
+        "source_url": FINK_CLASSES,
+        "taxonomy_contract_version": FINK_TAXONOMY_CONTRACT_VERSION,
+    }
+
+
+def _slice_contract(cls: str, t0: float, t1: float, n: int) -> dict:
+    return {
+        "source_url": FINK_LATESTS,
+        "class": cls,
+        "mjd_start": float(t0),
+        "mjd_end": float(t1),
+        "n": int(n),
+        "columns": E2_COLS,
+    }
+
+
 def _alerce_total(value) -> int:
     if isinstance(value, bool):
         raise RuntimeError("ALeRCE total is not a non-negative integer")
@@ -156,19 +205,25 @@ def _validate_latest_payload(
     t0: float,
     t1: float,
 ) -> list[dict]:
-    if not isinstance(payload, list) or any(not isinstance(row, dict) for row in payload):
+    if not isinstance(payload, list) or any(
+        not isinstance(row, dict) for row in payload
+    ):
         raise RuntimeError("response is not a JSON list of alert objects")
     jd_min, jd_max = t0 + 2400000.5, t1 + 2400000.5
     required = {
-        "i:objectId", "i:jd", "i:magpsf", "i:magnr", "i:fid", "i:ra", "i:dec",
+        "i:objectId",
+        "i:jd",
+        "i:magpsf",
+        "i:magnr",
+        "i:fid",
+        "i:ra",
+        "i:dec",
         "i:isdiffpos",
     }
     for index, row in enumerate(payload):
         missing = required - set(row)
         if missing:
-            raise RuntimeError(
-                f"{cls!r} row {index} lacks fields {sorted(missing)}"
-            )
+            raise RuntimeError(f"{cls!r} row {index} lacks fields {sorted(missing)}")
         oid = row["i:objectId"]
         if not isinstance(oid, str) or not oid.strip():
             raise RuntimeError(f"{cls!r} row {index} has invalid object ID")
@@ -209,27 +264,27 @@ def _validate_latest_payload(
         if not scores:
             raise RuntimeError(f"{cls!r} row {index} has no finite drb/rb")
         if str(row["i:isdiffpos"]).strip().lower() not in {
-            "t", "f", "true", "false", "1", "0",
+            "t",
+            "f",
+            "true",
+            "false",
+            "1",
+            "0",
         }:
             raise RuntimeError(f"{cls!r} row {index} has invalid subtraction sign")
     return payload
 
 
 def mjd_to_ut(mjd: float) -> str:
-    return pd.Timestamp((mjd + 2400000.5 - 2440587.5) * 86400,
-                        unit="s", tz="UTC").strftime("%Y-%m-%d %H:%M:%S")
+    return pd.Timestamp(
+        (mjd + 2400000.5 - 2440587.5) * 86400, unit="s", tz="UTC"
+    ).strftime("%Y-%m-%d %H:%M:%S")
 
 
 # --------------------------------------------------------------------------- #
 # which classes does the frozen filter NOT veto?
 # --------------------------------------------------------------------------- #
-def enumerable_classes(s) -> list[str]:
-    r = s.get(FINK_CLASSES, timeout=120)
-    r.raise_for_status()
-    try:
-        raw = r.json()
-    except ValueError as exc:
-        raise RuntimeError("Fink class taxonomy returned malformed JSON") from exc
+def _validated_taxonomy(raw) -> list[str]:
     if not isinstance(raw, dict) or not raw:
         raise RuntimeError("Fink class taxonomy is empty or not an object")
     names: list[str] = []
@@ -244,7 +299,7 @@ def enumerable_classes(s) -> list[str]:
             raise RuntimeError(
                 f"Fink class taxonomy group {group!r} has an invalid class name"
             )
-        if "TNS" in group:            # already in TNS -> Layer 6 rejects anyway
+        if "TNS" in group:  # already in TNS -> Layer 6 rejects anyway
             continue
         for c in lst:
             names.append(c.replace("(SIMBAD) ", "").replace("(CTA) ", ""))
@@ -272,36 +327,132 @@ def enumerable_classes(s) -> list[str]:
     for c in sorted(set(names)):
         if c in NEVER_ENUMERATE:
             continue
-        if c in F2.SIMBAD_HARD_VETO:   # Layer 3 would reject every object in it
+        if c in F2.SIMBAD_HARD_VETO:  # Layer 3 would reject every object in it
             continue
         keep.append(c)
     return keep
 
 
+def enumerable_classes(s, cache_path: Path | None = None) -> list[str]:
+    contract = _taxonomy_contract()
+    if cache_path is not None:
+        cached = load_cache_contract(
+            cache_path,
+            kind="m2_fink_taxonomy_raw",
+            expected_contract=contract,
+        )
+        if cached is not None:
+            try:
+                raw = json.loads(cache_path.read_bytes())
+            except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+                raise RuntimeError("cached Fink taxonomy is not valid JSON") from exc
+            classes = _validated_taxonomy(raw)
+            if len(classes) != int(cached.get("row_count", -1)):
+                raise RuntimeError("cached Fink taxonomy row count changed")
+            return classes
+
+    r = s.get(FINK_CLASSES, timeout=120)
+    r.raise_for_status()
+    try:
+        raw = r.json()
+    except ValueError as exc:
+        raise RuntimeError("Fink class taxonomy returned malformed JSON") from exc
+    classes = _validated_taxonomy(raw)
+    if cache_path is not None:
+        payload, exact = _response_bytes(r, raw)
+        write_cache(
+            cache_path,
+            payload,
+            kind="m2_fink_taxonomy_raw",
+            contract=contract,
+            row_count=len(classes),
+            metadata_extra={"exact_http_entity_bytes": exact},
+        )
+    return classes
+
+
 # --------------------------------------------------------------------------- #
 # arm E2 -- known sources erupting
 # --------------------------------------------------------------------------- #
-def _latests(s, cls: str, t0: float, t1: float, n: int = 1000) -> pd.DataFrame:
+def _latests(
+    s,
+    cls: str,
+    t0: float,
+    t1: float,
+    n: int = 1000,
+    *,
+    cache_dir: Path | None = None,
+) -> pd.DataFrame:
+    contract = _slice_contract(cls, t0, t1, n)
+    cache_path = None
+    if cache_dir is not None:
+        cache_path = cache_dir / f"{canonical_digest(contract)}.json"
+        cached = load_cache_contract(
+            cache_path,
+            kind="m2_fink_latest_slice_raw",
+            expected_contract=contract,
+        )
+        if cached is not None:
+            try:
+                raw = json.loads(cache_path.read_bytes())
+            except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+                raise RuntimeError(
+                    "cached Fink latests slice is not valid JSON"
+                ) from exc
+            rows = _validate_latest_payload(raw, cls=cls, t0=t0, t1=t1)
+            if len(rows) != int(cached.get("row_count", -1)):
+                raise RuntimeError("cached Fink latests slice row count changed")
+            return pd.DataFrame(rows)
+
     last_error: Exception | None = None
-    for attempt in range(3):
+    for attempt in range(FINK_FETCH_ATTEMPTS):
         try:
-            r = s.get(FINK_LATESTS,
-                      params={"class": cls, "n": n, "startdate": mjd_to_ut(t0),
-                              "stopdate": mjd_to_ut(t1), "columns": E2_COLS},
-                      timeout=300)
+            r = s.get(
+                FINK_LATESTS,
+                params={
+                    "class": cls,
+                    "n": n,
+                    "startdate": mjd_to_ut(t0),
+                    "stopdate": mjd_to_ut(t1),
+                    "columns": E2_COLS,
+                },
+                timeout=FINK_LATESTS_TIMEOUT_SECONDS,
+            )
+            if r.status_code == 504:
+                raise FinkLatestsNeedsBisection("HTTP 504")
+            if r.status_code in FINK_RETRYABLE_STATUSES:
+                raise FinkLatestsUnavailable(f"HTTP {r.status_code}")
             if r.status_code != 200:
-                raise RuntimeError(f"HTTP {r.status_code}")
-            j = _validate_latest_payload(r.json(), cls=cls, t0=t0, t1=t1)
+                raise RuntimeError(f"non-retryable HTTP {r.status_code}")
+            try:
+                parsed = r.json()
+            except ValueError as exc:
+                raise FinkLatestsUnavailable("malformed JSON") from exc
+            j = _validate_latest_payload(parsed, cls=cls, t0=t0, t1=t1)
+            if cache_path is not None:
+                payload, exact = _response_bytes(r, j)
+                write_cache(
+                    cache_path,
+                    payload,
+                    kind="m2_fink_latest_slice_raw",
+                    contract=contract,
+                    row_count=len(j),
+                    metadata_extra={"exact_http_entity_bytes": exact},
+                )
             if not j:
                 return pd.DataFrame()
             return pd.DataFrame(j)
-        except (requests.RequestException, ValueError, RuntimeError) as exc:
+        except FinkLatestsNeedsBisection:
+            raise
+        except requests.Timeout as exc:
+            raise FinkLatestsNeedsBisection("request timeout") from exc
+        except (requests.RequestException, FinkLatestsUnavailable) as exc:
             last_error = exc
-            if attempt + 1 < 3:
-                time.sleep(2 * (attempt + 1))
-    raise RuntimeError(
+            if attempt + 1 < FINK_FETCH_ATTEMPTS:
+                time.sleep(min(30, 3 * (2**attempt)))
+    raise FinkLatestsUnavailable(
         f"Fink latests failed for class={cls!r}, MJD {t0}-{t1}; "
-        "the E2 arm is incomplete and will not be cached"
+        "retryable service failure persisted"
     ) from last_error
 
 
@@ -312,16 +463,58 @@ def _latests_complete(
     t1: float,
     depth: int = 0,
     _state: dict[str, int] | None = None,
+    *,
+    cache_dir: Path | None = None,
 ) -> pd.DataFrame:
     """One call; if the 1000-row cap binds, bisect the window until it does not."""
-    state = _state if _state is not None else {"calls": 0}
+    state = _state if _state is not None else {"calls": 0, "forced_depth": 0}
+    if depth < state.get("forced_depth", 0):
+        mid = (t0 + t1) / 2
+        if not t0 < mid < t1:
+            raise RuntimeError(f"cannot further bisect Fink MJD interval {t0}-{t1}")
+        return pd.concat(
+            [
+                _latests_complete(
+                    s, cls, t0, mid, depth + 1, state, cache_dir=cache_dir
+                ),
+                _latests_complete(
+                    s, cls, mid, t1, depth + 1, state, cache_dir=cache_dir
+                ),
+            ],
+            ignore_index=True,
+        )
     state["calls"] += 1
     if state["calls"] > FINK_MAX_SLICE_CALLS:
         raise RuntimeError(
             f"Fink latests exceeded {FINK_MAX_SLICE_CALLS} slices for class={cls!r}; "
             "completeness unproved"
         )
-    d = _latests(s, cls, t0, t1)
+    try:
+        d = _latests(s, cls, t0, t1, cache_dir=cache_dir)
+    except FinkLatestsUnavailable as exc:
+        if depth >= FINK_MAX_BISECT_DEPTH:
+            raise RuntimeError(
+                f"Fink latests remained unavailable after {FINK_MAX_BISECT_DEPTH} "
+                f"bisections for class={cls!r}, MJD {t0}-{t1}; "
+                "the E2 arm is incomplete and will not be cached"
+            ) from exc
+        state["forced_depth"] = max(state.get("forced_depth", 0), depth + 1)
+        mid = (t0 + t1) / 2
+        if not t0 < mid < t1:
+            raise RuntimeError(
+                f"cannot bisect unavailable Fink MJD interval {t0}-{t1}"
+            ) from exc
+        return pd.concat(
+            [
+                _latests_complete(
+                    s, cls, t0, mid, depth + 1, state, cache_dir=cache_dir
+                ),
+                _latests_complete(
+                    s, cls, mid, t1, depth + 1, state, cache_dir=cache_dir
+                ),
+            ],
+            ignore_index=True,
+        )
     if len(d) < FINK_CAP:
         return d
     if len(d) > FINK_CAP:
@@ -336,8 +529,8 @@ def _latests_complete(
         raise RuntimeError(f"cannot further bisect cap-bound MJD interval {t0}-{t1}")
     return pd.concat(
         [
-            _latests_complete(s, cls, t0, mid, depth + 1, state),
-            _latests_complete(s, cls, mid, t1, depth + 1, state),
+            _latests_complete(s, cls, t0, mid, depth + 1, state, cache_dir=cache_dir),
+            _latests_complete(s, cls, mid, t1, depth + 1, state, cache_dir=cache_dir),
         ],
         ignore_index=True,
     )
@@ -358,12 +551,14 @@ def arm_e2_outbursts(t0: float, t1: float, tag: str) -> pd.DataFrame:
         print(f"E2 outburst arm: cached {len(d)} objects")
         return d
     s = session()
-    classes = enumerable_classes(s)
-    print(f"E2: enumerating {len(classes)} non-vetoed Fink classes over "
-          f"MJD {t0}-{t1}")
+    inputs_dir = POOL / f"e2_inputs_{tag}"
+    taxonomy_path = inputs_dir / "taxonomy.json"
+    slices_dir = inputs_dir / "slices"
+    classes = enumerable_classes(s, taxonomy_path)
+    print(f"E2: enumerating {len(classes)} non-vetoed Fink classes over MJD {t0}-{t1}")
     frames, n_raw = [], 0
     for i, c in enumerate(classes, 1):
-        d = _latests_complete(s, c, t0, t1)
+        d = _latests_complete(s, c, t0, t1, cache_dir=slices_dir)
         if not len(d):
             continue
         n_raw += len(d)
@@ -388,9 +583,7 @@ def arm_e2_outbursts(t0: float, t1: float, tag: str) -> pd.DataFrame:
         conf = (a["i:drb"] >= M1.DRB_MIN) | (
             a["i:drb"].isna() & (a["i:rb"] >= M1.RB_MIN)
         )
-        no_ref = (
-            a["i:magnr"].isna() | (a["i:magnr"] >= 99) | (a["i:magnr"] <= 0)
-        )
+        no_ref = a["i:magnr"].isna() | (a["i:magnr"] >= 99) | (a["i:magnr"] <= 0)
         amp = a["i:magnr"] - a["i:magpsf"]
         sel = pos & conf & (no_ref | (amp >= AMP_ENUM))
         a = a[sel]
@@ -398,14 +591,21 @@ def arm_e2_outbursts(t0: float, t1: float, tag: str) -> pd.DataFrame:
             f"E2: {int(sel.sum())} alerts pass hygiene + amp>={AMP_ENUM} "
             "(or no reference source)"
         )
-        out = (
-            a.rename(
-                columns={"i:objectId": "oid", "i:ra": "meanra", "i:dec": "meandec"}
-            )
-            .drop_duplicates(subset=["oid"])[["oid", "meanra", "meandec"]]
-        )
+        out = a.rename(
+            columns={"i:objectId": "oid", "i:ra": "meanra", "i:dec": "meandec"}
+        ).drop_duplicates(subset=["oid"])[["oid", "meanra", "meandec"]]
         out["arm"] = "E2_outburst"
     payload = out.to_csv(index=False, lineterminator="\n").encode("utf-8")
+    taxonomy_proof = json.loads(sidecar_path(taxonomy_path).read_text(encoding="utf-8"))
+    slice_inputs = [
+        {
+            "path": path.with_name(path.name.removesuffix(".meta.json"))
+            .relative_to(POOL)
+            .as_posix(),
+            "proof": json.loads(path.read_text(encoding="utf-8")),
+        }
+        for path in sorted(slices_dir.glob("*.meta.json"))
+    ]
     write_cache(
         cache,
         payload,
@@ -417,6 +617,14 @@ def arm_e2_outbursts(t0: float, t1: float, tag: str) -> pd.DataFrame:
             "enumerated_classes_sha256": canonical_digest(classes),
             "taxonomy_contract_version": FINK_TAXONOMY_CONTRACT_VERSION,
             "n_raw_alert_rows": n_raw,
+            "raw_input_provenance": {
+                "taxonomy": {
+                    "path": taxonomy_path.relative_to(POOL).as_posix(),
+                    "proof": taxonomy_proof,
+                },
+                "slices": slice_inputs,
+                "slices_sha256": canonical_digest(slice_inputs),
+            },
         },
     )
     print(f"E2 outburst arm: {len(out)} unique objects")
@@ -444,11 +652,21 @@ def arm_e1_new(t0: float, t1: float, tag: str) -> pd.DataFrame:
     rows, page = [], 1
     reported_total: int | None = None
     page_signatures: set[tuple[str, ...]] = set()
+    seen_oids: set[str] = set()
     while True:
-        r = s.get(ALERCE, params={"firstmjd": [t0, t1], "ndet": 2,
-                                  "page_size": ALERCE_PAGE_SIZE, "page": page,
-                                  "count": "true" if page == 1 else "false"},
-                  timeout=300)
+        r = s.get(
+            ALERCE,
+            params={
+                "firstmjd": [t0, t1],
+                "ndet": 2,
+                "page_size": ALERCE_PAGE_SIZE,
+                "page": page,
+                "count": "true" if page == 1 else "false",
+                "order_by": "oid",
+                "order_mode": "ASC",
+            },
+            timeout=300,
+        )
         r.raise_for_status()
         try:
             j = r.json()
@@ -458,9 +676,9 @@ def arm_e1_new(t0: float, t1: float, tag: str) -> pd.DataFrame:
             raise RuntimeError(f"ALeRCE page {page} returned an invalid object schema")
         items = j["items"]
         for item in items:
-            if not isinstance(item, dict) or not {
-                "oid", "meanra", "meandec"
-            }.issubset(item):
+            if not isinstance(item, dict) or not {"oid", "meanra", "meandec"}.issubset(
+                item
+            ):
                 raise RuntimeError(f"ALeRCE page {page} has an invalid row")
         rows.extend(items)
         if page == 1:
@@ -469,6 +687,13 @@ def arm_e1_new(t0: float, t1: float, tag: str) -> pd.DataFrame:
         signature = tuple(str(item["oid"]) for item in items)
         if items and signature in page_signatures:
             raise RuntimeError(f"ALeRCE repeated page payload at page {page}")
+        overlap = seen_oids.intersection(signature)
+        if overlap:
+            raise RuntimeError(
+                f"ALeRCE pagination overlapped object IDs at page {page}; "
+                "E1 completeness is unproved"
+            )
+        seen_oids.update(signature)
         page_signatures.add(signature)
         # TRAP: with count=false ALeRCE does not populate has_next reliably, so a
         # loop that trusts it stops after one page and silently truncates the arm
@@ -569,32 +794,89 @@ def main() -> None:
             jd_cutoff=jd_ceiling,
             jd_floor=jd_floor,
         )
-        rows.append({
-            "oid": r["oid"], "arm": r["arm"],
-            "pool_ra": r.get("meanra"), "pool_dec": r.get("meandec"),
-            "history_jd_floor": jd_floor,
-            "history_jd_ceiling": jd_ceiling,
-            "m1_passed": bool(v_m1.get("passed")),
-            **{k: v.get(k) for k in
-               ("passed", "channel", "reason", "first_pass_jd", "n_clean",
-                "n_alerts", "mag_at_pass", "band_at_pass", "ra", "dec", "drb",
-                "sgscore1", "distpsnr1", "distnr", "magnr", "ndethist", "gal_b",
-                "simbad", "amp", "ptp_band", "neg_frac", "n_neg", "n_conf",
-                "hist_span_days", "n_alerts_60d_maxband")},
-            "flags": json.dumps(v.get("flags") or {}),
-            "hygiene_ok": v.get("n_clean", 0) >= M1.N_DET_MIN,
-        })
+        rows.append(
+            {
+                "oid": r["oid"],
+                "arm": r["arm"],
+                "pool_ra": r.get("meanra"),
+                "pool_dec": r.get("meandec"),
+                "history_jd_floor": jd_floor,
+                "history_jd_ceiling": jd_ceiling,
+                "m1_passed": bool(v_m1.get("passed")),
+                **{
+                    k: v.get(k)
+                    for k in (
+                        "passed",
+                        "channel",
+                        "reason",
+                        "first_pass_jd",
+                        "n_clean",
+                        "n_alerts",
+                        "mag_at_pass",
+                        "band_at_pass",
+                        "ra",
+                        "dec",
+                        "drb",
+                        "sgscore1",
+                        "distpsnr1",
+                        "distnr",
+                        "magnr",
+                        "ndethist",
+                        "gal_b",
+                        "simbad",
+                        "amp",
+                        "ptp_band",
+                        "neg_frac",
+                        "n_neg",
+                        "n_conf",
+                        "hist_span_days",
+                        "n_alerts_60d_maxband",
+                    )
+                },
+                "flags": json.dumps(v.get("flags") or {}),
+                "hygiene_ok": v.get("n_clean", 0) >= M1.N_DET_MIN,
+            }
+        )
     res = pd.DataFrame(rows)
     if not len(res):
-        res = pd.DataFrame(columns=[
-            "oid", "arm", "pool_ra", "pool_dec", "history_jd_floor",
-            "history_jd_ceiling", "m1_passed", "passed", "channel", "reason",
-            "first_pass_jd", "n_clean", "n_alerts", "mag_at_pass", "band_at_pass",
-            "ra", "dec", "drb", "sgscore1", "distpsnr1", "distnr", "magnr",
-            "ndethist", "gal_b", "simbad", "amp", "ptp_band", "neg_frac",
-            "n_neg", "n_conf", "hist_span_days", "n_alerts_60d_maxband", "flags",
-            "hygiene_ok",
-        ])
+        res = pd.DataFrame(
+            columns=[
+                "oid",
+                "arm",
+                "pool_ra",
+                "pool_dec",
+                "history_jd_floor",
+                "history_jd_ceiling",
+                "m1_passed",
+                "passed",
+                "channel",
+                "reason",
+                "first_pass_jd",
+                "n_clean",
+                "n_alerts",
+                "mag_at_pass",
+                "band_at_pass",
+                "ra",
+                "dec",
+                "drb",
+                "sgscore1",
+                "distpsnr1",
+                "distnr",
+                "magnr",
+                "ndethist",
+                "gal_b",
+                "simbad",
+                "amp",
+                "ptp_band",
+                "neg_frac",
+                "n_neg",
+                "n_conf",
+                "hist_span_days",
+                "n_alerts_60d_maxband",
+                "flags",
+                "hygiene_ok",
+            ]
+        )
     enumerator_meta = {
         arm: json.loads(
             sidecar_path(POOL / f"{arm}_{tag}.csv").read_text(encoding="utf-8")
@@ -618,7 +900,8 @@ def main() -> None:
         row_count=len(res),
     )
     summary = {
-        "tag": tag, "mjd_window": [t0, t1],
+        "tag": tag,
+        "mjd_window": [t0, t1],
         "episode_floor_days": EPISODE_FLOOR_DAYS,
         "history_jd_floor": jd_floor,
         "history_jd_ceiling": jd_ceiling,
@@ -633,16 +916,23 @@ def main() -> None:
             arm: enumerator_meta[arm] for arm in ("e1", "e2")
         },
         "filtered_output_provenance": filtered_meta,
-        "n_E1_new": n1, "n_E2_outburst": n2, "n_overlap": overlap,
+        "n_E1_new": n1,
+        "n_E2_outburst": n2,
+        "n_overlap": overlap,
         "n_pool": int(len(pool)),
         "n_hygiene_ok": int(res["hygiene_ok"].sum()),
         "n_pass_M2": int(res["passed"].sum()),
         "n_pass_M1_baseline": int(res["m1_passed"].sum()),
         "pass_by_arm": res.loc[res["passed"], "arm"].value_counts().to_dict(),
         "channels": res.loc[res["passed"], "channel"].value_counts().to_dict(),
-        "top_reject_reasons": (res.loc[~res["passed"], "reason"]
-                               .astype(str).str.replace(r"[\d.]+", "N", regex=True)
-                               .value_counts().head(12).to_dict()),
+        "top_reject_reasons": (
+            res.loc[~res["passed"], "reason"]
+            .astype(str)
+            .str.replace(r"[\d.]+", "N", regex=True)
+            .value_counts()
+            .head(12)
+            .to_dict()
+        ),
     }
     atomic_write(
         OUT / f"m2_pool_{tag}.json",

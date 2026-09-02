@@ -199,11 +199,14 @@ outward action.
 |---|---|---|
 | eta Tel B first RV limit | Result and draft live in the separate [`exosat-rv`](https://github.com/mepotts/exosat-rv) repository; not submitted | RNAAS, or fold into the full paper |
 | CD-35 reproduction + second-satellite contradiction | Draft lives in [`exosat-rv`](https://github.com/mepotts/exosat-rv); author correspondence and submission remain human gates | Nature Matters Arising, or a full OJA/journal paper |
-| ITF-linker method + validation | RNAAS draft in `itf-linker/docs/`; M13 prepares a local review payload and publicly reports counts/freshness only; it cannot submit, and the archive DOI plus every MPC/journal action remain human gates | RNAAS |
-| TNS low-latitude triage | M2 historical front closed; the 37-object review list was never a submission queue, and its completeness-dependent 8.0% measurement now awaits a provenance-proved rerun after cache repair; nothing sent | No venue selected |
+| ITF-linker method + validation | RNAAS draft in `itf-linker/docs/`; M13 prepares a local review payload and publicly reports counts/freshness only; M14 stopped procedurally and supplies no discovery result or queue; the archive DOI plus every MPC/journal action remain human gates | RNAAS |
+| TNS low-latitude triage | M2 historical front closed; the 37-object review list was never a submission queue. The newest proved run sealed its TNS input but produced no pool/candidate count after a required Fink class timed out; nothing sent | No venue selected |
 | eROSITA DR2 fader census | Draft complete and not submitted; archive scope, bibliographic check, and author metadata remain open | RNAAS |
 | MPTA reproduction and audits | Full paper plus two RNAAS notes are drafts with deterministic text-to-artifact checks; no DOI and nothing submitted | Full journal paper and/or RNAAS |
 | Dyson candidate-D negative | M7 analysis closed; no draft, pending a human go/no-go on whether the negative result warrants one | Undecided |
 | Gaia DR4 compact-companion front | M9 rehearsal closed; this is release readiness, not a paper or discovery claim | Decide only after the planned DR4 release and gated analysis |
+| CHIME/FRB Catalog 2 periodicity | M0 blocked before any unknown-source scan because the released exposure map has no time-resolved observing window | No venue; obtain the missing citable window or close the lane |
+| DASCH targeted plate pilot | Narrow public-API light-curve gate reproduced the published T CrB control with one nearby field control; the original Mira/faint/crowded and plate-cutout M0 gates remain open, and no unknown-source search ran | No venue yet; complete M0, multi-control validation, and an independently vetted result would come first |
+| SPHEREx warm-tail pilot | Broad catalog scan killed on detectability; narrow paired test remains behind an exact private-coordinate query gate | No venue; feasibility/privacy gate only |
 | seti-ellipsoid-broker tool note | RNAAS draft in `seti-ellipsoid-broker/docs/`, validation passed | RNAAS |
 | adql-copilot | JOSS draft in `adql-copilot/paper/` | JOSS |

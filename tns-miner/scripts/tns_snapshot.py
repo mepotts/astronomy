@@ -14,6 +14,7 @@ import hashlib
 import io
 import json
 import math
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -56,7 +57,13 @@ def _sha256(payload: bytes) -> str:
 def _tns_dir() -> Path:
     # Kept local rather than importing tnscommon so snapshot verification remains
     # usable in the requests-only cache CI job.
-    return Path(__file__).resolve().parents[1] / "data" / "tns"
+    data = os.environ.get("TNS_MINER_DATA_DIR")
+    root = (
+        Path(data).expanduser().resolve()
+        if data
+        else Path(__file__).resolve().parents[1] / "data"
+    )
+    return root / "tns"
 
 
 def _safe_snapshot_path(tns_dir: Path, relative: str) -> Path:
@@ -155,7 +162,9 @@ def read_snapshot(
     try:
         payload = snapshot.read_bytes()
     except OSError as exc:
-        raise RuntimeError(f"cannot read pinned TNS snapshot {snapshot}: {exc}") from exc
+        raise RuntimeError(
+            f"cannot read pinned TNS snapshot {snapshot}: {exc}"
+        ) from exc
     if _sha256(payload) != metadata["snapshot_sha256"]:
         raise RuntimeError(f"TNS snapshot digest mismatch for {snapshot}")
     try:
@@ -183,10 +192,7 @@ def read_snapshot(
             raise RuntimeError(f"TNS row {row.get('ID')} has no position")
     provenance = {
         key: metadata[key]
-        for key in sorted(
-            required
-            | {"source_url", "date_semantics", "month_inputs"}
-        )
+        for key in sorted(required | {"source_url", "date_semantics", "month_inputs"})
         if key in metadata
     }
     provenance["snapshot_lag_days"] = lag

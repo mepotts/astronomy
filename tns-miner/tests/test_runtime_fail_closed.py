@@ -67,9 +67,7 @@ class RuntimeFailClosedTests(unittest.TestCase):
         self.temp.cleanup()
 
     def test_traversal_tags_fail_before_representative_writers(self):
-        pos = pd.DataFrame([
-            {"id": 0, "oid": "ZTF26x", "ra": 10.0, "dec": 20.0}
-        ])
+        pos = pd.DataFrame([{"id": 0, "oid": "ZTF26x", "ra": 10.0, "dec": 20.0}])
         with (
             mock.patch.object(m1_pool, "POOL", self.root),
             mock.patch.object(m2_pool, "POOL", self.root),
@@ -91,8 +89,9 @@ class RuntimeFailClosedTests(unittest.TestCase):
 
         self.assertEqual(windows[0][0], date(2025, 9, 1))
         self.assertEqual(windows[-1], (date(2026, 9, 1), date(2026, 9, 2)))
-        self.assertTrue(all(left[1] == right[0]
-                            for left, right in zip(windows, windows[1:])))
+        self.assertTrue(
+            all(left[1] == right[0] for left, right in zip(windows, windows[1:]))
+        )
 
     def test_closed_tns_month_cannot_be_header_only(self):
         empty = pd.DataFrame(columns=["ID", "Name"])
@@ -143,8 +142,7 @@ class RuntimeFailClosedTests(unittest.TestCase):
 
     def test_tns_page_rejects_discovery_date_outside_requested_window(self):
         page = (
-            '"ID","Name","Discovery Date (UT)"\n'
-            '"1","AT 2026a","2026-09-01 00:00:00"\n'
+            '"ID","Name","Discovery Date (UT)"\n"1","AT 2026a","2026-09-01 00:00:00"\n'
         )
         with mock.patch.object(
             m1_tns_harvest, "tns_get", return_value=StubResponse(text=page)
@@ -157,12 +155,8 @@ class RuntimeFailClosedTests(unittest.TestCase):
     def test_tns_short_nonempty_page_requires_explicit_empty_page(self):
         header = '"ID","Name","Discovery Date (UT)"\n'
         replies = [
-            StubResponse(
-                text=header + '"1","AT 2026a","2026-08-02 01:00:00"\n'
-            ),
-            StubResponse(
-                text=header + '"2","AT 2026b","2026-08-03 01:00:00"\n'
-            ),
+            StubResponse(text=header + '"1","AT 2026a","2026-08-02 01:00:00"\n'),
+            StubResponse(text=header + '"2","AT 2026b","2026-08-03 01:00:00"\n'),
             StubResponse(text=header),
         ]
         with (
@@ -175,13 +169,38 @@ class RuntimeFailClosedTests(unittest.TestCase):
 
         self.assertEqual(result["ID"].tolist(), ["1", "2"])
 
+    def test_tns_retains_exact_data_and_terminal_page_bytes(self):
+        header = '"ID","Name","Discovery Date (UT)"\n'
+        page = header + '"1","AT 2026a","2026-08-02 01:00:00"\n'
+        replies = [StubResponse(text=page), StubResponse(text=header)]
+        raw_dir = self.root / "raw" / "run" / "window"
+        provenance = []
+        with (
+            mock.patch.object(m1_tns_harvest, "PAGE", 2),
+            mock.patch.object(m1_tns_harvest, "TNSDIR", self.root),
+            mock.patch.object(m1_tns_harvest, "tns_get", side_effect=replies),
+        ):
+            result = m1_tns_harvest.fetch_window(
+                object(),
+                date(2026, 8, 1),
+                date(2026, 9, 1),
+                raw_dir=raw_dir,
+                raw_provenance=provenance,
+            )
+
+        self.assertEqual(result["ID"].tolist(), ["1"])
+        self.assertEqual([item["proof"]["row_count"] for item in provenance], [1, 0])
+        self.assertTrue(
+            all(item["proof"]["exact_http_entity_bytes"] for item in provenance)
+        )
+        self.assertEqual((raw_dir / "page_0000.csv").read_bytes(), page.encode())
+        self.assertEqual((raw_dir / "page_0001.csv").read_bytes(), header.encode())
+
     def test_empty_fink_taxonomy_writes_no_e2_cache(self):
         response = StubResponse(payload={})
         with (
             mock.patch.object(m2_pool, "POOL", self.root),
-            mock.patch.object(
-                m2_pool, "session", return_value=StubSession([response])
-            ),
+            mock.patch.object(m2_pool, "session", return_value=StubSession([response])),
         ):
             with self.assertRaisesRegex(RuntimeError, "taxonomy is empty"):
                 m2_pool.arm_e2_outbursts(61274.0, 61277.0, "taxonomy")
@@ -194,39 +213,50 @@ class RuntimeFailClosedTests(unittest.TestCase):
             ({"SIMBAD": ["(SIMBAD) CataclyV*"]}, "baseline contract"),
         ]
         for payload, message in cases:
-            with self.subTest(payload=payload), self.assertRaisesRegex(
-                RuntimeError, message
+            with (
+                self.subTest(payload=payload),
+                self.assertRaisesRegex(RuntimeError, message),
             ):
-                m2_pool.enumerable_classes(
-                    StubSession([StubResponse(payload=payload)])
-                )
+                m2_pool.enumerable_classes(StubSession([StubResponse(payload=payload)]))
 
         filler = [
             f"Synthetic baseline class {index}"
             for index in range(m2_pool.FINK_TAXONOMY_MIN_NON_TNS_CLASSES - 4)
         ]
-        classes = m2_pool.enumerable_classes(StubSession([StubResponse(payload={
-            "SIMBAD": ["(SIMBAD) CataclyV*", "(SIMBAD) Galaxy"],
-            "Fink science": [
-                "Early SN Ia candidate", "Solar System candidate", *filler,
-            ],
-        })]))
+        classes = m2_pool.enumerable_classes(
+            StubSession(
+                [
+                    StubResponse(
+                        payload={
+                            "SIMBAD": ["(SIMBAD) CataclyV*", "(SIMBAD) Galaxy"],
+                            "Fink science": [
+                                "Early SN Ia candidate",
+                                "Solar System candidate",
+                                *filler,
+                            ],
+                        }
+                    )
+                ]
+            )
+        )
         self.assertIn("CataclyV*", classes)
         self.assertIn("Early SN Ia candidate", classes)
         self.assertIn("Unknown", classes)
 
     def test_m1_all_tns_deduped_returns_schema_stable_zero_candidates(self):
-        source = pd.DataFrame([{
-            "oid": "ZTF26known",
-            "passed": True,
-            "history_jd_ceiling": 2461277.5,
-        }])
+        source = pd.DataFrame(
+            [
+                {
+                    "oid": "ZTF26known",
+                    "passed": True,
+                    "history_jd_ceiling": 2461277.5,
+                }
+            ]
+        )
         frozen = {"snapshot_id": "frozen"}
         with (
             mock.patch.object(m1_candidates, "_load_filtered", return_value=source),
-            mock.patch.object(
-                m1_candidates, "_pin_tns_reference", return_value=frozen
-            ),
+            mock.patch.object(m1_candidates, "_pin_tns_reference", return_value=frozen),
             mock.patch.object(
                 m1_candidates,
                 "apply_tns_contract",
@@ -244,18 +274,20 @@ class RuntimeFailClosedTests(unittest.TestCase):
         open_session.assert_not_called()
 
     def test_m2_no_pass_returns_schema_stable_zero_candidates(self):
-        source = pd.DataFrame([{
-            "oid": "ZTF26fail",
-            "passed": False,
-            "m1_passed": False,
-            "history_jd_ceiling": 2461277.5,
-        }])
+        source = pd.DataFrame(
+            [
+                {
+                    "oid": "ZTF26fail",
+                    "passed": False,
+                    "m1_passed": False,
+                    "history_jd_ceiling": 2461277.5,
+                }
+            ]
+        )
         frozen = {"snapshot_id": "frozen"}
         with (
             mock.patch.object(m2_candidates, "_load_filtered", return_value=source),
-            mock.patch.object(
-                m2_candidates, "_pin_tns_reference", return_value=frozen
-            ),
+            mock.patch.object(m2_candidates, "_pin_tns_reference", return_value=frozen),
             mock.patch.object(m2_candidates, "session") as open_session,
         ):
             result = m2_candidates.build("no_pass")
@@ -265,18 +297,20 @@ class RuntimeFailClosedTests(unittest.TestCase):
         open_session.assert_not_called()
 
     def test_m2_all_tns_deduped_returns_schema_stable_zero_candidates(self):
-        source = pd.DataFrame([{
-            "oid": "ZTF26known",
-            "passed": True,
-            "m1_passed": True,
-            "history_jd_ceiling": 2461277.5,
-        }])
+        source = pd.DataFrame(
+            [
+                {
+                    "oid": "ZTF26known",
+                    "passed": True,
+                    "m1_passed": True,
+                    "history_jd_ceiling": 2461277.5,
+                }
+            ]
+        )
         frozen = {"snapshot_id": "frozen"}
         with (
             mock.patch.object(m2_candidates, "_load_filtered", return_value=source),
-            mock.patch.object(
-                m2_candidates, "_pin_tns_reference", return_value=frozen
-            ),
+            mock.patch.object(m2_candidates, "_pin_tns_reference", return_value=frozen),
             mock.patch.object(
                 m2_candidates,
                 "apply_tns_contract",
@@ -362,10 +396,12 @@ class RuntimeFailClosedTests(unittest.TestCase):
         self.assertFalse((self.root / "e1_repeat.csv").exists())
 
     def test_m1_interruption_leaves_checkpoint_not_candidate_final(self):
-        frame = pd.DataFrame([
-            {"oid": f"ZTF26{x:03d}", "meanra": 10.0, "meandec": 20.0}
-            for x in range(101)
-        ])
+        frame = pd.DataFrame(
+            [
+                {"oid": f"ZTF26{x:03d}", "meanra": 10.0, "meandec": 20.0}
+                for x in range(101)
+            ]
+        )
         verdict = {
             "passed": False,
             "reason": "test rejection",
@@ -381,9 +417,7 @@ class RuntimeFailClosedTests(unittest.TestCase):
             mock.patch.object(m1_pool.F, "evaluate", side_effect=evaluations),
         ):
             with self.assertRaisesRegex(RuntimeError, "interrupted"):
-                m1_pool.enrich_and_filter(
-                    frame, "crash", jd_ceiling=2460000.5
-                )
+                m1_pool.enrich_and_filter(frame, "crash", jd_ceiling=2460000.5)
         self.assertTrue((self.root / "filtered_crash.checkpoint.csv").exists())
         self.assertFalse((self.root / "filtered_crash.csv").exists())
 
@@ -404,17 +438,63 @@ class RuntimeFailClosedTests(unittest.TestCase):
                 m1_candidates._load_filtered("bad")
 
     def test_e2_http_failure_writes_no_empty_pool_cache(self):
-        replies = [StubResponse(status_code=503) for _ in range(3)]
+        replies = [
+            StubResponse(status_code=503) for _ in range(m2_pool.FINK_FETCH_ATTEMPTS)
+        ]
         with (
             mock.patch.object(m2_pool, "POOL", self.root),
             mock.patch.object(m2_pool, "session", return_value=StubSession(replies)),
             mock.patch.object(m2_pool, "enumerable_classes", return_value=["Unknown"]),
+            mock.patch.object(m2_pool, "FINK_MAX_BISECT_DEPTH", 0),
             mock.patch.object(m2_pool.time, "sleep"),
         ):
             with self.assertRaisesRegex(RuntimeError, "incomplete"):
                 m2_pool.arm_e2_outbursts(61274.0, 61277.0, "outage")
         self.assertFalse((self.root / "e2_outage.csv").exists())
         self.assertFalse((self.root / "e2_outage.csv.meta.json").exists())
+
+    def test_retryable_e2_outage_bisects_without_calling_it_zero(self):
+        left = pd.DataFrame([self._latest_row(jd=2461275.0)])
+        right_row = self._latest_row(jd=2461276.0)
+        right_row["i:objectId"] = "ZTF26right"
+        right = pd.DataFrame([right_row])
+        with mock.patch.object(
+            m2_pool,
+            "_latests",
+            side_effect=[
+                m2_pool.FinkLatestsUnavailable("HTTP 504"),
+                left,
+                right,
+            ],
+        ) as latest:
+            result = m2_pool._latests_complete(object(), "Unknown", 61274.0, 61277.0)
+
+        self.assertEqual(result["i:objectId"].tolist(), ["ZTF26valid", "ZTF26right"])
+        self.assertEqual(latest.call_count, 3)
+
+    def test_successful_e2_slice_is_retained_and_reused(self):
+        row = self._latest_row()
+        session = StubSession([StubResponse(payload=[row])])
+        cache = self.root / "slices"
+
+        first = m2_pool._latests(
+            session,
+            "Unknown",
+            61274.0,
+            61277.0,
+            cache_dir=cache,
+        )
+        second = m2_pool._latests(
+            StubSession([]),
+            "Unknown",
+            61274.0,
+            61277.0,
+            cache_dir=cache,
+        )
+
+        self.assertEqual(first["i:objectId"].tolist(), ["ZTF26valid"])
+        self.assertEqual(second["i:objectId"].tolist(), ["ZTF26valid"])
+        self.assertEqual(len(list(cache.glob("*.json"))), 2)
 
     def test_cap_bound_e2_slice_aborts_instead_of_truncating(self):
         capped = pd.DataFrame([{"i:objectId": f"ZTF{x}"} for x in range(1000)])
@@ -466,30 +546,32 @@ class RuntimeFailClosedTests(unittest.TestCase):
         row = self._latest_row()
         row["i:isdiffpos"] = True
         frame = pd.DataFrame([row])
+        taxonomy = self.root / "e2_inputs_boolean-true" / "taxonomy.json"
+        m2_pool.write_cache(
+            taxonomy,
+            b"{}",
+            kind="m2_fink_taxonomy_raw",
+            contract=m2_pool._taxonomy_contract(),
+            row_count=1,
+        )
         with (
             mock.patch.object(m2_pool, "POOL", self.root),
             mock.patch.object(m2_pool, "session", return_value=object()),
-            mock.patch.object(
-                m2_pool, "enumerable_classes", return_value=["Unknown"]
-            ),
+            mock.patch.object(m2_pool, "enumerable_classes", return_value=["Unknown"]),
             mock.patch.object(m2_pool, "_latests_complete", return_value=frame),
         ):
-            result = m2_pool.arm_e2_outbursts(
-                61274.0, 61277.0, "boolean-true"
-            )
+            result = m2_pool.arm_e2_outbursts(61274.0, 61277.0, "boolean-true")
 
         self.assertEqual(result["oid"].tolist(), ["ZTF26valid"])
 
     def test_xmatch_failure_does_not_cache_empty_catalogues(self):
-        pos = pd.DataFrame([
-            {"id": 0, "oid": "ZTF26x", "ra": 10.0, "dec": 20.0}
-        ])
+        pos = pd.DataFrame([{"id": 0, "oid": "ZTF26x", "ra": 10.0, "dec": 20.0}])
         replies = [StubResponse(status_code=503) for _ in range(3)]
         with (
             mock.patch.object(m2_vet_evidence, "DATA", self.root),
-            mock.patch.object(m2_vet_evidence, "XCATS", [
-                ("gaia", "vizier:test", 3.0, ["Name"])
-            ]),
+            mock.patch.object(
+                m2_vet_evidence, "XCATS", [("gaia", "vizier:test", 3.0, ["Name"])]
+            ),
             mock.patch.object(m2_vet_evidence.time, "sleep"),
         ):
             with self.assertRaisesRegex(RuntimeError, "no cache written"):
@@ -499,17 +581,13 @@ class RuntimeFailClosedTests(unittest.TestCase):
         self.assertFalse((self.root / "xmatch_tonight.json").exists())
 
     def test_xmatch_missing_catalogue_column_fails_closed(self):
-        pos = pd.DataFrame([
-            {"id": 0, "oid": "ZTF26x", "ra": 10.0, "dec": 20.0}
-        ])
-        replies = [
-            StubResponse(text="id,angDist\n0,1.0\n") for _ in range(3)
-        ]
+        pos = pd.DataFrame([{"id": 0, "oid": "ZTF26x", "ra": 10.0, "dec": 20.0}])
+        replies = [StubResponse(text="id,angDist\n0,1.0\n") for _ in range(3)]
         with (
             mock.patch.object(m2_vet_evidence, "DATA", self.root),
-            mock.patch.object(m2_vet_evidence, "XCATS", [
-                ("gaia", "vizier:test", 3.0, ["Name"])
-            ]),
+            mock.patch.object(
+                m2_vet_evidence, "XCATS", [("gaia", "vizier:test", 3.0, ["Name"])]
+            ),
             mock.patch.object(m2_vet_evidence.time, "sleep"),
         ):
             with self.assertRaisesRegex(RuntimeError, "no cache written"):
@@ -519,18 +597,13 @@ class RuntimeFailClosedTests(unittest.TestCase):
         self.assertFalse((self.root / "xmatch_missing-col.json").exists())
 
     def test_xmatch_out_of_radius_row_fails_closed(self):
-        pos = pd.DataFrame([
-            {"id": 0, "oid": "ZTF26x", "ra": 10.0, "dec": 20.0}
-        ])
-        replies = [
-            StubResponse(text="id,angDist,Name\n0,3.1,test\n")
-            for _ in range(3)
-        ]
+        pos = pd.DataFrame([{"id": 0, "oid": "ZTF26x", "ra": 10.0, "dec": 20.0}])
+        replies = [StubResponse(text="id,angDist,Name\n0,3.1,test\n") for _ in range(3)]
         with (
             mock.patch.object(m2_vet_evidence, "DATA", self.root),
-            mock.patch.object(m2_vet_evidence, "XCATS", [
-                ("gaia", "vizier:test", 3.0, ["Name"])
-            ]),
+            mock.patch.object(
+                m2_vet_evidence, "XCATS", [("gaia", "vizier:test", 3.0, ["Name"])]
+            ),
             mock.patch.object(m2_vet_evidence.time, "sleep"),
         ):
             with self.assertRaisesRegex(RuntimeError, "no cache written"):
