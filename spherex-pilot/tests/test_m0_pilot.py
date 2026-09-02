@@ -6,7 +6,6 @@ import tempfile
 import unittest
 from pathlib import Path
 
-
 SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "m0_pilot.py"
 SPEC = importlib.util.spec_from_file_location("m0_pilot", SCRIPT)
 MODULE = importlib.util.module_from_spec(SPEC)
@@ -130,17 +129,17 @@ class M0PilotTests(unittest.TestCase):
             "aws_level2_list": b"<ListBucketResult <Prefix>qr2/level2/</Prefix>",
         }
         schema = (
-            "table_name,column_name,datatype\n"
-            "spherex.plane,planeid,char\n"
-            "spherex.plane,energy_bandpassname,char\n"
-            "spherex.plane,time_bounds_lower,double\n"
-            "spherex.plane,poly,char\n"
-            "spherex.plane,dataproducttype,char\n"
-            "spherex.plane,calibrationlevel,short\n"
-            "spherex.plane,provenance_version,char\n"
-            "spherex.artifact,planeid,char\n"
-            "spherex.artifact,producttype,char\n"
-        ).encode()
+            b"table_name,column_name,datatype\n"
+            b"spherex.plane,planeid,char\n"
+            b"spherex.plane,energy_bandpassname,char\n"
+            b"spherex.plane,time_bounds_lower,double\n"
+            b"spherex.plane,poly,char\n"
+            b"spherex.plane,dataproducttype,char\n"
+            b"spherex.plane,calibrationlevel,short\n"
+            b"spherex.plane,provenance_version,char\n"
+            b"spherex.artifact,planeid,char\n"
+            b"spherex.artifact,producttype,char\n"
+        )
         checks = MODULE.validate_public_sources(payloads, schema)
         self.assertTrue(all(checks.values()))
         with self.assertRaises(ValueError):

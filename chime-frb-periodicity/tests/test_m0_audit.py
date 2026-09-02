@@ -11,11 +11,11 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
-from m0_audit import (  # noqa: E402
+from m0_audit import (
     EXPECTED_COLUMNS,
-    M0Error,
     SURVEY_END_DATE,
     SURVEY_START_DATE,
+    M0Error,
     _mjd_from_iso_date,
     collapse_events,
     inspect_exposure,

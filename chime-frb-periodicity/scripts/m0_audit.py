@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Execute the CHIME/FRB Catalog 2 periodicity M0 kill checks.
 
 This program deliberately does not scan unknown repeaters.  It verifies the
@@ -16,10 +15,10 @@ import hashlib
 import json
 import math
 from collections import Counter, defaultdict
+from collections.abc import Iterable
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Iterable
-
+from typing import Any
 
 EXPECTED_COLUMNS = (
     "tns_name",

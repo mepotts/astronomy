@@ -10,6 +10,7 @@ import argparse
 import csv
 import hashlib
 import io
+import itertools
 import json
 import math
 import os
@@ -17,11 +18,10 @@ import statistics
 import tempfile
 import urllib.parse
 import urllib.request
+from collections.abc import Iterable
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Iterable
-
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent
@@ -124,8 +124,8 @@ def percentile(values: list[float], fraction: float) -> float:
         raise ValueError("empty values")
     ordered = sorted(values)
     index = fraction * (len(ordered) - 1)
-    lo = int(math.floor(index))
-    hi = int(math.ceil(index))
+    lo = math.floor(index)
+    hi = math.ceil(index)
     if lo == hi:
         return ordered[lo]
     return ordered[lo] + (ordered[hi] - ordered[lo]) * (index - lo)
@@ -163,7 +163,7 @@ def interpolate(points: list[tuple[float, float]], x: float) -> float:
         return points[0][1]
     if x >= points[-1][0]:
         return points[-1][1]
-    for (x0, y0), (x1, y1) in zip(points, points[1:]):
+    for (x0, y0), (x1, y1) in itertools.pairwise(points):
         if x0 <= x <= x1:
             return y0 + (y1 - y0) * (x - x0) / (x1 - x0)
     raise AssertionError("interpolation interval not found")

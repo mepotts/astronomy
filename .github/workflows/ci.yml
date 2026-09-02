@@ -149,7 +149,7 @@ jobs:
       # five small public positive-control responses. Bulk CHIME and private SPHEREx
       # inputs remain outside Git; CI sends no archive or candidate-bearing request.
       - name: Install test-only dependencies
-        run: python -m pip install "numpy>=2,<3" "h5py>=3.16,<4" ruff
+        run: python -m pip install "numpy>=2,<3" "h5py>=3.16,<4" "ruff==0.16.5"
 
       - name: Check pilot gates and privacy contracts
         run: |

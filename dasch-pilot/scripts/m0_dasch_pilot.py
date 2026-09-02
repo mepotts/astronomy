@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Reproduce a published T CrB high state from frozen DASCH DR7 responses.
 
 This is a feasibility/positive-control audit. It does not search unknown sources.
@@ -137,7 +136,7 @@ def _verify_provenance(
         raise ValueError("provenance manifest has the wrong positive-control target")
     artifacts = provenance.get("artifacts")
     if not isinstance(artifacts, list):
-        raise ValueError("provenance artifacts must be a list")
+        raise TypeError("provenance artifacts must be a list")
 
     by_role: dict[str, dict[str, Any]] = {}
     for artifact in artifacts:
@@ -313,10 +312,10 @@ def analyze(
     ]
     if not eligible_field_rows:
         raise ValueError("field query contains no eligible non-variable stellar control")
-    field_catalog_row = sorted(
+    field_catalog_row = min(
         eligible_field_rows,
         key=lambda row: (-maybe_int(row.get("num_matches")), row["ref_text"]),
-    )[0]
+    )
     expected_request = next(
         artifact["request"]
         for artifact in provenance["artifacts"]
