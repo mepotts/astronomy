@@ -1,0 +1,276 @@
+{
+  "window": {
+    "n_objects": 30454,
+    "discovery_date_min": "2025-08-01 00:12:37.728000+00:00",
+    "discovery_date_max": "2026-08-24 18:05:34.368000+00:00",
+    "id_min": 185270,
+    "id_max": 218750,
+    "source": "https://www.wis-tns.org/search?...&format=csv (tokenless), harvested 2026-08-24"
+  },
+  "C1_who_reports": {
+    "claim": "~80% from five pipelines: Pan-STARRS 26, ZTF 17, ALeRCE 14, ATLAS 13, Gaia 10",
+    "n_distinct_groups": 51,
+    "top5_measured": [
+      {
+        "group": "ATLAS",
+        "credit_pct": 27.29
+      },
+      {
+        "group": "Pan-STARRS",
+        "credit_pct": 27.09
+      },
+      {
+        "group": "GOTO",
+        "credit_pct": 26.94
+      },
+      {
+        "group": "WFST",
+        "credit_pct": 26.68
+      },
+      {
+        "group": "ZTF",
+        "credit_pct": 26.05
+      }
+    ],
+    "top5_credit_pct_sum": 134.1,
+    "the_claimed_five_credit_pct_sum": 92.4,
+    "gaia_present": false,
+    "sole_reporter_share_top5": [
+      {
+        "group": "ATLAS",
+        "sole_pct": 4.74
+      },
+      {
+        "group": "Pan-STARRS",
+        "sole_pct": 12.22
+      },
+      {
+        "group": "GOTO",
+        "sole_pct": 4.5
+      },
+      {
+        "group": "WFST",
+        "sole_pct": 18.76
+      },
+      {
+        "group": "ZTF",
+        "sole_pct": 6.85
+      }
+    ]
+  },
+  "C2_C3_magnitudes": {
+    "n_with_mag": 30454,
+    "median": 20.36,
+    "quantiles": {
+      "0.05": 18.42,
+      "0.25": 19.59,
+      "0.5": 20.36,
+      "0.75": 21.44,
+      "0.95": 22.75
+    },
+    "frac_brighter_than_18.5": 0.056,
+    "frac_19.0_to_20.6": 0.45,
+    "frac_fainter_than_20.6": 0.432,
+    "by_group": [
+      {
+        "group": "ATLAS",
+        "n": 8310,
+        "median_mag": 19.43,
+        "frac_19_to_20.6": 0.662,
+        "frac_gt_20.6": 0.06
+      },
+      {
+        "group": "Pan-STARRS",
+        "n": 8250,
+        "median_mag": 20.52,
+        "frac_19_to_20.6": 0.479,
+        "frac_gt_20.6": 0.461
+      },
+      {
+        "group": "GOTO",
+        "n": 8205,
+        "median_mag": 19.73,
+        "frac_19_to_20.6": 0.743,
+        "frac_gt_20.6": 0.068
+      },
+      {
+        "group": "WFST",
+        "n": 8126,
+        "median_mag": 21.52,
+        "frac_19_to_20.6": 0.221,
+        "frac_gt_20.6": 0.756
+      },
+      {
+        "group": "ZTF",
+        "n": 7934,
+        "median_mag": 19.82,
+        "frac_19_to_20.6": 0.74,
+        "frac_gt_20.6": 0.126
+      },
+      {
+        "group": "ALeRCE",
+        "n": 3657,
+        "median_mag": 20.65,
+        "frac_19_to_20.6": 0.431,
+        "frac_gt_20.6": 0.515
+      },
+      {
+        "group": "LAST",
+        "n": 1602,
+        "median_mag": 19.65,
+        "frac_19_to_20.6": 0.755,
+        "frac_gt_20.6": 0.066
+      },
+      {
+        "group": "YSE",
+        "n": 1319,
+        "median_mag": 20.27,
+        "frac_19_to_20.6": 0.641,
+        "frac_gt_20.6": 0.302
+      },
+      {
+        "group": "BlackGEM",
+        "n": 792,
+        "median_mag": 19.64,
+        "frac_19_to_20.6": 0.683,
+        "frac_gt_20.6": 0.08
+      },
+      {
+        "group": "Fink",
+        "n": 599,
+        "median_mag": 20.03,
+        "frac_19_to_20.6": 0.758,
+        "frac_gt_20.6": 0.162
+      },
+      {
+        "group": "GW-MMADS",
+        "n": 464,
+        "median_mag": 21.93,
+        "frac_19_to_20.6": 0.106,
+        "frac_gt_20.6": 0.879
+      },
+      {
+        "group": "MASTER",
+        "n": 361,
+        "median_mag": 18.6,
+        "frac_19_to_20.6": 0.399,
+        "frac_gt_20.6": 0.017
+      },
+      {
+        "group": "SGLF",
+        "n": 329,
+        "median_mag": 22.65,
+        "frac_19_to_20.6": 0.07,
+        "frac_gt_20.6": 0.903
+      },
+      {
+        "group": "XOSS",
+        "n": 297,
+        "median_mag": 18.24,
+        "frac_19_to_20.6": 0.222,
+        "frac_gt_20.6": 0.0
+      }
+    ]
+  },
+  "C4_classification": {
+    "n": 30454,
+    "n_classified": 2407,
+    "frac_unclassified": 0.921
+  },
+  "report_lag_lower_bound": {
+    "method": "running max of discovery epoch over TNS ID order; a LOWER bound",
+    "all_median_days": 3.635,
+    "by_group": [
+      {
+        "group": "ATLAS",
+        "n": 8310,
+        "median_lag_days_lb": 1.07,
+        "p90_lag_days_lb": 6.332
+      },
+      {
+        "group": "Pan-STARRS",
+        "n": 8250,
+        "median_lag_days_lb": 6.078,
+        "p90_lag_days_lb": 132.104
+      },
+      {
+        "group": "GOTO",
+        "n": 8205,
+        "median_lag_days_lb": 1.223,
+        "p90_lag_days_lb": 7.993
+      },
+      {
+        "group": "WFST",
+        "n": 8126,
+        "median_lag_days_lb": 7.225,
+        "p90_lag_days_lb": 33.6
+      },
+      {
+        "group": "ZTF",
+        "n": 7934,
+        "median_lag_days_lb": 2.567,
+        "p90_lag_days_lb": 11.723
+      },
+      {
+        "group": "ALeRCE",
+        "n": 3657,
+        "median_lag_days_lb": 2.075,
+        "p90_lag_days_lb": 11.008
+      },
+      {
+        "group": "LAST",
+        "n": 1602,
+        "median_lag_days_lb": 0.185,
+        "p90_lag_days_lb": 4.078
+      },
+      {
+        "group": "YSE",
+        "n": 1319,
+        "median_lag_days_lb": 1.687,
+        "p90_lag_days_lb": 20.146
+      },
+      {
+        "group": "BlackGEM",
+        "n": 792,
+        "median_lag_days_lb": 1.374,
+        "p90_lag_days_lb": 13.936
+      },
+      {
+        "group": "Fink",
+        "n": 599,
+        "median_lag_days_lb": 1.425,
+        "p90_lag_days_lb": 5.022
+      },
+      {
+        "group": "GW-MMADS",
+        "n": 464,
+        "median_lag_days_lb": 1.412,
+        "p90_lag_days_lb": 1.669
+      },
+      {
+        "group": "MASTER",
+        "n": 361,
+        "median_lag_days_lb": 0.373,
+        "p90_lag_days_lb": 3.407
+      },
+      {
+        "group": "SGLF",
+        "n": 329,
+        "median_lag_days_lb": 16.195,
+        "p90_lag_days_lb": 97.875
+      },
+      {
+        "group": "XOSS",
+        "n": 297,
+        "median_lag_days_lb": 0.324,
+        "p90_lag_days_lb": 4.434
+      },
+      {
+        "group": "DCAP",
+        "n": 103,
+        "median_lag_days_lb": 2.724,
+        "p90_lag_days_lb": 11.022
+      }
+    ]
+  }
+}

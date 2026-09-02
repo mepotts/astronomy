@@ -1,0 +1,57 @@
+{
+  "_comment": "v2 (M3, 2026-08-16). Selection/screen IDENTICAL to v1 (frozen M2); adds the covariance-aware probability method and the extinction tier for photometric M1. v1 kept alongside; see gaia-dr4/M3-corrvec-rehearsal.md.",
+  "solution_types_dr4": [
+    "Orbital",
+    "OrbitalPoorlyConstrained",
+    "OrbitalAlternative",
+    "AstroSpectroSB1",
+    "AstroSpectroSB2"
+  ],
+  "period_days": [
+    10.0,
+    2200.0
+  ],
+  "period_note": "DR4 baseline ~66 mo = 2011 d; DR3 validation used 1500 d. BH2 (P=1352 d) proves P<1000 d is too tight.",
+  "nss_parallax_over_error_min": 3.0,
+  "halbwachs_vetting": true,
+  "sigma_ti2_max": 36.0,
+  "m1_policy": [
+    "nss_masses (DR4) / binary_masses (DR3) IsocLum",
+    "photometric EEM MS (CMD cut, extinction-corrected per extinction_tier -- v2 change)",
+    "evolved bracket 0.8-2.6 Msun, worst-case class"
+  ],
+  "boundary": "Mamajek/EEM A_tr curve x inflate",
+  "boundary_inflate": 1.15,
+  "significance_min": 10.0,
+  "gof_cut": "F2 < 6 if G < 13 else F2 < 4 (El-Badry 2026)",
+  "alias_flag_days": [
+    330.0,
+    400.0
+  ],
+  "ruwe_cut": "NONE -- high RUWE is the orbit signature (BH1 7.6, BH2 9.2)",
+  "measured_on_dr3": {
+    "n_class3_dr3": 951,
+    "eb26_completeness": 0.929,
+    "eb26_spurious_passrate": 0.304,
+    "n_class3_dr3_v2": 949,
+    "n_priority_pr999": 292,
+    "dust_moved_out_lower": 8,
+    "dust_moved_in_lower": 6
+  },
+  "followup_gate_not_selection": "G<15 (spectrograph feasibility)",
+  "version": 2,
+  "supersedes": "dr4-triage-config.json (v1, M2)",
+  "probability_method": {
+    "covariance": "nss_two_body_orbit corr_vec via nsstools 0.1.12 (PyPI) NssSource.covmat(); 6x6 block (parallax, A,B,F,G, period)",
+    "mc_draws": 10000,
+    "mc_seed": 20261202,
+    "priority_tier": "p_class3_corr >= 0.999",
+    "note": "Pr threshold is a RANKING tier, not a cut: measured on EB26 it only removes confirmed systems (M3 doc sec. 1)."
+  },
+  "extinction_tier": {
+    "d_le_1250pc": "Edenhofer+23 3D (mean, integrated; all-sky)",
+    "d_gt_1250pc": "bracketed: Edenhofer-to-edge (lower) vs SFD full column x SF11 2.742 (upper); dust-ambiguous flagged, Bayestar deliberately unused (unit chain)",
+    "bands": "ZGR23 curve at Gaia EDR3 pivots: R_G=2.2732, R_BP=3.0362, R_RP=1.6480, R_V=2.7791",
+    "applies_to": "photometric-M1 tiers only (binary_masses/nss_masses M1 is DPAC's, unchanged)"
+  }
+}

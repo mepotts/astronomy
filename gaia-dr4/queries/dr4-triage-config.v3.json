@@ -1,0 +1,70 @@
+{
+  "_comment": "v3 (M4, 2026-08-18). Selection/screen/probability IDENTICAL to v2 (frozen M2/M3); candidate-list membership unchanged (949). Adds two measured policies: the Bayestar19 far-star arbitration (sourced unit chain) and the X-ray caution-tag policy (EB26 discriminator test underpowered). See gaia-dr4/M4-xray-discriminator.md.",
+  "solution_types_dr4": [
+    "Orbital",
+    "OrbitalPoorlyConstrained",
+    "OrbitalAlternative",
+    "AstroSpectroSB1",
+    "AstroSpectroSB2"
+  ],
+  "period_days": [
+    10.0,
+    2200.0
+  ],
+  "period_note": "DR4 baseline ~66 mo = 2011 d; DR3 validation used 1500 d. BH2 (P=1352 d) proves P<1000 d is too tight.",
+  "nss_parallax_over_error_min": 3.0,
+  "halbwachs_vetting": true,
+  "sigma_ti2_max": 36.0,
+  "m1_policy": [
+    "nss_masses (DR4) / binary_masses (DR3) IsocLum",
+    "photometric EEM MS (CMD cut, extinction-corrected per extinction_tier -- v2 change)",
+    "evolved bracket 0.8-2.6 Msun, worst-case class"
+  ],
+  "boundary": "Mamajek/EEM A_tr curve x inflate",
+  "boundary_inflate": 1.15,
+  "significance_min": 10.0,
+  "gof_cut": "F2 < 6 if G < 13 else F2 < 4 (El-Badry 2026)",
+  "alias_flag_days": [
+    330.0,
+    400.0
+  ],
+  "ruwe_cut": "NONE -- high RUWE is the orbit signature (BH1 7.6, BH2 9.2)",
+  "measured_on_dr3": {
+    "n_class3_dr3": 951,
+    "eb26_completeness": 0.929,
+    "eb26_spurious_passrate": 0.304,
+    "n_class3_dr3_v2": 949,
+    "n_priority_pr999": 292,
+    "dust_moved_out_lower": 8,
+    "dust_moved_in_lower": 6,
+    "m4_eb26_xray_confirmed_detected": "0/16",
+    "m4_eb26_xray_spurious_detected": "2/13",
+    "m4_eb26_xray_fisher_p": 0.19,
+    "m4_dust_ambiguous_resolved_alive": 9,
+    "m4_dust_ambiguous_south_unresolved": 4,
+    "m4_membership_moved": 0
+  },
+  "followup_gate_not_selection": "G<15 (spectrograph feasibility)",
+  "version": 3,
+  "supersedes": "dr4-triage-config.v2.json (v2, M3)",
+  "probability_method": {
+    "covariance": "nss_two_body_orbit corr_vec via nsstools 0.1.12 (PyPI) NssSource.covmat(); 6x6 block (parallax, A,B,F,G, period)",
+    "mc_draws": 10000,
+    "mc_seed": 20261202,
+    "priority_tier": "p_class3_corr >= 0.999",
+    "note": "Pr threshold is a RANKING tier, not a cut: measured on EB26 it only removes confirmed systems (M3 doc sec. 1)."
+  },
+  "extinction_tier": {
+    "d_le_1250pc": "Edenhofer+23 3D (mean, integrated; all-sky)",
+    "d_gt_1250pc": "bracketed: Edenhofer-to-edge (lower) vs SFD full column x SF11 2.742 (upper); where dec > -30, Bayestar19 at the star's distance arbitrates (max(B19, Edenhofer floor) = best estimate); south of -30 stays bracketed and flagged",
+    "bands": "ZGR23 curve at Gaia EDR3 pivots: R_G=2.2732, R_BP=3.0362, R_RP=1.6480, R_V=2.7791",
+    "applies_to": "photometric-M1 tiers only (binary_masses/nss_masses M1 is DPAC's, unchanged)",
+    "bayestar19_chain": "1 B19 unit = E(gP1-rP1) 0.901 mag (Green+19 ApJ 887,93, src line 399 + extinction-vector table) = 1.000 x E(B-V)_SFD in the same colour (SF11 ApJ 737,103 Table 6 R_V=3.1: PS1 g 3.172, r 2.271); A_V = 2.742 x E(B-V) (SF11 Table 6 Landolt V); Gaia bands via ZGR23 ratios (house). Cross-check chain: EB26 A_G=2.66E, E(BP-RP)=1.33E (arXiv:2608.06453 src lines 171-172) -- verdicts agree on all arbitrated rows (m4_bayestar_dozen.csv). Data: bayestar2019.h5 Dataverse doi:10.7910/DVN/2EJ9TX, md5 ab815d2fd3068d1b81a1bd61fb18a722."
+  },
+  "xray_policy": {
+    "status": "caution tag, NOT a selection flag and NOT a cut",
+    "eb26_test_2026-08-18": "in eROSITA-DE footprint: 2/13 EB26-spurious vs 0/16 EB26-confirmed detected (eRASS:3); Fisher two-sided p=0.19 -- direction consistent with activity->spurious-orbit but UNDERPOWERED (80%-power detectable spurious rate at this n: >= 0.40); both detections coronal (log fx/fopt -2.4/-3.3, soft HR), no hard-band, no accretor",
+    "as_a_cut_rejected": "would drop in-list rows incl. 0 EB26-confirmed / 1 EB26-spurious / the rest unverdicted NS-range active-binary candidates -- no measured purity gain",
+    "day1": "run the eROSITA cross on the new list (runbook Phase 3 step 4); treat matches as epoch-vet-first cases"
+  }
+}

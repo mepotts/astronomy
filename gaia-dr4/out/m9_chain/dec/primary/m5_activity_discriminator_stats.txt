@@ -1,0 +1,206 @@
+M5 activity-vs-spuriousness test -- EB26 x Gaia DR3 all-sky (2026-08-18)
+==========================================================================
+Rules pre-registered in this script's docstring before any confirmed/spurious split was computed.
+
+sample: 981 EB26 targets; verdicts {'SPURIOUS': 668, 'CONFIRMED': 219, 'INCONCLUSIVE': 47, 'NO_DATA': 47}
+FOOTPRINT: 76 of 76 (100 %) have Gaia DR3 gaia_source rows -- this is the point of the test.
+  (M4's X-ray axis could see 29 of the 65 verdicted targets: 16 confirmed + 13 spurious.)
+  primary comparison: CONFIRMED n=219 vs SPURIOUS n=668; 94 other verdicts reported only
+
+COVERAGE (honest, per family) --------------------------------------------
+  A1 activityindex_espcs            36/76 total    7/219 confirmed   29/668 spurious
+  B1 dAmp_G                        981/76 total   219/219 confirmed   668/668 spurious
+  B2 dAmp_BP                       981/76 total   219/219 confirmed   668/668 spurious
+  B3 dAmp_RP                       981/76 total   219/219 confirmed   668/668 spurious
+  B4 phot_variable_flag            981/76 total   219/219 confirmed   668/668 spurious
+  B5 std_dev_mag_g_fov              74/76 total   14/219 confirmed   54/668 spurious
+  C1 ruwe                          981/76 total   219/219 confirmed   668/668 spurious
+  C2 ipd_frac_multi_peak           981/76 total   219/219 confirmed   668/668 spurious
+  C3 ipd_gof_harmonic_amplitude    981/76 total   219/219 confirmed   668/668 spurious
+  C4 astrometric_excess_noise_sig  981/76 total   219/219 confirmed   668/668 spurious
+  C5 astrometric_gof_al            981/76 total   219/219 confirmed   668/668 spurious
+  C6 phot_bp_rp_excess_factor      981/76 total   219/219 confirmed   668/668 spurious
+  N1 phot_g_n_obs (neg. control)   981/76 total   219/219 confirmed   668/668 spurious
+  in vari_summary at all: 74/76 (14 conf / 54 spur)
+  phot_variable_flag values: {'NOT_AVAILABLE': 909, 'VARIABLE': 72}
+  activityindex_espcs_input values: {None: 622, 'M2': 332, 'M1': 27}
+
+FAMILY A (chromospheric activity, ESP-CS) --------------------------
+  A1 activityindex_espcs  (n 7 conf / 29 spur)
+    medians: CONFIRMED +0.009671   SPURIOUS +0.01176   (HL shift +0.002085)
+    Mann-Whitney two-sided p = 0.9067;  AUC(spur>conf) = 0.483 [95% boot 0.261-0.704];  r_rb = -0.034 [-0.478, +0.409]
+    power: smallest AUC detectable at 80% power = 0.825 (r_rb 0.65)
+  Holm-Bonferroni within family (m = 1):
+    A1 activityindex_espcs             p = 0.9067 -> p_holm = 0.9067  ns
+
+FAMILY B (photometric variability) ---------------------------------
+  B1 dAmp_G  (n 219 conf / 668 spur)
+    medians: CONFIRMED -0.003514   SPURIOUS +0.006835   (HL shift +0.01035)
+    Mann-Whitney two-sided p = 0.1942;  AUC(spur>conf) = 0.529 [95% boot 0.486-0.573];  r_rb = +0.058 [-0.027, +0.146]
+    power: smallest AUC detectable at 80% power = 0.575 (r_rb 0.15)
+  B2 dAmp_BP  (n 219 conf / 668 spur)
+    medians: CONFIRMED +0.01392   SPURIOUS +0.0116   (HL shift -0.002315)
+    Mann-Whitney two-sided p = 0.6846;  AUC(spur>conf) = 0.509 [95% boot 0.466-0.553];  r_rb = +0.018 [-0.068, +0.106]
+    power: smallest AUC detectable at 80% power = 0.575 (r_rb 0.15)
+  B3 dAmp_RP  (n 219 conf / 668 spur)
+    medians: CONFIRMED -0.009885   SPURIOUS -0.006631   (HL shift +0.003255)
+    Mann-Whitney two-sided p = 0.3928;  AUC(spur>conf) = 0.519 [95% boot 0.474-0.564];  r_rb = +0.038 [-0.053, +0.129]
+    power: smallest AUC detectable at 80% power = 0.575 (r_rb 0.15)
+  B4 phot_variable_flag==VARIABLE
+    CONFIRMED 14/219 = 0.064 (95% 0.038-0.104);  SPURIOUS 52/668 = 0.078 (95% 0.060-0.101)
+    Fisher two-sided p = 0.5554, odds ratio 1.24
+    power: smallest SPURIOUS rate detectable at 80% vs CONFIRMED 0.064 = 0.15
+  B5 std_dev_mag_g_fov  (n 14 conf / 54 spur)
+    medians: CONFIRMED +0.007468   SPURIOUS +0.008184   (HL shift +0.0007153)
+    Mann-Whitney two-sided p = 0.3059;  AUC(spur>conf) = 0.590 [95% boot 0.419-0.754];  r_rb = +0.180 [-0.161, +0.508]
+    power: smallest AUC detectable at 80% power = 0.750 (r_rb 0.50)
+  Holm-Bonferroni within family (m = 5):
+    B1 dAmp_G                          p = 0.1942 -> p_holm = 0.9708  ns
+    B2 dAmp_BP                         p = 0.6846 -> p_holm = 1.0000  ns
+    B3 dAmp_RP                         p = 0.3928 -> p_holm = 1.0000  ns
+    B4 phot_variable_flag==VARIABLE    p = 0.5554 -> p_holm = 1.0000  ns
+    B5 std_dev_mag_g_fov               p = 0.3059 -> p_holm = 1.0000  ns
+
+FAMILY C (astrometric/imaging quality -- NOT activity) -------------
+  C1 ruwe  (n 219 conf / 668 spur)
+    medians: CONFIRMED +3.283   SPURIOUS +3.713   (HL shift +0.4296)
+    Mann-Whitney two-sided p = 0.0087;  AUC(spur>conf) = 0.559 [95% boot 0.515-0.602];  r_rb = +0.118 [+0.030, +0.203]
+    power: smallest AUC detectable at 80% power = 0.575 (r_rb 0.15)
+  C2 ipd_frac_multi_peak  (n 219 conf / 668 spur)
+    medians: CONFIRMED +0   SPURIOUS +0   (HL shift +0)
+    Mann-Whitney two-sided p = 0.7486;  AUC(spur>conf) = 0.504 [95% boot 0.479-0.529];  r_rb = +0.008 [-0.042, +0.058]
+    power: smallest AUC detectable at 80% power = 0.575 (r_rb 0.15)
+  C3 ipd_gof_harmonic_amplitude  (n 219 conf / 668 spur)
+    medians: CONFIRMED +0.01405   SPURIOUS +0.01516   (HL shift +0.001109)
+    Mann-Whitney two-sided p = 0.6589;  AUC(spur>conf) = 0.510 [95% boot 0.464-0.555];  r_rb = +0.020 [-0.071, +0.109]
+    power: smallest AUC detectable at 80% power = 0.575 (r_rb 0.15)
+  C4 astrometric_excess_noise_sig  (n 219 conf / 668 spur)
+    medians: CONFIRMED +132.2   SPURIOUS +178.1   (HL shift +45.91)
+    Mann-Whitney two-sided p = 0.0064;  AUC(spur>conf) = 0.561 [95% boot 0.518-0.604];  r_rb = +0.123 [+0.036, +0.209]
+    power: smallest AUC detectable at 80% power = 0.575 (r_rb 0.15)
+  C5 astrometric_gof_al  (n 219 conf / 668 spur)
+    medians: CONFIRMED +50.12   SPURIOUS +58.21   (HL shift +8.09)
+    Mann-Whitney two-sided p = 0.0049;  AUC(spur>conf) = 0.563 [95% boot 0.520-0.607];  r_rb = +0.127 [+0.041, +0.213]
+    power: smallest AUC detectable at 80% power = 0.575 (r_rb 0.15)
+  C6 phot_bp_rp_excess_factor  (n 219 conf / 668 spur)
+    medians: CONFIRMED +1.283   SPURIOUS +1.288   (HL shift +0.005471)
+    Mann-Whitney two-sided p = 0.5474;  AUC(spur>conf) = 0.514 [95% boot 0.470-0.556];  r_rb = +0.027 [-0.059, +0.111]
+    power: smallest AUC detectable at 80% power = 0.575 (r_rb 0.15)
+  Holm-Bonferroni within family (m = 6):
+    C1 ruwe                            p = 0.0087 -> p_holm = 0.0347  **DISCRIMINATES**
+    C2 ipd_frac_multi_peak             p = 0.7486 -> p_holm = 1.0000  ns
+    C3 ipd_gof_harmonic_amplitude      p = 0.6589 -> p_holm = 1.0000  ns
+    C4 astrometric_excess_noise_sig    p = 0.0064 -> p_holm = 0.0321  **DISCRIMINATES**
+    C5 astrometric_gof_al              p = 0.0049 -> p_holm = 0.0294  **DISCRIMINATES**
+    C6 phot_bp_rp_excess_factor        p = 0.5474 -> p_holm = 1.0000  ns
+
+FAMILY NEGATIVE CONTROL (must not discriminate) --------------------
+  N1 phot_g_n_obs  (n 219 conf / 668 spur)
+    medians: CONFIRMED +413   SPURIOUS +433   (HL shift +20)
+    Mann-Whitney two-sided p = 0.4907;  AUC(spur>conf) = 0.516 [95% boot 0.471-0.560];  r_rb = +0.031 [-0.059, +0.120]
+    power: smallest AUC detectable at 80% power = 0.575 (r_rb 0.15)
+  Holm-Bonferroni within family (m = 1):
+    N1 phot_g_n_obs                    p = 0.4907 -> p_holm = 0.4907  ns
+
+CONFOUND COVARIATES (pre-registered, medians) ----------------------------
+  G mag          CONFIRMED   14.872   SPURIOUS   14.975   (MWU p = 0.721)
+  d [pc]         CONFIRMED  448.708   SPURIOUS  398.239   (MWU p = 0.048)
+  period [d]     CONFIRMED  713.341   SPURIOUS  738.690   (MWU p = 0.637)
+  |b| [deg]      CONFIRMED   22.044   SPURIOUS   19.991   (MWU p = 0.966)
+  significance   CONFIRMED   31.092   SPURIOUS   36.244   (MWU p = 0.019)
+  a0 [mas]       CONFIRMED    1.783   SPURIOUS    2.017   (MWU p = 0.004)
+  bp_rp          CONFIRMED    1.629   SPURIOUS    1.664   (MWU p = 0.644)
+
+G-STRATIFIED CHECK (median split at G = 14.95) --------------------
+  C1 ruwe                          bright: n 114/330  medians +3.933 vs +4.941  AUC 0.565  p 0.037
+  C1 ruwe                          faint : n 105/338  medians +2.691 vs +3.213  AUC 0.574  p 0.023
+  C4 astrometric_excess_noise_sig  bright: n 114/330  medians +230.9 vs +375.9  AUC 0.581  p 0.010
+  C4 astrometric_excess_noise_sig  faint : n 105/338  medians +87.47 vs +123.7  AUC 0.566  p 0.042
+  C5 astrometric_gof_al            bright: n 114/330  medians +60.73 vs +77.94  AUC 0.580  p 0.010
+  C5 astrometric_gof_al            faint : n 105/338  medians +40.28 vs +49.54  AUC 0.566  p 0.042
+
+POST-HOC ROBUSTNESS (added after the confound table showed CONFIRMED and SPURIOUS
+differ in G and in distance; reported as caveats, NOT as part of the pre-registered decision rule)
+  --- C1 ruwe
+      distance split at 409 pc, near: n 100/344  AUC 0.552  p 0.114
+      distance split at 409 pc, far : n 119/324  AUC 0.539  p 0.206
+      logistic P(spurious) ~ z(log ruwe) + z(log significance) + z(G) + z(log d), n=887:
+        beta[ruwe                  ] =  +0.241   Wald p = 0.0661
+        beta[log significance      ] =  +0.100   Wald p = 0.3447
+        beta[G                     ] =  +0.165   Wald p = 0.1230
+        beta[log d                 ] =  +0.067   Wald p = 0.6069
+      -> the metric's own contribution beyond the pipeline's existing ranking variables: p = 0.0661
+  --- C4 astrometric_excess_noise_sig
+      distance split at 409 pc, near: n 100/344  AUC 0.555  p 0.096
+      distance split at 409 pc, far : n 119/324  AUC 0.547  p 0.125
+      logistic P(spurious) ~ z(log astrometric_excess_noise_sig) + z(log significance) + z(G) + z(log d), n=887:
+        beta[astrometric_excess_noise_sig] =  +0.349   Wald p = 0.0136
+        beta[log significance      ] =  +0.072   Wald p = 0.5033
+        beta[G                     ] =  +0.253   Wald p = 0.0341
+        beta[log d                 ] =  +0.115   Wald p = 0.3750
+      -> the metric's own contribution beyond the pipeline's existing ranking variables: p = 0.0136
+  --- C5 astrometric_gof_al
+      distance split at 409 pc, near: n 100/344  AUC 0.552  p 0.113
+      distance split at 409 pc, far : n 119/324  AUC 0.549  p 0.114
+      logistic P(spurious) ~ z(log astrometric_gof_al) + z(log significance) + z(G) + z(log d), n=887:
+        beta[astrometric_gof_al    ] =  +0.265   Wald p = 0.0337
+        beta[log significance      ] =  +0.076   Wald p = 0.4824
+        beta[G                     ] =  +0.170   Wald p = 0.1030
+        beta[log d                 ] =  +0.065   Wald p = 0.6005
+      -> the metric's own contribution beyond the pipeline's existing ranking variables: p = 0.0337
+
+WHAT IT WOULD TAKE (forward-looking; the observed effect held fixed, the 42:23
+ratio held fixed, 80 % power at alpha = 0.05 uncorrected) --------
+  A1 activityindex_espcs           observed AUC 0.483 -> needs about > 32x today's sample
+  B1 dAmp_G                        observed AUC 0.529 -> needs about > 32x today's sample
+  C5 astrometric_gof_al            observed AUC 0.563 -> needs about 504 confirmed + 276 spurious (12x today's sample)
+  N1 phot_g_n_obs                  observed AUC 0.516 -> needs about > 32x today's sample
+  (the epoch-vet loop is the sample factory: it adjudicates hundreds of
+   candidates in 72 h, so re-running this test on day-one verdicts is the
+   cheapest way to reach these numbers -- wired into the first-24h bulletin.)
+
+FAMILY A, the whole of it (n = 7) -- reported because the coverage IS the result:
+          source_id   verdict  activityindex_espcs  activityindex_espcs_uncertainty  phot_g_mean_mag
+2208943221256515712  SPURIOUS             0.047389                         0.002415        12.688024
+1718221565349474176  SPURIOUS             0.040751                         0.002366        12.971858
+5813236315296173824  SPURIOUS             0.037531                         0.001466        12.822415
+4995430802181235968 CONFIRMED             0.033565                         0.002179        13.037829
+4810691339520310016  SPURIOUS             0.030934                         0.000663        11.707841
+5753401133021714048  SPURIOUS             0.026094                         0.000870        12.054872
+1310248016382385536  SPURIOUS             0.024009                         0.000553        11.548400
+6385252016957373824  SPURIOUS             0.019968                         0.001637        13.000323
+6423111466478037632  SPURIOUS             0.019916                         0.001703        12.961346
+5226674761983825792 CONFIRMED             0.018377                         0.000920        11.558102
+5953913841603513984 CONFIRMED             0.018271                         0.000806        11.485646
+6668996931127150208  SPURIOUS             0.016683                         0.001811        12.479801
+4071380820557119104  SPURIOUS             0.016313                         0.000924        11.167371
+5039979680444075392  SPURIOUS             0.014870                         0.002168        12.719213
+ 493120661435228544  SPURIOUS             0.014150                         0.001983        13.245897
+4351710754647398528  SPURIOUS             0.014089                         0.001367        12.150243
+5446310318525312768  SPURIOUS             0.013639                         0.000463        10.372846
+6687541573416724608  SPURIOUS             0.011756                         0.001689        12.074224
+2189771075667268480  SPURIOUS             0.011378                         0.001629        12.913432
+2061745517972456576  SPURIOUS             0.010425                         0.001650        12.863148
+1765282312286903168 CONFIRMED             0.009671                         0.002039        12.593884
+2000643874420209280 CONFIRMED             0.008631                         0.000599        11.142999
+1801110822095134848  SPURIOUS             0.007547                         0.001364        12.188766
+2314595091706855680  SPURIOUS             0.006882                         0.001161        11.736609
+1093398519220918272  SPURIOUS             0.006160                         0.002358        12.695765
+1006730820831295616 CONFIRMED             0.005455                         0.000935        11.990702
+ 131940776857845504  SPURIOUS             0.003980                         0.001414        11.958306
+4655785058999138176  SPURIOUS             0.003726                         0.001709        12.528733
+2373789361772391936  SPURIOUS             0.002699                         0.001289        12.055974
+5870569352746779008  SPURIOUS            -0.001500                         0.001140        12.276908
+5608603320027492352  SPURIOUS            -0.007738                         0.001249        12.256974
+ 420760358106619520 CONFIRMED            -0.013080                         0.001734        12.872098
+6362128458495488512  SPURIOUS            -0.013609                         0.001443        12.316597
+5984963087901124352  SPURIOUS            -0.016285                         0.001908        12.932729
+3416706995764557568  SPURIOUS            -0.023366                         0.001212        11.816548
+5332815704681444224  SPURIOUS            -0.026488                         0.000620        11.178243
+
+==========================================================================
+FAMILY A (chromospheric activity, ESP-CS): **UNDERPOWERED** -- nothing survives Holm; smallest detectable effect for the primary metric: AUC 0.83; observed 0.483.
+FAMILY B (photometric variability): **DOESN'T** (well-powered null) -- the primary metric could have detected AUC 0.58 at 80 % power and the observed AUC is 0.529 [0.486-0.573].
+FAMILY C (astrometric/imaging quality -- NOT activity): **WORKS** -- C1 ruwe, C4 astrometric_excess_noise_sig, C5 astrometric_gof_al survive(s) Holm.
+FAMILY NEGATIVE CONTROL (must not discriminate): **DOESN'T** (well-powered null) -- the primary metric could have detected AUC 0.58 at 80 % power and the observed AUC is 0.516 [0.471-0.560].
+==========================================================================

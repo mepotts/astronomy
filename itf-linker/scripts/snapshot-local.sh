@@ -14,12 +14,10 @@
 # gaps: each snapshot records its own parent, so a missing day widens one interval rather
 # than corrupting the series.
 #
-# WHERE IT COMMITS. Git runs in a dedicated archive clone ($ARCHIVE), never in the
-# development checkout. Until 2026-08-06 this script ran `git checkout main` in the shared
-# tree whenever that tree was clean: commit your work on a feature branch, leave it clean
-# overnight, and the task moved you to main and pushed from it. The dirty-tree guard only
-# ever protected *uncommitted* work. The archive now owns its own clone, so the state of
-# the development tree cannot affect it and it cannot affect the development tree.
+# WHERE IT RUNS AND COMMITS. The scheduled task invokes this script from a pinned
+# operations checkout. Snapshot state is selected independently with ITF_DATA_DIR, and
+# Git commits from a second archive clone ($ARCHIVE). A development branch switch therefore
+# cannot change retention policy, prune the archive, or move the task's Git checkout.
 #
 # ORDER MATTERS. The key set is published BEFORE any git work and independently of it. It
 # is the artefact that makes the NEXT delta computable, and it used to sit after the
@@ -32,21 +30,61 @@
 
 set -uo pipefail
 
-REPO="c:/Users/matth/projects/astronomy"              # development checkout; snapshot data lives here
-ARCHIVE="c:/Users/matth/projects/astronomy-archive"   # clone this task commits from; nothing human in it
-PROJ="$REPO/itf-linker"
-PY="$PROJ/.venv/Scripts/python.exe"
-LOG="$PROJ/data/snapshot-local.log"
-BRANCH=main
-GH_REPO="mepotts/astronomy"
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P) || exit 1
+PROJ=$(cd -- "$SCRIPT_DIR/.." && pwd -P) || exit 1
+
+# Runtime locations are explicit scheduler inputs. Defaults keep interactive/manual use
+# convenient, but production sets all three so code, state, and commit checkout are
+# separate failure domains.
+ITF_DATA_DIR="${ITF_DATA_DIR:-$PROJ/data}"
+ARCHIVE="${ITF_ARCHIVE_CLONE:-c:/Users/matth/projects/astronomy-archive}"
+PY="${ITF_PYTHON:-$PROJ/.venv/Scripts/python.exe}"
+LOG="${ITF_SNAPSHOT_LOG:-$ITF_DATA_DIR/snapshot-local.log}"
+BRANCH="${ITF_ARCHIVE_BRANCH:-main}"
+GH_REPO="${ITF_GH_REPO:-mepotts/astronomy}"
+SNAPSHOT_DATA="$ITF_DATA_DIR/snapshots"
+
+# A reused development venv may contain an editable install pointing at another checkout.
+# This task needs no inherited module search path, so replace it completely. A POSIX ':'
+# list is invalid to native Windows Python, whose separator is ';'.
+export ITF_DATA_DIR
+export PYTHONPATH="$PROJ/src"
+if command -v cygpath >/dev/null 2>&1; then
+  ITF_EXPECTED_PROJECT_ROOT=$(cygpath -w "$PROJ")
+else
+  ITF_EXPECTED_PROJECT_ROOT="$PROJ"
+fi
+export ITF_EXPECTED_PROJECT_ROOT
 
 # Generations of key set retained as release assets. More than one so that a corrupt or
 # half-finished upload can never be the only copy in existence; see "no single generation".
-KEYSET_KEEP=4
+#
+# Raised 4 -> 14 to match snapshot.py's FULL_KEEP, which went 3 -> 14 for the same reason:
+# a three-day window cost M11 a silently wrong interval and M12 a permanent hole in the
+# series (2026-08-13's delta could not be computed at all), and the MPC serves only the
+# current ITF, so neither is repairable at any price. Keep the two in step -- the local
+# window is what makes the next delta computable, the release mirror is what lets an old
+# one be recovered.
+KEYSET_KEEP=14
 
+# The production task supplies a stable log path separately from ITF_DATA_DIR, so even a
+# mistyped state path leaves a diagnostic in the established log. Do not create a new log
+# parent implicitly in unattended mode: that would make a typo look valid.
+LOG_PARENT=$(dirname -- "$LOG")
+if [ ! -d "$LOG_PARENT" ]; then
+  if [ "${ITF_ALLOW_BOOTSTRAP:-0}" = "1" ]; then
+    mkdir -p "$LOG_PARENT" || { echo "FATAL: cannot create log directory $LOG_PARENT"; exit 1; }
+  else
+    echo "FATAL: log directory does not exist: $LOG_PARENT"
+    exit 1
+  fi
+fi
 exec >>"$LOG" 2>&1
 echo "=============================================================="
 echo "[$(date -u '+%Y-%m-%dT%H:%M:%SZ')] starting"
+echo "--- code: $PROJ"
+echo "--- state: $ITF_DATA_DIR"
+echo "--- interpreter: $PY"
 
 # Non-zero if any step failed. The scheduled task's LastTaskResult is the only signal a
 # human checks (docs/archive-operations.md section 1), so a partial run must not exit 0.
@@ -57,21 +95,118 @@ RC=0
 cd "$PROJ" || { echo "FATAL: cannot cd to $PROJ"; exit 1; }
 [ -x "$PY" ] || { echo "FATAL: no interpreter at $PY"; exit 1; }
 
+# Refuse to run if the selected interpreter resolves a different data directory or an old
+# retention policy. This turns a future path/configuration regression into a failed task,
+# rather than an unattended prune.
+if ! "$PY" -c \
+  "import os; from pathlib import Path; from itf_linker import config; assert config.PROJECT_ROOT == Path(os.environ['ITF_EXPECTED_PROJECT_ROOT']).resolve(), (config.PROJECT_ROOT, os.environ['ITF_EXPECTED_PROJECT_ROOT']); assert config.DATA_DIR == Path(os.environ['ITF_DATA_DIR']).resolve(), (config.DATA_DIR, os.environ['ITF_DATA_DIR'])"; then
+  echo "FATAL: interpreter did not resolve the pinned code/state directories"
+  exit 1
+fi
+if [ "${ITF_ALLOW_BOOTSTRAP:-0}" = "1" ]; then
+  mkdir -p "$ITF_DATA_DIR" || { echo "FATAL: cannot bootstrap data directory $ITF_DATA_DIR"; exit 1; }
+  echo "WARN: explicit archive bootstrap enabled; no continuity check was possible"
+else
+  if ! CHAIN_COUNTS=$("$PY" -c \
+    "from itf_linker.config import validate_existing_snapshot_chain; print(*validate_existing_snapshot_chain())"); then
+    echo "FATAL: ITF_DATA_DIR is not an established snapshot chain; refusing a new baseline"
+    exit 1
+  fi
+  echo "--- existing chain: $(echo "$CHAIN_COUNTS" | awk '{print $1}') records, $(echo "$CHAIN_COUNTS" | awk '{print $2}') retained key sets"
+fi
+RUNTIME_FULL_KEEP=$("$PY" -c "from itf_linker.snapshot import FULL_KEEP; print(FULL_KEEP)") || {
+  echo "FATAL: cannot read FULL_KEEP from the selected runtime"
+  exit 1
+}
+if ! [[ "$RUNTIME_FULL_KEEP" =~ ^[0-9]+$ ]]; then
+  echo "FATAL: selected runtime returned a non-integer FULL_KEEP: $RUNTIME_FULL_KEEP"
+  exit 1
+fi
+if [ "$RUNTIME_FULL_KEEP" -lt 14 ] || [ "$KEYSET_KEEP" -lt "$RUNTIME_FULL_KEEP" ]; then
+  echo "FATAL: unsafe retention: runtime FULL_KEEP=$RUNTIME_FULL_KEEP release KEYSET_KEEP=$KEYSET_KEEP"
+  exit 1
+fi
+echo "--- retention: local=$RUNTIME_FULL_KEEP release=$KEYSET_KEEP"
+
+# Prove the publication clone is a separate, pinned checkout before preflight can report
+# success. Merely checking for `.git` later would accept the shared development repo and
+# silently recreate the branch-switching failure this operations layout exists to remove.
+if ! ARCHIVE_ROOT=$(cd -- "$ARCHIVE" 2>/dev/null && pwd -P); then
+  echo "FATAL: archive clone does not exist: $ARCHIVE"
+  exit 1
+fi
+if [ ! -d "$ARCHIVE_ROOT/.git" ]; then
+  echo "FATAL: archive path is not a standalone Git clone: $ARCHIVE_ROOT"
+  exit 1
+fi
+if ! DATA_ROOT=$(cd -- "$ITF_DATA_DIR" 2>/dev/null && pwd -P); then
+  echo "FATAL: cannot resolve archive state directory: $ITF_DATA_DIR"
+  exit 1
+fi
+proj_norm=${PROJ,,}
+data_norm=${DATA_ROOT,,}
+archive_norm=${ARCHIVE_ROOT,,}
+if [[ "$proj_norm" == "$archive_norm" || "$proj_norm" == "$archive_norm"/* ||
+      "$archive_norm" == "$proj_norm"/* || "$data_norm" == "$archive_norm" ||
+      "$data_norm" == "$archive_norm"/* || "$archive_norm" == "$data_norm"/* ]]; then
+  echo "FATAL: archive clone must be separate from the code and state directories"
+  echo "       code=$PROJ state=$DATA_ROOT archive=$ARCHIVE_ROOT"
+  exit 1
+fi
+ARCHIVE_REMOTE=$(git -C "$ARCHIVE_ROOT" remote get-url origin 2>/dev/null) || {
+  echo "FATAL: archive clone has no readable origin remote: $ARCHIVE_ROOT"
+  exit 1
+}
+case "$ARCHIVE_REMOTE" in
+  "https://github.com/$GH_REPO"|"https://github.com/$GH_REPO.git"|\
+  "git@github.com:$GH_REPO"|"git@github.com:$GH_REPO.git") ;;
+  *)
+    echo "FATAL: archive clone origin is not github.com/$GH_REPO: $ARCHIVE_REMOTE"
+    exit 1
+    ;;
+esac
+if ! git -C "$ARCHIVE_ROOT" show-ref --verify --quiet "refs/heads/$BRANCH"; then
+  echo "FATAL: archive clone has no local $BRANCH branch: $ARCHIVE_ROOT"
+  exit 1
+fi
+# All later shell paths remain stable across `cd` even if an interactive caller supplied
+# a relative path. (The scheduled task uses absolute paths, but the manual interface is
+# deliberately safe too.)
+ARCHIVE="$ARCHIVE_ROOT"
+SNAPSHOT_DATA="$DATA_ROOT/snapshots"
+echo "--- publication clone: $ARCHIVE_ROOT ($ARCHIVE_REMOTE, branch $BRANCH)"
+
+if [ "${ITF_PREFLIGHT_ONLY:-0}" = "1" ]; then
+  echo "DONE: preflight only; no network, archive, release, or git mutation attempted"
+  exit 0
+fi
+
 echo "--- fetching and archiving"
-if ! "$PY" -m itf_linker.cli snapshot --refetch; then
+if ! SNAPSHOT_RESULT=$("$PY" -m itf_linker.cli snapshot --refetch); then
+  printf '%s\n' "$SNAPSHOT_RESULT"
   echo "FATAL: snapshot command failed (MPC unreachable, or a real error above)"
   exit 1
 fi
+printf '%s\n' "$SNAPSHOT_RESULT"
 
-SID=$(ls -1 data/snapshots | sort | tail -1)
-if [ -z "$SID" ]; then
-  echo "FATAL: no snapshot directory after a successful snapshot run"
+if ! SID=$(printf '%s\n' "$SNAPSHOT_RESULT" | "$PY" -c \
+  'import json, re, sys; value = json.load(sys.stdin).get("snapshot_id"); re.fullmatch(r"[0-9]{8}T[0-9]{6}Z", value or "") or sys.exit("missing/invalid snapshot_id in command result"); print(value)'); then
+  echo "FATAL: successful snapshot command did not return one valid snapshot id"
   exit 1
 fi
-echo "--- newest snapshot: $SID"
+echo "--- snapshot returned by command: $SID"
 
-SNAP_REL="itf-linker/data/snapshots/$SID"
-SNAP_DIR="$REPO/$SNAP_REL"
+SNAP_DIR="$SNAPSHOT_DATA/$SID"
+
+# Never infer the generation from a lexical directory listing. A stray future-named
+# recovery directory could otherwise pin publication forever. Revalidate the whole chain
+# after the write and require this exact command result to be a complete record with its
+# full key set before any release or archive mutation.
+if ! ITF_SELECTED_SNAPSHOT="$SID" "$PY" -c \
+  'import os; from itf_linker.config import validate_existing_snapshot_chain; validate_existing_snapshot_chain(required_full_snapshot=os.environ["ITF_SELECTED_SNAPSHOT"])'; then
+  echo "FATAL: snapshot returned by this run is not a validated full archive record: $SID"
+  exit 1
+fi
 
 # ------------------------------------------------- 2. publish the key set (before git)
 
@@ -147,14 +282,7 @@ for f in "$MAN" "$DELTA"; do
   [ -f "$f" ] || { echo "FATAL: expected artefact missing: $f"; exit 1; }
 done
 
-if [ ! -d "$ARCHIVE/.git" ]; then
-  echo "FATAL: no archive clone at $ARCHIVE"
-  echo "       create it once with:"
-  echo "         git clone https://github.com/$GH_REPO.git '$ARCHIVE'"
-  exit 1
-fi
-
-cd "$ARCHIVE" || { echo "FATAL: cannot cd to $ARCHIVE"; exit 1; }
+cd "$ARCHIVE_ROOT" || { echo "FATAL: cannot cd to $ARCHIVE_ROOT"; exit 1; }
 
 # A stale index can only come from a previous failed run of this script; nothing human is
 # ever edited here. Unstage it (mixed reset -- never --hard, which is how an agent's work
@@ -178,7 +306,7 @@ fi
 # later run ever looked back. That is not hypothetical: the 2026-07-29 baseline pair and
 # 20260806T122651Z sat uncommitted on the laptop for days, and the 08-07 run walked straight
 # past all three. Restaging is free -- git stages only what actually differs.
-for dir in "$REPO/itf-linker/data/snapshots"/*/; do
+for dir in "$SNAPSHOT_DATA"/*/; do
   sid=$(basename "$dir")
   # A pruned snapshot keeps its manifest and delta forever; anything missing them is a
   # half-written directory, not a record.
@@ -208,7 +336,23 @@ for dir in "$REPO/itf-linker/data/snapshots"/*/; do
 done
 
 if git diff --cached --quiet; then
-  echo "DONE: nothing new -- every snapshot record on disk is already committed"
+  # A prior run may have committed successfully and then lost the network during push.
+  # An unchanged MPC snapshot must still retry that durable-but-unpublished commit; waiting
+  # for some later data change could otherwise strand the archive record indefinitely.
+  if ! AHEAD=$(git rev-list --count "origin/$BRANCH..$BRANCH"); then
+    echo "FATAL: cannot determine whether the archive branch is ahead of origin"; exit 1
+  fi
+  if [ "$AHEAD" -gt 0 ]; then
+    echo "--- retrying push of $AHEAD previously unpushed archive commit(s)"
+    if ! git push -q origin "$BRANCH"; then
+      echo "WARN: retry push failed -- $AHEAD archive commit(s) remain local"
+      RC=1
+    else
+      echo "DONE: pushed $AHEAD previously unpushed archive commit(s); snapshot unchanged"
+    fi
+  else
+    echo "DONE: nothing new -- every snapshot record on disk is committed and published"
+  fi
   exit "$RC"
 fi
 

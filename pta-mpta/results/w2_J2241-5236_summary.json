@@ -1,0 +1,94 @@
+{
+  "pulsar": "J2241-5236",
+  "ndim": 5,
+  "niter": 30066,
+  "thinned_samples": 3007,
+  "post_burn": 2256,
+  "wallclock_s": 2194.3,
+  "eval_ms": 99.78,
+  "evals_per_s": 10.0,
+  "first_eval_s": 0.16,
+  "converged": false,
+  "n_agree": 5,
+  "n_compared": 5,
+  "need": 4,
+  "verdict": "NOT-CONVERGED -> feasibility result (A3)",
+  "params": [
+    {
+      "param": "J2241-5236_efac",
+      "key": "efac",
+      "median": 1.0496571912769572,
+      "ci68": [
+        1.0370267087851501,
+        1.0635475039780535
+      ],
+      "published_map": 1.05,
+      "published_ci": [
+        1.04,
+        1.06
+      ],
+      "agree": true
+    },
+    {
+      "param": "J2241-5236_gw13_log10_A",
+      "key": "gw13_log10_A",
+      "median": -14.817101559713755,
+      "ci68": [
+        -15.510869599328318,
+        -14.46979596360448
+      ],
+      "published_map": -14.82,
+      "published_ci": [
+        -16.39,
+        -14.540000000000001
+      ],
+      "agree": true
+    },
+    {
+      "param": "J2241-5236_sw_gp_gamma",
+      "key": "sw_gamma",
+      "median": 1.740323861093971,
+      "ci68": [
+        1.4959304810645389,
+        2.006657681828352
+      ],
+      "published_map": 1.81,
+      "published_ci": [
+        1.51,
+        1.99
+      ],
+      "agree": true
+    },
+    {
+      "param": "J2241-5236_sw_gp_log10_A",
+      "key": "sw_log10_A",
+      "median": -6.193213125095025,
+      "ci68": [
+        -6.275076810758347,
+        -6.101731521217111
+      ],
+      "published_map": -6.16,
+      "published_ci": [
+        -6.26,
+        -6.1000000000000005
+      ],
+      "agree": true
+    },
+    {
+      "param": "n_earth",
+      "key": "n_earth",
+      "median": 5.053237861968407,
+      "ci68": [
+        3.043698519311266,
+        6.887410855750706
+      ],
+      "published_map": 5.86,
+      "published_ci": [
+        3.5400000000000005,
+        7.45
+      ],
+      "agree": true
+    }
+  ],
+  "published_source": "arXiv:2412.01148 Table 'MPTA noise models' (LaTeX source, retrieved 2026-08-16)"
+}

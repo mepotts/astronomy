@@ -1,0 +1,178 @@
+M8 TASK 2 -- THE PARALLAX ZERO-POINT, BOUNDED
+produced 2026-08-24T17:01:49Z
+gaiadr3-zeropoint 0.1.0  (Lindegren et al. 2021, A&A 649, A4)
+convention: varpi_true = varpi - Z, Z typically negative, corrected parallax LARGER
+
+==============================================================================
+Z1  VALIDATE the implementation against two independent users
+==============================================================================
+
+  (a) Panuzzo et al. 2024, Table 1 footnote b
+      DR3 catalogue parallax (pulled)   1.644349 mas
+      L21 Z computed here               -35.4 uas   (Panuzzo quote: -35.4 uas)
+      corrected here                    1.679755 mas
+      Panuzzo's printed corrected value 1.679000 +/- 0.069 mas
+      |Z_here| - |Z_Panuzzo| = 0.006 uas   (tolerance 0.05 uas = their printed precision)
+      MATCH -- the implementation reproduces the published correction exactly
+
+  (b) El-Badry et al. 2026 -- the same eight sources fitted with and
+      without L21; the difference of the two published parallax columns is
+      their applied shift.  These are JOINT astrometry+RV fits, so the shift
+      is not exactly Z (the RV data pulls the parallax too); agreement to a
+      few uas is the test, not bit-identity.
+
+      1522897482203494784  EB26  +32.0   here  +31.6   diff   +0.4 uas
+      4373465352415301632  EB26  +38.0   here  +39.7   diff   -1.7 uas
+      2995961897685517312  EB26  +26.0   here  +30.8   diff   -4.8 uas
+      220012968211559296   EB26  +42.0   here  +41.3   diff   +0.7 uas
+      2080945469200565248  EB26  +24.0   here  +28.3   diff   -4.3 uas
+      6481502062263141504  EB26  +40.0   here  +42.2   diff   -2.2 uas
+      5820382041374661888  EB26  +27.0   here  +38.8   diff  -11.8 uas
+      2919995917769953408  EB26  +39.0   here  +37.8   diff   +1.2 uas
+
+      median |diff| = 2.0 uas over 8 sources; EB26 quote their
+      values to 3 decimal places in mas, i.e. 1 uas rounding on each column.
+
+  (c) EB26 also MEASURED the zero-point for astrometric ORBITAL solutions
+      directly, from 40 dark-companion joint fits: Z = -0.0362 +/- 0.0053 mas,
+      against the L21 median -0.0342 mas for the same 40 sources.
+      Their conclusion, quoted: "the single-star zeropoint can and should be
+      applied to binary solutions as well."  That is the sourced authority for
+      applying a single-star correction to an orbital solution, which is the
+      one thing this task could not otherwise justify.
+
+  Z1 PASS
+
+==============================================================================
+Z2  M7's 5-41 uas offset: systematic, or convention mismatch?
+==============================================================================
+  Panuzzo states the convention in two places, and they are OPPOSITE:
+    Table 1 (DR3 single-star parallax)   -- L21 APPLIED (footnote b, 35.4 uas)
+    Table 2 (the NSS orbital solutions)  -- NOT applied; the Letter says the
+                                            bias 'could not be quantified' for
+                                            preliminary NSS solutions (line 262)
+  M7 compared its refit parallax against the TABLE 2 value (1.6747 +/- 0.0094),
+  which is UNCORRECTED -- so M7's -14.9 uas on BH3 is a comparison of two
+  uncorrected parallaxes and is NOT the zero-point.  The zero-point is a
+  common offset that cancels in that difference.
+
+  the four BH3 parallaxes, on one scale:
+    DR3 single-star, catalogue        1.644349
+    DR3 single-star + L21             1.679755   (Panuzzo Table 1: 1.679)
+    Panuzzo NSS astrometric, RAW      1.674700 +/- 0.0094
+    arm refit (M7), RAW               1.659797 +/- 0.006523
+    arm refit + L21                   1.695203
+    Panuzzo a0/a1, ZERO-POINT FREE    1.693300 +/- 0.0164
+    RAW refit              vs the zero-point-free a0/a1:   -33.5 uas = -1.90 sigma
+    L21-corrected refit    vs the zero-point-free a0/a1:    +1.9 uas = +0.11 sigma
+
+  THE TEST THAT DECIDES IT: a0/a1 is derived from the SPECTROSCOPIC a1 and
+  carries no astrometric zero-point.  If the correction is real, the
+  corrected refit parallax must land on it and the raw one must not.
+
+==============================================================================
+Z3  Gaia BH3's companion mass, with and without the correction
+==============================================================================
+
+  Gaia BH3
+    parallax   1.659797 -> 1.695203 mas  (Z = -35.4 uas)
+    f_M        33.21279 -> 31.17491 Msun  (-6.14 %)
+    M2         34.68425 -> 32.64342 Msun  (-5.88 %, -2.0408 Msun)
+  HD 114762
+    parallax   25.309416 -> 25.346379 mas  (Z = -37.0 uas)
+    f_M        0.00743 -> 0.00739 Msun  (-0.44 %)
+    M2         0.23336 -> 0.23298 Msun  (-0.17 %, -0.0004 Msun)
+  Gaia-4
+    parallax   13.623494 -> 13.646189 mas  (Z = -22.7 uas)
+    f_M        0.00000 -> 0.00000 Msun  (-0.50 %)
+    M2         0.01033 -> 0.01031 Msun  (-0.17 %, -0.0000 Msun)
+
+  THE PRE-REGISTERED QUESTION -- does the 2.4 sigma close?
+    Panuzzo headline M_BH = 32.70 +/- 0.82 Msun, derived from a1 and
+    therefore INDEPENDENT of any parallax zero-point.
+    arm, RAW parallax (M7): M2 =  34.6843  ->  +2.42 sigma
+    arm, L21-corrected    : M2 =  32.6434  ->  -0.07 sigma
+
+  and against Panuzzo's own ASTROMETRIC mass function 32.03 +/- 0.64 Msun
+  (which is computed from a parallax that is NOT zero-point corrected):
+    arm, RAW parallax: f_M =  33.2128  ->  +1.85 sigma
+    arm, L21-corrected: f_M =  31.1749  ->  -1.34 sigma
+
+  and against the a1-derived, zero-point-free f_M 31.23 +/- 0.81 Msun:
+    arm, RAW parallax: f_M =  33.2128  ->  +2.45 sigma
+    arm, L21-corrected: f_M =  31.1749  ->  -0.07 sigma
+
+==============================================================================
+Z4  AT SCALE -- what the correction costs across the day-one queue
+==============================================================================
+
+  979 of 981 queue rows have an a0, a positive NSS parallax and a
+  defined L21 correction (0 undefined)
+  Z over the queue: median -35.5 uas, p10 -43.5, p90 -23.7 uas
+
+  companion-mass shift from applying L21 (n = 823 with an M1 rung):
+    relative: median -1.95 %  p10 -4.93 %  p90 -0.95 %  worst -11.94 %
+    absolute: median -0.0121 Msun  p10 -0.0602  p90 -0.0054
+    (EB26 measured a median shift of -0.018 Msun on their own joint fits)
+
+  the shift is a function of distance -- it is 3 * Z / varpi to first order:
+    varpi   0.0-  0.5 mas: n=  51  median mass shift  -9.86 %
+    varpi   0.5-  1.0 mas: n= 133  median mass shift  -6.83 %
+    varpi   1.0-  2.0 mas: n= 214  median mass shift  -3.31 %
+    varpi   2.0-  5.0 mas: n= 455  median mass shift  -1.79 %
+    varpi   5.0-  inf mas: n= 126  median mass shift  -0.91 %
+
+  rows whose mass moves by more than 5 %: 79 of 823
+  rows whose mass moves by more than 10 %: 4
+
+  the M1-FREE version of the same shift (mass function, defined for all 979 rows):
+    median -4.09 %  p10 -12.17 %  p90 -1.91 %  worst -33.66 %
+
+  the ten highest-M2_min queue members (the December headline candidates).
+  M2 is blank where the triage's M1 ladder reached the evolved bracket rather
+  than a point mass; the M1-free f_M shift is defined for every row:
+    source_id              varpi   M2_raw   M2_L21      dM2     df_M
+    4373465352415301632   2.0955   12.807   12.190   -4.82%   -5.48%
+    5870569352746779008   0.8592      ---      ---      ---   -1.65%
+    3509370326763016704   7.9825    3.686    3.670   -0.44%   -0.58%
+    5296919570584886016   0.4227      ---      ---      ---   -6.11%
+    2018177545831527808   0.3458      ---      ---      ---  -30.63%
+    5542831389148064640   0.4289      ---      ---      ---  -20.89%
+    2020124643487024640   0.3939      ---      ---      ---  -26.28%
+    2004175948136111360   0.3531    2.886    2.655   -8.00%  -15.75%
+    5238699738399933952   0.3309      ---      ---      ---  -24.66%
+    2025967959366721664   0.3789      ---      ---      ---   -7.27%
+
+==============================================================================
+Z5  THE RESIDUAL, bounded -- and what it costs
+==============================================================================
+  Three independent statements about how big the residual zero-point is
+  after L21 is applied:
+    (a) EB26's direct measurement on 40 astrometric ORBITAL solutions:
+        Z = -0.0362 +/- 0.0053 mas vs the L21 median -0.0342 for the
+        same sources -- a residual of -2.0 uas, 0.38 sigma from zero.
+    (b) the scatter of L21 vs EB26's applied shift on the eight published
+        pairs: median |diff| 2.0 uas.
+    (c) Gaia BH3 against Panuzzo's zero-point-free a0/a1 parallax:
+        residual +1.9 uas (+/- 17.6 uas, i.e. consistent with zero at 0.11 sigma).
+
+  BOUND ADOPTED: the residual zero-point after L21 is <= 2 uas
+  (the largest of the three, rounded up), against the 35 uas the correction itself
+  removes at the median of this sample (the DR3 GLOBAL mean is 17 uas; this sample is
+  fainter and redder than the all-sky average, so quoting the global number
+  here would understate what is being removed by a factor two).
+
+  WHAT IT COSTS IN COMPANION MASS.  dM2/M2 ~ -3 dvarpi/varpi, so a 2 uas
+  residual costs:
+    varpi  0.3000 mas ->  2.00 % on the companion mass
+    varpi  0.5000 mas ->  1.20 % on the companion mass
+    varpi  1.0000 mas ->  0.60 % on the companion mass
+    varpi  1.6598 mas ->  0.36 % on the companion mass
+    varpi  2.0000 mas ->  0.30 % on the companion mass
+    varpi  5.0000 mas ->  0.12 % on the companion mass
+    varpi 13.6000 mas ->  0.04 % on the companion mass
+
+  For Gaia BH3 (varpi 1.66 mas) that is 0.36 % = 0.13 Msun on a 34.7 Msun
+  companion -- against Panuzzo's own 0.82 Msun uncertainty.  The zero-point is
+  no longer the dominant systematic once it is applied; it was only
+  dominant while it was being ignored.

@@ -1,0 +1,52 @@
+{
+  "when": "2026-08-21T15:21:27",
+  "tests": {
+    "tables": {
+      "gaiadr3.gaia_source": true,
+      "gaiadr3.allwise_best_neighbour": true,
+      "catalogs.allwise": true,
+      "gaiadr3.tmass_psc_xsc_best_neighbour": true,
+      "catalogs.tmass": true
+    },
+    "bailer_jones_edr3": false,
+    "anon_async": "COMPLETED",
+    "executionduration_accepted": {
+      "30": "30",
+      "300": "300",
+      "3600": "3600",
+      "86400": "86400"
+    },
+    "statement_timeout_state": "ERROR",
+    "statement_timeout_db_s": 30.1,
+    "u_rows": 1715,
+    "u_rows_null_sig": 0,
+    "u_rows_zero_sig": 1715,
+    "cell_sizes": [
+      {
+        "level": 1,
+        "deg2": 859.4366666666666,
+        "ncells": 48,
+        "state": "COMPLETED",
+        "db": 21.4,
+        "rows": 27466
+      },
+      {
+        "level": 2,
+        "deg2": 214.85916666666665,
+        "ncells": 192,
+        "state": "COMPLETED",
+        "db": 17.4,
+        "rows": 8233
+      },
+      {
+        "level": 3,
+        "deg2": 53.71479166666666,
+        "ncells": 768,
+        "state": "COMPLETED",
+        "db": 10.1,
+        "rows": 1784
+      }
+    ],
+    "esac_pk_lookup_s": 5.3
+  }
+}

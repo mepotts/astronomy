@@ -52,15 +52,15 @@ def _build(root, keys, stamp):
 
 
 def test_baseline_says_so_rather_than_reporting_a_zero_delta(tmp_path):
-    m = _build(tmp_path, [1, 2, 3], "Mon, 01 Jan 2029 00:00:00 GMT")
+    m = _build(tmp_path, [1, 2, 3], "Thu, 01 Jan 2026 00:00:00 GMT")
     assert m["delta_status"]["computed"] is False
     assert m["is_baseline"] is True
     assert "baseline" in m["delta_status"]["reason"]
 
 
 def test_normal_step_records_which_ancestor_it_measured_against(tmp_path):
-    a = _build(tmp_path, [1, 2, 3], "Mon, 01 Jan 2029 00:00:00 GMT")
-    b = _build(tmp_path, [2, 3, 4], "Tue, 02 Jan 2029 00:00:00 GMT")
+    a = _build(tmp_path, [1, 2, 3], "Thu, 01 Jan 2026 00:00:00 GMT")
+    b = _build(tmp_path, [2, 3, 4], "Fri, 02 Jan 2026 00:00:00 GMT")
     assert b["delta_status"] == {
         "computed": True,
         "against": a["snapshot_id"],
@@ -71,20 +71,20 @@ def test_normal_step_records_which_ancestor_it_measured_against(tmp_path):
 
 def test_a_genuine_no_change_is_computed_and_zero(tmp_path):
     """The case that must stay distinguishable from an unmeasurable one."""
-    _build(tmp_path, [1, 2, 3], "Mon, 01 Jan 2029 00:00:00 GMT")
-    b = _build(tmp_path, [1, 2, 3], "Tue, 02 Jan 2029 00:00:00 GMT")
+    _build(tmp_path, [1, 2, 3], "Thu, 01 Jan 2026 00:00:00 GMT")
+    b = _build(tmp_path, [1, 2, 3], "Fri, 02 Jan 2026 00:00:00 GMT")
     assert b["delta"] == {"appeared": 0, "disappeared": 0}
     assert b["delta_status"]["computed"] is True
 
 
 def test_walks_back_past_a_pruned_parent_to_the_newest_usable_ancestor(tmp_path):
-    a = _build(tmp_path, [1, 2, 3], "Mon, 01 Jan 2029 00:00:00 GMT")
-    b = _build(tmp_path, [2, 3, 4], "Tue, 02 Jan 2029 00:00:00 GMT")
+    a = _build(tmp_path, [1, 2, 3], "Thu, 01 Jan 2026 00:00:00 GMT")
+    b = _build(tmp_path, [2, 3, 4], "Fri, 02 Jan 2026 00:00:00 GMT")
     # b is what a CI-built snapshot looks like once it reaches another machine: the
     # permanent record survives, the key set does not.
     (tmp_path / b["snapshot_id"] / snap.OBS_FILE).unlink()
 
-    c = _build(tmp_path, [3, 4, 5], "Wed, 03 Jan 2029 00:00:00 GMT")
+    c = _build(tmp_path, [3, 4, 5], "Sat, 03 Jan 2026 00:00:00 GMT")
 
     assert c["delta_status"]["computed"] is True
     assert c["delta_status"]["against"] == a["snapshot_id"]
@@ -98,10 +98,10 @@ def test_walks_back_past_a_pruned_parent_to_the_newest_usable_ancestor(tmp_path)
 
 def test_no_usable_ancestor_is_reported_as_unmeasured_not_as_zero(tmp_path):
     """The exact 2026-08-06 failure: every ancestor key set gone."""
-    a = _build(tmp_path, [1, 2, 3], "Mon, 01 Jan 2029 00:00:00 GMT")
+    a = _build(tmp_path, [1, 2, 3], "Thu, 01 Jan 2026 00:00:00 GMT")
     (tmp_path / a["snapshot_id"] / snap.OBS_FILE).unlink()
 
-    b = _build(tmp_path, [9, 9, 9], "Tue, 02 Jan 2029 00:00:00 GMT")
+    b = _build(tmp_path, [9, 9, 9], "Fri, 02 Jan 2026 00:00:00 GMT")
 
     assert b["delta_status"]["computed"] is False
     assert b["is_baseline"] is False, "an unmeasurable step is not a baseline"
@@ -118,7 +118,7 @@ def test_retention_always_leaves_an_ancestor_the_next_delta_can_use(tmp_path, fu
         snap.build_snapshot(
             _obs(list(range(i, i + 3))),
             _trk(list(range(i, i + 3))),
-            _prov(f"Mon, {day} Jan 2029 00:00:00 GMT"),
+            _prov(f"Mon, {day} Jan 2026 00:00:00 GMT"),
             root=tmp_path,
             full_keep=full_keep,
         )

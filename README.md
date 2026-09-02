@@ -3,10 +3,12 @@
 [![CI](https://github.com/mepotts/astronomy/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mepotts/astronomy/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Independent astronomy research built entirely on public data — no telescope, no
-institutional affiliation. Everything here runs on a laptop against open archives
-(ESO, MPC, Gaia, TAP services), and every result is reproducible from the code and
-milestone documents that sit next to it.
+Independent astronomy research built on public data — no telescope and no
+institutional affiliation. The projects are designed for a laptop or workstation and
+document the archive inputs, code, and milestone evidence used for each result. Some
+reproductions also require bulk data or specialist environments that are deliberately
+kept outside Git; each project documents those requirements rather than pretending there
+is one repository-wide build.
 
 Two conventions distinguish this repository. **Every claim is gated**: results are
 scored against published values or positive controls, adopted changes must pass
@@ -20,12 +22,21 @@ headed into the formal record.
 
 ## Research
 
-### [`exosat-rv/`](exosat-rv/) — testing the first exosatellite RV detection, then surveying the archive
+### [`exosat-rv`](https://github.com/mepotts/exosat-rv) — an independent raw-to-RV pipeline for imaged companions
+
+> **This project now lives in its own repository:**
+> **[github.com/mepotts/exosat-rv](https://github.com/mepotts/exosat-rv)** — the drafts, the
+> reduction drivers, the injection harness and blind period search, and the full milestone
+> record with its retractions. That is the repository the papers cite, and the only copy;
+> the working tree that used to sit here has been removed. The summary below stays as the
+> portfolio's account of the work, and every link in it points there.
 
 The deepest project here: an independent reproduction of Hoy et al. 2026
 ([Nature](https://www.nature.com/articles/s41586-026-10751-w)), which measured the
 radial velocity of the imaged companion CD-35 2722 B *itself* — not its host star —
-and reported a planetary-mass satellite around it.
+and reported a planetary-mass satellite around it. The pipeline is not a reconstruction of
+theirs, which has never been published — it is an independent route to the same quantity,
+and it transfers unmodified across three wavelength settings and both observing modes.
 
 **The primary conclusion reproduces — from the raw data.** An independent
 re-reduction (ESO cr2res + viper forward modeling) reaches 70–90 m/s rms against
@@ -38,19 +49,20 @@ configurations, against the paper's reported +2.6.
 The validated method was then pointed at every archival CRIRES+
 companion-spectroscopy campaign a coordinate census could find. Eighteen systems
 adjudicated — one confirmation, one contradiction, four upper limits (including
-the first RV constraint a literature search can find on **eta Tel B**:
-msini ≳ 0.5–1.2 M_Jup at 90% across P = 20–300 d), one contamination-limited,
-four data-limited — plus a measured contrast wall for slit spectroscopy and an
-open front ([M27](exosat-rv/docs/target-queue.md)): the discovery that the
+one on **eta Tel B** for which no previous measurement is known:
+msini ≳ 0.51–1.27 M_Jup at 90% across P = 20–300 d), one contamination-limited,
+four data-limited — plus a measured resolution gate for slit spectroscopy and an
+open front ([M27](https://github.com/mepotts/exosat-rv/blob/main/docs/target-queue.md)): the discovery that the
 archive's "staring" datasets are fiber-fed starlight-suppressed HiRISE
 observations, including six public nights of beta Pic b.
 
-A manuscript draft lives in [`exosat-rv/docs/paper/`](exosat-rv/docs/paper/);
-[`exosat-rv/LESSONS.md`](exosat-rv/LESSONS.md) is the consolidated trap catalog.
+Five drafts live in [`docs/paper/`](https://github.com/mepotts/exosat-rv/tree/main/docs/paper), each with a rendered
+`.html` alongside its source;
+[`LESSONS.md`](https://github.com/mepotts/exosat-rv/blob/main/LESSONS.md) is the consolidated trap catalog.
 
 ### [`itf-linker/`](itf-linker/) — linking the Minor Planet Center's orphan observations
 
-The MPC's Isolated Tracklet File holds ~9.3 million astrometric observations never
+The MPC's Isolated Tracklet File holds millions of astrometric observations never
 linked to any orbit. This project links them: HelioLinC over a 0.55–50 AU distance
 grid, Find_Orb orbit fitting validated round-trip against JPL Horizons, and a
 vetting gate (MPChecker / SkyBoT / SBIDENT) so nothing known is "rediscovered."
@@ -58,9 +70,30 @@ Validated by hiding the linkages the file already contains: the grid re-derives
 **93.0%** of them exactly, and recovers 11 of 13 real objects spanning an Atira to
 TNOs. Links proposed here have since been independently published by the MPC
 (30 at last count — external validation, claimed as nothing more). A daily
-snapshot pipeline keeps the pool current. **No submission is automated; none ever
-will be.** An RNAAS method note is drafted in
+local snapshot pipeline keeps the pool current. M13 adds a stale-queue watcher and
+builds a human-review payload, but has no submission capability; the scheduled watch
+only runs from the repository's default branch. **No MPC submission is automated.**
+An RNAAS method note is drafted in
 [`itf-linker/docs/`](itf-linker/docs/).
+
+### [`tns-miner/`](tns-miner/) — low-latitude transient triage
+
+The M2 front is closed, and its cache/input layer was repaired in September 2026 after an
+audit found that failed Fink requests could masquerade as empty histories. The reported
+3.5%/8.0% precision and 40%/12% artifact measurements are now explicitly historical:
+completeness-dependent claims require a fresh, provenance-proved rerun before promotion
+or operational reuse. M2's 37-object list is not a submission queue; nothing was sent to
+TNS and no account was created. The operational handoff and exact caveat are in
+[`tns-miner/OPERATING-GUIDE.md`](tns-miner/OPERATING-GUIDE.md).
+
+## Newer science fronts
+
+| Project | Current state |
+|---|---|
+| [`dyson-revet/`](dyson-revet/) | **M7 closed.** The empirical-PSF acceptance test passed, but the published redshift still could not be independently confirmed; any write-up is a human go/no-go. |
+| [`erosita-dr2/`](erosita-dr2/) | **M5 write-up complete.** The fader-census draft is not submitted; the optional classifier build remains deferred. |
+| [`gaia-dr4/`](gaia-dr4/) | **M9 closed and rehearsed for the planned 2026-12-02 DR4 release.** Release-day analysis and preregistration amendments remain explicitly gated. |
+| [`pta-mpta/`](pta-mpta/) | **M6 closed.** One full paper and two RNAAS notes are drafts, all checked against committed result artifacts and none submitted. |
 
 ## Tools
 
@@ -73,23 +106,21 @@ will be.** An RNAAS method note is drafted in
 ## The lab notebook
 
 [`DISCOVERY/`](DISCOVERY/README.md) and [`IDEAS/`](IDEAS/README.md) are **planning
-documents, not results** — kept public because verified research about *where
-discovery is possible* is useful in its own right. DISCOVERY maps the routes by
-which an individual with public data can find a new object and have it formally
-recognised (every URL live-verified; unconfirmed claims marked, not asserted), and
-records which routes are closed. IDEAS holds sprint-level build plans not yet
-started — top picks: a Gaia DR4 diff auditor (DR4 releases 2026-12-02) and an MCP
-server built from adql-copilot.
+documents, not results** — kept public because research about *where discovery is
+possible* is useful in its own right. Some plans have since become projects (notably
+`gaia-dr4`), so their dated assumptions must be rechecked before reuse; project status
+files and milestone documents take precedence over an older prospectus.
 
 ## Conventions
 
-Each project directory is self-contained — its own toolchain, tests, and
-virtualenv — and holds `SPEC.md` (verified research dossier), `DATA-SOURCES.md`
-(exact endpoints and their failure modes), `BUILD-PLAN.md` (milestones), numbered
-`M*-RESULTS.md` findings, and a `HANDOFF.md` that indexes every claim later found
-false. There is no root-level build. [CONTRIBUTING.md](CONTRIBUTING.md) has test
-commands; all projects are MIT-licensed with `CITATION.cff`, and a tagged release
-mints a Zenodo DOI.
+Project layouts vary because the repository contains packaged tools, data-heavy science
+fronts, a static site, and planning dossiers. Start with the project's `README.md` and,
+where present, `STATUS.md`, `BUILD-PLAN.md`, or numbered milestone documents. There is no
+single root build. [CONTRIBUTING.md](CONTRIBUTING.md) lists the maintained checks and
+explains what CI does and does not cover. The repository is MIT-licensed; only projects
+that actually carry a `CITATION.cff` have a project-specific citation record. A Git tag
+does not by itself mint a DOI — archival remains an explicit owner-controlled release
+step described in [PUBLISHING.md](PUBLISHING.md).
 
 **Safety.** Several projects could write to shared scientific registries (MPC,
 TNS). Bad submissions pollute resources the whole field depends on, so automated

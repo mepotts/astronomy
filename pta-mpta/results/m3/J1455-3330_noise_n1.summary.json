@@ -1,0 +1,259 @@
+{
+  "run_id": "J1455-3330_noise_n1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 631,
+  "seed": 6862,
+  "ndim": 5,
+  "x0_kind": "prior-draw",
+  "x0": [
+    3.3887487603493605,
+    -14.154282868910853,
+    6.356140503352104,
+    -14.98978174807711,
+    18.339995477942868
+  ],
+  "started_utc": "2026-08-21T19:30:15Z",
+  "wall_budget_min": 300.0,
+  "gate_raw_postburn": 100000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.25,
+  "eval_ms": 9.72,
+  "first_eval_s": 0.04,
+  "meta": {
+    "psr": "J1455-3330",
+    "ntoa": 2448,
+    "tspan_days": 1566.612525553604,
+    "tmin_mjd": 58589.982861936995,
+    "tmax_mjd": 60156.595387490604,
+    "variant": "noise",
+    "add_red": false,
+    "fixed_whites": false,
+    "build_s": 17.4,
+    "kind": "noise",
+    "whites_fixed": null
+  },
+  "chunks": [
+    {
+      "iters": 62000,
+      "seconds": 248.3,
+      "it_per_s": 249.67,
+      "loadavg": 14.96,
+      "total_raw": 62000
+    },
+    {
+      "iters": 150000,
+      "seconds": 736.5,
+      "it_per_s": 203.68,
+      "loadavg": 15.21,
+      "total_raw": 212000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 21201,
+    "post_burn_rows": 15901,
+    "raw_iters": 212000,
+    "raw_postburn": 159010,
+    "lnl_max": 25313.017863,
+    "acc_rate": 0.300791,
+    "stable": true,
+    "params": [
+      {
+        "param": "J1455-3330_efac",
+        "median": 1.0080107673896386,
+        "ci68": [
+          0.993966577885675,
+          1.0225939943889084
+        ],
+        "halfshift": 0.0003,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 0.0286,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 2406.7
+      },
+      {
+        "param": "J1455-3330_gw13_log10_A",
+        "median": -13.96696783346013,
+        "ci68": [
+          -16.39769540232779,
+          -13.561812467728359
+        ],
+        "halfshift": 0.0329,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 2.8359,
+        "tol_rel": 0.2836,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1676.6
+      },
+      {
+        "param": "J1455-3330_red_gp_gamma",
+        "median": 3.747148160585189,
+        "ci68": [
+          1.5403323703901708,
+          5.914643323908811
+        ],
+        "halfshift": 0.0245,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 4.3743,
+        "tol_rel": 0.4374,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 2320.6
+      },
+      {
+        "param": "J1455-3330_red_gp_log10_A",
+        "median": -14.356575031403644,
+        "ci68": [
+          -16.70750112042556,
+          -13.403468710496393
+        ],
+        "halfshift": 0.0909,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 3.304,
+        "tol_rel": 0.3304,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1388.7
+      },
+      {
+        "param": "n_earth",
+        "median": 8.384577214652458,
+        "ci68": [
+          5.9405554178167685,
+          10.748338972658974
+        ],
+        "halfshift": 0.06,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 4.8078,
+        "tol_rel": 0.4808,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 3224.9
+      }
+    ],
+    "stable_rel": true,
+    "ess_min": 1388.7
+  },
+  "updated_utc": "2026-08-21T19:46:35Z",
+  "elapsed_min": 16.4,
+  "best_point": {
+    "J1455-3330_efac": 1.003075036126602,
+    "J1455-3330_gw13_log10_A": -13.732412912433146,
+    "J1455-3330_red_gp_gamma": 1.2543916049633583,
+    "J1455-3330_red_gp_log10_A": -15.056782595712876,
+    "n_earth": 6.31355462167615
+  },
+  "lnl_best": 25313.017863,
+  "curn": {
+    "median": -13.96696783346013,
+    "ci68": [
+      -16.39769540232779,
+      -13.561812467728359
+    ],
+    "n": 15901
+  },
+  "a2": [
+    {
+      "param": "J1455-3330_efac",
+      "key": "efac",
+      "median": 1.0080107673896386,
+      "ci68": [
+        0.993966577885675,
+        1.0225939943889084
+      ],
+      "published_map": 1.0,
+      "published_ci": [
+        0.99,
+        1.02
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1455-3330_gw13_log10_A",
+      "key": "gw13_log10_A",
+      "median": -13.96696783346013,
+      "ci68": [
+        -16.39769540232779,
+        -13.561812467728359
+      ],
+      "published_map": -13.83,
+      "published_ci": [
+        -16.09,
+        -13.55
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1455-3330_red_gp_gamma",
+      "key": "red_gamma",
+      "median": 3.747148160585189,
+      "ci68": [
+        1.5403323703901708,
+        5.914643323908811
+      ],
+      "published_map": 2.39,
+      "published_ci": [
+        1.4100000000000001,
+        5.96
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1455-3330_red_gp_log10_A",
+      "key": "red_log10_A",
+      "median": -14.356575031403644,
+      "ci68": [
+        -16.70750112042556,
+        -13.403468710496393
+      ],
+      "published_map": -13.51,
+      "published_ci": [
+        -18.21,
+        -13.49
+      ],
+      "agree": true
+    },
+    {
+      "param": "n_earth",
+      "key": "n_earth",
+      "median": 8.384577214652458,
+      "ci68": [
+        5.9405554178167685,
+        10.748338972658974
+      ],
+      "published_map": 9.03,
+      "published_ci": [
+        5.969999999999999,
+        10.78
+      ],
+      "agree": true
+    }
+  ],
+  "n_agree": 5,
+  "n_compared": 5,
+  "verdict": "CONVERGED-AGREES 5/5",
+  "param_names": [
+    "J1455-3330_efac",
+    "J1455-3330_gw13_log10_A",
+    "J1455-3330_red_gp_gamma",
+    "J1455-3330_red_gp_log10_A",
+    "n_earth"
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
+}

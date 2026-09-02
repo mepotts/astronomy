@@ -1,0 +1,187 @@
+{
+  "run_id": "J1629-6902_fl_f1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 60650,
+  "seed": 7520,
+  "ndim": 5,
+  "x0_kind": "prior-draw",
+  "x0": [
+    0.3808782787740712,
+    -15.738695929342557,
+    -14.794962938630583,
+    2.293571553141302,
+    -15.09093211059363
+  ],
+  "started_utc": "2026-08-23T20:43:58Z",
+  "wall_budget_min": 120.0,
+  "gate_raw_postburn": 50000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.05,
+  "gate_rule": "relative",
+  "eval_ms": 9.51,
+  "first_eval_s": 0.41,
+  "meta": {
+    "psr": "J1629-6902",
+    "ntoa": 3106,
+    "tspan_days": 1604.526350308458,
+    "tmin_mjd": 58550.26943184611,
+    "tmax_mjd": 60154.795782154564,
+    "variant": "fl",
+    "add_red": true,
+    "fixed_whites": true,
+    "sw_gamma_prior": [
+      0,
+      7
+    ],
+    "build_s": 47.3,
+    "kind": "fl",
+    "whites_fixed": {
+      "efac": 1.0358826287792542,
+      "log10_ecorr": -6.730391146138864,
+      "log10_tnequad": -7.393449145263553
+    }
+  },
+  "chunks": [
+    {
+      "iters": 32000,
+      "seconds": 347.2,
+      "it_per_s": 92.17,
+      "loadavg": 30.64,
+      "total_raw": 32000
+    },
+    {
+      "iters": 28000,
+      "seconds": 239.7,
+      "it_per_s": 116.81,
+      "loadavg": 30.83,
+      "total_raw": 60000
+    },
+    {
+      "iters": 35000,
+      "seconds": 350.7,
+      "it_per_s": 99.8,
+      "loadavg": 32.06,
+      "total_raw": 95000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 9501,
+    "post_burn_rows": 7126,
+    "raw_iters": 95000,
+    "raw_postburn": 71260,
+    "lnl_max": 34907.939074,
+    "acc_rate": 0.362043,
+    "stable": true,
+    "stable_rel": true,
+    "ess_min": 873.3,
+    "params": [
+      {
+        "param": "J1629-6902_dm_gp_gamma",
+        "median": 4.208494466625452,
+        "ci68": [
+          1.955350625076142,
+          6.067361980296209
+        ],
+        "halfshift": 0.0356,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 4.112,
+        "tol_rel": 0.4112,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 873.3
+      },
+      {
+        "param": "J1629-6902_dm_gp_log10_A",
+        "median": -14.97965353853441,
+        "ci68": [
+          -16.721635888741005,
+          -14.213587231690347
+        ],
+        "halfshift": 0.0168,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 2.508,
+        "tol_rel": 0.2508,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 893.6
+      },
+      {
+        "param": "J1629-6902_gw13_log10_A",
+        "median": -15.565782363078641,
+        "ci68": [
+          -17.23266942859023,
+          -14.314906233490783
+        ],
+        "halfshift": 0.0196,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 2.9178,
+        "tol_rel": 0.2918,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1484.7
+      },
+      {
+        "param": "J1629-6902_red_gp_gamma",
+        "median": 3.4728325853556257,
+        "ci68": [
+          1.1483167462607493,
+          5.807599470115512
+        ],
+        "halfshift": 0.0452,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 4.6593,
+        "tol_rel": 0.4659,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1350.7
+      },
+      {
+        "param": "J1629-6902_red_gp_log10_A",
+        "median": -15.716390395147087,
+        "ci68": [
+          -17.248470529681907,
+          -14.42960877696967
+        ],
+        "halfshift": 0.021,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 2.8189,
+        "tol_rel": 0.2819,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1204.8
+      }
+    ]
+  },
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "updated_utc": "2026-08-23T20:59:37Z",
+  "elapsed_min": 15.7,
+  "best_point": {
+    "J1629-6902_dm_gp_gamma": 6.96440208993668,
+    "J1629-6902_dm_gp_log10_A": -15.259125893677894,
+    "J1629-6902_gw13_log10_A": -17.514425570201787,
+    "J1629-6902_red_gp_gamma": 5.0978329213036275,
+    "J1629-6902_red_gp_log10_A": -17.02026355086614
+  },
+  "lnl_best": 34907.939074,
+  "curn": {
+    "median": -15.565782363078641,
+    "ci68": [
+      -17.23266942859023,
+      -14.314906233490783
+    ],
+    "n": 7126
+  },
+  "gate_met_m3": true,
+  "postprocessed": true
+}

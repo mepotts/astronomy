@@ -1,0 +1,9 @@
+data/
+.venv/
+*.parquet
+*.hdf5
+__pycache__/
+chains/
+logs/
+# derived posterior/marginal sample arrays (23 MB, regenerable from chains/)
+results/*/*.npy

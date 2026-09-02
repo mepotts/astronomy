@@ -1,0 +1,95 @@
+{
+  "run_id": "J1946-5403_table_t1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 1615,
+  "seed": 20718,
+  "ndim": 1,
+  "x0_kind": "prior-draw",
+  "x0": [
+    -11.630454627221999
+  ],
+  "started_utc": "2026-08-21T19:56:51Z",
+  "wall_budget_min": 120.0,
+  "gate_raw_postburn": 50000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.05,
+  "eval_ms": 1.43,
+  "first_eval_s": 0.05,
+  "meta": {
+    "psr": "J1946-5403",
+    "ntoa": 1815,
+    "tspan_days": 1476.2300624383267,
+    "tmin_mjd": 58672.872854921225,
+    "tmax_mjd": 60149.102917359545,
+    "variant": "table",
+    "add_red": false,
+    "fixed_whites": true,
+    "build_s": 22.0,
+    "kind": "table",
+    "whites_fixed": {
+      "efac": 0.9722571090886043
+    }
+  },
+  "chunks": [
+    {
+      "iters": 419000,
+      "seconds": 437.5,
+      "it_per_s": 957.73,
+      "loadavg": 19.16,
+      "total_raw": 419000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 41901,
+    "post_burn_rows": 31426,
+    "raw_iters": 419000,
+    "raw_postburn": 314260,
+    "lnl_max": 20654.816814,
+    "acc_rate": 0.561561,
+    "stable": true,
+    "params": [
+      {
+        "param": "J1946-5403_gw13_log10_A",
+        "median": -15.519228922757952,
+        "ci68": [
+          -17.21293919291863,
+          -14.378129323892274
+        ],
+        "halfshift": 0.001,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 2.8348,
+        "tol_rel": 0.2835,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 30272.5
+      }
+    ],
+    "stable_rel": true,
+    "ess_min": 30272.5
+  },
+  "updated_utc": "2026-08-21T20:04:09Z",
+  "elapsed_min": 7.3,
+  "best_point": {
+    "J1946-5403_gw13_log10_A": -14.42375792031913
+  },
+  "lnl_best": 20654.816814,
+  "curn": {
+    "median": -15.519228922757952,
+    "ci68": [
+      -17.21293919291863,
+      -14.378129323892274
+    ],
+    "n": 31426
+  },
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
+}

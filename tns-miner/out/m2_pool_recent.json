@@ -1,0 +1,39 @@
+{
+  "tag": "recent",
+  "mjd_window": [
+    61274.0,
+    61277.0
+  ],
+  "episode_floor_days": 60.0,
+  "n_E1_new": 2881,
+  "n_E2_outburst": 161,
+  "n_overlap": 3,
+  "n_pool": 3039,
+  "n_hygiene_ok": 107,
+  "n_pass_M2": 51,
+  "n_pass_M1_baseline": 52,
+  "pass_by_arm": {
+    "E2_outburst": 46,
+    "E1_new": 5
+  },
+  "channels": {
+    "A1_cv_outburst": 38,
+    "A2_nova_like": 11,
+    "C_faint_residue": 1,
+    "D_galactic_plane": 1
+  },
+  "top_reject_reasons": {
+    "only N clean detection(s), need N": 1760,
+    "no alerts": 1104,
+    "nuclear: on a PSN galaxy centroid (TDE/AGN territory, out of scope)": 16,
+    "VSX type RS is a catalogued periodic variable -- nothing new to claim": 15,
+    "VSX type E is a catalogued periodic variable -- nothing new to claim": 14,
+    "flat in every band with >= N clean detections in N d (ptp N < N) -- a constant difference residual, not a transient": 12,
+    "N/N = N% of high-confidence detections are NEGATIVE subtractions (> N%) -- dipole or variability about a mean, not an outburst": 9,
+    "VSX type EW is a catalogued periodic variable -- nothing new to claim": 8,
+    "channel AN_nova_like but ZTF has been detecting this position for N d (> N d) -- not a new source, a reference-image hole": 5,
+    "per-band amplitude -N mag above quiescence < N -- not an outburst": 4,
+    "SIMBAD says AGN (known variable or host)": 4,
+    "clean detections span N d < N d -- cannot exclude a mover": 4
+  }
+}

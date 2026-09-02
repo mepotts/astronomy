@@ -1,0 +1,108 @@
+{
+  "_comment": "v4 (M5, 2026-08-18). Selection/screen/probability/membership IDENTICAL to v2 and v3 (949 rows). Adds the all-sky far-star extinction arbitration (Vergely+2022 -- v3's 'south of -30 stays bracketed' is superseded) and the measured activity policy. See gaia-dr4/M5-activity-axis.md.",
+  "solution_types_dr4": [
+    "Orbital",
+    "OrbitalPoorlyConstrained",
+    "OrbitalAlternative",
+    "AstroSpectroSB1",
+    "AstroSpectroSB2"
+  ],
+  "period_days": [
+    10.0,
+    2200.0
+  ],
+  "period_note": "DR4 baseline ~66 mo = 2011 d; DR3 validation used 1500 d. BH2 (P=1352 d) proves P<1000 d is too tight.",
+  "nss_parallax_over_error_min": 3.0,
+  "halbwachs_vetting": true,
+  "sigma_ti2_max": 36.0,
+  "m1_policy": [
+    "nss_masses (DR4) / binary_masses (DR3) IsocLum",
+    "photometric EEM MS (CMD cut, extinction-corrected per extinction_tier -- v2 change)",
+    "evolved bracket 0.8-2.6 Msun, worst-case class"
+  ],
+  "boundary": "Mamajek/EEM A_tr curve x inflate",
+  "boundary_inflate": 1.15,
+  "significance_min": 10.0,
+  "gof_cut": "F2 < 6 if G < 13 else F2 < 4 (El-Badry 2026)",
+  "alias_flag_days": [
+    330.0,
+    400.0
+  ],
+  "ruwe_cut": "NONE -- high RUWE is the orbit signature (BH1 7.6, BH2 9.2)",
+  "measured_on_dr3": {
+    "n_class3_dr3": 951,
+    "eb26_completeness": 0.929,
+    "eb26_spurious_passrate": 0.304,
+    "n_class3_dr3_v2": 949,
+    "n_priority_pr999": 292,
+    "dust_moved_out_lower": 8,
+    "dust_moved_in_lower": 6,
+    "m4_eb26_xray_confirmed_detected": "0/16",
+    "m4_eb26_xray_spurious_detected": "2/13",
+    "m4_eb26_xray_fisher_p": 0.19,
+    "m4_dust_ambiguous_resolved_alive": 9,
+    "m4_dust_ambiguous_south_unresolved": 4,
+    "m4_membership_moved": 0,
+    "m5_dust_ambiguous_alive_all_sky": 12,
+    "m5_dust_ambiguous_dead": 0,
+    "m5_dust_sigma_fragile": 1,
+    "m5_dust_still_unresolved": 0,
+    "m5_activity_metrics_tested": 10,
+    "m5_activity_metrics_surviving_holm": 2,
+    "m5_espcs_coverage_of_eb26": "7/76 (3 confirmed / 1 spurious)",
+    "m5_damp_g_auc_spurious_over_confirmed": 0.659,
+    "m5_damp_g_min_detectable_auc_at_80pc_power": 0.725,
+    "m5_astrometric_gof_al_auc": 0.254,
+    "m5_membership_moved": 0
+  },
+  "followup_gate_not_selection": "G<15 (spectrograph feasibility)",
+  "version": 4,
+  "supersedes": "dr4-triage-config.v3.json (v3, M4)",
+  "probability_method": {
+    "covariance": "nss_two_body_orbit corr_vec via nsstools 0.1.12 (PyPI) NssSource.covmat(); 6x6 block (parallax, A,B,F,G, period)",
+    "mc_draws": 10000,
+    "mc_seed": 20261202,
+    "priority_tier": "p_class3_corr >= 0.999",
+    "note": "Pr threshold is a RANKING tier, not a cut: measured on EB26 it only removes confirmed systems (M3 doc sec. 1)."
+  },
+  "extinction_tier": {
+    "d_le_1250pc": "Edenhofer+23 3D (mean, integrated; all-sky)",
+    "d_gt_1250pc": "bracketed: Edenhofer-to-edge (lower) vs SFD full column x SF11 2.742 (upper); ARBITRATED by a far 3D map where one covers the sightline -- Bayestar19 for dec > -30 (M4) and Vergely+2022 everywhere inside its 6x6x0.8 kpc box (M5, all-sky, no declination edge). Best estimate = max(map at the star's distance, Edenhofer floor). Rows whose class flips inside the V22 error cube's +-1 sigma are flagged, not frozen.",
+    "bands": "ZGR23 curve at Gaia EDR3 pivots: R_G=2.2732, R_BP=3.0362, R_RP=1.6480, R_V=2.7791",
+    "applies_to": "photometric-M1 tiers only (binary_masses/nss_masses M1 is DPAC's, unchanged)",
+    "bayestar19_chain": "1 B19 unit = E(gP1-rP1) 0.901 mag (Green+19 ApJ 887,93, src line 399 + extinction-vector table) = 1.000 x E(B-V)_SFD in the same colour (SF11 ApJ 737,103 Table 6 R_V=3.1: PS1 g 3.172, r 2.271); A_V = 2.742 x E(B-V) (SF11 Table 6 Landolt V); Gaia bands via ZGR23 ratios (house). Cross-check chain: EB26 A_G=2.66E, E(BP-RP)=1.33E (arXiv:2608.06453 src lines 171-172) -- verdicts agree on all arbitrated rows (m4_bayestar_dozen.csv). Data: bayestar2019.h5 Dataverse doi:10.7910/DVN/2EJ9TX, md5 ab815d2fd3068d1b81a1bd61fb18a722.",
+    "vergely2022_chain": "CDS J/A+A/664/A174 (Vergely, Lallement & Cox 2022, A&A 664 A174), anonymous FTP; FITS cubes self-describe UNIT='A0(550nm)/parsec', STEP/RESOL 10/25 pc (601x601x81, 6x6x0.8 kpc) and 20/50 pc (501x501x41, 10x10x0.8 kpc) with a matching density-error cube; Sun at SUN_POS*-0.5 in 0-based pixels; X to the Galactic Centre, Y along rotation, Z to the NGP (ReadMe Description). The quantity is monochromatic A0 at 550 nm (arXiv:2205.09087 src line 162). Into the house scale by ONE link with the curve the other tiers already use: E(ZGR23) = A0(550) / R_ZGR23(550), R_ZGR23(550) = 2.6798. Cross-check chain (EB26 A_G=2.66 E(B-V) via A_V=2.742 E(B-V)) run in parallel and agreeing on every arbitrated row. Reader validated by a pre-registered geometry gate (declared axis convention beats all three corruptions at Spearman rho 0.966 vs 0.38-0.41 against Edenhofer23; median E_V22/E_Eden 1.010; 025pc/050pc cubes agree to 0.977) -- out/m5_vergely_geometry_gate.txt.",
+    "dust_ambiguous_status": "13 rows: 12 resolved class-III alive, 0 dead, 1 sigma-fragile (flagged flag_dust_sigma_fragile), 0 outside every map. 0 membership movements -- the v2 list stands."
+  },
+  "xray_policy": {
+    "status": "caution tag, NOT a selection flag and NOT a cut",
+    "eb26_test_2026-08-18": "in eROSITA-DE footprint: 2/13 EB26-spurious vs 0/16 EB26-confirmed detected (eRASS:3); Fisher two-sided p=0.19 -- direction consistent with activity->spurious-orbit but UNDERPOWERED (80%-power detectable spurious rate at this n: >= 0.40); both detections coronal (log fx/fopt -2.4/-3.3, soft HR), no hard-band, no accretor",
+    "as_a_cut_rejected": "would drop in-list rows incl. 0 EB26-confirmed / 1 EB26-spurious / the rest unverdicted NS-range active-binary candidates -- no measured purity gain",
+    "day1": "run the eROSITA cross on the new list (runbook Phase 3 step 4); treat matches as epoch-vet-first cases"
+  },
+  "activity_policy": {
+    "status": "NO ACTIVITY flag enters the config. The two activity families -- chromospheric (ESP-CS) and photometric variability -- did not deliver one: A is NOT TESTABLE at DR3 coverage and B is a measured underpowered null. What discriminates is family C, ASTROMETRIC QUALITY, which is not activity; it contributes the single caution flag below.",
+    "eb26_all_sky_test_2026-08-18": "Gaia DR3 activity / variability / astrometric-quality indicators vs El-Badry+2026 verdicts, ALL 65 verdicted targets, 76/76 coverage -- no footprint penalty (M4's X-ray axis could see only 29 of 65). Three separate families, Holm-Bonferroni within each, alpha=0.05; rules pre-registered in scripts/m5_activity_discriminator.py before the split was computed. Negative control phot_g_n_obs: clean.",
+    "per_family": {
+      "B (photometric variability)": "best metric B1 dAmp_G p=0.0352 (Holm 0.1409), effect 0.659, n 42 confirmed / 23 spurious; smallest effect detectable at 80% power 0.725",
+      "C (astrometric/imaging quality -- NOT activity)": "best metric C5 astrometric_gof_al p=0.0011 (Holm 0.0067), effect 0.254, n 42 confirmed / 23 spurious; smallest effect detectable at 80% power 0.725",
+      "NEGATIVE CONTROL (must not discriminate)": "best metric N1 phot_g_n_obs p=0.1440 (Holm 0.1440), effect 0.389, n 42 confirmed / 23 spurious; smallest effect detectable at 80% power 0.725"
+    },
+    "metrics_surviving_holm": [
+      "C1 ruwe",
+      "C5 astrometric_gof_al"
+    ],
+    "family_A_coverage": "activityindex_espcs exists for 7 of 76 EB26 targets (3 confirmed / 1 spurious) and 44 of the 1,199 candidate + retrieval + EB26 sources -- M4's recommendation assumed this axis was all-sky; it is not. NOT TESTABLE, not null.",
+    "family_B_direction": "spurious solutions are the MORE photometrically variable side (dAmp_G AUC 0.659), the same direction as M4's X-ray result -- two independent activity axes agreeing in direction and neither reaching significance.",
+    "day1": "recompute these indicators for the day's list -- one gaia_source column set, no telescope -- and re-run the test once the epoch-vet loop has produced day-one ground truth (the runbook's first-24h bulletin)."
+  },
+  "astrometric_quality_flag": {
+    "flag": "flag_astrom_quiet",
+    "status": "caution tag / ranking tiebreaker. NEVER a cut, NEVER a selection change, NEVER an independent line of evidence quoted alongside `significance` (see redundancy below).",
+    "definition": "astrometric_gof_al (gaia_source, the 5-parameter single-star fit's goodness-of-fit) below the 25th percentile of the day's OWN main candidate bin. No threshold is fitted to the EB26 verdicts; the cut is a self-calibrating quartile.",
+    "evidence": "EB26 all-sky test: astrometric_gof_al Mann-Whitney p = 0.0011 (Holm within family C, m=6: 0.0067), AUC(spurious > confirmed) = 0.254 [95 % boot 0.136-0.386], r_rb = -0.493; medians 86.7 confirmed vs 47.1 spurious. Pre-registered G-stratified guard: same direction in both halves (bright p 0.017, faint p 0.006). ruwe also survives Holm (p 0.0083 -> 0.041) in the same direction but is not frozen -- one flag, the stronger one.",
+    "redundancy_caveat": "POST-HOC: in a logistic fit of P(spurious) on z(log gof_al) + z(log significance) + z(G) + z(log d) over the 65, `significance` dominates (beta -2.87, p 0.004) and gof_al retains only p = 0.048 (ruwe: 0.094). The flag is therefore largely a restatement of the significance tier config v2 already ranks on. It breaks ties; it does not add an independent axis.",
+    "direction_note": "the flag marks the QUIET tail: EB26-CONFIRMED compact-companion hosts are the astrometrically NOISIER single-star fits, because a real massive dark companion makes a large photocentre orbit. Do not read a high RUWE as a spurious-risk signal -- the sign is the other way. This is the measured version of what `ruwe_cut` has asserted since v1 ('NONE -- high RUWE is the orbit signature'): now quantified against ground truth, r_rb -0.49 for gof_al, -0.40 for ruwe.",
+    "in_list_yield_caveat": "MEASURED, and it is the reason this is a tiebreaker and nothing more: of the 46 EB26-verdicted rows that actually survive the frozen screen and sit in the candidate list, the flag marks 2 and catches 0 of the 7 in-list EB26-spurious. The discrimination was measured across all 65 verdicted targets, most of which the screen already removes; on the surviving population it has no measured power. Do not present it as a purity gain."
+  }
+}

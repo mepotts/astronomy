@@ -1,0 +1,38 @@
+{
+  "_comment": "Frozen M2 DR4-day-one AMRF triage config. Sources: Shahaf+19 (MNRAS 487,5610) eq.4/6; Shahaf+23 (MNRAS 518,2991) Halbwachs vetting + sigma_TI; El-Badry+26 (arXiv:2608.06453) significance/F2 discriminators; calibration in gaia-dr4/M2-amrf-triage.md.",
+  "solution_types_dr4": [
+    "Orbital",
+    "OrbitalPoorlyConstrained",
+    "OrbitalAlternative",
+    "AstroSpectroSB1",
+    "AstroSpectroSB2"
+  ],
+  "period_days": [
+    10.0,
+    2200.0
+  ],
+  "period_note": "DR4 baseline ~66 mo = 2011 d; DR3 validation used 1500 d. BH2 (P=1352 d) proves P<1000 d is too tight.",
+  "nss_parallax_over_error_min": 3.0,
+  "halbwachs_vetting": true,
+  "sigma_ti2_max": 36.0,
+  "m1_policy": [
+    "nss_masses (DR4) / binary_masses (DR3) IsocLum",
+    "photometric EEM MS (CMD cut, no extinction corr)",
+    "evolved bracket 0.8-2.6 Msun, worst-case class"
+  ],
+  "boundary": "Mamajek/EEM A_tr curve x inflate",
+  "boundary_inflate": 1.15,
+  "significance_min": 10.0,
+  "gof_cut": "F2 < 6 if G < 13 else F2 < 4 (El-Badry 2026)",
+  "alias_flag_days": [
+    330.0,
+    400.0
+  ],
+  "ruwe_cut": "NONE -- high RUWE is the orbit signature (BH1 7.6, BH2 9.2)",
+  "measured_on_dr3": {
+    "n_class3_dr3": 951,
+    "eb26_completeness": 0.929,
+    "eb26_spurious_passrate": 0.304
+  },
+  "followup_gate_not_selection": "G<15 (spectrograph feasibility)"
+}

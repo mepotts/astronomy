@@ -1,0 +1,34 @@
+M4 activity-vs-spuriousness test -- EB26 x eROSITA-DE (2026-08-18)
+========================================================================
+
+footprint (eROSITA-DE, 179.94<l<359.94):
+  CONFIRMED  245 of 490 in footprint
+  SPURIOUS   243 of 490 in footprint
+
+DR2 (eRASS:3) detection, in-footprint:
+  CONFIRMED  12/245 = 0.049 (95% Wilson 0.028-0.084)
+  SPURIOUS   18/243 = 0.074 (95% Wilson 0.047-0.114)
+  chance/target (8 shifted controls, 488 targets): 0.0028  (counts [3, 2, 0, 1, 2, 1, 0, 2])
+  Fisher exact (spurious vs confirmed, two-sided): odds ratio 1.55, p = 0.2643
+  other verdicts in footprint: 0/0 detected ({})
+
+hard band (2.3-5 keV): 0 of 76
+DR1 (eRASS1): CONFIRMED 7/245, SPURIOUS 12/243; DR1-only (fader candidates): 0
+
+log10(f_X/f_opt,G) among detected:
+  CONFIRMED (n=12): median -2.18, values [-3.85, -3.85, -3.63, -2.43, -2.24, -2.18, -2.17, -2.1, -2.09, -1.92, -1.83, -1.18]
+  SPURIOUS  (n=18): median -2.18, values [-4.27, -4.16, -4.08, -4.07, -3.7, -2.28, -2.27, -2.22, -2.19, -2.17, -2.17, -2.15, -2.07, -2.0, -1.95, -1.94, -1.84, -1.6]
+  Mann-Whitney two-sided: U=119, p=0.6567
+
+hardness (detected sources): HR2 by verdict: {'CONFIRMED': [-0.32, -1.0, 0.15, 0.01, -0.18, 0.43, 0.13, 0.03, 0.07, -0.41, -0.09, -0.16], 'SPURIOUS': [-0.07, -0.52, 0.33, -0.82, 0.11, -0.91, -0.27, -0.21, -0.87, -0.04, -0.24, -0.22, -0.64, -0.13, -0.08, -0.6, -0.19, -0.2]}
+
+confound check (in-footprint medians):
+  CONFIRMED  G=14.81  d=462 pc  |b|=16.9
+  SPURIOUS   G=15.10  d=411 pc  |b|=22.2
+
+power at the achieved n (alpha=0.05, target power 80%):
+  with CONFIRMED at 0.05 (12/245), the smallest SPURIOUS detection rate detectable at 80% power is ~0.15 (power 0.97) -- an odds ratio of 3.4
+  power to see a 3x detection-rate excess in SPURIOUS: 0.96
+
+========================================================================
+VERDICT: NO SIGNIFICANT DISCRIMINATION at these numbers -- see the power statement above for whether that is a real null or an underpowered test.

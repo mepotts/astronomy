@@ -37,6 +37,21 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e ".[dev]"
 
+      # The unattended archive is deployed from this exact lock on Python 3.12. Install
+      # it in one matrix cell so dependency drift cannot leave the scheduled-task venv
+      # unconstructable while the ordinary editable install remains green.
+      - name: Validate unattended ITF operations lock
+        if: matrix.project == 'itf-linker' && matrix.python-version == '3.12'
+        working-directory: itf-linker
+        run: |
+          python -m venv "$RUNNER_TEMP/itf-ops-venv"
+          "$RUNNER_TEMP/itf-ops-venv/bin/python" -m pip install --upgrade pip
+          "$RUNNER_TEMP/itf-ops-venv/bin/python" -m pip install -r requirements-ops.lock
+          "$RUNNER_TEMP/itf-ops-venv/bin/python" -m pip install --no-deps -e .
+          "$RUNNER_TEMP/itf-ops-venv/bin/python" -m pip check
+          "$RUNNER_TEMP/itf-ops-venv/bin/python" -c \
+            "from itf_linker import config, snapshot; assert snapshot.FULL_KEEP >= 14"
+
       # CI is hermetic. Network-dependent smoke tests are opt-in via env flag, and
       # itf-linker's snapshot-dependent tests skip when no local ITF pull exists —
       # so a green run means the code is correct, not that the archives were up.
@@ -67,3 +82,55 @@ jobs:
       - name: Typecheck and build
         working-directory: pta-explainer
         run: npm run build
+
+  portfolio:
+    name: portfolio · offline contracts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      # No installs and no archive access: local links plus syntax-only parsing for the
+      # newer science fronts. This is deliberately not presented as a reproduction run.
+      - name: Verify root documents and newer-front script syntax
+        run: python scripts/verify_repository.py
+
+  pta-drafts:
+    name: pta-mpta · draft consistency
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      # These standard-library checks compare each draft with its committed numbers
+      # artifact. They do not launch the WSL/enterprise analysis campaign.
+      - name: Check all publication drafts
+        working-directory: pta-mpta
+        run: |
+          python scripts/m5_paper_check.py
+          python scripts/m4_note_check.py
+          python scripts/m6_methods_note_check.py
+
+  tns-cache:
+    name: tns-miner · Fink cache contracts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      # HTTP is fully mocked. These are only the imports needed to execute the pool,
+      # cross-match, and cutout failure contracts; no archive or bulk-data pull runs.
+      - name: Install cache-contract test dependencies
+        run: python -m pip install requests pandas numpy matplotlib
+
+      - name: Prove outages cannot become empty scientific histories
+        run: python -m unittest discover -s tns-miner/tests -v

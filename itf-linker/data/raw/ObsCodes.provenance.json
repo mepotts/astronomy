@@ -1,0 +1,5 @@
+{
+  "url": "https://www.minorplanetcenter.net/iau/lists/ObsCodes.html",
+  "why_committed": "Force-added past /data/ in .gitignore, the same deliberate exception the snapshot manifests use. fetch_obscodes() returns this cached copy when present, which is what lets the submission watch run on a GitHub runner where the MPC is unreachable (see .github/workflows/itf-snapshot.yml). Observatory longitudes define the local-night boundary used by every sweep, so this file is also the reason 'night' means the same thing in the queue and in the watcher.",
+  "cached_locally": "2026-08-16 or earlier; refresh with fetch_obscodes(force=True) from a residential connection"
+}

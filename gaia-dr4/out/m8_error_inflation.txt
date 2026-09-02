@@ -1,0 +1,117 @@
+M8 TASK 1 -- THE ERROR-INFLATION FACTOR AT SCALE
+produced 2026-08-24T16:24:52Z
+
+WHAT CANNOT BE RUN, AND WHY:
+  Gaia DR3 publishes NO stellar epoch astrometry.  The refit arm's
+  Keplerian half consumes epoch astrometry, so it cannot be run over
+  hundreds of DR3 sources by anyone before 2026-12-02; the only
+  epoch astrometry that exists is the 12-source pre-release file.
+  The four routes below are what CAN be measured, each labelled with
+  what it bounds.
+
+==============================================================================
+S1  EXTERNAL REFERENCE AT SCALE -- Gaia DR3 NSS vs SB9
+==============================================================================
+  reference: Pourbaix et al. 2004, A&A 424, 727 -- the Ninth Catalogue of
+            Spectroscopic Binary Orbits, CDS B/sb9 (VizieR, anonymous).
+            Ground-based spectroscopy: it shares no photons with Gaia.
+
+  crossmatch radius sensitivity strip (the pre-registered radius is 2.0"):
+      1.0"   107 matched systems
+      2.0"   169 matched systems
+      3.0"   190 matched systems
+      5.0"   242 matched systems
+     10.0"   291 matched systems
+
+  matched systems at 2.0": 169
+  SAME-ORBIT GATE |ln(P_gaia/P_sb9)| < 0.05: 138 pass, 31 fail
+    of the 31 failures, 2 sit within 10 % of a factor-2 period alias (1 at 2x, 1 at 1/2x) -- the classic astrometric-orbit alias, and a result in its own right
+
+  INFLATION FACTOR (median|z| / 0.67449; bootstrap 68 % interval)
+  ALL elements pooled                n=202  med|z|  0.95  inflation  1.40 [1.31, 1.52]   |z|<1  52.0%  |z|<2  84.7%  max|z|    6.26
+    by element: eccentricity         n=97   med|z|  0.94  inflation  1.39 [1.22, 1.54]   |z|<1  53.6%  |z|<2  86.6%  max|z|    6.23
+    by element: period_d             n=105  med|z|  0.95  inflation  1.40 [1.29, 1.54]   |z|<1  50.5%  |z|<2  82.9%  max|z|    6.26
+
+  TRENDS -- does the factor depend on anything?
+   by NSS solution type:
+       AstroSpectroSB1               n=98   med|z|  0.96  inflation  1.42 [1.31, 1.57]   |z|<1  52.0%  |z|<2  86.7%  max|z|    6.26
+       Orbital                       n=82   med|z|  0.92  inflation  1.37 [1.15, 1.53]   |z|<1  52.4%  |z|<2  85.4%  max|z|    4.74
+       OrbitalTargetedSearch         n=12   med|z|  1.16  inflation  1.72 [0.79, 2.53]   |z|<1  50.0%  |z|<2  75.0%  max|z|    4.97
+       OrbitalTargetedSearchValidated n=10   med|z|  1.01  inflation  1.49 [1.01, 2.49]   |z|<1  50.0%  |z|<2  70.0%  max|z|    6.23
+   by G magnitude (quartiles):
+       4.19-7.3                      n=52   med|z|  1.04  inflation  1.54 [1.37, 1.77]   |z|<1  48.1%  |z|<2  75.0%  max|z|    6.23
+       7.3-8.399                     n=50   med|z|  0.77  inflation  1.14 [0.99, 1.35]   |z|<1  58.0%  |z|<2  90.0%  max|z|    6.26
+       8.399-9.163                   n=50   med|z|  0.93  inflation  1.38 [1.26, 1.52]   |z|<1  54.0%  |z|<2  90.0%  max|z|    3.91
+       9.163-12.63                   n=50   med|z|  1.04  inflation  1.55 [1.22, 1.65]   |z|<1  48.0%  |z|<2  84.0%  max|z|    4.62
+   by period (d) (quartiles):
+       15.1-298.4                    n=51   med|z|  1.17  inflation  1.74 [1.43, 1.95]   |z|<1  45.1%  |z|<2  82.4%  max|z|    6.26
+       298.4-544.4                   n=50   med|z|  0.97  inflation  1.43 [1.30, 1.62]   |z|<1  52.0%  |z|<2  90.0%  max|z|    4.98
+       544.4-692.2                   n=51   med|z|  0.97  inflation  1.43 [1.34, 1.65]   |z|<1  51.0%  |z|<2  78.4%  max|z|    6.23
+       692.2-1080                    n=50   med|z|  0.68  inflation  1.01 [0.95, 1.19]   |z|<1  60.0%  |z|<2  88.0%  max|z|    4.62
+   by NSS significance (quartiles):
+       9.709-35.77                   n=52   med|z|  0.59  inflation  0.88 [0.84, 1.19]   |z|<1  63.5%  |z|<2  84.6%  max|z|    4.74
+       35.77-65.49                   n=50   med|z|  0.90  inflation  1.33 [1.01, 1.47]   |z|<1  58.0%  |z|<2  92.0%  max|z|    4.98
+       65.49-113.9                   n=49   med|z|  0.92  inflation  1.37 [1.29, 1.54]   |z|<1  53.1%  |z|<2  81.6%  max|z|    4.62
+       113.9-520.7                   n=51   med|z|  1.23  inflation  1.83 [1.63, 2.11]   |z|<1  33.3%  |z|<2  80.4%  max|z|    6.26
+
+  REWEIGHTED TO THE QUEUE'S OWN significance DISTRIBUTION
+    bin                 n_ref   med|z|  queue frac
+    0-20                   25    0.587       0.276
+    20-40                  34    0.744       0.313
+    40-80                  57    0.939       0.264
+    80-160                 56    0.935       0.112
+    >160                   30    1.499       0.035
+    -> queue-reweighted median|z| 0.800, inflation 1.19 (raw, unweighted: 1.40)
+
+==============================================================================
+S2  INTERNAL REPLICATION AT SCALE -- the 98 dual-solution sources
+==============================================================================
+  Two NSS solution types, one star, one set of Gaia astrometry.
+  Their errors are CORRELATED (shared photons), so the factor below is a
+  LOWER BOUND on the true inflation and is reported as one.
+
+  pairs: 98  ({'OrbitalTargetedSearchValidated': np.int64(92), 'OrbitalTargetedSearch': np.int64(6)} vs AstroSpectroSB1)
+
+  INFLATION FACTOR (lower bound -- correlated errors)
+  ALL elements pooled                n=784  med|z|  0.60  inflation  0.89 [0.85, 0.94]   |z|<1  68.1%  |z|<2  87.0%  max|z|  929.68
+    a_thiele_innes                   n=98   med|z|  0.61  inflation  0.90 [0.78, 1.04]   |z|<1  70.4%  |z|<2  86.7%  max|z|   20.78
+    b_thiele_innes                   n=98   med|z|  0.60  inflation  0.89 [0.79, 1.06]   |z|<1  65.3%  |z|<2  86.7%  max|z|   21.96
+    eccentricity                     n=98   med|z|  0.85  inflation  1.26 [1.08, 1.39]   |z|<1  57.1%  |z|<2  75.5%  max|z|    9.38
+    f_thiele_innes                   n=98   med|z|  0.81  inflation  1.20 [1.06, 1.39]   |z|<1  56.1%  |z|<2  85.7%  max|z|    4.86
+    g_thiele_innes                   n=98   med|z|  0.59  inflation  0.87 [0.75, 1.02]   |z|<1  69.4%  |z|<2  85.7%  max|z|   10.91
+    nss_parallax                     n=98   med|z|  0.48  inflation  0.71 [0.60, 0.72]   |z|<1  78.6%  |z|<2  94.9%  max|z|    5.22
+    period                           n=98   med|z|  0.64  inflation  0.95 [0.88, 1.04]   |z|<1  68.4%  |z|<2  87.8%  max|z|  929.68
+    t_periastron                     n=98   med|z|  0.39  inflation  0.58 [0.52, 0.75]   |z|<1  79.6%  |z|<2  92.9%  max|z|   62.68
+
+==============================================================================
+S3  INJECTION-RECOVERY THROUGH THE ARM (clean) -- from cache
+==============================================================================
+  ALL elements pooled                n=1407 med|z|  0.71  inflation  1.05 [1.03, 1.09]   |z|<1  65.7%  |z|<2  92.6%  max|z| 3586955.69
+    P                                n=353  med|z|  0.67  inflation  1.00 [0.96, 1.09]   |z|<1  67.1%  |z|<2  90.7%  max|z| 3586955.69
+    as                               n=351  med|z|  0.66  inflation  0.98 [0.88, 1.04]   |z|<1  69.5%  |z|<2  95.2%  max|z|    2.73
+    e                                n=348  med|z|  0.78  inflation  1.16 [1.10, 1.22]   |z|<1  62.4%  |z|<2  90.8%  max|z| 5747.26
+    parallax                         n=355  med|z|  0.71  inflation  1.05 [0.98, 1.18]   |z|<1  63.7%  |z|<2  93.8%  max|z|    3.54
+
+==============================================================================
+S3  INJECTION-RECOVERY THROUGH THE ARM (jitter1x) -- from cache
+==============================================================================
+  ALL elements pooled                n=1288 med|z|  1.02  inflation  1.51 [1.47, 1.56]   |z|<1  49.0%  |z|<2  80.1%  max|z| 1134967.26
+    P                                n=326  med|z|  1.02  inflation  1.52 [1.44, 1.61]   |z|<1  48.5%  |z|<2  77.9%  max|z| 1134967.26
+    as                               n=319  med|z|  0.92  inflation  1.37 [1.23, 1.46]   |z|<1  53.3%  |z|<2  83.4%  max|z|    3.95
+    e                                n=316  med|z|  1.06  inflation  1.58 [1.49, 1.65]   |z|<1  47.2%  |z|<2  81.6%  max|z| 19163.95
+    parallax                         n=327  med|z|  1.09  inflation  1.62 [1.49, 1.73]   |z|<1  47.1%  |z|<2  77.7%  max|z|    4.62
+
+==============================================================================
+S4  THE M7 ANCHOR -- 11 elements, 3 objects, refit vs published
+==============================================================================
+  M7 trio, refit vs published        n=11   med|z|  2.28  inflation  3.38 [1.04, 4.03]   |z|<1  36.4%  |z|<2  45.5%  max|z|    6.16
+    (M7 published: median |z| 2.28, max 6.16, 4/11 inside 1 sigma)
+
+==============================================================================
+SUMMARY -- the inflation factor by route
+==============================================================================
+  S1 SB9 external (Gaia NSS formal errors) n=202  med|z|  0.95  inflation  1.40 [1.31, 1.52]   |z|<1  52.0%  |z|<2  84.7%  max|z|    6.26
+  S2 dual-solution internal (LOWER BOUND) n=784  med|z|  0.60  inflation  0.89 [0.85, 0.94]   |z|<1  68.1%  |z|<2  87.0%  max|z|  929.68
+  S3 injection-recovery, clean       n=1407 med|z|  0.71  inflation  1.05 [1.03, 1.09]   |z|<1  65.7%  |z|<2  92.6%  max|z| 3586955.69
+  S3 injection-recovery, jitter1x    n=1288 med|z|  1.02  inflation  1.51 [1.47, 1.56]   |z|<1  49.0%  |z|<2  80.1%  max|z| 1134967.26
+  S4 M7 anchor (arm vs published, n=11) n=11   med|z|  2.28  inflation  3.38 [1.04, 4.03]   |z|<1  36.4%  |z|<2  45.5%  max|z|    6.16

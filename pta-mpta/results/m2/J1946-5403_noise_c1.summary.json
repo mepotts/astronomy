@@ -1,0 +1,116 @@
+{
+  "run_id": "J1946-5403_noise_c1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 9229,
+  "seed": 107,
+  "ndim": 2,
+  "x0_kind": "prior-draw",
+  "x0": [
+    0.8972543012811608,
+    -12.71653385644055
+  ],
+  "started_utc": "2026-08-18T18:49:35Z",
+  "wall_budget_min": 480.0,
+  "gate_raw_postburn": 100000,
+  "nice": 19,
+  "omp_threads": "1",
+  "eval_ms": 8.29,
+  "first_eval_s": 0.03,
+  "meta": {
+    "psr": "J1946-5403",
+    "ntoa": 1815,
+    "tspan_days": 1476.2300624383267,
+    "tmin_mjd": 58672.872854921225,
+    "tmax_mjd": 60149.102917359545,
+    "fl": false,
+    "kind": "noise",
+    "whites_fixed": null
+  },
+  "chunks": [
+    {
+      "iters": 72000,
+      "seconds": 367.7,
+      "it_per_s": 195.79,
+      "loadavg": 34.01,
+      "total_raw": 218000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 21801,
+    "post_burn_rows": 16351,
+    "raw_iters": 218000,
+    "raw_postburn": 163510,
+    "lnl_max": 20654.82026,
+    "acc_rate": 0.488832,
+    "stable": true,
+    "params": [
+      {
+        "param": "J1946-5403_efac",
+        "median": 0.9722114631632384,
+        "ci68": [
+          0.9560875469387655,
+          0.9887344173943006
+        ],
+        "halfshift": 0.0002,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1946-5403_gw13_log10_A",
+        "median": -15.534443583117433,
+        "ci68": [
+          -17.211657624926048,
+          -14.381239020714949
+        ],
+        "halfshift": 0.0122,
+        "tol": 0.1,
+        "stable": true
+      }
+    ]
+  },
+  "updated_utc": "2026-08-18T18:55:24Z",
+  "elapsed_min": 6.1,
+  "best_point": {
+    "J1946-5403_efac": 0.970966945141066,
+    "J1946-5403_gw13_log10_A": -14.432371043003984
+  },
+  "lnl_best": 20654.82026,
+  "a2": [
+    {
+      "param": "J1946-5403_efac",
+      "key": "efac",
+      "median": 0.9722114631632384,
+      "ci68": [
+        0.9560875469387655,
+        0.9887344173943006
+      ],
+      "published_map": 0.97,
+      "published_ci": [
+        0.95,
+        0.99
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1946-5403_gw13_log10_A",
+      "key": "gw13_log10_A",
+      "median": -15.534443583117433,
+      "ci68": [
+        -17.211657624926048,
+        -14.381239020714949
+      ],
+      "published_map": -14.46,
+      "published_ci": [
+        -17.22,
+        -14.41
+      ],
+      "agree": true
+    }
+  ],
+  "n_agree": 2,
+  "n_compared": 2,
+  "verdict": "CONVERGED-AGREES 2/2"
+}

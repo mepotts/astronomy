@@ -1,0 +1,62 @@
+{
+  "DCAP_group195": {
+    "label": "DCAP_group195",
+    "n_objects": 102,
+    "n_with_prereport_alerts_in_fink": 97,
+    "n_recovered_pre_report": 70,
+    "recovery_fraction_of_all": 0.686,
+    "recovery_fraction_of_those_with_data": 0.722,
+    "n_ever_passes": 70,
+    "n_recovered_at_discovery_epoch_strict": 30,
+    "recovery_fraction_strict": 0.294,
+    "median_lead_days_vs_report": 4.152,
+    "mean_lead_days_vs_report": 531.751,
+    "median_lead_days_this_episode": 2.131,
+    "n_lead_positive": 70,
+    "channels": {
+      "A1_cv_outburst": 36,
+      "A2_nova_like": 29,
+      "C_faint_residue": 4,
+      "D_galactic_plane": 1
+    },
+    "top_rejection_reasons": {
+      "only N clean detection(s), need N": 15,
+      "nuclear: on a PSN galaxy centroid (TDE/AGN territory, out of scope)": 5,
+      "no Fink alerts at all": 4,
+      "clean detections span N d < N d -- cannot exclude a mover": 3,
+      "SIMBAD says Galaxy (already-known variable or host)": 2,
+      "no alerts before the cutoff": 1,
+      "already catalogued in VSX: YSO:": 1,
+      "no channel: bright, off-plane, extended non-stellar association": 1
+    }
+  },
+  "auto_reporters": {
+    "label": "auto_reporters",
+    "n_objects": 60,
+    "n_with_prereport_alerts_in_fink": 28,
+    "n_recovered_pre_report": 6,
+    "recovery_fraction_of_all": 0.1,
+    "recovery_fraction_of_those_with_data": 0.214,
+    "n_ever_passes": 16,
+    "n_recovered_at_discovery_epoch_strict": 0,
+    "recovery_fraction_strict": 0.0,
+    "median_lead_days_vs_report": 0.27,
+    "mean_lead_days_vs_report": 0.54,
+    "median_lead_days_this_episode": 0.27,
+    "n_lead_positive": 6,
+    "channels": {
+      "A2_nova_like": 3,
+      "D_galactic_plane": 1,
+      "C_faint_residue": 1,
+      "A1_cv_outburst": 1
+    },
+    "top_rejection_reasons": {
+      "no Fink alerts at all": 26,
+      "only N clean detection(s), need N": 17,
+      "no alerts before the cutoff": 6,
+      "nuclear: on a PSN galaxy centroid (TDE/AGN territory, out of scope)": 3,
+      "SIMBAD says QSO (already-known variable or host)": 1,
+      "clean detections span N d < N d -- cannot exclude a mover": 1
+    }
+  }
+}

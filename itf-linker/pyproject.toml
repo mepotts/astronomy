@@ -17,6 +17,7 @@ keywords = ["astronomy", "minor-planets", "asteroids", "MPC", "ITF", "astrometry
 # sky partitioning. The rest of the milestones (Find_Orb wrapper, ADES emit) add no new
 # Python deps -- Find_Orb is a subprocess. Versions are floors, not pins.
 dependencies = [
+    "numpy>=1.26",           # direct dependency: stable observation-key vectorisation
     "typer>=0.12",
     "polars>=1.0",            # columnar engine over the parsed ITF (~9.4M rows)
     "pyarrow>=15",            # Parquet read/write backing polars

@@ -1,0 +1,8 @@
+# The reduction and analysis tooling is executed by bash inside WSL. With
+# core.autocrlf=true on Windows, git rewrites these to CRLF on checkout and
+# WSL's bash then fails on the stray \r -- silently enough that a driver script
+# can appear to "run" and produce nothing (see LESSONS.md, ops).
+# Pin every executable text file to LF so a fresh clone is runnable.
+*.sh   text eol=lf
+*.py   text eol=lf
+*.sof  text eol=lf

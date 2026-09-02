@@ -1,0 +1,201 @@
+{
+  "run_id": "J2241-5236_noise_c1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 9220,
+  "seed": 102,
+  "ndim": 5,
+  "x0_kind": "prior-draw",
+  "x0": [
+    3.0286397661867097,
+    -13.26809166939401,
+    2.094972187067913,
+    -1.9618570530006227,
+    17.362181731829068
+  ],
+  "started_utc": "2026-08-18T18:49:38Z",
+  "wall_budget_min": 480.0,
+  "gate_raw_postburn": 100000,
+  "nice": 19,
+  "omp_threads": "1",
+  "eval_ms": 41.61,
+  "first_eval_s": 0.14,
+  "meta": {
+    "psr": "J2241-5236",
+    "ntoa": 3405,
+    "tspan_days": 1598.8106751042494,
+    "tmin_mjd": 58550.36259453137,
+    "tmax_mjd": 60149.17326963561,
+    "fl": false,
+    "kind": "noise",
+    "whites_fixed": null
+  },
+  "chunks": [
+    {
+      "iters": 14000,
+      "seconds": 303.9,
+      "it_per_s": 46.07,
+      "loadavg": 35.0,
+      "total_raw": 167000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 16701,
+    "post_burn_rows": 12526,
+    "raw_iters": 167000,
+    "raw_postburn": 125260,
+    "lnl_max": 44263.989704,
+    "acc_rate": 0.283027,
+    "stable": true,
+    "params": [
+      {
+        "param": "J2241-5236_efac",
+        "median": 1.051091840124372,
+        "ci68": [
+          1.038246396398667,
+          1.0640985569585673
+        ],
+        "halfshift": 0.0001,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J2241-5236_gw13_log10_A",
+        "median": -14.794752318579743,
+        "ci68": [
+          -15.325301652304985,
+          -14.447687120161678
+        ],
+        "halfshift": 0.0192,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J2241-5236_sw_gp_gamma",
+        "median": 1.7096807614912184,
+        "ci68": [
+          1.457253792844708,
+          1.971550986674981
+        ],
+        "halfshift": 0.0017,
+        "tol": 0.3,
+        "stable": true
+      },
+      {
+        "param": "J2241-5236_sw_gp_log10_A",
+        "median": -6.1961193602879545,
+        "ci68": [
+          -6.277603322827527,
+          -6.110586204923509
+        ],
+        "halfshift": 0.0006,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "n_earth",
+        "median": 5.140272368919508,
+        "ci68": [
+          3.33424983176682,
+          6.975634348370912
+        ],
+        "halfshift": 0.0311,
+        "tol": 0.3,
+        "stable": true
+      }
+    ]
+  },
+  "updated_utc": "2026-08-18T18:54:26Z",
+  "elapsed_min": 5.1,
+  "best_point": {
+    "J2241-5236_efac": 1.050822386081782,
+    "J2241-5236_gw13_log10_A": -14.715502289490937,
+    "J2241-5236_sw_gp_gamma": 1.6466233755681077,
+    "J2241-5236_sw_gp_log10_A": -6.225173535212254,
+    "n_earth": 5.015658555803492
+  },
+  "lnl_best": 44263.989704,
+  "frac_n_earth_lt_15": 1.0,
+  "a2": [
+    {
+      "param": "J2241-5236_efac",
+      "key": "efac",
+      "median": 1.051091840124372,
+      "ci68": [
+        1.038246396398667,
+        1.0640985569585673
+      ],
+      "published_map": 1.05,
+      "published_ci": [
+        1.04,
+        1.06
+      ],
+      "agree": true
+    },
+    {
+      "param": "J2241-5236_gw13_log10_A",
+      "key": "gw13_log10_A",
+      "median": -14.794752318579743,
+      "ci68": [
+        -15.325301652304985,
+        -14.447687120161678
+      ],
+      "published_map": -14.82,
+      "published_ci": [
+        -16.39,
+        -14.540000000000001
+      ],
+      "agree": true
+    },
+    {
+      "param": "J2241-5236_sw_gp_gamma",
+      "key": "sw_gamma",
+      "median": 1.7096807614912184,
+      "ci68": [
+        1.457253792844708,
+        1.971550986674981
+      ],
+      "published_map": 1.81,
+      "published_ci": [
+        1.51,
+        1.99
+      ],
+      "agree": true
+    },
+    {
+      "param": "J2241-5236_sw_gp_log10_A",
+      "key": "sw_log10_A",
+      "median": -6.1961193602879545,
+      "ci68": [
+        -6.277603322827527,
+        -6.110586204923509
+      ],
+      "published_map": -6.16,
+      "published_ci": [
+        -6.26,
+        -6.1000000000000005
+      ],
+      "agree": true
+    },
+    {
+      "param": "n_earth",
+      "key": "n_earth",
+      "median": 5.140272368919508,
+      "ci68": [
+        3.33424983176682,
+        6.975634348370912
+      ],
+      "published_map": 5.86,
+      "published_ci": [
+        3.5400000000000005,
+        7.45
+      ],
+      "agree": true
+    }
+  ],
+  "n_agree": 5,
+  "n_compared": 5,
+  "verdict": "CONVERGED-AGREES 5/5"
+}

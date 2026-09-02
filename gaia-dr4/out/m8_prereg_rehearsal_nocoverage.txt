@@ -1,0 +1,57 @@
+M8 TASK 3 -- THE PRE-REGISTERED DECEMBER ANALYSIS, REHEARSED
+produced 2026-08-24T17:26:06Z
+synthetic store: 1 scenarios, seed 20261202
+substitution: `--verdicts all` -> `--verdicts <synthetic dir>`, so that no
+fabricated verdict is ever written into out/verdicts/.  load_store expands a
+directory through the same branch it expands `all` with.
+
+==============================================================================
+REGRESSION CHECK -- the frozen M4/M5 artifacts through the M8 code
+==============================================================================
+  m4_eb26_erosita_test.py: rc=0 (15.8s)
+  m5_activity_discriminator.py: rc=0 (105.0s)
+  m4_eb26_erosita_xmatch.csv                 IDENTICAL  556144fc3299
+  m4_eb26_discriminator_stats.txt            IDENTICAL  ecea9350f3ce
+  m5_activity_eb26_table.csv                 IDENTICAL  450c8f4e638a
+  m5_activity_metric_results.csv             IDENTICAL  183234d12599
+  m5_activity_discriminator_stats.txt        IDENTICAL  e6d9e1a2f459
+  -> PASS
+
+==============================================================================
+SCENARIO no_coverage  [no_coverage, 380 conf / 208 spur]
+==============================================================================
+  D1  primary    n= 164+105   p_holm=1.0000  eff=-0.007  min_det=0.200  dec=n  ->  UNDERPOWERED
+  D2  primary    n=   0+0     p_holm=  --    eff= --   min_det= --   dec=n  ->  NOT TESTABLE
+  D3  primary    n=   0+0     p_holm=  --    eff= --   min_det= --   dec=n  ->  NOT TESTABLE
+  D4  primary    n=   0+0     p_holm=1.0000  eff= --   min_det= --   dec=n  ->  NOT TESTABLE
+  D1  pooled     n= 180+118   p_holm=1.0000  eff=+0.009  min_det=0.150  dec=Y  ->  POOLED: UNINTERPRETABLE (diluted)
+  D2  pooled     n=  42+23    p_holm=0.1409  eff=+0.659  min_det=0.725  dec=n  ->  POOLED: UNINTERPRETABLE (diluted)
+  D3  pooled     n=  42+23    p_holm=0.0067  eff=+0.254  min_det=0.725  dec=n  ->  POSITIVE (conservative, pooled)
+  expected (from the scenario's declared truth): D3=NOT TESTABLE
+  -> all checks PASS
+
+==============================================================================
+TOTALITY -- is every pre-registered label reachable?
+==============================================================================
+  POSITIVE                                         0  ** NEVER PRODUCED **
+  POSITIVE (conservative, pooled)                  1  no_coverage/D3/pooled
+  NULL                                             0  ** NEVER PRODUCED **
+  UNDERPOWERED                                     1  no_coverage/D1/primary
+  DIRECTION REVERSAL                               0  ** NEVER PRODUCED **
+  NOT TESTABLE                                     3  no_coverage/D2/primary
+  POSITIVE (not decisive)                          0  ** NEVER PRODUCED **
+  POOLED: UNINTERPRETABLE (diluted)                2  no_coverage/D1/pooled
+  DIRECTION REVERSAL (pooled, not interpretable)   0  ** NEVER PRODUCED **
+
+==============================================================================
+DEFECTS IN THE FROZEN REGISTRATION FOUND BY RUNNING IT
+==============================================================================
+  GAP-1: 0 occurrence(s)  (not exercised)
+  GAP-2: 2 occurrence(s)  e.g. no_coverage/D1/pooled
+  GAP-3: 0 occurrence(s)  (not exercised)
+  GAP-4: 1 occurrence(s)  e.g. no_coverage/D1/primary
+
+==============================================================================
+RESULT: 5 command runs, 7 labels assigned, 0 failure(s); regression byte-identity PASS
+  labels never produced: ['POSITIVE', 'NULL', 'DIRECTION REVERSAL']
+==============================================================================

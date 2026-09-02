@@ -6,6 +6,17 @@
 
 **Status:** proposed
 
+> **DR2 rebase required (2026-08-14).** This plan is scoped on eRASS1/DR1 throughout.
+> **eROSITA-DE DR2 released 2026-07-31** — eRASS1–3 stacked, ~2M sources, nearly doubling DR1
+> ([erosita.mpe.mpg.de/dr2](https://erosita.mpe.mpg.de/dr2/), survey paper arXiv:2607.27772). Before
+> building: (a) rerun the M0 prior-art check against the DR2 flagship papers — the consortium may
+> have shipped new value-added catalogs that change the wedge; (b) rebase ingest on the DR2 main
+> catalog and check which DR1 value-added products carry over; (c) DR2's eRASS1-vs-eRASS:3
+> variability is a *new evidence axis* the dossier should include — and the same axis powers the
+> discovery-side sibling project (avenue #5 in
+> [`../DISCOVERY/run3-prospectus.md`](../DISCOVERY/run3-prospectus.md)), so the ingest layer can be
+> shared. The Gaia DR4 refresh catalyst (2 Dec 2026) is unchanged and confirmed.
+
 ## The wedge
 
 **What exists already (adversarial prior-art check).** The honest headline: *the eROSITA-DE teams have already classified most of the sky, and as of mid-2026 it is all public.* This is not a greenfield classifier.

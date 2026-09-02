@@ -1,0 +1,108 @@
+key,claimed,rederived,tier,source,verdict,note
+n_clean_pairs,632668,632668,bulk,data/w2_pairs.parquet,VERIFIED,
+n_dr2_main_rows,1975540,1975540,out,out/w2_stats.json,VERIFIED,
+n_dr1_main_rows,930203,930203,out,out/w2_stats.json,VERIFIED,
+n_uid_dr1_nonzero,742056,742056,out,out/w2_stats.json,VERIFIED,
+frac_dr2_with_dr1_crosswalk_pct,37.6,37.6,out,out/w2_stats.json,VERIFIED,
+n_bright_tier_20sigma,1238,1238,out,out/w2_stats.json,VERIFIED,
+scale_offset_median_R,0.979,0.979,out,out/w2_stats.json,VERIFIED,
+scale_offset_pct,2.0,2.1,out,out/w2_stats.json,CORRECTED,
+all_clean_median_R,0.825,0.825,out,out/w2_stats.json,VERIFIED,
+n_z5,2138,2138,out,out/w2_stats.json,VERIFIED,
+n_cons_amp_gt5_stacked,62,62,out,out/w2_stats.json,VERIFIED,
+n_cons_amp_gt10_stacked,14,14,out,out/w2_stats.json,VERIFIED,
+n_epoch_amp_gt5,225,225,out,out/w2_stats.json,VERIFIED,
+n_epoch_amp_gt10,49,49,out,out/w2_stats.json,VERIFIED,
+n_dr1_clean_detlike30,118253,118253,out,out/w2_stats.json,VERIFIED,
+n_vanished_detlike30,261,261,out,out/w2_stats.json,VERIFIED,
+n_new_bright,286,286,out,out/w2_stats.json,VERIFIED,
+scale_offset_median_R_INDEPENDENT,0.979,0.979,bulk,data/w2_pairs.parquet recomputed,VERIFIED,independent recompute over n=1238 >=20sigma pairs
+n_bright_tier_INDEPENDENT,1238,1238,bulk,data/w2_pairs.parquet recomputed,VERIFIED,
+all_clean_median_R_INDEPENDENT,0.825,0.825,bulk,"data/w2_pairs.parquet recomputed, scale-normalised",VERIFIED,raw (un-normalised) median ratio is 0.808
+exposure_ratio_t3_over_t1_median,2.9,2.84,bulk,data/w2_pairs.parquet ML_EXP_1 / ML_EXP_1_D1,CORRECTED,M1 quotes 2.9 'over the ranked set'; over all clean pairs it is 2.84
+vanished_census_rows,261,261,out,out/m2_vanished_forensics.csv,VERIFIED,
+n_fade_candidates,107,107,out,out/m2_vanished_forensics.csv,VERIFIED,
+n_artifacts,148,148,out,out/m2_vanished_forensics.csv,VERIFIED,
+n_indeterminate,6,6,out,out/m2_vanished_forensics.csv,VERIFIED,
+artifact_pct,57,57,out,out/m2_vanished_forensics.csv,VERIFIED,
+fader_pct,41,41,out,out/m2_vanished_forensics.csv,VERIFIED,
+n_artifact_confusion_mode,85,85,out,out/m2_vanished_forensics.csv,VERIFIED,
+n_artifact_extended_mode,36,36,out,out/m2_vanished_forensics.csv,VERIFIED,
+n_artifact_split_mode,25,25,out,out/m2_vanished_forensics.csv,VERIFIED,
+vanished_frac_of_bright_dr1_pct,0.22,0.22,out,derived: 261 / 118253,VERIFIED,
+fader_frac_of_bright_dr1_pct,0.09,0.09,out,derived: 107 / 118253,VERIFIED,
+threshold_band_minus (cut 1.5->1.3),12,8,out,m2_upper_limits.py v2 tree replayed at cut=1.3,CORRECTED,"M2's -12 counts every blank row in (1.3,1.5]; 4 of those are CONFUSED-IDENTITY, not faders"
+threshold_band_plus (cut 1.5->2.0),35,17,out,m2_upper_limits.py v2 tree replayed at cut=2.0,CORRECTED,"M2's +35 counts every artifact row in (1.5,2.0]; 18 of those are ARTIFACT-SPLIT/MOVED or near-PSF and are caught by earlier branches"
+fader_band_low,95,99,out,tree replay at cut=1.3,CORRECTED,
+fader_band_high,142,124,out,tree replay at cut=2.0,CORRECTED,
+fader_presence_max,1.5,1.49,out,out/m2_vanished_forensics.csv,VERIFIED,cut is presence <= 1.5 by construction
+n_faders_agn_like,39,39,out,m2_vanished_forensics x m2_archival_xray: Gaia-class AGN or W1-W2>=0.8,VERIFIED,
+n_faders_stellar,23,23,out,m2_archival_xray: W1<15 and |W1-W2|<0.3,VERIFIED,"definition-dependent: 25 at |W1-W2|<0.5, 24 at <0.4, 23 at <0.3; 39 counterparts have W1<15 at any colour; disjoint from the AGN set"
+n_faders_in_lmc_box,25,25,out,"RA 60-105, Dec -75..-60 applied to the 107 faders",VERIFIED,
+n_faders_prior_xray,21,21,out,m2_archival_xray: any of 2RXS/XMMSL3/CSC2.1/2SXPS/XMMSSC,VERIFIED,
+n_faders_catwise_blank,3,3,out,m2_archival_xray catwise_sep null,VERIFIED,
+fader_median_detlike,40,40,out,out/m2_vanished_forensics.csv,VERIFIED,
+n_faders_detlike_gt100,8,8,out,out/m2_vanished_forensics.csv,VERIFIED,
+m1_top20_artifact_count,14,14,out,top 20 by DET_LIKE_0 in m2_vanished_forensics.csv,VERIFIED,
+n_calibration_pairs,25,25,out,out/m2_ul_calibration.csv,VERIFIED,
+calib_fade_frac_median,1.13,1.14,out,out/m2_ul_calibration.csv,CORRECTED,M2's '1.13 +- 0.07' is the MEAN +- sd; the median is 1.14
+calib_fade_frac_mean,1.13,1.13,out,out/m2_ul_calibration.csv,VERIFIED,
+calib_fade_frac_sd,0.07,0.07,out,out/m2_ul_calibration.csv sample sd,VERIFIED,
+calib_presence_degenerate_rows,0,1,out,out/m2_ul_calibration.csv,CORRECTED,M2 claims 'steady calibrators are all >> 1'; one row (3eRASS J114550.9-552043) returned UL_S = inf -> P = 0
+calib_presence_min_valid,5.7,5.7,out,out/m2_ul_calibration.csv excluding the degenerate row,VERIFIED,
+calib_presence_max_valid,13.9,13.9,out,out/m2_ul_calibration.csv excluding the degenerate row,VERIFIED,
+calib_n_valid_presence,25,24,out,out/m2_ul_calibration.csv,CORRECTED,"the presence calibration is effectively n=24, not n=25"
+n_lmc_faders,25,25,out,out/m4_lmc_ogle_matches.csv,VERIFIED,
+lmc_matches_ocvs,0,0,out,out/m4_lmc_ogle_matches.csv,VERIFIED,
+lmc_matches_xrom,0,0,out,out/m4_lmc_ogle_matches.csv,VERIFIED,
+lmc_matches_be_sabogal,0,0,out,out/m4_lmc_ogle_matches.csv,VERIFIED,
+lmc_matches_hmxb_vac,0,0,out,out/m4_lmc_ogle_matches.csv,VERIFIED,
+control_positions,400,400,out,out/m4_lmc_ogle_control.csv,VERIFIED,
+control_ocvs_hits,3,3,out,out/m4_lmc_ogle_control.csv,VERIFIED,
+expected_chance_matches_per25,0.19,0.19,out,out/m4_lmc_ogle_control.csv,VERIFIED,
+n_be_donor_candidates,1,1,out,out/m4_lmc_ogle_matches.csv be_donor_candidate,VERIFIED,
+n_no_be_donor,24,24,out,out/m4_lmc_ogle_matches.csv be_donor_candidate,VERIFIED,
+nearest_ocvs_variable_min_arcmin,0.4,0.4,out,out/m4_lmc_ogle_matches.csv,VERIFIED,
+nearest_ocvs_variable_max_arcmin,4.8,4.8,out,out/m4_lmc_ogle_matches.csv,VERIFIED,
+nearest_xrom_min_arcmin,50.0,49.8,out,out/m4_lmc_ogle_matches.csv,CORRECTED,"M4 rounds 49.8' UP to '>= 50'', which overstates the separation"
+nearest_hmxb_min_arcmin,13.0,12.9,out,out/m4_lmc_ogle_matches.csv,CORRECTED,"M4 rounds 12.9' UP to '>= 13'', which overstates the separation"
+nearest_sabogal_be_min_deg,2.0,2.0,out,out/m4_lmc_ogle_matches.csv,VERIFIED,
+match_radius_min_arcsec,5.7,5.7,out,out/m4_lmc_ogle_matches.csv,VERIFIED,
+match_radius_max_arcsec,11.2,11.2,out,out/m4_lmc_ogle_matches.csv,VERIFIED,
+lmc_firm_agn_colored,9,9,out,out/m4_lmc_ogle_matches.csv catwise_w1_w2 >= 0.8,VERIFIED,
+ogle_iv_dark_days,886,886,out,out/m4_lmc_ogle_lightcurves.csv (XROM CAL 83 max gap),VERIFIED,
+xrom_lc_last_hjd_prime,11186.5,11186.5,out,out/m4_lmc_ogle_lightcurves.csv,VERIFIED,HJD-2450000; 2026-05-25 per M4
+ocvs_rrlyr_last_hjd_prime,7492.5,7492.5,out,out/m4_lmc_ogle_lightcurves.csv,VERIFIED,2016-04-14 per M4
+ogle_dark_endpoints_consistent,886,886,out,astropy JD difference of the two quoted calendar dates,VERIFIED,
+erass23_window_inside_ogle_dark,yes,yes,out,astropy JD comparison,VERIFIED,
+ocvs_pool_total,217725,217725,bulk,data/ogle/*_ident.dat line counts,VERIFIED,
+ocvs_rrlyr,41471,41471,bulk,data/ogle/ocvs4_lmc_rrlyr_ident.dat,VERIFIED,
+ocvs_ecl,63252,63252,bulk,data/ogle/ocvs4_lmc_ecl_ident.dat,VERIFIED,
+ocvs_lpv_ogle3,91995,91995,bulk,data/ogle/ocvs3_lmc_lpv_ident.dat,VERIFIED,
+sabogal_be_candidates,2446,2446,bulk,data/ogle/sabogal_lmc_be.csv,VERIFIED,
+hmxb_vac_rows,53,53,bulk,C:\Users\matth\projects\astronomy\erosita-dr2\data\eRASS1_HMXB_LMC_v1.0.fits.tgz,VERIFIED,
+n_touched_sources,381,381,out,out/m2_verdicts.csv,VERIFIED,
+n_identified,104,104,out,out/m2_verdicts.csv,VERIFIED,
+n_plausible_class,123,123,out,out/m2_verdicts.csv,VERIFIED,
+n_artifact_verdict,153,153,out,out/m2_verdicts.csv,VERIFIED,
+n_genuinely_unexplained,1,1,out,out/m2_verdicts.csv,VERIFIED,
+dr2_main_rows_FITS,1975540,1975540,bulk,C:\Users\matth\projects\astronomy\erosita-dr2\data\eRASS3_Main_v1.3.fits,VERIFIED,
+dr2_main_ncols,250,250,bulk,C:\Users\matth\projects\astronomy\erosita-dr2\data\eRASS3_Main_v1.3.fits,VERIFIED,
+dr2_point_sources,1911744,1911744,bulk,C:\Users\matth\projects\astronomy\erosita-dr2\data\eRASS3_Main_v1.3.fits,VERIFIED,matches DR2 paper Table 15 as quoted in M1 §1
+dr2_extended_sources,63796,63796,bulk,C:\Users\matth\projects\astronomy\erosita-dr2\data\eRASS3_Main_v1.3.fits,VERIFIED,
+dr2_has_no_epoch_time_columns,0,0,bulk,C:\Users\matth\projects\astronomy\erosita-dr2\data\eRASS3_Main_v1.3.fits,VERIFIED,M1 §1 kill-check: DR2 ships stacked values only
+dr2_has_UID_DR1_column,yes,yes,bulk,C:\Users\matth\projects\astronomy\erosita-dr2\data\eRASS3_Main_v1.3.fits,VERIFIED,
+dr1_main_rows_FITS,930203,930203,bulk,C:\Users\matth\projects\astronomy\erosita-dr2\data\eRASS1_Main.v1.2.fits,VERIFIED,
+erass1_start_date,2019-12-12,2019-12-11,bulk,C:\Users\matth\projects\astronomy\erosita-dr2\data\eRASS1_Main.v1.2.fits::MJD_MIN,CORRECTED,the catalogue's own earliest MJD is 2019-12-11.9
+erass1_end_date,2020-06-11,2020-06-11,bulk,C:\Users\matth\projects\astronomy\erosita-dr2\data\eRASS1_Main.v1.2.fits::MJD_MAX,VERIFIED,
+erass1_span_days,182,183,bulk,C:\Users\matth\projects\astronomy\erosita-dr2\data\eRASS1_Main.v1.2.fits,CORRECTED,
+dr2_hard_rows,15980,15980,bulk,C:\Users\matth\projects\astronomy\erosita-dr2\data\eRASS3_Hard_v1.2.fits,VERIFIED,
+erass3_span_days_from_quoted_dates,556,552,external,arithmetic on the two dates M1 §1 attributes to the DR2 portal,CORRECTED,"INTERNAL INCONSISTENCY: 2019-12-12 -> 2021-06-16 is 552 d, not 556 d; one of the three portal-sourced figures is wrong. The draft must not depend on the exact value."
+validation_n_controls,60,60,out,out/m5w_faint_validation.csv,VERIFIED,
+validation_control_presence_min,2.03,2.03,out,out/m5w_faint_validation.csv,VERIFIED,
+validation_control_presence_median,2.6,2.6,out,out/m5w_faint_validation.csv,VERIFIED,
+validation_control_presence_max,3.78,3.78,out,out/m5w_faint_validation.csv,VERIFIED,
+validation_controls_below_cut,0,0,out,out/m5w_faint_validation.csv,VERIFIED,zero of 60 flux-matched steady sources fall in the fader class
+validation_false_positive_95ul_pct,4.9,4.9,out,"1 - 0.05^(1/60), one-sided binomial",VERIFIED,
+validation_max_contaminants_of_107,6,6,out,"0.049 x 107, rounded up",VERIFIED,
+validation_populations_disjoint,yes,yes,out,control min vs fader max,VERIFIED,"faders reach P=1.49, controls start at P=2.03"

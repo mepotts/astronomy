@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from datetime import UTC, datetime, timedelta
+
 import polars as pl
 import pytest
 
@@ -97,6 +99,15 @@ def test_snapshot_id_falls_back_to_fetch_time():
 
 def test_snapshot_id_survives_missing_provenance():
     assert len(snap.snapshot_id_for(None)) == len("20260729T052645Z")
+
+
+def test_snapshot_id_rejects_future_server_and_fetch_timestamps():
+    future = datetime.now(UTC) + timedelta(hours=1)
+    last_modified = future.strftime("%a, %d %b %Y %H:%M:%S GMT")
+    with pytest.raises(RuntimeError, match="future HTTP Last-Modified"):
+        snap.snapshot_id_for(_prov(last_modified))
+    with pytest.raises(RuntimeError, match="future fetch timestamp"):
+        snap.snapshot_id_for({"fetched_at_utc": future.isoformat()})
 
 
 # ----------------------------------------------------------------------------------

@@ -1,0 +1,68 @@
+M6 -- does `flag_astrom_quiet` earn its column?  (2026-08-21)
+==========================================================================
+verdict store: 977 records; CONFIRMED[epoch_vet_harness/orbit_reality:631]  SPURIOUS[epoch_vet_harness/orbit_reality:346]
+queue: 981 rows, flag_astrom_quiet marks 255 (26.0 %)
+
+POPULATIONS -------------------------------------------------------------
+  all verdicted EB26 targets (what M5 measured on): 977  (631 conf / 346 spur)
+  verdicted AND in the day-one queue (what the flag actually operates on): 977  (631 conf / 346 spur)
+  the frozen screen removes 0 of the verdicted targets before the flag is ever computed.
+  -- a discriminator measured on a population it will never see is not
+     evidence about the flag.  That is why this test exists.
+
+  reconciliation with M5's published in-list counts:
+    main bin only (M5's population): 945 verdicted (611 conf / 334 spur), flagged 236, of which spurious 74 -- M5 reported 46 / 2 / 0-of-7 and this reproduces it.
+    + retrieval bin (Pr >= 0.999), which the flag ALSO marks: 32 more verdicted rows.
+    = 977 in-list verdicted rows in total. This test uses the whole queue,
+      because the whole queue is what the flag is computed on.
+
+1. CONTINUOUS TEST, all-65 (M5's population) vs in-list (the flag's) ---
+  C5 astrometric_gof_al (the frozen flag's metric) [all-65]
+    n 631 conf / 346 spur; medians 53.25 vs 61.19
+    MWU p = 0.0079; AUC(spur>conf) = 0.551 [95 % boot 0.514-0.589]
+    smallest AUC detectable at 80 % power here: 0.575  (equivalently 0.425 on the low side)
+  C5 astrometric_gof_al (the frozen flag's metric) [in-list]
+    n 631 conf / 346 spur; medians 53.25 vs 61.19
+    MWU p = 0.0079; AUC(spur>conf) = 0.551 [95 % boot 0.513-0.589]
+    smallest AUC detectable at 80 % power here: 0.575  (equivalently 0.425 on the low side)
+  C1 ruwe (the runner-up M5 deliberately did not freeze) [all-65]
+    n 631 conf / 346 spur; medians 3.44 vs 3.77
+    MWU p = 0.0153; AUC(spur>conf) = 0.547 [95 % boot 0.508-0.584]
+    smallest AUC detectable at 80 % power here: 0.575  (equivalently 0.425 on the low side)
+  C1 ruwe (the runner-up M5 deliberately did not freeze) [in-list]
+    n 631 conf / 346 spur; medians 3.44 vs 3.77
+    MWU p = 0.0153; AUC(spur>conf) = 0.547 [95 % boot 0.508-0.584]
+    smallest AUC detectable at 80 % power here: 0.575  (equivalently 0.425 on the low side)
+
+2. THRESHOLDED TEST -- the flag itself, on the in-list population ------
+  flagged CONFIRMED 172/631 = 0.273 (95 % Wilson 0.239-0.309)
+  flagged SPURIOUS  82/346 = 0.237 (95 % Wilson 0.195-0.285)
+  Fisher two-sided p = 0.2527, odds ratio 0.83
+  power: against a confirmed marking-rate of 0.273 at n = 631/346, the smallest SPURIOUS marking-rate detectable at 80 % power is 0.40
+  -- with 346 in-list spurious rows, the flag would have to mark 40 % before this test could notice.
+  M5's '0 of 7' is therefore NOT evidence that the flag fails: at a 0.273
+     marking rate, the EXPECTED catch among 346 spurious rows is 94.31.  Observing 0 is what both a working flag and a
+     dead one predict.  The in-list test has no power, full stop.
+
+3. WHAT DECEMBER HAS TO HARVEST TO SETTLE IT -----------------------------
+  (in-list verdicts; today's in-list confirmed:spurious ratio 631:346 held
+   fixed, 80 % power at alpha = 0.05, two-sided MWU)
+  at M5's all-65 effect (AUC 0.551): 1262 confirmed + 692 spurious in-list verdicts = 2x today's in-list sample (1954 rows)
+  at the observed in-list effect (AUC 0.551): 1262 confirmed + 692 spurious in-list verdicts = 2x today's in-list sample (1954 rows)
+
+  The day-one queue is 981 rows.  The harness adjudicates all of them,
+  so the in-list verdict count goes from 977 to O(981) in one pass -- which is more than enough for
+  every row above.  This is the whole argument for M6 existing.
+
+==========================================================================
+DECISION ----------------------------------------------------------------
+  -> CARRY
+  CANNOT DECIDE UNTIL DECEMBER'S VERDICTS EXIST, and the reason is measured,
+  not rhetorical: the population the flag operates on holds 346 spurious
+  rows, the in-list continuous test cannot see anything short of the AUC
+  printed above, and the thresholded test cannot see anything at all.  The
+  flag stays exactly as config v4 froze it -- tiebreaker only, both caveats
+  attached, never a cut and never quoted beside `significance` -- and the
+  test that settles it is pre-registered in this script's docstring.
+  Removing it today would be as unevidenced as promoting it.
+==========================================================================

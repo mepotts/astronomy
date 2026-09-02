@@ -1,0 +1,31 @@
+{
+ "psr": "J1751-2857",
+ "params": [
+  "J1751-2857_dm_gp_gamma",
+  "J1751-2857_dm_gp_log10_A",
+  "J1751-2857_efac",
+  "J1751-2857_gw13_log10_A",
+  "J1751-2857_sw_gp_gamma",
+  "J1751-2857_sw_gp_log10_A",
+  "n_earth"
+ ],
+ "lnl_published": 31156.97655115077,
+ "lnl_best": 31157.158108332318,
+ "lnl_best_recorded": 31157.44183,
+ "lnl_median": 31156.288037585182,
+ "dlnl_best_minus_pub": 0.18155718154957867,
+ "dlnl_median_minus_pub": -0.6885135655866179,
+ "n_agree": 6,
+ "n_compared": 7,
+ "misses": [
+  "J1751-2857_sw_gp_gamma"
+ ],
+ "miss_tightness": {
+  "J1751-2857_sw_gp_gamma": {
+   "pub_ci_width": 4.6,
+   "prior_width": 7,
+   "frac": 0.6571428571428571,
+   "claims_measurement": false
+  }
+ }
+}

@@ -1,0 +1,60 @@
+M6 -- does `flag_astrom_quiet` earn its column?  (2026-08-21)
+==========================================================================
+verdict store: 980 records; CONFIRMED[epoch_vet_harness/orbit_reality:633]  SPURIOUS[epoch_vet_harness/orbit_reality:347]
+queue: 981 rows, flag_astrom_quiet marks 255 (26.0 %)
+
+POPULATIONS -------------------------------------------------------------
+  all verdicted EB26 targets (what M5 measured on): 980  (633 conf / 347 spur)
+  verdicted AND in the day-one queue (what the flag actually operates on): 980  (633 conf / 347 spur)
+  the frozen screen removes 0 of the verdicted targets before the flag is ever computed.
+  -- a discriminator measured on a population it will never see is not
+     evidence about the flag.  That is why this test exists.
+
+  reconciliation with M5's published in-list counts:
+    main bin only (M5's population): 948 verdicted (614 conf / 334 spur), flagged 237, of which spurious 97 -- M5 reported 46 / 2 / 0-of-7 and this reproduces it.
+    + retrieval bin (Pr >= 0.999), which the flag ALSO marks: 32 more verdicted rows.
+    = 980 in-list verdicted rows in total. This test uses the whole queue,
+      because the whole queue is what the flag is computed on.
+
+1. CONTINUOUS TEST, all-65 (M5's population) vs in-list (the flag's) ---
+  C5 astrometric_gof_al (the frozen flag's metric) [all-65]
+    n 633 conf / 347 spur; medians 57.44 vs 53.07
+    MWU p = 0.0806; AUC(spur>conf) = 0.466 [95 % boot 0.428-0.505]
+    smallest AUC detectable at 80 % power here: 0.575  (equivalently 0.425 on the low side)
+  C5 astrometric_gof_al (the frozen flag's metric) [in-list]
+    n 633 conf / 347 spur; medians 57.44 vs 53.07
+    MWU p = 0.0806; AUC(spur>conf) = 0.466 [95 % boot 0.428-0.505]
+    smallest AUC detectable at 80 % power here: 0.575  (equivalently 0.425 on the low side)
+  C1 ruwe (the runner-up M5 deliberately did not freeze) [all-65]
+    n 633 conf / 347 spur; medians 3.63 vs 3.41
+    MWU p = 0.0779; AUC(spur>conf) = 0.466 [95 % boot 0.428-0.504]
+    smallest AUC detectable at 80 % power here: 0.575  (equivalently 0.425 on the low side)
+  C1 ruwe (the runner-up M5 deliberately did not freeze) [in-list]
+    n 633 conf / 347 spur; medians 3.63 vs 3.41
+    MWU p = 0.0779; AUC(spur>conf) = 0.466 [95 % boot 0.428-0.504]
+    smallest AUC detectable at 80 % power here: 0.575  (equivalently 0.425 on the low side)
+
+2. THRESHOLDED TEST -- the flag itself, on the in-list population ------
+  flagged CONFIRMED 149/633 = 0.235 (95 % Wilson 0.204-0.270)
+  flagged SPURIOUS  106/347 = 0.305 (95 % Wilson 0.259-0.356)
+  Fisher two-sided p = 0.0183, odds ratio 1.43
+  power: against a confirmed marking-rate of 0.235 at n = 633/347, the smallest SPURIOUS marking-rate detectable at 80 % power is 0.35
+  -- with 347 in-list spurious rows, the flag would have to mark 35 % before this test could notice.
+  M5's '0 of 7' is therefore NOT evidence that the flag fails: at a 0.235
+     marking rate, the EXPECTED catch among 347 spurious rows is 81.68.  Observing 0 is what both a working flag and a
+     dead one predict.  The in-list test has no power, full stop.
+
+3. WHAT DECEMBER HAS TO HARVEST TO SETTLE IT -----------------------------
+  (in-list verdicts; today's in-list confirmed:spurious ratio 633:347 held
+   fixed, 80 % power at alpha = 0.05, two-sided MWU)
+  at M5's all-65 effect (AUC 0.466): 1899 confirmed + 1041 spurious in-list verdicts = 3x today's in-list sample (2940 rows)
+  at the observed in-list effect (AUC 0.466): 1899 confirmed + 1041 spurious in-list verdicts = 3x today's in-list sample (2940 rows)
+
+  The day-one queue is 981 rows.  The harness adjudicates all of them,
+  so the in-list verdict count goes from 980 to O(981) in one pass -- which is more than enough for
+  every row above.  This is the whole argument for M6 existing.
+
+==========================================================================
+DECISION ----------------------------------------------------------------
+  -> REMOVE
+==========================================================================

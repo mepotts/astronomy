@@ -1,0 +1,451 @@
+{
+  "configs": [
+    {
+      "set": "DCAP_group195",
+      "config": "M1_baseline",
+      "n": 102,
+      "n_with_prereport_alerts": 97,
+      "recovered": 70,
+      "recall_of_all": 0.6863,
+      "recall_of_those_with_data": 0.7216,
+      "median_lead_days": 4.152,
+      "median_lead_days_this_episode": 2.131,
+      "n_lead_positive": 70,
+      "channels": {
+        "A1_cv_outburst": 36,
+        "A2_nova_like": 29,
+        "C_faint_residue": 4,
+        "D_galactic_plane": 1
+      }
+    },
+    {
+      "set": "DCAP_group195",
+      "config": "fix_a_amplitude_flat",
+      "n": 102,
+      "n_with_prereport_alerts": 97,
+      "recovered": 46,
+      "recall_of_all": 0.451,
+      "recall_of_those_with_data": 0.4742,
+      "median_lead_days": 3.098,
+      "median_lead_days_this_episode": 1.782,
+      "n_lead_positive": 46,
+      "channels": {
+        "A1_cv_outburst": 24,
+        "A2_nova_like": 21,
+        "D_galactic_plane": 1
+      },
+      "lost_vs_M1": [
+        "AT 2026jic",
+        "AT 2026jim",
+        "AT 2026kgc",
+        "AT 2026kgd",
+        "AT 2026kgg",
+        "AT 2026kgm",
+        "AT 2026kml",
+        "AT 2026kmn",
+        "AT 2026kzq",
+        "AT 2026kzr",
+        "AT 2026kzs",
+        "AT 2026lbb",
+        "AT 2026lcc",
+        "AT 2026lim",
+        "AT 2026mbe",
+        "AT 2026mej",
+        "AT 2026mek",
+        "AT 2026mjt",
+        "AT 2026mjy",
+        "AT 2026mkx",
+        "AT 2026mla",
+        "AT 2026pvw",
+        "AT 2026qij",
+        "AT 2026qre"
+      ],
+      "gained_vs_M1": [],
+      "n_lost": 24,
+      "n_gained": 0
+    },
+    {
+      "set": "DCAP_group195",
+      "config": "fix_c1_vsx_flag",
+      "n": 102,
+      "n_with_prereport_alerts": 97,
+      "recovered": 71,
+      "recall_of_all": 0.6961,
+      "recall_of_those_with_data": 0.732,
+      "median_lead_days": 4.214,
+      "median_lead_days_this_episode": 2.149,
+      "n_lead_positive": 71,
+      "channels": {
+        "A1_cv_outburst": 37,
+        "A2_nova_like": 29,
+        "C_faint_residue": 4,
+        "D_galactic_plane": 1
+      },
+      "lost_vs_M1": [],
+      "gained_vs_M1": [
+        "AT 2026lck"
+      ],
+      "n_lost": 0,
+      "n_gained": 1
+    },
+    {
+      "set": "DCAP_group195",
+      "config": "fix_c2_simbad_flag",
+      "n": 102,
+      "n_with_prereport_alerts": 97,
+      "recovered": 70,
+      "recall_of_all": 0.6863,
+      "recall_of_those_with_data": 0.7216,
+      "median_lead_days": 4.152,
+      "median_lead_days_this_episode": 2.131,
+      "n_lead_positive": 70,
+      "channels": {
+        "A1_cv_outburst": 36,
+        "A2_nova_like": 29,
+        "C_faint_residue": 4,
+        "D_galactic_plane": 1
+      },
+      "lost_vs_M1": [],
+      "gained_vs_M1": [],
+      "n_lost": 0,
+      "n_gained": 0
+    },
+    {
+      "set": "DCAP_group195",
+      "config": "fix_c3_candidate_sfx",
+      "n": 102,
+      "n_with_prereport_alerts": 97,
+      "recovered": 70,
+      "recall_of_all": 0.6863,
+      "recall_of_those_with_data": 0.7216,
+      "median_lead_days": 4.152,
+      "median_lead_days_this_episode": 2.131,
+      "n_lead_positive": 70,
+      "channels": {
+        "A1_cv_outburst": 36,
+        "A2_nova_like": 29,
+        "C_faint_residue": 4,
+        "D_galactic_plane": 1
+      },
+      "lost_vs_M1": [],
+      "gained_vs_M1": [],
+      "n_lost": 0,
+      "n_gained": 0
+    },
+    {
+      "set": "DCAP_group195",
+      "config": "fix_d_negsub",
+      "n": 102,
+      "n_with_prereport_alerts": 97,
+      "recovered": 70,
+      "recall_of_all": 0.6863,
+      "recall_of_those_with_data": 0.7216,
+      "median_lead_days": 4.152,
+      "median_lead_days_this_episode": 2.131,
+      "n_lead_positive": 70,
+      "channels": {
+        "A1_cv_outburst": 36,
+        "A2_nova_like": 29,
+        "C_faint_residue": 4,
+        "D_galactic_plane": 1
+      },
+      "lost_vs_M1": [],
+      "gained_vs_M1": [],
+      "n_lost": 0,
+      "n_gained": 0
+    },
+    {
+      "set": "DCAP_group195",
+      "config": "M2_full",
+      "n": 102,
+      "n_with_prereport_alerts": 97,
+      "recovered": 47,
+      "recall_of_all": 0.4608,
+      "recall_of_those_with_data": 0.4845,
+      "median_lead_days": 3.124,
+      "median_lead_days_this_episode": 1.889,
+      "n_lead_positive": 47,
+      "channels": {
+        "A1_cv_outburst": 25,
+        "A2_nova_like": 21,
+        "D_galactic_plane": 1
+      },
+      "lost_vs_M1": [
+        "AT 2026jic",
+        "AT 2026jim",
+        "AT 2026kgc",
+        "AT 2026kgd",
+        "AT 2026kgg",
+        "AT 2026kgm",
+        "AT 2026kml",
+        "AT 2026kmn",
+        "AT 2026kzq",
+        "AT 2026kzr",
+        "AT 2026kzs",
+        "AT 2026lbb",
+        "AT 2026lcc",
+        "AT 2026lim",
+        "AT 2026mbe",
+        "AT 2026mej",
+        "AT 2026mek",
+        "AT 2026mjt",
+        "AT 2026mjy",
+        "AT 2026mkx",
+        "AT 2026mla",
+        "AT 2026pvw",
+        "AT 2026qij",
+        "AT 2026qre"
+      ],
+      "gained_vs_M1": [
+        "AT 2026lck"
+      ],
+      "n_lost": 24,
+      "n_gained": 1
+    },
+    {
+      "set": "auto_reporters",
+      "config": "M1_baseline",
+      "n": 60,
+      "n_with_prereport_alerts": 28,
+      "recovered": 6,
+      "recall_of_all": 0.1,
+      "recall_of_those_with_data": 0.2143,
+      "median_lead_days": 0.27,
+      "median_lead_days_this_episode": 0.27,
+      "n_lead_positive": 6,
+      "channels": {
+        "A2_nova_like": 3,
+        "D_galactic_plane": 1,
+        "C_faint_residue": 1,
+        "A1_cv_outburst": 1
+      }
+    },
+    {
+      "set": "auto_reporters",
+      "config": "M2_full",
+      "n": 60,
+      "n_with_prereport_alerts": 28,
+      "recovered": 3,
+      "recall_of_all": 0.05,
+      "recall_of_those_with_data": 0.1071,
+      "median_lead_days": 1.048,
+      "median_lead_days_this_episode": 1.048,
+      "n_lead_positive": 3,
+      "channels": {
+        "A2_nova_like": 3
+      }
+    }
+  ],
+  "novae": {
+    "M1_baseline": {
+      "n": 3,
+      "recovered": 2,
+      "detail": {
+        "AT 2026stb": [
+          true,
+          "outburst on a PS1 point source 2.16\" away [galactic plane]"
+        ],
+        "AT 2026rdg": [
+          true,
+          "outburst on a PS1 point source 2.66\" away [galactic plane]"
+        ],
+        "AT 2026lck": [
+          false,
+          "already catalogued in VSX: YSO:"
+        ]
+      }
+    },
+    "fix_a_amplitude_flat": {
+      "n": 3,
+      "recovered": 2,
+      "detail": {
+        "AT 2026stb": [
+          true,
+          "outburst on a PS1 point source 2.16\" away [galactic plane]"
+        ],
+        "AT 2026rdg": [
+          true,
+          "outburst on a PS1 point source 2.66\" away [galactic plane]"
+        ],
+        "AT 2026lck": [
+          false,
+          "already catalogued in VSX: YSO:"
+        ]
+      }
+    },
+    "fix_c1_vsx_flag": {
+      "n": 3,
+      "recovered": 3,
+      "detail": {
+        "AT 2026stb": [
+          true,
+          "outburst on a PS1 point source 2.16\" away [galactic plane]"
+        ],
+        "AT 2026rdg": [
+          true,
+          "outburst on a PS1 point source 2.66\" away [galactic plane]"
+        ],
+        "AT 2026lck": [
+          true,
+          "outburst on a PS1 point source 0.14\" away [galactic plane]"
+        ]
+      }
+    },
+    "fix_c2_simbad_flag": {
+      "n": 3,
+      "recovered": 2,
+      "detail": {
+        "AT 2026stb": [
+          true,
+          "outburst on a PS1 point source 2.16\" away [galactic plane]"
+        ],
+        "AT 2026rdg": [
+          true,
+          "outburst on a PS1 point source 2.66\" away [galactic plane]"
+        ],
+        "AT 2026lck": [
+          false,
+          "already catalogued in VSX: YSO:"
+        ]
+      }
+    },
+    "fix_c3_candidate_sfx": {
+      "n": 3,
+      "recovered": 2,
+      "detail": {
+        "AT 2026stb": [
+          true,
+          "outburst on a PS1 point source 2.16\" away [galactic plane]"
+        ],
+        "AT 2026rdg": [
+          true,
+          "outburst on a PS1 point source 2.66\" away [galactic plane]"
+        ],
+        "AT 2026lck": [
+          false,
+          "already catalogued in VSX: YSO:"
+        ]
+      }
+    },
+    "fix_d_negsub": {
+      "n": 3,
+      "recovered": 2,
+      "detail": {
+        "AT 2026stb": [
+          true,
+          "outburst on a PS1 point source 2.16\" away [galactic plane]"
+        ],
+        "AT 2026rdg": [
+          true,
+          "outburst on a PS1 point source 2.66\" away [galactic plane]"
+        ],
+        "AT 2026lck": [
+          false,
+          "already catalogued in VSX: YSO:"
+        ]
+      }
+    },
+    "M2_full": {
+      "n": 3,
+      "recovered": 3,
+      "detail": {
+        "AT 2026stb": [
+          true,
+          "outburst on a PS1 point source 2.16\" away [galactic plane]"
+        ],
+        "AT 2026rdg": [
+          true,
+          "outburst on a PS1 point source 2.66\" away [galactic plane]"
+        ],
+        "AT 2026lck": [
+          true,
+          "outburst on a PS1 point source 0.14\" away [galactic plane]"
+        ]
+      }
+    }
+  },
+  "losses": {
+    "fix_a_amplitude_flat": {
+      "lost": {
+        "AT 2026jic": "channel A2_nova_like but ZTF has been detecting this position for 1629 d (> 90 d) -- not a new source, a reference-image hole",
+        "AT 2026jim": "flat in every band with >= 3 clean detections in 60 d (ptp 0.29 < 0.3) -- a constant difference residual, not a transient",
+        "AT 2026kgc": "channel A2_nova_like but ZTF has been detecting this position for 2814 d (> 90 d) -- not a new source, a reference-image hole",
+        "AT 2026kgd": "channel A2_nova_like but ZTF has been detecting this position for 2011 d (> 90 d) -- not a new source, a reference-image hole",
+        "AT 2026kgg": "per-band amplitude 0.44 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026kgm": "per-band amplitude 0.56 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026kml": "per-band amplitude -0.26 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026kmn": "channel A2_nova_like but ZTF has been detecting this position for 739 d (> 90 d) -- not a new source, a reference-image hole",
+        "AT 2026kzq": "per-band amplitude -1.35 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026kzr": "per-band amplitude 0.56 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026kzs": "per-band amplitude 0.38 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026lbb": "per-band amplitude 0.08 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026lcc": "per-band amplitude 0.51 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026lim": "channel A2_nova_like but ZTF has been detecting this position for 718 d (> 90 d) -- not a new source, a reference-image hole",
+        "AT 2026mbe": "per-band amplitude 0.12 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026mej": "per-band amplitude -0.78 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026mek": "per-band amplitude -0.61 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026mjt": "channel A2_nova_like but ZTF has been detecting this position for 1861 d (> 90 d) -- not a new source, a reference-image hole",
+        "AT 2026mjy": "per-band amplitude -1.04 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026mkx": "per-band amplitude 0.78 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026mla": "per-band amplitude -0.11 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026pvw": "per-band amplitude -0.13 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026qij": "channel A2_nova_like but ZTF has been detecting this position for 496 d (> 90 d) -- not a new source, a reference-image hole",
+        "AT 2026qre": "per-band amplitude 0.50 mag above quiescence < 1.0 -- not an outburst"
+      },
+      "gained": []
+    },
+    "fix_c1_vsx_flag": {
+      "lost": {},
+      "gained": [
+        "AT 2026lck"
+      ]
+    },
+    "fix_c2_simbad_flag": {
+      "lost": {},
+      "gained": []
+    },
+    "fix_c3_candidate_sfx": {
+      "lost": {},
+      "gained": []
+    },
+    "fix_d_negsub": {
+      "lost": {},
+      "gained": []
+    },
+    "M2_full": {
+      "lost": {
+        "AT 2026jic": "channel A2_nova_like but ZTF has been detecting this position for 1629 d (> 90 d) -- not a new source, a reference-image hole",
+        "AT 2026jim": "flat in every band with >= 3 clean detections in 60 d (ptp 0.29 < 0.3) -- a constant difference residual, not a transient",
+        "AT 2026kgc": "channel A2_nova_like but ZTF has been detecting this position for 2814 d (> 90 d) -- not a new source, a reference-image hole",
+        "AT 2026kgd": "channel A2_nova_like but ZTF has been detecting this position for 2011 d (> 90 d) -- not a new source, a reference-image hole",
+        "AT 2026kgg": "per-band amplitude 0.44 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026kgm": "per-band amplitude 0.56 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026kml": "per-band amplitude -0.26 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026kmn": "channel A2_nova_like but ZTF has been detecting this position for 739 d (> 90 d) -- not a new source, a reference-image hole",
+        "AT 2026kzq": "per-band amplitude -1.35 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026kzr": "per-band amplitude 0.56 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026kzs": "per-band amplitude 0.38 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026lbb": "per-band amplitude 0.08 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026lcc": "per-band amplitude 0.51 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026lim": "channel A2_nova_like but ZTF has been detecting this position for 718 d (> 90 d) -- not a new source, a reference-image hole",
+        "AT 2026mbe": "per-band amplitude 0.12 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026mej": "per-band amplitude -0.78 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026mek": "per-band amplitude -0.61 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026mjt": "channel A2_nova_like but ZTF has been detecting this position for 1861 d (> 90 d) -- not a new source, a reference-image hole",
+        "AT 2026mjy": "per-band amplitude -1.04 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026mkx": "per-band amplitude 0.78 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026mla": "per-band amplitude -0.11 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026pvw": "per-band amplitude -0.13 mag above quiescence < 1.0 -- not an outburst",
+        "AT 2026qij": "channel A2_nova_like but ZTF has been detecting this position for 496 d (> 90 d) -- not a new source, a reference-image hole",
+        "AT 2026qre": "per-band amplitude 0.50 mag above quiescence < 1.0 -- not an outburst"
+      },
+      "gained": [
+        "AT 2026lck"
+      ]
+    }
+  },
+  "contrast": {
+    "M1_baseline": 6.86,
+    "M2_full": 9.22
+  }
+}

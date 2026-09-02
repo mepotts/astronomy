@@ -25,7 +25,7 @@ published Nature paper, which is exactly what the CD-35 2722 B second-satellite
 contradiction is. Free to submit; the original authors are shown the submission
 and respond. Etiquette (and the journal) expect prior correspondence with the
 authors — the drafted query letter in
-[`exosat-rv/docs/author-query-draft.md`](exosat-rv/docs/author-query-draft.md) is
+[`docs/author-query-draft.md`](https://github.com/mepotts/exosat-rv/blob/main/docs/author-query-draft.md) is
 step one of that path, not just politeness.
 
 **Mainstream journals** (AJ/ApJ, A&A, MNRAS, PASP) — all accept "Independent
@@ -44,9 +44,11 @@ established author who knows the work (author correspondence, e.g. the Hoy query
 often leads here naturally), or publish first via RNAAS (which needs no arXiv)
 and let the record speak. Never pay anyone for endorsement; it is free by design.
 
-**Zenodo** — not a journal, but the DOI mint: every tagged GitHub release of this
-repo archives with a DOI via `.zenodo.json`, which is what a paper's Code
-Availability section cites.
+**Zenodo** — not a journal, but one possible DOI archive. Several packaged projects
+carry `.zenodo.json` metadata, but metadata and a Git tag do not mint a DOI. This
+repository has no root-wide automatic archival contract. A DOI exists only after the
+owner deliberately creates or connects the archive, verifies its scope and files, and
+records the resulting identifier; until then a manuscript must keep its DOI placeholder.
 
 ## What the field expects a companion repo to look like
 
@@ -59,13 +61,18 @@ specification, and a tagged release archived to Zenodo at submission time — so
 the README can carry an arXiv badge, a DOI badge, and a one-line "reproduce
 figure N with command X."
 
-This repository is already close: the exosat-rv draft is *generated* from a
-template with figure exports produced by committed scripts, and each project
-carries its environment and tests. The recorded plan (2026-08-13): **at
-submission time, exosat-rv splits into its own repository** via
-`git filter-repo --subdirectory-filter exosat-rv` — full history preserved —
-then tags v1.0 and mints its DOI. Until then it stays here; dual-homing before
-submission risks the public copy drifting from the one that made the figures.
+The repository is a portfolio, not a single paper package, and its directories do not
+share one layout or verification stack. Packaged tools carry manifests and tests;
+data-heavy fronts may depend on documented local bulk data, WSL environments, and
+milestone-specific checkers. A green root CI run therefore is useful evidence, but not a
+claim that every result has been regenerated.
+
+`exosat-rv` has already moved to its own repository and is no longer present in this
+working tree: [github.com/mepotts/exosat-rv](https://github.com/mepotts/exosat-rv).
+That repository, rather than a stale portfolio copy, is the source for its drafts,
+reduction code, release scope, and any eventual archive. Other work should split only
+when a real submission package needs an independently versioned record, not because this
+root document assumes every project follows the same route.
 
 ## What to expose, and what to hold
 
@@ -114,7 +121,7 @@ discipline existed. Template statement:
 
 The disclosure is split into two artifacts so the manuscript stays lean: a
 condensed **"AI contribution and responsibility statement"** in the paper itself
-([`exosat-rv/docs/paper/draft.template.html`](exosat-rv/docs/paper/draft.template.html)),
+([`docs/paper/draft.template.html`](https://github.com/mepotts/exosat-rv/blob/main/docs/paper/draft.template.html)),
 and the full stage-by-stage **[AI-CHECKLIST.md](AI-CHECKLIST.md)** it links to —
 involvement levels 0–4 per research stage with evidence pointers into the
 repository, modeled on the Agents4Science 2025 mandatory checklists. No
@@ -181,12 +188,22 @@ standing safety policy gates every outward send behind per-item human review.
 Agents prepare submission packages down to the last byte; the owner presses
 submit.
 
+The same boundary applies to repository operations: merging code, tagging a commit, or
+passing CI is not publication and is not scientific submission. Each DOI mint, journal
+upload, registry payload, email, or public announcement remains a separate human-reviewed
+outward action.
+
 ## The current queue, mapped to venues
 
 | Work | State | Natural venue |
 |---|---|---|
-| eta Tel B first RV limit | Result complete (`exosat-rv/M15-RESULTS.md`) | RNAAS now; folds into the full paper later |
-| CD-35 reproduction + second-satellite contradiction | Draft in `exosat-rv/docs/paper/`; decisive epochs embargoed to Dec 2026–May 2027 | Author correspondence → Nature Matters Arising, or a full OJA/journal paper |
-| ITF-linker method + validation | RNAAS draft in `itf-linker/docs/`; blocked on the citable data archive (Zenodo) step | RNAAS |
+| eta Tel B first RV limit | Result and draft live in the separate [`exosat-rv`](https://github.com/mepotts/exosat-rv) repository; not submitted | RNAAS, or fold into the full paper |
+| CD-35 reproduction + second-satellite contradiction | Draft lives in [`exosat-rv`](https://github.com/mepotts/exosat-rv); author correspondence and submission remain human gates | Nature Matters Arising, or a full OJA/journal paper |
+| ITF-linker method + validation | RNAAS draft in `itf-linker/docs/`; M13 prepares a local review payload and publicly reports counts/freshness only; it cannot submit, and the archive DOI plus every MPC/journal action remain human gates | RNAAS |
+| TNS low-latitude triage | M2 historical front closed; the 37-object review list was never a submission queue, and its completeness-dependent 8.0% measurement now awaits a provenance-proved rerun after cache repair; nothing sent | No venue selected |
+| eROSITA DR2 fader census | Draft complete and not submitted; archive scope, bibliographic check, and author metadata remain open | RNAAS |
+| MPTA reproduction and audits | Full paper plus two RNAAS notes are drafts with deterministic text-to-artifact checks; no DOI and nothing submitted | Full journal paper and/or RNAAS |
+| Dyson candidate-D negative | M7 analysis closed; no draft, pending a human go/no-go on whether the negative result warrants one | Undecided |
+| Gaia DR4 compact-companion front | M9 rehearsal closed; this is release readiness, not a paper or discovery claim | Decide only after the planned DR4 release and gated analysis |
 | seti-ellipsoid-broker tool note | RNAAS draft in `seti-ellipsoid-broker/docs/`, validation passed | RNAAS |
 | adql-copilot | JOSS draft in `adql-copilot/paper/` | JOSS |

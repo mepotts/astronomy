@@ -1,0 +1,53 @@
+M8 TASK 1 -- THE ERROR-INFLATION FACTOR AT SCALE
+produced 2026-08-24T15:54:19Z
+
+WHAT CANNOT BE RUN, AND WHY:
+  Gaia DR3 publishes NO stellar epoch astrometry.  The refit arm's
+  Keplerian half consumes epoch astrometry, so it cannot be run over
+  hundreds of DR3 sources by anyone before 2026-12-02; the only
+  epoch astrometry that exists is the 12-source pre-release file.
+  The four routes below are what CAN be measured, each labelled with
+  what it bounds.
+
+==============================================================================
+S3  INJECTION-RECOVERY THROUGH THE ARM (clean, n=400)
+==============================================================================
+  Real pre-release scan geometry + a real DR3 NSS orbit injected
+  + Gaussian noise at the real per-CCD sigma, through the arm's
+  OWN single_star_model -> periodogram -> keplerian_fit ->
+  get_param_error chain.  This is the only route that tests the
+  Laplace error bar itself.
+  scan-geometry templates: 12 pre-release sources (702, 597, 515, 576, 608, 649... CCDs)
+  injection pool: 981 DR3 NSS orbits from the day-one queue
+    40/400  (12s)
+    80/400  (25s)
+    120/400  (38s)
+    160/400  (50s)
+    200/400  (63s)
+    240/400  (75s)
+    280/400  (87s)
+    320/400  (100s)
+    360/400  (112s)
+    400/400  (125s)
+
+  400 injections in 125s: 45 NO_PEAK, 0 ERROR, 355 recovered orbits
+  ALL elements pooled                n=1407 med|z|  0.71  inflation  1.05 [1.03, 1.09]   |z|<1  65.7%  |z|<2  92.6%  max|z| 3586955.69
+    P                                n=353  med|z|  0.67  inflation  1.00 [0.96, 1.09]   |z|<1  67.1%  |z|<2  90.7%  max|z| 3586955.69
+    as                               n=351  med|z|  0.66  inflation  0.98 [0.88, 1.04]   |z|<1  69.5%  |z|<2  95.2%  max|z|    2.73
+    e                                n=348  med|z|  0.78  inflation  1.16 [1.10, 1.22]   |z|<1  62.4%  |z|<2  90.8%  max|z| 5747.26
+    parallax                         n=355  med|z|  0.71  inflation  1.05 [0.98, 1.18]   |z|<1  63.7%  |z|<2  93.8%  max|z|    3.54
+   by injected period (d) (quartiles):
+       49.34-550.8                   n=355  med|z|  0.66  inflation  0.98 [0.93, 1.03]   |z|<1  69.3%  |z|<2  92.4%  max|z| 35403.96
+       550.8-736                     n=353  med|z|  0.78  inflation  1.16 [1.09, 1.21]   |z|<1  62.6%  |z|<2  91.2%  max|z| 263646.85
+       736-916.5                     n=351  med|z|  0.72  inflation  1.06 [1.03, 1.17]   |z|<1  64.1%  |z|<2  93.4%  max|z| 3586955.69
+       916.5-1441                    n=348  med|z|  0.70  inflation  1.03 [0.96, 1.12]   |z|<1  66.7%  |z|<2  93.4%  max|z| 220405.23
+   by injected a0 (mas) (quartiles):
+       0.4552-1.375                  n=356  med|z|  0.64  inflation  0.95 [0.92, 1.00]   |z|<1  70.2%  |z|<2  95.8%  max|z| 3586955.69
+       1.375-1.982                   n=352  med|z|  0.71  inflation  1.05 [1.03, 1.14]   |z|<1  64.5%  |z|<2  90.1%  max|z| 263646.85
+       1.982-2.909                   n=349  med|z|  0.83  inflation  1.22 [1.14, 1.28]   |z|<1  60.5%  |z|<2  91.4%  max|z| 220405.23
+       2.909-11.86                   n=350  med|z|  0.67  inflation  0.99 [0.93, 1.07]   |z|<1  67.4%  |z|<2  93.1%  max|z| 3844.54
+
+==============================================================================
+SUMMARY -- the inflation factor by route
+==============================================================================
+  S3 injection-recovery, clean (arm's Laplace sigma) n=1407 med|z|  0.71  inflation  1.05 [1.03, 1.09]   |z|<1  65.7%  |z|<2  92.6%  max|z| 3586955.69

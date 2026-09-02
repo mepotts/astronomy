@@ -1,0 +1,104 @@
+{
+  "run_id": "J1946-5403_fl_fl1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 10748,
+  "seed": 506,
+  "ndim": 3,
+  "x0_kind": "prior-draw",
+  "x0": [
+    -12.064783976693139,
+    0.044097213862997586,
+    -17.19168700359502
+  ],
+  "started_utc": "2026-08-18T20:01:06Z",
+  "wall_budget_min": 240.0,
+  "gate_raw_postburn": 50000,
+  "nice": 19,
+  "omp_threads": "1",
+  "eval_ms": 0.36,
+  "first_eval_s": 0.02,
+  "meta": {
+    "psr": "J1946-5403",
+    "ntoa": 1815,
+    "tspan_days": 1476.2300624383267,
+    "tmin_mjd": 58672.872854921225,
+    "tmax_mjd": 60149.102917359545,
+    "fl": true,
+    "kind": "fl",
+    "whites_fixed": {
+      "efac": 0.9722114631632384
+    }
+  },
+  "chunks": [
+    {
+      "iters": 1646000,
+      "seconds": 1037.2,
+      "it_per_s": 1586.89,
+      "loadavg": 28.08,
+      "total_raw": 1646000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 164601,
+    "post_burn_rows": 123451,
+    "raw_iters": 1646000,
+    "raw_postburn": 1234510,
+    "lnl_max": 20656.104326,
+    "acc_rate": 0.474832,
+    "stable": true,
+    "params": [
+      {
+        "param": "J1946-5403_gw13_log10_A",
+        "median": -15.730654384569586,
+        "ci68": [
+          -17.267101865918196,
+          -14.454774126187342
+        ],
+        "halfshift": 0.0063,
+        "tol": 0.1,
+        "stable": true
+      },
+      {
+        "param": "J1946-5403_red_gp_gamma",
+        "median": 3.012199528556707,
+        "ci68": [
+          0.9279759111584046,
+          5.59848802260952
+        ],
+        "halfshift": 0.0019,
+        "tol": 0.3,
+        "stable": true
+      },
+      {
+        "param": "J1946-5403_red_gp_log10_A",
+        "median": -15.508367127964933,
+        "ci68": [
+          -17.194751920052056,
+          -14.123647442355825
+        ],
+        "halfshift": 0.0033,
+        "tol": 0.1,
+        "stable": true
+      }
+    ]
+  },
+  "updated_utc": "2026-08-18T20:17:27Z",
+  "elapsed_min": 17.3,
+  "best_point": {
+    "J1946-5403_gw13_log10_A": -16.99202556576089,
+    "J1946-5403_red_gp_gamma": 0.9078862781354333,
+    "J1946-5403_red_gp_log10_A": -13.813501857057446
+  },
+  "lnl_best": 20656.104326,
+  "curn": {
+    "median": -15.730654384569586,
+    "ci68": [
+      -17.267101865918196,
+      -14.454774126187342
+    ],
+    "n": 123451
+  }
+}

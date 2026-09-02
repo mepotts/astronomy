@@ -1,0 +1,293 @@
+{
+  "run_id": "J1231-1411_noise_n1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 1024,
+  "seed": 13513,
+  "ndim": 6,
+  "x0_kind": "prior-draw",
+  "x0": [
+    9.318780271757564,
+    -13.553316279285504,
+    5.02840667482847,
+    0.17352512646225748,
+    -14.027688046342705,
+    4.108052453051963
+  ],
+  "started_utc": "2026-08-21T19:38:58Z",
+  "wall_budget_min": 300.0,
+  "gate_raw_postburn": 100000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.25,
+  "eval_ms": 8.98,
+  "first_eval_s": 0.04,
+  "meta": {
+    "psr": "J1231-1411",
+    "ntoa": 2129,
+    "tspan_days": 1566.6148413252831,
+    "tmin_mjd": 58589.95097390558,
+    "tmax_mjd": 60156.56581523086,
+    "variant": "noise",
+    "add_red": false,
+    "fixed_whites": false,
+    "build_s": 16.6,
+    "kind": "noise",
+    "whites_fixed": null
+  },
+  "chunks": [
+    {
+      "iters": 67000,
+      "seconds": 236.5,
+      "it_per_s": 283.33,
+      "loadavg": 15.15,
+      "total_raw": 67000
+    },
+    {
+      "iters": 170000,
+      "seconds": 712.6,
+      "it_per_s": 238.57,
+      "loadavg": 15.09,
+      "total_raw": 237000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 23701,
+    "post_burn_rows": 17776,
+    "raw_iters": 237000,
+    "raw_postburn": 177760,
+    "lnl_max": 22276.231826,
+    "acc_rate": 0.408741,
+    "stable": true,
+    "params": [
+      {
+        "param": "J1231-1411_annual_idx",
+        "median": 6.152034430170556,
+        "ci68": [
+          1.9328344343751998,
+          10.624055225323271
+        ],
+        "halfshift": 0.0132,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 8.6912,
+        "tol_rel": 0.8691,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 600.5
+      },
+      {
+        "param": "J1231-1411_annual_log10_Amp",
+        "median": -7.918443795002404,
+        "ci68": [
+          -13.24836504412884,
+          -6.696040254326216
+        ],
+        "halfshift": 0.0751,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 6.5523,
+        "tol_rel": 0.6552,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 401.9
+      },
+      {
+        "param": "J1231-1411_annual_phase",
+        "median": 4.577770071137783,
+        "ci68": [
+          3.1815759922781814,
+          5.14437073981095
+        ],
+        "halfshift": 0.0077,
+        "tol": 0.6283185307179586,
+        "stable": true,
+        "w68": 1.9628,
+        "tol_rel": 0.6283,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1039.8
+      },
+      {
+        "param": "J1231-1411_efac",
+        "median": 1.0299044949401583,
+        "ci68": [
+          1.0138558757364646,
+          1.0460093179405736
+        ],
+        "halfshift": 0.0003,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 0.0322,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 4118.9
+      },
+      {
+        "param": "J1231-1411_gw13_log10_A",
+        "median": -16.003597269106052,
+        "ci68": [
+          -17.364836116877786,
+          -14.672389133221476
+        ],
+        "halfshift": 0.008,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 2.6924,
+        "tol_rel": 0.2692,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 6904.0
+      },
+      {
+        "param": "n_earth",
+        "median": 7.348401732911513,
+        "ci68": [
+          4.855456649206991,
+          9.910715342989466
+        ],
+        "halfshift": 0.1221,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 5.0553,
+        "tol_rel": 0.5055,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 968.8
+      }
+    ],
+    "stable_rel": true,
+    "ess_min": 401.9
+  },
+  "updated_utc": "2026-08-21T19:54:48Z",
+  "elapsed_min": 15.8,
+  "best_point": {
+    "J1231-1411_annual_idx": 0.03399925481464557,
+    "J1231-1411_annual_log10_Amp": -4.496859372864781,
+    "J1231-1411_annual_phase": 4.6402314412674865,
+    "J1231-1411_efac": 1.0288012594618623,
+    "J1231-1411_gw13_log10_A": -16.081136278786822,
+    "n_earth": 8.724871784143978
+  },
+  "lnl_best": 22276.231826,
+  "curn": {
+    "median": -16.003597269106052,
+    "ci68": [
+      -17.364836116877786,
+      -14.672389133221476
+    ],
+    "n": 17776
+  },
+  "a2": [
+    {
+      "param": "J1231-1411_annual_idx",
+      "key": "ann_beta",
+      "median": 6.152034430170556,
+      "ci68": [
+        1.9328344343751998,
+        10.624055225323271
+      ],
+      "published_map": 4.11,
+      "published_ci": [
+        2.1000000000000005,
+        10.79
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1231-1411_annual_log10_Amp",
+      "key": "ann_log10_A",
+      "median": -7.918443795002404,
+      "ci68": [
+        -13.24836504412884,
+        -6.696040254326216
+      ],
+      "published_map": -7.13,
+      "published_ci": [
+        -15.09,
+        -6.82
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1231-1411_annual_phase",
+      "key": "ann_phase",
+      "median": 4.577770071137783,
+      "ci68": [
+        3.1815759922781814,
+        5.14437073981095
+      ],
+      "published_map": 4.56,
+      "published_ci": [
+        2.6799999999999997,
+        5.109999999999999
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1231-1411_efac",
+      "key": "efac",
+      "median": 1.0299044949401583,
+      "ci68": [
+        1.0138558757364646,
+        1.0460093179405736
+      ],
+      "published_map": 1.04,
+      "published_ci": [
+        1.02,
+        1.05
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1231-1411_gw13_log10_A",
+      "key": "gw13_log10_A",
+      "median": -16.003597269106052,
+      "ci68": [
+        -17.364836116877786,
+        -14.672389133221476
+      ],
+      "published_map": -16.54,
+      "published_ci": [
+        -17.36,
+        -14.62
+      ],
+      "agree": true
+    },
+    {
+      "param": "n_earth",
+      "key": "n_earth",
+      "median": 7.348401732911513,
+      "ci68": [
+        4.855456649206991,
+        9.910715342989466
+      ],
+      "published_map": 7.13,
+      "published_ci": [
+        4.57,
+        9.65
+      ],
+      "agree": true
+    }
+  ],
+  "n_agree": 6,
+  "n_compared": 6,
+  "verdict": "CONVERGED-AGREES 6/6",
+  "param_names": [
+    "J1231-1411_annual_idx",
+    "J1231-1411_annual_log10_Amp",
+    "J1231-1411_annual_phase",
+    "J1231-1411_efac",
+    "J1231-1411_gw13_log10_A",
+    "n_earth"
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
+}

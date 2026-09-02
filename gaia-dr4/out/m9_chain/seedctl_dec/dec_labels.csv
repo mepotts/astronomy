@@ -1,0 +1,9 @@
+# READ WITH keep_default_na=False -- the pre-registered label NULL is pandas' default NA token (M8 landmine 14)
+test,analysis,n_conf,n_spur,p_holm,effect,min_detectable,decisive,direction_ok,defect,label,reason,decisive_by_diff,control_p,control_vetoed
+D1,primary,113,327,1.0,-0.0011095775486455,0.15,True,False,,NULL,not significant (Holm p 1.0000) and DECISIVE: smallest detectable 0.150 <= effect under test 0.154,True,0.5097440459843339,False
+D2,primary,221,667,1.0,0.5087478884991893,0.5750000000000001,True,True,,NULL,not significant (Holm p 1.0000) and DECISIVE: smallest detectable 0.575 <= effect under test 0.659,,0.5097440459843339,False
+D3,primary,221,667,1.0,0.5056204929209603,0.5750000000000001,True,False,,NULL,not significant (Holm p 1.0000) and DECISIVE: smallest detectable 0.575 <= effect under test 0.656,,0.5097440459843339,False
+D4,primary,221,667,0.7239330496469378,-0.013622148201917,0.4,False,False,GAP-4,UNDERPOWERED,not significant (Holm p 0.7239) and NOT decisive: smallest detectable 0.400 > effect under test 0.300,True,0.5097440459843339,False
+D1,pooled,129,340,1.0,0.0093707250341997,0.15,True,True,GAP-2,POOLED: UNINTERPRETABLE (diluted),"section 2.2: pooled non-significance is dilution, never a null.  Section 5 has no label for it.",True,0.5056856967461608,False
+D2,pooled,263,690,0.3883939285201298,0.5317380283242409,0.5750000000000001,True,True,GAP-2,POOLED: UNINTERPRETABLE (diluted),"section 2.2: pooled non-significance is dilution, never a null.  Section 5 has no label for it.",,0.5056856967461608,False
+D3,pooled,263,690,0.9595441830872952,0.4753981374331845,0.5750000000000001,True,True,GAP-2,POOLED: UNINTERPRETABLE (diluted),"section 2.2: pooled non-significance is dilution, never a null.  Section 5 has no label for it.",,0.5056856967461608,False

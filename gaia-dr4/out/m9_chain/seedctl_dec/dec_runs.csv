@@ -1,0 +1,6 @@
+cmd,rc,seconds,arm,script
+scripts\m4_eb26_erosita_test.py --verdicts out/m9_chain/seedctl_store --scopes orbit_reality --sources epoch_vet_harness --out-dir C:\Users\matth\projects\astronomy\gaia-dr4\out/m9_chain/seedctl_dec\primary,0,20.8,primary,m4_eb26_erosita_test.py
+scripts\m5_activity_discriminator.py --verdicts out/m9_chain/seedctl_store --scopes orbit_reality --sources epoch_vet_harness --out-dir C:\Users\matth\projects\astronomy\gaia-dr4\out/m9_chain/seedctl_dec\primary,0,102.2,primary,m5_activity_discriminator.py
+scripts\m6_astrom_quiet_decision.py --verdicts out/m9_chain/seedctl_store --scopes orbit_reality --out-dir C:\Users\matth\projects\astronomy\gaia-dr4\out/m9_chain/seedctl_dec\primary,0,101.4,primary,m6_astrom_quiet_decision.py
+scripts\m4_eb26_erosita_test.py --verdicts out/m9_chain/seedctl_store --out-dir C:\Users\matth\projects\astronomy\gaia-dr4\out/m9_chain/seedctl_dec\pooled,0,20.4,pooled,m4_eb26_erosita_test.py
+scripts\m5_activity_discriminator.py --verdicts out/m9_chain/seedctl_store --out-dir C:\Users\matth\projects\astronomy\gaia-dr4\out/m9_chain/seedctl_dec\pooled,0,98.2,pooled,m5_activity_discriminator.py

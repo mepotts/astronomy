@@ -1,0 +1,40 @@
+==============================================================================
+DECEMBER SECTION 3.3 -- the pre-registered analysis, as one command
+  verdicts   : out\verdicts_dec_rehearsal
+  out        : out\m9_chain\dec
+  prereg     : PREREG-2026-08-23-december-discriminators.md (FROZEN)
+==============================================================================
+  primary    m4_eb26_erosita_test.py          rc=0  23.4s
+  primary    m5_activity_discriminator.py     rc=0  105.6s
+  primary    m6_astrom_quiet_decision.py      rc=0  52.1s
+  pooled     m4_eb26_erosita_test.py          rc=0  23.2s
+  pooled     m5_activity_discriminator.py     rc=0  99.5s
+
+------------------------------------------------------------------------------
+REGRESSION CHECK (prereg sec.2.2): the frozen M4/M5 artifacts
+  SKIPPED (--no-regression)
+
+------------------------------------------------------------------------------
+LABELS (prereg sec.5 + sec.2.2, via m8_prereg_labels.py)
+
+  PRIMARY  (negative control phot_g_n_obs p = 0.4907)
+      D1  primary    n= 103+330   p_holm=1.0000  eff=-0.007  min_det=0.200  dec=n  ->  UNDERPOWERED
+      D2  primary    n= 219+668   p_holm=0.9708  eff=+0.529  min_det=0.575  dec=Y  ->  NULL
+      D3  primary    n= 219+668   p_holm=0.0294  eff=+0.563  min_det=0.575  dec=Y  ->  DIRECTION REVERSAL
+      D4  primary    n= 219+668   p_holm=0.1038  eff=-0.056  min_det=0.400  dec=n  ->  UNDERPOWERED
+
+  POOLED  (negative control phot_g_n_obs p = 0.4735)
+      D1  pooled     n= 119+343   p_holm=1.0000  eff=+0.005  min_det=0.200  dec=n  ->  POOLED: UNINTERPRETABLE (diluted)
+      D2  pooled     n= 261+691   p_holm=0.0832  eff=+0.550  min_det=0.575  dec=Y  ->  POOLED: UNINTERPRETABLE (diluted)
+      D3  pooled     n= 261+691   p_holm=0.8947  eff=+0.527  min_det=0.575  dec=Y  ->  POOLED: UNINTERPRETABLE (diluted)
+
+------------------------------------------------------------------------------
+SUMMARY
+  POOLED: UNINTERPRETABLE (diluted)              3
+  UNDERPOWERED                                   2
+  NULL                                           1
+  DIRECTION REVERSAL                             1
+  labels with a registration defect code: 7
+  -> a defect code is NOT a licence to choose: report the emitted label, the code, and which reading was used.
+  wall clock 318.4 s over 5 subprocess runs, 0 non-zero exits
+  wrote out\m9_chain\dec\dec_labels.csv

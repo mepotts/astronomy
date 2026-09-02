@@ -1,0 +1,6 @@
+cmd,rc,seconds,arm,script
+scripts\m4_eb26_erosita_test.py --verdicts out\verdicts_dec_rehearsal --scopes orbit_reality --sources epoch_vet_harness --out-dir C:\Users\matth\projects\astronomy\gaia-dr4\out\m9_chain\dec\primary,0,23.4,primary,m4_eb26_erosita_test.py
+scripts\m5_activity_discriminator.py --verdicts out\verdicts_dec_rehearsal --scopes orbit_reality --sources epoch_vet_harness --out-dir C:\Users\matth\projects\astronomy\gaia-dr4\out\m9_chain\dec\primary,0,105.6,primary,m5_activity_discriminator.py
+scripts\m6_astrom_quiet_decision.py --verdicts out\verdicts_dec_rehearsal --scopes orbit_reality --out-dir C:\Users\matth\projects\astronomy\gaia-dr4\out\m9_chain\dec\primary,0,52.1,primary,m6_astrom_quiet_decision.py
+scripts\m4_eb26_erosita_test.py --verdicts out\verdicts_dec_rehearsal --out-dir C:\Users\matth\projects\astronomy\gaia-dr4\out\m9_chain\dec\pooled,0,23.2,pooled,m4_eb26_erosita_test.py
+scripts\m5_activity_discriminator.py --verdicts out\verdicts_dec_rehearsal --out-dir C:\Users\matth\projects\astronomy\gaia-dr4\out\m9_chain\dec\pooled,0,99.5,pooled,m5_activity_discriminator.py
