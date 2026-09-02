@@ -1,0 +1,13 @@
+  OK   expected POSITIVE                                       got POSITIVE
+  OK   expected POSITIVE (conservative, pooled)                got POSITIVE (conservative, pooled)
+  OK   expected NULL                                           got NULL
+  OK   expected UNDERPOWERED                                   got UNDERPOWERED
+  OK   expected DIRECTION REVERSAL                             got DIRECTION REVERSAL
+  OK   expected NOT TESTABLE                                   got NOT TESTABLE
+  OK   expected NOT TESTABLE                                   got NOT TESTABLE
+  OK   expected POSITIVE (not decisive)                        got POSITIVE (not decisive)  [GAP-1]
+  OK   expected POOLED: UNINTERPRETABLE (diluted)              got POOLED: UNINTERPRETABLE (diluted)  [GAP-2]
+  OK   expected DIRECTION REVERSAL (pooled, not interpretable) got DIRECTION REVERSAL (pooled, not interpretable)  [GAP-3]
+  OK   negative-control veto: POSITIVE -- VETOED by the negative control
+  OK   deterministic on repeat (POSITIVE (not decisive), GAP-4+GAP-1)
+SELFTEST PASS

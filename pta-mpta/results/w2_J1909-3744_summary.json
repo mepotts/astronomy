@@ -1,0 +1,154 @@
+{
+  "pulsar": "J1909-3744",
+  "ndim": 9,
+  "niter": 11697,
+  "thinned_samples": 1170,
+  "post_burn": 878,
+  "wallclock_s": 9299.6,
+  "eval_ms": 435.98,
+  "evals_per_s": 2.3,
+  "first_eval_s": 0.39,
+  "converged": false,
+  "n_agree": 5,
+  "n_compared": 9,
+  "need": 7,
+  "verdict": "NOT-CONVERGED -> feasibility result (A3)",
+  "params": [
+    {
+      "param": "J1909-3744_dm_gp_gamma",
+      "key": "dm_gamma",
+      "median": 2.7468740654107027,
+      "ci68": [
+        1.5299070279480091,
+        3.381648678408835
+      ],
+      "published_map": 2.04,
+      "published_ci": [
+        1.86,
+        2.3200000000000003
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1909-3744_dm_gp_log10_A",
+      "key": "dm_log10_A",
+      "median": -15.058108860340756,
+      "ci68": [
+        -15.359818241409268,
+        -14.010099747629413
+      ],
+      "published_map": -13.6,
+      "published_ci": [
+        -13.67,
+        -13.53
+      ],
+      "agree": false
+    },
+    {
+      "param": "J1909-3744_efac",
+      "key": "efac",
+      "median": 1.0281690836611668,
+      "ci68": [
+        1.018924196955918,
+        1.041948609949631
+      ],
+      "published_map": 1.04,
+      "published_ci": [
+        1.02,
+        1.04
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1909-3744_gw13_log10_A",
+      "key": "gw13_log10_A",
+      "median": -14.288378693934167,
+      "ci68": [
+        -14.414202810287406,
+        -14.125270847800987
+      ],
+      "published_map": -14.28,
+      "published_ci": [
+        -14.49,
+        -14.11
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1909-3744_log10_ecorr",
+      "key": "log10_ecorr",
+      "median": -7.165437025159157,
+      "ci68": [
+        -7.196753270110861,
+        -7.130523803689259
+      ],
+      "published_map": -7.17,
+      "published_ci": [
+        -7.2299999999999995,
+        -7.15
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1909-3744_log10_tnequad",
+      "key": "log10_tnequad",
+      "median": -7.185196343918562,
+      "ci68": [
+        -7.201968475008883,
+        -7.172605980705278
+      ],
+      "published_map": -7.17,
+      "published_ci": [
+        -7.2,
+        -7.17
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1909-3744_sw_gp_gamma",
+      "key": "sw_gamma",
+      "median": 2.7284138915837572,
+      "ci68": [
+        2.4568710604664634,
+        2.9339237591304803
+      ],
+      "published_map": 1.39,
+      "published_ci": [
+        0.97,
+        1.5999999999999999
+      ],
+      "agree": false
+    },
+    {
+      "param": "J1909-3744_sw_gp_log10_A",
+      "key": "sw_log10_A",
+      "median": -5.56509944717172,
+      "ci68": [
+        -5.631896295774946,
+        -5.500816112933032
+      ],
+      "published_map": -6.43,
+      "published_ci": [
+        -6.62,
+        -6.33
+      ],
+      "agree": false
+    },
+    {
+      "param": "n_earth",
+      "key": "n_earth",
+      "median": 22.32310399987074,
+      "ci68": [
+        21.134646909458176,
+        22.763302147400434
+      ],
+      "published_map": 4.96,
+      "published_ci": [
+        3.7199999999999998,
+        5.82
+      ],
+      "agree": false
+    }
+  ],
+  "published_source": "arXiv:2412.01148 Table 'MPTA noise models' (LaTeX source, retrieved 2026-08-16)"
+}

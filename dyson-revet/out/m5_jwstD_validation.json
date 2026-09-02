@@ -1,0 +1,54 @@
+{
+  "ready": true,
+  "checks": [
+    {
+      "check": "separation (arcsec)",
+      "M5": 1.232859452710455,
+      "M4": 1.23,
+      "tol": 0.02,
+      "pass": true
+    },
+    {
+      "check": "PA (deg)",
+      "M5": 32.99824545890743,
+      "M4": 33.0,
+      "tol": 1.0,
+      "pass": true
+    },
+    {
+      "check": "rho F560W",
+      "M5": 0.2359,
+      "M4": 0.2359,
+      "tol": 0.02,
+      "pass": true
+    },
+    {
+      "check": "rho F1000W",
+      "M5": 7.2415,
+      "M4": 7.2416,
+      "tol": 0.1448,
+      "pass": true
+    },
+    {
+      "check": "rho F1500W",
+      "M5": 83.1351,
+      "M4": 83.1342,
+      "tol": 1.662,
+      "pass": true
+    },
+    {
+      "check": "rho(W3, 12um)",
+      "M5": 21.810596525747457,
+      "M4": 21.8,
+      "tol": 1.5,
+      "pass": true
+    },
+    {
+      "check": "pull W3 (arcsec)",
+      "M5": 1.178811788883739,
+      "M4": 1.18,
+      "tol": 0.03,
+      "pass": true
+    }
+  ]
+}

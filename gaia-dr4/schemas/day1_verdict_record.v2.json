@@ -1,0 +1,462 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "gaia-dr4 day-one verdict record v2",
+  "description": "v1 plus the orbital-refit block.  v1 fields are unchanged and keep their meaning: orbit_* is the CATALOGUE orbit being adjudicated, refit_* is the orbit this pipeline re-derived from epoch astrometry.  Every v1 record is a valid v2 record after upgrade(); the reverse is data loss and is not provided.",
+  "schema_version": "day1_verdict.v2",
+  "supersedes": "day1_verdict.v1",
+  "type": "object",
+  "required": [
+    "source_id",
+    "release",
+    "orbit_source",
+    "verdict",
+    "verdict_scope",
+    "verdict_basis",
+    "verdict_confidence",
+    "schema_version",
+    "verdict_source",
+    "verdict_source_version",
+    "produced_utc",
+    "run_id"
+  ],
+  "properties": {
+    "source_id": {
+      "type": "integer"
+    },
+    "release": {
+      "type": "string"
+    },
+    "source_id_dr3": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "nss_solution_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "orbit_source": {
+      "type": "string"
+    },
+    "orbit_period_d": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "orbit_significance": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "orbit_a0_mas": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "queue_bin": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "queue_rank": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "n_transits_fetched": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "n_transits_used": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "f2_single_star": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "parallax_mas": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "excess_noise_mas": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "fit_model": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "fit_seconds": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "CONFIRMED",
+        "SPURIOUS",
+        "MARGINAL",
+        "UNKNOWN",
+        "NOT_CO",
+        "OTHER",
+        "INCONCLUSIVE",
+        "NO_DATA",
+        "ERROR",
+        "NOT_ADJUDICATED"
+      ]
+    },
+    "verdict_scope": {
+      "type": "string",
+      "enum": [
+        "compact_companion",
+        "orbit_reality"
+      ]
+    },
+    "verdict_basis": {
+      "type": "string"
+    },
+    "verdict_confidence": {
+      "type": "string",
+      "enum": [
+        "HIGH",
+        "MEDIUM",
+        "LOW"
+      ]
+    },
+    "verdict_confidence_basis": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "flag_alias_1yr": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "flag_low_lat": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "flag_hi_sigma_ti2": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "flag_xray_active": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "flag_dust_unresolved_south": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "flag_dust_sigma_fragile": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "flag_astrom_quiet": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "verdict_source": {
+      "type": "string"
+    },
+    "verdict_source_version": {
+      "type": "string"
+    },
+    "config_version": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "epoch_data_release": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "epoch_data_structure": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "gaiasupdate_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "produced_utc": {
+      "type": "string"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "refit_status": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "SKIPPED",
+        "OK",
+        "NO_PEAK",
+        "FIT_FAILED",
+        "NO_DATA",
+        null
+      ]
+    },
+    "refit_method": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "refit_code_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "refit_n_ccd": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "refit_rms_single_mas": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_peak_period_d": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_peak_fap": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_period_d": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_period_err_d": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_ecc": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_ecc_err": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_a0_mas": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_a0_err_mas": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_inc_deg": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_omega_deg": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_bigomega_deg": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_tp_d": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_parallax_mas": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_parallax_err_mas": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_pmra_masyr": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_pmdec_masyr": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_mass_function_msun": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_m1_msun": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_m1_sigma_msun": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_m1_source": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "refit_m2_msun": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_m2_p05": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_m2_p16": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_m2_p50": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_m2_p84": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_m2_p95": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_m2_posterior_n": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "refit_posterior_method": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "refit_seconds": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "refit_notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

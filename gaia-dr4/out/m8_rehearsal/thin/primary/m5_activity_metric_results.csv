@@ -1,0 +1,14 @@
+family,metric,kind,n_conf,n_spur,p,effect,eff_lo,eff_hi,min_detectable,testable,p_holm
+"A (chromospheric activity, ESP-CS)",A1 activityindex_espcs,num,0,0,,,,,,False,
+B (photometric variability),B1 dAmp_G,num,5,4,,,,,,False,
+B (photometric variability),B2 dAmp_BP,num,5,4,,,,,,False,
+B (photometric variability),B3 dAmp_RP,num,5,4,,,,,,False,
+B (photometric variability),B4 phot_variable_flag==VARIABLE,bin,5,4,1.0,0.0,,,,True,1.0
+B (photometric variability),B5 std_dev_mag_g_fov,num,1,0,,,,,,False,
+C (astrometric/imaging quality -- NOT activity),C1 ruwe,num,5,4,,,,,,False,
+C (astrometric/imaging quality -- NOT activity),C2 ipd_frac_multi_peak,num,5,4,,,,,,False,
+C (astrometric/imaging quality -- NOT activity),C3 ipd_gof_harmonic_amplitude,num,5,4,,,,,,False,
+C (astrometric/imaging quality -- NOT activity),C4 astrometric_excess_noise_sig,num,5,4,,,,,,False,
+C (astrometric/imaging quality -- NOT activity),C5 astrometric_gof_al,num,5,4,,,,,,False,
+C (astrometric/imaging quality -- NOT activity),C6 phot_bp_rp_excess_factor,num,5,4,,,,,,False,
+NEGATIVE CONTROL (must not discriminate),N1 phot_g_n_obs,num,5,4,,,,,,False,

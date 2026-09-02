@@ -1,0 +1,464 @@
+{
+  "run_id": "J1751-2857_noise_n1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 1368,
+  "seed": 23163,
+  "ndim": 7,
+  "x0_kind": "prior-draw",
+  "x0": [
+    2.108992362741192,
+    -15.127381404292109,
+    1.905232020633441,
+    -16.84073406078573,
+    4.069557004849402,
+    -0.020671309307950025,
+    1.4849784494520268
+  ],
+  "started_utc": "2026-08-23T19:28:58Z",
+  "wall_budget_min": 300.0,
+  "gate_raw_postburn": 100000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.25,
+  "gate_rule": "relative",
+  "eval_ms": 166.38,
+  "first_eval_s": 0.32,
+  "meta": {
+    "psr": "J1751-2857",
+    "ntoa": 2967,
+    "tspan_days": 1558.6945493651651,
+    "tmin_mjd": 58596.21848045842,
+    "tmax_mjd": 60154.913029823576,
+    "variant": "noise",
+    "add_red": false,
+    "fixed_whites": false,
+    "sw_gamma_prior": [
+      0,
+      7
+    ],
+    "build_s": 38.3,
+    "kind": "noise",
+    "whites_fixed": null
+  },
+  "chunks": [
+    {
+      "iters": 2000,
+      "seconds": 84.2,
+      "it_per_s": 23.75,
+      "loadavg": 24.82,
+      "total_raw": 42000
+    },
+    {
+      "iters": 7000,
+      "seconds": 307.2,
+      "it_per_s": 22.79,
+      "loadavg": 24.43,
+      "total_raw": 49000
+    },
+    {
+      "iters": 7000,
+      "seconds": 362.7,
+      "it_per_s": 19.3,
+      "loadavg": 25.18,
+      "total_raw": 56000
+    },
+    {
+      "iters": 6000,
+      "seconds": 241.5,
+      "it_per_s": 24.85,
+      "loadavg": 30.33,
+      "total_raw": 62000
+    },
+    {
+      "iters": 7000,
+      "seconds": 429.1,
+      "it_per_s": 16.31,
+      "loadavg": 33.66,
+      "total_raw": 69000
+    },
+    {
+      "iters": 5000,
+      "seconds": 360.3,
+      "it_per_s": 13.88,
+      "loadavg": 31.5,
+      "total_raw": 74000
+    },
+    {
+      "iters": 4000,
+      "seconds": 257.4,
+      "it_per_s": 15.54,
+      "loadavg": 30.77,
+      "total_raw": 78000
+    },
+    {
+      "iters": 5000,
+      "seconds": 301.6,
+      "it_per_s": 16.58,
+      "loadavg": 30.53,
+      "total_raw": 83000
+    },
+    {
+      "iters": 5000,
+      "seconds": 338.6,
+      "it_per_s": 14.76,
+      "loadavg": 30.74,
+      "total_raw": 88000
+    },
+    {
+      "iters": 4000,
+      "seconds": 317.8,
+      "it_per_s": 12.59,
+      "loadavg": 30.25,
+      "total_raw": 92000
+    },
+    {
+      "iters": 4000,
+      "seconds": 300.8,
+      "it_per_s": 13.3,
+      "loadavg": 30.14,
+      "total_raw": 96000
+    },
+    {
+      "iters": 4000,
+      "seconds": 230.0,
+      "it_per_s": 17.39,
+      "loadavg": 30.05,
+      "total_raw": 100000
+    },
+    {
+      "iters": 5000,
+      "seconds": 391.2,
+      "it_per_s": 12.78,
+      "loadavg": 30.14,
+      "total_raw": 105000
+    },
+    {
+      "iters": 4000,
+      "seconds": 320.3,
+      "it_per_s": 12.49,
+      "loadavg": 30.12,
+      "total_raw": 109000
+    },
+    {
+      "iters": 4000,
+      "seconds": 346.7,
+      "it_per_s": 11.54,
+      "loadavg": 31.71,
+      "total_raw": 113000
+    },
+    {
+      "iters": 3000,
+      "seconds": 272.8,
+      "it_per_s": 11.0,
+      "loadavg": 30.56,
+      "total_raw": 116000
+    },
+    {
+      "iters": 3000,
+      "seconds": 202.8,
+      "it_per_s": 14.79,
+      "loadavg": 30.78,
+      "total_raw": 119000
+    },
+    {
+      "iters": 4000,
+      "seconds": 309.8,
+      "it_per_s": 12.91,
+      "loadavg": 33.66,
+      "total_raw": 123000
+    },
+    {
+      "iters": 4000,
+      "seconds": 382.0,
+      "it_per_s": 10.47,
+      "loadavg": 30.29,
+      "total_raw": 127000
+    },
+    {
+      "iters": 3000,
+      "seconds": 228.5,
+      "it_per_s": 13.13,
+      "loadavg": 30.43,
+      "total_raw": 130000
+    },
+    {
+      "iters": 4000,
+      "seconds": 273.6,
+      "it_per_s": 14.62,
+      "loadavg": 31.28,
+      "total_raw": 134000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 13401,
+    "post_burn_rows": 10051,
+    "raw_iters": 134000,
+    "raw_postburn": 100510,
+    "lnl_max": 31157.44183,
+    "acc_rate": 0.272338,
+    "stable": true,
+    "stable_rel": true,
+    "ess_min": 656.8,
+    "params": [
+      {
+        "param": "J1751-2857_dm_gp_gamma",
+        "median": 2.2930887405298432,
+        "ci68": [
+          1.7254369361445256,
+          3.1737411935456237
+        ],
+        "halfshift": 0.0241,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 1.4483,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 656.8
+      },
+      {
+        "param": "J1751-2857_dm_gp_log10_A",
+        "median": -12.758649835328054,
+        "ci68": [
+          -12.870447647300642,
+          -12.648922718707887
+        ],
+        "halfshift": 0.0024,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 0.2215,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 779.3
+      },
+      {
+        "param": "J1751-2857_efac",
+        "median": 1.0062669328651397,
+        "ci68": [
+          0.9939920527325757,
+          1.0206777359785686
+        ],
+        "halfshift": 0.0005,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 0.0267,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 930.1
+      },
+      {
+        "param": "J1751-2857_gw13_log10_A",
+        "median": -13.146190576600912,
+        "ci68": [
+          -13.372241469031577,
+          -12.944199618311174
+        ],
+        "halfshift": 0.0061,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 0.428,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 874.4
+      },
+      {
+        "param": "J1751-2857_sw_gp_gamma",
+        "median": 2.8543899147937424,
+        "ci68": [
+          0.7145191208039324,
+          5.526192538134627
+        ],
+        "halfshift": 0.2644,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 4.8117,
+        "tol_rel": 0.4812,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 778.8
+      },
+      {
+        "param": "J1751-2857_sw_gp_log10_A",
+        "median": -8.16324431996962,
+        "ci68": [
+          -9.432784873087336,
+          -6.714513161742916
+        ],
+        "halfshift": 0.0696,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 2.7183,
+        "tol_rel": 0.2718,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 709.7
+      },
+      {
+        "param": "n_earth",
+        "median": 2.3296986410704568,
+        "ci68": [
+          0.7543391185176587,
+          4.555758185450025
+        ],
+        "halfshift": 0.0319,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 3.8014,
+        "tol_rel": 0.3801,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 926.0
+      }
+    ]
+  },
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "updated_utc": "2026-08-23T21:13:27Z",
+  "elapsed_min": 104.5,
+  "best_point": {
+    "J1751-2857_dm_gp_gamma": 1.8321163434180554,
+    "J1751-2857_dm_gp_log10_A": -12.752788028616315,
+    "J1751-2857_efac": 1.0057700078534109,
+    "J1751-2857_gw13_log10_A": -13.084449190005298,
+    "J1751-2857_sw_gp_gamma": 0.1692440921302159,
+    "J1751-2857_sw_gp_log10_A": -6.418419389883547,
+    "n_earth": 3.182841479679523
+  },
+  "lnl_best": 31157.44183,
+  "curn": {
+    "median": -13.146190576600912,
+    "ci68": [
+      -13.372241469031577,
+      -12.944199618311174
+    ],
+    "n": 10051
+  },
+  "a2": [
+    {
+      "param": "J1751-2857_dm_gp_gamma",
+      "key": "dm_gamma",
+      "median": 2.2930887405298432,
+      "ci68": [
+        1.7254369361445256,
+        3.1737411935456237
+      ],
+      "published_map": 2.31,
+      "published_ci": [
+        1.82,
+        3.24
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1751-2857_dm_gp_log10_A",
+      "key": "dm_log10_A",
+      "median": -12.758649835328054,
+      "ci68": [
+        -12.870447647300642,
+        -12.648922718707887
+      ],
+      "published_map": -12.79,
+      "published_ci": [
+        -12.879999999999999,
+        -12.67
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1751-2857_efac",
+      "key": "efac",
+      "median": 1.0062669328651397,
+      "ci68": [
+        0.9939920527325757,
+        1.0206777359785686
+      ],
+      "published_map": 1.0,
+      "published_ci": [
+        0.99,
+        1.02
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1751-2857_gw13_log10_A",
+      "key": "gw13_log10_A",
+      "median": -13.146190576600912,
+      "ci68": [
+        -13.372241469031577,
+        -12.944199618311174
+      ],
+      "published_map": -13.15,
+      "published_ci": [
+        -13.370000000000001,
+        -12.93
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1751-2857_sw_gp_gamma",
+      "key": "sw_gamma",
+      "median": 2.8543899147937424,
+      "ci68": [
+        0.7145191208039324,
+        5.526192538134627
+      ],
+      "published_map": -2.32,
+      "published_ci": [
+        -3.01,
+        1.5900000000000003
+      ],
+      "agree": false
+    },
+    {
+      "param": "J1751-2857_sw_gp_log10_A",
+      "key": "sw_log10_A",
+      "median": -8.16324431996962,
+      "ci68": [
+        -9.432784873087336,
+        -6.714513161742916
+      ],
+      "published_map": -8.04,
+      "published_ci": [
+        -9.069999999999999,
+        -6.799999999999999
+      ],
+      "agree": true
+    },
+    {
+      "param": "n_earth",
+      "key": "n_earth",
+      "median": 2.3296986410704568,
+      "ci68": [
+        0.7543391185176587,
+        4.555758185450025
+      ],
+      "published_map": 2.0,
+      "published_ci": [
+        1.13,
+        6.8
+      ],
+      "agree": true
+    }
+  ],
+  "n_agree": 6,
+  "n_compared": 7,
+  "verdict": "CONVERGED-PARTIAL 6/7",
+  "param_names": [
+    "J1751-2857_dm_gp_gamma",
+    "J1751-2857_dm_gp_log10_A",
+    "J1751-2857_efac",
+    "J1751-2857_gw13_log10_A",
+    "J1751-2857_sw_gp_gamma",
+    "J1751-2857_sw_gp_log10_A",
+    "n_earth"
+  ],
+  "gate_met_m3": true,
+  "postprocessed": true
+}

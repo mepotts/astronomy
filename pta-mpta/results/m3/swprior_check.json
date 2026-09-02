@@ -1,0 +1,140 @@
+{
+ "J1327-0755": {
+  "n1_agree": [
+   3,
+   5
+  ],
+  "swp_agree": [
+   5,
+   5
+  ],
+  "n1_gate": true,
+  "swp_gate": true,
+  "params": {
+   "sw_gp_gamma": {
+    "published": [
+     -0.76,
+     -2.29,
+     0.69
+    ],
+    "n1": {
+     "param": "J1327-0755_sw_gp_gamma",
+     "median": 0.47266776518744036,
+     "ci68": [
+      0.13712994259234734,
+      1.0276376054705962
+     ],
+     "halfshift": 0.0058,
+     "tol": 0.3,
+     "stable": true
+    },
+    "swp": {
+     "param": "J1327-0755_sw_gp_gamma",
+     "median": -1.3569630352934288,
+     "ci68": [
+      -3.1353188932455707,
+      0.14780422660251347
+     ],
+     "halfshift": 0.072,
+     "tol": 0.3,
+     "stable": true
+    },
+    "agree_n1": false,
+    "agree_swp": true
+   },
+   "sw_gp_log10_A": {
+    "published": [
+     -7.19,
+     -1.63,
+     0.37
+    ],
+    "n1": {
+     "param": "J1327-0755_sw_gp_log10_A",
+     "median": -6.5354941668755036,
+     "ci68": [
+      -6.773390705979045,
+      -6.285420854626732
+     ],
+     "halfshift": 0.0028,
+     "tol": 0.1,
+     "stable": true
+    },
+    "swp": {
+     "param": "J1327-0755_sw_gp_log10_A",
+     "median": -7.65290899834785,
+     "ci68": [
+      -8.843398385332105,
+      -6.727470849345855
+     ],
+     "halfshift": 0.0253,
+     "tol": 0.1,
+     "stable": true
+    },
+    "agree_n1": false,
+    "agree_swp": true
+   },
+   "n_earth": {
+    "published": [
+     8.5,
+     -1.56,
+     1.76
+    ],
+    "n1": {
+     "param": "n_earth",
+     "median": 8.218303128125957,
+     "ci68": [
+      6.652250133732,
+      10.039386678311724
+     ],
+     "halfshift": 0.0153,
+     "tol": 0.3,
+     "stable": true
+    },
+    "swp": {
+     "param": "n_earth",
+     "median": 8.172829201856576,
+     "ci68": [
+      6.464934615974226,
+      9.86546772423411
+     ],
+     "halfshift": 0.0498,
+     "tol": 0.3,
+     "stable": true
+    },
+    "agree_n1": true,
+    "agree_swp": true
+   },
+   "gw13_log10_A": {
+    "published": [
+     -13.87,
+     -2.06,
+     0.28
+    ],
+    "n1": {
+     "param": "J1327-0755_gw13_log10_A",
+     "median": -13.780694125385285,
+     "ci68": [
+      -14.24567612779566,
+      -13.486579844144266
+     ],
+     "halfshift": 0.0062,
+     "tol": 0.1,
+     "stable": true
+    },
+    "swp": {
+     "param": "J1327-0755_gw13_log10_A",
+     "median": -13.79726627358932,
+     "ci68": [
+      -14.25086771250442,
+      -13.497487117510953
+     ],
+     "halfshift": 0.0144,
+     "tol": 0.1,
+     "stable": true
+    },
+    "agree_n1": true,
+    "agree_swp": true
+   }
+  }
+ }
+}

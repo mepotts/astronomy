@@ -1,0 +1,21 @@
+{
+  "free_white": {
+    "ntoa": 7199,
+    "ndim": 7,
+    "first_eval_s": 0.247,
+    "eval_ms": 88.99,
+    "evals_per_s": 11.2
+  },
+  "fixed_white": {
+    "ntoa": 7199,
+    "ndim": 4,
+    "first_eval_s": 0.189,
+    "eval_ms": 1.4,
+    "evals_per_s": 716.4
+  },
+  "projection": {
+    "note": "full-array CURN-run projection scaled from this pulsar's fixed-white eval; per-pulsar cost varies with ntoa and model",
+    "full_array_eval_s": 0.12,
+    "iters_1e6_days": 1.3
+  }
+}

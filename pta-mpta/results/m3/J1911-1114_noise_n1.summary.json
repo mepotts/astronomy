@@ -1,0 +1,304 @@
+{
+  "run_id": "J1911-1114_noise_n1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 7811,
+  "seed": 15439,
+  "ndim": 6,
+  "x0_kind": "prior-draw",
+  "x0": [
+    4.0575590944058835,
+    11.905798701068404,
+    -17.500293103881024,
+    4.471478112609806,
+    -14.23344721779285,
+    13.178884278216065
+  ],
+  "started_utc": "2026-08-21T21:24:25Z",
+  "wall_budget_min": 300.0,
+  "gate_raw_postburn": 100000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.25,
+  "eval_ms": 23.6,
+  "first_eval_s": 0.04,
+  "meta": {
+    "psr": "J1911-1114",
+    "ntoa": 1804,
+    "tspan_days": 1107.0640588573947,
+    "tmin_mjd": 59042.02583936877,
+    "tmax_mjd": 60149.089898226164,
+    "variant": "noise",
+    "add_red": false,
+    "fixed_whites": false,
+    "sw_gamma_prior": [
+      0,
+      7
+    ],
+    "build_s": 25.9,
+    "kind": "noise",
+    "whites_fixed": null
+  },
+  "chunks": [
+    {
+      "iters": 13000,
+      "seconds": 624.0,
+      "it_per_s": 20.83,
+      "loadavg": 25.76,
+      "total_raw": 127000
+    },
+    {
+      "iters": 6000,
+      "seconds": 317.8,
+      "it_per_s": 18.88,
+      "loadavg": 26.18,
+      "total_raw": 133000
+    },
+    {
+      "iters": 6000,
+      "seconds": 324.4,
+      "it_per_s": 18.49,
+      "loadavg": 26.06,
+      "total_raw": 139000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 13901,
+    "post_burn_rows": 10426,
+    "raw_iters": 139000,
+    "raw_postburn": 104260,
+    "lnl_max": 18903.814797,
+    "acc_rate": 0.43719,
+    "stable": true,
+    "params": [
+      {
+        "param": "J1911-1114_chrom_gp_gamma",
+        "median": 3.0322341646487776,
+        "ci68": [
+          2.2491830675273454,
+          4.08429666648564
+        ],
+        "halfshift": 0.0207,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 1.8351,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1112.7
+      },
+      {
+        "param": "J1911-1114_chrom_gp_idx",
+        "median": 5.061455494069843,
+        "ci68": [
+          3.371519311649209,
+          7.427705353561392
+        ],
+        "halfshift": 0.0062,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 4.0562,
+        "tol_rel": 0.4056,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1010.8
+      },
+      {
+        "param": "J1911-1114_chrom_gp_log10_A",
+        "median": -13.725625143466301,
+        "ci68": [
+          -14.212457501842925,
+          -13.349173962447596
+        ],
+        "halfshift": 0.0037,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 0.8633,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1000.7
+      },
+      {
+        "param": "J1911-1114_efac",
+        "median": 1.0187585816643776,
+        "ci68": [
+          1.0019212158490372,
+          1.035810882193326
+        ],
+        "halfshift": 0.0006,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 0.0339,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 2167.5
+      },
+      {
+        "param": "J1911-1114_gw13_log10_A",
+        "median": -15.30069762604747,
+        "ci68": [
+          -17.09138341115921,
+          -13.507349364601499
+        ],
+        "halfshift": 0.0385,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 3.584,
+        "tol_rel": 0.3584,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 2768.7
+      },
+      {
+        "param": "n_earth",
+        "median": 6.161125761665696,
+        "ci68": [
+          3.8872569276465008,
+          8.493260710150007
+        ],
+        "halfshift": 0.0227,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 4.606,
+        "tol_rel": 0.4606,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 2888.5
+      }
+    ],
+    "stable_rel": true,
+    "ess_min": 1000.7
+  },
+  "updated_utc": "2026-08-21T21:45:35Z",
+  "elapsed_min": 21.1,
+  "best_point": {
+    "J1911-1114_chrom_gp_gamma": 2.9142836916945916,
+    "J1911-1114_chrom_gp_idx": 2.9516612296727542,
+    "J1911-1114_chrom_gp_log10_A": -13.249972065361185,
+    "J1911-1114_efac": 1.0153643013970304,
+    "J1911-1114_gw13_log10_A": -13.540803697638898,
+    "n_earth": 6.897612379157505
+  },
+  "lnl_best": 18903.814797,
+  "curn": {
+    "median": -15.30069762604747,
+    "ci68": [
+      -17.09138341115921,
+      -13.507349364601499
+    ],
+    "n": 10426
+  },
+  "a2": [
+    {
+      "param": "J1911-1114_chrom_gp_gamma",
+      "key": "chrom_gamma",
+      "median": 3.0322341646487776,
+      "ci68": [
+        2.2491830675273454,
+        4.08429666648564
+      ],
+      "published_map": 2.74,
+      "published_ci": [
+        2.2800000000000002,
+        4.29
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1911-1114_chrom_gp_idx",
+      "key": "chrom_beta",
+      "median": 5.061455494069843,
+      "ci68": [
+        3.371519311649209,
+        7.427705353561392
+      ],
+      "published_map": 4.89,
+      "published_ci": [
+        3.2199999999999998,
+        7.1899999999999995
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1911-1114_chrom_gp_log10_A",
+      "key": "chrom_log10_A",
+      "median": -13.725625143466301,
+      "ci68": [
+        -14.212457501842925,
+        -13.349173962447596
+      ],
+      "published_map": -13.87,
+      "published_ci": [
+        -14.209999999999999,
+        -13.329999999999998
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1911-1114_efac",
+      "key": "efac",
+      "median": 1.0187585816643776,
+      "ci68": [
+        1.0019212158490372,
+        1.035810882193326
+      ],
+      "published_map": 1.02,
+      "published_ci": [
+        1.0,
+        1.04
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1911-1114_gw13_log10_A",
+      "key": "gw13_log10_A",
+      "median": -15.30069762604747,
+      "ci68": [
+        -17.09138341115921,
+        -13.507349364601499
+      ],
+      "published_map": -14.64,
+      "published_ci": [
+        -17.080000000000002,
+        -13.350000000000001
+      ],
+      "agree": true
+    },
+    {
+      "param": "n_earth",
+      "key": "n_earth",
+      "median": 6.161125761665696,
+      "ci68": [
+        3.8872569276465008,
+        8.493260710150007
+      ],
+      "published_map": 5.78,
+      "published_ci": [
+        4.04,
+        8.64
+      ],
+      "agree": true
+    }
+  ],
+  "n_agree": 6,
+  "n_compared": 6,
+  "verdict": "CONVERGED-AGREES 6/6",
+  "param_names": [
+    "J1911-1114_chrom_gp_gamma",
+    "J1911-1114_chrom_gp_idx",
+    "J1911-1114_chrom_gp_log10_A",
+    "J1911-1114_efac",
+    "J1911-1114_gw13_log10_A",
+    "n_earth"
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
+}

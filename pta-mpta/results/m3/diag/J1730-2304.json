@@ -1,0 +1,32 @@
+{
+ "psr": "J1730-2304",
+ "params": [
+  "J1730-2304_dm_gp_gamma",
+  "J1730-2304_dm_gp_log10_A",
+  "J1730-2304_efac",
+  "J1730-2304_gw13_log10_A",
+  "J1730-2304_log10_ecorr",
+  "J1730-2304_sw_gp_gamma",
+  "J1730-2304_sw_gp_log10_A",
+  "n_earth"
+ ],
+ "lnl_published": 33991.9481528299,
+ "lnl_best": 33992.311918179155,
+ "lnl_best_recorded": 33992.311918,
+ "lnl_median": 33991.43742169737,
+ "dlnl_best_minus_pub": 0.36376534925511805,
+ "dlnl_median_minus_pub": -0.5107311325336923,
+ "n_agree": 7,
+ "n_compared": 8,
+ "misses": [
+  "J1730-2304_sw_gp_gamma"
+ ],
+ "miss_tightness": {
+  "J1730-2304_sw_gp_gamma": {
+   "pub_ci_width": 4.99,
+   "prior_width": 7,
+   "frac": 0.7128571428571429,
+   "claims_measurement": false
+  }
+ }
+}

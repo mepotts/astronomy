@@ -1,0 +1,40 @@
+{
+  "declared": "PR-1's star-derived vs contaminant-derived profile",
+  "star_donor_subbands": [
+    "1-medium",
+    "1-short"
+  ],
+  "contaminant_donor_subbands": [
+    "2-long",
+    "2-medium",
+    "3-long",
+    "3-medium",
+    "3-short",
+    "4-long",
+    "4-medium",
+    "4-short"
+  ],
+  "ee_at_star_FWHM": {
+    "1.0": 0.814395183370183,
+    "2.0": 0.9889839903204241,
+    "3.0": 0.9909671575923154
+  },
+  "ee_at_star_lambda_over_D": {
+    "2.0": 0.897570462749002,
+    "4.0": 0.9909671575923154,
+    "6.0": 0.9909671575923154
+  },
+  "ee_at_contaminant_FWHM": {
+    "1.0": 0.6881621742066721,
+    "2.0": 0.8920268880554943,
+    "3.0": 0.9605175878007297
+  },
+  "ee_at_contaminant_lambda_over_D": {
+    "2.0": 0.81275402076272,
+    "4.0": 0.9696884857014274,
+    "6.0": 0.988109308877521
+  },
+  "contaminant_minus_star_EE_at_2FWHM": -0.0969571022649297,
+  "contaminant_broader": true,
+  "note": "encircled energy at 2 FWHM: a SMALLER value for the contaminant means its light is spread wider than the star's, i.e. it is either spatially resolved or the profile carries a PSF error. The primary extraction adopts the DONOR-derived profile per sub-band (PR-1); the star-scaled variant is a declared sensitivity."
+}

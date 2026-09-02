@@ -21,6 +21,12 @@
 # filename list is a rule that has to be remembered; a pattern is one that does not.
 /m[0-9]*.json
 
+# Submission payloads and watcher runtime state are private generated artifacts. The
+# public workflow never creates a payload; local review may. Keep both out of git even
+# when someone uses `git add .` from this directory.
+/out/submission-*.json
+/out/submission-watch-*.md
+
 # Python
 __pycache__/
 *.py[cod]

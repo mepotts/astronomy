@@ -270,6 +270,46 @@ Publish the triage layer: a versioned, DOI'd dataset of *"linkable structure in 
 ITF"* plus the pipeline. **RNAAS** fits exactly (≤1,500 words, one figure or table, $0,
 ~72 h, ADS-indexed, "Independent Researcher" accepted).
 
+### M8 — the perturbed backend, at full batch scale ✅ **COMPLETE** (2026-08-17)
+
+M7's own §11 next-milestone list, executed: **1)** a perturbed ephemeris backend
+(`attrib/planets.py` + `attrib/perturbed.py` — Sun + eight planets from JPL mean
+elements and DE440 GMs, vectorised RK4 with dense Hermite output, no new
+dependencies), validated against JPL Horizons exactly as M7 validated two-body:
+degree-scale @ 5–15 y becomes **≤ ~94″ worst-case**, opening |Δt| ≤ 15 y — the
+pre-2023 ITF. **2)** the batch axis scaled: bulk orbits from `mpcorb_extended.json.gz`
+(96.5% of 44,192 Feb+Apr batch provids matched; paced get-orb fallback for the rest;
+bulk states verified against M7's cached API states across the epoch gap), swept
+against every ITF tracklet in the 15-year window with the amplitude-matched decoy
+control alongside and a ranked, disk-checkpointed, time-budgeted `fo` fit queue.
+**3)** SkyBoT folded into the automated verdict chain (validated by re-deriving M7's
+manual PD152 cone-search result). **4)** the batch-landing watcher written and
+live-tested, **not scheduled** — and its first bucket listing already shows four
+unconsumed post-April bulk partitions (Jun 04, Aug 03/06/10 — the last at 100 MB).
+Outcome: 119,607 coarse candidates whose aggregate the decoy prices as chance but
+whose sub-30″ head is a ≈560-candidate real excess; 900 fitted (top-ranked,
+checkpoint-resumed through an external kill) → **candidate ledger v2: 482
+unsubmitted PASS candidates across 450 objects, 90% beyond the old 4-year window,
+deepest −14.9 y**. M7's held candidates (2025 PD152, 2025 MQ241) carried forward
+untouched. Detail in `M8-RESULTS.md`; nothing submitted, all pending Matthew's
+per-batch review.
+
+### M7 — attribution against the Rubin bulk batches ✅ **COMPLETE** (2026-08-16)
+
+**Out of numeric order deliberately** — M6 stays reserved for publication. Run-3
+avenue #3: Rubin's HelioLinc3D bulk designation batches (2026-02-05: ~20k candidates /
+~246k obs, verified against the MPC's February newsletter; 2026-04-02: 11k+ objects)
+create thousands of fresh orbits that old ITF tracklets can be attributed to — the
+ITF-to-DES direction the pipeline never had (49,986 such linkages accepted MPC-wide in
+2025). Built as a thin validated slice over the existing geometry/fit/gate machinery:
+current MPC orbits from the public get-orb API, a two-body coarse gate whose radius and
+4-year lookback bound are **measured against Horizons** rather than assumed, an
+amplitude-matched phase-shifted decoy control priced against the same tracklets, and
+Find_Orb joint fits (published astrometry + verbatim ITF lines) as the arbiter.
+⚠️ The MPC's own Rubin pipeline already sweeps the ITF at designation time (their
+February newsletter documents it), so the residual pool is small by construction.
+Detail and the verdict taxonomy in `M7-RESULTS.md`; nothing submitted.
+
 ---
 
 ## 4. Open questions for Matthew

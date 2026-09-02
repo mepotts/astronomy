@@ -1,0 +1,54 @@
+{
+  "decode": {
+    "n_declared": 19,
+    "n_would_raise": 17,
+    "n_non_single_star": 11
+  },
+  "prediction": {
+    "n": 981,
+    "median_uas": -35.471999999999994,
+    "p10_uas": -43.524,
+    "p90_uas": -23.656799999999976
+  },
+  "selftest": {
+    "pass": true,
+    "scenarios": [
+      {
+        "scenario": "perfect_agreement",
+        "declared": "AGREE",
+        "got": "AGREE",
+        "pass": true
+      },
+      {
+        "scenario": "small_scatter",
+        "declared": "AGREE",
+        "got": "AGREE",
+        "pass": true
+      },
+      {
+        "scenario": "recalibrated",
+        "declared": "OFFSET",
+        "got": "OFFSET",
+        "pass": true
+      },
+      {
+        "scenario": "uncorrelated",
+        "declared": "UNCORRELATED",
+        "got": "UNCORRELATED",
+        "pass": true
+      },
+      {
+        "scenario": "sign_flip",
+        "declared": "CONVENTION FLIP",
+        "got": "CONVENTION FLIP",
+        "pass": true
+      },
+      {
+        "scenario": "mostly_null",
+        "declared": "UNUSABLE",
+        "got": "UNUSABLE",
+        "pass": true
+      }
+    ]
+  }
+}

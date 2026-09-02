@@ -1,0 +1,32 @@
+{
+ "psr": "J0610-2100",
+ "params": [
+  "J0610-2100_bump_beta_g",
+  "J0610-2100_bump_log10_Amp",
+  "J0610-2100_bump_sigma_g",
+  "J0610-2100_bump_t0",
+  "J0610-2100_dm_gp_gamma",
+  "J0610-2100_dm_gp_log10_A",
+  "J0610-2100_efac",
+  "J0610-2100_gw13_log10_A"
+ ],
+ "lnl_published": 29271.814799850923,
+ "lnl_best": 29273.70126724121,
+ "lnl_best_recorded": 29273.701267,
+ "lnl_median": 29265.04285404155,
+ "dlnl_best_minus_pub": 1.8864673902862705,
+ "dlnl_median_minus_pub": -6.7719458093743015,
+ "n_agree": 7,
+ "n_compared": 8,
+ "misses": [
+  "J0610-2100_bump_sigma_g"
+ ],
+ "miss_tightness": {
+  "J0610-2100_bump_sigma_g": {
+   "pub_ci_width": 809.07,
+   "prior_width": 1990,
+   "frac": 0.40656783919597994,
+   "claims_measurement": false
+  }
+ }
+}

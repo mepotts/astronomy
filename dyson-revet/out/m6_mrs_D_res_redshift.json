@@ -1,0 +1,342 @@
+{
+  "label": "D_res",
+  "assoc": "o002",
+  "n_cubes": 10,
+  "cal_ver": [
+    "2.0.1"
+  ],
+  "crds_ctx": [
+    "jwst_1535.pmap"
+  ],
+  "lam_range_um": [
+    4.900400095357327,
+    28.69899965589866
+  ],
+  "n_slices": 10451,
+  "band_overlap_ratios_contaminant": [
+    {
+      "pair": "1-short|1-medium",
+      "overlap_um": 0.0792002267553471,
+      "ratio": 1.2761176309605202
+    },
+    {
+      "pair": "1-medium|1-long",
+      "overlap_um": 0.09959961310960352,
+      "ratio": 1.171037263909795
+    },
+    {
+      "pair": "1-long|2-short",
+      "overlap_um": 0.13894995264127008,
+      "ratio": 1.234671098542414
+    },
+    {
+      "pair": "2-short|2-medium",
+      "overlap_um": 0.09970015601720661,
+      "ratio": 0.8923042993644587
+    },
+    {
+      "pair": "2-medium|2-long",
+      "overlap_um": 0.1198998513864371,
+      "ratio": 0.9207666704550479
+    },
+    {
+      "pair": "2-long|3-short",
+      "overlap_um": 0.14810004277387456,
+      "ratio": 0.9994497020072072
+    },
+    {
+      "pair": "3-short|3-medium",
+      "overlap_um": 0.12999999523162664,
+      "ratio": 0.8907881729833168
+    },
+    {
+      "pair": "3-medium|3-long",
+      "overlap_um": 0.1575002553872764,
+      "ratio": 0.9836946853537883
+    },
+    {
+      "pair": "3-long|4-long",
+      "overlap_um": 0.0,
+      "ratio": null
+    }
+  ],
+  "acceptance": {
+    "f560w_star": {
+      "mrs_uJy": 287.67447236544933,
+      "m4_imaging_uJy": 300.6,
+      "ratio": 0.9570009060726856,
+      "bandpass_covered": 0.9995470277215963,
+      "pass": true,
+      "dominant_component": true
+    },
+    "f560w_con": {
+      "mrs_uJy": 48.83249900009389,
+      "m4_imaging_uJy": 70.9,
+      "ratio": 0.6887517489434962,
+      "bandpass_covered": 0.9995470277215963,
+      "pass": false,
+      "dominant_component": false
+    },
+    "f1000w_star": {
+      "mrs_uJy": 95.77936546227474,
+      "m4_imaging_uJy": 124.0,
+      "ratio": 0.7724142375989899,
+      "bandpass_covered": 0.9999914810132217,
+      "pass": true,
+      "dominant_component": false
+    },
+    "f1000w_con": {
+      "mrs_uJy": 750.1150442653083,
+      "m4_imaging_uJy": 898.2,
+      "ratio": 0.835131423141069,
+      "bandpass_covered": 0.9999914810132217,
+      "pass": true,
+      "dominant_component": true
+    },
+    "f1500w_star": {
+      "mrs_uJy": 75.93469488605487,
+      "m4_imaging_uJy": 50.0,
+      "ratio": 1.5186938977210973,
+      "bandpass_covered": 0.9999916502139778,
+      "pass": false,
+      "dominant_component": false
+    },
+    "f1500w_con": {
+      "mrs_uJy": 3135.51092916042,
+      "m4_imaging_uJy": 4159.1,
+      "ratio": 0.7538916903081002,
+      "bandpass_covered": 0.9999916502139778,
+      "pass": true,
+      "dominant_component": true
+    }
+  },
+  "acceptance_pass": false,
+  "acceptance_pass_dominant_only": true,
+  "valid_range_um": [
+    5.8924000953572175,
+    17.978400095355887
+  ],
+  "noise": {
+    "median_formal_uJy": 21.55647151239699,
+    "median_empirical_uJy": 22.795984605112924,
+    "inflation_factor": 1.0,
+    "note": "adjacent MRS slices are correlated, so the per-slice formal error under-states the noise on a combined spectrum; the empirical high-frequency scatter is used everywhere below"
+  },
+  "blind_scan": {
+    "z_grid": [
+      0.0,
+      3.0,
+      0.0005
+    ],
+    "z_best": 1.038,
+    "peak_score": 176.12076264806504,
+    "scan_rms": 73.37859645860388,
+    "peak_over_scan_rms": 2.4001653226962794,
+    "score_at_0.922": 124.91887605748965,
+    "delta_z_from_published": 0.11599999999999999,
+    "top5_separated_peaks": [
+      [
+        1.038,
+        176.12076264806504
+      ],
+      [
+        1.0005,
+        160.14875189391054
+      ],
+      [
+        1.068,
+        153.3043186173061
+      ],
+      [
+        1.4205,
+        150.0324597510049
+      ],
+      [
+        0.97,
+        149.93112761274026
+      ]
+    ],
+    "z_best_vs_continuum_window": {
+      "0.06": 0.4675,
+      "0.08": 0.4675,
+      "0.1": 0.9985
+    }
+  },
+  "narrow_consensus_scan": {
+    "grid": [
+      0.05,
+      2.5,
+      0.002
+    ],
+    "max_narrow_lines_at_5sigma": 6,
+    "n_at_published_z": 1,
+    "sum_snr_at_published_z": 15.752980203123073,
+    "n_grid_points_reaching_max": 3,
+    "fraction_of_grid_reaching_n_at_published_z": 0.46448979591836737,
+    "z_of_best_sum_snr_among_max": 0.23000000000000015,
+    "published_z_is_among_best": false
+  },
+  "star_control": {
+    "z_best": 0.9570000000000001,
+    "peak_score": 48.11355139220554,
+    "peak_over_scan_rms": 4.5291924031524236,
+    "score_at_0.922": 45.51274042876185,
+    "note": "the star is a bare M-dwarf photosphere (M4 Sec 5.2) and must show no PAH pattern; it is also the component the deblend leaks INTO, since the contaminant supplies >94% of the light beyond 10 um"
+  },
+  "features": {
+    "blind_best": [
+      {
+        "name": "PAH 6.2",
+        "kind": "pah",
+        "lam_rest_um": 6.22,
+        "lam_pred_um": 12.67636,
+        "lam_fit_um": 12.67636,
+        "z_from_centroid": 1.038,
+        "amp_rel": 0.2145145957,
+        "e_amp_rel": 0.0011362412,
+        "snr": 188.7931904782
+      },
+      {
+        "name": "PAH 7.7",
+        "kind": "pah",
+        "lam_rest_um": 7.7,
+        "lam_pred_um": 15.6926,
+        "lam_fit_um": 15.3869,
+        "z_from_centroid": 0.9982987013,
+        "amp_rel": 0.0454080834,
+        "e_amp_rel": 0.0002824101,
+        "snr": 160.7877522774
+      },
+      {
+        "name": "PAH 8.6",
+        "kind": "pah",
+        "lam_rest_um": 8.61,
+        "lam_pred_um": 17.54718,
+        "lam_fit_um": 17.90383,
+        "z_from_centroid": 1.0794227642,
+        "amp_rel": 0.0030024739,
+        "e_amp_rel": 0.0017143078,
+        "snr": 1.7514205003
+      },
+      {
+        "name": "[Ar II]",
+        "kind": "fs",
+        "lam_rest_um": 6.985,
+        "lam_pred_um": 14.23543,
+        "lam_fit_um": 14.25581,
+        "z_from_centroid": 1.0409176807,
+        "amp_rel": -0.0070500864,
+        "e_amp_rel": 0.0021516097,
+        "snr": -3.2766567423
+      }
+    ],
+    "blind_best_summary": {
+      "n_tested": 4,
+      "n_detected_5sigma": 2,
+      "detected": [
+        "PAH 6.2",
+        "PAH 7.7"
+      ],
+      "z_centroid_mean": 1.0181493506493502,
+      "z_centroid_std": 0.028073057533600107,
+      "z_spread_within_0.01": false
+    },
+    "published_0.922": [
+      {
+        "name": "PAH 6.2",
+        "kind": "pah",
+        "lam_rest_um": 6.22,
+        "lam_pred_um": 11.95484,
+        "lam_fit_um": 12.1130846667,
+        "z_from_centroid": 0.9474412647,
+        "amp_rel": 0.1292990297,
+        "e_amp_rel": 0.0013294718,
+        "snr": 97.2559389159
+      },
+      {
+        "name": "PAH 7.7",
+        "kind": "pah",
+        "lam_rest_um": 7.7,
+        "lam_pred_um": 14.7994,
+        "lam_fit_um": 15.31834,
+        "z_from_centroid": 0.9893948052,
+        "amp_rel": 0.0479639779,
+        "e_amp_rel": 0.0002906963,
+        "snr": 164.9968608318
+      },
+      {
+        "name": "PAH 8.6",
+        "kind": "pah",
+        "lam_rest_um": 8.61,
+        "lam_pred_um": 16.54842,
+        "lam_fit_um": 16.21207,
+        "z_from_centroid": 0.8829349593,
+        "amp_rel": 0.032426624,
+        "e_amp_rel": 0.0005435702,
+        "snr": 59.6549018201
+      },
+      {
+        "name": "[Ar II]",
+        "kind": "fs",
+        "lam_rest_um": 6.985,
+        "lam_pred_um": 13.42517,
+        "lam_fit_um": 13.4277326667,
+        "z_from_centroid": 0.9223668814,
+        "amp_rel": 0.0363799264,
+        "e_amp_rel": 0.0023093996,
+        "snr": 15.7529802031
+      },
+      {
+        "name": "[Ar III]",
+        "kind": "fs",
+        "lam_rest_um": 8.991,
+        "lam_pred_um": 17.280702,
+        "lam_fit_um": 17.261482,
+        "z_from_centroid": 0.9198623068,
+        "amp_rel": -0.0534513318,
+        "e_amp_rel": 0.0040817488,
+        "snr": -13.0952038252
+      }
+    ],
+    "published_0.922_summary": {
+      "n_tested": 5,
+      "n_detected_5sigma": 4,
+      "detected": [
+        "PAH 6.2",
+        "PAH 7.7",
+        "PAH 8.6",
+        "[Ar II]"
+      ],
+      "z_centroid_mean": 0.9355344776735888,
+      "z_centroid_std": 0.04465721807310255,
+      "z_spread_within_0.01": false
+    }
+  },
+  "silicate": {
+    "trough_lam_um": 17.176400095355973,
+    "z_from_silicate": 0.770762896428451,
+    "depth_dex": -0.02067238064997,
+    "note": "9.7 um silicate absorption trough on the same global continuum; a broad feature, so this z is indicative and is NOT counted towards PR-2's two-feature test"
+  },
+  "continuum_shape": {
+    "best_single_blackbody_T_observed_K": 197.0,
+    "implied_rest_frame_T_at_z0.922_K": 378.634,
+    "M4_sec5.2_rest_frame_T_K": 441.0,
+    "global_power_law_index_5.9_to_23.8um": 4.180360729935436,
+    "index_5.9_to_10um": 7.168501470795502,
+    "index_10_to_15um": 3.800572740525571,
+    "M4_index_5.6_to_10um": 4.4,
+    "M4_index_10_to_15um": 3.8,
+    "note": "a single blackbody is a poor description of a PAH-bearing, silicate-absorbed spectrum; the number is reported because M4 Sec 5.2 quoted one from three photometric points, and this is the first test of it"
+  },
+  "verdict": {
+    "acceptance": "FAIL",
+    "acceptance_dominant_component_only": "PASS",
+    "criterion": ">=2 independent features, each >=5 sigma, agreeing on z to +-0.01 (M6 PR-2, fixed before the extraction)",
+    "met_at_published_z": false,
+    "met_at_blind_best_z": false,
+    "blind_best_z": 1.038,
+    "blind_agrees_with_published": false,
+    "PR2_consequence_of_acceptance": "PR-2 fixed in advance that if the acceptance test fails, no redshift is quoted from these data.  Everything below the acceptance line is reported as what the data show, not as a quoted redshift."
+  }
+}

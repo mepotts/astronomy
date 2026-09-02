@@ -1,0 +1,256 @@
+{
+  "run_id": "J1525-5545_table_t1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 1292,
+  "seed": 26983,
+  "ndim": 9,
+  "x0_kind": "prior-draw",
+  "x0": [
+    2.1292515718721794,
+    10.957591583643504,
+    -16.547352764231572,
+    2.227979131796449,
+    -14.692230777162113,
+    -16.421475869683594,
+    4.956322418475975,
+    -4.128449084528542,
+    19.460051690874888
+  ],
+  "started_utc": "2026-08-24T15:42:13Z",
+  "wall_budget_min": 120.0,
+  "gate_raw_postburn": 50000,
+  "nice": 19,
+  "omp_threads": "4",
+  "min_acc": 0.05,
+  "cov_scale0": 0.05,
+  "gate_rule": "relative",
+  "eval_ms": 149.69,
+  "first_eval_s": 0.36,
+  "meta": {
+    "psr": "J1525-5545",
+    "ntoa": 9504,
+    "tspan_days": 1324.3169925349068,
+    "tmin_mjd": 58832.29035634992,
+    "tmax_mjd": 60156.60734888483,
+    "variant": "table",
+    "add_red": false,
+    "fixed_whites": true,
+    "sw_gamma_prior": [
+      0,
+      7
+    ],
+    "build_s": 18.9,
+    "kind": "table",
+    "whites_fixed": {
+      "efac": 0.9864169354314969,
+      "log10_ecorr": -5.82306930930692
+    }
+  },
+  "chunks": [
+    {
+      "iters": 2000,
+      "seconds": 76.7,
+      "it_per_s": 26.07,
+      "loadavg": 7.94,
+      "total_raw": 56000
+    },
+    {
+      "iters": 8000,
+      "seconds": 301.6,
+      "it_per_s": 26.52,
+      "loadavg": 10.93,
+      "total_raw": 64000
+    },
+    {
+      "iters": 8000,
+      "seconds": 309.3,
+      "it_per_s": 25.87,
+      "loadavg": 12.0,
+      "total_raw": 72000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 7201,
+    "post_burn_rows": 5401,
+    "raw_iters": 72000,
+    "raw_postburn": 54010,
+    "lnl_max": 102586.927009,
+    "acc_rate": 0.263724,
+    "stable": true,
+    "stable_rel": true,
+    "ess_min": 81.1,
+    "params": [
+      {
+        "param": "J1525-5545_chrom_gp_gamma",
+        "median": 1.223898765917964,
+        "ci68": [
+          1.051075917529361,
+          1.3985284392709907
+        ],
+        "halfshift": 0.0016,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 0.3475,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 136.8
+      },
+      {
+        "param": "J1525-5545_chrom_gp_idx",
+        "median": 5.235645893023092,
+        "ci68": [
+          4.748266204066193,
+          5.80752856898479
+        ],
+        "halfshift": 0.0412,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 1.0593,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 163.1
+      },
+      {
+        "param": "J1525-5545_chrom_gp_log10_A",
+        "median": -12.875951619307356,
+        "ci68": [
+          -13.03478774722522,
+          -12.748180603961579
+        ],
+        "halfshift": 0.0065,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 0.2866,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 155.2
+      },
+      {
+        "param": "J1525-5545_dm_gp_gamma",
+        "median": 2.7488936459976188,
+        "ci68": [
+          1.596939435049498,
+          5.237889770693972
+        ],
+        "halfshift": 0.1211,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 3.641,
+        "tol_rel": 0.3641,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 382.5
+      },
+      {
+        "param": "J1525-5545_dm_gp_log10_A",
+        "median": -13.762485157352428,
+        "ci68": [
+          -16.52553449013636,
+          -12.349919158963743
+        ],
+        "halfshift": 0.0856,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 4.1756,
+        "tol_rel": 0.4176,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 105.4
+      },
+      {
+        "param": "J1525-5545_gw13_log10_A",
+        "median": -15.557578082519989,
+        "ci68": [
+          -17.165001022284375,
+          -13.63071122246631
+        ],
+        "halfshift": 0.0397,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 3.5343,
+        "tol_rel": 0.3534,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 737.4
+      },
+      {
+        "param": "J1525-5545_sw_gp_gamma",
+        "median": 2.2070768910774805,
+        "ci68": [
+          1.4683313760670518,
+          3.8628627464205993
+        ],
+        "halfshift": 0.1288,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 2.3945,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 109.8
+      },
+      {
+        "param": "J1525-5545_sw_gp_log10_A",
+        "median": -4.838639223615892,
+        "ci68": [
+          -6.796124832981338,
+          -4.642724557193124
+        ],
+        "halfshift": 0.0195,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 2.1534,
+        "tol_rel": 0.2153,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 81.1
+      },
+      {
+        "param": "n_earth",
+        "median": 18.661909324995115,
+        "ci68": [
+          7.02455053995458,
+          27.549799455012703
+        ],
+        "halfshift": 0.218,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 20.5252,
+        "tol_rel": 2.0525,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 473.0
+      }
+    ]
+  },
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "updated_utc": "2026-08-24T15:53:41Z",
+  "elapsed_min": 11.5,
+  "best_point": {
+    "J1525-5545_chrom_gp_gamma": 1.1701391722649235,
+    "J1525-5545_chrom_gp_idx": 5.280129722835611,
+    "J1525-5545_chrom_gp_log10_A": -12.934131638270673,
+    "J1525-5545_dm_gp_gamma": 2.5821024727166466,
+    "J1525-5545_dm_gp_log10_A": -12.550606004605426,
+    "J1525-5545_gw13_log10_A": -16.703200061667065,
+    "J1525-5545_sw_gp_gamma": 1.3798390063832588,
+    "J1525-5545_sw_gp_log10_A": -4.994335773472264,
+    "n_earth": 26.368796339636052
+  },
+  "lnl_best": 102586.927009,
+  "curn": {
+    "median": -15.557578082519989,
+    "ci68": [
+      -17.165001022284375,
+      -13.63071122246631
+    ],
+    "n": 5401
+  }
+}

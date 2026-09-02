@@ -1,0 +1,178 @@
+{
+  "run_id": "J1216-6410_fl_f1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 12981,
+  "seed": 9041,
+  "ndim": 5,
+  "x0_kind": "prior-draw",
+  "x0": [
+    4.676485658831732,
+    -15.70222046747342,
+    -11.41852242098879,
+    3.748315357666996,
+    -13.228286628977255
+  ],
+  "started_utc": "2026-08-22T01:02:55Z",
+  "wall_budget_min": 120.0,
+  "gate_raw_postburn": 50000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.05,
+  "eval_ms": 10.62,
+  "first_eval_s": 0.32,
+  "meta": {
+    "psr": "J1216-6410",
+    "ntoa": 3256,
+    "tspan_days": 1599.3434814394845,
+    "tmin_mjd": 58557.21034682704,
+    "tmax_mjd": 60156.55382826653,
+    "variant": "fl",
+    "add_red": true,
+    "fixed_whites": true,
+    "sw_gamma_prior": [
+      0,
+      7
+    ],
+    "build_s": 34.6,
+    "kind": "fl",
+    "whites_fixed": {
+      "efac": 0.9983102247127842
+    }
+  },
+  "chunks": [
+    {
+      "iters": 28000,
+      "seconds": 186.6,
+      "it_per_s": 150.07,
+      "loadavg": 27.12,
+      "total_raw": 28000
+    },
+    {
+      "iters": 45000,
+      "seconds": 226.7,
+      "it_per_s": 198.54,
+      "loadavg": 26.5,
+      "total_raw": 73000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 7301,
+    "post_burn_rows": 5476,
+    "raw_iters": 73000,
+    "raw_postburn": 54760,
+    "lnl_max": 38160.058413,
+    "acc_rate": 0.265021,
+    "stable": true,
+    "params": [
+      {
+        "param": "J1216-6410_dm_gp_gamma",
+        "median": 2.5663168606402436,
+        "ci68": [
+          2.19785420330079,
+          3.02592539537505
+        ],
+        "halfshift": 0.0042,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 0.8281,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 625.1
+      },
+      {
+        "param": "J1216-6410_dm_gp_log10_A",
+        "median": -13.166032213972969,
+        "ci68": [
+          -13.2482850688895,
+          -13.079199695242815
+        ],
+        "halfshift": 0.0047,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 0.1691,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 568.6
+      },
+      {
+        "param": "J1216-6410_gw13_log10_A",
+        "median": -14.247533230918528,
+        "ci68": [
+          -16.510599640694107,
+          -13.84480750326294
+        ],
+        "halfshift": 0.0304,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 2.6658,
+        "tol_rel": 0.2666,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 515.4
+      },
+      {
+        "param": "J1216-6410_red_gp_gamma",
+        "median": 3.7691631201720694,
+        "ci68": [
+          1.4046311724642955,
+          5.89044562676718
+        ],
+        "halfshift": 0.0186,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 4.4858,
+        "tol_rel": 0.4486,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 721.8
+      },
+      {
+        "param": "J1216-6410_red_gp_log10_A",
+        "median": -14.976973385419603,
+        "ci68": [
+          -16.95495404323809,
+          -13.941041483050963
+        ],
+        "halfshift": 0.0686,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 3.0139,
+        "tol_rel": 0.3014,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 448.1
+      }
+    ],
+    "stable_rel": true,
+    "ess_min": 448.1
+  },
+  "updated_utc": "2026-08-22T01:09:51Z",
+  "elapsed_min": 6.9,
+  "best_point": {
+    "J1216-6410_dm_gp_gamma": 2.353415721173115,
+    "J1216-6410_dm_gp_log10_A": -13.157909032676347,
+    "J1216-6410_gw13_log10_A": -16.179259113915133,
+    "J1216-6410_red_gp_gamma": 5.280242711926139,
+    "J1216-6410_red_gp_log10_A": -14.215780489401585
+  },
+  "lnl_best": 38160.058413,
+  "curn": {
+    "median": -14.247533230918528,
+    "ci68": [
+      -16.510599640694107,
+      -13.84480750326294
+    ],
+    "n": 5476
+  },
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
+}

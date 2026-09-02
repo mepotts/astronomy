@@ -1,0 +1,256 @@
+{
+  "run_utc": "2026-08-24T20:46:26+00:00",
+  "tns": {
+    "source": "https://www.wis-tns.org",
+    "api_get_object_status": 401,
+    "api_get_object_body": "{\"id_code\":401,\"id_message\":\"Unauthorized\"}",
+    "rate_limit_headers_api": {
+      "x-rate-limit-limit": "10",
+      "x-rate-limit-remaining": "9",
+      "x-rate-limit-reset": "60"
+    },
+    "search_csv_status": 200,
+    "search_csv_is_csv": true,
+    "search_csv_content_disposition": "attachment; filename=tns_search.csv",
+    "rate_limit_headers_search": {
+      "x-rate-limit-limit": "10",
+      "x-rate-limit-remaining": "8",
+      "x-rate-limit-reset": "51"
+    },
+    "public_objects_zip_status": 403,
+    "public_objects_zip_note": "403 unauthenticated: the bulk mirror sits behind the same api_key/tns_marker POST as /api/get/. Not usable without an account.",
+    "rate_limit_probe": [
+      {
+        "limit": "10",
+        "remaining": "7",
+        "reset": "39",
+        "status": 401
+      },
+      {
+        "limit": "10",
+        "remaining": "6",
+        "reset": "37",
+        "status": 401
+      },
+      {
+        "limit": "10",
+        "remaining": "5",
+        "reset": "35",
+        "status": 401
+      },
+      {
+        "limit": "10",
+        "remaining": "4",
+        "reset": "34",
+        "status": 401
+      }
+    ]
+  },
+  "brokers": {
+    "alerce": {
+      "base": "https://api.alerce.online/ztf/v1/",
+      "status": 200,
+      "auth_required": false,
+      "auth_evidence": "200 with no Authorization header, no cookie, no key",
+      "newest_lastmjd": 61276.36247690022,
+      "latency_s": 37.792,
+      "new_objects_mjd61271_61277": 5207
+    },
+    "fink": {
+      "base": "https://api.ztf.fink-portal.org/api/v1/",
+      "status": 200,
+      "auth_required": false,
+      "auth_evidence": "200 with no token. Kafka streaming needs free registration; REST does not.",
+      "newest_jd": 2461276.8624769,
+      "newest_mjd": 61276.3625,
+      "latency_s": 0.426
+    },
+    "antares": {
+      "base": "https://api.antares.noirlab.edu/v1/",
+      "status": 200,
+      "auth_required": false,
+      "auth_evidence": "200 JSON:API with no token",
+      "newest_alert_mjd": 61276.36247690022,
+      "latency_s": 1.234
+    }
+  },
+  "ztf": {
+    "archive": "https://ztf.uw.edu/alerts/public/",
+    "n_nightly_tarballs": 2990,
+    "newest_night": "20260824",
+    "newest_posted": "2026-08-24 07:15",
+    "recent_30": [
+      {
+        "night": "20260824",
+        "posted": "2026-08-24 07:15",
+        "size": "4.2G"
+      },
+      {
+        "night": "20260823",
+        "posted": "2026-08-23 07:17",
+        "size": "7.4G"
+      },
+      {
+        "night": "20260822",
+        "posted": "2026-08-22 07:15",
+        "size": "5.4G"
+      },
+      {
+        "night": "20260821",
+        "posted": "2026-08-21 07:14",
+        "size": "3.9G"
+      },
+      {
+        "night": "20260820",
+        "posted": "2026-08-20 07:10",
+        "size": "74"
+      },
+      {
+        "night": "20260819",
+        "posted": "2026-08-19 07:19",
+        "size": "8.0G"
+      },
+      {
+        "night": "20260818",
+        "posted": "2026-08-18 07:23",
+        "size": "11G"
+      },
+      {
+        "night": "20260817",
+        "posted": "2026-08-17 07:21",
+        "size": "11G"
+      },
+      {
+        "night": "20260816",
+        "posted": "2026-08-16 07:19",
+        "size": "8.1G"
+      },
+      {
+        "night": "20260815",
+        "posted": "2026-08-15 07:20",
+        "size": "9.5G"
+      },
+      {
+        "night": "20260814",
+        "posted": "2026-08-14 07:11",
+        "size": "1.0G"
+      },
+      {
+        "night": "20260813",
+        "posted": "2026-08-13 07:11",
+        "size": "1.2G"
+      },
+      {
+        "night": "20260812",
+        "posted": "2026-08-12 07:22",
+        "size": "11G"
+      },
+      {
+        "night": "20260811",
+        "posted": "2026-08-11 07:19",
+        "size": "8.6G"
+      },
+      {
+        "night": "20260810",
+        "posted": "2026-08-10 07:10",
+        "size": "74"
+      },
+      {
+        "night": "20260809",
+        "posted": "2026-08-09 07:22",
+        "size": "11G"
+      },
+      {
+        "night": "20260808",
+        "posted": "2026-08-08 07:25",
+        "size": "13G"
+      },
+      {
+        "night": "20260807",
+        "posted": "2026-08-07 07:16",
+        "size": "6.2G"
+      },
+      {
+        "night": "20260806",
+        "posted": "2026-08-06 07:23",
+        "size": "12G"
+      },
+      {
+        "night": "20260805",
+        "posted": "2026-08-06 07:26",
+        "size": "15G"
+      },
+      {
+        "night": "20260804",
+        "posted": "2026-08-04 07:24",
+        "size": "14G"
+      },
+      {
+        "night": "20260803",
+        "posted": "2026-08-03 07:21",
+        "size": "11G"
+      },
+      {
+        "night": "20260802",
+        "posted": "2026-08-02 07:22",
+        "size": "12G"
+      },
+      {
+        "night": "20260801",
+        "posted": "2026-08-01 07:10",
+        "size": "74"
+      },
+      {
+        "night": "20260731",
+        "posted": "2026-07-31 07:10",
+        "size": "74"
+      },
+      {
+        "night": "20260730",
+        "posted": "2026-07-30 07:20",
+        "size": "9.3G"
+      },
+      {
+        "night": "20260729",
+        "posted": "2026-07-29 07:17",
+        "size": "7.0G"
+      },
+      {
+        "night": "20260728",
+        "posted": "2026-07-28 07:17",
+        "size": "6.5G"
+      },
+      {
+        "night": "20260727",
+        "posted": "2026-07-27 07:17",
+        "size": "7.6G"
+      },
+      {
+        "night": "20260726",
+        "posted": "2026-07-26 07:13",
+        "size": "2.8G"
+      }
+    ],
+    "median_gb_per_night_last30_observing": 8.3,
+    "range_gb_last30_observing": [
+      1.0,
+      15.0
+    ],
+    "n_weathered_out_last30": 4,
+    "fink_nights_2026": 182,
+    "fink_median_sci_alerts_per_night_2026": 135244.5,
+    "fink_median_sci_alerts_per_night_last30": 97188.0,
+    "fink_max_sci_alerts_per_night_2026": 313532
+  },
+  "verdict": {
+    "tns_read_api_open_unauthenticated": false,
+    "tns_tokenless_read_route": "web search CSV export (/search?...&format=csv)",
+    "tokenless_brokers": [
+      "alerce",
+      "fink",
+      "antares"
+    ],
+    "ztf_newest_public_night": "20260824",
+    "pass": true
+  }
+}

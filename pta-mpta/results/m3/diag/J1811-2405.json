@@ -1,0 +1,39 @@
+{
+ "psr": "J1811-2405",
+ "params": [
+  "J1811-2405_dm_gp_gamma",
+  "J1811-2405_dm_gp_log10_A",
+  "J1811-2405_efac",
+  "J1811-2405_gw13_log10_A",
+  "J1811-2405_log10_tnequad",
+  "J1811-2405_sw_gp_gamma",
+  "J1811-2405_sw_gp_log10_A",
+  "n_earth"
+ ],
+ "lnl_published": 75068.22768293579,
+ "lnl_best": 75067.65280039088,
+ "lnl_best_recorded": 75067.6528,
+ "lnl_median": 75065.76413961434,
+ "dlnl_best_minus_pub": -0.5748825449118158,
+ "dlnl_median_minus_pub": -2.4635433214425575,
+ "n_agree": 6,
+ "n_compared": 8,
+ "misses": [
+  "J1811-2405_sw_gp_gamma",
+  "J1811-2405_sw_gp_log10_A"
+ ],
+ "miss_tightness": {
+  "J1811-2405_sw_gp_gamma": {
+   "pub_ci_width": 2.85,
+   "prior_width": 7,
+   "frac": 0.40714285714285714,
+   "claims_measurement": false
+  },
+  "J1811-2405_sw_gp_log10_A": {
+   "pub_ci_width": 1.77,
+   "prior_width": 11,
+   "frac": 0.16090909090909092,
+   "claims_measurement": true
+  }
+ }
+}

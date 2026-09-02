@@ -8,6 +8,17 @@ facts, and the plan template are in [`_BRIEF.md`](_BRIEF.md). Each plan did an a
 prior-art check and scored itself honestly (U/B/E = underexplored / agent-buildable / excitement,
 1–5).
 
+> **Run 3 addendum (2026-08-14).** The *discovery-axis* siblings of these build ideas — publishable
+> science from public data, ranked under an agent-leverage lens — now live in
+> [`../DISCOVERY/run3-prospectus.md`](../DISCOVERY/run3-prospectus.md). Two facts here moved:
+> **(a)** the [eROSITA dossier](erosita-source-classifier.md) was scoped on eRASS1/DR1 — **DR2
+> (released 2026-07-31, ~2M sources) doubles the catalog**; rebase its M0 before building.
+> **(b)** The [Gaia DR4 diff auditor](gaia-dr4-diff-auditor.md)'s catalyst got stronger: the
+> 2026-12-02 date is confirmed and ESA published **pre-release epoch-astrometry samples plus an
+> official Python fitting package** (~Jun 2026) — the tool can be validated against real DR4-format
+> data months before release, and run 3 lists the discovery hunts (NSS vetting, HVS rerun,
+> microlensing-prediction refresh) that share its plumbing.
+
 ## The eight, ranked by my read of priority
 
 | # | Idea | U/B/E | The wedge in one line | Sharpest prior-art risk |

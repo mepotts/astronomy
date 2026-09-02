@@ -1,0 +1,76 @@
+M5 activity-vs-spuriousness test -- EB26 x Gaia DR3 all-sky (2026-08-18)
+==========================================================================
+Rules pre-registered in this script's docstring before any confirmed/spurious split was computed.
+
+sample: 9 EB26 targets; verdicts {'CONFIRMED': 5, 'SPURIOUS': 4}
+FOOTPRINT: 76 of 76 (100 %) have Gaia DR3 gaia_source rows -- this is the point of the test.
+  (M4's X-ray axis could see 29 of the 65 verdicted targets: 16 confirmed + 13 spurious.)
+  primary comparison: CONFIRMED n=5 vs SPURIOUS n=4; 0 other verdicts reported only
+
+COVERAGE (honest, per family) --------------------------------------------
+  A1 activityindex_espcs             0/76 total    0/5 confirmed    0/4 spurious
+  B1 dAmp_G                          9/76 total    5/5 confirmed    4/4 spurious
+  B2 dAmp_BP                         9/76 total    5/5 confirmed    4/4 spurious
+  B3 dAmp_RP                         9/76 total    5/5 confirmed    4/4 spurious
+  B4 phot_variable_flag              9/76 total    5/5 confirmed    4/4 spurious
+  B5 std_dev_mag_g_fov               1/76 total    1/5 confirmed    0/4 spurious
+  C1 ruwe                            9/76 total    5/5 confirmed    4/4 spurious
+  C2 ipd_frac_multi_peak             9/76 total    5/5 confirmed    4/4 spurious
+  C3 ipd_gof_harmonic_amplitude      9/76 total    5/5 confirmed    4/4 spurious
+  C4 astrometric_excess_noise_sig    9/76 total    5/5 confirmed    4/4 spurious
+  C5 astrometric_gof_al              9/76 total    5/5 confirmed    4/4 spurious
+  C6 phot_bp_rp_excess_factor        9/76 total    5/5 confirmed    4/4 spurious
+  N1 phot_g_n_obs (neg. control)     9/76 total    5/5 confirmed    4/4 spurious
+  in vari_summary at all: 1/76 (1 conf / 0 spur)
+  phot_variable_flag values: {'NOT_AVAILABLE': 8, 'VARIABLE': 1}
+  activityindex_espcs_input values: {None: 6, 'M2': 3}
+
+FAMILY A (chromospheric activity, ESP-CS) --------------------------
+  A1 activityindex_espcs: NOT TESTABLE (confirmed n=0, spurious n=0; pre-registered minimum 5 per side)
+
+FAMILY B (photometric variability) ---------------------------------
+  B1 dAmp_G: NOT TESTABLE (confirmed n=5, spurious n=4; pre-registered minimum 5 per side)
+  B2 dAmp_BP: NOT TESTABLE (confirmed n=5, spurious n=4; pre-registered minimum 5 per side)
+  B3 dAmp_RP: NOT TESTABLE (confirmed n=5, spurious n=4; pre-registered minimum 5 per side)
+  B4 phot_variable_flag==VARIABLE
+    CONFIRMED 1/5 = 0.200 (95% 0.036-0.624);  SPURIOUS 0/4 = 0.000 (95% 0.000-0.490)
+    Fisher two-sided p = 1.0000, odds ratio 0.00
+    power: smallest SPURIOUS rate detectable at 80% vs CONFIRMED 0.200 = NONE <= 1.0
+  B5 std_dev_mag_g_fov: NOT TESTABLE (confirmed n=1, spurious n=0; pre-registered minimum 5 per side)
+  Holm-Bonferroni within family (m = 1):
+    B4 phot_variable_flag==VARIABLE    p = 1.0000 -> p_holm = 1.0000  ns
+
+FAMILY C (astrometric/imaging quality -- NOT activity) -------------
+  C1 ruwe: NOT TESTABLE (confirmed n=5, spurious n=4; pre-registered minimum 5 per side)
+  C2 ipd_frac_multi_peak: NOT TESTABLE (confirmed n=5, spurious n=4; pre-registered minimum 5 per side)
+  C3 ipd_gof_harmonic_amplitude: NOT TESTABLE (confirmed n=5, spurious n=4; pre-registered minimum 5 per side)
+  C4 astrometric_excess_noise_sig: NOT TESTABLE (confirmed n=5, spurious n=4; pre-registered minimum 5 per side)
+  C5 astrometric_gof_al: NOT TESTABLE (confirmed n=5, spurious n=4; pre-registered minimum 5 per side)
+  C6 phot_bp_rp_excess_factor: NOT TESTABLE (confirmed n=5, spurious n=4; pre-registered minimum 5 per side)
+
+FAMILY NEGATIVE CONTROL (must not discriminate) --------------------
+  N1 phot_g_n_obs: NOT TESTABLE (confirmed n=5, spurious n=4; pre-registered minimum 5 per side)
+
+CONFOUND COVARIATES (pre-registered, medians) ----------------------------
+  G mag          CONFIRMED   14.497   SPURIOUS   16.897   (MWU p = 0.286)
+  d [pc]         CONFIRMED  343.739   SPURIOUS  366.310   (MWU p = 1.000)
+  period [d]     CONFIRMED  754.942   SPURIOUS  825.987   (MWU p = 1.000)
+  |b| [deg]      CONFIRMED   22.981   SPURIOUS   29.275   (MWU p = 1.000)
+  significance   CONFIRMED   50.586   SPURIOUS   22.187   (MWU p = 0.190)
+  a0 [mas]       CONFIRMED    2.993   SPURIOUS    1.836   (MWU p = 0.413)
+  bp_rp          CONFIRMED    1.562   SPURIOUS    1.945   (MWU p = 0.556)
+
+G-STRATIFIED CHECK: not run (nothing discriminated).
+
+WHAT IT WOULD TAKE (forward-looking; the observed effect held fixed, the 42:23
+ratio held fixed, 80 % power at alpha = 0.05 uncorrected) --------
+  (the epoch-vet loop is the sample factory: it adjudicates hundreds of
+   candidates in 72 h, so re-running this test on day-one verdicts is the
+   cheapest way to reach these numbers -- wired into the first-24h bulletin.)
+
+==========================================================================
+FAMILY A (chromospheric activity, ESP-CS): NOT TESTABLE at this coverage.
+FAMILY B (photometric variability): **UNDERPOWERED** -- nothing survives Holm; smallest detectable effect for the primary metric: not reachable at n<=1; observed 0.000.
+FAMILY C (astrometric/imaging quality -- NOT activity): NOT TESTABLE at this coverage.
+FAMILY NEGATIVE CONTROL (must not discriminate): NOT TESTABLE at this coverage.
+==========================================================================

@@ -1,0 +1,116 @@
+M7 -- the day-one-scale dry run: measured transport, measured fit, measured weather
+==============================================================================
+
+1. PHASE A -- the literal ask: all 981 day-one queue members
+------------------------------------------------------------------------------
+  981 queue members, 50 batched DataLink requests, DR3 EPOCH_PHOTOMETRY, batch 20.
+  wall 4.5 min; 74 of 981 sources served (7.5 %)
+  -- and that coverage IS the first finding.  DR3 publishes epoch photometry
+     only for its variability candidates, so a DR3-photometry dry run over the
+     REAL queue cannot be a payload test: 907 of the 981 requests return
+     nothing.  That is why phase B exists.  What phase A does measure is the
+     empty-request floor and the machinery at full queue length.
+  EMPTY-REQUEST FLOOR (n_served = 0, 14 requests): median 0.65 s, range 0.51-0.75 s
+     -- the per-request overhead is 0.65 s, not M6's 2.3-6.0 s estimate;
+        M6 could not separate overhead from payload because every probe request
+        carried payload.  A request that serves nothing is almost free.
+
+2. PHASE B -- the degeneracy-breaker: 981 SERVING sources, batch 20, payload stratified
+------------------------------------------------------------------------------
+  50 payload-bearing batches, 48 of them serving exactly 20 sources.
+  AT FIXED n = 20: served transits per batch 529 to 2484 (**4.7x**), batch seconds 9.6 to 57.4 (6.0x)
+  over all 50: transits 120 to 2484, seconds 3.6 to 57.4
+  correlation with batch seconds: transits 0.83 | n_served 0.26 -- payload, not source count
+
+  BYTES CALIBRATION (6 dump-to-file requests, wire zip weighed):
+    zip_bytes = 6189 + 120.6 B per served G-FoV transit   (R2 1.000)
+
+  THE TEST -- at FIXED n = 20, is batch time flat (model B) or proportional
+  to payload (model A)?
+    t = 6.12 s + 0.1450 s/KiB * KiB      R2 = 0.689, slope 0.1450 +/- 0.0141 s/KiB (10.3 sigma)
+    model B (flat at n = 20) would predict a constant 28.0 s; it explains R2 = 0.000
+    -> the slope is 10.3 sigma from zero. **MODEL B IS REFUTED AT FIXED n.**
+       DataLink's cost tracks DATA VOLUME, not source count.  M6's 'server-work-
+       limited, not bandwidth-limited' stands as a statement about the RATE
+       (~6.9 KiB/s, far below any network); what M6 could not tell, and this
+       can, is that the work is proportional to the bytes.
+    effective delivered rate: 6.9 KiB/s (M6 measured 1.8 KiB/s on a worse afternoon)
+
+  BOTH PREDICTORS, phase A + phase B (100 requests; n_served 0-20, payload 0-296 KiB):
+    t = 2.42 (+/-0.81) + 0.215 (+/-0.100) s/source * n + 0.1424 (+/-0.0105) s/KiB * KiB    R2 0.878
+    per-source term 2.2 sigma | per-byte term 13.5 sigma
+    -> BOTH are real, and the per-BYTE term dominates at DR4 payload: at 50.9 KiB/source
+       the byte term costs 7.25 s/source against the source term's 0.22 s.
+       M6's models A and B were not rivals; they were the two terms of one model,
+       and the probe's collinearity is what made them look like a choice.
+
+  SUSTAINED THROUGHPUT ACTUALLY ACHIEVED (the headline measurement):
+    m7_dryrun_B_20260823T152424: 400 sources in 9.1 min -> 2626 sources/hour
+    m7_dryrun_B_20260823T153337: 581 sources in 15.6 min -> 2236 sources/hour
+    COMBINED: 981 sources in 24.7 min = **2379 sources/hour** at DR3 payload
+    mean served payload 7.7 KiB/source (M6's DR3 proxy assumed 7.5 KiB/source)
+
+3. PHASE C -- the fit half, sustained over 981 consecutive fits
+------------------------------------------------------------------------------
+  981 fits on real DR4 pre-release epoch astrometry, from cache.
+  first fit 4.030 s (import + accessor registration); steady state mean 0.1231 s, median 0.1216 s, p90 0.1638 s
+  => **29252 fits/hour** sustained (M6 measured 0.036 s/source = ~100,000/hour over 22 fits)
+  drift over the run: first decile 0.1177 s vs last decile 0.1199 s, OLS slope -0.0109 s per 1000 fits
+  determinism: max distinct f2 per source = 1 (must be 1)
+  -> the fit half remains free by three orders of magnitude and does not
+     drift or leak over hundreds of calls.  Transport is the whole clock.
+
+4. ARCHIVE WEATHER -- the same request, sampled over hours
+------------------------------------------------------------------------------
+  60 identical batch-20 requests over 2.0 h (one every 2 min).
+  min 15.2 s | p25 25.1 | median 26.9 | p75 27.9 | p90 34.3 | max 42.2  -> spread 2.8x
+  trend -0.043 s per minute of elapsed time -- no systematic degradation
+  failures: 0 of 60 requests
+  M6's 5-request soak spanned 3.2x inside a few minutes; over hours the spread is 2.8x.
+
+5. THE DAY-ONE NUMBER
+------------------------------------------------------------------------------
+  Model, measured rather than assumed:
+      t_batch = 6.12 s + (KiB in the batch) / 6.9 KiB/s
+  DR4 payload, measured on the real pre-release file (M6): 50.9 KiB/source zipped.
+  => at batch 20: 7.38 s/source of transport, 154 s/batch, **468 sources/hour**
+  => the 981-row queue in **2.1 h**
+
+  WEATHER BRACKET.  The fitted rate is the typical condition across 50 batches,
+  so it is the MEDIAN branch.  Over 60 requests spanning 2.0 h an identical
+  request ran 0.57x the median at best, 1.28x at p90 and 1.57x at worst:
+      best request observed                1.2 h  ( 803 sources/hour)
+      MEDIAN -- the measured branch        2.1 h  ( 468 sources/hour)
+      p90                                  2.6 h  ( 371 sources/hour)
+      worst request observed               3.2 h  ( 303 sources/hour)
+      M6's bad afternoon (1.8 KiB/s)       7.8 h  ( 126 sources/hour)
+      10x degraded (M6's worst branch)    20.2 h  (  49 sources/hour)
+
+  BUT A 50-BATCH WALL CLOCK DOES NOT SEE SINGLE-REQUEST EXTREMES -- it sees their
+  mean, and they average out.  The honest bracket for a SUSTAINED run is the
+  spread between the two halves of phase B, which were separated by a stop and
+  a restart: 2626 and 2236 sources/hour, i.e. +/-8 %.  Read the quantile rows above as
+  instantaneous conditions, not as achievable wall clocks; the day-to-day rows
+  (M6's afternoon, the 10x branch) are the ones that bound a whole run.
+
+  Every branch fits inside the runbook's 72 h, INCLUDING the 10x-degraded one:
+  M6's 78 h worst case was model A extrapolated from a 2.3 s overhead and a
+  1.8 KiB/s rate; the measured overhead is 6.12 s and the measured rate 6.9,
+  so the same 10x degradation now costs 20 h, not 78.
+
+  THE BAND, BEFORE AND AFTER
+      M6: 125-857 sources/hour, 1.1-7.9 h -- a factor 6.9, spanned by a MODEL
+          ambiguity (bytes vs sources) that no measurement then available could
+          resolve.
+      M7: **468 sources/hour, 2.1 h** measured at today's median archive rate; and
+          126-803 sources/hour, 1.2-7.8 h across the full range of rates ever
+          measured on this service (1.8-6.9 KiB/s) -- a factor 6.4, and every bit
+          of it is ARCHIVE WEATHER, which is a thing that happens on the day and
+          cannot be measured before it.  The model half of M6's band is gone.
+
+  WHAT IS STILL EXTRAPOLATED, named: the payload.  DR4 epoch astrometry does
+  not exist on the service yet, so the 50.9 KiB/source is measured on the
+  pre-release FILE and the rate is measured on DR3 photometry. What M7 removes
+  is the MODEL ambiguity (bytes vs sources), which was the wider half of M6's
+  band; what remains is archive weather on the day, which is bracketed above
+  and cannot be measured before the day.

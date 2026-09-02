@@ -1,0 +1,113 @@
+==============================================================================
+M9 TASK 3 -- AN EXTERNAL REFERENCE FOR a0
+==============================================================================
+  the mass function goes as a0^3; M8 calibrated P and e and said so.
+  Reference: SB9 (Pourbaix et al. 2004, A&A 424, 727) K1, P, e -> a1 sin i,
+  against Gaia's Thiele-Innes a0 and i and the solution's own parallax.
+  The test is ONE-SIDED: a luminous secondary can only make a0 < a1.
+  DR3 NSS rows on disk: 169227
+  SB9 positional matches within 2.0": 169
+  same-orbit gate |ln(P_Gaia/P_SB9)| < 0.05: 138 pass, 31 fail
+  finite-and-positive gate on everything in eq.[1] and eq.[2]: 105 pass of 138
+  -> 105 systems from 169 SB9 matches
+
+  systems with both quantities computable: 105
+    astrometry-only (the external sample): 53
+    AstroSpectroSB1 (the circular control): 52
+    SB2 (both K1 and K2 published): 23
+
+  PRIMARY  astrometry-only Gaia vs ground-based RV
+    n = 53 systems
+    median R = a0 sin i / a1 sin i : 0.968  [0.858, 0.991] (95% bootstrap)
+    quartiles of R: 0.695 / 0.968 / 1.028
+    ONE-SIDED OVER-RUN, R > 1 by more than k sigma (n = 53 with a sigma):
+        k=1: 5.7% (expect <= 15.87%)
+        k=2: 1.9% (expect <= 2.28%)
+        k=3: 1.9% (expect <= 0.14%)
+    fraction with R > 1 at all: 32.1 % (a luminous secondary can only push R DOWN)
+
+  CONTROL  AstroSpectroSB1 (joint fit -- NOT external)
+    n = 52 systems
+    median R = a0 sin i / a1 sin i : 0.964  [0.917, 0.999] (95% bootstrap)
+    quartiles of R: 0.838 / 0.964 / 1.015
+    ONE-SIDED OVER-RUN, R > 1 by more than k sigma (n = 52 with a sigma):
+        k=1: 5.8% (expect <= 15.87%)
+        k=2: 1.9% (expect <= 2.28%)
+        k=3: 0.0% (expect <= 0.14%)
+    fraction with R > 1 at all: 36.5 % (a luminous secondary can only push R DOWN)
+
+  wrote out/m9_a0_sb9.csv
+
+==============================================================================
+ROUTES 2 and 3 -- catalogues that publish a0 ITSELF
+==============================================================================
+
+  ROUTE 2 -- Hipparcos DMSA Part O (ESA 1997), VizieR I/239/hip_dm_o
+    235 photocentric orbits; 231 with a published e_a0
+    positional matches to DR3 NSS orbital solutions (2"): 27
+    same-orbit gate + a0>0 + published e_a0: 18 pass, 8 fail
+
+  ROUTE 3 -- ORB6 grade 9 = 'astrometric binary' (USNO, Hartkopf+2001)
+    4051 orbits parsed; grade-9 (photocentric): 551; with a0 in mas or arcsec and an error: 495
+    positional matches to DR3 NSS orbital solutions (2"): 51
+    same-orbit gate: 34 pass, 17 fail
+    ORB6 grade-9 provenance of the matched rows: {'Ren2013': 11, 'HIP1997d': 11, 'Pbx2000a': 4, 'SaJ2011': 2, 'Gln2007': 2, 'Jnc2005': 2, 'Trr2011': 1, 'SaJ2013b': 1}
+
+  sources appearing in BOTH routes: 16 (of 52 rows, 36 unique sources)
+    -> the two catalogues are NOT independent of each other: most ORB6
+       grade-9 entries cite HIP1997d, i.e. the DMSA/O numbers themselves.
+  union, best external error per source: 36 systems
+
+  --------------------------------------------------------------------------
+  THE COMPARISON: DR3 NSS Thiele-Innes a0 vs an external photocentric a0
+    n = 36 systems
+    Gaia   sigma(a0)/a0 : median 4.7 %
+    extern sigma(a0)/a0 : median 13.6 %
+    -> the reference's error is 2.9x the error it would calibrate.
+    median a0_Gaia / a0_external : 0.924  [0.882, 1.041]
+    inverse-variance weighted ratio : 0.979 +/- 0.004 (5.6 sigma from 1)
+    median |z| 0.74  ->  implied inflation 1.10  (1.00 = errors honest)
+    within 1 sigma 21/36 (58 %, expect 68)
+
+    IS THE DEFICIT GAIA'S?  Two alternatives, both of which predict a0_Gaia < a0_ext
+      (i)  near-threshold external detections are biased HIGH (Eddington).
+           Prediction: the deficit shrinks as the external S/N rises.
+           low-S/N half  median ratio 0.917 (n=18)
+           high-S/N half median ratio 0.946 (n=18)
+           Spearman rho(S/N_ext, ratio) = +0.241, p = 0.156 -- the sign is
+           as predicted, the significance is not there at this n.
+      (ii) the photocentre is BAND-DEPENDENT.  A red secondary contributes
+           more light in G than in Hp, so beta is larger in G and a0 is
+           GENUINELY smaller in G.  This is astrophysics, not error.
+      Neither can be separated from a real Gaia a0 offset with 36 systems,
+      and the sign of all three is the same.  The deficit is therefore NOT
+      attributed to Gaia here.
+
+    POWER OF THIS ROUTE, measured rather than asserted.
+      If Gaia's a0 error were understated by a factor f, would this
+      sample see it?  Simulate: draw n = 36 systems with the OBSERVED
+      sigma ratio, inflate Gaia's error by f, and ask how often the
+      median |z| exceeds its own f=1 95th percentile.
+        f = 1.4  ->  power 10 %
+        f = 2.0  ->  power 21 %
+        f = 3.0  ->  power 56 %
+        f = 4.0  ->  power 84 %
+  wrote out/m9_a0_photocentric.csv
+
+  EB26 joint astrometry+RV a0 vs the DR3 NSS Thiele-Innes a0
+    (El-Badry et al. 2026, tab:astrometric-joint-dark-orbits; the printed
+     preview rows -- the complete table is machine-readable but the arXiv
+     source carries only these)
+    n = 8
+      1522897482203494784  Gaia a0 2.543   EB26 a0 2.559 +/- 0.005   ratio 0.994   z -0.2
+      4373465352415301632  Gaia a0 2.978   EB26 a0 2.630 +/- 0.014   ratio 1.132   z +1.6
+      2995961897685517312  Gaia a0 1.204   EB26 a0 1.228 +/- 0.014   ratio 0.980   z -0.4
+       220012968211559296  Gaia a0 1.533   EB26 a0 1.592 +/- 0.014   ratio 0.963   z -0.6
+      2080945469200565248  Gaia a0 0.697   EB26 a0 0.663 +/- 0.005   ratio 1.051   z +0.1
+      6481502062263141504  Gaia a0 0.950   EB26 a0 0.949 +/- 0.012   ratio 1.001   z +0.0
+      5820382041374661888  Gaia a0 0.926   EB26 a0 0.901 +/- 0.009   ratio 1.028   z +0.4
+      2919995917769953408  Gaia a0 2.050   EB26 a0 2.143 +/- 0.036   ratio 0.957   z -1.1
+    median ratio 0.9975, median |z| 0.40, 6/8 within 1 sigma
+  wrote out/m9_a0_eb26.csv
+
+  1.8 s

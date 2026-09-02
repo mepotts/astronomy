@@ -1,0 +1,39 @@
+{
+ "psr": "J1643-1224",
+ "params": [
+  "J1643-1224_annual_idx",
+  "J1643-1224_annual_log10_Amp",
+  "J1643-1224_annual_phase",
+  "J1643-1224_chrom_gp_gamma",
+  "J1643-1224_chrom_gp_idx",
+  "J1643-1224_chrom_gp_log10_A",
+  "J1643-1224_dm_gp_gamma",
+  "J1643-1224_dm_gp_log10_A",
+  "J1643-1224_efac",
+  "J1643-1224_gw13_log10_A",
+  "J1643-1224_log10_ecorr",
+  "J1643-1224_log10_tnequad",
+  "J1643-1224_sw_gp_gamma",
+  "J1643-1224_sw_gp_log10_A",
+  "n_earth"
+ ],
+ "lnl_published": 36398.02557335624,
+ "lnl_best": 36402.146842749346,
+ "lnl_best_recorded": 36402.146843,
+ "lnl_median": 36401.9482820154,
+ "dlnl_best_minus_pub": 4.121269393108378,
+ "dlnl_median_minus_pub": 3.922708659163618,
+ "n_agree": 14,
+ "n_compared": 15,
+ "misses": [
+  "J1643-1224_sw_gp_gamma"
+ ],
+ "miss_tightness": {
+  "J1643-1224_sw_gp_gamma": {
+   "pub_ci_width": 4.89,
+   "prior_width": 7,
+   "frac": 0.6985714285714285,
+   "claims_measurement": false
+  }
+ }
+}

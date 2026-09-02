@@ -1,0 +1,74 @@
+{
+  "n_survivors": 1545,
+  "verdicts": {
+    "CONTAMINATION-CONSISTENT": 719,
+    "INDETERMINATE": 584,
+    "SUB-THRESHOLD": 242
+  },
+  "still_clean_unreachable": true,
+  "still_clean_reason": "V5 retired (M5 PR-5, M4 Sec 5.3): the archival centroid is wrong in direction as well as magnitude near the floor, so STILL-CLEAN's positive-evidence requirement cannot be met",
+  "by_latitude": [
+    {
+      "band": "0-5",
+      "n": 670,
+      "CONTAMINATION-CONSISTENT": 324,
+      "INDETERMINATE": 290,
+      "SUB-THRESHOLD": 56,
+      "nebular": 586
+    },
+    {
+      "band": "5-10",
+      "n": 217,
+      "CONTAMINATION-CONSISTENT": 116,
+      "INDETERMINATE": 82,
+      "SUB-THRESHOLD": 19,
+      "nebular": 133
+    },
+    {
+      "band": "10-20",
+      "n": 335,
+      "CONTAMINATION-CONSISTENT": 150,
+      "INDETERMINATE": 106,
+      "SUB-THRESHOLD": 79,
+      "nebular": 200
+    },
+    {
+      "band": "20-30",
+      "n": 100,
+      "CONTAMINATION-CONSISTENT": 44,
+      "INDETERMINATE": 31,
+      "SUB-THRESHOLD": 25,
+      "nebular": 37
+    },
+    {
+      "band": "30-50",
+      "n": 133,
+      "CONTAMINATION-CONSISTENT": 48,
+      "INDETERMINATE": 47,
+      "SUB-THRESHOLD": 38,
+      "nebular": 4
+    },
+    {
+      "band": "50-90",
+      "n": 90,
+      "CONTAMINATION-CONSISTENT": 37,
+      "INDETERMINATE": 28,
+      "SUB-THRESHOLD": 25,
+      "nebular": 0
+    }
+  ],
+  "verdict_x_nebular": {
+    "CONTAMINATION-CONSISTENT": {
+      "False": 246,
+      "True": 473
+    },
+    "INDETERMINATE": {
+      "False": 188,
+      "True": 396
+    },
+    "SUB-THRESHOLD": {
+      "False": 151,
+      "True": 91
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "radius_as": 60.0,
+  "definition": "AllWISE sources within 60 arcsec with a >=3.5-sigma W4 detection, W4 within 1 mag of the target or brighter, and 2.84 < W3-W4 < 3.25 (Suazo et al. 2024 Sec 3.1's own colour band)",
+  "caveat": "this counts SOURCES, not galaxies -- it does not separate background galaxies from Galactic dusty stars, so it is an UPPER BOUND on the interloper density, not a measurement of the galaxy density Suazo et al. quote",
+  "v4_global_density_deg2": 4.5692612968006285,
+  "v4_expected_total": 0.018075217448952352,
+  "local_expected_total": 6.728632328319883,
+  "bands": [
+    {
+      "band": "0-5",
+      "n": 670,
+      "rho_suazo_colour_deg2": 1830.0443008656143,
+      "p_interloper_3p25as": 0.004674725451361494,
+      "expected": 3.1320660524122013
+    },
+    {
+      "band": "5-10",
+      "n": 217,
+      "rho_suazo_colour_deg2": 1837.6895180232855,
+      "p_interloper_3p25as": 0.004694208737134109,
+      "expected": 1.0186432959581015
+    },
+    {
+      "band": "10-20",
+      "n": 335,
+      "rho_suazo_colour_deg2": 2363.6646951367093,
+      "p_interloper_3p25as": 0.0060337033437907195,
+      "expected": 2.021290620169891
+    },
+    {
+      "band": "20-30",
+      "n": 100,
+      "rho_suazo_colour_deg2": 1535.5268909506062,
+      "p_interloper_3p25as": 0.003923878612664633,
+      "expected": 0.3923878612664633
+    },
+    {
+      "band": "30-50",
+      "n": 133,
+      "rho_suazo_colour_deg2": 310.1726409730772,
+      "p_interloper_3p25as": 0.0007938576604732406,
+      "expected": 0.105583068842941
+    },
+    {
+      "band": "50-90",
+      "n": 90,
+      "rho_suazo_colour_deg2": 254.64790894703253,
+      "p_interloper_3p25as": 0.000651793663003164,
+      "expected": 0.05866142967028476
+    }
+  ]
+}

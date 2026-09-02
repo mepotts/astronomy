@@ -1,0 +1,202 @@
+{
+  "_area_deg2": 41252.96,
+  "_sky_fraction": 1.0,
+  "_n_w34det": 439923,
+  "parent": {
+    "n_w34det_pre_cc": 439923,
+    "n_w34det_post_cc": 328937,
+    "skywide_pre_cc": 439923.0,
+    "skywide_post_cc": 328937.0,
+    "ratio_pre_cc": 1.374759375,
+    "ratio_post_cc": 1.027928125,
+    "cc_pass_rate": 0.7477149410237701,
+    "sec5_200k_ccclean": 143507.0,
+    "sec5_200k_nocc": 202188.0
+  },
+  "stage_alignment": {
+    "paper_cnn_rejects_pct": 49.01716623676955,
+    "paper_extras_reject_pct": 10.380321004884852,
+    "ours_extras_reject_pct": 11.153278515707358,
+    "ours_per_criterion": {
+      "ruwe>=1.4": 401,
+      "ext_flg!=0": 513,
+      "classprob<=0.9": 207,
+      "gvar>=2 (in-sample ref)": 290
+    },
+    "n_rmse": 9486,
+    "paper_ruwe_pct": 4.919748778785764,
+    "paper_each_other_pct": 1.8201907420330308
+  },
+  "gvar_reference_offset": {
+    "n_calibrators": 7,
+    "median_ratio": 1.2096926108831259,
+    "sd": 0.09575215646374276,
+    "min": 1.0547750815976815,
+    "max": 1.324089836459158,
+    "our_threshold_matching_paper": 2.4193852217662517
+  },
+  "gvar_variants": {
+    "R1 in-sample W3W4-detected, 0.2 mag (M3's)": {
+      "gvar_rejected": 289,
+      "gvar_rejected_pct": 3.046594982078853,
+      "extras_pass": 8431,
+      "previsual": 1546,
+      "ratio_vs_paper": 4.201086956521739
+    },
+    "R2 cc-clean subsample, 0.2 mag": {
+      "gvar_rejected": 290,
+      "gvar_rejected_pct": 3.057136833227915,
+      "extras_pass": 8430,
+      "previsual": 1545,
+      "ratio_vs_paper": 4.198369565217392
+    },
+    "R3 full-10-band subsample, 0.2 mag": {
+      "gvar_rejected": 290,
+      "gvar_rejected_pct": 3.057136833227915,
+      "extras_pass": 8430,
+      "previsual": 1545,
+      "ratio_vs_paper": 4.198369565217392
+    },
+    "R4 in-sample, 0.1 mag bins": {
+      "gvar_rejected": 288,
+      "gvar_rejected_pct": 3.0360531309297913,
+      "extras_pass": 8430,
+      "previsual": 1545,
+      "ratio_vs_paper": 4.198369565217392
+    },
+    "R5 in-sample, 0.5 mag bins": {
+      "gvar_rejected": 291,
+      "gvar_rejected_pct": 3.0676786843769768,
+      "extras_pass": 8431,
+      "previsual": 1545,
+      "ratio_vs_paper": 4.198369565217392
+    },
+    "R6 in-sample, 1.0 mag bins": {
+      "gvar_rejected": 291,
+      "gvar_rejected_pct": 3.0676786843769768,
+      "extras_pass": 8427,
+      "previsual": 1545,
+      "ratio_vs_paper": 4.198369565217392
+    },
+    "R8 in-sample, threshold rescaled to the paper's published Gvar": {
+      "gvar_rejected": 228,
+      "gvar_rejected_pct": 2.4035420619860846,
+      "extras_pass": 8441,
+      "previsual": 1549,
+      "ratio_vs_paper": 4.209239130434782
+    }
+  },
+  "gvar_bound": {
+    "previsual_gvar_disabled": 1557,
+    "ratio_gvar_disabled": 4.230978260869565
+  },
+  "aligned_funnel": {
+    "parent_ratio": 1.027928125,
+    "rmse_ratio": 0.8437249844347594,
+    "extras_ratio_noCNN": 0.8364479714940749,
+    "snr_ratio_noCNN": 2.1404477762008436,
+    "snr_ratio_withCNN": 4.198369565217392,
+    "cnn_factor": 1.9614445219818561
+  },
+  "snr_by_mg": {
+    "6..8": {
+      "n": 13,
+      "n_pass": 13,
+      "rate": 1.0
+    },
+    "8..10": {
+      "n": 829,
+      "n_pass": 270,
+      "rate": 0.32569360675512665
+    },
+    "10..12": {
+      "n": 5642,
+      "n_pass": 998,
+      "rate": 0.17688762850053172
+    },
+    "12..99": {
+      "n": 1944,
+      "n_pass": 264,
+      "rate": 0.13580246913580246
+    }
+  },
+  "snr_rate_all": 0.18331751305173233,
+  "snr_rate_paper": 0.07163714230095386,
+  "snr_rate_narrow_window": 0.18331751305173233,
+  "snr_by_glat": {
+    "0-5": {
+      "n": 1576,
+      "n_pass": 670,
+      "rate": 0.4251269035532995,
+      "ratio_vs_paper": 5.934448107481793
+    },
+    "5-10": {
+      "n": 904,
+      "n_pass": 217,
+      "rate": 0.24004424778761063,
+      "ratio_vs_paper": 3.3508350567525977
+    },
+    "10-20": {
+      "n": 1730,
+      "n_pass": 335,
+      "rate": 0.1936416184971098,
+      "ratio_vs_paper": 2.7030896582055792
+    },
+    "20-30": {
+      "n": 1123,
+      "n_pass": 100,
+      "rate": 0.08904719501335707,
+      "ratio_vs_paper": 1.243031089085911
+    },
+    "30-50": {
+      "n": 1785,
+      "n_pass": 133,
+      "rate": 0.07450980392156863,
+      "ratio_vs_paper": 1.0401001705029838
+    },
+    "50-90": {
+      "n": 1310,
+      "n_pass": 90,
+      "rate": 0.06870229007633588,
+      "ratio_vs_paper": 0.9590316959840691
+    }
+  },
+  "yield_by_glat": {
+    "0-5": {
+      "area_deg2": 3595.432369339432,
+      "n": 670,
+      "per1000": 186.34754632391963,
+      "ratio": 20.88964096358371
+    },
+    "5-10": {
+      "area_deg2": 3568.068958027338,
+      "n": 217,
+      "per1000": 60.817210248081025,
+      "ratio": 6.817635711075209
+    },
+    "10-20": {
+      "area_deg2": 6945.841964441308,
+      "n": 335,
+      "per1000": 48.23029399675463,
+      "ratio": 5.406636926729236
+    },
+    "20-30": {
+      "area_deg2": 6517.136708191919,
+      "n": 100,
+      "per1000": 15.34416178109351,
+      "ratio": 1.72008720703527
+    },
+    "30-50": {
+      "area_deg2": 10975.120770209478,
+      "n": 133,
+      "per1000": 12.118317673643375,
+      "ratio": 1.3584686800491934
+    },
+    "50-90": {
+      "area_deg2": 9651.359229790525,
+      "n": 90,
+      "per1000": 9.325111402153599,
+      "ratio": 1.0453490425776804
+    }
+  }
+}

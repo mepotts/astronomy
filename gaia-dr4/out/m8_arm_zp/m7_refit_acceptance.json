@@ -1,0 +1,62 @@
+{
+  "acceptance_pass": true,
+  "reference": {
+    "P_yr": 11.454,
+    "e": 0.7278,
+    "m2": 34.68
+  },
+  "tolerance": {
+    "P_yr": 0.005,
+    "e": 0.0005,
+    "m2": 0.005
+  },
+  "published": {
+    "P_yr": 11.6,
+    "e": 0.729,
+    "m2": 32.7,
+    "m2_err": 0.82
+  },
+  "arm_version": "orbital_refit_arm 1.0 (M7, 2026-08-23)",
+  "produced_utc": "2026-08-24T16:26:11Z",
+  "row": {
+    "refit_status": "OK",
+    "refit_method": "kepmodel_spleaf_astro",
+    "refit_code_version": "orbital_refit_arm 1.0 (M7, 2026-08-23)",
+    "refit_n_ccd": 558,
+    "refit_rms_single_mas": 6.605128,
+    "refit_peak_period_d": 1667.222463,
+    "refit_peak_fap": 0.0,
+    "refit_period_d": 4183.679384,
+    "refit_period_err_d": 72.221447,
+    "refit_ecc": 0.72781609,
+    "refit_ecc_err": 0.00353983,
+    "refit_a0_mas": 27.11004173,
+    "refit_a0_err_mas": 0.3675281,
+    "refit_inc_deg": 110.545595,
+    "refit_omega_deg": 78.219406,
+    "refit_bigomega_deg": 136.360346,
+    "refit_tp_d": 241.867519,
+    "refit_parallax_mas": 1.65979745,
+    "refit_parallax_err_mas": 0.00652344,
+    "refit_pmra_masyr": -28.343481,
+    "refit_pmdec_masyr": -155.170423,
+    "refit_mass_function_msun": 33.21278854,
+    "refit_m1_msun": 0.76,
+    "refit_m1_sigma_msun": 0.05,
+    "refit_m1_source": "literature:esa_gaia-bhthree_notebook_m1_0.76",
+    "refit_m2_msun": 34.68425,
+    "refit_m2_p05": 33.897672,
+    "refit_m2_p16": 34.204332,
+    "refit_m2_p50": 34.683665,
+    "refit_m2_p84": 35.168537,
+    "refit_m2_p95": 35.482914,
+    "refit_m2_posterior_n": 20000,
+    "refit_posterior_method": "laplace_mvn_from_loglike_hessian x M1 prior; mass function solved per draw",
+    "refit_seconds": 0.485,
+    "refit_notes": "mass function 68% CI 32.7451-33.6875 Msun; a0^3/(P_yr^2 plx^3) shortcut gives 33.2115 (3.8e-05 rel.); 0/20000 draws rejected as unphysical; 0 negative Hessian eigenvalue(s) clipped",
+    "source_id": 4318465066420528000,
+    "_name": "Gaia BH3",
+    "_dr3_source_id": 4318465066420528000,
+    "_dr3_sep_arcsec": 0.225167711918379
+  }
+}

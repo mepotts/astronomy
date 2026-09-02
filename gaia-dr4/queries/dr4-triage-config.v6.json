@@ -1,0 +1,395 @@
+{
+  "_comment": "v6 (M8, 2026-08-24). Selection, screen, probability method and membership IDENTICAL to v2/v3/v4/v5 (949 rows + the 32-row retrieval bin) -- M8 changed nothing about the candidate list. What v6 adds is two decisions that change every number the pipeline publishes: the Lindegren+2021 parallax zero-point is APPLIED before the mass function, and the formal errors carry a MEASURED x1.4 inflation factor. Both are measured, both are sourced, and both supersede a caveat M7 could only name.",
+  "solution_types_dr4": [
+    "Orbital",
+    "OrbitalPoorlyConstrained",
+    "OrbitalAlternative",
+    "AstroSpectroSB1",
+    "AstroSpectroSB2"
+  ],
+  "period_days": [
+    10.0,
+    2200.0
+  ],
+  "period_note": "DR4 baseline ~66 mo = 2011 d; DR3 validation used 1500 d. BH2 (P=1352 d) proves P<1000 d is too tight.",
+  "nss_parallax_over_error_min": 3.0,
+  "halbwachs_vetting": true,
+  "sigma_ti2_max": 36.0,
+  "m1_policy": [
+    "nss_masses (DR4) / binary_masses (DR3) IsocLum",
+    "photometric EEM MS (CMD cut, extinction-corrected per extinction_tier -- v2 change)",
+    "evolved bracket 0.8-2.6 Msun, worst-case class"
+  ],
+  "boundary": "Mamajek/EEM A_tr curve x inflate",
+  "boundary_inflate": 1.15,
+  "significance_min": 10.0,
+  "gof_cut": "F2 < 6 if G < 13 else F2 < 4 (El-Badry 2026)",
+  "alias_flag_days": [
+    330.0,
+    400.0
+  ],
+  "ruwe_cut": "NONE -- high RUWE is the orbit signature (BH1 7.6, BH2 9.2)",
+  "measured_on_dr3": {
+    "n_class3_dr3": 951,
+    "eb26_completeness": 0.929,
+    "eb26_spurious_passrate": 0.304,
+    "n_class3_dr3_v2": 949,
+    "n_priority_pr999": 292,
+    "dust_moved_out_lower": 8,
+    "dust_moved_in_lower": 6,
+    "m4_eb26_xray_confirmed_detected": "0/16",
+    "m4_eb26_xray_spurious_detected": "2/13",
+    "m4_eb26_xray_fisher_p": 0.19,
+    "m4_dust_ambiguous_resolved_alive": 9,
+    "m4_dust_ambiguous_south_unresolved": 4,
+    "m4_membership_moved": 0,
+    "m5_dust_ambiguous_alive_all_sky": 12,
+    "m5_dust_ambiguous_dead": 0,
+    "m5_dust_sigma_fragile": 1,
+    "m5_dust_still_unresolved": 0,
+    "m5_activity_metrics_tested": 10,
+    "m5_activity_metrics_surviving_holm": 2,
+    "m5_espcs_coverage_of_eb26": "7/76 (3 confirmed / 1 spurious)",
+    "m5_damp_g_auc_spurious_over_confirmed": 0.659,
+    "m5_damp_g_min_detectable_auc_at_80pc_power": 0.725,
+    "m5_astrometric_gof_al_auc": 0.254,
+    "m5_membership_moved": 0,
+    "m6_verdict_records_eb26": 76,
+    "m6_verdict_records_harness_prerelease": 12,
+    "m6_harness_prerelease_kept": 3,
+    "m6_harness_prerelease_demoted": 9,
+    "m6_refactor_byte_identical_artifacts": 5,
+    "m6_fit_seconds_per_source": 0.0356,
+    "m6_projected_sources_per_hour_band": [
+      854.0,
+      124.8
+    ],
+    "m6_projected_hours_for_983_queue": [
+      1.15,
+      7.88
+    ],
+    "m6_astrom_quiet_decision": "CARRY",
+    "m6_membership_moved": 0,
+    "m8_sb9_inflation_factor": 1.4,
+    "m8_queue_median_zeropoint_mass_shift": -0.0195
+  },
+  "followup_gate_not_selection": "G<15 (spectrograph feasibility)",
+  "version": 6,
+  "supersedes": "dr4-triage-config.v5.json (v5, M6)",
+  "probability_method": {
+    "covariance": "nss_two_body_orbit corr_vec via nsstools 0.1.12 (PyPI) NssSource.covmat(); 6x6 block (parallax, A,B,F,G, period)",
+    "mc_draws": 10000,
+    "mc_seed": 20261202,
+    "priority_tier": "p_class3_corr >= 0.999",
+    "note": "Pr threshold is a RANKING tier, not a cut: measured on EB26 it only removes confirmed systems (M3 doc sec. 1)."
+  },
+  "extinction_tier": {
+    "d_le_1250pc": "Edenhofer+23 3D (mean, integrated; all-sky)",
+    "d_gt_1250pc": "bracketed: Edenhofer-to-edge (lower) vs SFD full column x SF11 2.742 (upper); ARBITRATED by a far 3D map where one covers the sightline -- Bayestar19 for dec > -30 (M4) and Vergely+2022 everywhere inside its 6x6x0.8 kpc box (M5, all-sky, no declination edge). Best estimate = max(map at the star's distance, Edenhofer floor). Rows whose class flips inside the V22 error cube's +-1 sigma are flagged, not frozen.",
+    "bands": "ZGR23 curve at Gaia EDR3 pivots: R_G=2.2732, R_BP=3.0362, R_RP=1.6480, R_V=2.7791",
+    "applies_to": "photometric-M1 tiers only (binary_masses/nss_masses M1 is DPAC's, unchanged)",
+    "bayestar19_chain": "1 B19 unit = E(gP1-rP1) 0.901 mag (Green+19 ApJ 887,93, src line 399 + extinction-vector table) = 1.000 x E(B-V)_SFD in the same colour (SF11 ApJ 737,103 Table 6 R_V=3.1: PS1 g 3.172, r 2.271); A_V = 2.742 x E(B-V) (SF11 Table 6 Landolt V); Gaia bands via ZGR23 ratios (house). Cross-check chain: EB26 A_G=2.66E, E(BP-RP)=1.33E (arXiv:2608.06453 src lines 171-172) -- verdicts agree on all arbitrated rows (m4_bayestar_dozen.csv). Data: bayestar2019.h5 Dataverse doi:10.7910/DVN/2EJ9TX, md5 ab815d2fd3068d1b81a1bd61fb18a722.",
+    "vergely2022_chain": "CDS J/A+A/664/A174 (Vergely, Lallement & Cox 2022, A&A 664 A174), anonymous FTP; FITS cubes self-describe UNIT='A0(550nm)/parsec', STEP/RESOL 10/25 pc (601x601x81, 6x6x0.8 kpc) and 20/50 pc (501x501x41, 10x10x0.8 kpc) with a matching density-error cube; Sun at SUN_POS*-0.5 in 0-based pixels; X to the Galactic Centre, Y along rotation, Z to the NGP (ReadMe Description). The quantity is monochromatic A0 at 550 nm (arXiv:2205.09087 src line 162). Into the house scale by ONE link with the curve the other tiers already use: E(ZGR23) = A0(550) / R_ZGR23(550), R_ZGR23(550) = 2.6798. Cross-check chain (EB26 A_G=2.66 E(B-V) via A_V=2.742 E(B-V)) run in parallel and agreeing on every arbitrated row. Reader validated by a pre-registered geometry gate (declared axis convention beats all three corruptions at Spearman rho 0.966 vs 0.38-0.41 against Edenhofer23; median E_V22/E_Eden 1.010; 025pc/050pc cubes agree to 0.977) -- out/m5_vergely_geometry_gate.txt.",
+    "dust_ambiguous_status": "13 rows: 12 resolved class-III alive, 0 dead, 1 sigma-fragile (flagged flag_dust_sigma_fragile), 0 outside every map. 0 membership movements -- the v2 list stands."
+  },
+  "xray_policy": {
+    "status": "caution tag, NOT a selection flag and NOT a cut",
+    "eb26_test_2026-08-18": "in eROSITA-DE footprint: 2/13 EB26-spurious vs 0/16 EB26-confirmed detected (eRASS:3); Fisher two-sided p=0.19 -- direction consistent with activity->spurious-orbit but UNDERPOWERED (80%-power detectable spurious rate at this n: >= 0.40); both detections coronal (log fx/fopt -2.4/-3.3, soft HR), no hard-band, no accretor",
+    "as_a_cut_rejected": "would drop in-list rows incl. 0 EB26-confirmed / 1 EB26-spurious / the rest unverdicted NS-range active-binary candidates -- no measured purity gain",
+    "day1": "run the eROSITA cross on the new list (runbook Phase 3 step 4); treat matches as epoch-vet-first cases"
+  },
+  "activity_policy": {
+    "status": "NO ACTIVITY flag enters the config. The two activity families -- chromospheric (ESP-CS) and photometric variability -- did not deliver one: A is NOT TESTABLE at DR3 coverage and B is a measured underpowered null. What discriminates is family C, ASTROMETRIC QUALITY, which is not activity; it contributes the single caution flag below.",
+    "eb26_all_sky_test_2026-08-18": "Gaia DR3 activity / variability / astrometric-quality indicators vs El-Badry+2026 verdicts, ALL 65 verdicted targets, 76/76 coverage -- no footprint penalty (M4's X-ray axis could see only 29 of 65). Three separate families, Holm-Bonferroni within each, alpha=0.05; rules pre-registered in scripts/m5_activity_discriminator.py before the split was computed. Negative control phot_g_n_obs: clean.",
+    "per_family": {
+      "B (photometric variability)": "best metric B1 dAmp_G p=0.0352 (Holm 0.1409), effect 0.659, n 42 confirmed / 23 spurious; smallest effect detectable at 80% power 0.725",
+      "C (astrometric/imaging quality -- NOT activity)": "best metric C5 astrometric_gof_al p=0.0011 (Holm 0.0067), effect 0.254, n 42 confirmed / 23 spurious; smallest effect detectable at 80% power 0.725",
+      "NEGATIVE CONTROL (must not discriminate)": "best metric N1 phot_g_n_obs p=0.1440 (Holm 0.1440), effect 0.389, n 42 confirmed / 23 spurious; smallest effect detectable at 80% power 0.725"
+    },
+    "metrics_surviving_holm": [
+      "C1 ruwe",
+      "C5 astrometric_gof_al"
+    ],
+    "family_A_coverage": "activityindex_espcs exists for 7 of 76 EB26 targets (3 confirmed / 1 spurious) and 44 of the 1,199 candidate + retrieval + EB26 sources -- M4's recommendation assumed this axis was all-sky; it is not. NOT TESTABLE, not null.",
+    "family_B_direction": "spurious solutions are the MORE photometrically variable side (dAmp_G AUC 0.659), the same direction as M4's X-ray result -- two independent activity axes agreeing in direction and neither reaching significance.",
+    "day1": "recompute these indicators for the day's list -- one gaia_source column set, no telescope -- and re-run the test once the epoch-vet loop has produced day-one ground truth (the runbook's first-24h bulletin)."
+  },
+  "astrometric_quality_flag": {
+    "flag": "flag_astrom_quiet",
+    "status": "caution tag / ranking tiebreaker. NEVER a cut, NEVER a selection change, NEVER an independent line of evidence quoted alongside `significance` (see redundancy below).",
+    "definition": "astrometric_gof_al (gaia_source, the 5-parameter single-star fit's goodness-of-fit) below the 25th percentile of the day's OWN main candidate bin. No threshold is fitted to the EB26 verdicts; the cut is a self-calibrating quartile.",
+    "evidence": "EB26 all-sky test: astrometric_gof_al Mann-Whitney p = 0.0011 (Holm within family C, m=6: 0.0067), AUC(spurious > confirmed) = 0.254 [95 % boot 0.136-0.386], r_rb = -0.493; medians 86.7 confirmed vs 47.1 spurious. Pre-registered G-stratified guard: same direction in both halves (bright p 0.017, faint p 0.006). ruwe also survives Holm (p 0.0083 -> 0.041) in the same direction but is not frozen -- one flag, the stronger one.",
+    "redundancy_caveat": "POST-HOC: in a logistic fit of P(spurious) on z(log gof_al) + z(log significance) + z(G) + z(log d) over the 65, `significance` dominates (beta -2.87, p 0.004) and gof_al retains only p = 0.048 (ruwe: 0.094). The flag is therefore largely a restatement of the significance tier config v2 already ranks on. It breaks ties; it does not add an independent axis.",
+    "direction_note": "the flag marks the QUIET tail: EB26-CONFIRMED compact-companion hosts are the astrometrically NOISIER single-star fits, because a real massive dark companion makes a large photocentre orbit. Do not read a high RUWE as a spurious-risk signal -- the sign is the other way. This is the measured version of what `ruwe_cut` has asserted since v1 ('NONE -- high RUWE is the orbit signature'): now quantified against ground truth, r_rb -0.49 for gof_al, -0.40 for ruwe.",
+    "in_list_yield_caveat": "MEASURED, and it is the reason this is a tiebreaker and nothing more: of the 46 EB26-verdicted rows that actually survive the frozen screen and sit in the candidate list, the flag marks 2 and catches 0 of the 7 in-list EB26-spurious. The discrimination was measured across all 65 verdicted targets, most of which the screen already removes; on the surviving population it has no measured power. Do not present it as a purity gain.",
+    "m6_decision": {
+      "decision": "CARRY",
+      "test": "scripts/m6_astrom_quiet_decision.py; out/m6_astrom_quiet_decision.txt",
+      "what_m6_added": "M5 measured astrometric_gof_al across all 65 verdicted EB26 targets. The flag does not operate on those 65 -- it operates on the day-one queue, and the frozen screen removes most of the 65 before the flag is ever computed. M6 re-asked the question on the flag's OWN operating population (the verdicted rows that are IN the queue) and computed the power of that test exactly.",
+      "in_list_numbers": {
+        "astrometric_gof_al|all-65": {
+          "n_conf": 42,
+          "n_spur": 23,
+          "p": 0.0011,
+          "auc": 0.254,
+          "auc_ci": [
+            0.136,
+            0.388
+          ],
+          "min_detectable_auc": 0.725
+        },
+        "astrometric_gof_al|in-list": {
+          "n_conf": 40,
+          "n_spur": 8,
+          "p": 0.1742,
+          "auc": 0.344,
+          "auc_ci": [
+            0.172,
+            0.541
+          ],
+          "min_detectable_auc": 0.8
+        },
+        "ruwe|all-65": {
+          "n_conf": 42,
+          "n_spur": 23,
+          "p": 0.0083,
+          "auc": 0.3,
+          "auc_ci": [
+            0.161,
+            0.448
+          ],
+          "min_detectable_auc": 0.725
+        },
+        "ruwe|in-list": {
+          "n_conf": 40,
+          "n_spur": 8,
+          "p": 0.6346,
+          "auc": 0.444,
+          "auc_ci": [
+            0.219,
+            0.678
+          ],
+          "min_detectable_auc": 0.8
+        }
+      },
+      "why_0_of_7_is_not_evidence": "at the flag's measured in-list marking rate, the EXPECTED catch among the 7 in-list spurious rows is well below 1. Observing 0 is what a working flag and a dead flag both predict. The in-list test has no power; M5's '0 of 7' is a statement about the sample size, not about the flag.",
+      "december_decision_rule_preregistered": {
+        "KEEP": "the in-list continuous test reaches p < 0.05 two-sided in the M5 direction (AUC < 0.5) AND the thresholded flag's in-list catch rate beats its marking rate at Fisher p < 0.05",
+        "REMOVE": "the in-list test is well powered (smallest detectable AUC <= 0.70) and the observed in-list AUC is consistent with 0.5",
+        "CARRY": "anything else -- the flag stays exactly as v4 froze it, tiebreaker only, both caveats attached"
+      },
+      "status_unchanged_from_v4": true
+    }
+  },
+  "verdict_schema": {
+    "schema_version": "day1_verdict.v1",
+    "definition": "schemas/day1_verdict_record.v1.json",
+    "code": "scripts/verdict_schema.py",
+    "store": "out/verdicts/*.csv (one file per producer)",
+    "producers": {
+      "elbadry2026": "the published follow-up table, scope compact_companion, basis rv_followup",
+      "epoch_vet_harness": "scripts/epoch_vet_harness.py, scope orbit_reality, basis epoch_astrometry_f2"
+    },
+    "verdict_vocabulary": [
+      "CONFIRMED",
+      "SPURIOUS",
+      "MARGINAL",
+      "UNKNOWN",
+      "NOT_CO",
+      "OTHER",
+      "INCONCLUSIVE",
+      "NO_DATA",
+      "ERROR"
+    ],
+    "scope_vocabulary": [
+      "compact_companion",
+      "orbit_reality"
+    ],
+    "scope_rule": "verdict_scope is MANDATORY and is the honest part of the schema. `compact_companion` answers 'is there a dark massive companion?'; `orbit_reality` answers 'does the published photocentre orbit have epoch-level support?'. A harness SPURIOUS and an EB26 SPURIOUS mean nearly the same thing; a harness CONFIRMED is WEAKER than an EB26 CONFIRMED (orbit real, companion nature unestablished). Pooling the scopes is therefore ASYMMETRIC. Any consumer that pools them must print the scope composition of both groups -- the M4 and M5 tests now do this automatically whenever the store carries more than one (source, scope) combination.",
+    "consumers_wired": [
+      "scripts/m4_eb26_erosita_test.py --verdicts ... --scopes ...",
+      "scripts/m5_activity_discriminator.py --verdicts ... --scopes ...",
+      "scripts/m6_astrom_quiet_decision.py --verdicts ..."
+    ],
+    "refactor_acceptance_2026-08-21": "all five frozen M4/M5 artifacts reproduce BYTE-IDENTICALLY through the store: m4_eb26_erosita_xmatch.csv, m4_eb26_discriminator_stats.txt, m5_activity_eb26_table.csv, m5_activity_metric_results.csv, m5_activity_discriminator_stats.txt."
+  },
+  "epoch_vet_policy": {
+    "harness": "scripts/epoch_vet_harness.py (epoch_vet_harness 1.0 (M6, 2026-08-21))",
+    "input": "the day-one queue (out/epoch_vet_day1_queue*.csv), in rank order",
+    "fetch": "Gaia DataLink, retrieval_type=EPOCH_ASTROMETRY, data_structure=RAW, BATCHED (one request serves `batch` sources; gaiasupdate's own from_gacs_datalink() sends one id per request and is deliberately not used). Epoch astrometry is DataLink-only -- there is no TAP join (M1 finding #1).",
+    "fit": "gaiasupdate 0.1.2 single-star fit (6p_constrained_colour, the DR4-like configuration)",
+    "day1_probe_REQUIRED": "MEASURED 2026-08-21: asking the live ESAC data server for retrieval_type='EPOCH_ASTROMETRY' returns HTTP 500 with the body 'Unknown retrieval type: EPOCH_ASTROMETRY' for BOTH RELEASE='Gaia DR4' and 'Gaia DR4_INT4' -- the service does not serve it yet, and astroquery 0.4.11 lists the type client-side so nothing catches it earlier. On 2026-12-02, probe one source through DataLink BEFORE starting the harness and read the BODY of any 500: a deterministic rejection is a wrong retrieval_type/release pair, not a flaky archive. The harness now fails fast on those markers instead of burning six backoffs (scripts/epoch_vet_harness.py _is_deterministic).",
+    "pre_registered_rules": {
+      "f2_gate": 5.0,
+      "min_transits": 50,
+      "RULE_1": "n_used < 50 -> INCONCLUSIVE (not a demotion)",
+      "RULE_2": "|f2| > 5.0 -> CONFIRMED (orbit_reality): epoch-level wobble present -> orbital refit",
+      "RULE_3": "|f2| <= 5.0 -> SPURIOUS (orbit_reality): no epoch support for the claimed photocentre orbit",
+      "RULE_4": "DataLink served nothing -> NO_DATA",
+      "RULE_5": "the fit raised -> ERROR with the exception text; never silently dropped",
+      "confidence": "r = |f2|/5.0; HIGH if r >= 2.0 or r <= 0.50; MEDIUM within a factor 2.0 of the gate; LOW if INCONCLUSIVE/NO_DATA/ERROR or n_used < 100"
+    },
+    "operational_contract": {
+      "resumable": "per-source epoch parquet cache (data/epoch_cache/<release>/) written atomically, plus an append-only verdict ledger; a session kill costs at most the batch in flight",
+      "politeness": "0.5 s between requests, 6 retries with exponential backoff, HTTP 429/503 Retry-After honoured to the second",
+      "instrumented": "per-batch and per-source timings appended to out/m6_harness_timings.csv every run"
+    },
+    "measured_2026-08-21": {
+      "validation": "12/12 pre-release sources; 3 CONFIRMED (Gaia BH3 f2 894.0, HD 114762 186.5, Gaia-4 31.5), 9 SPURIOUS (|f2| <= 1.55) -- reproduces M3's prototype, max |delta f2| 0.005",
+      "fit_throughput": 0.0356,
+      "datalink_probe": "DR3 EPOCH_PHOTOMETRY as a labelled PROXY (DR4 epoch astrometry does not exist yet); out/m6_datalink_probe.csv",
+      "projection_band_batch20_undegraded": {
+        "sources_per_hour": [
+          854.0,
+          124.8
+        ],
+        "hours_for_983_row_queue": [
+          1.15,
+          7.88
+        ]
+      },
+      "degraded_10x_hours_for_983": 78.3,
+      "note": "the band is spanned by two models fitted to the same calls (per-source server work vs per-byte transport); they differ only because DR4's payload per source is ~7x the probe's. RE-MEASURE on 2026-12-02 before choosing a batch size -- it takes ~6 minutes."
+    },
+    "day1_consequence": "the queue is RANKED and the harness consumes it in rank order, so a slow archive costs DEPTH, not the headline: BH1, BH2 and the EB26-refuted poster child are adjudicated in the first minutes under every branch measured."
+  },
+  "parallax_zeropoint_policy": {
+    "status": "APPLIED -- mandatory on every science run of the refit arm",
+    "correction": "Lindegren, Bastian, Biermann et al. 2021, A&A 649, A4 -- the source-dependent DR3/EDR3 parallax zero-point",
+    "package": "gaiadr3-zeropoint 0.1.0 (import name `zero_point`)",
+    "convention": "parallax_true = parallax - Z, Z typically negative, corrected parallax LARGER, companion mass SMALLER",
+    "applied_where": "inside scripts/orbital_refit_arm.py --zeropoint, to the fitted parallax AND to the parallax draws of the Laplace posterior, BEFORE the mass function (which goes as parallax^-3)",
+    "house_pattern": "reproduced from the sibling seti-ellipsoid-broker project; guards: astrometric_params_solved in {31,95} masked BEFORE the call, arrays not scalars (numpy>=2 NEP-50), out-of-box sources fall back to the uncorrected parallax and are COUNTED",
+    "validated_against": {
+      "panuzzo_2024_table1_footnote_b": {
+        "published_correction_uas": 35.4,
+        "computed_here_uas": -35.406,
+        "agreement_uas": 0.006,
+        "note": "their printed precision is 0.05 uas"
+      },
+      "elbadry_2026_l21_table_pairs": {
+        "n": 8,
+        "median_abs_diff_uas": 2.0,
+        "note": "their published with/without-L21 parallax columns"
+      },
+      "elbadry_2026_measured_orbital_zeropoint_mas": [
+        -0.0362,
+        0.0053
+      ],
+      "elbadry_2026_l21_median_same_40_mas": -0.0342,
+      "elbadry_2026_conclusion": "the single-star zeropoint can and should be applied to binary solutions as well"
+    },
+    "measured_2026-08-24": {
+      "bh3_m2_msun_raw": 34.68425011785338,
+      "bh3_m2_msun_l21": 32.64342355151612,
+      "bh3_vs_panuzzo_sigma_raw": 2.42,
+      "bh3_vs_panuzzo_sigma_l21": -0.07,
+      "bh3_corrected_parallax_vs_zeropoint_free_a0_over_a1_sigma": 0.11,
+      "queue_median_m2_shift_frac": -0.019504085084082,
+      "queue_p10_m2_shift_frac": -0.04930195731170086,
+      "queue_worst_m2_shift_frac": -0.1194028285557178,
+      "queue_rows_moving_gt_5pct": 79,
+      "n_uncorrectable_of_1904": 6
+    },
+    "residual_bound_uas": 2.0000000000000018,
+    "residual_cost": "<= 3 * residual / parallax on the companion mass: <= 0.4 % at 1.7 mas, <= 2.0 % at 0.3 mas",
+    "prefer_when_available": "if DR4 publishes the RVS-derived a1, take the mass function from a1 as Panuzzo did -- it carries no astrometric zero-point at all",
+    "dr4_supersession": {
+      "column": "tentative_parallax_bias",
+      "tables": [
+        "gaia_source",
+        "all_source_astrometry"
+      ],
+      "source": "Gaia DR4 pre-release DRAFT DATA MODEL, data/draft-data-model/gaia-dr4-prerelease-draft-data-model.pdf, pp. 20 and 74 (read 2026-08-24)",
+      "quote": "Parallax bias correction (double, Angle[mas]). This is the parallax bias correction computed based on the recipe in [the DR4 astrometry paper]. This correction is to be subtracted from parallax to get the corrected parallax.",
+      "convention": "identical to Lindegren+2021: corrected = parallax - bias",
+      "policy": "DECEMBER PREFERS IT over the L21 recipe and keeps L21 as the cross-check. The column name carries 'tentative' and the model is a DRAFT, so verify it exists and is non-null before relying on it.",
+      "l21_input_columns_in_dr4": {
+        "nu_eff_used_in_astrometry": "present",
+        "pseudocolour": "present",
+        "ecl_lat": "present",
+        "astrometric_params_solved": "RENAMED to `astrometric_params`; the 31/95 guard reads it and zpt.get_zpt RAISES if it is wrong"
+      }
+    }
+  },
+  "error_inflation_policy": {
+    "status": "QUOTE x1.4 BESIDE EVERY FORMAL INTERVAL. The refit posterior is a Laplace interval and is never a total uncertainty.",
+    "factor": 1.4,
+    "factor_ci_68": [
+      1.31,
+      1.52
+    ],
+    "convention": "median|z| / 0.67449 -- the multiplier that would make the observed median |z| that of a standard normal. M7's '2.3' was the median |z| ITSELF; the same 11 elements give 3.4 on this convention.",
+    "measured_on": "202 element comparisons (period, eccentricity) between gaiadr3.nss_two_body_orbit and SB9 (Pourbaix et al. 2004, A&A 424, 727; CDS B/sb9), 138 systems passing a pre-registered same-orbit gate |ln(P1/P2)| < 0.05 at a 2.0 arcsec match",
+    "coverage": {
+      "within_1_sigma": 0.52,
+      "expected": 0.6827,
+      "within_2_sigma": 0.847,
+      "expected_2": 0.9545
+    },
+    "queue_reweighted_factor": 1.19,
+    "trend_significance": {
+      "9.7-35.8": 0.88,
+      "35.8-65.5": 1.33,
+      "65.5-113.9": 1.37,
+      "113.9-520.7": 1.83,
+      "note": "the LOUDEST solutions have the worst-calibrated errors, and significance is what this list selects on"
+    },
+    "trend_period_days": {
+      "15-298": 1.74,
+      "298-544": 1.43,
+      "544-692": 1.43,
+      "692-1080": 1.01
+    },
+    "trend_solution_type": {
+      "Orbital": 1.37,
+      "AstroSpectroSB1": 1.42,
+      "OrbitalTargetedSearch": 1.72,
+      "OrbitalTargetedSearchValidated": 1.49
+    },
+    "trend_g_mag": "no monotone trend (1.54 / 1.14 / 1.38 / 1.55)",
+    "arms_own_laplace_sigma": {
+      "injection_recovery_correct_noise_model": 1.05,
+      "ci_68": [
+        1.03,
+        1.09
+      ],
+      "injection_recovery_one_unit_unmodelled_jitter": 1.51,
+      "n_injections": 400,
+      "n_elements": 1407,
+      "reading": "the Laplace/Hessian error bar is correct to 5 % when the model is right, so the inflation is MODEL MISSPECIFICATION and not a broken Hessian"
+    },
+    "internal_replication_lower_bound": {
+      "factor": 0.89,
+      "n": 784,
+      "note": "the 98 dual-solution DR3 sources; their errors are correlated because the two solutions share the same astrometry, so this can only ever be a lower bound"
+    }
+  },
+  "discriminator_axis_independence": {
+    "status": "MEASURED -- D1 and D2 are NOT independent axes. The Holm rule is unchanged; the INTERPRETATION is not.",
+    "measured_2026-08-24": {
+      "population": "the 489 in-footprint members of the 981-row day-one queue; no verdicts involved",
+      "auc_xray_detected_vs_not_on_dAmp_G": 0.873,
+      "p": 7.4e-12,
+      "auc_xray_detected_vs_not_on_astrometric_gof_al": 0.584,
+      "p_gof": 0.123
+    },
+    "consequence": "if D1 and D2 both come back POSITIVE in December that is ONE finding reported twice, not two independent confirmations"
+  },
+  "prereg_execution": {
+    "status": "the frozen pre-registration was EXECUTED end to end against 11 synthetic December-scale verdict stores",
+    "code_defects_found_and_fixed": [
+      "m6_astrom_quiet_decision.py had no --scopes, so the pre-registered D4 command exited 2",
+      "m5_activity_discriminator.py crashed at December scale when a BINARY metric reached the confound guard (np.clip on a boolean Series -> object dtype -> np.log10 raises)",
+      "m6_astrom_quiet_decision.py announced out/... regardless of --out-dir (M7 landmine #14, third occurrence)"
+    ],
+    "registration_gaps_reported_not_patched": [
+      "GAP-1 significant + right direction + NOT decisive has no label",
+      "GAP-2 section 2.2 mandates 'pooled: uninterpretable', which is not one of section 5's six labels",
+      "GAP-3 a pooled significant REVERSAL is covered by neither",
+      "GAP-4 for rate tests, DECISIVE is ill-defined when the observed baseline differs from the pre-registered one"
+    ],
+    "label_code": "scripts/m8_prereg_labels.py",
+    "note": "the frozen file is NOT edited. Amendments are proposed to Matthew for its variant log."
+  }
+}

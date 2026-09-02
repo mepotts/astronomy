@@ -1,0 +1,160 @@
+{
+  "fetched_utc": "2026-08-23T19:20:34Z",
+  "fixed_radius_as": 60.0,
+  "catalogues": [
+    {
+      "cat": "HII_WISE",
+      "table": "J/ApJS/212/1/wisecat",
+      "status": "OK",
+      "n": 8399,
+      "extent_column": "Rad (rad_as)",
+      "n_default_60as": 194,
+      "median_r_as": 67.0,
+      "max_r_as": 5689.0,
+      "source": "Anderson et al. 2014, ApJS 212, 1 -- the WISE catalog of Galactic HII regions"
+    },
+    {
+      "cat": "HII_SH2",
+      "table": "VII/20/catalog",
+      "status": "OK",
+      "n": 313,
+      "extent_column": "Diam (diam_am)",
+      "n_default_60as": 25,
+      "median_r_as": 360.0,
+      "max_r_as": 36000.0,
+      "source": "Sharpless 1959, ApJS 4, 257"
+    },
+    {
+      "cat": "HII_RCW",
+      "table": "VII/216/rcw",
+      "status": "OK",
+      "n": 181,
+      "extent_column": "MajAxis (diam_am)",
+      "n_default_60as": 30,
+      "median_r_as": 270.0,
+      "max_r_as": 10800.0,
+      "source": "Rodgers, Campbell & Whiteoak 1960, MNRAS 121, 103"
+    },
+    {
+      "cat": "SNR_GREEN",
+      "table": "VII/284/snrs",
+      "status": "OK",
+      "n": 294,
+      "extent_column": "MajDiam (diam_am)",
+      "n_default_60as": 0,
+      "median_r_as": 540.0,
+      "max_r_as": 9900.0,
+      "source": "Green 2019, JApA 40, 36 -- catalogue of Galactic supernova remnants"
+    },
+    {
+      "cat": "PN_SECGPN",
+      "table": "V/84/main",
+      "status": "OK",
+      "n": 1143,
+      "extent_column": "fixed-60as",
+      "n_default_60as": 1143,
+      "median_r_as": 60.0,
+      "max_r_as": 60.0,
+      "source": "Acker et al. 1992, Strasbourg-ESO Catalogue of Galactic Planetary Nebulae"
+    },
+    {
+      "cat": "PN_MASH1",
+      "table": "V/127A/mash1",
+      "status": "OK",
+      "n": 903,
+      "extent_column": "MajDiam (diam_as)",
+      "n_default_60as": 2,
+      "median_r_as": 11.0,
+      "max_r_as": 900.0,
+      "source": "Parker et al. 2006, MNRAS 373, 79 -- MASH"
+    },
+    {
+      "cat": "PN_MASH2",
+      "table": "V/127A/mash2",
+      "status": "OK",
+      "n": 335,
+      "extent_column": "MajDiam (diam_as)",
+      "n_default_60as": 1,
+      "median_r_as": 5.5,
+      "max_r_as": 444.0,
+      "source": "Miszalski et al. 2008, MNRAS 384, 525 -- MASH-II"
+    },
+    {
+      "cat": "DARK_LDN",
+      "table": "VII/7A/ldn",
+      "status": "OK",
+      "n": 1780,
+      "extent_column": "Area (area_deg2)",
+      "n_default_60as": 0,
+      "median_r_as": 449.5992772704983,
+      "max_r_as": 13624.915618908864,
+      "source": "Lynds 1962, ApJS 7, 1 -- catalogue of dark nebulae"
+    },
+    {
+      "cat": "BRIGHT_LBN",
+      "table": "VII/9/catalog",
+      "status": "OK",
+      "n": 1122,
+      "extent_column": "Area (area_deg2)",
+      "n_default_60as": 0,
+      "median_r_as": 592.1572178231587,
+      "max_r_as": 23157.903537290473,
+      "source": "Lynds 1965, ApJS 12, 163 -- catalogue of bright nebulae"
+    },
+    {
+      "cat": "DARK_BARN",
+      "table": "VII/220A/barnard",
+      "status": "OK",
+      "n": 349,
+      "extent_column": "Diam (diam_am)",
+      "n_default_60as": 67,
+      "median_r_as": 300.0,
+      "max_r_as": 8100.0,
+      "source": "Barnard 1927, Catalogue of 349 Dark Objects in the Sky"
+    },
+    {
+      "cat": "REFL_VDB",
+      "table": "VII/21/catalog",
+      "status": "OK",
+      "n": 158,
+      "extent_column": "BRadMax (rad_am)",
+      "n_default_60as": 1,
+      "median_r_as": 168.0,
+      "max_r_as": 24600.0,
+      "source": "van den Bergh 1966, AJ 71, 990 -- reflection nebulae"
+    },
+    {
+      "cat": "REFL_MAGAK",
+      "table": "J/A+A/399/141/table1",
+      "status": "OK",
+      "n": 913,
+      "extent_column": "fixed-60as",
+      "n_default_60as": 913,
+      "median_r_as": 60.0,
+      "max_r_as": 60.0,
+      "source": "Magakian 2003, A&A 399, 141 -- merged catalogue of reflection nebulae"
+    },
+    {
+      "cat": "CED",
+      "table": "VII/231/catalog",
+      "status": "OK",
+      "n": 330,
+      "extent_column": "Dim1 (diam_am)",
+      "n_default_60as": 129,
+      "median_r_as": 120.0,
+      "max_r_as": 12000.0,
+      "source": "Cederblad 1946 -- bright diffuse galactic nebulae"
+    },
+    {
+      "cat": "PGCC",
+      "table": "J/A+A/594/A28/pgcc",
+      "status": "OK",
+      "n": 13242,
+      "extent_column": "maj (diam_am)",
+      "n_default_60as": 2450,
+      "median_r_as": 277.38255000000004,
+      "max_r_as": 563.97897,
+      "source": "Planck Collaboration 2016, A&A 594, A28 -- Galactic cold clumps"
+    }
+  ]
+}

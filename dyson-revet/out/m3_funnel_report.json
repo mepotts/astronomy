@@ -1,0 +1,106 @@
+{
+  "_area_deg2": 19874.473518600444,
+  "_sky_fraction": 0.48177084792462027,
+  "stages": [
+    {
+      "stage": "parent sample (Gaia <300 pc x 2MASS x AllWISE)",
+      "key": null,
+      "paper_allsky": 5000000.0,
+      "paper_expected": 2408854.2396231014,
+      "n_g0.1": null,
+      "n_g0.01": null
+    },
+    {
+      "stage": "W3 and W4 both detected (C2a)",
+      "key": "T2_w34det",
+      "paper_allsky": 320000.0,
+      "paper_expected": 154166.6713358785,
+      "n_g0.1": 220632,
+      "n_g0.01": 220632,
+      "poisson68": [
+        220162.27536317994,
+        221102.72573033703
+      ]
+    },
+    {
+      "stage": "cc_flags clean (C2b)",
+      "key": "T3_ccflags",
+      "paper_allsky": null,
+      "paper_expected": null,
+      "n_g0.1": 161634,
+      "n_g0.01": 161634,
+      "poisson68": [
+        161231.95438781552,
+        162037.04688491957
+      ]
+    },
+    {
+      "stage": "... with full 10-band photometry",
+      "key": "T2_full10band",
+      "paper_allsky": null,
+      "paper_expected": null,
+      "n_g0.1": 160410,
+      "n_g0.01": 160410,
+      "poisson68": [
+        160009.47956211198,
+        160811.52171535976
+      ]
+    },
+    {
+      "stage": "... inside the template M_G window",
+      "key": "T3_in_template_window",
+      "paper_allsky": null,
+      "paper_expected": null,
+      "n_g0.1": 158097,
+      "n_g0.01": 158097,
+      "poisson68": [
+        157699.3776656138,
+        158495.6236209585
+      ]
+    },
+    {
+      "stage": "RMSE <= 0.2 star+DS grid fit (C3)",
+      "key": "T3_rmse",
+      "paper_allsky": 11243,
+      "paper_expected": 5416.5496432165055,
+      "n_g0.1": 4773,
+      "n_g0.01": 27828,
+      "poisson68": [
+        4703.914026592334,
+        4843.0932427551315
+      ]
+    },
+    {
+      "stage": "+ Gvar, RUWE, ext_flg, classprob (C5b-e)",
+      "key": "T4_extra",
+      "paper_allsky": 5137,
+      "paper_expected": 2474.8568457887745,
+      "n_g0.1": 4257,
+      "n_g0.01": 20292,
+      "poisson68": [
+        4191.755464501852,
+        4323.252231286982
+      ]
+    },
+    {
+      "stage": "+ W3 & W4 S/N >= 3.5 (C6) -- pre-visual survivors",
+      "key": "T5_snr",
+      "paper_allsky": 368,
+      "paper_expected": 177.29167203626025,
+      "n_g0.1": 845,
+      "n_g0.01": 2472,
+      "poisson68": [
+        815.9362421200103,
+        875.0810035564002
+      ]
+    },
+    {
+      "stage": "final candidates (C4 CNN + C7 visual)",
+      "key": null,
+      "paper_allsky": 7,
+      "paper_expected": 3.372395935472342,
+      "n_g0.1": null,
+      "n_g0.01": null
+    }
+  ]
+}

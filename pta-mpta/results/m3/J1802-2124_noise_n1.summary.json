@@ -1,0 +1,567 @@
+{
+  "run_id": "J1802-2124_noise_n1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 9554,
+  "seed": 30854,
+  "ndim": 9,
+  "x0_kind": "prior-draw",
+  "x0": [
+    1.1796174380104758,
+    4.579068850459379,
+    -11.70703239040844,
+    3.1526524217399245,
+    -12.030348565619642,
+    0.15637394159288173,
+    -11.19627675538946,
+    -7.195413278381259,
+    4.991900732293272
+  ],
+  "started_utc": "2026-08-21T22:26:16Z",
+  "wall_budget_min": 300.0,
+  "gate_raw_postburn": 100000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.25,
+  "eval_ms": 114.77,
+  "first_eval_s": 0.17,
+  "meta": {
+    "psr": "J1802-2124",
+    "ntoa": 3039,
+    "tspan_days": 1604.753029756822,
+    "tmin_mjd": 58550.17196456673,
+    "tmax_mjd": 60154.92499432355,
+    "variant": "noise",
+    "add_red": false,
+    "fixed_whites": false,
+    "sw_gamma_prior": [
+      0,
+      7
+    ],
+    "build_s": 25.3,
+    "kind": "noise",
+    "whites_fixed": null
+  },
+  "chunks": [
+    {
+      "iters": 3000,
+      "seconds": 321.7,
+      "it_per_s": 9.33,
+      "loadavg": 24.08,
+      "total_raw": 81000
+    },
+    {
+      "iters": 3000,
+      "seconds": 328.6,
+      "it_per_s": 9.13,
+      "loadavg": 24.22,
+      "total_raw": 84000
+    },
+    {
+      "iters": 3000,
+      "seconds": 327.6,
+      "it_per_s": 9.16,
+      "loadavg": 23.95,
+      "total_raw": 87000
+    },
+    {
+      "iters": 3000,
+      "seconds": 380.9,
+      "it_per_s": 7.88,
+      "loadavg": 24.1,
+      "total_raw": 90000
+    },
+    {
+      "iters": 2000,
+      "seconds": 298.9,
+      "it_per_s": 6.69,
+      "loadavg": 24.07,
+      "total_raw": 92000
+    },
+    {
+      "iters": 2000,
+      "seconds": 242.5,
+      "it_per_s": 8.25,
+      "loadavg": 23.4,
+      "total_raw": 94000
+    },
+    {
+      "iters": 2000,
+      "seconds": 277.0,
+      "it_per_s": 7.22,
+      "loadavg": 26.26,
+      "total_raw": 96000
+    },
+    {
+      "iters": 2000,
+      "seconds": 326.7,
+      "it_per_s": 6.12,
+      "loadavg": 26.23,
+      "total_raw": 98000
+    },
+    {
+      "iters": 2000,
+      "seconds": 259.4,
+      "it_per_s": 7.71,
+      "loadavg": 26.17,
+      "total_raw": 100000
+    },
+    {
+      "iters": 2000,
+      "seconds": 302.3,
+      "it_per_s": 6.62,
+      "loadavg": 26.0,
+      "total_raw": 102000
+    },
+    {
+      "iters": 2000,
+      "seconds": 325.4,
+      "it_per_s": 6.15,
+      "loadavg": 25.55,
+      "total_raw": 104000
+    },
+    {
+      "iters": 2000,
+      "seconds": 267.0,
+      "it_per_s": 7.49,
+      "loadavg": 24.3,
+      "total_raw": 106000
+    },
+    {
+      "iters": 2000,
+      "seconds": 270.7,
+      "it_per_s": 7.39,
+      "loadavg": 24.26,
+      "total_raw": 108000
+    },
+    {
+      "iters": 2000,
+      "seconds": 301.6,
+      "it_per_s": 6.63,
+      "loadavg": 24.01,
+      "total_raw": 110000
+    },
+    {
+      "iters": 2000,
+      "seconds": 295.1,
+      "it_per_s": 6.78,
+      "loadavg": 23.89,
+      "total_raw": 112000
+    },
+    {
+      "iters": 2000,
+      "seconds": 295.3,
+      "it_per_s": 6.77,
+      "loadavg": 25.92,
+      "total_raw": 114000
+    },
+    {
+      "iters": 2000,
+      "seconds": 326.2,
+      "it_per_s": 6.13,
+      "loadavg": 26.51,
+      "total_raw": 116000
+    },
+    {
+      "iters": 2000,
+      "seconds": 309.1,
+      "it_per_s": 6.47,
+      "loadavg": 26.18,
+      "total_raw": 118000
+    },
+    {
+      "iters": 2000,
+      "seconds": 273.5,
+      "it_per_s": 7.31,
+      "loadavg": 26.0,
+      "total_raw": 120000
+    },
+    {
+      "iters": 2000,
+      "seconds": 283.1,
+      "it_per_s": 7.07,
+      "loadavg": 26.31,
+      "total_raw": 122000
+    },
+    {
+      "iters": 2000,
+      "seconds": 267.8,
+      "it_per_s": 7.47,
+      "loadavg": 26.21,
+      "total_raw": 124000
+    },
+    {
+      "iters": 2000,
+      "seconds": 289.2,
+      "it_per_s": 6.92,
+      "loadavg": 26.06,
+      "total_raw": 126000
+    },
+    {
+      "iters": 2000,
+      "seconds": 333.4,
+      "it_per_s": 6.0,
+      "loadavg": 26.08,
+      "total_raw": 128000
+    },
+    {
+      "iters": 2000,
+      "seconds": 323.6,
+      "it_per_s": 6.18,
+      "loadavg": 26.16,
+      "total_raw": 130000
+    },
+    {
+      "iters": 2000,
+      "seconds": 343.0,
+      "it_per_s": 5.83,
+      "loadavg": 26.07,
+      "total_raw": 132000
+    },
+    {
+      "iters": 2000,
+      "seconds": 332.1,
+      "it_per_s": 6.02,
+      "loadavg": 26.19,
+      "total_raw": 134000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 13401,
+    "post_burn_rows": 10051,
+    "raw_iters": 134000,
+    "raw_postburn": 100510,
+    "lnl_max": 33769.938151,
+    "acc_rate": 0.305399,
+    "stable": true,
+    "params": [
+      {
+        "param": "J1802-2124_chrom_gp_gamma",
+        "median": 1.7244359210426203,
+        "ci68": [
+          1.5138919588982878,
+          1.9344615995367975
+        ],
+        "halfshift": 0.0036,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 0.4206,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 601.2
+      },
+      {
+        "param": "J1802-2124_chrom_gp_idx",
+        "median": 6.548214888728939,
+        "ci68": [
+          5.930185526386272,
+          7.320887015218339
+        ],
+        "halfshift": 0.0441,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 1.3907,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 375.5
+      },
+      {
+        "param": "J1802-2124_chrom_gp_log10_A",
+        "median": -13.315314773994219,
+        "ci68": [
+          -13.483430166798438,
+          -13.158261237318719
+        ],
+        "halfshift": 0.006,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 0.3252,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 375.3
+      },
+      {
+        "param": "J1802-2124_dm_gp_gamma",
+        "median": 2.865834129710207,
+        "ci68": [
+          2.4146974391479263,
+          3.412141390026676
+        ],
+        "halfshift": 0.003,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 0.9974,
+        "tol_rel": 0.3,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 895.1
+      },
+      {
+        "param": "J1802-2124_dm_gp_log10_A",
+        "median": -12.460989923600453,
+        "ci68": [
+          -12.563972964260653,
+          -12.360163169415697
+        ],
+        "halfshift": 0.0047,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 0.2038,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 667.3
+      },
+      {
+        "param": "J1802-2124_efac",
+        "median": 1.0438167581949067,
+        "ci68": [
+          1.031230635299609,
+          1.0591003964318422
+        ],
+        "halfshift": 0.0004,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 0.0279,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 1117.3
+      },
+      {
+        "param": "J1802-2124_gw13_log10_A",
+        "median": -15.69260546097311,
+        "ci68": [
+          -17.259960518537824,
+          -14.164213506453047
+        ],
+        "halfshift": 0.0367,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 3.0957,
+        "tol_rel": 0.3096,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 2380.2
+      },
+      {
+        "param": "J1802-2124_log10_ecorr",
+        "median": -6.018156655954206,
+        "ci68": [
+          -6.071304884610417,
+          -5.966146386002911
+        ],
+        "halfshift": 0.0001,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 0.1052,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 954.4
+      },
+      {
+        "param": "n_earth",
+        "median": 5.9726698347801905,
+        "ci68": [
+          4.40921425897046,
+          7.663747030593462
+        ],
+        "halfshift": 0.0044,
+        "tol": 0.3,
+        "stable": true,
+        "w68": 3.2545,
+        "tol_rel": 0.3255,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 1724.0
+      }
+    ],
+    "stable_rel": true,
+    "ess_min": 375.3
+  },
+  "updated_utc": "2026-08-22T00:38:40Z",
+  "elapsed_min": 131.9,
+  "best_point": {
+    "J1802-2124_chrom_gp_gamma": 1.7280294961020544,
+    "J1802-2124_chrom_gp_idx": 6.308207781428745,
+    "J1802-2124_chrom_gp_log10_A": -13.253390447515345,
+    "J1802-2124_dm_gp_gamma": 2.7884193978163516,
+    "J1802-2124_dm_gp_log10_A": -12.448848516217492,
+    "J1802-2124_efac": 1.0366718760554,
+    "J1802-2124_gw13_log10_A": -15.019610706184398,
+    "J1802-2124_log10_ecorr": -6.019783214994523,
+    "n_earth": 5.85961453501336
+  },
+  "lnl_best": 33769.938151,
+  "curn": {
+    "median": -15.69260546097311,
+    "ci68": [
+      -17.259960518537824,
+      -14.164213506453047
+    ],
+    "n": 10051
+  },
+  "a2": [
+    {
+      "param": "J1802-2124_chrom_gp_gamma",
+      "key": "chrom_gamma",
+      "median": 1.7244359210426203,
+      "ci68": [
+        1.5138919588982878,
+        1.9344615995367975
+      ],
+      "published_map": 1.68,
+      "published_ci": [
+        1.51,
+        1.96
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1802-2124_chrom_gp_idx",
+      "key": "chrom_beta",
+      "median": 6.548214888728939,
+      "ci68": [
+        5.930185526386272,
+        7.320887015218339
+      ],
+      "published_map": 6.52,
+      "published_ci": [
+        5.88,
+        7.31
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1802-2124_chrom_gp_log10_A",
+      "key": "chrom_log10_A",
+      "median": -13.315314773994219,
+      "ci68": [
+        -13.483430166798438,
+        -13.158261237318719
+      ],
+      "published_map": -13.28,
+      "published_ci": [
+        -13.479999999999999,
+        -13.139999999999999
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1802-2124_dm_gp_gamma",
+      "key": "dm_gamma",
+      "median": 2.865834129710207,
+      "ci68": [
+        2.4146974391479263,
+        3.412141390026676
+      ],
+      "published_map": 2.72,
+      "published_ci": [
+        2.41,
+        3.42
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1802-2124_dm_gp_log10_A",
+      "key": "dm_log10_A",
+      "median": -12.460989923600453,
+      "ci68": [
+        -12.563972964260653,
+        -12.360163169415697
+      ],
+      "published_map": -12.47,
+      "published_ci": [
+        -12.56,
+        -12.360000000000001
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1802-2124_efac",
+      "key": "efac",
+      "median": 1.0438167581949067,
+      "ci68": [
+        1.031230635299609,
+        1.0591003964318422
+      ],
+      "published_map": 1.05,
+      "published_ci": [
+        1.03,
+        1.06
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1802-2124_gw13_log10_A",
+      "key": "gw13_log10_A",
+      "median": -15.69260546097311,
+      "ci68": [
+        -17.259960518537824,
+        -14.164213506453047
+      ],
+      "published_map": -16.45,
+      "published_ci": [
+        -17.25,
+        -14.19
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1802-2124_log10_ecorr",
+      "key": "log10_ecorr",
+      "median": -6.018156655954206,
+      "ci68": [
+        -6.071304884610417,
+        -5.966146386002911
+      ],
+      "published_map": -6.0,
+      "published_ci": [
+        -6.08,
+        -5.97
+      ],
+      "agree": true
+    },
+    {
+      "param": "n_earth",
+      "key": "n_earth",
+      "median": 5.9726698347801905,
+      "ci68": [
+        4.40921425897046,
+        7.663747030593462
+      ],
+      "published_map": 6.34,
+      "published_ci": [
+        4.35,
+        7.7299999999999995
+      ],
+      "agree": true
+    }
+  ],
+  "n_agree": 9,
+  "n_compared": 9,
+  "verdict": "CONVERGED-AGREES 9/9",
+  "param_names": [
+    "J1802-2124_chrom_gp_gamma",
+    "J1802-2124_chrom_gp_idx",
+    "J1802-2124_chrom_gp_log10_A",
+    "J1802-2124_dm_gp_gamma",
+    "J1802-2124_dm_gp_log10_A",
+    "J1802-2124_efac",
+    "J1802-2124_gw13_log10_A",
+    "J1802-2124_log10_ecorr",
+    "n_earth"
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
+}

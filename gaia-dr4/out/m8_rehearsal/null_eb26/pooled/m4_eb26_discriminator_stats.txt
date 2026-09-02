@@ -1,0 +1,40 @@
+M4 activity-vs-spuriousness test -- EB26 x eROSITA-DE (2026-08-18)
+========================================================================
+VERDICT PROVENANCE (more than one source/scope in this run):
+  CONFIRMED[elbadry2026/compact_companion:42, epoch_vet_harness/orbit_reality:633]  MARGINAL[elbadry2026/compact_companion:1]  NOT_CO[elbadry2026/compact_companion:2]  OTHER[elbadry2026/compact_companion:1]  SPURIOUS[elbadry2026/compact_companion:23, epoch_vet_harness/orbit_reality:347]  UNKNOWN[elbadry2026/compact_companion:7]
+
+footprint (eROSITA-DE, 179.94<l<359.94):
+  CONFIRMED  325 of 675 in footprint
+  MARGINAL    1 of  1 in footprint
+  NOT_CO      0 of  2 in footprint
+  OTHER       1 of  1 in footprint
+  SPURIOUS   192 of 370 in footprint
+  UNKNOWN     5 of  7 in footprint
+
+DR2 (eRASS:3) detection, in-footprint:
+  CONFIRMED  19/325 = 0.058 (95% Wilson 0.038-0.089)
+  SPURIOUS   13/192 = 0.068 (95% Wilson 0.040-0.112)
+  chance/target (8 shifted controls, 524 targets): 0.0029  (counts [4, 2, 0, 1, 2, 1, 0, 2])
+  Fisher exact (spurious vs confirmed, two-sided): odds ratio 1.17, p = 0.7075
+  other verdicts in footprint: 0/7 detected ({'MARGINAL': 0, 'OTHER': 0, 'UNKNOWN': 0})
+
+hard band (2.3-5 keV): 0 of 76
+DR1 (eRASS1): CONFIRMED 11/325, SPURIOUS 10/192; DR1-only (fader candidates): 0
+
+log10(f_X/f_opt,G) among detected:
+  CONFIRMED (n=19): median -2.17, values [-4.27, -4.08, -3.85, -3.7, -3.63, -2.43, -2.22, -2.19, -2.18, -2.17, -2.17, -2.15, -2.07, -2.0, -1.95, -1.94, -1.92, -1.84, -1.18]
+  SPURIOUS  (n=13): median -2.27, values [-4.16, -4.07, -3.85, -3.29, -2.43, -2.28, -2.27, -2.24, -2.17, -2.1, -2.09, -1.83, -1.6]
+  Mann-Whitney two-sided: U=142, p=0.5019
+
+hardness (detected sources): HR2 by verdict: {'CONFIRMED': [-0.32, -1.0, -0.07, 0.15, -0.52, -0.82, 0.11, -0.91, 0.43, -0.87, -0.04, 0.13, -0.64, -0.08, -0.6, -0.09, -0.19, -0.2, -0.16], 'SPURIOUS': [-0.55, -0.32, 0.33, 0.01, -0.18, -0.27, -0.21, -0.24, -0.22, 0.03, 0.07, -0.13, -0.41]}
+
+confound check (in-footprint medians):
+  CONFIRMED  G=14.83  d=424 pc  |b|=18.6
+  SPURIOUS   G=15.01  d=463 pc  |b|=21.9
+
+power at the achieved n (alpha=0.05, target power 80%):
+  with CONFIRMED at 0.06 (19/325), the smallest SPURIOUS detection rate detectable at 80% power is ~0.15 (power 0.91) -- an odds ratio of 2.8
+  power to see a 3x detection-rate excess in SPURIOUS: 0.98
+
+========================================================================
+VERDICT: NO SIGNIFICANT DISCRIMINATION at these numbers -- see the power statement above for whether that is a real null or an underpowered test.

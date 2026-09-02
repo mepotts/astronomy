@@ -1,0 +1,17 @@
+M8 -- ARE THE DISCRIMINATOR AXES INDEPENDENT?
+measured on the 981-row day-one queue itself; NO verdicts involved, so this
+is a property of the data and not of any test.
+in the eROSITA-DE footprint: 489 queue rows, 30 X-ray detected
+
+  D2 primary metric (dAmp_G)         AUC(X-ray detected > not) = 0.873   p = 7.38e-12   n = 30 vs 459
+  D3 primary metric                  AUC(X-ray detected > not) = 0.584   p = 1.23e-01   n = 30 vs 459
+
+READING: D1 (X-ray) and D2 (photometric variability) are STRONGLY
+correlated on this sample -- both are activity proxies, and that is
+astrophysically expected.  D3 (astrometric quality) is not.
+CONSEQUENCE for December: if D1 and D2 both come back POSITIVE that
+is ONE finding reported twice, not two independent confirmations.
+The pre-registration's 'no correction across families' is still the
+right rule for keeping December's p-values comparable with the frozen
+ones -- but the INTERPRETATION must say the axes are not independent.
+Proposed as a declared variant for Matthew; not applied here.

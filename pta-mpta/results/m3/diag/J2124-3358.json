@@ -1,0 +1,30 @@
+{
+ "psr": "J2124-3358",
+ "params": [
+  "J2124-3358_efac",
+  "J2124-3358_gw13_log10_A",
+  "J2124-3358_log10_ecorr",
+  "J2124-3358_sw_gp_gamma",
+  "J2124-3358_sw_gp_log10_A",
+  "n_earth"
+ ],
+ "lnl_published": 34750.95457821565,
+ "lnl_best": 34752.43928627917,
+ "lnl_best_recorded": 34752.621606,
+ "lnl_median": 34751.29364701744,
+ "dlnl_best_minus_pub": 1.484708063522703,
+ "dlnl_median_minus_pub": 0.33906880178983556,
+ "n_agree": 5,
+ "n_compared": 6,
+ "misses": [
+  "J2124-3358_sw_gp_gamma"
+ ],
+ "miss_tightness": {
+  "J2124-3358_sw_gp_gamma": {
+   "pub_ci_width": 4.56,
+   "prior_width": 7,
+   "frac": 0.6514285714285714,
+   "claims_measurement": false
+  }
+ }
+}

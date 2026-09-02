@@ -1,0 +1,150 @@
+{
+  "run_id": "J1514-4946_noise_n1",
+  "state": "done",
+  "exit_reason": "gate_met",
+  "error": null,
+  "pid": 617,
+  "seed": 6835,
+  "ndim": 2,
+  "x0_kind": "prior-draw",
+  "x0": [
+    0.18319004797985577,
+    -15.413873102800846
+  ],
+  "started_utc": "2026-08-21T19:30:13Z",
+  "wall_budget_min": 300.0,
+  "gate_raw_postburn": 100000,
+  "nice": 19,
+  "omp_threads": "1",
+  "min_acc": 0.05,
+  "cov_scale0": 0.25,
+  "eval_ms": 2.11,
+  "first_eval_s": 0.03,
+  "meta": {
+    "psr": "J1514-4946",
+    "ntoa": 713,
+    "tspan_days": 1322.5357436723068,
+    "tmin_mjd": 58834.06521128935,
+    "tmax_mjd": 60156.60095496166,
+    "variant": "noise",
+    "add_red": false,
+    "fixed_whites": false,
+    "build_s": 14.9,
+    "kind": "noise",
+    "whites_fixed": null
+  },
+  "chunks": [
+    {
+      "iters": 285000,
+      "seconds": 631.6,
+      "it_per_s": 451.26,
+      "loadavg": 15.09,
+      "total_raw": 285000
+    }
+  ],
+  "gate_met": true,
+  "chain": {
+    "rows": 28501,
+    "post_burn_rows": 21376,
+    "raw_iters": 285000,
+    "raw_postburn": 213760,
+    "lnl_max": 7375.045687,
+    "acc_rate": 0.527474,
+    "stable": true,
+    "params": [
+      {
+        "param": "J1514-4946_efac",
+        "median": 0.9637016627308481,
+        "ci68": [
+          0.9386838230665513,
+          0.9901584805358978
+        ],
+        "halfshift": 0.0,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 0.0515,
+        "tol_rel": 0.1,
+        "stable_rel": true,
+        "bound_by": "abs",
+        "ess": 11580.6
+      },
+      {
+        "param": "J1514-4946_gw13_log10_A",
+        "median": -15.873769872580699,
+        "ci68": [
+          -17.297228322473497,
+          -14.452786729895514
+        ],
+        "halfshift": 0.0052,
+        "tol": 0.1,
+        "stable": true,
+        "w68": 2.8444,
+        "tol_rel": 0.2844,
+        "stable_rel": true,
+        "bound_by": "rel",
+        "ess": 17683.4
+      }
+    ],
+    "stable_rel": true,
+    "ess_min": 11580.6
+  },
+  "updated_utc": "2026-08-21T19:40:39Z",
+  "elapsed_min": 10.5,
+  "best_point": {
+    "J1514-4946_efac": 0.9629236377571301,
+    "J1514-4946_gw13_log10_A": -17.996347514559833
+  },
+  "lnl_best": 7375.045687,
+  "curn": {
+    "median": -15.873769872580699,
+    "ci68": [
+      -17.297228322473497,
+      -14.452786729895514
+    ],
+    "n": 21376
+  },
+  "a2": [
+    {
+      "param": "J1514-4946_efac",
+      "key": "efac",
+      "median": 0.9637016627308481,
+      "ci68": [
+        0.9386838230665513,
+        0.9901584805358978
+      ],
+      "published_map": 0.97,
+      "published_ci": [
+        0.94,
+        0.99
+      ],
+      "agree": true
+    },
+    {
+      "param": "J1514-4946_gw13_log10_A",
+      "key": "gw13_log10_A",
+      "median": -15.873769872580699,
+      "ci68": [
+        -17.297228322473497,
+        -14.452786729895514
+      ],
+      "published_map": -17.63,
+      "published_ci": [
+        -17.419999999999998,
+        -14.399999999999999
+      ],
+      "agree": true
+    }
+  ],
+  "n_agree": 2,
+  "n_compared": 2,
+  "verdict": "CONVERGED-AGREES 2/2",
+  "param_names": [
+    "J1514-4946_efac",
+    "J1514-4946_gw13_log10_A"
+  ],
+  "gate_met_abs": true,
+  "gate_met_rel": true,
+  "gate_met_m3": true,
+  "gate_rule": "relative",
+  "postprocessed": true
+}

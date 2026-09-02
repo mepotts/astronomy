@@ -1,0 +1,99 @@
+M6 DataLink throughput probe + day-one wall-clock projection
+========================================================================
+offline: re-projecting from out\m6_datalink_probe.csv
+
+MEASURED DataLink calls (anonymous, ESAC) ------------------------------
+  # 0 [sweep] batch   1     2.80 s       7.7 KiB    2.76 KiB/s  OK
+  # 1 [sweep] batch   2     5.47 s      13.7 KiB    2.50 KiB/s  OK
+  # 2 [sweep] batch   5    29.98 s      41.9 KiB    1.40 KiB/s  OK
+  # 3 [sweep] batch  10    73.53 s      85.2 KiB    1.16 KiB/s  OK
+  # 4 [sweep] batch  20    60.56 s     145.9 KiB    2.41 KiB/s  OK
+  # 5 [sweep] batch  40   164.25 s     278.2 KiB    1.69 KiB/s  OK
+  # 6 [soak ] batch  10    42.32 s      72.4 KiB    1.71 KiB/s  OK
+  # 7 [soak ] batch  10    72.23 s      87.6 KiB    1.21 KiB/s  OK
+  # 8 [soak ] batch  10    27.22 s      82.8 KiB    3.04 KiB/s  OK
+  # 9 [soak ] batch  10    22.71 s      61.7 KiB    2.72 KiB/s  OK
+  #10 [soak ] batch  10    29.32 s      67.2 KiB    2.29 KiB/s  OK
+
+SOAK TEST -- 5 identical requests at batch 10 ------------------
+  seconds: [42.3, 72.2, 27.2, 22.7, 29.3]
+  median 29.3 s, min 22.7, max 72.2, spread 3.2x
+  trend across the run: -7.55 s per request (R^2 0.35)
+  -> not a clean monotone rise: the spread is archive LOAD, not a rate
+     limit aimed at us.  The VARIANCE is the finding -- any single-call
+     timing is worthless for planning, which is why the projection below
+     is a band and why the harness is resumable.
+
+TWO TRANSPORT MODELS, both fitted to the same calls --------------------
+  A transport-limited  t = 2.3 s + bytes / 1.8 KiB/s      (R^2 0.934)
+  B per-source work    t = 6.0 s + 3.86 s per source      (R^2 0.917)
+  fitted on 6 sweep calls spanning 2.8-164.2 s and 8-278 KiB
+  probe payload: 7.5 KiB/source (DR3 epoch photometry)
+  The two fit the SAME data about equally well because bytes and sources are
+  collinear in the probe.  They disagree about DR4 only because DR4's payload
+  per source is ~7x bigger -- exactly the extrapolation that cannot be tested
+  until the data exists.  Hence a band, not a number.
+
+PAYLOAD, measured on the real thing ------------------------------------
+  pre-release RAW epoch astrometry: 1,183,282 B for 12 sources
+  = 96.3 KiB/source uncompressed, 50.9 KiB/source zipped (DataLink sends zip)
+  ratio to the probe's payload: 6.8x
+
+FIT COST, measured on that same real epoch astrometry ------------------
+  gaiasupdate single-star fit, n=24: median 0.026 s/source, steady-state mean 0.036 s, p90 0.136
+  (the 2.5 s outlier is the session's FIRST fit -- gaiasupdate import + pandas accessor registration, a one-off that
+   amortises to nothing over 983 sources)
+
+PROJECTION for the day-one queue (n = 983) ----------------------
+  per source = fetch + single-star fit + politeness gap/batch;
+  'degrade' multiplies the transport term to price a slower release-day archive.
+
+  model  batch  degrade  s/source  src/hour   hours
+      B      5        1x      5.18       694    1.42
+      B     20        1x      4.22       854    1.15
+      B     50        1x      4.02       895    1.10
+      B      5        3x     12.90       279    3.52
+      B     20        3x     11.93       302    3.26
+      B     50        3x     11.74       307    3.20
+      B      5       10x     39.90        90   10.89
+      B     20       10x     38.93        92   10.63
+      B     50       10x     38.74        93   10.58
+      A      5        1x     29.27       123    7.99
+      A     20        1x     28.84       125    7.88
+      A     50        1x     28.76       125    7.85
+      A      5        3x     86.60        42   23.65
+      A     20        3x     86.18        42   23.53
+      A     50        3x     86.09        42   23.51
+      A      5       10x    287.27        13   78.44
+      A     20       10x    286.84        13   78.32
+      A     50       10x    286.76        13   78.30
+
+HEADLINE ---------------------------------------------------------------
+  MEASURED today, end to end on real epoch astrometry: the single-star-fit
+  half of the loop runs at 101,149 sources/hour (0.036 s/source).
+  It is NOT the bottleneck and never will be.
+  MEASURED today on the live DataLink service: 3.9 s per source at 8 KiB/source, 2.3-6.0 s per request.
+
+  PROJECTED day-one throughput at batch 20, undegraded:
+    model B (per-source work): 854 sources/hour -> 983 rows in 1.2 h
+    model A (transport):       125 sources/hour -> 983 rows in 7.9 h
+  => THE BAND: 125-854 sources/hour, i.e. the 983-row queue in 1.2-7.9 h.
+  At a 10x-degraded archive (release-day branch, model A): 78 h -- the only
+  branch measured that does NOT fit inside the runbook's 72 h.
+
+  CONSEQUENCE for the runbook, and it is the actionable one: the queue is
+  RANKED and the harness consumes it in rank order, so a slow archive costs
+  DEPTH, not the headline -- BH1, BH2 and the spurious poster child are
+  adjudicated in the first minutes under every branch.  The failure mode to
+  plan for is running out of hours, not running out of throughput, and the
+  mitigation is already in the harness: it is resumable, so 72 h is a
+  checkpoint, not a deadline.
+
+  ASSUMPTIONS carried, not hidden:
+    (i) DR4 epoch astrometry is served by the same DataLink service at a cost
+        between 'same per source' (B) and 'same per byte' (A).
+   (ii) release day is busier than a quiet Friday -- hence the degrade column.
+  (iii) the probe used DR3 EPOCH_PHOTOMETRY because DR4 epoch astrometry does
+        not exist yet.  RE-RUN THIS SCRIPT ON 2026-12-02 with the real
+        retrieval type BEFORE committing to a batch size: it takes ~6 minutes
+        and replaces every projected number with a measured one.

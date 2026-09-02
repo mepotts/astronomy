@@ -1,0 +1,12 @@
+stage,seconds,status,note
+A_schema_pin,3.1,OK,
+B_rename_patch,1.9,OK,
+C_planB_ranged_pull,3.1,OK,"RESUMED from 94 cached range chunks -- this timing is cache validation + live histogram + live exact-COUNT guard, not a fresh pull (fresh pull measured twice: M2 ~35 min, M3 38.7 min, byte-identical parquets)"
+D_triage_acceptance,31.4,OK,
+E_corrvec_note,0.0,OK,
+F_epoch_vet,1.5,OK,"PRODUCTION harness (M6): 3/3 kept, 9/9 demoted, max |delta f2| vs the M3 prototype 0.0050; fit 0.84s for 12 sources (12 epoch-cache hits, 0 fetched) -- the ledger is deleted at the start of every rehearsal so the verdicts are always recomputed"
+G_bulletin,0.1,OK,
+H_day1_queue,0.1,OK,
+I_verdict_store,0.0,OK,"88 verdict records (2 producers, 2 scopes) validated against schemas/day1_verdict_record.v1.json; consumer contract OK"
+E_corrvec_pull(measured),74.0,OK(measured),
+E_corrvec_mc(measured),10.0,OK(measured),

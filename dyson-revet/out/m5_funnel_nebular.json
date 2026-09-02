@@ -1,0 +1,332 @@
+{
+  "funnel": {
+    "RMSE <= 0.2": {
+      "ours": 9486,
+      "paper": 11243,
+      "ratio": 0.8437249844347594
+    },
+    "+ nebular stage (M5 N1|N2)": {
+      "ours": 6529,
+      "paper": 5732,
+      "ratio": 1.1390439637124912
+    },
+    "+ extra cuts": {
+      "ours": 5943,
+      "paper": 5137,
+      "ratio": 1.1569009149308935
+    },
+    "+ S/N >= 3.5 (pre-visual)": {
+      "ours": 585,
+      "paper": 368,
+      "ratio": 1.5896739130434783
+    }
+  },
+  "latitude": [
+    {
+      "band": "0-5",
+      "area_deg2": 3595.432477412553,
+      "pre": 670,
+      "post": 84,
+      "rejected_frac": 0.8746268656716418,
+      "n1_frac": 0.6238805970149254,
+      "n2_frac": 0.735820895522388,
+      "sky_masked_frac": 0.36634605463779246,
+      "n1_enrichment": 1.7029816183819917,
+      "yield_per_1000deg2_before": 186.34754072260156,
+      "yield_per_1000deg2_after": 23.36297525477393,
+      "overproduction_before": 20.88964096358371,
+      "overproduction_after": 2.618999762598554,
+      "overproduction_after_areacorrected": 4.133170450160282,
+      "overproduction_after_68": [
+        2.333872929405603,
+        2.937004758293041
+      ]
+    },
+    {
+      "band": "5-10",
+      "area_deg2": 3568.0690652779567,
+      "pre": 217,
+      "post": 84,
+      "rejected_frac": 0.6129032258064516,
+      "n1_frac": 0.423963133640553,
+      "n2_frac": 0.4700460829493088,
+      "sky_masked_frac": 0.16035037058427182,
+      "n1_enrichment": 2.643979755679704,
+      "yield_per_1000deg2_before": 60.81720842001007,
+      "yield_per_1000deg2_after": 23.542145194842607,
+      "overproduction_before": 6.817635711075209,
+      "overproduction_after": 2.6390847913839517,
+      "overproduction_after_areacorrected": 3.1430786115160485,
+      "overproduction_after_68": [
+        2.3517713292596225,
+        2.9595285576287984
+      ]
+    },
+    {
+      "band": "10-20",
+      "area_deg2": 6945.842173222545,
+      "pre": 335,
+      "post": 135,
+      "rejected_frac": 0.5970149253731343,
+      "n1_frac": 0.564179104477612,
+      "n2_frac": 0.06567164179104477,
+      "sky_masked_frac": 0.09509180581139699,
+      "n1_enrichment": 5.9329939069260345,
+      "yield_per_1000deg2_before": 48.230292547026835,
+      "yield_per_1000deg2_after": 19.436088041339172,
+      "overproduction_before": 5.406636926729235,
+      "overproduction_after": 2.1787939853983485,
+      "overproduction_after_areacorrected": 2.4077514154372213,
+      "overproduction_after_68": [
+        1.9915303578985797,
+        2.3828910110492267
+      ]
+    },
+    {
+      "band": "20-30",
+      "area_deg2": 6517.136904086941,
+      "pre": 100,
+      "post": 63,
+      "rejected_frac": 0.37,
+      "n1_frac": 0.34,
+      "n2_frac": 0.05,
+      "sky_masked_frac": 0.06994978397395017,
+      "n1_enrichment": 4.860629735849057,
+      "yield_per_1000deg2_before": 15.344161319871816,
+      "yield_per_1000deg2_after": 9.666821631519245,
+      "overproduction_before": 1.7200872070352695,
+      "overproduction_after": 1.0836549404322198,
+      "overproduction_after_areacorrected": 1.1651574525325068,
+      "overproduction_after_68": [
+        0.9475281362793283,
+        1.2380650297285773
+      ]
+    },
+    {
+      "band": "30-50",
+      "area_deg2": 10975.121100104587,
+      "pre": 133,
+      "post": 129,
+      "rejected_frac": 0.03007518796992481,
+      "n1_frac": 0.0,
+      "n2_frac": 0.03007518796992481,
+      "sky_masked_frac": 0.01797534288063536,
+      "n1_enrichment": 0.0,
+      "yield_per_1000deg2_before": 12.11831730938555,
+      "yield_per_1000deg2_after": 11.753856638426585,
+      "overproduction_before": 1.3584686800491934,
+      "overproduction_after": 1.3176124791454582,
+      "overproduction_after_areacorrected": 1.3417305457588964,
+      "overproduction_after_68": [
+        1.201769618570562,
+        1.4441188094839987
+      ]
+    },
+    {
+      "band": "50-90",
+      "area_deg2": 9651.359519895415,
+      "pre": 90,
+      "post": 90,
+      "rejected_frac": 0.0,
+      "n1_frac": 0.0,
+      "n2_frac": 0.0,
+      "sky_masked_frac": 0.0002610090925298627,
+      "n1_enrichment": 0.0,
+      "yield_per_1000deg2_before": 9.32511112185522,
+      "yield_per_1000deg2_after": 9.32511112185522,
+      "overproduction_before": 1.0453490425776801,
+      "overproduction_after": 1.0453490425776801,
+      "overproduction_after_areacorrected": 1.0456219594164367,
+      "overproduction_after_68": [
+        0.9353861358096199,
+        1.1675386538685448
+      ]
+    }
+  ],
+  "paper_rate_per_1000deg2": 8.920571734452293,
+  "pre_visual_before": 1545,
+  "pre_visual_after": 585,
+  "overproduction_before": 4.198369565217392,
+  "overproduction_after": 1.5896739130434783,
+  "overproduction_after_areacorrected": 1.7236566144453382,
+  "excess_over_paper_before": 1177,
+  "excess_over_paper_after": 217,
+  "frac_of_excess_removed": 0.8156329651656754,
+  "frac_of_excess_removed_areacorrected": 0.773742027089308,
+  "n1_catalogue_share_of_previsual": {
+    "HII_SH2": 288,
+    "DARK_LDN": 158,
+    "BRIGHT_LBN": 115,
+    "HII_WISE": 62,
+    "PGCC": 32,
+    "HII_RCW": 23,
+    "SNR_GREEN": 20,
+    "CED": 16,
+    "DARK_BARN": 10,
+    "REFL_VDB": 9
+  },
+  "nebular_reject_frac_at_rmse": 0.31172253847775666,
+  "paper_cnn_reject_frac_at_rmse": 0.4901716623676955,
+  "validation": {
+    "published_candidates_preserved": 7,
+    "published_candidates_total": 7,
+    "all_labelled_preserved": 10,
+    "monotone_latitude_gradient": true,
+    "overproduction_moves_toward_one": true
+  },
+  "sensitivity_previsual_counts": {
+    "0.95": 557,
+    "0.99": 585,
+    "0.999": 609
+  },
+  "n2_within_ecliptic_bin_diagnostic": [
+    {
+      "ecl_bin": 0,
+      "n_cal": 13031,
+      "cal_median": 3078.059,
+      "median_b_lt5": 3154.1465,
+      "median_b_10_30": 3152.581,
+      "median_b_gt50": 3084.3755,
+      "ratio_plane_over_cal": 1.0247193117480853
+    },
+    {
+      "ecl_bin": 1,
+      "n_cal": 10343,
+      "cal_median": 2645.992,
+      "median_b_lt5": 2868.011,
+      "median_b_10_30": 2630.177,
+      "median_b_gt50": 2657.228,
+      "ratio_plane_over_cal": 1.0839076610964808
+    },
+    {
+      "ecl_bin": 2,
+      "n_cal": 11122,
+      "cal_median": 2141.4120000000003,
+      "median_b_lt5": 2307.1915,
+      "median_b_10_30": 2010.697,
+      "median_b_gt50": 2129.942,
+      "ratio_plane_over_cal": 1.0774159760008815
+    },
+    {
+      "ecl_bin": 3,
+      "n_cal": 11230,
+      "cal_median": 1770.9685,
+      "median_b_lt5": 1973.383,
+      "median_b_10_30": 1716.7295,
+      "median_b_gt50": 1788.373,
+      "ratio_plane_over_cal": 1.114295934682068
+    },
+    {
+      "ecl_bin": 4,
+      "n_cal": 10325,
+      "cal_median": 1522.7,
+      "median_b_lt5": 1744.448,
+      "median_b_10_30": 1456.911,
+      "median_b_gt50": 1510.1480000000001,
+      "ratio_plane_over_cal": 1.1456281605043672
+    },
+    {
+      "ecl_bin": 5,
+      "n_cal": 8106,
+      "cal_median": 1358.866,
+      "median_b_lt5": 1599.436,
+      "median_b_10_30": 1257.2089999999998,
+      "median_b_gt50": 1355.665,
+      "ratio_plane_over_cal": 1.1770373237684952
+    },
+    {
+      "ecl_bin": 6,
+      "n_cal": 4354,
+      "cal_median": 1267.288,
+      "median_b_lt5": 1531.884,
+      "median_b_10_30": 1213.633,
+      "median_b_gt50": 1259.7705,
+      "ratio_plane_over_cal": 1.208789162368775
+    }
+  ],
+  "n2_score_by_latitude": [
+    {
+      "band": "0-5",
+      "median_score": 0.9998761303109128,
+      "frac_flagged": 0.6062789500772002
+    },
+    {
+      "band": "5-10",
+      "median_score": 0.6491688538932633,
+      "frac_flagged": 0.25650916104146576
+    },
+    {
+      "band": "10-20",
+      "median_score": 0.2773199570046578,
+      "frac_flagged": 0.0683583635422061
+    },
+    {
+      "band": "20-30",
+      "median_score": 0.3034355545307816,
+      "frac_flagged": 0.05215973920130399
+    },
+    {
+      "band": "30-50",
+      "median_score": 0.30250244972633533,
+      "frac_flagged": 0.04170957775489186
+    },
+    {
+      "band": "50-90",
+      "median_score": 0.5351309287280234,
+      "frac_flagged": 0.016358463726884778
+    }
+  ],
+  "skymask": {
+    "n_mc": 3000000,
+    "seed": 20260823,
+    "bands": {
+      "0-5": {
+        "n_mc": 261687,
+        "masked_fraction": 0.36634605463779246,
+        "area_deg2": 3595.432477412553
+      },
+      "5-10": {
+        "n_mc": 259725,
+        "masked_fraction": 0.16035037058427182,
+        "area_deg2": 3568.0690652779567
+      },
+      "10-20": {
+        "n_mc": 504870,
+        "masked_fraction": 0.09509180581139699,
+        "area_deg2": 6945.842173222545
+      },
+      "20-30": {
+        "n_mc": 473554,
+        "masked_fraction": 0.06994978397395017,
+        "area_deg2": 6517.136904086941
+      },
+      "30-50": {
+        "n_mc": 799039,
+        "masked_fraction": 0.01797534288063536,
+        "area_deg2": 10975.121100104587
+      },
+      "50-90": {
+        "n_mc": 701125,
+        "masked_fraction": 0.0002610090925298627,
+        "area_deg2": 9651.359519895415
+      }
+    },
+    "per_catalogue_allsky": {
+      "BRIGHT_LBN": 0.020412666666666666,
+      "CED": 0.0028496666666666666,
+      "DARK_BARN": 0.002724,
+      "DARK_LDN": 0.027877333333333334,
+      "HII_RCW": 0.004736333333333334,
+      "HII_SH2": 0.030406666666666665,
+      "HII_WISE": 0.0047873333333333335,
+      "PGCC": 0.0068716666666666665,
+      "PN_MASH1": 2.2e-05,
+      "PN_MASH2": 3.3333333333333333e-06,
+      "PN_SECGPN": 2.2666666666666668e-05,
+      "REFL_MAGAK": 2e-05,
+      "REFL_VDB": 0.004259666666666667,
+      "SNR_GREEN": 0.005272666666666667
+    },
+    "allsky_masked_fraction": 0.07773166666666667
+  }
+}
