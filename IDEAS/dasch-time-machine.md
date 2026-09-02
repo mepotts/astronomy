@@ -4,14 +4,24 @@
 
 **Scores (U/B/E):** U 5 (historical/archival astronomy was untouched by run 1; nobody bridges the century baseline to the live alert stream) · B 4 (pure public data + software, but DASCH plate-photometry cleaning is genuinely fiddly, which caps it below 5) · E 4 (a "century time machine" wired to real-time alerts is evocative and citable; it is an enrichment layer, not a standalone discovery engine)
 
-**Status:** proposed
+**Status:** the T CrB/API portion of M0 passed 2026-09-02; the original multi-position and cutout gates remain open, and no blind/broker-scale build is authorized
+
+**2026-09-02 execution update.** The account-free pilot in
+[`../dasch-pilot/`](../dasch-pilot/) reproduced the published T CrB 1938--1945
+high state after the current documented five-AFLAG mask and a 15-arcsec
+astrometric cut. The 1.103-mag target brightening remained 1.089 mag relative
+to a frozen nearby field control. This validates targeted scripted light-curve retrieval,
+not the original three-position M0, plate-cutout recovery, or a blind alert annotator. It also corrects an assumption below: current
+daschlab documentation explicitly supports non-interactive use, so "no batch
+mode" is not a defensible novelty claim. The open wedge is now the validated
+multi-control cleaning/systematics methodology and alert integration.
 
 ## The wedge
 
 **What exists already (adversarial prior-art check):**
-- **`daschlab` (the biggest prior-art risk).** The official DASCH analysis package (`pkgw/daschlab`, MIT, **v1.0.0 released 2024-12-30**, pip + conda-forge). It already retrieves century light curves and plate cutouts account-free via `open_session()` / `Session.lightcurve()`, and its `Lightcurve` subclasses `astropy.timeseries.TimeSeries`. **Be honest: re-hosting DASCH light curves is a solved problem.** But daschlab is an *interactive, human-in-the-loop Jupyter tool* — you name a target, inspect a table, hand-reject bad points. It has no batch mode, no streaming/alert ingestion, no plain-language summarizer, and no notion of a broker alert. That is the seam.
+- **`daschlab` (the biggest prior-art risk).** The official DASCH analysis package (`pkgw/daschlab`, MIT, **v1.0.0 released 2024-12-30**, pip + conda-forge). It already retrieves century light curves and plate cutouts account-free via `open_session()` / `Session.lightcurve()`, and its `Lightcurve` subclasses `astropy.timeseries.TimeSeries`. **Be honest: re-hosting DASCH light curves is a solved problem.** It is designed primarily for interactive analysis but its current documentation explicitly supports non-interactive use. It does not provide broker-stream ingestion, a calibrated multi-control verdict engine, or a plain-language alert annotation. Those narrower pieces, not generic batch access, are the remaining seam.
 - **DASCH web APIs + Starglass.** DR7 (released **2024-12-29**) is cloud-served through Starglass REST endpoints (`querycat`/`queryexps`/`lightcurve`/`cutout`). These are primitives, not a translation layer.
-- **Manual DASCH×modern-survey cross-matches happen constantly in the literature** — the science value is *proven*, not speculative. Canonical example: DASCH B-band revealed a **1938 optical bright state in T CrB lasting ~7 yr**, giving context for its 1946 recurrent-nova eruption (Schaefer 2020, arXiv:2009.11902). Researchers routinely bolt a century of Harvard plates onto ZTF light curves by hand.
+- **Manual DASCH×modern-survey cross-matches happen constantly in the literature** — the science value is *proven*, not speculative. Canonical example: DASCH B-band revealed a **1938 optical bright state in T CrB lasting ~7 yr**, giving context for its 1946 recurrent-nova eruption (Luna et al. 2020, arXiv:2009.11902). Researchers routinely bolt a century of Harvard plates onto ZTF light curves by hand.
 - **Brokers already do catalog cross-matching** (Fink and Lasair annotate alerts with SIMBAD, Gaia, ALeRCE/Fink classifiers; Fink has TDE/anomaly/SSO science modules). **None annotates alerts with DASCH century history.** Verified: no DASCH science module on Fink, no DASCH watchlist/annotation on Lasair, and **no `astroquery.dasch` module** — daschlab is standalone and not astroquery-affiliated.
 
 **Where the defensible gap is:** the automated *bridge* — take a broker alert (or a batch of positions), pull the DASCH century record, clean it with the documented rejection paradigm, and emit a machine-readable verdict + human-readable one-liner + cutout thumbnails, at scale and at alert time. The two ends of the century baseline are, as of 2026, *both* programmatically accessible for the first time — but nobody has connected them. An agent fleet can build this cheaply because daschlab already does the hard data-plumbing (cloud auth, calibration files, cutout assembly); the net-new work is the **cleaning-calibration recipe, the verdict logic, the Fink/Lasair wiring, and the summarizer** — all data+software, no telescope, no hardware.
@@ -70,8 +80,13 @@ Data flow: `alert/position → resolver → DASCH fetch → cleaner → verdict 
 
 - **M0 — kill checks (cheapest disproofs).**
   - *Data-access smoke test:* from a laptop, account-free, pull and clean a century light curve for a known variable (T CrB, plus a Mira and a faint Galactic-plane target). **Acceptance:** cleaned DASCH LC retrieved with no credentials for ≥3 positions, including one faint/crowded field.
-  - *Prior-art disproof:* confirm no Fink/Lasair DASCH module and no batch/alert mode in daschlab; email **Peter K. G. Williams (daschlab/CfA)** and the Fink & Lasair teams: "does an alert→DASCH annotation layer exist or is one planned?" **Acceptance:** written confirmation the wedge is open (or a pivot if daschlab's roadmap already includes it).
+  - *Prior-art disproof:* confirm that Fink/Lasair and daschlab do not already provide a maintained broker-to-DASCH annotation/verdict layer. Generic scripted or batch DASCH access is existing infrastructure, not the wedge. **Acceptance:** the public documentation and code leave the alert-annotation seam open; any roadmap emails are a separate, explicitly approved outward action.
   - *Reliability reality check:* reproduce a published century-baseline result (T CrB 1938 bright state) from cleaned DASCH data. **Acceptance:** the pipeline recovers the known feature; if cleaned photometry can't reproduce a documented result, the automated-verdict thesis is in doubt.
+
+  **Execution status (2026-09-02):** the reliability check and one-position API smoke
+  test passed with T CrB plus one nearby field control. The Mira, faint/crowded target,
+  plate-cutout recovery, and external roadmap confirmation were not executed, so M0 as
+  originally written is only partially complete.
 - **M1 — thin end-to-end slice.** `dasch-timemachine <ZTF objectId | ra dec>` → cleaned century LC PNG + JSON verdict + one cutout, quality cuts applied, deterministic. **Acceptance:** for a known recurrent nova resolved through Fink, the tool emits an `ERUPTIVE`/`VARIABLE` verdict with the historical excursion quantified, reproducibly from a cold checkout.
 - **M2 — batch + service + summarizer.** REST endpoint and a "score a night's alert file" batch mode; plain-language summaries ("sustained bright state B≈12, ~1932–1939"); coverage/quality gating tuned so faint fields degrade gracefully. **Acceptance:** annotate a full night of ZTF alerts and correctly surface the subset with real historical variability against a hand-labeled validation set (precision-first).
 - **M3 — distribution.** A Fink science module *or* Lasair annotation pushing DASCH flags onto live alerts; a versioned Zenodo verdict catalog; an MCP server exposing the time-machine as a tool; one RNAAS on a genuine find. **Acceptance:** a deployed broker annotation reaching downstream users, and one RNAAS submitted.
@@ -117,6 +132,6 @@ Data flow: `alert/position → resolver → DASCH fetch → cleaner → verdict 
 - daschlab package (MIT, v1.0.0 2024-12-30, pip/conda) — https://github.com/pkgw/daschlab , https://daschlab.readthedocs.io/
 - DASCH DR7 paper (23.57B mags, 252M sources, ~200TB/16TB, ~1880–1990) — https://arxiv.org/abs/2501.12977
 - DASCH scanning complete (2024) — https://aas.org/posts/news/2024/03/harvards-dasch-scanning-project-now-complete
-- T CrB century-baseline example (1938 bright state, 1946 nova) — https://arxiv.org/abs/2009.11902 (Schaefer 2020)
+- T CrB century-baseline example (1938 bright state, 1946 nova) — https://arxiv.org/abs/2009.11902 (Luna et al. 2020)
 - Fink public REST API (tokenless) — https://api.fink-portal.org/api/v1/objects , https://fink-broker.readthedocs.io/
 - Lasair (broker annotations) — https://lasair.readthedocs.io/ (and seti-ellipsoid-broker/DATA-SOURCES.md for the ZTF token flow)

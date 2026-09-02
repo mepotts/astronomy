@@ -13,6 +13,9 @@ but they do not all have a package manifest or test suite.
 | [`seti-ellipsoid-broker/`](seti-ellipsoid-broker/) | Python — SN 1987A SETI-ellipsoid alert broker |
 | [`itf-linker/`](itf-linker/) | Python — minor-planet linking from the MPC Isolated Tracklet File |
 | [`tns-miner/`](tns-miner/) | Python scripts and operating guide — low-latitude transient triage |
+| [`chime-frb-periodicity/`](chime-frb-periodicity/) | Catalog 2 activity-period feasibility gate — blocked without a time-resolved window |
+| [`dasch-pilot/`](dasch-pilot/) | DASCH DR7 targeted positive/field-control feasibility pilot |
+| [`spherex-pilot/`](spherex-pilot/) | Candidate-free SPHEREx warm-tail detectability and privacy gate |
 | [`dyson-revet/`](dyson-revet/) | Data-analysis scripts and milestone record — Dyson-candidate re-vetting |
 | [`erosita-dr2/`](erosita-dr2/) | Data-analysis scripts and drafts — eROSITA DR2 variability |
 | [`gaia-dr4/`](gaia-dr4/) | Release-day rehearsal scripts and preregistration — Gaia DR4 compact companions |
@@ -61,7 +64,8 @@ python scripts/m6_methods_note_check.py
 ```
 
 CI currently runs the packaged Python suites, the `pta-explainer` test/build, the root
-verifier, the offline `tns-miner` cache-contract tests, and those three PTA draft checks.
+verifier, the offline `tns-miner` cache-contract tests, the three candidate-free discovery-pilot
+suites, and those three PTA draft checks.
 The root verifier also performs syntax-only parsing of scripts under `dyson-revet`,
 `erosita-dr2`, `gaia-dr4`, `pta-mpta`, and `tns-miner`. That is not an end-to-end
 reproduction of those data-heavy fronts. Network-backed archive pulls,

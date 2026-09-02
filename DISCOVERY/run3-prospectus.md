@@ -161,14 +161,18 @@ December re-cross against **DR4 NSS orbits** — X-ray-detected astrometric bina
 compact-object hunt nobody can start before us. Best immediate pre-DR4 catalog project. *First
 step:* TAP query DR2-vs-DR1 flux ratios; rank >10× variables with Gaia counterparts.
 
-**6. CHIME/FRB Catalog 2 repeater statistics** · *PTA-grade machinery transfers · open now*
-[Public](https://chime-frb-open-data.github.io/): 4,539 bursts, 83 repeaters, 138 ~10″ baseband
-localizations, plus the injection set. Only one repeater period (16.35 d) is known and **no rigorous
-population-level periodicity analysis of Catalog 2 exists** — burst-time periodicity with honest
-false-alarm calibration is laptop-scale and exactly the shape of the PTA/exosat statistics. Second
-lane: hosts — 138 positions × DESI Legacy/DELVE with PATH. ⚠️ Outrigger voltage and Cat-2 per-event
-baseband are *not* public. *First step:* `cfod`, Catalog 2, periodicity machinery on the ten most
-active repeaters.
+**6. CHIME/FRB Catalog 2 repeater statistics** · *M0 executed; blocked on observing window*
+[Catalog 2](https://arxiv.org/abs/2601.09399) has 4,539 events and 83 repeaters. At least two
+repeaters already have published multi-day activity cycles: 16.35 d for FRB 20180916B and roughly
+157--161 d for FRB 121102. The 2026-09-02 M0 in
+[`../chime-frb-periodicity/`](../chime-frb-periodicity/) recovered the 16.35-day control to 0.024 d,
+but the released 216 MB exposure file contains only survey-integrated HEALPix maps, not the
+time-resolved operational/sensitivity window needed for calibrated false alarms. The unknown-source
+scan therefore did not run. The generic host-crossmatch lane is also weaker than this prospectus
+claimed: Catalog 2 header localizations are not a set of 138 ten-arcsecond positions, while the
+separate Baseband Catalog sample has already received dedicated host/crossmatch work. *Next gate:*
+obtain a citable time-resolved CHIME window; otherwise close the periodicity lane rather than assume
+uniform duty cycle.
 
 **7. The Dyson-candidate re-vet — Gaia × WISE with real false-positive control** · *extends the seti
 thread · competition: two small groups · SPHEREx adds a new axis*
@@ -187,12 +191,19 @@ defensibly clean extreme-IR-excess catalog (debris disks, WD pollution — the
 beyond 100 pc was not). *First step:* reproduce the Hephaistos selection via CDS X-Match
 (Gaia DR3 × CatWISE2020 × 2MASS); add the centroid-offset test on D and I first.
 
-**8. SPHEREx before its catalogs exist** · *~1-year window · low competition until 2027*
-All-sky 102-band spectral images flow to [IRSA](https://irsa.ipac.caltech.edu/Missions/spherex.html)
-weekly (QR2, no account, [AWS bucket](https://registry.opendata.aws/spherex-qr/)) — >2 full sky
-passes down, but **no official source catalog until 2027**. Forced spectrophotometry at scale now
-owns the window: cold brown dwarfs via 3–5 µm colors, unusual SEDs, ices — and the vetting axis for
-#7. *First step:* extract 102-band SEDs for a WISE-selected brown-dwarf candidate list.
+**8. SPHEREx before its catalogs exist** · *M0 narrows the use case; broad cold-excess scan killed*
+QR2 images are public through [IRSA](https://irsa.ipac.caltech.edu/Missions/spherex.html) and the
+[AWS bucket](https://registry.opendata.aws/spherex-qr/), but IRSA now provides an official
+research-ready Tractor Spectrophotometry Tool: forced extraction is infrastructure, not novelty.
+The 2026-09-02 M0 in [`../spherex-pilot/`](../spherex-pilot/) propagated the fitted 100--283 K
+components for all 223 rows of the existing high-latitude excess catalog to 4.8 microns. Only one
+row clears the conservative 5-sigma warm-window floor; the median prediction is four orders of
+magnitude below it. Kill the catalog-wide #7 extraction. The only surviving experiment is a
+private, paired D5+D6 test of the leading warm-tail row, a nearby photospheric control, and a
+second-ranked subthreshold falsifier. Its exact six-coordinate coverage query remains an explicit
+privacy gate; zero coordinates were sent in M0. Other physically motivated classes such as cold
+brown dwarfs would require their own selection and detectability pilot rather than inheriting the
+old forced-photometry novelty claim.
 
 ### Tier 3 — new domains, scoped pilots
 
@@ -263,7 +274,7 @@ barely run as of 2026-08-14.
 | eROSITA DR2 × VLASS 3 epochs | joint X-ray/radio slow transients | unrun per this sweep |
 | Gaia DR4 NSS × eROSITA DR2 | X-ray-detected astrometric binaries (dormant compact objects) | possible Dec 2 |
 | Gaia × CatWISE × 2MASS + SPHEREx spectra | vetted extreme-IR-excess catalog; technosignature nulls | re-vet open (#7) |
-| CHIME Cat 2 baseband × DESI Legacy / DELVE | FRB host associations (PATH) | 21 hosts done; 138 positions public |
+| CHIME Cat 2 baseband × DESI Legacy / DELVE | Residual host work only where public localization supports it | Generic lane narrowed: Catalog 2 headers are not 138 ten-arcsecond positions; the 140-object Baseband Catalog has already received dedicated host/crossmatch work |
 | IceTracks-DR2 × {eROSITA AGN, CHIME repeaters, LPTs} | neutrino source classes | unrun; data 3 months old |
 | Fermi 4FGL-DR4 unassociated (2,428) × SMART / LoTSS | pulsar candidates in public radio data | started elsewhere; gaps remain |
 | TESS mono/duotransits × RVBank / DACE / CLS | alias-broken long-period giants, no telescope | thin competition (#10) |

@@ -7,6 +7,7 @@ and never write int64 into VOTable uploads (not used here).
 
 from __future__ import annotations
 
+import os
 import sys
 import time
 from pathlib import Path
@@ -21,8 +22,19 @@ except Exception:
     pass
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA = ROOT / "data"
-OUT = ROOT / "out"
+
+
+def _runtime_path(variable: str, default: Path) -> Path:
+    """Resolve an optional run-local directory before any science I/O occurs."""
+    configured = os.environ.get(variable)
+    return Path(configured).expanduser().resolve() if configured else default.resolve()
+
+
+# A proved live campaign uses isolated, gitignored directories so exact inputs
+# cannot be overwritten by a later night and private candidate products cannot
+# accidentally appear beneath the tracked historical ``out/`` tree.
+DATA = _runtime_path("TNS_MINER_DATA_DIR", ROOT / "data")
+OUT = _runtime_path("TNS_MINER_OUT_DIR", ROOT / "out")
 DATA.mkdir(exist_ok=True)
 OUT.mkdir(exist_ok=True)
 
@@ -57,7 +69,8 @@ def tns_get(s: requests.Session, url: str, **kw) -> requests.Response:
     if "wis-tns.org" in url and not any(p in url for p in TNS_READ_ALLOWLIST):
         raise RuntimeError(
             f"HOUSE LAW: {url!r} is not on the TNS read allowlist "
-            f"{TNS_READ_ALLOWLIST}. Reads only, and only these paths.")
+            f"{TNS_READ_ALLOWLIST}. Reads only, and only these paths."
+        )
     wait = TNS_SPACING_S - (time.time() - _last_tns_call[0])
     if wait > 0:
         time.sleep(wait)

@@ -278,7 +278,7 @@ is a way to break a fit silently. Full table in `fit/verify.py`.
 
 ---
 
-## 4b. Attribution bulk sources (M7/M8) — **(verified 2026-08-16)**
+## 4b. Attribution bulk sources (M7/M8/M14) — **(verified 2026-09-02)**
 
 All read-only, anonymous, no credentials; every download carries a provenance sidecar.
 
@@ -297,6 +297,9 @@ All read-only, anonymous, no credentials; every download carries a provenance si
   map the bulk route needs) and `U` as a string (blank/'E' = no parameter). Streaming
   parser: `attrib/bulk.py::iter_mpcorb_objects` (index-based `raw_decode` — the
   buffer-slicing version was O(chunk × objects) and unusably slow at this scale).
+  M14 does not accept “a recent-looking filename”: HEAD and GET metadata must agree,
+  `Last-Modified` must be later than every selected batch generation, the body must match
+  `Content-Length`/ETag, and the complete local bytes receive SHA-256.
 - **Asteroid Institute X05 replica** — public GCS bucket `asteroid-institute-public`
   (found via `ls.st/ast` → `b612.ai/rubin-mpc-downloads/`). Daily partitions
   `production/rubin/mpc/obs_sbn/daily/<YYYY-MM-DD>/parquet/…`, keyed by
@@ -306,6 +309,14 @@ All read-only, anonymous, no credentials; every download carries a provenance si
   media: `storage.googleapis.com/asteroid-institute-public/<name>`. Schema notes:
   `mag` is a string (M7 trap 6); the discovery asterisk is **`disc`** — the
   `designation_asterisk` Boolean is all-null (M8).
+  M14 tightens this to the exact canonical
+  `<date>/parquet/obs_sbn_X05_<date>.parquet` name, records generation/ETag/CRC32C/MD5,
+  downloads through the generation-qualified JSON media endpoint, and adds SHA-256.
+  Nested `parquet_generations` shards are not batches. The 2026-08-19/24 objects passed
+  those transport gates. Anatomy classified 98.2% as numbered bookkeeping and found zero
+  discovery asterisks, but two rows remained unclassified, triggering the protocol's
+  post-run accounting STOP; transport authenticity is not scientific novelty
+  (`M14-RESULTS.md`).
 - **MPC newsletter archive** — `https://buttondown.com/MPC_newsletter/archive/` (the
   `minorplanetcenter.net/mpcops/newsletters` and `/media/newsletters/` index paths
   404; per-issue PDFs under `/media/newsletters/` still resolve). Watched by

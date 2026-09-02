@@ -12,12 +12,18 @@ UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 
 ## Current portfolio snapshot
 
+The aggregate, identity-free execution record and next gates are in
+[`DISCOVERY/CAMPAIGN-2026-09-02.md`](DISCOVERY/CAMPAIGN-2026-09-02.md).
+
 | Front | Current state | Next gate |
 |---|---|---|
-| [`itf-linker/`](itf-linker/) | **M13 implemented.** The local archive, local-only review-payload builder, and public counts/freshness watch are separate operations. The watcher cannot build or expose a payload or candidate identifiers and has no MPC submission capability; its scheduled workflow runs only from the default branch. | Regenerate locally against the newest key set, review the exact private payload, then decide separately whether a human should submit any tranche. |
-| [`tns-miner/`](tns-miner/) | **Cache/input repair complete; proved-input reproduction pending.** The 3.5%/8.0% precision and 40%/12% artifact figures are historical because 1,104 legacy empty Fink caches cannot be distinguished from old outages. The 37-object artifact is not a submission queue; nothing was sent and no account was created. | No filter M3. If reopened, use a new named window, refresh suspect histories, and pin a full post-window TNS snapshot under the repaired operating guide before promoting any completeness-dependent result. |
+| [`itf-linker/`](itf-linker/) | **M13 operational split implemented; M14 stopped at anatomy.** The August 19/24 aggregates were authenticated, but two unclassified rows triggered the prospective internal plan's accounting STOP. The downstream 0–2/100 fit bound is post-stop/noninferential, the runner is retired, and no M14 queue exists. | Keep the counts/freshness watcher separate from private review. Any new attribution experiment needs a separately named, independently timestamped protocol with complete input and residual-provenance repair. |
+| [`tns-miner/`](tns-miner/) | **Newest closed-year reproduction proved but incomplete.** The registry side for `[2025-09-01, 2026-09-01)` is sealed at 28,284 rows, but one required Fink class timed out even at `n=1` over 15.8 seconds. E2, the pool, and candidate count are absent—not zero. Historical M1/M2 precision figures remain unpromoted. | Retry a new three-day window plus fresh post-window TNS snapshot when a complete enumerator is responsive; do not reinterpret the stopped run or the old 37-object artifact as a queue. |
 | [`dyson-revet/`](dyson-revet/) | **M7 closed.** The empirical-PSF acceptance test passed; the published redshift still could not be independently confirmed. | Human go/no-go on drafting the candidate-D negative or other outward notes. |
 | [`gaia-dr4/`](gaia-dr4/) | **M9 closed and full-chain rehearsed.** Ready for the planned 2026-12-02 release, with unresolved preregistration interpretations recorded rather than silently changed. | Human ruling on amendments; release-day analysis remains gated and the release date must be rechecked. |
+| [`chime-frb-periodicity/`](chime-frb-periodicity/) | **M0 stopped at the observing-window gate.** Exact Catalog 2 inputs and published counts pass, and the 16.35-day control is recovered, but the released exposure product is survey-integrated rather than time-resolved. No unknown-source scan ran. | Obtain a citable operational/sensitivity time series or close the lane; never substitute uniform duty cycle. |
+| [`dasch-pilot/`](dasch-pilot/) | **Narrow light-curve/API slice passed; the original plate-cutout M0 remains open.** The published 1938--1945 T CrB high state is 1.103 mag above baseline and 1.089 mag relative to a frozen nearby field control after current DR7 cuts. No Mira, faint/crowded control, cutout recovery, or blind search ran. | Complete the original controls and plate/cutout recovery, then preregister a stable-star false-positive study before any unknown-source claim. |
+| [`spherex-pilot/`](spherex-pilot/) | **Broad scan killed; narrow path blocked at privacy gate.** Only 1/223 fitted warm tails clears the conservative 4.8-micron floor; forced spectrophotometry is already an official IRSA capability. Zero private coordinates were sent. | If explicitly approved, query coverage for the exact six-row private manifest; otherwise leave the paired warm-tail test blocked. |
 | [`pta-mpta/`](pta-mpta/) | **M6 closed.** A full paper and two RNAAS notes are drafts; their committed text-to-artifact checkers pass. Nothing is submitted. | Decide which drafts proceed, supply author metadata, and mint an appropriately scoped archive DOI only after reviewing the exact release. |
 | [`erosita-dr2/`](erosita-dr2/) | **M5 write-up complete.** The fader-census draft is not submitted; the optional classifier front remains deferred. | Human publication decision; J0944/Swift and any correspondence are separate outward gates. |
 | [`adql-copilot/`](adql-copilot/) | Packaged tool; 46-test suite and JOSS draft. | Publication is separate from repository integration. |
@@ -116,7 +122,7 @@ operating guide for registry-facing work.
 |---|---|---|---|
 | exosat-rv next milestone | #1 | `exosat-rv/` | **deliberately idle from this session** — concurrent thread owns the folder (M27/M32 active; milestone numbers must not collide); next dated triggers: β Pic header probe 2026-09-25, CD-35 joint-fit campaign from 2026-12-19 |
 | NEOCP high-e watcher (4I race) | #3 | `itf-linker/` or sibling | M8's watcher design lands first |
-| Dyson-candidate re-vet / SPHEREx | #7, #8 | new folders | wave 4 |
+| Dyson re-vet / hypothesis-led SPHEREx follow-up | #7, #8 | `dyson-revet/`, `spherex-pilot/` | historical row: re-vet executed; broad SPHEREx scan killed and exact six-row coverage test remains privacy-gated |
 
 ## Historical human-gate snapshot (recorded 2026-08-24; superseded above)
 

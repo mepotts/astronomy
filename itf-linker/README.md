@@ -14,13 +14,12 @@ this project does runs on a laptop. See [`SPEC.md`](SPEC.md) for the thesis and 
 prior-art assessment, [`DATA-SOURCES.md`](DATA-SOURCES.md) for endpoints and formats, and
 [`BUILD-PLAN.md`](BUILD-PLAN.md) for the milestone plan.
 
-**Current state: M5 (the pre-2023 slice fitted to completion), M7 (attribution
-against the Rubin bulk-batch orbits), M8 (the perturbed backend, at full batch
-scale), M9 (the unconsumed partitions, the queue extension, and the MPC's
-independent confirmation of 30/30 consumed candidates) and M10 (the ledger
-refreshed for review, the decay clock re-measured with an uncertainty, and the
-15-25 y shell opened) and M11 (the shell's fit stage priced against a decoy, its deep
-end closed, and the ledger refreshed a second time) complete.**
+**Current state: M0–M5 and M7–M14 have been executed. M13's public automation is
+counts/freshness only. M14 authenticated the August 19/24 Rubin aggregates, but its
+prospective internal plan's anatomy gate should have stopped on two unclassified rows.
+The downstream sweep/fits are exploratory; a residual-attribution bug bounds their
+corrected diagnostic at 0–2/100 rather than the recorded 0/100, and the M14 runner is
+retired. No M14 candidate queue was opened.**
 
 > **Reviewing candidates? Open
 > [`out/review-queue-v2-20260823.csv`](out/review-queue-v2-20260823.csv)** — the current
@@ -73,7 +72,15 @@ against the main tier's 40 of 45; the deep end closed at **0 fit-grade of 130 fi
 beyond 20.74 y**; the cumulative ledger refreshed to 2,203 rows with **68 of 68 consumed
 PASSes agreeing** and the strict gate's true-negative count at five; and the archive's
 retention found to have **pruned the base snapshot**, which made the first refresh read
-18 consumptions instead of 103 with nothing in the output to show it).
+18 consumptions instead of 103 with nothing in the output to show it) ·
+[`M12-RESULTS.md`](M12-RESULTS.md) (the daily archive read as a series: a 4.4:1 drain,
+departures confirmed as whole tracklets being linked, and a transient Pan-STARRS intake
+collapse that current-only servers can no longer reconstruct) ·
+[`M14-PLAN.md`](M14-PLAN.md) + [`M14-RESULTS.md`](M14-RESULTS.md) (generation-pinned
+anatomy of the August 19/24 aggregates; a post-run audit found the mandatory accounting
+STOP was missed, the run fingerprint omitted effective inputs, and the later fit
+diagnostic is bounded 0–2/100 because M8's station/time selector cannot preserve
+observation identity; M14 is retired pending a newly preregistered repair).
 
 M1 built Find_Orb under WSL, verified it against JPL Horizons, and fitted the ITF
 designations that already span 3+ nights. M2 built the MPChecker / SkyBoT / SBIDENT /
@@ -219,6 +226,13 @@ python scripts/m8_fetch_bulk.py         # MPCORB extended JSON + batch partition
 python scripts/m8_attribution.py        # the sweep + decoy + ranked, checkpointed fo fits
 python scripts/m8_verdicts.py           # verdict chain v2 -> m8-ledger.json (SkyBoT folded in)
 python scripts/watch_rubin_batches.py   # has a new Rubin bulk batch landed? (no scheduling)
+
+# Historical M14 invocation (all outputs below ignored data/m14/). The attribution
+# driver now refuses every new or resumed run; preserve the artifacts for audit only.
+python scripts/m14_prepare.py
+python scripts/m14_freeze_itf.py --snapshot-id 20260902T062614Z
+python scripts/m14_attribution.py --snapshot-id 20260902T062614Z
+python scripts/m14_fit_audit.py --snapshot-id 20260902T062614Z
 ```
 
 The fitting commands need Find_Orb. It is **not** bundled: build it once with the steps in

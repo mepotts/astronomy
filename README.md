@@ -73,6 +73,9 @@ TNOs. Links proposed here have since been independently published by the MPC
 local snapshot pipeline keeps the pool current. M13 adds a stale-queue watcher and
 builds a human-review payload, but has no submission capability; the scheduled watch
 only runs from the repository's default branch. **No MPC submission is automated.**
+M14 authenticated the two late-August Rubin aggregates but stopped on a two-row anatomy
+accounting residue; all downstream diagnostics are post-stop/noninferential, the runner
+is retired, and no M14 candidate queue exists.
 An RNAAS method note is drafted in
 [`itf-linker/docs/`](itf-linker/docs/).
 
@@ -81,9 +84,10 @@ An RNAAS method note is drafted in
 The M2 front is closed, and its cache/input layer was repaired in September 2026 after an
 audit found that failed Fink requests could masquerade as empty histories. The reported
 3.5%/8.0% precision and 40%/12% artifact measurements are now explicitly historical:
-completeness-dependent claims require a fresh, provenance-proved rerun before promotion
-or operational reuse. M2's 37-object list is not a submission queue; nothing was sent to
-TNS and no account was created. The operational handoff and exact caveat are in
+the 2026-09-02 proved rerun sealed the newest closed TNS year but stopped without a
+candidate count when one required Fink class timed out even at `n=1`. No pool or candidate
+output exists. M2's 37-object list is not a submission queue; nothing was sent to TNS and
+no account was created. The operational handoff and exact caveat are in
 [`tns-miner/OPERATING-GUIDE.md`](tns-miner/OPERATING-GUIDE.md).
 
 ## Newer science fronts
@@ -94,6 +98,9 @@ TNS and no account was created. The operational handoff and exact caveat are in
 | [`erosita-dr2/`](erosita-dr2/) | **M5 write-up complete.** The fader-census draft is not submitted; the optional classifier build remains deferred. |
 | [`gaia-dr4/`](gaia-dr4/) | **M9 closed and rehearsed for the planned 2026-12-02 DR4 release.** Release-day analysis and preregistration amendments remain explicitly gated. |
 | [`pta-mpta/`](pta-mpta/) | **M6 closed.** One full paper and two RNAAS notes are drafts, all checked against committed result artifacts and none submitted. |
+| [`chime-frb-periodicity/`](chime-frb-periodicity/) | **M0 stopped correctly.** Catalog 2 and the 16.35-day control reproduce, but the public exposure product has no time-resolved observing window; no unknown-source scan ran. |
+| [`dasch-pilot/`](dasch-pilot/) | **Narrow light-curve/API slice passed; original cutout M0 remains open.** The published T CrB high state survives current DR7 cuts and one nearby field control; the Mira, faint/crowded control, plate-cutout recovery, and blind mining remain unexecuted. |
+| [`spherex-pilot/`](spherex-pilot/) | **Broad use case killed; narrow test blocked at privacy gate.** Only 1/223 fitted warm tails clears the conservative 4.8-micron floor, and zero private coordinates were sent. |
 
 ## Tools
 
@@ -104,6 +111,9 @@ TNS and no account was created. The operational handoff and exact caveat are in
 | [`adql-copilot/`](adql-copilot/) | Schema-aware ADQL linter for Virtual-Observatory TAP endpoints | Correctness-hardened against the real 6,614-column Gaia `TAP_SCHEMA`; honest unchecked-identifier reporting. 46 tests. JOSS paper drafted in [`adql-copilot/paper/`](adql-copilot/paper/) |
 
 ## The lab notebook
+
+The latest repository-wide discovery closeout, in execution order, is
+[`DISCOVERY/CAMPAIGN-2026-09-02.md`](DISCOVERY/CAMPAIGN-2026-09-02.md).
 
 [`DISCOVERY/`](DISCOVERY/README.md) and [`IDEAS/`](IDEAS/README.md) are **planning
 documents, not results** — kept public because research about *where discovery is

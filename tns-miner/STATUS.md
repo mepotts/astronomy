@@ -2,6 +2,53 @@
 
 *Newest first. Root [`../STATUS.md`](../STATUS.md) carries the one-line summary.*
 
+- **2026-09-02 — Newest fully closed TNS year proved; live candidate rerun
+  blocked fail-closed by one required Fink class.** The defensible closed
+  discovery interval as of today is the half-open
+  **`[2025-09-01, 2026-09-01)`** interval (September 2025 through August 2026).
+  The fresh post-window TNS scan started 0.696 days after the alert ceiling and
+  completed in 13.8 minutes: **28,321 snapshot rows**, of which **28,284** are in
+  the closed interval and 37 are current-partial-month annotations. The closed
+  CSV is transitively bound to immutable snapshot SHA-256
+  `c377da7f061e6657bff3731170b01b0afcd2bc0e3a089e67e0522410df9968e5`;
+  its own SHA-256 is
+  `8e1f2f0e498d5d6d18cec8a568cc035a0a1fb67f2cd9c6fa3d1c0da616980f97`.
+
+  The private gitignored campaign bundle retains and re-authenticates **77 exact
+  TNS CSV responses (7,649,928 bytes)**, **one exact Fink taxonomy response and
+  87 exact successful Fink slice responses (64,504 bytes)**, all normalized
+  caches, the script-digest run contract, and the private child log. In all,
+  **180 cache payloads / 20,098,527 bytes** and all 21 science-script digests
+  re-authenticated after the stop. ALeRCE E1 completed at **3,041 objects** and
+  Fink returned a 295-class non-vetoed taxonomy.
+
+  The completed TNS component is independently sealed—without sealing the
+  scientific campaign—in the private ignored `20260902_proved_v7/TNS-SEALED.json`.
+  Its failure inventory covers **367 files / 32,731,948 bytes** and has SHA-256
+  `70fb4c8ce4a3d2f36c54baecde32468c5ba391df7029efeddaab9786401a762d`.
+  `campaign_complete=false`, `candidate_result_exists=false`, and the ordinary
+  campaign `SEALED.json` remains absent.
+
+  Fink `/api/v1/latests` repeatedly timed out for required class `Em*`, even
+  after 14 bounded bisections reduced the request to MJD
+  `[61282.0, 61282.00018310547]`; an `n=1` probe of that same 15.8-second slice
+  also timed out. E2 is therefore incomplete. No union pool,
+  candidate output, or candidate count was produced, and the outage was never
+  treated as zero. The official API and source (audited at commit `1fbbd0e`)
+  expose no complete class-independent time-range substitute; `/conesearch`
+  filters on first detection and misses the known-source arm. A counts-only
+  probe of ALeRCE's possible all-class `lastmjd=[t0, now]` over-enumerator also
+  returned HTTP 504, so it remains an unvalidated future protocol amendment.
+  Retry when the source serves the class, or preregister and prove a complete
+  replacement source. No candidate identities were surfaced; nothing was
+  submitted, published, pushed, committed, emailed, or registered.
+
+  The new `run_proved_window.py` entry point enforces one serial whole-run lock,
+  isolated private run directories, exact-response retention, script and input
+  authentication, counts-only sealing, and a fresh TNS scan before the slower E2
+  work. Offline validation is **70 tests passing**, Ruff clean, compileall clean,
+  and `git diff --check` clean.
+
 - **2026-09-02 — Input/cache correctness repair complete in code; proved-input
   reproduction still pending.** A repository audit found that the M1 history
   fetcher cached `[]` after an exhausted retry loop and the M2 batch fallback

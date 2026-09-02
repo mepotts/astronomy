@@ -58,7 +58,14 @@ readers reject partial or same-tag-mismatched artifacts. The public TNS CSV lack
 so the old candidate-veto state is not exactly reconstructible: new candidate
 runs pin a full, post-window TNS snapshot for a conservative discovery-date-
 bounded duplicate veto and keep later current-status matches annotation-only.
-See §4.9 of the operating guide.
+The canonical completeness path is now `scripts/run_proved_window.py`, which
+uses a whole-run lock and isolated private gitignored bundle, preserves exact
+Fink/TNS response bytes, and seals only after all inputs and outputs authenticate.
+On 2026-09-02 it proved the newest closed TNS year
+`[2025-09-01, 2026-09-01)` (28,284 rows), but the full candidate rerun stopped
+without a candidate count because Fink timed out on one of 295 required classes.
+That source failure was not converted to an empty result. See §§1.2, 4.9, and
+4.10 of the operating guide.
 
 **The number that governs how this tool is used** ([`M2-02`](M2-02-precision.md)):
 a hand-vetted, pre-registered random sample of the M1 candidate list measured

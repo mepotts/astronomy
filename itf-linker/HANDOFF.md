@@ -5,8 +5,8 @@ knowledge in this repository is not the code — it is the list of things that w
 measured, and found to be wrong. That list is spread across eight documents and would
 otherwise have to be rediscovered.
 
-**One-line status:** M0–M5 + M7–M12 complete, the MPC's Isolated Tracklet File searched at
-~100% coverage on both slices, **zero linking discoveries**, 519 tests green. The durable
+**One-line status:** M0–M5 + M7–M14 executed, the MPC's Isolated Tracklet File searched at
+~100% coverage on both slices, **zero linking discoveries**, 616 tests green. The durable
 outputs are a validated linking pipeline, a daily archive that independently confirmed 21
 of its own groupings, a replicated methodological result drafted for publication — and an
 **attribution** capability (ITF tracklet → known orbit) at production scale: a perturbed
@@ -32,7 +32,13 @@ the ITF is **draining 4.4 : 1** (−129,759 observations in 26 days), the depart
 tracklets being **linked** — 133 of a random 150, none of them ledger rows, confirmed against
 the absorbing objects' own published records — and a **five-day collapse in Pan-STARRS intake**
 (81% of everything entering the file, down 86×) is recorded that the MPC's own servers can no
-longer show, since they serve only the current ITF.
+longer show, since they serve only the current ITF. **M14** then authenticated the two new
+August 19/24 canonical Rubin aggregates, but its anatomy accounting missed two rows with
+neither `provid` nor `permid`; the prospective internal plan said to stop there. The later
+real/decoy and 0/100 fit work is exploratory, and the residual-selector provenance bug can
+create false FAILs. Exact accounting bounds the post-stop diagnostic at 0–2/100, with two
+usage-HOLD rows, but it is noninferential. M14 opened no candidate queue and
+its runner is retired pending a new preregistration (`M14-RESULTS.md`).
 
 ---
 
@@ -54,9 +60,10 @@ longer show, since they serve only the current ITF.
 | 12 | `M10-RESULTS.md` | The ledger refreshed against a same-hour pull for review (`out/review-queue.csv`), the decay clock re-measured across three intervals and found concentrated in M8's queue head alone, M9's 60 ambiguities adjudicated, the 15–25 y main-belt shell, and the pointed-field screen validated and measured |
 | 13 | `M11-RESULTS.md` | The shell's **fit stage priced with a decoy** (0/300 vs 76/300) and the finding that the primary "did fo use the tracklet" gate does all the discriminating; the shell's deep end closed at 20.74 y; the cumulative ledger refreshed after the archive pruned the base snapshot; the versioned review queue |
 | 14 | `M12-RESULTS.md` | The daily archive read as a **series** rather than as snapshot pairs: the ITF is draining 4.4 : 1, the departures are whole tracklets being linked (confirmed against the objects' own published records), and a five-day collapse in Pan-STARRS intake that only a daily archive could have recorded |
-| 15 | `SNAPSHOT-VALIDATION.md` | The one check independent of the whole pipeline |
-| 16 | `docs/archive-operations.md` | How the daily archive runs and how it has failed |
-| 17 | `docs/rnaas-subset-guard.md` + `rnaas-notes.md` | The publishable finding, and its 14 known weaknesses |
+| 15 | `M14-PLAN.md` + `M14-RESULTS.md` | Anatomy-first intake of the August 19/24 aggregates; the post-run accounting/provenance breach, exploratory 0–2/100 diagnostic bound, and required repair |
+| 16 | `SNAPSHOT-VALIDATION.md` | The one check independent of the whole pipeline |
+| 17 | `docs/archive-operations.md` | How the daily archive runs and how it has failed |
+| 18 | `docs/rnaas-subset-guard.md` + `rnaas-notes.md` | The publishable finding, and its 14 known weaknesses |
 
 `git log` is worth reading; commit messages carry the reasoning, not just the change.
 
@@ -171,6 +178,13 @@ before re-deriving anything or asserting a claim from an older document.**
 - **The MPC newsletter index moved to Buttondown** (`buttondown.com/MPC_newsletter/archive/`; linked from the MPC front page). Every plausible `minorplanetcenter.net` index path 404s; the per-issue PDFs under `/media/newsletters/` still resolve. `scripts/watch_rubin_batches.py`.
 - **The daily archive re-pulls the ITF under this repo**, so `data/raw/itf.txt.gz` and `data/parquet/itf_observations.parquet` are *the newest pull*, not the one the last milestone used — between M8 and M9 the MPC consumed 22,353 observations and the files moved. Pin the snapshot explicitly for any resumed or comparative work; the archive's content-addressed `obs_key` tables reconstruct an old snapshot exactly (`scripts/m9_reconstruct_snapshot.py`, `M9-RESULTS.md` §0.1).
 - **Rubin partition size says nothing about attribution content.** The 100 MB 2026-08-10 partition is 99.4% numbered-object rows; two 13 MB partitions carry zero unnumbered objects; a 3.2 MB one carries 412 new discoveries. Measure `permid`/`provid` before planning a sweep (`M9-RESULTS.md` §1).
+- **M8's “tracklet residual” selector does not preserve row provenance.** Published and
+  appended observations receive one Find_Orb tag, then the code selects residuals by
+  observatory plus a padded JD interval. In M14, 58 of 100 fits had published rows inside
+  that window, 58 residual counts exceeded the real tracklet size, and two *used* counts
+  did too. It cannot create a recorded above-total PASS, but it can create false FAILs;
+  neither positive nor negative yield is valid until residuals are assigned one-to-one to
+  exact appended observation identities. `M14-RESULTS.md` §5–6.
 
 ## 3. Standing constraints
 
@@ -254,6 +268,11 @@ before re-deriving anything or asserting a claim from an older document.**
   20–21 y (p = 2.3 × 10⁻¹⁵). The productive window is 15 y < |Δt| ≲ 20.7 y. Do not spend
   further fo time at 21–25 y, and do not widen past 25 y — that bound is measured and the
   main-belt envelope breaks at 28 y. `M11-RESULTS.md` §5.
+- **M14 is a procedural STOP/HOLD, not a resumable queue or a negative result.** Its
+  anatomy accounting failed before the exploratory sweep, and the broken usage counter
+  changes the recorded 0/100 to a noninferential 0–2/100 diagnostic bound. Repair the complete input contract and
+  one-to-one residual provenance before a separately named preregistration; do not resume
+  ranks 101–400 or reinterpret M14.
 
 ## 5. If you are looking for a discovery
 

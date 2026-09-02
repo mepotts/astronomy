@@ -9,6 +9,11 @@ Researched **2026-07-28** by an 8-agent fan-out. Every URL below was live-fetche
 numbers are marked **[measured]**. Anything that could not be confirmed says **unverified** rather
 than guessing. Facts here have a shelf life — re-verify before acting on a dated claim.
 
+> **Current execution record (2026-09-02):** see
+> [**CAMPAIGN-2026-09-02.md**](CAMPAIGN-2026-09-02.md) for the six fronts executed in
+> discovery order, their fail-closed outcomes, and their exact next gates. The older ranking
+> below is retained as planning history and is not the live queue.
+
 > **Run 3 addendum (2026-08-14).** A third sweep mapped the *publishable-science* axis (papers, not
 > designations) — see [**run3-prospectus.md**](run3-prospectus.md) for the ranked avenues, the Q4 2026
 > release calendar (eROSITA-DE DR2 out 07-31; Euclid DR1-Foundation Nov; **Gaia DR4 Dec 2**), the

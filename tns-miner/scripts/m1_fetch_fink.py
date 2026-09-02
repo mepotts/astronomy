@@ -32,6 +32,11 @@ from typing import Any
 import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from cache_contract import (  # noqa: E402
+    load_cache_contract,
+    sha256_bytes,
+    write_cache,
+)
 from tnscommon import DATA, session  # noqa: E402
 
 FINK_OBJECTS = "https://api.ztf.fink-portal.org/api/v1/objects"
@@ -72,8 +77,9 @@ def _checked_max_age(max_age_seconds: float) -> float:
 
 
 def _metadata_time(meta: dict) -> datetime | None:
-    return (_parse_utc(meta.get("fetched_at_utc"))
-            or _parse_utc(meta.get("legacy_payload_mtime_utc")))
+    return _parse_utc(meta.get("fetched_at_utc")) or _parse_utc(
+        meta.get("legacy_payload_mtime_utc")
+    )
 
 
 def _metadata_is_fresh(meta: dict, max_age_seconds: float) -> bool:
@@ -142,9 +148,7 @@ def _digest(text: str) -> str:
 
 def _atomic_write(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_name(
-        f".{path.name}.{os.getpid()}.{threading.get_ident()}.tmp"
-    )
+    tmp = path.with_name(f".{path.name}.{os.getpid()}.{threading.get_ident()}.tmp")
     try:
         tmp.write_text(text, encoding="utf-8", newline="\n")
         tmp.replace(path)
@@ -161,9 +165,7 @@ def _validate_records(raw: Any, expected_oids: set[str]) -> list[dict]:
             raise ValueError(f"record {index} is not a JSON object")
         oid = record.get("i:objectId")
         if not isinstance(oid, str) or oid not in expected_oids:
-            raise ValueError(
-                f"record {index} has unexpected i:objectId {oid!r}"
-            )
+            raise ValueError(f"record {index} has unexpected i:objectId {oid!r}")
         required_numeric = ("i:jd", "i:candid", "i:magpsf", "i:fid", "i:ra", "i:dec")
         numeric: dict[str, float] = {}
         for field in required_numeric:
@@ -206,6 +208,7 @@ def _write_cache(
     *,
     request_mode: str,
     requested_object_count: int,
+    raw_input: dict,
 ) -> None:
     """Persist only a response already validated from an HTTP 200 request."""
     oid = _check_oid(oid)
@@ -222,6 +225,7 @@ def _write_cache(
         "response_validated": True,
         "row_count": len(records),
         "payload_sha256": _digest(payload),
+        "raw_input": raw_input,
     }
     fetched = _parse_utc(meta["fetched_at_utc"])
     meta["fetched_at_jd"] = _datetime_to_jd(fetched) if fetched else None
@@ -263,9 +267,11 @@ def _quarantine(oid: str, reason: str) -> Path:
 def _legacy_metadata(oid: str, payload: str, records: list[dict]) -> dict:
     """Adopt a structurally valid nonempty cache written by the old client."""
     payload_path = _payload_path(oid)
-    mtime = datetime.fromtimestamp(
-        payload_path.stat().st_mtime, tz=timezone.utc
-    ).isoformat().replace("+00:00", "Z")
+    mtime = (
+        datetime.fromtimestamp(payload_path.stat().st_mtime, tz=timezone.utc)
+        .isoformat()
+        .replace("+00:00", "Z")
+    )
     meta = {
         "cache_schema_version": CACHE_SCHEMA_VERSION,
         "object_id": oid,
@@ -306,6 +312,10 @@ def _metadata_authenticates(
         and meta.get("payload_sha256") == _digest(payload)
         and ((meta.get("status") == "ok_empty") == (not records))
         and _metadata_time(meta) is not None
+        and (
+            meta.get("status") == "legacy_nonempty"
+            or isinstance(meta.get("raw_input"), dict)
+        )
     )
 
 
@@ -336,16 +346,18 @@ def load_cached_history(
             _quarantine(oid, "legacy empty cache has no HTTP-success provenance")
             return None
         meta = _legacy_metadata(oid, payload, records)
-        return records if (
-            _metadata_is_fresh(meta, max_age_seconds)
-            and _metadata_covers(meta, required_coverage_jd)
-        ) else None
+        return (
+            records
+            if (
+                _metadata_is_fresh(meta, max_age_seconds)
+                and _metadata_covers(meta, required_coverage_jd)
+            )
+            else None
+        )
 
     try:
         meta = json.loads(meta_path.read_text(encoding="utf-8"))
-        if not _metadata_authenticates(
-            meta, oid=oid, payload=payload, records=records
-        ):
+        if not _metadata_authenticates(meta, oid=oid, payload=payload, records=records):
             raise ValueError("metadata does not authenticate this payload")
     except (OSError, UnicodeError, json.JSONDecodeError, ValueError) as exc:
         _quarantine(oid, f"invalid metadata: {exc}")
@@ -364,11 +376,14 @@ def cache_is_usable(
     required_coverage_jd: float | None = None,
 ) -> bool:
     """Whether an object has a validated cache entry (empty or nonempty)."""
-    return load_cached_history(
-        oid,
-        max_age_seconds=max_age_seconds,
-        required_coverage_jd=required_coverage_jd,
-    ) is not None
+    return (
+        load_cached_history(
+            oid,
+            max_age_seconds=max_age_seconds,
+            required_coverage_jd=required_coverage_jd,
+        )
+        is not None
+    )
 
 
 def history_as_of(records: list[dict], jd_ceiling: float) -> list[dict]:
@@ -386,7 +401,9 @@ def require_single_jd_ceiling(values: list[Any], source: str) -> float:
         try:
             ceiling = float(value)
         except (TypeError, ValueError) as exc:
-            raise RuntimeError(f"{source} has a missing/invalid history ceiling") from exc
+            raise RuntimeError(
+                f"{source} has a missing/invalid history ceiling"
+            ) from exc
         if not math.isfinite(ceiling):
             raise RuntimeError(f"{source} has a missing/invalid history ceiling")
         ceilings.add(ceiling)
@@ -441,6 +458,7 @@ def cache_provenance(oids: list[str]) -> dict:
                 "payload_sha256",
                 "response_validated",
                 "provenance",
+                "raw_input",
             )
             if key in meta
         }
@@ -469,9 +487,89 @@ def cache_provenance(oids: list[str]) -> dict:
     }
 
 
+def authenticate_raw_inputs(provenance: dict, *, require_exact: bool) -> dict:
+    """Authenticate each distinct retained HTTP response behind object caches."""
+    try:
+        object_inputs = provenance["object_inputs"]
+    except (KeyError, TypeError) as exc:
+        raise FinkFetchError("history provenance has no object inputs") from exc
+    references: dict[str, dict] = {}
+    for oid, metadata in object_inputs.items():
+        reference = metadata.get("raw_input")
+        if not isinstance(reference, dict) or not isinstance(
+            reference.get("path"), str
+        ):
+            raise FinkFetchError(f"Fink history {oid} has no retained raw response")
+        previous = references.setdefault(reference["path"], reference)
+        if previous != reference:
+            raise FinkFetchError("one Fink raw-response path has conflicting proofs")
+
+    raw_root = (CACHE / "_raw").resolve()
+    n_bytes = 0
+    for relative, reference in references.items():
+        path = (CACHE / relative).resolve()
+        try:
+            path.relative_to(raw_root)
+            proof = reference["proof"]
+            actual = load_cache_contract(
+                path,
+                kind="fink_objects_raw_response",
+                expected_contract=proof["contract"],
+            )
+        except (ValueError, KeyError, TypeError, RuntimeError) as exc:
+            raise FinkFetchError(
+                f"Fink raw response {relative!r} failed authentication"
+            ) from exc
+        if actual != proof:
+            raise FinkFetchError(f"Fink raw response {relative!r} proof changed")
+        if require_exact and proof.get("exact_http_entity_bytes") is not True:
+            raise FinkFetchError(
+                f"Fink raw response {relative!r} is not exact HTTP entity bytes"
+            )
+        n_bytes += path.stat().st_size
+    return {"n_raw_responses": len(references), "n_raw_bytes": n_bytes}
+
+
+def _preserve_raw_response(
+    response,
+    requested_oids: list[str],
+    records: list[dict],
+) -> dict:
+    content = getattr(response, "content", None)
+    exact = isinstance(content, bytes) and bool(content)
+    payload = (
+        content
+        if exact
+        else json.dumps(records, separators=(",", ":"), ensure_ascii=True).encode(
+            "utf-8"
+        )
+    )
+    digest = sha256_bytes(payload)
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
+    raw_path = CACHE / "_raw" / f"{stamp}_{digest[:12]}.json"
+    contract = {
+        "source_url": FINK_OBJECTS,
+        "requested_object_ids": requested_oids,
+        "output_format": "json",
+        "withupperlim": False,
+    }
+    proof = write_cache(
+        raw_path,
+        payload,
+        kind="fink_objects_raw_response",
+        contract=contract,
+        row_count=len(records),
+        metadata_extra={"exact_http_entity_bytes": exact},
+    )
+    return {
+        "path": raw_path.relative_to(CACHE).as_posix(),
+        "proof": proof,
+    }
+
+
 def _request_once(
     s: requests.Session, requested_oids: list[str], timeout: int
-) -> list[dict]:
+) -> tuple[list[dict], dict]:
     r = s.post(
         FINK_OBJECTS,
         json={
@@ -488,9 +586,10 @@ def _request_once(
     except ValueError as exc:
         raise FinkFetchError(f"malformed JSON: {exc}") from exc
     try:
-        return _validate_records(raw, set(requested_oids))
+        records = _validate_records(raw, set(requested_oids))
     except ValueError as exc:
         raise FinkFetchError(f"invalid response: {exc}") from exc
+    return records, _preserve_raw_response(r, requested_oids, records)
 
 
 def fetch_one(
@@ -517,12 +616,13 @@ def fetch_one(
     failures: list[str] = []
     for attempt in range(FETCH_ATTEMPTS):
         try:
-            records = _request_once(s, [oid], timeout=120)
+            records, raw_input = _request_once(s, [oid], timeout=120)
             _write_cache(
                 oid,
                 records,
                 request_mode="single",
                 requested_object_count=1,
+                raw_input=raw_input,
             )
             return records
         except (requests.RequestException, FinkFetchError) as exc:
@@ -556,10 +656,14 @@ def fetch_histories_batch(
     out: dict[str, list[dict]] = {}
     todo: list[str] = []
     for oid in unique_oids:
-        cached = None if refresh else load_cached_history(
-            oid,
-            max_age_seconds=max_age_seconds,
-            required_coverage_jd=required_coverage_jd,
+        cached = (
+            None
+            if refresh
+            else load_cached_history(
+                oid,
+                max_age_seconds=max_age_seconds,
+                required_coverage_jd=required_coverage_jd,
+            )
         )
         if cached is None:
             todo.append(oid)
@@ -573,7 +677,7 @@ def fetch_histories_batch(
         batch_records: list[dict] | None = None
         for attempt in range(3):
             try:
-                batch_records = _request_once(s, part, timeout=300)
+                batch_records, batch_raw_input = _request_once(s, part, timeout=300)
                 break
             except (requests.RequestException, FinkFetchError):
                 if attempt < 2:
@@ -589,6 +693,7 @@ def fetch_histories_batch(
                     records,
                     request_mode="batch",
                     requested_object_count=len(part),
+                    raw_input=batch_raw_input,
                 )
                 out[oid] = records
             individually = [oid for oid in part if oid not in found]
@@ -692,12 +797,14 @@ def _resolve_paths() -> tuple[Path, Path]:
 
 
 def _resolve_digest(key: str, query: dict, resolved: str | None) -> str:
-    return _digest(json.dumps(
-        {"query_key": key, "query": query, "resolved_oid": resolved},
-        sort_keys=True,
-        separators=(",", ":"),
-        allow_nan=False,
-    ))
+    return _digest(
+        json.dumps(
+            {"query_key": key, "query": query, "resolved_oid": resolved},
+            sort_keys=True,
+            separators=(",", ":"),
+            allow_nan=False,
+        )
+    )
 
 
 def _resolve_proof_authenticates(
@@ -727,8 +834,7 @@ def _resolve_proof_authenticates(
         and proof.get("source_url") == CONE
         and proof.get("response_validated") is True
         and proof.get("resolved_oid") == resolved
-        and proof.get("query_value_sha256")
-        == _resolve_digest(key, query, resolved)
+        and proof.get("query_value_sha256") == _resolve_digest(key, query, resolved)
         and row_count >= (1 if resolved is not None else 0)
         and (resolved is not None or row_count == 0)
         and _metadata_is_fresh(proof, max_age_seconds)
@@ -770,12 +876,16 @@ def resolve_oid(
         except (OSError, UnicodeError, json.JSONDecodeError):
             pass
 
-    if not refresh and key in cache and _resolve_proof_authenticates(
-        meta.get(key),
-        key=key,
-        query=query,
-        resolved=cache[key],
-        max_age_seconds=max_age_seconds,
+    if (
+        not refresh
+        and key in cache
+        and _resolve_proof_authenticates(
+            meta.get(key),
+            key=key,
+            query=query,
+            resolved=cache[key],
+            max_age_seconds=max_age_seconds,
+        )
     ):
         return cache[key]
 
@@ -805,21 +915,18 @@ def resolve_oid(
             counts: dict[str, int] = {}
             for index, row in enumerate(rows):
                 if not isinstance(row, dict):
-                    raise FinkFetchError(
-                        f"invalid cone-search record {index}"
-                    )
+                    raise FinkFetchError(f"invalid cone-search record {index}")
                 oid = row.get("i:objectId")
                 try:
                     jd = float(row.get("i:jd"))
                 except (TypeError, ValueError) as exc:
-                    raise FinkFetchError(
-                        f"invalid cone-search record {index}"
-                    ) from exc
-                if (not isinstance(oid, str) or not _SAFE_OID.fullmatch(oid)
-                        or not math.isfinite(jd)):
-                    raise FinkFetchError(
-                        f"invalid cone-search record {index}"
-                    )
+                    raise FinkFetchError(f"invalid cone-search record {index}") from exc
+                if (
+                    not isinstance(oid, str)
+                    or not _SAFE_OID.fullmatch(oid)
+                    or not math.isfinite(jd)
+                ):
+                    raise FinkFetchError(f"invalid cone-search record {index}")
                 counts[oid] = counts.get(oid, 0) + 1
             resolved = max(counts, key=counts.get) if counts else None
             cache[key] = resolved

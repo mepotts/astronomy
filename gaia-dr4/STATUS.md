@@ -3,6 +3,23 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-09-02** — **[M9 readiness](M9-full-chain-a0-readiness.md) independently
+  reverified; no M10 opened.** ESA's live
+  [release calendar](https://www.cosmos.esa.int/web/gaia/release) still gives **2 December
+  2026**. The documented nine-stage `rehearse_dr4_day.py` chain was rerun in the pinned
+  venv against the live ESA archive: all nine stages were green in **54 s**. Live schema
+  introspection found every required DR3 rehearsal column; the patched query returned its
+  five-row probe; all 94 cached range chunks reassembled the exact 169,227-solution input;
+  compact-companion controls passed; the epoch harness kept 3/3 controls and demoted 9/9
+  contaminants; the day-one queue acceptance passed; and 88 records across two producer
+  scopes passed the verdict schema and consumer contract. The rehearsal queue has 983
+  pre-dust rows, as documented, versus the frozen 981-row production queue after the
+  Phase-2 dust re-triage. `out/rehearsal_timings.csv` records this run. **No DR4 data exist
+  yet, no prospective source list was published, and release-day code needs no change.**
+  Remaining items are still human/operational: the frozen pre-registration rulings, two
+  optional accounts, and excluding `data\\epoch_cache\\` from real-time antivirus before
+  release day.
+
 - **2026-08-24** — **M8 done** ([`M8-inflation-zeropoint-rehearsal.md`](M8-inflation-zeropoint-rehearsal.md)):
   M7's three recommendations, in M7's order — measure the inflation factor on a real
   sample, close or bound the parallax zero-point, and *run* the pre-registration.

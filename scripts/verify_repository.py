@@ -28,6 +28,8 @@ ROOT_DOCS = (
 )
 PROJECTS = (
     "adql-copilot",
+    "chime-frb-periodicity",
+    "dasch-pilot",
     "dyson-revet",
     "erosita-dr2",
     "gaia-dr4",
@@ -35,9 +37,19 @@ PROJECTS = (
     "pta-explainer",
     "pta-mpta",
     "seti-ellipsoid-broker",
+    "spherex-pilot",
     "tns-miner",
 )
-PARSED_FRONTS = ("dyson-revet", "erosita-dr2", "gaia-dr4", "pta-mpta", "tns-miner")
+PARSED_FRONTS = (
+    "chime-frb-periodicity",
+    "dasch-pilot",
+    "dyson-revet",
+    "erosita-dr2",
+    "gaia-dr4",
+    "pta-mpta",
+    "spherex-pilot",
+    "tns-miner",
+)
 TARGET_PYTHON = (3, 12)
 MARKDOWN_LINK = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
 REMOTE_SCHEMES = {"http", "https", "mailto"}

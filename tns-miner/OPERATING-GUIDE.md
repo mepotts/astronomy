@@ -65,8 +65,9 @@ Layer 6 also needs a proved TNS registry snapshot. The public export can receive
 late reports whose discovery dates lie in older months, so a publication-grade
 snapshot refreshes the full rolling 12 months; it does not assemble a newly
 dated snapshot from stale closed-month caches. At the unauthenticated 8/60 s
-limit this is roughly 60 requests / 8–10 minutes. Run it after the alert window
-closes and before building candidates. It writes an immutable, hash-named file
+limit this is roughly 8–15 minutes (77 pages / 13.8 minutes on 2026-09-02).
+Run it after the alert window closes and before building candidates. It writes
+an immutable, hash-named file
 under `data/tns/snapshots/` plus the compatible rolling `data/tns/tns_12mo.csv`.
 The harvest calendar is UTC, includes the current UTC day even on the first of a
 month, and refuses repeated or overlapping TNS IDs across pages rather than
@@ -84,6 +85,39 @@ request's half-open UTC interval.
 because ZTF needs two detections ≥ 30 minutes apart before the filter can fire,
 and a three-day window means a source that erupted the night before last is
 already in hand.
+
+For any completeness or publication claim, use the proved campaign entry point,
+not the four individual commands below. It holds one whole-run lock, gives the
+campaign isolated gitignored `data/runs/<tag>/data` and `out` trees, records the
+SHA-256 of every science script, captures detailed output privately, retains the
+exact HTTP entity bytes returned by Fink and TNS, and authenticates every cache
+and final output before writing `SEALED.json`. The TNS scan runs first so its
+start remains within one day of the alert-history ceiling even if Fink takes
+hours. A failed source leaves an inspectable private bundle but never a sealed
+candidate result or a scientific zero.
+
+The closed TNS corpus is the newest **fully closed** twelve-calendar-month
+interval at run time: start of the UTC month one year ago through start of the
+current UTC month, half-open. On 2026-09-02 that is
+`[2025-09-01, 2026-09-01)`, i.e. all discovery dates from September 2025 through
+August 2026. The live registry snapshot additionally includes the current
+partial month for duplicate annotation.
+
+```powershell
+$tag = "20260902_proved_unique"  # unique immutable run label
+$t0 = 61282
+$t1 = 61285
+./.venv/Scripts/python.exe scripts/run_proved_window.py `
+  --tag $tag --mjd-start $t0 --mjd-end $t1 `
+  --closed-start 2025-09-01 --closed-end-exclusive 2026-09-01
+```
+
+Candidate details and the child log remain private. `SEALED.json` is deliberately
+counts-only. A run without `SEALED.json` is incomplete regardless of which
+intermediate files exist.
+
+The commands below remain useful for development and diagnosis, but they do not
+by themselves create a sealed campaign bundle.
 
 ```powershell
 $tag = "20260902"  # UTC window-end date; never reuse a tag for another t0/t1
@@ -526,6 +560,40 @@ round number in the output is the tell. Page until a page comes back short inste
 
 **ALeRCE also repeats rows across page boundaries** - dedupe on `oid` or every
 downstream count is inflated.
+
+### 4.10 Live proved-run blocker on 2026-09-02
+
+The newest closed-year run was attempted for alert MJD `[61282, 61285]` and TNS
+discovery interval `[2025-09-01, 2026-09-01)`. The TNS side completed: the live
+snapshot has **28,321 rows**, including 37 rows in the current partial month, and
+the closed corpus has **28,284 rows**. Its 77 exact raw CSV responses, including
+the explicit terminal pages, are retained and digest-proved in the private
+gitignored run bundle. ALeRCE E1 independently completed at **3,041 objects**.
+
+The full campaign did **not** complete. Fink exposed 295 required non-vetoed
+classes, but `/api/v1/latests` repeatedly timed out for the required `Em*` class,
+including after 14 bounded time bisections down to
+`[61282.0, 61282.00018310547]` (about 15.8 seconds). The run authenticated and
+retained 87 successful Fink slice responses plus the taxonomy response, then
+failed closed. A separate diagnostic requesting only `n=1` over that same
+15.8-second slice also timed out, so response size is not the remaining lever.
+There is therefore **no defensible E2 total, union-pool count, or
+candidate count** for this window; the missing class must not be dropped or
+represented as zero.
+
+This is a source-service boundary, not a missing local workaround. The official
+[Fink API reference](https://api.ztf.fink-portal.org/) requires `class` for
+`/latests`. An audit of the official
+[API source at commit `1fbbd0e`](https://github.com/astrolabsoftware/fink-object-api/tree/1fbbd0e37ceb0f8eca647d363e7dbc974e972705)
+confirmed that it range-scans a class-keyed table and exposes no all-class
+time-range route; `/conesearch` explicitly limits dates by first detection and
+cannot recover known sources erupting in the window. Retry the identical
+protocol when Fink serves that class, or amend the protocol to a separately
+proved complete alert source. A counts-only probe of ALeRCE's all-class
+`lastmjd=[t0, now]` filter also returned HTTP 504, so that potential overcomplete
+fallback is neither validated nor shipped. It is the first alternative to test
+under a new protocol if the service becomes responsive. Do not silently change
+the enumerator.
 
 **Windows:**
 
