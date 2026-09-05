@@ -25,12 +25,28 @@
   "bytes": {
     "observations.parquet": 178105194,
     "designations.parquet": 8847420,
-    "delta.parquet": 608,
+    "delta.parquet": 437331,
     "itf.txt.gz": 134413410
   },
   "delta_recovered": {
     "reason": "parent key set had been pruned; delta was silently written empty",
     "recovered_from": "GitHub release asset itf-state/observations.parquet (08-04 key set)",
     "recovered_utc": "2026-08-06"
-  }
+  },
+  "metadata_corrections": [
+    {
+      "corrected_utc": "2026-09-05T13:40:33+00:00",
+      "field": "bytes.delta.parquet",
+      "previous_value": 608,
+      "corrected_value": 437331,
+      "reason": "The historical delta recovery replaced an empty file but retained its byte count. Only size metadata is corrected; recovered scientific rows and counts are unchanged.",
+      "previous_manifest_sha256": "4f7a5a41d8e4e49d026c2e06763c58be4ad25c3651e7177269a205be8dddf917",
+      "delta_sha256": "8988239001731a246c04913d162dac1b812a27f34ab45e4f0bdea1b0b49aa031",
+      "delta_git_blob": "651713f9fd95345e7ea44f18c81a00a88cf1aae2",
+      "unchanged_since_commit": "5a1f9a67c38f47acd75667ba78a0de1cbaf906f5",
+      "verified_rows": 25512,
+      "verified_appeared": 3885,
+      "verified_disappeared": 21627
+    }
+  ]
 }
