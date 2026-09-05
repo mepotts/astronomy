@@ -108,7 +108,7 @@ print(f"   above P = 1.5: {int((fp > 1.5).sum())} / {len(fp)}")
 
 n_fp = int((p <= 1.5).sum())
 sep = float((p > 1.5).mean())
-# one-sided 95% binomial upper limit on the false-negative rate for 0/n
+# Conditional error rate among these steady controls, not selected-candidate purity.
 ul95 = 1.0 - 0.05 ** (1.0 / len(p)) if n_fp == 0 else np.nan
 gap_lo, gap_hi = float(fp.max()), float(p.min())
 
@@ -118,9 +118,9 @@ print(f"         The two populations are DISJOINT: faders reach P = {gap_lo:.2f}
 print(f"         the faintest steady control sits at P = {gap_hi:.2f} - an empty")
 print(f"         gap of {gap_lo:.2f}-{gap_hi:.2f} straddling the adopted cut.")
 if n_fp == 0:
-    print(f"         Contamination of the 107-source census by still-present")
-    print(f"         sources: 0/{len(p)} controls misclassified -> < {100 * ul95:.1f}% "
-          f"(95% one-sided), i.e. <= {ul95 * len(fp):.0f} of the 107.")
+    print(f"         Steady-control error probability: 0/{len(p)} -> "
+          f"< {100 * ul95:.1f}% (95% one-sided binomial).")
+    print("         Selected-candidate contamination is not determined.")
 
 summary = dict(
     n_controls=len(p), control_presence_min=round(gap_hi, 3),
@@ -128,7 +128,8 @@ summary = dict(
     control_presence_max=round(float(p.max()), 3),
     n_controls_below_cut=n_fp, fader_presence_max=round(gap_lo, 3),
     false_positive_rate_95ul=round(float(ul95), 4) if n_fp == 0 else None,
-    implied_max_contaminants=int(np.ceil(ul95 * len(fp))) if n_fp == 0 else None,
+    implied_max_contaminants=None,
+    interpretation="conditional steady-control error; candidate contamination unknown",
     flux_band=[float(f_lo), float(f_hi)], detlike_band=[float(d_lo), float(d_hi)],
     seed=SEED,
 )

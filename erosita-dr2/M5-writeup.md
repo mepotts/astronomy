@@ -1,5 +1,11 @@
 # M5-writeup — the fader census turned into a draft, and every number in it re-derived
 
+> **Superseded interpretations (2026-09-05):** see
+> [the publication closeout](PUBLICATION-CLOSEOUT-2026-09-05.md). This dated milestone
+> mischaracterized DR2 prior art, inferred candidate purity from controls, and conflated
+> bright-end indeterminate objects with artifacts. The current draft corrects these;
+> the original milestone remains below as history, not current submission guidance.
+
 *2026-08-18. Labelled **M5-writeup** so it does not collide with the classifier-rebase **M5**
 (thin-slice dossier CLI), which is still queued behind Matthew's acceptance of the M4 §2.4
 pivot — see root [`../STATUS.md`](../STATUS.md) ("eROSITA M5 (classifier thin slice) stays

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-09-05",
+  "reviewer": "Codex, visual inspection of rendered official cutouts",
+  "review_scope": "Known controls only; full fields plus fixed central crops",
+  "primary_tcrb": {
+    "plates": ["ai33112", "ai37139", "ai40685"],
+    "verdict": "CROSS_EPOCH_RETRIEVAL_PASS",
+    "observations": "A broad target source is visible in all three epochs; recurring neighbors are consistent. These images cannot test disappearance and are not calibrated flux measurements."
+  },
+  "primary_v404cyg": {
+    "plates": ["ai34087", "fa02316", "ai34707"],
+    "verdict": "KNOWN_EVENT_RECOVERY_FAIL",
+    "observations": "No distinct event source is established. Event plate field limit is only B10.847 and pre-event APASS depth is missing; no defensible on/off measurement follows."
+  },
+  "exploratory_v404cyg": {
+    "plates": ["ac34356", "ac34550", "ac34971"],
+    "verdict": "QUALITATIVE_KNOWN_EVENT_RECOVERY",
+    "observations": "The event image shows a broad source near the requested position, while adjacent same-series images show no comparable source. Bright neighbors recur. Catalog local non-detection limits are 13.975210 and 13.777783 versus event magnitude 12.878624. Broad sampling, modest astrometric offsets, and background structure remain; this is not calibrated subtraction or an empirical false-positive rate.",
+    "analysis_status": "Exploratory amendment specified after the failed primary images and before these three image downloads; original failed gate preserved."
+  },
+  "portfolio_decision": "STOP_UNCONDITIONAL_FAINT_FIELD_ANNOTATION",
+  "narrow_next_option": "Externally vetted bright-star false-positive study with calibration and untouched validation fields, if selected by portfolio research comparison",
+  "discovery_scan": "NOT_RUN",
+  "scientific_publication_or_submission": "NOT_PERFORMED"
+}

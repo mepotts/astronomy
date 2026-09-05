@@ -2,6 +2,24 @@
 
 *Newest first. Root [`../STATUS.md`](../STATUS.md) carries the one-line summary.*
 
+- **2026-09-05 — Recovery attempt complete; front PARKED at the source boundary.**
+  Fifteen bounded diagnostic requests for the fresh September 2–5 alert window
+  establish that Fink's 295-class taxonomy and a CV control remain responsive,
+  but required `Em*` still times out at 30 seconds with a full window, `n=1`, a
+  16-second slice, and the documented POST query form. ALeRCE's corrected
+  new-source count probe reports **3,512** (one row retrieved, not a proved E1
+  census); four last-detection alternatives time out with/without counting and
+  with two orderings; two documented TAP aggregate alternatives also time out.
+  Two initial diagnostic HTTP 400s were a corrected request
+  serialization error, not source-outage evidence. No science campaign or new
+  TNS scan was started; no candidate count exists. Five exact response bodies /
+  **9,058 bytes**, three source copies and their contracts/manifests are retained
+  privately and authenticated. **76 tests pass.** See
+  [`SERVICE-RECOVERY-2026-09-05.md`](SERVICE-RECOVERY-2026-09-05.md) for evidence,
+  request budget and the exact restart condition: a responsive required class
+  followed by a fresh complete proved run, or a separately proved replacement
+  enumerator. No threshold or submission guard changed.
+
 - **2026-09-02 — Newest fully closed TNS year proved; live candidate rerun
   blocked fail-closed by one required Fink class.** The defensible closed
   discovery interval as of today is the half-open

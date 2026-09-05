@@ -1,15 +1,21 @@
 # Plate archaeology — IAU designations from century-old glass
 
-> **Execution update (2026-09-02):** a narrow account-free light-curve/API slice in
-> [`../dasch-pilot/`](../dasch-pilot/) passed on a published T CrB positive
-> control plus a frozen nearby field control. No unknown-source search ran.
-> The original M0's `daschlab`/plate-cutout recovery was not executed, so M0
-> remains open rather than passed in full.
-> Before this plan can advance to candidates, it needs multiple matched
-> controls, an empirical stable-star false-positive rate, an untouched
-> validation split, and manual plate-cutout/source-splitting review. The older
-> broad-search and novelty language below is a prospectus, not a current
-> finding or submission queue.
+> **Closeout (2026-09-05):** the original M0 is completed to a scoped decision,
+> [documented with exact inputs and images](../dasch-pilot/M0-EXTENSION-RESULTS-2026-09-05.md).
+> T CrB and Mira R Cnc work; faint-field V404 Cyg fails the coverage gate.
+> Nine official public cutouts were recovered. The original nearest-date V404
+> image test failed, while a separately identified exploratory same-series,
+> depth-matched triplet qualitatively recovers its published 1938 eruption and
+> deeper adjacent non-detections. **No blind search is justified yet.**
+> Only an externally vetted stable-star false-positive study with untouched
+> validation fields is a supported next option. `v_flag=0` is not a stable label:
+> the known Mira has that flag. TNS account work is deferred to any future
+> candidate-release decision, not a reason to keep running M0.
+>
+> The competitive scores, “nobody reads glass,” and archive-wide novelty claims
+> below are **historical prospectus language, not verified current findings**.
+> Generic DASCH retrieval is solved infrastructure; a new scientific question
+> and empirical reliability test are required before further investment.
 
 **One-liner:** Digitized photographic plate archives span 1880–1990 and contain transients that nobody
 alive ever noticed, because no survey pipeline reads glass. Find one, report it to the Transient Name
@@ -21,7 +27,7 @@ Server, and it receives a permanent IAU designation — for an event that happen
 B **3/5** (image work on heterogeneous scanned plates; harder than catalogue queries) · E **5/5** (a
 permanent IAU designation for a supernova that exploded before you were born)
 
-**Status:** narrow API/light-curve slice passed; original plate-cutout M0 and blind discovery stage not completed
+**Status:** M0 closed with mixed results; exploratory known-event image recovery achieved; blind discovery parked pending independently vetted controls and false-positive validation
 
 **Cost to operate: $0** — DASCH and DSS/POSS scans are free downloads.
 
@@ -140,9 +146,11 @@ and confirm you can recover it — visible at the right epoch, absent adjacent. 
 known event, the detection logic is not ready.* Also verify the TNS account from
 [tns-alert-miner](tns-alert-miner.md) is approved — same account serves both.
 
-The 2026-09-02 pilot completed only the public-API light-curve portion on T CrB and one
-nearby field control. It did not recover a plate cutout, test adjacent-epoch image
-absence, or verify/create a TNS account; those original M0 gates remain open.
+The September 2 light-curve slice was extended September 5 to a verified Mira,
+the faint/crowded V404 Cyg field, and nine official image cutouts. See the closeout
+above for original failures and exploratory recovery; do not collapse them into
+an unconditional M0 pass. A TNS account was not created or verified. It becomes
+relevant only if an independently defensible candidate reaches human review.
 
 **M1 — blind search on a bounded sky region.** Pick a well-plated field. Run epoch-differencing. Measure
 your false-positive rate against plate defects — **this number decides whether the project is viable**,

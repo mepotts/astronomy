@@ -4,7 +4,13 @@
 read the milestone documents. Where a number appears, the document that measured
 it is named so you can check it, not so you have to.
 
-**Last updated 2026-09-02, after the cache-provenance and time-window repair.**
+**Last updated 2026-09-05, after bounded live service recovery checks.**
+
+**Current state: PARKED.** Required `Em*` retrieval still times out, while
+control queries work. The [September 5 recovery record](SERVICE-RECOVERY-2026-09-05.md)
+contains the finite request budget, exact input proofs, alternative queries and
+restart condition. A fresh proved campaign starts only after source recovery;
+do not resume the stopped September 2 bundle or reinterpret absent totals as zero.
 
 > ## HOUSE LAW, ABSOLUTE
 > **No agent ever submits anything to TNS — not a discovery report, not a

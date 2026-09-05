@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "status": "LOCAL_REVIEW_ONLY_NOT_PUBLISHED",
+  "date": "2026-09-05",
+  "base_git_revision": "fd986c611168148ee75e8815d4c8e56870e67def",
+  "note": "File digests include uncommitted closeout edits.",
+  "project": "erosita-dr2",
+  "commands": [
+    "python scripts/verify_census_package.py",
+    "python scripts/m5w_figure.py"
+  ],
+  "limitations": [
+    "Run from the extracted erosita-dr2 directory. Verifier is standard-library-only; figure requires NumPy, pandas, Matplotlib.",
+    "Scope is the 261 vanished-source census and 60 steady controls only. The mixed archival table is filtered to the 261 exact census names; no riser, J0944, XROM photometry, companion B, or blanket out/ content is included.",
+    "The parent selection and scale offset are stored aggregates here, not independently regenerated. Bulk DR1/DR2 FITS, w2_pairs.parquet, archive query caches, and runtime environment are omitted.",
+    "Full original audit: erosita-dr2/.venv/Scripts/python.exe erosita-dr2/scripts/m5w_audit.py from repository root, with original data/ and wider out/ present. Its historical corrections are expected; it is not a text verifier and returns zero even for unverified rows.",
+    "The main note's limitations and interpretation corrections are part of this package. Candidate contamination and physical switch-off count are unknown.",
+    "No DOI, author metadata, account, submission or external message has been created. Final archive scope and license require human approval."
+  ],
+  "files": [
+    {
+      "path": "PUBLICATION-CLOSEOUT-2026-09-05.md",
+      "bytes": 6842,
+      "sha256": "4c357f7a2ee9f755e83af1b2dbca356dfc40aad0db7194f04576b7109f19cd6e"
+    },
+    {
+      "path": "draft-rnaas-vanished-census.md",
+      "bytes": 11440,
+      "sha256": "efb1cc0db8c6ffbdf4754c3009985a5bb7470cb84e63aa908b9a38637a132de3"
+    },
+    {
+      "path": "out/m2_archival_xray_census_only.csv",
+      "bytes": 58695,
+      "sha256": "64ae0cb1e1ef20c8140dd0e98f9a4d8e92001a89785fc98e02ac5cd86839c203"
+    },
+    {
+      "path": "out/m2_vanished_forensics.csv",
+      "bytes": 145658,
+      "sha256": "dbaf0ddfb56dd1aabc4bd0554c7d754d898e53d428fa8fd98e9e276164c9fb19"
+    },
+    {
+      "path": "out/m5w_faint_validation.csv",
+      "bytes": 16787,
+      "sha256": "8b45162f7f87cece0d79bbb509c5c071dcafe858cf57ed8ac4e6b3366f87a343"
+    },
+    {
+      "path": "out/m5w_faint_validation.json",
+      "bytes": 526,
+      "sha256": "41e5654da3b08677a282c0df8d9074f26281f0cdeadc75a09ec941d5bbdd7288"
+    },
+    {
+      "path": "out/m5w_vanished_census.pdf",
+      "bytes": 30511,
+      "sha256": "a87145d00d457324b3de0c6a219f05ec3b2961516bc52fd6f7164284a0095b36"
+    },
+    {
+      "path": "out/m5w_vanished_census.png",
+      "bytes": 119964,
+      "sha256": "05ea0fd3f586263c96b7e7edb72ad2713b708a4ab593369c05be84509f49c279"
+    },
+    {
+      "path": "out/w2_stats.json",
+      "bytes": 2196,
+      "sha256": "71ce7013ea76eb8e562bafdee6663b17526d5aed1780df7516d571b57665940d"
+    },
+    {
+      "path": "publication/SOURCE-MAPPING-2026-09-05.md",
+      "bytes": 2361,
+      "sha256": "d574a91bdbff7856e0988859eb18296d366dc6a4e1c89484ccebd3343b14c555"
+    },
+    {
+      "path": "scripts/m5w_figure.py",
+      "bytes": 6230,
+      "sha256": "2c2ab108bd6cb9bc58a841dc23f9aa002141954df899c7245cef89c6513944a6"
+    },
+    {
+      "path": "scripts/verify_census_package.py",
+      "bytes": 5227,
+      "sha256": "dbccb8af6293bfe7ec53d1a8a4fb8a655ea433bf8a16da56cb088a0b22b4a4ba"
+    }
+  ],
+  "local_archive": {
+    "path": "erosita-dr2/data/publication-review-2026-09-05.zip",
+    "bytes": 242812,
+    "sha256": "ba2e440d2f8db31f47ab2f5c024c7d65aac5e2b688f1bccb7c66227cc096446c"
+  }
+}

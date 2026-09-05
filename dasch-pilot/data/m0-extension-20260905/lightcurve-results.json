@@ -1,0 +1,94 @@
+{
+  "controls": {
+    "rcnc": {
+      "catalog": {
+        "class": "0",
+        "color": "1.18",
+        "ddec_asec": "0.39751199999500386",
+        "dec_deg": "11.726131",
+        "dra_asec": "0.21402999091384411",
+        "gsc_bin_index": "101650354",
+        "mag_flag": "0",
+        "num_matches": "2347",
+        "pm_dec_masyr": "0",
+        "pm_ra_masyr": "0",
+        "pos_epoch": "2000.0",
+        "ra_deg": "124.140884",
+        "ref_number": "408163381114334",
+        "ref_text": "APASS_J081633.8+114334",
+        "stdmag": "12.18",
+        "u_pm_dec_masyr": "0",
+        "u_pm_ra_masyr": "0",
+        "v_flag": "0"
+      },
+      "catalog_rows_300_arcsec_box": 77,
+      "catalog_rows_30_arcsec": 1,
+      "identity_status": "UNIQUE",
+      "lightcurve": {
+        "access_gate": true,
+        "clean_detections": 1459,
+        "clean_median_mag": 10.740751,
+        "clean_meteor_series_detections": 208,
+        "clean_span_years": 99.11236844109612,
+        "coverage_verdict": "MEASURED_KNOWN_VARIABLE",
+        "detections": 2347,
+        "note": "No quiet/stable classification can be inferred from insufficient coverage.",
+        "p90_minus_p10_mag": 3.3306966000000013,
+        "rows": 3740
+      },
+      "name": "R Cnc",
+      "position": {
+        "dec_deg": 11.72624142,
+        "name": "V* R Cnc",
+        "object_type": "Mi*",
+        "ra_deg": 124.14094472
+      }
+    },
+    "v404cyg": {
+      "catalog": {
+        "class": "3",
+        "color": "-0.42",
+        "ddec_asec": "-0.5996520000167038",
+        "dec_deg": "33.867378",
+        "dra_asec": "-0.10979294380684257",
+        "gsc_bin_index": "131570315",
+        "mag_flag": "0",
+        "num_matches": "32",
+        "pm_dec_masyr": "0",
+        "pm_ra_masyr": "0",
+        "pos_epoch": "2000.0",
+        "ra_deg": "306.015973",
+        "ref_number": "11033222260707",
+        "ref_text": "N033222260707",
+        "stdmag": "16.39",
+        "u_pm_dec_masyr": "0",
+        "u_pm_ra_masyr": "0",
+        "v_flag": "1"
+      },
+      "catalog_rows_300_arcsec_box": 251,
+      "catalog_rows_30_arcsec": 2,
+      "identity_status": "UNIQUE",
+      "lightcurve": {
+        "access_gate": false,
+        "clean_detections": 5,
+        "clean_median_mag": 12.425328,
+        "clean_meteor_series_detections": 0,
+        "clean_span_years": 23.127090071330485,
+        "coverage_verdict": "INSUFFICIENT_COVERAGE",
+        "detections": 32,
+        "note": "No quiet/stable classification can be inferred from insufficient coverage.",
+        "p90_minus_p10_mag": 1.121762200000001,
+        "rows": 4300
+      },
+      "name": "V404 Cyg",
+      "position": {
+        "dec_deg": 33.86721143,
+        "name": "V* V404 Cyg",
+        "object_type": "HXB",
+        "ra_deg": 306.01593627
+      }
+    }
+  },
+  "discovery_scan": "NOT_RUN",
+  "spec_sha256": "9637285f5643334ed576ac217e67e51a43703d4e8c8d3542adb37fb2efdd2121"
+}

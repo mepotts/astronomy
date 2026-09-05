@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "checks": [
+    {
+      "name": "census rows",
+      "actual": 261,
+      "expected": 261,
+      "passed": true
+    },
+    {
+      "name": "unique census identifiers",
+      "actual": 261,
+      "expected": 261,
+      "passed": true
+    },
+    {
+      "name": "finite nonnegative presence",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "classification replay",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "faders",
+      "actual": 107,
+      "expected": 107,
+      "passed": true
+    },
+    {
+      "name": "indeterminate",
+      "actual": 6,
+      "expected": 6,
+      "passed": true
+    },
+    {
+      "name": "artifacts",
+      "actual": 148,
+      "expected": 148,
+      "passed": true
+    },
+    {
+      "name": "threshold 1.3",
+      "actual": 99,
+      "expected": 99,
+      "passed": true
+    },
+    {
+      "name": "threshold 2.0",
+      "actual": 124,
+      "expected": 124,
+      "passed": true
+    },
+    {
+      "name": "controls",
+      "actual": 60,
+      "expected": 60,
+      "passed": true
+    },
+    {
+      "name": "finite control values",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "controls below cut",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "control minimum",
+      "actual": 2.03,
+      "expected": 2.03,
+      "passed": true
+    },
+    {
+      "name": "control median",
+      "actual": 2.6,
+      "expected": 2.6,
+      "passed": true
+    },
+    {
+      "name": "control maximum",
+      "actual": 3.78,
+      "expected": 3.78,
+      "passed": true
+    },
+    {
+      "name": "bright parent count (stored aggregate)",
+      "actual": 118253,
+      "expected": 118253,
+      "passed": true
+    },
+    {
+      "name": "candidate selection percent",
+      "actual": 0.09,
+      "expected": 0.09,
+      "passed": true
+    },
+    {
+      "name": "artifacts above 100",
+      "actual": 19,
+      "expected": 19,
+      "passed": true
+    },
+    {
+      "name": "indeterminate above 100",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "artifacts above 242",
+      "actual": 5,
+      "expected": 5,
+      "passed": true
+    },
+    {
+      "name": "indeterminate above 242",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "withdrawn phrase absent: treating every unmatched eRASS1 source as",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "withdrawn phrase absent: variability is not considered",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "withdrawn phrase absent: fewer than 6 of",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "withdrawn phrase absent: sources genuinely switched off",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "withdrawn phrase absent: Gaia DSC class",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "withdrawn phrase absent: no DR2 counterpart at all",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "withdrawn phrase absent: its dominant systematic is the presence threshold",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    }
+  ],
+  "failure_count": 0,
+  "steady_control_error_95ul": 0.04870291331009746,
+  "selected_candidate_contamination": null,
+  "confirmed_physical_faders": null,
+  "scope": "stored-artifact consistency; parent selection not regenerated"
+}

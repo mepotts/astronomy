@@ -3,6 +3,12 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-09-05** — [E follow-up](E-FOLLOWUP-2026-09-05.md) checked: 39 exclusive
+  observations, September 9 release; frozen outcome-map hash unchanged; D control
+  7/7. Added a bounded fail-closed metadata/date guard after the historical wrapper
+  stalled and exposed an unchecked metadata failure path. No E products analyzed.
+  The dated follow-up is scheduled; the experiment is still pending.
+
 - **2026-08-24** — **M6 ✓** ([M6-morphology-mrs-completeness.md](M6-morphology-mrs-completeness.md)) —
   **the morphology stage is built and it closes 5.1 of the last 17.8 points, not all of them — and
   the remainder is named.** **N4** reads the AllWISE W3/W4 coadds directly:

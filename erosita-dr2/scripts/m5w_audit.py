@@ -556,8 +556,9 @@ if os.path.exists(vj):
           round(100 * float(v["false_positive_rate_95ul"]), 1), "out",
           "1 - 0.05^(1/60), one-sided binomial", tol=0.05)
     check("validation_max_contaminants_of_107", 6,
-          int(v["implied_max_contaminants"]), "out",
-          "0.049 x 107, rounded up")
+          "NOT_IDENTIFIABLE", "out", "control sampling design",
+          note="2026-09-05 withdrawal: a conditional error bound on 60 steady "
+               "controls does not bound contamination among 107 selected candidates")
     check("validation_populations_disjoint", "yes",
           "yes" if float(cp.min()) > float(pres[is_fade].max()) else "NO", "out",
           "control min vs fader max",

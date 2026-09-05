@@ -4,7 +4,19 @@
 
 **Scores (U/B/E):** U 5 (historical/archival astronomy was untouched by run 1; nobody bridges the century baseline to the live alert stream) · B 4 (pure public data + software, but DASCH plate-photometry cleaning is genuinely fiddly, which caps it below 5) · E 4 (a "century time machine" wired to real-time alerts is evocative and citable; it is an enrichment layer, not a standalone discovery engine)
 
-**Status:** the T CrB/API portion of M0 passed 2026-09-02; the original multi-position and cutout gates remain open, and no blind/broker-scale build is authorized
+**Status:** M0 closed to a decision 2026-09-05: stop unconditional faint-field/broker annotation; targeted light curves and known-event images work; only a separately selected, externally vetted bright-star false-positive study is supported next
+
+**2026-09-05 closeout.** [Full results and images](../dasch-pilot/M0-EXTENSION-RESULTS-2026-09-05.md):
+R Cnc yields 1,459 clean detections over 99.11 years, while faint/crowded V404 Cyg
+has only five and correctly returns `INSUFFICIENT_COVERAGE`. Nine cutouts were
+inspected. A shallow nearest-date event selection failed; an explicitly
+exploratory same-series/depth-matched triplet qualitatively recovered V404's
+published 1938 event and adjacent non-detections. No unknown source was ranked.
+The known Mira is `class=0, v_flag=0` in APASS, proving these flags alone cannot
+define stable controls. Before any product build, use independent stability
+labels, calibration/untouched validation fields, and measured review costs.
+The broad novelty/competition claims below are historical hypotheses, not
+established findings; public non-interactive access is existing infrastructure.
 
 **2026-09-02 execution update.** The account-free pilot in
 [`../dasch-pilot/`](../dasch-pilot/) reproduced the published T CrB 1938--1945
@@ -83,17 +95,20 @@ Data flow: `alert/position → resolver → DASCH fetch → cleaner → verdict 
   - *Prior-art disproof:* confirm that Fink/Lasair and daschlab do not already provide a maintained broker-to-DASCH annotation/verdict layer. Generic scripted or batch DASCH access is existing infrastructure, not the wedge. **Acceptance:** the public documentation and code leave the alert-annotation seam open; any roadmap emails are a separate, explicitly approved outward action.
   - *Reliability reality check:* reproduce a published century-baseline result (T CrB 1938 bright state) from cleaned DASCH data. **Acceptance:** the pipeline recovers the known feature; if cleaned photometry can't reproduce a documented result, the automated-verdict thesis is in doubt.
 
-  **Execution status (2026-09-02):** the reliability check and one-position API smoke
-  test passed with T CrB plus one nearby field control. The Mira, faint/crowded target,
-  plate-cutout recovery, and external roadmap confirmation were not executed, so M0 as
-  originally written is only partially complete.
+  **Execution status (2026-09-05):** all scientific control/retrieval checks were
+  attempted and recorded. The unconditional three-position coverage gate failed
+  on V404 Cyg; targeted retrieval and exploratory known-event images succeeded.
+  M0 is closed with the narrower decision above, not an unconditional pass.
+  External roadmap emails and TNS account actions were not performed. A new
+  product investment requires a specific fresh prior-art comparison; no absence
+  of competing software is established by this feasibility run.
 - **M1 — thin end-to-end slice.** `dasch-timemachine <ZTF objectId | ra dec>` → cleaned century LC PNG + JSON verdict + one cutout, quality cuts applied, deterministic. **Acceptance:** for a known recurrent nova resolved through Fink, the tool emits an `ERUPTIVE`/`VARIABLE` verdict with the historical excursion quantified, reproducibly from a cold checkout.
 - **M2 — batch + service + summarizer.** REST endpoint and a "score a night's alert file" batch mode; plain-language summaries ("sustained bright state B≈12, ~1932–1939"); coverage/quality gating tuned so faint fields degrade gracefully. **Acceptance:** annotate a full night of ZTF alerts and correctly surface the subset with real historical variability against a hand-labeled validation set (precision-first).
 - **M3 — distribution.** A Fink science module *or* Lasair annotation pushing DASCH flags onto live alerts; a versioned Zenodo verdict catalog; an MCP server exposing the time-machine as a tool; one RNAAS on a genuine find. **Acceptance:** a deployed broker annotation reaching downstream users, and one RNAAS submitted.
 
 ## First week / first tasks
 
-1. Install `daschlab`; run the documented `open_session` → `select_target` → `lightcurve` flow on T CrB and RY Cnc; confirm the cloud API works account-free from a laptop.
+1. Completed via the official public API equivalent on T CrB, R Cnc, and V404 Cyg. The old RY Cnc suggestion is not a Mira and was corrected before data retrieval.
 2. Codify the cleaning recipe (AFLAGS 7/12/13/14/16, `reject.meteor`, `reject.sep_above`, limiting-mag handling) as a single `clean_lightcurve()` function with fixtures; **benchmark it against the T CrB 1938 bright state** to calibrate the cuts.
 3. Wire Fink `/api/v1/objects` (tokenless): ZTF `objectId` → RA/Dec → DASCH fetch, end to end.
 4. Draft the verdict schema + coverage/quality gating (`QUIESCENT|VARIABLE|ERUPTIVE|FADING|INSUFFICIENT_COVERAGE` + confidence); write it precision-first so thin coverage never reads as "quiet."

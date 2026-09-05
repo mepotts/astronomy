@@ -1,0 +1,84 @@
+{
+  "purpose": "Post-stop header-only evidence enrichment; not a second recovery attempt",
+  "header_evidence_sha256": "de102d701bd1d88b2adadcbb7b3978fd2d51b6d6e65f5f2cbacb913308fd4ed9",
+  "audit_script_sha256": "11d220d6bc071de5ec7bc012107d971b6902017ddd7522b30d547da879db1797",
+  "images_decompressed": 0,
+  "audits": [
+    {
+      "filename": "CCOR2_1A_20260901T130014_V00_NC.fits",
+      "primary_header": {
+        "SIMPLE": true,
+        "BITPIX": 8,
+        "NAXIS": 0,
+        "EXTEND": true,
+        "GPA_VER": "10.3.0",
+        "STATUS": "Operational"
+      },
+      "hdu_indices_containing_ISVIABLE": [],
+      "default_wcs_cross_axis_ratios": [
+        0.020517034338145394,
+        0.0205170343381454
+      ],
+      "default_wcs_rotation_degrees": 1.1753745700782046,
+      "frozen_wcs_gate": "STOP_WCS_ROTATION_REQUIRES_UNFROZEN_RESAMPLING",
+      "flip_xy_if_gate_passes": null
+    },
+    {
+      "filename": "CCOR2_1A_20260901T131514_V00_NC.fits",
+      "primary_header": {
+        "SIMPLE": true,
+        "BITPIX": 8,
+        "NAXIS": 0,
+        "EXTEND": true,
+        "GPA_VER": "10.3.0",
+        "STATUS": "Operational"
+      },
+      "hdu_indices_containing_ISVIABLE": [],
+      "default_wcs_cross_axis_ratios": [
+        0.020494818199723982,
+        0.020494818199723985
+      ],
+      "default_wcs_rotation_degrees": 1.1741022141264181,
+      "frozen_wcs_gate": "STOP_WCS_ROTATION_REQUIRES_UNFROZEN_RESAMPLING",
+      "flip_xy_if_gate_passes": null
+    },
+    {
+      "filename": "CCOR2_1A_20260901T133014_V00_NC.fits",
+      "primary_header": {
+        "SIMPLE": true,
+        "BITPIX": 8,
+        "NAXIS": 0,
+        "EXTEND": true,
+        "GPA_VER": "10.3.0",
+        "STATUS": "Operational"
+      },
+      "hdu_indices_containing_ISVIABLE": [],
+      "default_wcs_cross_axis_ratios": [
+        0.020472600498458882,
+        0.020472600498458882
+      ],
+      "default_wcs_rotation_degrees": 1.1728297675096375,
+      "frozen_wcs_gate": "STOP_WCS_ROTATION_REQUIRES_UNFROZEN_RESAMPLING",
+      "flip_xy_if_gate_passes": null
+    },
+    {
+      "filename": "CCOR2_1A_20260901T134514_V00_NC.fits",
+      "primary_header": {
+        "SIMPLE": true,
+        "BITPIX": 8,
+        "NAXIS": 0,
+        "EXTEND": true,
+        "GPA_VER": "10.3.0",
+        "STATUS": "Operational"
+      },
+      "hdu_indices_containing_ISVIABLE": [],
+      "default_wcs_cross_axis_ratios": [
+        0.020450380370860808,
+        0.02045038037086081
+      ],
+      "default_wcs_rotation_degrees": 1.1715571807752634,
+      "frozen_wcs_gate": "STOP_WCS_ROTATION_REQUIRES_UNFROZEN_RESAMPLING",
+      "flip_xy_if_gate_passes": null
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "checked_date_utc": "2026-09-05",
+  "scope": "Bounded primary-source metadata check; no unknown-source scan",
+  "report": {
+    "url": "https://sungrazer.nrl.navy.mil/report/reportmk20260901100943",
+    "reporter": "Mikolaj Kaszczyk",
+    "camera": "CCOR2",
+    "status": "Potential Comet",
+    "image_size_label": "2048x1920 (CCOR1)",
+    "coordinate_origin": "Upper Left",
+    "positions_utc_hhmm_x_y": [["1300", 1632, 1400], ["1315", 1625, 1396], ["1330", 1622, 1393], ["1345", 1616, 1389]],
+    "confirmation_established": false,
+    "display_processing_and_rotation_provenance_established": false
+  },
+  "directory": {
+    "url": "https://services.swpc.noaa.gov/products/ccor2/fits/",
+    "method": "Read-only directory HTML; regex match of exactly the four frozen 20260901T13 filenames",
+    "filename_resolution_preceded_spec_freeze": true
+  },
+  "index": {
+    "url": "https://services.swpc.noaa.gov/products/ccor2/fits.json",
+    "observed_http_status": 200,
+    "observed_payload": [],
+    "interpretation": "Unusable empty index despite populated directory; not a successful no-data result"
+  },
+  "official_provisional_readme": {
+    "url": "https://archive.data.noaa.gov/satellite-spaceweather/SWFO/docs/CCOR/SWFO_CCOR-2_Provisional_ReadMe_V1.0.pdf",
+    "version": "1.0",
+    "document_date": "2026-06-02",
+    "local_ignored_path": "data/raw/SWFO_CCOR-2_Provisional_ReadMe_V1.0.pdf",
+    "bytes": 9753286,
+    "sha256": "29ab90ee2f1d8f8b50cb95de8fd54fa1024ae6e29f1e417a48c9a7e1af3ca2d5",
+    "used_sections": ["4: known issues", "5: standard use cases", "7: file structure and WCS", "8/Table 7: quality flags"]
+  },
+  "other_primary_pages": [
+    "https://www.spaceweather.gov/products/coronagraph",
+    "https://ccor.nrl.navy.mil/ccordata",
+    "https://sungrazer.nrl.navy.mil/ccor1-reporting",
+    "https://sungrazer.nrl.navy.mil/"
+  ],
+  "limitations": [
+    "CCOR1 reporting guidance is only a warning about coordinate ambiguity, not a CCOR2 mapping.",
+    "The current confirmation-page check was bounded, not a complete known-comet inventory.",
+    "The source report and official documentation were read before the four FITS downloads; no pixels were inspected."
+  ]
+}

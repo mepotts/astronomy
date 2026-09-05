@@ -1,5 +1,11 @@
 # writeup-audit — every number that could enter the draft, re-derived
 
+> **2026-09-05 interpretation correction:** numerical re-derivation did not validate
+> the inference that fewer than six selected candidates are contaminants. That claim
+> is withdrawn; the current CSV records `NOT_IDENTIFIABLE` and 92 verified/15 corrected
+> rows. See [the closeout](PUBLICATION-CLOSEOUT-2026-09-05.md) for this and the prior-art,
+> classifier and bright-end category corrections. The dated audit below is historical.
+
 *2026-08-18, M5-writeup. Machine-readable version: [`out/m5w_audit.csv`](out/m5w_audit.csv),
 produced by [`scripts/m5w_audit.py`](scripts/m5w_audit.py) (107 audited quantities, re-run
 end-to-end in one command). Repo law: sourced-or-UNSOURCED. Nothing in the draft that is not

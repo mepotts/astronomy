@@ -1,10 +1,13 @@
-# erosita-dr2 — compact objects and variables in the two-week-old X-ray sky
+# erosita-dr2 — compact objects and variables in the public X-ray sky
+
+Current status: the bounded vanished-source census is closed for a publication
+decision; see [the September 5 corrections and package](PUBLICATION-CLOSEOUT-2026-09-05.md).
 
 **What this is.** Avenue **#5** of [`../DISCOVERY/run3-prospectus.md`](../DISCOVERY/run3-prospectus.md):
 eROSITA-DE **DR2** (released **2026-07-31**, eRASS1–3 stacked, ~2M sources, no account needed —
 [erosita.mpe.mpg.de/dr2](https://erosita.mpe.mpg.de/dr2/), survey paper arXiv:2607.27772) is the
-deepest public all-sky X-ray catalog and is essentially unmined. This project mines it by
-cross-match: the joins are the discovery instrument.
+public cumulative X-ray catalogue used here for a bounded cross-match census.
+Novelty must be established for the exact surviving analysis, not inferred from release age.
 
 **Why now.** Every DR1×Gaia selection can be redone at DR2 depth; DR1→DR2 flux comparison via the
 consortium's `UID_DR1` cross-walk opens an X-ray variability axis (M1 correction: DR2 is

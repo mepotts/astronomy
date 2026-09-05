@@ -3,6 +3,12 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-09-05** — [Release decision packet](RELEASE-DECISIONS-2026-09-05.md)
+  prepared. Cambridge DPAC still gives December 2; September 2's successful
+  rehearsal retained. Four exact label/power variants are proposed, not applied;
+  the explicitly frozen registration still requires Matthew's ruling. No account
+  or antivirus configuration changed, and no DR4 result is claimed.
+
 - **2026-09-02** — **[M9 readiness](M9-full-chain-a0-readiness.md) independently
   reverified; no M10 opened.** ESA's live
   [release calendar](https://www.cosmos.esa.int/web/gaia/release) still gives **2 December
