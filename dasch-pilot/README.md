@@ -19,9 +19,18 @@ and limitations. The result establishes that targeted, scripted DASCH work is
 practical; it does not establish that a blind survey would have an acceptable
 false-positive rate.
 
-This is not a full pass of the older portfolio M0: its Mira and faint/crowded
-controls, `daschlab` plate-cutout recovery, and adjacent-epoch image check were
-not run and remain open.
+The original M0 was completed to a decision on **2026-09-05**. R Cnc (a verified
+Mira) passed; the faint/crowded V404 Cyg control had only five clean detections
+and failed the three-position coverage gate. Nine official plate cutouts were
+retrieved and inspected, including an explicitly exploratory same-series
+recovery of V404 Cyg's published 1938 eruption against deeper adjacent epochs.
+The nearest-epoch image selection failed first and remains recorded as a failure.
+
+The outcome stops unconditional faint-field/broker annotation. Only a separate
+brightness/coverage-limited, externally vetted stable-star false-positive study
+is a supported next option. In particular, `class=0, v_flag=0` is not a reliable
+stable-star label: the known Mira itself has these catalog flags. No unknown
+source was searched. See [the full closeout](M0-EXTENSION-RESULTS-2026-09-05.md).
 
 ## Reproduce
 
@@ -34,6 +43,15 @@ counts, SHA-256 digests, and source endpoints are bound by
 python scripts/m0_dasch_pilot.py --output out/m0-results-20260902.json
 python -m unittest discover -s tests -v
 ```
+
+The extension's exact known-control responses are retained in a 10.77 MB gzip
+bundle under `data/m0-extension-20260905/`, with a per-response manifest. From
+the repository root, `python dasch-pilot/scripts/m0_extension.py analyze` verifies
+and analyzes this bundle without network access. Rendering the three review
+figures also requires Astropy, NumPy, and Matplotlib; use the `render` mode.
+The public `fetch`, `images`, and `recovery` modes are for rebuilding the fixed
+known-control experiment, not expanding to new targets. Existing cached inputs
+are immutable and verified before reuse.
 
 The analysis uses only Python's standard library. It verifies every stored raw
 artifact and every effective command-line input both before and after analysis,

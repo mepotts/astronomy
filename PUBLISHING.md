@@ -5,6 +5,13 @@ scientific record, what the field expects a companion repository to look like, a
 what this repository deliberately does and does not expose. Venue facts checked
 2026-08-13; fees and policies drift, so re-verify before submitting.*
 
+**Current decisions (2026-09-05):** the
+[publication closeout](DISCOVERY/PUBLICATION-DECISIONS-2026-09-05.md) links scoped
+PTA/eROSITA review bundles, exact reproduction limits, and corrected scientific
+claims. Repository integration is authorized; publication, author/venue/archive
+choices, DOI minting and submissions remain separate human gates. Older venue
+guidance below is not a current policy verification or a submission authorization.
+
 ## Where an independent researcher can publish
 
 **[Research Notes of the AAS (RNAAS)](https://journals.aas.org/research-notes/)** —

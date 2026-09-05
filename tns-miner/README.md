@@ -38,6 +38,12 @@ migrates to Rubin/LS4 streams.
 
 ## Start here
 
+**Current state (2026-09-05): PARKED pending source recovery.** The bounded
+[recovery check](SERVICE-RECOVERY-2026-09-05.md) reproduced the required Fink
+`Em*` timeout and found no responsive cheap ALeRCE replacement. Other public
+control queries work. No new candidate count exists. Resume only through a
+fresh, complete proved run after the documented restart condition is met.
+
 **[`OPERATING-GUIDE.md`](OPERATING-GUIDE.md) is the only file you need to run this
 front.** It carries the nightly commands, every pre-registered threshold and the
 rule that fixed it, the known failure modes, and the end-to-end submission path

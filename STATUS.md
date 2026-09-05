@@ -1,11 +1,12 @@
 # STATUS — live research dashboard
 
-*Current portfolio snapshot: 2026-09-02. Per-project `STATUS.md`, milestone documents,
+*Current portfolio snapshot: 2026-09-05. Per-project `STATUS.md`, milestone documents,
 operating guides, and committed artifacts are the detailed record. The older wave tables
 below are retained as a dated audit trail, not as the current queue.*
 
-**House gates (always on):** nothing submitted anywhere (MPC, TNS, journals, emails) and
-nothing pushed/merged to main without Matthew's explicit per-item approval. Agents verify
+**House gates (always on):** nothing submitted anywhere (MPC, TNS, journals, emails).
+Matthew authorized tested commits, pushes and merges for the current closeout; that does
+not authorize scientific publication or amend explicitly frozen protocols. Agents verify
 before building — sweep-reported facts are treated as claims until re-checked with this
 repo's own tooling. Every externally-sourced number carries its source or the mark
 UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
@@ -13,19 +14,22 @@ UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 ## Current portfolio snapshot
 
 The aggregate, identity-free execution record and next gates are in
-[`DISCOVERY/CAMPAIGN-2026-09-02.md`](DISCOVERY/CAMPAIGN-2026-09-02.md).
+[`DISCOVERY/CLOSEOUT-2026-09-05.md`](DISCOVERY/CLOSEOUT-2026-09-05.md), with
+[publication decisions](DISCOVERY/PUBLICATION-DECISIONS-2026-09-05.md) and the
+[new-work comparison](DISCOVERY/NEW-WORK-2026-09-05.md). September 2's campaign remains history.
 
 | Front | Current state | Next gate |
 |---|---|---|
-| [`itf-linker/`](itf-linker/) | **M13 operational split implemented; M14 stopped at anatomy.** The August 19/24 aggregates were authenticated, but two unclassified rows triggered the prospective internal plan's accounting STOP. The downstream 0–2/100 fit bound is post-stop/noninferential, the runner is retired, and no M14 queue exists. | Keep the counts/freshness watcher separate from private review. Any new attribution experiment needs a separately named, independently timestamped protocol with complete input and residual-provenance repair. |
-| [`tns-miner/`](tns-miner/) | **Newest closed-year reproduction proved but incomplete.** The registry side for `[2025-09-01, 2026-09-01)` is sealed at 28,284 rows, but one required Fink class timed out even at `n=1` over 15.8 seconds. E2, the pool, and candidate count are absent—not zero. Historical M1/M2 precision figures remain unpromoted. | Retry a new three-day window plus fresh post-window TNS snapshot when a complete enumerator is responsive; do not reinterpret the stopped run or the old 37-object artifact as a queue. |
-| [`dyson-revet/`](dyson-revet/) | **M7 closed.** The empirical-PSF acceptance test passed; the published redshift still could not be independently confirmed. | Human go/no-go on drafting the candidate-D negative or other outward notes. |
-| [`gaia-dr4/`](gaia-dr4/) | **M9 closed and full-chain rehearsed.** Ready for the planned 2026-12-02 release, with unresolved preregistration interpretations recorded rather than silently changed. | Human ruling on amendments; release-day analysis remains gated and the release date must be rechecked. |
-| [`chime-frb-periodicity/`](chime-frb-periodicity/) | **M0 stopped at the observing-window gate.** Exact Catalog 2 inputs and published counts pass, and the 16.35-day control is recovered, but the released exposure product is survey-integrated rather than time-resolved. No unknown-source scan ran. | Obtain a citable operational/sensitivity time series or close the lane; never substitute uniform duty cycle. |
-| [`dasch-pilot/`](dasch-pilot/) | **Narrow light-curve/API slice passed; the original plate-cutout M0 remains open.** The published 1938--1945 T CrB high state is 1.103 mag above baseline and 1.089 mag relative to a frozen nearby field control after current DR7 cuts. No Mira, faint/crowded control, cutout recovery, or blind search ran. | Complete the original controls and plate/cutout recovery, then preregister a stable-star false-positive study before any unknown-source claim. |
+| [`itf-linker/`](itf-linker/) | **Daily archive repaired and caught up.** September 5 snapshot and release key set published; watch green, 20 ready / 6 held unchanged. August 6 metadata repaired against unchanged scientific bytes. M14 stays stopped; no new queue. | Verify the first unattended cycle, then monitor meaningful freshness/count changes. New attribution work requires a separately frozen provenance-valid protocol. |
+| [`tns-miner/`](tns-miner/) | **PARKED after 15 bounded recovery probes.** Required Fink class and six ALeRCE REST/TAP alternatives remain unavailable/incomplete despite healthy controls. No fresh campaign or candidate count. | Prove a complete enumerator, then a fresh three-day window and post-window TNS snapshot; never promote the stopped bundle. |
+| [`dyson-revet/`](dyson-revet/) | **M7 closed; E WAIT_RELEASE.** D control 7/7 and outcome map unchanged; 39 exclusive MAST observations still release September 9. New bounded release guard fails closed. | Scheduled September 9 follow-up must execute the frozen experiment after public access; M7 validity checks and human publication gates remain. |
+| [`gaia-dr4/`](gaia-dr4/) | **M9 ready for planned December 2 release.** Successful September 2 rehearsal retained; concrete proposed label/power rulings prepared, not applied. | Matthew's explicit frozen-rule ruling; public date/schema and actual release-day execution. No security exclusions/accounts changed. |
+| [`chime-frb-periodicity/`](chime-frb-periodicity/) | **PARKED.** Targeted recheck found no authenticated time-resolved observing/sensitivity product; the published periodic control remains recovered. No unknown scan. | Restart only with the exact citable time series and complete M1 protocol. |
+| [`dasch-pilot/`](dasch-pilot/) | **Original M0 closed: stop unconditional faint-field annotation.** R Cnc passes coverage; V404 Cyg has only 5 clean detections. Original image selection fails; separately exploratory depth-matched plates qualitatively recover its published 1938 outburst. | Only a possible externally vetted bright stable-star calibration study. APASS class/v_flag does not prove stability; no blind search earned. |
 | [`spherex-pilot/`](spherex-pilot/) | **Broad scan killed; narrow path blocked at privacy gate.** Only 1/223 fitted warm tails clears the conservative 4.8-micron floor; forced spectrophotometry is already an official IRSA capability. Zero private coordinates were sent. | If explicitly approved, query coverage for the exact six-row private manifest; otherwise leave the paired warm-tail test blocked. |
-| [`pta-mpta/`](pta-mpta/) | **M6 closed.** A full paper and two RNAAS notes are drafts; their committed text-to-artifact checkers pass. Nothing is submitted. | Decide which drafts proceed, supply author metadata, and mint an appropriately scoped archive DOI only after reviewing the exact release. |
-| [`erosita-dr2/`](erosita-dr2/) | **M5 write-up complete.** The fader-census draft is not submitted; the optional classifier front remains deferred. | Human publication decision; J0944/Swift and any correspondence are separate outward gates. |
+| [`pta-mpta/`](pta-mpta/) | **Analysis closed; local review bundle built and extracted checks pass.** Three draft audits pass; raw chains and some reproduction dependencies remain outside the compact package. | Choose primary paper/overlapping notes, actual author/venue/archive/DOI and exact submission. |
+| [`erosita-dr2/`](erosita-dr2/) | **Corrected census review package ready.** Prior-art, contamination, physical-rate, classifier and artifact-percentage claims narrowed. The 148/107/6 classification survives, not 107 confirmed discoveries. | Human decision on the modest census note; exact archive/author/venue/submission. Private follow-up remains separate. |
+| [`ccor-pilot/`](ccor-pilot/) | **Finite pilot closed: STOP_METADATA_QUALITY.** Four public FITS files lack the frozen required ISVIABLE flag. Additional WCS rotation/display-provenance barriers remain. No real pixels scored. | New documented quality/orientation protocol and defensible control required before any recovery or unknown-source search. |
 | [`adql-copilot/`](adql-copilot/) | Packaged tool; 46-test suite and JOSS draft. | Publication is separate from repository integration. |
 | [`seti-ellipsoid-broker/`](seti-ellipsoid-broker/) | Packaged tool; 84 tests plus 2 default skips and an RNAAS draft. | Publication is separate from repository integration. |
 | [`pta-explainer/`](pta-explainer/) | Deployed explainer; 64 tests and production build. | Site publication/deployment remains separately controlled. |
@@ -34,7 +38,8 @@ The aggregate, identity-free execution record and next gates are in
 
 Merging verified repository changes may make default-branch CI and schedules available;
 it does **not** authorize any DOI mint, journal upload, MPC/TNS payload, email, account
-creation, scheduler mutation, or public announcement. Those remain exact, per-item human
+creation, unrelated scheduler mutation, or public announcement. The current closeout's
+ITF catch-up and dated follow-ups are authorized; outward scientific actions remain human
 decisions. See [PUBLISHING.md](PUBLISHING.md) for the publication queue and each project's
 operating guide for registry-facing work.
 

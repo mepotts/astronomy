@@ -1,6 +1,8 @@
 # CHIME/FRB Catalog 2 periodicity
 
-Status: **M0 stopped at the observing-window gate on 2026-09-02. No unknown-source period scan was run.**
+Status: **PARKED on 2026-09-05 after the targeted input recheck.** See
+[`PARKED-2026-09-05.md`](PARKED-2026-09-05.md) for the exact restart condition.
+M0 stopped at the observing-window gate on September 2; no unknown-source period scan was run.
 
 This project tests whether CHIME/FRB Catalog 2 can support a defensible search for long-period activity cycles among repeating fast radio bursts. The public event table is sufficient to reproduce a known period. The public exposure product is not sufficient to assign discovery significance because it contains date-integrated sky maps, not the time-resolved operational/sensitivity window.
 

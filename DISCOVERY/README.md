@@ -9,10 +9,12 @@ Researched **2026-07-28** by an 8-agent fan-out. Every URL below was live-fetche
 numbers are marked **[measured]**. Anything that could not be confirmed says **unverified** rather
 than guessing. Facts here have a shelf life — re-verify before acting on a dated claim.
 
-> **Current execution record (2026-09-02):** see
-> [**CAMPAIGN-2026-09-02.md**](CAMPAIGN-2026-09-02.md) for the six fronts executed in
-> discovery order, their fail-closed outcomes, and their exact next gates. The older ranking
-> below is retained as planning history and is not the live queue.
+> **Current execution record (2026-09-05):** see
+> [**CLOSEOUT-2026-09-05.md**](CLOSEOUT-2026-09-05.md) for the executed closeouts,
+> daily ITF repair, future release checks and exact gates; the
+> [new-work comparison](NEW-WORK-2026-09-05.md) selects one bounded CCOR2 control
+> pilot. The [September 2 campaign](CAMPAIGN-2026-09-02.md) and older rankings below
+> remain planning/execution history, not the live queue.
 
 > **Run 3 addendum (2026-08-14).** A third sweep mapped the *publishable-science* axis (papers, not
 > designations) — see [**run3-prospectus.md**](run3-prospectus.md) for the ranked avenues, the Q4 2026

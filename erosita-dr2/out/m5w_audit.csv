@@ -104,5 +104,5 @@ validation_control_presence_median,2.6,2.6,out,out/m5w_faint_validation.csv,VERI
 validation_control_presence_max,3.78,3.78,out,out/m5w_faint_validation.csv,VERIFIED,
 validation_controls_below_cut,0,0,out,out/m5w_faint_validation.csv,VERIFIED,zero of 60 flux-matched steady sources fall in the fader class
 validation_false_positive_95ul_pct,4.9,4.9,out,"1 - 0.05^(1/60), one-sided binomial",VERIFIED,
-validation_max_contaminants_of_107,6,6,out,"0.049 x 107, rounded up",VERIFIED,
+validation_max_contaminants_of_107,6,NOT_IDENTIFIABLE,out,control sampling design,CORRECTED,2026-09-05 withdrawal: a conditional error bound on 60 steady controls does not bound contamination among 107 selected candidates
 validation_populations_disjoint,yes,yes,out,control min vs fader max,VERIFIED,"faders reach P=1.49, controls start at P=2.03"

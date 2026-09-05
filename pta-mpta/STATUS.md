@@ -3,6 +3,15 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
+- **2026-09-05** — **Publication closeout: analysis closed, local package assembled.**
+  [Decision package](PUBLICATION-CLOSEOUT-2026-09-05.md): all three existing text
+  verifiers passed (22/119/49 checks). Claim-specific literature refresh preserves
+  M6's narrowed composition claim. Exact file/ZIP hashes and reproducible commands
+  are in `publication/manifest-2026-09-05.json`; raw chains/inputs are explicitly
+  excluded. Full paper recommended for human review, with overlap considered before
+  choosing either note. Authorship, venue, archive scope/DOI and submission remain
+  decisions; no new sampling or external release.
+
 - **2026-08-24** — **M6 complete — THE CLOSING MILESTONE**
   ([`M6-close-the-paper.md`](M6-close-the-paper.md)). **All three documents are submission-ready and
   the only blocker left is the DOI.** No chains were run: M6 is citations, one external sweep,

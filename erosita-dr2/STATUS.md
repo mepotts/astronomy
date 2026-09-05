@@ -1,5 +1,15 @@
 # erosita-dr2 — status log
 
+- **2026-09-05** — **Publication closeout corrected interpretation before packaging.**
+  [Closeout](PUBLICATION-CLOSEOUT-2026-09-05.md): DR2 already discusses variability,
+  contradicting M5's framing; 0/60 controls do not bound contamination among 107
+  selected candidates; 0.09% is a candidate fraction, not a physical switch-off
+  rate; Gaia labels came from variability classification, not DSC. Main draft
+  corrected and citations completed. Census 148/107/6 and threshold 99–124 still
+  reproduce. Local package excludes risers, fenced material, XROM and companion B;
+  exact hashes and missing raw/dependency requirements recorded. Publication remains
+  a human decision. Historical milestones below retain their original dates.
+
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 

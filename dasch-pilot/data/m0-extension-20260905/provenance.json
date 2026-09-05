@@ -1,0 +1,261 @@
+{
+  "analysis_id": "dasch-m0-extension-20260905",
+  "artifacts": {
+    "rcnc-field": {
+      "bytes": 10968,
+      "file": "rcnc-field.raw",
+      "request": {
+        "dec_deg": 11.72624142,
+        "ra_deg": 124.14094472,
+        "radius_arcsec": 300,
+        "refcat": "apass"
+      },
+      "retrieved_utc": "2026-09-05T13:43:57.773984+00:00",
+      "sha256": "f5e7cda448e66be1750762bff81f8540e507c3282f6d5b026801be3496572df9",
+      "status": 200,
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/querycat"
+    },
+    "rcnc-lightcurve": {
+      "bytes": 1073736,
+      "file": "rcnc-lightcurve.raw",
+      "request": {
+        "gsc_bin_index": 101650354,
+        "ref_number": 408163381114334,
+        "refcat": "apass"
+      },
+      "retrieved_utc": "2026-09-05T13:43:58.852115+00:00",
+      "sha256": "97769c1a7dae7e9c0205f2c621427e88d40d401b837d4695756d839df329ce07",
+      "status": 200,
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/lightcurve"
+    },
+    "rcnc-querycat": {
+      "bytes": 331,
+      "file": "rcnc-querycat.raw",
+      "request": {
+        "dec_deg": 11.72624142,
+        "ra_deg": 124.14094472,
+        "radius_arcsec": 30,
+        "refcat": "apass"
+      },
+      "retrieved_utc": "2026-09-05T13:43:57.174461+00:00",
+      "sha256": "52776f3b1a2a52157e15d635825ba0925fbf6fa915093e217f78ee660f0274d8",
+      "status": 200,
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/querycat"
+    },
+    "rcnc-resolver": {
+      "bytes": 1165,
+      "file": "rcnc-resolver.raw",
+      "request": null,
+      "retrieved_utc": "2026-09-05T13:43:56.988194+00:00",
+      "sha256": "c3711ee5130153e5fa94eff7bff9a1acbd30551bb606733fc381f1d1d251715b",
+      "status": 200,
+      "url": "https://cds.unistra.fr/cgi-bin/nph-sesame/-oxp/SNV?R%20Cnc"
+    },
+    "tcrb-exposures": {
+      "bytes": 2643911,
+      "file": "tcrb-exposures.raw",
+      "request": {
+        "dec_deg": 25.9201703842,
+        "ra_deg": 239.8756759441
+      },
+      "retrieved_utc": "2026-09-05T13:44:42.262255+00:00",
+      "sha256": "2e6959cc30734f248f125862df9d34d220614eede7cf7f72c72c4faacf7c1d3d",
+      "status": 200,
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/queryexps"
+    },
+    "tcrb-high-cutout": {
+      "bytes": 833022,
+      "file": "tcrb-high-cutout.raw",
+      "request": {
+        "center_dec_deg": 25.9201703842,
+        "center_ra_deg": 239.8756759441,
+        "plate_id": "ai37139",
+        "solution_number": 0
+      },
+      "retrieved_utc": "2026-09-05T13:46:55.477969+00:00",
+      "sha256": "d778492840a0851da8a59c416a46da86b1a80beb6433c6d9fac1991f3c08f8c4",
+      "status": 200,
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/cutout"
+    },
+    "tcrb-post-cutout": {
+      "bytes": 1028142,
+      "file": "tcrb-post-cutout.raw",
+      "request": {
+        "center_dec_deg": 25.9201703842,
+        "center_ra_deg": 239.8756759441,
+        "plate_id": "ai40685",
+        "solution_number": 0
+      },
+      "retrieved_utc": "2026-09-05T13:46:59.518113+00:00",
+      "sha256": "a448d105ed50681cce2463998b15cfa622a7a66bdf5ba7e82d6fb4970bd17f02",
+      "status": 200,
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/cutout"
+    },
+    "tcrb-pre-cutout": {
+      "bytes": 1068914,
+      "file": "tcrb-pre-cutout.raw",
+      "request": {
+        "center_dec_deg": 25.9201703842,
+        "center_ra_deg": 239.8756759441,
+        "plate_id": "ai33112",
+        "solution_number": 0
+      },
+      "retrieved_utc": "2026-09-05T13:46:51.898830+00:00",
+      "sha256": "d34c945b94cb681eb61c22c31af44f8816c830789ee0aac0dcab5baeea5ee87e",
+      "status": 200,
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/cutout"
+    },
+    "v404cyg-event-cutout": {
+      "bytes": 1090114,
+      "file": "v404cyg-event-cutout.raw",
+      "request": {
+        "center_dec_deg": 33.86721143,
+        "center_ra_deg": 306.01593627,
+        "plate_id": "fa02316",
+        "solution_number": 0
+      },
+      "retrieved_utc": "2026-09-05T13:47:03.215856+00:00",
+      "sha256": "778a4fc1f5f231380151b90b059615616b3a60e92a8b083acf1bf882ee38ee7e",
+      "status": 200,
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/cutout"
+    },
+    "v404cyg-exposures": {
+      "bytes": 3183749,
+      "file": "v404cyg-exposures.raw",
+      "request": {
+        "dec_deg": 33.86721143,
+        "ra_deg": 306.01593627
+      },
+      "retrieved_utc": "2026-09-05T13:44:23.523915+00:00",
+      "sha256": "d14a37ccb38acac3a4c39ba5de016b114da06f584d2022343822f67050d7434b",
+      "status": 200,
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/queryexps"
+    },
+    "v404cyg-field": {
+      "bytes": 35340,
+      "file": "v404cyg-field.raw",
+      "request": {
+        "dec_deg": 33.86721143,
+        "ra_deg": 306.01593627,
+        "radius_arcsec": 300,
+        "refcat": "apass"
+      },
+      "retrieved_utc": "2026-09-05T13:43:59.902068+00:00",
+      "sha256": "491e472a9991c811e308a8821689d48e0d7a76739a4d7ecd467283ad18be613b",
+      "status": 200,
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/querycat"
+    },
+    "v404cyg-lightcurve": {
+      "bytes": 443801,
+      "file": "v404cyg-lightcurve.raw",
+      "request": {
+        "gsc_bin_index": 131570315,
+        "ref_number": 11033222260707,
+        "refcat": "apass"
+      },
+      "retrieved_utc": "2026-09-05T13:44:00.361550+00:00",
+      "sha256": "3c171fada4524a0f06c60da5b3ba591692b525a5eb0c5a5a8c7a1b12642a94ea",
+      "status": 200,
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/lightcurve"
+    },
+    "v404cyg-post-cutout": {
+      "bytes": 1187614,
+      "file": "v404cyg-post-cutout.raw",
+      "request": {
+        "center_dec_deg": 33.86721143,
+        "center_ra_deg": 306.01593627,
+        "plate_id": "ai34707",
+        "solution_number": 0
+      },
+      "retrieved_utc": "2026-09-05T13:47:11.683217+00:00",
+      "sha256": "4ebbe46c70e96cbe2aa9d68ad62917e881c7fa34813a6d50cac36d5dc0de16d5",
+      "status": 200,
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/cutout"
+    },
+    "v404cyg-pre-cutout": {
+      "bytes": 1266274,
+      "file": "v404cyg-pre-cutout.raw",
+      "request": {
+        "center_dec_deg": 33.86721143,
+        "center_ra_deg": 306.01593627,
+        "plate_id": "ai34087",
+        "solution_number": 0
+      },
+      "retrieved_utc": "2026-09-05T13:47:07.170610+00:00",
+      "sha256": "75ff1b2d0d91c4905c128c0d973e8d9a5eb4be5eeaf784d09291cb557de134ab",
+      "status": 200,
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/cutout"
+    },
+    "v404cyg-querycat": {
+      "bytes": 455,
+      "file": "v404cyg-querycat.raw",
+      "request": {
+        "dec_deg": 33.86721143,
+        "ra_deg": 306.01593627,
+        "radius_arcsec": 30,
+        "refcat": "apass"
+      },
+      "retrieved_utc": "2026-09-05T13:43:59.310630+00:00",
+      "sha256": "12e45b6e41145b7c2fc5d801c2708e0d67a8f2eb23b8539b424bcad1914da175",
+      "status": 200,
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/querycat"
+    },
+    "v404cyg-resolver": {
+      "bytes": 1164,
+      "file": "v404cyg-resolver.raw",
+      "request": null,
+      "retrieved_utc": "2026-09-05T13:43:59.172402+00:00",
+      "sha256": "9b16ee5c1c1748ccdea8b48d6210ac1a06406fc5d399a2927c6fc49634880c6b",
+      "status": 200,
+      "url": "https://cds.unistra.fr/cgi-bin/nph-sesame/-oxp/SNV?V404%20Cyg"
+    },
+    "v404matched-event-cutout": {
+      "bytes": 1341574,
+      "file": "v404matched-event-cutout.raw",
+      "request": {
+        "center_dec_deg": 33.86721143,
+        "center_ra_deg": 306.01593627,
+        "plate_id": "ac34550",
+        "solution_number": 0
+      },
+      "retrieved_utc": "2026-09-05T13:51:43.942313+00:00",
+      "sha256": "de022eccc05676cd4aa9a766a426ef846482be32b86b2acf8a5e38fe077efbbc",
+      "status": 200,
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/cutout"
+    },
+    "v404matched-post-cutout": {
+      "bytes": 1352794,
+      "file": "v404matched-post-cutout.raw",
+      "request": {
+        "center_dec_deg": 33.86721143,
+        "center_ra_deg": 306.01593627,
+        "plate_id": "ac34971",
+        "solution_number": 0
+      },
+      "retrieved_utc": "2026-09-05T13:51:48.195352+00:00",
+      "sha256": "c1a7715ad78d030f7a771199f1e73cdac316cc8d65451c03d7e93af9eba4bd90",
+      "status": 200,
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/cutout"
+    },
+    "v404matched-pre-cutout": {
+      "bytes": 1371850,
+      "file": "v404matched-pre-cutout.raw",
+      "request": {
+        "center_dec_deg": 33.86721143,
+        "center_ra_deg": 306.01593627,
+        "plate_id": "ac34356",
+        "solution_number": 0
+      },
+      "retrieved_utc": "2026-09-05T13:51:39.619914+00:00",
+      "sha256": "12163205624845cc93eb13e3964aeb7e5997af119d0d02a9f98a414be8753684",
+      "status": 200,
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/cutout"
+    }
+  },
+  "original_provenance_raw_sha256_at_retrieval": "71a395c436c7abaaa8b42b03f3c4d90e5f3f16319ac213d290ae681475b4db79",
+  "original_provenance_sha256": "cf9c447cda07adcaa75834ca242ae6d1d4f3cde7119d0d329d34e08f636f9cea",
+  "text_hash_policy": "CRLF normalized to LF; raw response digests remain byte-exact",
+  "recovery_spec_sha256": "9a578a164a05892c505f103834d7787eb65fc745dbdd7adae0f4f5100acb6145",
+  "schema_version": 1,
+  "spec_sha256": "9637285f5643334ed576ac217e67e51a43703d4e8c8d3542adb37fb2efdd2121"
+}

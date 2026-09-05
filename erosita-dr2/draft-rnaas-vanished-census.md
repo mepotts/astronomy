@@ -15,6 +15,11 @@
 >
 > **Provenance.** Every number below appears in [`writeup-audit.md`](writeup-audit.md) with
 > the artifact it was re-derived from. Nothing that failed re-derivation is used.
+>
+> **2026-09-05 correction.** The release paper already discusses variability among
+> unmatched sources. Our novelty is a bounded bright-source forensic census. The
+> control experiment does not determine candidate purity or a confirmed switch-off
+> rate. See [`PUBLICATION-CLOSEOUT-2026-09-05.md`](PUBLICATION-CLOSEOUT-2026-09-05.md).
 
 ---
 
@@ -30,13 +35,13 @@ string and supply an ORCID]*
 The eROSITA-DE Data Release 2 (DR2) catalogue of the western Galactic hemisphere supersedes
 DR1 but ships no per-epoch photometry, so the only public variability axis is the comparison
 between eRASS1 (DR1) and the eRASS:3 stack (DR2). The DR2 release paper uses that comparison
-to estimate eRASS1 spurious contamination, treating every unmatched eRASS1 source as
-spurious. We test that assumption at the bright end. Of 118,253 clean eRASS1 point sources
-with DET_LIKE_0 ≥ 30, 261 (0.22%) have no DR2 counterpart. Querying the DR2 upper-limit
-server at each position, 148 (57%) still show flux and are catalogue dropouts, 107 (41%)
-sit on blank sky and are genuine faders, and 6 are indeterminate. A flux- and
+to assess eRASS1 contamination and variability. We extend it with a bright-source
+upper-limit and field-geometry census. Of 118,253 clean eRASS1 point sources
+with DET_LIKE_0 ≥ 30, 261 (0.22%) have no match through DR2's `UID_DR1` cross-walk. Querying the DR2 upper-limit
+server at each position and examining field geometry classifies 148 (57%) as catalogue
+artifacts, 107 (41%) as fade candidates, and 6 as indeterminate. A flux- and
 likelihood-matched control of 60 steady sources validates the separation with no overlap.
-The artifact fraction rises with brightness, reaching 100% above DET_LIKE_0 = 242.
+All six sources above DET_LIKE_0 = 242 are artifacts or indeterminate.
 
 ### Body
 
@@ -52,11 +57,10 @@ alone. The single public variability axis is therefore eRASS1 versus the eRASS:3
 
 The release paper uses exactly this axis in its §5.1 to obtain an empirical handle on eRASS1
 spurious contamination, reporting that ~21% of eRASS1 point sources are unmatched to
-eRASS:3, falling to ~3.5% for DET_LIKE > 10 and ~0.15% for DET_LIKE > 50. The framing is
-that unmatched implies spurious; variability is not considered. That is a reasonable working
-assumption for a contamination estimate, but it is untested, and at the bright end it must
-eventually fail — a real source that switches off will also go unmatched. This note measures
-where the failure sets in.
+eRASS:3, falling to ~3.5% for DET_LIKE > 10 and ~0.15% for DET_LIKE > 50. It explicitly
+considers intrinsic and Poisson-induced variability, using counterpart probabilities to
+distinguish likely real sources from spurious detections. Our contribution is the
+upper-limit and geometry classification of a restricted bright sample.
 
 **Sample.** Joining DR2 Main to DR1 Main on `|UID_DR1|` and applying the consortium flag
 recipe (point-like in both catalogues, no spurious/optical-loading flags, separation within
@@ -64,15 +68,15 @@ the 99% joint positional radius and 10″) yields 632,668 clean pairs. Their bri
 (≥ 20σ in both releases, n = 1,238) gives a median count-rate ratio of 0.979: a 2%
 pipeline-plus-stacking scale offset between the two releases, which we normalise out and
 which the release paper does not report. Of the 118,253 clean eRASS1 point
-sources with DET_LIKE_0 ≥ 30, **261 (0.22%) have no DR2 counterpart at all** — comparable in
+sources with DET_LIKE_0 ≥ 30, **261 (0.22%) have no match through `UID_DR1`** — comparable in
 magnitude to the release paper's 0.15% at DET_LIKE > 50.
 
 **Method.** The decisive point is that the eRASS:3 stack *contains* the eRASS1 photons
 (median exposure ratio *t*₃/*t*₁ = 2.84). A source that stayed constant is still in the stack
-at the same flux and cannot legitimately be absent; a source that switched off immediately
+at the same expected flux; a source that switched off immediately
 after eRASS1 still leaves ≈ 1/2.84 of its eRASS1 flux in the time-average. So a *blank*
-position is only possible if the source genuinely faded, whereas flux still present means
-only the catalogue entry vanished. We test this at every one of the 261 positions with the
+position motivates a fading interpretation, but Poisson fluctuations, reprocessing, and
+source confusion can also affect it. We test all 261 positions with the
 DR2 upper-limit server (Tubín-Arenas et al. 2024; Ramos-Ceja et al. 2026; 0.2–2.3 keV,
 absorbed power law Γ = 2.0, *N*_H = 3 × 10²⁰ cm⁻²), forming the presence ratio
 *P* = UL_B / UL_S — the Bayesian upper limit from the counts actually in the aperture,
@@ -81,9 +85,9 @@ divided by the local sensitivity estimate. *P* ≈ 1 is blank sky; *P* ≫ 1 mea
 We validate *P* where it matters. Sixty steady sources, drawn to match the fade candidates
 in both eRASS1 flux and DET_LIKE_0, return *P* = 2.03–3.78 (median 2.60) — **none** below the
 adopted cut of 1.5, while all 107 fade candidates lie at *P* ≤ 1.49 (median 1.04). The two
-populations do not overlap (Figure 1a). With 0 of 60 controls misclassified, contamination of
-the fader census by still-present sources is < 4.9% (95% one-sided), i.e. fewer than 6 of the
-107.
+populations do not overlap (Figure 1a). Zero of 60 controls are misclassified, giving a
+4.9% one-sided 95% upper bound for the error probability in this control population under
+an independent binomial model. This does not bound contamination among selected candidates.
 
 **Result.** Combining *P* with the geometry of each field — a DR2 source within 15″
 (cross-walk miss), a similarly bright neighbour or an extended source within 2′ (absorption
@@ -94,35 +98,36 @@ identifies in its §3.2.5 — 36 absorbed into extended emission, 25 cross-walk 
 unexplained persistences. Re-running the classification with the presence cut at 1.3 and 2.0
 moves the fader count to 99 and 124, so the census is **107 (+17/−8)**.
 
-The artifact fraction is strongly brightness-dependent (Figure 1b): 57% over the whole
-sample, 71% above DET_LIKE_0 = 100, and 100% above DET_LIKE_0 = 242 — the brightest fade
-candidate. The practical statement for DR2 users is that a bright DR1 source missing from
-DR2 is an artifact first and astrophysics second, and the brighter it is the more certainly
-so.
+The artifact fraction rises from 57% over the whole sample to 19/28 (68%) above
+DET_LIKE_0 = 100 (Figure 1b). Above DET_LIKE_0 = 242, the brightest fade candidate,
+five sources are artifacts and one is indeterminate. Bright catalogue dropouts in
+this sample therefore warrant artifact checks before a fading interpretation.
 
 **Who the faders are.** Their eRASS1 fluxes span 5.9 × 10⁻¹⁵ – 5.3 × 10⁻¹³ erg cm⁻² s⁻¹
 (median 6.8 × 10⁻¹⁴) and their median DET_LIKE_0 is 40. Cross-matching against Gaia DR3 and
-CatWISE2020, 39 (36%) have AGN-like counterparts (Gaia DSC class AGN/QSO, or W1−W2 ≥ 0.8) —
-high-amplitude AGN variability; 23 (21%) have bright IR-flat stellar counterparts
+CatWISE2020 (Marocco et al. 2021), 39 (36%) have AGN-like counterparts (Gaia variability
+class AGN/QSO, or W1−W2 ≥ 0.8); 23 (21%) have bright IR-flat stellar counterparts
 (W1 < 15, |W1−W2| < 0.3) consistent with single-epoch flare stars; 21 (20%) had a prior X-ray
 detection in ROSAT, XMM-Newton, Chandra or Swift archives; only 3 have no CatWISE source at
-all. Taken at face value, **≈ 0.09% of clean bright eRASS1 sources genuinely switched off**
-by the end of eRASS:3.
+all. The fade-candidate selection contains **≈ 0.09% of clean bright eRASS1 sources**;
+this is not a measured physical switch-off rate.
 
 **Limitations.** The census inherits DR2's footprint (western Galactic hemisphere only) and
 is deliberately restricted to DET_LIKE_0 ≥ 30, well above the DET_LIKE_0 = 6 catalogue
 threshold at which ~14% of entries are expected spurious; it says nothing about fainter
-sources, where the release paper's spurious framing is likely to be largely correct. The
+sources. The
 upper-limit server is cumulative over eRASS:3 only — there are no public per-survey limits —
 so "faded" means the *stack-averaged* flux is below the limit, and a source that faded and
 re-brightened inside the 2019–2021 window is not distinguished from one that stayed off.
 Amplitudes cannot be quoted from the stacked ratio, which compresses any fade to ≳ 1/3;
 epoch-space reconstruction is possible but assumes the 030 reprocessing preserved the eRASS1
 counts, which fails for the brightest transients, and we therefore make no amplitude claim
-here. The artifact/fader split is a classification, not a measurement, and its dominant
-systematic is the presence threshold (+17/−8 above). Because the cross-walk is positional
+here. The artifact/fader split is a classification, not a measurement. The threshold
+sensitivity evaluated here is +17/−8; it is not a total uncertainty interval because
+contamination and other systematics remain unquantified. Because the cross-walk is positional
 with no flux criterion, a fader with a chance DR2 alignment within 16″ leaves the vanished
-list entirely, so 107 is a lower bound. No individual fader has been confirmed by follow-up;
+list entirely; incompleteness and unmeasured contamination prevent treating 107 as a
+lower bound on the number of physical faders. No individual fader has been confirmed by follow-up;
 the demographics rest on statistical counterpart priors, not identifications. Finally, the
 consortium holds five eRASS epochs and can supersede this axis at any time; DR3 is not due
 until H2 2028.
@@ -152,15 +157,18 @@ server.
 
 - Gaia Collaboration, Vallenari, A., Brown, A. G. A., et al. 2023, A&A, 674, A1
 - Merloni, A., Lamer, G., Liu, T., et al. 2024, A&A, 682, A34
-- Ramos-Ceja, M. E., Lamer, G., Salvato, M., et al. 2026, A&A, 712, A171
-  *(arXiv:2607.27772; the journal reference is taken from the consortium publication list at*
-  <https://erosita.mpe.mpg.de/publications/> *and must be confirmed against ADS before
-  submission)*
+- Marocco, F., Eisenhardt, P. R. M., Fowler, J. W., et al. 2021, ApJS, 253, 8,
+  [arXiv:2012.13084](https://arxiv.org/abs/2012.13084)
+- Ramos-Ceja, M. E., Lamer, G., Salvato, M., et al. 2026,
+  [arXiv:2607.27772v1](https://arxiv.org/abs/2607.27772v1), accepted for A&A.
+- Rimoldini, L., Holl, B., Gavras, P., et al. 2023, A&A, 674, A14,
+  [arXiv:2211.17238](https://arxiv.org/abs/2211.17238)
 - Tubín-Arenas, D., Krumpe, M., Lamer, G., et al. 2024, A&A, 682, A35
 
-*[Incomplete — to be finished before submission: the demographics paragraph uses CatWISE2020
-and the Gaia DR3 DSC classifier, whose reference strings have not been verified in this repo
-and are therefore not listed. See* [`writeup-audit.md`](writeup-audit.md) *§3.]*
+The Gaia labels used here come from the variability classification table
+[`I/358/vclassre`](https://vizier.cds.unistra.fr/viz-bin/VizieR?-source=I%2F358%2Fvclassre),
+not the DSC classifier (Rimoldini et al. 2023); the exact catalogue and its column mapping
+are recorded in the [scoped source mapping](publication/SOURCE-MAPPING-2026-09-05.md).
 
 *Related work not superseded by this note:* Boller et al. 2025 (A&A, 700, A61) catalogue
 *intra*-eRASS1 variability on the ~4 h eROday cadence; Grotova et al. 2025 (A&A, 693, A62,

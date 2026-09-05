@@ -28,6 +28,7 @@ ROOT_DOCS = (
 )
 PROJECTS = (
     "adql-copilot",
+    "ccor-pilot",
     "chime-frb-periodicity",
     "dasch-pilot",
     "dyson-revet",
@@ -41,6 +42,7 @@ PROJECTS = (
     "tns-miner",
 )
 PARSED_FRONTS = (
+    "ccor-pilot",
     "chime-frb-periodicity",
     "dasch-pilot",
     "dyson-revet",

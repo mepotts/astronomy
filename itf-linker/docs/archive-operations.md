@@ -23,6 +23,14 @@ development checkout. A merge alone does not change that action. The rollout is 
 only after the operations clone and locked environment below exist, preflight passes, the
 queried task action names the operations clone, and a manual task run returns zero.
 
+**Deployment verified 2026-09-05:** the queried task names the operations clone at
+`8a7d154`, its locked Python environment, the explicit state directory, and the separate
+archive clone. No-network preflight and a real task invocation both returned zero. The
+historical metadata inconsistency that prevented normal archive validation was repaired
+without weakening the validator; see
+[`ARCHIVE-REPAIR-2026-09-05.md`](../ARCHIVE-REPAIR-2026-09-05.md) for exact evidence,
+the published catch-up snapshot, and the still-pending first unattended-cycle acceptance.
+
 Code, state, and Git publication are separate failure domains:
 
 * pinned runtime code and Python environment: `c:/Users/matth/projects/astronomy-itf-ops`;
