@@ -9,7 +9,12 @@ Researched **2026-07-28** by an 8-agent fan-out. Every URL below was live-fetche
 numbers are marked **[measured]**. Anything that could not be confirmed says **unverified** rather
 than guessing. Facts here have a shelf life — re-verify before acting on a dated claim.
 
-> **Current execution record (2026-09-05):** see
+> **Current execution record (2026-09-06):** see
+> [the non-dated execution pass](EXECUTION-2026-09-06.md) and
+> [adopted directions](DIRECTION-2026-09-06.md). These supersede local-choice gates
+> in older reports without retroactively promoting stopped experiments.
+>
+> **September 5 record:** see
 > [**CLOSEOUT-2026-09-05.md**](CLOSEOUT-2026-09-05.md) for the executed closeouts,
 > daily ITF repair, future release checks and exact gates; the
 > [new-work comparison](NEW-WORK-2026-09-05.md) selects one bounded CCOR2 control

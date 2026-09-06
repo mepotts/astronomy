@@ -8,6 +8,12 @@ anomaly search or claim a discovery.
 
 ## Result
 
+**September 6 extension:** six independently labelled standards all pass the
+bounded coverage gate (10,096 clean detections). A flagged Feige 66 year mixes
+red/blue plates with a 1.128-mag same-epoch discrepancy. See
+[the result and limits](STABLE-RESULTS-2026-09-06.md). This supports emulsion-aware
+calibration work, not a blind search or a measured century-scale false-positive rate.
+
 The targeted workflow passes this pilot's frozen light-curve/API gate. After the current documented DASCH
 quality flags and a 15-arcsec astrometric cut, the T CrB median brightening is
 1.103 mag (367 baseline and 348 high-state measurements). The nearby field

@@ -22,14 +22,15 @@ headed into the formal record.
 
 ## Research
 
-**Current state (2026-09-05):** see the
-[executed closeout and remaining gates](DISCOVERY/CLOSEOUT-2026-09-05.md).
-The ITF daily archive is repaired and caught up; TNS and CHIME are parked on
-specific missing inputs; DASCH's original controls are closed; PTA/eROSITA have
-local review packages. Dyson E (September 9) and Gaia DR4 (planned December 2)
-remain future experiments, not completed discoveries. The
-[new-work comparison](DISCOVERY/NEW-WORK-2026-09-05.md) selected one bounded
-CCOR2 known-report control pilot. Nothing scientific has been submitted.
+**Current state (2026-09-06):** see the
+[executed non-dated work and remaining experiments](DISCOVERY/EXECUTION-2026-09-06.md).
+ITF's daily unattended archive is accepted. The DR11 known-stream preflight stops
+on no added inputs; Rubin remains coverage/history-limited. Six externally labelled
+DASCH controls have useful coverage, with a diagnosed colour confound; independent
+CCOR ephemerides corroborate the observer-unit interpretation, not full WCS.
+Gaia's separate prospective variant is adopted; the full PTA paper is the selected
+publication unit. Dyson E (September 9) and Gaia DR4 (planned December 2) remain
+future experiments. Nothing scientific has been submitted or newly discovered.
 
 ### [`exosat-rv`](https://github.com/mepotts/exosat-rv) — an independent raw-to-RV pipeline for imaged companions
 

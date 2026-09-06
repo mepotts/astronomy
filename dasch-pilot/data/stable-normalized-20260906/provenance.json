@@ -1,0 +1,173 @@
+{
+  "spec_sha256": "14b86c7d4860a21223c08662c1e90f07a5ce71aa687b2bcf5fec843c7012f023",
+  "max_requests": 14,
+  "artifacts": {
+    "table3": {
+      "url": "https://cdsarc.cds.unistra.fr/ftp/J/MNRAS/462/3616/table3.dat",
+      "body": null,
+      "status": 200,
+      "retrieved_utc": "2026-09-06T20:42:15.699606+00:00",
+      "bytes": 18709,
+      "sha256": "9a97a02f7c6af87486e6d801cd3357bebfa123ca614cb2992223a0a67a47ca6d"
+    },
+    "readme": {
+      "url": "https://cdsarc.cds.unistra.fr/ftp/J/MNRAS/462/3616/ReadMe",
+      "body": null,
+      "status": 200,
+      "retrieved_utc": "2026-09-06T20:42:16.116536+00:00",
+      "bytes": 5978,
+      "sha256": "1abac1f0fc4bc16e768d9ac8f2c2a325d69c223a8a388b6d7da9c9e9ea3f4a02"
+    },
+    "11-querycat": {
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/querycat",
+      "body": {
+        "refcat": "apass",
+        "ra_deg": 159.90308333333334,
+        "dec_deg": 43.10256944444445,
+        "radius_arcsec": 30
+      },
+      "status": 200,
+      "retrieved_utc": "2026-09-06T20:42:16.442971+00:00",
+      "bytes": 329,
+      "sha256": "94ce5f4293caf2da7fd694ec68c7394c0854f38f17ce2b52576f6792dc21c8d7"
+    },
+    "11-lightcurve": {
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/lightcurve",
+      "body": {
+        "refcat": "apass",
+        "ref_number": 410393681430609,
+        "gsc_bin_index": 142209660
+      },
+      "status": 200,
+      "retrieved_utc": "2026-09-06T20:42:16.962565+00:00",
+      "bytes": 1515625,
+      "sha256": "a2cb308ece37de5dc1eaf93a44050742df48b116ba2f8b82964c29cfc7748a04"
+    },
+    "13-querycat": {
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/querycat",
+      "body": {
+        "refcat": "apass",
+        "ra_deg": 189.348,
+        "dec_deg": 25.066630555555555,
+        "radius_arcsec": 30
+      },
+      "status": 200,
+      "retrieved_utc": "2026-09-06T20:42:18.505202+00:00",
+      "bytes": 469,
+      "sha256": "767c47e27beffc7b5cdd7d4d59e20a7d9680a6b525378943e5c8914f61cbd82c"
+    },
+    "13-lightcurve": {
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/lightcurve",
+      "body": {
+        "refcat": "apass",
+        "ref_number": 412372351250400,
+        "gsc_bin_index": 120282208
+      },
+      "status": 200,
+      "retrieved_utc": "2026-09-06T20:42:18.606528+00:00",
+      "bytes": 1346485,
+      "sha256": "b6153477544023501b38d61e8823399695e13c1d28aea48f59d8e92a8d995609"
+    },
+    "14-querycat": {
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/querycat",
+      "body": {
+        "refcat": "apass",
+        "ra_deg": 200.89691666666667,
+        "dec_deg": 36.13319722222222,
+        "radius_arcsec": 30
+      },
+      "status": 200,
+      "retrieved_utc": "2026-09-06T20:42:19.332227+00:00",
+      "bytes": 333,
+      "sha256": "88c24f154f54de7bdb4c9a9d6b9437fe4ef36ebbe941dd36ca743fdd05a5cdb2"
+    },
+    "14-lightcurve": {
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/lightcurve",
+      "body": {
+        "refcat": "apass",
+        "ref_number": 413233521360800,
+        "gsc_bin_index": 134301071
+      },
+      "status": 200,
+      "retrieved_utc": "2026-09-06T20:42:19.446664+00:00",
+      "bytes": 1012226,
+      "sha256": "4b92ddcba22509951b20af62cda1ef55e7fa4782217f8943c0e10dacf98eb05c"
+    },
+    "24-querycat": {
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/querycat",
+      "body": {
+        "refcat": "apass",
+        "ra_deg": 101.30570833333334,
+        "dec_deg": 2.1374166666666667,
+        "radius_arcsec": 30
+      },
+      "status": 200,
+      "retrieved_utc": "2026-09-06T20:42:20.055799+00:00",
+      "bytes": 779,
+      "sha256": "d3c2e16d3647ab13cd04faff9d3ff59d2a5314a6d2bdf1e00fca8aa48ed2efda"
+    },
+    "24-lightcurve": {
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/lightcurve",
+      "body": {
+        "refcat": "apass",
+        "ref_number": 406451341020815,
+        "gsc_bin_index": 87622316
+      },
+      "status": 200,
+      "retrieved_utc": "2026-09-06T20:42:20.210366+00:00",
+      "bytes": 1569816,
+      "sha256": "091d6a45010c0d56b1dcd29732b05555e08b67d4ab52760201c18ade5cfbbd6f"
+    },
+    "27-querycat": {
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/querycat",
+      "body": {
+        "refcat": "apass",
+        "ra_deg": 190.4657916666667,
+        "dec_deg": 17.522152777777777,
+        "radius_arcsec": 30
+      },
+      "status": 200,
+      "retrieved_utc": "2026-09-06T20:42:21.100744+00:00",
+      "bytes": 328,
+      "sha256": "f7544749704f9d3b49e8c6abc8327c22f8a73d5d17ec3c23249dfad158a123c4"
+    },
+    "27-lightcurve": {
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/lightcurve",
+      "body": {
+        "refcat": "apass",
+        "ref_number": 412415181173119,
+        "gsc_bin_index": 109921654
+      },
+      "status": 200,
+      "retrieved_utc": "2026-09-06T20:42:21.200839+00:00",
+      "bytes": 1256026,
+      "sha256": "c324e750a92e6eab28060ef3453979b919e3931713b09478cae36d4098f55900"
+    },
+    "43-querycat": {
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/querycat",
+      "body": {
+        "refcat": "apass",
+        "ra_deg": 239.80654166666665,
+        "dec_deg": 47.61163888888889,
+        "radius_arcsec": 30
+      },
+      "status": 200,
+      "retrieved_utc": "2026-09-06T20:42:21.942414+00:00",
+      "bytes": 341,
+      "sha256": "8ee6b622093acd57e5f113feca0129bd4500fce35a96db0bd6e4b93a6210aadc"
+    },
+    "43-lightcurve": {
+      "url": "https://api.starglass.cfa.harvard.edu/public/dasch/dr7/lightcurve",
+      "body": {
+        "refcat": "apass",
+        "ref_number": 415591361473642,
+        "gsc_bin_index": 146890514
+      },
+      "status": 200,
+      "retrieved_utc": "2026-09-06T20:42:22.061128+00:00",
+      "bytes": 481091,
+      "sha256": "6f0b3d7aa6fa637f4402ee1b374ede85d0f7285d0156c0b645b41b55c3e853eb"
+    }
+  },
+  "amendment_sha256": "842345d22248a17ac2f4410cdcd6b97bf2b9921ec874635c6275581e03f5e610"
+}

@@ -7,7 +7,10 @@ result, not a recovered comet or a discovery. See [RESULTS.md](RESULTS.md).
 found all four retrospective counterparts with `ISVIABLE=true`, but also a 1000x
 observer-unit discrepancy and conflicting WCS-B descriptions. Quality-data access
 is improved; independently validated geometry and a confirmed comet remain gates.
-The original attempt below is unchanged. The suite now has 21 offline tests.
+The [later independent ephemeris diagnostic](EPHEMERIS-RESULTS-2026-09-06.md)
+corroborates HEE kilometres to within 7.6 km radially, without changing raw cards.
+Full WCS and confirmed-control gates remain. The original attempt below is unchanged.
+The suite now has 23 offline tests.
 
 The single [prospectively frozen specification](SPEC-2026-09-05.md) selected
 four 2026-09-01 L1A frames and one previously reported *potential* comet.

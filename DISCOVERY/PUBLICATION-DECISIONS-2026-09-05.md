@@ -1,5 +1,10 @@
 # Publication and parked-front decisions — 2026-09-05
 
+**Local direction superseded September 6:** [adopted decisions](DIRECTION-2026-09-06.md)
+select the full PTA paper, retain overlapping notes without concurrent submissions,
+and defer standalone eROSITA publication. The package verification record below
+remains valid; authorship/consent and exact outward actions remain gated.
+
 Executed local closeout of the existing PTA manuscripts, eROSITA census note,
 and CHIME observing-window question. No publication, account, DOI, upload,
 submission, or correspondence was performed.

@@ -1,0 +1,63 @@
+{
+  "interpretation": "POST_HOC_EMULSION_CONFOUND_NOT_A_DISCOVERY_OR_NEW_PRIMARY_CUT",
+  "primary_flag_preserved": true,
+  "star": "Feige66",
+  "year": 1974,
+  "measurements": [
+    {
+      "date_jd": "2442073.835108",
+      "series": "dnr",
+      "plate_number": "432",
+      "magcal_magdep": "10.693535",
+      "aflags": "524416"
+    },
+    {
+      "date_jd": "2442092.789031",
+      "series": "dnr",
+      "plate_number": "447",
+      "magcal_magdep": "10.811616",
+      "aflags": "524416"
+    },
+    {
+      "date_jd": "2442094.844684",
+      "series": "dnr",
+      "plate_number": "452",
+      "magcal_magdep": "10.90961",
+      "aflags": "524928"
+    },
+    {
+      "date_jd": "2442094.844684",
+      "series": "dnb",
+      "plate_number": "611",
+      "magcal_magdep": "9.781388",
+      "aflags": "524800"
+    },
+    {
+      "date_jd": "2442131.668307",
+      "series": "dnb",
+      "plate_number": "647",
+      "magcal_magdep": "9.861518",
+      "aflags": "524288"
+    },
+    {
+      "date_jd": "2442157.663068",
+      "series": "dnr",
+      "plate_number": "478",
+      "magcal_magdep": "10.888171",
+      "aflags": "524416"
+    }
+  ],
+  "red_n": 4,
+  "blue_n": 2,
+  "red_median": 10.8498935,
+  "blue_median": 9.821453,
+  "same_timestamp_pairs": [
+    {
+      "jd": "2442094.844684",
+      "red_minus_blue_mag": 1.128222000000001
+    }
+  ],
+  "blue_only_year_eligible_under_five_point_rule": false,
+  "true_long_term_variability_ruled_out": false,
+  "reference": "https://dasch.cfa.harvard.edu/dr7/colorterms/"
+}
