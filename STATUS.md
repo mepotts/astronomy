@@ -1,6 +1,6 @@
 # STATUS — live research dashboard
 
-*Current portfolio snapshot: 2026-09-05. Per-project `STATUS.md`, milestone documents,
+*Current portfolio snapshot: 2026-09-06. Per-project `STATUS.md`, milestone documents,
 operating guides, and committed artifacts are the detailed record. The older wave tables
 below are retained as a dated audit trail, not as the current queue.*
 
@@ -17,6 +17,11 @@ The aggregate, identity-free execution record and next gates are in
 [`DISCOVERY/CLOSEOUT-2026-09-05.md`](DISCOVERY/CLOSEOUT-2026-09-05.md), with
 [publication decisions](DISCOVERY/PUBLICATION-DECISIONS-2026-09-05.md) and the
 [new-work comparison](DISCOVERY/NEW-WORK-2026-09-05.md). September 2's campaign remains history.
+
+September 6's [CCOR header-only follow-up](ccor-pilot/UNBLOCK-2026-09-06.md) found
+retrospective quality flags for all four original exposures. A 1000x observer-unit
+discrepancy, coordinate-convention checks and confirmed-comet truth still prevent
+promotion to a new recovery experiment. No pixels measured; 21 offline tests.
 
 | Front | Current state | Next gate |
 |---|---|---|

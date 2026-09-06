@@ -3,6 +3,12 @@
 **Completed, stopped before pixel measurement.** This is an access/calibration
 result, not a recovered comet or a discovery. See [RESULTS.md](RESULTS.md).
 
+**September 6 follow-up:** the [bounded unblock investigation](UNBLOCK-2026-09-06.md)
+found all four retrospective counterparts with `ISVIABLE=true`, but also a 1000x
+observer-unit discrepancy and conflicting WCS-B descriptions. Quality-data access
+is improved; independently validated geometry and a confirmed comet remain gates.
+The original attempt below is unchanged. The suite now has 21 offline tests.
+
 The single [prospectively frozen specification](SPEC-2026-09-05.md) selected
 four 2026-09-01 L1A frames and one previously reported *potential* comet.
 All four downloads succeeded (36,581,760 bytes total). All lack the documented
