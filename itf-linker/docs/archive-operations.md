@@ -29,7 +29,8 @@ archive clone. No-network preflight and a real task invocation both returned zer
 historical metadata inconsistency that prevented normal archive validation was repaired
 without weakening the validator; see
 [`ARCHIVE-REPAIR-2026-09-05.md`](../ARCHIVE-REPAIR-2026-09-05.md) for exact evidence,
-the published catch-up snapshot, and the still-pending first unattended-cycle acceptance.
+the published catch-up snapshot. The first unattended cycle subsequently passed on
+September 6; see [the acceptance record](../UNATTENDED-ACCEPTANCE-2026-09-06.md).
 
 Code, state, and Git publication are separate failure domains:
 

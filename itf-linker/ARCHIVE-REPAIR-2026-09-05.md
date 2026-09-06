@@ -10,9 +10,11 @@ The refreshed standing tier-A queue is **20 ready / 6 held**, unchanged from the
 prior monitor state. These are existing gate classifications, not discoveries,
 new orbit fits, or approved MPC submissions.
 
-The next independently scheduled local cycle is September 6 at 08:30 Eastern.
-**Unattended-cycle acceptance remains pending**; a successful manual trigger does
-not prove that future cycle. The task's cadence and action were not changed.
+At this repair's completion the September 6 08:30 Eastern unattended cycle remained
+pending; the manual trigger did not prove it. **September 6 update: acceptance now
+passes**, with exact publisher, lineage, release-hash and scheduled-watch evidence
+in [the separate acceptance record](UNATTENDED-ACCEPTANCE-2026-09-06.md).
+The task's cadence and action were not changed.
 
 ## Cause and exact correction
 
@@ -68,5 +70,5 @@ installed as a scheduled task. Fresh discovery work requires a separately frozen
 protocol after the documented M14 input/residual-provenance defects are repaired.
 Any review/submission packet needs fresh validation and a human submission decision.
 
-The current task's `Astronomy closeout follow-ups` schedule will verify the next
-unattended cycle and distinguish its result from this manual restoration.
+The current task's `Astronomy closeout follow-ups` schedule separately verified
+the September 6 unattended cycle; this manual restoration remains a distinct event.
