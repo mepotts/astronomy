@@ -1,0 +1,153 @@
+{
+  "controls": [
+    {
+      "spss_id": 11,
+      "name": "Feige34",
+      "ra_deg": 159.90308333333334,
+      "dec_deg": 43.10256944444445,
+      "amp_upper_mag": 0.0032,
+      "unique_match": true,
+      "useful_coverage": true,
+      "summary": {
+        "rows": 3853,
+        "detections": 3790,
+        "clean_detections": 2339,
+        "clean_span_years": 93.54134769015695,
+        "clean_median_mag": 10.668808,
+        "p90_minus_p10_mag": 0.46419160000000126,
+        "clean_meteor_series_detections": 811,
+        "note": "No quiet/stable classification can be inferred from insufficient coverage."
+      },
+      "excursions": {
+        "eligible_years": 76,
+        "flagged_years": []
+      }
+    },
+    {
+      "spss_id": 13,
+      "name": "Feige66",
+      "ra_deg": 189.348,
+      "dec_deg": 25.066630555555555,
+      "amp_upper_mag": 0.0063,
+      "unique_match": true,
+      "useful_coverage": true,
+      "summary": {
+        "rows": 3456,
+        "detections": 3380,
+        "clean_detections": 1590,
+        "clean_span_years": 90.21052021643845,
+        "clean_median_mag": 10.13437,
+        "p90_minus_p10_mag": 0.5145424999999992,
+        "clean_meteor_series_detections": 635,
+        "note": "No quiet/stable classification can be inferred from insufficient coverage."
+      },
+      "excursions": {
+        "eligible_years": 70,
+        "flagged_years": [
+          {
+            "year": 1974,
+            "n": 6,
+            "median_minus_baseline_mag": 0.6182055000000002
+          }
+        ]
+      }
+    },
+    {
+      "spss_id": 14,
+      "name": "HZ44",
+      "ra_deg": 200.89691666666667,
+      "dec_deg": 36.13319722222222,
+      "amp_upper_mag": 0.0031,
+      "unique_match": true,
+      "useful_coverage": true,
+      "summary": {
+        "rows": 2604,
+        "detections": 2527,
+        "clean_detections": 1601,
+        "clean_span_years": 99.01385553972659,
+        "clean_median_mag": 11.187749,
+        "p90_minus_p10_mag": 0.5126800000000014,
+        "clean_meteor_series_detections": 379,
+        "note": "No quiet/stable classification can be inferred from insufficient coverage."
+      },
+      "excursions": {
+        "eligible_years": 70,
+        "flagged_years": []
+      }
+    },
+    {
+      "spss_id": 24,
+      "name": "HILT600",
+      "ra_deg": 101.30570833333334,
+      "dec_deg": 2.1374166666666667,
+      "amp_upper_mag": 0.0034,
+      "unique_match": true,
+      "useful_coverage": true,
+      "summary": {
+        "rows": 3965,
+        "detections": 3574,
+        "clean_detections": 1887,
+        "clean_span_years": 101.70555802512877,
+        "clean_median_mag": 10.395614,
+        "p90_minus_p10_mag": 0.5039491999999992,
+        "clean_meteor_series_detections": 43,
+        "note": "No quiet/stable classification can be inferred from insufficient coverage."
+      },
+      "excursions": {
+        "eligible_years": 70,
+        "flagged_years": []
+      }
+    },
+    {
+      "spss_id": 27,
+      "name": "Feige67",
+      "ra_deg": 190.4657916666667,
+      "dec_deg": 17.522152777777777,
+      "amp_upper_mag": 0.0031,
+      "unique_match": true,
+      "useful_coverage": true,
+      "summary": {
+        "rows": 3535,
+        "detections": 3040,
+        "clean_detections": 2297,
+        "clean_span_years": 98.93226020273892,
+        "clean_median_mag": 11.390024,
+        "p90_minus_p10_mag": 0.38811719999999994,
+        "clean_meteor_series_detections": 432,
+        "note": "No quiet/stable classification can be inferred from insufficient coverage."
+      },
+      "excursions": {
+        "eligible_years": 75,
+        "flagged_years": []
+      }
+    },
+    {
+      "spss_id": 43,
+      "name": "P177-D",
+      "ra_deg": 239.80654166666665,
+      "dec_deg": 47.61163888888889,
+      "amp_upper_mag": 0.003,
+      "unique_match": true,
+      "useful_coverage": true,
+      "summary": {
+        "rows": 2913,
+        "detections": 587,
+        "clean_detections": 382,
+        "clean_span_years": 95.172165136986,
+        "clean_median_mag": 14.1361035,
+        "p90_minus_p10_mag": 0.4852449000000014,
+        "clean_meteor_series_detections": 0,
+        "note": "No quiet/stable classification can be inferred from insufficient coverage."
+      },
+      "excursions": {
+        "eligible_years": 31,
+        "flagged_years": []
+      }
+    }
+  ],
+  "selected": 6,
+  "useful_coverage": 6,
+  "coverage_gate": "PASS_FEASIBILITY_ONLY",
+  "century_scale_false_positive_rate_measured": false,
+  "blind_search_authorized": false
+}

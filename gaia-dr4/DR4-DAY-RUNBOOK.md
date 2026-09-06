@@ -1,5 +1,9 @@
 # DR4-DAY-RUNBOOK — 2026-12-02
 
+**September 6 decision addendum:** follow [the separately declared variant](VARIANT-2026-09-06.md)
+after the original sequence; local GAP rulings are adopted, not awaiting generic
+permission. Preserve the original outputs and every release/publication gate.
+
 *The operational sequence for release day, rehearsed end-to-end against DR3 on 2026-08-16
 (`scripts/rehearse_dr4_day.py`, timings in `out/rehearsal_timings.csv`; M3 doc §3).
 Config: `queries/dr4-triage-config.v6.json` (selection/screen frozen since M2; v2 added the
@@ -976,3 +980,11 @@ behind pretending to be a cache hit.
 3. **Exclude `data\epoch_cache\` from real-time antivirus scanning** before 2 December.
    A sharing violation on `os.replace` killed a 981-source run at source 360; the retry
    added in M9 makes it survivable, not free.
+# September 6 addendum: separately declared interpretation
+
+Run every original stage above unchanged, then apply the separately labelled
+[September 6 exploratory variant](VARIANT-2026-09-06.md) to the new `dec_labels.csv`
+with `scripts/declared_variant_20260906.py`. Preserve both outputs; do not silently
+replace primary labels or select the more favorable reading. The delegated local
+GAP ruling is complete; older requests for that ruling below are historical.
+Actual release/schema checks and scientific publication gates remain mandatory.

@@ -6,12 +6,22 @@ below are retained as a dated audit trail, not as the current queue.*
 
 **House gates (always on):** nothing submitted anywhere (MPC, TNS, journals, emails).
 Matthew authorized tested commits, pushes and merges for the current closeout; that does
-not authorize scientific publication or amend explicitly frozen protocols. Agents verify
+not authorize scientific publication. September 6's delegated local decisions adopt a
+separate exploratory Gaia variant without rewriting the original frozen rules. Agents verify
 before building — sweep-reported facts are treated as claims until re-checked with this
 repo's own tooling. Every externally-sourced number carries its source or the mark
 UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 
 ## Current portfolio snapshot
+
+**September 6 execution supersedes the local-choice gates below:** see
+[the completed bounded pass](DISCOVERY/EXECUTION-2026-09-06.md) and
+[adopted direction](DISCOVERY/DIRECTION-2026-09-06.md). Gaia's variant is implemented;
+PTA full paper is selected; eROSITA/SPHEREx are deferred by choice. DR11's chosen
+brick adds no exposures. DASCH 6/6 controls pass coverage but do not validate a
+century-scale false-positive rate. CCOR observer kilometres are independently
+corroborated; full WCS remains open. Rubin's 49/9 history discrepancy persists.
+These are bounded subtest outcomes, not an assertion that all non-dated work is done.
 
 The aggregate, identity-free execution record and next gates are in
 [`DISCOVERY/CLOSEOUT-2026-09-05.md`](DISCOVERY/CLOSEOUT-2026-09-05.md), with
@@ -28,13 +38,13 @@ promotion to a new recovery experiment. No pixels measured; 21 offline tests.
 | [`itf-linker/`](itf-linker/) | **First unattended cycle accepted September 6.** Snapshot 20260906T122623Z, valid lineage/delta and exact local/release key-set hash agreement; scheduled watch green, 20 ready / 6 held unchanged. [Acceptance](itf-linker/UNATTENDED-ACCEPTANCE-2026-09-06.md). M14 stays stopped; no new queue. | Monitor material failures and meaningful freshness/count changes only. New attribution work requires a separately frozen provenance-valid protocol. |
 | [`tns-miner/`](tns-miner/) | **PARKED after 15 bounded recovery probes.** Required Fink class and six ALeRCE REST/TAP alternatives remain unavailable/incomplete despite healthy controls. No fresh campaign or candidate count. | Prove a complete enumerator, then a fresh three-day window and post-window TNS snapshot; never promote the stopped bundle. |
 | [`dyson-revet/`](dyson-revet/) | **M7 closed; E WAIT_RELEASE.** D control 7/7 and outcome map unchanged; 39 exclusive MAST observations still release September 9. New bounded release guard fails closed. | Scheduled September 9 follow-up must execute the frozen experiment after public access; M7 validity checks and human publication gates remain. |
-| [`gaia-dr4/`](gaia-dr4/) | **M9 ready for planned December 2 release.** Successful September 2 rehearsal retained; concrete proposed label/power rulings prepared, not applied. | Matthew's explicit frozen-rule ruling; public date/schema and actual release-day execution. No security exclusions/accounts changed. |
+| [`gaia-dr4/`](gaia-dr4/) | **M9 ready; September 6 exploratory label/power variant adopted and rehearsed.** Original outputs untouched. | Public date/schema and actual release-day execution; separate scientific publication gates. |
 | [`chime-frb-periodicity/`](chime-frb-periodicity/) | **PARKED.** Targeted recheck found no authenticated time-resolved observing/sensitivity product; the published periodic control remains recovered. No unknown scan. | Restart only with the exact citable time series and complete M1 protocol. |
-| [`dasch-pilot/`](dasch-pilot/) | **Original M0 closed: stop unconditional faint-field annotation.** R Cnc passes coverage; V404 Cyg has only 5 clean detections. Original image selection fails; separately exploratory depth-matched plates qualitatively recover its published 1938 outburst. | Only a possible externally vetted bright stable-star calibration study. APASS class/v_flag does not prove stability; no blind search earned. |
-| [`spherex-pilot/`](spherex-pilot/) | **Broad scan killed; narrow path blocked at privacy gate.** Only 1/223 fitted warm tails clears the conservative 4.8-micron floor; forced spectrophotometry is already an official IRSA capability. Zero private coordinates were sent. | If explicitly approved, query coverage for the exact six-row private manifest; otherwise leave the paired warm-tail test blocked. |
-| [`pta-mpta/`](pta-mpta/) | **Analysis closed; local review bundle built and extracted checks pass.** Three draft audits pass; raw chains and some reproduction dependencies remain outside the compact package. | Choose primary paper/overlapping notes, actual author/venue/archive/DOI and exact submission. |
-| [`erosita-dr2/`](erosita-dr2/) | **Corrected census review package ready.** Prior-art, contamination, physical-rate, classifier and artifact-percentage claims narrowed. The 148/107/6 classification survives, not 107 confirmed discoveries. | Human decision on the modest census note; exact archive/author/venue/submission. Private follow-up remains separate. |
-| [`ccor-pilot/`](ccor-pilot/) | **Finite pilot closed: STOP_METADATA_QUALITY.** Four public FITS files lack the frozen required ISVIABLE flag. Additional WCS rotation/display-provenance barriers remain. No real pixels scored. | New documented quality/orientation protocol and defensible control required before any recovery or unknown-source search. |
+| [`dasch-pilot/`](dasch-pilot/) | **Original stop retained; independent-control extension 6/6 useful coverage.** 10,096 clean detections; one year-level flag has a same-epoch red/blue confound. | New emulsion-aware matched-control calibration and held-out validation; no blind search earned. |
+| [`spherex-pilot/`](spherex-pilot/) | **Broad scan killed; narrow test deferred by September 6 prioritization.** Zero private coordinates sent. | Reconsider only on improved scientific leverage; any exact six-row coordinate payload still requires approval. |
+| [`pta-mpta/`](pta-mpta/) | **Full paper selected as primary publication unit; overlapping notes held.** Review bundle and draft audits retained. | Actual author consent, arXiv/endorsement and exact archive/DOI/submission approval; initial venue direction OJA. |
+| [`erosita-dr2/`](erosita-dr2/) | **Corrected census package retained; standalone publication deferred by choice.** Not 107 confirmed discoveries. | Reconsider with independent follow-up or a distinct method contribution; no additional formatting campaign now. |
+| [`ccor-pilot/`](ccor-pilot/) | **Original stop retained; retrospective quality available and HEE km independently corroborated.** No pixels scored. | New independent star/planet geometry protocol; full WCS/control gates remain. |
 | [`adql-copilot/`](adql-copilot/) | Packaged tool; 46-test suite and JOSS draft. | Publication is separate from repository integration. |
 | [`seti-ellipsoid-broker/`](seti-ellipsoid-broker/) | Packaged tool; 84 tests plus 2 default skips and an RNAAS draft. | Publication is separate from repository integration. |
 | [`pta-explainer/`](pta-explainer/) | Deployed explainer; 64 tests and production build. | Site publication/deployment remains separately controlled. |

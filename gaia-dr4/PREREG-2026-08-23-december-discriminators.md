@@ -343,4 +343,13 @@ it is exploratory.*
 
 <!-- BEGIN VARIANT LOG -->
 *(no variants declared)*
+
+2026-09-06: [Delegated prospective label/power variant](VARIANT-2026-09-06.md).
+The user delegated these local design decisions on September 6. Resolve M8 GAP-1
+through GAP-4 in a separate postprocessor, including fixed-pair exact Fisher design
+power and a missing-control reporting guard. This was not pre-registered because
+the ambiguities and executable edge cases were identified during later synthetic
+rehearsals. It is **exploratory**, not the original registration; preserve original
+primary outputs, sensitivities, regression, negative-control veto and all frozen
+samples/configurations. The historical empty-on-freezing entry above is retained.
 <!-- END VARIANT LOG -->

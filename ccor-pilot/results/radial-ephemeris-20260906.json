@@ -1,0 +1,84 @@
+{
+  "status": "SUPPORTS_KM_INTERPRETATION",
+  "oem_sha256": "f8e2a5e881a9b2561d925c78e8a7629c1e68bd582f8778d337a7005ad45151af",
+  "metadata": {
+    "CCSDS_OEM_VERS": "2.0",
+    "COMMENT": "SWFO Definitive Ephemeris",
+    "CREATION_DATE": "2026-09-02T16:26:19",
+    "ORIGINATOR": "OSPO-FD",
+    "OBJECT_NAME": "SWFO",
+    "OBJECT_ID": "231",
+    "CENTER_NAME": "EARTH",
+    "REF_FRAME": "EME2000",
+    "TIME_SYSTEM": "UTC",
+    "START_TIME": "2026-08-26T00:00:00.000",
+    "USEABLE_START_TIME": "2026-08-26T00:00:00.000",
+    "USEABLE_STOP_TIME": "2026-09-02T00:00:00.000",
+    "STOP_TIME": "2026-09-02T00:00:00.000",
+    "INTERPOLATION": "LAGRANGE",
+    "INTERPOLATION_DEGREE": "7"
+  },
+  "samples": 1009,
+  "results": [
+    {
+      "utc": "2026-09-01T13:00:14.105",
+      "independent_distance_km": 149439015.53007168,
+      "header_distance_km": {
+        "dsun_as_m": 149439008.1129,
+        "hee_as_m": 149439.0081129,
+        "hee_as_km": 149439008.1129
+      },
+      "relative_errors": {
+        "dsun_as_m": 4.9633435154657994e-08,
+        "hee_as_m": 0.9990000000496334,
+        "hee_as_km": 4.9633435154657994e-08
+      }
+    },
+    {
+      "utc": "2026-09-01T13:15:14.091",
+      "independent_distance_km": 149438616.567572,
+      "header_distance_km": {
+        "dsun_as_m": 149438609.11475506,
+        "hee_as_m": 149438.6091147551,
+        "hee_as_km": 149438609.1147551
+      },
+      "relative_errors": {
+        "dsun_as_m": 4.987209534306363e-08,
+        "hee_as_m": 0.999000000049872,
+        "hee_as_km": 4.987209514363511e-08
+      }
+    },
+    {
+      "utc": "2026-09-01T13:30:14.116",
+      "independent_distance_km": 149438217.54765004,
+      "header_distance_km": {
+        "dsun_as_m": 149438210.04196477,
+        "hee_as_m": 149438.21004196478,
+        "hee_as_km": 149438210.04196477
+      },
+      "relative_errors": {
+        "dsun_as_m": 5.022600906919503e-08,
+        "hee_as_m": 0.9990000000502259,
+        "hee_as_km": 5.022600906919503e-08
+      }
+    },
+    {
+      "utc": "2026-09-01T13:45:14.215",
+      "independent_distance_km": 149437818.4547987,
+      "header_distance_km": {
+        "dsun_as_m": 149437810.87863857,
+        "hee_as_m": 149437.81087863856,
+        "hee_as_km": 149437810.87863857
+      },
+      "relative_errors": {
+        "dsun_as_m": 5.069774312301396e-08,
+        "hee_as_m": 0.9990000000506978,
+        "hee_as_km": 5.069774312301396e-08
+      }
+    }
+  ],
+  "headers_sha256": "036d5f2b4f115e32cbe1e89a1f5464be2ecc4e9132c4a7bd5e766dbadcbf5618",
+  "wcs_validated": false,
+  "images_decompressed": 0,
+  "official_metadata_corrected": false
+}

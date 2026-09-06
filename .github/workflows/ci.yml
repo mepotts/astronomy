@@ -155,7 +155,7 @@ jobs:
       # public known-control response bundles. Bulk CHIME and private SPHEREx inputs
       # remain outside Git; CI sends no archive or candidate-bearing request.
       - name: Install test-only dependencies
-        run: python -m pip install "numpy>=2,<3" "h5py>=3.16,<4" "ruff==0.16.5"
+        run: python -m pip install "numpy>=2,<3" "h5py>=3.16,<4" "astropy>=8,<9" "ruff==0.16.5"
 
       - name: Check pilot gates and privacy contracts
         run: |
@@ -163,6 +163,14 @@ jobs:
           python -m unittest discover -s dasch-pilot/tests -v
           python -m unittest discover -s spherex-pilot/tests -v
           python -m unittest discover -s ccor-pilot/tests -v
+          python -m unittest discover -s dr11-pilot/tests -v
+          python -m unittest discover -s gaia-dr4/tests -p test_declared_variant.py -v
+          python dasch-pilot/scripts/stable_controls.py --replay
+          python dasch-pilot/scripts/stable_controls.py --replay --normalize-missing-notes
+          python dr11-pilot/scripts/preflight.py
+          python ccor-pilot/scripts/radial_ephemeris.py
           python ccor-pilot/scripts/pilot.py --help
           ruff check chime-frb-periodicity dasch-pilot spherex-pilot
           ruff check ccor-pilot dyson-revet/scripts/check_e_release.py dyson-revet/tests
+          ruff check dr11-pilot gaia-dr4/scripts/declared_variant_20260906.py gaia-dr4/tests/test_declared_variant.py
+          ruff check tns-miner/scripts/rubin_control_*.py tns-miner/tests/test_rubin_controls.py

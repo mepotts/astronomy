@@ -1,5 +1,10 @@
 # Gaia DR4 release readiness and exact decision gate — 2026-09-05
 
+**September 6 update:** the user delegated the local ruling. The separate
+[exploratory variant](VARIANT-2026-09-06.md) is adopted and implemented; the original
+rules/output remain untouched. The proposals below are preserved as history, not
+an outstanding request for generic permission. Actual release and publication gates remain.
+
 ## State
 
 **Ready for release; scientific labels still have a recorded human gate.** The
