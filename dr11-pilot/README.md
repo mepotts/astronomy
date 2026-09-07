@@ -1,4 +1,11 @@
-# DR11 known-stream preflight - closed September 6
+# DR11 incremental-imaging pilots
+
+**September 7: [full footprint, published-stream overlap and paired-pixel depth test completed](RESULTS-2026-09-07.md).**
+8,468 qualifying bricks; selected ESO197-018 gains six r exposures. Its empirical
+aperture scatter drops only 5.47%, below the frozen 10% gate. No unknown-stream
+search or known-stream recovery claim. Nine offline tests; full local replays pass.
+
+## Original known-stream preflight - closed September 6
 
 **STOP_NO_NEW_R_INPUTS.** The independently selected NGC 4651 east-stream brick
 `1910p165` gains no CCD inputs in any band from DR10 south to DR11 south.

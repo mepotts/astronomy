@@ -1,6 +1,10 @@
 # CCOR2 reported-source pilot
 
-**Completed, stopped before pixel measurement.** This is an access/calibration
+**September 7 independent star experiment:** [pixels measured, geometry gate not fully passed](STARS-RESULTS-2026-09-07.md).
+Eight fixed stars, four retrospective frames; two frames fail training counts.
+28 offline tests include the compact known-star pixel replay. No comet search.
+
+**Original experiment completed, stopped before pixel measurement.** This is an access/calibration
 result, not a recovered comet or a discovery. See [RESULTS.md](RESULTS.md).
 
 **September 6 follow-up:** the [bounded unblock investigation](UNBLOCK-2026-09-06.md)
@@ -10,7 +14,7 @@ is improved; independently validated geometry and a confirmed comet remain gates
 The [later independent ephemeris diagnostic](EPHEMERIS-RESULTS-2026-09-06.md)
 corroborates HEE kilometres to within 7.6 km radially, without changing raw cards.
 Full WCS and confirmed-control gates remain. The original attempt below is unchanged.
-The suite now has 23 offline tests.
+The September 6 suite had 23 offline tests.
 
 The single [prospectively frozen specification](SPEC-2026-09-05.md) selected
 four 2026-09-01 L1A frames and one previously reported *potential* comet.

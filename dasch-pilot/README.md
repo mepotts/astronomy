@@ -3,10 +3,16 @@
 This directory contains an account-free, narrow M0 feasibility audit for century-scale
 photographic-plate work with DASCH Data Release 7. It reproduces a published
 positive control, the 1938--1945 high state of T CrB, and compares it with a
-deterministically selected nearby field control. It does **not** run a blind
-anomaly search or claim a discovery.
+deterministically selected nearby field control. A separately frozen September 7
+extension ran a bounded exploratory anomaly screen; it found no discovery.
 
 ## Result
+
+**September 7:** [matched-colour validation and actual search completed](RESULTS-2026-09-07.md).
+Four independent hold-outs usable; 16/16 eligible injections recovered. The
+42-source exploratory screen produced zero leads across 361 eligible windows.
+This does not establish a century-scale false-positive rate. Original pilots below
+retain their own specifications, results and stops.
 
 **September 6 extension:** six independently labelled standards all pass the
 bounded coverage gate (10,096 clean detections). A flagged Feige 66 year mixes

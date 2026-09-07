@@ -167,6 +167,7 @@ jobs:
           python -m unittest discover -s gaia-dr4/tests -p test_declared_variant.py -v
           python dasch-pilot/scripts/stable_controls.py --replay
           python dasch-pilot/scripts/stable_controls.py --replay --normalize-missing-notes
+          python dasch-pilot/scripts/colour_validation.py --replay --quarantine-conflicts
           python dr11-pilot/scripts/preflight.py
           python ccor-pilot/scripts/radial_ephemeris.py
           python ccor-pilot/scripts/pilot.py --help
