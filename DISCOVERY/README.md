@@ -9,7 +9,11 @@ Researched **2026-07-28** by an 8-agent fan-out. Every URL below was live-fetche
 numbers are marked **[measured]**. Anything that could not be confirmed says **unverified** rather
 than guessing. Facts here have a shelf life — re-verify before acting on a dated claim.
 
-> **Current execution record (2026-09-06):** see
+> **Current execution record (2026-09-07):** see
+> [completed remaining experiments and 42-source discovery screen](EXECUTION-2026-09-07.md).
+> No discovery; fixed DASCH sample closed, CCOR and DR11 control gates not passed.
+>
+> **September 6 execution record:** see
 > [the non-dated execution pass](EXECUTION-2026-09-06.md) and
 > [adopted directions](DIRECTION-2026-09-06.md). These supersede local-choice gates
 > in older reports without retroactively promoting stopped experiments.

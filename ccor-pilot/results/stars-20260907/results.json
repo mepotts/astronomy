@@ -1,0 +1,1129 @@
+{
+  "frames": [
+    {
+      "training_recovered": 3,
+      "heldout_recovered": 3,
+      "translation": [
+        0.9544062163461255,
+        -0.008316086145043755
+      ],
+      "heldout_residuals": [
+        0.4098480341842467,
+        0.5057172422896694,
+        0.4210314192299652
+      ],
+      "rms": 0.4475834358912158,
+      "passed": true
+    },
+    {
+      "training_recovered": 1,
+      "heldout_recovered": 3,
+      "translation": [
+        1.7762448911676145,
+        -0.10720084067394708
+      ],
+      "heldout_residuals": [
+        0.5331139366037333,
+        0.3250453886450092,
+        0.2935009986763185
+      ],
+      "rms": 0.39833311449276165,
+      "passed": false
+    },
+    {
+      "training_recovered": 3,
+      "heldout_recovered": 3,
+      "translation": [
+        1.1427776565017709,
+        0.3021805166775593
+      ],
+      "heldout_residuals": [
+        0.4198844444326887,
+        0.47773520224748717,
+        0.4130557798810942
+      ],
+      "rms": 0.4378542175337107,
+      "passed": true
+    },
+    {
+      "training_recovered": 2,
+      "heldout_recovered": 3,
+      "translation": [
+        1.8076857946128424,
+        0.05710241921699932
+      ],
+      "heldout_residuals": [
+        0.24836855581634473,
+        0.40838914688751327,
+        0.14056201739774313
+      ],
+      "rms": 0.2876492746086984,
+      "passed": false
+    }
+  ],
+  "gate": "STOP_STAR_GEOMETRY",
+  "comet_confirmed": false,
+  "reporter_mapping_resolved": false,
+  "measurements": [
+    [
+      {
+        "ok": true,
+        "centroid": [
+          20.601653723066185,
+          20.08637933351912
+        ],
+        "contrast": 11.154582977294922,
+        "prediction": [
+          19.806191746764398,
+          20.094695419664163
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.3915567696094513
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4208420515060425
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.49755367636680603
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5010558366775513
+          }
+        ]
+      },
+      {
+        "ok": true,
+        "centroid": [
+          21.247697721871884,
+          20.208824637552283
+        ],
+        "contrast": 5.106658935546875,
+        "prediction": [
+          20.293291505525758,
+          19.82194135752445
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4789981544017792
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.43423107266426086
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.45665231347084045
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.38844916224479675
+          }
+        ]
+      },
+      {
+        "ok": false,
+        "reason": "contrast_or_source_mask",
+        "contrast": 1.1434019804000854,
+        "prediction": [
+          20.15159494490092,
+          20.39429585916878
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4415716230869293
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.72685307264328
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.3539232909679413
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5044384002685547
+          }
+        ]
+      },
+      {
+        "ok": true,
+        "centroid": [
+          21.404532327870875,
+          19.826035292205262
+        ],
+        "contrast": 31.02414894104004,
+        "prediction": [
+          19.987188205348957,
+          19.961684246394043
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4261294901371002
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.3937567472457886
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.47278082370758057
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5640787482261658
+          }
+        ]
+      },
+      {
+        "ok": false,
+        "reason": "contrast_or_source_mask",
+        "contrast": 0.5190064907073975,
+        "prediction": [
+          19.691271152357103,
+          20.348416736982813
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "annular_mask"
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5138226747512817
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4311629831790924
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5269438624382019
+          }
+        ]
+      },
+      {
+        "ok": true,
+        "centroid": [
+          21.245639588535184,
+          20.328418867371244
+        ],
+        "contrast": 16.717185974121094,
+        "prediction": [
+          19.882076958586026,
+          20.312934946537382
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.43643587827682495
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.39309948682785034
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4569123387336731
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.48926782608032227
+          }
+        ]
+      },
+      {
+        "ok": true,
+        "centroid": [
+          21.38270560314549,
+          20.621709119889697
+        ],
+        "contrast": 41.39393997192383,
+        "prediction": [
+          19.950298891802163,
+          20.464902657812218
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5256810188293457
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4107711613178253
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.48618289828300476
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.3831232488155365
+          }
+        ]
+      },
+      {
+        "ok": true,
+        "centroid": [
+          21.30452014431949,
+          19.63329980947108
+        ],
+        "contrast": 14.00033950805664,
+        "prediction": [
+          19.930244909849534,
+          19.610351481363978
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.48511508107185364
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4572131931781769
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5068291425704956
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5028972625732422
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "ok": false,
+        "reason": "contrast_or_source_mask",
+        "contrast": 9.375082015991211,
+        "prediction": [
+          20.00854285857622,
+          20.258067500642483
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.34678930044174194
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.39657023549079895
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.45489513874053955
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4508141279220581
+          }
+        ]
+      },
+      {
+        "ok": false,
+        "reason": "contrast_or_source_mask",
+        "contrast": 3.7901906967163086,
+        "prediction": [
+          20.492311674352095,
+          19.98509925103326
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.418815940618515
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.41291385889053345
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4202294647693634
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.42167070508003235
+          }
+        ]
+      },
+      {
+        "ok": false,
+        "reason": "contrast_or_source_mask",
+        "contrast": 1.1447186470031738,
+        "prediction": [
+          20.35360066442695,
+          19.557891912730838
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.39529746770858765
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.8730817437171936
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4004613757133484
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5326923131942749
+          }
+        ]
+      },
+      {
+        "ok": true,
+        "centroid": [
+          21.971106212182356,
+          20.01507276468454
+        ],
+        "contrast": 26.489723205566406,
+        "prediction": [
+          20.19486132101474,
+          20.122273605358487
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.45969158411026
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.39555707573890686
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4496602714061737
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.45541468262672424
+          }
+        ]
+      },
+      {
+        "ok": false,
+        "reason": "contrast_or_source_mask",
+        "contrast": 0.48291483521461487,
+        "prediction": [
+          19.891711128056613,
+          19.51172212531992
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "annular_mask"
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.472929447889328
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.39152219891548157
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5469040274620056
+          }
+        ]
+      },
+      {
+        "ok": true,
+        "centroid": [
+          21.380397209233447,
+          20.607978273486644
+        ],
+        "contrast": 20.283336639404297,
+        "prediction": [
+          20.083568265535632,
+          20.48200360362665
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5791986584663391
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.49198824167251587
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4823937714099884
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.473071813583374
+          }
+        ]
+      },
+      {
+        "ok": true,
+        "centroid": [
+          21.98409775446475,
+          19.846951725101604
+        ],
+        "contrast": 35.99345397949219,
+        "prediction": [
+          20.161911243447776,
+          19.632370229024446
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4551633298397064
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.46942514181137085
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5030252933502197
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.49397745728492737
+          }
+        ]
+      },
+      {
+        "ok": true,
+        "centroid": [
+          21.658849720700246,
+          19.811140955709785
+        ],
+        "contrast": 8.518577575683594,
+        "prediction": [
+          20.13775403625732,
+          19.77328415773013
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5386600494384766
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.3831427991390228
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4501253366470337
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.39769020676612854
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "ok": true,
+        "centroid": [
+          20.63184341290524,
+          20.158623871418477
+        ],
+        "contrast": 12.053277015686035,
+        "prediction": [
+          19.565853050230317,
+          19.856443354740918
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.41046518087387085
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5038377642631531
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5006056427955627
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5120800137519836
+          }
+        ]
+      },
+      {
+        "ok": true,
+        "centroid": [
+          21.18158756813073,
+          20.283037028185483
+        ],
+        "contrast": 5.872290134429932,
+        "prediction": [
+          20.03880991162896,
+          19.587199379965796
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4935297667980194
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.36859917640686035
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.49646732211112976
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.3937843441963196
+          }
+        ]
+      },
+      {
+        "ok": false,
+        "reason": "contrast_or_source_mask",
+        "contrast": 1.048731803894043,
+        "prediction": [
+          19.92090433077726,
+          20.165468811480423
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.3891638517379761
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 1.0111594200134277
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4282614290714264
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4499531090259552
+          }
+        ]
+      },
+      {
+        "ok": true,
+        "centroid": [
+          21.345624654800254,
+          19.901130093369375
+        ],
+        "contrast": 35.771339416503906,
+        "prediction": [
+          19.756053532567876,
+          19.71095717611047
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4961302876472473
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.41097939014434814
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.43316978216171265
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4399823844432831
+          }
+        ]
+      },
+      {
+        "ok": false,
+        "reason": "contrast_or_source_mask",
+        "contrast": 0.5324417352676392,
+        "prediction": [
+          20.445324231931863,
+          20.112783036204064
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "annular_mask"
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.44461414217948914
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.34975484013557434
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5137588977813721
+          }
+        ]
+      },
+      {
+        "ok": true,
+        "centroid": [
+          21.18946109371385,
+          20.39480447813227
+        ],
+        "contrast": 19.851810455322266,
+        "prediction": [
+          19.62685571352381,
+          20.099525345321354
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4607018530368805
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4052506983280182
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.45674145221710205
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.500236988067627
+          }
+        ]
+      },
+      {
+        "ok": true,
+        "centroid": [
+          21.325704593883078,
+          20.7072181348954
+        ],
+        "contrast": 54.12590026855469,
+        "prediction": [
+          19.728297345009196,
+          20.258262766127928
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4091368317604065
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.47553178668022156
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4615926146507263
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4343818426132202
+          }
+        ]
+      },
+      {
+        "ok": true,
+        "centroid": [
+          21.25377809216161,
+          20.722401071477904
+        ],
+        "contrast": 18.51987075805664,
+        "prediction": [
+          19.701520112926573,
+          20.36599009668464
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.6198086142539978
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.48401516675949097
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.40392157435417175
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.45468053221702576
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "ok": true,
+        "centroid": [
+          21.28114569622101,
+          20.099987972416457
+        ],
+        "contrast": 15.166869163513184,
+        "prediction": [
+          19.76827988847026,
+          20.019742135399497
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.3536902666091919
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5200570821762085
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.45626553893089294
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.43218910694122314
+          }
+        ]
+      },
+      {
+        "ok": false,
+        "reason": "contrast_or_source_mask",
+        "contrast": 3.663144826889038,
+        "prediction": [
+          20.23787179427154,
+          19.75026458057232
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4305395483970642
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.3806215226650238
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4940645396709442
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.3984338343143463
+          }
+        ]
+      },
+      {
+        "ok": false,
+        "reason": "contrast_or_source_mask",
+        "contrast": 0.8323101997375488,
+        "prediction": [
+          20.1229098344121,
+          20.329017515015266
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.3274005949497223
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 1.1322623491287231
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5172321796417236
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.6018613576889038
+          }
+        ]
+      },
+      {
+        "ok": true,
+        "centroid": [
+          22.066351805548,
+          19.90541908050131
+        ],
+        "contrast": 21.84489631652832,
+        "prediction": [
+          19.963846024073064,
+          19.871460079084272
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4996596574783325
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.38498595356941223
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4627893567085266
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.47981715202331543
+          }
+        ]
+      },
+      {
+        "ok": false,
+        "reason": "contrast_or_source_mask",
+        "contrast": 0.4838307797908783,
+        "prediction": [
+          19.645817941649966,
+          20.27601090351368
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 1.0105149745941162
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4802931249141693
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.40014195442199707
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5476647615432739
+          }
+        ]
+      },
+      {
+        "ok": true,
+        "centroid": [
+          21.442998923011974,
+          20.481903864517697
+        ],
+        "contrast": 15.485616683959961,
+        "prediction": [
+          19.82832176236934,
+          20.268485717585122
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4856950342655182
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4326920211315155
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.51589035987854
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5104875564575195
+          }
+        ]
+      },
+      {
+        "ok": true,
+        "centroid": [
+          22.055104694360708,
+          20.751385938498395
+        ],
+        "contrast": 28.938724517822266,
+        "prediction": [
+          19.939821199025232,
+          20.425647427503577
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.4251190423965454
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.37799710035324097
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.505713164806366
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.47403451800346375
+          }
+        ]
+      },
+      {
+        "ok": true,
+        "centroid": [
+          21.71881437378557,
+          19.72649964126248
+        ],
+        "contrast": 7.660755157470703,
+        "prediction": [
+          19.90914387501425,
+          19.52884921713496
+        ],
+        "negatives": [
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5030252933502197
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.47259822487831116
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.5068435072898865
+          },
+          {
+            "ok": false,
+            "reason": "contrast_or_source_mask",
+            "contrast": 0.35886457562446594
+          }
+        ]
+      }
+    ]
+  ]
+}

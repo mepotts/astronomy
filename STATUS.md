@@ -1,6 +1,6 @@
 # STATUS — live research dashboard
 
-*Current portfolio snapshot: 2026-09-06. Per-project `STATUS.md`, milestone documents,
+*Current portfolio snapshot: 2026-09-07. Per-project `STATUS.md`, milestone documents,
 operating guides, and committed artifacts are the detailed record. The older wave tables
 below are retained as a dated audit trail, not as the current queue.*
 
@@ -14,7 +14,15 @@ UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 
 ## Current portfolio snapshot
 
-**September 6 execution supersedes the local-choice gates below:** see
+**September 7 experiments completed:** [execution and decisions](DISCOVERY/EXECUTION-2026-09-07.md).
+DASCH matched-colour held-outs passed a limited exploratory gate; an actual
+42-source/361-window screen found zero leads. CCOR's eight-star pixel experiment
+failed training counts in two frames despite subpixel surviving-heldout residuals.
+DR11's full qualifying footprint and physical-input checks led to a paired-pixel
+test: 5.47% scatter reduction, below the frozen 10% gate. No discovery, submission,
+threshold relaxation, or outcome-dependent sample expansion.
+
+**September 6 decisions remain adopted:** see
 [the completed bounded pass](DISCOVERY/EXECUTION-2026-09-06.md) and
 [adopted direction](DISCOVERY/DIRECTION-2026-09-06.md). Gaia's variant is implemented;
 PTA full paper is selected; eROSITA/SPHEREx are deferred by choice. DR11's chosen
@@ -28,7 +36,7 @@ The aggregate, identity-free execution record and next gates are in
 [publication decisions](DISCOVERY/PUBLICATION-DECISIONS-2026-09-05.md) and the
 [new-work comparison](DISCOVERY/NEW-WORK-2026-09-05.md). September 2's campaign remains history.
 
-September 6's [CCOR header-only follow-up](ccor-pilot/UNBLOCK-2026-09-06.md) found
+Historical September 6 [CCOR header-only follow-up](ccor-pilot/UNBLOCK-2026-09-06.md) found
 retrospective quality flags for all four original exposures. A 1000x observer-unit
 discrepancy, coordinate-convention checks and confirmed-comet truth still prevent
 promotion to a new recovery experiment. No pixels measured; 21 offline tests.
@@ -40,11 +48,12 @@ promotion to a new recovery experiment. No pixels measured; 21 offline tests.
 | [`dyson-revet/`](dyson-revet/) | **M7 closed; E WAIT_RELEASE.** D control 7/7 and outcome map unchanged; 39 exclusive MAST observations still release September 9. New bounded release guard fails closed. | Scheduled September 9 follow-up must execute the frozen experiment after public access; M7 validity checks and human publication gates remain. |
 | [`gaia-dr4/`](gaia-dr4/) | **M9 ready; September 6 exploratory label/power variant adopted and rehearsed.** Original outputs untouched. | Public date/schema and actual release-day execution; separate scientific publication gates. |
 | [`chime-frb-periodicity/`](chime-frb-periodicity/) | **PARKED.** Targeted recheck found no authenticated time-resolved observing/sensitivity product; the published periodic control remains recovered. No unknown scan. | Restart only with the exact citable time series and complete M1 protocol. |
-| [`dasch-pilot/`](dasch-pilot/) | **Original stop retained; independent-control extension 6/6 useful coverage.** 10,096 clean detections; one year-level flag has a same-epoch red/blue confound. | New emulsion-aware matched-control calibration and held-out validation; no blind search earned. |
+| [`dasch-pilot/`](dasch-pilot/) | **Matched-colour validation and bounded unknown screen completed September 7.** Four usable hold-outs, 16/16 eligible signed injections, zero leads among 42 screened sources. Original stops retained. | New broader campaign needs a fresh sample/completeness/validation design; current fixed sample closed. |
 | [`spherex-pilot/`](spherex-pilot/) | **Broad scan killed; narrow test deferred by September 6 prioritization.** Zero private coordinates sent. | Reconsider only on improved scientific leverage; any exact six-row coordinate payload still requires approval. |
 | [`pta-mpta/`](pta-mpta/) | **Full paper selected as primary publication unit; overlapping notes held.** Review bundle and draft audits retained. | Actual author consent, arXiv/endorsement and exact archive/DOI/submission approval; initial venue direction OJA. |
 | [`erosita-dr2/`](erosita-dr2/) | **Corrected census package retained; standalone publication deferred by choice.** Not 107 confirmed discoveries. | Reconsider with independent follow-up or a distinct method contribution; no additional formatting campaign now. |
-| [`ccor-pilot/`](ccor-pilot/) | **Original stop retained; retrospective quality available and HEE km independently corroborated.** No pixels scored. | New independent star/planet geometry protocol; full WCS/control gates remain. |
+| [`ccor-pilot/`](ccor-pilot/) | **Independent eight-star pixel experiment completed; STOP_STAR_GEOMETRY.** Two frames fail training counts; surviving held-out RMS 0.29--0.45 pixels. | Independent training interval/calibrator sensitivity and full-frame controls before motion search; no source/frame substitutions. |
+| [`dr11-pilot/`](dr11-pilot/) | **Footprint-selected added-exposure pilot completed; STOP_NO_MATERIAL_DEPTH_GAIN.** 8,468 qualifying bricks, six added r exposures in selected field, 5.47% lower paired-aperture scatter. | A multi-field depth/upstream completeness study is new research, not a waived gate; no current stream search. |
 | [`adql-copilot/`](adql-copilot/) | Packaged tool; 46-test suite and JOSS draft. | Publication is separate from repository integration. |
 | [`seti-ellipsoid-broker/`](seti-ellipsoid-broker/) | Packaged tool; 84 tests plus 2 default skips and an RNAAS draft. | Publication is separate from repository integration. |
 | [`pta-explainer/`](pta-explainer/) | Deployed explainer; 64 tests and production build. | Site publication/deployment remains separately controlled. |
