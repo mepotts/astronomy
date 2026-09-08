@@ -1,3 +1,4 @@
+import json
 import sys
 import unittest
 from pathlib import Path
@@ -17,6 +18,11 @@ class BlockTests(unittest.TestCase):
         self.assertEqual(len(bv.GRID), 55)
         self.assertEqual(len(set(bv.GRID)), 55)
         self.assertTrue(all(y+d <= 1990 for y, d in bv.GRID))
+
+    def test_instrumental_controls_match_original_usable_set(self):
+        controls = json.loads((bv.CONTROL / "results.json").read_bytes())["controls"]
+        self.assertEqual([c["spss_id"] for c in controls if not c["development"] and c["unique_match"]],
+                         [44, 113, 116, 120])
 
     def test_constant_and_full_block_injection(self):
         for sign in (-1, 1):

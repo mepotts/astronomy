@@ -101,7 +101,7 @@ def development():
             b["positive_flag"] and 1930 <= b["start"] and b["start"]+b["duration"] <= 1955
             for b in result["blocks"]))
         giants.append({**target, **result, "development_event_recovered": credited})
-    for target in [s for s in select_twelve(old("table3")) if s["spss_id"] in (44, 104, 113, 120)]:
+    for target in [s for s in select_twelve(old("table3")) if s["spss_id"] in (44, 113, 116, 120)]:
         sid = str(target["spss_id"])
         source = select_source(table(cached(CONTROL, sid+"-querycat")), target)
         if source is None:

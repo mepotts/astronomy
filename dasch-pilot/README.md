@@ -8,6 +8,13 @@ extension ran a bounded exploratory anomaly screen; it found no discovery.
 
 ## Result
 
+**September 8:** [real-event transfer and separate block validation both stopped](RESULTS-2026-09-08.md).
+The unchanged detector recovers 0/3 published long-term events. A bracketed-block
+variant also fails its development coverage/recovery gates; its prospective
+real-event holdout was never queried. Do not scale either detector. This narrows
+the interpretation of September 7's successful artificial injections, not the
+existence of the published events. 52 tests and two additional full cold replays.
+
 **September 7:** [matched-colour validation and actual search completed](RESULTS-2026-09-07.md).
 Four independent hold-outs usable; 16/16 eligible injections recovered. The
 42-source exploratory screen produced zero leads across 361 eligible windows.

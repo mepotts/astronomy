@@ -1,0 +1,6100 @@
+{
+  "contract": {
+    "REAL-CONTROLS-SPEC-2026-09-08.md": "844277d510221bcfb1213c5c0c79f9c30fa63f6d96869744f4081bfa8be0eeaf",
+    "real_controls.py": "ee9e6da2fe4ec775cc375737a2e94d893e4c44a06884daacc1d3caae1dec0793",
+    "colour_validation.py": "c0e64bfac2f257bf2d42869067ca9785851883b7b7e052feaa6a49b33eb0bb55",
+    "m0_extension.py": "3e2b75823aa3c2060acda4b7f5202a22ad6f80fd298a49d3e6792ad86dda4853",
+    "m0_dasch_pilot.py": "658c9471c0cb33d6389c0adc8178309fd88434824fd11cb6f526d9c4bc43e66d",
+    "BLOCK-VALIDATION-SPEC-2026-09-08.md": "897845c7e3e2cf536f7ee2d2437aaaacfa1f110f4664406ae0437d56ce3cce7e",
+    "block_validation.py": "e449518747a7e7ae62ab2b19282c58148d5b72fc1b9e5881e711984f7c786629"
+  },
+  "giants_development_only": [
+    {
+      "name": "J083038.5+140713",
+      "ra_deg": 127.66041666666666,
+      "dec_deg": 14.120277777777778,
+      "starts": [
+        1965,
+        1970,
+        1975,
+        1980,
+        1985
+      ],
+      "source": {
+        "ref_text": "APASS_J083038.5+140713",
+        "ref_number": "408303851140713",
+        "gsc_bin_index": "105086125",
+        "ra_deg": "127.660337",
+        "dec_deg": "14.120314",
+        "pos_epoch": "2000.0",
+        "stdmag": "11.93",
+        "color": "1.2",
+        "pm_ra_masyr": "6.4",
+        "u_pm_ra_masyr": "1.5",
+        "pm_dec_masyr": "-10.2",
+        "u_pm_dec_masyr": "1.4",
+        "class": "0",
+        "v_flag": "1",
+        "mag_flag": "0",
+        "num_matches": "2056",
+        "dra_asec": "0.2781345268991441",
+        "ddec_asec": "-0.13040000000117402"
+      },
+      "census": {
+        "rows": 3569,
+        "detections": 2056,
+        "clean_detections": 1473,
+        "clean_span_years": 101.86354699886942,
+        "clean_median_mag": 12.128378,
+        "p90_minus_p10_mag": 0.925612000000001,
+        "clean_meteor_series_detections": 148,
+        "access_gate": true,
+        "coverage_verdict": "MEASURED_KNOWN_VARIABLE",
+        "note": "No quiet/stable classification can be inferred from insufficient coverage."
+      },
+      "accounting": {
+        "clean": 1473,
+        "joined": 1469,
+        "excluded": {
+          "no_exposure": 4
+        }
+      },
+      "span_years": 101.86354699886942,
+      "coverage_pass": true,
+      "blocks": [
+        {
+          "start": 1880,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 1,
+          "missing_after": 1,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 11,
+          "missing_after": 2,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 35,
+          "missing_after": 1,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 99,
+          "missing_after": 1,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 10,
+          "matched_n": 17,
+          "series_n": {
+            "i": 17
+          },
+          "series_medians": {
+            "i": -0.17061499999999974
+          },
+          "missing_before": 140,
+          "missing_after": 6,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 10,
+          "matched_n": 130,
+          "series_n": {
+            "ac": 120,
+            "i": 10
+          },
+          "series_medians": {
+            "ac": -0.059308750000000465,
+            "i": -0.20908699999999936
+          },
+          "missing_before": 34,
+          "missing_after": 13,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 10,
+          "matched_n": 118,
+          "series_n": {
+            "ac": 116,
+            "am": 2
+          },
+          "series_medians": {
+            "ac": -0.033085499999999435
+          },
+          "missing_before": 33,
+          "missing_after": 22,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 10,
+          "matched_n": 87,
+          "series_n": {
+            "ac": 79,
+            "am": 2,
+            "i": 6
+          },
+          "series_medians": {
+            "ac": -0.014635999999999427,
+            "i": -0.006261000000001182
+          },
+          "missing_before": 24,
+          "missing_after": 14,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 10,
+          "matched_n": 60,
+          "series_n": {
+            "ac": 51,
+            "i": 8,
+            "am": 1
+          },
+          "series_medians": {
+            "ac": 0.06315700000000035,
+            "i": 0.04292325000000119
+          },
+          "missing_before": 43,
+          "missing_after": 25,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 10,
+          "matched_n": 81,
+          "series_n": {
+            "ac": 76,
+            "i": 5
+          },
+          "series_medians": {
+            "ac": 0.010730749999999567,
+            "i": 0.11605300000000085
+          },
+          "missing_before": 131,
+          "missing_after": 84,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 10,
+          "matched_n": 122,
+          "series_n": {
+            "ac": 122
+          },
+          "series_medians": {
+            "ac": -0.013124499999999983
+          },
+          "missing_before": 228,
+          "missing_after": 140,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 10,
+          "matched_n": 166,
+          "series_n": {
+            "ai": 38,
+            "ac": 128
+          },
+          "series_medians": {
+            "ai": -0.05070350000000001,
+            "ac": 0.04107774999999947
+          },
+          "missing_before": 132,
+          "missing_after": 195,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 10,
+          "matched_n": 126,
+          "series_n": {
+            "ac": 126
+          },
+          "series_medians": {
+            "ac": 0.14721849999999925
+          },
+          "missing_before": 55,
+          "missing_after": 143,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 26,
+          "missing_after": 152,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 5,
+          "missing_after": 43,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1955,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 2,
+          "missing_after": 0,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1960,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 23,
+          "missing_after": 5,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1965,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 84,
+          "missing_after": 29,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1970,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 152,
+          "missing_after": 49,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1975,
+          "duration": 10,
+          "matched_n": 127,
+          "series_n": {
+            "dnb": 127
+          },
+          "series_medians": {
+            "dnb": -0.03034149999999869
+          },
+          "missing_before": 29,
+          "missing_after": 28,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1980,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 37,
+          "missing_after": 164,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1880,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 36,
+          "missing_after": 2,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 110,
+          "missing_after": 3,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 192,
+          "missing_after": 7,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 263,
+          "missing_after": 17,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 20,
+          "matched_n": 17,
+          "series_n": {
+            "i": 17
+          },
+          "series_medians": {
+            "i": -0.17061499999999974
+          },
+          "missing_before": 292,
+          "missing_after": 31,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 20,
+          "matched_n": 214,
+          "series_n": {
+            "ac": 198,
+            "i": 16
+          },
+          "series_medians": {
+            "ac": -0.0635059999999994,
+            "i": -0.12301050000000124
+          },
+          "missing_before": 63,
+          "missing_after": 34,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 20,
+          "matched_n": 176,
+          "series_n": {
+            "ac": 166,
+            "am": 2,
+            "i": 8
+          },
+          "series_medians": {
+            "ac": -0.01116124999999979,
+            "i": 0.04292325000000119
+          },
+          "missing_before": 77,
+          "missing_after": 57,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 20,
+          "matched_n": 166,
+          "series_n": {
+            "ac": 155,
+            "i": 11
+          },
+          "series_medians": {
+            "ac": -0.003699500000001521,
+            "i": 0.054300500000000085
+          },
+          "missing_before": 165,
+          "missing_after": 109,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 20,
+          "matched_n": 172,
+          "series_n": {
+            "ac": 172
+          },
+          "series_medians": {
+            "ac": -0.004762499999999115
+          },
+          "missing_before": 272,
+          "missing_after": 186,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 20,
+          "matched_n": 204,
+          "series_n": {
+            "ac": 204
+          },
+          "series_medians": {
+            "ac": 0.022169500000001285
+          },
+          "missing_before": 353,
+          "missing_after": 338,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 20,
+          "matched_n": 243,
+          "series_n": {
+            "ac": 243
+          },
+          "series_medians": {
+            "ac": 0.11831800000000037
+          },
+          "missing_before": 350,
+          "missing_after": 394,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 167,
+          "missing_after": 517,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 61,
+          "missing_after": 312,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 28,
+          "missing_after": 152,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 28,
+          "missing_after": 48,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1955,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 86,
+          "missing_after": 31,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1960,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 175,
+          "missing_after": 64,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1965,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 257,
+          "missing_after": 73,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1970,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 316,
+          "missing_after": 317,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1880,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 345,
+          "missing_after": 33,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 387,
+          "missing_after": 44,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 448,
+          "missing_after": 75,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 601,
+          "missing_after": 157,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 751,
+          "missing_after": 270,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 40,
+          "matched_n": 398,
+          "series_n": {
+            "ac": 398
+          },
+          "series_medians": {
+            "ac": -0.030472500000000124
+          },
+          "missing_before": 434,
+          "missing_after": 415,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 40,
+          "matched_n": 392,
+          "series_n": {
+            "ac": 392
+          },
+          "series_medians": {
+            "ac": 0.15734549999999992
+          },
+          "missing_before": 439,
+          "missing_after": 501,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 438,
+          "missing_after": 855,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 408,
+          "missing_after": 784,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 405,
+          "missing_after": 742,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 387,
+          "missing_after": 685,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 253,
+          "missing_after": 548,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 236,
+          "missing_after": 376,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 285,
+          "missing_after": 227,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 344,
+          "missing_after": 383,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        }
+      ],
+      "development_event_recovered": false
+    },
+    {
+      "name": "J075445.9+164141",
+      "ra_deg": 118.69125,
+      "dec_deg": 16.69472222222222,
+      "starts": [
+        1930,
+        1935
+      ],
+      "source": {
+        "ref_text": "APASS_J075445.9+164141",
+        "ref_number": "407544591164141",
+        "gsc_bin_index": "108750215",
+        "ra_deg": "118.691182",
+        "dec_deg": "16.694626",
+        "pos_epoch": "2000.0",
+        "stdmag": "13.13",
+        "color": "1.01",
+        "pm_ra_masyr": "-1.7",
+        "u_pm_ra_masyr": "1.1",
+        "pm_dec_masyr": "-1",
+        "u_pm_dec_masyr": "1.1",
+        "class": "0",
+        "v_flag": "0",
+        "mag_flag": "0",
+        "num_matches": "854",
+        "dra_asec": "0.2344814846706583",
+        "ddec_asec": "0.34639999999939164"
+      },
+      "census": {
+        "rows": 3288,
+        "detections": 854,
+        "clean_detections": 619,
+        "clean_span_years": 97.78735027742346,
+        "clean_median_mag": 13.385385,
+        "p90_minus_p10_mag": 0.6535807999999967,
+        "clean_meteor_series_detections": 6,
+        "access_gate": true,
+        "coverage_verdict": "MEASURED_KNOWN_VARIABLE",
+        "note": "No quiet/stable classification can be inferred from insufficient coverage."
+      },
+      "accounting": {
+        "clean": 619,
+        "joined": 608,
+        "excluded": {
+          "no_exposure": 11
+        }
+      },
+      "span_years": 97.78735027742346,
+      "coverage_pass": false,
+      "blocks": [
+        {
+          "start": 1880,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 0,
+          "missing_after": 0,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 3,
+          "missing_after": 0,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 6,
+          "missing_after": 0,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 14,
+          "missing_after": 1,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 23,
+          "missing_after": 3,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 10,
+          "matched_n": 4,
+          "series_n": {
+            "i": 4
+          },
+          "series_medians": {},
+          "missing_before": 23,
+          "missing_after": 4,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 22,
+          "missing_after": 4,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 10,
+          "matched_n": 4,
+          "series_n": {
+            "i": 4
+          },
+          "series_medians": {},
+          "missing_before": 7,
+          "missing_after": 2,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 10,
+          "matched_n": 4,
+          "series_n": {
+            "i": 4
+          },
+          "series_medians": {},
+          "missing_before": 1,
+          "missing_after": 0,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 10,
+          "matched_n": 1,
+          "series_n": {
+            "ac": 1
+          },
+          "series_medians": {},
+          "missing_before": 20,
+          "missing_after": 9,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 10,
+          "matched_n": 13,
+          "series_n": {
+            "ac": 13
+          },
+          "series_medians": {
+            "ac": 0.41789200000000015
+          },
+          "missing_before": 83,
+          "missing_after": 71,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 10,
+          "matched_n": 32,
+          "series_n": {
+            "ac": 32
+          },
+          "series_medians": {
+            "ac": 0.24328099999999875
+          },
+          "missing_before": 123,
+          "missing_after": 125,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 58,
+          "missing_after": 131,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 63,
+          "missing_after": 106,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 47,
+          "missing_after": 63,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1955,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 2,
+          "missing_after": 8,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1960,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 20,
+          "missing_after": 6,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1965,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 58,
+          "missing_after": 28,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1970,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 102,
+          "missing_after": 24,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1975,
+          "duration": 10,
+          "matched_n": 89,
+          "series_n": {
+            "dnb": 89
+          },
+          "series_medians": {
+            "dnb": -0.004818999999999463
+          },
+          "missing_before": 26,
+          "missing_after": 25,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1980,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 20,
+          "missing_after": 124,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1880,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 6,
+          "missing_after": 0,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 17,
+          "missing_after": 1,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 29,
+          "missing_after": 3,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 41,
+          "missing_after": 5,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 45,
+          "missing_after": 7,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 20,
+          "matched_n": 8,
+          "series_n": {
+            "i": 8
+          },
+          "series_medians": {
+            "i": -0.4254365
+          },
+          "missing_before": 30,
+          "missing_after": 6,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 20,
+          "matched_n": 4,
+          "series_n": {
+            "i": 4
+          },
+          "series_medians": {},
+          "missing_before": 23,
+          "missing_after": 4,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 20,
+          "matched_n": 4,
+          "series_n": {
+            "i": 4
+          },
+          "series_medians": {},
+          "missing_before": 28,
+          "missing_after": 11,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 20,
+          "matched_n": 13,
+          "series_n": {
+            "ac": 13
+          },
+          "series_medians": {
+            "ac": 0.41789200000000015
+          },
+          "missing_before": 84,
+          "missing_after": 76,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 20,
+          "matched_n": 33,
+          "series_n": {
+            "ac": 33
+          },
+          "series_medians": {
+            "ac": 0.24361199999999883
+          },
+          "missing_before": 143,
+          "missing_after": 145,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 175,
+          "missing_after": 243,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 209,
+          "missing_after": 278,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 115,
+          "missing_after": 194,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 65,
+          "missing_after": 114,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 67,
+          "missing_after": 69,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1955,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 60,
+          "missing_after": 38,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1960,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 122,
+          "missing_after": 36,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1965,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 181,
+          "missing_after": 56,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1970,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 226,
+          "missing_after": 226,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1880,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 51,
+          "missing_after": 7,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 55,
+          "missing_after": 8,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 56,
+          "missing_after": 8,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 73,
+          "missing_after": 17,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 162,
+          "missing_after": 101,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 207,
+          "missing_after": 163,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 249,
+          "missing_after": 268,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 289,
+          "missing_after": 310,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 237,
+          "missing_after": 311,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 239,
+          "missing_after": 307,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 256,
+          "missing_after": 312,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 277,
+          "missing_after": 316,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 237,
+          "missing_after": 230,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 246,
+          "missing_after": 172,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 293,
+          "missing_after": 309,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        }
+      ],
+      "development_event_recovered": false
+    },
+    {
+      "name": "J073606.5+211411",
+      "ra_deg": 114.02708333333334,
+      "dec_deg": 21.23638888888889,
+      "starts": [
+        1930,
+        1935,
+        1940,
+        1945,
+        1950
+      ],
+      "source": {
+        "ref_text": "APASS_J073606.5+211411",
+        "ref_number": "407360651211411",
+        "gsc_bin_index": "115088787",
+        "ra_deg": "114.02712",
+        "dec_deg": "21.236351",
+        "pos_epoch": "2000.0",
+        "stdmag": "12.02",
+        "color": "0.84",
+        "pm_ra_masyr": "-2.6",
+        "u_pm_ra_masyr": "1",
+        "pm_dec_masyr": "-0.9",
+        "u_pm_dec_masyr": "1",
+        "class": "0",
+        "v_flag": "1",
+        "mag_flag": "0",
+        "num_matches": "1301",
+        "dra_asec": "-0.12303641629917356",
+        "ddec_asec": "0.13640000000521013"
+      },
+      "census": {
+        "rows": 3017,
+        "detections": 1301,
+        "clean_detections": 837,
+        "clean_span_years": 98.79222357534263,
+        "clean_median_mag": 12.657515,
+        "p90_minus_p10_mag": 1.2911493999999966,
+        "clean_meteor_series_detections": 10,
+        "access_gate": true,
+        "coverage_verdict": "MEASURED_KNOWN_VARIABLE",
+        "note": "No quiet/stable classification can be inferred from insufficient coverage."
+      },
+      "accounting": {
+        "clean": 837,
+        "joined": 834,
+        "excluded": {
+          "no_exposure": 3
+        }
+      },
+      "span_years": 98.79222357534263,
+      "coverage_pass": true,
+      "blocks": [
+        {
+          "start": 1880,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 0,
+          "missing_after": 0,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 4,
+          "missing_after": 3,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 11,
+          "missing_after": 9,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 59,
+          "missing_after": 17,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 92,
+          "missing_after": 19,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 10,
+          "matched_n": 67,
+          "series_n": {
+            "ac": 67
+          },
+          "series_medians": {
+            "ac": -0.07678299999999894
+          },
+          "missing_before": 20,
+          "missing_after": 14,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 10,
+          "matched_n": 52,
+          "series_n": {
+            "ac": 52
+          },
+          "series_medians": {
+            "ac": -0.10406675000000032
+          },
+          "missing_before": 15,
+          "missing_after": 6,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 10,
+          "matched_n": 20,
+          "series_n": {
+            "ac": 20
+          },
+          "series_medians": {
+            "ac": 0.025469250000000443
+          },
+          "missing_before": 4,
+          "missing_after": 2,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 10,
+          "matched_n": 10,
+          "series_n": {
+            "ac": 10
+          },
+          "series_medians": {
+            "ac": 0.1023714999999985
+          },
+          "missing_before": 26,
+          "missing_after": 7,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 10,
+          "matched_n": 17,
+          "series_n": {
+            "ac": 17
+          },
+          "series_medians": {
+            "ac": 0.11316149999999858
+          },
+          "missing_before": 68,
+          "missing_after": 27,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 10,
+          "matched_n": 74,
+          "series_n": {
+            "ac": 51,
+            "rh": 23
+          },
+          "series_medians": {
+            "ac": 0.45008850000000145,
+            "rh": 0.24348449999999922
+          },
+          "missing_before": 119,
+          "missing_after": 91,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 10,
+          "matched_n": 74,
+          "series_n": {
+            "ac": 68,
+            "rh": 6
+          },
+          "series_medians": {
+            "ac": 0.40164374999999986,
+            "rh": 0.16503274999999995
+          },
+          "missing_before": 110,
+          "missing_after": 139,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 25,
+          "missing_after": 148,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 14,
+          "missing_after": 83,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 2,
+          "missing_after": 11,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1955,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 2,
+          "missing_after": 0,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1960,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 18,
+          "missing_after": 4,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1965,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 48,
+          "missing_after": 26,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1970,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 92,
+          "missing_after": 26,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1975,
+          "duration": 10,
+          "matched_n": 102,
+          "series_n": {
+            "dnb": 102
+          },
+          "series_medians": {
+            "dnb": -0.04998600000000053
+          },
+          "missing_before": 23,
+          "missing_after": 25,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1980,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 16,
+          "missing_after": 162,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1880,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 11,
+          "missing_after": 9,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 63,
+          "missing_after": 21,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 103,
+          "missing_after": 29,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 149,
+          "missing_after": 31,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 159,
+          "missing_after": 25,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 20,
+          "matched_n": 87,
+          "series_n": {
+            "ac": 87
+          },
+          "series_medians": {
+            "ac": -0.10239400000000032
+          },
+          "missing_before": 25,
+          "missing_after": 16,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 20,
+          "matched_n": 62,
+          "series_n": {
+            "ac": 62
+          },
+          "series_medians": {
+            "ac": -0.06643549999999987
+          },
+          "missing_before": 41,
+          "missing_after": 13,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 20,
+          "matched_n": 37,
+          "series_n": {
+            "ac": 37
+          },
+          "series_medians": {
+            "ac": 0.05205450000000056
+          },
+          "missing_before": 72,
+          "missing_after": 31,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 20,
+          "matched_n": 61,
+          "series_n": {
+            "ac": 61
+          },
+          "series_medians": {
+            "ac": 0.4448585000000005
+          },
+          "missing_before": 168,
+          "missing_after": 101,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 20,
+          "matched_n": 85,
+          "series_n": {
+            "ac": 85
+          },
+          "series_medians": {
+            "ac": 0.4140025000000005
+          },
+          "missing_before": 213,
+          "missing_after": 194,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 185,
+          "missing_after": 341,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 137,
+          "missing_after": 296,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 27,
+          "missing_after": 159,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 16,
+          "missing_after": 83,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 20,
+          "missing_after": 15,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1955,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 50,
+          "missing_after": 28,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1960,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 110,
+          "missing_after": 38,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1965,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 186,
+          "missing_after": 52,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1970,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 254,
+          "missing_after": 255,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1880,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 170,
+          "missing_after": 35,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 178,
+          "missing_after": 37,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 208,
+          "missing_after": 42,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 260,
+          "missing_after": 63,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 390,
+          "missing_after": 135,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 40,
+          "matched_n": 171,
+          "series_n": {
+            "ac": 171
+          },
+          "series_medians": {
+            "ac": 0.1887724999999989
+          },
+          "missing_before": 239,
+          "missing_after": 221,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 265,
+          "missing_after": 446,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 258,
+          "missing_after": 407,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 255,
+          "missing_after": 390,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 256,
+          "missing_after": 382,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 205,
+          "missing_after": 356,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 187,
+          "missing_after": 324,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 138,
+          "missing_after": 197,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 203,
+          "missing_after": 137,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 274,
+          "missing_after": 284,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        }
+      ],
+      "development_event_recovered": false
+    }
+  ],
+  "reused_instrumental_controls": [
+    {
+      "spss_id": 44,
+      "name": "P330-E",
+      "ra_deg": 247.89091666666667,
+      "dec_deg": 30.14625,
+      "source": {
+        "ref_text": "APASS_J163133.8+300846",
+        "ref_number": "416313381300846",
+        "gsc_bin_index": "126918419",
+        "ra_deg": "247.89088",
+        "dec_deg": "30.146216",
+        "pos_epoch": "2000.0",
+        "stdmag": "13.65",
+        "color": "0.64",
+        "pm_ra_masyr": "-8",
+        "u_pm_ra_masyr": "1.1",
+        "pm_dec_masyr": "-37.4",
+        "u_pm_dec_masyr": "1.1",
+        "class": "0",
+        "v_flag": "0",
+        "mag_flag": "0",
+        "num_matches": "598",
+        "dra_asec": "0.11414653281323102",
+        "ddec_asec": "0.12239999999792417"
+      },
+      "census": {
+        "rows": 2887,
+        "detections": 598,
+        "clean_detections": 416,
+        "clean_span_years": 98.09572445753429,
+        "clean_median_mag": 13.638532,
+        "p90_minus_p10_mag": 0.4940899999999999,
+        "clean_meteor_series_detections": 3,
+        "access_gate": true,
+        "coverage_verdict": "MEASURED_KNOWN_VARIABLE",
+        "note": "No quiet/stable classification can be inferred from insufficient coverage."
+      },
+      "accounting": {
+        "clean": 416,
+        "joined": 413,
+        "excluded": {
+          "no_exposure": 3
+        }
+      },
+      "span_years": 98.09572445753429,
+      "coverage_pass": false,
+      "blocks": [
+        {
+          "start": 1880,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 0,
+          "missing_after": 0,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 1,
+          "missing_after": 0,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 5,
+          "missing_after": 5,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 9,
+          "missing_after": 9,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 7,
+          "missing_after": 7,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 3,
+          "missing_after": 2,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 5,
+          "missing_after": 3,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 11,
+          "missing_after": 10,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 13,
+          "missing_after": 11,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 20,
+          "missing_after": 8,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 108,
+          "missing_after": 68,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 120,
+          "missing_after": 68,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 10,
+          "matched_n": 16,
+          "series_n": {
+            "ac": 16
+          },
+          "series_medians": {
+            "ac": 0.11614950000000057
+          },
+          "missing_before": 5,
+          "missing_after": 33,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 10,
+          "missing_after": 47,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 5,
+          "missing_after": 24,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1955,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 0,
+          "missing_after": 1,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1960,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 12,
+          "missing_after": 8,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1965,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 25,
+          "missing_after": 10,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1970,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 54,
+          "missing_after": 4,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1975,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 101,
+          "missing_after": 1,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1980,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 3,
+          "missing_after": 134,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1880,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 5,
+          "missing_after": 5,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 10,
+          "missing_after": 10,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 12,
+          "missing_after": 12,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 12,
+          "missing_after": 11,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 12,
+          "missing_after": 10,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 14,
+          "missing_after": 12,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 18,
+          "missing_after": 14,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 32,
+          "missing_after": 18,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 122,
+          "missing_after": 79,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 140,
+          "missing_after": 82,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 157,
+          "missing_after": 131,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 167,
+          "missing_after": 167,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 11,
+          "missing_after": 73,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 10,
+          "missing_after": 48,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 17,
+          "missing_after": 32,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1955,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 25,
+          "missing_after": 11,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1960,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 66,
+          "missing_after": 12,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1965,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 126,
+          "missing_after": 11,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1970,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 188,
+          "missing_after": 188,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1880,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 17,
+          "missing_after": 15,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 24,
+          "missing_after": 22,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 30,
+          "missing_after": 26,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 44,
+          "missing_after": 29,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 134,
+          "missing_after": 89,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 155,
+          "missing_after": 94,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 176,
+          "missing_after": 149,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 199,
+          "missing_after": 199,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 195,
+          "missing_after": 195,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 188,
+          "missing_after": 189,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 194,
+          "missing_after": 190,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 193,
+          "missing_after": 178,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 77,
+          "missing_after": 85,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 136,
+          "missing_after": 59,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 205,
+          "missing_after": 225,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        }
+      ],
+      "injections": [
+        {
+          "injected_mag": -1,
+          "start": 1930,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 157,
+          "missing_after": 131,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "injected_mag": 1,
+          "start": 1930,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 157,
+          "missing_after": 131,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "injected_mag": -1,
+          "start": 1950,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 17,
+          "missing_after": 32,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "injected_mag": 1,
+          "start": 1950,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 17,
+          "missing_after": 32,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        }
+      ]
+    },
+    {
+      "spss_id": 113,
+      "name": "WD0713+584",
+      "ra_deg": 109.40108333333333,
+      "dec_deg": 58.40569722222222,
+      "source": {
+        "ref_text": "APASS_J071736.3+582421",
+        "ref_number": "407173631582421",
+        "gsc_bin_index": "156436805",
+        "ra_deg": "109.401097",
+        "dec_deg": "58.405696",
+        "pos_epoch": "2000.0",
+        "stdmag": "12.06",
+        "color": "0.06",
+        "pm_ra_masyr": "20.7",
+        "u_pm_ra_masyr": "1.2",
+        "pm_dec_masyr": "-35.3",
+        "u_pm_dec_masyr": "1.2",
+        "class": "0",
+        "v_flag": "1",
+        "mag_flag": "0",
+        "num_matches": "2949",
+        "dra_asec": "-0.025775940076401115",
+        "ddec_asec": "0.004400000005944094"
+      },
+      "census": {
+        "rows": 3739,
+        "detections": 2949,
+        "clean_detections": 2070,
+        "clean_span_years": 98.68264392876677,
+        "clean_median_mag": 12.001856499999999,
+        "p90_minus_p10_mag": 0.3989457999999999,
+        "clean_meteor_series_detections": 428,
+        "access_gate": true,
+        "coverage_verdict": "MEASURED_KNOWN_VARIABLE",
+        "note": "No quiet/stable classification can be inferred from insufficient coverage."
+      },
+      "accounting": {
+        "clean": 2070,
+        "joined": 2055,
+        "excluded": {
+          "no_exposure": 15
+        }
+      },
+      "span_years": 98.68264392876677,
+      "coverage_pass": true,
+      "blocks": [
+        {
+          "start": 1880,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 0,
+          "missing_after": 0,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 4,
+          "missing_after": 0,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 26,
+          "missing_after": 3,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 107,
+          "missing_after": 4,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 10,
+          "matched_n": 2,
+          "series_n": {
+            "i": 2
+          },
+          "series_medians": {},
+          "missing_before": 158,
+          "missing_after": 1,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 10,
+          "matched_n": 132,
+          "series_n": {
+            "ac": 132
+          },
+          "series_medians": {
+            "ac": -0.05855749999999915
+          },
+          "missing_before": 14,
+          "missing_after": 6,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 10,
+          "matched_n": 136,
+          "series_n": {
+            "ac": 136
+          },
+          "series_medians": {
+            "ac": -0.025834500000000205
+          },
+          "missing_before": 15,
+          "missing_after": 9,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 10,
+          "matched_n": 129,
+          "series_n": {
+            "ac": 123,
+            "i": 6
+          },
+          "series_medians": {
+            "ac": 0.010073999999999472,
+            "i": -0.032572249999999414
+          },
+          "missing_before": 22,
+          "missing_after": 11,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 10,
+          "matched_n": 106,
+          "series_n": {
+            "ac": 100,
+            "i": 6
+          },
+          "series_medians": {
+            "ac": 0.028438249999999776,
+            "i": -0.032572249999999414
+          },
+          "missing_before": 53,
+          "missing_after": 32,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 10,
+          "matched_n": 188,
+          "series_n": {
+            "ac": 157,
+            "ai": 31
+          },
+          "series_medians": {
+            "ac": 0.05139100000000063,
+            "ai": 0.06520849999999889
+          },
+          "missing_before": 101,
+          "missing_after": 38,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 10,
+          "matched_n": 395,
+          "series_n": {
+            "ac": 268,
+            "ai": 127
+          },
+          "series_medians": {
+            "ac": 0.03940950000000054,
+            "ai": 0.050067000000000306
+          },
+          "missing_before": 199,
+          "missing_after": 127,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 10,
+          "matched_n": 554,
+          "series_n": {
+            "ai": 199,
+            "ac": 327,
+            "rh": 28
+          },
+          "series_medians": {
+            "ai": 0.019046999999998704,
+            "ac": -0.008612000000001174,
+            "rh": -0.0324289999999996
+          },
+          "missing_before": 163,
+          "missing_after": 154,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 10,
+          "matched_n": 318,
+          "series_n": {
+            "ac": 273,
+            "ai": 45
+          },
+          "series_medians": {
+            "ac": -0.022623499999999908,
+            "ai": -0.0050469999999993576
+          },
+          "missing_before": 61,
+          "missing_after": 236,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 12,
+          "missing_after": 327,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 4,
+          "missing_after": 91,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1955,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 1,
+          "missing_after": 1,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1960,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 6,
+          "missing_after": 2,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1965,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 23,
+          "missing_after": 7,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1970,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 83,
+          "missing_after": 8,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1975,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 154,
+          "missing_after": 13,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1980,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 15,
+          "missing_after": 204,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1880,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 26,
+          "missing_after": 3,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 111,
+          "missing_after": 4,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 186,
+          "missing_after": 4,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 253,
+          "missing_after": 10,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 20,
+          "matched_n": 2,
+          "series_n": {
+            "i": 2
+          },
+          "series_medians": {},
+          "missing_before": 309,
+          "missing_after": 10,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 20,
+          "matched_n": 253,
+          "series_n": {
+            "ac": 247,
+            "i": 6
+          },
+          "series_medians": {
+            "ac": -0.045037500000001174,
+            "i": -0.032572249999999414
+          },
+          "missing_before": 44,
+          "missing_after": 17,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 20,
+          "matched_n": 240,
+          "series_n": {
+            "ac": 234,
+            "i": 6
+          },
+          "series_medians": {
+            "ac": -0.006153249999999666,
+            "i": -0.032572249999999414
+          },
+          "missing_before": 70,
+          "missing_after": 41,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 20,
+          "matched_n": 278,
+          "series_n": {
+            "ac": 278
+          },
+          "series_medians": {
+            "ac": 0.04166949999999936
+          },
+          "missing_before": 156,
+          "missing_after": 55,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 20,
+          "matched_n": 366,
+          "series_n": {
+            "ac": 366
+          },
+          "series_medians": {
+            "ac": 0.04094375000000028
+          },
+          "missing_before": 381,
+          "missing_after": 171,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 20,
+          "matched_n": 705,
+          "series_n": {
+            "ac": 482,
+            "ai": 223
+          },
+          "series_medians": {
+            "ac": 0.01716724999999908,
+            "ai": 0.03492799999999896
+          },
+          "missing_before": 305,
+          "missing_after": 234,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 20,
+          "matched_n": 606,
+          "series_n": {
+            "ac": 527,
+            "ai": 79
+          },
+          "series_medians": {
+            "ac": 0.002635500000000235,
+            "ai": 0.06266800000000039
+          },
+          "missing_before": 299,
+          "missing_after": 545,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 217,
+          "missing_after": 1060,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 95,
+          "missing_after": 662,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 13,
+          "missing_after": 328,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 10,
+          "missing_after": 93,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1955,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 24,
+          "missing_after": 8,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1960,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 89,
+          "missing_after": 10,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1965,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 177,
+          "missing_after": 20,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1970,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 287,
+          "missing_after": 287,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1880,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 337,
+          "missing_after": 13,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 410,
+          "missing_after": 26,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 498,
+          "missing_after": 50,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 697,
+          "missing_after": 83,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 1056,
+          "missing_after": 184,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 40,
+          "matched_n": 705,
+          "series_n": {
+            "ac": 705
+          },
+          "series_medians": {
+            "ac": -0.020124500000001433
+          },
+          "missing_before": 599,
+          "missing_after": 260,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 40,
+          "matched_n": 720,
+          "series_n": {
+            "ac": 720
+          },
+          "series_medians": {
+            "ac": -0.010180500000000592
+          },
+          "missing_before": 684,
+          "missing_after": 663,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 726,
+          "missing_after": 1504,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 721,
+          "missing_after": 1425,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 376,
+          "missing_after": 1352,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 344,
+          "missing_after": 1266,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 241,
+          "missing_after": 1068,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 184,
+          "missing_after": 672,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 190,
+          "missing_after": 349,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 297,
+          "missing_after": 384,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        }
+      ],
+      "injections": [
+        {
+          "injected_mag": -1,
+          "start": 1930,
+          "duration": 20,
+          "matched_n": 606,
+          "series_n": {
+            "ac": 527,
+            "ai": 79
+          },
+          "series_medians": {
+            "ac": -0.9973644999999998,
+            "ai": -0.9373319999999996
+          },
+          "missing_before": 299,
+          "missing_after": 545,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": true
+        },
+        {
+          "injected_mag": 1,
+          "start": 1930,
+          "duration": 20,
+          "matched_n": 606,
+          "series_n": {
+            "ac": 527,
+            "ai": 79
+          },
+          "series_medians": {
+            "ac": 1.0026355000000002,
+            "ai": 1.0626680000000004
+          },
+          "missing_before": 299,
+          "missing_after": 545,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": true,
+          "negative_flag": false
+        },
+        {
+          "injected_mag": -1,
+          "start": 1950,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 10,
+          "missing_after": 93,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "injected_mag": 1,
+          "start": 1950,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 10,
+          "missing_after": 93,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        }
+      ]
+    },
+    {
+      "spss_id": 116,
+      "name": "G43-5",
+      "ra_deg": 147.46495833333336,
+      "dec_deg": 6.6099,
+      "source": {
+        "ref_text": "APASS_J094951.6+063636",
+        "ref_number": "409495161063636",
+        "gsc_bin_index": "94216668",
+        "ra_deg": "147.464985",
+        "dec_deg": "6.609862",
+        "pos_epoch": "2000.0",
+        "stdmag": "13.1",
+        "color": "0.65",
+        "pm_ra_masyr": "72.4",
+        "u_pm_ra_masyr": "1.4",
+        "pm_dec_masyr": "-325.8",
+        "u_pm_dec_masyr": "1.4",
+        "class": "0",
+        "v_flag": "0",
+        "mag_flag": "0",
+        "num_matches": "1233",
+        "dra_asec": "-0.09536188116851327",
+        "ddec_asec": "0.13679999999993697"
+      },
+      "census": {
+        "rows": 2879,
+        "detections": 1233,
+        "clean_detections": 899,
+        "clean_span_years": 97.24740168832159,
+        "clean_median_mag": 13.045405,
+        "p90_minus_p10_mag": 0.346399400000001,
+        "clean_meteor_series_detections": 25,
+        "access_gate": true,
+        "coverage_verdict": "MEASURED_KNOWN_VARIABLE",
+        "note": "No quiet/stable classification can be inferred from insufficient coverage."
+      },
+      "accounting": {
+        "clean": 899,
+        "joined": 896,
+        "excluded": {
+          "no_exposure": 3
+        }
+      },
+      "span_years": 97.24740168832159,
+      "coverage_pass": true,
+      "blocks": [
+        {
+          "start": 1880,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 0,
+          "missing_after": 0,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 5,
+          "missing_after": 0,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 15,
+          "missing_after": 0,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 38,
+          "missing_after": 29,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 56,
+          "missing_after": 32,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 34,
+          "missing_after": 17,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 10,
+          "matched_n": 21,
+          "series_n": {
+            "ac": 21
+          },
+          "series_medians": {
+            "ac": -0.047722000000000264
+          },
+          "missing_before": 9,
+          "missing_after": 11,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 10,
+          "matched_n": 13,
+          "series_n": {
+            "ac": 13
+          },
+          "series_medians": {
+            "ac": 0.05083099999999874
+          },
+          "missing_before": 8,
+          "missing_after": 6,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 10,
+          "matched_n": 6,
+          "series_n": {
+            "ac": 6
+          },
+          "series_medians": {
+            "ac": -0.19390024999999955
+          },
+          "missing_before": 38,
+          "missing_after": 7,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 10,
+          "matched_n": 8,
+          "series_n": {
+            "ac": 8
+          },
+          "series_medians": {
+            "ac": -0.1879200000000001
+          },
+          "missing_before": 93,
+          "missing_after": 16,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 10,
+          "matched_n": 54,
+          "series_n": {
+            "ac": 46,
+            "ax": 8
+          },
+          "series_medians": {
+            "ac": 0.006212999999999802,
+            "ax": 0.0038439999999990704
+          },
+          "missing_before": 159,
+          "missing_after": 76,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 10,
+          "matched_n": 129,
+          "series_n": {
+            "ac": 70,
+            "rh": 33,
+            "rb": 26
+          },
+          "series_medians": {
+            "ac": 0.03714849999999981,
+            "rh": 0.034400999999999016,
+            "rb": -0.04359350000000006
+          },
+          "missing_before": 113,
+          "missing_after": 104,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 10,
+          "matched_n": 57,
+          "series_n": {
+            "ac": 57
+          },
+          "series_medians": {
+            "ac": 0.021893000000000384
+          },
+          "missing_before": 43,
+          "missing_after": 149,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 5,
+          "missing_after": 137,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 3,
+          "missing_after": 39,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1955,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 1,
+          "missing_after": 0,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1960,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 8,
+          "missing_after": 4,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1965,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 51,
+          "missing_after": 25,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1970,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 108,
+          "missing_after": 24,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1975,
+          "duration": 10,
+          "matched_n": 100,
+          "series_n": {
+            "dnb": 100
+          },
+          "series_medians": {
+            "dnb": -0.029652000000000456
+          },
+          "missing_before": 52,
+          "missing_after": 11,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1980,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 67,
+          "missing_after": 172,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1880,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 15,
+          "missing_after": 0,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 43,
+          "missing_after": 34,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 71,
+          "missing_after": 45,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 82,
+          "missing_after": 46,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 88,
+          "missing_after": 43,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 55,
+          "missing_after": 23,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 20,
+          "matched_n": 26,
+          "series_n": {
+            "ac": 26
+          },
+          "series_medians": {
+            "ac": -0.05333450000000006
+          },
+          "missing_before": 48,
+          "missing_after": 18,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 20,
+          "matched_n": 21,
+          "series_n": {
+            "ac": 21
+          },
+          "series_medians": {
+            "ac": -0.025804499999999564
+          },
+          "missing_before": 101,
+          "missing_after": 22,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 20,
+          "matched_n": 51,
+          "series_n": {
+            "ac": 51
+          },
+          "series_medians": {
+            "ac": 0.0014064999999998662
+          },
+          "missing_before": 206,
+          "missing_after": 83,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 20,
+          "matched_n": 77,
+          "series_n": {
+            "ac": 77
+          },
+          "series_medians": {
+            "ac": 0.03208550000000088
+          },
+          "missing_before": 282,
+          "missing_after": 153,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 20,
+          "matched_n": 103,
+          "series_n": {
+            "ac": 103
+          },
+          "series_medians": {
+            "ac": 0.03468400000000038
+          },
+          "missing_before": 295,
+          "missing_after": 317,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 161,
+          "missing_after": 396,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 53,
+          "missing_after": 245,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 6,
+          "missing_after": 137,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 11,
+          "missing_after": 43,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1955,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 52,
+          "missing_after": 25,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1960,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 116,
+          "missing_after": 29,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1965,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 203,
+          "missing_after": 36,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1970,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 280,
+          "missing_after": 280,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1880,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 103,
+          "missing_after": 56,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 109,
+          "missing_after": 57,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 149,
+          "missing_after": 63,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 207,
+          "missing_after": 68,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 348,
+          "missing_after": 126,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 414,
+          "missing_after": 178,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 40,
+          "matched_n": 123,
+          "series_n": {
+            "ac": 123
+          },
+          "series_medians": {
+            "ac": 0.044227000000001127
+          },
+          "missing_before": 367,
+          "missing_after": 369,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 382,
+          "missing_after": 521,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 378,
+          "missing_after": 505,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 375,
+          "missing_after": 499,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 322,
+          "missing_after": 463,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 213,
+          "missing_after": 421,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 169,
+          "missing_after": 274,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 209,
+          "missing_after": 173,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 291,
+          "missing_after": 327,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        }
+      ],
+      "injections": [
+        {
+          "injected_mag": -1,
+          "start": 1930,
+          "duration": 20,
+          "matched_n": 103,
+          "series_n": {
+            "ac": 103
+          },
+          "series_medians": {
+            "ac": -0.9653159999999996
+          },
+          "missing_before": 295,
+          "missing_after": 317,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "injected_mag": 1,
+          "start": 1930,
+          "duration": 20,
+          "matched_n": 103,
+          "series_n": {
+            "ac": 103
+          },
+          "series_medians": {
+            "ac": 1.0346840000000004
+          },
+          "missing_before": 295,
+          "missing_after": 317,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "injected_mag": -1,
+          "start": 1950,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 11,
+          "missing_after": 43,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "injected_mag": 1,
+          "start": 1950,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 11,
+          "missing_after": 43,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        }
+      ]
+    },
+    {
+      "spss_id": 120,
+      "name": "G146-76",
+      "ra_deg": 164.9895,
+      "dec_deg": 44.778819444444444,
+      "source": {
+        "ref_text": "APASS_J105957.5+444644",
+        "ref_number": "410595751444644",
+        "gsc_bin_index": "143985044",
+        "ra_deg": "164.989502",
+        "dec_deg": "44.778809",
+        "pos_epoch": "2000.0",
+        "stdmag": "11.15",
+        "color": "0.69",
+        "pm_ra_masyr": "-101.3",
+        "u_pm_ra_masyr": "1.1",
+        "pm_dec_masyr": "-218.7",
+        "u_pm_dec_masyr": "1.1",
+        "class": "0",
+        "v_flag": "0",
+        "mag_flag": "0",
+        "num_matches": "3432",
+        "dra_asec": "-0.005110784876789623",
+        "ddec_asec": "0.03760000001591379"
+      },
+      "census": {
+        "rows": 3562,
+        "detections": 3432,
+        "clean_detections": 2438,
+        "clean_span_years": 99.52931141643853,
+        "clean_median_mag": 11.1013315,
+        "p90_minus_p10_mag": 0.31951249999999654,
+        "clean_meteor_series_detections": 498,
+        "access_gate": true,
+        "coverage_verdict": "MEASURED_KNOWN_VARIABLE",
+        "note": "No quiet/stable classification can be inferred from insufficient coverage."
+      },
+      "accounting": {
+        "clean": 2438,
+        "joined": 2401,
+        "excluded": {
+          "no_exposure": 34,
+          "exposure_conflict": 3
+        }
+      },
+      "span_years": 99.52931141643853,
+      "coverage_pass": true,
+      "blocks": [
+        {
+          "start": 1880,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 0,
+          "missing_after": 0,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 8,
+          "missing_after": 0,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 25,
+          "missing_after": 2,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 131,
+          "missing_after": 3,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 10,
+          "matched_n": 15,
+          "series_n": {
+            "i": 15
+          },
+          "series_medians": {
+            "i": 0.0890430000000002
+          },
+          "missing_before": 199,
+          "missing_after": 2,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 10,
+          "matched_n": 194,
+          "series_n": {
+            "ac": 186,
+            "i": 8
+          },
+          "series_medians": {
+            "ac": 0.011659749999998859,
+            "i": -0.030586500000000072
+          },
+          "missing_before": 29,
+          "missing_after": 3,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 10,
+          "matched_n": 225,
+          "series_n": {
+            "ac": 224,
+            "i": 1
+          },
+          "series_medians": {
+            "ac": 0.01631474999999938
+          },
+          "missing_before": 47,
+          "missing_after": 15,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 10,
+          "matched_n": 182,
+          "series_n": {
+            "ac": 182
+          },
+          "series_medians": {
+            "ac": 0.02465749999999911
+          },
+          "missing_before": 83,
+          "missing_after": 18,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 10,
+          "matched_n": 170,
+          "series_n": {
+            "ac": 123,
+            "ai": 47
+          },
+          "series_medians": {
+            "ac": 0.03734900000000074,
+            "ai": -0.012717000000000311
+          },
+          "missing_before": 83,
+          "missing_after": 57,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 10,
+          "matched_n": 276,
+          "series_n": {
+            "ac": 232,
+            "ai": 44
+          },
+          "series_medians": {
+            "ac": 0.012229999999998853,
+            "ai": -0.00873149999999967
+          },
+          "missing_before": 99,
+          "missing_after": 53,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 10,
+          "matched_n": 372,
+          "series_n": {
+            "ac": 281,
+            "ai": 91
+          },
+          "series_medians": {
+            "ac": -0.02017350000000029,
+            "ai": -0.05757499999999993
+          },
+          "missing_before": 204,
+          "missing_after": 117,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 10,
+          "matched_n": 410,
+          "series_n": {
+            "ai": 115,
+            "ac": 234,
+            "rh": 61
+          },
+          "series_medians": {
+            "ai": -0.050525000000000375,
+            "ac": -0.020154500000000297,
+            "rh": 0.007652000000000214
+          },
+          "missing_before": 258,
+          "missing_after": 185,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 10,
+          "matched_n": 365,
+          "series_n": {
+            "ai": 88,
+            "ac": 195,
+            "fa": 82
+          },
+          "series_medians": {
+            "ai": -0.0646564999999999,
+            "ac": -0.038519499999999596,
+            "fa": 0.09930799999999973
+          },
+          "missing_before": 43,
+          "missing_after": 158,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 8,
+          "missing_after": 320,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 1,
+          "missing_after": 138,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1955,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 0,
+          "missing_after": 1,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1960,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 24,
+          "missing_after": 6,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1965,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 79,
+          "missing_after": 16,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1970,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 160,
+          "missing_after": 56,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1975,
+          "duration": 10,
+          "matched_n": 144,
+          "series_n": {
+            "dnb": 144
+          },
+          "series_medians": {
+            "dnb": -0.013808750000000813
+          },
+          "missing_before": 36,
+          "missing_after": 46,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1980,
+          "duration": 10,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 16,
+          "missing_after": 201,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1880,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 25,
+          "missing_after": 2,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 139,
+          "missing_after": 3,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 239,
+          "missing_after": 5,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 354,
+          "missing_after": 7,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 20,
+          "matched_n": 15,
+          "series_n": {
+            "i": 15
+          },
+          "series_medians": {
+            "i": 0.11241599999999963
+          },
+          "missing_before": 470,
+          "missing_after": 18,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 20,
+          "matched_n": 368,
+          "series_n": {
+            "ac": 368
+          },
+          "series_medians": {
+            "ac": 0.022857250000001272
+          },
+          "missing_before": 112,
+          "missing_after": 32,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 20,
+          "matched_n": 347,
+          "series_n": {
+            "ac": 347
+          },
+          "series_medians": {
+            "ac": 0.029128000000000043
+          },
+          "missing_before": 177,
+          "missing_after": 73,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 20,
+          "matched_n": 413,
+          "series_n": {
+            "ac": 413
+          },
+          "series_medians": {
+            "ac": 0.020955500000001237
+          },
+          "missing_before": 227,
+          "missing_after": 73,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 20,
+          "matched_n": 516,
+          "series_n": {
+            "ac": 404,
+            "ai": 112
+          },
+          "series_medians": {
+            "ac": -0.0015665000000000262,
+            "ai": -0.06856649999999931
+          },
+          "missing_before": 315,
+          "missing_after": 176,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 20,
+          "matched_n": 615,
+          "series_n": {
+            "ac": 464,
+            "ai": 151
+          },
+          "series_medians": {
+            "ac": -0.006086999999999065,
+            "ai": -0.05044900000000041
+          },
+          "missing_before": 424,
+          "missing_after": 260,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 20,
+          "matched_n": 617,
+          "series_n": {
+            "ac": 454,
+            "ai": 163
+          },
+          "series_medians": {
+            "ac": -0.040943249999999765,
+            "ai": -0.0771120000000014
+          },
+          "missing_before": 408,
+          "missing_after": 387,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 348,
+          "missing_after": 1002,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 59,
+          "missing_after": 662,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 8,
+          "missing_after": 321,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 25,
+          "missing_after": 144,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1955,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 79,
+          "missing_after": 17,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1960,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 184,
+          "missing_after": 72,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1965,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 286,
+          "missing_after": 89,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1970,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 361,
+          "missing_after": 361,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1880,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 511,
+          "missing_after": 24,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 634,
+          "missing_after": 58,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 773,
+          "missing_after": 107,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 1005,
+          "missing_after": 105,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 1305,
+          "missing_after": 214,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "duration": 40,
+          "matched_n": 825,
+          "series_n": {
+            "ac": 825
+          },
+          "series_medians": {
+            "ac": 0.014629499999999851
+          },
+          "missing_before": 710,
+          "missing_after": 302,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "duration": 40,
+          "matched_n": 739,
+          "series_n": {
+            "ac": 739
+          },
+          "series_medians": {
+            "ac": -0.024485999999999564
+          },
+          "missing_before": 779,
+          "missing_after": 548,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 860,
+          "missing_after": 1649,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 611,
+          "missing_after": 1502,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 541,
+          "missing_after": 1382,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 504,
+          "missing_after": 1249,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 427,
+          "missing_after": 1019,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 243,
+          "missing_after": 734,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 294,
+          "missing_after": 410,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "duration": 40,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 386,
+          "missing_after": 523,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        }
+      ],
+      "injections": [
+        {
+          "injected_mag": -1,
+          "start": 1930,
+          "duration": 20,
+          "matched_n": 617,
+          "series_n": {
+            "ac": 454,
+            "ai": 163
+          },
+          "series_medians": {
+            "ac": -1.0409432499999998,
+            "ai": -1.0771120000000014
+          },
+          "missing_before": 408,
+          "missing_after": 387,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": true
+        },
+        {
+          "injected_mag": 1,
+          "start": 1930,
+          "duration": 20,
+          "matched_n": 617,
+          "series_n": {
+            "ac": 454,
+            "ai": 163
+          },
+          "series_medians": {
+            "ac": 0.9590567500000002,
+            "ai": 0.9228879999999986
+          },
+          "missing_before": 408,
+          "missing_after": 387,
+          "missing_years": 0,
+          "eligible": true,
+          "positive_flag": true,
+          "negative_flag": false
+        },
+        {
+          "injected_mag": -1,
+          "start": 1950,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 25,
+          "missing_after": 144,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "injected_mag": 1,
+          "start": 1950,
+          "duration": 20,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "missing_before": 25,
+          "missing_after": 144,
+          "missing_years": 0,
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        }
+      ]
+    }
+  ],
+  "development_events_recovered": 0,
+  "instrumental_flagged_blocks": 0,
+  "eligible_signed_injections": 4,
+  "injection_stars": 2,
+  "injections_recovered": 4,
+  "gate": "STOP_BLOCK_DEVELOPMENT",
+  "discovery_claim": false
+}

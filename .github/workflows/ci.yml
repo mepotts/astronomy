@@ -168,6 +168,8 @@ jobs:
           python dasch-pilot/scripts/stable_controls.py --replay
           python dasch-pilot/scripts/stable_controls.py --replay --normalize-missing-notes
           python dasch-pilot/scripts/colour_validation.py --replay --quarantine-conflicts
+          python dasch-pilot/scripts/real_controls.py --replay
+          python dasch-pilot/scripts/block_validation.py development --replay
           python dr11-pilot/scripts/preflight.py
           python ccor-pilot/scripts/radial_ephemeris.py
           python ccor-pilot/scripts/pilot.py --help

@@ -40,7 +40,7 @@ unknown population or catalogue magnitude/colour cuts are selected here.
    dimming flag with its full block contained in 1930..1955 for J0754 or J0736
    as an engineering gate; J0830's secular trend is out of this discrete-event
    estimand. No post-outcome parameter iteration in this experiment.
-2. Reuse all four usable September 7 SPSS held-outs (44,104,113,120), now explicitly
+2. Reuse all four usable September 7 SPSS held-outs (44,113,116,120), now explicitly
    **reused instrumental controls**, not freshly blinded negatives. Require no
    unmodified flags over the entire 55-block family on any of them.
 3. For each, inject +/-1 mag separately into 1930..1950 and 1950..1970 at existing
@@ -76,3 +76,15 @@ Only public known-control identities are written or transmitted. No candidate
 coordinate disclosure, paper upload, registry report, correspondence, or new
 scheduler. A broader search would need prospectively fixed source selection and
 near-neighbour/systematics controls; no automatic sample growth until a flag.
+
+## Recorded implementation correction before prospective holdout
+
+The first committed version `ef5bf0f` incorrectly transcribed ID 104 in place of
+116 while explicitly requiring **all four usable September 7 held-outs**. Execution
+stopped at `instrumental control lost unique match`; no result file or new holdout
+request was produced. The original archived September 7 table unambiguously has
+44,113,116,120 as usable and 104 as ambiguous. Correct that mapping in text/code;
+preserve the failed version in Git. This is not replacement based on a new flag or
+parameter adjustment. The three giants and first instrumental control had been
+computed in memory before the error, so do not describe the corrected development
+execution as the very first evaluation of this algorithm.
