@@ -1,0 +1,1551 @@
+{
+  "contract": {
+    "REAL-CONTROLS-SPEC-2026-09-08.md": "844277d510221bcfb1213c5c0c79f9c30fa63f6d96869744f4081bfa8be0eeaf",
+    "real_controls.py": "ee9e6da2fe4ec775cc375737a2e94d893e4c44a06884daacc1d3caae1dec0793",
+    "colour_validation.py": "c0e64bfac2f257bf2d42869067ca9785851883b7b7e052feaa6a49b33eb0bb55",
+    "m0_extension.py": "3e2b75823aa3c2060acda4b7f5202a22ad6f80fd298a49d3e6792ad86dda4853",
+    "m0_dasch_pilot.py": "658c9471c0cb33d6389c0adc8178309fd88434824fd11cb6f526d9c4bc43e66d"
+  },
+  "selected_controls": 3,
+  "controls": [
+    {
+      "name": "J083038.5+140713",
+      "ra_deg": 127.66041666666666,
+      "dec_deg": 14.120277777777778,
+      "starts": [
+        1965,
+        1970,
+        1975,
+        1980,
+        1985
+      ],
+      "unique_match": true,
+      "source": {
+        "ref_text": "APASS_J083038.5+140713",
+        "ref_number": "408303851140713",
+        "gsc_bin_index": "105086125",
+        "ra_deg": "127.660337",
+        "dec_deg": "14.120314",
+        "pos_epoch": "2000.0",
+        "stdmag": "11.93",
+        "color": "1.2",
+        "pm_ra_masyr": "6.4",
+        "u_pm_ra_masyr": "1.5",
+        "pm_dec_masyr": "-10.2",
+        "u_pm_dec_masyr": "1.4",
+        "class": "0",
+        "v_flag": "1",
+        "mag_flag": "0",
+        "num_matches": "2056",
+        "dra_asec": "0.2781345268991441",
+        "ddec_asec": "-0.13040000000117402"
+      },
+      "census": {
+        "rows": 3569,
+        "detections": 2056,
+        "clean_detections": 1473,
+        "clean_span_years": 101.86354699886942,
+        "clean_median_mag": 12.128378,
+        "p90_minus_p10_mag": 0.925612000000001,
+        "clean_meteor_series_detections": 148,
+        "access_gate": true,
+        "coverage_verdict": "MEASURED_KNOWN_VARIABLE",
+        "note": "No quiet/stable classification can be inferred from insufficient coverage."
+      },
+      "accounting": {
+        "clean": 1473,
+        "joined": 1469,
+        "excluded": {
+          "no_exposure": 4
+        }
+      },
+      "joined_span_years": 101.86354699886942,
+      "coverage_pass": true,
+      "catalogue_rejections": [
+        "v_flag"
+      ],
+      "windows": [
+        {
+          "start": 1880,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "matched_n": 9,
+          "series_n": {
+            "i": 9
+          },
+          "series_medians": {
+            "i": -0.06291399999999925
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "matched_n": 24,
+          "series_n": {
+            "i": 17,
+            "ac": 7
+          },
+          "series_medians": {
+            "i": -0.22545900000000074,
+            "ac": -0.23930700000000016
+          },
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "matched_n": 71,
+          "series_n": {
+            "ac": 55,
+            "i": 7,
+            "am": 9
+          },
+          "series_medians": {
+            "ac": -0.2110454999999991,
+            "i": 0.049109500000001916,
+            "am": -0.33673100000000034
+          },
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "matched_n": 63,
+          "series_n": {
+            "ac": 53,
+            "i": 10
+          },
+          "series_medians": {
+            "ac": -0.23987349999999985,
+            "i": -0.1957109999999993
+          },
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "matched_n": 68,
+          "series_n": {
+            "ac": 67,
+            "am": 1
+          },
+          "series_medians": {
+            "ac": -0.051164499999998725
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "matched_n": 52,
+          "series_n": {
+            "ac": 50,
+            "am": 2
+          },
+          "series_medians": {
+            "ac": -0.055549500000000585
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "matched_n": 40,
+          "series_n": {
+            "ac": 30,
+            "i": 6,
+            "ai": 1,
+            "am": 2,
+            "ax": 1
+          },
+          "series_medians": {
+            "ac": -0.017041500000000376,
+            "i": 0.013132249999999956
+          },
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "matched_n": 36,
+          "series_n": {
+            "ac": 21,
+            "i": 2,
+            "ax": 2,
+            "rh": 11
+          },
+          "series_medians": {
+            "ac": -0.0031289999999994933,
+            "rh": -0.10144649999999977
+          },
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "matched_n": 110,
+          "series_n": {
+            "ac": 55,
+            "rh": 12,
+            "md": 8,
+            "ai": 28,
+            "i": 6,
+            "ax": 1
+          },
+          "series_medians": {
+            "ac": 0.017930500000000293,
+            "rh": -0.004664749999999884,
+            "md": 0.2171674999999995,
+            "ai": -0.12459874999999965,
+            "i": 0.09106450000000077
+          },
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "matched_n": 121,
+          "series_n": {
+            "ai": 46,
+            "rh": 6,
+            "ac": 67,
+            "i": 1,
+            "am": 1
+          },
+          "series_medians": {
+            "ai": -0.0689099999999998,
+            "rh": 0.05074200000000051,
+            "ac": 0.031926999999999595
+          },
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "matched_n": 121,
+          "series_n": {
+            "ai": 30,
+            "ac": 62,
+            "i": 11,
+            "rh": 10,
+            "ax": 6,
+            "am": 2
+          },
+          "series_medians": {
+            "ai": 0.06102225000000061,
+            "ac": 0.16156774999999968,
+            "i": 0.33006200000000163,
+            "rh": -0.07757399999999937,
+            "ax": 0.11627024999999946
+          },
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "matched_n": 88,
+          "series_n": {
+            "rh": 3,
+            "ac": 68,
+            "ai": 11,
+            "ax": 1,
+            "am": 5
+          },
+          "series_medians": {
+            "ac": 0.3268600000000008,
+            "ai": 0.22458549999999988,
+            "am": 0.7070819999999998
+          },
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "matched_n": 37,
+          "series_n": {
+            "ac": 27,
+            "ax": 2,
+            "ai": 4,
+            "rh": 2,
+            "am": 2
+          },
+          "series_medians": {
+            "ac": 0.318601499999998
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1955,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1960,
+          "matched_n": 1,
+          "series_n": {
+            "dnb": 1
+          },
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1965,
+          "matched_n": 16,
+          "series_n": {
+            "dnb": 8,
+            "dnr": 8
+          },
+          "series_medians": {
+            "dnb": -0.12292749999999941,
+            "dnr": 0.0670105000000003
+          },
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1970,
+          "matched_n": 33,
+          "series_n": {
+            "dnb": 29,
+            "dsb": 4
+          },
+          "series_medians": {
+            "dnb": -0.06478300000000203
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1975,
+          "matched_n": 73,
+          "series_n": {
+            "dnb": 71,
+            "dnr": 2
+          },
+          "series_medians": {
+            "dnb": -0.3449390000000001
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1980,
+          "matched_n": 63,
+          "series_n": {
+            "dnr": 2,
+            "dnb": 61
+          },
+          "series_medians": {
+            "dnb": 0.3093579999999996
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1985,
+          "matched_n": 63,
+          "series_n": {
+            "dnb": 63
+          },
+          "series_medians": {
+            "dnb": 0.18625749999999996
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        }
+      ],
+      "eligible_event_windows": 1,
+      "recovered_event_diagnostic": false,
+      "recovered_by_full_selection": false,
+      "injections": [
+        {
+          "start": 1950,
+          "duration": 5,
+          "amplitude_mag": 1.0,
+          "windows": [
+            {
+              "start": 1950,
+              "matched_n": 37,
+              "series_n": {
+                "ac": 27,
+                "ax": 2,
+                "ai": 4,
+                "rh": 2,
+                "am": 2
+              },
+              "series_medians": {
+                "ac": 1.318601499999998
+              },
+              "eligible": false,
+              "positive_flag": false,
+              "negative_flag": false
+            }
+          ]
+        },
+        {
+          "start": 1930,
+          "duration": 20,
+          "amplitude_mag": 1.0,
+          "windows": [
+            {
+              "start": 1930,
+              "matched_n": 110,
+              "series_n": {
+                "ac": 55,
+                "rh": 12,
+                "md": 8,
+                "ai": 28,
+                "i": 6,
+                "ax": 1
+              },
+              "series_medians": {
+                "ac": 0.8997445000000006,
+                "rh": 0.08508950000000048,
+                "md": 1.2171674999999995,
+                "ai": -0.12459874999999965,
+                "i": 1.0910645000000008
+              },
+              "eligible": true,
+              "positive_flag": true,
+              "negative_flag": false
+            },
+            {
+              "start": 1935,
+              "matched_n": 121,
+              "series_n": {
+                "ai": 46,
+                "rh": 6,
+                "ac": 67,
+                "i": 1,
+                "am": 1
+              },
+              "series_medians": {
+                "ai": -0.059705499999999745,
+                "rh": 0.1399057500000005,
+                "ac": 0.757753000000001
+              },
+              "eligible": true,
+              "positive_flag": false,
+              "negative_flag": false
+            },
+            {
+              "start": 1940,
+              "matched_n": 121,
+              "series_n": {
+                "ai": 30,
+                "ac": 62,
+                "i": 11,
+                "rh": 10,
+                "ax": 6,
+                "am": 2
+              },
+              "series_medians": {
+                "ai": 0.07739425000000022,
+                "ac": 0.8984662499999994,
+                "i": 1.3300620000000016,
+                "rh": -0.01925650000000001,
+                "ax": 0.18404549999999986
+              },
+              "eligible": true,
+              "positive_flag": true,
+              "negative_flag": false
+            },
+            {
+              "start": 1945,
+              "matched_n": 88,
+              "series_n": {
+                "rh": 3,
+                "ac": 68,
+                "ai": 11,
+                "ax": 1,
+                "am": 5
+              },
+              "series_medians": {
+                "ac": 1.005834000000001,
+                "ai": 0.22458549999999988,
+                "am": 1.7070819999999998
+              },
+              "eligible": true,
+              "positive_flag": true,
+              "negative_flag": false
+            }
+          ]
+        },
+        {
+          "start": 1950,
+          "duration": 20,
+          "amplitude_mag": 1.0,
+          "windows": [
+            {
+              "start": 1950,
+              "matched_n": 37,
+              "series_n": {
+                "ac": 27,
+                "ax": 2,
+                "ai": 4,
+                "rh": 2,
+                "am": 2
+              },
+              "series_medians": {
+                "ac": 1.318601499999998
+              },
+              "eligible": false,
+              "positive_flag": false,
+              "negative_flag": false
+            },
+            {
+              "start": 1955,
+              "matched_n": 0,
+              "series_n": {},
+              "series_medians": {},
+              "eligible": false,
+              "positive_flag": false,
+              "negative_flag": false
+            },
+            {
+              "start": 1960,
+              "matched_n": 1,
+              "series_n": {
+                "dnb": 1
+              },
+              "series_medians": {},
+              "eligible": false,
+              "positive_flag": false,
+              "negative_flag": false
+            },
+            {
+              "start": 1965,
+              "matched_n": 16,
+              "series_n": {
+                "dnb": 8,
+                "dnr": 8
+              },
+              "series_medians": {
+                "dnb": 0.8770725000000006,
+                "dnr": 1.0670105000000003
+              },
+              "eligible": true,
+              "positive_flag": true,
+              "negative_flag": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "J075445.9+164141",
+      "ra_deg": 118.69125,
+      "dec_deg": 16.69472222222222,
+      "starts": [
+        1930,
+        1935
+      ],
+      "unique_match": true,
+      "source": {
+        "ref_text": "APASS_J075445.9+164141",
+        "ref_number": "407544591164141",
+        "gsc_bin_index": "108750215",
+        "ra_deg": "118.691182",
+        "dec_deg": "16.694626",
+        "pos_epoch": "2000.0",
+        "stdmag": "13.13",
+        "color": "1.01",
+        "pm_ra_masyr": "-1.7",
+        "u_pm_ra_masyr": "1.1",
+        "pm_dec_masyr": "-1",
+        "u_pm_dec_masyr": "1.1",
+        "class": "0",
+        "v_flag": "0",
+        "mag_flag": "0",
+        "num_matches": "854",
+        "dra_asec": "0.2344814846706583",
+        "ddec_asec": "0.34639999999939164"
+      },
+      "census": {
+        "rows": 3288,
+        "detections": 854,
+        "clean_detections": 619,
+        "clean_span_years": 97.78735027742346,
+        "clean_median_mag": 13.385385,
+        "p90_minus_p10_mag": 0.6535807999999967,
+        "clean_meteor_series_detections": 6,
+        "access_gate": true,
+        "coverage_verdict": "MEASURED_KNOWN_VARIABLE",
+        "note": "No quiet/stable classification can be inferred from insufficient coverage."
+      },
+      "accounting": {
+        "clean": 619,
+        "joined": 608,
+        "excluded": {
+          "no_exposure": 11
+        }
+      },
+      "joined_span_years": 97.78735027742346,
+      "coverage_pass": true,
+      "catalogue_rejections": [],
+      "windows": [
+        {
+          "start": 1880,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "matched_n": 3,
+          "series_n": {
+            "i": 3
+          },
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "matched_n": 3,
+          "series_n": {
+            "i": 3
+          },
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "matched_n": 8,
+          "series_n": {
+            "i": 8
+          },
+          "series_medians": {
+            "i": -0.3915859999999993
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "matched_n": 7,
+          "series_n": {
+            "i": 4,
+            "ac": 3
+          },
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "matched_n": 6,
+          "series_n": {
+            "ma": 1,
+            "ac": 5
+          },
+          "series_medians": {
+            "ac": -0.4020849999999996
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "matched_n": 3,
+          "series_n": {
+            "ac": 3
+          },
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "matched_n": 4,
+          "series_n": {
+            "i": 4
+          },
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "matched_n": 9,
+          "series_n": {
+            "rh": 6,
+            "ma": 2,
+            "ac": 1
+          },
+          "series_medians": {
+            "rh": 0.685875499999999
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "matched_n": 46,
+          "series_n": {
+            "rh": 13,
+            "i": 15,
+            "ac": 17,
+            "mc": 1
+          },
+          "series_medians": {
+            "rh": 0.44811200000000007,
+            "i": 0.4677189999999989,
+            "ac": 0.40798749999999906
+          },
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "matched_n": 40,
+          "series_n": {
+            "rh": 10,
+            "ac": 23,
+            "ma": 1,
+            "mc": 5,
+            "i": 1
+          },
+          "series_medians": {
+            "rh": -0.49593674999999937,
+            "ac": 0.0007900000000002905,
+            "mc": 0.12251999999999974
+          },
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "matched_n": 35,
+          "series_n": {
+            "ac": 24,
+            "rh": 8,
+            "mc": 3
+          },
+          "series_medians": {
+            "ac": -0.034337499999999466,
+            "rh": -0.20399499999999904
+          },
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "matched_n": 6,
+          "series_n": {
+            "ac": 4,
+            "rh": 2
+          },
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1955,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1960,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1965,
+          "matched_n": 8,
+          "series_n": {
+            "dnb": 8
+          },
+          "series_medians": {
+            "dnb": -0.06875874999999976
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1970,
+          "matched_n": 20,
+          "series_n": {
+            "dnb": 20
+          },
+          "series_medians": {
+            "dnb": -0.10649400000000053
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1975,
+          "matched_n": 54,
+          "series_n": {
+            "dnb": 54
+          },
+          "series_medians": {
+            "dnb": -0.11091099999999976
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1980,
+          "matched_n": 47,
+          "series_n": {
+            "dnb": 47
+          },
+          "series_medians": {
+            "dnb": 0.06017100000000042
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1985,
+          "matched_n": 53,
+          "series_n": {
+            "dnb": 53
+          },
+          "series_medians": {
+            "dnb": 0.13390500000000038
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        }
+      ],
+      "eligible_event_windows": 1,
+      "recovered_event_diagnostic": false,
+      "recovered_by_full_selection": false,
+      "injections": [
+        {
+          "start": 1950,
+          "duration": 5,
+          "amplitude_mag": 1.0,
+          "windows": [
+            {
+              "start": 1950,
+              "matched_n": 6,
+              "series_n": {
+                "ac": 4,
+                "rh": 2
+              },
+              "series_medians": {},
+              "eligible": false,
+              "positive_flag": false,
+              "negative_flag": false
+            }
+          ]
+        },
+        {
+          "start": 1930,
+          "duration": 20,
+          "amplitude_mag": 1.0,
+          "windows": [
+            {
+              "start": 1930,
+              "matched_n": 9,
+              "series_n": {
+                "rh": 6,
+                "ma": 2,
+                "ac": 1
+              },
+              "series_medians": {
+                "rh": 0.685875499999999
+              },
+              "eligible": false,
+              "positive_flag": false,
+              "negative_flag": false
+            },
+            {
+              "start": 1935,
+              "matched_n": 46,
+              "series_n": {
+                "rh": 13,
+                "i": 15,
+                "ac": 17,
+                "mc": 1
+              },
+              "series_medians": {
+                "rh": 0.4648690000000002,
+                "i": 1.4658259999999999,
+                "ac": 0.40798749999999906
+              },
+              "eligible": true,
+              "positive_flag": false,
+              "negative_flag": false
+            },
+            {
+              "start": 1940,
+              "matched_n": 40,
+              "series_n": {
+                "rh": 10,
+                "ac": 23,
+                "ma": 1,
+                "mc": 5,
+                "i": 1
+              },
+              "series_medians": {
+                "rh": -0.49593674999999937,
+                "ac": 0.0007900000000002905,
+                "mc": 1.1225199999999997
+              },
+              "eligible": true,
+              "positive_flag": false,
+              "negative_flag": false
+            },
+            {
+              "start": 1945,
+              "matched_n": 35,
+              "series_n": {
+                "ac": 24,
+                "rh": 8,
+                "mc": 3
+              },
+              "series_medians": {
+                "ac": -0.034337499999999466,
+                "rh": -0.20399499999999904
+              },
+              "eligible": true,
+              "positive_flag": false,
+              "negative_flag": false
+            }
+          ]
+        },
+        {
+          "start": 1950,
+          "duration": 20,
+          "amplitude_mag": 1.0,
+          "windows": [
+            {
+              "start": 1950,
+              "matched_n": 6,
+              "series_n": {
+                "ac": 4,
+                "rh": 2
+              },
+              "series_medians": {},
+              "eligible": false,
+              "positive_flag": false,
+              "negative_flag": false
+            },
+            {
+              "start": 1955,
+              "matched_n": 0,
+              "series_n": {},
+              "series_medians": {},
+              "eligible": false,
+              "positive_flag": false,
+              "negative_flag": false
+            },
+            {
+              "start": 1960,
+              "matched_n": 0,
+              "series_n": {},
+              "series_medians": {},
+              "eligible": false,
+              "positive_flag": false,
+              "negative_flag": false
+            },
+            {
+              "start": 1965,
+              "matched_n": 8,
+              "series_n": {
+                "dnb": 8
+              },
+              "series_medians": {
+                "dnb": 0.9312412500000002
+              },
+              "eligible": false,
+              "positive_flag": false,
+              "negative_flag": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "J073606.5+211411",
+      "ra_deg": 114.02708333333334,
+      "dec_deg": 21.23638888888889,
+      "starts": [
+        1930,
+        1935,
+        1940,
+        1945,
+        1950
+      ],
+      "unique_match": true,
+      "source": {
+        "ref_text": "APASS_J073606.5+211411",
+        "ref_number": "407360651211411",
+        "gsc_bin_index": "115088787",
+        "ra_deg": "114.02712",
+        "dec_deg": "21.236351",
+        "pos_epoch": "2000.0",
+        "stdmag": "12.02",
+        "color": "0.84",
+        "pm_ra_masyr": "-2.6",
+        "u_pm_ra_masyr": "1",
+        "pm_dec_masyr": "-0.9",
+        "u_pm_dec_masyr": "1",
+        "class": "0",
+        "v_flag": "1",
+        "mag_flag": "0",
+        "num_matches": "1301",
+        "dra_asec": "-0.12303641629917356",
+        "ddec_asec": "0.13640000000521013"
+      },
+      "census": {
+        "rows": 3017,
+        "detections": 1301,
+        "clean_detections": 837,
+        "clean_span_years": 98.79222357534263,
+        "clean_median_mag": 12.657515,
+        "p90_minus_p10_mag": 1.2911493999999966,
+        "clean_meteor_series_detections": 10,
+        "access_gate": true,
+        "coverage_verdict": "MEASURED_KNOWN_VARIABLE",
+        "note": "No quiet/stable classification can be inferred from insufficient coverage."
+      },
+      "accounting": {
+        "clean": 837,
+        "joined": 834,
+        "excluded": {
+          "no_exposure": 3
+        }
+      },
+      "joined_span_years": 98.79222357534263,
+      "coverage_pass": true,
+      "catalogue_rejections": [
+        "v_flag"
+      ],
+      "windows": [
+        {
+          "start": 1880,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1885,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1890,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1895,
+          "matched_n": 1,
+          "series_n": {
+            "ac": 1
+          },
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1900,
+          "matched_n": 41,
+          "series_n": {
+            "ac": 41
+          },
+          "series_medians": {
+            "ac": -0.5911340000000003
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1905,
+          "matched_n": 31,
+          "series_n": {
+            "ac": 30,
+            "ma": 1
+          },
+          "series_medians": {
+            "ac": -0.43884399999999957
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1910,
+          "matched_n": 41,
+          "series_n": {
+            "ac": 38,
+            "ma": 3
+          },
+          "series_medians": {
+            "ac": -0.1679997499999999
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1915,
+          "matched_n": 14,
+          "series_n": {
+            "ac": 14
+          },
+          "series_medians": {
+            "ac": 0.0024780000000017566
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1920,
+          "matched_n": 6,
+          "series_n": {
+            "ac": 6
+          },
+          "series_medians": {
+            "ac": -0.10288524999999993
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1925,
+          "matched_n": 23,
+          "series_n": {
+            "ac": 4,
+            "rh": 19
+          },
+          "series_medians": {
+            "rh": -0.024620500000001044
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1930,
+          "matched_n": 34,
+          "series_n": {
+            "ac": 13,
+            "rh": 16,
+            "ma": 4,
+            "rl": 1
+          },
+          "series_medians": {
+            "ac": 0.1688280000000013,
+            "rh": 0.19933649999999936
+          },
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1935,
+          "matched_n": 57,
+          "series_n": {
+            "rh": 19,
+            "ac": 38
+          },
+          "series_medians": {
+            "rh": 0.29234699999999947,
+            "ac": 0.5384157499999995
+          },
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1940,
+          "matched_n": 50,
+          "series_n": {
+            "rh": 16,
+            "ac": 30,
+            "rl": 4
+          },
+          "series_medians": {
+            "rh": -0.08483800000000041,
+            "ac": 0.3157022500000002
+          },
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1945,
+          "matched_n": 56,
+          "series_n": {
+            "ac": 37,
+            "rh": 12,
+            "rl": 6,
+            "dnb": 1
+          },
+          "series_medians": {
+            "ac": 0.11981950000000019,
+            "rh": -0.14604650000000063,
+            "rl": -0.43323850000000075
+          },
+          "eligible": true,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1950,
+          "matched_n": 9,
+          "series_n": {
+            "ac": 6,
+            "rh": 3
+          },
+          "series_medians": {
+            "ac": 0.1500760000000012
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1955,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1960,
+          "matched_n": 0,
+          "series_n": {},
+          "series_medians": {},
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1965,
+          "matched_n": 6,
+          "series_n": {
+            "dnb": 6
+          },
+          "series_medians": {
+            "dnb": 0.00693875000000066
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1970,
+          "matched_n": 16,
+          "series_n": {
+            "dnb": 16
+          },
+          "series_medians": {
+            "dnb": -0.05728225000000098
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1975,
+          "matched_n": 51,
+          "series_n": {
+            "dnb": 51
+          },
+          "series_medians": {
+            "dnb": -0.15168650000000028
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1980,
+          "matched_n": 64,
+          "series_n": {
+            "dnb": 62,
+            "dnr": 2
+          },
+          "series_medians": {
+            "dnb": 0.04905375000000145
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        },
+        {
+          "start": 1985,
+          "matched_n": 79,
+          "series_n": {
+            "dnb": 79
+          },
+          "series_medians": {
+            "dnb": 0.056303500000000284
+          },
+          "eligible": false,
+          "positive_flag": false,
+          "negative_flag": false
+        }
+      ],
+      "eligible_event_windows": 4,
+      "recovered_event_diagnostic": false,
+      "recovered_by_full_selection": false,
+      "injections": [
+        {
+          "start": 1950,
+          "duration": 5,
+          "amplitude_mag": 1.0,
+          "windows": [
+            {
+              "start": 1950,
+              "matched_n": 9,
+              "series_n": {
+                "ac": 6,
+                "rh": 3
+              },
+              "series_medians": {
+                "ac": 1.1500760000000012
+              },
+              "eligible": false,
+              "positive_flag": false,
+              "negative_flag": false
+            }
+          ]
+        },
+        {
+          "start": 1930,
+          "duration": 20,
+          "amplitude_mag": 1.0,
+          "windows": [
+            {
+              "start": 1930,
+              "matched_n": 34,
+              "series_n": {
+                "ac": 13,
+                "rh": 16,
+                "ma": 4,
+                "rl": 1
+              },
+              "series_medians": {
+                "ac": 1.0217565000000004,
+                "rh": 0.2313749999999999
+              },
+              "eligible": true,
+              "positive_flag": false,
+              "negative_flag": false
+            },
+            {
+              "start": 1935,
+              "matched_n": 57,
+              "series_n": {
+                "rh": 19,
+                "ac": 38
+              },
+              "series_medians": {
+                "rh": 0.38908250000000066,
+                "ac": 1.0314465000000013
+              },
+              "eligible": true,
+              "positive_flag": false,
+              "negative_flag": false
+            },
+            {
+              "start": 1940,
+              "matched_n": 50,
+              "series_n": {
+                "rh": 16,
+                "ac": 30,
+                "rl": 4
+              },
+              "series_medians": {
+                "rh": -0.0058784999999987875,
+                "ac": 1.1072302500000006
+              },
+              "eligible": true,
+              "positive_flag": false,
+              "negative_flag": false
+            },
+            {
+              "start": 1945,
+              "matched_n": 56,
+              "series_n": {
+                "ac": 37,
+                "rh": 12,
+                "rl": 6,
+                "dnb": 1
+              },
+              "series_medians": {
+                "ac": 0.9504660000000005,
+                "rh": -0.11637900000000023,
+                "rl": -0.43323850000000075
+              },
+              "eligible": true,
+              "positive_flag": false,
+              "negative_flag": false
+            }
+          ]
+        },
+        {
+          "start": 1950,
+          "duration": 20,
+          "amplitude_mag": 1.0,
+          "windows": [
+            {
+              "start": 1950,
+              "matched_n": 9,
+              "series_n": {
+                "ac": 6,
+                "rh": 3
+              },
+              "series_medians": {
+                "ac": 1.1500760000000012
+              },
+              "eligible": false,
+              "positive_flag": false,
+              "negative_flag": false
+            },
+            {
+              "start": 1955,
+              "matched_n": 0,
+              "series_n": {},
+              "series_medians": {},
+              "eligible": false,
+              "positive_flag": false,
+              "negative_flag": false
+            },
+            {
+              "start": 1960,
+              "matched_n": 0,
+              "series_n": {},
+              "series_medians": {},
+              "eligible": false,
+              "positive_flag": false,
+              "negative_flag": false
+            },
+            {
+              "start": 1965,
+              "matched_n": 6,
+              "series_n": {
+                "dnb": 6
+              },
+              "series_medians": {
+                "dnb": 1.0069387500000007
+              },
+              "eligible": false,
+              "positive_flag": false,
+              "negative_flag": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "recovered_by_full_selection": 0,
+  "gate": "STOP_REAL_EVENT_TRANSFER",
+  "discovery_claim": false,
+  "population_completeness_claim": false
+}

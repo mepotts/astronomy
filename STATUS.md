@@ -1,6 +1,6 @@
 # STATUS — live research dashboard
 
-*Current portfolio snapshot: 2026-09-07. Per-project `STATUS.md`, milestone documents,
+*Current portfolio snapshot: 2026-09-08. Per-project `STATUS.md`, milestone documents,
 operating guides, and committed artifacts are the detailed record. The older wave tables
 below are retained as a dated audit trail, not as the current queue.*
 
@@ -13,6 +13,13 @@ repo's own tooling. Every externally-sourced number carries its source or the ma
 UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 
 ## Current portfolio snapshot
+
+**September 8 follow-through:** [execution and decisions](DISCOVERY/EXECUTION-2026-09-08.md).
+ITF publisher/watch healthy, 20 ready / 6 held unchanged. DASCH's unchanged
+detector recovers 0/3 published long-term events; a separate bracketed-block
+development design fails coverage/recovery gates too. Its reserved real-event
+holdout was not queried. Do not scale either detector. Dyson E remains next on
+September 9; no new discovery or scientific submission.
 
 **September 7 experiments completed:** [execution and decisions](DISCOVERY/EXECUTION-2026-09-07.md).
 DASCH matched-colour held-outs passed a limited exploratory gate; an actual
@@ -48,7 +55,7 @@ promotion to a new recovery experiment. No pixels measured; 21 offline tests.
 | [`dyson-revet/`](dyson-revet/) | **M7 closed; E WAIT_RELEASE.** D control 7/7 and outcome map unchanged; 39 exclusive MAST observations still release September 9. New bounded release guard fails closed. | Scheduled September 9 follow-up must execute the frozen experiment after public access; M7 validity checks and human publication gates remain. |
 | [`gaia-dr4/`](gaia-dr4/) | **M9 ready; September 6 exploratory label/power variant adopted and rehearsed.** Original outputs untouched. | Public date/schema and actual release-day execution; separate scientific publication gates. |
 | [`chime-frb-periodicity/`](chime-frb-periodicity/) | **PARKED.** Targeted recheck found no authenticated time-resolved observing/sensitivity product; the published periodic control remains recovered. No unknown scan. | Restart only with the exact citable time series and complete M1 protocol. |
-| [`dasch-pilot/`](dasch-pilot/) | **Matched-colour validation and bounded unknown screen completed September 7.** Four usable hold-outs, 16/16 eligible signed injections, zero leads among 42 screened sources. Original stops retained. | New broader campaign needs a fresh sample/completeness/validation design; current fixed sample closed. |
+| [`dasch-pilot/`](dasch-pilot/) | **September 8 real-event transfer STOP: 0/3 published events recovered.** Separate bracketed-block development also STOP; no holdout query. September 7's 42-source null and injection results retained with narrower interpretation. | Do not scale either detector; materially new ensemble/series-overlap calibration is deferred behind Dyson E. |
 | [`spherex-pilot/`](spherex-pilot/) | **Broad scan killed; narrow test deferred by September 6 prioritization.** Zero private coordinates sent. | Reconsider only on improved scientific leverage; any exact six-row coordinate payload still requires approval. |
 | [`pta-mpta/`](pta-mpta/) | **Full paper selected as primary publication unit; overlapping notes held.** Review bundle and draft audits retained. | Actual author consent, arXiv/endorsement and exact archive/DOI/submission approval; initial venue direction OJA. |
 | [`erosita-dr2/`](erosita-dr2/) | **Corrected census package retained; standalone publication deferred by choice.** Not 107 confirmed discoveries. | Reconsider with independent follow-up or a distinct method contribution; no additional formatting campaign now. |

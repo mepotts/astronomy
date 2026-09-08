@@ -22,7 +22,13 @@ headed into the formal record.
 
 ## Research
 
-**Current state (2026-09-07):** see the
+**Current state (2026-09-08):** [latest execution](DISCOVERY/EXECUTION-2026-09-08.md).
+DASCH's unchanged detector recovered 0/3 published long-term events; a separately
+specified bracketed-block method also failed its coverage/recovery gates. Neither
+is ready to scale. ITF's September 8 publisher/watch are healthy (20 ready / 6 held
+unchanged). Dyson E's September 9 experiment is next; no new discovery or submission.
+
+**September 7:** see the
 [completed experiments and actual discovery screen](DISCOVERY/EXECUTION-2026-09-07.md).
 DASCH passed a limited matched-colour holdout gate, then screened 42 sources:
 361 eligible windows, zero leads. CCOR measured known-star pixels but failed
