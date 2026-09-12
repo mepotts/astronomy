@@ -95,6 +95,15 @@ unknown search follows from transport success alone. The bounded
 coverage unknown; it does not warrant abandoning the control experiment or
 claiming novelty.
 
+[C1 has now executed](XMM-C1-RESULT-2026-09-12.md): all four fixed known-control
+files retained, gzip/header checks and parent replay passed, 247141440 expanded
+bytes and 68190208-byte worker peak. No scientific arrays were interpreted.
+The actual headers confirm selected camera/exposure modes and shared local
+satellite TT references. Per-CCD exposure, GTI and bad-pixel metadata are present,
+but their values and aperture coverage remain unvalidated. Next is a bounded
+ancillary-metadata inspection followed by the separately frozen counts test;
+neither acquisition success nor this continuation authorizes an unknown scan.
+
 [ITF](ITF-NOTIFICATIONS-2026-09-12.md) still has its daily archive publisher and
 existing-queue watch, not a fresh automated discovery search. No dedicated
 SMS/email delivery was configured or tested. Existing daily/weekly follow-ups

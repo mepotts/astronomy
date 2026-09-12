@@ -1,6 +1,7 @@
 """Non-coordinate derivative of a retained headers-only report; no FITS arrays."""
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -38,7 +39,7 @@ def summarize(report):
             "data_bytes": item["data_bytes"], "rows": header.get("NAXIS2"),
             "metadata": metadata, "columns": columns,
             "data_subspace_keys_present": sorted({key for key in header
-                if key.startswith(("DSTYP", "DSUNI", "DSVAL", "DSREF"))}),
+                if re.match(r"^\d*(?:DSTYP|DSUNI|DSVAL|DSREF)", key)}),
             "wcs_keys_present": sorted({key for key in header
                 if key.startswith(("TCTYP", "TCRPX", "TCRVL", "TCDLT", "TCUNI"))}),
         })

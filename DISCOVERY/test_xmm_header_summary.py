@@ -13,6 +13,7 @@ class SummaryTests(unittest.TestCase):
         for key, value in (("OBS_ID", "0884250101"), ("TIMESYS", "TT"),
                            ("TIMESYS", "UTC"), ("RA_PNT", 123.456789),
                            ("TCRVL1", 123.456789), ("CONTACT", "secret@example.test"),
+                           ("2DSREF2", ":STDGTI02"),
                            ("TFIELDS", 1), ("TTYPE1", "TIME"), ("TFORM1", "D"),
                            ("TUNIT1", "s"), ("NAXIS2", 9)):
             header.append((key, value))
@@ -26,6 +27,7 @@ class SummaryTests(unittest.TestCase):
         self.assertNotIn("secret@example.test", text)
         self.assertEqual(result["hdus"][0]["metadata"]["TIMESYS"], ["TT", "UTC"])
         self.assertEqual(result["hdus"][0]["wcs_keys_present"], ["TCRVL1"])
+        self.assertEqual(result["hdus"][0]["data_subspace_keys_present"], ["2DSREF2"])
         self.assertEqual(result["hdus"][0]["columns"],
                          [{"name": "TIME", "format": "D", "unit": "s"}])
 

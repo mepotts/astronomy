@@ -1,0 +1,109 @@
+{
+  "plan": [
+    {
+      "slot": 1,
+      "method": "GET",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101PNS003PIEVLI0000.FTZ",
+      "filename": "P0884250101PNS003PIEVLI0000.FTZ",
+      "expected_bytes": 109245605,
+      "head_headers": {
+        "Content-Length": [
+          "109245605"
+        ],
+        "Date": [
+          "Sat, 12 Sep 2026 23:29:34 GMT"
+        ],
+        "ETag": [
+          "\"682f4a5-627d587f8a2c0\""
+        ],
+        "Last-Modified": [
+          "Tue, 26 Nov 2024 19:05:23 GMT"
+        ]
+      }
+    },
+    {
+      "slot": 2,
+      "method": "GET",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101M1S001MIEVLI0000.FTZ",
+      "filename": "P0884250101M1S001MIEVLI0000.FTZ",
+      "expected_bytes": 7643540,
+      "head_headers": {
+        "Content-Length": [
+          "7643540"
+        ],
+        "Date": [
+          "Sat, 12 Sep 2026 23:29:35 GMT"
+        ],
+        "ETag": [
+          "\"74a194-627d587cadc00\""
+        ],
+        "Last-Modified": [
+          "Tue, 26 Nov 2024 19:05:20 GMT"
+        ]
+      }
+    },
+    {
+      "slot": 3,
+      "method": "GET",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101M2S002MIEVLI0000.FTZ",
+      "filename": "P0884250101M2S002MIEVLI0000.FTZ",
+      "expected_bytes": 9972723,
+      "head_headers": {
+        "Content-Length": [
+          "9972723"
+        ],
+        "Date": [
+          "Sat, 12 Sep 2026 23:29:35 GMT"
+        ],
+        "ETag": [
+          "\"982bf3-627d587cadc00\""
+        ],
+        "Last-Modified": [
+          "Tue, 26 Nov 2024 19:05:20 GMT"
+        ]
+      }
+    },
+    {
+      "slot": 4,
+      "method": "GET",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101EPX000OBSMLI0000.FTZ",
+      "filename": "P0884250101EPX000OBSMLI0000.FTZ",
+      "expected_bytes": 120581,
+      "head_headers": {
+        "Content-Length": [
+          "120581"
+        ],
+        "Date": [
+          "Sat, 12 Sep 2026 23:29:35 GMT"
+        ],
+        "ETag": [
+          "\"1d705-627d588fc0900\""
+        ],
+        "Last-Modified": [
+          "Tue, 26 Nov 2024 19:05:40 GMT"
+        ]
+      }
+    }
+  ],
+  "source_sha256": "13184df5d2b9d6e4bae83446316974ba90f46e3412e51c10c40cfbe2f5e2cca5",
+  "tests_sha256": "d751843243552cfdf3d65558c2ff96cf34c6885832378a02789f6dc23fbb541c",
+  "protocol_sha256": "b8bcf2201d311f4ebb3281d48f569ca846be154cb49359177022be01e97385f3",
+  "c0d_outcome_sha256": "7895f2fd39ce85ab745fbff40a291abbf7376086e9f58a2245352b2c348453a3",
+  "c0d_source_sha256": "de1d481b185067722546edca1a51dadcd6a5a7fd7d328e60f0ad5d6980272af3",
+  "structure_sha256": "96d9497dbdd45d2561fc0bbb27a0c11d6fbad91cd42c0b14191378dd9fd7fa63",
+  "structure_tests_sha256": "4b1bb863a29543ecb6957a417b3115155fa74b625c300d86524a4c8ac44af1aa",
+  "structure_review_tests_sha256": "a062ddea63b2c8364395ed61ead99e2cc12031bcec3065aa24ca61dbee1d6b10",
+  "helper_sha256": "11ad0bef9fd2efae234e204358c6b6730e723ed3dc24c6fe0c345f2ddcfb53dd",
+  "runtime": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "executable": "C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Scripts\\python.exe"
+  },
+  "caps": {
+    "seconds": 300,
+    "expanded_file": 1073741824,
+    "expanded_total": 2147483648,
+    "peak_memory": 1000000000,
+    "header_json": 2097152,
+    "all_json": 10485760
+  }
+}
