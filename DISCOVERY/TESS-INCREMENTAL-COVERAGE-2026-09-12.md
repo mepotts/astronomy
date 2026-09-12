@@ -3,6 +3,28 @@
 Metadata/documentation check only, September 12. No unknown light curves were
 downloaded, searched or selected from their fluxes for this note.
 
+## Manifest check executed
+
+The separately tested [metadata-only reader](../tess-short-eclipses/scripts/sector106_manifest.py)
+retrieved the listed manifest under a 10-MB / 45-second worker bound, treating
+download commands only as text. [Recorded result](../tess-short-eclipses/out/sector106-manifest.json):
+**12,996 unique LC products and 12,996 unique TIC IDs**, no duplicate entries,
+2,560,222 bytes. These are all listed sector targets, **not 12,996 white dwarfs**.
+Every parsed filename/URI matched Sector 106 LC syntax and the MAST endpoint.
+No per-target FITS was fetched, and rights, cadence headers, quality and WD
+membership remain unverified. The HTTP Last-Modified header is September 10,
+2026 at 18:08:16 GMT; this is the manifest modification time, not independent
+proof of each product's first publication time.
+
+Manifest SHA-256:
+`42daeac2b7939922f782156d68666d6fc614384ce40d1559632eb89dda575951`.
+The complete response is retained under ignored `data/sector106-manifest/`.
+Two offline parser tests and Ruff pass. An initial one-line shell invocation
+failed local quoting before any network request; the tested standalone reader
+then completed once. No downloaded commands were executed.
+
+## Source evidence and inference
+
 The [MAST bulk-product index](https://archive.stsci.edu/tess/bulk_downloads/bulk_downloads_ffi-tp-lc-dv.html)
 lists `tesscurl_sector_106_lc.sh` under Lightcurve, plus Sector 106 pixel and
 validation products. It lists Sector 107 calibrated full-frame images, which is
@@ -24,10 +46,9 @@ are different identifiers.
 
 ## Bounded next coverage test, conditional on method validation
 
-1. Obtain the published Sector 106 LC manifest as data, never execute its commands.
-   Parse only documented filenames/MAST URIs, preserve bytes and hash, account for
-   duplicates, and verify a bounded metadata sample's PUBLIC rights, sector,
-   cadence, product type and observation dates.
+1. The manifest parsing, preservation and duplicate accounting are now complete.
+   Next verify a bounded metadata sample's PUBLIC rights, sector, cadence, product
+   type and observation dates; inspect the applicable quality documentation.
 2. Cross-match that public target universe with an explicitly sourced WD catalogue
    using exact identifiers and a declared population rule. Do not transfer the
    June paper's approximate sample size into an assertion about this sector.

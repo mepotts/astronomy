@@ -22,6 +22,14 @@ pixel signals for all three, with exact replay. **Source confusion remains
 unresolved**: 26 nearby catalog competitors in one field and unavailable catalogs
 in two others. Calibrated PRF/negative-control work is still needed; no unknown scan.
 
+The [next-localization proposal](NEXT-LOCALIZATION-PROPOSAL.md) identifies official
+PRF products and an official Gaia mirror. The separately frozen metadata-only
+[M1c attempt](M1c-RESULT-2026-09-12.md) stopped after one mirror response triggered
+a Windows/Astropy binary null-sentinel parsing error. Its failure reproduces
+exactly; numerical catalog parity was not established, and neither missing field
+was queried. An offline decoder would be a new stage, not a retry of this run.
+No PRF files or unknown-source pixels have been acquired for that proposal.
+
 The portable agent kit named by global instructions is absent at its configured
 path on this host. This project uses the scoped AGENTS.md, a prospective protocol,
 small tested functions, explicit stop rules and retained provenance instead.

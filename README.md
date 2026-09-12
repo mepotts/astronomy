@@ -33,7 +33,9 @@ no validated contrast or discovery. Portfolio follow-up is now weekly; ITF stays
 eclipse periods and near-target pixel signals; source confusion remains unresolved,
 and no unknown-source scan has begun.
 [VLASS](vlass-pilot/README.md) recovered a known radio source and established a
-12-source same-field comparison ensemble in three epochs. Neither is a discovery.
+12-source same-field comparison ensemble in three epochs. Its subsequent
+common-beam validation stopped on control recovery and empirical noise gates;
+neither route is discovery-ready.
 [ITF notification audit](DISCOVERY/ITF-NOTIFICATIONS-2026-09-12.md): daily archive
 and existing-queue monitoring are automated, but a dedicated discovery text/email
 sender is not configured or delivery-verified.

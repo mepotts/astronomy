@@ -15,8 +15,13 @@ but common-beam, morphology and empirical false-positive validation remain; this
 is not a discovery or authorization for an unknown search. Earlier results remain
 unchanged. New requests used a tested tree-aware timeout driver.
 That cleanup test succeeds in the owner execution context used for acquisition;
-restricted-token cleanup is not guaranteed. The [next validation proposal](NEXT-VALIDATION-PROPOSAL.md)
-is unexecuted and uses only retained data.
+restricted-token cleanup is not guaranteed. The subsequent
+[common-beam M2 result](m2-results-2026-09-12.md) is **STOP_M2**: known-source
+QL2.1 recovery and QL3.1 held-out empirical-noise gates fail. All 200 planned
+positions are accounted for and exact replay passes; successful software
+verification does not change the scientific STOP. The earlier
+[validation proposal](NEXT-VALIDATION-PROPOSAL.md) remains a historical design;
+the executed specification is [m2-protocol.md](m2-protocol.md).
 
 Read [PROTOCOL.md](PROTOCOL.md). This is not a discovery search or a replication
 of the published fading rate. Raw FITS inputs are ignored; the acquisition
