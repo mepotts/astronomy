@@ -155,7 +155,7 @@ jobs:
       # public known-control response bundles. Bulk CHIME and private SPHEREx inputs
       # remain outside Git; CI sends no archive or candidate-bearing request.
       - name: Install test-only dependencies
-        run: python -m pip install "numpy>=2,<3" "h5py>=3.16,<4" "astropy>=8,<9" "scipy>=1.16,<2" "ruff==0.16.5"
+        run: python -m pip install "numpy>=2,<3" "h5py>=3.16,<4" "astropy>=8,<9" "scipy>=1.16,<2" "requests>=2.32,<3" "ruff==0.16.5"
 
       - name: Check pilot gates and privacy contracts
         run: |

@@ -1,0 +1,150 @@
+{
+  "tic": 53206761,
+  "status": "METADATA_DIAGNOSTIC_VALIDATION_INCOMPLETE",
+  "manifest_sha256": "5027f921c252ee0c1251f0b03da71f473049b3836bb08eef0cbad0874adff6ac",
+  "original_result_sha256": "1b3c15b0b64f8683c9203b85d7395c2a9a19f493ccad043e9e9413cd1895b617",
+  "fixed_centroid": [
+    5.3429256502053875,
+    6.00122408500549
+  ],
+  "catalog": {
+    "status": "CATALOG_CONSISTENT_DIAGNOSTIC",
+    "clean": true,
+    "provisional_target_id": "3788606324138190848",
+    "target_matches": [
+      {
+        "source_id": "3788606324138190848",
+        "x": 5.337443074821613,
+        "y": 5.884634378930385,
+        "g_mag": 17.69561767578125,
+        "proper_motion_known": true,
+        "target_separation_arcsec": 1.12432045872666,
+        "centroid_separation_pixels": 0.11671854263791259
+      }
+    ],
+    "competitors_within_one_pixel": [],
+    "rows_in_stamp": [
+      {
+        "source_id": "3788512418972607488",
+        "x": 0.2503073545155381,
+        "y": 9.793609189034209,
+        "g_mag": 20.56932830810547,
+        "proper_motion_known": true,
+        "target_separation_arcsec": 133.36502945789613,
+        "centroid_separation_pixels": 6.349562652880425
+      },
+      {
+        "source_id": "3788605911820417536",
+        "x": 0.17028991811239003,
+        "y": 2.8225576721711194,
+        "g_mag": 20.418779373168945,
+        "proper_motion_known": true,
+        "target_separation_arcsec": 122.61271417815114,
+        "centroid_separation_pixels": 6.071250330945561
+      },
+      {
+        "source_id": "3788605946180156032",
+        "x": 1.817492655342547,
+        "y": 2.1339797957237328,
+        "g_mag": 20.336498260498047,
+        "proper_motion_known": true,
+        "target_separation_arcsec": 105.27632110367038,
+        "centroid_separation_pixels": 5.232996865492081
+      },
+      {
+        "source_id": "3788605946180221056",
+        "x": 2.097855065739679,
+        "y": 0.01625307506899709,
+        "g_mag": 20.740346908569336,
+        "proper_motion_known": false,
+        "target_separation_arcsec": 137.76102186332562,
+        "centroid_separation_pixels": 6.8081099497544
+      },
+      {
+        "source_id": "3788606014900545408",
+        "x": 3.456878904045859,
+        "y": 3.8047074796446827,
+        "g_mag": 13.164069175720215,
+        "proper_motion_known": true,
+        "target_separation_arcsec": 57.34350977923145,
+        "centroid_separation_pixels": 2.8951437833594222
+      },
+      {
+        "source_id": "3788606182404281728",
+        "x": 0.39504791240096626,
+        "y": 8.530711773725795,
+        "g_mag": 19.11294174194336,
+        "proper_motion_known": true,
+        "target_separation_arcsec": 116.18480574033656,
+        "centroid_separation_pixels": 5.556959787118149
+      },
+      {
+        "source_id": "3788606285483502720",
+        "x": 2.997410288654952,
+        "y": 8.678074152816762,
+        "g_mag": 19.76779556274414,
+        "proper_motion_known": true,
+        "target_separation_arcsec": 76.60465862944534,
+        "centroid_separation_pixels": 3.5590685012809575
+      },
+      {
+        "source_id": "3788606324138190848",
+        "x": 5.337443074821613,
+        "y": 5.884634378930385,
+        "g_mag": 17.69561767578125,
+        "proper_motion_known": true,
+        "target_separation_arcsec": 1.12432045872666,
+        "centroid_separation_pixels": 0.11671854263791259
+      },
+      {
+        "source_id": "3788606392856754944",
+        "x": 6.387947953970448,
+        "y": 8.40074816707085,
+        "g_mag": 20.492019653320312,
+        "proper_motion_known": true,
+        "target_separation_arcsec": 56.85594830724555,
+        "centroid_separation_pixels": 2.617209857038224
+      },
+      {
+        "source_id": "3789356908327617664",
+        "x": 5.146504967531552,
+        "y": 9.835960123129379,
+        "g_mag": 19.643333435058594,
+        "proper_motion_known": true,
+        "target_separation_arcsec": 83.1980522253047,
+        "centroid_separation_pixels": 3.83976321752633
+      },
+      {
+        "source_id": "3789357011406833024",
+        "x": 6.041097319739181,
+        "y": 9.767965312821735,
+        "g_mag": 15.690235137939453,
+        "proper_motion_known": true,
+        "target_separation_arcsec": 82.60381704914204,
+        "centroid_separation_pixels": 3.8308984791390954
+      },
+      {
+        "source_id": "3789357045766571904",
+        "x": 8.235955861536645,
+        "y": 8.19288073219422,
+        "g_mag": 19.201051712036133,
+        "proper_motion_known": true,
+        "target_separation_arcsec": 75.66605713242195,
+        "centroid_separation_pixels": 3.6294603817705364
+      }
+    ],
+    "receipt": {
+      "tic": 53206761,
+      "url": "https://gaia.ari.uni-heidelberg.de/tap/sync",
+      "adql": "SELECT TOP 5001 source_id,ra,dec,ref_epoch,pmra,pmdec,phot_g_mean_mag,ruwe FROM gaiadr3.gaia_source WHERE 1=CONTAINS(POINT('ICRS',ra,dec),CIRCLE('ICRS',166.678141970664,-4.170346519845,0.05)) ORDER BY source_id",
+      "manifest_sha256": "5027f921c252ee0c1251f0b03da71f473049b3836bb08eef0cbad0874adff6ac",
+      "bytes": 5235,
+      "sha256": "6715e3f3980708b2b9495646b7e6e1fac434d2903c52622076ee3704281972f1",
+      "rows": 34
+    },
+    "epoch_jyear": 2023.900289851782,
+    "unresolved_or_uncatalogued_sources_excluded": false
+  },
+  "pixel_recalculation": false,
+  "unknown_search_authorized": false
+}
