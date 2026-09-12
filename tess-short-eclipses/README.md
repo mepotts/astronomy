@@ -19,8 +19,9 @@ crowding corrections and negative flux prevent physical-depth claims. The next
 [M1 pixel/background control](M1-PROTOCOL-2026-09-12.md) and its narrow metadata
 repair are complete: [M1b results](M1b-RESULT-2026-09-12.md) recover near-target
 pixel signals for all three, with exact replay. **Source confusion remains
-unresolved**: 26 nearby catalog competitors in one field and unavailable catalogs
-in two others. Calibrated PRF/negative-control work is still needed; no unknown scan.
+unresolved**. At M1b, one field had 26 nearby catalogue competitors and two
+catalogues were unavailable. Calibrated PRF/negative-control work is still needed;
+no unknown scan.
 
 The [next-localization proposal](NEXT-LOCALIZATION-PROPOSAL.md) identifies official
 PRF products and an official Gaia mirror. The separately frozen metadata-only
@@ -29,6 +30,19 @@ a Windows/Astropy binary null-sentinel parsing error. Its failure reproduces
 exactly; numerical catalog parity was not established, and neither missing field
 was queried. An offline decoder would be a new stage, not a retry of this run.
 No PRF files or unknown-source pixels have been acquired for that proposal.
+
+The [M1d offline attempt](M1d-RESULT-2026-09-12.md) stopped on an overly narrow
+RESOURCE profile. The separately frozen [M1d2 amendment](M1d2-RESULT-2026-09-12.md)
+now establishes exact parity for all 1,290 first-field catalogue rows, including
+all masks, with independent replay. No new catalogue request or pixel measurement
+was needed. The [coordinate audit](PRF-COORDINATE-AUDIT-2026-09-12.md) supports the
+SPOC header-to-PRF mapping without an extra 44-column shift, but does not certify
+absolute astrometry. The [M1e continuation](M1e-RESULT-2026-09-12.md) has now
+retrieved both missing catalogues in exactly two requests, with exact replay.
+All three fields have catalogue data: one passes only the coarse consistency
+diagnostic, while two retain 26 and two potential competitors within one pixel.
+Even the cleaner field has a much brighter star 2.895 pixels away. Catalogue
+availability is resolved; PRF/localization and empirical negatives are not.
 
 The portable agent kit named by global instructions is absent at its configured
 path on this host. This project uses the scoped AGENTS.md, a prospective protocol,
