@@ -1,0 +1,112 @@
+# XMM C0d: exact control sizes and one observation-summary page
+
+Prospective metadata-only protocol, 2026-09-12. **Not executed.** Parent review,
+implementation tests and source/protocol freeze precede any request. C0c's
+partial-index STOP and C0c2's successful bounded listing remain unchanged.
+
+## Fixed inputs and five requests
+
+The retained C0c2 inventory contains 2193 entries from a 319808-byte directory
+index. Bind these existing local inputs before dispatch:
+
+- `XMM-C0c2-2026-09-12-data/inventory.json` SHA-256
+  `6ddb4a357439922dbefaa51e365b53802e6d031d079348706274555f4e063c23`.
+- `XMM-C0c2-2026-09-12-data/index.html` SHA-256
+  `97f9372b999b354ebcbff51a4b42af885433de598795a6a58656ef1e09bac258`.
+
+Require each exact name/URL pair below to occur once in that inventory. No
+filename construction, exposure substitution, alternate extension, directory
+refresh or fallback target. These are four observed FTZ products and one
+observed HTML summary for the published control `0884250101`.
+
+| Order | Method | Exact URL | Retained index display, not exact bytes |
+|---:|---|---|---|
+| 1 | HEAD | `https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101PNS003PIEVLI0000.FTZ` | 104M |
+| 2 | HEAD | `https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101M1S001MIEVLI0000.FTZ` | 7.3M |
+| 3 | HEAD | `https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101M2S002MIEVLI0000.FTZ` | 9.5M |
+| 4 | HEAD | `https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101EPX000OBSMLI0000.FTZ` | 118K |
+| 5 | GET | `https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101OBX000SUMMAR0000.HTM` | 49K |
+
+No product body may be read or stored for the four HEADs. In particular, no
+GET, Range GET, decompression or FITS-header inspection of those FTZ files is
+permitted. Only the fifth, fixed HTML metadata page may supply a response body.
+No summary links, scripts, images, CSS or embedded resources are followed or
+executed. Do not upload or query any coordinates that the summary might contain.
+
+## Hard bounds and failure accounting
+
+At most five sequential requests, one attempt per fixed slot, no redirects or
+retries. A fresh anonymous session for each slot disables environment/netrc
+authentication and proxies, starts with no auth/cookies and requests identity
+content encoding. Do not reuse server-set cookies. Retain only safe headers:
+Content-Type, Content-Length, Content-Encoding, Date, ETag and Last-Modified;
+never Set-Cookie, Authorization, Proxy-Authorization or arbitrary headers.
+
+**60-second total network-worker deadline**, covering all five slots including
+connection, headers and allowed body reading; it is not 60 seconds per request.
+Use the existing audited `bounded_run` helper, hash
+`11ad0bef9fd2efae234e204358c6b6730e723ed3dc24c6fe0c345f2ddcfb53dd`, in
+the verified owner execution context. One dedicated worker executes the fixed
+sequence under that deadline, with 5/15-second socket timeouts as subsidiary
+limits. Check remaining total time before each dispatch. The helper's process-
+tree termination/reporting allowance is additional to the 60-second worker
+deadline, not extra permission for another request. Preserve timeout as STOP.
+
+The HTML summary cap is **262144 retained bytes**, with at most one extra body
+byte read solely to detect overflow. Retain capped partial/error HTML and stop;
+do not promote it to a complete summary. HEAD response-body bytes read/stored
+must remain zero even on HTTP errors. Header receipt bytes and bookkeeping are
+separate from the summary-body cap; use bounded HTTP-header parsing and retain
+only the safe allowlist. No product bytes or expanded-size budget is authorized.
+
+Stop on the first HTTP error, redirect, missing/ambiguous required size, unexpected
+encoding, byte/time limit, provenance mismatch or structural identity failure.
+All five slots remain in the ledger: successful, failed, or NOT_ATTEMPTED after
+STOP. No replacement or resumed run under the same attempt. Use exclusive run/
+request markers, freeze exact method/URL/order and dependencies, preserve the
+protocol snapshot and sanitized receipts, and hash each retained artifact.
+Record worker exit/timeout and actual completed request count independently of
+the nominal five-slot plan. A failed or unlaunched slot cannot become success.
+
+## Metadata acceptance, not photon acceptance
+
+For each HEAD require exact requested final URL, HTTP 200, no content encoding
+other than absent/identity, and an unambiguous positive decimal Content-Length.
+Reject conflicting or nonnumeric lengths; do not infer bytes from the index's
+K/M displays, Content-Type, a filename, ETag or modification date. Record the
+advertised length without requesting the body. If the server does not provide
+it, report `STOP_SIZE_METADATA`; do not fall back to GET.
+
+Those lengths describe the **stored compressed FTZ entities**, not expanded
+FITS sizes, working memory, calibrated event counts or local processing cost.
+Report the four lengths and their sum, but do not turn that sum into an expanded
+storage/RAM guarantee or permission to acquire a bundle. HEAD is an advertised
+size snapshot, not a product checksum or verified body identity. Missing content
+type can be recorded as missing; no undocumented exact MIME subtype is required.
+
+For the summary require HTTP 200, the exact final URL, HTML content type,
+identity/absent content encoding, nonempty complete body within cap, and agreement
+with Content-Length if supplied. Offline inspection must establish that its
+content identifies observation `0884250101`; do not rely solely on the URL.
+Extract only explicit observation/exposure, camera/submode, processing-version
+and timing metadata, preserving original labels, units and missing values.
+If listed, associate modes specifically with PN S003, M1 S001 and M2 S002;
+do not assign an observation-wide mode to an exposure without evidence. Other
+metadata exposure entries remain accounted for, not silently discarded.
+
+Modes, version consistency or timing details may remain absent or ambiguous in
+this summary. Report `METADATA_INCOMPLETE_FOR_CONTROL_CONTRACT` rather than infer
+full-frame operation, simultaneity or clean exposure from filenames or nominal
+durations. No good-time intervals, event validity, background behavior or source
+recovery can be established from this stage.
+
+The strongest outcome is `SIZE_AND_SUMMARY_METADATA_RETAINED`, accompanied by
+explicit verified/missing eligibility fields. It is **not** a science pass,
+complete-runtime feasibility test or unknown-search authorization. A separately
+reviewed PPS acquisition/control-recovery and empirical-negative contract would
+still be required, including compressed/expanded resource limits and scientific
+STOP rules. No SAS installation, calibration download or remote processing is
+implied.
+
+This protocol alone was authored. No acquisition code, request, new scientific
+input, environment change or modification of an earlier stage was performed.

@@ -1,0 +1,20 @@
+{
+  "status": "STOP",
+  "science_products_fetched": 0,
+  "worker_returncode": 1,
+  "worker_output": "Index request failed\nTraceback (most recent call last):\n  File \"C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C0c-2026-09-12-data\\listing.py\", line 95, in worker\n    collect()\n  File \"C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C0c-2026-09-12-data\\listing.py\", line 54, in collect\n    raise ValueError(\"STOP_BYTE_CAP\")\nValueError: STOP_BYTE_CAP\n",
+  "error": "ValueError: STOP_WORKER",
+  "elapsed_seconds": 0.7189999999991414,
+  "artifacts": {
+    ".gitattributes": "e758333a338bccfed5c9f788ce6b31427897c95a0b5dd4616160ef2901a6e209",
+    "http.json": "199a0c73db840abb25594557655452896ba66879c12500eb84f106cf09f505ea",
+    "index.html": "598c5279333b45e8ac3c35bb4ccab45cd55a58ec2ca5d5aac862c967a38c862e",
+    "listing.py": "6dfc1715fa477a69687fd54a01a6cd61abd26be99519f18fd4e9297cd3091e31",
+    "protocol.snapshot.md": "3870ba101568699c4e36e71af829575a8e96299138b320bce734109f3bc50cfc",
+    "run-start.json": "cdfbafabca469d59e4dcb04a3d7e64711c06139bfbeb2c8d9acf70450ef5a0f2",
+    "test_listing.py": "30475b5119844d1f28300bd03d40e1efeb404603d963c2580055079a934acbb1",
+    "test_listing_review.py": "fffc8a4d622cc097ad5c620df65bb992786aab0bd2c3dc30b6082954fcff6036",
+    "worker-result.json": "2ceab55cf8efdcd1c23319658bbf7ca3345a37690601abc01d4702b90d20d2d3",
+    "worker-start.json": "f36178d650d90ec670f9f3d889efe06ac26b95f7e700abef34a14c4fa9efc168"
+  }
+}

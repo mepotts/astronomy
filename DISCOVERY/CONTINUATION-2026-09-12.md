@@ -72,6 +72,14 @@ stop with that concrete evidence rather than acquiring a bulk bundle speculative
 
 ## Unchanged operations and authority
 
+The separately reviewed [C0c2 directory amendment](XMM-C0c2-RESULT-2026-09-12.md)
+has now executed: 319808 bytes and 2193 complete parsed entries. The earlier
+C0c request stopped at 262144 bytes and remains frozen. Exact pn/MOS event and
+EPIC source-list filenames are now observed; displayed sizes remain rounded,
+not acquisition-budget evidence. Next is a bounded exact-size/summary metadata
+batch for these same control inputs. The counts-recovery design is still a
+draft with mode, time, exposure and screening blockers, not a launched experiment.
+
 [ITF](ITF-NOTIFICATIONS-2026-09-12.md) still has its daily archive publisher and
 existing-queue watch, not a fresh automated discovery search. No dedicated
 SMS/email delivery was configured or tested. Existing daily/weekly follow-ups
