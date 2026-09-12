@@ -30,7 +30,8 @@ no validated contrast or discovery. Portfolio follow-up is now weekly; ITF stays
 
 **Continued discovery work:** [new-route evidence and decisions](DISCOVERY/SEARCH-2026-09-12.md).
 [TESS](tess-short-eclipses/M0b-RESULT-2026-09-12.md) recovered three published
-eclipse periods; pixel/background validation is next, not an unknown-source scan.
+eclipse periods and near-target pixel signals; source confusion remains unresolved,
+and no unknown-source scan has begun.
 [VLASS](vlass-pilot/README.md) recovered a known radio source and established a
 12-source same-field comparison ensemble in three epochs. Neither is a discovery.
 [ITF notification audit](DISCOVERY/ITF-NOTIFICATIONS-2026-09-12.md): daily archive

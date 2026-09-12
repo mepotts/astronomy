@@ -16,8 +16,11 @@ eligibility uniformly, with identical scientific controls and thresholds.
 **M0b completed: 3/3 published periods recovered**, with exact raw-data replay and
 independent audit. [Result and limitations](M0b-RESULT-2026-09-12.md): pipeline
 crowding corrections and negative flux prevent physical-depth claims. The next
-[M1 pixel/background control](M1-PROTOCOL-2026-09-12.md) is separately specified;
-no unknown-target scan is authorized by period recovery alone.
+[M1 pixel/background control](M1-PROTOCOL-2026-09-12.md) and its narrow metadata
+repair are complete: [M1b results](M1b-RESULT-2026-09-12.md) recover near-target
+pixel signals for all three, with exact replay. **Source confusion remains
+unresolved**: 26 nearby catalog competitors in one field and unavailable catalogs
+in two others. Calibrated PRF/negative-control work is still needed; no unknown scan.
 
 The portable agent kit named by global instructions is absent at its configured
 path on this host. This project uses the scoped AGENTS.md, a prospective protocol,

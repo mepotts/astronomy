@@ -1,0 +1,24 @@
+{
+  "metadata_adapter_sha256": "82ce3730897ed3479351004105e785cc0f75316ef1d481ae121e5a81d616db0c",
+  "metadata_amendment_sha256": "388d9f2a779c6536aad3abf82fd5f91c3b6048ef5da7f9401f16f79cf8c15ed9",
+  "pixel_estimator_unchanged_sha256": "22c46cbfd34877ac66d7b1fcd411ecb8b323aca5ea987da58d62ea141ed29115",
+  "unknown_search_authorized": false,
+  "outcomes": [
+    {
+      "tic": 450781262,
+      "returncode": 0,
+      "output": "{\"tic\": 450781262, \"paired_events\": 207, \"primary\": {\"amplitude\": 4.560365814004667, \"error\": 0.1643150642496236, \"snr\": 27.75379016422174, \"blocks\": 21}, \"centroid_target_distance_pixels\": 0.08918230426575291, \"bootstrap_radial_95_pixels\": 0.08054817086859488, \"flags\": [\"CATALOG_CONFUSION_UNRESOLVED\"]}\nC:\\Users\\matth\\projects\\astronomy\\tess-short-eclipses\\scripts\\m1.py:284: UserWarning: Warning: converting a masked element to nan.\n  \"g_mag\": float(row[\"phot_g_mean_mag\"]), \"proper_motion_known\": motion_known,\n"
+    },
+    {
+      "tic": 53206761,
+      "returncode": 0,
+      "output": "{\"tic\": 53206761, \"paired_events\": 130, \"primary\": {\"amplitude\": 4.2429965167423935, \"error\": 0.14564332158635035, \"snr\": 29.132791469787833, \"blocks\": 19}, \"centroid_target_distance_pixels\": 0.16017400377074525, \"bootstrap_radial_95_pixels\": 0.07501975203183152, \"flags\": [\"CATALOG_CONFUSION_UNRESOLVED\"]}\n"
+    },
+    {
+      "tic": 2041210548,
+      "returncode": 0,
+      "output": "{\"tic\": 2041210548, \"paired_events\": 85, \"primary\": {\"amplitude\": 4.834921325423808, \"error\": 0.10004791749547286, \"snr\": 48.32605661824582, \"blocks\": 26}, \"centroid_target_distance_pixels\": 0.06171121852009231, \"bootstrap_radial_95_pixels\": 0.05646888573238542, \"flags\": [\"CATALOG_CONFUSION_UNRESOLVED\"]}\n"
+    }
+  ],
+  "stage": "analyze"
+}
