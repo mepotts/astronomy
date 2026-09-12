@@ -1,0 +1,58 @@
+{
+  "started_utc": "2026-09-12T20:04:17.403402+00:00",
+  "protocol_sha256": "47ada28e0c77a351a860e104aa7ef3fb6df065892b32e75ee8d9772472fe0795",
+  "target_degrees": [
+    174.2757916666667,
+    -3.6270277777778
+  ],
+  "records": [
+    {
+      "url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/argus/sync?REQUEST=doQuery&LANG=ADQL&FORMAT=csv&QUERY=SELECT+TOP+12+obs_id%2Ct_min%2Ct_max%2Caccess_url+FROM+ivoa.ObsCore+WHERE+obs_collection%3D%27VLASS%27+AND+INTERSECTS%28s_region%2CCIRCLE%28%27ICRS%27%2C174.2757916666667%2C-3.6270277777778%2C0.001%29%29%3D1",
+      "final_url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/argus/sync?REQUEST=doQuery&LANG=ADQL&FORMAT=csv&QUERY=SELECT+TOP+12+obs_id%2Ct_min%2Ct_max%2Caccess_url+FROM+ivoa.ObsCore+WHERE+obs_collection%3D%27VLASS%27+AND+INTERSECTS%28s_region%2CCIRCLE%28%27ICRS%27%2C174.2757916666667%2C-3.6270277777778%2C0.001%29%29%3D1",
+      "status": 200,
+      "bytes": 1453,
+      "headers": {
+        "server": "OpenCADC/cadc-rest",
+        "www-authenticate": "ivoa_cookie",
+        "content-disposition": "inline; filename=\"result_oxx338jun9rsaabx.csv\"",
+        "content-type": "text/csv; header=present",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 12 Sep 2026 20:04:14 GMT",
+        "strict-transport-security": "max-age=63072000",
+        "connection": "close"
+      },
+      "sha256": "8104b25f85fb2665fb12f9189257974b9c7cc1c67bef0b024de2b23241b9915a",
+      "path": "data\\coverage.csv"
+    },
+    {
+      "url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ops/datalink?ID=ivo%3A%2F%2Fcadc.nrc.ca%2FVLASS%3FVLASS1.1.T10t18.J113801-033000%2FVLASS1.1.T10t18.J113801-033000.quicklook",
+      "final_url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ops/datalink?ID=ivo%3A%2F%2Fcadc.nrc.ca%2FVLASS%3FVLASS1.1.T10t18.J113801-033000%2FVLASS1.1.T10t18.J113801-033000.quicklook",
+      "status": 200,
+      "bytes": 7842,
+      "headers": {
+        "server": "OpenCADC/cadc-rest",
+        "www-authenticate": "ivoa_cookie",
+        "content-type": "application/x-votable+xml; content=datalink",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 12 Sep 2026 20:04:15 GMT",
+        "strict-transport-security": "max-age=63072000",
+        "connection": "close"
+      },
+      "sha256": "cb5098af875b6fdb09009ddecfdfe5964cad180d690e5122d60bbd7ab86cb0de",
+      "path": "data\\VLASS1.1-datalink.xml"
+    }
+  ],
+  "epochs": [
+    {
+      "obs_id": "VLASS1.1.T10t18.J113801-033000",
+      "t_min": "58130.58315972222",
+      "t_max": "58130.60721064815",
+      "access_url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ops/datalink?ID=ivo%3A%2F%2Fcadc.nrc.ca%2FVLASS%3FVLASS1.1.T10t18.J113801-033000%2FVLASS1.1.T10t18.J113801-033000.quicklook",
+      "campaign": "VLASS1.1"
+    }
+  ],
+  "outcome": "STOP_ACQUISITION",
+  "error": "QL1.1 is not corrected v2; stop before its pixels",
+  "completed_utc": "2026-09-12T20:04:20.095090+00:00",
+  "stored_bytes": 9295
+}

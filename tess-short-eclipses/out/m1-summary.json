@@ -1,0 +1,102 @@
+{
+  "status": "PARTIAL_CONTROL_CHARACTERIZATION_WITH_RETAINED_FAILURES",
+  "unknown_search_authorized": false,
+  "physical_depths_validated": false,
+  "protocol_sha256": "95ebebc25aedda27ad2818589951efae73344e7c8ff83ce6f3177c49e9ec8ef0",
+  "scientific_source_sha256": "22c46cbfd34877ac66d7b1fcd411ecb8b323aca5ea987da58d62ea141ed29115",
+  "summary_source_sha256": "025059eebef701a079985f95444e2dd8ba291412d90aa05a97f629e6d40364d0",
+  "controls": [
+    {
+      "tic": 450781262,
+      "workers": {
+        "fetch": {
+          "tic": 450781262,
+          "returncode": 0,
+          "output": ""
+        },
+        "catalog": {
+          "tic": 450781262,
+          "returncode": 0,
+          "output": ""
+        },
+        "analyze": {
+          "tic": 450781262,
+          "returncode": 1,
+          "output": "Traceback (most recent call last):\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\astropy\\table\\row.py\", line 52, in __getitem__\n    out = OrderedDict.__getitem__(self._table.columns, item)[self._index]\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nKeyError: 'source_id'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\matth\\projects\\astronomy\\tess-short-eclipses\\scripts\\m1.py\", line 438, in <module>\n    main()\n  File \"C:\\Users\\matth\\projects\\astronomy\\tess-short-eclipses\\scripts\\m1.py\", line 422, in main\n    {\"fetch\": fetch, \"catalog\": catalog, \"analyze\": analyze}[args.stage](args.worker)\n  File \"C:\\Users\\matth\\projects\\astronomy\\tess-short-eclipses\\scripts\\m1.py\", line 378, in analyze\n    neighbors = catalog_comparison(tic, wcs, target, (fit[\"x\"], fit[\"y\"]),\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\tess-short-eclipses\\scripts\\m1.py\", line 283, in catalog_comparison\n    rows.append({\"source_id\": str(row[\"source_id\"]), \"x\": float(x), \"y\": float(y),\n                                  ~~~^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\astropy\\table\\row.py\", line 62, in __getitem__\n    out = self._table.columns[item][self._index]\n          ~~~~~~~~~~~~~~~~~~~^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\astropy\\table\\table.py\", line 266, in __getitem__\n    return OrderedDict.__getitem__(self, item)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nKeyError: 'source_id'\n"
+        }
+      },
+      "status": "STOP_ANALYSIS_NO_RESULT"
+    },
+    {
+      "tic": 53206761,
+      "workers": {
+        "fetch": {
+          "tic": 53206761,
+          "returncode": 0,
+          "output": ""
+        },
+        "catalog": {
+          "tic": 53206761,
+          "returncode": 1,
+          "output": "Traceback (most recent call last):\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 534, in _make_request\n    response = conn.getresponse()\n               ^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\urllib3\\connection.py\", line 571, in getresponse\n    httplib_response = super().getresponse()\n                       ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\http\\client.py\", line 1430, in getresponse\n    response.begin()\n  File \"C:\\Users\\matth\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\http\\client.py\", line 331, in begin\n    version, status, reason = self._read_status()\n                              ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\http\\client.py\", line 292, in _read_status\n    line = str(self.fp.readline(_MAXLINE + 1), \"iso-8859-1\")\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\socket.py\", line 720, in readinto\n    return self._sock.recv_into(b)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\ssl.py\", line 1251, in recv_into\n    return self.read(nbytes, buffer)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\ssl.py\", line 1103, in read\n    return self._sslobj.read(len, buffer)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTimeoutError: The read operation timed out\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\requests\\adapters.py\", line 696, in send\n    resp = conn.urlopen(\n           ^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 842, in urlopen\n    retries = retries.increment(\n              ^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\urllib3\\util\\retry.py\", line 498, in increment\n    raise reraise(type(error), error, _stacktrace)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\urllib3\\util\\util.py\", line 39, in reraise\n    raise value\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 788, in urlopen\n    response = self._make_request(\n               ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 536, in _make_request\n    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 367, in _raise_timeout\n    raise ReadTimeoutError(\nurllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='gea.esac.esa.int', port=443): Read timed out. (read timeout=45)\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\matth\\projects\\astronomy\\tess-short-eclipses\\scripts\\m1.py\", line 438, in <module>\n    main()\n  File \"C:\\Users\\matth\\projects\\astronomy\\tess-short-eclipses\\scripts\\m1.py\", line 422, in main\n    {\"fetch\": fetch, \"catalog\": catalog, \"analyze\": analyze}[args.stage](args.worker)\n  File \"C:\\Users\\matth\\projects\\astronomy\\tess-short-eclipses\\scripts\\m1.py\", line 152, in catalog\n    with requests.post(url, data={\"REQUEST\": \"doQuery\", \"LANG\": \"ADQL\", \"FORMAT\": \"votable\",\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\requests\\api.py\", line 134, in post\n    return request(\"post\", url, data=data, json=json, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\requests\\api.py\", line 71, in request\n    return session.request(method=method, url=url, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\requests\\sessions.py\", line 651, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\requests\\sessions.py\", line 784, in send\n    r = adapter.send(request, **kwargs)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\requests\\adapters.py\", line 742, in send\n    raise ReadTimeout(e, request=request)\nrequests.exceptions.ReadTimeout: HTTPSConnectionPool(host='gea.esac.esa.int', port=443): Read timed out. (read timeout=45)\n"
+        },
+        "analyze": {
+          "tic": 53206761,
+          "returncode": 0,
+          "output": "{\"tic\": 53206761, \"paired_events\": 130, \"primary\": {\"amplitude\": 4.2429965167423935, \"error\": 0.14564332158635035, \"snr\": 29.132791469787833, \"blocks\": 19}, \"centroid_target_distance_pixels\": 0.16017400377074525, \"bootstrap_radial_95_pixels\": 0.07501975203183152, \"flags\": [\"CATALOG_CONFUSION_UNRESOLVED\"]}\n"
+        }
+      },
+      "result_path": "out\\m1-53206761.json",
+      "result_sha256": "471ad8f1ea406209417625e1d6149dbe3337f78848d3b4b1cee739c67c34ac23",
+      "status": "CONTROL_CHARACTERIZED_NEEDS_PRF_AND_EMPIRICAL_NULL",
+      "primary": {
+        "amplitude": 4.2429965167423935,
+        "error": 0.14564332158635035,
+        "snr": 29.132791469787833,
+        "blocks": 19
+      },
+      "centroid_target_distance_pixels": 0.16017400377074525,
+      "flags": [
+        "CATALOG_CONFUSION_UNRESOLVED"
+      ]
+    },
+    {
+      "tic": 2041210548,
+      "workers": {
+        "fetch": {
+          "tic": 2041210548,
+          "returncode": 0,
+          "output": ""
+        },
+        "catalog": {
+          "tic": 2041210548,
+          "returncode": 1,
+          "output": "Traceback (most recent call last):\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 534, in _make_request\n    response = conn.getresponse()\n               ^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\urllib3\\connection.py\", line 571, in getresponse\n    httplib_response = super().getresponse()\n                       ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\http\\client.py\", line 1430, in getresponse\n    response.begin()\n  File \"C:\\Users\\matth\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\http\\client.py\", line 331, in begin\n    version, status, reason = self._read_status()\n                              ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\http\\client.py\", line 292, in _read_status\n    line = str(self.fp.readline(_MAXLINE + 1), \"iso-8859-1\")\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\socket.py\", line 720, in readinto\n    return self._sock.recv_into(b)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\ssl.py\", line 1251, in recv_into\n    return self.read(nbytes, buffer)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\ssl.py\", line 1103, in read\n    return self._sslobj.read(len, buffer)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTimeoutError: The read operation timed out\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\requests\\adapters.py\", line 696, in send\n    resp = conn.urlopen(\n           ^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 842, in urlopen\n    retries = retries.increment(\n              ^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\urllib3\\util\\retry.py\", line 498, in increment\n    raise reraise(type(error), error, _stacktrace)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\urllib3\\util\\util.py\", line 39, in reraise\n    raise value\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 788, in urlopen\n    response = self._make_request(\n               ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 536, in _make_request\n    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 367, in _raise_timeout\n    raise ReadTimeoutError(\nurllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='gea.esac.esa.int', port=443): Read timed out. (read timeout=45)\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\matth\\projects\\astronomy\\tess-short-eclipses\\scripts\\m1.py\", line 438, in <module>\n    main()\n  File \"C:\\Users\\matth\\projects\\astronomy\\tess-short-eclipses\\scripts\\m1.py\", line 422, in main\n    {\"fetch\": fetch, \"catalog\": catalog, \"analyze\": analyze}[args.stage](args.worker)\n  File \"C:\\Users\\matth\\projects\\astronomy\\tess-short-eclipses\\scripts\\m1.py\", line 152, in catalog\n    with requests.post(url, data={\"REQUEST\": \"doQuery\", \"LANG\": \"ADQL\", \"FORMAT\": \"votable\",\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\requests\\api.py\", line 134, in post\n    return request(\"post\", url, data=data, json=json, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\requests\\api.py\", line 71, in request\n    return session.request(method=method, url=url, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\requests\\sessions.py\", line 651, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\requests\\sessions.py\", line 784, in send\n    r = adapter.send(request, **kwargs)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Lib\\site-packages\\requests\\adapters.py\", line 742, in send\n    raise ReadTimeout(e, request=request)\nrequests.exceptions.ReadTimeout: HTTPSConnectionPool(host='gea.esac.esa.int', port=443): Read timed out. (read timeout=45)\n"
+        },
+        "analyze": {
+          "tic": 2041210548,
+          "returncode": 0,
+          "output": "{\"tic\": 2041210548, \"paired_events\": 85, \"primary\": {\"amplitude\": 4.834921325423808, \"error\": 0.10004791749547286, \"snr\": 48.32605661824582, \"blocks\": 26}, \"centroid_target_distance_pixels\": 0.06171121852009231, \"bootstrap_radial_95_pixels\": 0.05646888573238542, \"flags\": [\"CATALOG_CONFUSION_UNRESOLVED\"]}\n"
+        }
+      },
+      "result_path": "out\\m1-2041210548.json",
+      "result_sha256": "ed35ead675dbfa60fe7636a2c06b0bd7b6cff1807b3aca5d5f040b68de66b310",
+      "status": "CONTROL_CHARACTERIZED_NEEDS_PRF_AND_EMPIRICAL_NULL",
+      "primary": {
+        "amplitude": 4.834921325423808,
+        "error": 0.10004791749547286,
+        "snr": 48.32605661824582,
+        "blocks": 26
+      },
+      "centroid_target_distance_pixels": 0.06171121852009231,
+      "flags": [
+        "CATALOG_CONFUSION_UNRESOLVED"
+      ]
+    }
+  ],
+  "run_receipts": {
+    "fetch": "12887e250f7c0a887c282de1080ca74b4b83a5453bedef886f6348f3d0b8f6de",
+    "catalog": "eccb21894946501957c241de85207fbcd979aa21aea0b5024948f80c37756a33",
+    "analyze": "3e9a05a318a10300c8fcfc3c464096baa55b4f4e0501033a803e30f67c7bf89d"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "tic": 53206761,
+  "input": {
+    "tic": 53206761,
+    "sector": 72,
+    "obsid": 198789561,
+    "filename": "tess2023315124025-s0072-0000000053206761-0267-s_lc.fits",
+    "url": "https://mast.stsci.edu/api/v0.1/Download/file?uri=mast:TESS/product/tess2023315124025-s0072-0000000053206761-0267-s_lc.fits",
+    "bytes": 1860480,
+    "sha256": "04d4363d939f4065d5b9d4c5b19a725bebea8b33eaf5bbf5cffa164487c4892d",
+    "retrieved_utc": "2026-09-12T20:08:18.419643+00:00",
+    "start_mjd": 60259.6794278588,
+    "end_mjd": 60285.06236211806,
+    "versions": {
+      "astropy": "8.0.1",
+      "astroquery": "0.4.11",
+      "requests": "2.34.2"
+    }
+  },
+  "points": 12570,
+  "baseline_days": 21.829854020961648,
+  "solution": {
+    "power": 776.7914141416446,
+    "period": 0.1328109039216265,
+    "duration": 0.005555555555555556,
+    "transit_time": 3263.723163575168,
+    "depth": 0.8032637940339418,
+    "depth_err": 0.020818306571738956,
+    "depth_snr": 38.58449251219981
+  },
+  "full": {
+    "depth": 0.8032637238502502,
+    "error": 0.020818306133151054,
+    "snr": 38.58449172973633,
+    "in_points": 520,
+    "sampled_events": 130
+  },
+  "halves": [
+    {
+      "depth": 0.8065171241760254,
+      "error": 0.03003343939781189,
+      "snr": 26.853971481323242,
+      "in_points": 272,
+      "sampled_events": 68
+    },
+    {
+      "depth": 0.8002404570579529,
+      "error": 0.028883324936032295,
+      "snr": 27.70596694946289,
+      "in_points": 248,
+      "sampled_events": 62
+    }
+  ],
+  "grade": {
+    "passed": true,
+    "period_match": "exact",
+    "best_fractional_period_error": 1.1549799735499633e-05
+  },
+  "protocol_sha256": "7f01ae99bad5ce569c03e4a01e258518804797e65da028163e71a5af7bcec213",
+  "script_sha256": "c9ba5fb4a4327b8b35893fd8775aeb58db23e0832561e1fd7f164488b7739faa",
+  "base_protocol_sha256": "47cf1cca09c9dd5668c820cd2de59f50a061809e466d46cedd5bafbd91ef0b44",
+  "runner_sha256": "11ad0bef9fd2efae234e204358c6b6730e723ed3dc24c6fe0c345f2ddcfb53dd",
+  "versions": {
+    "python": "3.12.10",
+    "numpy": "2.5.2",
+    "astropy": "8.0.1"
+  }
+}

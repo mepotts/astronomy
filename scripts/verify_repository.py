@@ -40,7 +40,9 @@ PROJECTS = (
     "pta-mpta",
     "seti-ellipsoid-broker",
     "spherex-pilot",
+    "tess-short-eclipses",
     "tns-miner",
+    "vlass-pilot",
 )
 PARSED_FRONTS = (
     "ccor-pilot",
@@ -52,7 +54,9 @@ PARSED_FRONTS = (
     "gaia-dr4",
     "pta-mpta",
     "spherex-pilot",
+    "tess-short-eclipses",
     "tns-miner",
+    "vlass-pilot",
 )
 TARGET_PYTHON = (3, 12)
 MARKDOWN_LINK = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
@@ -113,10 +117,13 @@ def check_python_syntax(errors: list[str]) -> int:
     checked = 0
     for front in PARSED_FRONTS:
         scripts = ROOT / front / "scripts"
-        if not scripts.is_dir():
-            errors.append(f"missing scripts directory: {scripts.relative_to(ROOT)}")
+        paths = list((ROOT / front).glob("*.py"))
+        if scripts.is_dir():
+            paths.extend(scripts.rglob("*.py"))
+        if not paths:
+            errors.append(f"missing Python scripts: {front}")
             continue
-        for path in sorted(scripts.rglob("*.py")):
+        for path in sorted(paths):
             checked += 1
             try:
                 with tokenize.open(path) as handle:

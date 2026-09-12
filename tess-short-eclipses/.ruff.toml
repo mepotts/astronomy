@@ -1,0 +1,9 @@
+# Retained executed M1c source is an immutable scientific receipt:
+# SHA256 fbe504028dea7297dfa73be4b3239bc6ab4b57fc1ff570801d08bb3eb74ab8a9.
+# Ruff 0.16.5 adds findings beyond the author's 0.15.6 preflight defaults.
+# BLE001: these two outer boundaries persist exceptions as failed outcomes;
+# neither supplies a successful measurement or hides the failure from the report.
+# SIM102: the nested replay conditional is semantically equivalent to an `and`.
+# Preserve executed bytes. All other rules, and every other file, remain checked.
+[lint.per-file-ignores]
+"scripts/m1c.py" = ["BLE001", "SIM102"]
