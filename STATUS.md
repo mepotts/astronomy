@@ -29,6 +29,8 @@ crowded. [M2n](tess-short-eclipses/M2n-RESULT-2026-09-12.md) passes all 18 fixed
 within-field off-phase checks with exact replay. Calibrated localization and
 population negatives remain. ITF daily monitoring is not a fresh
 daily attribution campaign; [notification delivery audit](DISCOVERY/ITF-NOTIFICATIONS-2026-09-12.md).
+[M2a](tess-short-eclipses/M2a-RESULT-2026-09-12.md) has acquired and structurally
+verified all twelve PRF calibration files; no PRF fits/injections have run yet.
 
 **September 12 follow-through:** [execution and decisions](DISCOVERY/EXECUTION-2026-09-12.md).
 ITF recovered using its existing publisher; watch/local recheck agree on 18 ready /

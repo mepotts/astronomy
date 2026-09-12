@@ -123,3 +123,72 @@ still requires the separately reviewed manifest GO and verified owner execution
 context. Any actual structural or transport failure must preserve STOP and partial
 bytes; this signoff does not pre-authorize an amendment/retry. Product validation
 cannot authorize localization claims, physical depth or an unknown-target search.
+
+## Independent post-acquisition audit
+
+The parent authorized this audit after completing acquisition against manifest
+`f63e087a88054ac1336b71dce9956324de48acacc5ffed25b5f1f01697a6e816`.
+On September 12 the reviewer invoked the frozen `m2a.py replay` **once**, read-only:
+
+```text
+EXACT_M2A_REPLAY_PASS: no network, no writes, no fit
+```
+
+That replay rechecked the manifest dependencies, original TPF hashes/header
+context, attempt/worker/response semantics, all outcome artifacts, and all 24
+retained PRF/uncertainty HDUs through the unchanged structural validator. It did
+not interpolate, normalize or fit a PRF. No new request or acquisition was made.
+
+A separate PowerShell audit, without importing the author validator, verified:
+
+- All **13 dependency hashes**, the separately pinned runner hash, the exact
+  approved manifest hash, and the summary's manifest binding and false science
+  flags.
+- **12 ordered outcomes**, each identical to its separate outcome receipt, each
+  with worker and accepted return codes zero; **12 attempts**, **12 worker-start
+  markers**, and **zero failure receipts**. The unchanged frozen replay also
+  checks the ordered filenames against the exact twelve-product selection.
+- **60 artifact hashes**: exactly five actual files per product directory, namely
+  attempt, worker-start, response receipt, validation receipt and FITS body.
+  Attempt/worker identities agree and bind the approved manifest/product.
+- Raw-body, response and validation hashes/sizes agree. Each Content-Length is
+  **230,400 bytes**, matching its retained body and validation receipt; the twelve
+  bodies total **2,764,800 bytes**. Every file is below 300,000 bytes and the total
+  is below both the summed 3,600,000-byte per-request cap and stage ceiling.
+- Saved validation receipts describe **24 arrays of 117 by 117**, all with
+  `BITPIX=-64`, `NSAMP=9`, **zero negative samples in either array**, and absent
+  BUNIT. The full native-coordinate/identity/schema and finite/support checks
+  passed the unchanged replay. No independent new array statistics were computed.
+- The three original TPF byte hashes remain equal to their M1b receipts; their
+  total remains **144,368,640 bytes**. Native target coordinates are exactly the
+  stored header-derived stamp positions plus the retained physical origins, with
+  no new centroid or coordinate adjustment.
+
+| TIC | Original TPF bytes | Unchanged SHA-256 |
+|---|---:|---|
+| 450781262 | 48,807,360 | `5efa81b8e8c4546d9f2a1a3315e3af460f37eb8c7d03339730383fb9d7ea40ab` |
+| 53206761 | 44,818,560 | `bb6e6079ebb8b9433775a6962a9881f4df502e0e0e7c91af9e6ac2b651506a2e` |
+| 2041210548 | 50,742,720 | `e6a130778c6c793bcff621e95bd53c0444c534353960e8055aecd567e1129b9a` |
+
+Parent-recorded elapsed time per product ranges from approximately **1.141 to
+1.204 seconds**. These are retained outcome timings, not a separate reviewer
+network benchmark or a newly demonstrated deadline-cleanup test.
+
+Audit implementation note: an initial ad hoc header-string assertion expected
+integer-form `NSAMP=9` and stopped on the valid exporter serialization `9.`.
+The reviewer inspected the saved header cards and compared numeric values in the
+read-only checker; the completed independent audit passed. This was a reviewer
+text-check defect, not a failed scientific-stage gate. The frozen validator
+already correctly accepts equivalent numeric serialization; **no protocol,
+source, tests, inputs or result receipts were altered**.
+
+Final audited summary SHA-256:
+`df8d51790225a99d3a240c33dcc6e56561e3d6b4fda5422e1e17eed288a50ffb`.
+The preflight source/protocol/test hashes above remain unchanged. Only this
+review was appended during post-audit work.
+
+**Result: acquisition and structural replay independently verified.** The
+appropriate terminal label remains `PRF_PRODUCTS_STRUCTURALLY_VALID`, with
+`localization_validated=false` and `unknown_search_authorized=false`. Absent units,
+uncertainty covariance, absolute registration, model mismatch and empirical
+source-confusion/negative-control validity remain unresolved scientific questions.

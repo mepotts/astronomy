@@ -29,7 +29,7 @@ PRF products and an official Gaia mirror. The separately frozen metadata-only
 a Windows/Astropy binary null-sentinel parsing error. Its failure reproduces
 exactly; numerical catalog parity was not established, and neither missing field
 was queried. An offline decoder would be a new stage, not a retry of this run.
-No PRF files or unknown-source pixels have been acquired for that proposal.
+No PRF files or unknown-source pixels were acquired by M1c.
 
 The [M1d offline attempt](M1d-RESULT-2026-09-12.md) stopped on an overly narrow
 RESOURCE profile. The separately frozen [M1d2 amendment](M1d2-RESULT-2026-09-12.md)
@@ -49,6 +49,9 @@ passes all 18 fixed off-eclipse diagnostics (36 flux/background channels), with
 exact replay and explicit cadence overlap. These within-field windows are usable
 under the declared checks; they are not independent population negatives or
 validated source localization. PRF/confusion and independent-negative work remain.
+The separately frozen [M2a acquisition](M2a-RESULT-2026-09-12.md) now retains all
+twelve exact PRF grid products (2,764,800 bytes), with structural validation and
+read-only replay. No PRF fit or injection has run; that is the next scientific step.
 
 The portable agent kit named by global instructions is absent at its configured
 path on this host. This project uses the scoped AGENTS.md, a prospective protocol,
