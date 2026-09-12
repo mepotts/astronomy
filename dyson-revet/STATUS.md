@@ -3,7 +3,14 @@
 *Newest first. Updated by the working agent each session; root [`../STATUS.md`](../STATUS.md)
 carries the one-line summary.*
 
-- **2026-09-05** — [E follow-up](E-FOLLOWUP-2026-09-05.md) checked: 39 exclusive
+- **2026-09-12** - [E executed](E-EXECUTION-2026-09-12.md): release gate passed
+  (39 public observations, D 7/7); nine products fetched. Unchanged command failed
+  at F560W; independent Hessian audit confirms a saddle on finite pixels. M7
+  resolution/contrast limits prevent promoting partial measurements. No outcome
+  or valid contrast. Fifteen offline tests and raw-data replay pass. Failed frozen
+  attempt closed; replacement-method study deferred.
+
+- **2026-09-05** - [E follow-up](E-FOLLOWUP-2026-09-05.md) checked: 39 exclusive
   observations, September 9 release; frozen outcome-map hash unchanged; D control
   7/7. Added a bounded fail-closed metadata/date guard after the historical wrapper
   stalled and exposed an unchecked metadata failure path. No E products analyzed.

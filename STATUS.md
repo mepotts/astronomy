@@ -1,6 +1,6 @@
 # STATUS — live research dashboard
 
-*Current portfolio snapshot: 2026-09-08. Per-project `STATUS.md`, milestone documents,
+*Current portfolio snapshot: 2026-09-12. Per-project `STATUS.md`, milestone documents,
 operating guides, and committed artifacts are the detailed record. The older wave tables
 below are retained as a dated audit trail, not as the current queue.*
 
@@ -13,6 +13,13 @@ repo's own tooling. Every externally-sourced number carries its source or the ma
 UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 
 ## Current portfolio snapshot
+
+**September 12 follow-through:** [execution and decisions](DISCOVERY/EXECUTION-2026-09-12.md).
+ITF recovered using its existing publisher; watch/local recheck agree on 18 ready /
+8 held. E release passed but frozen measurement failed; independent audit verifies
+a non-maximum F560W fit on finite pixels and unresolved deblend-validity concerns.
+No outcome branch, validated contrast or discovery. Failed attempt closed, science
+question unresolved. Follow-up is weekly; ITF's publisher/watch remain daily.
 
 **September 8 follow-through:** [execution and decisions](DISCOVERY/EXECUTION-2026-09-08.md).
 ITF publisher/watch healthy, 20 ready / 6 held unchanged. DASCH's unchanged
@@ -50,9 +57,9 @@ promotion to a new recovery experiment. No pixels measured; 21 offline tests.
 
 | Front | Current state | Next gate |
 |---|---|---|
-| [`itf-linker/`](itf-linker/) | **First unattended cycle accepted September 6.** Snapshot 20260906T122623Z, valid lineage/delta and exact local/release key-set hash agreement; scheduled watch green, 20 ready / 6 held unchanged. [Acceptance](itf-linker/UNATTENDED-ACCEPTANCE-2026-09-06.md). M14 stays stopped; no new queue. | Monitor material failures and meaningful freshness/count changes only. New attribution work requires a separately frozen provenance-valid protocol. |
+| [`itf-linker/`](itf-linker/) | **September 12 recovery accepted.** Snapshot 20260912T182637Z, valid lineage and local/release digest agreement; watch green, 18 ready / 8 held. Two newly held after tracklet disappearance, destination unknown. [Recovery](itf-linker/RECOVERY-2026-09-12.md). M14 stays stopped. | Daily archive/watch continue. Monitor material failures and freshness/count changes; new attribution needs a separate provenance-valid protocol. |
 | [`tns-miner/`](tns-miner/) | **PARKED after 15 bounded recovery probes.** Required Fink class and six ALeRCE REST/TAP alternatives remain unavailable/incomplete despite healthy controls. No fresh campaign or candidate count. | Prove a complete enumerator, then a fresh three-day window and post-window TNS snapshot; never promote the stopped bundle. |
-| [`dyson-revet/`](dyson-revet/) | **M7 closed; E WAIT_RELEASE.** D control 7/7 and outcome map unchanged; 39 exclusive MAST observations still release September 9. New bounded release guard fails closed. | Scheduled September 9 follow-up must execute the frozen experiment after public access; M7 validity checks and human publication gates remain. |
+| [`dyson-revet/`](dyson-revet/) | **E executed September 12: STOP_FROZEN_MEASUREMENT.** 39 public observations, D 7/7, nine products fetched. F560W fit is a saddle; independent raw-data audit passes. [Result](dyson-revet/E-EXECUTION-2026-09-12.md). | No outcome/contrast assigned. Failed attempt closed; control-first replacement deferred. A remains a July 16, 2027 release dependency. Publication gated. |
 | [`gaia-dr4/`](gaia-dr4/) | **M9 ready; September 6 exploratory label/power variant adopted and rehearsed.** Original outputs untouched. | Public date/schema and actual release-day execution; separate scientific publication gates. |
 | [`chime-frb-periodicity/`](chime-frb-periodicity/) | **PARKED.** Targeted recheck found no authenticated time-resolved observing/sensitivity product; the published periodic control remains recovered. No unknown scan. | Restart only with the exact citable time series and complete M1 protocol. |
 | [`dasch-pilot/`](dasch-pilot/) | **September 8 real-event transfer STOP: 0/3 published events recovered.** Separate bracketed-block development also STOP; no holdout query. September 7's 42-source null and injection results retained with narrower interpretation. | Do not scale either detector; materially new ensemble/series-overlap calibration is deferred behind Dyson E. |

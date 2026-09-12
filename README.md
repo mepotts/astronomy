@@ -22,7 +22,13 @@ headed into the formal record.
 
 ## Research
 
-**Current state (2026-09-08):** [latest execution](DISCOVERY/EXECUTION-2026-09-08.md).
+**Current state (2026-09-12):** [latest execution](DISCOVERY/EXECUTION-2026-09-12.md).
+ITF's stale daily feed recovered: 18 ready / 8 held, two newly held after tracklet
+disappearance. E's public-release gate passed, but its unchanged frozen experiment
+failed at F560W centroiding. Independent audit confirms a saddle fit on finite data;
+no validated contrast or discovery. Portfolio follow-up is now weekly; ITF stays daily.
+
+**September 8 historical snapshot:**
 DASCH's unchanged detector recovered 0/3 published long-term events; a separately
 specified bracketed-block method also failed its coverage/recovery gates. Neither
 is ready to scale. ITF's September 8 publisher/watch are healthy (20 ready / 6 held

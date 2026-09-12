@@ -8,6 +8,12 @@
 > 2026-09-09**. Read that first; everything below is the front's own history, kept
 > append-only and superseded in places by the milestones it links to.
 
+**September 12 update:** [E executed](E-EXECUTION-2026-09-12.md); release passed,
+but unchanged imaging measurement stopped at a non-finite F560W centroid.
+Independent audit finds a saddle fit on finite data. No outcome branch or validated
+contrast. Failed attempt closed; replacement needs separate control-first validation.
+The dated pending-E text above is history.
+
 **What this is.** Avenue **#7** of [`../DISCOVERY/run3-prospectus.md`](../DISCOVERY/run3-prospectus.md),
 extending the portfolio's SETI thread: Project Hephaistos II selected 7 Dyson-sphere candidates from
 ~5M Gaia×2MASS×WISE stars ([MNRAS 2024](https://academic.oup.com/mnras/article/531/1/695/7665761)).

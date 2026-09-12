@@ -6,3 +6,8 @@
 *.sh   text eol=lf
 *.py   text eol=lf
 *.sof  text eol=lf
+
+# These execution receipts are themselves SHA-256 inputs to the E replay.
+dyson-revet/out/e-release-20260912.json -text
+dyson-revet/out/e-execution-20260912.json text eol=lf
+dyson-revet/out/e-execution-initial-20260912.json text eol=lf
