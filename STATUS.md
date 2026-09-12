@@ -39,6 +39,11 @@ The [current continuation](DISCOVERY/CONTINUATION-2026-09-12.md) adopts a tiny
 XMM known-control product-metadata check next, after verifying three public
 post-EXOD-paper observation IDs. Photon-search/runtime feasibility and later
 prior art remain unproved; no XMM science products have been acquired.
+[XMM C0c2](DISCOVERY/XMM-C0c2-RESULT-2026-09-12.md) now retains a complete
+319,808-byte known-control directory index with 2,193 entries, including the
+three imaging event files and EPIC source list. The preceding 256-KiB partial
+request remains a STOP. Exact product lengths, modes and control recovery are
+still unverified; bounded size/header metadata is next, not an unknown scan.
 
 **September 12 follow-through:** [execution and decisions](DISCOVERY/EXECUTION-2026-09-12.md).
 ITF recovered using its existing publisher; watch/local recheck agree on 18 ready /
