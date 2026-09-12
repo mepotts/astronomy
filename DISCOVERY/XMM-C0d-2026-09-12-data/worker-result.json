@@ -1,0 +1,74 @@
+{
+  "status": "STOP",
+  "error_type": "ValueError",
+  "error_code": "STOP_SUMMARY_FOOTER",
+  "artifacts": {
+    "slot-1-http.json": "bd7d037b87c69e07de81a9337f610ae648121a700e94229e8e5345e304100d24",
+    "slot-1-result.json": "c10bf8fa74f6a9c3b6988ea232c795a7875015ceba769387bcfc1c99f17491d0",
+    "slot-1-start.json": "19ace96a55b5db2c95f5af6bf36ab501eb70a2aa9b4c768611a7be7180f24f47",
+    "slot-2-http.json": "e46c0b67e78836d67217fe1380b8cedc85d4f44cc47828f5a38d4e7e682c5dbc",
+    "slot-2-result.json": "6fc72507749a67437543dd0e61da201c078ceefedb917a6892eef1ebbc4cb242",
+    "slot-2-start.json": "a6b19dd41e7d87143ba080b743b30b12bd53368cd4687f2d9d16743eadfe49ae",
+    "slot-3-http.json": "a2f5bb2cfdb7680ad6a71bf2eaf436ae63a6fdc0958aa9f3f268b83eb63286ed",
+    "slot-3-result.json": "439971fcf486cb5e62e14943aeb996f9fc98397cb37b067d9ef516e470b15c27",
+    "slot-3-start.json": "a3d7a5f0735b718366deacd0d2c5573d41da214504349db44e0f2bf0a46c1533",
+    "slot-4-http.json": "f607612297c78fcdce16b981c8eed01d025497af6a4f55e4452d53bce4c8a017",
+    "slot-4-result.json": "1962d031bd8331d25e16a365cff45da75a113a742292251baed346f6269d28cb",
+    "slot-4-start.json": "e3815ec541ed79a489286dbe6b7155fdbb193148e760794e14048d9d4471541c",
+    "slot-5-http.json": "800f3a253e0ceb9a7448473750329ad2400de6399c974c99803d7b3d9a4380b7",
+    "slot-5-result.json": "a644a2bbc6c01a93b4e51fe5c94e3d144c587bf8a7cb52b99ac8b3d9cc44980d",
+    "slot-5-start.json": "3a6140d5105ac42a60682d1b6f5325dbf341861d72e7efaf260e193a12e5df43",
+    "summary.html": "aba0f32242f6d81b65132cdfa167dbc8f4d75c15ef2c5ab69a37d048e4fca837",
+    "worker-start.json": "786ef4a3598f825f662ec199eaec5bbfc9c4dba335e80532ae0d70c518f220e6"
+  },
+  "ledger": [
+    {
+      "slot": 1,
+      "method": "HEAD",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101PNS003PIEVLI0000.FTZ",
+      "status": "OK",
+      "advertised_compressed_bytes": 109245605,
+      "body": null,
+      "body_bytes_read": 0
+    },
+    {
+      "slot": 2,
+      "method": "HEAD",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101M1S001MIEVLI0000.FTZ",
+      "status": "OK",
+      "advertised_compressed_bytes": 7643540,
+      "body": null,
+      "body_bytes_read": 0
+    },
+    {
+      "slot": 3,
+      "method": "HEAD",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101M2S002MIEVLI0000.FTZ",
+      "status": "OK",
+      "advertised_compressed_bytes": 9972723,
+      "body": null,
+      "body_bytes_read": 0
+    },
+    {
+      "slot": 4,
+      "method": "HEAD",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101EPX000OBSMLI0000.FTZ",
+      "status": "OK",
+      "advertised_compressed_bytes": 120581,
+      "body": null,
+      "body_bytes_read": 0
+    },
+    {
+      "slot": 5,
+      "method": "GET",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101OBX000SUMMAR0000.HTM",
+      "status": "FAILED",
+      "error_type": "ValueError",
+      "error_code": "STOP_SUMMARY_FOOTER",
+      "body": {
+        "bytes": 50010,
+        "sha256": "aba0f32242f6d81b65132cdfa167dbc8f4d75c15ef2c5ab69a37d048e4fca837"
+      }
+    }
+  ]
+}

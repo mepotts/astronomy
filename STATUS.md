@@ -43,7 +43,13 @@ prior art remain unproved; no XMM science products have been acquired.
 319,808-byte known-control directory index with 2,193 entries, including the
 three imaging event files and EPIC source list. The preceding 256-KiB partial
 request remains a STOP. Exact product lengths, modes and control recovery are
-still unverified; bounded size/header metadata is next, not an unknown scan.
+now partly resolved by [C0d](DISCOVERY/XMM-C0d-RESULT-2026-09-12.md): four
+successful HEADs establish 126982449 compressed bytes. Its summary acceptance
+stopped on a missing HTML closing tag; separate offline interpretation supports
+pn full-window and MOS partial-window modes without rewriting that STOP.
+The reviewed C1 acquisition/header-only stage is next, not an unknown scan.
+[Later-work checking](DISCOVERY/XMM-LATER-WORK-2026-09-12.md) finds no verified
+coverage of the three exact newer observations, but does not prove them unsearched.
 
 **September 12 follow-through:** [execution and decisions](DISCOVERY/EXECUTION-2026-09-12.md).
 ITF recovered using its existing publisher; watch/local recheck agree on 18 ready /

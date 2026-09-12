@@ -17,3 +17,8 @@ dyson-revet/out/e-execution-initial-20260912.json text eol=lf
 DISCOVERY/XMM-C0c-2026-09-12-data/index.html -diff
 DISCOVERY/XMM-C0c2-2026-09-12-data/index.html -diff
 DISCOVERY/XMM-C0d-2026-09-12-data/summary.html -diff
+
+# Immutable protocol snapshots retain their original CRLF bytes and hashes.
+# Recognize CRLF line endings while keeping ordinary whitespace checks enabled.
+DISCOVERY/XMM-C0d-2026-09-12-data/protocol.snapshot.md whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+DISCOVERY/XMM-C1-2026-09-12-data/protocol.snapshot.md whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
