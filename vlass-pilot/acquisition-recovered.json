@@ -1,0 +1,245 @@
+{
+  "started_utc": "2026-09-12T20:06:33.962765+00:00",
+  "protocol_sha256": "bafb49c45710771923489136667254598f9c5927ea7150825ec008d7864cc90d",
+  "protocol_file": "FOLLOWUP-PROTOCOL.md",
+  "prior_acquisition_bytes": 9295,
+  "target_degrees": [
+    174.2757916666667,
+    -3.6270277777778
+  ],
+  "records": [
+    {
+      "url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/argus/sync?REQUEST=doQuery&LANG=ADQL&FORMAT=csv&QUERY=SELECT+TOP+12+obs_id%2Ct_min%2Ct_max%2Caccess_url+FROM+ivoa.ObsCore+WHERE+obs_collection%3D%27VLASS%27+AND+INTERSECTS%28s_region%2CCIRCLE%28%27ICRS%27%2C174.2757916666667%2C-3.6270277777778%2C0.001%29%29%3D1",
+      "final_url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/argus/sync?REQUEST=doQuery&LANG=ADQL&FORMAT=csv&QUERY=SELECT+TOP+12+obs_id%2Ct_min%2Ct_max%2Caccess_url+FROM+ivoa.ObsCore+WHERE+obs_collection%3D%27VLASS%27+AND+INTERSECTS%28s_region%2CCIRCLE%28%27ICRS%27%2C174.2757916666667%2C-3.6270277777778%2C0.001%29%29%3D1",
+      "status": 200,
+      "bytes": 1453,
+      "headers": {
+        "server": "OpenCADC/cadc-rest",
+        "www-authenticate": "ivoa_cookie",
+        "content-disposition": "inline; filename=\"result_bqcibj5swj0wdzsy.csv\"",
+        "content-type": "text/csv; header=present",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 12 Sep 2026 20:06:31 GMT",
+        "strict-transport-security": "max-age=63072000",
+        "connection": "close"
+      },
+      "sha256": "8104b25f85fb2665fb12f9189257974b9c7cc1c67bef0b024de2b23241b9915a",
+      "path": "data\\followup\\coverage.csv"
+    },
+    {
+      "url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ops/datalink?ID=ivo%3A%2F%2Fcadc.nrc.ca%2FVLASS%3FVLASS2.1.T10t18.J113801-033000%2FVLASS2.1.T10t18.J113801-033000.quicklook",
+      "final_url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ops/datalink?ID=ivo%3A%2F%2Fcadc.nrc.ca%2FVLASS%3FVLASS2.1.T10t18.J113801-033000%2FVLASS2.1.T10t18.J113801-033000.quicklook",
+      "status": 200,
+      "bytes": 7857,
+      "headers": {
+        "server": "OpenCADC/cadc-rest",
+        "www-authenticate": "ivoa_cookie",
+        "content-type": "application/x-votable+xml; content=datalink",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 12 Sep 2026 20:06:31 GMT",
+        "strict-transport-security": "max-age=63072000",
+        "connection": "close"
+      },
+      "sha256": "32ddd7f163d4490f3defba599a8bdb7458269efcabeb6c11c93abd2aeda218ce",
+      "path": "data\\followup\\VLASS2.1-datalink.xml"
+    },
+    {
+      "url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ops/sync?ID=nrao%3AVLASS%2FVLASS2.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.subim.fits&CIRCLE=174.2757916666667+-3.6270277777778+0.2",
+      "final_url": "https://ws-cadc.canfar.net/minoc/files/dXJpPW5yYW86VkxBU1MvVkxBU1MyLjEucWwuVDEwdDE4LkoxMTM4MDEtMDMzMDAwLjEwLjIwNDgudjEuSS5pdGVyMS5pbWFnZS5wYmNvci50dDAuc3ViaW0uZml0cyZnbnQ9UmVhZEdyYW50~SCTbN45Aw5gtpY69zhnImlJIrWtrRLuC3U6FfI88aOGnzUYyiteQgc573qSj7f1yuH2K12iStHKHmfqPShIkW6FiOK9qeDJgGd5zjb5_n_-ntauU71F_dS7jmfi7ut7lz6qIXHeuqRX0o6LVn_0VR8mQPnESNfjjMlNoUJWoEjtqfv9CioSLvlz9aMR1GdxKnWhg0ixl1pbf17czF9luwkmtu4h9EeMpz-lOXYvDbUuyxJOhNS_pJcHav-bbVCrBmHlgCcgpDRhAikzf4qtE1h5KogFrPEkbLkLkCJrv7R8ZHkeN8QjMzpgCg4BNBAwCJ-CeySDZnNkXJDJoUJVRuBUwmUnSI5C5qcngzCudMGFbk350hL5anpaZ4h4vXpujoB_jhxo01o6AtbY6ptRjqMaGn4vyXnFfSJWxdwwFHFw3CRZC2b7FPjQiEu03CmTrbbaQgLjmRGYLGYlAn4aEd_iynBJSqfmDVl6TngLjV6y5D6A9pUQvbFtI3rNhO-1zUuqv7GeSEFZvLHHk5PURTBo_YVIqc_HE9yn-O0Z6Cp7qUHzCaqP6DEGjn1G1yPPsChRuYqH4oRsdZ6idyMUiI3TTOZCXdT0LYFph3M6xlRgQ5FunRIHu222pIbj-_UVuZ1xKKB3OGcBTLcqhgU4a6Pr00EsK8J5wNxGjElfV1JU=/nrao:VLASS/VLASS2.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.subim.fits?SUB=%5B0%5D%5B1969%3A3409%2C684%3A2124%2C*%2C*%5D",
+      "status": 200,
+      "bytes": 8328960,
+      "headers": {
+        "server": "OpenCADC/cadc-rest + storage-inventory/minoc-1.0",
+        "www-authenticate": "ivoa_cookie",
+        "content-disposition": "inline; filename=\"VLASS2.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.subim.0__1969_3409_684_2124.fits\"",
+        "content-type": "application/fits",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 12 Sep 2026 20:06:33 GMT",
+        "strict-transport-security": "max-age=63072000",
+        "connection": "close"
+      },
+      "sha256": "0050bd8b06d67825385898e0f4cfbd2bac814d17208750d4b948a85ead794351",
+      "path": "data\\followup\\VLASS2.1-image.fits",
+      "kind": "image",
+      "campaign": "VLASS2.1",
+      "artifact": "nrao:VLASS/VLASS2.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.subim.fits"
+    },
+    {
+      "url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ops/sync?ID=nrao%3AVLASS%2FVLASS2.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.rms.subim.fits&CIRCLE=174.2757916666667+-3.6270277777778+0.2",
+      "final_url": "https://ws-cadc.canfar.net/minoc/files/dXJpPW5yYW86VkxBU1MvVkxBU1MyLjEucWwuVDEwdDE4LkoxMTM4MDEtMDMzMDAwLjEwLjIwNDgudjEuSS5pdGVyMS5pbWFnZS5wYmNvci50dDAucm1zLnN1YmltLmZpdHMmZ250PVJlYWRHcmFudA==~s2cYay-AT2CBpsIxhHbTin4gKjHV7OCfczLYc47hZif4qPPFsSvC_sRratYvWe7eSMXaV2Y8WdKXpJuPeJCPXdCXDiyr9prDw2U_3l7pLOcg8OrK7KnsGAS8M7mYD34Sa3F2IfN4w_2qo6QTFyj4hyz2CapWWNG4fDZU2hMNOi6NyQLGOePVPvXAs_hxYH92Ul6VZbWE4ULQ0dK0JNCj4FfuV3_t6bs86aZB_da1zOsqqCF33mYQyXCTT2_SkKsg92Dzi0Xa3TwgfZ_GpFzXG1ZqWyxetismkrSt1kD0jkv7StsdLk3JQb6ycjvXqq1NXTp5Qq3m1Rw1qRIS9ybGlMgFMHgFtMvtkO4_aaO2ZyIjWa07QWzOU3VW_e-BS1F-AJfYtsma0M2A-Cacip9RZX5vojqTkUOev_HaLK0KxrJPrkmar8CD-n1PrZ2xoNLJ72TYfHNedXrfss8Qn927CYCVfmhlVHHUejiaSNws5oWn0hvIzkITqcNK5ncaUQ4AmoGz163uq9FjLDkAryaSq4TPhFpaON5EvFuzcj7BBv34Wm3tkuT3S6p_CjPIUF74ZwioXusFbV4uLtNvCK8Ogbietli_J92c9kEhvZJdsdoyKkCoBEinsZq4pveDNAU-6M-p8BEdB_OKfEnbTkC9ydBbPEd0DibCSIpomxYCwko=/nrao:VLASS/VLASS2.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.rms.subim.fits?SUB=%5B0%5D%5B1969%3A3409%2C684%3A2124%2C*%2C*%5D",
+      "status": 200,
+      "bytes": 8328960,
+      "headers": {
+        "server": "OpenCADC/cadc-rest + storage-inventory/minoc-1.0",
+        "www-authenticate": "ivoa_cookie",
+        "content-disposition": "inline; filename=\"VLASS2.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.rms.subim.0__1969_3409_684_2124.fits\"",
+        "content-type": "application/fits",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 12 Sep 2026 20:06:45 GMT",
+        "strict-transport-security": "max-age=63072000",
+        "connection": "close"
+      },
+      "sha256": "01d83a7ad3d07e4f98133f3ae4dc819eae0097e8ee33a9ce5a626c68bbfffeeb",
+      "path": "data\\followup\\VLASS2.1-rms.fits",
+      "kind": "rms",
+      "campaign": "VLASS2.1",
+      "artifact": "nrao:VLASS/VLASS2.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.rms.subim.fits"
+    },
+    {
+      "url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ops/datalink?ID=ivo%3A%2F%2Fcadc.nrc.ca%2FVLASS%3FVLASS3.1.T10t18.J113801-033000%2FVLASS3.1.T10t18.J113801-033000.quicklook",
+      "final_url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ops/datalink?ID=ivo%3A%2F%2Fcadc.nrc.ca%2FVLASS%3FVLASS3.1.T10t18.J113801-033000%2FVLASS3.1.T10t18.J113801-033000.quicklook",
+      "status": 200,
+      "bytes": 7861,
+      "headers": {
+        "server": "OpenCADC/cadc-rest",
+        "www-authenticate": "ivoa_cookie",
+        "content-type": "application/x-votable+xml; content=datalink",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 12 Sep 2026 20:06:57 GMT",
+        "strict-transport-security": "max-age=63072000",
+        "connection": "close"
+      },
+      "sha256": "76ee5edf486260045aabf860d2c6cfc3b9ce2af17f4454ee1b82d8dc475b01f6",
+      "path": "data\\followup\\VLASS3.1-datalink.xml"
+    },
+    {
+      "url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ops/sync?ID=nrao%3AVLASS%2FVLASS3.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.subim.fits&CIRCLE=174.2757916666667+-3.6270277777778+0.2",
+      "final_url": "https://ws-uv.canfar.net/minoc/files/dXJpPW5yYW86VkxBU1MvVkxBU1MzLjEucWwuVDEwdDE4LkoxMTM4MDEtMDMzMDAwLjEwLjIwNDgudjEuSS5pdGVyMS5pbWFnZS5wYmNvci50dDAuc3ViaW0uZml0cyZnbnQ9UmVhZEdyYW50~PyfbrobsvW1YcNQLgxKO5TrbOd8ByTYbpTX7qd2qhYBzjnswmSNvnqFUIAJx6fpDc_THiAhwIbQQf6ipqzzuEpzDeILHDbDot4DSmkIdzowdyrbw71Lfb6i4MAJK0Xz6lfjfppJ6GJvvnmDdLxfZr_m3v1ejGNpwMNpnobcayMeNObKtm088OVNjRfBB5-9nSUhD04vIED-cRQJFXnEhQztXTJum4uEQ_2wd-bTTMfxOIINoMChNeml_SJqQo7Ft67Fi-Hst8MxROpCSxnWFeHfh3RDmG3gbmeI8Zy82nlvao4SKMDfQFDJDK39N4ThGoKK6bpCERy3oLuvomg9PbWVrM--BikCGpupoz3fEy8GjPrel500YRbcGhwlbqBLgGRYqOBdc-Sx6yPw2LDYSaih5K_xMS3knBcReyIl9m6nH122wpziZXamt3Qpu9zC9rYxuEdXGZvOuN6dDWmIp1dGhX8d4M8CQ1e74RjJzgUhI4SYkGYrwtdLm9GbunLsz3XqUQn1IhUPSrNQI5EK7iwFsHcI-pU8MuAR_t3ScliUCatDg-TncHphYkV4dEQEDh10MYbBw_kpBKp2McucYmHaC1yAbPNh-pSM-6_Jl1NaPn2bfdT1ImSgDH5C-VoElC7lV67FD-yBv02hPzoTwXX8Y1hwly6jIUoXyI0TaasE=/nrao:VLASS/VLASS3.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.subim.fits?SUB=%5B0%5D%5B1969%3A3409%2C684%3A2124%2C*%2C*%5D",
+      "status": 200,
+      "bytes": 8383680,
+      "headers": {
+        "server": "OpenCADC/cadc-rest + storage-inventory/minoc-1.0",
+        "www-authenticate": "ivoa_cookie",
+        "content-disposition": "inline; filename=\"VLASS3.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.subim.0__1969_3409_684_2124.fits\"",
+        "content-type": "application/fits",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 12 Sep 2026 20:06:59 GMT",
+        "connection": "close"
+      },
+      "sha256": "1038cb43f16f32181859a43314ccfb0430523667b6e95b3005fd50895d4c2ff1",
+      "path": "data\\followup\\VLASS3.1-image.fits",
+      "kind": "image",
+      "campaign": "VLASS3.1",
+      "artifact": "nrao:VLASS/VLASS3.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.subim.fits"
+    },
+    {
+      "url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ops/sync?ID=nrao%3AVLASS%2FVLASS3.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.rms.subim.fits&CIRCLE=174.2757916666667+-3.6270277777778+0.2",
+      "final_url": "https://ws-cadc.canfar.net/minoc/files/dXJpPW5yYW86VkxBU1MvVkxBU1MzLjEucWwuVDEwdDE4LkoxMTM4MDEtMDMzMDAwLjEwLjIwNDgudjEuSS5pdGVyMS5pbWFnZS5wYmNvci50dDAucm1zLnN1YmltLmZpdHMmZ250PVJlYWRHcmFudA==~uaUK7AqX5FLa5-dcx23XIgnEjXqheJ8fWbu1O49kzyWGmApshp65oHuyjDnBfghiLy62w2FBIePhaRbE7ak5wtMv1hCYQoeKbeZiVEWbIY8z_qXxVmVTSfGEy00Anldb4sz3QR8MrF9d8bKgxzAA5iG4u4d_a5as09D7TnQG9qjBvvM4CETgcreAGcpXwSYxtm3x8TV-Mv93hYJcW0CpdMwpoAwZsHoa19LgFBcyWzJgIZlgOpx524_83ro0OUngyExbo6qhduf8G85P-EsFh2Jzlm57ChPfoAr6ZL7rRnGdtvrLEfm6MEsDOQQ1cjZLkxVC_CRDAXBdPmTqihFt8s9V7j-KdIQ-ErBExrVVOpdSx4VYSSCD65wbrO2pqgXLLvUSJPbbqafBFgWYT0v5GFsAKy74oRK42nbyMSQVt3r2ulk_Phz8LUA737R9HxO-S2b0lqy_nzbh3DhbTbi-yoFxqU6u5nMIy3nd6yIuL2HIkGERwekAHoCKGqESoNg11_3tq-L4wG_pzhuN7f_MLVoUuhycL_SpMTg3F6u7BdLXIo4bhtoR0H_k2_nuVFgcdOAUhvoJE2x_J6_cTQyUFn1a5POunbak7HtLKOYG3DPbT421yXlSBuoS06Ie4Jr9VRIgNMTLgqiXETSdMtDSUYF8QKyOaEIAWvwUOLP70fg=/nrao:VLASS/VLASS3.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.rms.subim.fits?SUB=%5B0%5D%5B1969%3A3409%2C684%3A2124%2C*%2C*%5D",
+      "status": 200,
+      "bytes": 8386560,
+      "headers": {
+        "server": "OpenCADC/cadc-rest + storage-inventory/minoc-1.0",
+        "www-authenticate": "ivoa_cookie",
+        "content-disposition": "inline; filename=\"VLASS3.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.rms.subim.0__1969_3409_684_2124.fits\"",
+        "content-type": "application/fits",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 12 Sep 2026 20:07:28 GMT",
+        "strict-transport-security": "max-age=63072000",
+        "connection": "close"
+      },
+      "sha256": "9925bf2e33cc6439edb6d8939f2e89ea8c3edf28f7fe255b7533676725d09d9b",
+      "path": "data\\followup\\VLASS3.1-rms.fits",
+      "kind": "rms",
+      "campaign": "VLASS3.1",
+      "artifact": "nrao:VLASS/VLASS3.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.rms.subim.fits"
+    },
+    {
+      "url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ops/datalink?ID=ivo%3A%2F%2Fcadc.nrc.ca%2FVLASS%3FVLASS4.1.T10t18.J113801-033000%2FVLASS4.1.T10t18.J113801-033000.quicklook",
+      "final_url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ops/datalink?ID=ivo%3A%2F%2Fcadc.nrc.ca%2FVLASS%3FVLASS4.1.T10t18.J113801-033000%2FVLASS4.1.T10t18.J113801-033000.quicklook",
+      "status": 200,
+      "bytes": 7837,
+      "headers": {
+        "server": "OpenCADC/cadc-rest",
+        "www-authenticate": "ivoa_cookie",
+        "content-type": "application/x-votable+xml; content=datalink",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 12 Sep 2026 20:07:41 GMT",
+        "strict-transport-security": "max-age=63072000",
+        "connection": "close"
+      },
+      "sha256": "c2a95c6086e4a9e65eb98496a8d988e9c90fd5808bf0d66c7e62594909717507",
+      "path": "data\\followup\\VLASS4.1-datalink.xml"
+    },
+    {
+      "url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ops/sync?ID=nrao%3AVLASS%2FVLASS4.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.subim.fits&CIRCLE=174.2757916666667+-3.6270277777778+0.2",
+      "final_url": "https://ws-uv.canfar.net/minoc/files/dXJpPW5yYW86VkxBU1MvVkxBU1M0LjEucWwuVDEwdDE4LkoxMTM4MDEtMDMzMDAwLjEwLjIwNDgudjEuSS5pdGVyMS5pbWFnZS5wYmNvci50dDAuc3ViaW0uZml0cyZnbnQ9UmVhZEdyYW50~kK_D3MdaCkrsY797AHCKaUud7zsjyszE9mfhSg5NQEi8iaivxMKd2wKgD06KygVNMi6aOgzSEOcFuylT6dh6p_FAl1qePNGHWjAaETKA5hWg6D9U0agyGKxrWWVvf4Q2Mbn4NZzjImoVagnu0dM4y3FTkAcy39Gvz30w-wbH7AZsu9MxZDdhogCbC_FWzIfkKKdeFKwGboUDk3Dhl5MrqKqWKhMqldSzPqr_9wM_eorGuNeqB5G4Hoebby31K5OpWw7sAy8ckPSBcI6ld-iS4QnBC9q97k8GqY6OKy9zsoznPLgLoHAS2aw2X1yakKjXBcrceEWBkUOJ3EAoX5F6eRg1aNkklwzuTBtV26cA5Em4SEb1kjEGnk58tBTUY6HJwsPDqxpd2Njo8esEZnpWO01bzqIMZwkxCrtETrp-H2lklJT8GE92vZzy1F-f0ecEv9JO__aAcrwPLSFm2ksHPb3_hwRxD2Sbzxh2fUh-F6_2ytY0iA3dcAkyanJJwEj2aOm0jxK9DTB-uHPK5TX_MuXa18Co9lx_dhzgmE2FeZyUuP2PqjFk-XisHu8j0VR5mE8UNQrpcD8PL6Zs8HEdVXbu8D22HjUDyTRIWjJy_z3Up8WUomkCk9gSONbWE_VDohMmaA08RzSZA8e09mM8hm_pw5TZnG4geOKDK2i7fds=/nrao:VLASS/VLASS4.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.subim.fits?SUB=%5B0%5D%5B1969%3A3409%2C684%3A2124%2C*%2C*%5D",
+      "status": 200,
+      "bytes": 8386560,
+      "headers": {
+        "server": "OpenCADC/cadc-rest + storage-inventory/minoc-1.0",
+        "www-authenticate": "ivoa_cookie",
+        "content-disposition": "inline; filename=\"VLASS4.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.subim.0__1969_3409_684_2124.fits\"",
+        "content-type": "application/fits",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 12 Sep 2026 20:07:43 GMT",
+        "connection": "close"
+      },
+      "sha256": "3681f8490e653c0a5a378a765c7aa16cd998338f2d4e7ba70a4d148e519eca5a",
+      "path": "data\\followup\\VLASS4.1-image.fits",
+      "kind": "image",
+      "campaign": "VLASS4.1",
+      "artifact": "nrao:VLASS/VLASS4.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.subim.fits"
+    },
+    {
+      "url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ops/sync?ID=nrao%3AVLASS%2FVLASS4.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.rms.subim.fits&CIRCLE=174.2757916666667+-3.6270277777778+0.2",
+      "final_url": "https://ws-cadc.canfar.net/minoc/files/dXJpPW5yYW86VkxBU1MvVkxBU1M0LjEucWwuVDEwdDE4LkoxMTM4MDEtMDMzMDAwLjEwLjIwNDgudjEuSS5pdGVyMS5pbWFnZS5wYmNvci50dDAucm1zLnN1YmltLmZpdHMmZ250PVJlYWRHcmFudA==~tpi4zMn9QC3ZRLWjeGAS9UXHzKMR8ZLZCYBygMhXXuS9zNwNWeP0jiyh23kMDNlOtYNabwiI4Lh3vQ7v5tEzxZ44h_9NpF3Cou9C7FmnQdKYYH6Ibbhh5-tS6AQ8aWCdd45mkRhOVjZnWv2D0I5D0w2oXrnEw9-y4C2egjlWrpbMHw0uQ_akTYZcp-YqPNZQDrP6eXDIjqn3-q9ErDxKTJhBdgVlfr4eh5p42jAuka-fO7OOSjoX1Bmeqv5q_rwMbiyNTxvo6ovLcvNxEMFI62FuIzX5y9bcmGdu6tdRBsQC1V8kDgXu3ZWLT-MZ1-0mMVbbt25UAnEP5SgBHSaTHNPxFoRZrgwDyf8D8wxK1fe42obb7V3Z_ddKxAnMrbjQcfsWm0aQXtSCVxE3rRXoUHLmO_ol2ihr-GowcvyrDDb3kAEX2n5zgBE2a3qID03o3xr7K_XORCrRBucicuIxWyWFVvzM3KZAHTgLw3FifLT9jLSux5SOFhmQ4BeWnuG9-o9HrGT6xrvXX5N7-U-OchW7Iej8nGw_TeFOfe2i8MUOSKWr1EjcBDWZvSlz9GePC1TPxbUBiFK5EyDiP8TEmdrhgN72JiBSKyCmHL3WcOHHejpnBwaoeyVbjx-7-eoc0JxPIvEGsYqt-5_yMux6wV8Po_FyOitrmNC63tLvaL4=/nrao:VLASS/VLASS4.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.rms.subim.fits?SUB=%5B0%5D%5B1969%3A3409%2C684%3A2124%2C*%2C*%5D",
+      "status": 200,
+      "bytes": 8386560,
+      "headers": {
+        "server": "OpenCADC/cadc-rest + storage-inventory/minoc-1.0",
+        "www-authenticate": "ivoa_cookie",
+        "content-disposition": "inline; filename=\"VLASS4.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.rms.subim.0__1969_3409_684_2124.fits\"",
+        "content-type": "application/fits",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 12 Sep 2026 20:10:50 GMT",
+        "strict-transport-security": "max-age=63072000",
+        "connection": "close"
+      },
+      "sha256": "1fd3d3ac8f49612444963eaefcadc66e606f9c8fc6586e57ec06f9029831dbc4",
+      "path": "data\\followup\\VLASS4.1-rms-attempt2.fits",
+      "kind": "rms",
+      "campaign": "VLASS4.1",
+      "artifact": "nrao:VLASS/VLASS4.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.rms.subim.fits",
+      "attempt": 2
+    }
+  ],
+  "epochs": [
+    {
+      "obs_id": "VLASS2.1.T10t18.J113801-033000",
+      "t_min": "59083.82739583333",
+      "t_max": "59083.85065972222",
+      "access_url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ops/datalink?ID=ivo%3A%2F%2Fcadc.nrc.ca%2FVLASS%3FVLASS2.1.T10t18.J113801-033000%2FVLASS2.1.T10t18.J113801-033000.quicklook",
+      "campaign": "VLASS2.1",
+      "image": "data\\followup\\VLASS2.1-image.fits",
+      "rms": "data\\followup\\VLASS2.1-rms.fits"
+    },
+    {
+      "obs_id": "VLASS3.1.T10t18.J113801-033000",
+      "t_min": "60009.29603009259",
+      "t_max": "60009.319340277776",
+      "access_url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ops/datalink?ID=ivo%3A%2F%2Fcadc.nrc.ca%2FVLASS%3FVLASS3.1.T10t18.J113801-033000%2FVLASS3.1.T10t18.J113801-033000.quicklook",
+      "campaign": "VLASS3.1",
+      "image": "data\\followup\\VLASS3.1-image.fits",
+      "rms": "data\\followup\\VLASS3.1-rms.fits"
+    },
+    {
+      "obs_id": "VLASS4.1.T10t18.J113801-033000",
+      "t_min": "60992.58587962963",
+      "t_max": "60992.61040509259",
+      "access_url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ops/datalink?ID=ivo%3A%2F%2Fcadc.nrc.ca%2FVLASS%3FVLASS4.1.T10t18.J113801-033000%2FVLASS4.1.T10t18.J113801-033000.quicklook",
+      "campaign": "VLASS4.1",
+      "image": "data\\followup\\VLASS4.1-image.fits",
+      "rms": "data\\followup\\VLASS4.1-rms-attempt2.fits"
+    }
+  ],
+  "outcome": "ACQUIRED",
+  "error": "Command '['C:\\\\Users\\\\matth\\\\projects\\\\astronomy\\\\dyson-revet\\\\.venv\\\\Scripts\\\\python.exe', 'C:\\\\Users\\\\matth\\\\projects\\\\astronomy\\\\vlass-pilot\\\\pilot.py', '_request', 'https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ops/sync?ID=nrao%3AVLASS%2FVLASS4.1.ql.T10t18.J113801-033000.10.2048.v1.I.iter1.image.pbcor.tt0.rms.subim.fits&CIRCLE=174.2757916666667+-3.6270277777778+0.2', 'C:\\\\Users\\\\matth\\\\projects\\\\astronomy\\\\vlass-pilot\\\\data\\\\followup\\\\VLASS4.1-rms.fits', '208150977']' timed out after 75 seconds",
+  "completed_utc": "2026-09-12T20:09:28.880983+00:00",
+  "stored_bytes": 50226288,
+  "recovery": {
+    "source_manifest_sha256": "af1c35984c848e53a198689d0c48cd2396dad2490196ce5763251bca4844a450",
+    "authorization": "parent-approved single identical transport retry",
+    "started_utc": "2026-09-12T20:10:53.791314+00:00",
+    "completed_utc": "2026-09-12T20:11:06.298860+00:00"
+  }
+}

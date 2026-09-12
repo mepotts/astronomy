@@ -5,6 +5,7 @@ import argparse
 import hashlib
 import importlib.util
 import json
+import re
 import sys
 import time
 from datetime import datetime, timezone
@@ -16,8 +17,10 @@ from astropy.io import fits
 from astropy.timeseries import BoxLeastSquares
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "data"
-PROTOCOL = ROOT / "M0-PROTOCOL-2026-09-12.md"
+DATA = ROOT / "data/m0b"
+PROTOCOL = ROOT / "M0b-PROTOCOL-2026-09-12.md"
+BASE_PROTOCOL = ROOT / "M0-PROTOCOL-2026-09-12.md"
+LABEL = "m0b"
 CONTROLS = {450781262: (99, .09388575), 53206761: (72, .13280937),
             2041210548: (57, .29092036)}
 DURATIONS = np.array([4., 8., 16.]) / 1440
@@ -51,6 +54,19 @@ def validate_product(product):
     if product["uri"] != "mast:TESS/product/"+name or not 0 < product["bytes"] <= MAX_BYTES:
         raise ValueError("STOP_PRODUCT_URI_OR_SIZE")
     return name
+
+
+def select_observation(rows, tic):
+    eligible = []
+    for row in rows:
+        match = re.fullmatch(r"tess\d+-s(\d{4})-(\d{16})-\d{4}-[xsab]", row["obs_id"])
+        if (match and int(match[1]) == row["sector"] and int(match[2]) == tic
+                and row["rights"] == "PUBLIC" and row["exposure"] == 120.
+                and row["provenance"] == "SPOC"):
+            eligible.append(row)
+    if not eligible or max(r["sector"] for r in eligible) != CONTROLS[tic][0]:
+        raise ValueError("STOP_SELECTION_METADATA_CHANGED")
+    return max(eligible, key=lambda r: (r["sector"], r["obsid"]))
 
 
 def prepare(t, y, dy, quality):
@@ -96,14 +112,12 @@ def search(t, y, dy, periods=None, chunk=2000):
         for start in range(0, len(allowed), chunk):
             p = allowed[start:start+chunk]
             r = model.power(p, float(duration), objective="likelihood", oversample=10)
-            valid = np.isfinite(r.power) & np.isfinite(r.depth) & (r.depth > 0)
+            fields = ("power", "period", "duration", "transit_time", "depth", "depth_err", "depth_snr")
+            valid = np.logical_and.reduce([np.isfinite(r[k]) for k in fields]) & (r.depth > 0) & (r.depth_err > 0)
             if not valid.any():
                 continue
             i = int(np.argmax(np.where(valid, r.power, -np.inf)))
-            row = {k: float(r[k][i]) for k in
-                   ("power", "period", "duration", "transit_time", "depth", "depth_err", "depth_snr")}
-            if not all(np.isfinite(v) for v in row.values()):
-                continue
+            row = {k: float(r[k][i]) for k in fields}
             if winner is None or row["power"] > winner["power"]:
                 winner = row
     if winner is None:
@@ -141,7 +155,6 @@ def grade(solution, full, halves, reference):
 def acquire(tic):
     from astroquery.mast import Observations
     Observations.TIMEOUT = 30
-    sector, _ = CONTROLS[tic]
     folder = DATA / str(tic)
     folder.mkdir(parents=True, exist_ok=True)
     if (folder / "receipt.json").exists():
@@ -151,12 +164,10 @@ def acquire(tic):
     table.write(folder / "observations.ecsv", format="ascii.ecsv")
     obs = [{"obsid": int(r["obsid"]), "sector": int(r["sequence_number"]),
             "exposure": float(r["t_exptime"]), "rights": str(r["dataRights"]),
+            "provenance": str(r["provenance_name"]),
             "obs_id": str(r["obs_id"]), "start_mjd": float(r["t_min"]),
             "end_mjd": float(r["t_max"])} for r in table]
-    eligible = [r for r in obs if r["rights"] == "PUBLIC" and r["exposure"] == 120.]
-    if not eligible or max(r["sector"] for r in eligible) != sector:
-        raise ValueError("STOP_SELECTION_METADATA_CHANGED")
-    selected = max((r for r in eligible if r["sector"] == sector), key=lambda r: r["obsid"])
+    selected = select_observation(obs, tic)
     products = Observations.get_product_list(str(selected["obsid"]))
     products.write(folder / "products.ecsv", format="ascii.ecsv")
     lc = [{"filename": str(r["productFilename"]), "uri": str(r["dataURI"]),
@@ -179,6 +190,18 @@ def download(tic):
     product = max(metadata["lc_products"], key=lambda r: r["filename"])
     name = validate_product(product)
     sector = CONTROLS[tic][0]
+    original_receipt = ROOT / "data" / str(tic) / "receipt.json"
+    if original_receipt.exists():
+        original = json.loads(original_receipt.read_bytes())
+        old_path = original_receipt.parent / original["filename"]
+        if (original["obsid"] != selected["obsid"] or original["filename"] != name
+                or original["bytes"] != product["bytes"] or sha(old_path) != original["sha256"]):
+            raise ValueError("STOP_REUSE_MISMATCH")
+        save(folder / "receipt.json", {**original,
+                                      "reused_from": str(original_receipt.relative_to(ROOT)).replace("\\", "/"),
+                                      "original_receipt_sha256": sha(original_receipt),
+                                      "input_path": str(old_path.relative_to(ROOT)).replace("\\", "/")})
+        return
     url = "https://mast.stsci.edu/api/v0.1/Download/file?uri="+quote(product["uri"], safe=":/")
     path = folder / name
     started, total = time.monotonic(), 0
@@ -208,7 +231,7 @@ def analyze(tic):
     import astropy
     folder = DATA / str(tic)
     receipt = json.loads((folder / "receipt.json").read_bytes())
-    path = folder / receipt["filename"]
+    path = ROOT / receipt["input_path"] if "input_path" in receipt else folder / receipt["filename"]
     if sha(path) != receipt["sha256"]:
         raise ValueError("STOP_INPUT_HASH")
     with fits.open(path) as hdus:
@@ -223,9 +246,10 @@ def analyze(tic):
               "solution": solution, "full": full, "halves": halves,
               "grade": grade(solution, full, halves, CONTROLS[tic][1]),
               "protocol_sha256": sha(PROTOCOL), "script_sha256": sha(__file__),
+              "base_protocol_sha256": sha(BASE_PROTOCOL),
               "runner_sha256": sha(RUNNER),
               "versions": {"python": sys.version.split()[0], "numpy": np.__version__, "astropy": astropy.__version__}}
-    save(ROOT / "out" / f"m0-{tic}.json", result)
+    save(ROOT / "out" / f"{LABEL}-{tic}.json", result)
     print(json.dumps({"tic": tic, "period": solution["period"], **result["grade"]}), flush=True)
 
 
@@ -235,6 +259,8 @@ def main():
     parser.add_argument("--worker", type=int, choices=list(CONTROLS))
     args = parser.parse_args()
     if args.worker:
+        if args.stage == "fetch":
+            parser.error("fetch is a driver, not a worker stage")
         {"metadata": acquire, "analyze": analyze, "download": download}[args.stage](args.worker)
         return
     if args.stage in ("download", "metadata"):
@@ -251,17 +277,20 @@ def main():
         row = {"tic": tic, "returncode": code, "runs": runs}
         outcomes.append(row)
         print(json.dumps(row), flush=True)
-    save(DATA / f"{args.stage}-run.json", {"utc": datetime.now(timezone.utc).isoformat(), "outcomes": outcomes})
+    save(DATA / f"{args.stage}-run.json", {"utc": datetime.now(timezone.utc).isoformat(), "outcomes": outcomes,
+                                        "runner_sha256": sha(RUNNER), "script_sha256": sha(__file__),
+                                        "protocol_sha256": sha(PROTOCOL), "base_protocol_sha256": sha(BASE_PROTOCOL)})
     if any(r["returncode"] != 0 for r in outcomes):
         raise SystemExit(1)
     if args.stage == "analyze":
-        rows = [json.loads((ROOT / "out" / f"m0-{tic}.json").read_bytes()) for tic in CONTROLS]
+        rows = [json.loads((ROOT / "out" / f"{LABEL}-{tic}.json").read_bytes()) for tic in CONTROLS]
         passed = sum(r["grade"]["passed"] for r in rows)
         summary = {"status": "GO_LOCALIZATION_CONTROLS_ONLY" if passed == 3 else "STOP_CONTROL_RECOVERY",
                    "passed": passed, "total": 3, "unknown_search_authorized": False,
                    "protocol_sha256": sha(PROTOCOL), "script_sha256": sha(__file__),
+                   "base_protocol_sha256": sha(BASE_PROTOCOL),
                    "runner_sha256": sha(RUNNER)}
-        save(ROOT / "out" / "m0-summary.json", summary)
+        save(ROOT / "out" / f"{LABEL}-summary.json", summary)
         print(json.dumps(summary), flush=True)
         if passed != 3:
             raise SystemExit(2)

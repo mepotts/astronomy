@@ -28,6 +28,15 @@ disappearance. E's public-release gate passed, but its unchanged frozen experime
 failed at F560W centroiding. Independent audit confirms a saddle fit on finite data;
 no validated contrast or discovery. Portfolio follow-up is now weekly; ITF stays daily.
 
+**Continued discovery work:** [new-route evidence and decisions](DISCOVERY/SEARCH-2026-09-12.md).
+[TESS](tess-short-eclipses/M0b-RESULT-2026-09-12.md) recovered three published
+eclipse periods; pixel/background validation is next, not an unknown-source scan.
+[VLASS](vlass-pilot/README.md) recovered a known radio source and established a
+12-source same-field comparison ensemble in three epochs. Neither is a discovery.
+[ITF notification audit](DISCOVERY/ITF-NOTIFICATIONS-2026-09-12.md): daily archive
+and existing-queue monitoring are automated, but a dedicated discovery text/email
+sender is not configured or delivery-verified.
+
 **September 8 historical snapshot:**
 DASCH's unchanged detector recovered 0/3 published long-term events; a separately
 specified bracketed-block method also failed its coverage/recovery gates. Neither

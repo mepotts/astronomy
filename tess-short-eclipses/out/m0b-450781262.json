@@ -1,0 +1,71 @@
+{
+  "tic": 450781262,
+  "input": {
+    "tic": 450781262,
+    "sector": 99,
+    "obsid": 378421184,
+    "filename": "tess2026005125623-s0099-0000000450781262-0300-s_lc.fits",
+    "url": "https://mast.stsci.edu/api/v0.1/Download/file?uri=mast:TESS/product/tess2026005125623-s0099-0000000450781262-0300-s_lc.fits",
+    "bytes": 2021760,
+    "sha256": "2deffb5d95166178768bbce24df229d30646cd77d1809368c21f9470971ceec6",
+    "retrieved_utc": "2026-09-12T20:03:19.975708+00:00",
+    "start_mjd": 61045.612976122684,
+    "end_mjd": 61073.278531724536,
+    "versions": {
+      "astropy": "8.0.1",
+      "astroquery": "0.4.11",
+      "requests": "2.34.2"
+    },
+    "reused_from": "data/450781262/receipt.json",
+    "original_receipt_sha256": "dd24b3e6b76a22be047240d9f511062d1b2b72fbd96a20b2816d515fce88f6bc",
+    "input_path": "data/450781262/tess2026005125623-s0099-0000000450781262-0300-s_lc.fits"
+  },
+  "points": 14077,
+  "baseline_days": 27.664166864062736,
+  "solution": {
+    "power": 943.6549700262245,
+    "period": 0.09388735751058215,
+    "duration": 0.005555555555555556,
+    "transit_time": 4046.123360119696,
+    "depth": 0.6091170135039613,
+    "depth_err": 0.01446094435106863,
+    "depth_snr": 42.12152392792722
+  },
+  "full": {
+    "depth": 0.6091169714927673,
+    "error": 0.014460944570600986,
+    "snr": 42.12152099609375,
+    "in_points": 839,
+    "sampled_events": 211
+  },
+  "halves": [
+    {
+      "depth": 0.5990402698516846,
+      "error": 0.020606184378266335,
+      "snr": 29.070898056030273,
+      "in_points": 404,
+      "sampled_events": 101
+    },
+    {
+      "depth": 0.6189517378807068,
+      "error": 0.02029900997877121,
+      "snr": 30.49172019958496,
+      "in_points": 435,
+      "sampled_events": 110
+    }
+  ],
+  "grade": {
+    "passed": true,
+    "period_match": "exact",
+    "best_fractional_period_error": 1.7121986905843656e-05
+  },
+  "protocol_sha256": "7f01ae99bad5ce569c03e4a01e258518804797e65da028163e71a5af7bcec213",
+  "script_sha256": "c9ba5fb4a4327b8b35893fd8775aeb58db23e0832561e1fd7f164488b7739faa",
+  "base_protocol_sha256": "47cf1cca09c9dd5668c820cd2de59f50a061809e466d46cedd5bafbd91ef0b44",
+  "runner_sha256": "11ad0bef9fd2efae234e204358c6b6730e723ed3dc24c6fe0c345f2ddcfb53dd",
+  "versions": {
+    "python": "3.12.10",
+    "numpy": "2.5.2",
+    "astropy": "8.0.1"
+  }
+}

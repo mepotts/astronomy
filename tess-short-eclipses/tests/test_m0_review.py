@@ -29,6 +29,26 @@ def synthetic(gap=False):
 
 
 class IndependentRecoveryTests(unittest.TestCase):
+    def test_nonfinite_high_power_does_not_suppress_finite_runner_up(self):
+        class Results(dict):
+            __getattr__ = dict.__getitem__
+
+        def fake_power(periods, duration, **kwargs):
+            row = Results(
+                power=np.array([100.0, 10.0]), period=np.asarray(periods),
+                duration=np.full(2, duration), transit_time=np.zeros(2),
+                depth=np.full(2, 0.1), depth_err=np.array([np.nan, 0.01]),
+                depth_snr=np.array([np.nan, 10.0]),
+            )
+            return row
+
+        with patch.object(m0, "BoxLeastSquares") as constructor:
+            constructor.return_value.power.side_effect = fake_power
+            result = m0.search(np.array([0.0, 12.0]), np.ones(2), np.ones(2), [0.20, 0.21])
+        self.assertEqual(result["period"], 0.21)
+        self.assertEqual(result["power"], 10.0)
+        self.assertTrue(all(np.isfinite(value) for value in result.values()))
+
     def test_synthetic_recovery_with_gap_and_temporal_repetition(self):
         t, y, dy, reference = synthetic(gap=True)
         solution = m0.search(t, y, dy, np.linspace(0.20, 0.28, 321), chunk=37)
@@ -177,6 +197,63 @@ class IndependentInputTests(unittest.TestCase):
         for changed in ({**primary, "TICID": 53206761}, {**primary, "SECTOR": 72}):
             with self.assertRaisesRegex(ValueError, "STOP_PRODUCT_IDENTITY"):
                 m0.validate_header(changed, header, 450781262, 99)
+
+
+class IndependentSelectionTests(unittest.TestCase):
+    @staticmethod
+    def row(**overrides):
+        return {
+            "obs_id": "tess2023315124025-s0072-0000000053206761-0267-s",
+            "obsid": 198789561, "sector": 72, "rights": "PUBLIC",
+            "exposure": 120.0, "provenance": "SPOC", **overrides,
+        }
+
+    def test_multisector_dvt_excluded_before_obsid_ranking(self):
+        lc = self.row()
+        dvt = self.row(obs_id="tess2018235142541-s0002-s0072-0000000053206761", obsid=208734076)
+        self.assertEqual(m0.select_observation([dvt, lc], 53206761), lc)
+        with self.assertRaisesRegex(ValueError, "STOP_SELECTION_METADATA_CHANGED"):
+            m0.select_observation([dvt], 53206761)
+
+    def test_cadence_rights_and_provenance_are_mandatory(self):
+        lc = self.row()
+        for override in ({"exposure": 20.0}, {"rights": "EXCLUSIVE_ACCESS"},
+                         {"provenance": "QLP"}, {"rights": ""}):
+            excluded = self.row(obsid=999999999, **override)
+            with self.subTest(override=override):
+                self.assertEqual(m0.select_observation([excluded, lc], 53206761), lc)
+                with self.assertRaisesRegex(ValueError, "STOP_SELECTION_METADATA_CHANGED"):
+                    m0.select_observation([excluded], 53206761)
+
+    def test_parsed_tic_and_sector_must_match(self):
+        bad_names = (
+            "tess2023315124025-s0072-0000000450781262-0267-s",
+            "tess2023315124025-s0071-0000000053206761-0267-s",
+            "tess2023315124025-s0072-0000000053206761-0267-a_fast",
+        )
+        for name in bad_names:
+            with self.subTest(name=name), self.assertRaisesRegex(ValueError, "STOP_SELECTION_METADATA_CHANGED"):
+                m0.select_observation([self.row(obs_id=name)], 53206761)
+
+    def test_all_documented_cr_suffix_variants_are_eligible(self):
+        for suffix in "xsab":
+            row = self.row(obs_id=f"tess2023315124025-s0072-0000000053206761-0267-{suffix}")
+            with self.subTest(suffix=suffix):
+                self.assertEqual(m0.select_observation([row], 53206761), row)
+
+    def test_largest_eligible_obsid_is_order_independent(self):
+        current = self.row()
+        newer_processing = self.row(obsid=198789562)
+        older_sector = self.row(obsid=999999999, sector=71,
+                                obs_id="tess2023315124025-s0071-0000000053206761-0267-s")
+        rows = [current, newer_processing, older_sector]
+        self.assertEqual(m0.select_observation(rows, 53206761), newer_processing)
+        self.assertEqual(m0.select_observation(rows[::-1], 53206761), newer_processing)
+
+    def test_new_eligible_sector_does_not_silently_replace_fixed_sector(self):
+        new_sector = self.row(sector=73, obs_id="tess2023315124025-s0073-0000000053206761-0267-s")
+        with self.assertRaisesRegex(ValueError, "STOP_SELECTION_METADATA_CHANGED"):
+            m0.select_observation([self.row(), new_sector], 53206761)
 
 
 if __name__ == "__main__":

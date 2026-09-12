@@ -14,6 +14,14 @@ UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 
 ## Current portfolio snapshot
 
+**September 12 continuing search:** [current new-route record](DISCOVERY/SEARCH-2026-09-12.md).
+TESS's amended acquisition recovers 3/3 published periods; crowding and negative
+flux require pixel/background validation before physical interpretation. VLASS's
+small-cutout calibration stopped with one comparison; a separately specified
+full-parent-plane test yields 12 common comparisons and calibration feasibility,
+not validated variability or a discovery. ITF daily monitoring is not a fresh
+daily attribution campaign; [notification delivery audit](DISCOVERY/ITF-NOTIFICATIONS-2026-09-12.md).
+
 **September 12 follow-through:** [execution and decisions](DISCOVERY/EXECUTION-2026-09-12.md).
 ITF recovered using its existing publisher; watch/local recheck agree on 18 ready /
 8 held. E release passed but frozen measurement failed; independent audit verifies
@@ -57,6 +65,8 @@ promotion to a new recovery experiment. No pixels measured; 21 offline tests.
 
 | Front | Current state | Next gate |
 |---|---|---|
+| [`tess-short-eclipses/`](tess-short-eclipses/) | **M0b 3/3 published periods recovered.** Exact raw-data replay and independent audit; physical depths not validated. | Same-sector M1 pixel/background controls; then calibrated localization, empirical negatives and novelty coverage before unknowns. |
+| [`vlass-pilot/`](vlass-pilot/) | **Same-field calibration feasibility:** 12 common references across QL2.1/3.1/4.1; original one-reference cutout STOP retained. | Common-beam/morphology and empirical-noise calibration before an unknown-source protocol. No variability/discovery claim. |
 | [`itf-linker/`](itf-linker/) | **September 12 recovery accepted.** Snapshot 20260912T182637Z, valid lineage and local/release digest agreement; watch green, 18 ready / 8 held. Two newly held after tracklet disappearance, destination unknown. [Recovery](itf-linker/RECOVERY-2026-09-12.md). M14 stays stopped. | Daily archive/watch continue. Monitor material failures and freshness/count changes; new attribution needs a separate provenance-valid protocol. |
 | [`tns-miner/`](tns-miner/) | **PARKED after 15 bounded recovery probes.** Required Fink class and six ALeRCE REST/TAP alternatives remain unavailable/incomplete despite healthy controls. No fresh campaign or candidate count. | Prove a complete enumerator, then a fresh three-day window and post-window TNS snapshot; never promote the stopped bundle. |
 | [`dyson-revet/`](dyson-revet/) | **E executed September 12: STOP_FROZEN_MEASUREMENT.** 39 public observations, D 7/7, nine products fetched. F560W fit is a saddle; independent raw-data audit passes. [Result](dyson-revet/E-EXECUTION-2026-09-12.md). | No outcome/contrast assigned. Failed attempt closed; control-first replacement deferred. A remains a July 16, 2027 release dependency. Publication gated. |

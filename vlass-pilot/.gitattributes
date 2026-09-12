@@ -1,0 +1,7 @@
+# Preserve the exact recorded bytes: protocols/source are LF; Python-written
+# JSON receipts are CRLF on this host. Do not normalize either after hashing.
+*.md -text
+# Hashed receipts deliberately retain CRLF; still check actual trailing spaces.
+*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+*.py -text
+*.zip binary

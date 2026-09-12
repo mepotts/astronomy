@@ -1,0 +1,403 @@
+{
+  "protocol_sha256": "bafb49c45710771923489136667254598f9c5927ea7150825ec008d7864cc90d",
+  "code_sha256": "953a26cae7845e44811336c6a8553e949aa49dffcc2e69d739f041fd0ff41978",
+  "acquisition_sha256": "2c5caf86bfe6d492e6a4134e1edadbbebdaa63445961a35df18e8241cd154268",
+  "outcome": "STOP_MEASUREMENT",
+  "epochs": [
+    {
+      "campaign": "VLASS2.1",
+      "mjd": 59083.827390625,
+      "shape": [
+        1441,
+        1441
+      ],
+      "finite_fraction": 1.0,
+      "beam_arcsec_deg": [
+        3.0849027633665997,
+        2.27888321876532,
+        2.48388671875
+      ],
+      "target": {
+        "ra": 174.2757916666667,
+        "dec": -3.6270277777778,
+        "amplitude_jy": 0.0009664619108973714,
+        "noise_proxy_jy": 0.00018737489881459624,
+        "amplitude_over_noise": 5.157904911552034,
+        "background_jy_per_beam": -7.13040492428263e-07,
+        "residual_over_noise": 0.9069641114132997,
+        "peak_offset_arcsec": 0.32104188424084273,
+        "recovered": true
+      },
+      "ensemble": [
+        {
+          "ra": 174.09565111979765,
+          "dec": -3.5949639753254767,
+          "amplitude_jy": 0.007068531593730496,
+          "noise_proxy_jy": 0.0002921456055586532,
+          "amplitude_over_noise": 24.19523504457221,
+          "background_jy_per_beam": 1.641084691073047e-05,
+          "residual_over_noise": 1.3642345568981524,
+          "peak_offset_arcsec": 0.004228540596045517,
+          "recovered": true
+        }
+      ],
+      "nulls": [
+        {
+          "ra": 174.29249147577968,
+          "dec": -3.610360957456461,
+          "amplitude_jy": -0.00015020694610729424,
+          "noise_proxy_jy": 0.00018297888163942844,
+          "amplitude_over_noise": -0.8208977165096386,
+          "background_jy_per_beam": -1.5617084500263445e-05,
+          "residual_over_noise": 0.9425829382453027,
+          "peak_offset_arcsec": 2.8861705926387873,
+          "recovered": false
+        },
+        {
+          "ra": 174.25909185755373,
+          "dec": -3.61036095745646,
+          "amplitude_jy": -4.0630834743280536e-05,
+          "noise_proxy_jy": 0.00019578695355448872,
+          "amplitude_over_noise": -0.20752575187280148,
+          "background_jy_per_beam": 3.499938685536108e-07,
+          "residual_over_noise": 1.0520810696651433,
+          "peak_offset_arcsec": 1.7841805211109008,
+          "recovered": false
+        },
+        {
+          "ra": 174.2924920916433,
+          "dec": -3.643694290784127,
+          "amplitude_jy": -1.5464349523420868e-06,
+          "noise_proxy_jy": 0.00017810064309742302,
+          "amplitude_over_noise": -0.008682927391206385,
+          "background_jy_per_beam": -3.128168646071572e-05,
+          "residual_over_noise": 0.8784416788480224,
+          "peak_offset_arcsec": 1.274070061026733,
+          "recovered": false
+        },
+        {
+          "ra": 174.2590912416901,
+          "dec": -3.643694290784127,
+          "amplitude_jy": -2.3943765965638746e-05,
+          "noise_proxy_jy": 0.00017418422794435173,
+          "amplitude_over_noise": -0.13746230785767977,
+          "background_jy_per_beam": 5.864092145202449e-06,
+          "residual_over_noise": 0.8795083673514231,
+          "peak_offset_arcsec": 1.2500030395793407,
+          "recovered": false
+        },
+        {
+          "ra": 174.30919190073357,
+          "dec": -3.627027163147786,
+          "amplitude_jy": -0.00018302114607456196,
+          "noise_proxy_jy": 0.0001824557111831382,
+          "amplitude_over_noise": -1.0030990254443513,
+          "background_jy_per_beam": -2.5190629457938485e-05,
+          "residual_over_noise": 1.0689806391453318,
+          "peak_offset_arcsec": 2.83198298474932,
+          "recovered": false
+        },
+        {
+          "ra": 174.24239143259982,
+          "dec": -3.627027163147786,
+          "amplitude_jy": -0.00020773292331817872,
+          "noise_proxy_jy": 0.0001975599443539977,
+          "amplitude_over_noise": -1.0514931252762076,
+          "background_jy_per_beam": -3.326159230709891e-06,
+          "residual_over_noise": 0.9607606027172209,
+          "peak_offset_arcsec": 2.5607978899997765,
+          "recovered": false
+        },
+        {
+          "ra": 174.2757916666667,
+          "dec": -3.593694444444467,
+          "amplitude_jy": 0.00016669407234036213,
+          "noise_proxy_jy": 0.00018942830502055585,
+          "amplitude_over_noise": 0.8799850282262374,
+          "background_jy_per_beam": -1.8888487829826772e-05,
+          "residual_over_noise": 1.1229614771429541,
+          "peak_offset_arcsec": 2.5200376877532946,
+          "recovered": false
+        },
+        {
+          "ra": 174.2757916666667,
+          "dec": -3.6603611111111336,
+          "amplitude_jy": 4.873099580290262e-05,
+          "noise_proxy_jy": 0.0001824476868212514,
+          "amplitude_over_noise": 0.26709571741869004,
+          "background_jy_per_beam": -1.9214170606574044e-05,
+          "residual_over_noise": 1.1124144308560815,
+          "peak_offset_arcsec": 1.0738553220246696,
+          "recovered": false
+        }
+      ]
+    },
+    {
+      "campaign": "VLASS3.1",
+      "mjd": 60009.296031249985,
+      "shape": [
+        1441,
+        1441
+      ],
+      "finite_fraction": 1.0,
+      "beam_arcsec_deg": [
+        2.92365860939028,
+        2.21554446220404,
+        -5.90771484375
+      ],
+      "target": {
+        "ra": 174.2757916666667,
+        "dec": -3.6270277777778,
+        "amplitude_jy": 0.0010016803541670167,
+        "noise_proxy_jy": 0.00015550930402241647,
+        "amplitude_over_noise": 6.441288902062257,
+        "background_jy_per_beam": -1.8097239262715448e-05,
+        "residual_over_noise": 1.0782882931738718,
+        "peak_offset_arcsec": 0.32452280911155146,
+        "recovered": true
+      },
+      "ensemble": [
+        {
+          "ra": 174.09565111979765,
+          "dec": -3.5949639753254767,
+          "amplitude_jy": 0.007643747881451652,
+          "noise_proxy_jy": 0.0002308721026711282,
+          "amplitude_over_noise": 33.10814859402909,
+          "background_jy_per_beam": -5.909973197049112e-06,
+          "residual_over_noise": 1.6402094757757253,
+          "peak_offset_arcsec": 4.6741745719496125e-11,
+          "recovered": true
+        }
+      ],
+      "nulls": [
+        {
+          "ra": 174.29249147577968,
+          "dec": -3.610360957456461,
+          "amplitude_jy": -0.00017127473002691935,
+          "noise_proxy_jy": 0.00015075404371600598,
+          "amplitude_over_noise": -1.1361203043387063,
+          "background_jy_per_beam": -1.1729500329238363e-05,
+          "residual_over_noise": 1.0171017893249545,
+          "peak_offset_arcsec": 2.2061901758279108,
+          "recovered": false
+        },
+        {
+          "ra": 174.25909185755373,
+          "dec": -3.61036095745646,
+          "amplitude_jy": 1.6321407437456076e-05,
+          "noise_proxy_jy": 0.00015325217100325972,
+          "amplitude_over_noise": 0.1065003342569869,
+          "background_jy_per_beam": -1.5765870102768531e-06,
+          "residual_over_noise": 0.9968918765503175,
+          "peak_offset_arcsec": 2.7749937091380716,
+          "recovered": false
+        },
+        {
+          "ra": 174.2924920916433,
+          "dec": -3.643694290784127,
+          "amplitude_jy": -0.00018438292203867992,
+          "noise_proxy_jy": 0.00014989263037941782,
+          "amplitude_over_noise": -1.2300999827140138,
+          "background_jy_per_beam": -1.1736251963156974e-05,
+          "residual_over_noise": 0.9481849159965773,
+          "peak_offset_arcsec": 2.531447397650011,
+          "recovered": false
+        },
+        {
+          "ra": 174.2590912416901,
+          "dec": -3.643694290784127,
+          "amplitude_jy": 3.693149367855283e-05,
+          "noise_proxy_jy": 0.00014756542805116624,
+          "amplitude_over_noise": 0.25027199233784864,
+          "background_jy_per_beam": -6.930539711902384e-06,
+          "residual_over_noise": 1.0254727670981332,
+          "peak_offset_arcsec": 1.4271160833014402,
+          "recovered": false
+        },
+        {
+          "ra": 174.30919190073357,
+          "dec": -3.627027163147786,
+          "amplitude_jy": 0.00024552477019825446,
+          "noise_proxy_jy": 0.00015901915449503576,
+          "amplitude_over_noise": 1.5439949418541226,
+          "background_jy_per_beam": -2.6612171495798975e-05,
+          "residual_over_noise": 0.8442864318875121,
+          "peak_offset_arcsec": 1.1134851207599157,
+          "recovered": false
+        },
+        {
+          "ra": 174.24239143259982,
+          "dec": -3.627027163147786,
+          "amplitude_jy": 0.0001350649327331453,
+          "noise_proxy_jy": 0.00015638431068509817,
+          "amplitude_over_noise": 0.8636731660704606,
+          "background_jy_per_beam": -2.4259250494651496e-05,
+          "residual_over_noise": 1.036674066193964,
+          "peak_offset_arcsec": 1.908921518513192,
+          "recovered": false
+        },
+        {
+          "ra": 174.2757916666667,
+          "dec": -3.593694444444467,
+          "amplitude_jy": 0.00013748472507586125,
+          "noise_proxy_jy": 0.00015358217933680862,
+          "amplitude_over_noise": 0.8951867050561553,
+          "background_jy_per_beam": 6.740479818745371e-07,
+          "residual_over_noise": 1.013385755777932,
+          "peak_offset_arcsec": 1.7938564093528944,
+          "recovered": false
+        },
+        {
+          "ra": 174.2757916666667,
+          "dec": -3.6603611111111336,
+          "amplitude_jy": 3.276507510604941e-05,
+          "noise_proxy_jy": 0.00015114992070823518,
+          "amplitude_over_noise": 0.21677202973394777,
+          "background_jy_per_beam": 1.0777747547763283e-06,
+          "residual_over_noise": 1.0471907204062922,
+          "peak_offset_arcsec": 2.5519478434564395,
+          "recovered": false
+        }
+      ]
+    },
+    {
+      "campaign": "VLASS4.1",
+      "mjd": 60992.585890625,
+      "shape": [
+        1441,
+        1441
+      ],
+      "finite_fraction": 1.0,
+      "beam_arcsec_deg": [
+        2.81347870826736,
+        2.02441334724432,
+        -18.45834350586
+      ],
+      "target": {
+        "ra": 174.2757916666667,
+        "dec": -3.6270277777778,
+        "amplitude_jy": 0.0010056567361607911,
+        "noise_proxy_jy": 0.00016916549233828845,
+        "amplitude_over_noise": 5.9448101516456475,
+        "background_jy_per_beam": -1.9100278223049827e-05,
+        "residual_over_noise": 0.9834630538198859,
+        "peak_offset_arcsec": 0.29975873869789754,
+        "recovered": true
+      },
+      "ensemble": [
+        {
+          "ra": 174.09565111979765,
+          "dec": -3.5949639753254767,
+          "amplitude_jy": 0.0064520428238603236,
+          "noise_proxy_jy": 0.00021971828978857957,
+          "amplitude_over_noise": 29.365069380745222,
+          "background_jy_per_beam": 4.513990643317811e-05,
+          "residual_over_noise": 1.7870279402104088,
+          "peak_offset_arcsec": 0.9965836109920196,
+          "recovered": true
+        }
+      ],
+      "nulls": [
+        {
+          "ra": 174.29249147577968,
+          "dec": -3.610360957456461,
+          "amplitude_jy": -8.150941284807916e-05,
+          "noise_proxy_jy": 0.00017052124726760665,
+          "amplitude_over_noise": -0.4780015051154463,
+          "background_jy_per_beam": 2.9795824957545847e-05,
+          "residual_over_noise": 1.0852178732454199,
+          "peak_offset_arcsec": 1.218295066286319,
+          "recovered": false
+        },
+        {
+          "ra": 174.25909185755373,
+          "dec": -3.61036095745646,
+          "amplitude_jy": 7.976097385643815e-05,
+          "noise_proxy_jy": 0.0001730676357301945,
+          "amplitude_over_noise": 0.4608659124504498,
+          "background_jy_per_beam": 3.1631241199647775e-06,
+          "residual_over_noise": 1.1197906128688142,
+          "peak_offset_arcsec": 2.5251605556224255,
+          "recovered": false
+        },
+        {
+          "ra": 174.2924920916433,
+          "dec": -3.643694290784127,
+          "amplitude_jy": 0.0002552097704872196,
+          "noise_proxy_jy": 0.00017454108823512795,
+          "amplitude_over_noise": 1.4621758868801207,
+          "background_jy_per_beam": -4.2631760152289644e-05,
+          "residual_over_noise": 1.0177805969597786,
+          "peak_offset_arcsec": 1.8253648501772866,
+          "recovered": false
+        },
+        {
+          "ra": 174.2590912416901,
+          "dec": -3.643694290784127,
+          "amplitude_jy": -5.9202745386920217e-05,
+          "noise_proxy_jy": 0.00017175089083730198,
+          "amplitude_over_noise": -0.3447012420040512,
+          "background_jy_per_beam": -5.398124358180212e-06,
+          "residual_over_noise": 0.9238621188943842,
+          "peak_offset_arcsec": 1.7962797791997112,
+          "recovered": false
+        },
+        {
+          "ra": 174.30919190073357,
+          "dec": -3.627027163147786,
+          "amplitude_jy": 5.36766538888025e-05,
+          "noise_proxy_jy": 0.00017130503883017807,
+          "amplitude_over_noise": 0.3133396090118192,
+          "background_jy_per_beam": 2.17022534343414e-06,
+          "residual_over_noise": 1.046610201751057,
+          "peak_offset_arcsec": 1.963466343072305,
+          "recovered": false
+        },
+        {
+          "ra": 174.24239143259982,
+          "dec": -3.627027163147786,
+          "amplitude_jy": -0.00033620043409384365,
+          "noise_proxy_jy": 0.00016882379811613646,
+          "amplitude_over_noise": -1.9914279731022653,
+          "background_jy_per_beam": 1.7616997865843587e-05,
+          "residual_over_noise": 0.9548297260043375,
+          "peak_offset_arcsec": 2.5072958551736586,
+          "recovered": false
+        },
+        {
+          "ra": 174.2757916666667,
+          "dec": -3.593694444444467,
+          "amplitude_jy": 0.00035029949004659417,
+          "noise_proxy_jy": 0.00017681986685674927,
+          "amplitude_over_noise": 1.981109341804841,
+          "background_jy_per_beam": -1.888554652396124e-05,
+          "residual_over_noise": 0.9160760842383024,
+          "peak_offset_arcsec": 0.8172485664090743,
+          "recovered": false
+        },
+        {
+          "ra": 174.2757916666667,
+          "dec": -3.6603611111111336,
+          "amplitude_jy": -9.92621645539695e-05,
+          "noise_proxy_jy": 0.0001754974655341357,
+          "amplitude_over_noise": -0.565604547346937,
+          "background_jy_per_beam": -4.54451292171143e-05,
+          "residual_over_noise": 0.9765023418394714,
+          "peak_offset_arcsec": 2.878566933430264,
+          "recovered": false
+        }
+      ]
+    }
+  ],
+  "scientific_claim": "none",
+  "reference_selected_positions": [
+    [
+      174.09565111979765,
+      -3.5949639753254767
+    ]
+  ],
+  "common_comparison_count": 1,
+  "failed_gates": [
+    "INSUFFICIENT_ENSEMBLE"
+  ]
+}
