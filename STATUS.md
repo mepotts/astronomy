@@ -25,7 +25,9 @@ gate. TESS's metadata mirror attempt also stops at a local parser error before
 catalog parity. A separately frozen [offline amendment](tess-short-eclipses/M1d2-RESULT-2026-09-12.md)
 now reproduces all 1,290 first-field rows exactly. [M1e](tess-short-eclipses/M1e-RESULT-2026-09-12.md)
 retrieves both missing catalogues: one coarse consistency pass, two fields still
-crowded. Calibrated localization and empirical negatives remain. ITF daily monitoring is not a fresh
+crowded. [M2n](tess-short-eclipses/M2n-RESULT-2026-09-12.md) passes all 18 fixed
+within-field off-phase checks with exact replay. Calibrated localization and
+population negatives remain. ITF daily monitoring is not a fresh
 daily attribution campaign; [notification delivery audit](DISCOVERY/ITF-NOTIFICATIONS-2026-09-12.md).
 
 **September 12 follow-through:** [execution and decisions](DISCOVERY/EXECUTION-2026-09-12.md).
@@ -71,7 +73,7 @@ promotion to a new recovery experiment. No pixels measured; 21 offline tests.
 
 | Front | Current state | Next gate |
 |---|---|---|
-| [`tess-short-eclipses/`](tess-short-eclipses/) | **3/3 known periods/pixel signals recovered; all catalogues now available.** [M1e](tess-short-eclipses/M1e-RESULT-2026-09-12.md): one coarse catalogue-consistency pass; two crowded fields remain. Exact replay passes. | Calibrated PRF/localization, catalogue completeness, empirical negatives and novelty coverage before unknowns. Physical depths not validated. |
+| [`tess-short-eclipses/`](tess-short-eclipses/) | **3/3 known periods/pixel signals recovered; all catalogues available.** One coarse catalogue-consistency pass; two crowded fields. [M2n](tess-short-eclipses/M2n-RESULT-2026-09-12.md): 18/18 fixed off-phase diagnostics pass with exact replay and overlap accounting. | Calibrated PRF/localization, catalogue completeness, independent negative fields and novelty coverage before unknowns. Physical depths not validated. |
 | [`vlass-pilot/`](vlass-pilot/) | **M2 STOP:** common-beam known-source recovery fails in QL2.1; QL3.1 held-out null scatter fails. [Result](vlass-pilot/m2-results-2026-09-12.md). Earlier 12-reference feasibility retained. | New fitted-amplitude noise and real-source morphology validation before any unknown-source protocol. No variability/discovery claim. |
 | [`itf-linker/`](itf-linker/) | **September 12 recovery accepted.** Snapshot 20260912T182637Z, valid lineage and local/release digest agreement; watch green, 18 ready / 8 held. Two newly held after tracklet disappearance, destination unknown. [Recovery](itf-linker/RECOVERY-2026-09-12.md). M14 stays stopped. | Daily archive/watch continue. Monitor material failures and freshness/count changes; new attribution needs a separate provenance-valid protocol. |
 | [`tns-miner/`](tns-miner/) | **PARKED after 15 bounded recovery probes.** Required Fink class and six ALeRCE REST/TAP alternatives remain unavailable/incomplete despite healthy controls. No fresh campaign or candidate count. | Prove a complete enumerator, then a fresh three-day window and post-window TNS snapshot; never promote the stopped bundle. |

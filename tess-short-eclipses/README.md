@@ -44,6 +44,12 @@ diagnostic, while two retain 26 and two potential competitors within one pixel.
 Even the cleaner field has a much brighter star 2.895 pixels away. Catalogue
 availability is resolved; PRF/localization and empirical negatives are not.
 
+The separately frozen [M2n real-data phase test](M2n-RESULT-2026-09-12.md) now
+passes all 18 fixed off-eclipse diagnostics (36 flux/background channels), with
+exact replay and explicit cadence overlap. These within-field windows are usable
+under the declared checks; they are not independent population negatives or
+validated source localization. PRF/confusion and independent-negative work remain.
+
 The portable agent kit named by global instructions is absent at its configured
 path on this host. This project uses the scoped AGENTS.md, a prospective protocol,
 small tested functions, explicit stop rules and retained provenance instead.
