@@ -1,0 +1,15 @@
+{
+  "utc": "2026-09-12T22:41:03.502759+00:00",
+  "url": "https://nxsa.esac.esa.int/tap-server/tap/sync",
+  "params": {
+    "REQUEST": "doQuery",
+    "LANG": "ADQL",
+    "FORMAT": "json",
+    "QUERY": "SELECT table_name,column_name,datatype,unit,description\nFROM TAP_SCHEMA.columns\nWHERE table_name IN ('xsa.v_exposure','xsa.v_instrument_mode','xsa.data_product')\nORDER BY table_name,column_name"
+  },
+  "byte_cap": 131072,
+  "worker_seconds": 30,
+  "source_sha256": "81a4ddcad7e6711f5844e22dcd4243d7279bf4a641c60048ce99047e5c682d82",
+  "helper_sha256": "11ad0bef9fd2efae234e204358c6b6730e723ed3dc24c6fe0c345f2ddcfb53dd",
+  "protocol_sha256": "a72497955efe87a0a4ca8c38d9d01f0899fccd36f90461650c98820576ebb7d4"
+}

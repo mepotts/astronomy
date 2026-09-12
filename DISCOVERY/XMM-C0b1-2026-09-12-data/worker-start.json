@@ -1,0 +1,9 @@
+{
+  "params": {
+    "REQUEST": "doQuery",
+    "LANG": "ADQL",
+    "FORMAT": "json",
+    "QUERY": "SELECT table_name,column_name,datatype,unit,description\nFROM TAP_SCHEMA.columns\nWHERE table_name IN ('xsa.v_exposure','xsa.v_instrument_mode','xsa.data_product')\nORDER BY table_name,column_name"
+  },
+  "source_sha256": "81a4ddcad7e6711f5844e22dcd4243d7279bf4a641c60048ce99047e5c682d82"
+}

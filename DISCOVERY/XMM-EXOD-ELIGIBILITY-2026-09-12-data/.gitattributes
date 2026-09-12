@@ -1,0 +1,5 @@
+# Preserve downloaded metadata byte hashes across Windows Git checkouts.
+*.txt -text
+*.json -text
+# Generated bookkeeping is not a raw response or a hash-bound artifact.
+receipt.json text eol=lf

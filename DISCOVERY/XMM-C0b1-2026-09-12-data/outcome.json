@@ -1,0 +1,42 @@
+{
+  "outcome": "STOP_PARENT",
+  "second_request_executed": false,
+  "worker_returncode": 1,
+  "worker_output": "",
+  "error": "ValueError: STOP_WORKER_1",
+  "elapsed_seconds": 0.875,
+  "artifacts": {
+    ".gitattributes": {
+      "bytes": 85,
+      "sha256": "efe0c36e598edafb3846c618b08093789bacd0ecc00318c8823f7bc6527a05a3"
+    },
+    "http.json": {
+      "bytes": 1086,
+      "sha256": "f03b27f02e804a15d508ae2d3f9726c7d3f8115f5d49d2f9eaeaae13ac7e1a3c"
+    },
+    "run-start.json": {
+      "bytes": 714,
+      "sha256": "7c8f0d4384c9c77314425d81ef54c1241b0b9cf5e63e37696e3efd150066cb27"
+    },
+    "schema-protocol.snapshot.md": {
+      "bytes": 2765,
+      "sha256": "a72497955efe87a0a4ca8c38d9d01f0899fccd36f90461650c98820576ebb7d4"
+    },
+    "schema-response.body": {
+      "bytes": 2034,
+      "sha256": "5cccb1603a4e4c4361ba8c6dd9bf974e58bd476fed0d28c51c29db9dd351ceab"
+    },
+    "schema_acquire.py": {
+      "bytes": 6691,
+      "sha256": "81a4ddcad7e6711f5844e22dcd4243d7279bf4a641c60048ce99047e5c682d82"
+    },
+    "worker-result.json": {
+      "bytes": 221,
+      "sha256": "b594f21cf92a87392f72e3955a63ef709f3bb67454eec12a37390a782f98e7f8"
+    },
+    "worker-start.json": {
+      "bytes": 389,
+      "sha256": "786bf341e680a977e5887281dca205a2e702da668a33becd19e5575c8e2c4f6b"
+    }
+  }
+}
