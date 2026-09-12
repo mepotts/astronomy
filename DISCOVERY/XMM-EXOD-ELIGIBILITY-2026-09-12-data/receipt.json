@@ -1,0 +1,31 @@
+{
+  "purpose": "read-only public metadata; no scientific arrays or coordinates",
+  "request_count": 3,
+  "aggregate_response_cap_bytes": 307200,
+  "receipts": [
+    {
+      "name": "exod-all-obsids.txt",
+      "url": "https://raw.githubusercontent.com/nx1/EXOD2/5bf41535af44b8efd318d03f1fc9ea7045013cb5/data/all_obsids.txt",
+      "status": 200,
+      "bytes": 166155,
+      "sha256": "f55667e7d593915a65510833afff19fc32bbeae43dc35b640f5e512451333e0e",
+      "elapsed_seconds": 0.25
+    },
+    {
+      "name": "public-post-paper-three.json",
+      "url": "https://nxsa.esac.esa.int/tap-server/tap/sync?REQUEST=doQuery&LANG=ADQL&FORMAT=json&QUERY=SELECT+TOP+3+observation_id%2Cstart_utc%2Cend_utc%2Cproprietary_end_date%2Cwith_science%2Cpps_version%2Cpps_proc_date%2Csas_version+FROM+xsa.v_public_observations+WHERE+start_utc+%3E%3D+%272025-03-20%27+AND+start_utc+%3C+%272025-04-01%27+ORDER+BY+start_utc%2Cobservation_id",
+      "status": 200,
+      "bytes": 1855,
+      "sha256": "2ec6657f170a17ff7ac6a4ff91c0b59d081e84fda72813f48229cab8751690db",
+      "elapsed_seconds": 0.5939999999991414
+    },
+    {
+      "name": "product-table-schema.json",
+      "url": "https://nxsa.esac.esa.int/tap-server/tap/sync?REQUEST=doQuery&LANG=ADQL&FORMAT=json&QUERY=SELECT+TOP+50+table_name%2Cdescription+FROM+TAP_SCHEMA.tables+WHERE+table_name+LIKE+%27%25expos%25%27+OR+table_name+LIKE+%27%25product%25%27+OR+table_name+LIKE+%27%25instrument%25%27+ORDER+BY+table_name",
+      "status": 200,
+      "bytes": 534,
+      "sha256": "88e13f868f7487e78a147aec13f5a2280881c3f276350da79e8d75a8e4062fb3",
+      "elapsed_seconds": 0.5630000000001019
+    }
+  ]
+}

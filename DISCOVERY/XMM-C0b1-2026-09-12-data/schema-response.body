@@ -1,0 +1,33 @@
+{"metadata":
+[
+{"name": "table_name", "datatype": "char", "xtype": null, "arraysize": "*", "description": null, "unit": null, "ucd": null, "utype": null},
+{"name": "column_name", "datatype": "char", "xtype": null, "arraysize": "*", "description": null, "unit": null, "ucd": null, "utype": null},
+{"name": "datatype", "datatype": "char", "xtype": null, "arraysize": "*", "description": null, "unit": null, "ucd": null, "utype": null},
+{"name": "unit", "datatype": "char", "xtype": null, "arraysize": "*", "description": null, "unit": null, "ucd": null, "utype": null},
+{"name": "description", "datatype": "char", "xtype": null, "arraysize": "*", "description": null, "unit": null, "ucd": null, "utype": null}
+],
+"data":
+[
+["xsa.data_product","filename","char",null,null],
+["xsa.data_product","filepath","char",null,null],
+["xsa.data_product","\"level\"","char",null,null],
+["xsa.data_product","obsid","char",null,null],
+["xsa.v_exposure","duration","long",null,"Exposure on time"],
+["xsa.v_exposure","end_utc","char",null,"End date of the observation in UTC"],
+["xsa.v_exposure","epic_bkg_count_rate","double",null,null],
+["xsa.v_exposure","exposure_id","char",null,"Exposure Identifier"],
+["xsa.v_exposure","exposure_oid","int",null,"Internal identifier"],
+["xsa.v_exposure","filter","char",null,null],
+["xsa.v_exposure","instrument","char",null,null],
+["xsa.v_exposure","instrument_mode_oid","int",null,"Internal identifier for the observing mode of the instrument"],
+["xsa.v_exposure","is_scientific","boolean",null,null],
+["xsa.v_exposure","mode_friendly_name","char",null,null],
+["xsa.v_exposure","observation_id","char",null,null],
+["xsa.v_exposure","observation_oid","int",null,"Internal identifier"],
+["xsa.v_exposure","start_utc","char",null,"Start date of the observation in UTC\n"],
+["xsa.v_instrument_mode","instrument","char",null,null],
+["xsa.v_instrument_mode","instrument_mode_oid","int",null,null],
+["xsa.v_instrument_mode","mode","char",null,null],
+["xsa.v_instrument_mode","mode_friendly_name","char",null,null]
+]
+}

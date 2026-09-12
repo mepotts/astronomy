@@ -30,8 +30,10 @@ no validated contrast or discovery. Portfolio follow-up is now weekly; ITF stays
 
 **Continued discovery work:** [new-route evidence and decisions](DISCOVERY/SEARCH-2026-09-12.md).
 [TESS](tess-short-eclipses/M0b-RESULT-2026-09-12.md) recovered three published
-eclipse periods and near-target pixel signals; source confusion remains unresolved,
-and no unknown-source scan has begun.
+eclipse periods and near-target pixel signals. Its
+[1,920-trial localization experiment](tess-short-eclipses/M2p-RESULT-2026-09-12.md)
+now fails stress rules in two controls; the cleaner control remains incompletely
+validated. No unknown-source scan has begun.
 [VLASS](vlass-pilot/README.md) recovered a known radio source and established a
 12-source same-field comparison ensemble in three epochs. Its subsequent
 common-beam validation stopped on control recovery and empirical noise gates;

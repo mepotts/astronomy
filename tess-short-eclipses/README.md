@@ -51,7 +51,12 @@ under the declared checks; they are not independent population negatives or
 validated source localization. PRF/confusion and independent-negative work remain.
 The separately frozen [M2a acquisition](M2a-RESULT-2026-09-12.md) now retains all
 twelve exact PRF grid products (2,764,800 bytes), with structural validation and
-read-only replay. No PRF fit or injection has run; that is the next scientific step.
+read-only replay. The subsequently frozen [M2p experiment](M2p-RESULT-2026-09-12.md)
+now completes 1,920 real-noise injection trials: two controls fail localization
+stress rules and the cleaner control remains validation-incomplete. All primary
+catalogue rankings favor the known target, but that does not erase the measured
+neighbour confusion, shape bias or uncalibrated nominal ellipses. Do not scale
+this method to unknown crowded sources or promote a physical-depth claim.
 
 The portable agent kit named by global instructions is absent at its configured
 path on this host. This project uses the scoped AGENTS.md, a prospective protocol,

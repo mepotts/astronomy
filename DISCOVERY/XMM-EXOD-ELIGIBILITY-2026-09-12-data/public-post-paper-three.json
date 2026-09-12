@@ -1,0 +1,18 @@
+{"metadata":
+[
+{"name": "observation_id", "datatype": "char", "xtype": null, "arraysize": "10", "description": "The XMM-Newton observation identification.", "unit": null, "ucd": null, "utype": null},
+{"name": "start_utc", "datatype": "char", "xtype": null, "arraysize": "*", "description": "Start date of the observation in UTC", "unit": null, "ucd": null, "utype": null},
+{"name": "end_utc", "datatype": "char", "xtype": null, "arraysize": "*", "description": "End date of the observation in UTC", "unit": null, "ucd": null, "utype": null},
+{"name": "proprietary_end_date", "datatype": "char", "xtype": null, "arraysize": "*", "description": "Propietary period expiry date", "unit": null, "ucd": null, "utype": null},
+{"name": "with_science", "datatype": "boolean", "xtype": null, "arraysize": null, "description": "Processed observation with science products", "unit": null, "ucd": null, "utype": null},
+{"name": "pps_version", "datatype": "char", "xtype": null, "arraysize": "50", "description": null, "unit": null, "ucd": null, "utype": null},
+{"name": "pps_proc_date", "datatype": "char", "xtype": null, "arraysize": "*", "description": null, "unit": null, "ucd": null, "utype": null},
+{"name": "sas_version", "datatype": "char", "xtype": null, "arraysize": "50", "description": null, "unit": null, "ucd": null, "utype": null}
+],
+"data":
+[
+["0942190201","2025-03-20T20:07:46.0","2025-03-21T03:07:46.0","2026-04-07T00:00:00.0",true,"21.51_20241115_1113","2025-04-26T18:49:54.0","xmmsas_20241108_1150-21.0.0"],
+["0940541201","2025-03-21T05:20:03.0","2025-03-21T09:13:23.0","2026-04-07T00:00:00.0",true,"21.51_20241115_1113","2025-04-26T18:49:29.0","xmmsas_20241108_1150-21.0.0"],
+["0943750401","2025-03-21T18:57:07.0","2025-03-22T01:37:07.0","2026-04-07T00:00:00.0",true,"21.51_20241115_1113","2025-04-26T18:41:02.0","xmmsas_20241108_1150-21.0.0"]
+]
+}

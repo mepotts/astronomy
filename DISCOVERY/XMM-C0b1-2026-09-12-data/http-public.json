@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "endpoint": "https://nxsa.esac.esa.int/tap-server/tap/sync",
+  "request_parameters": "Exact parameters are retained in run-start.json.",
+  "headers": {
+    "Date": "Sat, 12 Sep 2026 22:40:59 GMT",
+    "Content-Type": "application/json",
+    "Transfer-Encoding": "chunked"
+  },
+  "original_receipt_sha256": "f03b27f02e804a15d508ae2d3f9726c7d3f8115f5d49d2f9eaeaae13ac7e1a3c",
+  "redaction": "Original http.json remains unchanged locally and is excluded from Git because it contains an anonymous session cookie. This public derivative omits that cookie and nonessential headers; it does not replace the frozen receipt."
+}
