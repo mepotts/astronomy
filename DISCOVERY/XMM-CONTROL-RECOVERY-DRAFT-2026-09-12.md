@@ -6,6 +6,11 @@ is a small known-source recovery, not an EXOD reproduction, physical QPE
 classification or discovery. Header/product feasibility and final review must
 precede a separately approved photon run.
 
+Pre-execution review has corrected the coverage proposal below: wall-clock GTI
+coverage and detector live-time fraction are different quantities. See the
+[structural review](XMM-STRUCTURAL-REVIEW-2026-09-12.md). Nothing in this draft
+has been fitted to an observed control light curve or executed on photons.
+
 The [control evidence note](XMM-CONTROL-EVIDENCE-2026-09-12.md) supplies the
 published position, approximate two-burst morphology and unresolved inputs.
 The underlying source is [EXOD II §4.1, Table 6 and Figure 8](https://arxiv.org/html/2503.14208v2).
@@ -122,10 +127,15 @@ same-data comparisons, not independently selected true negatives.
    source-list/coverage products. No wildcard bundles or substitute observation.
 2. **Time and exposure:** validate TIME units/system/reference, TIMEZERO,
    TSTART/TSTOP and any barycentric correction; define per-CCD GTI intersection,
-   dead-time/live-time handling and camera overlap. Proposed acceptance is at
-   least 90% live coverage for each tested 200-s source/background bin; this
-   cannot be evaluated from observation duration. Partial/missing bins are not
-   silently filled or renormalized to full exposure.
+   dead-time/live-time handling and camera overlap. Distinguish wall-clock
+   coverage C=duration(bin intersect valid GTIs)/200 s from duty factor
+   D=integrated effective exposure/duration(bin intersect valid GTIs).
+   The proposed 90% requirement applies only to C, not to D: ordinary detector
+   readout dead time must not be treated as missing observing coverage. No D
+   acceptance threshold is adopted before verifying actual exposure semantics.
+   Evaluate source/background coverage separately; neither quantity follows
+   from observation duration. Partial/missing bins are not silently filled or
+   renormalized to full exposure.
 3. **Geometry:** verified sky-to-event/detector mapping, chip/bad-pixel masks,
    source/background area accounting and relevant exposure variation. Geometric
    area scaling alone may not describe spatially varying instrumental background
