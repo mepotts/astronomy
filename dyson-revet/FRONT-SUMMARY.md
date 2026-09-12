@@ -96,7 +96,10 @@ candidate, and the tally is by measurement rather than citation:**
 - **A** — its GO 7199 data remain under exclusive access until **2027-07-16**;
   M2 found the third GO 7199 target matches candidate A, absent from
   Hephaistos IV, so the JWST-vetted sample becomes 3 when it opens.
-- **E** — data open **2026-09-09**; see §6.
+- **E** — [executed September 12](E-EXECUTION-2026-09-12.md): release passed,
+  frozen measurement stopped at F560W centroiding. Failed attempt closed; no
+  outcome branch or validated contrast. Section 6 retains the original protocol,
+  not an instruction to repeat this failure. Replacement-method study deferred.
 - **No object anywhere in this project reached STILL-CLEAN, and none can** — that
   verdict was retired with the centroid axis (§3.2), and no product describes any
   object as clean.

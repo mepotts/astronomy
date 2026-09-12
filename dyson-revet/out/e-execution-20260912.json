@@ -1,0 +1,162 @@
+{
+  "status": "STOP_FROZEN_MEASUREMENT",
+  "frozen_execution": {
+    "returncode": 1,
+    "log_sha256": "aacf9aa4c4f6bc07012b2f1c1ed298e19496325b8f647f75d975acc999825fbe",
+    "executed_utc": "2026-09-12T18:44:26.860570+00:00",
+    "note": "Second identical execution, retained to verify/reproduce the initial failure."
+  },
+  "scientific_scripts_changed": false,
+  "four_outcome_branch_assigned": false,
+  "validated_contrast_available": false,
+  "discovery_claim": false,
+  "release_report_sha256": "e50a626206a80696db422ec15907dce4941457945bce35923d6277c24f0dff5f",
+  "executed_script_sha256": "af1af7bdbd51eacdd7af7a10f2679367066e29459a5e2b7eda12647a8e3fe72f",
+  "audit_script_sha256": "ae3d8aafb879f5a94a1fdd9eb1c892e6eb972a119aec150a6136405fb84850e7",
+  "inputs": [
+    {
+      "name": "jw07199-o006_t008_miri_f560w_i2d.fits",
+      "bytes": 39202560,
+      "sha256": "293812bf72c8cf7e4ca89b7d554588a0d5d26d33fbc47adbe7499fdb28dfdfbd"
+    },
+    {
+      "name": "jw07199-o006_t008_miri_f560w_cat.ecsv",
+      "bytes": 411091,
+      "sha256": "8fdca03ccc2da346962e6fa785bf7a0defb862641acc86f48fc6daf0f6002438"
+    },
+    {
+      "name": "jw07199-o006_t008_miri_f560w_segm.fits",
+      "bytes": 5679360,
+      "sha256": "17808a9796baa80ab378bba4bf218fe8a611e0917c5bd7728c79c1bc070b1564"
+    },
+    {
+      "name": "jw07199-o006_t008_miri_f1000w_i2d.fits",
+      "bytes": 39202560,
+      "sha256": "813f19a0fb6110200a614c0076e4c0e53749fb6752c01996fb153379e1fed66b"
+    },
+    {
+      "name": "jw07199-o006_t008_miri_f1000w_cat.ecsv",
+      "bytes": 279955,
+      "sha256": "50309f3e14393e7e5cd23225c2d059a3af628d4b5e33f5341dc3ceb836093acb"
+    },
+    {
+      "name": "jw07199-o006_t008_miri_f1000w_segm.fits",
+      "bytes": 5679360,
+      "sha256": "97bc097581681013d3c1df1e5d14007b48a7d6a61485522f0d76b3873e5ee80d"
+    },
+    {
+      "name": "jw07199-o006_t008_miri_f1500w_i2d.fits",
+      "bytes": 39202560,
+      "sha256": "d14a7589e5dc15d3515698aeef1771557ac2cff29f3dac85efe9e98bec93b9c0"
+    },
+    {
+      "name": "jw07199-o006_t008_miri_f1500w_cat.ecsv",
+      "bytes": 50024,
+      "sha256": "c11bea218166c724df8b0157d00a1b30d38ff11d81576afbf72b4c153615b50c"
+    },
+    {
+      "name": "jw07199-o006_t008_miri_f1500w_segm.fits",
+      "bytes": 5679360,
+      "sha256": "a575783ec2807d2e54857d676b3eecea3a5b08f7e3a1dd32e5e91256ed94306f"
+    }
+  ],
+  "per_filter": [
+    {
+      "filter": "f560w",
+      "cal_ver": "2.0.1",
+      "crds": "jwst_1535.pmap",
+      "bunit": "MJy/sr",
+      "image_shape": [
+        1156,
+        1205
+      ],
+      "pixel_scale_arcsec": 0.11092509443305729,
+      "cutout_finite_pixels": 14641,
+      "cutout_pixels": 14641,
+      "quadratic_patch_finite_pixels": 49,
+      "ring_peak_sigma": 67.40114342308867,
+      "ring_peak_radius_arcsec": 0.5421366843908321,
+      "centroid_finite": false,
+      "separation_arcsec_diagnostic": null,
+      "quadratic_hessian_eigenvalues": [
+        -0.9801541612235449,
+        9.835458471334512
+      ],
+      "quadratic_is_local_maximum": false,
+      "centroid_warnings": [
+        "'xpeak' was deprecated in version 3.0 and will be removed in version 4.0.",
+        "'ypeak' was deprecated in version 3.0 and will be removed in version 4.0.",
+        "quadratic fit does not have a maximum"
+      ],
+      "separation_over_nominal_psf_fwhm": null
+    },
+    {
+      "filter": "f1000w",
+      "cal_ver": "2.0.1",
+      "crds": "jwst_1535.pmap",
+      "bunit": "MJy/sr",
+      "image_shape": [
+        1156,
+        1205
+      ],
+      "pixel_scale_arcsec": 0.1109250933015283,
+      "cutout_finite_pixels": 14641,
+      "cutout_pixels": 14641,
+      "quadratic_patch_finite_pixels": 49,
+      "ring_peak_sigma": 185.4066263285263,
+      "ring_peak_radius_arcsec": 0.9976829604116826,
+      "centroid_finite": true,
+      "separation_arcsec_diagnostic": 0.9744493467956622,
+      "quadratic_hessian_eigenvalues": [
+        -1.6415926635789528,
+        -0.7514168206407614
+      ],
+      "quadratic_is_local_maximum": true,
+      "centroid_warnings": [
+        "'xpeak' was deprecated in version 3.0 and will be removed in version 4.0.",
+        "'ypeak' was deprecated in version 3.0 and will be removed in version 4.0."
+      ],
+      "separation_over_nominal_psf_fwhm": 2.9708821548648237,
+      "star_fwhm_arcsec": 0.5406725795519459,
+      "separation_over_star_fwhm": 1.8022910420261853,
+      "second_fwhm_arcsec": 0.7929832813683015,
+      "separation_over_second_fwhm": 1.2288397116194416
+    },
+    {
+      "filter": "f1500w",
+      "cal_ver": "2.0.1",
+      "crds": "jwst_1535.pmap",
+      "bunit": "MJy/sr",
+      "image_shape": [
+        1156,
+        1205
+      ],
+      "pixel_scale_arcsec": 0.11092509213756949,
+      "cutout_finite_pixels": 14641,
+      "cutout_pixels": 14641,
+      "quadratic_patch_finite_pixels": 49,
+      "ring_peak_sigma": 100.29369096058272,
+      "ring_peak_radius_arcsec": 0.9687891465303199,
+      "centroid_finite": true,
+      "separation_arcsec_diagnostic": 0.9902380280517299,
+      "quadratic_hessian_eigenvalues": [
+        -0.8365010846838373,
+        -0.2765655821073921
+      ],
+      "quadratic_is_local_maximum": true,
+      "centroid_warnings": [
+        "'xpeak' was deprecated in version 3.0 and will be removed in version 4.0.",
+        "'ypeak' was deprecated in version 3.0 and will be removed in version 4.0."
+      ],
+      "separation_over_nominal_psf_fwhm": 2.02917628699125,
+      "star_fwhm_arcsec": 0.5448245105809134,
+      "separation_over_star_fwhm": 1.8175357547623894,
+      "second_fwhm_arcsec": 1.2908409432493197,
+      "separation_over_second_fwhm": 0.7671262933131725
+    }
+  ],
+  "completed_aperture_pairs_in_failed_run": 6,
+  "negative_completed_aperture_pairs": 0,
+  "mrs_negative_slice_fraction": null,
+  "limit": "M7 MRS negative-slice fractions are not imaging-aperture fractions. No E MRS extraction performed."
+}
