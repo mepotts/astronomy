@@ -22,7 +22,9 @@ full-parent-plane test yields 12 common comparisons and calibration feasibility,
 not validated variability or a discovery. The subsequent common-beam M2 stops:
 one known-source epoch fails recovery and held-out QL3.1 null scatter exceeds its
 gate. TESS's metadata mirror attempt also stops at a local parser error before
-catalog parity; it does not resolve the two missing fields. ITF daily monitoring is not a fresh
+catalog parity. A separately frozen [offline amendment](tess-short-eclipses/M1d2-RESULT-2026-09-12.md)
+now reproduces all 1,290 first-field rows exactly; the two missing fields still
+require their own bounded continuation. ITF daily monitoring is not a fresh
 daily attribution campaign; [notification delivery audit](DISCOVERY/ITF-NOTIFICATIONS-2026-09-12.md).
 
 **September 12 follow-through:** [execution and decisions](DISCOVERY/EXECUTION-2026-09-12.md).

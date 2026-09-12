@@ -152,3 +152,45 @@ before freeze. Final source SHA-256 is
 `6415e4f371a203a2cce7bbf13f356ed0e8beafa90054a57bfee173fa95a71db8`.
 The sole condition above is satisfied: **GO for freeze and the single bounded
 offline M1d2 run.**
+
+## Independent post-result audit
+
+2026-09-12. **OFFLINE_CATALOG_PARITY_PASS independently replayed once.** The
+reviewer ran the frozen `m1d2.py replay` through its owner-context Windows parent
+harness and inherited 60-second process-tree deadline. It returned exit 0 and
+EXACT_REPLAY_PASS. No new run, request, pixel measurement or control selection
+was performed. This append is the reviewer's only result-audit file change.
+
+All ten direct M1d2 manifest dependency hashes were independently checked. Replay
+also rechecked the original M1d manifest and its transitive M1c/source/helper
+dependencies. Nineteen unique bound-input and M1d/M1d2 receipt files had identical
+SHA-256 hashes before and after replay. The attempt, worker-start and scientific
+result all identify the actual frozen manifest; parsed worker output equals the
+scientific result exactly, with successful worker completion.
+
+- Result SHA-256:
+  `500163d3b11bc649522606651e19429e8c272bcfa8d710574219521fd77fc05c`.
+- Manifest SHA-256:
+  `5a90493fc17e08200c79bb7e12ee9c1c7676bd859f8b66e0e583d7969e1efab0`.
+
+Both catalogs contain exactly **1,290 unique signed-64 source IDs**, matching
+exactly; every column mask matches and units pass unchanged scale checks. All
+seven reported numeric columns have maximum absolute difference **0.0** over
+unmasked values. Mask counts are zero for ra/dec/ref_epoch, 113 for pmra/pmdec/ruwe,
+and two for phot_g_mean_mag. Optional missing values remain masked, not filled.
+The fixed-width decoder consumes the complete payload; validation and parity
+sort for identity comparison but do not filter rows. No rows were dropped to
+obtain agreement. Both original numeric interpretations agree before comparison.
+
+Only the validated ancillary descriptor is removed in memory. Its hash, derived
+XML hash and unchanged-results-subtree receipt exactly reproduce the metadata
+preflight above. Raw XML and frozen M1d STOP remain unchanged. The original run's
+separate runtime receipt reports 0.047 seconds and peak working set 104,976,384
+bytes, within the declared acceptance caps; these are not substituted into the
+exact scientific replay.
+
+Interpretation is limited to a successful offline serialization/metadata repair
+and agreement between these two retained first-field catalogs. Network requests
+remain zero, pixel recalculation false and unknown_search_authorized false.
+This is not independent astrophysical corroboration, localization acceptance,
+a new source discovery, or authorization to fetch the missing fields.
