@@ -248,3 +248,15 @@ checks pass after merge; no extra C5 numerical pass. C7 one-map composition has
 12synthetic tests, unchanged core and centre construction, and independent
 review underway before a new committed freeze. A synthetic-only event-row
 decoder is being built in parallel; no actual photons have been read.
+
+[C7 now executed](XMM-C7-RESULT-2026-09-12.md) after6c7d456: MOS2 sourcecircle
+positive at all4/8samples, sourceannulus65.1064%positive nominally. North/west
+MOS2circles/annuli positive sampled; eastpartial,southcirclezero. The worker,
+parent and one numerical replay pass,3knownpasses5038848bytes,totalJSON42284.
+This resolves the specific lack of affirmative second-camera static sampling,
+not calibrated simultaneous exposure or the stronger recovery gate. Stop map
+endpoint exploration for this question. Next is the [7852-byte source geometry
+screen](XMM-SOURCE-GEOMETRY-IMPLEMENTATION-PLAN.md), then a separately frozen
+descriptive photon test using the synthetic-only eventdecoder now under review.
+Raw count reporting need not wait indefinitely for full exposure calibration,
+but cannot be labelled calibrated rates, significance or discovery.

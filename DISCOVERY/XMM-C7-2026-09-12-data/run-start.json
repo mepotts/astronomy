@@ -1,0 +1,75 @@
+{
+  "manifest": {
+    "maps": [
+      {
+        "map": 1,
+        "camera": "EMOS2",
+        "exposure": "S002",
+        "filename": "P0884250101M2S002EXPMAP8000.fits",
+        "offset": 25920,
+        "file_bytes": 1707840,
+        "sha256": "a92d6907db2e9e4def19b124c19da6056d20a06e3465da7103a23fb5dcd36983",
+        "header_sha256": "6cc4bfa1b08d93a31f8f89ba49274511e9ef0052634d64cb1235fdde739e2285"
+      }
+    ],
+    "labels": [
+      "published",
+      "north120",
+      "east120",
+      "south120",
+      "west120"
+    ],
+    "kinds": [
+      "circle20",
+      "annulus60_90"
+    ],
+    "planned_regions": 10,
+    "definition_sha256": "7a3e6b99da0a11f547ed43373cb179f90257d9e01a2a2fbdf643cb85bec53c4e",
+    "centre_convention": "published_ICRS_offsets_then_FK5_J2000",
+    "wcs_contract": "primary_CDELT_only_RA_DEC_TAN_deg_FK5_J2000_explicit_no_fix",
+    "value_contract": "absent_BUNIT_no_scaling_sign_only_no_physical_units",
+    "MOS2": "ONLY_MAP_IN_THIS_STAGE",
+    "C5": "UNCHANGED_NOT_REPLAYED"
+  },
+  "dependencies": {
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\xmm_map_support.py": "2c93c225223aacedefd8ce160726c9f363e11626823cb8d9ae34a54dfda2307a",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\test_xmm_map_support.py": "6ba990522f625472293700c946475192c7d0ab0b5aaae46f44906143caa20bf6",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C6-2026-09-12-data\\acquire.py": "4ed7d10e229a38f4356f34386ee70e510915049c1468b006841908ecaf1cbfdb",
+    "C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\scripts\\check_e_release.py": "11ad0bef9fd2efae234e204358c6b6730e723ed3dc24c6fe0c345f2ddcfb53dd",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C1-2026-09-12-data\\acquire.py": "13184df5d2b9d6e4bae83446316974ba90f46e3412e51c10c40cfbe2f5e2cca5",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-CONTROL-RECOVERY-DRAFT-2026-09-12.md": "7a3e6b99da0a11f547ed43373cb179f90257d9e01a2a2fbdf643cb85bec53c4e",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C5-2026-09-12-data\\inspect_maps.py": "5e7af10b0d8ac5ea8272229efb8a618a392c92d802e6efc401e6b3a54cb5a05b",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C5-2026-09-12-data\\test_inspect_maps.py": "51fa37948ea7fcb9a5fd41d1d232a835f7cf04027a6b9d385752b35aac9c3007",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C6-2026-09-12-data\\test_acquire.py": "f46468825846e68649ccb48d2592163b0151476de6a49609f315af2141c31ccf",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C5-2026-09-12-data\\outcome.json": "58d8526abdaeb0347cecb252b740fcbd8b5f6956bf89a661b08eb5210d892a36",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-MOS2-MAP-COMPATIBILITY-2026-09-12.md": "edfb5068c498826077c85580fa22b5c34e5249a749244e9202d4522848f87f43"
+  },
+  "source_sha256": "52eec788c55df46c3ba884c42b73e2fb8a573bdb2a2ae188f90b0b51b3007778",
+  "tests_sha256": "9f63df22dd072452b00fb0e90cea49b365fd516d3739387c9d36837b530a1176",
+  "protocol_sha256": "0ce140a2d42a5f820b29ada831174b30242cf3d395e1caaeb34591cc49df15b5",
+  "prior_outcome_sha256": "8cd766cd9ec4e2a54548248bd6b8aa0805c94678e1e066ba3c560713e03e0caa",
+  "runtime": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "executable": "C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Scripts\\python.exe",
+    "numpy": "2.5.2",
+    "astropy": "8.0.1"
+  },
+  "caps": {
+    "seconds": 60,
+    "memory": 500000000,
+    "json": 1048576,
+    "reserve": 65536,
+    "payload_bytes_per_map": 1679616,
+    "payload_bytes_per_pass": 1679616,
+    "chunk_rows": 16,
+    "subdivisions": [
+      4,
+      8
+    ],
+    "maximum_box_side": 256,
+    "core_chunk_rows": 16
+  },
+  "output_directory": "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C7-2026-09-12-data",
+  "composition": "C5_frozen_numerical_and_receipt_functions_isolated_single_map_adapter",
+  "prior_c5_outcome_sha256": "58d8526abdaeb0347cecb252b740fcbd8b5f6956bf89a661b08eb5210d892a36"
+}
