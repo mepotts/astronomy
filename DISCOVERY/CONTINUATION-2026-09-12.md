@@ -323,3 +323,30 @@ three known passes23556selectedbytes; outcome82cd6df3d673c86059494e9d38a3bfd1312
 No extra array pass for postrun review or integration. The stronger recovery
 has not established two usable negatives; do not silently waive that gate.
 Proceed to separately frozen descriptive photon counts, not calibrated recovery.
+
+PR23 merged2026-09-13T03:37:45Z as26df8a40e7ba824a845a6bda605b9d8270510162
+after all11CI jobs passed on256815b8c559d9485975f19791be438a1afec208,
+run34735850315. Postmerge C8 binding/artifact/ledger checks pass under a
+products-open guard: no fourth numerical pass. Current branch
+`codex/xmm-recorded-counts-sep12`. [Recorded-counts plan](XMM-RECORDED-COUNTS-PLAN-2026-09-12.md)
+fixes254 half-open200second bins anchored at pnTSTART, all three cameras and
+five circle/unmasked-annulus pairs, no rates/significance/recovery claim.
+Pure EVENTS geometry, pure count core and bounded C9 wrapper are under
+implementation/review, with synthetic data only. Root's actual header-only
+geometry smoke caught overbroad TS/DP keyword rejection (TSTART/TSTOP/DPSCORRF);
+that prefreeze implementation needs repair and regression before use. No real
+photons have yet been read; no runtime freeze or C9 execution is authorized
+by the implementation plan alone.
+
+The geometry prefix finding is repaired before freeze: indexed TS/DP families
+remain rejected, harmless TSTART/TSTOP/DPSCORRF accepted.13synthetic tests,
+Ruff and all3pinned header-only smoke checks pass; root and independent reviewer
+confirmed no product/value access. [Review](XMM-EVENT-GEOMETRY-REVIEW.md) records
+the failed initial compatibility assumption and the final source
+8adcb227f61c2f86855652ada4d66b5f677e84caa0cb16b5dd182be3081de9da,
+tests e1e1d41daffec25ada03fd155f958082c62f09c62cef4cdd83ee2cd8fa14f538.
+[C9 prospective contract](XMM-C9-2026-09-12.md) is written, not a runtime freeze:
+120sworker/120scooperativeparent,512MiBmonitored,4MiBJSON/256KiBreserve,
+334chunks per fullpass. Pure counter tests and independent review are underway;
+bounded runtime needs syntheticfull-size fit/failure tests and review before
+actual photon access. No stronger scientific gate has changed.
