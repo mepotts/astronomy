@@ -689,3 +689,43 @@ No retry or scientific arrays. Preserve partial and obtain a finite separate
 transport-continuation decision; the conditional CALINDEX proposal waits for
 authenticated complete products. This is an incomplete transfer, not a
 non-discovery result or an exhausted research route.
+
+M5 receipt-only independent audit complete; no extra raw hash/header pass.
+PR29 merged2026-09-13T06:51:13Z asf6e39e6434d2fea9e8ff783a1d9b1a1af3204c75
+after all12CIchecks passed on e28cce9bed180f7f11470df6c2b7d26ecbe7e272,
+run34743683421. Local main fast-forwarded; current branch
+`codex/xmm-rxj-long-transfer-sep13`. Postmerge public binding/five-artifact
+closure PASS under private-input/network/header guards; no raw hash or replay.
+Root adopts [fresh bounded M6 direction](XMM-RXJ-M5-NEXT.md), not Range splicing:
+no shared strong response validator exists for M5. Larger7200s hard/7140s
+cooperative worker allowance is a prospective engineering budget, not a
+completion prediction;300s parent/replay,64KiB network chunks and unchanged
+byte/privacy/scientific gates. M6 implementation and independent review are
+in progress; no M6 freeze, dispatch or actual request yet.
+
+M6 preflight root fully read adapter/protocol/tests and independently ran22
+synthetic tests/Ruff PASS. All16 frozen M5 cases execute against isolated M6
+state; additional cases cover fresh paths, stable binding, split deadlines,
+network chunk restoration, pre-read JSON budget and combined deadline/peak STOP.
+Prospective sourceb7370adf14a0e8935e00d0c8d312b4dd913790d621e85475bf0f39325c926e77,
+testsb33cd3176a207f6832c9bd348f15c5e74e793d1ee1afa7d76cbb5a772bb7af82,
+protocolf14ac193511e0a6a876809adc1dfd04b588beac5a1efc4b3988f1ee566de5847.
+Root confirms exact prospective private product/header paths ignored. Final
+independent GO and committed-byte binding verification precede one dispatch.
+
+Parallel research identifies a useful shared next input: the exact OBSMLI
+catalogue already present in M4's safe EP references. Its source association
+could serve both original geometry work and a separately named PPS timing
+diagnostic; no catalogue values or corrected curves have been read. PPS curves
+cannot pass our arbitrary fixed-aperture/negative-control requirements. The
+SAS environment note reports Ubuntu24.04 with only664MiB Linux-root availability;
+root found an officially linked HEASARC Ubuntu24 binary listing, but no package,
+dependency install, cleanup or expanded-storage decision has been executed.
+
+Independent final M6 GO received on the exact prospective anchors above:
+22 synthetic tests/Ruff plus8 independent buffer/isolation probes. Root read
+the complete final review and adopts the bounded scope. Author's representative
+synthetic physical-file fit used the predecessor adapter before the two narrow
+replay fixes, not a real network benchmark. Freeze exact committed bytes and
+dispatch one fresh three-slot worker, parent verification and one explicit
+offline replay; never rerun M5 or reuse its private partial.
