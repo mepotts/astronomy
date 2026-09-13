@@ -189,6 +189,18 @@ descriptive known-control count screen may be useful even if calibrated
 recovery remains incomplete, but needs its own explicit prospective contract;
 it cannot be called a pass of the unchanged stronger recovery draft.
 
+PR20 merged as `dd0e0295d8dba2492f4e7878e74a9ee9ea6c1496` after all eleven
+CI jobs passed. Local C3e header replay and C4 binding/receipt checks also pass
+after merge; the latter did not add a fourth attitude decoding pass. The
+[C5 draft](XMM-C5-2026-09-12.md) now specifies a fixed 4/8-subdivision static
+support experiment. Its pure numerical core has 14 synthetic tests and an
+[independent arithmetic review](XMM-MAP-SUPPORT-REVIEW.md); the bounded reader
+and full execution review are still pending. No actual map pixels yet.
+The [counter follow-up](XMM-ATTITUDE-COUNTERS-2026-09-12.md) does not resolve
+the joint-counter semantics or establish independent OM measurements. It
+corrects the interpretive offset reference to median, not nominal, pointing;
+all frozen numerical results remain unchanged.
+
 [ITF](ITF-NOTIFICATIONS-2026-09-12.md) still has its daily archive publisher and
 existing-queue watch, not a fresh automated discovery search. No dedicated
 SMS/email delivery was configured or tested. Existing daily/weekly follow-ups
