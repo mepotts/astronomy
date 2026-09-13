@@ -370,3 +370,22 @@ decision and primary papers: published pnfull-frame/thin, threecamera eruptions
 and~1200s morphology fit200s diagnostic better. This is a conditional next
 metadata choice, not verified current availability, calibrated recovery or
 permission to weaken negatives. No archive/product request for the newcontrol.
+
+C9 initial wrapper is on disk but **unfrozen/not execution-ready**; no run,
+worker or camera markers and no real photons. Root/reviewer independently
+passed its3camera metadata-only manifest under products-open prohibition.
+Prefreeze findings require exact per-chunk progress/digest comparison in parent,
+complete component semantics, completed-prefix/current byte reconciliation,
+C1/C8test dependency pins and stage-file allowlist. Author is applying these
+and preparing wrapper tests. Final cameraOK/lastchunkSTOP must fail before
+numerical work. Reviewer owns `XMM-C9-REVIEW.md` when candidate is ready.
+
+Root [pure-kernel resource check](XMM-C9-RESOURCE-PREFLIGHT.md) completes all
+334chunks/3323958synthetic rows through decoder+geometry+counter in1.218s,
+peak74665984bytes,0actualproductbytes. It explicitly does not cover disk,
+producthash/header,receipt serialization/closure or parent replay; fullwrapper
+synthetic budget/failure tests remain required.138root coretests pass. Current
+committed code checkpoints3a731bd/4cffe9c; next-control research19a0710. Do not
+freeze or run C9 until finalsource/tests/protocol read, independent review,
+fullwrapper benchmark and exactindexbyte checks are complete. CI still needs
+its C9wrappertest/lint entry. No extra C8 numerical pass is authorized by audit.
