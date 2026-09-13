@@ -362,3 +362,11 @@ tests5e5b1bc15646ab12c856582142cad6331019ff9e23455a961761b3e4d374df9c.
 Geometry/plan checkpoint3a731bd is not a C9 runtime freeze. C9 author is building
 the three-camera334chunk wrapper and synthetic tests; reviewer is assigned
 its independent review next. Keep every executed C1–C8 artifact immutable.
+
+Bounded [next-control comparison](XMM-NEXT-CONTROL-DECISION-2026-09-12.md)
+now prioritizes RXJ1301.9+2747/0851180501 metadata preflight after C9 terminal
+result, over the shorter/off-axis0886121001 stress test. Root read the complete
+decision and primary papers: published pnfull-frame/thin, threecamera eruptions
+and~1200s morphology fit200s diagnostic better. This is a conditional next
+metadata choice, not verified current availability, calibrated recovery or
+permission to weaken negatives. No archive/product request for the newcontrol.
