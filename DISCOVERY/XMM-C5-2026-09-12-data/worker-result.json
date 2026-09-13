@@ -1,0 +1,40 @@
+{
+  "status": "STATIC_SUPPORT_APPROXIMATION_NOT_COVERAGE",
+  "ledger": [
+    {
+      "map": 1,
+      "status": "OK",
+      "accounting": {
+        "read_bytes": 1679616,
+        "decoded_bytes": 1679616
+      }
+    },
+    {
+      "map": 2,
+      "status": "OK",
+      "accounting": {
+        "read_bytes": 1679616,
+        "decoded_bytes": 1679616
+      }
+    }
+  ],
+  "accounting": {
+    "read_bytes": 3359232,
+    "decoded_bytes": 3359232
+  },
+  "artifacts": {
+    "map-1-result.json": "b64e0ea2e0ec32f06ac8a899c1b55247e3fc552c5ad063ba4cec94563a9186df",
+    "map-1-start.json": "822f44850641d714c547960ff0a015d00e966798ef786126839a0410a20c27f7",
+    "map-2-result.json": "5f984bcfea5e2052723f16a15edc84d20004a9ebdf78e48151b8517ac2b4e6f2",
+    "map-2-start.json": "7b55aced4a9cbb6aeb00e2887769426bfabec5a51dd1b9b3d20733bc904c3e6c",
+    "protocol.snapshot.md": "7bed41ff48eaaee04761f49a924ac3dedd14611d41156b4b1048aa41d416b062",
+    "run-start.json": "0a257b96df8e630cbc3983a0a09604832269f46fbeed043bf81a5a2719439463",
+    "worker-start.json": "f6ab6acd56ba6c9cc8f8269a29209e28f129d87479c66076ee0d785abb821da8"
+  },
+  "resource_usage": {
+    "compressed_bytes": 0,
+    "expanded_bytes": 0,
+    "json_bytes": 74135
+  },
+  "peak_memory_bytes": 78749696
+}

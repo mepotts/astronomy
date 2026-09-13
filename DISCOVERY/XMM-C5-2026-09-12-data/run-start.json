@@ -1,0 +1,77 @@
+{
+  "manifest": {
+    "maps": [
+      {
+        "map": 1,
+        "camera": "EPN",
+        "exposure": "S003",
+        "filename": "P0884250101PNS003EXPMAP8000.fits",
+        "offset": 46080,
+        "file_bytes": 1728000,
+        "sha256": "5a39eee5d2b438fb893e65ff6a9bc2a70896987b7b9f15ba990e24a87a4172dd",
+        "header_sha256": "ec3d29a2b4c0428cc1e7e382b4521fdca83019dbc4066b63685bac076f1f3a9a"
+      },
+      {
+        "map": 2,
+        "camera": "EMOS1",
+        "exposure": "S001",
+        "filename": "P0884250101M1S001EXPMAP8000.fits",
+        "offset": 23040,
+        "file_bytes": 1704960,
+        "sha256": "652846bddc9724aacd4a08fda52fc2065820615104536b3545aeb8712b63cb38",
+        "header_sha256": "e34274169b7ba4298d12b04b68ba7da197f9b9dada106de2ac7fb773cc93d1e3"
+      }
+    ],
+    "labels": [
+      "published",
+      "north120",
+      "east120",
+      "south120",
+      "west120"
+    ],
+    "kinds": [
+      "circle20",
+      "annulus60_90"
+    ],
+    "planned_regions": 20,
+    "definition_sha256": "7a3e6b99da0a11f547ed43373cb179f90257d9e01a2a2fbdf643cb85bec53c4e",
+    "centre_convention": "published_ICRS_offsets_then_FK5_J2000",
+    "wcs_contract": "primary_CDELT_only_RA_DEC_TAN_deg_FK5_J2000_explicit_no_fix",
+    "value_contract": "absent_BUNIT_no_scaling_sign_only_no_physical_units",
+    "MOS2": "UNAVAILABLE"
+  },
+  "dependencies": {
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\xmm_map_support.py": "2c93c225223aacedefd8ce160726c9f363e11626823cb8d9ae34a54dfda2307a",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\test_xmm_map_support.py": "6ba990522f625472293700c946475192c7d0ab0b5aaae46f44906143caa20bf6",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C3e-2026-09-12-data\\acquire.py": "ad80cb38306388f69e51bce78fe4787279e7ba5402b4b6f7b10b44362b54aa4e",
+    "C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\scripts\\check_e_release.py": "11ad0bef9fd2efae234e204358c6b6730e723ed3dc24c6fe0c345f2ddcfb53dd",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C1-2026-09-12-data\\acquire.py": "13184df5d2b9d6e4bae83446316974ba90f46e3412e51c10c40cfbe2f5e2cca5",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-CONTROL-RECOVERY-DRAFT-2026-09-12.md": "7a3e6b99da0a11f547ed43373cb179f90257d9e01a2a2fbdf643cb85bec53c4e"
+  },
+  "source_sha256": "5e7af10b0d8ac5ea8272229efb8a618a392c92d802e6efc401e6b3a54cb5a05b",
+  "tests_sha256": "51fa37948ea7fcb9a5fd41d1d232a835f7cf04027a6b9d385752b35aac9c3007",
+  "protocol_sha256": "7bed41ff48eaaee04761f49a924ac3dedd14611d41156b4b1048aa41d416b062",
+  "prior_outcome_sha256": "af82c5ae3b7a5cd233589e6bd53eadc8d0ded37137ad6df6dac49d198a581d80",
+  "runtime": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "executable": "C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Scripts\\python.exe",
+    "numpy": "2.5.2",
+    "astropy": "8.0.1"
+  },
+  "caps": {
+    "seconds": 60,
+    "memory": 500000000,
+    "json": 1048576,
+    "reserve": 65536,
+    "payload_bytes_per_map": 1679616,
+    "payload_bytes_per_pass": 3359232,
+    "chunk_rows": 16,
+    "subdivisions": [
+      4,
+      8
+    ],
+    "maximum_box_side": 256,
+    "core_chunk_rows": 16
+  },
+  "output_directory": "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C5-2026-09-12-data"
+}

@@ -1,0 +1,1000 @@
+{
+  "map": 1,
+  "status": "OK",
+  "accounting": {
+    "read_bytes": 1679616,
+    "decoded_bytes": 1679616
+  },
+  "summaries": [
+    {
+      "label": "published",
+      "kind": "circle20",
+      "diagnostic": {
+        "status": "STATIC_SUPPORT_APPROXIMATION_NOT_COVERAGE",
+        "region": "circle20",
+        "radii_arcsec": [
+          0.0,
+          20.0
+        ],
+        "nominal_subdivision": 8,
+        "analytical_full_spherical_region_area_arcsec2": 1256.637060451366,
+        "resolutions": [
+          {
+            "subdivision": 4,
+            "selected_subpixel_counts": {
+              "finite_positive": 1259,
+              "zero": 0,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 94,
+              "zero": 0,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 1258.9924439143501,
+              "zero": 0.0,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 1258.9924439143501,
+            "estimated_area_fractions": {
+              "finite_positive": 1.0,
+              "zero": 0.0,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          },
+          {
+            "subdivision": 8,
+            "selected_subpixel_counts": {
+              "finite_positive": 5029,
+              "zero": 0,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 98,
+              "zero": 0,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 1257.2424549461464,
+              "zero": 0.0,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 1257.2424549461464,
+            "estimated_area_fractions": {
+              "finite_positive": 1.0,
+              "zero": 0.0,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          }
+        ],
+        "fine_minus_coarse_area_arcsec2": {
+          "finite_positive": -1.749988968203752,
+          "zero": 0.0,
+          "negative": 0.0,
+          "nonfinite": 0.0,
+          "out_of_image": 0.0
+        },
+        "fine_minus_analytical_full_area_arcsec2": 0.6053944947802847,
+        "proximity": {
+          "unsupported_image_pixel_count": 280725,
+          "nearest_unsupported_pixel_centre_arcsec": 74.45501847878397,
+          "unsupported_pixel_centre_minus_outer_radius_arcsec": 54.45501847878397,
+          "nearest_sampled_image_border_arcsec": 894.8653879098713,
+          "sampled_image_border_minus_outer_radius_arcsec": 874.8653879098713,
+          "region_centre_inside_image_rectangle": true,
+          "border_sample_spacing_pixels": 1,
+          "interpretation": "Distances to pixel centres / sampled border, not true nearest-boundary guarantees or eligibility"
+        },
+        "interpretation": "Fixed midpoint raster / TAN Jacobian approximations, not exact area, matched FLAG masks, live exposure or continuous coverage"
+      }
+    },
+    {
+      "label": "published",
+      "kind": "annulus60_90",
+      "diagnostic": {
+        "status": "STATIC_SUPPORT_APPROXIMATION_NOT_COVERAGE",
+        "region": "annulus60_90",
+        "radii_arcsec": [
+          60.0,
+          90.0
+        ],
+        "nominal_subdivision": 8,
+        "analytical_full_spherical_region_area_arcsec2": 14137.16661717517,
+        "resolutions": [
+          {
+            "subdivision": 4,
+            "selected_subpixel_counts": {
+              "finite_positive": 13481,
+              "zero": 654,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 956,
+              "zero": 45,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 13480.915406903378,
+              "zero": 653.9969352229979,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 14134.912342126376,
+            "estimated_area_fractions": {
+              "finite_positive": 0.9537318011323008,
+              "zero": 0.04626819886769912,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          },
+          {
+            "subdivision": 8,
+            "selected_subpixel_counts": {
+              "finite_positive": 53915,
+              "zero": 2637,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 973,
+              "zero": 45,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 13478.665426593094,
+              "zero": 659.2469073806333,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 14137.912333973727,
+            "estimated_area_fractions": {
+              "finite_positive": 0.9533702790194527,
+              "zero": 0.04662972098054731,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          }
+        ],
+        "fine_minus_coarse_area_arcsec2": {
+          "finite_positive": -2.2499803102837177,
+          "zero": 5.249972157635398,
+          "negative": 0.0,
+          "nonfinite": 0.0,
+          "out_of_image": 0.0
+        },
+        "fine_minus_analytical_full_area_arcsec2": 0.7457167985576234,
+        "proximity": {
+          "unsupported_image_pixel_count": 280725,
+          "nearest_unsupported_pixel_centre_arcsec": 74.45501847878397,
+          "unsupported_pixel_centre_minus_outer_radius_arcsec": -15.54498152121603,
+          "nearest_sampled_image_border_arcsec": 894.8653879098713,
+          "sampled_image_border_minus_outer_radius_arcsec": 804.8653879098713,
+          "region_centre_inside_image_rectangle": true,
+          "border_sample_spacing_pixels": 1,
+          "interpretation": "Distances to pixel centres / sampled border, not true nearest-boundary guarantees or eligibility"
+        },
+        "interpretation": "Fixed midpoint raster / TAN Jacobian approximations, not exact area, matched FLAG masks, live exposure or continuous coverage"
+      }
+    },
+    {
+      "label": "north120",
+      "kind": "circle20",
+      "diagnostic": {
+        "status": "STATIC_SUPPORT_APPROXIMATION_NOT_COVERAGE",
+        "region": "circle20",
+        "radii_arcsec": [
+          0.0,
+          20.0
+        ],
+        "nominal_subdivision": 8,
+        "analytical_full_spherical_region_area_arcsec2": 1256.637060451366,
+        "resolutions": [
+          {
+            "subdivision": 4,
+            "selected_subpixel_counts": {
+              "finite_positive": 1258,
+              "zero": 0,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 94,
+              "zero": 0,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 1257.987541762696,
+              "zero": 0.0,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 1257.987541762696,
+            "estimated_area_fractions": {
+              "finite_positive": 1.0,
+              "zero": 0.0,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          },
+          {
+            "subdivision": 8,
+            "selected_subpixel_counts": {
+              "finite_positive": 5023,
+              "zero": 0,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 98,
+              "zero": 0,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 1255.7375639496847,
+              "zero": 0.0,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 1255.7375639496847,
+            "estimated_area_fractions": {
+              "finite_positive": 1.0,
+              "zero": 0.0,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          }
+        ],
+        "fine_minus_coarse_area_arcsec2": {
+          "finite_positive": -2.2499778130113555,
+          "zero": 0.0,
+          "negative": 0.0,
+          "nonfinite": 0.0,
+          "out_of_image": 0.0
+        },
+        "fine_minus_analytical_full_area_arcsec2": -0.8994965016813694,
+        "proximity": {
+          "unsupported_image_pixel_count": 280725,
+          "nearest_unsupported_pixel_centre_arcsec": 126.66904280191399,
+          "unsupported_pixel_centre_minus_outer_radius_arcsec": 106.66904280191399,
+          "nearest_sampled_image_border_arcsec": 774.865387975934,
+          "sampled_image_border_minus_outer_radius_arcsec": 754.865387975934,
+          "region_centre_inside_image_rectangle": true,
+          "border_sample_spacing_pixels": 1,
+          "interpretation": "Distances to pixel centres / sampled border, not true nearest-boundary guarantees or eligibility"
+        },
+        "interpretation": "Fixed midpoint raster / TAN Jacobian approximations, not exact area, matched FLAG masks, live exposure or continuous coverage"
+      }
+    },
+    {
+      "label": "north120",
+      "kind": "annulus60_90",
+      "diagnostic": {
+        "status": "STATIC_SUPPORT_APPROXIMATION_NOT_COVERAGE",
+        "region": "annulus60_90",
+        "radii_arcsec": [
+          60.0,
+          90.0
+        ],
+        "nominal_subdivision": 8,
+        "analytical_full_spherical_region_area_arcsec2": 14137.16661717517,
+        "resolutions": [
+          {
+            "subdivision": 4,
+            "selected_subpixel_counts": {
+              "finite_positive": 14139,
+              "zero": 0,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 1001,
+              "zero": 0,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 14138.857157881128,
+              "zero": 0.0,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 14138.857157881128,
+            "estimated_area_fractions": {
+              "finite_positive": 1.0,
+              "zero": 0.0,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          },
+          {
+            "subdivision": 8,
+            "selected_subpixel_counts": {
+              "finite_positive": 56545,
+              "zero": 0,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 1015,
+              "zero": 0,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 14136.107184206516,
+              "zero": 0.0,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 14136.107184206516,
+            "estimated_area_fractions": {
+              "finite_positive": 1.0,
+              "zero": 0.0,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          }
+        ],
+        "fine_minus_coarse_area_arcsec2": {
+          "finite_positive": -2.7499736746121926,
+          "zero": 0.0,
+          "negative": 0.0,
+          "nonfinite": 0.0,
+          "out_of_image": 0.0
+        },
+        "fine_minus_analytical_full_area_arcsec2": -1.0594329686537094,
+        "proximity": {
+          "unsupported_image_pixel_count": 280725,
+          "nearest_unsupported_pixel_centre_arcsec": 126.66904280191399,
+          "unsupported_pixel_centre_minus_outer_radius_arcsec": 36.66904280191399,
+          "nearest_sampled_image_border_arcsec": 774.865387975934,
+          "sampled_image_border_minus_outer_radius_arcsec": 684.865387975934,
+          "region_centre_inside_image_rectangle": true,
+          "border_sample_spacing_pixels": 1,
+          "interpretation": "Distances to pixel centres / sampled border, not true nearest-boundary guarantees or eligibility"
+        },
+        "interpretation": "Fixed midpoint raster / TAN Jacobian approximations, not exact area, matched FLAG masks, live exposure or continuous coverage"
+      }
+    },
+    {
+      "label": "east120",
+      "kind": "circle20",
+      "diagnostic": {
+        "status": "STATIC_SUPPORT_APPROXIMATION_NOT_COVERAGE",
+        "region": "circle20",
+        "radii_arcsec": [
+          0.0,
+          20.0
+        ],
+        "nominal_subdivision": 8,
+        "analytical_full_spherical_region_area_arcsec2": 1256.637060451366,
+        "resolutions": [
+          {
+            "subdivision": 4,
+            "selected_subpixel_counts": {
+              "finite_positive": 1255,
+              "zero": 0,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 93,
+              "zero": 0,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 1254.9908173385768,
+              "zero": 0.0,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 1254.9908173385768,
+            "estimated_area_fractions": {
+              "finite_positive": 1.0,
+              "zero": 0.0,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          },
+          {
+            "subdivision": 8,
+            "selected_subpixel_counts": {
+              "finite_positive": 5031,
+              "zero": 0,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 97,
+              "zero": 0,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 1257.7407972301742,
+              "zero": 0.0,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 1257.7407972301742,
+            "estimated_area_fractions": {
+              "finite_positive": 1.0,
+              "zero": 0.0,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          }
+        ],
+        "fine_minus_coarse_area_arcsec2": {
+          "finite_positive": 2.749979891597377,
+          "zero": 0.0,
+          "negative": 0.0,
+          "nonfinite": 0.0,
+          "out_of_image": 0.0
+        },
+        "fine_minus_analytical_full_area_arcsec2": 1.10373677880807,
+        "proximity": {
+          "unsupported_image_pixel_count": 280725,
+          "nearest_unsupported_pixel_centre_arcsec": 86.8654295044511,
+          "unsupported_pixel_centre_minus_outer_radius_arcsec": 66.8654295044511,
+          "nearest_sampled_image_border_arcsec": 894.9077281011151,
+          "sampled_image_border_minus_outer_radius_arcsec": 874.9077281011151,
+          "region_centre_inside_image_rectangle": true,
+          "border_sample_spacing_pixels": 1,
+          "interpretation": "Distances to pixel centres / sampled border, not true nearest-boundary guarantees or eligibility"
+        },
+        "interpretation": "Fixed midpoint raster / TAN Jacobian approximations, not exact area, matched FLAG masks, live exposure or continuous coverage"
+      }
+    },
+    {
+      "label": "east120",
+      "kind": "annulus60_90",
+      "diagnostic": {
+        "status": "STATIC_SUPPORT_APPROXIMATION_NOT_COVERAGE",
+        "region": "annulus60_90",
+        "radii_arcsec": [
+          60.0,
+          90.0
+        ],
+        "nominal_subdivision": 8,
+        "analytical_full_spherical_region_area_arcsec2": 14137.16661717517,
+        "resolutions": [
+          {
+            "subdivision": 4,
+            "selected_subpixel_counts": {
+              "finite_positive": 14009,
+              "zero": 121,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 987,
+              "zero": 14,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 14008.894989059085,
+              "zero": 120.99879082890054,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 14129.893779887985,
+            "estimated_area_fractions": {
+              "finite_positive": 0.9914366807908261,
+              "zero": 0.008563319209173826,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          },
+          {
+            "subdivision": 8,
+            "selected_subpixel_counts": {
+              "finite_positive": 56063,
+              "zero": 484,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 1003,
+              "zero": 15,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 14015.644952442064,
+              "zero": 120.99879036283154,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 14136.643742804896,
+            "estimated_area_fractions": {
+              "finite_positive": 0.9914407696363986,
+              "zero": 0.00855923036360141,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          }
+        ],
+        "fine_minus_coarse_area_arcsec2": {
+          "finite_positive": 6.749963382979331,
+          "zero": -4.660689967295184e-07,
+          "negative": 0.0,
+          "nonfinite": 0.0,
+          "out_of_image": 0.0
+        },
+        "fine_minus_analytical_full_area_arcsec2": -0.522874370273712,
+        "proximity": {
+          "unsupported_image_pixel_count": 280725,
+          "nearest_unsupported_pixel_centre_arcsec": 86.8654295044511,
+          "unsupported_pixel_centre_minus_outer_radius_arcsec": -3.1345704955488998,
+          "nearest_sampled_image_border_arcsec": 894.9077281011151,
+          "sampled_image_border_minus_outer_radius_arcsec": 804.9077281011151,
+          "region_centre_inside_image_rectangle": true,
+          "border_sample_spacing_pixels": 1,
+          "interpretation": "Distances to pixel centres / sampled border, not true nearest-boundary guarantees or eligibility"
+        },
+        "interpretation": "Fixed midpoint raster / TAN Jacobian approximations, not exact area, matched FLAG masks, live exposure or continuous coverage"
+      }
+    },
+    {
+      "label": "south120",
+      "kind": "circle20",
+      "diagnostic": {
+        "status": "STATIC_SUPPORT_APPROXIMATION_NOT_COVERAGE",
+        "region": "circle20",
+        "radii_arcsec": [
+          0.0,
+          20.0
+        ],
+        "nominal_subdivision": 8,
+        "analytical_full_spherical_region_area_arcsec2": 1256.637060451366,
+        "resolutions": [
+          {
+            "subdivision": 4,
+            "selected_subpixel_counts": {
+              "finite_positive": 1061,
+              "zero": 195,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 81,
+              "zero": 13,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 1060.9966520794276,
+              "zero": 194.99943610074342,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 1255.996088180171,
+            "estimated_area_fractions": {
+              "finite_positive": 0.8447451883522339,
+              "zero": 0.15525481164776606,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          },
+          {
+            "subdivision": 8,
+            "selected_subpixel_counts": {
+              "finite_positive": 4253,
+              "zero": 775,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 84,
+              "zero": 13,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 1063.246645351703,
+              "zero": 193.74943948669804,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 1256.996084838401,
+            "estimated_area_fractions": {
+              "finite_positive": 0.8458631320943164,
+              "zero": 0.15413686790568357,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          }
+        ],
+        "fine_minus_coarse_area_arcsec2": {
+          "finite_positive": 2.249993272275333,
+          "zero": -1.2499966140453864,
+          "negative": 0.0,
+          "nonfinite": 0.0,
+          "out_of_image": 0.0
+        },
+        "fine_minus_analytical_full_area_arcsec2": 0.3590243870348786,
+        "proximity": {
+          "unsupported_image_pixel_count": 280725,
+          "nearest_unsupported_pixel_centre_arcsec": 11.95884344784628,
+          "unsupported_pixel_centre_minus_outer_radius_arcsec": -8.04115655215372,
+          "nearest_sampled_image_border_arcsec": 1014.8653878594508,
+          "sampled_image_border_minus_outer_radius_arcsec": 994.8653878594508,
+          "region_centre_inside_image_rectangle": true,
+          "border_sample_spacing_pixels": 1,
+          "interpretation": "Distances to pixel centres / sampled border, not true nearest-boundary guarantees or eligibility"
+        },
+        "interpretation": "Fixed midpoint raster / TAN Jacobian approximations, not exact area, matched FLAG masks, live exposure or continuous coverage"
+      }
+    },
+    {
+      "label": "south120",
+      "kind": "annulus60_90",
+      "diagnostic": {
+        "status": "STATIC_SUPPORT_APPROXIMATION_NOT_COVERAGE",
+        "region": "annulus60_90",
+        "radii_arcsec": [
+          60.0,
+          90.0
+        ],
+        "nominal_subdivision": 8,
+        "analytical_full_spherical_region_area_arcsec2": 14137.16661717517,
+        "resolutions": [
+          {
+            "subdivision": 4,
+            "selected_subpixel_counts": {
+              "finite_positive": 13705,
+              "zero": 427,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 972,
+              "zero": 30,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 13704.95447214699,
+              "zero": 426.99869155759336,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 14131.953163704584,
+            "estimated_area_fractions": {
+              "finite_positive": 0.9697848778147479,
+              "zero": 0.030215122185252057,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          },
+          {
+            "subdivision": 8,
+            "selected_subpixel_counts": {
+              "finite_positive": 54834,
+              "zero": 1714,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 987,
+              "zero": 31,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 13708.454461600335,
+              "zero": 428.49868546744887,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 14136.953147067783,
+            "estimated_area_fractions": {
+              "finite_positive": 0.9696894598850443,
+              "zero": 0.030310540114955813,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          }
+        ],
+        "fine_minus_coarse_area_arcsec2": {
+          "finite_positive": 3.499989453344824,
+          "zero": 1.4999939098555046,
+          "negative": 0.0,
+          "nonfinite": 0.0,
+          "out_of_image": 0.0
+        },
+        "fine_minus_analytical_full_area_arcsec2": -0.21347010738645622,
+        "proximity": {
+          "unsupported_image_pixel_count": 280725,
+          "nearest_unsupported_pixel_centre_arcsec": 11.95884344784628,
+          "unsupported_pixel_centre_minus_outer_radius_arcsec": -78.04115655215372,
+          "nearest_sampled_image_border_arcsec": 1014.8653878594508,
+          "sampled_image_border_minus_outer_radius_arcsec": 924.8653878594508,
+          "region_centre_inside_image_rectangle": true,
+          "border_sample_spacing_pixels": 1,
+          "interpretation": "Distances to pixel centres / sampled border, not true nearest-boundary guarantees or eligibility"
+        },
+        "interpretation": "Fixed midpoint raster / TAN Jacobian approximations, not exact area, matched FLAG masks, live exposure or continuous coverage"
+      }
+    },
+    {
+      "label": "west120",
+      "kind": "circle20",
+      "diagnostic": {
+        "status": "STATIC_SUPPORT_APPROXIMATION_NOT_COVERAGE",
+        "region": "circle20",
+        "radii_arcsec": [
+          0.0,
+          20.0
+        ],
+        "nominal_subdivision": 8,
+        "analytical_full_spherical_region_area_arcsec2": 1256.637060451366,
+        "resolutions": [
+          {
+            "subdivision": 4,
+            "selected_subpixel_counts": {
+              "finite_positive": 1258,
+              "zero": 0,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 94,
+              "zero": 0,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 1257.9928296837677,
+              "zero": 0.0,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 1257.9928296837677,
+            "estimated_area_fractions": {
+              "finite_positive": 1.0,
+              "zero": 0.0,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          },
+          {
+            "subdivision": 8,
+            "selected_subpixel_counts": {
+              "finite_positive": 5022,
+              "zero": 1,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 97,
+              "zero": 1,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 1255.4928426365652,
+              "zero": 0.24999850169587867,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 1255.7428411382612,
+            "estimated_area_fractions": {
+              "finite_positive": 0.9998009158455808,
+              "zero": 0.00019908415441912368,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          }
+        ],
+        "fine_minus_coarse_area_arcsec2": {
+          "finite_positive": -2.499987047202467,
+          "zero": 0.24999850169587867,
+          "negative": 0.0,
+          "nonfinite": 0.0,
+          "out_of_image": 0.0
+        },
+        "fine_minus_analytical_full_area_arcsec2": -0.8942193131049407,
+        "proximity": {
+          "unsupported_image_pixel_count": 280725,
+          "nearest_unsupported_pixel_centre_arcsec": 22.393491592187438,
+          "unsupported_pixel_centre_minus_outer_radius_arcsec": 2.393491592187438,
+          "nearest_sampled_image_border_arcsec": 894.8227448262382,
+          "sampled_image_border_minus_outer_radius_arcsec": 874.8227448262382,
+          "region_centre_inside_image_rectangle": true,
+          "border_sample_spacing_pixels": 1,
+          "interpretation": "Distances to pixel centres / sampled border, not true nearest-boundary guarantees or eligibility"
+        },
+        "interpretation": "Fixed midpoint raster / TAN Jacobian approximations, not exact area, matched FLAG masks, live exposure or continuous coverage"
+      }
+    },
+    {
+      "label": "west120",
+      "kind": "annulus60_90",
+      "diagnostic": {
+        "status": "STATIC_SUPPORT_APPROXIMATION_NOT_COVERAGE",
+        "region": "annulus60_90",
+        "radii_arcsec": [
+          60.0,
+          90.0
+        ],
+        "nominal_subdivision": 8,
+        "analytical_full_spherical_region_area_arcsec2": 14137.16661717517,
+        "resolutions": [
+          {
+            "subdivision": 4,
+            "selected_subpixel_counts": {
+              "finite_positive": 13678,
+              "zero": 459,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 970,
+              "zero": 32,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 13677.919460219393,
+              "zero": 458.99712633086506,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 14136.916586550258,
+            "estimated_area_fractions": {
+              "finite_positive": 0.967532019905419,
+              "zero": 0.03246798009458095,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          },
+          {
+            "subdivision": 8,
+            "selected_subpixel_counts": {
+              "finite_positive": 54698,
+              "zero": 1838,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "sampled_intersected_base_pixel_counts": {
+              "finite_positive": 986,
+              "zero": 32,
+              "negative": 0,
+              "nonfinite": 0,
+              "out_of_image": 0
+            },
+            "estimated_area_arcsec2": {
+              "finite_positive": 13674.41948293394,
+              "zero": 459.4971260306692,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            },
+            "estimated_total_area_arcsec2": 14133.916608964608,
+            "estimated_area_fractions": {
+              "finite_positive": 0.9674897525757845,
+              "zero": 0.032510247424215565,
+              "negative": 0.0,
+              "nonfinite": 0.0,
+              "out_of_image": 0.0
+            }
+          }
+        ],
+        "fine_minus_coarse_area_arcsec2": {
+          "finite_positive": -3.4999772854534967,
+          "zero": 0.4999996998041638,
+          "negative": 0.0,
+          "nonfinite": 0.0,
+          "out_of_image": 0.0
+        },
+        "fine_minus_analytical_full_area_arcsec2": -3.2500082105616457,
+        "proximity": {
+          "unsupported_image_pixel_count": 280725,
+          "nearest_unsupported_pixel_centre_arcsec": 22.393491592187438,
+          "unsupported_pixel_centre_minus_outer_radius_arcsec": -67.60650840781256,
+          "nearest_sampled_image_border_arcsec": 894.8227448262382,
+          "sampled_image_border_minus_outer_radius_arcsec": 804.8227448262382,
+          "region_centre_inside_image_rectangle": true,
+          "border_sample_spacing_pixels": 1,
+          "interpretation": "Distances to pixel centres / sampled border, not true nearest-boundary guarantees or eligibility"
+        },
+        "interpretation": "Fixed midpoint raster / TAN Jacobian approximations, not exact area, matched FLAG masks, live exposure or continuous coverage"
+      }
+    }
+  ]
+}
