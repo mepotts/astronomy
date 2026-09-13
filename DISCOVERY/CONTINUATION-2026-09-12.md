@@ -558,3 +558,17 @@ f57b43c9a551a7812afed2be845e1dc88b579251ef36f6e1cceceba3cf20705a.
 The disposition's retained REJECTED classification does not reveal its discarded
 raw value. Next is a separately bounded metadata-only TAR contract for the same
 selector, not another raw-HTML attempt or broad observation bundle.
+
+Root adopts [M3 summary-only TAR acquisition](XMM-RXJ-M3-2026-09-13.md) after
+full source/tests/helper/protocol and [independent review](XMM-RXJ-M3-REVIEW.md).
+10 wrapper plus 11 pure-helper tests/Ruff pass, with 17 independent hand-built
+archive cases and runtime mutation/boundary checks. Root also tested full1MiB
+success/replay, checked all20 bindings (18 existing committed files plus the
+two new helpers), and confirmed both private paths are ignored by Git. The
+final wrapper permits zero-byte partial HTML under STOP without repairing it.
+Source01564aff6d0873eb7a8bda42ddd408f085e85489e7410b739a1dfd9d40978472;
+tests d6ee89793f0b09ad1c53a240423c5c421048d1130f07922e16fab9ca344a8e8b;
+protocol230a900079e8220a7a29a5ceeb16a714cdfae684e525f83b783f7a26925a245a.
+Execute one request only after exact-byte commit freeze, then one root offline
+replay. Any retained package/HTML remains private and unadjudicated; no science
+product or unknown-source search is authorized by this metadata stage.
