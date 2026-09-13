@@ -350,3 +350,15 @@ tests e1e1d41daffec25ada03fd155f958082c62f09c62cef4cdd83ee2cd8fa14f538.
 334chunks per fullpass. Pure counter tests and independent review are underway;
 bounded runtime needs syntheticfull-size fit/failure tests and review before
 actual photon access. No stronger scientific gate has changed.
+
+Pure recorded counter now passes13synthetic tests and
+[independent review](XMM-RECORDED-COUNTS-REVIEW.md):2913synthetic rows through
+the real decoder, all255edges and neighboring floats, scalar-loop cut/bin/CCD
+oracle and1/37row chunk invariance. Root reread full source/tests/review and
+reran13tests/Ruff. Root also checked all3actual HEADER-ONLY schema row/stride/
+selected-null profiles against counter constants; PASS, no photons.
+Counter source5094b15b735619c5de25f7c6fe7a4f5207f82c8c7bc64cac6565678f8975090c;
+tests5e5b1bc15646ab12c856582142cad6331019ff9e23455a961761b3e4d374df9c.
+Geometry/plan checkpoint3a731bd is not a C9 runtime freeze. C9 author is building
+the three-camera334chunk wrapper and synthetic tests; reviewer is assigned
+its independent review next. Keep every executed C1–C8 artifact immutable.
