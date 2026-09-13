@@ -71,6 +71,21 @@ transport step is a separately frozen metadata check of the documented
 [ESA XSA alternate](DISCOVERY/XMM-ALTERNATE-PPS-SOURCE-2026-09-12.md).
 Its current availability and packaging remain untested; stable pointing/coverage
 is still required before a trustworthy counts control.
+The separate [C3c contract](DISCOVERY/XMM-C3c-2026-09-12.md) adopts one narrow
+ESA attitude-product HEAD, with no body download or automatic fallback.
+[Synthetic frame-bound helpers](DISCOVERY/XMM-FRAME-BOUNDS-IMPLEMENTATION.md)
+now pass independent numerical checks; the physical support assumptions and
+application to real frames remain unvalidated. No photon counts yet.
+[C3c](DISCOVERY/XMM-C3c-RESULT-2026-09-12.md) now retains HTTP 200 with the
+exact attitude filename advertised, but no Content-Length: its size gate stopped
+and replay preserves that failure. A separately reviewed bounded GET can impose
+its own byte ceiling without inventing a missing length; no GET has run yet.
+[C3d](DISCOVERY/XMM-C3d-RESULT-2026-09-12.md) subsequently retrieved the exact
+attitude file under its own capped GET: 151713 compressed / 4173120 expanded
+bytes, gzip integrity and two-HDU header replay passed. ATTHK has 51975 rows;
+time-reference interpretation and actual quality/movement remain unchecked.
+Next are those local diagnostics and the still-undownloaded pn/MOS1 maps,
+then geometry/exposure validation and the published-burst control.
 [Later-work checking](DISCOVERY/XMM-LATER-WORK-2026-09-12.md) finds no verified
 coverage of the three exact newer observations, but does not prove them unsearched.
 

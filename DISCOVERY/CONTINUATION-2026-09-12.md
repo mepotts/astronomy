@@ -142,6 +142,32 @@ made. Next, separately freeze and review one ATTTSR-filtered metadata request;
 successful metadata would still need a distinct bounded package contract before
 download. Availability, sole-member identity and compatibility remain unknown.
 
+Adopt the separately reviewed [C3c one-HEAD contract](XMM-C3c-2026-09-12.md)
+for this exact known-control product selection. Freeze its code/tests/review
+before execution, preserve the metadata outcome, and do not infer authorization
+for a body request from successful advertised metadata alone. In parallel,
+[frame-bound numerical helpers](XMM-FRAME-BOUNDS-IMPLEMENTATION.md) now implement
+the conservative exposure construction and worst-case counting diagnostic.
+Their synthetic checks do not validate the physical frame-support assumptions
+or authorize a real-frame/photon run.
+
+[C3c has executed](XMM-C3c-RESULT-2026-09-12.md): ESA advertises HTTP 200,
+image/fits and the exact requested attitude filename, but supplies no length.
+Preserve its STOP_SIZE_METADATA and zero body reads. Adopt a separate C3d
+one-GET contract with a local 2-MiB transfer ceiling and 32-MiB expansion cap,
+identity/format/header validation and no retry. An absent Content-Length need
+not block an independently byte-limited transfer; it cannot become an invented
+size or a retroactive C3c pass. Review/freeze precedes that request.
+
+[C3d has now executed](XMM-C3d-RESULT-2026-09-12.md) after freeze `a6c7911`:
+one successful capped GET, gzip integrity, 151713 raw / 4173120 expanded bytes,
+two structurally checked HDUs and parent replay. Actual ATTHK matches the
+ten-column documented schema, but header time-reference and joint-quality
+interpretation remain unresolved. Next is a separately frozen local attitude
+value diagnostic and the two outstanding pn/MOS1 map downloads using earlier
+size receipts. Retain original camera missingness, region/test denominator,
+geometry and control-recovery gates. No actual photons or discovery yet.
+
 [ITF](ITF-NOTIFICATIONS-2026-09-12.md) still has its daily archive publisher and
 existing-queue watch, not a fresh automated discovery search. No dedicated
 SMS/email delivery was configured or tested. Existing daily/weekly follow-ups

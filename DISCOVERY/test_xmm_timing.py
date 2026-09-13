@@ -74,6 +74,28 @@ class TimingTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 module.constant_rate_tail(1, 2, 3, exposure)
 
+    def test_bounded_tail_encloses_all_exposure_pairs(self):
+        for count, reference_count in ((0, 0), (1, 5), (12, 3), (100, 200)):
+            upper_tail = module.bounded_constant_rate_tail(count, reference_count, [150, 190], [1900, 2100])
+            for exposure in np.linspace(150, 190, 7):
+                for reference in np.linspace(1900, 2100, 7):
+                    self.assertLessEqual(module.constant_rate_tail(count, reference_count, exposure, reference),
+                                         upper_tail + 1e-15)
+            self.assertEqual(upper_tail, module.constant_rate_tail(count, reference_count, 190, 1900))
+
+    def test_exact_bounds_reduce_to_existing_tail(self):
+        self.assertEqual(module.bounded_constant_rate_tail(8, 6, [180, 180], [2200, 2200]),
+                         module.constant_rate_tail(8, 6, 180, 2200))
+
+    def test_invalid_or_unmeasured_bounds_do_not_produce_significance(self):
+        for bounds in ([0, 1], [-1, 2], [2, 1], [1, float('inf')], [float('nan'), 2],
+                       [True, 2], [1, np.bool_(True)], [1], [[1, 2]], []):
+            for first, second in ((bounds, [2, 3]), ([2, 3], bounds)):
+                with self.assertRaises(ValueError):
+                    module.bounded_constant_rate_tail(1, 2, first, second)
+        with self.assertRaises(ValueError):
+            module.bounded_constant_rate_tail(True, 2, [1, 2], [3, 4])
+
 
 if __name__ == "__main__":
     unittest.main()

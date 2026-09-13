@@ -1,0 +1,24 @@
+{
+  "slot": {
+    "slot": 1,
+    "method": "GET",
+    "url": "https://nxsa.esac.esa.int/nxsa-sl/servlet/data-action-aio?obsno=0884250101&level=PPS&name=ATTTSR&expflag=X&expno=000&datasubsetno=0&sourceno=000&extension=FTZ",
+    "filename": "P0884250101OBX000ATTTSR0000.FTZ"
+  },
+  "status": "OK",
+  "raw": {
+    "bytes": 151713,
+    "sha256": "963a0188c833a74fbe2d86f3288e9f1b6e70e038135dc05e57daa8d4256d7ccc"
+  },
+  "expanded": {
+    "bytes": 4173120,
+    "sha256": "ff251ab4e22655bc02b612a599160e40cfe3176cf8de90ce4514668e5bcf7a17"
+  },
+  "actual_format": "GZIP_WRAPPED_FITS",
+  "gzip_crc_eof_verified": true,
+  "raw_fits_copy_hash_equal": null,
+  "header_sha256": "a5c5d3a9113b88b63e560be09dc72df0ece14b35c8e91fdefcbc73c77a8d8409",
+  "header_bytes": 13563,
+  "hdu_count": 2,
+  "arrays_interpreted": false
+}

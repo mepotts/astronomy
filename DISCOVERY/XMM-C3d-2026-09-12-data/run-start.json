@@ -1,0 +1,67 @@
+{
+  "slot": {
+    "slot": 1,
+    "method": "GET",
+    "url": "https://nxsa.esac.esa.int/nxsa-sl/servlet/data-action-aio?obsno=0884250101&level=PPS&name=ATTTSR&expflag=X&expno=000&datasubsetno=0&sourceno=000&extension=FTZ",
+    "filename": "P0884250101OBX000ATTTSR0000.FTZ"
+  },
+  "prior": {
+    "http": {
+      "method": "HEAD",
+      "url": "https://nxsa.esac.esa.int/nxsa-sl/servlet/data-action-aio?obsno=0884250101&level=PPS&name=ATTTSR&expflag=X&expno=000&datasubsetno=0&sourceno=000&extension=FTZ",
+      "status": 200,
+      "headers": {
+        "Content-Type": [
+          "image/fits"
+        ],
+        "Date": [
+          "Sun, 13 Sep 2026 01:17:35 GMT"
+        ]
+      },
+      "disposition": {
+        "status": "PARSED",
+        "type": "inline",
+        "filename": "P0884250101OBX000ATTTSR0000.FTZ",
+        "value_count": 1
+      }
+    },
+    "http_sha256": "a8d6a7edbe6a0b357401592d4f9a484840fd740e7bf7791de520d097eb493f66",
+    "outcome_sha256": "e1d74b048dd68dce51e52bf964d841ac195ca581011fae881f447cdc129c45e3"
+  },
+  "source_sha256": "87caca0e856065d33ff4f60404399915eed8a4b50a9afa7d0106f98fb691f825",
+  "tests_sha256": "8d313d56946a5f68fb30af8b39c41910121a079d646ccff9e074dcbfc809cf56",
+  "protocol_sha256": "8bee82d6c849bd94479f40615817cc2d14776d439b80b62a8b47c84871beed6a",
+  "dependencies": {
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C3c-2026-09-12-data\\acquire.py": "542fce5755d9ff668d4ccd6e199b23780504368603352243d7e6fb7cfa727f90",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C3c-2026-09-12-data\\test_acquire.py": "d3fd4d9775c40a094d761dad0f59e4b9e9d556fced7c6c3f7449324b5f4885ed",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C1-2026-09-12-data\\acquire.py": "13184df5d2b9d6e4bae83446316974ba90f46e3412e51c10c40cfbe2f5e2cca5",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C1-2026-09-12-data\\test_acquire.py": "d751843243552cfdf3d65558c2ff96cf34c6885832378a02789f6dc23fbb541c",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C0d-2026-09-12-data\\metadata.py": "de1d481b185067722546edca1a51dadcd6a5a7fd7d328e60f0ad5d6980272af3",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\xmm_structure.py": "96d9497dbdd45d2561fc0bbb27a0c11d6fbad91cd42c0b14191378dd9fd7fa63",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\test_xmm_structure.py": "4b1bb863a29543ecb6957a417b3115155fa74b625c300d86524a4c8ac44af1aa",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\test_xmm_structure_review.py": "a062ddea63b2c8364395ed61ead99e2cc12031bcec3065aa24ca61dbee1d6b10",
+    "C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\scripts\\check_e_release.py": "11ad0bef9fd2efae234e204358c6b6730e723ed3dc24c6fe0c345f2ddcfb53dd"
+  },
+  "configuration": {
+    "output_directory": "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C3d-2026-09-12-data",
+    "seconds": 60,
+    "chunk": 1048576,
+    "raw_caps": [
+      2097152
+    ],
+    "expanded_file": 33554432,
+    "expanded_total": 33554432,
+    "memory": 500000000,
+    "json": 1048576,
+    "header": 2097152,
+    "reserve": 65536,
+    "free_bytes": 67108864,
+    "deadline_policy": "monotonic worker start plus60; helper60"
+  },
+  "runtime": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "executable": "C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Scripts\\python.exe",
+    "requests": "2.34.2",
+    "astropy": "8.0.1"
+  }
+}

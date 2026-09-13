@@ -1,0 +1,30 @@
+{
+  "slot": {
+    "slot": 1,
+    "method": "HEAD",
+    "url": "https://nxsa.esac.esa.int/nxsa-sl/servlet/data-action-aio?obsno=0884250101&level=PPS&name=ATTTSR&expflag=X&expno=000&datasubsetno=0&sourceno=000&extension=FTZ"
+  },
+  "source_sha256": "542fce5755d9ff668d4ccd6e199b23780504368603352243d7e6fb7cfa727f90",
+  "tests_sha256": "d3fd4d9775c40a094d761dad0f59e4b9e9d556fced7c6c3f7449324b5f4885ed",
+  "protocol_sha256": "cd75f4717291df12bdbc7f34f34b6398dfe36b7aa9885db1849416f60bb9609d",
+  "dependencies": {
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C1-2026-09-12-data\\acquire.py": "13184df5d2b9d6e4bae83446316974ba90f46e3412e51c10c40cfbe2f5e2cca5",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C0d-2026-09-12-data\\metadata.py": "de1d481b185067722546edca1a51dadcd6a5a7fd7d328e60f0ad5d6980272af3",
+    "C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\scripts\\check_e_release.py": "11ad0bef9fd2efae234e204358c6b6730e723ed3dc24c6fe0c345f2ddcfb53dd"
+  },
+  "configuration": {
+    "output_directory": "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C3c-2026-09-12-data",
+    "seconds": 30,
+    "hash_chunk": 65536,
+    "memory": 500000000,
+    "json": 131072,
+    "reserve": 32768,
+    "entity_cap": 2097152,
+    "deadline_policy": "monotonic worker start plus30; helper30"
+  },
+  "runtime": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "executable": "C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Scripts\\python.exe",
+    "requests": "2.34.2"
+  }
+}

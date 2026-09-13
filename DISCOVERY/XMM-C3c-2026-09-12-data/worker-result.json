@@ -1,0 +1,21 @@
+{
+  "status": "STOP",
+  "error_type": "ValueError",
+  "error_code": "STOP_SIZE_METADATA",
+  "ledger": [
+    {
+      "slot": 1,
+      "status": "FAILED"
+    }
+  ],
+  "artifacts": {
+    "http.json": "a8d6a7edbe6a0b357401592d4f9a484840fd740e7bf7791de520d097eb493f66",
+    "protocol.snapshot.md": "cd75f4717291df12bdbc7f34f34b6398dfe36b7aa9885db1849416f60bb9609d",
+    "request-result.json": "5ab86f91ae1c70f8da17ea43a303aefee3bff1b4c44123367719bb43b8c5d1fe",
+    "request-start.json": "2f1b3696d99499bb75c316721b8eef9394a6309d00792679fec493ebdf4b9ce0",
+    "run-start.json": "49abd0eb7d532f4200922885d1cad2b24e7330d7b8ef61f27214cc947b3458c4",
+    "worker-start.json": "7e11e788facc2a7fac75d4e8539a999a23d41f448e393c92891d0cd098cf06d2"
+  },
+  "json_bytes_before_worker": 2727,
+  "peak_memory_bytes": 36544512
+}
