@@ -18,7 +18,10 @@ No absolute sky reference values are reproduced. All reference comparisons
 were direct header-value equalities, not a fit or a numerical event transform.
 The table WCS scale is0.05arcsec per coordinate unit; do not substitute the
 4arcsec map-pixel scale or infer MOS scale from the generic word pixel.
-RAW columns4/5 have separate coordinate metadata; never apply their WCS to X/Y.
+DETX/DETY columns4/5 have separate coordinate metadata; never apply their WCS to
+X/Y. RAWX/RAWY are columns2/3. A subsequent metadata cross-check corrected the
+earlier prose misidentification of columns4/5 as RAW; the selected X/Y mapping,
+decoder offsets and all measured results are unchanged.
 
 This supports a concrete next implementation: construct a minimal primary TAN
 WCS from these verified table-axis fields, preserving FITS coordinate origin

@@ -260,3 +260,66 @@ screen](XMM-SOURCE-GEOMETRY-IMPLEMENTATION-PLAN.md), then a separately frozen
 descriptive photon test using the synthetic-only eventdecoder now under review.
 Raw count reporting need not wait indefinitely for full exposure calibration,
 but cannot be labelled calibrated rates, significance or discovery.
+
+PR22 merged2026-09-13T03:08:48Z as0b15c38e4435ac1f4906cdba0b9c9adc23f9deeb
+after all11CI jobs passed. C7 postmerge binding/receipt/ledger checks pass with
+no fourth numerical pass. The [EVENTS scalar decoder](XMM-EVENT-ROWS-IMPLEMENTATION.md)
+is now integrated with16synthetic tests and independent514-row oracle/failure
+review. No actual event arrays yet. Sourcegeometry pure-core and exact7852-byte
+selected-span reader are the next implementation components; their synthetic
+tests/review do not authorize real source-list values without a bounded wrapper,
+fixed manifest, protocol and pre-execution freeze. Keep that distinction explicit.
+
+The pure `xmm_source_geometry.summarize(columns, centres)` core now passes
+13synthetic tests and [independent review](XMM-SOURCE-GEOMETRY-CORE-REVIEW.md),
+including1500contact-count comparisons over100synthetic151-row catalogues.
+It preserves corrected-position association versus original-position geometry,
+complete identity/coordinate conditions before unique exemption, unchanged
+region labels and all invalid-row denominators. It reports contacts only,
+never source-wing boundaries, mask areas or clean sky. Exact selected-span
+reader and bounded C8 wrapper remain to be finalized before real catalogue work.
+
+Current local branch `codex/xmm-source-geometry-sep12`, core checkpoint014faa4,
+based on mergedPR22. [C8 prospective protocol](XMM-C8-2026-09-12.md) is now
+written but not frozen or executed. The root rederived all266 column widths
+and9 selected offsets from the pinned header JSON: exactly1131bytes/row,
+52selectedbytes/row,151rows. Repeated unselected strings include10A/12A/7A;
+the reader must not assume all columns scalar. Exact extent units are
+`image pixels`. PRIMARY carries observation/EPIC/FK5/equinox identity;
+SRCLIST carries POSCOROKtrue/REFCATUSNO, not its own frame cards.
+Selected-span reader and C8 wrapper tests are in progress in separate agent
+work areas; no real source-list values, photons, masks or new map values.
+Finalize/read/review those components and protocol, freeze exact bytes, then
+execute C8 once. Earlier C7 map work is complete and must not be rerun casually.
+
+Selected-span `xmm_source_rows` now passes11synthetic tests, rootRuff and
+[independent reader review](XMM-SOURCE-ROWS-REVIEW.md), including755short-read
+positions and5storage-failure probes. Source33acfedec1328cac1517abc703ee9644c653330648630edb8d96b6235562a927;
+tests4fd4b13b5698c2d40a476d390b780b47cc8e899c2ad6fe39024d6cff9f0ef272.
+Final lint repair changes buffered-stream rejection toTypeError, no accepted
+scientific input change. Root reread the repair and reran tests/lint. C8 wrapper
+is present but still under development/review: preserve replay-failure additional
+pass counters, reject unexpected/nested artifacts and enforce exact151row/10region
+closure. No C8 run marker or real selected-column decoding yet.
+
+C8 now has a scoped [independent preflight GO](XMM-C8-REVIEW.md), with all16
+wrapper tests,112 root XMM-core tests, scoped Ruff and repository verifier
+passing. Final source bd76ab70fb36ca2ea9c350401ab36991baa8fd30b3bf160c546c788a536ad0e3,
+tests 0bd5ba02add739318553de6029147e79d625b8dcde8c5180b3674c9088370733,
+protocol 9b4a86517fdafcccf16c1004808a87a457c4c05b63b51f6e9da5163675330c14.
+This checkpoint freezes the reviewed runtime before the separately executed
+local selected-column screen under the user's ongoing execution authority.
+No source-list values have yet been interpreted. CI now includes C8.
+The [EVENTS geometry plan](XMM-EVENT-GEOMETRY-IMPLEMENTATION-PLAN.md) establishes
+unchanged X/Y with FITS origin1; its pure implementation and independent review
+are proceeding with synthetic data only.
+
+[C8 executed](XMM-C8-RESULT-2026-09-12.md) after860115a: one unique corrected
+association, original offset2.8441692831480774arcsec; no other centres within20
+in any aperture.30arcsec disk contacts in published/north/east/south/west are
+0/1/1/0/2 for apertures and1/2/1/3/5 for annuli. All151 coordinate/ID rows valid;
+145extent errors nonfinite retained. Worker+parent+one numerical replay PASS,
+three known passes23556selectedbytes; outcome82cd6df3d673c86059494e9d38a3bfd1312ee9ce8b19301873309dfc995ad16e.
+No extra array pass for postrun review or integration. The stronger recovery
+has not established two usable negatives; do not silently waive that gate.
+Proceed to separately frozen descriptive photon counts, not calibrated recovery.

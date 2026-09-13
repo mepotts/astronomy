@@ -1,0 +1,277 @@
+{
+  "table": 1,
+  "status": "OK",
+  "accounting": {
+    "status": "COMPLETE",
+    "phase": "COMPLETE",
+    "read_bytes": 7852,
+    "decoded_bytes": 7852,
+    "reads_attempted": 755,
+    "reads_completed": 755,
+    "spans_decoded": 755,
+    "rows_completed": 151,
+    "current_read_completion_unknown": false,
+    "current_decode_completion_unknown": false
+  },
+  "summary": {
+    "status": "SOURCE_GEOMETRY_SCREEN_NOT_CLEAN_SKY",
+    "rules": {
+      "association_arcsec": 5,
+      "aperture_centre_arcsec": 20,
+      "aperture_disk_contact_arcsec": 50,
+      "annulus_disk_contact_min_arcsec": 30,
+      "annulus_disk_contact_max_arcsec": 120,
+      "exclusion_radius_arcsec": 30,
+      "comparison": "inclusive literal computed float64; no added tolerance"
+    },
+    "rows": 151,
+    "identity": {
+      "invalid_rows": 0,
+      "duplicate_valid_id_rows": 0,
+      "duplicate_valid_id_extra_rows": 0,
+      "duplicate_valid_id_groups": 0
+    },
+    "positions": {
+      "valid_original": 151,
+      "invalid_original": 0,
+      "valid_corrected": 151,
+      "invalid_corrected": 0
+    },
+    "screen_completeness": "COMPLETE_CATALOGUE_GEOMETRY_INPUT",
+    "association": {
+      "status": "UNIQUE_POSITIONAL_ASSOCIATION",
+      "valid_corrected_matches_within_5": 1,
+      "original_position_distance_arcsec": 2.8441692831480774,
+      "original_position_within_20_arcsec": true
+    },
+    "nonnegative_field_diagnostics": {
+      "RADEC_ERR": {
+        "rows": 151,
+        "nonfinite": 0,
+        "negative": 0,
+        "zero": 0,
+        "positive": 151,
+        "valid_nonnegative_min": 0.34629032015800476,
+        "valid_nonnegative_max": 7.18759298324585
+      },
+      "SYSERRCC": {
+        "rows": 151,
+        "nonfinite": 0,
+        "negative": 0,
+        "zero": 0,
+        "positive": 151,
+        "valid_nonnegative_min": 0.2703244984149933,
+        "valid_nonnegative_max": 0.42384302616119385
+      },
+      "EP_EXTENT": {
+        "rows": 151,
+        "nonfinite": 0,
+        "negative": 0,
+        "zero": 145,
+        "positive": 6,
+        "valid_nonnegative_min": 0.0,
+        "valid_nonnegative_max": 9.081878662109375
+      },
+      "EP_EXT_ERR": {
+        "rows": 151,
+        "nonfinite": 145,
+        "negative": 0,
+        "zero": 0,
+        "positive": 6,
+        "valid_nonnegative_min": 0.36775147914886475,
+        "valid_nonnegative_max": 2.5258350372314453
+      }
+    },
+    "apertures": [
+      {
+        "region": "published",
+        "catalogue_rows": 151,
+        "invalid_original_positions": 0,
+        "other_source_classification": "FIXED_CATALOGUE_ROWS",
+        "control_row_exempted": true,
+        "centre_within_20": {
+          "rows": 0,
+          "extent_categories": {
+            "point_model_zero": 0,
+            "extended_model_positive": 0,
+            "invalid_or_unknown": 0
+          }
+        },
+        "disk_contact_within_50": {
+          "rows": 0,
+          "extent_categories": {
+            "point_model_zero": 0,
+            "extended_model_positive": 0,
+            "invalid_or_unknown": 0
+          }
+        }
+      },
+      {
+        "region": "north120",
+        "catalogue_rows": 151,
+        "invalid_original_positions": 0,
+        "other_source_classification": "FIXED_CATALOGUE_ROWS",
+        "control_row_exempted": false,
+        "centre_within_20": {
+          "rows": 0,
+          "extent_categories": {
+            "point_model_zero": 0,
+            "extended_model_positive": 0,
+            "invalid_or_unknown": 0
+          }
+        },
+        "disk_contact_within_50": {
+          "rows": 1,
+          "extent_categories": {
+            "point_model_zero": 1,
+            "extended_model_positive": 0,
+            "invalid_or_unknown": 0
+          }
+        }
+      },
+      {
+        "region": "east120",
+        "catalogue_rows": 151,
+        "invalid_original_positions": 0,
+        "other_source_classification": "FIXED_CATALOGUE_ROWS",
+        "control_row_exempted": false,
+        "centre_within_20": {
+          "rows": 0,
+          "extent_categories": {
+            "point_model_zero": 0,
+            "extended_model_positive": 0,
+            "invalid_or_unknown": 0
+          }
+        },
+        "disk_contact_within_50": {
+          "rows": 1,
+          "extent_categories": {
+            "point_model_zero": 1,
+            "extended_model_positive": 0,
+            "invalid_or_unknown": 0
+          }
+        }
+      },
+      {
+        "region": "south120",
+        "catalogue_rows": 151,
+        "invalid_original_positions": 0,
+        "other_source_classification": "FIXED_CATALOGUE_ROWS",
+        "control_row_exempted": false,
+        "centre_within_20": {
+          "rows": 0,
+          "extent_categories": {
+            "point_model_zero": 0,
+            "extended_model_positive": 0,
+            "invalid_or_unknown": 0
+          }
+        },
+        "disk_contact_within_50": {
+          "rows": 0,
+          "extent_categories": {
+            "point_model_zero": 0,
+            "extended_model_positive": 0,
+            "invalid_or_unknown": 0
+          }
+        }
+      },
+      {
+        "region": "west120",
+        "catalogue_rows": 151,
+        "invalid_original_positions": 0,
+        "other_source_classification": "FIXED_CATALOGUE_ROWS",
+        "control_row_exempted": false,
+        "centre_within_20": {
+          "rows": 0,
+          "extent_categories": {
+            "point_model_zero": 0,
+            "extended_model_positive": 0,
+            "invalid_or_unknown": 0
+          }
+        },
+        "disk_contact_within_50": {
+          "rows": 2,
+          "extent_categories": {
+            "point_model_zero": 2,
+            "extended_model_positive": 0,
+            "invalid_or_unknown": 0
+          }
+        }
+      }
+    ],
+    "annuli": [
+      {
+        "region": "published",
+        "catalogue_rows": 151,
+        "invalid_original_positions": 0,
+        "disk_contact_30_to_120": {
+          "rows": 1,
+          "extent_categories": {
+            "point_model_zero": 1,
+            "extended_model_positive": 0,
+            "invalid_or_unknown": 0
+          }
+        }
+      },
+      {
+        "region": "north120",
+        "catalogue_rows": 151,
+        "invalid_original_positions": 0,
+        "disk_contact_30_to_120": {
+          "rows": 2,
+          "extent_categories": {
+            "point_model_zero": 2,
+            "extended_model_positive": 0,
+            "invalid_or_unknown": 0
+          }
+        }
+      },
+      {
+        "region": "east120",
+        "catalogue_rows": 151,
+        "invalid_original_positions": 0,
+        "disk_contact_30_to_120": {
+          "rows": 1,
+          "extent_categories": {
+            "point_model_zero": 1,
+            "extended_model_positive": 0,
+            "invalid_or_unknown": 0
+          }
+        }
+      },
+      {
+        "region": "south120",
+        "catalogue_rows": 151,
+        "invalid_original_positions": 0,
+        "disk_contact_30_to_120": {
+          "rows": 3,
+          "extent_categories": {
+            "point_model_zero": 3,
+            "extended_model_positive": 0,
+            "invalid_or_unknown": 0
+          }
+        }
+      },
+      {
+        "region": "west120",
+        "catalogue_rows": 151,
+        "invalid_original_positions": 0,
+        "disk_contact_30_to_120": {
+          "rows": 5,
+          "extent_categories": {
+            "point_model_zero": 5,
+            "extended_model_positive": 0,
+            "invalid_or_unknown": 0
+          }
+        }
+      }
+    ],
+    "limitations": [
+      "Positional association is not physical identification or a confidence probability.",
+      "Error fields are separate diagnostics, not a fitted or adaptive matching radius.",
+      "Extent is a model scale, not a validated enclosing radius.",
+      "Inclusive disk contact does not prove positive area or contaminating flux.",
+      "No mask union, supported area, clean-sky verdict or recovery gate is computed."
+    ]
+  }
+}
