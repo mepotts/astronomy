@@ -129,3 +129,43 @@ recovery. A later product/access contract must be separately specified from
 the actually returned names. M0's mirror 404, C9's descriptive counts and all
 missing scientific gates remain preserved; this metadata route replaces none
 of their results and authorizes no discovery claim.
+
+## Postrun: retained schema STOP, no product-name success
+
+Executed once after the parent-reported freeze `b787a9e`. **PASS for independent
+receipt-only audit of the preserved STOP.** The exact encoded request returned
+HTTP200, application/json and a complete **363-byte** retained response. The
+frozen worker stopped as `STOP_COLUMN_SCHEMA`, returned code1, and the parent
+completed a STOP assessment with `index=null`, one invocation and zero product
+fetches. The parent reports one offline replay of STOP; this reviewer performed
+no additional replay, parser repair, query or product access.
+
+Independently checked all **12 dependencies**, current binding/snapshot, six
+artifact-hash references, exact request marker, safe HTTP schema, body
+length/hash, worker failure receipt and outcome fields. Five JSON receipts
+total **4,608 bytes**; the separate raw body is 363 bytes. Both budgets remain
+within the frozen limits. Session/collect/worker/replay tripwires and a
+product-open guard were active. Every stage file hash was unchanged afterward.
+
+Outcome SHA256:
+`159ee0322ae964ec20e4f79471e927dc7dc93a08adcb0a1f8b2b751ca843b384`.
+Run binding SHA256:
+`e507b4885dca255f13003bee22c3d8827ae2748d4f0ac0e7627ec79bf2eaf085`.
+Raw response SHA256:
+`75d75114d209795f7177124f3eb44fc5c6f6d15e3aa4f485d36364df9aeab635`.
+
+Separate **manual metadata diagnosis**, not a validated M1 success: the raw
+`obsid` column declares character arraysize `10`, whereas the frozen profile
+requires `*`; filename declares `*`. This explains the first schema STOP.
+The two returned rows contain `0851180501.tar.gz` and `*/*` for the fixed
+observation. The former is a package-style name, not an individual EPIC product
+inventory; the latter is not a safe basename and independently violates the
+frozen filename rule. Its service-specific meaning was not established by
+this audit. Merely broadening the character-column rule would therefore not
+make this an accepted individual-filename response.
+
+No product exists/retrieves/completeness conclusion follows from HTTP200 or
+these manually inspected names. No package was fetched or expanded. Preserve
+the authoritative schema STOP and all earlier outcomes; any genuinely different
+metadata/access approach requires its own contract, not a silent parser
+relaxation, retry or promotion of this result.

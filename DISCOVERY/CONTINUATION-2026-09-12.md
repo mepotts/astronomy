@@ -501,3 +501,26 @@ protocol64fe04e56f8dac954a1394ab65934fd8eb4d88797d0b4701fe645d0a2c009fc4.
 Root adopts one1MiB+1/30sESAmetadataGET after exact-bytecommitfreeze under
 ongoing authority. No products/secondcountquery/unknownsource search.
 Maximumlabel RETURNED_PRODUCT_NAME_RECORDS_ONLY_COMPLETENESS_UNKNOWN.
+
+[M1 executed](XMM-RXJ-M1-RESULT-2026-09-13.md) afterb787a9e:oneESAHTTP200,
+application/json363bytes, STOP_COLUMN_SCHEMA at obsidarraysize'10' vsrequired'*'.
+Worker1,parentcomplete,one rootoffline replayPASSSTOP. Noacceptedrowsbyfrozen
+parser. Separate rootmanualinspectionfinds2rows:0851180501.tar.gz and*/*,
+notindividualPPSnames; wildcardwouldalsofailbasenamegate. No parseramendment,
+retry/countquery/products/bundledownload.5JSON4608bytes, raw363; outcome
+159ee0322ae964ec20e4f79471e927dc7dc93a08adcb0a1f8b2b751ca843b384.
+Reviewer is auditing savedreceipts only. Research next is documented tightly
+filtered summary-metadata selector for sameobs, not another namequery/parserloop.
+
+M1 independent postrun audit now PASS: 12 dependencies, six artifact references,
+five JSON receipts (4,608 bytes), retained body (363 bytes), exact HTTP/STOP
+closure and unchanged stage hashes. No additional request, product access or
+replay. Root read the full appended review and next-step research note.
+
+Root adopts the separately bounded [summary-selector decision](XMM-RXJ-M1-NEXT-2026-09-13.md)
+after checking the primary stable API and client implementation. This is a
+prospective raw-HTML-only request, not yet implemented/frozen/executed; package
+media stop before body access. Offline labelled observation identity and all
+exposure-table rows must be adjudicated before a later narrow PPS decision.
+The [FRB contingency](NEXT-DISCOVERY-CONTINGENCY-2026-09-13.md) remains research
+only; it does not displace XMM or authorize bulk radio data acquisition.

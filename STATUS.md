@@ -41,7 +41,10 @@ numerical passes279212472 decoded bytes. These are uncalibrated recorded
 counts, not recovery. [RXJ M0](DISCOVERY/XMM-RXJ-M0-RESULT-2026-09-13.md)
 then stops onHTTP404 from its one fixed observation-directory request,
 before body reads. No new products; not proof of observation unavailability.
-Next: documented structured metadata alternative for that same control.
+[RXJ M1](DISCOVERY/XMM-RXJ-M1-RESULT-2026-09-13.md) retains363bytes ofESAJSON,
+but stops on a fixed-string schema mismatch. Manual inspection shows an archive
+name and wildcard, not individualPPSnames. No retry or bundle download.
+Next: documented tightly filtered summary-metadata access for that same control.
 No unknown scan, calibrated recovery or discovery established.
 
 **September 12 continuing search:** [current new-route record](DISCOVERY/SEARCH-2026-09-12.md).
