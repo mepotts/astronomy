@@ -80,6 +80,12 @@ application to real frames remain unvalidated. No photon counts yet.
 exact attitude filename advertised, but no Content-Length: its size gate stopped
 and replay preserves that failure. A separately reviewed bounded GET can impose
 its own byte ceiling without inventing a missing length; no GET has run yet.
+[C3d](DISCOVERY/XMM-C3d-RESULT-2026-09-12.md) subsequently retrieved the exact
+attitude file under its own capped GET: 151713 compressed / 4173120 expanded
+bytes, gzip integrity and two-HDU header replay passed. ATTHK has 51975 rows;
+time-reference interpretation and actual quality/movement remain unchecked.
+Next are those local diagnostics and the still-undownloaded pn/MOS1 maps,
+then geometry/exposure validation and the published-burst control.
 [Later-work checking](DISCOVERY/XMM-LATER-WORK-2026-09-12.md) finds no verified
 coverage of the three exact newer observations, but does not prove them unsearched.
 

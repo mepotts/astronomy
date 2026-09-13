@@ -159,6 +159,15 @@ identity/format/header validation and no retry. An absent Content-Length need
 not block an independently byte-limited transfer; it cannot become an invented
 size or a retroactive C3c pass. Review/freeze precedes that request.
 
+[C3d has now executed](XMM-C3d-RESULT-2026-09-12.md) after freeze `a6c7911`:
+one successful capped GET, gzip integrity, 151713 raw / 4173120 expanded bytes,
+two structurally checked HDUs and parent replay. Actual ATTHK matches the
+ten-column documented schema, but header time-reference and joint-quality
+interpretation remain unresolved. Next is a separately frozen local attitude
+value diagnostic and the two outstanding pn/MOS1 map downloads using earlier
+size receipts. Retain original camera missingness, region/test denominator,
+geometry and control-recovery gates. No actual photons or discovery yet.
+
 [ITF](ITF-NOTIFICATIONS-2026-09-12.md) still has its daily archive publisher and
 existing-queue watch, not a fresh automated discovery search. No dedicated
 SMS/email delivery was configured or tested. Existing daily/weekly follow-ups

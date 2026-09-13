@@ -1,0 +1,34 @@
+{
+  "status": "ATT_PRODUCT_RETAINED_HEADERS_ONLY",
+  "worker_returncode": 0,
+  "assessment_completed": true,
+  "ledger": [
+    {
+      "slot": 1,
+      "status": "OK"
+    }
+  ],
+  "worker_error_code": null,
+  "worker_peak_memory_bytes": 62509056,
+  "resource_usage": {
+    "compressed_bytes": 151713,
+    "expanded_bytes": 4173120,
+    "json_bytes": 19898
+  },
+  "arrays_interpreted": false,
+  "prior_c3c_status": "STOP_SIZE_METADATA_PRESERVED",
+  "artifacts": {
+    "http.json": "8a28ed537944247f22b26852364be61c5998f2b2c7494004ac13fcaaab11eebb",
+    "protocol.snapshot.md": "8bee82d6c849bd94479f40615817cc2d14776d439b80b62a8b47c84871beed6a",
+    "request-result.json": "cb01de6049ec8d08c4ca6e8ce9c09d75805a64f9d2ad6abc428e2ef51feb26cd",
+    "request-start.json": "aae1c246a5bea0e5d2e832236051b96e016d7511a08ec15c0c290a6c8e808257",
+    "run-start.json": "73cecc46fcd9e5c9b71a57e10a3ed73c16012e1ab7f3bf9876ceb48e0abf68fc",
+    "worker-result.json": "469b04ed6c842544656d65c7e4b9adf1d43a513c7072e089c4719beb5d865d1c",
+    "worker-start.json": "cf0aaf8fcdea67d0064793eb6e72e25f05e2037075e43ed48b7dd70d804484fd",
+    "headers/slot-1-headers.json": "a5c5d3a9113b88b63e560be09dc72df0ece14b35c8e91fdefcbc73c77a8d8409",
+    "products/P0884250101OBX000ATTTSR0000.fits": "ff251ab4e22655bc02b612a599160e40cfe3176cf8de90ce4514668e5bcf7a17",
+    "products/P0884250101OBX000ATTTSR0000.FTZ": "963a0188c833a74fbe2d86f3288e9f1b6e70e038135dc05e57daa8d4256d7ccc"
+  },
+  "source_sha256": "87caca0e856065d33ff4f60404399915eed8a4b50a9afa7d0106f98fb691f825",
+  "parent_peak_memory_bytes": 59228160
+}
