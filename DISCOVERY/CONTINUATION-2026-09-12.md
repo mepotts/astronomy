@@ -389,3 +389,16 @@ committed code checkpoints3a731bd/4cffe9c; next-control research19a0710. Do not
 freeze or run C9 until finalsource/tests/protocol read, independent review,
 fullwrapper benchmark and exactindexbyte checks are complete. CI still needs
 its C9wrappertest/lint entry. No extra C8 numerical pass is authorized by audit.
+
+Final C9 candidate now has [independent scoped GO](XMM-C9-REVIEW.md), 19 wrapper
+tests, all332 XMM tests, scoped Ruff and repository verification PASS. CI includes
+C9. Root's [final-source physical synthetic fit](XMM-C9-RESOURCE-PREFLIGHT.md)
+passes actual subprocess/parent/replay in8.859s/2.891s,709463JSONbytes and under
+75MB monitored peaks; zero actual science-product opens. Actual metadata-only
+binding separately passes all16dependencies under a products-open prohibition.
+Runtime bb8d6d8c8a737e2d8be11d6f489091a1d0f7453fd320ad80a761709d56c81d03;
+tests9a2cc126dc6e7a48a256f77e99eac5f761651a4680f08269f8874911f3592bff.
+Root adopts the reviewed bounded execution under the user's ongoing authority,
+after an exact-byte commit freeze. Execute C9 once, then one numerical replay;
+retain all fixed histograms and failure accounting, with no implicit fourth
+pass. Strongest label remains RECORDED_COUNTS_UNCALIBRATED_NOT_RECOVERY.
