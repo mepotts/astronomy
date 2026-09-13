@@ -278,3 +278,16 @@ complete identity/coordinate conditions before unique exemption, unchanged
 region labels and all invalid-row denominators. It reports contacts only,
 never source-wing boundaries, mask areas or clean sky. Exact selected-span
 reader and bounded C8 wrapper remain to be finalized before real catalogue work.
+
+Current local branch `codex/xmm-source-geometry-sep12`, core checkpoint014faa4,
+based on mergedPR22. [C8 prospective protocol](XMM-C8-2026-09-12.md) is now
+written but not frozen or executed. The root rederived all266 column widths
+and9 selected offsets from the pinned header JSON: exactly1131bytes/row,
+52selectedbytes/row,151rows. Repeated unselected strings include10A/12A/7A;
+the reader must not assume all columns scalar. Exact extent units are
+`image pixels`. PRIMARY carries observation/EPIC/FK5/equinox identity;
+SRCLIST carries POSCOROKtrue/REFCATUSNO, not its own frame cards.
+Selected-span reader and C8 wrapper tests are in progress in separate agent
+work areas; no real source-list values, photons, masks or new map values.
+Finalize/read/review those components and protocol, freeze exact bytes, then
+execute C8 once. Earlier C7 map work is complete and must not be rerun casually.
