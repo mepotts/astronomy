@@ -419,3 +419,10 @@ Independent [C9 postrun audit](XMM-C9-POSTRUN-REVIEW.md) now PASS:16deps,
 1355overlappingartifactreferences,334pairs, allhistogram/CCD/rejection closure,
 resource/privacy checks. Root read the full report. No product opens or fourth
 pass. C9 result and dashboard updated; tested integration is next.
+
+C9 PR24 head991625230fed06ff341944f302b1b373476f7095 initially passes10of11
+CI jobs but discovery-pilots fails all19C9tests at STOP_MEMORY_RUNTIME on
+Linux (run34737875548). The frozen tests call the real Windows-only sampler.
+No merge proceeded. Move that unchanged suite to an explicit Windows CI job,
+retain Linux core tests/lint, and require all12jobs green. No executed source,
+test, protocol, dependency or receipt is changed; no safety sampler bypass.
