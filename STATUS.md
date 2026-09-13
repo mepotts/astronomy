@@ -59,6 +59,12 @@ closely approximate matching EVENTS CCD live times without rescaling; finite
 frame boundaries and stable aperture geometry remain unvalidated. Next is a
 small three-map/one-attitude metadata acquisition step, then the counts control.
 No photons, unknown-source scan or discovery in C2.
+[C3](DISCOVERY/XMM-C3-RESULT-2026-09-12.md) stopped at a MOS2 map HEAD returning
+404 after successful pn/MOS1 HEADs; no geometry products were downloaded. The
+URL matches the earlier index, but the server discrepancy's cause is unknown.
+The separate [C3b contract](DISCOVERY/XMM-C3b-2026-09-12.md) adopts pn/MOS1 plus
+the unattempted attitude product, consistent with the original pn-plus-one-MOS
+minimum, while retaining MOS2 missingness and the original test denominator.
 [Later-work checking](DISCOVERY/XMM-LATER-WORK-2026-09-12.md) finds no verified
 coverage of the three exact newer observations, but does not prove them unsearched.
 

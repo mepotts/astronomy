@@ -1,0 +1,64 @@
+{
+  "status": "STOP",
+  "worker_returncode": 1,
+  "assessment_completed": true,
+  "ledger": [
+    {
+      "slot": 1,
+      "status": "OK"
+    },
+    {
+      "slot": 2,
+      "status": "OK"
+    },
+    {
+      "slot": 3,
+      "status": "FAILED"
+    },
+    {
+      "slot": 4,
+      "status": "NOT_ATTEMPTED"
+    },
+    {
+      "slot": 5,
+      "status": "NOT_ATTEMPTED"
+    },
+    {
+      "slot": 6,
+      "status": "NOT_ATTEMPTED"
+    },
+    {
+      "slot": 7,
+      "status": "NOT_ATTEMPTED"
+    },
+    {
+      "slot": 8,
+      "status": "NOT_ATTEMPTED"
+    }
+  ],
+  "worker_error_code": "STOP_HTTP_IDENTITY_OR_STATUS",
+  "worker_peak_memory_bytes": 50540544,
+  "resource_usage": {
+    "compressed_bytes": 0,
+    "expanded_bytes": 0,
+    "json_bytes": 8880
+  },
+  "arrays_interpreted": false,
+  "artifacts": {
+    "protocol.snapshot.md": "ef076fe58242199da9dac4f1b413c90e8af2263367f0e8cfa6cc672e9903ed63",
+    "run-start.json": "b6bac1fd675d2d1887f60b76e340129f55ef83a897e9dc55f78fbab77b0d53ee",
+    "slot-1-http.json": "2418fccf50df24c452abff101a9a70bdeaafabf91a41d023e0e4161c1625e68d",
+    "slot-1-result.json": "5e964d06b5bc484cca5cda8437112f44369e93c5b84254588f6a80cd208ee108",
+    "slot-1-start.json": "7b7518562a235acb2c035ab931927a4b2bc486ae23fb8f5528bcbd9c88cc22c3",
+    "slot-2-http.json": "4e1b6282cde557165af803defb4d92422575ab53a9c4569a0e37bac79fddc9de",
+    "slot-2-result.json": "b6c9d303d7153ef4bbf53ffb8b3609ce9562574acff3658f93801d1f41cef852",
+    "slot-2-start.json": "fbf58e38cca4393e98289107b8529881407be60f7e8038769839be624e2dcd99",
+    "slot-3-http.json": "b53c70f2ea0b330f53bb55812cd8d5ac1415b2a31caa6c33466250d569430b27",
+    "slot-3-result.json": "7d4b9aa13fbf705b32c3dd8795b5b39c253eca5e16cd7d91f719b571888e4f7a",
+    "slot-3-start.json": "2da6d70277f32a9f8e4dd2b1be22b47ce3a1c0809da4156c0f4eef9d4c7c7340",
+    "worker-result.json": "b695ac5717a535effbde20345063d7ad39382c8535397b23ac9dc5e39795a79f",
+    "worker-start.json": "f43abc6ba073f7850bac6b48ead05fe2d31cb24f130b42ebae9eca506c04ae04"
+  },
+  "source_sha256": "7a9f6aafe0631137850b991ef8ed990275a050c40e303dbdf9a51d0455315c60",
+  "parent_peak_memory_bytes": 48324608
+}
