@@ -104,6 +104,17 @@ but their values and aperture coverage remain unvalidated. Next is a bounded
 ancillary-metadata inspection followed by the separately frozen counts test;
 neither acquisition success nor this continuation authorizes an unknown scan.
 
+[C2 has now executed](XMM-C2-RESULT-2026-09-12.md) after freeze commit `61d7bee`:
+all 24 EXPOSU and 24 STDGTI tables summarized, exact replay, no declared
+quality flags and no photons. The real frame weights closely approximate
+EVENTS per-CCD live times without a fitted scale, but do not validate finite
+frame allocation or spatial/temporal aperture stability. Adopt the
+[minimal geometry continuation](XMM-GEOMETRY-NEXT-2026-09-12.md) next: three
+already indexed camera exposure maps and the observation attitude product,
+starting with exact-size metadata and separately frozen acquisition/header
+checks. No automatic unknown scan, aperture optimization or threshold changes.
+Synthetic timing primitives are reviewed; they have not counted real photons.
+
 [ITF](ITF-NOTIFICATIONS-2026-09-12.md) still has its daily archive publisher and
 existing-queue watch, not a fresh automated discovery search. No dedicated
 SMS/email delivery was configured or tested. Existing daily/weekly follow-ups
