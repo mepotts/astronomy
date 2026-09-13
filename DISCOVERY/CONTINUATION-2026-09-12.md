@@ -260,3 +260,21 @@ screen](XMM-SOURCE-GEOMETRY-IMPLEMENTATION-PLAN.md), then a separately frozen
 descriptive photon test using the synthetic-only eventdecoder now under review.
 Raw count reporting need not wait indefinitely for full exposure calibration,
 but cannot be labelled calibrated rates, significance or discovery.
+
+PR22 merged2026-09-13T03:08:48Z as0b15c38e4435ac1f4906cdba0b9c9adc23f9deeb
+after all11CI jobs passed. C7 postmerge binding/receipt/ledger checks pass with
+no fourth numerical pass. The [EVENTS scalar decoder](XMM-EVENT-ROWS-IMPLEMENTATION.md)
+is now integrated with16synthetic tests and independent514-row oracle/failure
+review. No actual event arrays yet. Sourcegeometry pure-core and exact7852-byte
+selected-span reader are the next implementation components; their synthetic
+tests/review do not authorize real source-list values without a bounded wrapper,
+fixed manifest, protocol and pre-execution freeze. Keep that distinction explicit.
+
+The pure `xmm_source_geometry.summarize(columns, centres)` core now passes
+13synthetic tests and [independent review](XMM-SOURCE-GEOMETRY-CORE-REVIEW.md),
+including1500contact-count comparisons over100synthetic151-row catalogues.
+It preserves corrected-position association versus original-position geometry,
+complete identity/coordinate conditions before unique exemption, unchanged
+region labels and all invalid-row denominators. It reports contacts only,
+never source-wing boundaries, mask areas or clean sky. Exact selected-span
+reader and bounded C8 wrapper remain to be finalized before real catalogue work.
