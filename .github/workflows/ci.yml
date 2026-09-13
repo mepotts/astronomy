@@ -180,6 +180,7 @@ jobs:
           python -m unittest discover -s DISCOVERY/XMM-C7-2026-09-12-data -p 'test_inspect*.py' -v
           python -m unittest discover -s DISCOVERY/XMM-C8-2026-09-12-data -p 'test_inspect*.py' -v
           python -m unittest discover -s DISCOVERY/XMM-RXJ-M0-2026-09-13-data -p 'test_*.py' -v
+          python -m unittest discover -s DISCOVERY/XMM-RXJ-M1-2026-09-13-data -p 'test_*.py' -v
           python -m unittest discover -s gaia-dr4/tests -p test_declared_variant.py -v
           python dasch-pilot/scripts/stable_controls.py --replay
           python dasch-pilot/scripts/stable_controls.py --replay --normalize-missing-notes
@@ -208,6 +209,7 @@ jobs:
           ruff check DISCOVERY/XMM-C8-2026-09-12-data/*.py
           ruff check DISCOVERY/XMM-C9-2026-09-12-data/*.py
           ruff check DISCOVERY/XMM-RXJ-M0-2026-09-13-data/*.py
+          ruff check DISCOVERY/XMM-RXJ-M1-2026-09-13-data/*.py
 
   xmm-c9-windows:
     name: XMM C9 · Windows synthetic runtime
