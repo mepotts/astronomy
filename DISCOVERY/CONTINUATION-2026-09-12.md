@@ -402,3 +402,20 @@ Root adopts the reviewed bounded execution under the user's ongoing authority,
 after an exact-byte commit freeze. Execute C9 once, then one numerical replay;
 retain all fixed histograms and failure accounting, with no implicit fourth
 pass. Strongest label remains RECORDED_COUNTS_UNCALIBRATED_NOT_RECOVERY.
+
+[C9 executed](XMM-C9-RESULT-2026-09-12.md) after runtimefreeze e4c069d onSep13.
+Worker0,parentcomplete and one root numerical replay PASS; exactly three known
+passes427958520rowbytes/279212472decodedbytes. All334chunks/3cameras complete,
+no partial state. Published circle777pn/0MOS1/146MOS2; every fixed histogram
+retained, no top-bin/episode/rate/significance search. Final678JSON709146bytes;
+worker78946304,parent79577088 peakbytes. Outcome
+f27b9848b470cf8adf693f3a106e8b88d85c802f6e1effff67667773eb20d109.
+No fourth numerical pass for audit/integration. Stronger recovery remains
+unestablished; first-control descriptive diagnostic complete. Next bounded
+task is separately frozen RXJ1301/0851180501 metadata-only preflight, no new
+field photons. Independent reviewer is auditing C9 receipts/aggregate closure.
+
+Independent [C9 postrun audit](XMM-C9-POSTRUN-REVIEW.md) now PASS:16deps,
+1355overlappingartifactreferences,334pairs, allhistogram/CCD/rejection closure,
+resource/privacy checks. Root read the full report. No product opens or fourth
+pass. C9 result and dashboard updated; tested integration is next.

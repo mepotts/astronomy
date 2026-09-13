@@ -1,0 +1,45 @@
+{
+  "slot": 1,
+  "status": "OK",
+  "progress": {
+    "index": 61,
+    "row_start": 600000,
+    "rows_requested": 10000,
+    "bytes_requested": 450000,
+    "bytes_returned": 450000,
+    "read_completion_unknown": false,
+    "decoder": {
+      "status": "COMPLETE",
+      "phase": "COMPLETE",
+      "current_field": null,
+      "buffer_bytes_supplied": 450000,
+      "selected_field_bytes_decoded": 280000,
+      "completed_fields": [
+        "TIME",
+        "RAWX",
+        "RAWY",
+        "X",
+        "Y",
+        "PI",
+        "FLAG",
+        "PATTERN",
+        "CCDNR"
+      ],
+      "rows_completed": 10000,
+      "current_conversion_completion_unknown": false
+    },
+    "geometry": {
+      "status": "COMPLETE",
+      "phase": "COMPLETE",
+      "input_rows": 10000,
+      "masked_rows": 0,
+      "projection_attempted_rows": 10000,
+      "projection_completed_rows": 10000,
+      "rows_completed": 10000,
+      "current_projection_completion_unknown": false
+    },
+    "histogram_rows_completed": 10000,
+    "accumulated_rows": 10000
+  },
+  "increment_sha256": "904061f85e881957ca15ad9d2148f67779d3bc4fbe19cbe36ab4ebf2d714b036"
+}
