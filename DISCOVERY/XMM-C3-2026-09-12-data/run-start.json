@@ -1,0 +1,91 @@
+{
+  "slots": [
+    {
+      "slot": 1,
+      "method": "HEAD",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101PNS003EXPMAP8000.FTZ",
+      "filename": "P0884250101PNS003EXPMAP8000.FTZ"
+    },
+    {
+      "slot": 2,
+      "method": "HEAD",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101M1S001EXPMAP8000.FTZ",
+      "filename": "P0884250101M1S001EXPMAP8000.FTZ"
+    },
+    {
+      "slot": 3,
+      "method": "HEAD",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101M2S002EXPMAP8000.FTZ",
+      "filename": "P0884250101M2S002EXPMAP8000.FTZ"
+    },
+    {
+      "slot": 4,
+      "method": "HEAD",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101OBX000ATTTSR0000.FTZ",
+      "filename": "P0884250101OBX000ATTTSR0000.FTZ"
+    },
+    {
+      "slot": 5,
+      "method": "GET",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101PNS003EXPMAP8000.FTZ",
+      "filename": "P0884250101PNS003EXPMAP8000.FTZ"
+    },
+    {
+      "slot": 6,
+      "method": "GET",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101M1S001EXPMAP8000.FTZ",
+      "filename": "P0884250101M1S001EXPMAP8000.FTZ"
+    },
+    {
+      "slot": 7,
+      "method": "GET",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101M2S002EXPMAP8000.FTZ",
+      "filename": "P0884250101M2S002EXPMAP8000.FTZ"
+    },
+    {
+      "slot": 8,
+      "method": "GET",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101OBX000ATTTSR0000.FTZ",
+      "filename": "P0884250101OBX000ATTTSR0000.FTZ"
+    }
+  ],
+  "configuration": {
+    "output_directory": "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C3-2026-09-12-data",
+    "compressed_caps": [
+      2097152,
+      2097152,
+      2097152,
+      2097152
+    ],
+    "expanded_file": 33554432,
+    "expanded_total": 134217728,
+    "memory": 500000000,
+    "seconds": 120,
+    "chunk": 1048576,
+    "header_json": 2097152,
+    "json": 10485760,
+    "terminal_reserve": 262144,
+    "minimum_free_bytes_each_request": 268435456,
+    "deadline_policy": "worker monotonic start plus seconds; hard helper deadline same seconds"
+  },
+  "source_sha256": "7a9f6aafe0631137850b991ef8ed990275a050c40e303dbdf9a51d0455315c60",
+  "tests_sha256": "d322831429e4c613f2d759fe75818c68b9fba1c24abaf08108a37584b646ab1c",
+  "protocol_sha256": "ef076fe58242199da9dac4f1b413c90e8af2263367f0e8cfa6cc672e9903ed63",
+  "dependencies": {
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C1-2026-09-12-data\\acquire.py": "13184df5d2b9d6e4bae83446316974ba90f46e3412e51c10c40cfbe2f5e2cca5",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C1-2026-09-12-data\\test_acquire.py": "d751843243552cfdf3d65558c2ff96cf34c6885832378a02789f6dc23fbb541c",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C0d-2026-09-12-data\\metadata.py": "de1d481b185067722546edca1a51dadcd6a5a7fd7d328e60f0ad5d6980272af3",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\xmm_structure.py": "96d9497dbdd45d2561fc0bbb27a0c11d6fbad91cd42c0b14191378dd9fd7fa63",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\test_xmm_structure.py": "4b1bb863a29543ecb6957a417b3115155fa74b625c300d86524a4c8ac44af1aa",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\test_xmm_structure_review.py": "a062ddea63b2c8364395ed61ead99e2cc12031bcec3065aa24ca61dbee1d6b10",
+    "C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\scripts\\check_e_release.py": "11ad0bef9fd2efae234e204358c6b6730e723ed3dc24c6fe0c345f2ddcfb53dd"
+  },
+  "inventory_sha256": "6ddb4a357439922dbefaa51e365b53802e6d031d079348706274555f4e063c23",
+  "index_sha256": "97f9372b999b354ebcbff51a4b42af885433de598795a6a58656ef1e09bac258",
+  "runtime": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "executable": "C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Scripts\\python.exe",
+    "requests": "2.34.2",
+    "astropy": "8.0.1"
+  }
+}

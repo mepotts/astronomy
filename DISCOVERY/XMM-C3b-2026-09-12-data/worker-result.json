@@ -1,0 +1,37 @@
+{
+  "status": "STOP",
+  "error_type": "ValueError",
+  "error_code": "STOP_HTTP_IDENTITY_OR_STATUS",
+  "ledger": [
+    {
+      "slot": 1,
+      "status": "FAILED"
+    },
+    {
+      "slot": 2,
+      "status": "NOT_ATTEMPTED"
+    },
+    {
+      "slot": 3,
+      "status": "NOT_ATTEMPTED"
+    },
+    {
+      "slot": 4,
+      "status": "NOT_ATTEMPTED"
+    }
+  ],
+  "artifacts": {
+    "protocol.snapshot.md": "7025a0af3a2714528b8a4360487760972e5977c48eb232a236c8ec239a2ff18a",
+    "run-start.json": "6ff56f5955923606f8c700d9ca8c4635b955d1ec5fc0e89579758a47b338d636",
+    "slot-1-http.json": "55c58ff5bc785be740e833cca2ec2645ad1d50f2298cdeefb4633b666cbcd5a5",
+    "slot-1-result.json": "2e5d0cf2a96927a96831a22346c9937606f495158f8ba786fcd1a9694a0bcc97",
+    "slot-1-start.json": "1282d2115a4478a6df399cf29865d6ae5c7cb3bf57fac07d536a3448a648bd07",
+    "worker-start.json": "83d6588daeb655addb8c973e802ba0e7954ac73e3d83f5761180fd1be35c65c3"
+  },
+  "resource_usage": {
+    "compressed_bytes": 0,
+    "expanded_bytes": 0,
+    "json_bytes": 7359
+  },
+  "peak_memory_bytes": 50999296
+}

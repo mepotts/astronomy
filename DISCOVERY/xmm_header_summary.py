@@ -14,6 +14,7 @@ METADATA = (
     "TIMEREF", "TASSIGN", "CLOCKAPP", "ONTIME", "LIVETIME", "EXPOSURE",
     "DEADC", "SAS_VER", "SAS_CCF", "CREATOR", "CCDNR", "CCDID", "MODE",
     "WINDOWX0", "WINDOWY0", "WINDOWDX", "WINDOWDY", "TIMEDEL",
+    "BUNIT", "E_MIN", "E_MAX", "PI_MIN", "PI_MAX", "OOTCORR", "OOTFRAC",
 )
 
 
@@ -37,11 +38,14 @@ def summarize(report):
         output["hdus"].append({
             "hdu": item["hdu"], "extname": item["extname"],
             "data_bytes": item["data_bytes"], "rows": header.get("NAXIS2"),
+            "bitpix": header.get("BITPIX"),
+            "axis_lengths": [header.get(f"NAXIS{i}") for i in range(1, header.get("NAXIS", 0) + 1)],
             "metadata": metadata, "columns": columns,
             "data_subspace_keys_present": sorted({key for key in header
                 if re.match(r"^\d*(?:DSTYP|DSUNI|DSVAL|DSREF)", key)}),
             "wcs_keys_present": sorted({key for key in header
-                if key.startswith(("TCTYP", "TCRPX", "TCRVL", "TCDLT", "TCUNI"))}),
+                if key.startswith(("TCTYP", "TCRPX", "TCRVL", "TCDLT", "TCUNI"))
+                or re.fullmatch(r"(?:CTYPE|CUNIT|CRPIX|CRVAL|CDELT|CROTA)\d+|(?:CD|PC)\d+_\d+", key)}),
         })
     return output
 

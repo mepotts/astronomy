@@ -115,6 +115,33 @@ starting with exact-size metadata and separately frozen acquisition/header
 checks. No automatic unknown scan, aperture optimization or threshold changes.
 Synthetic timing primitives are reviewed; they have not counted real photons.
 
+[C3 stopped](XMM-C3-RESULT-2026-09-12.md) on HTTP 404 for the exact indexed MOS2
+map URL. Two successful HEADs establish pn/MOS1 sizes; the attitude HEAD and
+all GETs were unattempted. Preserve the STOP and do not infer the cause or
+permanent absence. Adopt [C3b](XMM-C3b-2026-09-12.md) as a separate prospective
+one-HEAD/three-GET continuation using the accepted pn/MOS1 receipts. The original
+counts design already permits pn plus one eligible MOS. Keep all geometry,
+negative-control, simultaneous-coverage and multiplicity rules unchanged.
+The [frame-boundary proposal](XMM-FRAME-BOUNDARIES-2026-09-12.md) offers
+conservative exposure bounds with explicit support assumptions; it has not
+been applied to real frames. [FLAG zero](XMM-SCREENING-DECISION-2026-09-12.md)
+is adopted prospectively, pending map-mask compatibility. No photon run yet.
+
+[C3b also stopped](XMM-C3b-RESULT-2026-09-12.md): the unattempted attitude HEAD
+returned 404 at its exact indexed URL, so no conditional GET was sent. The
+prior C3 STOP and two successful HEADs remain unchanged. Investigate a documented
+official alternate individual-PPS source before proposing further transport;
+no blind method/URL retry, dropped pointing requirement or unknown scan.
+Both failures are archive-response evidence, not a scientific rejection of
+the published control. Useful photon-blind temporal-method work remains.
+
+Bounded research now identifies a documented
+[ESA XSA AIO alternate](XMM-ALTERNATE-PPS-SOURCE-2026-09-12.md): its official
+client uses HEAD and supports narrow PPS selectors. No product request was
+made. Next, separately freeze and review one ATTTSR-filtered metadata request;
+successful metadata would still need a distinct bounded package contract before
+download. Availability, sole-member identity and compatibility remain unknown.
+
 [ITF](ITF-NOTIFICATIONS-2026-09-12.md) still has its daily archive publisher and
 existing-queue watch, not a fresh automated discovery search. No dedicated
 SMS/email delivery was configured or tested. Existing daily/weekly follow-ups
