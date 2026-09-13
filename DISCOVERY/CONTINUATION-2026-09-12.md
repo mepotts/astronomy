@@ -301,3 +301,15 @@ scientific input change. Root reread the repair and reran tests/lint. C8 wrapper
 is present but still under development/review: preserve replay-failure additional
 pass counters, reject unexpected/nested artifacts and enforce exact151row/10region
 closure. No C8 run marker or real selected-column decoding yet.
+
+C8 now has a scoped [independent preflight GO](XMM-C8-REVIEW.md), with all16
+wrapper tests,112 root XMM-core tests, scoped Ruff and repository verifier
+passing. Final source bd76ab70fb36ca2ea9c350401ab36991baa8fd30b3bf160c546c788a536ad0e3,
+tests 0bd5ba02add739318553de6029147e79d625b8dcde8c5180b3674c9088370733,
+protocol 9b4a86517fdafcccf16c1004808a87a457c4c05b63b51f6e9da5163675330c14.
+This checkpoint freezes the reviewed runtime before the separately executed
+local selected-column screen under the user's ongoing execution authority.
+No source-list values have yet been interpreted. CI now includes C8.
+The [EVENTS geometry plan](XMM-EVENT-GEOMETRY-IMPLEMENTATION-PLAN.md) establishes
+unchanged X/Y with FITS origin1; its pure implementation and independent review
+are proceeding with synthetic data only.
