@@ -38,8 +38,11 @@ remain unestablished. Three selected-column passes total23556decodedbytes.
 screen: fixed source-circle counts777pn/0MOS1/146MOS2, all three cameras and
 all254bins/five regions retained. Worker+parent+one replay pass; exactly three
 numerical passes279212472 decoded bytes. These are uncalibrated recorded
-counts, not recovery. Next: separately frozen RXJ1301/0851180501 metadata
-preflight. No unknown scan, calibrated recovery or discovery established.
+counts, not recovery. [RXJ M0](DISCOVERY/XMM-RXJ-M0-RESULT-2026-09-13.md)
+then stops onHTTP404 from its one fixed observation-directory request,
+before body reads. No new products; not proof of observation unavailability.
+Next: documented structured metadata alternative for that same control.
+No unknown scan, calibrated recovery or discovery established.
 
 **September 12 continuing search:** [current new-route record](DISCOVERY/SEARCH-2026-09-12.md).
 TESS recovers 3/3 published periods and near-target pixel signals; catalog confusion,

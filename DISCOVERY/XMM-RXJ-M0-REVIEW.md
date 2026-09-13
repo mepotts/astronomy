@@ -120,3 +120,45 @@ The first control's completed C9 results and stronger missing gates remain
 unchanged. Its final result write-up was separately claim-checked against the
 receipt/aggregate audit, including the per-CCD assignments; no discrepancy
 was found and no extra photon pass or episode search was performed.
+
+## Postrun: preserved HTTP 404 STOP
+
+The parent restored the original LF decision bytes and froze M0 at `6512188`
+before the single execution. This reviewer independently repeated the complete
+four-dependency metadata binding check after execution; the newline condition
+above is now resolved without repinning source or changing the decision.
+
+**PASS, receipt-only audit of a STOP outcome.** The exact fixed observation
+directory returned HTTP **404**, `text/plain; charset=utf-8`, with declared
+Content-Length **19**. The code rejected status before any body read. There is
+no `index.html`; the worker body record is null. Thus 19 is an advertised
+response length, not a downloaded or parsed index length. Zero index-body
+bytes were retained; this does not make a claim about transport-level buffering.
+
+One worker-start invocation is recorded. Worker return code is 1, its named
+failure is `STOP_HTTP_STATUS`, and parent assessment completed with status
+STOP, `index=null`, `products_fetched=0`. Parent reports offline replay
+`PASS_OFFLINE_REPLAY STOP`; this reviewer did not invoke another replay or
+request. The retained worker-output receipt contains 53 encoded bytes and a
+hash only, not the raw output text.
+
+Independently checked all five artifact-hash references, exact worker marker
+and STOP receipt, safe HTTP schema, four dependency hashes, snapshot/source/
+test binding and absence of any body artifact. Five JSON files total **2,518
+bytes**, below both per-file and aggregate caps. All stage file hashes remained
+unchanged across the audit. `collect`, `worker` and `replay` tripwires and a
+product-open guard were active throughout; no products or network were opened.
+
+Outcome SHA256:
+`57e0e1ec8a149a6e90a1e1847f089c1a4d3529480f1416704f3ac964f37d82c7`.
+Run binding SHA256:
+`7bc6f5658753058f9369cabca6aa33b962b2739f5855c44046d07637f653dbed`.
+HTTP receipt SHA256:
+`decbfbc7e9ed32a3fde544849b6cc5bb2e40f02c64998f24a85bee4225f76ff8`.
+
+This is a negative result for **one constructed mirror path**, not evidence
+that RX J1301.9+2747, observation0851180501, its public data, or all alternative
+archive routes are unavailable. No PPS link was established, no link was
+followed, and no recovery or availability inference is justified. The frozen
+attempt remains used; no retry, redirect or alternate observation is authorized
+by its failure.

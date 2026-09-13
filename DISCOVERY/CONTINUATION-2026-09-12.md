@@ -448,3 +448,26 @@ Root read full source/tests/protocol/review and adopts the oneanonymousGET,
 after exact-byte commit freeze. No linked request or product acquisition.
 The [ancillary-first calibration decision](XMM-CALIBRATION-NEXT-DECISION-2026-09-13.md)
 is adopted for later separately bounded work; no gate waiver or photon search.
+
+[RXJ M0 executed](XMM-RXJ-M0-RESULT-2026-09-13.md) once after6512188.
+HTTP404, STOP_HTTP_STATUS beforebodyreading; noindex.html, nullbodyrecord,
+worker1,parentassessmentcomplete. Root one offline replay PASS_OFFLINE_REPLAY
+STOP.5JSON2518bytes; outcome57e0e1ec8a149a6e90a1e1847f089c1a4d3529480f1416704f3ac964f37d82c7.
+No retry, PPS/HEAD/products or targetsubstitution. The19byte Content-Length is
+declared, not read. Do not infer observation unavailable from this route404.
+Independent reviewer is auditing savedreceipts; research agent is identifying
+one documented same-observation structuredmetadata alternative, no query yet.
+
+Independent RXJ M0 postaudit now PASS5artifactreferences/4deps/5JSON2518bytes,
+exact safeHTTP/workerSTOP schema and unchangedstagehashes, no request or replay.
+Root read the full appended audit. Tests17/Ruff/repositoryverifier PASS again
+afterexecution. M0 is closed, not discovery-blocked or proof of missingdata.
+
+Root adopts [next ESA structured query](XMM-RXJ-M0-NEXT-2026-09-13.md) after
+reading the full note, three primarydocs and retained verifiedschema:
+SELECT obsid,filename FROM xsa.data_product WHERE obsid = '0851180501'.
+One prospective1MiB/30sanonymousTAPGET, no newtarget/products/automaticretry.
+Next implementation must bind the schema and M0 lineage, validate safe scalar
+rows, retain duplicatecounts and avoid claiming completeness without evidence.
+No actual query for RXJ has been made. Exact runtime/protocol/tests and review
+still need freezing before execution; later joint-region calibration remains.
