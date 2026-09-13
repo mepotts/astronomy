@@ -211,3 +211,66 @@ private and ignored; only the safe derivative is public. Actual returned headers
 must still authenticate identities and preserve mode/filter conflicts or
 missingness. All earlier STOPs and scientific coverage/background/control gates
 remain in force.
+
+## Postrun receipt-only audit — 2026-09-13
+
+**The preserved outcome is STOP, not completed acquisition or header
+authentication.** Parent reports one execution after freeze `d76223b`, terminated
+by the 300-second tree-aware worker deadline, and exactly one later CLI
+failure-artifact replay. This reviewer did not repeat that replay, open/hash the
+partial product, inspect any private header or issue a request.
+
+Independent public-only checks passed: **five public artifact hashes**, **12
+dependency hashes**, all five current source/test/protocol/privacy/attributes
+anchors and current protocol/snapshot equality. Five JSON files total **6,169
+bytes**. The worker marker binds the run receipt; the sole slot marker matches
+the first frozen selector. The private artifact's hash was checked only for
+receipt shape, not recomputed. Its retained size was read with filesystem stat.
+
+Relevant SHA256 anchors:
+
+- Outcome: `9eb6912a34cabdfad6c5da42d751e7be25c249ed72ec2910f194bdbca59119bb`.
+- Run binding: `47185082c08cc19584e3f7c56445dae1a580b4b581d6dec00514fd4f7ab75bc6`.
+- First HTTP receipt: `9defa91737820d025299806875c86b81d9aa8c989eed4786851f065bdc29af33`.
+- Partial-product hash **recorded by the parent, not verified in this audit**:
+  `8e5e6b07f836967030e05594d519527829c7ea4429c442a21317d0f8a81f233d`.
+
+The first HTTP receipt records 200, exact URL match, `image/fits`, no supplied
+Content-Length and an exact expected-disposition filename hash. Its Date is
+2026-09-13 06:40:10 GMT. Those headers do not establish raw-format magic, FITS
+identity, total product size or completion. The pn partial is retained at
+**28,311,552 bytes**, below the frozen raw caps. There is no expanded FITS file,
+private header report, identity derivative, slot-result or worker-result. There
+are no second/third slot markers. The ledger correctly leaves pn
+`UNVERIFIED_ATTEMPT` and both MOS slots `NOT_ATTEMPTED`.
+
+Worker return code is 124. Parent assessment is false with `STOP_INTERNAL`;
+that parent error code alone is not an archive diagnosis. All three additional
+header-pass started/completed flags are false. No authenticated FITS header or
+scientific value was produced. Parent lifetime peak is recorded as 47,800,320
+bytes; **worker peak is unknown** because no worker-result survived. Exact raw
+returned-byte counters, possible in-flight buffering/write work and verified
+EOF are also **unknown**, not zero and not equal by assertion to the stat size.
+The normal slot `request_invocations` counter was not serialized; evidence is
+the one first-slot HTTP receipt and frozen one-attempt control flow, not a
+completed per-request measurement receipt. No CRC/expansion completion follows.
+
+The current ignored-products rule and its exact bound bytes were checked. A
+read-only `git check-ignore` attempt was blocked by the sandbox's repository
+ownership check; no Git configuration was changed. Parent owner-context ignore
+confirmation remains an operational check separate from byte retention. The
+partial was not removed, overwritten, resumed or interpreted by this reviewer.
+
+Parent subsequently confirmed the exact retained partial is ignored by the
+stage `.gitignore` line 1, `/products/`, using a command-local safe-directory
+setting for `git check-ignore -v`. This is attributed to the parent's check,
+not a successful Git invocation by this reviewer; no global configuration was
+changed. The privacy-retention operational check is therefore complete.
+
+Parent's reported `PASS_FAILURE_ARTIFACT_REPLAY STOP` confirms its failure
+receipt/artifact check only; it is not a header replay or a completed download.
+This audit adds no raw hash pass. The stop does not show that the source or
+product is unavailable, that the instrument lacks exposure, or that a QPE is
+absent. It authorizes no retry, range-resume, fallback or changed budget. M4's
+incomplete metadata, earlier STOPs and all scientific recovery gates remain
+unchanged.

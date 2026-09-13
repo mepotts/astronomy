@@ -675,3 +675,17 @@ ledger cases. Root adopts the reviewed fixed scope. After exact-byte commit
 verification, execute one three-slot fail-stop acquisition worker plus its
 parent and one explicit local root replay. No retries or scientific arrays;
 publication/submission and outbound alert changes remain separately gated.
+
+[M5 executed once](XMM-RXJ-M5-RESULT-2026-09-13.md) after freeze d76223b and
+17-file exact committed-binding verification. HTTP200/exact pn filename/image-fits;
+no supplied length/ETag/Last-Modified. Worker hit300s deadline(return124), retaining
+28,311,552B raw partial, no expanded/header/identity files. MOS slots unattempted.
+Parent assessmentfalse/STOP_INTERNAL, all header-pass flagsfalse. Root exactlyone
+artifact-only replayPASS STOP, not product verification. Partial hash
+8e5e6b07f836967030e05594d519527829c7ea4429c442a21317d0f8a81f233d;
+outcome9eb6912a34cabdfad6c5da42d751e7be25c249ed72ec2910f194bdbca59119bb.
+FiveJSON6169B,parentpeak47800320B; workerpeak/exactreceivedbytesunknown.
+No retry or scientific arrays. Preserve partial and obtain a finite separate
+transport-continuation decision; the conditional CALINDEX proposal waits for
+authenticated complete products. This is an incomplete transfer, not a
+non-discovery result or an exhausted research route.

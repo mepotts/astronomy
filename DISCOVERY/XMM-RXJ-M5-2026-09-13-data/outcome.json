@@ -1,0 +1,48 @@
+{
+  "status": "STOP",
+  "worker_returncode": 124,
+  "assessment_completed": false,
+  "error_code": "STOP_INTERNAL",
+  "header_verification_pass": [
+    {
+      "slot": 1,
+      "started": false,
+      "completed": false
+    },
+    {
+      "slot": 2,
+      "started": false,
+      "completed": false
+    },
+    {
+      "slot": 3,
+      "started": false,
+      "completed": false
+    }
+  ],
+  "output_bytes": 30,
+  "output_sha256": "31855e11bb0ba9d265733d0d444b5c79787ad4d4d111956c28862cd13d2cb070",
+  "ledger": [
+    {
+      "slot": 1,
+      "status": "UNVERIFIED_ATTEMPT"
+    },
+    {
+      "slot": 2,
+      "status": "NOT_ATTEMPTED"
+    },
+    {
+      "slot": 3,
+      "status": "NOT_ATTEMPTED"
+    }
+  ],
+  "artifacts": {
+    "protocol.snapshot.md": "7273718a789146accd9ecd5c51b9b36cea698a25234b093fc419216cb16a425e",
+    "run-start.json": "47185082c08cc19584e3f7c56445dae1a580b4b581d6dec00514fd4f7ab75bc6",
+    "slot-1-http.json": "9defa91737820d025299806875c86b81d9aa8c989eed4786851f065bdc29af33",
+    "slot-1-start.json": "f1ac839bf55b00a0b099062b907dbfb496a52e84eb6ee917ffb6981e7f441bff",
+    "worker-start.json": "ba1406af1e12f3c8cf6dd911502db8884fb9b401ae0f6170c429eceb35e1e20e",
+    "products/P0851180501PNS001PIEVLI0000.FTZ": "8e5e6b07f836967030e05594d519527829c7ea4429c442a21317d0f8a81f233d"
+  },
+  "parent_peak_memory_bytes": 47800320
+}
