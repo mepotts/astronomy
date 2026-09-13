@@ -1,0 +1,138 @@
+{
+  "slots": [
+    {
+      "slot": 1,
+      "method": "GET",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101PNS003EXPMAP8000.FTZ",
+      "filename": "P0884250101PNS003EXPMAP8000.FTZ"
+    },
+    {
+      "slot": 2,
+      "method": "GET",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101M1S001EXPMAP8000.FTZ",
+      "filename": "P0884250101M1S001EXPMAP8000.FTZ"
+    }
+  ],
+  "prior_heads": [
+    {
+      "original_slot": {
+        "slot": 1,
+        "method": "HEAD",
+        "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101PNS003EXPMAP8000.FTZ",
+        "filename": "P0884250101PNS003EXPMAP8000.FTZ"
+      },
+      "http": {
+        "method": "HEAD",
+        "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101PNS003EXPMAP8000.FTZ",
+        "status": 200,
+        "headers": {
+          "Content-Length": [
+            "503855"
+          ],
+          "Date": [
+            "Sun, 13 Sep 2026 00:38:53 GMT"
+          ],
+          "ETag": [
+            "\"7b02f-627d58844ee00\""
+          ],
+          "Last-Modified": [
+            "Tue, 26 Nov 2024 19:05:28 GMT"
+          ]
+        }
+      },
+      "receipt": {
+        "slot": {
+          "slot": 1,
+          "method": "HEAD",
+          "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101PNS003EXPMAP8000.FTZ",
+          "filename": "P0884250101PNS003EXPMAP8000.FTZ"
+        },
+        "status": "OK",
+        "advertised_compressed_bytes": 503855,
+        "body_bytes_read": 0
+      },
+      "http_sha256": "2418fccf50df24c452abff101a9a70bdeaafabf91a41d023e0e4161c1625e68d",
+      "receipt_sha256": "5e964d06b5bc484cca5cda8437112f44369e93c5b84254588f6a80cd208ee108"
+    },
+    {
+      "original_slot": {
+        "slot": 2,
+        "method": "HEAD",
+        "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101M1S001EXPMAP8000.FTZ",
+        "filename": "P0884250101M1S001EXPMAP8000.FTZ"
+      },
+      "http": {
+        "method": "HEAD",
+        "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101M1S001EXPMAP8000.FTZ",
+        "status": 200,
+        "headers": {
+          "Content-Length": [
+            "275217"
+          ],
+          "Date": [
+            "Sun, 13 Sep 2026 00:38:53 GMT"
+          ],
+          "ETag": [
+            "\"43311-627d58807e500\""
+          ],
+          "Last-Modified": [
+            "Tue, 26 Nov 2024 19:05:24 GMT"
+          ]
+        }
+      },
+      "receipt": {
+        "slot": {
+          "slot": 2,
+          "method": "HEAD",
+          "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101M1S001EXPMAP8000.FTZ",
+          "filename": "P0884250101M1S001EXPMAP8000.FTZ"
+        },
+        "status": "OK",
+        "advertised_compressed_bytes": 275217,
+        "body_bytes_read": 0
+      },
+      "http_sha256": "4e1b6282cde557165af803defb4d92422575ab53a9c4569a0e37bac79fddc9de",
+      "receipt_sha256": "b6c9d303d7153ef4bbf53ffb8b3609ce9562574acff3658f93801d1f41cef852"
+    }
+  ],
+  "prior_outcome_sha256": "62dedbf1b55a48210f447e454f0f1f574b7b8b073a873f48bce2c587cdf7fa5e",
+  "configuration": {
+    "output_directory": "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C3e-2026-09-12-data",
+    "compressed_caps": [
+      503855,
+      275217
+    ],
+    "expanded_file": 33554432,
+    "expanded_total": 67108864,
+    "memory": 500000000,
+    "seconds": 60,
+    "chunk": 1048576,
+    "header_json": 2097152,
+    "json": 10485760,
+    "terminal_reserve": 262144,
+    "minimum_free_bytes_each_request": 134217728,
+    "deadline_policy": "worker monotonic start plus seconds; hard helper deadline same seconds"
+  },
+  "source_sha256": "ad80cb38306388f69e51bce78fe4787279e7ba5402b4b6f7b10b44362b54aa4e",
+  "tests_sha256": "d913c42299305bdb62fba2d0f3e8147e0568cf778f541649fab5adb1de51e825",
+  "protocol_sha256": "ca3fa37ad01c1542423f7ba3b8ebd1b81cd6a9375eb081728062e2cad45dfc44",
+  "dependencies": {
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C3-2026-09-12-data\\acquire.py": "7a9f6aafe0631137850b991ef8ed990275a050c40e303dbdf9a51d0455315c60",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C3-2026-09-12-data\\test_acquire.py": "d322831429e4c613f2d759fe75818c68b9fba1c24abaf08108a37584b646ab1c",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C1-2026-09-12-data\\acquire.py": "13184df5d2b9d6e4bae83446316974ba90f46e3412e51c10c40cfbe2f5e2cca5",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C1-2026-09-12-data\\test_acquire.py": "d751843243552cfdf3d65558c2ff96cf34c6885832378a02789f6dc23fbb541c",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C0d-2026-09-12-data\\metadata.py": "de1d481b185067722546edca1a51dadcd6a5a7fd7d328e60f0ad5d6980272af3",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\xmm_structure.py": "96d9497dbdd45d2561fc0bbb27a0c11d6fbad91cd42c0b14191378dd9fd7fa63",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\test_xmm_structure.py": "4b1bb863a29543ecb6957a417b3115155fa74b625c300d86524a4c8ac44af1aa",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\test_xmm_structure_review.py": "a062ddea63b2c8364395ed61ead99e2cc12031bcec3065aa24ca61dbee1d6b10",
+    "C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\scripts\\check_e_release.py": "11ad0bef9fd2efae234e204358c6b6730e723ed3dc24c6fe0c345f2ddcfb53dd"
+  },
+  "inventory_sha256": "6ddb4a357439922dbefaa51e365b53802e6d031d079348706274555f4e063c23",
+  "index_sha256": "97f9372b999b354ebcbff51a4b42af885433de598795a6a58656ef1e09bac258",
+  "runtime": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "executable": "C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Scripts\\python.exe",
+    "requests": "2.34.2",
+    "astropy": "8.0.1"
+  }
+}

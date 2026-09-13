@@ -14,6 +14,15 @@ UNSOURCED (exosat-rv LESSONS §5b, repo-wide law).
 
 ## Current portfolio snapshot
 
+**Latest XMM evidence:** [C3e](DISCOVERY/XMM-C3e-RESULT-2026-09-12.md)
+retains both pn/MOS1 exposure maps after exact-validator acquisition and
+header replay. [C4](DISCOVERY/XMM-C4-RESULT-2026-09-12.md) measures 51975
+finite one-second attitude samples spanning all three camera header ranges,
+with maximum sampled displacement 1.704147 arcsec. A joint-quality header
+counter mismatch persists; sampled stability does not establish continuous
+coverage. Next: map/filter compatibility and fixed-region geometry, then the
+published-control photon test. No photons, unknown scan or discovery yet.
+
 **September 12 continuing search:** [current new-route record](DISCOVERY/SEARCH-2026-09-12.md).
 TESS recovers 3/3 published periods and near-target pixel signals; catalog confusion,
 PRF calibration and negative flux prevent physical interpretation. VLASS's

@@ -1,0 +1,36 @@
+{
+  "slot": {
+    "slot": 1,
+    "method": "GET",
+    "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101PNS003EXPMAP8000.FTZ",
+    "filename": "P0884250101PNS003EXPMAP8000.FTZ",
+    "expected_bytes": 503855,
+    "head_headers": {
+      "Content-Length": [
+        "503855"
+      ],
+      "Date": [
+        "Sun, 13 Sep 2026 00:38:53 GMT"
+      ],
+      "ETag": [
+        "\"7b02f-627d58844ee00\""
+      ],
+      "Last-Modified": [
+        "Tue, 26 Nov 2024 19:05:28 GMT"
+      ]
+    }
+  },
+  "status": "OK",
+  "raw": {
+    "bytes": 503855,
+    "sha256": "b51b8c6859c92bc8baa7904d0313932a8e17afa6bba931ce500083ab24966ab9"
+  },
+  "expanded": {
+    "bytes": 1728000,
+    "sha256": "5a39eee5d2b438fb893e65ff6a9bc2a70896987b7b9f15ba990e24a87a4172dd"
+  },
+  "gzip_crc_eof_verified": true,
+  "headers_sha256": "ec3d29a2b4c0428cc1e7e382b4521fdca83019dbc4066b63685bac076f1f3a9a",
+  "headers_bytes": 49789,
+  "hdu_count": 1
+}

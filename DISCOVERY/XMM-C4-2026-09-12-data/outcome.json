@@ -1,0 +1,34 @@
+{
+  "status": "ATTITUDE_VALUES_SUMMARIZED_UNCALIBRATED",
+  "worker_returncode": 0,
+  "assessment_completed": true,
+  "ledger": [
+    {
+      "table": 1,
+      "status": "OK",
+      "accounting": {
+        "read_bytes": 4158000,
+        "decoded_bytes": 4158000
+      }
+    }
+  ],
+  "worker_peak_memory_bytes": 68259840,
+  "worker_error_code": null,
+  "resource_usage": {
+    "compressed_bytes": 0,
+    "expanded_bytes": 0,
+    "json_bytes": 10217
+  },
+  "photons_or_map_pixels_interpreted": false,
+  "absolute_angles_persisted": false,
+  "artifacts": {
+    "protocol.snapshot.md": "a4b27125eed686b706126fe502be0147feb18db502cbe3627ef630766a91b4bc",
+    "run-start.json": "9d1427cb4e8b99dc0aaeb511d38ecd2cd9288a7c1a389b816946c1781a85006c",
+    "table-result.json": "144db736240757432cd5496459e907dea23a09be3ae9c2c87ef0da5c95d70e90",
+    "table-start.json": "224b7ae81a0b67a9b4d71bfb54cf404fc43dfe5767b68e952bfdd36b232defb1",
+    "worker-result.json": "7b3e185ce3d314a5f5b426cd6710f188509a48f884d9f2637bf94b462355e88b",
+    "worker-start.json": "577665bffc40b053aeec5543149ea63ade993227838205ed7af4f82726947936"
+  },
+  "source_sha256": "d53d265ebf3ff82832137da2ee7e0fffcf7f1095f143790c655a8fd0f8915e39",
+  "parent_peak_memory_bytes": 69058560
+}

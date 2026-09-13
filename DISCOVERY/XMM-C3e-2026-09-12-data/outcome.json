@@ -1,0 +1,44 @@
+{
+  "status": "PN_MOS1_GEOMETRY_PRODUCTS_RETAINED_HEADERS_ONLY",
+  "worker_returncode": 0,
+  "assessment_completed": true,
+  "ledger": [
+    {
+      "slot": 1,
+      "status": "OK"
+    },
+    {
+      "slot": 2,
+      "status": "OK"
+    }
+  ],
+  "worker_error_code": null,
+  "worker_peak_memory_bytes": 65155072,
+  "resource_usage": {
+    "compressed_bytes": 779072,
+    "expanded_bytes": 3432960,
+    "json_bytes": 86694
+  },
+  "arrays_interpreted": false,
+  "prior_c3_status": "STOP_MOS2_HEAD_404_PRESERVED",
+  "artifacts": {
+    "protocol.snapshot.md": "ca3fa37ad01c1542423f7ba3b8ebd1b81cd6a9375eb081728062e2cad45dfc44",
+    "run-start.json": "4feb8ddb1f749e0d696a92439c2fe8646ace39b5bb19746463bb4ecc4cb61c79",
+    "slot-1-http.json": "caf7ba08106f60f3c22572ec6c67cbae5d3331b9c8bf760b0e90f678b58659b9",
+    "slot-1-result.json": "520c76ebd6d1b51fdf13b3c32287300d6465aa6f23de2856ea75d4822281f723",
+    "slot-1-start.json": "f98f096951390ecd39739c95973f21a0a5cb7c254ab64f133577dd9401193ce2",
+    "slot-2-http.json": "45a1541ea433d1eb0bd047c9e2eb4f0fd04960b2feaf340f8efdb31c2a5e7441",
+    "slot-2-result.json": "6d125b9995a61f806067eb5e21c6c81ac02022b51f01d9f963fa5d390f5f9fed",
+    "slot-2-start.json": "4c7bcce3f06395e9cf6ee432f74f4d5ddccb070222e0af4cc19102dfb5f199d9",
+    "worker-result.json": "9eb7be73ddf5641f02e1c17917ef72e803d3c58c67cda1ab16637015b44ac2b0",
+    "worker-start.json": "117195766031c28808955cd18ced0611ea9352ee4f6beeda7e96480038143bcb",
+    "headers/slot-1-headers.json": "ec3d29a2b4c0428cc1e7e382b4521fdca83019dbc4066b63685bac076f1f3a9a",
+    "headers/slot-2-headers.json": "e34274169b7ba4298d12b04b68ba7da197f9b9dada106de2ac7fb773cc93d1e3",
+    "products/P0884250101M1S001EXPMAP8000.fits": "652846bddc9724aacd4a08fda52fc2065820615104536b3545aeb8712b63cb38",
+    "products/P0884250101M1S001EXPMAP8000.FTZ": "fc451c1f6f4613c2e1af61f576d54723062880c7e306f6fefea29a548857bd39",
+    "products/P0884250101PNS003EXPMAP8000.fits": "5a39eee5d2b438fb893e65ff6a9bc2a70896987b7b9f15ba990e24a87a4172dd",
+    "products/P0884250101PNS003EXPMAP8000.FTZ": "b51b8c6859c92bc8baa7904d0313932a8e17afa6bba931ce500083ab24966ab9"
+  },
+  "source_sha256": "ad80cb38306388f69e51bce78fe4787279e7ba5402b4b6f7b10b44362b54aa4e",
+  "parent_peak_memory_bytes": 60874752
+}

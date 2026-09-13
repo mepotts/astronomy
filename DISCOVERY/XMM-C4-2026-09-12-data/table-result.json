@@ -1,0 +1,204 @@
+{
+  "table": 1,
+  "status": "OK",
+  "summary": {
+    "status": "SAMPLED_ATTITUDE_DIAGNOSTICS_NOT_COVERAGE",
+    "rows": 51975,
+    "column_counts": {
+      "TIME": {
+        "finite": 51975,
+        "nan": 0,
+        "infinite": 0
+      },
+      "AHFRA": {
+        "finite": 51975,
+        "nan": 0,
+        "infinite": 0
+      },
+      "AHFDEC": {
+        "finite": 51975,
+        "nan": 0,
+        "infinite": 0
+      },
+      "AHFPA": {
+        "finite": 51975,
+        "nan": 0,
+        "infinite": 0
+      },
+      "OMRA": {
+        "finite": 51975,
+        "nan": 0,
+        "infinite": 0
+      },
+      "OMDEC": {
+        "finite": 51975,
+        "nan": 0,
+        "infinite": 0
+      },
+      "OMPA": {
+        "finite": 51975,
+        "nan": 0,
+        "infinite": 0
+      },
+      "DAHFPNT": {
+        "finite": 51975,
+        "nan": 0,
+        "infinite": 0
+      },
+      "DOMPNT": {
+        "finite": 51975,
+        "nan": 0,
+        "infinite": 0
+      },
+      "DAHFOM": {
+        "finite": 51975,
+        "nan": 0,
+        "infinite": 0
+      }
+    },
+    "time": {
+      "range": {
+        "min": 738528542.1840001,
+        "max": 738580516.1840001
+      },
+      "finite_strictly_increasing": true,
+      "finite_adjacent_pairs": 51974,
+      "nonpositive_adjacent_steps": 0,
+      "nonunit_positive_steps": 0,
+      "adjacent_step_seconds": {
+        "min": 1.0,
+        "max": 1.0
+      },
+      "mission_convention": "TT seconds since MJD50814 assumed prospectively, no fitted offset",
+      "file_time_reference_keywords_absent": true
+    },
+    "header_counts": {
+      "NATT": 51975,
+      "NGAHF": 51975,
+      "NGOM": 51975,
+      "NGAHFOM": 0
+    },
+    "sources": {
+      "AHF": {
+        "all_finite_triplets": 51975,
+        "all_nan_triplets": 0,
+        "partial_finite_triplets": 0,
+        "finite_domain_failures": 0,
+        "finite_domain_valid_triplets": 51975,
+        "time_eligible_rows": 51975,
+        "first_reference_row": 0,
+        "separation_from_first_arcsec": {
+          "min": 0.0,
+          "max": 1.7041471682500233
+        },
+        "contiguous_one_second_motion_pairs": 51974,
+        "unmeasured_adjacent_pairs": 0,
+        "adjacent_separation_arcsec": {
+          "min": 0.0,
+          "max": 1.2058678464359744
+        },
+        "adjacent_roll_absolute_arcsec": {
+          "min": 0.0,
+          "max": 4.724120624416628
+        }
+      },
+      "OM": {
+        "all_finite_triplets": 51975,
+        "all_nan_triplets": 0,
+        "partial_finite_triplets": 0,
+        "finite_domain_failures": 0,
+        "finite_domain_valid_triplets": 51975,
+        "time_eligible_rows": 51975,
+        "first_reference_row": 0,
+        "separation_from_first_arcsec": {
+          "min": 0.0,
+          "max": 1.7041471682500233
+        },
+        "contiguous_one_second_motion_pairs": 51974,
+        "unmeasured_adjacent_pairs": 0,
+        "adjacent_separation_arcsec": {
+          "min": 0.0,
+          "max": 1.2058678464359744
+        },
+        "adjacent_roll_absolute_arcsec": {
+          "min": 0.0,
+          "max": 4.724120624416628
+        }
+      }
+    },
+    "continuous_motion_bound_established": false,
+    "clock_reference_verified": false,
+    "joint_finite_domain_valid_triplets": 51975,
+    "header_vs_measured_finite_counts": {
+      "NATT_matches_rows": true,
+      "NGAHF_matches_finite_AHF": true,
+      "NGOM_matches_finite_OM": true,
+      "NGAHFOM_matches_joint_finite": false
+    },
+    "offset_columns": {
+      "DAHFPNT": {
+        "finite_degrees": {
+          "min": 0.0,
+          "max": 0.00030733242401565874
+        },
+        "domain_valid_arcsec": {
+          "min": 0.0,
+          "max": 1.1063967264563714
+        },
+        "finite_outside_0_180_degrees": 0
+      },
+      "DOMPNT": {
+        "finite_degrees": {
+          "min": 0.0,
+          "max": 0.00030733242401565874
+        },
+        "domain_valid_arcsec": {
+          "min": 0.0,
+          "max": 1.1063967264563714
+        },
+        "finite_outside_0_180_degrees": 0
+      },
+      "DAHFOM": {
+        "finite_degrees": {
+          "min": 0.0,
+          "max": 0.0
+        },
+        "domain_valid_arcsec": {
+          "min": 0.0,
+          "max": 0.0
+        },
+        "finite_outside_0_180_degrees": 0
+      }
+    },
+    "camera_time_range_diagnostics": [
+      {
+        "camera": "EPN",
+        "start": 738530124.914825,
+        "stop": 738579196.505283,
+        "strictly_ordered_attitude_brackets_header_range": true,
+        "finite_samples_within_half_open_header_range": 49072,
+        "interpretation": "range diagnostic only, not a GTI or time-reference proof"
+      },
+      {
+        "camera": "EMOS1",
+        "start": 738528580.207049,
+        "stop": 738578603.890584,
+        "strictly_ordered_attitude_brackets_header_range": true,
+        "finite_samples_within_half_open_header_range": 50023,
+        "interpretation": "range diagnostic only, not a GTI or time-reference proof"
+      },
+      {
+        "camera": "EMOS2",
+        "start": 738528600.951524,
+        "stop": 738578795.595291,
+        "strictly_ordered_attitude_brackets_header_range": true,
+        "finite_samples_within_half_open_header_range": 50195,
+        "interpretation": "range diagnostic only, not a GTI or time-reference proof"
+      }
+    ]
+  },
+  "accounting": {
+    "read_bytes": 4158000,
+    "decoded_bytes": 4158000
+  }
+}
