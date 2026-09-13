@@ -25,9 +25,12 @@ sampled pn source support but entirely zero sampled MOS1 source circle/annulus.
 Neither accumulated maps nor sampled attitude certify per-bin exposure.
 [C6](DISCOVERY/XMM-C6-RESULT-2026-09-12.md) now retains the missing MOS2 map
 from ESA,410115 raw bytes, with header replay. Its header supports the same
-limited static-sign diagnostic, not per-bin live exposure. Next: MOS2 fixed-region
-support, source-confusion geometry and a separately specified photon screen.
-No second-camera support, burst recovery, unknown scan or discovery established.
+limited static-sign diagnostic, not per-bin live exposure.
+[C7](DISCOVERY/XMM-C7-RESULT-2026-09-12.md) finds fully positive sampled MOS2
+source-circle support at both fixed resolutions; source annulus is only65.1064%
+positive nominally. This adds affirmative second-camera static sampling, not
+matched exposure or burst recovery. Next: source-confusion geometry and a
+separately specified photon screen. No unknown scan or discovery established.
 
 **September 12 continuing search:** [current new-route record](DISCOVERY/SEARCH-2026-09-12.md).
 TESS recovers 3/3 published periods and near-target pixel signals; catalog confusion,

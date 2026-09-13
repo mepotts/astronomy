@@ -241,3 +241,22 @@ correctly identifies MOS W3 as Large Window; it does not prove the source's
 detector location or explain zero maps. If MOS2 also lacks support, a separately
 frozen raw recorded-event screen can provide evidence without first inventing
 calibrated rates or claiming the stronger recovery passed.
+
+PR21 merged2026-09-13T02:57:03Z as619324d457bbff32353d41e4614e37ab6999f1e3
+after all11CI jobs passed. C6 header-only replay and C5 binding/artifact/accounting
+checks pass after merge; no extra C5 numerical pass. C7 one-map composition has
+12synthetic tests, unchanged core and centre construction, and independent
+review underway before a new committed freeze. A synthetic-only event-row
+decoder is being built in parallel; no actual photons have been read.
+
+[C7 now executed](XMM-C7-RESULT-2026-09-12.md) after6c7d456: MOS2 sourcecircle
+positive at all4/8samples, sourceannulus65.1064%positive nominally. North/west
+MOS2circles/annuli positive sampled; eastpartial,southcirclezero. The worker,
+parent and one numerical replay pass,3knownpasses5038848bytes,totalJSON42284.
+This resolves the specific lack of affirmative second-camera static sampling,
+not calibrated simultaneous exposure or the stronger recovery gate. Stop map
+endpoint exploration for this question. Next is the [7852-byte source geometry
+screen](XMM-SOURCE-GEOMETRY-IMPLEMENTATION-PLAN.md), then a separately frozen
+descriptive photon test using the synthetic-only eventdecoder now under review.
+Raw count reporting need not wait indefinitely for full exposure calibration,
+but cannot be labelled calibrated rates, significance or discovery.
