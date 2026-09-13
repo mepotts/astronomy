@@ -630,3 +630,62 @@ not a demonstrated second observation ID. No raw HTML reread/parser repair.
 Outcome7a571f930679c4077c7a337292ffceadf19e99a71b819f79777e90a88da0cc05;
 13JSON97636bytes; workerpeak30904320,parent30674944. Receipt-only audit and
 exact-product header-access decision follow. Discovery goal remains active.
+
+M4 receipt-only audit PASS13artifactreferences/12dependencies/five localanchors;
+root read full audit. PR28 merged2026-09-13T06:10:10Z as
+7beaeaa4277a0e78c853bef3a393085e6cdb6737 after all12CIchecks passed on
+ce2026270fc13d2ad2e9a28ca9a572c713a71922 (run34741960800). Local main
+fast-forwarded; next branch `codex/xmm-rxj-event-headers-sep13`.
+Postmerge M4 public binding/artifact/schema closure PASS with private payloads,
+network and measure calls blocked; no new archive hash or semantic replay.
+Private M3 ignore remains effective. Root read/adopts [the next decision](XMM-RXJ-M4-NEXT-2026-09-13.md)
+after independently checking primary client API/source: exactly observed pnS001,
+M1S002,M2S003 event products, future header authentication rather than another
+HTML repair. Actual runtime/caps/privacy tests and independent review precede
+those three GETs. No new products/photons or discovery; useful work remains.
+
+M5 preflight: root alone checked the earlier C1 control's three retained private
+JSON header reports after verifying their published hashes, reading 2,082,314
+JSON bytes. Only primary/EVENTS OBS_ID, INSTRUME, EXPIDSTR and EXP_ID were parsed:
+0884250101 with EPN/S003, EMOS1/S001 and EMOS2/S002; EXP_ID was the observation
+plus three exposure digits, as a string. Both primary and EVENTS carried these
+keys in that control. This confirms representation, not guaranteed placement in
+RXJ products. No FITS file, other metadata value, coordinate or array was read;
+this is not a fourth C9 numerical pass. Agents' synthetic-only review claims
+remain distinct from this explicitly scoped root check. M5 requires at least one
+explicit matching identity across primary/EVENTS, rejects any conflict or
+within-HDU duplication, and preserves missing placement without inheritance.
+
+Root has read the complete M5 runtime, helper, tests and prospective protocol.
+Final local verification passes 16 synthetic runtime tests, 176 XMM helper
+tests, Ruff and the separate repository documentation/syntax verifier. The
+runtime does not use historical C1/C3d workers or replays; its parent/replay
+records partial header-verification progress. Products and full header reports
+are ignored, and safe identity/provenance derivatives are separately bounded.
+Prospective runtime SHA256 e8597327a7cbe4f6ca975d88d2e4b2584fef1afa21a4bf16c388daa046be2b12;
+tests d387056f90bac2eed0f9480ef16a381f9d35e8f468f9f04449e64d1964dd50a9;
+protocol 7273718a789146accd9ecd5c51b9b36cea698a25234b093fc419216cb16a425e.
+Independent final review precedes exact-byte commit freeze and one acquisition
+worker, parent verification and one explicit offline root replay. No actual
+M5 request has occurred at this preflight checkpoint.
+
+Independent final M5 GO received on those exact anchors: 16 runtime tests,
+13 core tests, earlier independent adverse/physical-file checks and 65 final
+ledger cases. Root adopts the reviewed fixed scope. After exact-byte commit
+verification, execute one three-slot fail-stop acquisition worker plus its
+parent and one explicit local root replay. No retries or scientific arrays;
+publication/submission and outbound alert changes remain separately gated.
+
+[M5 executed once](XMM-RXJ-M5-RESULT-2026-09-13.md) after freeze d76223b and
+17-file exact committed-binding verification. HTTP200/exact pn filename/image-fits;
+no supplied length/ETag/Last-Modified. Worker hit300s deadline(return124), retaining
+28,311,552B raw partial, no expanded/header/identity files. MOS slots unattempted.
+Parent assessmentfalse/STOP_INTERNAL, all header-pass flagsfalse. Root exactlyone
+artifact-only replayPASS STOP, not product verification. Partial hash
+8e5e6b07f836967030e05594d519527829c7ea4429c442a21317d0f8a81f233d;
+outcome9eb6912a34cabdfad6c5da42d751e7be25c249ed72ec2910f194bdbca59119bb.
+FiveJSON6169B,parentpeak47800320B; workerpeak/exactreceivedbytesunknown.
+No retry or scientific arrays. Preserve partial and obtain a finite separate
+transport-continuation decision; the conditional CALINDEX proposal waits for
+authenticated complete products. This is an incomplete transfer, not a
+non-discovery result or an exhausted research route.

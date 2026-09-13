@@ -215,6 +215,7 @@ jobs:
           ruff check DISCOVERY/XMM-RXJ-M2-2026-09-13-data/*.py
           ruff check DISCOVERY/XMM-RXJ-M3-2026-09-13-data/*.py
           ruff check DISCOVERY/XMM-RXJ-M4-2026-09-13-data/*.py
+          ruff check DISCOVERY/XMM-RXJ-M5-2026-09-13-data/*.py
 
   xmm-c9-windows:
     name: XMM C9/RXJ · Windows synthetic runtimes
@@ -240,3 +241,7 @@ jobs:
       # and TAR fixtures only. The private retained archive is not in Git or CI.
       - name: Check RXJ offline metadata runtime and failure contracts
         run: python -B -m unittest discover -s DISCOVERY/XMM-RXJ-M4-2026-09-13-data -p 'test_*.py' -v
+
+      # Three anonymous product slots are mocked; no real downloads or photon reads.
+      - name: Check RXJ header-only acquisition runtime and failure contracts
+        run: python -B -m unittest discover -s DISCOVERY/XMM-RXJ-M5-2026-09-13-data -p 'test_*.py' -v
