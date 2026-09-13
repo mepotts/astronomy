@@ -76,6 +76,10 @@ ESA attitude-product HEAD, with no body download or automatic fallback.
 [Synthetic frame-bound helpers](DISCOVERY/XMM-FRAME-BOUNDS-IMPLEMENTATION.md)
 now pass independent numerical checks; the physical support assumptions and
 application to real frames remain unvalidated. No photon counts yet.
+[C3c](DISCOVERY/XMM-C3c-RESULT-2026-09-12.md) now retains HTTP 200 with the
+exact attitude filename advertised, but no Content-Length: its size gate stopped
+and replay preserves that failure. A separately reviewed bounded GET can impose
+its own byte ceiling without inventing a missing length; no GET has run yet.
 [Later-work checking](DISCOVERY/XMM-LATER-WORK-2026-09-12.md) finds no verified
 coverage of the three exact newer observations, but does not prove them unsearched.
 

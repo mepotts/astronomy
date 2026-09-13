@@ -151,6 +151,14 @@ the conservative exposure construction and worst-case counting diagnostic.
 Their synthetic checks do not validate the physical frame-support assumptions
 or authorize a real-frame/photon run.
 
+[C3c has executed](XMM-C3c-RESULT-2026-09-12.md): ESA advertises HTTP 200,
+image/fits and the exact requested attitude filename, but supplies no length.
+Preserve its STOP_SIZE_METADATA and zero body reads. Adopt a separate C3d
+one-GET contract with a local 2-MiB transfer ceiling and 32-MiB expansion cap,
+identity/format/header validation and no retry. An absent Content-Length need
+not block an independently byte-limited transfer; it cannot become an invented
+size or a retroactive C3c pass. Review/freeze precedes that request.
+
 [ITF](ITF-NOTIFICATIONS-2026-09-12.md) still has its daily archive publisher and
 existing-queue watch, not a fresh automated discovery search. No dedicated
 SMS/email delivery was configured or tested. Existing daily/weekly follow-ups
