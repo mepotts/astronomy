@@ -3,6 +3,8 @@
 Executed after reviewed freeze `6c7d456`. Worker, parent numerical validation
 and one subsequent numerical replay passed. **Static-sign diagnostic only;
 no burst recovery or discovery.** C5 pn/MOS1 results remain unchanged.
+[Independent postrun review](XMM-C7-POSTRUN-REVIEW.md) accepted receipt integrity
+and all20 region-resolution aggregates without another map decoding pass.
 
 The MOS2 published-source circle is positive at every selected subpixel at
 both frozen resolutions. Together with C5's pn result, this supplies affirmative
