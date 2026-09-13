@@ -134,3 +134,41 @@ Later offline semantic inspection needs its own explicit scope. Summary rows
 and durations would still not prove actual event-file availability, GTI/live
 exposure, clean negatives, calibrated source support or recovery. M0/M1 STOPs,
 C9 descriptive results and all stronger scientific gates remain unchanged.
+
+## Postrun: package media rejected before body access
+
+Executed once after the parent-reported exact-byte freeze `e38e438`.
+**PASS for independent receipt-only audit of the preserved STOP.** The exact
+request returned HTTP200 at the matching URL, with `Content-Type:
+application/x-tar` and server Date 2026-09-13 05:15:05 GMT. Disposition was
+safely classified REJECTED; its raw text was discarded and cannot be diagnosed
+further from the classification alone.
+
+The first operative rejection is **`STOP_NOT_HTML`**, before body access;
+the disposition check was not the reported stopping gate. Worker code1 and
+parent assessment complete remain STOP with one invocation, `index=null` and
+`science_products_fetched=0`. Worker body is null. No `summary.html` or
+`transport.json` exists: no entity was retained and no EOF was asserted.
+This records zero retained body bytes, not a claim about network-stack buffering.
+
+Independently verified all **12 dependencies**, privacy/snapshot/runtime binding,
+five artifact-hash references, safe HTTP schema, exact request marker, worker
+failure and outcome fields. Five JSON files total **4,495 bytes**, within the
+per-file and aggregate limits. All stage file hashes remained unchanged.
+Session/collect/worker/replay tripwires and a product/private-body open guard
+were active. This reviewer made no request, replay or package/body read.
+The parent separately reports one successful offline replay of the STOP.
+
+| Evidence | SHA256 |
+| --- | --- |
+| Outcome | `f57b43c9a551a7812afed2be845e1dc88b579251ef36f6e1cceceba3cf20705a` |
+| Run binding | `f7a8821ce4a71bcfb0ec508bfa1f835016fecf1af3488ec19f5aee77f1aed02b` |
+| HTTP receipt | `ec3da2ce6dcd0de66e30e6b18cbb96e5d14aa5ad902083bf4104da5c7a5254fc` |
+| Worker receipt | `cbedbee2f12f7219d03887b8490633aed651f890ed48f1911aa4fdb88c82c3df` |
+
+HTTP200 and a TAR media label do not establish package contents, a matching
+summary member, file count, available photon data or observation identity in
+a body. No package was downloaded or extracted; no HTML metadata adjudication
+can follow from this response. Preserve the raw-HTML-only STOP without changing
+media policy or retrying. Any future package-aware experiment requires its own
+bounded contract and authorization and cannot retroactively promote M2.

@@ -44,7 +44,10 @@ before body reads. No new products; not proof of observation unavailability.
 [RXJ M1](DISCOVERY/XMM-RXJ-M1-RESULT-2026-09-13.md) retains363bytes ofESAJSON,
 but stops on a fixed-string schema mismatch. Manual inspection shows an archive
 name and wildcard, not individualPPSnames. No retry or bundle download.
-Next: documented tightly filtered summary-metadata access for that same control.
+[RXJ M2](DISCOVERY/XMM-RXJ-M2-RESULT-2026-09-13.md) then receives an advertised
+TAR response and stops before body access under its raw-HTML contract. No
+summary or archive retained. Next: separately bounded summary-only package
+handling for that same selector, followed by offline metadata adjudication.
 No unknown scan, calibrated recovery or discovery established.
 
 **September 12 continuing search:** [current new-route record](DISCOVERY/SEARCH-2026-09-12.md).

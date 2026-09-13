@@ -548,3 +548,13 @@ commit freeze. No retries, packages or semantic success are implied.
 The [source-specific recovery draft](XMM-RXJ-RECOVERY-DRAFT-2026-09-13.md)
 proposes a separately named soft-band experiment, not an executable photon
 contract: numerical scientific acceptance and calibration choices remain open.
+
+[M2 executed once](XMM-RXJ-M2-RESULT-2026-09-13.md) after e38e438: HTTP200
+application/x-tar, STOP_NOT_HTML before explicit body access, no HTML/EOF,
+worker1, parent assessment complete. Root one offline replay PASS STOP.
+Independent postrun receipt-only audit passes 12 dependencies, privacy bindings,
+five artifact references and five JSON receipts totaling 4,495 bytes. Outcome
+f57b43c9a551a7812afed2be845e1dc88b579251ef36f6e1cceceba3cf20705a.
+The disposition's retained REJECTED classification does not reveal its discarded
+raw value. Next is a separately bounded metadata-only TAR contract for the same
+selector, not another raw-HTML attempt or broad observation bundle.
