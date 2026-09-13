@@ -214,9 +214,10 @@ jobs:
           ruff check DISCOVERY/XMM-RXJ-M1-2026-09-13-data/*.py
           ruff check DISCOVERY/XMM-RXJ-M2-2026-09-13-data/*.py
           ruff check DISCOVERY/XMM-RXJ-M3-2026-09-13-data/*.py
+          ruff check DISCOVERY/XMM-RXJ-M4-2026-09-13-data/*.py
 
   xmm-c9-windows:
-    name: XMM C9 · Windows synthetic runtime
+    name: XMM C9/RXJ · Windows synthetic runtimes
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v7
@@ -234,3 +235,8 @@ jobs:
       # Fixtures are synthetic: no archive access or retained photon replay.
       - name: Check frozen C9 synthetic runtime and failure contracts
         run: python -B -m unittest discover -s DISCOVERY/XMM-C9-2026-09-12-data -p 'test_inspect*.py' -v
+
+      # RXJ M4 also uses the real Windows peak-memory sampler, on synthetic HTML
+      # and TAR fixtures only. The private retained archive is not in Git or CI.
+      - name: Check RXJ offline metadata runtime and failure contracts
+        run: python -B -m unittest discover -s DISCOVERY/XMM-RXJ-M4-2026-09-13-data -p 'test_*.py' -v

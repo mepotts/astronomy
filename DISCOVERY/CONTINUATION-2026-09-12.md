@@ -595,3 +595,38 @@ The7,168-byte suffix is heterogeneous and uninterpreted, not declared harmless.
 Adopt fixed-member offline adjudication of allfourpayloads, total1,033,100 bytes
 per complete selected pass, after reviewed code/privacy/resource freeze. No
 payloadsemantics or scientific photons yet; no furtherGET is needed here.
+
+PR27 merged2026-09-13T05:40:30Z asdc6a36898f4ffe397fa8b974782f5dc6874b0339
+after all12CIchecks passed on51d67a78a9b4221ed6539a7af0e4c2afe1f12310.
+Local main fast-forwarded; next branch `codex/xmm-rxj-metadata-offline-sep13`.
+Postmerge M0/M1/M2/M3 binding/HTTP/artifact hashes and C9 binding/artifact
+closure PASS under network/scientific-product guards. The M3 archive was
+opaquely rehashed, not parsed or semantically read; no new replay/request.
+Its private ignore rule remains effective. Next meaningful work is the adopted
+all-four-member offline adjudication, not another download or a discovery claim.
+
+Root adopts [M4 fixed-member metadata inspection](XMM-RXJ-M4-2026-09-13.md)
+after complete source/parser/tests/protocol and [independent review](XMM-RXJ-M4-REVIEW.md).
+The 10 runtime and 14 parser tests/Ruff pass; all163 XMM helper tests also pass.
+Reviewer adds16 parser and8 runtime adverse cases. Full-size synthetic runtime
+fits the30s/256MiB/1MiB JSON envelope. No actual HTML payload was read in preflight.
+Freeze runtime c9c987d5207d3f65da80b4c875df9815b6dcb0632c72b3296f8398a1c3de2529,
+tests c0493369dac0bdd86c0e386f153be61efbd56ab187d21a8670d33664f849fabd,
+protocol bbbde7fa9a235c00688754761e280cfda55b3522296390c80c3f6f752645c274.
+Authorize one offline worker plus parent verification and one explicit root
+replay after exact-byte commit freeze. Each complete pass selects1,033,100 bytes;
+opaque hashing/header/tail I/O is additional. No requests or scientific arrays.
+The [geometry-access note](XMM-RXJ-GEOMETRY-ACCESS-NOTE-2026-09-13.md) identifies
+the conditional next supported-calibration boundary; it does not request data.
+
+[M4 executed](XMM-RXJ-M4-RESULT-2026-09-13.md) after d9e9571: four accounted
+metadata documents, worker0/parentcomplete/root one replayPASS. Three passes
+select3,099,300 bytes total; no requests/scientific arrays. Allfour metadata
+results remain incomplete: no encoding declarations and page identities not
+established. OB retains93rows, no duplicate/unjoinable keys; three EPIC Imaging
+rows are pnS001/M1S002/M2S003, allPrimeFullWindow/Thin1, matching explicit EP
+event references. OB's invalid identity hash matches synthetic punctuation ':',
+not a demonstrated second observation ID. No raw HTML reread/parser repair.
+Outcome7a571f930679c4077c7a337292ffceadf19e99a71b819f79777e90a88da0cc05;
+13JSON97636bytes; workerpeak30904320,parent30674944. Receipt-only audit and
+exact-product header-access decision follow. Discovery goal remains active.
