@@ -426,3 +426,25 @@ Linux (run34737875548). The frozen tests call the real Windows-only sampler.
 No merge proceeded. Move that unchanged suite to an explicit Windows CI job,
 retain Linux core tests/lint, and require all12jobs green. No executed source,
 test, protocol, dependency or receipt is changed; no safety sampler bypass.
+
+PR24 merged2026-09-13T04:31:24Z as1afd75d9f1b4eb1ace47463cd7455bb06f96b09d
+after all12checks passed on1e7b451cf8fd0bb569720b47c0b915848ce9c879.
+On switching through localmain to new `codex/xmm-rxj-control-sep13`, Git's
+checkout converted root prospective C9protocol/counts-plan/next-control
+decision LF bytes to CRLF. Postmerge binding correctly STOPPED before photons.
+Verified all three differed only in line endings, then restored their exact
+committed bytes and pinned explicitLF attributes. No scientific text, runtime,
+tests or receipts changed. C9 postmerge binding/artifact/ledger now PASS under
+products-open prohibition, no fourth numerical pass.
+
+[RXJ M0](XMM-RXJ-M0-2026-09-13.md) now has
+[independent scoped GO](XMM-RXJ-M0-REVIEW.md),17synthetic tests/Ruff and root
+4dependency metadata-only binding PASS after restoration. Runtime
+fe664f73447eae02345358b03c6c7754628e7d9f240028c8720ed2786b462a38;
+tests963e082830d97ce2c743d2003799c2d846e0ead7139ea670a7f5ba8df0e9fdb6;
+protocolb864f9daee136bb27da7d0a94bcd095fdc86c6ea92636ac337f4aab3a1209e18.
+Root read full source/tests/protocol/review and adopts the oneanonymousGET,
+64KiB+1,30s bounded index request under ongoing execution authority, only
+after exact-byte commit freeze. No linked request or product acquisition.
+The [ancillary-first calibration decision](XMM-CALIBRATION-NEXT-DECISION-2026-09-13.md)
+is adopted for later separately bounded work; no gate waiver or photon search.
