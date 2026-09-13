@@ -205,3 +205,24 @@ jobs:
           ruff check DISCOVERY/XMM-C6-2026-09-12-data/*.py
           ruff check DISCOVERY/XMM-C7-2026-09-12-data/*.py
           ruff check DISCOVERY/XMM-C8-2026-09-12-data/*.py
+          ruff check DISCOVERY/XMM-C9-2026-09-12-data/*.py
+
+  xmm-c9-windows:
+    name: XMM C9 · Windows synthetic runtime
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Install synthetic-test dependencies
+        run: python -m pip install "numpy>=2,<3" "astropy>=8,<9" "requests>=2.32,<3"
+
+      # The frozen C9 suite intentionally calls the Windows-only monitored peak
+      # sampler. Run it on its supported OS; do not mock away that safety check
+      # or edit the source/tests bound to the already executed experiment.
+      # Fixtures are synthetic: no archive access or retained photon replay.
+      - name: Check frozen C9 synthetic runtime and failure contracts
+        run: python -B -m unittest discover -s DISCOVERY/XMM-C9-2026-09-12-data -p 'test_inspect*.py' -v

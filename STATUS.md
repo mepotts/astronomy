@@ -34,8 +34,12 @@ now finds a unique positional control association,2.84417arcsec original offset,
 with no other source centres inside any20arcsec aperture. Fixed30arcsec disks
 contact north/east/west apertures and all five annuli; two usable negatives
 remain unestablished. Three selected-column passes total23556decodedbytes.
-Next: separately specified descriptive photon screen, with these warnings
-retained. No unknown scan, calibrated recovery or discovery established.
+[C9](DISCOVERY/XMM-C9-RESULT-2026-09-12.md) now completes the first real photon
+screen: fixed source-circle counts777pn/0MOS1/146MOS2, all three cameras and
+all254bins/five regions retained. Worker+parent+one replay pass; exactly three
+numerical passes279212472 decoded bytes. These are uncalibrated recorded
+counts, not recovery. Next: separately frozen RXJ1301/0851180501 metadata
+preflight. No unknown scan, calibrated recovery or discovery established.
 
 **September 12 continuing search:** [current new-route record](DISCOVERY/SEARCH-2026-09-12.md).
 TESS recovers 3/3 published periods and near-target pixel signals; catalog confusion,
@@ -62,7 +66,7 @@ The [current continuation](DISCOVERY/CONTINUATION-2026-09-12.md) adopts a tiny
 XMM known-control product-metadata check next, after verifying three public
 post-EXOD-paper observation IDs. Photon-search/runtime feasibility and later
 prior art remain unproved. Known-control XMM products have now been acquired;
-no unknown-source products or photon-count measurements have been made.
+known-control photon counts are retained by C9; no unknown-source products.
 [XMM C0c2](DISCOVERY/XMM-C0c2-RESULT-2026-09-12.md) now retains a complete
 319,808-byte known-control directory index with 2,193 entries, including the
 three imaging event files and EPIC source list. The preceding 256-KiB partial

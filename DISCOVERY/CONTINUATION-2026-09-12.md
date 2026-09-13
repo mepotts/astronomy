@@ -323,3 +323,106 @@ three known passes23556selectedbytes; outcome82cd6df3d673c86059494e9d38a3bfd1312
 No extra array pass for postrun review or integration. The stronger recovery
 has not established two usable negatives; do not silently waive that gate.
 Proceed to separately frozen descriptive photon counts, not calibrated recovery.
+
+PR23 merged2026-09-13T03:37:45Z as26df8a40e7ba824a845a6bda605b9d8270510162
+after all11CI jobs passed on256815b8c559d9485975f19791be438a1afec208,
+run34735850315. Postmerge C8 binding/artifact/ledger checks pass under a
+products-open guard: no fourth numerical pass. Current branch
+`codex/xmm-recorded-counts-sep12`. [Recorded-counts plan](XMM-RECORDED-COUNTS-PLAN-2026-09-12.md)
+fixes254 half-open200second bins anchored at pnTSTART, all three cameras and
+five circle/unmasked-annulus pairs, no rates/significance/recovery claim.
+Pure EVENTS geometry, pure count core and bounded C9 wrapper are under
+implementation/review, with synthetic data only. Root's actual header-only
+geometry smoke caught overbroad TS/DP keyword rejection (TSTART/TSTOP/DPSCORRF);
+that prefreeze implementation needs repair and regression before use. No real
+photons have yet been read; no runtime freeze or C9 execution is authorized
+by the implementation plan alone.
+
+The geometry prefix finding is repaired before freeze: indexed TS/DP families
+remain rejected, harmless TSTART/TSTOP/DPSCORRF accepted.13synthetic tests,
+Ruff and all3pinned header-only smoke checks pass; root and independent reviewer
+confirmed no product/value access. [Review](XMM-EVENT-GEOMETRY-REVIEW.md) records
+the failed initial compatibility assumption and the final source
+8adcb227f61c2f86855652ada4d66b5f677e84caa0cb16b5dd182be3081de9da,
+tests e1e1d41daffec25ada03fd155f958082c62f09c62cef4cdd83ee2cd8fa14f538.
+[C9 prospective contract](XMM-C9-2026-09-12.md) is written, not a runtime freeze:
+120sworker/120scooperativeparent,512MiBmonitored,4MiBJSON/256KiBreserve,
+334chunks per fullpass. Pure counter tests and independent review are underway;
+bounded runtime needs syntheticfull-size fit/failure tests and review before
+actual photon access. No stronger scientific gate has changed.
+
+Pure recorded counter now passes13synthetic tests and
+[independent review](XMM-RECORDED-COUNTS-REVIEW.md):2913synthetic rows through
+the real decoder, all255edges and neighboring floats, scalar-loop cut/bin/CCD
+oracle and1/37row chunk invariance. Root reread full source/tests/review and
+reran13tests/Ruff. Root also checked all3actual HEADER-ONLY schema row/stride/
+selected-null profiles against counter constants; PASS, no photons.
+Counter source5094b15b735619c5de25f7c6fe7a4f5207f82c8c7bc64cac6565678f8975090c;
+tests5e5b1bc15646ab12c856582142cad6331019ff9e23455a961761b3e4d374df9c.
+Geometry/plan checkpoint3a731bd is not a C9 runtime freeze. C9 author is building
+the three-camera334chunk wrapper and synthetic tests; reviewer is assigned
+its independent review next. Keep every executed C1–C8 artifact immutable.
+
+Bounded [next-control comparison](XMM-NEXT-CONTROL-DECISION-2026-09-12.md)
+now prioritizes RXJ1301.9+2747/0851180501 metadata preflight after C9 terminal
+result, over the shorter/off-axis0886121001 stress test. Root read the complete
+decision and primary papers: published pnfull-frame/thin, threecamera eruptions
+and~1200s morphology fit200s diagnostic better. This is a conditional next
+metadata choice, not verified current availability, calibrated recovery or
+permission to weaken negatives. No archive/product request for the newcontrol.
+
+C9 initial wrapper is on disk but **unfrozen/not execution-ready**; no run,
+worker or camera markers and no real photons. Root/reviewer independently
+passed its3camera metadata-only manifest under products-open prohibition.
+Prefreeze findings require exact per-chunk progress/digest comparison in parent,
+complete component semantics, completed-prefix/current byte reconciliation,
+C1/C8test dependency pins and stage-file allowlist. Author is applying these
+and preparing wrapper tests. Final cameraOK/lastchunkSTOP must fail before
+numerical work. Reviewer owns `XMM-C9-REVIEW.md` when candidate is ready.
+
+Root [pure-kernel resource check](XMM-C9-RESOURCE-PREFLIGHT.md) completes all
+334chunks/3323958synthetic rows through decoder+geometry+counter in1.218s,
+peak74665984bytes,0actualproductbytes. It explicitly does not cover disk,
+producthash/header,receipt serialization/closure or parent replay; fullwrapper
+synthetic budget/failure tests remain required.138root coretests pass. Current
+committed code checkpoints3a731bd/4cffe9c; next-control research19a0710. Do not
+freeze or run C9 until finalsource/tests/protocol read, independent review,
+fullwrapper benchmark and exactindexbyte checks are complete. CI still needs
+its C9wrappertest/lint entry. No extra C8 numerical pass is authorized by audit.
+
+Final C9 candidate now has [independent scoped GO](XMM-C9-REVIEW.md), 19 wrapper
+tests, all332 XMM tests, scoped Ruff and repository verification PASS. CI includes
+C9. Root's [final-source physical synthetic fit](XMM-C9-RESOURCE-PREFLIGHT.md)
+passes actual subprocess/parent/replay in8.859s/2.891s,709463JSONbytes and under
+75MB monitored peaks; zero actual science-product opens. Actual metadata-only
+binding separately passes all16dependencies under a products-open prohibition.
+Runtime bb8d6d8c8a737e2d8be11d6f489091a1d0f7453fd320ad80a761709d56c81d03;
+tests9a2cc126dc6e7a48a256f77e99eac5f761651a4680f08269f8874911f3592bff.
+Root adopts the reviewed bounded execution under the user's ongoing authority,
+after an exact-byte commit freeze. Execute C9 once, then one numerical replay;
+retain all fixed histograms and failure accounting, with no implicit fourth
+pass. Strongest label remains RECORDED_COUNTS_UNCALIBRATED_NOT_RECOVERY.
+
+[C9 executed](XMM-C9-RESULT-2026-09-12.md) after runtimefreeze e4c069d onSep13.
+Worker0,parentcomplete and one root numerical replay PASS; exactly three known
+passes427958520rowbytes/279212472decodedbytes. All334chunks/3cameras complete,
+no partial state. Published circle777pn/0MOS1/146MOS2; every fixed histogram
+retained, no top-bin/episode/rate/significance search. Final678JSON709146bytes;
+worker78946304,parent79577088 peakbytes. Outcome
+f27b9848b470cf8adf693f3a106e8b88d85c802f6e1effff67667773eb20d109.
+No fourth numerical pass for audit/integration. Stronger recovery remains
+unestablished; first-control descriptive diagnostic complete. Next bounded
+task is separately frozen RXJ1301/0851180501 metadata-only preflight, no new
+field photons. Independent reviewer is auditing C9 receipts/aggregate closure.
+
+Independent [C9 postrun audit](XMM-C9-POSTRUN-REVIEW.md) now PASS:16deps,
+1355overlappingartifactreferences,334pairs, allhistogram/CCD/rejection closure,
+resource/privacy checks. Root read the full report. No product opens or fourth
+pass. C9 result and dashboard updated; tested integration is next.
+
+C9 PR24 head991625230fed06ff341944f302b1b373476f7095 initially passes10of11
+CI jobs but discovery-pilots fails all19C9tests at STOP_MEMORY_RUNTIME on
+Linux (run34737875548). The frozen tests call the real Windows-only sampler.
+No merge proceeded. Move that unchanged suite to an explicit Windows CI job,
+retain Linux core tests/lint, and require all12jobs green. No executed source,
+test, protocol, dependency or receipt is changed; no safety sampler bypass.
