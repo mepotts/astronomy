@@ -65,6 +65,12 @@ URL matches the earlier index, but the server discrepancy's cause is unknown.
 The separate [C3b contract](DISCOVERY/XMM-C3b-2026-09-12.md) adopts pn/MOS1 plus
 the unattempted attitude product, consistent with the original pn-plus-one-MOS
 minimum, while retaining MOS2 missingness and the original test denominator.
+[C3b](DISCOVERY/XMM-C3b-RESULT-2026-09-12.md) then stopped on the exact attitude
+HEAD returning 404; no GETs occurred. Both failures replay unchanged. The next
+transport step is a separately frozen metadata check of the documented
+[ESA XSA alternate](DISCOVERY/XMM-ALTERNATE-PPS-SOURCE-2026-09-12.md).
+Its current availability and packaging remain untested; stable pointing/coverage
+is still required before a trustworthy counts control.
 [Later-work checking](DISCOVERY/XMM-LATER-WORK-2026-09-12.md) finds no verified
 coverage of the three exact newer observations, but does not prove them unsearched.
 
