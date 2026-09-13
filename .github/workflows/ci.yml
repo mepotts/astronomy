@@ -168,6 +168,7 @@ jobs:
           python -m unittest discover -s vlass-pilot/tests -v
           python -m unittest discover -s DISCOVERY -p 'test_xmm*.py' -v
           python -m unittest discover -s DISCOVERY/XMM-C1-2026-09-12-data -p 'test_acquire*.py' -v
+          python -m unittest discover -s DISCOVERY/XMM-C2-2026-09-12-data -p 'test_inspect*.py' -v
           python -m unittest discover -s gaia-dr4/tests -p test_declared_variant.py -v
           python dasch-pilot/scripts/stable_controls.py --replay
           python dasch-pilot/scripts/stable_controls.py --replay --normalize-missing-notes
@@ -183,3 +184,4 @@ jobs:
           ruff check tns-miner/scripts/rubin_control_*.py tns-miner/tests/test_rubin_controls.py
           ruff check tess-short-eclipses vlass-pilot
           ruff check DISCOVERY/xmm_*.py DISCOVERY/test_xmm*.py DISCOVERY/XMM-C1-2026-09-12-data/*.py
+          ruff check DISCOVERY/XMM-C2-2026-09-12-data/*.py
