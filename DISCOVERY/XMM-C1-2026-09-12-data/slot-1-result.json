@@ -1,0 +1,35 @@
+{
+  "slot": {
+    "slot": 1,
+    "method": "GET",
+    "url": "https://heasarc.gsfc.nasa.gov/FTP/xmm/data/rev0/0884250101/PPS/P0884250101PNS003PIEVLI0000.FTZ",
+    "filename": "P0884250101PNS003PIEVLI0000.FTZ",
+    "expected_bytes": 109245605,
+    "head_headers": {
+      "Content-Length": [
+        "109245605"
+      ],
+      "Date": [
+        "Sat, 12 Sep 2026 23:29:34 GMT"
+      ],
+      "ETag": [
+        "\"682f4a5-627d587f8a2c0\""
+      ],
+      "Last-Modified": [
+        "Tue, 26 Nov 2024 19:05:23 GMT"
+      ]
+    }
+  },
+  "status": "OK",
+  "raw": {
+    "bytes": 109245605,
+    "sha256": "6bc2abc7802650346ba381276c317c763fdc4a3d42a5d0ff5d0825abd42016d1"
+  },
+  "gzip_crc_eof_verified": true,
+  "expanded": {
+    "bytes": 219988800,
+    "sha256": "7fc15ff164943acadcea741457ccd2fba529883677e3d7693d35d01136097570"
+  },
+  "headers_sha256": "a6d78ea07324eeef06ed544555525ebb4e071f069eb428ed050913d6cbcbf0ba",
+  "headers_bytes": 1679959
+}

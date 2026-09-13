@@ -80,6 +80,30 @@ not acquisition-budget evidence. Next is a bounded exact-size/summary metadata
 batch for these same control inputs. The counts-recovery design is still a
 draft with mode, time, exposure and screening blockers, not a launched experiment.
 
+[C0d](XMM-C0d-RESULT-2026-09-12.md) has since completed four successful
+size-only HEADs (126982449 compressed bytes total) and one fully retained
+summary GET that failed its frozen closing-tag rule. That STOP is unchanged.
+Separate offline interpretation establishes the selected exposure modes and
+nominal time overlap, not live exposure. The coordinate-bearing raw summary
+is retained locally and ignored; public notes omit those values.
+
+Adopt the separately reviewed [C1 contract](XMM-C1-2026-09-12.md) for exactly
+four known-control product downloads and headers-only structural inspection.
+Freeze implementation/tests/review before execution. No photon selection or
+unknown search follows from transport success alone. The bounded
+[later-work check](XMM-LATER-WORK-2026-09-12.md) leaves precise later-search
+coverage unknown; it does not warrant abandoning the control experiment or
+claiming novelty.
+
+[C1 has now executed](XMM-C1-RESULT-2026-09-12.md): all four fixed known-control
+files retained, gzip/header checks and parent replay passed, 247141440 expanded
+bytes and 68190208-byte worker peak. No scientific arrays were interpreted.
+The actual headers confirm selected camera/exposure modes and shared local
+satellite TT references. Per-CCD exposure, GTI and bad-pixel metadata are present,
+but their values and aperture coverage remain unvalidated. Next is a bounded
+ancillary-metadata inspection followed by the separately frozen counts test;
+neither acquisition success nor this continuation authorizes an unknown scan.
+
 [ITF](ITF-NOTIFICATIONS-2026-09-12.md) still has its daily archive publisher and
 existing-queue watch, not a fresh automated discovery search. No dedicated
 SMS/email delivery was configured or tested. Existing daily/weekly follow-ups

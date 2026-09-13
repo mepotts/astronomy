@@ -38,12 +38,22 @@ No unknown-source scan, discovery or scientific submission.
 The [current continuation](DISCOVERY/CONTINUATION-2026-09-12.md) adopts a tiny
 XMM known-control product-metadata check next, after verifying three public
 post-EXOD-paper observation IDs. Photon-search/runtime feasibility and later
-prior art remain unproved; no XMM science products have been acquired.
+prior art remain unproved. Known-control XMM products have now been acquired;
+no unknown-source products or photon-count measurements have been made.
 [XMM C0c2](DISCOVERY/XMM-C0c2-RESULT-2026-09-12.md) now retains a complete
 319,808-byte known-control directory index with 2,193 entries, including the
 three imaging event files and EPIC source list. The preceding 256-KiB partial
 request remains a STOP. Exact product lengths, modes and control recovery are
-still unverified; bounded size/header metadata is next, not an unknown scan.
+now partly resolved by [C0d](DISCOVERY/XMM-C0d-RESULT-2026-09-12.md): four
+successful HEADs establish 126982449 compressed bytes. Its summary acceptance
+stopped on a missing HTML closing tag; separate offline interpretation supports
+pn full-window and MOS partial-window modes without rewriting that STOP.
+[C1](DISCOVERY/XMM-C1-RESULT-2026-09-12.md) now retains all four known-control
+products: 247141440 expanded bytes, 110 structurally inspected HDUs, with
+successful parent replay and no scientific arrays interpreted. Actual per-CCD
+exposure/GTI/geometry validation is next, then published-burst recovery.
+[Later-work checking](DISCOVERY/XMM-LATER-WORK-2026-09-12.md) finds no verified
+coverage of the three exact newer observations, but does not prove them unsearched.
 
 **September 12 follow-through:** [execution and decisions](DISCOVERY/EXECUTION-2026-09-12.md).
 ITF recovered using its existing publisher; watch/local recheck agree on 18 ready /

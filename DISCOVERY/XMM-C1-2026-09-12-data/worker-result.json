@@ -1,0 +1,98 @@
+{
+  "status": "CONTROL_BUNDLE_RETAINED_HEADERS_ONLY",
+  "ledger": [
+    {
+      "slot": 1,
+      "status": "OK",
+      "raw": {
+        "bytes": 109245605,
+        "sha256": "6bc2abc7802650346ba381276c317c763fdc4a3d42a5d0ff5d0825abd42016d1"
+      },
+      "gzip_crc_eof_verified": true,
+      "expanded": {
+        "bytes": 219988800,
+        "sha256": "7fc15ff164943acadcea741457ccd2fba529883677e3d7693d35d01136097570"
+      },
+      "headers_sha256": "a6d78ea07324eeef06ed544555525ebb4e071f069eb428ed050913d6cbcbf0ba",
+      "headers_bytes": 1679959
+    },
+    {
+      "slot": 2,
+      "status": "OK",
+      "raw": {
+        "bytes": 7643540,
+        "sha256": "3c817dfb4dab64b647a725a515db10c8fc31f27d034267b501f493a5f73644af"
+      },
+      "gzip_crc_eof_verified": true,
+      "expanded": {
+        "bytes": 11707200,
+        "sha256": "7703a0c2475225b02bc44134eab033cf39ba11cc28a4a1843d0105b47afc294a"
+      },
+      "headers_sha256": "a99589df5bbce769557e09f150365a109a705bf20cf1e464819559d7af1d15ae",
+      "headers_bytes": 175147
+    },
+    {
+      "slot": 3,
+      "status": "OK",
+      "raw": {
+        "bytes": 9972723,
+        "sha256": "8db6f4115bc6623095e73a57ad539f71000df9b8088cb42cfc348cb065cbd39d"
+      },
+      "gzip_crc_eof_verified": true,
+      "expanded": {
+        "bytes": 15194880,
+        "sha256": "203a7b798558ab6c895a0fa0cdecef9c3936d81578549fb235a43c65beb26150"
+      },
+      "headers_sha256": "4ab18a78e8677e9db62c9ad07bbefe143bfcecb72aebb640fa6f4da721e20417",
+      "headers_bytes": 227208
+    },
+    {
+      "slot": 4,
+      "status": "OK",
+      "raw": {
+        "bytes": 120581,
+        "sha256": "3b7610f18a24e29d4d285e755f98500c1505146242f8f9d81d7414d99af1c7ab"
+      },
+      "gzip_crc_eof_verified": true,
+      "expanded": {
+        "bytes": 250560,
+        "sha256": "7ee2302307c5336d2e4699c4997e711eda197483f6bec9a62598c0490bcf7677"
+      },
+      "headers_sha256": "d19ede1f11156b75954e4fa5de3d29c7ce0222bcfa816dc64ed88d7be6c78c3e",
+      "headers_bytes": 88191
+    }
+  ],
+  "artifacts": {
+    "slot-1-http.json": "dde1adc461d931844a9cd5ab07043b66b5219f060716eb2715cd0cddf0cc102a",
+    "slot-1-result.json": "5bf8b3550442b0bf78bb73f3350c8ab207b04e96aace7e362fa4dfd9e9e7a8e6",
+    "slot-1-start.json": "3b3ac28abbff681c799eb0a1c746fdadbd682676ed53d44db37759d703dc1c20",
+    "slot-2-http.json": "cf90472fd0731237be4752d81e1862257d3844b0197f84957265a7d0460dba39",
+    "slot-2-result.json": "5ab5e72735021d7e181d44d22d6cda0bc45cb57c0238110f7009ef56092e5fae",
+    "slot-2-start.json": "0f20f965909ef2558650b92a7343b59ec13b48c1317a69943683a5bfe0f31f0a",
+    "slot-3-http.json": "4141170a85ed0cee27a98624a3649ab2bfe327a96c6f879d59b187415a2b2bb1",
+    "slot-3-result.json": "8694aa12d67af42519678c6c4aa362640f902e322da59487f525f085685b400d",
+    "slot-3-start.json": "0cecfc2878d884d5758d6bf591f8d0001c338e46ae9f9aa9f66ef6a45e124565",
+    "slot-4-http.json": "026a8ffc09a1e467773d7dccd8124307e1536e3aef5a565c6af1d4d0e4314c8b",
+    "slot-4-result.json": "10fd4dd339100c29fa08af477dbdc1622295b3f6aa24dfb9e4750a33c3adb677",
+    "slot-4-start.json": "51050dd17cd3721333cc03750e01f4a3eea3bb161b390996cfa0a2df6c8274eb",
+    "worker-start.json": "68ad5e7d8d11462de58e09f9c6a7dae0551cc158d3b8304b2e3b50965a2ce54c",
+    "headers/slot-1-headers.json": "a6d78ea07324eeef06ed544555525ebb4e071f069eb428ed050913d6cbcbf0ba",
+    "headers/slot-2-headers.json": "a99589df5bbce769557e09f150365a109a705bf20cf1e464819559d7af1d15ae",
+    "headers/slot-3-headers.json": "4ab18a78e8677e9db62c9ad07bbefe143bfcecb72aebb640fa6f4da721e20417",
+    "headers/slot-4-headers.json": "d19ede1f11156b75954e4fa5de3d29c7ce0222bcfa816dc64ed88d7be6c78c3e",
+    "products/P0884250101EPX000OBSMLI0000.fits": "7ee2302307c5336d2e4699c4997e711eda197483f6bec9a62598c0490bcf7677",
+    "products/P0884250101EPX000OBSMLI0000.FTZ": "3b7610f18a24e29d4d285e755f98500c1505146242f8f9d81d7414d99af1c7ab",
+    "products/P0884250101M1S001MIEVLI0000.fits": "7703a0c2475225b02bc44134eab033cf39ba11cc28a4a1843d0105b47afc294a",
+    "products/P0884250101M1S001MIEVLI0000.FTZ": "3c817dfb4dab64b647a725a515db10c8fc31f27d034267b501f493a5f73644af",
+    "products/P0884250101M2S002MIEVLI0000.fits": "203a7b798558ab6c895a0fa0cdecef9c3936d81578549fb235a43c65beb26150",
+    "products/P0884250101M2S002MIEVLI0000.FTZ": "8db6f4115bc6623095e73a57ad539f71000df9b8088cb42cfc348cb065cbd39d",
+    "products/P0884250101PNS003PIEVLI0000.fits": "7fc15ff164943acadcea741457ccd2fba529883677e3d7693d35d01136097570",
+    "products/P0884250101PNS003PIEVLI0000.FTZ": "6bc2abc7802650346ba381276c317c763fdc4a3d42a5d0ff5d0825abd42016d1"
+  },
+  "resource_usage": {
+    "compressed_bytes": 126982449,
+    "expanded_bytes": 247141440,
+    "json_bytes": 2181659
+  },
+  "peak_memory_bytes": 68190208
+}
