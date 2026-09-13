@@ -524,3 +524,74 @@ media stop before body access. Offline labelled observation identity and all
 exposure-table rows must be adjudicated before a later narrow PPS decision.
 The [FRB contingency](NEXT-DISCOVERY-CONTINGENCY-2026-09-13.md) remains research
 only; it does not displace XMM or authorize bulk radio data acquisition.
+
+PR26 merged 2026-09-13T05:04:07Z as
+8bc30ffb967f5db494d5e1e4bb2068896e0f2542 after all 12 CI checks passed on
+8132b26a648c18f753e6e4e11b196aa5942bc4f7. Local main fast-forwarded; next branch
+is `codex/xmm-rxj-summary-sep13`. Postmerge M0/M1 binding, HTTP and artifact
+closure pass; C9 binding/artifact closure also passes under product/network
+guards. Root's first ad-hoc C9 comparison mistakenly included outcome.json
+itself; inspected the executed source's explicit self-exclusion and used that
+same rule. No stage or receipt changed, no request or numerical replay ran.
+
+This goal continuation is progress from the merged M1 result, not a blocked
+wait. Root adopts [M2 raw summary acquisition](XMM-RXJ-M2-2026-09-13.md) after
+full source/tests/protocol/helper and [independent review](XMM-RXJ-M2-REVIEW.md).
+11 synthetic tests/Ruff, 12 exact committed dependency bindings and extra
+cap/EOF/package fixtures pass. Git confirms private summary.html is ignored;
+explicit LF attributes cover all newly bound configuration/protocol files.
+Source a4620e9d991761276be1b32a6dc693d4a1846999d368bdddb928ab4ff5df24e6,
+tests 12c782baacff8e29b160feb4c197ccf2df335a6403d35623c0c80a322d91d186,
+protocol d26c216910fc9c72f9134e439b012f77d6e2acfc09f3df74eec61f560a5e0871.
+One anonymous 30-second, 262144+1-byte request may execute after exact-byte
+commit freeze. No retries, packages or semantic success are implied.
+The [source-specific recovery draft](XMM-RXJ-RECOVERY-DRAFT-2026-09-13.md)
+proposes a separately named soft-band experiment, not an executable photon
+contract: numerical scientific acceptance and calibration choices remain open.
+
+[M2 executed once](XMM-RXJ-M2-RESULT-2026-09-13.md) after e38e438: HTTP200
+application/x-tar, STOP_NOT_HTML before explicit body access, no HTML/EOF,
+worker1, parent assessment complete. Root one offline replay PASS STOP.
+Independent postrun receipt-only audit passes 12 dependencies, privacy bindings,
+five artifact references and five JSON receipts totaling 4,495 bytes. Outcome
+f57b43c9a551a7812afed2be845e1dc88b579251ef36f6e1cceceba3cf20705a.
+The disposition's retained REJECTED classification does not reveal its discarded
+raw value. Next is a separately bounded metadata-only TAR contract for the same
+selector, not another raw-HTML attempt or broad observation bundle.
+
+Root adopts [M3 summary-only TAR acquisition](XMM-RXJ-M3-2026-09-13.md) after
+full source/tests/helper/protocol and [independent review](XMM-RXJ-M3-REVIEW.md).
+10 wrapper plus 11 pure-helper tests/Ruff pass, with 17 independent hand-built
+archive cases and runtime mutation/boundary checks. Root also tested full1MiB
+success/replay, checked all20 bindings (18 existing committed files plus the
+two new helpers), and confirmed both private paths are ignored by Git. The
+final wrapper permits zero-byte partial HTML under STOP without repairing it.
+Source01564aff6d0873eb7a8bda42ddd408f085e85489e7410b739a1dfd9d40978472;
+tests d6ee89793f0b09ad1c53a240423c5c421048d1130f07922e16fab9ca344a8e8b;
+protocol230a900079e8220a7a29a5ceeb16a714cdfae684e525f83b783f7a26925a245a.
+Execute one request only after exact-byte commit freeze, then one root offline
+replay. Any retained package/HTML remains private and unadjudicated; no science
+product or unknown-source search is authorized by this metadata stage.
+
+[M3 executed once](XMM-RXJ-M3-RESULT-2026-09-13.md) after56819bc. HTTP200,
+application/x-tar, completeEOF1,044,480 bytes retained privately; worker1,
+STOP_TAR_HTML_SIZE, parentcomplete, noHTMLcopy. Root one offline replay PASS
+STOP; no retry. ArchiveSHAfa3c45838875c61f68e07508d862fc56d32e83f0b39ed3f6b1bef2207b9ccbe2;
+outcome1a897ff9dbf74f0b88c7428b2dbd63dc16944036191256374204056d3b3f5678;
+sixJSON6295bytes. Separate root header-only diagnosis after verifiedarchivehash
+finds4matchingregular headers sized872917/48229/25265/86689 beforefirstzero
+at1036288, with8192remainingbytesnotallzero. No payloadsemantics inspected;
+capincreasealonewouldnotresolve multiplefiles/tail. Reviewer is auditing only
+receipts; research is comparing safeheader roles/provenance and proposing one
+boundedoffline-only adjudication of retainedbytes. No newGET or parserrepair.
+
+M3 receipt-only postrun audit passes20bindings/sevenartifactreferences:
+six non-archive hashes recomputed, TARhashcross-references/stat only; no extra
+archive/helper/replay byreviewer. Root readfullpostrun and
+[next offline decision](XMM-RXJ-M3-NEXT-2026-09-13.md). Root independently
+verifiedprimaryPPSdefinitions and fourheaderroles EP/OB/RG/OM, headerhashes,
+twozero terminatorblocks andsuffixSHAc304f59f74ff1408146b797c68f001e4284f7bb014ae2267d98e60f44de040f9.
+The7,168-byte suffix is heterogeneous and uninterpreted, not declared harmless.
+Adopt fixed-member offline adjudication of allfourpayloads, total1,033,100 bytes
+per complete selected pass, after reviewed code/privacy/resource freeze. No
+payloadsemantics or scientific photons yet; no furtherGET is needed here.
