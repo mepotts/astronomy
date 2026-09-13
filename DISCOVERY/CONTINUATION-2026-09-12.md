@@ -189,6 +189,18 @@ descriptive known-control count screen may be useful even if calibrated
 recovery remains incomplete, but needs its own explicit prospective contract;
 it cannot be called a pass of the unchanged stronger recovery draft.
 
+PR20 merged as `dd0e0295d8dba2492f4e7878e74a9ee9ea6c1496` after all eleven
+CI jobs passed. Local C3e header replay and C4 binding/receipt checks also pass
+after merge; the latter did not add a fourth attitude decoding pass. The
+[C5 draft](XMM-C5-2026-09-12.md) now specifies a fixed 4/8-subdivision static
+support experiment. Its pure numerical core has 14 synthetic tests and an
+[independent arithmetic review](XMM-MAP-SUPPORT-REVIEW.md); the bounded reader
+and full execution review are still pending. No actual map pixels yet.
+The [counter follow-up](XMM-ATTITUDE-COUNTERS-2026-09-12.md) does not resolve
+the joint-counter semantics or establish independent OM measurements. It
+corrects the interpretive offset reference to median, not nominal, pointing;
+all frozen numerical results remain unchanged.
+
 [ITF](ITF-NOTIFICATIONS-2026-09-12.md) still has its daily archive publisher and
 existing-queue watch, not a fresh automated discovery search. No dedicated
 SMS/email delivery was configured or tested. Existing daily/weekly follow-ups
@@ -199,3 +211,33 @@ Repository commits, tested pushes and merges remain authorized. Scientific
 publication/submission and private-coordinate disclosure remain human decisions.
 The overall discovery goal remains active; finishing this measured failure does
 not satisfy it, and useful next work is available now.
+
+## Latest measured update: C5 and missing MOS support
+
+[C5 completed](XMM-C5-RESULT-2026-09-12.md) after freeze9cef69c: all20 fixed
+regions, both4/8 quadratures, worker/parent and one numerical replay agree.
+Three known decoded passes total10077696 bytes. Independent receipt/aggregate
+audit added no fourth decode. pn source circle is entirely positive sampled;
+MOS1 source circle and annulus entirely zero sampled. This does not diagnose
+no exposure at every time, but cannot supply the required confirming camera.
+The west pn fine grid also detects a zero missed by coarse sampling despite
+positive unsupported-pixel-centre margin: no certified clean-aperture claim.
+
+Adopt the [C6 one-product ESA request](XMM-C6-2026-09-12.md) using verified
+instrument/exposure/subset selectors. Preserve original HEASARC404 and all C5
+results. The prospective source is implemented with17 synthetic/receipt tests;
+review and committed freeze precede the single bounded GET. Positive2D image
+shape under the32MiB cap is allowed for acquisition, not guessed648-square
+compatibility. No map values in C6. Source-list geometry and event decoder
+metadata proposals are available, unexecuted. Do not waive pn-plus-MOS recovery.
+
+[C6 executed](XMM-C6-RESULT-2026-09-12.md) after d54ec04: one ESA GET HTTP200,
+410115 gzip/1707840 expanded bytes, exact648-square MOS2S002 primary, successful
+offline replay. Final JSON37762 bytes. [Header compatibility](XMM-MOS2-MAP-COMPATIBILITY-2026-09-12.md)
+supports only the same limited sign diagnostic. C7 will read oneMOS2map at the
+unchanged10regions and both4/8 subdivisions; no changes to pn/MOS1 evidence.
+The [partial-window note](XMM-PARTIAL-WINDOW-INTERPRETATION-2026-09-12.md)
+correctly identifies MOS W3 as Large Window; it does not prove the source's
+detector location or explain zero maps. If MOS2 also lacks support, a separately
+frozen raw recorded-event screen can provide evidence without first inventing
+calibrated rates or claiming the stronger recovery passed.

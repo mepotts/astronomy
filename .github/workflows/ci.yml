@@ -175,6 +175,8 @@ jobs:
           python -m unittest discover -s DISCOVERY/XMM-C3d-2026-09-12-data -p 'test_acquire*.py' -v
           python -m unittest discover -s DISCOVERY/XMM-C3e-2026-09-12-data -p 'test_acquire*.py' -v
           python -m unittest discover -s DISCOVERY/XMM-C4-2026-09-12-data -p 'test_inspect*.py' -v
+          python -m unittest discover -s DISCOVERY/XMM-C5-2026-09-12-data -p 'test_inspect*.py' -v
+          python -m unittest discover -s DISCOVERY/XMM-C6-2026-09-12-data -p 'test_acquire*.py' -v
           python -m unittest discover -s gaia-dr4/tests -p test_declared_variant.py -v
           python dasch-pilot/scripts/stable_controls.py --replay
           python dasch-pilot/scripts/stable_controls.py --replay --normalize-missing-notes
@@ -197,3 +199,5 @@ jobs:
           ruff check DISCOVERY/XMM-C3d-2026-09-12-data/*.py
           ruff check DISCOVERY/XMM-C3e-2026-09-12-data/*.py
           ruff check DISCOVERY/XMM-C4-2026-09-12-data/*.py
+          ruff check DISCOVERY/XMM-C5-2026-09-12-data/*.py
+          ruff check DISCOVERY/XMM-C6-2026-09-12-data/*.py

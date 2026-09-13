@@ -1,0 +1,128 @@
+# C5 prospective static map-support diagnostic
+
+**Prospective contract; execution requires complete runtime review and
+freeze.** This is the next bounded experiment after
+[C3e map acquisition](XMM-C3e-RESULT-2026-09-12.md),
+[C4 sampled attitude](XMM-C4-RESULT-2026-09-12.md), and
+[map compatibility adjudication](XMM-MAP-COMPATIBILITY-2026-09-12.md).
+Numerical core, runtime, tests, exact hashes and independent review must be
+complete and committed before any actual map pixels are interpreted.
+
+## Scientific question and fixed inputs
+
+Do the unchanged published-control and four negative regions intersect
+unsupported accumulated-map pixels or lie close to the image boundary?
+This is not a detector-live-exposure calibration or continuous-coverage test.
+The map's broader FLAG selection, unavailable GTI references and pn weighted
+band combination remain explicit limitations. No division by map maximum or
+use of a map integral as the exposure of a 200-second count bin is permitted.
+
+Only the two expanded C3e maps are eligible, each a 648-by-648 float32 primary
+array containing 1679616 data bytes, total 3359232 interpreted bytes per pass.
+Bind C3e outcome `af82c5ae3b7a5cd233589e6bd53eadc8d0ded37137ad6df6dac49d198a581d80`,
+both product/header hashes, and derive/validate payload offsets from its
+retained headers (pn 46080, MOS1 23040). Validate exact primary-image layout,
+units/schema and absence of scaling, blank or distortion ambiguity before
+decoding. Final runtime must record its exact supported header contract.
+Both observed primary headers declare FK5/equinox2000 and lack BUNIT. Accept
+that absence for sign-only support without inventing physical map units.
+Use only the primary celestial WCS, not an alternate linear-coordinate WCS;
+harmless alternate-key sets may remain in the retained header. Reject conflicting
+primary frame, units or transform representations. Construct without silent
+WCS fixes, with warnings handled without exporting coordinate-bearing text.
+No event, GTI, attitude or source-list values are selected by this stage.
+
+Use the published position already fixed in the
+[counts draft](XMM-CONTROL-RECOVERY-DRAFT-2026-09-12.md), with no recentering.
+Generate the same four centres by spherical directional offsets of 120 arcsec
+at position angles 0,90,180,270 degrees. At every centre retain both the
+20-arcsec circular aperture and the 60-to-90-arcsec annulus, separately for pn
+and MOS1. Keep MOS2 explicitly unavailable; do not claim it passed or delete
+it from the original future camera/test denominator.
+
+Adopt ICRS as an explicit prospective convention for the published sexagesimal
+position; the source note did not independently establish its exact frame.
+Generate the cardinal offsets in ICRS, then transform each fixed position to
+FK5 at J2000 for the map's declared celestial frame. Bind the conversion
+implementation/runtime. Do not silently treat ICRS and FK5 as identical or
+fit an astrometric shift from map pixels or photons. This convention remains
+an interpretation uncertainty, not an independent astrometric calibration.
+
+No source-list exclusion is performed here. Annulus results describe the
+geometric annulus before the draft's 30-arcsec contaminant exclusions and
+cannot establish source-free backgrounds. All labels and outputs are fixed;
+no control replacement, map-dependent aperture choice or extra field.
+
+## Numerical contract to verify synthetically
+
+Use a two-dimensional undistorted celestial RA/DEC TAN transform with explicit
+degree units and zero-based pixel-centre convention. Test row/column order,
+longitude wrap, round trips, rejected distortion/schema and off-image regions.
+Reject implicit masked-array conversion; zero, negative, nonfinite and positive
+pixels are separate categories, not interchangeable missing-value sentinels.
+
+Use both fixed subdivisions **4 and 8 per pixel axis**, reporting both; eight
+is the predeclared nominal estimate. Subpixel-centre spherical membership and
+local TAN Jacobian area weights are numerical quadrature, not exact area.
+Report the analytic spherical circle/annulus area for comparison and the
+4-versus-8 differences as discretization sensitivity, not a certified error
+bound. Do not select the resolution that produces more favorable support.
+
+Keep the region and tangent point within the core's declared 2-degree domain.
+Bound the enclosing pixel square using the minimum singular linear scale and
+the TAN derivative bound, with fixed two-pixel padding, maximum side 256,
+and at most 16 base rows processed at a time. Schema/size violations stop;
+they do not trigger automatic larger reads or changed numerical settings.
+
+For each region/resolution/category report included subpixel sample counts,
+intersected parent-pixel counts and approximate square-arcsecond areas/fractions,
+including outside-image samples. Positive means accumulated positive map value,
+not uninterrupted or FLAG-zero-valid support. Never infer area from amplitude.
+Parent-pixel intersections are sampled intersections, not an enumeration of
+every arbitrarily small boundary overlap. For annuli, the separate nearest
+unsupported-centre statistic can refer to a pixel in the central hole; it is
+not an annulus-intersection or eligibility test.
+
+Proximity outputs are deliberately modest: minimum great-circle distance to
+unsupported pixel **centres**, and minimum distance to image-border samples
+at fixed one-pixel spacing including corners. Their radius-subtracted values
+are approximate centre/sample clearances, not guaranteed distances to every
+unsupported boundary. No eligibility/clean/pass boolean may follow from them.
+Retain status `STATIC_SUPPORT_APPROXIMATION_NOT_COVERAGE`.
+
+## Runtime and output contract
+
+One exclusive local worker attempt, 60 seconds with the established separate
+process-tree cleanup, monitored peak no more than 500000000 bytes, no network.
+Read only the two exact payloads with bounded direct binary chunks; decode
+big-endian float32 without complete-FITS array loading. Track returned and
+decoded bytes independently. Each parent numerical recomputation or offline
+replay is an explicitly additional 3359232-byte payload pass, not zero-cost
+verification. Hashing/header reads are separate from interpreted-byte totals.
+The decoder requests at most 16 full rows (41472 bytes) per chunk and exactly
+41 chunks per complete map. The selected primary transform is CDELT-only
+RA---TAN/DEC--TAN, degree units, legacy RADECSYS=FK5 and EQUINOX=2000, with
+finite CRPIX/CRVAL/CDELT. The wrapper explicitly maps the verified legacy
+frame label to RADESYS when constructing its minimal WCS; it does not run an
+automatic header repair or import alternate linear axes. Unreviewed primary
+matrix, pole, scaling, unit or distortion metadata stop.
+
+Bind source/core/tests, protocol snapshot, dependencies, runtime, exact fixed
+regions, WCS inputs and all numerical settings. Save only aggregate region
+labels/diagnostics and safe receipts; no maps, absolute coordinates, WCS cards
+or individual pixel locations. JSON budget 1048576 bytes including receipts,
+with 65536 reserved for terminal evidence. Hard termination before a receipt
+leaves read counts unknown, not zero; failure-artifact replay is not numerical
+validation. Verify complete file/artifact closure and immutable prior outcomes.
+Preserve caught parent-recomputation failures' returned/decoded counters in
+the terminal outcome rather than discarding them. Distinguish unattempted
+validation from interrupted/unknown accounting. A failed offline replay must
+report its additional-pass accounting safely without altering prior receipts.
+
+The strongest outcome will certify execution of this static approximation,
+with status `STATIC_SUPPORT_APPROXIMATION_NOT_COVERAGE`,
+not reliable count exposure, source-free backgrounds, photon recovery or a
+discovery. Use the actual result to choose the next separately frozen photon
+or ancillary-geometry experiment. A descriptive count screen must explicitly
+retain the stronger recovery draft's unmet gates; it cannot replace the full
+discovery objective or authorize an unvalidated unknown-source claim.

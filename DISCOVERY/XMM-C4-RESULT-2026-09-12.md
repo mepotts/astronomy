@@ -25,12 +25,19 @@ Both AHF and OM aggregate diagnostics report the following:
 | Separation from first eligible direction | 1.7041471682500233 |
 | Consecutive one-second direction change | 1.2058678464359744 |
 | Consecutive wrapped position-angle change | 4.724120624416628 |
-| Recorded offset from nominal pointing | 1.1063967264563714 |
+| Recorded offset from median pointing | 1.1063967264563714 |
 
 All adjacent pairs were measurable under the declared rules. DAHFOM has zero
 minimum and maximum throughout its finite domain. Equal aggregate results do
 not independently establish identical raw streams or independent sensors.
 No absolute direction, reference angle or individual row is exported.
+
+Interpretive correction after PR20: the supplied DAHFPNT/DOMPNT offsets are
+documented relative to median pointing, not nominal pointing. The earlier
+table label was wrong; no measured number, executed algorithm or frozen
+receipt changes. [Official atthkgen definition](https://xmm-tools.cosmos.esa.int/external/sas/current/doc/atthkgen/node3.html)
+and its [version history](https://xmm-tools.cosmos.esa.int/external/sas/current/doc/atthkgen/ChangeLog)
+record the median reference.
 
 The header's **NGAHFOM=0 disagrees with 51975 jointly finite triplets**; the
 other three finite-count comparisons agree. This resolves the specific
