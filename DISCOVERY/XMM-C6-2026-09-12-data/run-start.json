@@ -1,0 +1,59 @@
+{
+  "slot": {
+    "slot": 1,
+    "method": "GET",
+    "url": "https://nxsa.esac.esa.int/nxsa-sl/servlet/data-action-aio?obsno=0884250101&level=PPS&instname=M2&expflag=S&expno=002&name=EXPMAP&datasubsetno=8&sourceno=000&extension=FTZ",
+    "filename": "P0884250101M2S002EXPMAP8000.FTZ"
+  },
+  "prior": {
+    "c3_outcome_sha256": "62dedbf1b55a48210f447e454f0f1f574b7b8b073a873f48bce2c587cdf7fa5e",
+    "c3_mos2_http_sha256": "b53c70f2ea0b330f53bb55812cd8d5ac1415b2a31caa6c33466250d569430b27",
+    "c3_mos2_result_sha256": "7d4b9aa13fbf705b32c3dd8795b5b39c253eca5e16cd7d91f719b571888e4f7a",
+    "inventory_sha256": "6ddb4a357439922dbefaa51e365b53802e6d031d079348706274555f4e063c23",
+    "index_sha256": "97f9372b999b354ebcbff51a4b42af885433de598795a6a58656ef1e09bac258",
+    "c5_outcome_sha256": "58d8526abdaeb0347cecb252b740fcbd8b5f6956bf89a661b08eb5210d892a36",
+    "c3_state": "STOP_MOS2_HEAD_404_PRESERVED",
+    "c5_action": "hash_only_no_numerical_replay"
+  },
+  "dependencies": {
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C3d-2026-09-12-data\\acquire.py": "87caca0e856065d33ff4f60404399915eed8a4b50a9afa7d0106f98fb691f825",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C3d-2026-09-12-data\\test_acquire.py": "8d313d56946a5f68fb30af8b39c41910121a079d646ccff9e074dcbfc809cf56",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C3c-2026-09-12-data\\acquire.py": "542fce5755d9ff668d4ccd6e199b23780504368603352243d7e6fb7cfa727f90",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C3c-2026-09-12-data\\test_acquire.py": "d3fd4d9775c40a094d761dad0f59e4b9e9d556fced7c6c3f7449324b5f4885ed",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C1-2026-09-12-data\\acquire.py": "13184df5d2b9d6e4bae83446316974ba90f46e3412e51c10c40cfbe2f5e2cca5",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C1-2026-09-12-data\\test_acquire.py": "d751843243552cfdf3d65558c2ff96cf34c6885832378a02789f6dc23fbb541c",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C0d-2026-09-12-data\\metadata.py": "de1d481b185067722546edca1a51dadcd6a5a7fd7d328e60f0ad5d6980272af3",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\xmm_structure.py": "96d9497dbdd45d2561fc0bbb27a0c11d6fbad91cd42c0b14191378dd9fd7fa63",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\test_xmm_structure.py": "4b1bb863a29543ecb6957a417b3115155fa74b625c300d86524a4c8ac44af1aa",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\test_xmm_structure_review.py": "a062ddea63b2c8364395ed61ead99e2cc12031bcec3065aa24ca61dbee1d6b10",
+    "C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\scripts\\check_e_release.py": "11ad0bef9fd2efae234e204358c6b6730e723ed3dc24c6fe0c345f2ddcfb53dd",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C3-2026-09-12-data\\acquire.py": "7a9f6aafe0631137850b991ef8ed990275a050c40e303dbdf9a51d0455315c60",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-MOS2-ALTERNATE-2026-09-12.md": "a816fd84aece2eb4acd4c4cf0dd630416a9563a26af46a4deee24ce33a393760"
+  },
+  "source_sha256": "4ed7d10e229a38f4356f34386ee70e510915049c1468b006841908ecaf1cbfdb",
+  "tests_sha256": "f46468825846e68649ccb48d2592163b0151476de6a49609f315af2141c31ccf",
+  "protocol_sha256": "464a53d8ce733ce080a1962f2245a80a11a7593b1c5c1045c9f70898c7cbd9cb",
+  "configuration": {
+    "output_directory": "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C6-2026-09-12-data",
+    "seconds": 60,
+    "chunk": 1048576,
+    "raw_caps": [
+      2097152
+    ],
+    "expanded_file": 33554432,
+    "expanded_total": 33554432,
+    "memory": 500000000,
+    "json": 1048576,
+    "header": 2097152,
+    "reserve": 65536,
+    "free_bytes": 67108864,
+    "image_contract": "one_primary_float32_positive_2D_under_expanded_cap",
+    "deadline_policy": "monotonic worker start plus60; helper60"
+  },
+  "runtime": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "executable": "C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Scripts\\python.exe",
+    "astropy": "8.0.1",
+    "requests": "2.34.2"
+  }
+}

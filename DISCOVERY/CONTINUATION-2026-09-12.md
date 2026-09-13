@@ -230,3 +230,14 @@ review and committed freeze precede the single bounded GET. Positive2D image
 shape under the32MiB cap is allowed for acquisition, not guessed648-square
 compatibility. No map values in C6. Source-list geometry and event decoder
 metadata proposals are available, unexecuted. Do not waive pn-plus-MOS recovery.
+
+[C6 executed](XMM-C6-RESULT-2026-09-12.md) after d54ec04: one ESA GET HTTP200,
+410115 gzip/1707840 expanded bytes, exact648-square MOS2S002 primary, successful
+offline replay. Final JSON37762 bytes. [Header compatibility](XMM-MOS2-MAP-COMPATIBILITY-2026-09-12.md)
+supports only the same limited sign diagnostic. C7 will read oneMOS2map at the
+unchanged10regions and both4/8 subdivisions; no changes to pn/MOS1 evidence.
+The [partial-window note](XMM-PARTIAL-WINDOW-INTERPRETATION-2026-09-12.md)
+correctly identifies MOS W3 as Large Window; it does not prove the source's
+detector location or explain zero maps. If MOS2 also lacks support, a separately
+frozen raw recorded-event screen can provide evidence without first inventing
+calibrated rates or claiming the stronger recovery passed.
