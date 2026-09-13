@@ -1,0 +1,122 @@
+{
+  "manifest": {
+    "table": {
+      "table": 1,
+      "extname": "ATTHK",
+      "rows": 51975,
+      "width": 80,
+      "columns": [
+        [
+          "TIME",
+          "D",
+          "sec"
+        ],
+        [
+          "AHFRA",
+          "D",
+          "degrees"
+        ],
+        [
+          "AHFDEC",
+          "D",
+          "degrees"
+        ],
+        [
+          "AHFPA",
+          "D",
+          "degrees"
+        ],
+        [
+          "OMRA",
+          "D",
+          "degrees"
+        ],
+        [
+          "OMDEC",
+          "D",
+          "degrees"
+        ],
+        [
+          "OMPA",
+          "D",
+          "degrees"
+        ],
+        [
+          "DAHFPNT",
+          "D",
+          "degrees"
+        ],
+        [
+          "DOMPNT",
+          "D",
+          "degrees"
+        ],
+        [
+          "DAHFOM",
+          "D",
+          "degrees"
+        ]
+      ],
+      "data_offset": 14400,
+      "data_bytes": 4158000,
+      "file_bytes": 4173120,
+      "file_sha256": "ff251ab4e22655bc02b612a599160e40cfe3176cf8de90ce4514668e5bcf7a17",
+      "header_sha256": "a5c5d3a9113b88b63e560be09dc72df0ece14b35c8e91fdefcbc73c77a8d8409",
+      "header_counts": {
+        "NATT": 51975,
+        "NGAHF": 51975,
+        "NGOM": 51975,
+        "NGAHFOM": 0
+      }
+    },
+    "camera_ranges": [
+      {
+        "camera": "EPN",
+        "start": 738530124.914825,
+        "stop": 738579196.505283
+      },
+      {
+        "camera": "EMOS1",
+        "start": 738528580.207049,
+        "stop": 738578603.890584
+      },
+      {
+        "camera": "EMOS2",
+        "start": 738528600.951524,
+        "stop": 738578795.595291
+      }
+    ],
+    "c1_header_hashes": {
+      "headers/slot-1-headers.json": "a6d78ea07324eeef06ed544555525ebb4e071f069eb428ed050913d6cbcbf0ba",
+      "headers/slot-2-headers.json": "a99589df5bbce769557e09f150365a109a705bf20cf1e464819559d7af1d15ae",
+      "headers/slot-3-headers.json": "4ab18a78e8677e9db62c9ad07bbefe143bfcecb72aebb640fa6f4da721e20417"
+    }
+  },
+  "dependencies": {
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\xmm_attitude.py": "df6a49a01d20f6b58c275881fea48a95de158ee6e8c04c272b0ef2ac616f7f4a",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\test_xmm_attitude.py": "1af690f296a88d8e6267d055eb2d17f32e8742d37c68e3f03936fd8e7098027f",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C3d-2026-09-12-data\\acquire.py": "87caca0e856065d33ff4f60404399915eed8a4b50a9afa7d0106f98fb691f825",
+    "C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\scripts\\check_e_release.py": "11ad0bef9fd2efae234e204358c6b6730e723ed3dc24c6fe0c345f2ddcfb53dd",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C1-2026-09-12-data\\acquire.py": "13184df5d2b9d6e4bae83446316974ba90f46e3412e51c10c40cfbe2f5e2cca5"
+  },
+  "source_sha256": "d53d265ebf3ff82832137da2ee7e0fffcf7f1095f143790c655a8fd0f8915e39",
+  "tests_sha256": "b37ccf15c5834420c8257b2eb37c4932a8cd14de4bc3449c30a6e8755ffca606",
+  "protocol_sha256": "a4b27125eed686b706126fe502be0147feb18db502cbe3627ef630766a91b4bc",
+  "prior_outcome_sha256": "2a1a7340c89292882f2b205ff48f4babbada46ed4dde210b45ec1bdd4a6bed0d",
+  "c1_outcome_sha256": "c8f746092ab9203dc0e2be4e78e93e13037b10656b733132bb977331ba5168bc",
+  "runtime": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "executable": "C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Scripts\\python.exe",
+    "numpy": "2.5.2",
+    "astropy": "8.0.1"
+  },
+  "caps": {
+    "seconds": 60,
+    "memory": 500000000,
+    "json": 1048576,
+    "reserve": 65536,
+    "payload_bytes_per_pass": 4158000,
+    "chunk_rows": 10000
+  },
+  "output_directory": "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C4-2026-09-12-data"
+}

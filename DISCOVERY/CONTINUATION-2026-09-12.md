@@ -168,6 +168,27 @@ value diagnostic and the two outstanding pn/MOS1 map downloads using earlier
 size receipts. Retain original camera missingness, region/test denominator,
 geometry and control-recovery gates. No actual photons or discovery yet.
 
+[C3e](XMM-C3e-RESULT-2026-09-12.md) now retains both pn/MOS1 maps:
+779072 compressed / 3432960 expanded bytes, two exact-validator GETs,
+header/hash replay and independent postrun audit. No map pixels yet.
+[C4](XMM-C4-RESULT-2026-09-12.md) then measured all 51975 attitude rows:
+all columns finite, one-second cadence throughout, all camera header ranges
+bracketed, maximum sampled direction displacement 1.704147 arcsec. The
+joint-good header counter remains inconsistent with finite rows; no continuous
+motion or clock-certification claim follows. Map/FLAG/GTI compatibility and
+fixed-region geometry are next, then the frozen published-control photon test.
+No unknown-source scan, photon count or discovery has occurred.
+
+[Map compatibility adjudication](XMM-MAP-COMPATIBILITY-2026-09-12.md) finds
+the MOS1 map's FLAG masks are broader than zero and its referenced GTIs are
+not retained in either the map or event product. The pn combined map lacks
+surviving DSS selections. Adopt a separate static support/proximity diagnostic
+next; do not use these maps as matched per-bin live exposures. This is a
+practical route to geometry evidence without full ODF reprocessing. A later
+descriptive known-control count screen may be useful even if calibrated
+recovery remains incomplete, but needs its own explicit prospective contract;
+it cannot be called a pass of the unchanged stronger recovery draft.
+
 [ITF](ITF-NOTIFICATIONS-2026-09-12.md) still has its daily archive publisher and
 existing-queue watch, not a fresh automated discovery search. No dedicated
 SMS/email delivery was configured or tested. Existing daily/weekly follow-ups
