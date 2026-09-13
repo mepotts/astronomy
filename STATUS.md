@@ -51,7 +51,14 @@ pn full-window and MOS partial-window modes without rewriting that STOP.
 [C1](DISCOVERY/XMM-C1-RESULT-2026-09-12.md) now retains all four known-control
 products: 247141440 expanded bytes, 110 structurally inspected HDUs, with
 successful parent replay and no scientific arrays interpreted. Actual per-CCD
-exposure/GTI/geometry validation is next, then published-burst recovery.
+exposure/GTI/geometry validation follows, then published-burst recovery.
+[C2](DISCOVERY/XMM-C2-RESULT-2026-09-12.md) has now summarized all 48 exposure
+and good-time tables: 7986902 frame rows and 833 GTI rows, no declared quality
+flags, exact replay and 97029016 interpreted bytes per pass. Frame-weight totals
+closely approximate matching EVENTS CCD live times without rescaling; finite
+frame boundaries and stable aperture geometry remain unvalidated. Next is a
+small three-map/one-attitude metadata acquisition step, then the counts control.
+No photons, unknown-source scan or discovery in C2.
 [Later-work checking](DISCOVERY/XMM-LATER-WORK-2026-09-12.md) finds no verified
 coverage of the three exact newer observations, but does not prove them unsearched.
 
