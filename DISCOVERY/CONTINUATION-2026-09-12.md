@@ -618,3 +618,15 @@ replay after exact-byte commit freeze. Each complete pass selects1,033,100 bytes
 opaque hashing/header/tail I/O is additional. No requests or scientific arrays.
 The [geometry-access note](XMM-RXJ-GEOMETRY-ACCESS-NOTE-2026-09-13.md) identifies
 the conditional next supported-calibration boundary; it does not request data.
+
+[M4 executed](XMM-RXJ-M4-RESULT-2026-09-13.md) after d9e9571: four accounted
+metadata documents, worker0/parentcomplete/root one replayPASS. Three passes
+select3,099,300 bytes total; no requests/scientific arrays. Allfour metadata
+results remain incomplete: no encoding declarations and page identities not
+established. OB retains93rows, no duplicate/unjoinable keys; three EPIC Imaging
+rows are pnS001/M1S002/M2S003, allPrimeFullWindow/Thin1, matching explicit EP
+event references. OB's invalid identity hash matches synthetic punctuation ':',
+not a demonstrated second observation ID. No raw HTML reread/parser repair.
+Outcome7a571f930679c4077c7a337292ffceadf19e99a71b819f79777e90a88da0cc05;
+13JSON97636bytes; workerpeak30904320,parent30674944. Receipt-only audit and
+exact-product header-access decision follow. Discovery goal remains active.

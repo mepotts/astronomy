@@ -178,3 +178,84 @@ The parent/replay deadlines are cooperative, and 256 MiB is a monitored lifetime
 peak acceptance cap, not an allocation quota. Every complete pass adds exactly
 1,033,100 selected bytes plus the separately declared opaque/header/tail work;
 no subsequent pass or request is authorized merely by this review.
+
+## Postrun audit — receipt and aggregate only, 2026-09-13
+
+**PASS for the recorded bounded metadata-accounting outcome, not identity or
+scientific recovery.** Parent reports execution after freeze `d9e9571`, followed
+by exactly one CLI semantic replay. This reviewer did not call `measure`, replay,
+the parser on retained payloads, or any earlier worker. No TAR/HTML/product was
+opened or hashed. The audit read safe JSON, source/protocol/test/privacy files
+and their public pinned dependencies only.
+
+Independently verified all **13 public artifact references**, **12 dependency
+hashes**, five local source/test/protocol/privacy/attributes binding anchors and
+the current protocol against its snapshot. The 13 JSON files total **97,636
+bytes**, below aggregate and individual receipt limits. Worker/parent ledgers
+are identical; each ordinal marker matches the fixed plan, each result matches
+its ledger, and canonical metadata/comparison hashes close exactly. Recorded
+payload hashes agree across receipts but were not independently recomputed from
+the private archive in this audit.
+
+Receipt anchors:
+
+- Outcome: `7a571f930679c4077c7a337292ffceadf19e99a71b819f79777e90a88da0cc05`.
+- Run binding: `b045fd9165530beb9300ab48ffb477678923ff0a1157695b8975fd370cce797a`.
+- Worker result: `107a4fd321fe697b44e0b306c0409721e130e6574926844f9ab2943d715b7975`.
+- Comparison artifact: `051ce14f62c5134170d278303348d5e68d677476d9b24316078b983c4398832a`.
+
+Worker return code is 0, parent assessment is complete, all four slot parses
+completed with `OK`, no unknown read flag or error, and status is
+`FOUR_FIXED_METADATA_DOCUMENTS_ACCOUNTED_UNADJUDICATED`. Recorded worker peak is
+30,904,320 bytes; parent peak is 30,674,944 bytes. These are monitored lifetime
+peaks, not measurements of calibration quality or proofs of all instantaneous
+allocations. Child output is zero bytes with the empty-content hash.
+
+Each stored pass accounts 1,033,100 selected bytes, 1,044,480 opaque hash bytes,
+2,048 header bytes and 8,192 tail bytes. Including the parent's explicitly
+reported third pass, known totals are respectively **3,099,300**, **3,133,440**,
+**6,144** and **24,576** bytes. This receipt-only audit adds no fourth semantic
+pass. The third pass is parent-reported, not a second independent replay by the
+reviewer.
+
+### What the safe metadata actually establishes
+
+All four parser results remain **`METADATA_INCOMPLETE`**. Each reports zero
+encoding declarations and `MISSING_ASCII_ONLY`. EP, RG and OM have no recognized
+labelled observation identity. OB has one `UNRECOGNIZED` identity candidate and
+the combined label `CONFLICT_OR_INVALID`; its value is withheld with hash
+`e7ac0786668e0ff0f02b62bd04f45ff636fd82db63b1104601c975dc005f3a67`.
+There are not two validated ten-digit identities in conflict. The stored
+metadata does not disclose what that unrecognized candidate means, and no raw
+inspection was done to guess it.
+
+| Role | Recognized exposure rows | Relevant product references | Labelled identity |
+| --- | ---: | ---: | --- |
+| EP | 0 | 30 | Missing |
+| OB | 93 | 3 | One unrecognized candidate |
+| RG | 0 | 8 | Missing |
+| OM | 0 | 5 | Missing |
+
+Zero recognized rows outside OB means `NOT_IDENTIFIED` under this parser, not
+zero exposures. OB retains one table with 93 sequentially accounted rows, no
+duplicate instrument/exposure keys and no unjoinable rows. Its instrument counts
+are EMOS1 1, EMOS2 1, EPN 14, OM 13, RGS1 32 and RGS2 32. All 93 comparison groups
+are `SINGLE_ROLE_UNMATCHED`, with no cross-document exposure agreement inferred.
+All report missing duration/start/stop label units. Empty conflict lists cannot
+turn those single-role, unit-incomplete records into cross-role confirmation.
+
+The three scheduled EPIC imaging rows are EPN/S001, EMOS1/S002 and EMOS2/S003,
+all with recognized `PrimeFullWindow` and `Thin1`. EP separately contains these
+explicit observed event-product references:
+
+- `P0851180501PNS001PIEVLI0000.FTZ`
+- `P0851180501M1S002MIEVLI0000.FTZ`
+- `P0851180501M2S003MIEVLI0000.FTZ`
+
+These are useful exact metadata leads. They do not prove accessible bytes,
+independent labelled observation identity, calibrated live exposure, clean
+background/control regions or a recovered burst. No fluxes, coordinates,
+contacts or arbitrary raw text were introduced into this audit. All four roles,
+unrecognized fields and unmatched rows remain retained; neither the previous
+M3 STOP nor its uninterpreted nonzero trailer is repaired by M4's accounting
+success. No scientific discovery claim follows.
