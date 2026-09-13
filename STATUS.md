@@ -20,8 +20,12 @@ header replay. [C4](DISCOVERY/XMM-C4-RESULT-2026-09-12.md) measures 51975
 finite one-second attitude samples spanning all three camera header ranges,
 with maximum sampled displacement 1.704147 arcsec. A joint-quality header
 counter mismatch persists; sampled stability does not establish continuous
-coverage. Next: map/filter compatibility and fixed-region geometry, then the
-published-control photon test. No photons, unknown scan or discovery yet.
+coverage. [C5](DISCOVERY/XMM-C5-RESULT-2026-09-12.md) now finds fully positive
+sampled pn source support but entirely zero sampled MOS1 source circle/annulus.
+Neither accumulated maps nor sampled attitude certify per-bin exposure.
+Next: the separately frozen [C6 MOS2 alternate](DISCOVERY/XMM-C6-2026-09-12.md),
+then compatibility/source-confusion geometry and published-control photons.
+No second-camera support, burst recovery, unknown scan or discovery established.
 
 **September 12 continuing search:** [current new-route record](DISCOVERY/SEARCH-2026-09-12.md).
 TESS recovers 3/3 published periods and near-target pixel signals; catalog confusion,

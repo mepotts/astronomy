@@ -211,3 +211,22 @@ Repository commits, tested pushes and merges remain authorized. Scientific
 publication/submission and private-coordinate disclosure remain human decisions.
 The overall discovery goal remains active; finishing this measured failure does
 not satisfy it, and useful next work is available now.
+
+## Latest measured update: C5 and missing MOS support
+
+[C5 completed](XMM-C5-RESULT-2026-09-12.md) after freeze9cef69c: all20 fixed
+regions, both4/8 quadratures, worker/parent and one numerical replay agree.
+Three known decoded passes total10077696 bytes. Independent receipt/aggregate
+audit added no fourth decode. pn source circle is entirely positive sampled;
+MOS1 source circle and annulus entirely zero sampled. This does not diagnose
+no exposure at every time, but cannot supply the required confirming camera.
+The west pn fine grid also detects a zero missed by coarse sampling despite
+positive unsupported-pixel-centre margin: no certified clean-aperture claim.
+
+Adopt the [C6 one-product ESA request](XMM-C6-2026-09-12.md) using verified
+instrument/exposure/subset selectors. Preserve original HEASARC404 and all C5
+results. The prospective source is implemented with17 synthetic/receipt tests;
+review and committed freeze precede the single bounded GET. Positive2D image
+shape under the32MiB cap is allowed for acquisition, not guessed648-square
+compatibility. No map values in C6. Source-list geometry and event decoder
+metadata proposals are available, unexecuted. Do not waive pn-plus-MOS recovery.
