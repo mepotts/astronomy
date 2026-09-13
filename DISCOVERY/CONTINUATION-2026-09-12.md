@@ -291,3 +291,13 @@ Selected-span reader and C8 wrapper tests are in progress in separate agent
 work areas; no real source-list values, photons, masks or new map values.
 Finalize/read/review those components and protocol, freeze exact bytes, then
 execute C8 once. Earlier C7 map work is complete and must not be rerun casually.
+
+Selected-span `xmm_source_rows` now passes11synthetic tests, rootRuff and
+[independent reader review](XMM-SOURCE-ROWS-REVIEW.md), including755short-read
+positions and5storage-failure probes. Source33acfedec1328cac1517abc703ee9644c653330648630edb8d96b6235562a927;
+tests4fd4b13b5698c2d40a476d390b780b47cc8e899c2ad6fe39024d6cff9f0ef272.
+Final lint repair changes buffered-stream rejection toTypeError, no accepted
+scientific input change. Root reread the repair and reran tests/lint. C8 wrapper
+is present but still under development/review: preserve replay-failure additional
+pass counters, reject unexpected/nested artifacts and enforce exact151row/10region
+closure. No C8 run marker or real selected-column decoding yet.
