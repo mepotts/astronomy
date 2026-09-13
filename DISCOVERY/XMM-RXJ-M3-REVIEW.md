@@ -154,3 +154,55 @@ M2's raw-HTML STOP and M1/M0 outcomes remain unchanged. An unsupported archive
 can motivate only a separately reviewed offline decision, not a repaired
 success or another GET. This review authorizes neither a science-product
 acquisition nor a discovery claim.
+
+## Postrun: retained TAR, frozen member-size STOP
+
+Executed once after parent-reported freeze `56819bc`. **PASS for independent
+receipt-only audit of the STOP outcome**, not archive validation. The fixed URL
+returned HTTP200/application/x-tar, matching final URL, server Date
+2026-09-13 05:30:53 GMT. A private **1,044,480-byte** TAR was retained, below the
+1,048,576-byte raw cap. Transport EOF is recorded true. That establishes the
+recorded end of the HTTP entity, not a complete or acceptable TAR structure.
+
+The frozen worker failed as **`STOP_TAR_HTML_SIZE`**, return code1. Parent
+assessment completed with STOP, one request invocation, `index=null` and
+`science_products_fetched=0`. No private `summary.html` was created. Outer
+disposition remains a non-authoritative REJECTED classification; no raw
+filename or rejection cause is inferred. The parent reports one offline
+replay of STOP. Neither that receipt status nor EOF promotes the archive to
+the successful unadjudicated-member label.
+
+This independent audit verified all **20 dependency hashes** and binding,
+privacy/snapshot configuration, exact worker marker/STOP receipt, transport
+byte count, safe HTTP schema, and the exact seven-entry artifact inventory.
+Six non-archive artifact hashes were independently recomputed. The seventh,
+the private TAR hash, was **cross-checked between receipts only**, not recomputed
+from the archive. Its file size was checked by stat. Six JSON files total
+**6,295 bytes**, within receipt limits. All inspected non-archive file hashes
+were unchanged across the audit. Archive/body/product-open and Session/
+collect/worker/parser/replay tripwires were active: zero extra requests,
+archive opens, helper inspections or replays.
+
+| Evidence | SHA256 |
+| --- | --- |
+| Outcome | `1a897ff9dbf74f0b88c7428b2dbd63dc16944036191256374204056d3b3f5678` |
+| Run binding | `e0a6eeb2f29c519f44f41086ea9eb7686dea6c15aebdc35d20985a1ee1c494f2` |
+| HTTP receipt | `6b2e62f84d8412f00e8ca60f73bcbc400f1009010f21556c381a5fb0cf5924f0` |
+| Worker receipt | `990ffc01f4964e33061b31c1928ce7ee93fb3f1de2e3f1eac4fe584c6c080c6d` |
+| TAR, recorded hash only | `fa3c45838875c61f68e07508d862fc56d32e83f0b39ed3f6b1bef2207b9ccbe2` |
+
+**Separate parent-reported raw-header diagnosis, not rerun by this reviewer:**
+four matching regular summary members have declared sizes872,917/48,229/
+25,265/86,689 bytes. A zero header occurs at offset1,036,288, followed by
+8,192 bytes that are not all zero. In addition to the first member exceeding
+the frozen 262,144-byte HTML cap, four regular members violate the sole-file
+condition, and the reported tail violates the all-zero terminator/tail rule.
+These observations therefore do not support repairing only the size threshold.
+The tail description alone is not a diagnosis of corruption or truncation;
+it is a mismatch with the frozen supported archive profile.
+
+No member was chosen, copied, semantically inspected or promoted to observation
+identity/modes/exposure evidence in M3. Preserve the original size STOP and
+private raw package. Any later offline investigation needs separate authority
+and must retain the other failed structural conditions; this result authorizes
+neither another GET nor a broadened acquisition, extraction or discovery claim.

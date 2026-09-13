@@ -572,3 +572,26 @@ protocol230a900079e8220a7a29a5ceeb16a714cdfae684e525f83b783f7a26925a245a.
 Execute one request only after exact-byte commit freeze, then one root offline
 replay. Any retained package/HTML remains private and unadjudicated; no science
 product or unknown-source search is authorized by this metadata stage.
+
+[M3 executed once](XMM-RXJ-M3-RESULT-2026-09-13.md) after56819bc. HTTP200,
+application/x-tar, completeEOF1,044,480 bytes retained privately; worker1,
+STOP_TAR_HTML_SIZE, parentcomplete, noHTMLcopy. Root one offline replay PASS
+STOP; no retry. ArchiveSHAfa3c45838875c61f68e07508d862fc56d32e83f0b39ed3f6b1bef2207b9ccbe2;
+outcome1a897ff9dbf74f0b88c7428b2dbd63dc16944036191256374204056d3b3f5678;
+sixJSON6295bytes. Separate root header-only diagnosis after verifiedarchivehash
+finds4matchingregular headers sized872917/48229/25265/86689 beforefirstzero
+at1036288, with8192remainingbytesnotallzero. No payloadsemantics inspected;
+capincreasealonewouldnotresolve multiplefiles/tail. Reviewer is auditing only
+receipts; research is comparing safeheader roles/provenance and proposing one
+boundedoffline-only adjudication of retainedbytes. No newGET or parserrepair.
+
+M3 receipt-only postrun audit passes20bindings/sevenartifactreferences:
+six non-archive hashes recomputed, TARhashcross-references/stat only; no extra
+archive/helper/replay byreviewer. Root readfullpostrun and
+[next offline decision](XMM-RXJ-M3-NEXT-2026-09-13.md). Root independently
+verifiedprimaryPPSdefinitions and fourheaderroles EP/OB/RG/OM, headerhashes,
+twozero terminatorblocks andsuffixSHAc304f59f74ff1408146b797c68f001e4284f7bb014ae2267d98e60f44de040f9.
+The7,168-byte suffix is heterogeneous and uninterpreted, not declared harmless.
+Adopt fixed-member offline adjudication of allfourpayloads, total1,033,100 bytes
+per complete selected pass, after reviewed code/privacy/resource freeze. No
+payloadsemantics or scientific photons yet; no furtherGET is needed here.

@@ -46,8 +46,11 @@ but stops on a fixed-string schema mismatch. Manual inspection shows an archive
 name and wildcard, not individualPPSnames. No retry or bundle download.
 [RXJ M2](DISCOVERY/XMM-RXJ-M2-RESULT-2026-09-13.md) then receives an advertised
 TAR response and stops before body access under its raw-HTML contract. No
-summary or archive retained. Next: separately bounded summary-only package
-handling for that same selector, followed by offline metadata adjudication.
+summary or archive retained. [RXJ M3](DISCOVERY/XMM-RXJ-M3-RESULT-2026-09-13.md)
+then retains a private1,044,480-byte TAR but stops on its inner-size gate.
+Separate header inspection finds four matching summary headers and a nonzero
+tail; simply raising the cap would not validate it. Next: offline-only member
+role/provenance and metadata adjudication, without another download.
 No unknown scan, calibrated recovery or discovery established.
 
 **September 12 continuing search:** [current new-route record](DISCOVERY/SEARCH-2026-09-12.md).
