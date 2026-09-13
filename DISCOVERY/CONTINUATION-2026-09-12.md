@@ -524,3 +524,27 @@ media stop before body access. Offline labelled observation identity and all
 exposure-table rows must be adjudicated before a later narrow PPS decision.
 The [FRB contingency](NEXT-DISCOVERY-CONTINGENCY-2026-09-13.md) remains research
 only; it does not displace XMM or authorize bulk radio data acquisition.
+
+PR26 merged 2026-09-13T05:04:07Z as
+8bc30ffb967f5db494d5e1e4bb2068896e0f2542 after all 12 CI checks passed on
+8132b26a648c18f753e6e4e11b196aa5942bc4f7. Local main fast-forwarded; next branch
+is `codex/xmm-rxj-summary-sep13`. Postmerge M0/M1 binding, HTTP and artifact
+closure pass; C9 binding/artifact closure also passes under product/network
+guards. Root's first ad-hoc C9 comparison mistakenly included outcome.json
+itself; inspected the executed source's explicit self-exclusion and used that
+same rule. No stage or receipt changed, no request or numerical replay ran.
+
+This goal continuation is progress from the merged M1 result, not a blocked
+wait. Root adopts [M2 raw summary acquisition](XMM-RXJ-M2-2026-09-13.md) after
+full source/tests/protocol/helper and [independent review](XMM-RXJ-M2-REVIEW.md).
+11 synthetic tests/Ruff, 12 exact committed dependency bindings and extra
+cap/EOF/package fixtures pass. Git confirms private summary.html is ignored;
+explicit LF attributes cover all newly bound configuration/protocol files.
+Source a4620e9d991761276be1b32a6dc693d4a1846999d368bdddb928ab4ff5df24e6,
+tests 12c782baacff8e29b160feb4c197ccf2df335a6403d35623c0c80a322d91d186,
+protocol d26c216910fc9c72f9134e439b012f77d6e2acfc09f3df74eec61f560a5e0871.
+One anonymous 30-second, 262144+1-byte request may execute after exact-byte
+commit freeze. No retries, packages or semantic success are implied.
+The [source-specific recovery draft](XMM-RXJ-RECOVERY-DRAFT-2026-09-13.md)
+proposes a separately named soft-band experiment, not an executable photon
+contract: numerical scientific acceptance and calibration choices remain open.
