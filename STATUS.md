@@ -71,6 +71,11 @@ transport step is a separately frozen metadata check of the documented
 [ESA XSA alternate](DISCOVERY/XMM-ALTERNATE-PPS-SOURCE-2026-09-12.md).
 Its current availability and packaging remain untested; stable pointing/coverage
 is still required before a trustworthy counts control.
+The separate [C3c contract](DISCOVERY/XMM-C3c-2026-09-12.md) adopts one narrow
+ESA attitude-product HEAD, with no body download or automatic fallback.
+[Synthetic frame-bound helpers](DISCOVERY/XMM-FRAME-BOUNDS-IMPLEMENTATION.md)
+now pass independent numerical checks; the physical support assumptions and
+application to real frames remain unvalidated. No photon counts yet.
 [Later-work checking](DISCOVERY/XMM-LATER-WORK-2026-09-12.md) finds no verified
 coverage of the three exact newer observations, but does not prove them unsearched.
 

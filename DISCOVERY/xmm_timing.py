@@ -87,3 +87,27 @@ exposure changes invalidate an intrinsic-source interpretation.
         raise ValueError("Exposure sum overflow")
     probability = exposure / total_exposure
     return float(binom.sf(int(count) - 1, int(count) + int(reference_count), probability))
+
+
+def bounded_constant_rate_tail(count, reference_count, exposure_bounds, reference_bounds):
+    """Worst-case positive-excess tail under valid effective-exposure bounds.
+
+    The bin/reference time selections and counts must be disjoint and fixed.
+    Bounds must enclose their actual applicable exposures; this function does
+    not establish frame support, spatial stability or Poisson assumptions.
+    Zero lower exposure is unmeasured and raises, never a significance value.
+    The reference-duration eligibility threshold is a separate protocol gate.
+    """
+    validated = []
+    for bounds in (exposure_bounds, reference_bounds):
+        raw = np.asarray(bounds, dtype=object)
+        if raw.shape != (2,) or any(isinstance(v, (bool, np.bool_)) for v in raw.flat):
+            raise ValueError("Expected two measured exposure bounds")
+        values = np.asarray(bounds, dtype=float)
+        if not np.all(np.isfinite(values)) or values[0] <= 0 or values[1] < values[0]:
+            raise ValueError("Positive ordered exposure bounds required")
+        validated.append(values)
+    # P[X >= count | total] is nondecreasing in p. The largest admissible
+    # p uses the bin upper and reference lower exposure, even if that pair
+    # is unattainable because of shared boundary-frame uncertainty.
+    return constant_rate_tail(count, reference_count, validated[0][1], validated[1][0])

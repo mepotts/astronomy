@@ -142,6 +142,15 @@ made. Next, separately freeze and review one ATTTSR-filtered metadata request;
 successful metadata would still need a distinct bounded package contract before
 download. Availability, sole-member identity and compatibility remain unknown.
 
+Adopt the separately reviewed [C3c one-HEAD contract](XMM-C3c-2026-09-12.md)
+for this exact known-control product selection. Freeze its code/tests/review
+before execution, preserve the metadata outcome, and do not infer authorization
+for a body request from successful advertised metadata alone. In parallel,
+[frame-bound numerical helpers](XMM-FRAME-BOUNDS-IMPLEMENTATION.md) now implement
+the conservative exposure construction and worst-case counting diagnostic.
+Their synthetic checks do not validate the physical frame-support assumptions
+or authorize a real-frame/photon run.
+
 [ITF](ITF-NOTIFICATIONS-2026-09-12.md) still has its daily archive publisher and
 existing-queue watch, not a fresh automated discovery search. No dedicated
 SMS/email delivery was configured or tested. Existing daily/weekly follow-ups
