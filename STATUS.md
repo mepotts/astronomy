@@ -29,8 +29,13 @@ limited static-sign diagnostic, not per-bin live exposure.
 [C7](DISCOVERY/XMM-C7-RESULT-2026-09-12.md) finds fully positive sampled MOS2
 source-circle support at both fixed resolutions; source annulus is only65.1064%
 positive nominally. This adds affirmative second-camera static sampling, not
-matched exposure or burst recovery. Next: source-confusion geometry and a
-separately specified photon screen. No unknown scan or discovery established.
+matched exposure or burst recovery. [C8](DISCOVERY/XMM-C8-RESULT-2026-09-12.md)
+now finds a unique positional control association,2.84417arcsec original offset,
+with no other source centres inside any20arcsec aperture. Fixed30arcsec disks
+contact north/east/west apertures and all five annuli; two usable negatives
+remain unestablished. Three selected-column passes total23556decodedbytes.
+Next: separately specified descriptive photon screen, with these warnings
+retained. No unknown scan, calibrated recovery or discovery established.
 
 **September 12 continuing search:** [current new-route record](DISCOVERY/SEARCH-2026-09-12.md).
 TESS recovers 3/3 published periods and near-target pixel signals; catalog confusion,

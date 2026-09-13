@@ -1,0 +1,57 @@
+{
+  "status": "SOURCE_GEOMETRY_SCREEN_NOT_CLEAN_SKY",
+  "worker_returncode": 0,
+  "assessment_completed": true,
+  "ledger": [
+    {
+      "table": 1,
+      "status": "OK",
+      "accounting": {
+        "status": "COMPLETE",
+        "phase": "COMPLETE",
+        "read_bytes": 7852,
+        "decoded_bytes": 7852,
+        "reads_attempted": 755,
+        "reads_completed": 755,
+        "spans_decoded": 755,
+        "rows_completed": 151,
+        "current_read_completion_unknown": false,
+        "current_decode_completion_unknown": false
+      }
+    }
+  ],
+  "worker_peak_memory_bytes": 69726208,
+  "worker_error_code": null,
+  "resource_usage": {
+    "compressed_bytes": 0,
+    "expanded_bytes": 0,
+    "json_bytes": 58181
+  },
+  "photons_or_map_pixels_interpreted": false,
+  "source_coordinates_or_ids_persisted": false,
+  "parent_validation": {
+    "status": "COMPLETED",
+    "accounting": {
+      "status": "COMPLETE",
+      "phase": "COMPLETE",
+      "read_bytes": 7852,
+      "decoded_bytes": 7852,
+      "reads_attempted": 755,
+      "reads_completed": 755,
+      "spans_decoded": 755,
+      "rows_completed": 151,
+      "current_read_completion_unknown": false,
+      "current_decode_completion_unknown": false
+    }
+  },
+  "artifacts": {
+    "protocol.snapshot.md": "9b4a86517fdafcccf16c1004808a87a457c4c05b63b51f6e9da5163675330c14",
+    "run-start.json": "a9ec6186835d402a41b2483518be45b43a47cd218cf4bdc37c556320ed7d2e6a",
+    "table-result.json": "719afedaca93f82f85a5e7003564bab7f02bf1c23065d871d80b3bae53f16cfa",
+    "table-start.json": "f6df549418612ba3cd2c1e59c52b902a683bf2e19f242f6ff09ad3b887c274e5",
+    "worker-result.json": "603adb39ca5c3908c907e7c5bc9000939c39d3480aa96a57051023d912301d66",
+    "worker-start.json": "7d93302b75c620cea291032d716604ef6c3271032aa8c5ab05a9f3a0923a36f2"
+  },
+  "source_sha256": "bd76ab70fb36ca2ea9c350401ab36991baa8fd30b3bf160c546c788a536ad0e3",
+  "parent_peak_memory_bytes": 70422528
+}

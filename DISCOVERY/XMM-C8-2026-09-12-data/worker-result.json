@@ -1,0 +1,34 @@
+{
+  "status": "SOURCE_GEOMETRY_SCREEN_NOT_CLEAN_SKY",
+  "ledger": [
+    {
+      "table": 1,
+      "status": "OK",
+      "accounting": {
+        "status": "COMPLETE",
+        "phase": "COMPLETE",
+        "read_bytes": 7852,
+        "decoded_bytes": 7852,
+        "reads_attempted": 755,
+        "reads_completed": 755,
+        "spans_decoded": 755,
+        "rows_completed": 151,
+        "current_read_completion_unknown": false,
+        "current_decode_completion_unknown": false
+      }
+    }
+  ],
+  "artifacts": {
+    "protocol.snapshot.md": "9b4a86517fdafcccf16c1004808a87a457c4c05b63b51f6e9da5163675330c14",
+    "run-start.json": "a9ec6186835d402a41b2483518be45b43a47cd218cf4bdc37c556320ed7d2e6a",
+    "table-result.json": "719afedaca93f82f85a5e7003564bab7f02bf1c23065d871d80b3bae53f16cfa",
+    "table-start.json": "f6df549418612ba3cd2c1e59c52b902a683bf2e19f242f6ff09ad3b887c274e5",
+    "worker-start.json": "7d93302b75c620cea291032d716604ef6c3271032aa8c5ab05a9f3a0923a36f2"
+  },
+  "resource_usage": {
+    "compressed_bytes": 0,
+    "expanded_bytes": 0,
+    "json_bytes": 57060
+  },
+  "peak_memory_bytes": 69726208
+}

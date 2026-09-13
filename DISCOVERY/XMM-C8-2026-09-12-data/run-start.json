@@ -1,0 +1,2187 @@
+{
+  "manifest": {
+    "table": {
+      "rows": 151,
+      "row_bytes": 1131,
+      "data_offset": 77760,
+      "table_payload_bytes": 170781,
+      "selected_bytes_per_pass": 7852,
+      "reads_per_pass": 755,
+      "columns": [
+        {
+          "name": "SRC_NUM",
+          "form": "J",
+          "unit": null,
+          "null": null,
+          "offset": 0,
+          "width": 4
+        },
+        {
+          "name": "EP_1_ML_ID",
+          "form": "J",
+          "unit": " -",
+          "null": -1,
+          "offset": 4,
+          "width": 4
+        },
+        {
+          "name": "EP_1_BOXID",
+          "form": "J",
+          "unit": " -",
+          "null": -1,
+          "offset": 8,
+          "width": 4
+        },
+        {
+          "name": "EP_2_ML_ID",
+          "form": "J",
+          "unit": " -",
+          "null": -1,
+          "offset": 12,
+          "width": 4
+        },
+        {
+          "name": "EP_2_BOXID",
+          "form": "J",
+          "unit": " -",
+          "null": -1,
+          "offset": 16,
+          "width": 4
+        },
+        {
+          "name": "RA",
+          "form": "D",
+          "unit": "deg",
+          "null": null,
+          "offset": 20,
+          "width": 8
+        },
+        {
+          "name": "DEC",
+          "form": "D",
+          "unit": "deg",
+          "null": null,
+          "offset": 28,
+          "width": 8
+        },
+        {
+          "name": "RADEC_ERR",
+          "form": "E",
+          "unit": "arcsec",
+          "null": null,
+          "offset": 36,
+          "width": 4
+        },
+        {
+          "name": "LII",
+          "form": "D",
+          "unit": "deg",
+          "null": null,
+          "offset": 40,
+          "width": 8
+        },
+        {
+          "name": "BII",
+          "form": "D",
+          "unit": "deg",
+          "null": null,
+          "offset": 48,
+          "width": 8
+        },
+        {
+          "name": "X_IMA",
+          "form": "E",
+          "unit": "image pixels",
+          "null": null,
+          "offset": 56,
+          "width": 4
+        },
+        {
+          "name": "X_IMA_ERR",
+          "form": "E",
+          "unit": "image pixels",
+          "null": null,
+          "offset": 60,
+          "width": 4
+        },
+        {
+          "name": "Y_IMA",
+          "form": "E",
+          "unit": "image pixels",
+          "null": null,
+          "offset": 64,
+          "width": 4
+        },
+        {
+          "name": "Y_IMA_ERR",
+          "form": "E",
+          "unit": "image pixels",
+          "null": null,
+          "offset": 68,
+          "width": 4
+        },
+        {
+          "name": "PN_CTS",
+          "form": "E",
+          "unit": "counts",
+          "null": null,
+          "offset": 72,
+          "width": 4
+        },
+        {
+          "name": "PN_CTS_ERR",
+          "form": "E",
+          "unit": "counts",
+          "null": null,
+          "offset": 76,
+          "width": 4
+        },
+        {
+          "name": "M1_CTS",
+          "form": "E",
+          "unit": "counts",
+          "null": null,
+          "offset": 80,
+          "width": 4
+        },
+        {
+          "name": "M1_CTS_ERR",
+          "form": "E",
+          "unit": "counts",
+          "null": null,
+          "offset": 84,
+          "width": 4
+        },
+        {
+          "name": "M2_CTS",
+          "form": "E",
+          "unit": "counts",
+          "null": null,
+          "offset": 88,
+          "width": 4
+        },
+        {
+          "name": "M2_CTS_ERR",
+          "form": "E",
+          "unit": "counts",
+          "null": null,
+          "offset": 92,
+          "width": 4
+        },
+        {
+          "name": "PN_TOT_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 96,
+          "width": 4
+        },
+        {
+          "name": "ERR_PN_TOT_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 100,
+          "width": 4
+        },
+        {
+          "name": "M1_TOT_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 104,
+          "width": 4
+        },
+        {
+          "name": "ERR_M1_TOT_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 108,
+          "width": 4
+        },
+        {
+          "name": "M2_TOT_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 112,
+          "width": 4
+        },
+        {
+          "name": "ERR_M2_TOT_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 116,
+          "width": 4
+        },
+        {
+          "name": "EP_TOT_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 120,
+          "width": 4
+        },
+        {
+          "name": "ERR_EP_TOT_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 124,
+          "width": 4
+        },
+        {
+          "name": "PN_1_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 128,
+          "width": 4
+        },
+        {
+          "name": "ERR_PN_1_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 132,
+          "width": 4
+        },
+        {
+          "name": "M1_1_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 136,
+          "width": 4
+        },
+        {
+          "name": "ERR_M1_1_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 140,
+          "width": 4
+        },
+        {
+          "name": "M2_1_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 144,
+          "width": 4
+        },
+        {
+          "name": "ERR_M2_1_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 148,
+          "width": 4
+        },
+        {
+          "name": "EP_1_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 152,
+          "width": 4
+        },
+        {
+          "name": "ERR_EP_1_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 156,
+          "width": 4
+        },
+        {
+          "name": "PN_2_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 160,
+          "width": 4
+        },
+        {
+          "name": "ERR_PN_2_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 164,
+          "width": 4
+        },
+        {
+          "name": "M1_2_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 168,
+          "width": 4
+        },
+        {
+          "name": "ERR_M1_2_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 172,
+          "width": 4
+        },
+        {
+          "name": "M2_2_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 176,
+          "width": 4
+        },
+        {
+          "name": "ERR_M2_2_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 180,
+          "width": 4
+        },
+        {
+          "name": "EP_2_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 184,
+          "width": 4
+        },
+        {
+          "name": "ERR_EP_2_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 188,
+          "width": 4
+        },
+        {
+          "name": "PN_3_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 192,
+          "width": 4
+        },
+        {
+          "name": "ERR_PN_3_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 196,
+          "width": 4
+        },
+        {
+          "name": "M1_3_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 200,
+          "width": 4
+        },
+        {
+          "name": "ERR_M1_3_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 204,
+          "width": 4
+        },
+        {
+          "name": "M2_3_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 208,
+          "width": 4
+        },
+        {
+          "name": "ERR_M2_3_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 212,
+          "width": 4
+        },
+        {
+          "name": "EP_3_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 216,
+          "width": 4
+        },
+        {
+          "name": "ERR_EP_3_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 220,
+          "width": 4
+        },
+        {
+          "name": "PN_4_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 224,
+          "width": 4
+        },
+        {
+          "name": "ERR_PN_4_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 228,
+          "width": 4
+        },
+        {
+          "name": "M1_4_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 232,
+          "width": 4
+        },
+        {
+          "name": "ERR_M1_4_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 236,
+          "width": 4
+        },
+        {
+          "name": "M2_4_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 240,
+          "width": 4
+        },
+        {
+          "name": "ERR_M2_4_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 244,
+          "width": 4
+        },
+        {
+          "name": "EP_4_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 248,
+          "width": 4
+        },
+        {
+          "name": "ERR_EP_4_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 252,
+          "width": 4
+        },
+        {
+          "name": "PN_5_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 256,
+          "width": 4
+        },
+        {
+          "name": "ERR_PN_5_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 260,
+          "width": 4
+        },
+        {
+          "name": "M1_5_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 264,
+          "width": 4
+        },
+        {
+          "name": "ERR_M1_5_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 268,
+          "width": 4
+        },
+        {
+          "name": "M2_5_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 272,
+          "width": 4
+        },
+        {
+          "name": "ERR_M2_5_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 276,
+          "width": 4
+        },
+        {
+          "name": "EP_5_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 280,
+          "width": 4
+        },
+        {
+          "name": "ERR_EP_5_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 284,
+          "width": 4
+        },
+        {
+          "name": "PN_XID_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 288,
+          "width": 4
+        },
+        {
+          "name": "ERR_PN_XID_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 292,
+          "width": 4
+        },
+        {
+          "name": "M1_XID_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 296,
+          "width": 4
+        },
+        {
+          "name": "ERR_M1_XID_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 300,
+          "width": 4
+        },
+        {
+          "name": "M2_XID_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 304,
+          "width": 4
+        },
+        {
+          "name": "ERR_M2_XID_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 308,
+          "width": 4
+        },
+        {
+          "name": "EP_XID_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 312,
+          "width": 4
+        },
+        {
+          "name": "ERR_EP_XID_FLUX",
+          "form": "E",
+          "unit": "cgs",
+          "null": null,
+          "offset": 316,
+          "width": 4
+        },
+        {
+          "name": "PN_TOT",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 320,
+          "width": 4
+        },
+        {
+          "name": "PN_TOT_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 324,
+          "width": 4
+        },
+        {
+          "name": "M1_TOT",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 328,
+          "width": 4
+        },
+        {
+          "name": "M1_TOT_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 332,
+          "width": 4
+        },
+        {
+          "name": "M2_TOT",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 336,
+          "width": 4
+        },
+        {
+          "name": "M2_TOT_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 340,
+          "width": 4
+        },
+        {
+          "name": "EP_TOT",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 344,
+          "width": 4
+        },
+        {
+          "name": "EP_TOT_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 348,
+          "width": 4
+        },
+        {
+          "name": "PN_1",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 352,
+          "width": 4
+        },
+        {
+          "name": "PN_1_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 356,
+          "width": 4
+        },
+        {
+          "name": "PN_2",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 360,
+          "width": 4
+        },
+        {
+          "name": "PN_2_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 364,
+          "width": 4
+        },
+        {
+          "name": "PN_3",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 368,
+          "width": 4
+        },
+        {
+          "name": "PN_3_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 372,
+          "width": 4
+        },
+        {
+          "name": "PN_4",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 376,
+          "width": 4
+        },
+        {
+          "name": "PN_4_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 380,
+          "width": 4
+        },
+        {
+          "name": "PN_5",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 384,
+          "width": 4
+        },
+        {
+          "name": "PN_5_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 388,
+          "width": 4
+        },
+        {
+          "name": "M1_1",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 392,
+          "width": 4
+        },
+        {
+          "name": "M1_1_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 396,
+          "width": 4
+        },
+        {
+          "name": "M1_2",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 400,
+          "width": 4
+        },
+        {
+          "name": "M1_2_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 404,
+          "width": 4
+        },
+        {
+          "name": "M1_3",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 408,
+          "width": 4
+        },
+        {
+          "name": "M1_3_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 412,
+          "width": 4
+        },
+        {
+          "name": "M1_4",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 416,
+          "width": 4
+        },
+        {
+          "name": "M1_4_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 420,
+          "width": 4
+        },
+        {
+          "name": "M1_5",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 424,
+          "width": 4
+        },
+        {
+          "name": "M1_5_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 428,
+          "width": 4
+        },
+        {
+          "name": "M2_1",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 432,
+          "width": 4
+        },
+        {
+          "name": "M2_1_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 436,
+          "width": 4
+        },
+        {
+          "name": "M2_2",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 440,
+          "width": 4
+        },
+        {
+          "name": "M2_2_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 444,
+          "width": 4
+        },
+        {
+          "name": "M2_3",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 448,
+          "width": 4
+        },
+        {
+          "name": "M2_3_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 452,
+          "width": 4
+        },
+        {
+          "name": "M2_4",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 456,
+          "width": 4
+        },
+        {
+          "name": "M2_4_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 460,
+          "width": 4
+        },
+        {
+          "name": "M2_5",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 464,
+          "width": 4
+        },
+        {
+          "name": "M2_5_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 468,
+          "width": 4
+        },
+        {
+          "name": "PN_XID",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 472,
+          "width": 4
+        },
+        {
+          "name": "PN_XID_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 476,
+          "width": 4
+        },
+        {
+          "name": "M1_XID",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 480,
+          "width": 4
+        },
+        {
+          "name": "M1_XID_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 484,
+          "width": 4
+        },
+        {
+          "name": "M2_XID",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 488,
+          "width": 4
+        },
+        {
+          "name": "M2_XID_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 492,
+          "width": 4
+        },
+        {
+          "name": "EP_XID",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 496,
+          "width": 4
+        },
+        {
+          "name": "EP_XID_ERR",
+          "form": "E",
+          "unit": "cnts/s",
+          "null": null,
+          "offset": 500,
+          "width": 4
+        },
+        {
+          "name": "PN_DET_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 504,
+          "width": 4
+        },
+        {
+          "name": "M1_DET_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 508,
+          "width": 4
+        },
+        {
+          "name": "M2_DET_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 512,
+          "width": 4
+        },
+        {
+          "name": "EP_DET_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 516,
+          "width": 4
+        },
+        {
+          "name": "PN_XID_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 520,
+          "width": 4
+        },
+        {
+          "name": "M1_XID_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 524,
+          "width": 4
+        },
+        {
+          "name": "M2_XID_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 528,
+          "width": 4
+        },
+        {
+          "name": "EP_XID_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 532,
+          "width": 4
+        },
+        {
+          "name": "PN_1_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 536,
+          "width": 4
+        },
+        {
+          "name": "PN_2_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 540,
+          "width": 4
+        },
+        {
+          "name": "PN_3_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 544,
+          "width": 4
+        },
+        {
+          "name": "PN_4_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 548,
+          "width": 4
+        },
+        {
+          "name": "PN_5_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 552,
+          "width": 4
+        },
+        {
+          "name": "M1_1_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 556,
+          "width": 4
+        },
+        {
+          "name": "M1_2_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 560,
+          "width": 4
+        },
+        {
+          "name": "M1_3_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 564,
+          "width": 4
+        },
+        {
+          "name": "M1_4_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 568,
+          "width": 4
+        },
+        {
+          "name": "M1_5_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 572,
+          "width": 4
+        },
+        {
+          "name": "M2_1_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 576,
+          "width": 4
+        },
+        {
+          "name": "M2_2_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 580,
+          "width": 4
+        },
+        {
+          "name": "M2_3_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 584,
+          "width": 4
+        },
+        {
+          "name": "M2_4_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 588,
+          "width": 4
+        },
+        {
+          "name": "M2_5_ML",
+          "form": "E",
+          "unit": " -",
+          "null": null,
+          "offset": 592,
+          "width": 4
+        },
+        {
+          "name": "EP_EXTENT",
+          "form": "E",
+          "unit": "image pixels",
+          "null": null,
+          "offset": 596,
+          "width": 4
+        },
+        {
+          "name": "EP_EXT_ERR",
+          "form": "E",
+          "unit": "image pixels",
+          "null": null,
+          "offset": 600,
+          "width": 4
+        },
+        {
+          "name": "EP_EXT_ML",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 604,
+          "width": 4
+        },
+        {
+          "name": "PN_1_EXP",
+          "form": "E",
+          "unit": "seconds",
+          "null": null,
+          "offset": 608,
+          "width": 4
+        },
+        {
+          "name": "PN_2_EXP",
+          "form": "E",
+          "unit": "seconds",
+          "null": null,
+          "offset": 612,
+          "width": 4
+        },
+        {
+          "name": "PN_3_EXP",
+          "form": "E",
+          "unit": "seconds",
+          "null": null,
+          "offset": 616,
+          "width": 4
+        },
+        {
+          "name": "PN_4_EXP",
+          "form": "E",
+          "unit": "seconds",
+          "null": null,
+          "offset": 620,
+          "width": 4
+        },
+        {
+          "name": "PN_5_EXP",
+          "form": "E",
+          "unit": "seconds",
+          "null": null,
+          "offset": 624,
+          "width": 4
+        },
+        {
+          "name": "PN_1_VIG",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 628,
+          "width": 4
+        },
+        {
+          "name": "PN_2_VIG",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 632,
+          "width": 4
+        },
+        {
+          "name": "PN_3_VIG",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 636,
+          "width": 4
+        },
+        {
+          "name": "PN_4_VIG",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 640,
+          "width": 4
+        },
+        {
+          "name": "PN_5_VIG",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 644,
+          "width": 4
+        },
+        {
+          "name": "M1_1_EXP",
+          "form": "E",
+          "unit": "seconds",
+          "null": null,
+          "offset": 648,
+          "width": 4
+        },
+        {
+          "name": "M1_2_EXP",
+          "form": "E",
+          "unit": "seconds",
+          "null": null,
+          "offset": 652,
+          "width": 4
+        },
+        {
+          "name": "M1_3_EXP",
+          "form": "E",
+          "unit": "seconds",
+          "null": null,
+          "offset": 656,
+          "width": 4
+        },
+        {
+          "name": "M1_4_EXP",
+          "form": "E",
+          "unit": "seconds",
+          "null": null,
+          "offset": 660,
+          "width": 4
+        },
+        {
+          "name": "M1_5_EXP",
+          "form": "E",
+          "unit": "seconds",
+          "null": null,
+          "offset": 664,
+          "width": 4
+        },
+        {
+          "name": "M1_1_VIG",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 668,
+          "width": 4
+        },
+        {
+          "name": "M1_2_VIG",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 672,
+          "width": 4
+        },
+        {
+          "name": "M1_3_VIG",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 676,
+          "width": 4
+        },
+        {
+          "name": "M1_4_VIG",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 680,
+          "width": 4
+        },
+        {
+          "name": "M1_5_VIG",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 684,
+          "width": 4
+        },
+        {
+          "name": "M2_1_EXP",
+          "form": "E",
+          "unit": "seconds",
+          "null": null,
+          "offset": 688,
+          "width": 4
+        },
+        {
+          "name": "M2_2_EXP",
+          "form": "E",
+          "unit": "seconds",
+          "null": null,
+          "offset": 692,
+          "width": 4
+        },
+        {
+          "name": "M2_3_EXP",
+          "form": "E",
+          "unit": "seconds",
+          "null": null,
+          "offset": 696,
+          "width": 4
+        },
+        {
+          "name": "M2_4_EXP",
+          "form": "E",
+          "unit": "seconds",
+          "null": null,
+          "offset": 700,
+          "width": 4
+        },
+        {
+          "name": "M2_5_EXP",
+          "form": "E",
+          "unit": "seconds",
+          "null": null,
+          "offset": 704,
+          "width": 4
+        },
+        {
+          "name": "M2_1_VIG",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 708,
+          "width": 4
+        },
+        {
+          "name": "M2_2_VIG",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 712,
+          "width": 4
+        },
+        {
+          "name": "M2_3_VIG",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 716,
+          "width": 4
+        },
+        {
+          "name": "M2_4_VIG",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 720,
+          "width": 4
+        },
+        {
+          "name": "M2_5_VIG",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 724,
+          "width": 4
+        },
+        {
+          "name": "PN_ONTIME",
+          "form": "E",
+          "unit": "seconds",
+          "null": null,
+          "offset": 728,
+          "width": 4
+        },
+        {
+          "name": "M1_ONTIME",
+          "form": "E",
+          "unit": "seconds",
+          "null": null,
+          "offset": 732,
+          "width": 4
+        },
+        {
+          "name": "M2_ONTIME",
+          "form": "E",
+          "unit": "seconds",
+          "null": null,
+          "offset": 736,
+          "width": 4
+        },
+        {
+          "name": "PN_MASKFRAC",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 740,
+          "width": 4
+        },
+        {
+          "name": "M1_MASKFRAC",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 744,
+          "width": 4
+        },
+        {
+          "name": "M2_MASKFRAC",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 748,
+          "width": 4
+        },
+        {
+          "name": "PN_OFFAX",
+          "form": "E",
+          "unit": "arcmin",
+          "null": null,
+          "offset": 752,
+          "width": 4
+        },
+        {
+          "name": "M1_OFFAX",
+          "form": "E",
+          "unit": "arcmin",
+          "null": null,
+          "offset": 756,
+          "width": 4
+        },
+        {
+          "name": "M2_OFFAX",
+          "form": "E",
+          "unit": "arcmin",
+          "null": null,
+          "offset": 760,
+          "width": 4
+        },
+        {
+          "name": "PN_HR1",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 764,
+          "width": 4
+        },
+        {
+          "name": "PN_HR1_ERR",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 768,
+          "width": 4
+        },
+        {
+          "name": "PN_HR2",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 772,
+          "width": 4
+        },
+        {
+          "name": "PN_HR2_ERR",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 776,
+          "width": 4
+        },
+        {
+          "name": "PN_HR3",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 780,
+          "width": 4
+        },
+        {
+          "name": "PN_HR3_ERR",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 784,
+          "width": 4
+        },
+        {
+          "name": "PN_HR4",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 788,
+          "width": 4
+        },
+        {
+          "name": "PN_HR4_ERR",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 792,
+          "width": 4
+        },
+        {
+          "name": "M1_HR1",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 796,
+          "width": 4
+        },
+        {
+          "name": "M1_HR1_ERR",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 800,
+          "width": 4
+        },
+        {
+          "name": "M1_HR2",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 804,
+          "width": 4
+        },
+        {
+          "name": "M1_HR2_ERR",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 808,
+          "width": 4
+        },
+        {
+          "name": "M1_HR3",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 812,
+          "width": 4
+        },
+        {
+          "name": "M1_HR3_ERR",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 816,
+          "width": 4
+        },
+        {
+          "name": "M1_HR4",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 820,
+          "width": 4
+        },
+        {
+          "name": "M1_HR4_ERR",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 824,
+          "width": 4
+        },
+        {
+          "name": "M2_HR1",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 828,
+          "width": 4
+        },
+        {
+          "name": "M2_HR1_ERR",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 832,
+          "width": 4
+        },
+        {
+          "name": "M2_HR2",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 836,
+          "width": 4
+        },
+        {
+          "name": "M2_HR2_ERR",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 840,
+          "width": 4
+        },
+        {
+          "name": "M2_HR3",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 844,
+          "width": 4
+        },
+        {
+          "name": "M2_HR3_ERR",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 848,
+          "width": 4
+        },
+        {
+          "name": "M2_HR4",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 852,
+          "width": 4
+        },
+        {
+          "name": "M2_HR4_ERR",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 856,
+          "width": 4
+        },
+        {
+          "name": "EP_HR1",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 860,
+          "width": 4
+        },
+        {
+          "name": "EP_HR1_ERR",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 864,
+          "width": 4
+        },
+        {
+          "name": "EP_HR2",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 868,
+          "width": 4
+        },
+        {
+          "name": "EP_HR2_ERR",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 872,
+          "width": 4
+        },
+        {
+          "name": "EP_HR3",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 876,
+          "width": 4
+        },
+        {
+          "name": "EP_HR3_ERR",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 880,
+          "width": 4
+        },
+        {
+          "name": "EP_HR4",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 884,
+          "width": 4
+        },
+        {
+          "name": "EP_HR4_ERR",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 888,
+          "width": 4
+        },
+        {
+          "name": "PN_PILEUP",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 892,
+          "width": 4
+        },
+        {
+          "name": "M1_PILEUP",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 896,
+          "width": 4
+        },
+        {
+          "name": "M2_PILEUP",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 900,
+          "width": 4
+        },
+        {
+          "name": "STACK_DET_ML",
+          "form": "E",
+          "unit": "-",
+          "null": null,
+          "offset": 904,
+          "width": 4
+        },
+        {
+          "name": "STACK_ECF_PN_1",
+          "form": "E",
+          "unit": "cts cm2 erg-1",
+          "null": null,
+          "offset": 908,
+          "width": 4
+        },
+        {
+          "name": "STACK_ECF_PN_2",
+          "form": "E",
+          "unit": "cts cm2 erg-1",
+          "null": null,
+          "offset": 912,
+          "width": 4
+        },
+        {
+          "name": "STACK_ECF_PN_3",
+          "form": "E",
+          "unit": "cts cm2 erg-1",
+          "null": null,
+          "offset": 916,
+          "width": 4
+        },
+        {
+          "name": "STACK_ECF_PN_4",
+          "form": "E",
+          "unit": "cts cm2 erg-1",
+          "null": null,
+          "offset": 920,
+          "width": 4
+        },
+        {
+          "name": "STACK_ECF_PN_5",
+          "form": "E",
+          "unit": "cts cm2 erg-1",
+          "null": null,
+          "offset": 924,
+          "width": 4
+        },
+        {
+          "name": "STACK_ECF_M1_1",
+          "form": "E",
+          "unit": "cts cm2 erg-1",
+          "null": null,
+          "offset": 928,
+          "width": 4
+        },
+        {
+          "name": "STACK_ECF_M1_2",
+          "form": "E",
+          "unit": "cts cm2 erg-1",
+          "null": null,
+          "offset": 932,
+          "width": 4
+        },
+        {
+          "name": "STACK_ECF_M1_3",
+          "form": "E",
+          "unit": "cts cm2 erg-1",
+          "null": null,
+          "offset": 936,
+          "width": 4
+        },
+        {
+          "name": "STACK_ECF_M1_4",
+          "form": "E",
+          "unit": "cts cm2 erg-1",
+          "null": null,
+          "offset": 940,
+          "width": 4
+        },
+        {
+          "name": "STACK_ECF_M1_5",
+          "form": "E",
+          "unit": "cts cm2 erg-1",
+          "null": null,
+          "offset": 944,
+          "width": 4
+        },
+        {
+          "name": "STACK_ECF_M2_1",
+          "form": "E",
+          "unit": "cts cm2 erg-1",
+          "null": null,
+          "offset": 948,
+          "width": 4
+        },
+        {
+          "name": "STACK_ECF_M2_2",
+          "form": "E",
+          "unit": "cts cm2 erg-1",
+          "null": null,
+          "offset": 952,
+          "width": 4
+        },
+        {
+          "name": "STACK_ECF_M2_3",
+          "form": "E",
+          "unit": "cts cm2 erg-1",
+          "null": null,
+          "offset": 956,
+          "width": 4
+        },
+        {
+          "name": "STACK_ECF_M2_4",
+          "form": "E",
+          "unit": "cts cm2 erg-1",
+          "null": null,
+          "offset": 960,
+          "width": 4
+        },
+        {
+          "name": "STACK_ECF_M2_5",
+          "form": "E",
+          "unit": "cts cm2 erg-1",
+          "null": null,
+          "offset": 964,
+          "width": 4
+        },
+        {
+          "name": "VAR_STAT",
+          "form": "E",
+          "unit": null,
+          "null": null,
+          "offset": 968,
+          "width": 4
+        },
+        {
+          "name": "N_BINS",
+          "form": "J",
+          "unit": null,
+          "null": -1,
+          "offset": 972,
+          "width": 4
+        },
+        {
+          "name": "P_VAR",
+          "form": "E",
+          "unit": null,
+          "null": null,
+          "offset": 976,
+          "width": 4
+        },
+        {
+          "name": "VAR_EXP_NO",
+          "form": "J",
+          "unit": null,
+          "null": -1,
+          "offset": 980,
+          "width": 4
+        },
+        {
+          "name": "OM_ID1",
+          "form": "J",
+          "unit": null,
+          "null": -1,
+          "offset": 984,
+          "width": 4
+        },
+        {
+          "name": "OM_ID1_DIST",
+          "form": "E",
+          "unit": "arcsec",
+          "null": null,
+          "offset": 988,
+          "width": 4
+        },
+        {
+          "name": "OM_ID2",
+          "form": "J",
+          "unit": null,
+          "null": -1,
+          "offset": 992,
+          "width": 4
+        },
+        {
+          "name": "OM_ID2_DIST",
+          "form": "E",
+          "unit": "arcsec",
+          "null": null,
+          "offset": 996,
+          "width": 4
+        },
+        {
+          "name": "OM_ID3",
+          "form": "J",
+          "unit": null,
+          "null": -1,
+          "offset": 1000,
+          "width": 4
+        },
+        {
+          "name": "OM_ID3_DIST",
+          "form": "E",
+          "unit": "arcsec",
+          "null": null,
+          "offset": 1004,
+          "width": 4
+        },
+        {
+          "name": "OM_ID4",
+          "form": "J",
+          "unit": null,
+          "null": -1,
+          "offset": 1008,
+          "width": 4
+        },
+        {
+          "name": "OM_ID4_DIST",
+          "form": "E",
+          "unit": "arcsec",
+          "null": null,
+          "offset": 1012,
+          "width": 4
+        },
+        {
+          "name": "OM_ID5",
+          "form": "J",
+          "unit": null,
+          "null": -1,
+          "offset": 1016,
+          "width": 4
+        },
+        {
+          "name": "OM_ID5_DIST",
+          "form": "E",
+          "unit": "arcsec",
+          "null": null,
+          "offset": 1020,
+          "width": 4
+        },
+        {
+          "name": "N_OPT_CO",
+          "form": "J",
+          "unit": null,
+          "null": -1,
+          "offset": 1024,
+          "width": 4
+        },
+        {
+          "name": "OMFLAG",
+          "form": "10A",
+          "unit": null,
+          "null": null,
+          "offset": 1028,
+          "width": 10
+        },
+        {
+          "name": "SPECTRA",
+          "form": "L",
+          "unit": null,
+          "null": null,
+          "offset": 1038,
+          "width": 1
+        },
+        {
+          "name": "TSERIES",
+          "form": "L",
+          "unit": null,
+          "null": null,
+          "offset": 1039,
+          "width": 1
+        },
+        {
+          "name": "PN_FLAG",
+          "form": "12A",
+          "unit": null,
+          "null": null,
+          "offset": 1040,
+          "width": 12
+        },
+        {
+          "name": "M1_FLAG",
+          "form": "12A",
+          "unit": null,
+          "null": null,
+          "offset": 1052,
+          "width": 12
+        },
+        {
+          "name": "M2_FLAG",
+          "form": "12A",
+          "unit": null,
+          "null": null,
+          "offset": 1064,
+          "width": 12
+        },
+        {
+          "name": "EP_FLAG",
+          "form": "12A",
+          "unit": null,
+          "null": null,
+          "offset": 1076,
+          "width": 12
+        },
+        {
+          "name": "RA_CORR",
+          "form": "D",
+          "unit": "deg",
+          "null": null,
+          "offset": 1088,
+          "width": 8
+        },
+        {
+          "name": "DEC_CORR",
+          "form": "D",
+          "unit": "deg",
+          "null": null,
+          "offset": 1096,
+          "width": 8
+        },
+        {
+          "name": "LII_CORR",
+          "form": "D",
+          "unit": "deg",
+          "null": null,
+          "offset": 1104,
+          "width": 8
+        },
+        {
+          "name": "BII_CORR",
+          "form": "D",
+          "unit": "deg",
+          "null": null,
+          "offset": 1112,
+          "width": 8
+        },
+        {
+          "name": "SYSERRCC",
+          "form": "E",
+          "unit": "arcsec",
+          "null": null,
+          "offset": 1120,
+          "width": 4
+        },
+        {
+          "name": "IN_OM_FOV",
+          "form": "7A",
+          "unit": null,
+          "null": null,
+          "offset": 1124,
+          "width": 7
+        }
+      ]
+    },
+    "product_sha256": "7ee2302307c5336d2e4699c4997e711eda197483f6bec9a62598c0490bcf7677",
+    "header_sha256": "d19ede1f11156b75954e4fa5de3d29c7ce0222bcfa816dc64ed88d7be6c78c3e",
+    "prior_outcome_sha256": "c8f746092ab9203dc0e2be4e78e93e13037b10656b733132bb977331ba5168bc",
+    "prior_slot_receipt_sha256": "10fd4dd339100c29fa08af477dbdc1622295b3f6aa24dfb9e4750a33c3adb677",
+    "centre_convention": "published_ICRS_offsets_then_FK5_J2000",
+    "labels": [
+      "published",
+      "north120",
+      "east120",
+      "south120",
+      "west120"
+    ]
+  },
+  "dependencies": {
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C1-2026-09-12-data\\acquire.py": "13184df5d2b9d6e4bae83446316974ba90f46e3412e51c10c40cfbe2f5e2cca5",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\xmm_source_geometry.py": "33f483e69dd78ad64a6b015ecfa02a1e49bf5e2aa8da83f7869f560ecb0059be",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\test_xmm_source_geometry.py": "c013dbc2c7d0599b07b7fb7b76094d26f7ffbc1f7567085d941ed63ae80bf68d",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C1-2026-09-12-data\\test_acquire.py": "d751843243552cfdf3d65558c2ff96cf34c6885832378a02789f6dc23fbb541c",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\xmm_source_rows.py": "33acfedec1328cac1517abc703ee9644c653330648630edb8d96b6235562a927",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\test_xmm_source_rows.py": "4fd4b13b5698c2d40a476d390b780b47cc8e899c2ad6fe39024d6cff9f0ef272",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C5-2026-09-12-data\\inspect_maps.py": "5e7af10b0d8ac5ea8272229efb8a618a392c92d802e6efc401e6b3a54cb5a05b",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-CONTROL-RECOVERY-DRAFT-2026-09-12.md": "7a3e6b99da0a11f547ed43373cb179f90257d9e01a2a2fbdf643cb85bec53c4e",
+    "C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\scripts\\check_e_release.py": "11ad0bef9fd2efae234e204358c6b6730e723ed3dc24c6fe0c345f2ddcfb53dd",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\xmm_structure.py": "96d9497dbdd45d2561fc0bbb27a0c11d6fbad91cd42c0b14191378dd9fd7fa63",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\test_xmm_structure.py": "4b1bb863a29543ecb6957a417b3115155fa74b625c300d86524a4c8ac44af1aa",
+    "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\test_xmm_structure_review.py": "a062ddea63b2c8364395ed61ead99e2cc12031bcec3065aa24ca61dbee1d6b10"
+  },
+  "source_sha256": "bd76ab70fb36ca2ea9c350401ab36991baa8fd30b3bf160c546c788a536ad0e3",
+  "tests_sha256": "0bd5ba02add739318553de6029147e79d625b8dcde8c5180b3674c9088370733",
+  "protocol_sha256": "9b4a86517fdafcccf16c1004808a87a457c4c05b63b51f6e9da5163675330c14",
+  "output_directory": "C:\\Users\\matth\\projects\\astronomy\\DISCOVERY\\XMM-C8-2026-09-12-data",
+  "runtime": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "executable": "C:\\Users\\matth\\projects\\astronomy\\dyson-revet\\.venv\\Scripts\\python.exe",
+    "numpy": "2.5.2",
+    "astropy": "8.0.1"
+  },
+  "caps": {
+    "seconds": 60,
+    "memory": 268435456,
+    "json": 1048576,
+    "reserve": 65536,
+    "selected_bytes_per_pass": 7852,
+    "source_rows": 151,
+    "span_reads": 755
+  }
+}

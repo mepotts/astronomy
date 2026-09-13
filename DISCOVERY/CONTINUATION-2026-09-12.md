@@ -313,3 +313,13 @@ No source-list values have yet been interpreted. CI now includes C8.
 The [EVENTS geometry plan](XMM-EVENT-GEOMETRY-IMPLEMENTATION-PLAN.md) establishes
 unchanged X/Y with FITS origin1; its pure implementation and independent review
 are proceeding with synthetic data only.
+
+[C8 executed](XMM-C8-RESULT-2026-09-12.md) after860115a: one unique corrected
+association, original offset2.8441692831480774arcsec; no other centres within20
+in any aperture.30arcsec disk contacts in published/north/east/south/west are
+0/1/1/0/2 for apertures and1/2/1/3/5 for annuli. All151 coordinate/ID rows valid;
+145extent errors nonfinite retained. Worker+parent+one numerical replay PASS,
+three known passes23556selectedbytes; outcome82cd6df3d673c86059494e9d38a3bfd1312ee9ce8b19301873309dfc995ad16e.
+No extra array pass for postrun review or integration. The stronger recovery
+has not established two usable negatives; do not silently waive that gate.
+Proceed to separately frozen descriptive photon counts, not calibrated recovery.
