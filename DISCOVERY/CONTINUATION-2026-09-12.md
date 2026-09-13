@@ -471,3 +471,33 @@ Next implementation must bind the schema and M0 lineage, validate safe scalar
 rows, retain duplicatecounts and avoid claiming completeness without evidence.
 No actual query for RXJ has been made. Exact runtime/protocol/tests and review
 still need freezing before execution; later joint-region calibration remains.
+
+PR25 merged2026-09-13T04:42:35Z as5650df46df8db506943f134e902a2bafea563895
+after all12CIchecks passed on dac736f9e6bda51ce54248b65a3aeab0821020b1.
+Current branch `codex/xmm-rxj-products-sep13`. Postmerge rootC9 binding/artifact/
+ledger and M0 binding/HTTP/STOP closure PASS underproduct/request tripwires;
+no extra numerical pass or network request. ExplicitLF attrs preserveplanhashes.
+Author is preparing M1's bounded ESAproduct-name runtime; no query yet.
+
+Read-only calibration-environment check: owner-context WSL lists Ubuntu and
+docker-desktop. In Ubuntu's login-shell PATH, command-v found no sas,evselect,
+epiclccorr or cifbuild; /opt was empty and /usr/local/bin held cagent/kubectl.
+This is limited command/standard-location inventory, not an exhaustive absence
+proof or installation requirement. No software/calibration data installed and
+no calibration task executed. The sandbox's initial WSL listing was access
+denied; authorized owner-context enumeration succeeded.
+
+[M1 prospective protocol](XMM-RXJ-M1-2026-09-13.md) and
+[independent review](XMM-RXJ-M1-REVIEW.md) now complete:11tests/Ruff PASS,
+12dependency metadata-only binding/JSONroundtrip PASS; root also verified all
+dependency bytes against their committed versions. Root read full finalsource,
+tests/protocol/review. Initial seven-literal adapter assumption repaired to
+six before any request, C1controls rejected, M0NEXT restored to committedLF
+b4358d05d0d1cd4cf945867514b9c5bd3c6bd859dfe17069b5b52d86a8842e14.
+ExplicitLF attrs cover both newboundrootdocs. Runtime
+953d28ef3c079faf11a660bdae8c7c32cd1d8e0259c72bde9c0f794d30b5fb91;
+tests0885a3b200f4a4f1bd8281b963e19362b2bce41e995ebc7aafc0d79df5ae57ae;
+protocol64fe04e56f8dac954a1394ab65934fd8eb4d88797d0b4701fe645d0a2c009fc4.
+Root adopts one1MiB+1/30sESAmetadataGET after exact-bytecommitfreeze under
+ongoing authority. No products/secondcountquery/unknownsource search.
+Maximumlabel RETURNED_PRODUCT_NAME_RECORDS_ONLY_COMPLETENESS_UNKNOWN.
