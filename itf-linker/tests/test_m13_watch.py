@@ -148,12 +148,14 @@ def test_workflow_cannot_publish_a_payload_or_push_runtime_state():
         "submission-tierA.json",
         "git push",
         "contents: write",
-        "issues: write",
         "gh issue",
         "gh label",
     ):
         assert forbidden not in workflow
     assert "actions/cache/save" in workflow
+    assert "issues: write" in workflow
+    assert "steps.notify.outcome == 'success'" in workflow
+    assert "python scripts/github_itf_alert.py" in workflow
     assert "candidate_changed" in workflow
     assert "freshness_alert" in workflow
     assert "if: always() && steps.watch.outcome == 'success'" in workflow

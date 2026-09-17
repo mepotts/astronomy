@@ -274,6 +274,13 @@ def main() -> None:
     if args.github_output:
         with args.github_output.open("a", encoding="utf-8") as fh:
             fh.write(f"candidate_changed={'true' if candidate_changed else 'false'}\n")
+            event_key = fingerprint(json.dumps({
+                'previous_snapshot': previous_snapshot,
+                'before': sorted(previous_ready), 'after': sorted(ready),
+                'queue': current_queue,
+            }, sort_keys=True))
+            fh.write(f"candidate_event_key={event_key}\n")
+            fh.write(f"first_run={'true' if first_run else 'false'}\n")
             fh.write(f"snapshot_status={status}\n")
             fh.write(f"snapshot_advanced={'true' if status == 'advanced' else 'false'}\n")
             fh.write(f"freshness_alert={'true' if freshness_alert else 'false'}\n")
