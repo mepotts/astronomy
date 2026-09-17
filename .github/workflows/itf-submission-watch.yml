@@ -31,6 +31,7 @@ concurrency:
 
 permissions:
   contents: read
+  issues: write # Counts-only comments on the configured ITF alert issue.
 
 jobs:
   watch:
@@ -130,11 +131,30 @@ jobs:
         run: |
           echo "::warning title=ITF snapshot stale::Snapshot $SNAPSHOT is $STATUS and failed the freshness check. This is archive health, not a candidate result."
 
+      - name: Send deduplicated GitHub email and phone-push alert
+        id: notify
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ITF_ALERT_ISSUE: ${{ vars.ITF_ALERT_ISSUE }}
+          WATCH_OUTCOME: ${{ steps.watch.outcome }}
+          FRESHNESS_ALERT: ${{ steps.watch.outputs.freshness_alert }}
+          FIRST_RUN: ${{ steps.watch.outputs.first_run }}
+          SNAPSHOT: ${{ steps.watch.outputs.snapshot }}
+          READY: ${{ steps.watch.outputs.ready }}
+          HELD: ${{ steps.watch.outputs.held }}
+          NEW_READY: ${{ steps.watch.outputs.new_ready }}
+          CANDIDATE_EVENT_KEY: ${{ steps.watch.outputs.candidate_event_key }}
+        run: python scripts/github_itf_alert.py
+
+      # Comments retain delivery receipts even if the observation cache is evicted.
+      # Advance the watch baseline only after successful delivery/no-op, so a failed
+      # comment can be retried against the old observation on the next run.
       # Unique keys make every successful observation durable; restore-keys selects the
       # newest prior state on the next run. This happens even when candidate counts did not
       # change, so snapshot history is never conditional on a notification.
       - name: Persist private watch state
-        if: always() && steps.watch.outcome == 'success'
+        if: always() && steps.watch.outcome == 'success' && steps.notify.outcome == 'success'
         uses: actions/cache/save@v4
         with:
           path: ${{ runner.temp }}/itf-submission-watch-state.json
