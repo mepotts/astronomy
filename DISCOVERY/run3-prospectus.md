@@ -21,10 +21,11 @@ archival reduction, cross-matching, injection-recovery, reproduction, watching. 
 economics of every avenue below relative to a typical outsider:
 
 **Where agent labor compounds** (weight these up):
-- **Archival pipelines and reruns** — the exosat-rv model: agents rebuilt a Nature result from raw
-  public spectra over ~29 milestones. Every avenue whose bottleneck is "someone has to process the
-  pile" (CRIRES+ epochs, MWA/ASKAP imaging, SPHEREx forced photometry, DASCH controls) is
-  effectively discounted for us.
+- **Archival pipelines and reruns** — the exosat-rv model: agents built a separately implemented
+  extraction of public spectra and used it for a paper-calibrated, conditional reanalysis of a Nature
+  result over ~29 milestones (the later M37 audit: not an independent reproduction). Every avenue
+  whose bottleneck is "someone has to process the pile" (CRIRES+ epochs, MWA/ASKAP imaging,
+  SPHEREx forced photometry, DASCH controls) is effectively discounted for us.
 - **Cross-match sweeps** — joins are embarrassingly parallel and verification-heavy; agents excel at
   both. The matrix below is the shopping list.
 - **False-positive triage at scale** — the house specialty (M9's control catching a fake win, the
@@ -76,15 +77,15 @@ August–November is for building and validating against pre-release data; Decem
 ## The fourteen, ranked
 
 Ordered by expected discovery-per-effort **for this portfolio under the agent-leverage lens**. Tier 1
-reuses validated pipelines on fresh public data; Tier 2 is new datasets with strong method fit;
+reuses existing pipelines on fresh public data; Tier 2 is new datasets with strong method fit;
 Tier 3 is new domains worth a scoped pilot.
 
-### Tier 1 — validated pipelines, fresh data
+### Tier 1 — existing pipelines, fresh data
 
 **1. New public CRIRES+ epochs on the exosat-rv roster** · *extends exosat-rv · competition: no known
 outside pipeline · embargo calendar: Sep 25–Oct 1, then Dec 19 → May 2*
 ⚠️ **Corrected in place by M30 ground-truthing (2026-08-14, same day —
-[`M30-RESULTS.md`](https://github.com/mepotts/exosat-rv/blob/main/M30-RESULTS.md)).** The sweep's three headline blocks were
+[`M30-RESULTS.md`](https://github.com/mepotts/exosat-rv/blob/main/docs/milestones/M30-RESULTS.md)).** The sweep's three headline blocks were
 all already in the project ledger, and none of its counts or "public since" dates survived per-night
 verification: the "90-exposure HIP 65426" block is M22's already-consumed K2192 series (134 frames);
 the "300-exposure CD-35 2722" block is the known, shelved M4368 thermal-IR deep pair (not K-band, and

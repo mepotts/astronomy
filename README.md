@@ -58,43 +58,38 @@ ITF's daily archive continues; Rubin/CHIME remain input-limited. PTA full paper
 is the selected publication unit. Dyson E (September 9) and Gaia DR4 (planned
 December 2) remain future experiments. No scientific submission or new discovery.
 
-### [`exosat-rv`](https://github.com/mepotts/exosat-rv) — an independent raw-to-RV pipeline for imaged companions
+### [`exosat-rv`](https://github.com/mepotts/exosat-rv) — a paper-calibrated, conditional reanalysis of the CD-35 2722 B exosatellite claim
 
 > **This project now lives in its own repository:**
 > **[github.com/mepotts/exosat-rv](https://github.com/mepotts/exosat-rv)** — the drafts, the
-> reduction drivers, the injection harness and blind period search, and the full milestone
-> record with its retractions. That is the repository the papers cite, and the only copy;
-> the working tree that used to sit here has been removed. The summary below stays as the
-> portfolio's account of the work, and every link in it points there.
+> reduction drivers, the fitter-stage injection tests and period-search scripts, and the full
+> milestone record with its retractions. That is the repository the drafts cite, and the only
+> copy; the working tree that used to sit here has been removed. The summary below stays as
+> the portfolio's account of the work, and every link in it points there.
 
-The deepest project here: an independent reproduction of Hoy et al. 2026
-([Nature](https://www.nature.com/articles/s41586-026-10751-w)), which measured the
-radial velocity of the imaged companion CD-35 2722 B *itself* — not its host star —
-and reported a planetary-mass satellite around it. The pipeline is not a reconstruction of
-theirs, which has never been published — it is an independent route to the same quantity,
-and it transfers unmodified across three wavelength settings and both observing modes.
+A reanalysis of Hoy et al. 2026 ([Nature](https://www.nature.com/articles/s41586-026-10751-w)),
+which measured the radial velocity of the imaged companion CD-35 2722 B *itself* — not its host
+star — and reported a planetary-mass satellite around it. A separately implemented CR2RES/VIPER
+extraction, calibrated against the published RV series and therefore **not an independent
+reproduction**, recovers the reported ~171-day signal on the 17 nights retained by an internal
+quality screen; with all 18 nights the BERV-adjusted searches are compatible with noise.
 
-**The primary conclusion reproduces — from the raw data.** An independent
-re-reduction (ESO cr2res + viper forward modeling) reaches 70–90 m/s rms against
-the paper's published per-epoch RVs, and a blind period search re-detects the
-~171-day signal at rank 1 with a barycentric nuisance covariate in the model, on
-two independent reduction routes. **The claimed second satellite does not survive
-the paper's own table**: nested sampling gives it negative evidence in 10 of 10
-configurations, against the paper's reported +2.6.
+- **Second satellite:** not reproduced under this project's stated models and priors (a
+  different sampler was not tested).
+- **eta Tel B:** a same-setting nodding control with no detected signal. Its sensitivity curve is
+  pointwise, circular-orbit and conditional on fitter-stage transmission, not an unconditional
+  upper limit.
+- **Other observing modes:** transfer is unproven. The former "staring" sample was HiRISE fibre
+  data processed with a slit recipe, and those claims are withdrawn; the beta Pic extraction is
+  host-dominated and is not a companion RV measurement (see the
+  [target ledger](https://github.com/mepotts/exosat-rv/blob/main/docs/target-queue.md)).
+- **Status:** no discovery is claimed and nothing has been submitted. Read the
+  [M37 audit](https://github.com/mepotts/exosat-rv/blob/main/docs/milestones/M37-RESULTS.md) first.
 
-The validated method was then pointed at every archival CRIRES+
-companion-spectroscopy campaign a coordinate census could find. Eighteen systems
-adjudicated — one confirmation, one contradiction, four upper limits (including
-one on **eta Tel B** for which no previous measurement is known:
-msini ≳ 0.51–1.27 M_Jup at 90% across P = 20–300 d), one contamination-limited,
-four data-limited — plus a measured resolution gate for slit spectroscopy and an
-open front ([M27](https://github.com/mepotts/exosat-rv/blob/main/docs/target-queue.md)): the discovery that the
-archive's "staring" datasets are fiber-fed starlight-suppressed HiRISE
-observations, including six public nights of beta Pic b.
-
-Five drafts live in [`docs/paper/`](https://github.com/mepotts/exosat-rv/tree/main/docs/paper), each with a rendered
-`.html` alongside its source;
-[`LESSONS.md`](https://github.com/mepotts/exosat-rv/blob/main/LESSONS.md) is the consolidated trap catalog.
+The manuscript drafts in [`docs/paper/`](https://github.com/mepotts/exosat-rv/tree/main/docs/paper),
+each with a rendered `.html` alongside its source, are work in progress; none is
+submission-ready. [`LESSONS.md`](https://github.com/mepotts/exosat-rv/blob/main/docs/LESSONS.md)
+is the consolidated trap catalog.
 
 ### [`itf-linker/`](itf-linker/) — linking the Minor Planet Center's orphan observations
 
