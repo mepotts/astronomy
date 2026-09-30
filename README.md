@@ -99,8 +99,11 @@ grid, Find_Orb orbit fitting validated round-trip against JPL Horizons, and a
 vetting gate (MPChecker / SkyBoT / SBIDENT) so nothing known is "rediscovered."
 Validated by hiding the linkages the file already contains: the grid re-derives
 **93.0%** of them exactly, and recovers 11 of 13 real objects spanning an Atira to
-TNOs. Links proposed here have since been independently published by the MPC
-(30 at last count — external validation, claimed as nothing more). A daily
+TNOs. Attributions held in this project's ledger (none submitted) have since been
+checked against the MPC's own processing: of the PASS rows whose tracklets the MPC has
+since linked and removed from the ITF, 68 of 68 went to exactly the object the ledger
+named ([M11](itf-linker/M11-RESULTS.md), 2026-08-23; external validation, claimed as
+nothing more). A daily
 local snapshot pipeline keeps the pool current. M13 adds a stale-queue watcher and
 builds a human-review payload, but has no submission capability; the scheduled watch
 only runs from the repository's default branch. **No MPC submission is automated.**
@@ -137,8 +140,8 @@ no account was created. The operational handoff and exact caveat are in
 
 | Project | What it does | Status |
 |---|---|---|
-| [`pta-explainer/`](pta-explainer/) | Pulsar-timing-array / Hellings–Downs interactive explainer — **[live demo](https://mepotts.github.io/pta-explainer/)** | Deployed. HD curve, source sandbox, and a monopole/dipole/quadrupole overlay showing why only the quadrupole implies gravitational waves. 64 tests |
-| [`seti-ellipsoid-broker/`](seti-ellipsoid-broker/) | Fuses transient alerts × Gaia DR3 into nightly SN 1987A ellipsoid-crossing target lists | Live, externally validated — crossing epochs reproduce all 217 targets of Nilipour+2023 to <5×10⁻⁴ yr. Account-free Gaia TAP path. 84 tests. RNAAS tool note drafted |
+| [`pta-explainer/`](pta-explainer/) | Pulsar-timing-array / Hellings–Downs interactive explainer — **[live demo](https://mepotts.github.io/pta-explainer/)** | Deployed: HD curve and source sandbox. A monopole/dipole overlay (showing why only the quadrupole implies gravitational waves) is in the source but not yet in the live build, which was deployed 2026-07-18. 64 tests |
+| [`seti-ellipsoid-broker/`](seti-ellipsoid-broker/) | Fuses transient alerts × Gaia DR3 into ranked SN 1987A ellipsoid-crossing target lists | Offline core complete; runs on a user-supplied alert CSV against anonymous (account-free) Gaia DR3 TAP, while broker auto-ingest (Lasair, ASAS-SN, CHIME) remains stubs. Crossing epochs reproduce all 217 targets of Nilipour+2023 to <5×10⁻⁴ yr, a check of the math against published values rather than of a running service. 84 tests. RNAAS tool note drafted |
 | [`adql-copilot/`](adql-copilot/) | Schema-aware ADQL linter for Virtual-Observatory TAP endpoints | Correctness-hardened against the real 6,614-column Gaia `TAP_SCHEMA`; honest unchecked-identifier reporting. 46 tests. JOSS paper drafted in [`adql-copilot/paper/`](adql-copilot/paper/) |
 
 ## The lab notebook
