@@ -3,60 +3,20 @@
 [![CI](https://github.com/mepotts/astronomy/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mepotts/astronomy/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Independent astronomy research built on public data — no telescope and no
-institutional affiliation. The projects are designed for a laptop or workstation and
-document the archive inputs, code, and milestone evidence used for each result. Some
-reproductions also require bulk data or specialist environments that are deliberately
-kept outside Git; each project documents those requirements rather than pretending there
-is one repository-wide build.
+Independent astronomy research on public archive data, with no telescope and no institutional
+affiliation: a portfolio of separate projects (minor-planet linking, archival radial-velocity
+and pulsar-timing reanalyses, transient triage, small tools), each with its own code and
+milestone record. **The work was built by directing AI coding agents (Claude Code) under
+standing verification gates** (positive controls, injection-recovery, scoring against published
+values), with the human author setting direction and approving every outward action; see
+[AI-CHECKLIST.md](AI-CHECKLIST.md). No discovery is claimed and nothing has been submitted;
+corrections and retractions stay on the record.
 
-Two conventions distinguish this repository. **Every claim is gated**: results are
-scored against published values or positive controls, adopted changes must pass
-injection-recovery, and nothing is submitted anywhere automatically. And **every
-dead end stays on the record**: retractions, corrections, and approaches that
-failed are indexed, not deleted — for an independent researcher, the audit trail
-*is* the credential. See [PUBLISHING.md](PUBLISHING.md) for how this work is
-headed into the formal record.
+Dated status is in [STATUS.md](STATUS.md); publication plans are in [PUBLISHING.md](PUBLISHING.md).
 
 ---
 
 ## Research
-
-**Current state (2026-09-12):** [latest execution](DISCOVERY/EXECUTION-2026-09-12.md).
-ITF's stale daily feed recovered: 18 ready / 8 held, two newly held after tracklet
-disappearance. E's public-release gate passed, but its unchanged frozen experiment
-failed at F560W centroiding. Independent audit confirms a saddle fit on finite data;
-no validated contrast or discovery. Portfolio follow-up is now weekly; ITF stays daily.
-
-**Continued discovery work:** [new-route evidence and decisions](DISCOVERY/SEARCH-2026-09-12.md).
-[TESS](tess-short-eclipses/M0b-RESULT-2026-09-12.md) recovered three published
-eclipse periods and near-target pixel signals. Its
-[1,920-trial localization experiment](tess-short-eclipses/M2p-RESULT-2026-09-12.md)
-now fails stress rules in two controls; the cleaner control remains incompletely
-validated. No unknown-source scan has begun.
-[VLASS](vlass-pilot/README.md) recovered a known radio source and established a
-12-source same-field comparison ensemble in three epochs. Its subsequent
-common-beam validation stopped on control recovery and empirical noise gates;
-neither route is discovery-ready.
-[ITF notification audit](DISCOVERY/ITF-NOTIFICATIONS-2026-09-12.md): daily archive
-and existing-queue monitoring are automated, but a dedicated discovery text/email
-sender is not configured or delivery-verified.
-
-**September 8 historical snapshot:**
-DASCH's unchanged detector recovered 0/3 published long-term events; a separately
-specified bracketed-block method also failed its coverage/recovery gates. Neither
-is ready to scale. ITF's September 8 publisher/watch are healthy (20 ready / 6 held
-unchanged). Dyson E's September 9 experiment is next; no new discovery or submission.
-
-**September 7:** see the
-[completed experiments and actual discovery screen](DISCOVERY/EXECUTION-2026-09-07.md).
-DASCH passed a limited matched-colour holdout gate, then screened 42 sources:
-361 eligible windows, zero leads. CCOR measured known-star pixels but failed
-two frames' training-count gate. A prospectively selected DR11 field gains six
-r exposures but only 5.47% lower empirical aperture scatter, below its 10% gate.
-ITF's daily archive continues; Rubin/CHIME remain input-limited. PTA full paper
-is the selected publication unit. Dyson E (September 9) and Gaia DR4 (planned
-December 2) remain future experiments. No scientific submission or new discovery.
 
 ### [`exosat-rv`](https://github.com/mepotts/exosat-rv) — a paper-calibrated, conditional reanalysis of the CD-35 2722 B exosatellite claim
 
