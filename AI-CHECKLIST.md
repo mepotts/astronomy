@@ -23,7 +23,7 @@ Model versions per stage are recorded in the repository commit trail
 
 ## Paper 1: CD-35 2722 B paper-calibrated reanalysis + eta Tel B sensitivity note
 
-*This project now lives at [github.com/mepotts/exosat-rv](https://github.com/mepotts/exosat-rv); the drafts are in its `docs/paper/` and none is submission-ready (see its [M37 audit](https://github.com/mepotts/exosat-rv/blob/main/docs/milestones/M37-RESULTS.md)). The `exosat-rv/...` paths in the evidence column below are relative to that repository (its milestone records now live under `docs/milestones/`, and `LESSONS.md` and `HANDOFF.md` under `docs/`), which also carries its own copy of this checklist — that is the one its papers link to.*
+*This project now lives at [github.com/mepotts/exosat-rv](https://github.com/mepotts/exosat-rv). The drafts are in its `docs/paper/` and none is submission-ready (see its [M37 audit](https://github.com/mepotts/exosat-rv/blob/main/docs/milestones/M37-RESULTS.md)). The `exosat-rv/...` paths in the evidence column below are relative to that repository. Its milestone records now live under `docs/milestones/`, and `LESSONS.md` and `HANDOFF.md` live under `docs/`. It also carries its own copy of this checklist, and that is the one its papers link to.*
 
 | Research stage | Level | Notes and evidence |
 |---|:---:|---|
@@ -33,7 +33,7 @@ Model versions per stage are recorded in the repository commit trail
 | Reduction and pipeline engineering | 4 | cr2res cascade, ADP→cr2res converter, viper configuration: `exosat-rv/docs/viper-runbook.md`, `scripts/` |
 | Method and validation design | 3 | Injection harness (shift-the-template rule), amplitude-matched controls, scoring law designed by agent, adopted as a standing human-approved contract: `exosat-rv/M12-RESULTS.md` §8 |
 | Experiment execution | 4 | All runs, including failed ones; run scripts committed: `exosat-rv/scripts/injection/`, `scripts/cr2res/` |
-| Statistical analysis | 3 | Nested sampling; period search with a BERV covariate, which is target-aware rather than paper-blind (published RVs are not fitted, but it imports the published epochs, hard-codes the published-period window, and follows extraction choices made with the paper visible; M37 §4): `exosat-rv/scripts/nested_orbits.py`, `scripts/injection/blind_search.py` (file name predates M37); verdicts gated before adoption |
+| Statistical analysis | 3 | Nested sampling and a period search with a BERV covariate. The period search is target-aware and is not paper-blind (M37 §4). Although the published RVs are not fitted, it imports the published epochs, hard-codes the published-period window, and follows extraction choices made with the paper visible. Evidence: `exosat-rv/scripts/nested_orbits.py`, `scripts/injection/blind_search.py` (the file name predates M37). Verdicts are gated before adoption |
 | Interpretation and claims | 3 | Agent drafts every verdict; adoption requires the mechanical gates plus survival of human challenge. Retractions and corrections stay in the record: `exosat-rv/LESSONS.md`, `HANDOFF.md` |
 | Figure generation | 4 | `exosat-rv/scripts/m16_figures.py`, `m18_figures.py`; manuscript assembled by `m16_build_paper.py`, never hand-edited |
 | Manuscript first draft | 4 | Generated from `docs/paper/draft.template.html` |

@@ -21,7 +21,7 @@ archival reduction, cross-matching, injection-recovery, reproduction, watching. 
 economics of every avenue below relative to a typical outsider:
 
 **Where agent labor compounds** (weight these up):
-- **Archival pipelines and reruns** — the exosat-rv model: agents built a separately implemented
+- **Archival pipelines and reruns:** the exosat-rv model. Agents built a separately implemented
   extraction of public spectra and used it for a paper-calibrated, conditional reanalysis of a Nature
   result over ~29 milestones (the later M37 audit: not an independent reproduction). Every avenue
   whose bottleneck is "someone has to process the pile" (CRIRES+ epochs, MWA/ASKAP imaging,
@@ -77,10 +77,10 @@ August–November is for building and validating against pre-release data; Decem
 ## The fourteen, ranked
 
 Ordered by expected discovery-per-effort **for this portfolio under the agent-leverage lens**. Tier 1
-reuses existing pipelines on fresh public data; Tier 2 is new datasets with strong method fit;
+reuses existing pipelines on fresh public data. Tier 2 is new datasets with strong method fit.
 Tier 3 is new domains worth a scoped pilot.
 
-### Tier 1 — existing pipelines, fresh data
+### Tier 1: existing pipelines, fresh data
 
 **1. New public CRIRES+ epochs on the exosat-rv roster** · *extends exosat-rv · competition: no known
 outside pipeline · embargo calendar: Sep 25–Oct 1, then Dec 19 → May 2*

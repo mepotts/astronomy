@@ -24,9 +24,9 @@ the first rung, and free. ≤1,500 words, one figure *or* one table, moderated b
 editor but not peer-reviewed, published within ~72 hours, DOI-assigned and indexed
 in ADS (citable forever). Independent affiliations are accepted. Right-sized for:
 an eta Tel B sensitivity note, the ITF-linker method note, the seti-ellipsoid tool
-note — drafts for the latter two already exist in-repo; the eta Tel B draft lives in
-[`exosat-rv`](https://github.com/mepotts/exosat-rv) and is audit-corrected but not
-submission-ready (M37).
+note. Drafts for the latter two already exist in-repo. The eta Tel B draft lives in
+[`exosat-rv`](https://github.com/mepotts/exosat-rv). It was corrected after the M37 audit
+and is not submission-ready.
 
 **[The Open Journal of Astrophysics](https://astro.theoj.org/)** — free,
 peer-reviewed, arXiv-overlay: the paper lives on arXiv and OJA runs real referee
@@ -36,15 +36,15 @@ below).
 
 **Nature Matters Arising** — the formal channel for a substantive challenge to a
 published Nature paper. The earlier plan was to use it for the CD-35 2722 B
-second-satellite result, but that result is narrower than a contradiction: the second
-satellite was not reproduced under this project's stated models and priors, and a
-different sampler was not tested. M37 also records that manuscript submission remains
-blocked by the project's scientific and reproducibility limits. Free to submit; the
+second-satellite result. The second satellite was not reproduced under this project's
+stated models and priors, and a different sampler was not tested. That is narrower than
+a contradiction. M37 also records that manuscript submission remains blocked by the
+project's scientific and reproducibility limits. It is free to submit, and the
 original authors are shown the submission and respond. Etiquette (and the journal) expect
-prior correspondence with the authors — the drafted, unsent query letter in
+prior correspondence with the authors. The drafted, unsent query letter in
 [`docs/paper/author-query-draft.md`](https://github.com/mepotts/exosat-rv/blob/main/docs/paper/author-query-draft.md)
-(corrected after M37; it asks questions and does not claim an independent reproduction)
-is step one of that path, not just politeness.
+(corrected after M37, it asks questions and does not claim an independent reproduction)
+is step one of that path.
 
 **Mainstream journals** (AJ/ApJ, A&A, MNRAS, PASP) — all accept "Independent
 Researcher, City" as an affiliation; review is on the work. Publication charges
@@ -97,7 +97,7 @@ root document assumes every project follows the same route.
 **Exposed deliberately, as policy.** Dead ends, retractions, correction logs,
 `LESSONS.md`, the milestone documents, and the pipeline code with bounded evidence bundles
 (for `exosat-rv`, raw exposures, reduced spectra and fitted templates remain external, so the
-raw-to-RV run cannot be replayed from a clone; see its M37 §5).
+raw-to-RV run cannot be replayed from a clone, as M37 §5 records).
 For an independent researcher the transparent audit trail is the credential —
 it is the thing an institutional byline would otherwise vouch for.
 
@@ -108,9 +108,9 @@ it is the thing an institutional byline would otherwise vouch for.
   until the priority question is decided by a person, not a pipeline (the
   standing example: HIP 65426 b,
   [`docs/milestones/M20-RESULTS.md`](https://github.com/mepotts/exosat-rv/blob/main/docs/milestones/M20-RESULTS.md)
-  §5 in `exosat-rv` — made public 2026-08-13 by explicit decision; M20–M23 are
+  §5 in `exosat-rv`, made public 2026-08-13 by explicit decision. M20 to M23 are
   historical records that M37 has since superseded, so the example illustrates the
-  priority question, not a current result).
+  priority question only).
 - **Speculation about other groups' unpublished or embargoed data.** Embargo
   dates are public facts and may be listed; inferences about what rivals will
   find are not for the record.
@@ -220,8 +220,8 @@ outward action.
 
 | Work | State | Natural venue |
 |---|---|---|
-| eta Tel B sensitivity note | Same-setting nodding control with no detected signal; the curve is pointwise, circular-orbit and conditional on fitter-stage transmission, not an unconditional upper limit (M37). The audit-corrected draft lives in the separate [`exosat-rv`](https://github.com/mepotts/exosat-rv) repository; not submission-ready, not submitted | RNAAS, or fold into the full paper |
-| CD-35 2722 B paper-calibrated reanalysis (second satellite not reproduced under the stated models and priors) | Drafts live in [`exosat-rv`](https://github.com/mepotts/exosat-rv) and are not submission-ready: M37 finds this is not an independent reproduction, and the ~171-day signal holds on the 17 screened nights only. Author correspondence and any submission remain human gates | No venue selected while submission is blocked; Nature Matters Arising or a full OJA/journal paper were the earlier candidates |
+| eta Tel B sensitivity note | Same-setting nodding control with no detected signal. The curve is pointwise, circular-orbit and conditional on fitter-stage transmission. It is not an unconditional upper limit (M37). The draft, corrected after the M37 audit, lives in the separate [`exosat-rv`](https://github.com/mepotts/exosat-rv) repository. It is not submission-ready and has not been submitted | RNAAS, or fold into the full paper |
+| CD-35 2722 B paper-calibrated reanalysis (second satellite not reproduced under the stated models and priors) | Drafts live in [`exosat-rv`](https://github.com/mepotts/exosat-rv) and are not submission-ready: M37 finds this is not an independent reproduction, and the ~171-day signal holds on the 17 screened nights only. Author correspondence and any submission remain human gates | No venue selected while submission is blocked. Nature Matters Arising or a full OJA/journal paper were the earlier candidates |
 | ITF-linker method + validation | RNAAS draft in `itf-linker/docs/`; M13 prepares a local review payload and publicly reports counts/freshness only; M14 stopped procedurally and supplies no discovery result or queue; the archive DOI plus every MPC/journal action remain human gates | RNAAS |
 | TNS low-latitude triage | M2 historical front closed; the 37-object review list was never a submission queue. The newest proved run sealed its TNS input but produced no pool/candidate count after a required Fink class timed out; nothing sent | No venue selected |
 | eROSITA DR2 fader census | Draft complete and not submitted; archive scope, bibliographic check, and author metadata remain open | RNAAS |

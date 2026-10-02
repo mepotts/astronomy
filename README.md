@@ -1,54 +1,55 @@
-# Astronomy — independent research on public archives
+# Astronomy: independent research on public archives
 
 [![CI](https://github.com/mepotts/astronomy/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mepotts/astronomy/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Independent astronomy research on public archive data, with no telescope and no institutional
-affiliation: a portfolio of separate projects (minor-planet linking, archival radial-velocity
-and pulsar-timing reanalyses, transient triage, small tools), each with its own code and
-milestone record. **The work was built by directing AI coding agents (Claude Code) under
-standing verification gates** (positive controls, injection-recovery, scoring against published
-values), with the human author setting direction and approving every outward action; see
-[AI-CHECKLIST.md](AI-CHECKLIST.md). No discovery is claimed and nothing has been submitted;
-corrections and retractions stay on the record.
+affiliation. It is a portfolio of separate projects, each with its own code and milestone record.
+The projects cover minor-planet linking, archival radial-velocity and pulsar-timing reanalyses,
+transient triage, and small tools.
 
-Dated status is in [STATUS.md](STATUS.md); publication plans are in [PUBLISHING.md](PUBLISHING.md).
+Claude Code agents wrote the code under standing verification gates (positive controls,
+injection-recovery, scoring against published values). I set the direction and approve every
+outward action. See [AI-CHECKLIST.md](AI-CHECKLIST.md).
+
+No discovery is claimed and nothing has been submitted. Corrections and retractions stay on the record.
+
+Dated status is in [STATUS.md](STATUS.md). Publication plans are in [PUBLISHING.md](PUBLISHING.md).
 
 ---
 
 ## Research
 
-### [`exosat-rv`](https://github.com/mepotts/exosat-rv) — a paper-calibrated, conditional reanalysis of the CD-35 2722 B exosatellite claim
+### [`exosat-rv`](https://github.com/mepotts/exosat-rv): a paper-calibrated, conditional reanalysis of the CD-35 2722 B exosatellite claim
 
-> **This project now lives in its own repository:**
-> **[github.com/mepotts/exosat-rv](https://github.com/mepotts/exosat-rv)** — the drafts, the
-> reduction drivers, the fitter-stage injection tests and period-search scripts, and the full
-> milestone record with its retractions. That is the repository the drafts cite, and the only
-> copy; the working tree that used to sit here has been removed. The summary below stays as
-> the portfolio's account of the work, and every link in it points there.
+> **This project now lives in its own repository:** [github.com/mepotts/exosat-rv](https://github.com/mepotts/exosat-rv).
+> It holds the drafts, the reduction drivers, the fitter-stage injection tests and period-search
+> scripts, and the full milestone record with its retractions. The drafts cite that repository,
+> and it holds the only copy. The working tree that used to sit here has been removed. The summary
+> below stays as the portfolio's account of the work, and every link in it points there.
 
-A reanalysis of Hoy et al. 2026 ([Nature](https://www.nature.com/articles/s41586-026-10751-w)),
-which measured the radial velocity of the imaged companion CD-35 2722 B *itself* — not its host
-star — and reported a planetary-mass satellite around it. A separately implemented CR2RES/VIPER
-extraction, calibrated against the published RV series and therefore **not an independent
-reproduction**, recovers the reported ~171-day signal on the 17 nights retained by an internal
-quality screen; with all 18 nights the BERV-adjusted searches are compatible with noise.
+This is a reanalysis of Hoy et al. 2026 ([Nature](https://www.nature.com/articles/s41586-026-10751-w)).
+That paper measured the radial velocity of the imaged companion CD-35 2722 B itself (not its host
+star) and reported a planetary-mass satellite around it. A separately implemented CR2RES/VIPER
+extraction, calibrated against the published RV series, is not an independent reproduction. It
+recovers the reported ~171-day signal on the 17 nights retained by an internal quality screen.
+With all 18 nights, the BERV-adjusted searches are compatible with noise.
 
 - **Second satellite:** not reproduced under this project's stated models and priors (a
   different sampler was not tested).
 - **eta Tel B:** a same-setting nodding control with no detected signal. Its sensitivity curve is
-  pointwise, circular-orbit and conditional on fitter-stage transmission, not an unconditional
-  upper limit.
+  pointwise, circular-orbit and conditional on fitter-stage transmission. It is not an
+  unconditional upper limit.
 - **Other observing modes:** transfer is unproven. The former "staring" sample was HiRISE fibre
-  data processed with a slit recipe, and those claims are withdrawn; the beta Pic extraction is
+  data processed with a slit recipe, and those claims are withdrawn. The beta Pic extraction is
   host-dominated and is not a companion RV measurement (see the
   [target ledger](https://github.com/mepotts/exosat-rv/blob/main/docs/target-queue.md)).
 - **Status:** no discovery is claimed and nothing has been submitted. Read the
   [M37 audit](https://github.com/mepotts/exosat-rv/blob/main/docs/milestones/M37-RESULTS.md) first.
 
-The manuscript drafts in [`docs/paper/`](https://github.com/mepotts/exosat-rv/tree/main/docs/paper),
-each with a rendered `.html` alongside its source, are work in progress; none is
-submission-ready. [`LESSONS.md`](https://github.com/mepotts/exosat-rv/blob/main/docs/LESSONS.md)
+The manuscript drafts in [`docs/paper/`](https://github.com/mepotts/exosat-rv/tree/main/docs/paper)
+are work in progress, and none is submission-ready. Each has a rendered `.html` alongside its
+source. [`LESSONS.md`](https://github.com/mepotts/exosat-rv/blob/main/docs/LESSONS.md)
 is the consolidated trap catalog.
 
 ### [`itf-linker/`](itf-linker/) — linking the Minor Planet Center's orphan observations
@@ -60,10 +61,10 @@ vetting gate (MPChecker / SkyBoT / SBIDENT) so nothing known is "rediscovered."
 Validated by hiding the linkages the file already contains: the grid re-derives
 **93.0%** of them exactly, and recovers 11 of 13 real objects spanning an Atira to
 TNOs. Attributions held in this project's ledger (none submitted) have since been
-checked against the MPC's own processing: of the PASS rows whose tracklets the MPC has
-since linked and removed from the ITF, 68 of 68 went to exactly the object the ledger
-named ([M11](itf-linker/M11-RESULTS.md), 2026-08-23; external validation, claimed as
-nothing more). A daily
+checked against the MPC's own processing. The MPC linked the tracklets of 68 PASS rows and
+removed them from the ITF. All 68 went to exactly the object the ledger named
+([M11](itf-linker/M11-RESULTS.md), 2026-08-23). This is external validation and
+nothing more. A daily
 local snapshot pipeline keeps the pool current. M13 adds a stale-queue watcher and
 builds a human-review payload, but has no submission capability; the scheduled watch
 only runs from the repository's default branch. **No MPC submission is automated.**
@@ -100,8 +101,8 @@ no account was created. The operational handoff and exact caveat are in
 
 | Project | What it does | Status |
 |---|---|---|
-| [`pta-explainer/`](pta-explainer/) | Pulsar-timing-array / Hellings–Downs interactive explainer — **[live demo](https://mepotts.github.io/pta-explainer/)** | Deployed: HD curve and source sandbox. A monopole/dipole overlay (showing why only the quadrupole implies gravitational waves) is in the source but not yet in the live build, which was deployed 2026-07-18. 64 tests |
-| [`seti-ellipsoid-broker/`](seti-ellipsoid-broker/) | Fuses transient alerts × Gaia DR3 into ranked SN 1987A ellipsoid-crossing target lists | Offline core complete; runs on a user-supplied alert CSV against anonymous (account-free) Gaia DR3 TAP, while broker auto-ingest (Lasair, ASAS-SN, CHIME) remains stubs. Crossing epochs reproduce all 217 targets of Nilipour+2023 to <5×10⁻⁴ yr, a check of the math against published values rather than of a running service. 84 tests. RNAAS tool note drafted |
+| [`pta-explainer/`](pta-explainer/) | Pulsar-timing-array / Hellings-Downs interactive explainer: **[live demo](https://mepotts.github.io/pta-explainer/)** | Deployed: HD curve and source sandbox. A monopole/dipole overlay (showing why only the quadrupole implies gravitational waves) is in the source but not yet in the live build, which was deployed 2026-07-18. 64 tests |
+| [`seti-ellipsoid-broker/`](seti-ellipsoid-broker/) | Fuses transient alerts with Gaia DR3 into ranked SN 1987A ellipsoid-crossing target lists | Offline core complete. It runs on a user-supplied alert CSV against anonymous (account-free) Gaia DR3 TAP, and broker auto-ingest (Lasair, ASAS-SN, CHIME) remains stubs. Crossing epochs reproduce all 217 targets of Nilipour+2023 to within 0.0005 yr. That checks the math against published values and does not test a running service. 84 tests. RNAAS tool note drafted |
 | [`adql-copilot/`](adql-copilot/) | Schema-aware ADQL linter for Virtual-Observatory TAP endpoints | Correctness-hardened against the real 6,614-column Gaia `TAP_SCHEMA`; honest unchecked-identifier reporting. 46 tests. JOSS paper drafted in [`adql-copilot/paper/`](adql-copilot/paper/) |
 
 ## The lab notebook
