@@ -1,0 +1,37 @@
+{
+  "snapshot_id": "20261103T122633Z",
+  "created_utc": "2026-11-03T12:30:27+00:00",
+  "provenance": {
+    "url": "https://www.minorplanetcenter.net/iau/ITF/itf.txt.gz",
+    "path": "C:\\Users\\matth\\projects\\astronomy\\itf-linker\\data\\raw\\itf.txt.gz",
+    "size_bytes": 131018839,
+    "last_modified": "Tue, 03 Nov 2026 12:26:33 GMT",
+    "etag": "\"7cf3057-65f5e5f731d72\"",
+    "content_length": "131018839",
+    "fetched_at_utc": "2026-11-03T12:30:11+00:00"
+  },
+  "observations": 9027527,
+  "distinct_obs_keys": 9026506,
+  "duplicate_observations": 1021,
+  "designations": 2528053,
+  "tracklets": 2553722,
+  "designations_3plus_nights": 2242,
+  "parent_snapshot": "20261102T122651Z",
+  "immediate_predecessor": "20261102T122651Z",
+  "is_baseline": false,
+  "delta": {
+    "appeared": 3263,
+    "disappeared": 9058
+  },
+  "delta_status": {
+    "computed": true,
+    "against": "20261102T122651Z",
+    "skipped_pruned_ancestors": []
+  },
+  "bytes": {
+    "observations.parquet": 173125707,
+    "designations.parquet": 8703417,
+    "delta.parquet": 210025,
+    "itf.txt.gz": 131018839
+  }
+}
